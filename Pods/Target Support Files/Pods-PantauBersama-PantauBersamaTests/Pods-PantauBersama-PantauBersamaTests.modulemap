@@ -1,0 +1,6 @@
+framework module Pods_PantauBersama_PantauBersamaTests {
+  umbrella header "Pods-PantauBersama-PantauBersamaTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
