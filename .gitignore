@@ -190,4 +190,4 @@ playground.xcworkspace
 /*.gcno
 **/xcshareddata/WorkspaceSettings.xcsettings
 
-# End of https://www.gitignore.io/api/xcode,swift,macos,carthage,cocoapods,objective-c
+# End of https://www.gitignore.io/api/xcode,swift,macos,carthage,cocoapods,objective-c.DS_Store
