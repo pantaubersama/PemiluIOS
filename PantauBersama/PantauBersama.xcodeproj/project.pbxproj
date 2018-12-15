@@ -1,0 +1,609 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		24F280C4B63852A75C32D7D7 /* Pods_PantauBersama_PantauBersamaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4CBA51E95EB1AE7C2940BC0 /* Pods_PantauBersama_PantauBersamaTests.framework */; };
+		844C3D3D21C4ED6D00199871 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844C3D3C21C4ED6D00199871 /* AppDelegate.swift */; };
+		844C3D3F21C4ED6D00199871 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844C3D3E21C4ED6D00199871 /* ViewController.swift */; };
+		844C3D4221C4ED6D00199871 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 844C3D4021C4ED6D00199871 /* Main.storyboard */; };
+		844C3D4521C4ED6D00199871 /* PantauBersama.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 844C3D4321C4ED6D00199871 /* PantauBersama.xcdatamodeld */; };
+		844C3D4721C4ED6E00199871 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 844C3D4621C4ED6E00199871 /* Assets.xcassets */; };
+		844C3D4A21C4ED6E00199871 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 844C3D4821C4ED6E00199871 /* LaunchScreen.storyboard */; };
+		844C3D5521C4ED6E00199871 /* PantauBersamaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844C3D5421C4ED6E00199871 /* PantauBersamaTests.swift */; };
+		844C3D6421C4EDE900199871 /* Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 844C3D6321C4EDE900199871 /* Common.framework */; };
+		844C3D6621C4EDEE00199871 /* Networking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 844C3D6521C4EDEE00199871 /* Networking.framework */; };
+		844C3D6821C4EDFD00199871 /* Networking.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 844C3D6521C4EDEE00199871 /* Networking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		844C3D6921C4EDFD00199871 /* Common.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 844C3D6321C4EDE900199871 /* Common.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F9E6A81363EEA62DC5165AFE /* Pods_PantauBersama.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37664EC0D75D639FE37581C6 /* Pods_PantauBersama.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		844C3D5121C4ED6E00199871 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 844C3D3121C4ED6D00199871 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 844C3D3821C4ED6D00199871;
+			remoteInfo = PantauBersama;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		844C3D6721C4EDF100199871 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				844C3D6821C4EDFD00199871 /* Networking.framework in CopyFiles */,
+				844C3D6921C4EDFD00199871 /* Common.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		04A224A86FBFD6EFE137644F /* Pods-PantauBersama.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PantauBersama.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-PantauBersama/Pods-PantauBersama.debug.xcconfig"; sourceTree = "<group>"; };
+		26FDFCB449836F8CBC965641 /* Pods-PantauBersama-PantauBersamaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PantauBersama-PantauBersamaTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-PantauBersama-PantauBersamaTests/Pods-PantauBersama-PantauBersamaTests.debug.xcconfig"; sourceTree = "<group>"; };
+		2F6FF2F7B6D75F6A9B57EC24 /* Pods-PantauBersama.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PantauBersama.release.xcconfig"; path = "../Pods/Target Support Files/Pods-PantauBersama/Pods-PantauBersama.release.xcconfig"; sourceTree = "<group>"; };
+		37664EC0D75D639FE37581C6 /* Pods_PantauBersama.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PantauBersama.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7AB70A91ECE9FAB1A4B0959B /* Pods-PantauBersama-PantauBersamaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PantauBersama-PantauBersamaTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-PantauBersama-PantauBersamaTests/Pods-PantauBersama-PantauBersamaTests.release.xcconfig"; sourceTree = "<group>"; };
+		844C3D3921C4ED6D00199871 /* PantauBersama.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PantauBersama.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		844C3D3C21C4ED6D00199871 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		844C3D3E21C4ED6D00199871 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		844C3D4121C4ED6D00199871 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		844C3D4421C4ED6D00199871 /* PantauBersama.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PantauBersama.xcdatamodel; sourceTree = "<group>"; };
+		844C3D4621C4ED6E00199871 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		844C3D4921C4ED6E00199871 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		844C3D4B21C4ED6E00199871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		844C3D5021C4ED6E00199871 /* PantauBersamaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PantauBersamaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		844C3D5421C4ED6E00199871 /* PantauBersamaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PantauBersamaTests.swift; sourceTree = "<group>"; };
+		844C3D5621C4ED6E00199871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		844C3D6021C4ED9100199871 /* Staging.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Staging.xcconfig; sourceTree = "<group>"; };
+		844C3D6121C4ED9F00199871 /* Production.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Production.xcconfig; sourceTree = "<group>"; };
+		844C3D6321C4EDE900199871 /* Common.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Common.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		844C3D6521C4EDEE00199871 /* Networking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Networking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C4CBA51E95EB1AE7C2940BC0 /* Pods_PantauBersama_PantauBersamaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PantauBersama_PantauBersamaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		844C3D3621C4ED6D00199871 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				844C3D6621C4EDEE00199871 /* Networking.framework in Frameworks */,
+				844C3D6421C4EDE900199871 /* Common.framework in Frameworks */,
+				F9E6A81363EEA62DC5165AFE /* Pods_PantauBersama.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		844C3D4D21C4ED6E00199871 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				24F280C4B63852A75C32D7D7 /* Pods_PantauBersama_PantauBersamaTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		7A731F6B53E97C8104446F76 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				04A224A86FBFD6EFE137644F /* Pods-PantauBersama.debug.xcconfig */,
+				2F6FF2F7B6D75F6A9B57EC24 /* Pods-PantauBersama.release.xcconfig */,
+				26FDFCB449836F8CBC965641 /* Pods-PantauBersama-PantauBersamaTests.debug.xcconfig */,
+				7AB70A91ECE9FAB1A4B0959B /* Pods-PantauBersama-PantauBersamaTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		844C3D3021C4ED6D00199871 = {
+			isa = PBXGroup;
+			children = (
+				844C3D3B21C4ED6D00199871 /* PantauBersama */,
+				844C3D5321C4ED6E00199871 /* PantauBersamaTests */,
+				844C3D3A21C4ED6D00199871 /* Products */,
+				844C3D6221C4EDE900199871 /* Frameworks */,
+				7A731F6B53E97C8104446F76 /* Pods */,
+			);
+			sourceTree = "<group>";
+		};
+		844C3D3A21C4ED6D00199871 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				844C3D3921C4ED6D00199871 /* PantauBersama.app */,
+				844C3D5021C4ED6E00199871 /* PantauBersamaTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		844C3D3B21C4ED6D00199871 /* PantauBersama */ = {
+			isa = PBXGroup;
+			children = (
+				844C3D5F21C4ED7500199871 /* Config */,
+				844C3D3C21C4ED6D00199871 /* AppDelegate.swift */,
+				844C3D3E21C4ED6D00199871 /* ViewController.swift */,
+				844C3D4021C4ED6D00199871 /* Main.storyboard */,
+				844C3D4621C4ED6E00199871 /* Assets.xcassets */,
+				844C3D4821C4ED6E00199871 /* LaunchScreen.storyboard */,
+				844C3D4B21C4ED6E00199871 /* Info.plist */,
+				844C3D4321C4ED6D00199871 /* PantauBersama.xcdatamodeld */,
+			);
+			path = PantauBersama;
+			sourceTree = "<group>";
+		};
+		844C3D5321C4ED6E00199871 /* PantauBersamaTests */ = {
+			isa = PBXGroup;
+			children = (
+				844C3D5421C4ED6E00199871 /* PantauBersamaTests.swift */,
+				844C3D5621C4ED6E00199871 /* Info.plist */,
+			);
+			path = PantauBersamaTests;
+			sourceTree = "<group>";
+		};
+		844C3D5F21C4ED7500199871 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				844C3D6021C4ED9100199871 /* Staging.xcconfig */,
+				844C3D6121C4ED9F00199871 /* Production.xcconfig */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+		844C3D6221C4EDE900199871 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				844C3D6521C4EDEE00199871 /* Networking.framework */,
+				844C3D6321C4EDE900199871 /* Common.framework */,
+				37664EC0D75D639FE37581C6 /* Pods_PantauBersama.framework */,
+				C4CBA51E95EB1AE7C2940BC0 /* Pods_PantauBersama_PantauBersamaTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		844C3D3821C4ED6D00199871 /* PantauBersama */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 844C3D5921C4ED6E00199871 /* Build configuration list for PBXNativeTarget "PantauBersama" */;
+			buildPhases = (
+				D1138D5EE223F3B675D546DA /* [CP] Check Pods Manifest.lock */,
+				844C3D3521C4ED6D00199871 /* Sources */,
+				844C3D3621C4ED6D00199871 /* Frameworks */,
+				844C3D3721C4ED6D00199871 /* Resources */,
+				844C3D6721C4EDF100199871 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PantauBersama;
+			productName = PantauBersama;
+			productReference = 844C3D3921C4ED6D00199871 /* PantauBersama.app */;
+			productType = "com.apple.product-type.application";
+		};
+		844C3D4F21C4ED6E00199871 /* PantauBersamaTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 844C3D5C21C4ED6E00199871 /* Build configuration list for PBXNativeTarget "PantauBersamaTests" */;
+			buildPhases = (
+				BD69F6DEF48FE2F0A82FA3A3 /* [CP] Check Pods Manifest.lock */,
+				844C3D4C21C4ED6E00199871 /* Sources */,
+				844C3D4D21C4ED6E00199871 /* Frameworks */,
+				844C3D4E21C4ED6E00199871 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				844C3D5221C4ED6E00199871 /* PBXTargetDependency */,
+			);
+			name = PantauBersamaTests;
+			productName = PantauBersamaTests;
+			productReference = 844C3D5021C4ED6E00199871 /* PantauBersamaTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		844C3D3121C4ED6D00199871 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1010;
+				LastUpgradeCheck = 1010;
+				ORGANIZATIONNAME = PantauBersama;
+				TargetAttributes = {
+					844C3D3821C4ED6D00199871 = {
+						CreatedOnToolsVersion = 10.1;
+					};
+					844C3D4F21C4ED6E00199871 = {
+						CreatedOnToolsVersion = 10.1;
+						TestTargetID = 844C3D3821C4ED6D00199871;
+					};
+				};
+			};
+			buildConfigurationList = 844C3D3421C4ED6D00199871 /* Build configuration list for PBXProject "PantauBersama" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 844C3D3021C4ED6D00199871;
+			productRefGroup = 844C3D3A21C4ED6D00199871 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				844C3D3821C4ED6D00199871 /* PantauBersama */,
+				844C3D4F21C4ED6E00199871 /* PantauBersamaTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		844C3D3721C4ED6D00199871 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				844C3D4A21C4ED6E00199871 /* LaunchScreen.storyboard in Resources */,
+				844C3D4721C4ED6E00199871 /* Assets.xcassets in Resources */,
+				844C3D4221C4ED6D00199871 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		844C3D4E21C4ED6E00199871 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		BD69F6DEF48FE2F0A82FA3A3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PantauBersama-PantauBersamaTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D1138D5EE223F3B675D546DA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PantauBersama-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		844C3D3521C4ED6D00199871 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				844C3D3F21C4ED6D00199871 /* ViewController.swift in Sources */,
+				844C3D4521C4ED6D00199871 /* PantauBersama.xcdatamodeld in Sources */,
+				844C3D3D21C4ED6D00199871 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		844C3D4C21C4ED6E00199871 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				844C3D5521C4ED6E00199871 /* PantauBersamaTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		844C3D5221C4ED6E00199871 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 844C3D3821C4ED6D00199871 /* PantauBersama */;
+			targetProxy = 844C3D5121C4ED6E00199871 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		844C3D4021C4ED6D00199871 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				844C3D4121C4ED6D00199871 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		844C3D4821C4ED6E00199871 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				844C3D4921C4ED6E00199871 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		844C3D5721C4ED6E00199871 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 844C3D6021C4ED9100199871 /* Staging.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		844C3D5821C4ED6E00199871 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 844C3D6121C4ED9F00199871 /* Production.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		844C3D5A21C4ED6E00199871 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 04A224A86FBFD6EFE137644F /* Pods-PantauBersama.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = W53Z558FTK;
+				INFOPLIST_FILE = PantauBersama/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.PantauBersama;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		844C3D5B21C4ED6E00199871 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2F6FF2F7B6D75F6A9B57EC24 /* Pods-PantauBersama.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = W53Z558FTK;
+				INFOPLIST_FILE = PantauBersama/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.PantauBersama;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		844C3D5D21C4ED6E00199871 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 26FDFCB449836F8CBC965641 /* Pods-PantauBersama-PantauBersamaTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = PantauBersamaTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.PantauBersamaTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PantauBersama.app/PantauBersama";
+			};
+			name = Debug;
+		};
+		844C3D5E21C4ED6E00199871 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7AB70A91ECE9FAB1A4B0959B /* Pods-PantauBersama-PantauBersamaTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = PantauBersamaTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.PantauBersamaTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PantauBersama.app/PantauBersama";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		844C3D3421C4ED6D00199871 /* Build configuration list for PBXProject "PantauBersama" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				844C3D5721C4ED6E00199871 /* Debug */,
+				844C3D5821C4ED6E00199871 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		844C3D5921C4ED6E00199871 /* Build configuration list for PBXNativeTarget "PantauBersama" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				844C3D5A21C4ED6E00199871 /* Debug */,
+				844C3D5B21C4ED6E00199871 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		844C3D5C21C4ED6E00199871 /* Build configuration list for PBXNativeTarget "PantauBersamaTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				844C3D5D21C4ED6E00199871 /* Debug */,
+				844C3D5E21C4ED6E00199871 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		844C3D4321C4ED6D00199871 /* PantauBersama.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				844C3D4421C4ED6D00199871 /* PantauBersama.xcdatamodel */,
+			);
+			currentVersion = 844C3D4421C4ED6D00199871 /* PantauBersama.xcdatamodel */;
+			path = PantauBersama.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 844C3D3121C4ED6D00199871 /* Project object */;
+}
