@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		24F280C4B63852A75C32D7D7 /* Pods_PantauBersama_PantauBersamaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4CBA51E95EB1AE7C2940BC0 /* Pods_PantauBersama_PantauBersamaTests.framework */; };
 		844C3D3D21C4ED6D00199871 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844C3D3C21C4ED6D00199871 /* AppDelegate.swift */; };
-		844C3D3F21C4ED6D00199871 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844C3D3E21C4ED6D00199871 /* ViewController.swift */; };
-		844C3D4221C4ED6D00199871 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 844C3D4021C4ED6D00199871 /* Main.storyboard */; };
 		844C3D4521C4ED6D00199871 /* PantauBersama.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 844C3D4321C4ED6D00199871 /* PantauBersama.xcdatamodeld */; };
 		844C3D4721C4ED6E00199871 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 844C3D4621C4ED6E00199871 /* Assets.xcassets */; };
 		844C3D4A21C4ED6E00199871 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 844C3D4821C4ED6E00199871 /* LaunchScreen.storyboard */; };
@@ -19,6 +17,14 @@
 		844C3D6621C4EDEE00199871 /* Networking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 844C3D6521C4EDEE00199871 /* Networking.framework */; };
 		844C3D6821C4EDFD00199871 /* Networking.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 844C3D6521C4EDEE00199871 /* Networking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		844C3D6921C4EDFD00199871 /* Common.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 844C3D6321C4EDE900199871 /* Common.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		844C3D6D21C51CE900199871 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844C3D6C21C51CE900199871 /* HomeController.swift */; };
+		844C3D7021C51D3500199871 /* PantauBarKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844C3D6F21C51D3500199871 /* PantauBarKind.swift */; };
+		844C3D7621C51EAF00199871 /* BaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844C3D7521C51EAF00199871 /* BaseCoordinator.swift */; };
+		844C3D7821C51EFD00199871 /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844C3D7721C51EFD00199871 /* HomeCoordinator.swift */; };
+		844C3D7A21C5230C00199871 /* RawRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844C3D7921C5230C00199871 /* RawRepresentable.swift */; };
+		844C3D8321C524F000199871 /* LinimasaController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844C3D8221C524F000199871 /* LinimasaController.swift */; };
+		844C3D8521C5252800199871 /* LinimasaCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844C3D8421C5252800199871 /* LinimasaCoordinator.swift */; };
+		844C3D8821C5265600199871 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844C3D8721C5265600199871 /* AppCoordinator.swift */; };
 		F9E6A81363EEA62DC5165AFE /* Pods_PantauBersama.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37664EC0D75D639FE37581C6 /* Pods_PantauBersama.framework */; };
 /* End PBXBuildFile section */
 
@@ -54,8 +60,6 @@
 		7AB70A91ECE9FAB1A4B0959B /* Pods-PantauBersama-PantauBersamaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PantauBersama-PantauBersamaTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-PantauBersama-PantauBersamaTests/Pods-PantauBersama-PantauBersamaTests.release.xcconfig"; sourceTree = "<group>"; };
 		844C3D3921C4ED6D00199871 /* PantauBersama.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PantauBersama.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		844C3D3C21C4ED6D00199871 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		844C3D3E21C4ED6D00199871 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		844C3D4121C4ED6D00199871 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		844C3D4421C4ED6D00199871 /* PantauBersama.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PantauBersama.xcdatamodel; sourceTree = "<group>"; };
 		844C3D4621C4ED6E00199871 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		844C3D4921C4ED6E00199871 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -67,6 +71,14 @@
 		844C3D6121C4ED9F00199871 /* Production.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Production.xcconfig; sourceTree = "<group>"; };
 		844C3D6321C4EDE900199871 /* Common.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Common.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		844C3D6521C4EDEE00199871 /* Networking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Networking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		844C3D6C21C51CE900199871 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
+		844C3D6F21C51D3500199871 /* PantauBarKind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PantauBarKind.swift; sourceTree = "<group>"; };
+		844C3D7521C51EAF00199871 /* BaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCoordinator.swift; sourceTree = "<group>"; };
+		844C3D7721C51EFD00199871 /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
+		844C3D7921C5230C00199871 /* RawRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RawRepresentable.swift; sourceTree = "<group>"; };
+		844C3D8221C524F000199871 /* LinimasaController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinimasaController.swift; sourceTree = "<group>"; };
+		844C3D8421C5252800199871 /* LinimasaCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinimasaCoordinator.swift; sourceTree = "<group>"; };
+		844C3D8721C5265600199871 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		C4CBA51E95EB1AE7C2940BC0 /* Pods_PantauBersama_PantauBersamaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PantauBersama_PantauBersamaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -126,14 +138,15 @@
 		844C3D3B21C4ED6D00199871 /* PantauBersama */ = {
 			isa = PBXGroup;
 			children = (
+				844C3D8621C5264C00199871 /* App */,
+				844C3D6A21C5177A00199871 /* Modules */,
+				844C3D7321C51E7E00199871 /* Library */,
+				844C3D7221C51E2500199871 /* Coredata */,
+				844C3D7121C51DFB00199871 /* Resources */,
 				844C3D5F21C4ED7500199871 /* Config */,
 				844C3D3C21C4ED6D00199871 /* AppDelegate.swift */,
-				844C3D3E21C4ED6D00199871 /* ViewController.swift */,
-				844C3D4021C4ED6D00199871 /* Main.storyboard */,
-				844C3D4621C4ED6E00199871 /* Assets.xcassets */,
 				844C3D4821C4ED6E00199871 /* LaunchScreen.storyboard */,
 				844C3D4B21C4ED6E00199871 /* Info.plist */,
-				844C3D4321C4ED6D00199871 /* PantauBersama.xcdatamodeld */,
 			);
 			path = PantauBersama;
 			sourceTree = "<group>";
@@ -167,6 +180,115 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		844C3D6A21C5177A00199871 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				844C3D6B21C51CD900199871 /* Home */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		844C3D6B21C51CD900199871 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				844C3D7B21C5246600199871 /* SubModules */,
+				844C3D6C21C51CE900199871 /* HomeController.swift */,
+				844C3D6F21C51D3500199871 /* PantauBarKind.swift */,
+				844C3D7721C51EFD00199871 /* HomeCoordinator.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		844C3D7121C51DFB00199871 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				844C3D4621C4ED6E00199871 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		844C3D7221C51E2500199871 /* Coredata */ = {
+			isa = PBXGroup;
+			children = (
+				844C3D4321C4ED6D00199871 /* PantauBersama.xcdatamodeld */,
+			);
+			path = Coredata;
+			sourceTree = "<group>";
+		};
+		844C3D7321C51E7E00199871 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				844C3D7521C51EAF00199871 /* BaseCoordinator.swift */,
+				844C3D7921C5230C00199871 /* RawRepresentable.swift */,
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
+		844C3D7B21C5246600199871 /* SubModules */ = {
+			isa = PBXGroup;
+			children = (
+				844C3D8021C524AE00199871 /* Vote */,
+				844C3D7F21C524A700199871 /* Lapor */,
+				844C3D7E21C5249300199871 /* Wordstadium */,
+				844C3D7D21C5248400199871 /* Penpol */,
+				844C3D7C21C5247D00199871 /* Linimasa */,
+			);
+			path = SubModules;
+			sourceTree = "<group>";
+		};
+		844C3D7C21C5247D00199871 /* Linimasa */ = {
+			isa = PBXGroup;
+			children = (
+				844C3D8121C524BC00199871 /* ViewController */,
+				844C3D8421C5252800199871 /* LinimasaCoordinator.swift */,
+			);
+			path = Linimasa;
+			sourceTree = "<group>";
+		};
+		844C3D7D21C5248400199871 /* Penpol */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Penpol;
+			sourceTree = "<group>";
+		};
+		844C3D7E21C5249300199871 /* Wordstadium */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Wordstadium;
+			sourceTree = "<group>";
+		};
+		844C3D7F21C524A700199871 /* Lapor */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Lapor;
+			sourceTree = "<group>";
+		};
+		844C3D8021C524AE00199871 /* Vote */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Vote;
+			sourceTree = "<group>";
+		};
+		844C3D8121C524BC00199871 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				844C3D8221C524F000199871 /* LinimasaController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		844C3D8621C5264C00199871 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				844C3D8721C5265600199871 /* AppCoordinator.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -179,6 +301,7 @@
 				844C3D3621C4ED6D00199871 /* Frameworks */,
 				844C3D3721C4ED6D00199871 /* Resources */,
 				844C3D6721C4EDF100199871 /* CopyFiles */,
+				FB87C8E89D65B40FDEF51D35 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -197,6 +320,7 @@
 				844C3D4C21C4ED6E00199871 /* Sources */,
 				844C3D4D21C4ED6E00199871 /* Frameworks */,
 				844C3D4E21C4ED6E00199871 /* Resources */,
+				7C41DB0AFAA1DA87ABDD8FD3 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -253,7 +377,6 @@
 			files = (
 				844C3D4A21C4ED6E00199871 /* LaunchScreen.storyboard in Resources */,
 				844C3D4721C4ED6E00199871 /* Assets.xcassets in Resources */,
-				844C3D4221C4ED6D00199871 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -267,6 +390,38 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		7C41DB0AFAA1DA87ABDD8FD3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/../Pods/Target Support Files/Pods-PantauBersama-PantauBersamaTests/Pods-PantauBersama-PantauBersamaTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
+				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
+				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-PantauBersama-PantauBersamaTests/Pods-PantauBersama-PantauBersamaTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		BD69F6DEF48FE2F0A82FA3A3 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -311,6 +466,38 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		FB87C8E89D65B40FDEF51D35 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/../Pods/Target Support Files/Pods-PantauBersama/Pods-PantauBersama-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
+				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
+				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-PantauBersama/Pods-PantauBersama-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -318,9 +505,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				844C3D3F21C4ED6D00199871 /* ViewController.swift in Sources */,
+				844C3D7621C51EAF00199871 /* BaseCoordinator.swift in Sources */,
+				844C3D7021C51D3500199871 /* PantauBarKind.swift in Sources */,
+				844C3D8821C5265600199871 /* AppCoordinator.swift in Sources */,
+				844C3D6D21C51CE900199871 /* HomeController.swift in Sources */,
 				844C3D4521C4ED6D00199871 /* PantauBersama.xcdatamodeld in Sources */,
 				844C3D3D21C4ED6D00199871 /* AppDelegate.swift in Sources */,
+				844C3D8321C524F000199871 /* LinimasaController.swift in Sources */,
+				844C3D7821C51EFD00199871 /* HomeCoordinator.swift in Sources */,
+				844C3D7A21C5230C00199871 /* RawRepresentable.swift in Sources */,
+				844C3D8521C5252800199871 /* LinimasaCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -343,14 +537,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		844C3D4021C4ED6D00199871 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				844C3D4121C4ED6D00199871 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		844C3D4821C4ED6E00199871 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -484,6 +670,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 04A224A86FBFD6EFE137644F /* Pods-PantauBersama.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = W53Z558FTK;
@@ -503,6 +690,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2F6FF2F7B6D75F6A9B57EC24 /* Pods-PantauBersama.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = W53Z558FTK;
@@ -522,7 +710,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 26FDFCB449836F8CBC965641 /* Pods-PantauBersama-PantauBersamaTests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = PantauBersamaTests/Info.plist;
@@ -543,7 +731,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7AB70A91ECE9FAB1A4B0959B /* Pods-PantauBersama-PantauBersamaTests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = PantauBersamaTests/Info.plist;
