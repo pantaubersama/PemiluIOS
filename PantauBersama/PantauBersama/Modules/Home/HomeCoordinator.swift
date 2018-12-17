@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import Common
 
 class HomeCoordinator: BaseCoordinator<Void> {
     
@@ -31,7 +32,7 @@ class HomeCoordinator: BaseCoordinator<Void> {
     override func start() -> Observable<CoordinationResult> {
         let viewController = HomeController()
         viewController.tabBar.isTranslucent = false
-        viewController.tabBar.tintColor = UIColor.red
+        viewController.tabBar.tintColor = Color.primary_red
         viewController.tabBar.barTintColor = UIColor.white
         viewController.viewControllers = viewControllers
         
