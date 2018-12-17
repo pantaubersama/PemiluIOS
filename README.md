@@ -59,6 +59,9 @@ Don't forget to add references framework here after you add some libs in `podfil
 1. RxSwift - https://github.com/ReactiveX/RxSwift
 1. RxCocoa - https://github.com/ReactiveX/RxSwift/tree/master/RxCocoa
 1. Moya/RxSwift - https://moya.github.io/index.html
+1. Crashlytics 
+1. Fabric
+1. Firebase/Core
 
 
 ### Some Libs
