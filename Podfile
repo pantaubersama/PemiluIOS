@@ -22,6 +22,8 @@ end
 
 def application_pods
     pod 'Firebase/Core'
+    pod 'Fabric'
+    pod 'Crashlytics'
     
 end
 

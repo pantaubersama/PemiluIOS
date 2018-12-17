@@ -10,6 +10,8 @@ import UIKit
 import CoreData
 import RxSwift
 import Firebase
+import Fabric
+import Crashlytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -26,6 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             .subscribe()
             .disposed(by: disposeBag)
         
+        Fabric.with([Crashlytics.self])
         #if DEBUG
             let filePath = Bundle.main.path(forResource: "GoogleService-Info-Staging", ofType: "plist")!
             let options = FirebaseOptions(contentsOfFile: filePath)
