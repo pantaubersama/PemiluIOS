@@ -43,6 +43,11 @@
                             <constraint firstAttribute="bottom" secondItem="vpl-MM-rZo" secondAttribute="bottom" id="sfR-kL-fcg"/>
                             <constraint firstAttribute="height" constant="40" id="vor-pt-EVq"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="20"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </view>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="1O6-eJ-vtF">
                         <rect key="frame" x="64" y="14" width="314" height="119.5"/>
