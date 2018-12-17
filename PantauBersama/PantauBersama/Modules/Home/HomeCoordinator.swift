@@ -20,8 +20,10 @@ class HomeCoordinator: BaseCoordinator<Void> {
         self.viewControllers = PantauBarKind.items
             .map { (t) -> UINavigationController in
                 let n = UINavigationController()
-                n.tabBarItem.title = t.title
+                n.tabBarItem.imageInsets = UIEdgeInsets(top: 6, left: 0, bottom: -6, right: 0)
+//                n.tabBarItem.title = t.title
                 n.tabBarItem.image = t.icon
+                n.tabBarItem.selectedImage = t.iconSelected
                 return n
             }
     }
@@ -29,7 +31,6 @@ class HomeCoordinator: BaseCoordinator<Void> {
     override func start() -> Observable<CoordinationResult> {
         let viewController = HomeController()
         viewController.tabBar.isTranslucent = false
-        viewController.tabBar.backgroundColor = UIColor.black
         viewController.tabBar.tintColor = UIColor.red
         viewController.tabBar.barTintColor = UIColor.white
         viewController.viewControllers = viewControllers
