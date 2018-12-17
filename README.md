@@ -61,4 +61,29 @@ Don't forget to add references framework here after you add some libs in `podfil
 1. Moya/RxSwift - https://moya.github.io/index.html
 
 
+### Some Libs
+#### Custom UILabel:  `Label`
+Pantau have two styles fonts family like `Lato` and `BWModelica` please contact pantau `designer` if you don't have `assets` font. Little help for creating interfaces from XIB
+
+1. Via XIB
+1. Set your custom class with `Label`
+1. Feel free to set `Font Size` with your number (default is `12`, i guess :laughing:)
+1. Set your `Type Label` with these option (default is `regular`)
+You can see in `LabelType` for custom styles in UILabel 
+
+#### Custom UIColor: `Color`
+Pantau have many styles for color, see our `zeplin` to match color when you design some `UI`
+for example in `Common` we've custom class `Color` such as `primary_red`, `secondary_cyan`, `secondary_orange`, etc. . .
+You can use this class to `custom color` for example:
+
+```
+swift
+let myColor = Color.primary_red
+self.view.backgroundColor = myColor
+```
+In case you want to create your color from RBG, we also give you a little help, here it is
+```swift
+let color = Color.RGBColor(red: 88, green: 88, blue: 88)
+let alphaColor = Color.RGBColor(red: 88, green: 88, blue: 88, alpha: 0.4)
+```
 Note : I can also misrepresent this whole skeleton, please if you have better understand to build skeleton project don't hesitate to share your knowledge ☺️
