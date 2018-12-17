@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import RxSwift
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -24,6 +25,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         appCoordinator.start()
             .subscribe()
             .disposed(by: disposeBag)
+        
+        #if DEBUG
+            let filePath = Bundle.main.path(forResource: "GoogleService-Info-Staging", ofType: "plist")!
+            let options = FirebaseOptions(contentsOfFile: filePath)
+            FirebaseApp.configure(options: options!)
+        #else
+            let filePath = Bundle.main.path(forResource: "GoogleService-Info", ofType: "plist")!
+            let options = FirebaseOptions(contentsOfFile: filePath)
+            FirebaseApp.configure(options: options!)
+        #endif
         
         return true
     }

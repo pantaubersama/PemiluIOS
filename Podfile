@@ -21,8 +21,8 @@ end
 
 
 def application_pods
-
-
+    pod 'Firebase/Core'
+    
 end
 
 
