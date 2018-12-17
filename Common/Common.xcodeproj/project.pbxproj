@@ -11,6 +11,8 @@
 		84D831CC21C4DCBB00C437B7 /* Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84D831C221C4DCBB00C437B7 /* Common.framework */; };
 		84D831D121C4DCBB00C437B7 /* CommonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D831D021C4DCBB00C437B7 /* CommonTests.swift */; };
 		84D831D321C4DCBB00C437B7 /* Common.h in Headers */ = {isa = PBXBuildFile; fileRef = 84D831C521C4DCBB00C437B7 /* Common.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		84F8929521C77CCF00DC1048 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F8929421C77CCF00DC1048 /* UIColor.swift */; };
+		84F8929721C783A700DC1048 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F8929621C783A700DC1048 /* Label.swift */; };
 		C6B88B100524603839760787 /* Pods_CommonTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02158AB122F8CEFF16E59736 /* Pods_CommonTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +37,8 @@
 		84D831CB21C4DCBB00C437B7 /* CommonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CommonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		84D831D021C4DCBB00C437B7 /* CommonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonTests.swift; sourceTree = "<group>"; };
 		84D831D221C4DCBB00C437B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		84F8929421C77CCF00DC1048 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		84F8929621C783A700DC1048 /* Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
 		D0C86F94B18D2CFB51A563DE /* Pods-Common.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Common.release.xcconfig"; path = "../Pods/Target Support Files/Pods-Common/Pods-Common.release.xcconfig"; sourceTree = "<group>"; };
 		F51EF50C46CE7E2E19AE1628 /* Pods-Common.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Common.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-Common/Pods-Common.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -92,6 +96,7 @@
 		84D831C421C4DCBB00C437B7 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				84F8929321C77C8D00DC1048 /* UI */,
 				84D831C521C4DCBB00C437B7 /* Common.h */,
 				84D831C621C4DCBB00C437B7 /* Info.plist */,
 			);
@@ -105,6 +110,15 @@
 				84D831D221C4DCBB00C437B7 /* Info.plist */,
 			);
 			path = CommonTests;
+			sourceTree = "<group>";
+		};
+		84F8929321C77C8D00DC1048 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				84F8929421C77CCF00DC1048 /* UIColor.swift */,
+				84F8929621C783A700DC1048 /* Label.swift */,
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 		C25D998D2045680A7470E82D /* Pods */ = {
@@ -182,6 +196,7 @@
 				TargetAttributes = {
 					84D831C121C4DCBB00C437B7 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1010;
 					};
 					84D831CA21C4DCBB00C437B7 = {
 						CreatedOnToolsVersion = 10.1;
@@ -275,6 +290,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84F8929721C783A700DC1048 /* Label.swift in Sources */,
+				84F8929521C77CCF00DC1048 /* UIColor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -423,6 +440,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F51EF50C46CE7E2E19AE1628 /* Pods-Common.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -439,6 +457,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.Common;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -448,6 +467,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D0C86F94B18D2CFB51A563DE /* Pods-Common.release.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -473,6 +493,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4C08C67BBDD52BC5064B7EC3 /* Pods-CommonTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = CommonTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -491,6 +512,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 40C1D3CEB3FC05B14DD97941 /* Pods-CommonTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = CommonTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
