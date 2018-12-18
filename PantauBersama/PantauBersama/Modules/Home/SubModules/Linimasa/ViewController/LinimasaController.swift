@@ -32,8 +32,21 @@ class LinimasaController: UIViewController {
         
         navigationItem.rightBarButtonItem = notifications
         
-//        segementedControl.rx
-//                .value
+        
+        segementedControl.rx.value // assign extension UIControl
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { i in
+                UIView.animate(withDuration: 0.3, animations: {
+                    if i == 0 {
+                        self.pilpresController.view.alpha = 1.0
+                        self.janjiController.view.alpha = 0.0
+                    } else {
+                        self.pilpresController.view.alpha = 0.0
+                        self.janjiController.view.alpha = 1.0
+                    }
+                })
+            })
+            .disposed(by: disposeBag)
         
     }
     
