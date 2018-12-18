@@ -147,4 +147,8 @@ extension Color {
         return Color.RGBColor(red: 0, green: 112, blue: 87)
     }
     
+    // Thems for Kuis
+    public static var purple_primary: UIColor {
+        return Color.RGBColor(red: 79, green: 51, blue: 155)
+    }
 }

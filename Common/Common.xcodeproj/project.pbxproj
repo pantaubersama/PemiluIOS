@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1D0E1E57B81AE85E2551744D /* Pods_Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44BB4E6DC2355C13791C68DB /* Pods_Common.framework */; };
+		841CDA4421C8BFB10015680C /* SegementedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841CDA4321C8BFB10015680C /* SegementedControl.swift */; };
 		8428AA8921C7A2A60008E975 /* RoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8428AA8821C7A2A60008E975 /* RoundView.swift */; };
 		8428AA8B21C7A2EC0008E975 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8428AA8A21C7A2EC0008E975 /* UIView.swift */; };
 		8428AA8D21C7A3CE0008E975 /* IReusableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8428AA8C21C7A3CE0008E975 /* IReusableCell.swift */; };
@@ -21,6 +22,8 @@
 		84D831CC21C4DCBB00C437B7 /* Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84D831C221C4DCBB00C437B7 /* Common.framework */; };
 		84D831D121C4DCBB00C437B7 /* CommonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D831D021C4DCBB00C437B7 /* CommonTests.swift */; };
 		84D831D321C4DCBB00C437B7 /* Common.h in Headers */ = {isa = PBXBuildFile; fileRef = 84D831C521C4DCBB00C437B7 /* Common.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		84F6980621C8D19300890917 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F6980521C8D19300890917 /* UIViewController.swift */; };
+		84F6980D21C8DC7F00890917 /* UINavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F6980C21C8DC7F00890917 /* UINavigationBar.swift */; };
 		84F8929521C77CCF00DC1048 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F8929421C77CCF00DC1048 /* UIColor.swift */; };
 		84F8929721C783A700DC1048 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F8929621C783A700DC1048 /* Label.swift */; };
 		C6B88B100524603839760787 /* Pods_CommonTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02158AB122F8CEFF16E59736 /* Pods_CommonTests.framework */; };
@@ -41,6 +44,7 @@
 		40C1D3CEB3FC05B14DD97941 /* Pods-CommonTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CommonTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-CommonTests/Pods-CommonTests.release.xcconfig"; sourceTree = "<group>"; };
 		44BB4E6DC2355C13791C68DB /* Pods_Common.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Common.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C08C67BBDD52BC5064B7EC3 /* Pods-CommonTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CommonTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-CommonTests/Pods-CommonTests.debug.xcconfig"; sourceTree = "<group>"; };
+		841CDA4321C8BFB10015680C /* SegementedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegementedControl.swift; sourceTree = "<group>"; };
 		8428AA8821C7A2A60008E975 /* RoundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundView.swift; sourceTree = "<group>"; };
 		8428AA8A21C7A2EC0008E975 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		8428AA8C21C7A3CE0008E975 /* IReusableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IReusableCell.swift; sourceTree = "<group>"; };
@@ -57,6 +61,8 @@
 		84D831CB21C4DCBB00C437B7 /* CommonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CommonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		84D831D021C4DCBB00C437B7 /* CommonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonTests.swift; sourceTree = "<group>"; };
 		84D831D221C4DCBB00C437B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		84F6980521C8D19300890917 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
+		84F6980C21C8DC7F00890917 /* UINavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationBar.swift; sourceTree = "<group>"; };
 		84F8929421C77CCF00DC1048 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		84F8929621C783A700DC1048 /* Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
 		D0C86F94B18D2CFB51A563DE /* Pods-Common.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Common.release.xcconfig"; path = "../Pods/Target Support Files/Pods-Common/Pods-Common.release.xcconfig"; sourceTree = "<group>"; };
@@ -163,6 +169,9 @@
 				8428AA8C21C7A3CE0008E975 /* IReusableCell.swift */,
 				8428AA8E21C7A4420008E975 /* UITableView.swift */,
 				8428AA9021C7A4530008E975 /* UICollectionView.swift */,
+				841CDA4321C8BFB10015680C /* SegementedControl.swift */,
+				84F6980521C8D19300890917 /* UIViewController.swift */,
+				84F6980C21C8DC7F00890917 /* UINavigationBar.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -344,9 +353,12 @@
 				8428AA9121C7A4530008E975 /* UICollectionView.swift in Sources */,
 				8428AA9921C7A52F0008E975 /* ReachabilityManager.swift in Sources */,
 				8428AA8D21C7A3CE0008E975 /* IReusableCell.swift in Sources */,
+				84F6980621C8D19300890917 /* UIViewController.swift in Sources */,
 				8428AA9621C7A4F10008E975 /* String+Localizable.swift in Sources */,
 				8428AA8921C7A2A60008E975 /* RoundView.swift in Sources */,
 				84F8929521C77CCF00DC1048 /* UIColor.swift in Sources */,
+				84F6980D21C8DC7F00890917 /* UINavigationBar.swift in Sources */,
+				841CDA4421C8BFB10015680C /* SegementedControl.swift in Sources */,
 				8428AA8F21C7A4420008E975 /* UITableView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
