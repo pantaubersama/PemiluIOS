@@ -8,7 +8,7 @@
 
 import UIKit
 
-class JanjiPolitikViewController: UIViewController {
+class JanjiPolitikViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()

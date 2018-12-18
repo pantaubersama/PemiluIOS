@@ -20,6 +20,12 @@ class LinimasaController: UIViewController {
     private lazy var pilpresController = PilpresViewController()
     private lazy var janjiController = JanjiPolitikViewController()
     
+    private lazy var searchBar: UISearchBar = {
+       let search = UISearchBar()
+        search.searchBarStyle = .minimal
+        return search
+    }()
+    
     private let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
@@ -30,12 +36,17 @@ class LinimasaController: UIViewController {
         
         let notifications = UIBarButtonItem(image: #imageLiteral(resourceName: "icNotif"), style: .plain, target: nil, action: nil)
         
+        let profile = UIBarButtonItem(image: #imageLiteral(resourceName: "icDummyPerson"), style: .plain, target: nil, action: nil)
+        navigationItem.leftBarButtonItem = profile
         navigationItem.rightBarButtonItem = notifications
+        navigationItem.titleView = searchBar
         
-        
-        segementedControl.rx.value // assign extension UIControl
+        // MARK
+        // segmented control value
+        // assign extension Reactive UIControl
+        segementedControl.rx.value
             .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { i in
+            .subscribe(onNext: { [unowned self] i in
                 UIView.animate(withDuration: 0.3, animations: {
                     if i == 0 {
                         self.pilpresController.view.alpha = 1.0
