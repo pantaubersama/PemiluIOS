@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="226" id="T9Z-E1-BnR" customClass="LinimasaJanjiCell" customModule="PantauBersama" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="406" height="226"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="T9Z-E1-BnR" id="lBE-N8-BkG">
+                <rect key="frame" x="0.0" y="0.0" width="406" height="225.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="yN2-AG-qUF">
+                        <rect key="frame" x="16" y="16" width="374" height="193.5"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jbr-Bz-2xg">
+                                <rect key="frame" x="0.0" y="0.0" width="374" height="24"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="51K-tT-fYB">
+                                        <rect key="frame" x="0.0" y="0.0" width="358" height="24"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IhI-Ua-Ln5" customClass="RoundView" customModule="Common">
+                                                <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
+                                                <subviews>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icDummyPerson" translatesAutoresizingMaskIntoConstraints="NO" id="hVb-Fv-xxE">
+                                                        <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
+                                                    </imageView>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="hVb-Fv-xxE" secondAttribute="trailing" id="8kY-ri-eCp"/>
+                                                    <constraint firstAttribute="width" constant="24" id="fqc-YD-QVm"/>
+                                                    <constraint firstItem="hVb-Fv-xxE" firstAttribute="top" secondItem="IhI-Ua-Ln5" secondAttribute="top" id="gbP-Lk-S34"/>
+                                                    <constraint firstItem="hVb-Fv-xxE" firstAttribute="leading" secondItem="IhI-Ua-Ln5" secondAttribute="leading" id="hu6-Lb-ZSe"/>
+                                                    <constraint firstAttribute="bottom" secondItem="hVb-Fv-xxE" secondAttribute="bottom" id="nx2-gR-AfZ"/>
+                                                </constraints>
+                                            </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Anik Kemala," textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uez-rD-hVX" customClass="Label" customModule="Common">
+                                                <rect key="frame" x="29" y="0.0" width="264" height="24"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                        <real key="value" value="12"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="typeLabel" value="bold"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" 8 days ago" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ASA-U6-GH9" customClass="Label" customModule="Common">
+                                                <rect key="frame" x="298" y="0.0" width="60" height="24"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="60" id="joB-EK-kcO"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="0.56471371650000002" green="0.56469172239999998" blue="0.56470668319999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                        <real key="value" value="11"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="51K-tT-fYB" firstAttribute="leading" secondItem="Jbr-Bz-2xg" secondAttribute="leading" id="Put-uF-GwC"/>
+                                    <constraint firstItem="51K-tT-fYB" firstAttribute="top" secondItem="Jbr-Bz-2xg" secondAttribute="top" id="SZN-5S-9vL"/>
+                                    <constraint firstAttribute="bottom" secondItem="51K-tT-fYB" secondAttribute="bottom" id="h8b-xG-yVl"/>
+                                    <constraint firstAttribute="trailing" secondItem="51K-tT-fYB" secondAttribute="trailing" constant="16" id="hwt-vs-maz"/>
+                                    <constraint firstAttribute="height" constant="24" id="wTy-KV-MjW"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Prabowo Menjanjikan Dana 1T Untuk Setiap Desa yang memiliki UMKM  " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MLf-mX-deF" customClass="Label" customModule="Common">
+                                <rect key="frame" x="0.0" y="29" width="374" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Ero-kK-xnZ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                        <real key="value" value="13"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="typeLabel" value="Bold"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cne-q9-qzT" customClass="Label" customModule="Common">
+                                <rect key="frame" x="0.0" y="84" width="374" height="80.5"/>
+                                <string key="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchang</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                        <real key="value" value="12"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="typeLabel" value="Medium"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fIH-Vv-VKz">
+                                <rect key="frame" x="0.0" y="169.5" width="374" height="24"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="21" translatesAutoresizingMaskIntoConstraints="NO" id="Jfh-Lk-CeW">
+                                        <rect key="frame" x="305" y="0.0" width="69" height="24"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bis-jd-YIs">
+                                                <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="24" id="Ewl-dd-pGt"/>
+                                                </constraints>
+                                                <state key="normal" image="icShare"/>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FFb-Yl-kbS">
+                                                <rect key="frame" x="45" y="0.0" width="24" height="24"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="24" id="NMA-01-HcL"/>
+                                                </constraints>
+                                                <state key="normal" image="icMore"/>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="Jfh-Lk-CeW" secondAttribute="bottom" id="Aat-wo-qN6"/>
+                                    <constraint firstItem="Jfh-Lk-CeW" firstAttribute="top" secondItem="fIH-Vv-VKz" secondAttribute="top" id="haI-A6-U7M"/>
+                                    <constraint firstAttribute="height" constant="24" id="nUu-TU-6kF"/>
+                                    <constraint firstAttribute="trailing" secondItem="Jfh-Lk-CeW" secondAttribute="trailing" id="oL2-FL-0dT"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="yN2-AG-qUF" firstAttribute="leading" secondItem="lBE-N8-BkG" secondAttribute="leading" constant="16" id="CKU-zG-0U5"/>
+                    <constraint firstAttribute="trailing" secondItem="yN2-AG-qUF" secondAttribute="trailing" constant="16" id="gxT-r4-ZvE"/>
+                    <constraint firstItem="yN2-AG-qUF" firstAttribute="top" secondItem="lBE-N8-BkG" secondAttribute="top" constant="16" id="hAo-DA-NDa"/>
+                    <constraint firstAttribute="bottom" secondItem="yN2-AG-qUF" secondAttribute="bottom" constant="16" id="j2u-eg-qqF"/>
+                </constraints>
+            </tableViewCellContentView>
+            <point key="canvasLocation" x="-113.59999999999999" y="135.832083958021"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="icDummyPerson" width="64" height="64"/>
+        <image name="icMore" width="20" height="20"/>
+        <image name="icShare" width="20" height="20"/>
+    </resources>
+</document>

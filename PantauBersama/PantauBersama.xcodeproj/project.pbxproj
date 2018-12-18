@@ -34,6 +34,8 @@
 		84F6980B21C8D2B100890917 /* JanjiPolitikViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F6980A21C8D2B100890917 /* JanjiPolitikViewController.swift */; };
 		84F6981121C8E21B00890917 /* LinimasaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F6981021C8E21B00890917 /* LinimasaCell.swift */; };
 		84F6981521C8FAB000890917 /* UIControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F6981421C8FAB000890917 /* UIControl.swift */; };
+		84F6981721C9364700890917 /* LinimasaJanjiCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84F6981621C9364700890917 /* LinimasaJanjiCell.xib */; };
+		84F6981921C93B8900890917 /* LinimasaJanjiCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F6981821C93B8900890917 /* LinimasaJanjiCell.swift */; };
 		84F892A721C7875200DC1048 /* BwModelica-ThinCondensed.otf in Resources */ = {isa = PBXBuildFile; fileRef = 84F892A621C7875200DC1048 /* BwModelica-ThinCondensed.otf */; };
 		84F892A821C787D800DC1048 /* Lato-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84F8929F21C785D400DC1048 /* Lato-Black.ttf */; };
 		84F892A921C787D800DC1048 /* Lato-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84F892A121C785D400DC1048 /* Lato-BlackItalic.ttf */; };
@@ -112,6 +114,8 @@
 		84F6980A21C8D2B100890917 /* JanjiPolitikViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JanjiPolitikViewController.swift; sourceTree = "<group>"; };
 		84F6981021C8E21B00890917 /* LinimasaCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinimasaCell.swift; sourceTree = "<group>"; };
 		84F6981421C8FAB000890917 /* UIControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIControl.swift; sourceTree = "<group>"; };
+		84F6981621C9364700890917 /* LinimasaJanjiCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LinimasaJanjiCell.xib; sourceTree = "<group>"; };
+		84F6981821C93B8900890917 /* LinimasaJanjiCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinimasaJanjiCell.swift; sourceTree = "<group>"; };
 		84F8929921C785D300DC1048 /* Lato-Hairline.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Hairline.ttf"; sourceTree = "<group>"; };
 		84F8929A21C785D300DC1048 /* Lato-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Italic.ttf"; sourceTree = "<group>"; };
 		84F8929B21C785D300DC1048 /* Lato-HairlineItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-HairlineItalic.ttf"; sourceTree = "<group>"; };
@@ -365,6 +369,8 @@
 			children = (
 				844C3D8B21C5323E00199871 /* LinimasaCell.xib */,
 				84F6981021C8E21B00890917 /* LinimasaCell.swift */,
+				84F6981621C9364700890917 /* LinimasaJanjiCell.xib */,
+				84F6981821C93B8900890917 /* LinimasaJanjiCell.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -516,6 +522,7 @@
 				84F892B021C787D800DC1048 /* Lato-LightItalic.ttf in Resources */,
 				841CDA3D21C8BC1C0015680C /* LinimasaController.xib in Resources */,
 				84F892B121C787D800DC1048 /* Lato-Regular.ttf in Resources */,
+				84F6981721C9364700890917 /* LinimasaJanjiCell.xib in Resources */,
 				844C3D4A21C4ED6E00199871 /* LaunchScreen.storyboard in Resources */,
 				84F892B521C7887800DC1048 /* BwModelicaSS01-BoldCondensed.otf in Resources */,
 				84F892A721C7875200DC1048 /* BwModelica-ThinCondensed.otf in Resources */,
@@ -682,6 +689,7 @@
 				844C3D6D21C51CE900199871 /* HomeController.swift in Sources */,
 				84F6980B21C8D2B100890917 /* JanjiPolitikViewController.swift in Sources */,
 				844C3D4521C4ED6D00199871 /* PantauBersama.xcdatamodeld in Sources */,
+				84F6981921C93B8900890917 /* LinimasaJanjiCell.swift in Sources */,
 				84F6981521C8FAB000890917 /* UIControl.swift in Sources */,
 				844C3D3D21C4ED6D00199871 /* AppDelegate.swift in Sources */,
 				844C3D8321C524F000199871 /* LinimasaController.swift in Sources */,

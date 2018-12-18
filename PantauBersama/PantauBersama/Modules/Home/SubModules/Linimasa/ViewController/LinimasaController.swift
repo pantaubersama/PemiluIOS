@@ -23,6 +23,7 @@ class LinimasaController: UIViewController {
     private lazy var searchBar: UISearchBar = {
        let search = UISearchBar()
         search.searchBarStyle = .minimal
+        search.sizeToFit()
         return search
     }()
     
