@@ -62,7 +62,7 @@
                                 <nil key="highlightedColor"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
-                                        <real key="value" value="11"/>
+                                        <real key="value" value="10"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="string" keyPath="typeLabel" value="regular"/>
                                 </userDefinedRuntimeAttributes>
@@ -138,6 +138,14 @@
                     <constraint firstItem="DhU-2g-ffc" firstAttribute="leading" secondItem="sbp-4b-2nr" secondAttribute="leading" id="nTL-1C-NMR"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="avatar" destination="vpl-MM-rZo" id="sPK-ok-fkH"/>
+                <outlet property="content" destination="yTc-rH-RRB" id="5pp-pg-1pa"/>
+                <outlet property="more" destination="H8n-35-M0y" id="QYK-He-Xp3"/>
+                <outlet property="name" destination="Rkp-BQ-KHE" id="POX-rU-xaj"/>
+                <outlet property="thumbnail" destination="NeP-4T-Gaz" id="YM9-iU-gDb"/>
+                <outlet property="titleTeam" destination="Txr-U2-bOb" id="bbv-FW-m90"/>
+            </connections>
             <point key="canvasLocation" x="-155.19999999999999" y="93.553223388305852"/>
         </tableViewCell>
     </objects>
