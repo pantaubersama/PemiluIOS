@@ -9,6 +9,8 @@
 
 import UIKit
 import RxSwift
+import Common
+import Networking
 
 class AppCoordinator: BaseCoordinator<Void> {
     
@@ -20,8 +22,16 @@ class AppCoordinator: BaseCoordinator<Void> {
     }
     
     override func start() -> Observable<CoordinationResult> {
-        let homeCoordinator = HomeCoordinator(window: self.window)
-        return self.coordinate(to: homeCoordinator)
+        let user: Data? = UserDefaults.Account.get(forKey: .userData)
+        if user != nil {
+            let homeCoordinator = HomeCoordinator(window: self.window)
+            return self.coordinate(to: homeCoordinator)
+        } else {
+            KeychainService.remove(type: NetworkKeychainKind.token)
+            KeychainService.remove(type: NetworkKeychainKind.refreshToken)
+            let onBoardingCoordinator = OnboardingCoordinator(window: self.window)
+            return coordinate(to: onBoardingCoordinator)
+        }
     }
     
 }

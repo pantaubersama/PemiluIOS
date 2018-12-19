@@ -23,10 +23,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         window = UIWindow()
-        appCoordinator = AppCoordinator(window: window!)
-        appCoordinator.start()
-            .subscribe()
-            .disposed(by: disposeBag)
+        
+        let defaults = UserDefaults.standard
+        if defaults.object(forKey: "isFirstTime") == nil {
+            appCoordinator = AppCoordinator(window: window!)
+            appCoordinator.start()
+                .subscribe()
+                .disposed(by: disposeBag)
+        } else {
+            
+        }
+        
         
         Fabric.with([Crashlytics.self])
         #if DEBUG
