@@ -12,6 +12,7 @@ extension UINavigationBar {
     
     public enum NavigationBarKind {
         case solid(color: UIColor)
+        case white
         case transparent
     }
     public enum BarType {
@@ -48,6 +49,17 @@ extension UINavigationBar {
                 ): UIColor.white
             ]
             backgroundColor     = color
+        case .white:
+            shadowImage = UIImage()
+            isTranslucent = false
+            tintColor = Color.primary_black
+            barTintColor        = Color.primary_white
+            backgroundColor     = UIColor.clear
+            titleTextAttributes = [
+                NSAttributedString.Key(
+                    rawValue: NSAttributedString.Key.foregroundColor.rawValue
+                ): Color.primary_black
+            ]
         case .transparent:
             setBackgroundImage(UIImage(), for: .default)
             shadowImage         = UIImage()

@@ -18,7 +18,7 @@ class LinimasaController: UIViewController {
     @IBOutlet weak var segementedControl: SegementedControl!
     @IBOutlet weak var container: UIView!
     
-    var viewModel: ILinimasaViewModel!
+    var viewModel: LinimasaViewModel!
     
     private lazy var pilpresController = PilpresViewController()
     private lazy var janjiController = JanjiPolitikViewController()
@@ -43,6 +43,18 @@ class LinimasaController: UIViewController {
         navigationItem.leftBarButtonItem = profile
         navigationItem.rightBarButtonItem = notifications
         navigationItem.titleView = searchBar
+        
+        
+        // MARK
+        // bind to viewModel
+        filter.rx.tap
+            .bind(to: viewModel.input.filterTrigger)
+            .disposed(by: disposeBag)
+        
+        addJanji.rx.tap
+            .bind(to: viewModel.input.addTrigger)
+            .disposed(by: disposeBag)
+        
         
         // MARK
         // segmented control value
@@ -86,15 +98,6 @@ class LinimasaController: UIViewController {
                 .disposed(by: disposeBag)
         }
         
-        // MARK
-        // bind to viewModel
-        filter.rx.tap
-            .bind(to: viewModel.input.filterI)
-            .disposed(by: disposeBag)
-
-        addJanji.rx.tap
-            .bind(to: viewModel.input.addI)
-            .disposed(by: disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {

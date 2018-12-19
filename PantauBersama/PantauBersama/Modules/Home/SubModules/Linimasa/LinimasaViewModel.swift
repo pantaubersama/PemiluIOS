@@ -11,61 +11,41 @@ import RxSwift
 import RxCocoa
 
 
-protocol ILinimasaViewModelInput {
-    var refreshI: AnyObserver<Void> { get }
-    var addI: AnyObserver<Void> { get }
-    var filterI: AnyObserver<Void> { get }
-}
+final class LinimasaViewModel: ViewModelType {
 
-protocol ILinimasaViewModelOutput {
-    var addO: Driver<Void>! { get }
-    var filterO: Driver<Void>! { get }
-}
-
-protocol ILinimasaViewModel {
-    var input: ILinimasaViewModelInput { get }
-    var output: ILinimasaViewModelOutput { get }
+    var input: Input
+    var output: Output
     
-    var navigator: LinimasaNavigator! { get }
-}
-
-final class LinimasaViewModel: ILinimasaViewModel, ILinimasaViewModelInput, ILinimasaViewModelOutput {
+    struct Input {
+        let addTrigger: AnyObserver<Void>
+        let filterTrigger: AnyObserver<Void>
+        let refreshTrigger: AnyObserver<Void>
+    }
     
-    var input: ILinimasaViewModelInput { return self }
-    var output: ILinimasaViewModelOutput { return self }
+    struct Output {
+        let filterSelected: Driver<Void>
+    }
     
-    // Input
-    var refreshI: AnyObserver<Void>
-    var addI: AnyObserver<Void>
-    var filterI: AnyObserver<Void>
-    // Output
-    var addO: Driver<Void>!
-    var filterO: Driver<Void>!
-    
-    private let refreshS = PublishSubject<Void>()
-    private let addS = PublishSubject<Void>()
-    private let filterS = PublishSubject<Void>()
-    
-    var navigator: LinimasaNavigator!
+    private let navigator: LinimasaNavigator
+    private let addSubject = PublishSubject<Void>()
+    private let filterSubject = PublishSubject<Void>()
+    private let refreshSubject = PublishSubject<Void>()
     
     init(navigator: LinimasaNavigator) {
         self.navigator = navigator
         
-        refreshI = refreshS.asObserver()
-        addI = addS.asObserver()
-        filterI = filterS.asObserver()
         
+        input = Input(
+            addTrigger: addSubject.asObserver(),
+            filterTrigger: filterSubject.asObserver(),
+            refreshTrigger: refreshSubject.asObserver()
+        )
         
-        addO = addS
-            .flatMapLatest({ navigator.launchAddJanji() })
-            .asDriverOnErrorJustComplete()
-        
-        filterO = filterS
-            .flatMapLatest({ navigator.launchFilter() })
-            .mapToVoid()
+        let filter = filterSubject
+            .flatMapLatest{(navigator.launchFilter())}
             .asDriver(onErrorJustReturn: ())
         
+        output = Output(filterSelected: filter)
     }
-    
     
 }

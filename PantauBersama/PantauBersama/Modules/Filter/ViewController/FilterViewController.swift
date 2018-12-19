@@ -25,11 +25,11 @@ class FilterViewController: UIViewController {
         let reset = UIBarButtonItem(title: "RESET", style: .plain, target: nil, action: nil)
         navigationItem.leftBarButtonItem = back
         navigationItem.rightBarButtonItem = reset
-        navigationController?.navigationBar.configure(with: .solid(color: Color.white))
+        navigationController?.navigationBar.configure(with: .white)
         
-//        back.rx.tap
-//            .bind(to: viewModel.input.backI)
-//            .disposed(by: disposeBag)
+        back.rx.tap
+            .bind(to: viewModel.input.backI)
+            .disposed(by: disposeBag)
     }
     
 }

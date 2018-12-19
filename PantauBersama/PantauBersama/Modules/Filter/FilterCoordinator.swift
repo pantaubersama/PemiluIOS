@@ -11,30 +11,26 @@ import RxSwift
 
 
 protocol FilterNavigator {
-    
+    var finish: Observable<Void>! { get set }
 }
 
-class FilterCoordinator: BaseCoordinator<Void> {
+class FilterCoordinator: BaseCoordinator<Void>, FilterNavigator {
     
-    internal let navigationController: UINavigationController!
+    private let navigationController: UINavigationController!
+    var finish: Observable<Void>!
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
     
     override func start() -> Observable<CoordinationResult> {
-        print("starting.....")
         let viewController = FilterViewController()
         let viewModel = FilterViewModel(navigator: self)
         viewController.viewModel = viewModel
         viewController.hidesBottomBarWhenPushed = true
         navigationController.pushViewController(viewController, animated: true)
-        return viewModel.output.backO
-            .do(onNext: { [unowned self] _ in
-                self.navigationController.popViewController(animated: true)
-            })
-            .asObservable()
+        return finish.do(onNext: { [weak self] (_) in
+            self?.navigationController.popViewController(animated: true)
+        })
     }
 }
-
-extension FilterCoordinator: FilterNavigator {}

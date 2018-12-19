@@ -15,14 +15,13 @@ protocol IFilterViewModelInput {
 }
 
 protocol IFilterViewModelOutput {
-    var backO: Driver<Void>! { get }
 }
 
 protocol IFilterViewModel {
     var input: IFilterViewModelInput { get }
     var output: IFilterViewModelOutput { get }
     
-
+    var navigator: FilterNavigator! { get }
 }
 
 final class FilterViewModel: IFilterViewModel, IFilterViewModelInput, IFilterViewModelOutput {
@@ -33,15 +32,16 @@ final class FilterViewModel: IFilterViewModel, IFilterViewModelInput, IFilterVie
     var navigator: FilterNavigator!
     //Input
     var backI: AnyObserver<Void>
-    // Output
-    var backO: Driver<Void>!
+    
     
     private let backS = PublishSubject<Void>()
     
     init(navigator: FilterNavigator) {
         self.navigator = navigator
+        self.navigator.finish = backS
         
         backI = backS.asObserver()
+        
         
     }
 }
