@@ -60,6 +60,34 @@ class LinimasaController: UIViewController {
             })
             .disposed(by: disposeBag)
         
+        // MARK
+        // Navigation bar hide
+        // when scrolling tableViews
+        let tableViews = [self.pilpresController.tableView,
+                          self.janjiController.tableView]
+        tableViews.forEach { tableView in
+            guard let tableView = tableView else { return }
+            tableView.scrollsToTop = true
+            Driver.merge([
+                pilpresController.tableView.rx.contentOffset.asDriver(),
+                janjiController.tableView.rx.contentOffset.asDriver()
+                ])
+                .drive(onNext: { position in
+                    print(position)
+                    UIView.animate(withDuration: 0.1, animations: {
+                        print(position)
+                        if position.y >= 153.0 {
+                            self.navigationController?.isNavigationBarHidden = true
+                        } else {
+                            self.navigationController?.isNavigationBarHidden = false
+                        }
+                    })
+                })
+                .disposed(by: disposeBag)
+        }
+        
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {

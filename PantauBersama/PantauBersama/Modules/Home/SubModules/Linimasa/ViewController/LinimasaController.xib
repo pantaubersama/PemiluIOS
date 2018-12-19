@@ -82,7 +82,7 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" red="0.68041622639999999" green="0.1499232352" blue="0.14898997550000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
             <constraints>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="PT8-f3-VT0" secondAttribute="bottom" id="6vd-7M-qOA"/>
                 <constraint firstItem="xE0-Bp-jp7" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="8Wz-nD-rES"/>
