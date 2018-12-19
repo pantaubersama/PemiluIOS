@@ -13,9 +13,12 @@ import Common
 
 class LinimasaController: UIViewController {
     
-    
+    @IBOutlet weak var filter: UIButton!
+    @IBOutlet weak var addJanji: UIButton!
     @IBOutlet weak var segementedControl: SegementedControl!
     @IBOutlet weak var container: UIView!
+    
+    var viewModel: ILinimasaViewModel!
     
     private lazy var pilpresController = PilpresViewController()
     private lazy var janjiController = JanjiPolitikViewController()
@@ -36,7 +39,6 @@ class LinimasaController: UIViewController {
         add(childViewController: janjiController, context: container)
         
         let notifications = UIBarButtonItem(image: #imageLiteral(resourceName: "icNotif"), style: .plain, target: nil, action: nil)
-        
         let profile = UIBarButtonItem(image: #imageLiteral(resourceName: "icDummyPerson"), style: .plain, target: nil, action: nil)
         navigationItem.leftBarButtonItem = profile
         navigationItem.rightBarButtonItem = notifications
@@ -73,9 +75,7 @@ class LinimasaController: UIViewController {
                 janjiController.tableView.rx.contentOffset.asDriver()
                 ])
                 .drive(onNext: { position in
-                    print(position)
-                    UIView.animate(withDuration: 0.1, animations: {
-                        print(position)
+                    UIView.animate(withDuration: 0.3, animations: {
                         if position.y >= 153.0 {
                             self.navigationController?.isNavigationBarHidden = true
                         } else {
@@ -86,8 +86,15 @@ class LinimasaController: UIViewController {
                 .disposed(by: disposeBag)
         }
         
-        
-        
+        // MARK
+        // bind to viewModel
+        filter.rx.tap
+            .bind(to: viewModel.input.filterI)
+            .disposed(by: disposeBag)
+
+        addJanji.rx.tap
+            .bind(to: viewModel.input.addI)
+            .disposed(by: disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {

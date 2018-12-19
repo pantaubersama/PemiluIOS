@@ -12,7 +12,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LinimasaController" customModule="PantauBersama" customModuleProvider="target">
             <connections>
+                <outlet property="addJanji" destination="MoL-38-eSA" id="C7k-eF-N4W"/>
                 <outlet property="container" destination="PT8-f3-VT0" id="3Nq-Xc-xiE"/>
+                <outlet property="filter" destination="t1X-nF-WRf" id="EKo-Vk-Lx1"/>
                 <outlet property="segementedControl" destination="jsX-sx-32M" id="FyS-67-n2f"/>
                 <outlet property="view" destination="iN0-l3-epB" id="f0V-WH-Ksr"/>
             </connections>

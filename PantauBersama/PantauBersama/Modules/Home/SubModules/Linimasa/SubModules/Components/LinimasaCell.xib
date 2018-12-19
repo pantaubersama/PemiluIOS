@@ -109,7 +109,7 @@
                             </label>
                         </subviews>
                     </stackView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NeP-4T-Gaz">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icDummyPerson" translatesAutoresizingMaskIntoConstraints="NO" id="NeP-4T-Gaz">
                         <rect key="frame" x="49" y="14" width="12" height="12"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="12" id="AiW-54-7De"/>
@@ -141,7 +141,6 @@
             <connections>
                 <outlet property="avatar" destination="vpl-MM-rZo" id="sPK-ok-fkH"/>
                 <outlet property="content" destination="yTc-rH-RRB" id="5pp-pg-1pa"/>
-                <outlet property="more" destination="H8n-35-M0y" id="QYK-He-Xp3"/>
                 <outlet property="name" destination="Rkp-BQ-KHE" id="POX-rU-xaj"/>
                 <outlet property="thumbnail" destination="NeP-4T-Gaz" id="YM9-iU-gDb"/>
                 <outlet property="titleTeam" destination="Txr-U2-bOb" id="bbv-FW-m90"/>

@@ -32,6 +32,12 @@
 		844C3D8C21C5323E00199871 /* LinimasaCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 844C3D8B21C5323E00199871 /* LinimasaCell.xib */; };
 		84E2854421CA195C00298E31 /* CustomActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E2854321CA195C00298E31 /* CustomActionSheet.swift */; };
 		84E2854721CA1E8300298E31 /* PilpresType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E2854621CA1E8300298E31 /* PilpresType.swift */; };
+		84E2854D21CA4BC800298E31 /* FilterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84E2854C21CA4BC800298E31 /* FilterViewController.xib */; };
+		84E2855121CA4D4900298E31 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E2855021CA4D4900298E31 /* FilterViewController.swift */; };
+		84E2855321CA524200298E31 /* FilterCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E2855221CA524200298E31 /* FilterCoordinator.swift */; };
+		84E2855521CA570E00298E31 /* LinimasaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E2855421CA570E00298E31 /* LinimasaViewModel.swift */; };
+		84E2855921CA777D00298E31 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E2855821CA777D00298E31 /* Observable.swift */; };
+		84E2855B21CA7C4800298E31 /* FilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E2855A21CA7C4800298E31 /* FilterViewModel.swift */; };
 		84F6980921C8D28B00890917 /* PilpresViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F6980821C8D28A00890917 /* PilpresViewController.swift */; };
 		84F6980B21C8D2B100890917 /* JanjiPolitikViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F6980A21C8D2B100890917 /* JanjiPolitikViewController.swift */; };
 		84F6981121C8E21B00890917 /* LinimasaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F6981021C8E21B00890917 /* LinimasaCell.swift */; };
@@ -114,6 +120,12 @@
 		844C3D8B21C5323E00199871 /* LinimasaCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LinimasaCell.xib; sourceTree = "<group>"; };
 		84E2854321CA195C00298E31 /* CustomActionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomActionSheet.swift; sourceTree = "<group>"; };
 		84E2854621CA1E8300298E31 /* PilpresType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PilpresType.swift; sourceTree = "<group>"; };
+		84E2854C21CA4BC800298E31 /* FilterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterViewController.xib; sourceTree = "<group>"; };
+		84E2855021CA4D4900298E31 /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
+		84E2855221CA524200298E31 /* FilterCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCoordinator.swift; sourceTree = "<group>"; };
+		84E2855421CA570E00298E31 /* LinimasaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinimasaViewModel.swift; sourceTree = "<group>"; };
+		84E2855821CA777D00298E31 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
+		84E2855A21CA7C4800298E31 /* FilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewModel.swift; sourceTree = "<group>"; };
 		84F6980821C8D28A00890917 /* PilpresViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PilpresViewController.swift; sourceTree = "<group>"; };
 		84F6980A21C8D2B100890917 /* JanjiPolitikViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JanjiPolitikViewController.swift; sourceTree = "<group>"; };
 		84F6981021C8E21B00890917 /* LinimasaCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinimasaCell.swift; sourceTree = "<group>"; };
@@ -258,6 +270,7 @@
 		844C3D6A21C5177A00199871 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				84E2854A21CA4B7100298E31 /* Filter */,
 				844C3D6B21C51CD900199871 /* Home */,
 			);
 			path = Modules;
@@ -298,6 +311,7 @@
 				844C3D7521C51EAF00199871 /* BaseCoordinator.swift */,
 				844C3D7921C5230C00199871 /* RawRepresentable.swift */,
 				84F6981421C8FAB000890917 /* UIControl.swift */,
+				84E2855821CA777D00298E31 /* Observable.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -320,6 +334,7 @@
 				841CDA3E21C8BD070015680C /* SubModules */,
 				844C3D8121C524BC00199871 /* ViewController */,
 				844C3D8421C5252800199871 /* LinimasaCoordinator.swift */,
+				84E2855421CA570E00298E31 /* LinimasaViewModel.swift */,
 			);
 			path = Linimasa;
 			sourceTree = "<group>";
@@ -403,6 +418,25 @@
 				84E2854621CA1E8300298E31 /* PilpresType.swift */,
 			);
 			path = Enum;
+			sourceTree = "<group>";
+		};
+		84E2854A21CA4B7100298E31 /* Filter */ = {
+			isa = PBXGroup;
+			children = (
+				84E2854B21CA4BB600298E31 /* ViewController */,
+				84E2855221CA524200298E31 /* FilterCoordinator.swift */,
+				84E2855A21CA7C4800298E31 /* FilterViewModel.swift */,
+			);
+			path = Filter;
+			sourceTree = "<group>";
+		};
+		84E2854B21CA4BB600298E31 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				84E2854C21CA4BC800298E31 /* FilterViewController.xib */,
+				84E2855021CA4D4900298E31 /* FilterViewController.swift */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		84F6980721C8D23900890917 /* Janji Politik */ = {
@@ -543,6 +577,7 @@
 				84F892A921C787D800DC1048 /* Lato-BlackItalic.ttf in Resources */,
 				8428AAAA21C7AF330008E975 /* GoogleService-Info-Staging.plist in Resources */,
 				84F892AA21C787D800DC1048 /* Lato-Bold.ttf in Resources */,
+				84E2854D21CA4BC800298E31 /* FilterViewController.xib in Resources */,
 				84F892AB21C787D800DC1048 /* Lato-BoldItalic.ttf in Resources */,
 				84F892AC21C787D800DC1048 /* Lato-Hairline.ttf in Resources */,
 				84F892AD21C787D800DC1048 /* Lato-HairlineItalic.ttf in Resources */,
@@ -720,15 +755,20 @@
 				844C3D6D21C51CE900199871 /* HomeController.swift in Sources */,
 				84F6980B21C8D2B100890917 /* JanjiPolitikViewController.swift in Sources */,
 				844C3D4521C4ED6D00199871 /* PantauBersama.xcdatamodeld in Sources */,
+				84E2855B21CA7C4800298E31 /* FilterViewModel.swift in Sources */,
 				84F6981921C93B8900890917 /* LinimasaJanjiCell.swift in Sources */,
 				84F6981521C8FAB000890917 /* UIControl.swift in Sources */,
+				84E2855921CA777D00298E31 /* Observable.swift in Sources */,
 				844C3D3D21C4ED6D00199871 /* AppDelegate.swift in Sources */,
 				844C3D8321C524F000199871 /* LinimasaController.swift in Sources */,
+				84E2855521CA570E00298E31 /* LinimasaViewModel.swift in Sources */,
+				84E2855121CA4D4900298E31 /* FilterViewController.swift in Sources */,
 				84F6980921C8D28B00890917 /* PilpresViewController.swift in Sources */,
 				844C3D7821C51EFD00199871 /* HomeCoordinator.swift in Sources */,
 				844C3D7A21C5230C00199871 /* RawRepresentable.swift in Sources */,
 				84E2854721CA1E8300298E31 /* PilpresType.swift in Sources */,
 				844C3D8521C5252800199871 /* LinimasaCoordinator.swift in Sources */,
+				84E2855321CA524200298E31 /* FilterCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
