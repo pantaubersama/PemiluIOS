@@ -42,6 +42,8 @@ class HomeCoordinator: BaseCoordinator<Void> {
                 switch t {
                     case .linimasa:
                         return coordinate(to: LinimasaCoordinator(navigationController: element))
+                    case .penpol:
+                        return coordinate(to: PenpolCoordinator(navigationController: element))
                     default:
                         return coordinate(to: LinimasaCoordinator(navigationController: element))
                 }
