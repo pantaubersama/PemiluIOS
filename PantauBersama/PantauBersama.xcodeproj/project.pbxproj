@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		13812C1E21CAA48700CAB327 /* PenpolController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13812C1C21CAA48700CAB327 /* PenpolController.swift */; };
+		13812C1F21CAA48700CAB327 /* PenpolController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13812C1D21CAA48700CAB327 /* PenpolController.xib */; };
+		13812C2821CAA67D00CAB327 /* QuizController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13812C2621CAA67D00CAB327 /* QuizController.swift */; };
+		13812C2921CAA67D00CAB327 /* QuizController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13812C2721CAA67D00CAB327 /* QuizController.xib */; };
+		13812C2B21CAA71F00CAB327 /* PenpolCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13812C2A21CAA71F00CAB327 /* PenpolCoordinator.swift */; };
+		13812C2E21CAA92100CAB327 /* AskController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13812C2C21CAA92100CAB327 /* AskController.swift */; };
+		13812C2F21CAA92100CAB327 /* AskController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13812C2D21CAA92100CAB327 /* AskController.xib */; };
 		24F280C4B63852A75C32D7D7 /* Pods_PantauBersama_PantauBersamaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4CBA51E95EB1AE7C2940BC0 /* Pods_PantauBersama_PantauBersamaTests.framework */; };
 		841CDA3D21C8BC1C0015680C /* LinimasaController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 841CDA3C21C8BC1C0015680C /* LinimasaController.xib */; };
 		8428AAA321C7A7790008E975 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8428AAA521C7A7790008E975 /* Localizable.strings */; };
@@ -92,6 +99,13 @@
 
 /* Begin PBXFileReference section */
 		04A224A86FBFD6EFE137644F /* Pods-PantauBersama.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PantauBersama.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-PantauBersama/Pods-PantauBersama.debug.xcconfig"; sourceTree = "<group>"; };
+		13812C1C21CAA48700CAB327 /* PenpolController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PenpolController.swift; sourceTree = "<group>"; };
+		13812C1D21CAA48700CAB327 /* PenpolController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PenpolController.xib; sourceTree = "<group>"; };
+		13812C2621CAA67D00CAB327 /* QuizController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizController.swift; sourceTree = "<group>"; };
+		13812C2721CAA67D00CAB327 /* QuizController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuizController.xib; sourceTree = "<group>"; };
+		13812C2A21CAA71F00CAB327 /* PenpolCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PenpolCoordinator.swift; sourceTree = "<group>"; };
+		13812C2C21CAA92100CAB327 /* AskController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AskController.swift; sourceTree = "<group>"; };
+		13812C2D21CAA92100CAB327 /* AskController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AskController.xib; sourceTree = "<group>"; };
 		26FDFCB449836F8CBC965641 /* Pods-PantauBersama-PantauBersamaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PantauBersama-PantauBersamaTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-PantauBersama-PantauBersamaTests/Pods-PantauBersama-PantauBersamaTests.debug.xcconfig"; sourceTree = "<group>"; };
 		2F6FF2F7B6D75F6A9B57EC24 /* Pods-PantauBersama.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PantauBersama.release.xcconfig"; path = "../Pods/Target Support Files/Pods-PantauBersama/Pods-PantauBersama.release.xcconfig"; sourceTree = "<group>"; };
 		37664EC0D75D639FE37581C6 /* Pods_PantauBersama.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PantauBersama.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -183,6 +197,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		13812C1421CAA0D800CAB327 /* Ask */ = {
+			isa = PBXGroup;
+			children = (
+				13812C2C21CAA92100CAB327 /* AskController.swift */,
+				13812C2D21CAA92100CAB327 /* AskController.xib */,
+			);
+			path = Ask;
+			sourceTree = "<group>";
+		};
+		13812C2021CAA4BD00CAB327 /* SubModules */ = {
+			isa = PBXGroup;
+			children = (
+				13812C1421CAA0D800CAB327 /* Ask */,
+				13812C2121CAA50C00CAB327 /* Quiz */,
+			);
+			path = SubModules;
+			sourceTree = "<group>";
+		};
+		13812C2121CAA50C00CAB327 /* Quiz */ = {
+			isa = PBXGroup;
+			children = (
+				13812C2621CAA67D00CAB327 /* QuizController.swift */,
+				13812C2721CAA67D00CAB327 /* QuizController.xib */,
+			);
+			path = Quiz;
+			sourceTree = "<group>";
+		};
 		7A731F6B53E97C8104446F76 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -358,6 +399,10 @@
 		844C3D7D21C5248400199871 /* Penpol */ = {
 			isa = PBXGroup;
 			children = (
+				13812C1C21CAA48700CAB327 /* PenpolController.swift */,
+				13812C1D21CAA48700CAB327 /* PenpolController.xib */,
+				13812C2A21CAA71F00CAB327 /* PenpolCoordinator.swift */,
+				13812C2021CAA4BD00CAB327 /* SubModules */,
 			);
 			path = Penpol;
 			sourceTree = "<group>";
@@ -612,15 +657,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				13812C2921CAA67D00CAB327 /* QuizController.xib in Resources */,
 				8428AAA321C7A7790008E975 /* Localizable.strings in Resources */,
 				84F892A821C787D800DC1048 /* Lato-Black.ttf in Resources */,
 				84F892B321C787F700DC1048 /* BwModelica-BlackCondensed.otf in Resources */,
 				84F892A921C787D800DC1048 /* Lato-BlackItalic.ttf in Resources */,
+				13812C2F21CAA92100CAB327 /* AskController.xib in Resources */,
 				8428AAAA21C7AF330008E975 /* GoogleService-Info-Staging.plist in Resources */,
 				84B2521E21CAB1BE00565D82 /* OnboardingViewController.xib in Resources */,
 				84F892AA21C787D800DC1048 /* Lato-Bold.ttf in Resources */,
 				84E2854D21CA4BC800298E31 /* FilterViewController.xib in Resources */,
 				84F892AB21C787D800DC1048 /* Lato-BoldItalic.ttf in Resources */,
+				13812C1F21CAA48700CAB327 /* PenpolController.xib in Resources */,
 				84F892AC21C787D800DC1048 /* Lato-Hairline.ttf in Resources */,
 				84F892AD21C787D800DC1048 /* Lato-HairlineItalic.ttf in Resources */,
 				84F892AE21C787D800DC1048 /* Lato-Italic.ttf in Resources */,
@@ -789,7 +837,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				13812C1E21CAA48700CAB327 /* PenpolController.swift in Sources */,
+				13812C2821CAA67D00CAB327 /* QuizController.swift in Sources */,
 				844C3D7621C51EAF00199871 /* BaseCoordinator.swift in Sources */,
+				13812C2B21CAA71F00CAB327 /* PenpolCoordinator.swift in Sources */,
 				844C3D7021C51D3500199871 /* PantauBarKind.swift in Sources */,
 				844C3D8821C5265600199871 /* AppCoordinator.swift in Sources */,
 				84B2526821CC01F000565D82 /* AppState.swift in Sources */,
@@ -812,6 +863,7 @@
 				84B2523021CAB61300565D82 /* OnboardingViewModel.swift in Sources */,
 				84B2522E21CAB53C00565D82 /* OnboardingCoordinator.swift in Sources */,
 				84B2522021CAB2B900565D82 /* OnboardingViewController.swift in Sources */,
+				13812C2E21CAA92100CAB327 /* AskController.swift in Sources */,
 				844C3D7A21C5230C00199871 /* RawRepresentable.swift in Sources */,
 				84E2854721CA1E8300298E31 /* PilpresType.swift in Sources */,
 				844C3D8521C5252800199871 /* LinimasaCoordinator.swift in Sources */,
