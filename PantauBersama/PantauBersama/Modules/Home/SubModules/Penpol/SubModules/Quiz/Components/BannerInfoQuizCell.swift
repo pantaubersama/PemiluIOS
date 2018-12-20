@@ -1,5 +1,5 @@
 //
-//  TrendCell.swift
+//  BannerInfoQuizCell.swift
 //  PantauBersama
 //
 //  Created by Rahardyan Bisma on 20/12/18.
@@ -9,9 +9,9 @@
 import UIKit
 import Common
 
-class TrendCell: UITableViewCell, IReusableCell {
-    @IBOutlet weak var ivPaslon: UIImageView!
-    @IBOutlet weak var lbTotal: Label!
+class BannerInfoQuizCell: UITableViewCell, IReusableCell {
+    @IBOutlet weak var ivInfo: UIImageView!
+    @IBOutlet weak var lbReadMore: Label!
     
     override func prepareForReuse() {
         super.prepareForReuse()

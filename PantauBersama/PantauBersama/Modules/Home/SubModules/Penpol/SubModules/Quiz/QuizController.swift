@@ -16,6 +16,7 @@ class QuizController: UITableViewController {
         super.viewDidLoad()
         tableView.registerReusableCell(QuizCell.self)
         tableView.registerReusableCell(TrendCell.self)
+        tableView.registerReusableCell(BannerInfoQuizCell.self)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.estimatedRowHeight = 44.0
@@ -38,7 +39,7 @@ extension QuizController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.section {
         case 0:
-            return 148
+            return 85
         case 1:
             return 148
         default:
@@ -49,8 +50,8 @@ extension QuizController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
         case 0:
-            let trendCell = tableView.dequeueReusableCell(indexPath: indexPath) as TrendCell
-            return trendCell
+            let bannerCell = tableView.dequeueReusableCell(indexPath: indexPath) as BannerInfoQuizCell
+            return bannerCell
         case 1:
             let trendCell = tableView.dequeueReusableCell(indexPath: indexPath) as TrendCell
             return trendCell

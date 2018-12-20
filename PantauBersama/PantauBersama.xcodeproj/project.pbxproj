@@ -12,6 +12,8 @@
 		11702DD521CB08DE001AEE3F /* QuizController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11702DD421CB08DE001AEE3F /* QuizController.swift */; };
 		11702DD821CB1205001AEE3F /* TrendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11702DD621CB1205001AEE3F /* TrendCell.swift */; };
 		11702DD921CB1205001AEE3F /* TrendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11702DD721CB1205001AEE3F /* TrendCell.xib */; };
+		11D092E821CBEF6C0066D55D /* BannerInfoQuizCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D092E621CBEF6C0066D55D /* BannerInfoQuizCell.swift */; };
+		11D092E921CBEF6C0066D55D /* BannerInfoQuizCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11D092E721CBEF6C0066D55D /* BannerInfoQuizCell.xib */; };
 		13812C1E21CAA48700CAB327 /* PenpolController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13812C1C21CAA48700CAB327 /* PenpolController.swift */; };
 		13812C1F21CAA48700CAB327 /* PenpolController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13812C1D21CAA48700CAB327 /* PenpolController.xib */; };
 		13812C2B21CAA71F00CAB327 /* PenpolCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13812C2A21CAA71F00CAB327 /* PenpolCoordinator.swift */; };
@@ -116,6 +118,8 @@
 		11702DD421CB08DE001AEE3F /* QuizController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizController.swift; sourceTree = "<group>"; };
 		11702DD621CB1205001AEE3F /* TrendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendCell.swift; sourceTree = "<group>"; };
 		11702DD721CB1205001AEE3F /* TrendCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrendCell.xib; sourceTree = "<group>"; };
+		11D092E621CBEF6C0066D55D /* BannerInfoQuizCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerInfoQuizCell.swift; sourceTree = "<group>"; };
+		11D092E721CBEF6C0066D55D /* BannerInfoQuizCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BannerInfoQuizCell.xib; sourceTree = "<group>"; };
 		13812C1C21CAA48700CAB327 /* PenpolController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PenpolController.swift; sourceTree = "<group>"; };
 		13812C1D21CAA48700CAB327 /* PenpolController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PenpolController.xib; sourceTree = "<group>"; };
 		13812C2A21CAA71F00CAB327 /* PenpolCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PenpolCoordinator.swift; sourceTree = "<group>"; };
@@ -228,6 +232,8 @@
 				11702DD121CB0287001AEE3F /* QuizCell.xib */,
 				11702DD621CB1205001AEE3F /* TrendCell.swift */,
 				11702DD721CB1205001AEE3F /* TrendCell.xib */,
+				11D092E621CBEF6C0066D55D /* BannerInfoQuizCell.swift */,
+				11D092E721CBEF6C0066D55D /* BannerInfoQuizCell.xib */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -740,6 +746,7 @@
 				84F892B321C787F700DC1048 /* BwModelica-BlackCondensed.otf in Resources */,
 				84F892A921C787D800DC1048 /* Lato-BlackItalic.ttf in Resources */,
 				13812C2F21CAA92100CAB327 /* AskController.xib in Resources */,
+				11D092E921CBEF6C0066D55D /* BannerInfoQuizCell.xib in Resources */,
 				8428AAAA21C7AF330008E975 /* GoogleService-Info-Staging.plist in Resources */,
 				84B2521E21CAB1BE00565D82 /* OnboardingViewController.xib in Resources */,
 				84F892AA21C787D800DC1048 /* Lato-Bold.ttf in Resources */,
@@ -933,6 +940,7 @@
 				13812C1E21CAA48700CAB327 /* PenpolController.swift in Sources */,
 				844C3D7621C51EAF00199871 /* BaseCoordinator.swift in Sources */,
 				13812C2B21CAA71F00CAB327 /* PenpolCoordinator.swift in Sources */,
+				11D092E821CBEF6C0066D55D /* BannerInfoQuizCell.swift in Sources */,
 				844C3D7021C51D3500199871 /* PantauBarKind.swift in Sources */,
 				844C2BA721CC112700BC439A /* LinimasaHeaderView.swift in Sources */,
 				844C3D8821C5265600199871 /* AppCoordinator.swift in Sources */,

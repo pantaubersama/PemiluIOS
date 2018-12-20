@@ -34,7 +34,6 @@ public class Button: UIButton {
     }
     
     func initButton(){
-        
         self.layer.cornerRadius = self.cornerRadius
         self.layer.borderColor = borderColor.cgColor
         self.layer.borderWidth = 1

@@ -96,6 +96,10 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="ivPaslon" destination="iPe-l0-uLi" id="a84-iL-Wig"/>
+                <outlet property="lbTotal" destination="mUR-RC-vOd" id="l1c-kW-0ev"/>
+            </connections>
             <point key="canvasLocation" x="9.5999999999999996" y="111.54422788605699"/>
         </tableViewCell>
     </objects>
