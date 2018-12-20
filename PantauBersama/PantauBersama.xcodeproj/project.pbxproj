@@ -19,6 +19,8 @@
 		8428AAA321C7A7790008E975 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8428AAA521C7A7790008E975 /* Localizable.strings */; };
 		8428AAAA21C7AF330008E975 /* GoogleService-Info-Staging.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8428AAA921C7AF330008E975 /* GoogleService-Info-Staging.plist */; };
 		8428AAAD21C7B4B20008E975 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8428AAAC21C7B4B10008E975 /* GoogleService-Info.plist */; };
+		844C2BA521CC0F2500BC439A /* LinimasaHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 844C2BA421CC0F2500BC439A /* LinimasaHeaderView.xib */; };
+		844C2BA721CC112700BC439A /* LinimasaHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844C2BA621CC112700BC439A /* LinimasaHeaderView.swift */; };
 		844C3D3D21C4ED6D00199871 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844C3D3C21C4ED6D00199871 /* AppDelegate.swift */; };
 		844C3D4521C4ED6D00199871 /* PantauBersama.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 844C3D4321C4ED6D00199871 /* PantauBersama.xcdatamodeld */; };
 		844C3D4721C4ED6E00199871 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 844C3D4621C4ED6E00199871 /* Assets.xcassets */; };
@@ -116,6 +118,8 @@
 		8428AAA621C7A77C0008E975 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/Localizable.strings; sourceTree = "<group>"; };
 		8428AAA921C7AF330008E975 /* GoogleService-Info-Staging.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Staging.plist"; sourceTree = "<group>"; };
 		8428AAAC21C7B4B10008E975 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		844C2BA421CC0F2500BC439A /* LinimasaHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LinimasaHeaderView.xib; sourceTree = "<group>"; };
+		844C2BA621CC112700BC439A /* LinimasaHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinimasaHeaderView.swift; sourceTree = "<group>"; };
 		844C3D3921C4ED6D00199871 /* PantauBersama.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PantauBersama.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		844C3D3C21C4ED6D00199871 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		844C3D4421C4ED6D00199871 /* PantauBersama.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PantauBersama.xcdatamodel; sourceTree = "<group>"; };
@@ -453,6 +457,8 @@
 				84F6981021C8E21B00890917 /* LinimasaCell.swift */,
 				84F6981621C9364700890917 /* LinimasaJanjiCell.xib */,
 				84F6981821C93B8900890917 /* LinimasaJanjiCell.swift */,
+				844C2BA421CC0F2500BC439A /* LinimasaHeaderView.xib */,
+				844C2BA621CC112700BC439A /* LinimasaHeaderView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -682,6 +688,7 @@
 				84F892B521C7887800DC1048 /* BwModelicaSS01-BoldCondensed.otf in Resources */,
 				84F892A721C7875200DC1048 /* BwModelica-ThinCondensed.otf in Resources */,
 				844C3D8C21C5323E00199871 /* LinimasaCell.xib in Resources */,
+				844C2BA521CC0F2500BC439A /* LinimasaHeaderView.xib in Resources */,
 				844C3D4721C4ED6E00199871 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -842,6 +849,7 @@
 				844C3D7621C51EAF00199871 /* BaseCoordinator.swift in Sources */,
 				13812C2B21CAA71F00CAB327 /* PenpolCoordinator.swift in Sources */,
 				844C3D7021C51D3500199871 /* PantauBarKind.swift in Sources */,
+				844C2BA721CC112700BC439A /* LinimasaHeaderView.swift in Sources */,
 				844C3D8821C5265600199871 /* AppCoordinator.swift in Sources */,
 				84B2526821CC01F000565D82 /* AppState.swift in Sources */,
 				84F6981121C8E21B00890917 /* LinimasaCell.swift in Sources */,
