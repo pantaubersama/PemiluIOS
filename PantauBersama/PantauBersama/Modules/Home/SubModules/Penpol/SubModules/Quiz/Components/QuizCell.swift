@@ -16,11 +16,6 @@ class QuizCell: UITableViewCell, IReusableCell {
     @IBOutlet weak var btnQuiz: Button!
     @IBOutlet weak var btnShare: UIButton!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-    }
-    
     override func prepareForReuse() {
         super.prepareForReuse()
     }

@@ -88,10 +88,10 @@
                         </constraints>
                     </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Diw-rf-oFM" customClass="ImageButton" customModule="Common">
-                        <rect key="frame" x="313" y="298.5" width="31" height="24"/>
+                        <rect key="frame" x="294" y="285.5" width="50" height="50"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="24" id="GJB-Zc-Q9N"/>
-                            <constraint firstAttribute="width" constant="31" id="Njp-Vr-eFE"/>
+                            <constraint firstAttribute="height" constant="50" id="GJB-Zc-Q9N"/>
+                            <constraint firstAttribute="width" constant="50" id="Njp-Vr-eFE"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="image" keyPath="imageIcon" value="outlineShare24Px"/>
