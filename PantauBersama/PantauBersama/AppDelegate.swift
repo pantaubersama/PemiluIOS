@@ -12,6 +12,9 @@ import RxSwift
 import Firebase
 import Fabric
 import Crashlytics
+import Networking
+import Common
+import Moya
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,6 +23,54 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private var appCoordinator: AppCoordinator!
     private let disposeBag = DisposeBag()
 
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        // MARK
+        // Handler from URL Schemes
+        // Get code from oauth identitas, then parse into callback
+        //
+        #if DEBUG
+        if "pantaubersama.staging" == url.scheme {
+            if let code = url.getQueryString(parameter: "code") {
+                
+                print("Kodenya adalah :\(code)")
+                
+                NetworkService.instance.requestObject(
+                    IdentitasAPI.loginIdentitas(code: code,
+                                                grantType: "authorization_code",
+                                                clientId: AppContext.instance.infoForKey("CLIENT_ID"),
+                                                clientSecret: AppContext.instance.infoForKey("CLIENT_SECRET"),
+                                                redirectURI: AppContext.instance.infoForKey("REDIRECT_URI")),
+                    c: IdentitasResponses.self)
+                    .subscribe(onSuccess: { (response) in
+                        // MARK
+                        // Exchange token identitas to get token pantau
+                        NetworkService.instance.requestObject(
+                            PantauAuthAPI.callback(code: "",
+                                                   provider: response.accessToken),
+                            c: PantauAuthResponse.self)
+                            .subscribe(onSuccess: { (response) in
+                                print(response)
+                            }, onError: { (error) in
+                                print(error.localizedDescription)
+                            })
+                            .disposed(by: self.disposeBag)
+                    }) { (error) in
+                        print(error.localizedDescription)
+                    }
+                    .disposed(by: disposeBag)
+            }
+            
+            
+        }
+        #else
+        if "pantaubersama://oauth" == url.scheme {
+            
+        }
+        #endif
+        return false
+    }
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         window = UIWindow()
@@ -117,11 +168,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
-    
-    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-        // Handler from URL Schemes
-        return false
-    }
-
 }
 
+extension URL {
+    func getQueryString(parameter: String) -> String? {
+        return URLComponents(url: self, resolvingAgainstBaseURL: false)?
+            .queryItems?
+            .first { $0.name == parameter }?
+            .value
+    }
+}

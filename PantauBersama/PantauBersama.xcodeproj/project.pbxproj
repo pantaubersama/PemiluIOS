@@ -35,10 +35,6 @@
 		84B2522021CAB2B900565D82 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B2521F21CAB2B900565D82 /* OnboardingViewController.swift */; };
 		84B2522E21CAB53C00565D82 /* OnboardingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B2522D21CAB53C00565D82 /* OnboardingCoordinator.swift */; };
 		84B2523021CAB61300565D82 /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B2522F21CAB61300565D82 /* OnboardingViewModel.swift */; };
-		84B2525721CB8C9A00565D82 /* IdentitasController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B2525621CB8C9A00565D82 /* IdentitasController.swift */; };
-		84B2525921CB8D4500565D82 /* IdentitasCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B2525821CB8D4500565D82 /* IdentitasCoordinator.swift */; };
-		84B2525B21CB8ED600565D82 /* IdentitasController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84B2525A21CB8ED600565D82 /* IdentitasController.xib */; };
-		84B2525D21CB8F3600565D82 /* IdentitasViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B2525C21CB8F3600565D82 /* IdentitasViewModel.swift */; };
 		84E2854421CA195C00298E31 /* CustomActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E2854321CA195C00298E31 /* CustomActionSheet.swift */; };
 		84E2854721CA1E8300298E31 /* PilpresType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E2854621CA1E8300298E31 /* PilpresType.swift */; };
 		84E2854D21CA4BC800298E31 /* FilterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84E2854C21CA4BC800298E31 /* FilterViewController.xib */; };
@@ -132,10 +128,7 @@
 		84B2521F21CAB2B900565D82 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		84B2522D21CAB53C00565D82 /* OnboardingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinator.swift; sourceTree = "<group>"; };
 		84B2522F21CAB61300565D82 /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
-		84B2525621CB8C9A00565D82 /* IdentitasController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentitasController.swift; sourceTree = "<group>"; };
-		84B2525821CB8D4500565D82 /* IdentitasCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentitasCoordinator.swift; sourceTree = "<group>"; };
-		84B2525A21CB8ED600565D82 /* IdentitasController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IdentitasController.xib; sourceTree = "<group>"; };
-		84B2525C21CB8F3600565D82 /* IdentitasViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentitasViewModel.swift; sourceTree = "<group>"; };
+		84B2526021CBCB2E00565D82 /* PantauBersama.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PantauBersama.entitlements; sourceTree = "<group>"; };
 		84E2854321CA195C00298E31 /* CustomActionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomActionSheet.swift; sourceTree = "<group>"; };
 		84E2854621CA1E8300298E31 /* PilpresType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PilpresType.swift; sourceTree = "<group>"; };
 		84E2854C21CA4BC800298E31 /* FilterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterViewController.xib; sourceTree = "<group>"; };
@@ -240,6 +233,7 @@
 		844C3D3B21C4ED6D00199871 /* PantauBersama */ = {
 			isa = PBXGroup;
 			children = (
+				84B2526021CBCB2E00565D82 /* PantauBersama.entitlements */,
 				844C3D8621C5264C00199871 /* App */,
 				844C3D6A21C5177A00199871 /* Modules */,
 				844C3D7321C51E7E00199871 /* Library */,
@@ -288,7 +282,6 @@
 		844C3D6A21C5177A00199871 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				84B2525021CB8BB600565D82 /* Identitas */,
 				84B2521C21CAB18F00565D82 /* Onboarding */,
 				84E2854A21CA4B7100298E31 /* Filter */,
 				844C3D6B21C51CD900199871 /* Home */,
@@ -431,25 +424,6 @@
 			children = (
 				84B2521D21CAB1BE00565D82 /* OnboardingViewController.xib */,
 				84B2521F21CAB2B900565D82 /* OnboardingViewController.swift */,
-			);
-			path = ViewController;
-			sourceTree = "<group>";
-		};
-		84B2525021CB8BB600565D82 /* Identitas */ = {
-			isa = PBXGroup;
-			children = (
-				84B2525521CB8C8C00565D82 /* ViewController */,
-				84B2525821CB8D4500565D82 /* IdentitasCoordinator.swift */,
-				84B2525C21CB8F3600565D82 /* IdentitasViewModel.swift */,
-			);
-			path = Identitas;
-			sourceTree = "<group>";
-		};
-		84B2525521CB8C8C00565D82 /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				84B2525621CB8C9A00565D82 /* IdentitasController.swift */,
-				84B2525A21CB8ED600565D82 /* IdentitasController.xib */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -598,6 +572,11 @@
 				TargetAttributes = {
 					844C3D3821C4ED6D00199871 = {
 						CreatedOnToolsVersion = 10.1;
+						SystemCapabilities = {
+							com.apple.SafariKeychain = {
+								enabled = 0;
+							};
+						};
 					};
 					844C3D4F21C4ED6E00199871 = {
 						CreatedOnToolsVersion = 10.1;
@@ -639,7 +618,6 @@
 				84F892AA21C787D800DC1048 /* Lato-Bold.ttf in Resources */,
 				84E2854D21CA4BC800298E31 /* FilterViewController.xib in Resources */,
 				84F892AB21C787D800DC1048 /* Lato-BoldItalic.ttf in Resources */,
-				84B2525B21CB8ED600565D82 /* IdentitasController.xib in Resources */,
 				84F892AC21C787D800DC1048 /* Lato-Hairline.ttf in Resources */,
 				84F892AD21C787D800DC1048 /* Lato-HairlineItalic.ttf in Resources */,
 				84F892AE21C787D800DC1048 /* Lato-Italic.ttf in Resources */,
@@ -810,7 +788,6 @@
 			files = (
 				844C3D7621C51EAF00199871 /* BaseCoordinator.swift in Sources */,
 				844C3D7021C51D3500199871 /* PantauBarKind.swift in Sources */,
-				84B2525921CB8D4500565D82 /* IdentitasCoordinator.swift in Sources */,
 				844C3D8821C5265600199871 /* AppCoordinator.swift in Sources */,
 				84F6981121C8E21B00890917 /* LinimasaCell.swift in Sources */,
 				84E2854421CA195C00298E31 /* CustomActionSheet.swift in Sources */,
@@ -828,8 +805,6 @@
 				84E2855121CA4D4900298E31 /* FilterViewController.swift in Sources */,
 				84F6980921C8D28B00890917 /* PilpresViewController.swift in Sources */,
 				844C3D7821C51EFD00199871 /* HomeCoordinator.swift in Sources */,
-				84B2525D21CB8F3600565D82 /* IdentitasViewModel.swift in Sources */,
-				84B2525721CB8C9A00565D82 /* IdentitasController.swift in Sources */,
 				84B2523021CAB61300565D82 /* OnboardingViewModel.swift in Sources */,
 				84B2522E21CAB53C00565D82 /* OnboardingCoordinator.swift in Sources */,
 				84B2522021CAB2B900565D82 /* OnboardingViewController.swift in Sources */,

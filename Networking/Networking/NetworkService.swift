@@ -9,7 +9,6 @@
 import Moya
 import RxSwift
 import Common
-import SafariServices
 
 public struct NetworkService {
     
@@ -37,30 +36,25 @@ public extension NetworkService {
                 guard let errorResponse = error as? MoyaError else { return Single.error(NetworkError.IncorrectDataReturned) }
                 switch errorResponse {
                 case .underlying(let (e, _)):
+                    print(e.localizedDescription)
                     return Single.error(NetworkError(error: e as NSError))
-                case .statusCode(let response):
-                    if response.statusCode == 401 {
-                        let urlString = "\(self.infoForKey("DOMAIN_SYMBOLIC"))?client_id=\(self.infoForKey("CLIENT_ID"))&response_type=code&redirect_uri=\(self.infoForKey("REDIRECT_URI"))&scope=public+email"
-                        UIApplication.shared.open(URL(fileURLWithPath: urlString), options: [:], completionHandler: nil)
-                    }
+//                case .statusCode(let response):
+//                    print(response.statusCode)
+//                    if response.statusCode == 401 {
+//                        let urlString = "\(AppContext.instance.infoForKey("DOMAIN_SYMBOLIC"))?client_id=\(AppContext.instance.infoForKey("CLIENT_ID"))&response_type=code&redirect_uri=\(AppContext.instance.infoForKey("REDIRECT_URI"))&scope=public+email"
+//                        UIApplication.shared.open(URL(fileURLWithPath: urlString), options: [:], completionHandler: nil)
+//                    }
                 default:
                     let body = try
                         errorResponse.response?.map(ErrorResponse.self)
                     if let body = body {
+                        print(body.error.errors)
                         return Single.error(NetworkError.SoftError(message: body.error.errors.first))
                     } else {
                         return Single.error(NetworkError.IncorrectDataReturned)
                     }
                 }
-                return Single.error(NetworkError.Unknown)
+//                return Single.error(NetworkError.Unknown)
             })
-    }
-    
-}
-
-extension NetworkService {
-    func infoForKey(_ key: String) -> String {
-        return ((Bundle.main.infoDictionary?[key] as? String)?
-            .replacingOccurrences(of: "\\", with: ""))!
-    }
+    }    
 }

@@ -40,8 +40,10 @@ class OnboardingCoordinator: BaseCoordinator<Void> {
 extension OnboardingCoordinator: OnboardingNavigator {
     
     func signIn() -> Observable<Void> {
-        let identitasCoordinator = IdentitasCoordinator(window: self.window)
-        return coordinate(to: identitasCoordinator)
+        let urlString = "\(AppContext.instance.infoForKey("DOMAIN_SYMBOLIC"))/oauth/authorize?client_id=\(AppContext.instance.infoForKey("CLIENT_ID"))&response_type=code&redirect_uri=\(AppContext.instance.infoForKey("REDIRECT_URI"))&scope="
+        print(urlString)
+        UIApplication.shared.open(URL(string: urlString)!, options: [:], completionHandler: nil)
+        return Observable.just(())
     }
     
     func bypass() -> Observable<Void> {

@@ -54,8 +54,7 @@ target 'PantauBersama' do
 	project 'PantauBersama/PantauBersama.xcodeproj'
 	application_pods
 	application_rx
-	networking_pods	
-
+	networking_pods
 
 	target 'PantauBersamaTests'
 	inherit! :search_paths do

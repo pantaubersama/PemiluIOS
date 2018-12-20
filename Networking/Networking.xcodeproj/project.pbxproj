@@ -15,6 +15,9 @@
 		84B2523721CAC7D000565D82 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B2523621CAC7D000565D82 /* NetworkError.swift */; };
 		84B2523A21CAC7FB00565D82 /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B2523921CAC7FB00565D82 /* ErrorResponse.swift */; };
 		84B2524321CB7DF200565D82 /* IndentitasAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B2524221CB7DF200565D82 /* IndentitasAPI.swift */; };
+		84B2526221CBD99900565D82 /* IdentitasResponses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B2526121CBD99900565D82 /* IdentitasResponses.swift */; };
+		84B2526421CBDE2600565D82 /* PantauAuthAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B2526321CBDE2600565D82 /* PantauAuthAPI.swift */; };
+		84B2526621CBFF0C00565D82 /* PantauAuthResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B2526521CBFF0C00565D82 /* PantauAuthResponse.swift */; };
 		84D15B0C21C4E76A009DD3B3 /* Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84D15B0B21C4E76A009DD3B3 /* Common.framework */; };
 		84D831F021C4DCEC00C437B7 /* Networking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84D831E621C4DCEC00C437B7 /* Networking.framework */; };
 		84D831F521C4DCEC00C437B7 /* NetworkingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D831F421C4DCEC00C437B7 /* NetworkingTests.swift */; };
@@ -41,6 +44,9 @@
 		84B2523621CAC7D000565D82 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		84B2523921CAC7FB00565D82 /* ErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
 		84B2524221CB7DF200565D82 /* IndentitasAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndentitasAPI.swift; sourceTree = "<group>"; };
+		84B2526121CBD99900565D82 /* IdentitasResponses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentitasResponses.swift; sourceTree = "<group>"; };
+		84B2526321CBDE2600565D82 /* PantauAuthAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PantauAuthAPI.swift; sourceTree = "<group>"; };
+		84B2526521CBFF0C00565D82 /* PantauAuthResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PantauAuthResponse.swift; sourceTree = "<group>"; };
 		84D15B0B21C4E76A009DD3B3 /* Common.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Common.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		84D831E621C4DCEC00C437B7 /* Networking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Networking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		84D831E921C4DCEC00C437B7 /* Networking.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Networking.h; sourceTree = "<group>"; };
@@ -108,6 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				84B2524221CB7DF200565D82 /* IndentitasAPI.swift */,
+				84B2526321CBDE2600565D82 /* PantauAuthAPI.swift */,
 			);
 			path = Microservices;
 			sourceTree = "<group>";
@@ -116,6 +123,8 @@
 			isa = PBXGroup;
 			children = (
 				84B2523921CAC7FB00565D82 /* ErrorResponse.swift */,
+				84B2526121CBD99900565D82 /* IdentitasResponses.swift */,
+				84B2526521CBFF0C00565D82 /* PantauAuthResponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -356,9 +365,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				84B2523A21CAC7FB00565D82 /* ErrorResponse.swift in Sources */,
+				84B2526221CBD99900565D82 /* IdentitasResponses.swift in Sources */,
 				84B2523321CAC6AA00565D82 /* NetworkService.swift in Sources */,
+				84B2526421CBDE2600565D82 /* PantauAuthAPI.swift in Sources */,
 				84B2523721CAC7D000565D82 /* NetworkError.swift in Sources */,
 				84B2523521CAC71400565D82 /* RequestLoadingPlugin.swift in Sources */,
+				84B2526621CBFF0C00565D82 /* PantauAuthResponse.swift in Sources */,
 				84B2522B21CAB47B00565D82 /* NetworkKeychainKind.swift in Sources */,
 				84B2524321CB7DF200565D82 /* IndentitasAPI.swift in Sources */,
 			);
@@ -562,7 +574,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F3B2B1BD2456514F2D807A68 /* Pods-NetworkingTests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = NetworkingTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -581,7 +593,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2A1DC7500A4E8322692EC937 /* Pods-NetworkingTests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = NetworkingTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
