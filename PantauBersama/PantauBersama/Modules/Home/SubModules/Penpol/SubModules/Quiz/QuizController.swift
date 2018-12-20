@@ -2,29 +2,46 @@
 //  QuizController.swift
 //  PantauBersama
 //
-//  Created by wisnu bhakti on 19/12/18.
+//  Created by Rahardyan Bisma on 20/12/18.
 //  Copyright © 2018 PantauBersama. All rights reserved.
 //
 
 import UIKit
 
-class QuizController: UIViewController {
+class QuizController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        tableView.registerReusableCell(QuizCell.self)
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.estimatedRowHeight = 44.0
+        tableView.separatorStyle = .none
+        tableView.separatorColor = UIColor.groupTableViewBackground
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     }
+}
 
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+extension QuizController {
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 3
     }
-    */
-
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return section == 0 || section == 1 ? 1 : 30
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 350
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(indexPath: indexPath) as QuizCell
+        
+        return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 }
