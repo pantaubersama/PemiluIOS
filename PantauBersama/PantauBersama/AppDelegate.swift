@@ -28,13 +28,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // MARK
         // Handler from URL Schemes
         // Get code from oauth identitas, then parse into callback
-        //
+        // Need improve this strategy later...
+        // refresh token etc in Network Services., using granType
         #if DEBUG
         if "pantaubersama.staging" == url.scheme {
             if let code = url.getQueryString(parameter: "code") {
-                
-                print("Kodenya adalah :\(code)")
-                
                 NetworkService.instance.requestObject(
                     IdentitasAPI.loginIdentitas(code: code,
                                                 grantType: "authorization_code",
@@ -51,7 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                                    provider: response.accessToken),
                             c: PantauAuthResponse.self)
                             .subscribe(onSuccess: { (response) in
-                                print(response)
+                                AppState.save(response)
                             }, onError: { (error) in
                                 print(error.localizedDescription)
                             })
