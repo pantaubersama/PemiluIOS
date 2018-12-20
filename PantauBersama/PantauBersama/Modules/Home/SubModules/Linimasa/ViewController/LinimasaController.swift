@@ -55,6 +55,9 @@ class LinimasaController: UIViewController {
             .bind(to: viewModel.input.addTrigger)
             .disposed(by: disposeBag)
         
+        viewModel.output.filterSelected
+            .drive()
+            .disposed(by: disposeBag)
         
         // MARK
         // segmented control value

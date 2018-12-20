@@ -38,6 +38,11 @@
 		844C3D8821C5265600199871 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844C3D8721C5265600199871 /* AppCoordinator.swift */; };
 		844C3D8C21C5323E00199871 /* LinimasaCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 844C3D8B21C5323E00199871 /* LinimasaCell.xib */; };
 		84B2521B21CAA71200565D82 /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B2521A21CAA71200565D82 /* ViewModelType.swift */; };
+		84B2521E21CAB1BE00565D82 /* OnboardingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84B2521D21CAB1BE00565D82 /* OnboardingViewController.xib */; };
+		84B2522021CAB2B900565D82 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B2521F21CAB2B900565D82 /* OnboardingViewController.swift */; };
+		84B2522E21CAB53C00565D82 /* OnboardingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B2522D21CAB53C00565D82 /* OnboardingCoordinator.swift */; };
+		84B2523021CAB61300565D82 /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B2522F21CAB61300565D82 /* OnboardingViewModel.swift */; };
+		84B2526821CC01F000565D82 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B2526721CC01F000565D82 /* AppState.swift */; };
 		84E2854421CA195C00298E31 /* CustomActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E2854321CA195C00298E31 /* CustomActionSheet.swift */; };
 		84E2854721CA1E8300298E31 /* PilpresType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E2854621CA1E8300298E31 /* PilpresType.swift */; };
 		84E2854D21CA4BC800298E31 /* FilterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84E2854C21CA4BC800298E31 /* FilterViewController.xib */; };
@@ -134,6 +139,12 @@
 		844C3D8721C5265600199871 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		844C3D8B21C5323E00199871 /* LinimasaCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LinimasaCell.xib; sourceTree = "<group>"; };
 		84B2521A21CAA71200565D82 /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
+		84B2521D21CAB1BE00565D82 /* OnboardingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnboardingViewController.xib; sourceTree = "<group>"; };
+		84B2521F21CAB2B900565D82 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		84B2522D21CAB53C00565D82 /* OnboardingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinator.swift; sourceTree = "<group>"; };
+		84B2522F21CAB61300565D82 /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
+		84B2526021CBCB2E00565D82 /* PantauBersama.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PantauBersama.entitlements; sourceTree = "<group>"; };
+		84B2526721CC01F000565D82 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		84E2854321CA195C00298E31 /* CustomActionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomActionSheet.swift; sourceTree = "<group>"; };
 		84E2854621CA1E8300298E31 /* PilpresType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PilpresType.swift; sourceTree = "<group>"; };
 		84E2854C21CA4BC800298E31 /* FilterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterViewController.xib; sourceTree = "<group>"; };
@@ -265,6 +276,7 @@
 		844C3D3B21C4ED6D00199871 /* PantauBersama */ = {
 			isa = PBXGroup;
 			children = (
+				84B2526021CBCB2E00565D82 /* PantauBersama.entitlements */,
 				844C3D8621C5264C00199871 /* App */,
 				844C3D6A21C5177A00199871 /* Modules */,
 				844C3D7321C51E7E00199871 /* Library */,
@@ -313,6 +325,7 @@
 		844C3D6A21C5177A00199871 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				84B2521C21CAB18F00565D82 /* Onboarding */,
 				84E2854A21CA4B7100298E31 /* Filter */,
 				844C3D6B21C51CD900199871 /* Home */,
 			);
@@ -428,6 +441,7 @@
 			isa = PBXGroup;
 			children = (
 				844C3D8721C5265600199871 /* AppCoordinator.swift */,
+				84B2526721CC01F000565D82 /* AppState.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -441,6 +455,25 @@
 				84F6981821C93B8900890917 /* LinimasaJanjiCell.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		84B2521C21CAB18F00565D82 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				84B2522C21CAB52200565D82 /* ViewController */,
+				84B2522D21CAB53C00565D82 /* OnboardingCoordinator.swift */,
+				84B2522F21CAB61300565D82 /* OnboardingViewModel.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		84B2522C21CAB52200565D82 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				84B2521D21CAB1BE00565D82 /* OnboardingViewController.xib */,
+				84B2521F21CAB2B900565D82 /* OnboardingViewController.swift */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		84E2854121CA189B00298E31 /* CustomView */ = {
@@ -587,6 +620,11 @@
 				TargetAttributes = {
 					844C3D3821C4ED6D00199871 = {
 						CreatedOnToolsVersion = 10.1;
+						SystemCapabilities = {
+							com.apple.SafariKeychain = {
+								enabled = 0;
+							};
+						};
 					};
 					844C3D4F21C4ED6E00199871 = {
 						CreatedOnToolsVersion = 10.1;
@@ -626,6 +664,7 @@
 				84F892A921C787D800DC1048 /* Lato-BlackItalic.ttf in Resources */,
 				13812C2F21CAA92100CAB327 /* AskController.xib in Resources */,
 				8428AAAA21C7AF330008E975 /* GoogleService-Info-Staging.plist in Resources */,
+				84B2521E21CAB1BE00565D82 /* OnboardingViewController.xib in Resources */,
 				84F892AA21C787D800DC1048 /* Lato-Bold.ttf in Resources */,
 				84E2854D21CA4BC800298E31 /* FilterViewController.xib in Resources */,
 				84F892AB21C787D800DC1048 /* Lato-BoldItalic.ttf in Resources */,
@@ -804,6 +843,7 @@
 				13812C2B21CAA71F00CAB327 /* PenpolCoordinator.swift in Sources */,
 				844C3D7021C51D3500199871 /* PantauBarKind.swift in Sources */,
 				844C3D8821C5265600199871 /* AppCoordinator.swift in Sources */,
+				84B2526821CC01F000565D82 /* AppState.swift in Sources */,
 				84F6981121C8E21B00890917 /* LinimasaCell.swift in Sources */,
 				84E2854421CA195C00298E31 /* CustomActionSheet.swift in Sources */,
 				844C3D6D21C51CE900199871 /* HomeController.swift in Sources */,
@@ -820,6 +860,9 @@
 				84E2855121CA4D4900298E31 /* FilterViewController.swift in Sources */,
 				84F6980921C8D28B00890917 /* PilpresViewController.swift in Sources */,
 				844C3D7821C51EFD00199871 /* HomeCoordinator.swift in Sources */,
+				84B2523021CAB61300565D82 /* OnboardingViewModel.swift in Sources */,
+				84B2522E21CAB53C00565D82 /* OnboardingCoordinator.swift in Sources */,
+				84B2522021CAB2B900565D82 /* OnboardingViewController.swift in Sources */,
 				13812C2E21CAA92100CAB327 /* AskController.swift in Sources */,
 				844C3D7A21C5230C00199871 /* RawRepresentable.swift in Sources */,
 				84E2854721CA1E8300298E31 /* PilpresType.swift in Sources */,

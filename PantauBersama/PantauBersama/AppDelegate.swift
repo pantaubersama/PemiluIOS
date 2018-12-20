@@ -12,6 +12,9 @@ import RxSwift
 import Firebase
 import Fabric
 import Crashlytics
+import Networking
+import Common
+import Moya
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,13 +23,67 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private var appCoordinator: AppCoordinator!
     private let disposeBag = DisposeBag()
 
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        // MARK
+        // Handler from URL Schemes
+        // Get code from oauth identitas, then parse into callback
+        // Need improve this strategy later...
+        // refresh token etc in Network Services., using granType
+        #if DEBUG
+        if "pantaubersama.staging" == url.scheme {
+            if let code = url.getQueryString(parameter: "code") {
+                NetworkService.instance.requestObject(
+                    IdentitasAPI.loginIdentitas(code: code,
+                                                grantType: "authorization_code",
+                                                clientId: AppContext.instance.infoForKey("CLIENT_ID"),
+                                                clientSecret: AppContext.instance.infoForKey("CLIENT_SECRET"),
+                                                redirectURI: AppContext.instance.infoForKey("REDIRECT_URI")),
+                    c: IdentitasResponses.self)
+                    .subscribe(onSuccess: { (response) in
+                        // MARK
+                        // Exchange token identitas to get token pantau
+                        // Save this token
+                        NetworkService.instance.requestObject(
+                            PantauAuthAPI.callback(code: "",
+                                                   provider: response.accessToken),
+                            c: PantauAuthResponse.self)
+                            .subscribe(onSuccess: { (response) in
+                                AppState.save(response)
+                            }, onError: { (error) in
+                                print(error.localizedDescription)
+                            })
+                            .disposed(by: self.disposeBag)
+                    }) { (error) in
+                        print(error.localizedDescription)
+                    }
+                    .disposed(by: disposeBag)
+            }
+            
+            
+        }
+        #else
+        if "pantaubersama://oauth" == url.scheme {
+            
+        }
+        #endif
+        return false
+    }
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         window = UIWindow()
-        appCoordinator = AppCoordinator(window: window!)
-        appCoordinator.start()
-            .subscribe()
-            .disposed(by: disposeBag)
+        
+        let defaults = UserDefaults.standard
+        if defaults.object(forKey: "isFirstTime") == nil {
+            appCoordinator = AppCoordinator(window: window!)
+            appCoordinator.start()
+                .subscribe()
+                .disposed(by: disposeBag)
+        } else {
+            
+        }
+        
         
         Fabric.with([Crashlytics.self])
         #if DEBUG
@@ -110,6 +167,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
-
 }
 
+extension URL {
+    func getQueryString(parameter: String) -> String? {
+        return URLComponents(url: self, resolvingAgainstBaseURL: false)?
+            .queryItems?
+            .first { $0.name == parameter }?
+            .value
+    }
+}

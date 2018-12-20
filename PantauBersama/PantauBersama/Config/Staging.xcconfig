@@ -14,4 +14,10 @@ APP_BUILD_VERSION = 1
 
 DISPLAY_NAME = Pantau Bersama Staging
 PRODUCT_BUNDLE_IDENTIFIER = com.pantaubersama.staging
-
+// Symbolic
+CLIENT_ID = ad68192bfcfe8085492dc82af35e26c8ca92a8d08db9e9d7820e054a849d5add
+CLIENT_SECRET = bd09ebed07d20d7b438d96d7f8507922b25511887781740bbbb7ddb9a1055469
+REDIRECT_URI = pantaubersama.staging:/\/\oauth
+DOMAIN_SYMBOLIC = https:/\/\identitas.extrainteger.com
+URL_IDENTIFIER = pantaubersama.staging
+URL_SCHEMES = pantaubersama.staging
