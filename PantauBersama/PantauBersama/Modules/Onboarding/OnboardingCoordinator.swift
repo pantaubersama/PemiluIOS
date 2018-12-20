@@ -8,6 +8,7 @@
 
 import UIKit
 import RxSwift
+import Common
 
 protocol OnboardingNavigator {
     func signIn() -> Observable<Void>
@@ -39,8 +40,8 @@ class OnboardingCoordinator: BaseCoordinator<Void> {
 extension OnboardingCoordinator: OnboardingNavigator {
     
     func signIn() -> Observable<Void> {
-        let homeCoordinator = HomeCoordinator(window: self.window)
-        return coordinate(to: homeCoordinator)
+        let identitasCoordinator = IdentitasCoordinator(window: self.window)
+        return coordinate(to: identitasCoordinator)
     }
     
     func bypass() -> Observable<Void> {
