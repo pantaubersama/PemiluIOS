@@ -45,6 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     .subscribe(onSuccess: { (response) in
                         // MARK
                         // Exchange token identitas to get token pantau
+                        // Save this token
                         NetworkService.instance.requestObject(
                             PantauAuthAPI.callback(code: "",
                                                    provider: response.accessToken),

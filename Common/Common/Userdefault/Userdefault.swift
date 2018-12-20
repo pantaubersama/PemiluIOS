@@ -81,6 +81,7 @@ public extension UserDefaults {
         public enum AccountDefaultKey: String {
             case firstTimeInstall
             case userData
+            case tokenType
         }
     }
 }

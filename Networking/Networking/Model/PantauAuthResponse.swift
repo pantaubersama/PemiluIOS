@@ -10,7 +10,7 @@ import Foundation
 
 public struct PantauAuthResponse: Codable {
     
-    public var data: D
+    public var data: D?
         
     public struct D: Codable {
         public var accessToken: String
