@@ -20,4 +20,12 @@ class QuizCell: UITableViewCell, IReusableCell {
         super.prepareForReuse()
     }
     
+    @IBAction func actionDidTap(_ sender: Button) {
+    }
+    
+    @IBAction func shareDidTap(_ sender: ImageButton) {
+    }
+    
+    @IBOutlet weak var imageDidTap: UIImageView!
+    
 }

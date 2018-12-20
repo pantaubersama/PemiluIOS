@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 @IBDesignable
-class ImageButton: UIButton {
+public class ImageButton: UIButton {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -22,7 +22,7 @@ class ImageButton: UIButton {
         setupView()
     }
     
-    override func prepareForInterfaceBuilder() {
+    override public func prepareForInterfaceBuilder() {
         setupView()
     }
     
@@ -32,12 +32,12 @@ class ImageButton: UIButton {
         self.imageView?.tintColor = imageTintColor
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    override public func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         self.imageView?.tintColor = imagePressedTintColor
     }
     
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+    override public func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesEnded(touches, with: event)
         self.imageView?.tintColor = imageTintColor
     }
