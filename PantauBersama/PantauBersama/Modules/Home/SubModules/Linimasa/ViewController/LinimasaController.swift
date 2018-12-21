@@ -59,6 +59,10 @@ class LinimasaController: UIViewController {
             .drive()
             .disposed(by: disposeBag)
         
+        viewModel.output.addSelected
+            .drive()
+            .disposed(by: disposeBag)
+        
         // MARK
         // segmented control value
         // assign extension Reactive UIControl

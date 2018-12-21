@@ -22,6 +22,10 @@
 		8441DB3C21CCA6C500B078DF /* ItemRadioCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441DB3B21CCA6C500B078DF /* ItemRadioCell.swift */; };
 		8441DB3E21CCB80B00B078DF /* ItemRadioCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8441DB3D21CCB80B00B078DF /* ItemRadioCell.xib */; };
 		8441DB4121CCBECF00B078DF /* FilterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441DB4021CCBECF00B078DF /* FilterModel.swift */; };
+		8441DB4521CCC56F00B078DF /* CreateJanjiController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8441DB4421CCC56F00B078DF /* CreateJanjiController.xib */; };
+		8441DB4B21CCCB1B00B078DF /* CreateJanjiController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441DB4A21CCCB1B00B078DF /* CreateJanjiController.swift */; };
+		8441DB4D21CCCB4200B078DF /* CreateJanjiCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441DB4C21CCCB4200B078DF /* CreateJanjiCoordinator.swift */; };
+		8441DB4F21CCCBE300B078DF /* CreateJanjiViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441DB4E21CCCBE300B078DF /* CreateJanjiViewModel.swift */; };
 		844C2BA521CC0F2500BC439A /* LinimasaHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 844C2BA421CC0F2500BC439A /* LinimasaHeaderView.xib */; };
 		844C2BA721CC112700BC439A /* LinimasaHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844C2BA621CC112700BC439A /* LinimasaHeaderView.swift */; };
 		844C3D3D21C4ED6D00199871 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844C3D3C21C4ED6D00199871 /* AppDelegate.swift */; };
@@ -124,6 +128,10 @@
 		8441DB3B21CCA6C500B078DF /* ItemRadioCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemRadioCell.swift; sourceTree = "<group>"; };
 		8441DB3D21CCB80B00B078DF /* ItemRadioCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ItemRadioCell.xib; sourceTree = "<group>"; };
 		8441DB4021CCBECF00B078DF /* FilterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterModel.swift; sourceTree = "<group>"; };
+		8441DB4421CCC56F00B078DF /* CreateJanjiController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateJanjiController.xib; sourceTree = "<group>"; };
+		8441DB4A21CCCB1B00B078DF /* CreateJanjiController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateJanjiController.swift; sourceTree = "<group>"; };
+		8441DB4C21CCCB4200B078DF /* CreateJanjiCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateJanjiCoordinator.swift; sourceTree = "<group>"; };
+		8441DB4E21CCCBE300B078DF /* CreateJanjiViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateJanjiViewModel.swift; sourceTree = "<group>"; };
 		844C2BA421CC0F2500BC439A /* LinimasaHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LinimasaHeaderView.xib; sourceTree = "<group>"; };
 		844C2BA621CC112700BC439A /* LinimasaHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinimasaHeaderView.swift; sourceTree = "<group>"; };
 		844C3D3921C4ED6D00199871 /* PantauBersama.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PantauBersama.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -280,6 +288,25 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		8441DB4221CCC55400B078DF /* CreateJanji */ = {
+			isa = PBXGroup;
+			children = (
+				8441DB4321CCC55C00B078DF /* ViewController */,
+				8441DB4C21CCCB4200B078DF /* CreateJanjiCoordinator.swift */,
+				8441DB4E21CCCBE300B078DF /* CreateJanjiViewModel.swift */,
+			);
+			path = CreateJanji;
+			sourceTree = "<group>";
+		};
+		8441DB4321CCC55C00B078DF /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				8441DB4421CCC56F00B078DF /* CreateJanjiController.xib */,
+				8441DB4A21CCCB1B00B078DF /* CreateJanjiController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		844C3D3021C4ED6D00199871 = {
 			isa = PBXGroup;
 			children = (
@@ -353,6 +380,7 @@
 		844C3D6A21C5177A00199871 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				8441DB4221CCC55400B078DF /* CreateJanji */,
 				84B2521C21CAB18F00565D82 /* Onboarding */,
 				84E2854A21CA4B7100298E31 /* Filter */,
 				844C3D6B21C51CD900199871 /* Home */,
@@ -691,6 +719,7 @@
 				13812C2921CAA67D00CAB327 /* QuizController.xib in Resources */,
 				8428AAA321C7A7790008E975 /* Localizable.strings in Resources */,
 				84F892A821C787D800DC1048 /* Lato-Black.ttf in Resources */,
+				8441DB4521CCC56F00B078DF /* CreateJanjiController.xib in Resources */,
 				84F892B321C787F700DC1048 /* BwModelica-BlackCondensed.otf in Resources */,
 				84F892A921C787D800DC1048 /* Lato-BlackItalic.ttf in Resources */,
 				13812C2F21CAA92100CAB327 /* AskController.xib in Resources */,
@@ -889,7 +918,10 @@
 				8441DB3C21CCA6C500B078DF /* ItemRadioCell.swift in Sources */,
 				84B2526821CC01F000565D82 /* AppState.swift in Sources */,
 				84F6981121C8E21B00890917 /* LinimasaCell.swift in Sources */,
+				8441DB4D21CCCB4200B078DF /* CreateJanjiCoordinator.swift in Sources */,
+				8441DB4F21CCCBE300B078DF /* CreateJanjiViewModel.swift in Sources */,
 				84E2854421CA195C00298E31 /* CustomActionSheet.swift in Sources */,
+				8441DB4B21CCCB1B00B078DF /* CreateJanjiController.swift in Sources */,
 				844C3D6D21C51CE900199871 /* HomeController.swift in Sources */,
 				84F6980B21C8D2B100890917 /* JanjiPolitikViewController.swift in Sources */,
 				844C3D4521C4ED6D00199871 /* PantauBersama.xcdatamodeld in Sources */,

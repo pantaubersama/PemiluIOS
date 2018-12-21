@@ -11,8 +11,19 @@ import Common
 
 class ItemRadioCell: UITableViewCell, IReusableCell {
     
+    @IBOutlet weak var button: UIButton!
+    @IBOutlet weak var titleLabel: Label!
+    
     override func prepareForReuse() {
         super.prepareForReuse()
     }
     
+    struct Input {
+        let data: FilterField
+    }
+    
+    func configureCell(item: Input) {
+        titleLabel.text = item.data.key
+        
+    }
 }

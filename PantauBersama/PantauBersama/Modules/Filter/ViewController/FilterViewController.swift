@@ -10,11 +10,13 @@ import UIKit
 import RxCocoa
 import RxSwift
 import Common
+import RxDataSources
 
 class FilterViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     var viewModel: IFilterViewModel!
+    var dataSource: RxTableViewSectionedReloadDataSource<SectionOfFilterData>!
     
     private let disposeBag = DisposeBag()
     
@@ -39,6 +41,16 @@ class FilterViewController: UIViewController {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0)
         tableView.registerReusableCell(ItemRadioCell.self)
+        
+        // MARK
+        // Preparation using datasource from model
+        // ...
+        dataSource =
+            RxTableViewSectionedReloadDataSource<SectionOfFilterData>(configureCell: { (dataSource, tableView, indexPath, item) in
+                let cell = tableView.dequeueReusableCell(indexPath: indexPath) as ItemRadioCell
+                cell.configureCell(item: ItemRadioCell.Input(data: item))
+                return cell
+            })
     }
     
 }

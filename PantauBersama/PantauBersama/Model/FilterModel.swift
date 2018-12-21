@@ -8,6 +8,7 @@
 
 import Foundation
 import Networking
+import RxDataSources
 
 
 struct FilterField {
@@ -15,3 +16,15 @@ struct FilterField {
     let value: Int
 }
 
+struct SectionOfFilterData {
+    var items: [Item]
+}
+
+extension SectionOfFilterData: SectionModelType {
+    typealias Item = FilterField
+    
+    init(original: SectionOfFilterData, items: [FilterField]) {
+        self = original
+        self.items = items
+    }
+}

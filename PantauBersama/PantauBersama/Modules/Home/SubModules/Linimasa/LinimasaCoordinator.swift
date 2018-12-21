@@ -44,7 +44,7 @@ extension LinimasaCoordinator: LinimasaNavigator {
     }
     
     func launchAddJanji() -> Observable<Void> {
-        let janjiCoordinator = FilterCoordinator(navigationController: navigationController)
+        let janjiCoordinator = CreateJanjCoordinator(navigationController: navigationController)
         return coordinate(to: janjiCoordinator)
     }
     
