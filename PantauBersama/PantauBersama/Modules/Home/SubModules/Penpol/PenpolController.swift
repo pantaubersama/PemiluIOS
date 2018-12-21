@@ -14,9 +14,13 @@ class PenpolController: UIViewController {
     @IBOutlet weak var segmentedControl: SegementedControl!
     @IBOutlet weak var containerView: UIView!
     
+    var viewModel: PenpolViewModel!
     private let disposeBag = DisposeBag()
+    
+    lazy var quizViewModel = QuizViewModel(navigator: viewModel.navigator)
+    
     private var askController = AskController()
-    private var quisController = QuizController()
+    lazy var quisController = QuizController(viewModel: quizViewModel)
     
     override func viewDidLoad() {
         super.viewDidLoad()
