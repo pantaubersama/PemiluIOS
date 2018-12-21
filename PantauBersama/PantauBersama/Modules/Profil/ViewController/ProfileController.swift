@@ -10,12 +10,14 @@ import UIKit
 
 class ProfileController: UIViewController {
     
+    private var headerView = HeaderProfile()
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.registerReusableCell(LinimasaCell.self)
+        tableView.registerReusableCell(LinimasaJanjiCell.self)
         tableView.delegate = self
         tableView.dataSource = self
         let headerView = HeaderProfile()
@@ -45,7 +47,12 @@ extension ProfileController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(indexPath: indexPath) as LinimasaCell
-        return cell
+        if headerView.segmentedControl.selectedSegmentIndex == 0 {
+            let cell = tableView.dequeueReusableCell(indexPath: indexPath) as LinimasaCell
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(indexPath: indexPath) as LinimasaJanjiCell
+            return cell
+        }
     }
 }

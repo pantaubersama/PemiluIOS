@@ -10,7 +10,16 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HeaderProfile" customModule="PantauBersama" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HeaderProfile" customModule="PantauBersama" customModuleProvider="target">
+            <connections>
+                <outlet property="avatar" destination="x5B-AN-vqg" id="iA8-tb-pxh"/>
+                <outlet property="buttonVerified" destination="oKm-Wt-jO4" id="UQT-w5-kzh"/>
+                <outlet property="segmentedControl" destination="Njm-cf-QbP" id="8M8-5m-fXW"/>
+                <outlet property="status" destination="7Uq-6x-Qsq" id="fRY-XZ-s8I"/>
+                <outlet property="tableView" destination="huj-Le-mPi" id="R0y-2n-D7v"/>
+                <outlet property="username" destination="Dov-tN-jr3" id="O1V-ko-o0m"/>
+            </connections>
+        </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
             <rect key="frame" x="0.0" y="0.0" width="375" height="348"/>
@@ -55,11 +64,16 @@
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="n4p-eB-jkT">
                                                             <rect key="frame" x="0.0" y="0.0" width="271" height="64"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dov-tN-jr3">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ali Devandroid" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dov-tN-jr3" customClass="Label" customModule="Common">
                                                                     <rect key="frame" x="0.0" y="0.0" width="271" height="39"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                                            <real key="value" value="14"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                    </userDefinedRuntimeAttributes>
                                                                 </label>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bcm-oO-FEh">
                                                                     <rect key="frame" x="0.0" y="39" width="271" height="25"/>
@@ -149,7 +163,7 @@ Who cares anyway!</string>
                         <constraint firstAttribute="height" constant="1" id="HR9-o7-kBh"/>
                     </constraints>
                 </view>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="huj-Le-mPi">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="huj-Le-mPi">
                     <rect key="frame" x="0.0" y="143" width="375" height="141"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
