@@ -19,6 +19,8 @@
 		8428AA9921C7A52F0008E975 /* ReachabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8428AA9821C7A52F0008E975 /* ReachabilityManager.swift */; };
 		8428AA9C21C7A5480008E975 /* Reachability.h in Headers */ = {isa = PBXBuildFile; fileRef = 8428AA9A21C7A5480008E975 /* Reachability.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8428AA9D21C7A5480008E975 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 8428AA9B21C7A5480008E975 /* Reachability.m */; };
+		8441DB4721CCC8DE00B078DF /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441DB4621CCC8DE00B078DF /* TextField.swift */; };
+		8441DB4921CCC91500B078DF /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441DB4821CCC91500B078DF /* UITextField.swift */; };
 		84B2522321CAB33700565D82 /* Userdefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B2522221CAB33700565D82 /* Userdefault.swift */; };
 		84B2522621CAB3FF00565D82 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B2522521CAB3FF00565D82 /* KeychainService.swift */; };
 		84B2522821CAB41400565D82 /* KeychainKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B2522721CAB41400565D82 /* KeychainKind.swift */; };
@@ -60,6 +62,8 @@
 		8428AA9821C7A52F0008E975 /* ReachabilityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityManager.swift; sourceTree = "<group>"; };
 		8428AA9A21C7A5480008E975 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		8428AA9B21C7A5480008E975 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		8441DB4621CCC8DE00B078DF /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
+		8441DB4821CCC91500B078DF /* UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
 		84B2522221CAB33700565D82 /* Userdefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Userdefault.swift; sourceTree = "<group>"; };
 		84B2522521CAB3FF00565D82 /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
 		84B2522721CAB41400565D82 /* KeychainKind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainKind.swift; sourceTree = "<group>"; };
@@ -211,6 +215,8 @@
 				84F6980521C8D19300890917 /* UIViewController.swift */,
 				84F6980C21C8DC7F00890917 /* UINavigationBar.swift */,
 				84E2854E21CA4C4700298E31 /* Button.swift */,
+				8441DB4621CCC8DE00B078DF /* TextField.swift */,
+				8441DB4821CCC91500B078DF /* UITextField.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -387,7 +393,9 @@
 			files = (
 				84B2522321CAB33700565D82 /* Userdefault.swift in Sources */,
 				84B2524C21CB83C700565D82 /* AppContext.swift in Sources */,
+				8441DB4921CCC91500B078DF /* UITextField.swift in Sources */,
 				8428AA8B21C7A2EC0008E975 /* UIView.swift in Sources */,
+				8441DB4721CCC8DE00B078DF /* TextField.swift in Sources */,
 				84B2522621CAB3FF00565D82 /* KeychainService.swift in Sources */,
 				8428AA9421C7A4CD0008E975 /* Localized.swift in Sources */,
 				84F8929721C783A700DC1048 /* Label.swift in Sources */,

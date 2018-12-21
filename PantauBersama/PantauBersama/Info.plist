@@ -33,6 +33,9 @@
 		<string>Lato-Light.ttf</string>
 		<string>Lato-LightItalic.ttf</string>
 		<string>Lato-Regular.ttf</string>
+		<string>BwModelicaSS01-BoldCondensed.otf</string>
+		<string>BwModelica-BlackCondensed.otf</string>
+		<string>BwModelica-ThinCondensed.otf</string>
 	</array>
 	<key>Fabric</key>
 	<dict>

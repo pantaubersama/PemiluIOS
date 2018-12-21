@@ -62,6 +62,8 @@ Don't forget to add references framework here after you add some libs in `podfil
 1. Crashlytics 
 1. Fabric
 1. Firebase/Core
+1. RxDataSources - https://github.com/RxSwiftCommunity/RxDataSources
+1. IQKeyboardManagerSwift -https://cocoapods.org/pods/IQKeyboardManagerSwift
 
 
 ### Some Libs

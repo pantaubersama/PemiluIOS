@@ -24,6 +24,7 @@ final class LinimasaViewModel: ViewModelType {
     
     struct Output {
         let filterSelected: Driver<Void>
+        let addSelected: Driver<Void>
     }
     
     private let navigator: LinimasaNavigator
@@ -45,7 +46,12 @@ final class LinimasaViewModel: ViewModelType {
             .flatMapLatest{(navigator.launchFilter())}
             .asDriver(onErrorJustReturn: ())
         
-        output = Output(filterSelected: filter)
+        let add = addSubject
+            .flatMapLatest({ navigator.launchAddJanji() })
+            .asDriver(onErrorJustReturn: ())
+        
+        output = Output(filterSelected: filter,
+                        addSelected: add)
     }
     
 }

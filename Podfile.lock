@@ -2,6 +2,7 @@ PODS:
   - Alamofire (4.8.0)
   - Crashlytics (3.12.0):
     - Fabric (~> 1.9.0)
+  - Differentiator (3.1.0)
   - Fabric (1.9.0)
   - Firebase/Core (5.14.0):
     - Firebase/CoreOnly
@@ -47,6 +48,7 @@ PODS:
     - GoogleUtilities/Logger
   - GoogleUtilities/UserDefaults (5.3.6):
     - GoogleUtilities/Logger
+  - IQKeyboardManagerSwift (6.2.0)
   - Moya/Core (12.0.1):
     - Alamofire (~> 4.1)
     - Result (~> 4.0)
@@ -62,6 +64,10 @@ PODS:
   - RxAtomic (4.4.0)
   - RxCocoa (4.4.0):
     - RxSwift (~> 4.0)
+  - RxDataSources (3.1.0):
+    - Differentiator (~> 3.0)
+    - RxCocoa (~> 4.0)
+    - RxSwift (~> 4.0)
   - RxSwift (4.4.0):
     - RxAtomic (~> 4.4)
 
@@ -69,14 +75,17 @@ DEPENDENCIES:
   - Crashlytics
   - Fabric
   - Firebase/Core
+  - IQKeyboardManagerSwift (~> 6.2.0)
   - Moya/RxSwift (= 12.0.1)
   - RxCocoa (= 4.4.0)
+  - RxDataSources (~> 3.1.0)
   - RxSwift (= 4.4.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
     - Crashlytics
+    - Differentiator
     - Fabric
     - Firebase
     - FirebaseAnalytics
@@ -84,16 +93,19 @@ SPEC REPOS:
     - FirebaseInstanceID
     - GoogleAppMeasurement
     - GoogleUtilities
+    - IQKeyboardManagerSwift
     - Moya
     - nanopb
     - Result
     - RxAtomic
     - RxCocoa
+    - RxDataSources
     - RxSwift
 
 SPEC CHECKSUMS:
   Alamofire: 3ec537f71edc9804815215393ae2b1a8ea33a844
   Crashlytics: 07fb167b1694128c1c9a5a5cc319b0e9c3ca0933
+  Differentiator: be49ca3408f0ecfc761e4c7763d20c62be01b9ad
   Fabric: f988e33c97f08930a413e08123064d2e5f68d655
   Firebase: 963d5685fae888a56d6d4d9cfce6b9c976958798
   FirebaseAnalytics: c06f9d70577d79074214700a71fd5d39de5550fb
@@ -101,13 +113,15 @@ SPEC CHECKSUMS:
   FirebaseInstanceID: e2fa4cb35ef5558c200f7f0ad8a53e212215f93e
   GoogleAppMeasurement: 98b71f5e04142793729a5ef23e5b96651ff4b70f
   GoogleUtilities: 95996bea7c7d9b8fb811b7507669a4a8762f80c7
+  IQKeyboardManagerSwift: b07ccf9d8cafe993dcd6cb794eb4ba34611a0c4e
   Moya: cf730b3cd9e005401ef37a85143aa141a12fd38f
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   Result: 7645bb3f50c2ce726dd0ff2fa7b6f42bbe6c3713
   RxAtomic: eacf60db868c96bfd63320e28619fe29c179656f
   RxCocoa: df63ebf7b9a70d6b4eeea407ed5dd4efc8979749
+  RxDataSources: a843bad90c29817f5923ec8163f4af2de084ceb3
   RxSwift: 5976ecd04fc2fefd648827c23de5e11157faa973
 
-PODFILE CHECKSUM: 93e3254c009fd99271064f4ce787602d574bab37
+PODFILE CHECKSUM: e61cb9bbfc84c99779aeae1494f3820618357261
 
 COCOAPODS: 1.5.3
