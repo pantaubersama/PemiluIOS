@@ -7,14 +7,35 @@
 //
 
 import UIKit
+import Common
+import RxSwift
+import RxCocoa
 
 class QuizDetailController: UIViewController {
+    @IBOutlet weak var ivQuiz: UIImageView!
+    @IBOutlet weak var lbTitle: Label!
+    @IBOutlet weak var tvDescription: UITextView!
+    @IBOutlet weak var lbQuestionCount: Label!
+    @IBOutlet weak var btnStart: Button!
+    
     var viewModel: QuizDetailViewModel!
+    lazy var disposeBag = DisposeBag()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        btnStart.rx.tap
+            .bind(to: viewModel.input.startTrigger)
+            .disposed(by: disposeBag)
+        
+        viewModel.output.startSelected
+            .drive()
+            .disposed(by: disposeBag)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.configure(with: .transparent)
+        self.navigationController?.navigationBar.tintColor = UIColor.clear
     }
 
 }
