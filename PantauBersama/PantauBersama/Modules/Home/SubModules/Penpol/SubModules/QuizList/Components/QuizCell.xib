@@ -79,9 +79,6 @@
                                 <real key="value" value="12"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
-                        <connections>
-                            <action selector="actionDidTap:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="jDM-mz-m7F"/>
-                        </connections>
                     </button>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Dj-Lb-YHS">
                         <rect key="frame" x="16" y="344" width="328" height="2"/>
@@ -105,9 +102,6 @@
                                 <color key="value" red="0.91987603900000003" green="0.18888336419999999" blue="0.21535322069999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
-                        <connections>
-                            <action selector="shareDidTap:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="RHd-qa-C7c"/>
-                        </connections>
                     </button>
                 </subviews>
                 <constraints>
@@ -133,7 +127,6 @@
             <connections>
                 <outlet property="btnQuiz" destination="iGR-to-vzk" id="hpD-lb-ish"/>
                 <outlet property="btnShare" destination="Diw-rf-oFM" id="dZY-lo-Upj"/>
-                <outlet property="imageDidTap" destination="m7t-WD-Q18" id="r1G-dn-1Ze"/>
                 <outlet property="ivQuiz" destination="m7t-WD-Q18" id="mE2-Hf-Nk0"/>
                 <outlet property="lbTitle" destination="uCL-QK-Rs2" id="6TK-ye-N2h"/>
                 <outlet property="lbTotalQuestion" destination="WVB-oG-f0A" id="HTt-ch-Rc2"/>

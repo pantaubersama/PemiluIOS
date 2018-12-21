@@ -8,10 +8,17 @@
 
 import UIKit
 import RxSwift
+import RxCocoa
 
 class QuizController: UITableViewController {
     private let disposeBag: DisposeBag = DisposeBag()
-
+    private var viewModel: QuizViewModel!
+    
+    convenience init(viewModel: QuizViewModel) {
+        self.init()
+        self.viewModel = viewModel
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.registerReusableCell(QuizCell.self)
@@ -24,6 +31,14 @@ class QuizController: UITableViewController {
         tableView.separatorColor = UIColor.groupTableViewBackground
         tableView.allowsSelection = false
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        
+        viewModel.output.openQuizSelected
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.shareSelected
+            .drive()
+            .disposed(by: disposeBag)
     }
 }
 
@@ -57,6 +72,8 @@ extension QuizController {
             return trendCell
         default:
             let quizCell = tableView.dequeueReusableCell(indexPath: indexPath) as QuizCell
+            quizCell.quiz = "quiz"
+            quizCell.bind(viewModel: viewModel)
             return quizCell
         }
     }
