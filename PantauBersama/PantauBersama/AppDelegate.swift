@@ -15,6 +15,7 @@ import Crashlytics
 import Networking
 import Common
 import Moya
+import IQKeyboardManagerSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -73,6 +74,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         window = UIWindow()
+        // IQKeyboardManager
+        IQKeyboardManager.shared.enable = true
         
         let defaults = UserDefaults.standard
         if defaults.object(forKey: "isFirstTime") == nil {

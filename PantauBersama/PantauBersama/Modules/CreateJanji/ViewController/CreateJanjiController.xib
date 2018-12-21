@@ -9,9 +9,15 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Lato-Regular.ttf">
+            <string>Lato-Regular</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CreateJanjiController" customModule="PantauBersama" customModuleProvider="target">
             <connections>
+                <outlet property="textView" destination="fCc-b7-q5R" id="zFe-K2-XW0"/>
                 <outlet property="view" destination="iN0-l3-epB" id="zvn-7y-SLH"/>
             </connections>
         </placeholder>
@@ -24,7 +30,7 @@
                     <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tVR-Tg-HAt" userLabel="ContentView">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Gx-wA-ZrS">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="79"/>
@@ -133,17 +139,40 @@ Gunakan tata Bahasa yang baik</string>
                                         <constraint firstAttribute="bottom" secondItem="OVn-bl-S9r" secondAttribute="bottom" id="gLG-O5-SpN"/>
                                     </constraints>
                                 </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AcX-uT-Y1K">
+                                    <rect key="frame" x="20" y="179" width="335" height="488"/>
+                                    <subviews>
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="fCc-b7-q5R">
+                                            <rect key="frame" x="0.0" y="0.0" width="335" height="488"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                            <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="13"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences" textContentType="url"/>
+                                        </textView>
+                                    </subviews>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstItem="fCc-b7-q5R" firstAttribute="leading" secondItem="AcX-uT-Y1K" secondAttribute="leading" id="4SF-Nd-wSx"/>
+                                        <constraint firstItem="fCc-b7-q5R" firstAttribute="top" secondItem="AcX-uT-Y1K" secondAttribute="top" id="AWG-YT-gip"/>
+                                        <constraint firstAttribute="trailing" secondItem="fCc-b7-q5R" secondAttribute="trailing" id="Wn1-mK-iFa"/>
+                                        <constraint firstAttribute="bottom" secondItem="fCc-b7-q5R" secondAttribute="bottom" id="sAi-tw-aW8"/>
+                                    </constraints>
+                                </view>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="GMt-8c-u9C" secondAttribute="trailing" id="0uH-hH-8vK"/>
                                 <constraint firstAttribute="trailing" secondItem="tTf-km-3j5" secondAttribute="trailing" constant="20" id="6zv-7L-ql7"/>
+                                <constraint firstAttribute="trailing" secondItem="AcX-uT-Y1K" secondAttribute="trailing" constant="20" id="Bem-d5-ECT"/>
                                 <constraint firstItem="tTf-km-3j5" firstAttribute="leading" secondItem="tVR-Tg-HAt" secondAttribute="leading" constant="20" id="FXk-Mp-Aov"/>
+                                <constraint firstItem="AcX-uT-Y1K" firstAttribute="leading" secondItem="tVR-Tg-HAt" secondAttribute="leading" constant="20" id="Gxa-aF-sTc"/>
                                 <constraint firstItem="GMt-8c-u9C" firstAttribute="leading" secondItem="tVR-Tg-HAt" secondAttribute="leading" id="J86-GT-mPu"/>
                                 <constraint firstItem="GMt-8c-u9C" firstAttribute="top" secondItem="9Gx-wA-ZrS" secondAttribute="bottom" id="Vs5-j8-p7e"/>
                                 <constraint firstItem="tTf-km-3j5" firstAttribute="top" secondItem="GMt-8c-u9C" secondAttribute="bottom" id="W3y-sg-7gG"/>
                                 <constraint firstItem="9Gx-wA-ZrS" firstAttribute="top" secondItem="tVR-Tg-HAt" secondAttribute="top" id="W4j-05-snb"/>
                                 <constraint firstAttribute="trailing" secondItem="9Gx-wA-ZrS" secondAttribute="trailing" id="Z2Y-Zh-yHo"/>
+                                <constraint firstItem="AcX-uT-Y1K" firstAttribute="top" secondItem="tTf-km-3j5" secondAttribute="bottom" id="dQl-fG-WQN"/>
+                                <constraint firstAttribute="bottom" secondItem="AcX-uT-Y1K" secondAttribute="bottom" id="fK9-XV-WeS"/>
                                 <constraint firstItem="9Gx-wA-ZrS" firstAttribute="leading" secondItem="tVR-Tg-HAt" secondAttribute="leading" id="uRM-RQ-MlS"/>
                             </constraints>
                         </view>
@@ -152,13 +181,13 @@ Gunakan tata Bahasa yang baik</string>
                         <constraint firstItem="tVR-Tg-HAt" firstAttribute="leading" secondItem="NE8-BH-Agq" secondAttribute="leading" id="4vU-20-8zt"/>
                         <constraint firstAttribute="trailing" secondItem="tVR-Tg-HAt" secondAttribute="trailing" id="AYB-T0-EpS"/>
                         <constraint firstItem="tVR-Tg-HAt" firstAttribute="top" secondItem="NE8-BH-Agq" secondAttribute="top" id="Dcg-AY-YU3"/>
-                        <constraint firstItem="tVR-Tg-HAt" firstAttribute="centerY" secondItem="NE8-BH-Agq" secondAttribute="centerY" id="URh-cM-mHN"/>
                         <constraint firstAttribute="bottom" secondItem="tVR-Tg-HAt" secondAttribute="bottom" id="w52-Do-AU6"/>
                     </constraints>
                 </scrollView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="tVR-Tg-HAt" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" id="5b4-QC-k9W"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="NE8-BH-Agq" secondAttribute="trailing" id="FA9-6D-NX7"/>
                 <constraint firstItem="NE8-BH-Agq" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Itr-U0-00k"/>
                 <constraint firstItem="tVR-Tg-HAt" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="JYh-gQ-j9g"/>

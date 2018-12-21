@@ -12,6 +12,7 @@ import RxSwift
 
 class CreateJanjiController: UIViewController {
     
+    @IBOutlet weak var textView: UITextView!
     var viewModel: ICreateJanjiViewModel!
     
     private let disposeBag = DisposeBag()
@@ -27,10 +28,19 @@ class CreateJanjiController: UIViewController {
         navigationItem.rightBarButtonItem = done
         navigationController?.navigationBar.configure(with: .white)
         
+        // MARK
+        // Setup Editor
+        // need editor custom
+        setupEditorView()
         
+        // MARK
+        // bind View Model
         back.rx.tap
             .bind(to: viewModel.input.backI)
             .disposed(by: disposeBag)
+    }
+    
+    private func setupEditorView() {
     }
     
 }
