@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 
 protocol QuizDetailNavigator {
-    func startQuiz()
+    func startQuiz() -> Observable<Void>
     var finish: Observable<Void>! { get set }
 }
 
@@ -36,7 +36,8 @@ class QuizDetailCoordinator: BaseCoordinator<Void>, QuizDetailNavigator {
         })
     }
     
-    func startQuiz() {
-        // TODO: Go to OngoingQuiz
+    func startQuiz() -> Observable<Void> {
+        let quizOngoingCoordinator = QuizOngoingCoordinator(navigationController: self.navigationController)
+        return coordinate(to: quizOngoingCoordinator)
     }
 }
