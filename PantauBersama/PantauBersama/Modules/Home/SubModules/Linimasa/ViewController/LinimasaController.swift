@@ -55,11 +55,19 @@ class LinimasaController: UIViewController {
             .bind(to: viewModel.input.addTrigger)
             .disposed(by: disposeBag)
         
+        profile.rx.tap
+            .bind(to: viewModel.input.profileTrigger)
+            .disposed(by: disposeBag)
+        
         viewModel.output.filterSelected
             .drive()
             .disposed(by: disposeBag)
         
         viewModel.output.addSelected
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.profileSelected
             .drive()
             .disposed(by: disposeBag)
         
