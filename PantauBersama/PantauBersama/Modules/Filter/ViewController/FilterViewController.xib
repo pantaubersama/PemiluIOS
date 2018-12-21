@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FilterViewController" customModule="PantauBersama" customModuleProvider="target">
             <connections>
+                <outlet property="tableView" destination="dLf-Wx-Vg0" id="mvn-0R-nTv"/>
                 <outlet property="view" destination="iN0-l3-epB" id="ONX-3g-cLq"/>
             </connections>
         </placeholder>
@@ -26,7 +27,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="48" id="XFI-C6-pvs"/>
                     </constraints>
-                    <state key="normal" title="Button">
+                    <state key="normal" title="TERAPKAN">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
                     <userDefinedRuntimeAttributes>

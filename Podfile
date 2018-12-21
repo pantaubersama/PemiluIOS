@@ -17,6 +17,7 @@ end
 def networking_pods
     application_rx
     pod 'Moya/RxSwift', '12.0.1'
+    pod 'RxDataSources', '~> 3.1.0'
 end
 
 

@@ -2,6 +2,7 @@ PODS:
   - Alamofire (4.8.0)
   - Crashlytics (3.12.0):
     - Fabric (~> 1.9.0)
+  - Differentiator (3.1.0)
   - Fabric (1.9.0)
   - Firebase/Core (5.14.0):
     - Firebase/CoreOnly
@@ -62,6 +63,10 @@ PODS:
   - RxAtomic (4.4.0)
   - RxCocoa (4.4.0):
     - RxSwift (~> 4.0)
+  - RxDataSources (3.1.0):
+    - Differentiator (~> 3.0)
+    - RxCocoa (~> 4.0)
+    - RxSwift (~> 4.0)
   - RxSwift (4.4.0):
     - RxAtomic (~> 4.4)
 
@@ -71,12 +76,14 @@ DEPENDENCIES:
   - Firebase/Core
   - Moya/RxSwift (= 12.0.1)
   - RxCocoa (= 4.4.0)
+  - RxDataSources (~> 3.1.0)
   - RxSwift (= 4.4.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
     - Crashlytics
+    - Differentiator
     - Fabric
     - Firebase
     - FirebaseAnalytics
@@ -89,11 +96,13 @@ SPEC REPOS:
     - Result
     - RxAtomic
     - RxCocoa
+    - RxDataSources
     - RxSwift
 
 SPEC CHECKSUMS:
   Alamofire: 3ec537f71edc9804815215393ae2b1a8ea33a844
   Crashlytics: 07fb167b1694128c1c9a5a5cc319b0e9c3ca0933
+  Differentiator: be49ca3408f0ecfc761e4c7763d20c62be01b9ad
   Fabric: f988e33c97f08930a413e08123064d2e5f68d655
   Firebase: 963d5685fae888a56d6d4d9cfce6b9c976958798
   FirebaseAnalytics: c06f9d70577d79074214700a71fd5d39de5550fb
@@ -106,8 +115,9 @@ SPEC CHECKSUMS:
   Result: 7645bb3f50c2ce726dd0ff2fa7b6f42bbe6c3713
   RxAtomic: eacf60db868c96bfd63320e28619fe29c179656f
   RxCocoa: df63ebf7b9a70d6b4eeea407ed5dd4efc8979749
+  RxDataSources: a843bad90c29817f5923ec8163f4af2de084ceb3
   RxSwift: 5976ecd04fc2fefd648827c23de5e11157faa973
 
-PODFILE CHECKSUM: 93e3254c009fd99271064f4ce787602d574bab37
+PODFILE CHECKSUM: cd6a31de9f3f872755679eb34050738266b90ef1
 
 COCOAPODS: 1.5.3

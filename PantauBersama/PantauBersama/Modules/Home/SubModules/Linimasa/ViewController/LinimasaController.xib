@@ -31,7 +31,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="375" height="48"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jsX-sx-32M" customClass="SegementedControl" customModule="Common">
-                                    <rect key="frame" x="0.0" y="0.0" width="279" height="48"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="327" height="48"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="string" keyPath="titles" value="Pilpres, Janji Politik"/>
@@ -49,8 +49,8 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                 </view>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MoL-38-eSA">
-                                    <rect key="frame" x="279" y="0.0" width="48" height="48"/>
+                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MoL-38-eSA">
+                                    <rect key="frame" x="327" y="0.0" width="48" height="48"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="48" id="ZFf-VV-HPp"/>
                                     </constraints>

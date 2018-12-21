@@ -69,9 +69,11 @@ class LinimasaController: UIViewController {
                     if i == 0 {
                         self.pilpresController.view.alpha = 1.0
                         self.janjiController.view.alpha = 0.0
+                        self.addJanji.isHidden = true
                     } else {
                         self.pilpresController.view.alpha = 0.0
                         self.janjiController.view.alpha = 1.0
+                        self.addJanji.isHidden = false
                     }
                 })
             })
