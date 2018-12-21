@@ -50,4 +50,11 @@ extension JanjiPolitikViewController {
         let cell = tableView.dequeueReusableCell(indexPath: indexPath) as LinimasaJanjiCell
         return cell
     }
+    
+    // dummy sembari nunggu API lewat sini dulu
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let detail = DetailJanjiController()
+        detail.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(detail, animated: true)
+    }
 }

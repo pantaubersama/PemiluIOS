@@ -31,6 +31,10 @@
 		8441DB4B21CCCB1B00B078DF /* CreateJanjiController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441DB4A21CCCB1B00B078DF /* CreateJanjiController.swift */; };
 		8441DB4D21CCCB4200B078DF /* CreateJanjiCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441DB4C21CCCB4200B078DF /* CreateJanjiCoordinator.swift */; };
 		8441DB4F21CCCBE300B078DF /* CreateJanjiViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441DB4E21CCCBE300B078DF /* CreateJanjiViewModel.swift */; };
+		8441DB5321CCF0C200B078DF /* DetailJanjiController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441DB5221CCF0C200B078DF /* DetailJanjiController.swift */; };
+		8441DB5621CCF19C00B078DF /* DetailJanjiController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8441DB5521CCF19C00B078DF /* DetailJanjiController.xib */; };
+		8441DB5821CCF7D900B078DF /* DetailJanjiCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441DB5721CCF7D900B078DF /* DetailJanjiCoordinator.swift */; };
+		8441DB5A21CD087000B078DF /* JanjiType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441DB5921CD087000B078DF /* JanjiType.swift */; };
 		844C2BA521CC0F2500BC439A /* LinimasaHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 844C2BA421CC0F2500BC439A /* LinimasaHeaderView.xib */; };
 		844C2BA721CC112700BC439A /* LinimasaHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844C2BA621CC112700BC439A /* LinimasaHeaderView.swift */; };
 		844C3D3D21C4ED6D00199871 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844C3D3C21C4ED6D00199871 /* AppDelegate.swift */; };
@@ -142,6 +146,10 @@
 		8441DB4A21CCCB1B00B078DF /* CreateJanjiController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateJanjiController.swift; sourceTree = "<group>"; };
 		8441DB4C21CCCB4200B078DF /* CreateJanjiCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateJanjiCoordinator.swift; sourceTree = "<group>"; };
 		8441DB4E21CCCBE300B078DF /* CreateJanjiViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateJanjiViewModel.swift; sourceTree = "<group>"; };
+		8441DB5221CCF0C200B078DF /* DetailJanjiController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailJanjiController.swift; sourceTree = "<group>"; };
+		8441DB5521CCF19C00B078DF /* DetailJanjiController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailJanjiController.xib; sourceTree = "<group>"; };
+		8441DB5721CCF7D900B078DF /* DetailJanjiCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailJanjiCoordinator.swift; sourceTree = "<group>"; };
+		8441DB5921CD087000B078DF /* JanjiType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JanjiType.swift; sourceTree = "<group>"; };
 		844C2BA421CC0F2500BC439A /* LinimasaHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LinimasaHeaderView.xib; sourceTree = "<group>"; };
 		844C2BA621CC112700BC439A /* LinimasaHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinimasaHeaderView.swift; sourceTree = "<group>"; };
 		844C3D3921C4ED6D00199871 /* PantauBersama.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PantauBersama.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -330,6 +338,24 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
+		8441DB5121CCF0AB00B078DF /* DetailJanji */ = {
+			isa = PBXGroup;
+			children = (
+				8441DB5421CCF18700B078DF /* ViewController */,
+				8441DB5721CCF7D900B078DF /* DetailJanjiCoordinator.swift */,
+			);
+			path = DetailJanji;
+			sourceTree = "<group>";
+		};
+		8441DB5421CCF18700B078DF /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				8441DB5221CCF0C200B078DF /* DetailJanjiController.swift */,
+				8441DB5521CCF19C00B078DF /* DetailJanjiController.xib */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		844C3D3021C4ED6D00199871 = {
 			isa = PBXGroup;
 			children = (
@@ -403,7 +429,6 @@
 		844C3D6A21C5177A00199871 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				8441DB4221CCC55400B078DF /* CreateJanji */,
 				84B2521C21CAB18F00565D82 /* Onboarding */,
 				84E2854A21CA4B7100298E31 /* Filter */,
 				844C3D6B21C51CD900199871 /* Home */,
@@ -578,6 +603,7 @@
 			isa = PBXGroup;
 			children = (
 				84E2854621CA1E8300298E31 /* PilpresType.swift */,
+				8441DB5921CD087000B078DF /* JanjiType.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -605,6 +631,8 @@
 		84F6980721C8D23900890917 /* Janji Politik */ = {
 			isa = PBXGroup;
 			children = (
+				8441DB4221CCC55400B078DF /* CreateJanji */,
+				8441DB5121CCF0AB00B078DF /* DetailJanji */,
 				84F6980A21C8D2B100890917 /* JanjiPolitikViewController.swift */,
 			);
 			path = "Janji Politik";
@@ -753,6 +781,7 @@
 				84E2854D21CA4BC800298E31 /* FilterViewController.xib in Resources */,
 				84F892AB21C787D800DC1048 /* Lato-BoldItalic.ttf in Resources */,
 				13812C1F21CAA48700CAB327 /* PenpolController.xib in Resources */,
+				8441DB5621CCF19C00B078DF /* DetailJanjiController.xib in Resources */,
 				84F892AC21C787D800DC1048 /* Lato-Hairline.ttf in Resources */,
 				84F892AD21C787D800DC1048 /* Lato-HairlineItalic.ttf in Resources */,
 				84F892AE21C787D800DC1048 /* Lato-Italic.ttf in Resources */,
@@ -958,8 +987,10 @@
 				84E2855B21CA7C4800298E31 /* FilterViewModel.swift in Sources */,
 				84F6981921C93B8900890917 /* LinimasaJanjiCell.swift in Sources */,
 				84F6981521C8FAB000890917 /* UIControl.swift in Sources */,
+				8441DB5321CCF0C200B078DF /* DetailJanjiController.swift in Sources */,
 				84B2521B21CAA71200565D82 /* ViewModelType.swift in Sources */,
 				84E2855921CA777D00298E31 /* Observable.swift in Sources */,
+				8441DB5A21CD087000B078DF /* JanjiType.swift in Sources */,
 				844C3D3D21C4ED6D00199871 /* AppDelegate.swift in Sources */,
 				844C3D8321C524F000199871 /* LinimasaController.swift in Sources */,
 				11702DD221CB0287001AEE3F /* QuizCell.swift in Sources */,
@@ -972,6 +1003,7 @@
 				84B2522E21CAB53C00565D82 /* OnboardingCoordinator.swift in Sources */,
 				84B2522021CAB2B900565D82 /* OnboardingViewController.swift in Sources */,
 				13812C2E21CAA92100CAB327 /* AskController.swift in Sources */,
+				8441DB5821CCF7D900B078DF /* DetailJanjiCoordinator.swift in Sources */,
 				844C3D7A21C5230C00199871 /* RawRepresentable.swift in Sources */,
 				84E2854721CA1E8300298E31 /* PilpresType.swift in Sources */,
 				844C3D8521C5252800199871 /* LinimasaCoordinator.swift in Sources */,

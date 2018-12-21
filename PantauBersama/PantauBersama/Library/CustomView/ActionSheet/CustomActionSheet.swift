@@ -50,7 +50,6 @@ class CustomActionSheet<E: RawRepresentable> {
         var actions = createSourcesActions(with: tapObserver)
         let cancel = createCancelAction(with: tapObserver)
         actions.append(cancel)
-        actions.forEach({ $0.setValue(sources, forKey: "image")})
         return actions
     }
     
