@@ -9,17 +9,16 @@
 import UIKit
 import Common
 
+@IBDesignable
 class HeaderProfile: UIView {
     
     @IBOutlet weak var avatar: UIImageView!
-    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var username: Label!
     @IBOutlet weak var buttonVerified: Button!
     @IBOutlet weak var status: Label!
-    @IBOutlet weak var segmentedControl: UISegmentedControl!
     
     override init(frame: CGRect) {
-        super.init(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 348))
+        super.init(frame: frame)
         setup()
     }
     
@@ -33,39 +32,6 @@ class HeaderProfile: UIView {
         view.frame = bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         addSubview(view)
-        
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cellId")
-        
-    }
-    
-}
-
-extension HeaderProfile: UITableViewDelegate, UITableViewDataSource {
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath)
-        cell.textLabel?.text = "UGM"
-        return cell
-    }
-    
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section {
-        case 0:
-            return 1
-        case 1:
-            return 3
-        case 2:
-            return 4
-        default:
-            return 0
-        }
     }
     
 }

@@ -14,15 +14,13 @@
             <connections>
                 <outlet property="avatar" destination="x5B-AN-vqg" id="iA8-tb-pxh"/>
                 <outlet property="buttonVerified" destination="oKm-Wt-jO4" id="UQT-w5-kzh"/>
-                <outlet property="segmentedControl" destination="Njm-cf-QbP" id="8M8-5m-fXW"/>
                 <outlet property="status" destination="7Uq-6x-Qsq" id="fRY-XZ-s8I"/>
-                <outlet property="tableView" destination="huj-Le-mPi" id="R0y-2n-D7v"/>
                 <outlet property="username" destination="Dov-tN-jr3" id="O1V-ko-o0m"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="348"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="143"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dlq-V5-xFW">
@@ -163,64 +161,23 @@ Who cares anyway!</string>
                         <constraint firstAttribute="height" constant="1" id="HR9-o7-kBh"/>
                     </constraints>
                 </view>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="huj-Le-mPi">
-                    <rect key="frame" x="0.0" y="143" width="375" height="141"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="141" id="4so-Jn-EOl"/>
-                    </constraints>
-                </tableView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="os6-Jz-BOs">
-                    <rect key="frame" x="0.0" y="284" width="375" height="64"/>
-                    <subviews>
-                        <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Njm-cf-QbP">
-                            <rect key="frame" x="16" y="18" width="343" height="29"/>
-                            <segments>
-                                <segment title="" image="icLinimasaInactive"/>
-                                <segment title="" image="icPendidikanPolitikInactive"/>
-                                <segment title="" image="icWordstadiumInactive"/>
-                                <segment title="" image="icLaporInactive"/>
-                                <segment title="" image="icHitungSuaraInactive"/>
-                            </segments>
-                            <color key="tintColor" red="0.84867143629999997" green="0.26370441909999998" blue="0.25095239279999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                        </segmentedControl>
-                    </subviews>
-                    <color key="backgroundColor" red="0.95687562230000001" green="0.95683962109999998" blue="0.95686405900000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                    <constraints>
-                        <constraint firstItem="Njm-cf-QbP" firstAttribute="leading" secondItem="os6-Jz-BOs" secondAttribute="leading" constant="16" id="9bq-pj-Vpb"/>
-                        <constraint firstItem="Njm-cf-QbP" firstAttribute="centerY" secondItem="os6-Jz-BOs" secondAttribute="centerY" id="Wwk-y7-GG9"/>
-                        <constraint firstAttribute="trailing" secondItem="Njm-cf-QbP" secondAttribute="trailing" constant="16" id="uYU-Dq-Yzy"/>
-                        <constraint firstAttribute="height" constant="64" id="wmJ-KO-Zrl"/>
-                    </constraints>
-                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="huj-Le-mPi" firstAttribute="top" secondItem="lMi-xS-YYh" secondAttribute="bottom" id="2c2-zi-Oyb"/>
                 <constraint firstItem="dlq-V5-xFW" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="67c-Pr-AhW"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="os6-Jz-BOs" secondAttribute="trailing" id="CLl-vF-v6d"/>
-                <constraint firstItem="os6-Jz-BOs" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="CfD-vD-ESW"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="dlq-V5-xFW" secondAttribute="trailing" id="FQA-at-5EV"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="lMi-xS-YYh" secondAttribute="trailing" id="IG4-p4-4tk"/>
                 <constraint firstItem="lMi-xS-YYh" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="POy-xq-N7o"/>
-                <constraint firstItem="os6-Jz-BOs" firstAttribute="top" secondItem="huj-Le-mPi" secondAttribute="bottom" id="S0M-Ne-PGt"/>
                 <constraint firstItem="lMi-xS-YYh" firstAttribute="top" secondItem="dlq-V5-xFW" secondAttribute="bottom" id="U6n-Bz-DKH"/>
-                <constraint firstItem="huj-Le-mPi" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="aFk-cC-vCX"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="huj-Le-mPi" secondAttribute="trailing" id="qGS-fg-oDk"/>
                 <constraint firstItem="dlq-V5-xFW" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="vFs-8d-3sK"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <point key="canvasLocation" x="53.600000000000001" y="-95.352323838080963"/>
+            <point key="canvasLocation" x="53.600000000000001" y="-187.55622188905548"/>
         </view>
     </objects>
     <resources>
         <image name="icDummyPerson" width="64" height="64"/>
-        <image name="icHitungSuaraInactive" width="24" height="24"/>
-        <image name="icLaporInactive" width="24" height="24"/>
-        <image name="icLinimasaInactive" width="24" height="24"/>
-        <image name="icPendidikanPolitikInactive" width="24" height="24"/>
         <image name="icUnverified" width="16" height="16"/>
-        <image name="icWordstadiumInactive" width="24" height="24"/>
     </resources>
 </document>
