@@ -20,7 +20,7 @@ class ProfileController: UIViewController {
     
     private lazy var pilpresController = PilpresViewController()
     private lazy var janjiController = JanjiPolitikViewController()
-    
+    var viewModel: IProfileViewModel!
     private let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
@@ -31,7 +31,7 @@ class ProfileController: UIViewController {
         add(childViewController: pilpresController, context: container)
         add(childViewController: janjiController, context: container)
         
-        let back = UIBarButtonItem(image: #imageLiteral(resourceName: "back"), style: .plain, target: self, action: #selector(handleBack(sender:)))
+        let back = UIBarButtonItem(image: #imageLiteral(resourceName: "back"), style: .plain, target: nil, action: nil)
         let setting = UIBarButtonItem(image: #imageLiteral(resourceName: "outlineSettings24Px"), style: .plain, target: nil, action: nil)
         
         navigationItem.rightBarButtonItem = setting
@@ -100,10 +100,18 @@ class ProfileController: UIViewController {
         tableView.dataSource = self
         tableView.estimatedRowHeight = 44.0
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-    }
-    
-    @objc private func handleBack(sender: UIBarButtonItem) {
-        navigationController?.popViewController(animated: true)
+        
+        back.rx.tap
+            .bind(to: viewModel.input.backI)
+            .disposed(by: disposeBag)
+        
+        setting.rx.tap
+            .bind(to: viewModel.input.settingI)
+            .disposed(by: disposeBag)
+        
+        viewModel.output.settingO
+            .drive()
+            .disposed(by: disposeBag)
     }
 }
 
