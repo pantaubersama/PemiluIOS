@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 
 protocol LinimasaNavigator {
-    func launchProfile()
+    func launchProfile() -> Observable<Void>
     func launchNotifications()
     func launchFilter() -> Observable<Void>
     func launchAddJanji() -> Observable<Void>
@@ -49,8 +49,9 @@ extension LinimasaCoordinator: LinimasaNavigator {
     }
     
     
-    func launchProfile() {
-        
+    func launchProfile() -> Observable<Void> {
+        let profileCoordinator = ProfileCoordinator(navigationController: navigationController)
+        return coordinate(to: profileCoordinator)
     }
     
     func launchNotifications() {

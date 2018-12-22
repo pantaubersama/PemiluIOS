@@ -55,11 +55,19 @@ class LinimasaController: UIViewController {
             .bind(to: viewModel.input.addTrigger)
             .disposed(by: disposeBag)
         
+        profile.rx.tap
+            .bind(to: viewModel.input.profileTrigger)
+            .disposed(by: disposeBag)
+        
         viewModel.output.filterSelected
             .drive()
             .disposed(by: disposeBag)
         
         viewModel.output.addSelected
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.profileSelected
             .drive()
             .disposed(by: disposeBag)
         
@@ -86,26 +94,26 @@ class LinimasaController: UIViewController {
         // MARK
         // Navigation bar hide
         // when scrolling tableViews
-        let tableViews = [self.pilpresController.tableView,
-                          self.janjiController.tableView]
-        tableViews.forEach { tableView in
-            guard let tableView = tableView else { return }
-            tableView.scrollsToTop = true
-            Driver.merge([
-                pilpresController.tableView.rx.contentOffset.asDriver(),
-                janjiController.tableView.rx.contentOffset.asDriver()
-                ])
-                .drive(onNext: { position in
-                    UIView.animate(withDuration: 0.3, animations: {
-                        if position.y >= 153.0 {
-                            self.navigationController?.isNavigationBarHidden = true
-                        } else {
-                            self.navigationController?.isNavigationBarHidden = false
-                        }
-                    })
-                })
-                .disposed(by: disposeBag)
-        }
+//        let tableViews = [self.pilpresController.tableView,
+//                          self.janjiController.tableView]
+//        tableViews.forEach { tableView in
+//            guard let tableView = tableView else { return }
+//            tableView.scrollsToTop = true
+//            Driver.merge([
+//                pilpresController.tableView.rx.contentOffset.asDriver(),
+//                janjiController.tableView.rx.contentOffset.asDriver()
+//                ])
+//                .drive(onNext: { position in
+//                    UIView.animate(withDuration: 0.3, animations: {
+//                        if position.y >= 153.0 {
+//                            self.navigationController?.isNavigationBarHidden = true
+//                        } else {
+//                            self.navigationController?.isNavigationBarHidden = false
+//                        }
+//                    })
+//                })
+//                .disposed(by: disposeBag)
+//        }
         
     }
     

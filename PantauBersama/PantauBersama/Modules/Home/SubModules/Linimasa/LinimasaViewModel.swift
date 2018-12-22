@@ -20,17 +20,20 @@ final class LinimasaViewModel: ViewModelType {
         let addTrigger: AnyObserver<Void>
         let filterTrigger: AnyObserver<Void>
         let refreshTrigger: AnyObserver<Void>
+        let profileTrigger: AnyObserver<Void>
     }
     
     struct Output {
         let filterSelected: Driver<Void>
         let addSelected: Driver<Void>
+        let profileSelected: Driver<Void>
     }
     
     private let navigator: LinimasaNavigator
     private let addSubject = PublishSubject<Void>()
     private let filterSubject = PublishSubject<Void>()
     private let refreshSubject = PublishSubject<Void>()
+    private let profileSubject = PublishSubject<Void>()
     
     init(navigator: LinimasaNavigator) {
         self.navigator = navigator
@@ -39,7 +42,8 @@ final class LinimasaViewModel: ViewModelType {
         input = Input(
             addTrigger: addSubject.asObserver(),
             filterTrigger: filterSubject.asObserver(),
-            refreshTrigger: refreshSubject.asObserver()
+            refreshTrigger: refreshSubject.asObserver(),
+            profileTrigger: profileSubject.asObserver()
         )
         
         let filter = filterSubject
@@ -50,8 +54,13 @@ final class LinimasaViewModel: ViewModelType {
             .flatMapLatest({ navigator.launchAddJanji() })
             .asDriver(onErrorJustReturn: ())
         
+        let profile = profileSubject
+            .flatMapLatest({ navigator.launchProfile() })
+            .asDriver(onErrorJustReturn: ())
+        
         output = Output(filterSelected: filter,
-                        addSelected: add)
+                        addSelected: add,
+                        profileSelected: profile)
     }
     
 }
