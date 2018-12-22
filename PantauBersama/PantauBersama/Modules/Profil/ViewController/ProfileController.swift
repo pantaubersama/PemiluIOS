@@ -82,17 +82,56 @@ class ProfileController: UIViewController {
                 tableViews.forEach{ (tableView) in
                         let minimumTableViewContentSizeHeight = halfHeaderViewHeight + tableView!.frame.height
                         
-                        if (position.y >= halfHeaderViewHeight) && tableView!.contentSize.height < minimumTableViewContentSizeHeight {
-                            tableView!.contentSize = CGSize(width: tableView!.contentSize.width, height: minimumTableViewContentSizeHeight + 2)
+                        if (position.y >= halfHeaderViewHeight)
+                            && tableView!.contentSize.height < minimumTableViewContentSizeHeight {
+                            tableView!.contentSize = CGSize(width: tableView!.contentSize.width,
+                                                            height: minimumTableViewContentSizeHeight + 2)
                         }
                     }
                 
             })
             .disposed(by: disposeBag)
         
+        
+        // MARK: - TableViews
+        // Register TableViews
+        tableView.registerReusableCell(SectionCell.self)
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.estimatedRowHeight = 44.0
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     }
     
     @objc private func handleBack(sender: UIBarButtonItem) {
         navigationController?.popViewController(animated: true)
     }
+}
+
+// Dummy
+// Strategy tableview begin updates, delete rows
+// need contact designer again ... hhh
+extension ProfileController: UITableViewDelegate, UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 3
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        switch section {
+        case 0:
+            return 1
+        case 1:
+            return 3
+        case 2:
+            return 4
+        default:
+            return 0
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(indexPath: indexPath) as SectionCell
+        return cell
+    }
+    
 }
