@@ -37,7 +37,7 @@ class PenpolViewModel: ViewModelType {
         input = Input(addTrigger: addSubject.asObserver(), filterTrigger: filterSubject.asObserver(), refreshTrigger: refreshSubject.asObserver())
         
         let add = addSubject
-            .flatMap({navigator.launchCreateQuestion()})
+            .flatMap({navigator.launchCreateAsk()})
             .asDriver(onErrorJustReturn: ())
         
         let filter = filterSubject

@@ -1,5 +1,5 @@
 //
-//  QuizInfoCoordinator.swift
+//  PenpolInfoCoordinator.swift
 //  PantauBersama
 //
 //  Created by Rahardyan Bisma on 23/12/18.
@@ -10,16 +10,18 @@ import Foundation
 import Common
 import RxSwift
 
-class QuizInfoCoordinator: BaseCoordinator<Void> {
+class PenpolInfoCoordinator: BaseCoordinator<Void> {
     private let navigationController: UINavigationController
+    private let infoType: PenpolInfoType
     
     
-    init(navigationController: UINavigationController) {
+    init(navigationController: UINavigationController, infoType: PenpolInfoType) {
         self.navigationController = navigationController
+        self.infoType = infoType
     }
     override func start() -> Observable<Void> {
-        let viewController = QuizInfoController()
-        let viewModel = QuizInfoViewModel()
+        let viewController = PenpolInfoController()
+        let viewModel = PenpolInfoViewModel(infoType: infoType)
         viewController.viewModel = viewModel
         
         navigationController.present(viewController, animated: true, completion: nil)

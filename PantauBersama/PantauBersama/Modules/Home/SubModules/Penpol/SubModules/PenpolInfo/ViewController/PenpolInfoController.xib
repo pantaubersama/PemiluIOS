@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="QuizInfoController" customModule="PantauBersama" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PenpolInfoController" customModule="PantauBersama" customModuleProvider="target">
             <connections>
                 <outlet property="btnClose" destination="Z6d-24-WdA" id="waC-ow-Zt7"/>
                 <outlet property="tableView" destination="4Al-OF-ssY" id="B81-pK-f1l"/>

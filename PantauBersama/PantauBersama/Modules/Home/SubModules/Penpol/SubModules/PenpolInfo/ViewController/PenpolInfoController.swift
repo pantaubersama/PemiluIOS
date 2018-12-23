@@ -1,5 +1,5 @@
 //
-//  QuizInfoController.swift
+//  PenpolInfoController.swift
 //  PantauBersama
 //
 //  Created by Rahardyan Bisma on 23/12/18.
@@ -10,12 +10,12 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class QuizInfoController: UIViewController {
+class PenpolInfoController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var btnClose: UIButton!
     
-    var viewModel: QuizInfoViewModel!
+    var viewModel: PenpolInfoViewModel!
     private let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
@@ -23,7 +23,7 @@ class QuizInfoController: UIViewController {
         tableView.estimatedRowHeight = 300
         tableView.rowHeight = UITableView.automaticDimension
         tableView.separatorStyle = .none
-        tableView.registerReusableCell(QuizInfoCell.self)
+        tableView.registerReusableCell(PenpolInfoCell.self)
         
         tableView.rx.setDelegate(self)
             .disposed(by: disposeBag)
@@ -43,6 +43,6 @@ class QuizInfoController: UIViewController {
     }
 }
 
-extension QuizInfoController: UITableViewDelegate {
+extension PenpolInfoController: UITableViewDelegate {
    
 }

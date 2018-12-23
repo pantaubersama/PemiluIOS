@@ -50,7 +50,7 @@ class QuizViewModel: ViewModelType {
             .flatMapLatest({navigator.shareQuiz(quiz: $0)})
             .asDriver(onErrorJustReturn: ())
         let info = infoSubject
-            .flatMapLatest({navigator.openInfoQuiz()})
+            .flatMapLatest({navigator.openInfoPenpol(infoType: PenpolInfoType.Quiz)})
             .asDriver(onErrorJustReturn: ())
         
         output = Output(

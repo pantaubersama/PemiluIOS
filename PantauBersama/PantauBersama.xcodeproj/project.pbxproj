@@ -29,18 +29,29 @@
 		11E107AF21CD42C400B7B074 /* QuizOngoingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11E107AD21CD42C400B7B074 /* QuizOngoingController.xib */; };
 		11E107B521CD44FD00B7B074 /* QuizOngoingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E107B421CD44FD00B7B074 /* QuizOngoingCoordinator.swift */; };
 		11E107B721CD450B00B7B074 /* QuizOngoingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E107B621CD450B00B7B074 /* QuizOngoingViewModel.swift */; };
-		11E107BC21CF4A6900B7B074 /* QuizInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E107BA21CF4A6900B7B074 /* QuizInfoController.swift */; };
-		11E107BD21CF4A6900B7B074 /* QuizInfoController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11E107BB21CF4A6900B7B074 /* QuizInfoController.xib */; };
-		11E107C121CF4C6B00B7B074 /* QuizInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E107BF21CF4C6B00B7B074 /* QuizInfoCell.swift */; };
-		11E107C221CF4C6B00B7B074 /* QuizInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11E107C021CF4C6B00B7B074 /* QuizInfoCell.xib */; };
-		11E107C521CF534700B7B074 /* QuizInfoCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E107C421CF534700B7B074 /* QuizInfoCoordinator.swift */; };
-		11E107C721CF535100B7B074 /* QuizInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E107C621CF535100B7B074 /* QuizInfoViewModel.swift */; };
-		11E107C921CF626800B7B074 /* QuizInfoCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E107C821CF626800B7B074 /* QuizInfoCellViewModel.swift */; };
+		11E107BC21CF4A6900B7B074 /* PenpolInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E107BA21CF4A6900B7B074 /* PenpolInfoController.swift */; };
+		11E107BD21CF4A6900B7B074 /* PenpolInfoController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11E107BB21CF4A6900B7B074 /* PenpolInfoController.xib */; };
+		11E107C121CF4C6B00B7B074 /* PenpolnfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E107BF21CF4C6B00B7B074 /* PenpolnfoCell.swift */; };
+		11E107C221CF4C6B00B7B074 /* PenpolInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11E107C021CF4C6B00B7B074 /* PenpolInfoCell.xib */; };
+		11E107C521CF534700B7B074 /* PenpolInfoCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E107C421CF534700B7B074 /* PenpolInfoCoordinator.swift */; };
+		11E107C721CF535100B7B074 /* PenpolInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E107C621CF535100B7B074 /* PenpolInfoViewModel.swift */; };
+		11E107C921CF626800B7B074 /* PenpolInfoCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E107C821CF626800B7B074 /* PenpolInfoCellViewModel.swift */; };
 		13812C1E21CAA48700CAB327 /* PenpolController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13812C1C21CAA48700CAB327 /* PenpolController.swift */; };
 		13812C1F21CAA48700CAB327 /* PenpolController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13812C1D21CAA48700CAB327 /* PenpolController.xib */; };
 		13812C2B21CAA71F00CAB327 /* PenpolCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13812C2A21CAA71F00CAB327 /* PenpolCoordinator.swift */; };
 		13812C2E21CAA92100CAB327 /* AskController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13812C2C21CAA92100CAB327 /* AskController.swift */; };
-		13812C2F21CAA92100CAB327 /* AskController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13812C2D21CAA92100CAB327 /* AskController.xib */; };
+		13812C3921CC182500CAB327 /* AskViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13812C3721CC182500CAB327 /* AskViewCell.swift */; };
+		13812C3A21CC182500CAB327 /* AskViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13812C3821CC182500CAB327 /* AskViewCell.xib */; };
+		13812C3D21CD41DC00CAB327 /* HeaderAskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13812C3B21CD41DC00CAB327 /* HeaderAskCell.swift */; };
+		13812C3E21CD41DC00CAB327 /* HeaderAskCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13812C3C21CD41DC00CAB327 /* HeaderAskCell.xib */; };
+		13812C4121CD421C00CAB327 /* BannerInfoAskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13812C3F21CD421C00CAB327 /* BannerInfoAskCell.swift */; };
+		13812C4221CD421C00CAB327 /* BannerInfoAskCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13812C4021CD421C00CAB327 /* BannerInfoAskCell.xib */; };
+		13F4569421CF97DA00CE45F1 /* CreateAskController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F4569221CF97DA00CE45F1 /* CreateAskController.swift */; };
+		13F4569521CF97DA00CE45F1 /* CreateAskController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13F4569321CF97DA00CE45F1 /* CreateAskController.xib */; };
+		13F4569721CF981E00CE45F1 /* AskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F4569621CF981E00CE45F1 /* AskViewModel.swift */; };
+		13F4569921CF982E00CE45F1 /* AskNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F4569821CF982E00CE45F1 /* AskNavigator.swift */; };
+		13F4569D21CF985800CE45F1 /* CreateAskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F4569C21CF985800CE45F1 /* CreateAskViewModel.swift */; };
+		13F4569F21CF986600CE45F1 /* CreateAskCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F4569E21CF986600CE45F1 /* CreateAskCoordinator.swift */; };
 		24F280C4B63852A75C32D7D7 /* Pods_PantauBersama_PantauBersamaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4CBA51E95EB1AE7C2940BC0 /* Pods_PantauBersama_PantauBersamaTests.framework */; };
 		841CDA3D21C8BC1C0015680C /* LinimasaController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 841CDA3C21C8BC1C0015680C /* LinimasaController.xib */; };
 		8428AAA321C7A7790008E975 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8428AAA521C7A7790008E975 /* Localizable.strings */; };
@@ -174,18 +185,29 @@
 		11E107AD21CD42C400B7B074 /* QuizOngoingController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuizOngoingController.xib; sourceTree = "<group>"; };
 		11E107B421CD44FD00B7B074 /* QuizOngoingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizOngoingCoordinator.swift; sourceTree = "<group>"; };
 		11E107B621CD450B00B7B074 /* QuizOngoingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizOngoingViewModel.swift; sourceTree = "<group>"; };
-		11E107BA21CF4A6900B7B074 /* QuizInfoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizInfoController.swift; sourceTree = "<group>"; };
-		11E107BB21CF4A6900B7B074 /* QuizInfoController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuizInfoController.xib; sourceTree = "<group>"; };
-		11E107BF21CF4C6B00B7B074 /* QuizInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizInfoCell.swift; sourceTree = "<group>"; };
-		11E107C021CF4C6B00B7B074 /* QuizInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuizInfoCell.xib; sourceTree = "<group>"; };
-		11E107C421CF534700B7B074 /* QuizInfoCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizInfoCoordinator.swift; sourceTree = "<group>"; };
-		11E107C621CF535100B7B074 /* QuizInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizInfoViewModel.swift; sourceTree = "<group>"; };
-		11E107C821CF626800B7B074 /* QuizInfoCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizInfoCellViewModel.swift; sourceTree = "<group>"; };
+		11E107BA21CF4A6900B7B074 /* PenpolInfoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PenpolInfoController.swift; sourceTree = "<group>"; };
+		11E107BB21CF4A6900B7B074 /* PenpolInfoController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PenpolInfoController.xib; sourceTree = "<group>"; };
+		11E107BF21CF4C6B00B7B074 /* PenpolnfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PenpolnfoCell.swift; sourceTree = "<group>"; };
+		11E107C021CF4C6B00B7B074 /* PenpolInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PenpolInfoCell.xib; sourceTree = "<group>"; };
+		11E107C421CF534700B7B074 /* PenpolInfoCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PenpolInfoCoordinator.swift; sourceTree = "<group>"; };
+		11E107C621CF535100B7B074 /* PenpolInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PenpolInfoViewModel.swift; sourceTree = "<group>"; };
+		11E107C821CF626800B7B074 /* PenpolInfoCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PenpolInfoCellViewModel.swift; sourceTree = "<group>"; };
 		13812C1C21CAA48700CAB327 /* PenpolController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PenpolController.swift; sourceTree = "<group>"; };
 		13812C1D21CAA48700CAB327 /* PenpolController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PenpolController.xib; sourceTree = "<group>"; };
 		13812C2A21CAA71F00CAB327 /* PenpolCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PenpolCoordinator.swift; sourceTree = "<group>"; };
 		13812C2C21CAA92100CAB327 /* AskController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AskController.swift; sourceTree = "<group>"; };
-		13812C2D21CAA92100CAB327 /* AskController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AskController.xib; sourceTree = "<group>"; };
+		13812C3721CC182500CAB327 /* AskViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AskViewCell.swift; sourceTree = "<group>"; };
+		13812C3821CC182500CAB327 /* AskViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AskViewCell.xib; sourceTree = "<group>"; };
+		13812C3B21CD41DC00CAB327 /* HeaderAskCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderAskCell.swift; sourceTree = "<group>"; };
+		13812C3C21CD41DC00CAB327 /* HeaderAskCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderAskCell.xib; sourceTree = "<group>"; };
+		13812C3F21CD421C00CAB327 /* BannerInfoAskCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerInfoAskCell.swift; sourceTree = "<group>"; };
+		13812C4021CD421C00CAB327 /* BannerInfoAskCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BannerInfoAskCell.xib; sourceTree = "<group>"; };
+		13F4569221CF97DA00CE45F1 /* CreateAskController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAskController.swift; sourceTree = "<group>"; };
+		13F4569321CF97DA00CE45F1 /* CreateAskController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateAskController.xib; sourceTree = "<group>"; };
+		13F4569621CF981E00CE45F1 /* AskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AskViewModel.swift; sourceTree = "<group>"; };
+		13F4569821CF982E00CE45F1 /* AskNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AskNavigator.swift; sourceTree = "<group>"; };
+		13F4569C21CF985800CE45F1 /* CreateAskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAskViewModel.swift; sourceTree = "<group>"; };
+		13F4569E21CF986600CE45F1 /* CreateAskCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAskCoordinator.swift; sourceTree = "<group>"; };
 		26FDFCB449836F8CBC965641 /* Pods-PantauBersama-PantauBersamaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PantauBersama-PantauBersamaTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-PantauBersama-PantauBersamaTests/Pods-PantauBersama-PantauBersamaTests.debug.xcconfig"; sourceTree = "<group>"; };
 		2F6FF2F7B6D75F6A9B57EC24 /* Pods-PantauBersama.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PantauBersama.release.xcconfig"; path = "../Pods/Target Support Files/Pods-PantauBersama/Pods-PantauBersama.release.xcconfig"; sourceTree = "<group>"; };
 		37664EC0D75D639FE37581C6 /* Pods_PantauBersama.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PantauBersama.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -402,28 +424,27 @@
 			isa = PBXGroup;
 			children = (
 				11E1078D21CD0DE100B7B074 /* QuizDetail */,
-				11E107B921CF4A0800B7B074 /* QuizInfo */,
 			);
 			path = SubModules;
 			sourceTree = "<group>";
 		};
-		11E107B921CF4A0800B7B074 /* QuizInfo */ = {
+		11E107B921CF4A0800B7B074 /* PenpolInfo */ = {
 			isa = PBXGroup;
 			children = (
 				11E107C321CF533400B7B074 /* ViewController */,
 				11E107BE21CF4A6F00B7B074 /* Components */,
-				11E107C421CF534700B7B074 /* QuizInfoCoordinator.swift */,
-				11E107C621CF535100B7B074 /* QuizInfoViewModel.swift */,
+				11E107C421CF534700B7B074 /* PenpolInfoCoordinator.swift */,
+				11E107C621CF535100B7B074 /* PenpolInfoViewModel.swift */,
 			);
-			path = QuizInfo;
+			path = PenpolInfo;
 			sourceTree = "<group>";
 		};
 		11E107BE21CF4A6F00B7B074 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				11E107BF21CF4C6B00B7B074 /* QuizInfoCell.swift */,
-				11E107C021CF4C6B00B7B074 /* QuizInfoCell.xib */,
-				11E107C821CF626800B7B074 /* QuizInfoCellViewModel.swift */,
+				11E107BF21CF4C6B00B7B074 /* PenpolnfoCell.swift */,
+				11E107C021CF4C6B00B7B074 /* PenpolInfoCell.xib */,
+				11E107C821CF626800B7B074 /* PenpolInfoCellViewModel.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -431,26 +452,30 @@
 		11E107C321CF533400B7B074 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				11E107BA21CF4A6900B7B074 /* QuizInfoController.swift */,
-				11E107BB21CF4A6900B7B074 /* QuizInfoController.xib */,
+				11E107BA21CF4A6900B7B074 /* PenpolInfoController.swift */,
+				11E107BB21CF4A6900B7B074 /* PenpolInfoController.xib */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
 		};
-		13812C1421CAA0D800CAB327 /* Ask */ = {
+		13812C1421CAA0D800CAB327 /* AskList */ = {
 			isa = PBXGroup;
 			children = (
+				13F456A021CF9AB400CE45F1 /* SubModules */,
+				13812C3621CC17FE00CAB327 /* Components */,
 				13812C2C21CAA92100CAB327 /* AskController.swift */,
-				13812C2D21CAA92100CAB327 /* AskController.xib */,
+				13F4569621CF981E00CE45F1 /* AskViewModel.swift */,
+				13F4569821CF982E00CE45F1 /* AskNavigator.swift */,
 			);
-			path = Ask;
+			path = AskList;
 			sourceTree = "<group>";
 		};
 		13812C2021CAA4BD00CAB327 /* SubModules */ = {
 			isa = PBXGroup;
 			children = (
-				13812C1421CAA0D800CAB327 /* Ask */,
+				13812C1421CAA0D800CAB327 /* AskList */,
 				13812C2121CAA50C00CAB327 /* QuizList */,
+				11E107B921CF4A0800B7B074 /* PenpolInfo */,
 			);
 			path = SubModules;
 			sourceTree = "<group>";
@@ -465,6 +490,46 @@
 				11E1079B21CD1B5F00B7B074 /* QuizNavigator.swift */,
 			);
 			path = QuizList;
+			sourceTree = "<group>";
+		};
+		13812C3621CC17FE00CAB327 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				13812C3721CC182500CAB327 /* AskViewCell.swift */,
+				13812C3821CC182500CAB327 /* AskViewCell.xib */,
+				13812C3B21CD41DC00CAB327 /* HeaderAskCell.swift */,
+				13812C3C21CD41DC00CAB327 /* HeaderAskCell.xib */,
+				13812C3F21CD421C00CAB327 /* BannerInfoAskCell.swift */,
+				13812C4021CD421C00CAB327 /* BannerInfoAskCell.xib */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		13F4569121CF97AC00CE45F1 /* CreateAsk */ = {
+			isa = PBXGroup;
+			children = (
+				13F456A221CF9D3E00CE45F1 /* ViewController */,
+				13F4569C21CF985800CE45F1 /* CreateAskViewModel.swift */,
+				13F4569E21CF986600CE45F1 /* CreateAskCoordinator.swift */,
+			);
+			path = CreateAsk;
+			sourceTree = "<group>";
+		};
+		13F456A021CF9AB400CE45F1 /* SubModules */ = {
+			isa = PBXGroup;
+			children = (
+				13F4569121CF97AC00CE45F1 /* CreateAsk */,
+			);
+			path = SubModules;
+			sourceTree = "<group>";
+		};
+		13F456A221CF9D3E00CE45F1 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				13F4569221CF97DA00CE45F1 /* CreateAskController.swift */,
+				13F4569321CF97DA00CE45F1 /* CreateAskController.xib */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		7A731F6B53E97C8104446F76 /* Pods */ = {
@@ -1008,14 +1073,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				11E107BD21CF4A6900B7B074 /* QuizInfoController.xib in Resources */,
+				11E107BD21CF4A6900B7B074 /* PenpolInfoController.xib in Resources */,
 				8428AAA321C7A7790008E975 /* Localizable.strings in Resources */,
+				13F4569521CF97DA00CE45F1 /* CreateAskController.xib in Resources */,
 				11702DD321CB0287001AEE3F /* QuizCell.xib in Resources */,
 				84F892A821C787D800DC1048 /* Lato-Black.ttf in Resources */,
 				84F892B321C787F700DC1048 /* BwModelica-BlackCondensed.otf in Resources */,
 				11E107AF21CD42C400B7B074 /* QuizOngoingController.xib in Resources */,
 				84F892A921C787D800DC1048 /* Lato-BlackItalic.ttf in Resources */,
-				13812C2F21CAA92100CAB327 /* AskController.xib in Resources */,
 				11D092E921CBEF6C0066D55D /* BannerInfoQuizCell.xib in Resources */,
 				8428AAAA21C7AF330008E975 /* GoogleService-Info-Staging.plist in Resources */,
 				11E1079221CD0FE200B7B074 /* QuizDetailController.xib in Resources */,
@@ -1037,14 +1102,17 @@
 				845C571721CE1B5900EDCDFE /* BadgeCell.xib in Resources */,
 				841CDA3D21C8BC1C0015680C /* LinimasaController.xib in Resources */,
 				84F892B121C787D800DC1048 /* Lato-Regular.ttf in Resources */,
+				13812C3A21CC182500CAB327 /* AskViewCell.xib in Resources */,
 				84F6981721C9364700890917 /* LinimasaJanjiCell.xib in Resources */,
-				11E107C221CF4C6B00B7B074 /* QuizInfoCell.xib in Resources */,
+				11E107C221CF4C6B00B7B074 /* PenpolInfoCell.xib in Resources */,
 				844C3D4A21C4ED6E00199871 /* LaunchScreen.storyboard in Resources */,
 				84F892B521C7887800DC1048 /* BwModelicaSS01-BoldCondensed.otf in Resources */,
 				845C570021CD195600EDCDFE /* ProfileController.xib in Resources */,
 				84F892A721C7875200DC1048 /* BwModelica-ThinCondensed.otf in Resources */,
 				8441DB3E21CCB80B00B078DF /* ItemRadioCell.xib in Resources */,
 				844C3D8C21C5323E00199871 /* LinimasaCell.xib in Resources */,
+				13812C4221CD421C00CAB327 /* BannerInfoAskCell.xib in Resources */,
+				13812C3E21CD41DC00CAB327 /* HeaderAskCell.xib in Resources */,
 				844C2BA521CC0F2500BC439A /* LinimasaHeaderView.xib in Resources */,
 				845C571321CE10C900EDCDFE /* IconTableCell.xib in Resources */,
 				844C3D4721C4ED6E00199871 /* Assets.xcassets in Resources */,
@@ -1227,31 +1295,37 @@
 				11E1079421CD101900B7B074 /* QuizDetailCoordinator.swift in Sources */,
 				11E107AE21CD42C400B7B074 /* QuizOngoingController.swift in Sources */,
 				11E1079E21CD200500B7B074 /* PenpolViewModel.swift in Sources */,
+				13812C4121CD421C00CAB327 /* BannerInfoAskCell.swift in Sources */,
 				11E1079121CD0FE200B7B074 /* QuizDetailController.swift in Sources */,
-				11E107BC21CF4A6900B7B074 /* QuizInfoController.swift in Sources */,
+				11E107BC21CF4A6900B7B074 /* PenpolInfoController.swift in Sources */,
 				11D092E821CBEF6C0066D55D /* BannerInfoQuizCell.swift in Sources */,
 				844C3D7021C51D3500199871 /* PantauBarKind.swift in Sources */,
 				844C2BA721CC112700BC439A /* LinimasaHeaderView.swift in Sources */,
 				11E107A821CD33CA00B7B074 /* CreateJanjiCoordinator.swift in Sources */,
 				11E107A721CD33CA00B7B074 /* CreateJanjiViewModel.swift in Sources */,
 				845C570221CD1AEB00EDCDFE /* ProfileController.swift in Sources */,
-				11E107C721CF535100B7B074 /* QuizInfoViewModel.swift in Sources */,
+				11E107C721CF535100B7B074 /* PenpolInfoViewModel.swift in Sources */,
+				13F4569F21CF986600CE45F1 /* CreateAskCoordinator.swift in Sources */,
 				844C3D8821C5265600199871 /* AppCoordinator.swift in Sources */,
 				8441DB4121CCBECF00B078DF /* FilterModel.swift in Sources */,
 				8441DB3C21CCA6C500B078DF /* ItemRadioCell.swift in Sources */,
-				11E107C921CF626800B7B074 /* QuizInfoCellViewModel.swift in Sources */,
+				11E107C921CF626800B7B074 /* PenpolInfoCellViewModel.swift in Sources */,
+				13812C3921CC182500CAB327 /* AskViewCell.swift in Sources */,
 				84B2526821CC01F000565D82 /* AppState.swift in Sources */,
 				11E1079621CD126900B7B074 /* QuizDetailViewModel.swift in Sources */,
 				84F6981121C8E21B00890917 /* LinimasaCell.swift in Sources */,
+				13F4569721CF981E00CE45F1 /* AskViewModel.swift in Sources */,
 				11E107AA21CD33CA00B7B074 /* CreateJanjiController.swift in Sources */,
 				845C570F21CE0DA400EDCDFE /* ClusterCell.swift in Sources */,
 				845C570B21CD3E9700EDCDFE /* SectionCell.swift in Sources */,
 				84E2854421CA195C00298E31 /* CustomActionSheet.swift in Sources */,
 				844C3D6D21C51CE900199871 /* HomeController.swift in Sources */,
 				84F6980B21C8D2B100890917 /* JanjiPolitikViewController.swift in Sources */,
+				13F4569421CF97DA00CE45F1 /* CreateAskController.swift in Sources */,
 				849CABCC21CE8A5100912F8E /* SettingCoordinator.swift in Sources */,
 				844C3D4521C4ED6D00199871 /* PantauBersama.xcdatamodeld in Sources */,
 				84E2855B21CA7C4800298E31 /* FilterViewModel.swift in Sources */,
+				13812C3D21CD41DC00CAB327 /* HeaderAskCell.swift in Sources */,
 				84F6981921C93B8900890917 /* LinimasaJanjiCell.swift in Sources */,
 				11E1079C21CD1B5F00B7B074 /* QuizNavigator.swift in Sources */,
 				84F6981521C8FAB000890917 /* UIControl.swift in Sources */,
@@ -1271,7 +1345,7 @@
 				11702DD821CB1205001AEE3F /* TrendCell.swift in Sources */,
 				844C3D7821C51EFD00199871 /* HomeCoordinator.swift in Sources */,
 				845C571921CE1C9900EDCDFE /* BadgeCell.swift in Sources */,
-				11E107C521CF534700B7B074 /* QuizInfoCoordinator.swift in Sources */,
+				11E107C521CF534700B7B074 /* PenpolInfoCoordinator.swift in Sources */,
 				845C570721CD1D8F00EDCDFE /* ProfileCoordinator.swift in Sources */,
 				84B2523021CAB61300565D82 /* OnboardingViewModel.swift in Sources */,
 				84B2522E21CAB53C00565D82 /* OnboardingCoordinator.swift in Sources */,
@@ -1279,10 +1353,12 @@
 				13812C2E21CAA92100CAB327 /* AskController.swift in Sources */,
 				11E107B521CD44FD00B7B074 /* QuizOngoingCoordinator.swift in Sources */,
 				8441DB5821CCF7D900B078DF /* DetailJanjiCoordinator.swift in Sources */,
+				13F4569D21CF985800CE45F1 /* CreateAskViewModel.swift in Sources */,
 				844C3D7A21C5230C00199871 /* RawRepresentable.swift in Sources */,
+				13F4569921CF982E00CE45F1 /* AskNavigator.swift in Sources */,
 				84E2854721CA1E8300298E31 /* PilpresType.swift in Sources */,
 				844C3D8521C5252800199871 /* LinimasaCoordinator.swift in Sources */,
-				11E107C121CF4C6B00B7B074 /* QuizInfoCell.swift in Sources */,
+				11E107C121CF4C6B00B7B074 /* PenpolnfoCell.swift in Sources */,
 				84E2855321CA524200298E31 /* FilterCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

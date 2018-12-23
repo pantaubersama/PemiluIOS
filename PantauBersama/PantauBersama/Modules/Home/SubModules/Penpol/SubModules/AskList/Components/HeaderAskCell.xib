@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="82" id="KGk-i7-Jjw" customClass="HeaderAskCell" customModule="PantauBersama" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="365" height="82"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="365" height="81.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z41-Me-AhG" customClass="RoundView" customModule="Common">
+                        <rect key="frame" x="15" y="15" width="16" height="16"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icDummyPerson" translatesAutoresizingMaskIntoConstraints="NO" id="Z3h-ai-QyI">
+                                <rect key="frame" x="0.0" y="0.0" width="16" height="16"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Z3h-ai-QyI" firstAttribute="top" secondItem="z41-Me-AhG" secondAttribute="top" id="5Ek-Zb-nSV"/>
+                            <constraint firstAttribute="trailing" secondItem="Z3h-ai-QyI" secondAttribute="trailing" id="KaD-EM-tKj"/>
+                            <constraint firstItem="Z3h-ai-QyI" firstAttribute="centerY" secondItem="z41-Me-AhG" secondAttribute="centerY" id="fOe-Wg-djE"/>
+                            <constraint firstItem="Z3h-ai-QyI" firstAttribute="leading" secondItem="z41-Me-AhG" secondAttribute="leading" id="hHe-3P-jpA"/>
+                            <constraint firstAttribute="height" constant="16" id="k0e-0R-TDn"/>
+                            <constraint firstAttribute="bottom" secondItem="Z3h-ai-QyI" secondAttribute="bottom" id="pug-RH-c6u"/>
+                            <constraint firstAttribute="width" constant="16" id="qEH-G1-tiK"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="20"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Budi Santoso" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JUB-dr-MCe" customClass="Label" customModule="Common">
+                        <rect key="frame" x="36" y="15" width="46.5" height="16"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="7"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                <real key="value" value="7"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="string" keyPath="typeLabel" value="Lato-Bold"/>
+                        </userDefinedRuntimeAttributes>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Apa Pertanyaanmu buat calon Capres Indonesia ?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bn2-Xw-W42" customClass="Label" customModule="Common">
+                        <rect key="frame" x="15" y="41" width="335" height="25.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Bn2-Xw-W42" firstAttribute="leading" secondItem="z41-Me-AhG" secondAttribute="leading" id="7hi-Mp-4WU"/>
+                    <constraint firstItem="JUB-dr-MCe" firstAttribute="leading" secondItem="z41-Me-AhG" secondAttribute="trailing" constant="5" id="PCx-22-n9j"/>
+                    <constraint firstItem="z41-Me-AhG" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="QME-bQ-63s"/>
+                    <constraint firstItem="z41-Me-AhG" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="TSu-jf-5W3"/>
+                    <constraint firstAttribute="trailing" secondItem="Bn2-Xw-W42" secondAttribute="trailing" constant="15" id="eVQ-2Y-JnD"/>
+                    <constraint firstItem="JUB-dr-MCe" firstAttribute="centerY" secondItem="z41-Me-AhG" secondAttribute="centerY" id="hhC-BR-UEA"/>
+                    <constraint firstItem="Bn2-Xw-W42" firstAttribute="top" secondItem="z41-Me-AhG" secondAttribute="bottom" constant="10" id="p8r-JT-gNn"/>
+                    <constraint firstItem="JUB-dr-MCe" firstAttribute="top" secondItem="z41-Me-AhG" secondAttribute="top" id="rq9-f6-ycz"/>
+                    <constraint firstAttribute="bottom" secondItem="Bn2-Xw-W42" secondAttribute="bottom" constant="15" id="ykQ-XQ-QDm"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <point key="canvasLocation" x="101.59999999999999" y="170.91454272863569"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="icDummyPerson" width="64" height="64"/>
+    </resources>
+</document>

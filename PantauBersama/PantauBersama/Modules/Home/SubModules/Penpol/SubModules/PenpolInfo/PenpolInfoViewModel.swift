@@ -1,5 +1,5 @@
 //
-//  QuizInfoViewModel.swift
+//  PenpolInfoViewModel.swift
 //  PantauBersama
 //
 //  Created by Rahardyan Bisma on 23/12/18.
@@ -11,7 +11,12 @@ import Common
 import RxSwift
 import RxCocoa
 
-class QuizInfoViewModel: ViewModelType {
+enum PenpolInfoType {
+    case Ask
+    case Quiz
+}
+
+class PenpolInfoViewModel: ViewModelType {
     var input: Input
     var output: Output
     
@@ -25,10 +30,10 @@ class QuizInfoViewModel: ViewModelType {
     }
     
     private let finishSubject = PublishSubject<Void>()
-    init() {
+    init(infoType: PenpolInfoType) {
         input = Input(finishTrigger: finishSubject.asObserver())
         
-        let quizInfoCells = [QuizInfoViewCellConfigurator(item: QuizInfoCell.Input(viewModel: QuizInfoCellViewModel()))]
+        let quizInfoCells = [PenpolInfoViewCellConfigurator(item: PenpolInfoCell.Input(viewModel: PenpolInfoCellViewModel(), infoType: infoType))]
         let quizCellDriver: Driver<[ICellConfigurator]> = Observable.just(quizInfoCells).asDriverOnErrorJustComplete()
         
         let finish = finishSubject.asDriverOnErrorJustComplete()
