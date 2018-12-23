@@ -1,5 +1,5 @@
 //
-//  QuizInfoCellViewModel.swift
+//  PenpolInfoCellViewModel.swift
 //  PantauBersama
 //
 //  Created by Rahardyan Bisma on 23/12/18.
@@ -10,7 +10,7 @@ import Foundation
 import Common
 import RxSwift
 
-class QuizInfoCellViewModel: ViewModelType {
+class PenpolInfoCellViewModel: ViewModelType {
     var input: Input
     var output: Output
     

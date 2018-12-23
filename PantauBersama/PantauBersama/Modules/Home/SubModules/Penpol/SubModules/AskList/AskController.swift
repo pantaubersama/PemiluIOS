@@ -58,6 +58,7 @@ extension AskController {
         switch indexPath.section {
         case 0:
             let cell = tableView.dequeueReusableCell(indexPath: indexPath) as BannerInfoAskCell
+            cell.bind(viewModel: viewModel)
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell(indexPath: indexPath) as HeaderAskCell

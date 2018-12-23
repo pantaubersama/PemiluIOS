@@ -42,7 +42,7 @@ class AskViewModel: ViewModelType {
             .flatMapLatest({navigator.launchCreateAsk()})
             .asDriver(onErrorJustReturn: ())
         let info = infoSubject
-            .flatMapLatest({navigator.openInfoQuiz()})
+            .flatMapLatest({navigator.openInfoPenpol(infoType: PenpolInfoType.Ask)})
             .asDriver(onErrorJustReturn: ())
         
         output = Output(

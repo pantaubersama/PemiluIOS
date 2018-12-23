@@ -13,6 +13,7 @@ import Common
 protocol PenpolNavigator: QuizNavigator {
     func launchFilter() -> Observable<Void>
     func launchCreateAsk() -> Observable<Void>
+    func openInfoPenpol(infoType: PenpolInfoType) -> Observable<Void>
 }
 
 class PenpolCoordinator: BaseCoordinator<Void> {
@@ -54,8 +55,8 @@ extension PenpolCoordinator: PenpolNavigator {
         return coordinate(to: quizDetailCoordinator)
     }
     
-    func openInfoQuiz() -> Observable<Void> {
-        let quizInfoCoordinator = QuizInfoCoordinator(navigationController: self.navigationController)
-        return coordinate(to: quizInfoCoordinator)
+    func openInfoPenpol(infoType: PenpolInfoType) -> Observable<Void> {
+        let penpolInfoCoordinator = PenpolInfoCoordinator(navigationController: self.navigationController, infoType: infoType)
+        return coordinate(to: penpolInfoCoordinator)
     }
 }
