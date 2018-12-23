@@ -401,6 +401,7 @@
 		11E107B821CF49FB00B7B074 /* SubModules */ = {
 			isa = PBXGroup;
 			children = (
+				11E1078D21CD0DE100B7B074 /* QuizDetail */,
 				11E107B921CF4A0800B7B074 /* QuizInfo */,
 			);
 			path = SubModules;
@@ -604,7 +605,6 @@
 			isa = PBXGroup;
 			children = (
 				849CABC521CE897E00912F8E /* Setting */,
-				11E1078D21CD0DE100B7B074 /* QuizDetail */,
 				845C56FA21CD136A00EDCDFE /* Profil */,
 				84B2521C21CAB18F00565D82 /* Onboarding */,
 				84E2854A21CA4B7100298E31 /* Filter */,
