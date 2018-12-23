@@ -22,6 +22,7 @@ class QuizInfoController: UIViewController {
         super.viewDidLoad()
         tableView.estimatedRowHeight = 300
         tableView.rowHeight = UITableView.automaticDimension
+        tableView.separatorStyle = .none
         tableView.registerReusableCell(QuizInfoCell.self)
         
         tableView.rx.setDelegate(self)
