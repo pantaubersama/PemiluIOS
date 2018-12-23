@@ -51,8 +51,10 @@ extension PenpolCoordinator: PenpolNavigator {
     
     func shareQuiz(quiz: Any) -> Observable<Void> {
         // TODO: coordinate to share
-        let quizDetailCoordinator = QuizDetailCoordinator(navigationController: self.navigationController, quizModel: quiz)
-        return coordinate(to: quizDetailCoordinator)
+        let activityViewController = UIActivityViewController(activityItems: ["content to be shared" as NSString], applicationActivities: nil)
+        self.navigationController.present(activityViewController, animated: true, completion: nil)
+        
+        return Observable.never()
     }
     
     func openInfoPenpol(infoType: PenpolInfoType) -> Observable<Void> {
