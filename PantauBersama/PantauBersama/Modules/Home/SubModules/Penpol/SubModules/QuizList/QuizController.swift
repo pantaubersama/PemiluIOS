@@ -39,6 +39,10 @@ class QuizController: UITableViewController {
         viewModel.output.shareSelected
             .drive()
             .disposed(by: disposeBag)
+        
+        viewModel.output.infoSelected
+            .drive()
+            .disposed(by: disposeBag)
     }
 }
 
@@ -66,6 +70,7 @@ extension QuizController {
         switch indexPath.section {
         case 0:
             let bannerCell = tableView.dequeueReusableCell(indexPath: indexPath) as BannerInfoQuizCell
+            bannerCell.bind(viewModel: viewModel)
             return bannerCell
         case 1:
             let trendCell = tableView.dequeueReusableCell(indexPath: indexPath) as TrendCell

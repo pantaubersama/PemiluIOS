@@ -42,6 +42,7 @@ class QuizCell: UITableViewCell, IReusableCell {
             .map({ self.quiz })
             .bind(to: viewModel.input.shareTrigger)
             .disposed(by: disposeBag)
+        
     }
     
 }

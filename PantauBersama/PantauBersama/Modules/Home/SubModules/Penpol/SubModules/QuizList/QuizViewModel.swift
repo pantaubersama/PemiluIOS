@@ -19,16 +19,19 @@ class QuizViewModel: ViewModelType {
     struct Input {
         let openQuizTrigger: AnyObserver<Any>
         let shareTrigger: AnyObserver<Any>
+        let infoTrigger: AnyObserver<Void>
     }
     
     struct Output {
         let openQuizSelected: Driver<Void>
         let shareSelected: Driver<Void>
+        let infoSelected: Driver<Void>
     }
     
     // TODO: replace any with Quiz model
     private let openQuizSubject = PublishSubject<Any>()
     private let shareSubject = PublishSubject<Any>()
+    private let infoSubject = PublishSubject<Void>()
     
     private let navigator: QuizNavigator
     
@@ -37,7 +40,8 @@ class QuizViewModel: ViewModelType {
         
         input = Input(
             openQuizTrigger: openQuizSubject.asObserver(),
-            shareTrigger: shareSubject.asObserver())
+            shareTrigger: shareSubject.asObserver(),
+            infoTrigger: infoSubject.asObserver())
         
         let openQuiz = openQuizSubject
             .flatMapLatest({navigator.openQuiz(quiz: $0)})
@@ -45,10 +49,14 @@ class QuizViewModel: ViewModelType {
         let shareQuiz = shareSubject
             .flatMapLatest({navigator.shareQuiz(quiz: $0)})
             .asDriver(onErrorJustReturn: ())
+        let info = infoSubject
+            .flatMapLatest({navigator.openInfoQuiz()})
+            .asDriver(onErrorJustReturn: ())
         
         output = Output(
             openQuizSelected: openQuiz,
-            shareSelected: shareQuiz)
+            shareSelected: shareQuiz,
+            infoSelected: info)
     }
     
     
