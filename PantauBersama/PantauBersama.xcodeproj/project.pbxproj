@@ -46,6 +46,12 @@
 		13812C3E21CD41DC00CAB327 /* HeaderAskCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13812C3C21CD41DC00CAB327 /* HeaderAskCell.xib */; };
 		13812C4121CD421C00CAB327 /* BannerInfoAskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13812C3F21CD421C00CAB327 /* BannerInfoAskCell.swift */; };
 		13812C4221CD421C00CAB327 /* BannerInfoAskCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13812C4021CD421C00CAB327 /* BannerInfoAskCell.xib */; };
+		13F4569421CF97DA00CE45F1 /* CreateAskController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F4569221CF97DA00CE45F1 /* CreateAskController.swift */; };
+		13F4569521CF97DA00CE45F1 /* CreateAskController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13F4569321CF97DA00CE45F1 /* CreateAskController.xib */; };
+		13F4569721CF981E00CE45F1 /* AskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F4569621CF981E00CE45F1 /* AskViewModel.swift */; };
+		13F4569921CF982E00CE45F1 /* AskNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F4569821CF982E00CE45F1 /* AskNavigator.swift */; };
+		13F4569D21CF985800CE45F1 /* CreateAskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F4569C21CF985800CE45F1 /* CreateAskViewModel.swift */; };
+		13F4569F21CF986600CE45F1 /* CreateAskCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F4569E21CF986600CE45F1 /* CreateAskCoordinator.swift */; };
 		24F280C4B63852A75C32D7D7 /* Pods_PantauBersama_PantauBersamaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4CBA51E95EB1AE7C2940BC0 /* Pods_PantauBersama_PantauBersamaTests.framework */; };
 		841CDA3D21C8BC1C0015680C /* LinimasaController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 841CDA3C21C8BC1C0015680C /* LinimasaController.xib */; };
 		8428AAA321C7A7790008E975 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8428AAA521C7A7790008E975 /* Localizable.strings */; };
@@ -196,6 +202,12 @@
 		13812C3C21CD41DC00CAB327 /* HeaderAskCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderAskCell.xib; sourceTree = "<group>"; };
 		13812C3F21CD421C00CAB327 /* BannerInfoAskCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerInfoAskCell.swift; sourceTree = "<group>"; };
 		13812C4021CD421C00CAB327 /* BannerInfoAskCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BannerInfoAskCell.xib; sourceTree = "<group>"; };
+		13F4569221CF97DA00CE45F1 /* CreateAskController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAskController.swift; sourceTree = "<group>"; };
+		13F4569321CF97DA00CE45F1 /* CreateAskController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateAskController.xib; sourceTree = "<group>"; };
+		13F4569621CF981E00CE45F1 /* AskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AskViewModel.swift; sourceTree = "<group>"; };
+		13F4569821CF982E00CE45F1 /* AskNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AskNavigator.swift; sourceTree = "<group>"; };
+		13F4569C21CF985800CE45F1 /* CreateAskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAskViewModel.swift; sourceTree = "<group>"; };
+		13F4569E21CF986600CE45F1 /* CreateAskCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAskCoordinator.swift; sourceTree = "<group>"; };
 		26FDFCB449836F8CBC965641 /* Pods-PantauBersama-PantauBersamaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PantauBersama-PantauBersamaTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-PantauBersama-PantauBersamaTests/Pods-PantauBersama-PantauBersamaTests.debug.xcconfig"; sourceTree = "<group>"; };
 		2F6FF2F7B6D75F6A9B57EC24 /* Pods-PantauBersama.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PantauBersama.release.xcconfig"; path = "../Pods/Target Support Files/Pods-PantauBersama/Pods-PantauBersama.release.xcconfig"; sourceTree = "<group>"; };
 		37664EC0D75D639FE37581C6 /* Pods_PantauBersama.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PantauBersama.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -447,19 +459,22 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
-		13812C1421CAA0D800CAB327 /* Ask */ = {
+		13812C1421CAA0D800CAB327 /* AskList */ = {
 			isa = PBXGroup;
 			children = (
+				13F456A021CF9AB400CE45F1 /* SubModules */,
 				13812C3621CC17FE00CAB327 /* Components */,
 				13812C2C21CAA92100CAB327 /* AskController.swift */,
+				13F4569621CF981E00CE45F1 /* AskViewModel.swift */,
+				13F4569821CF982E00CE45F1 /* AskNavigator.swift */,
 			);
-			path = Ask;
+			path = AskList;
 			sourceTree = "<group>";
 		};
 		13812C2021CAA4BD00CAB327 /* SubModules */ = {
 			isa = PBXGroup;
 			children = (
-				13812C1421CAA0D800CAB327 /* Ask */,
+				13812C1421CAA0D800CAB327 /* AskList */,
 				13812C2121CAA50C00CAB327 /* QuizList */,
 			);
 			path = SubModules;
@@ -488,6 +503,33 @@
 				13812C4021CD421C00CAB327 /* BannerInfoAskCell.xib */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		13F4569121CF97AC00CE45F1 /* CreateAsk */ = {
+			isa = PBXGroup;
+			children = (
+				13F456A221CF9D3E00CE45F1 /* ViewController */,
+				13F4569C21CF985800CE45F1 /* CreateAskViewModel.swift */,
+				13F4569E21CF986600CE45F1 /* CreateAskCoordinator.swift */,
+			);
+			path = CreateAsk;
+			sourceTree = "<group>";
+		};
+		13F456A021CF9AB400CE45F1 /* SubModules */ = {
+			isa = PBXGroup;
+			children = (
+				13F4569121CF97AC00CE45F1 /* CreateAsk */,
+			);
+			path = SubModules;
+			sourceTree = "<group>";
+		};
+		13F456A221CF9D3E00CE45F1 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				13F4569221CF97DA00CE45F1 /* CreateAskController.swift */,
+				13F4569321CF97DA00CE45F1 /* CreateAskController.xib */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		7A731F6B53E97C8104446F76 /* Pods */ = {
@@ -1033,6 +1075,7 @@
 			files = (
 				11E107BD21CF4A6900B7B074 /* QuizInfoController.xib in Resources */,
 				8428AAA321C7A7790008E975 /* Localizable.strings in Resources */,
+				13F4569521CF97DA00CE45F1 /* CreateAskController.xib in Resources */,
 				11702DD321CB0287001AEE3F /* QuizCell.xib in Resources */,
 				84F892A821C787D800DC1048 /* Lato-Black.ttf in Resources */,
 				84F892B321C787F700DC1048 /* BwModelica-BlackCondensed.otf in Resources */,
@@ -1262,6 +1305,7 @@
 				11E107A721CD33CA00B7B074 /* CreateJanjiViewModel.swift in Sources */,
 				845C570221CD1AEB00EDCDFE /* ProfileController.swift in Sources */,
 				11E107C721CF535100B7B074 /* QuizInfoViewModel.swift in Sources */,
+				13F4569F21CF986600CE45F1 /* CreateAskCoordinator.swift in Sources */,
 				844C3D8821C5265600199871 /* AppCoordinator.swift in Sources */,
 				8441DB4121CCBECF00B078DF /* FilterModel.swift in Sources */,
 				8441DB3C21CCA6C500B078DF /* ItemRadioCell.swift in Sources */,
@@ -1270,12 +1314,14 @@
 				84B2526821CC01F000565D82 /* AppState.swift in Sources */,
 				11E1079621CD126900B7B074 /* QuizDetailViewModel.swift in Sources */,
 				84F6981121C8E21B00890917 /* LinimasaCell.swift in Sources */,
+				13F4569721CF981E00CE45F1 /* AskViewModel.swift in Sources */,
 				11E107AA21CD33CA00B7B074 /* CreateJanjiController.swift in Sources */,
 				845C570F21CE0DA400EDCDFE /* ClusterCell.swift in Sources */,
 				845C570B21CD3E9700EDCDFE /* SectionCell.swift in Sources */,
 				84E2854421CA195C00298E31 /* CustomActionSheet.swift in Sources */,
 				844C3D6D21C51CE900199871 /* HomeController.swift in Sources */,
 				84F6980B21C8D2B100890917 /* JanjiPolitikViewController.swift in Sources */,
+				13F4569421CF97DA00CE45F1 /* CreateAskController.swift in Sources */,
 				849CABCC21CE8A5100912F8E /* SettingCoordinator.swift in Sources */,
 				844C3D4521C4ED6D00199871 /* PantauBersama.xcdatamodeld in Sources */,
 				84E2855B21CA7C4800298E31 /* FilterViewModel.swift in Sources */,
@@ -1307,7 +1353,9 @@
 				13812C2E21CAA92100CAB327 /* AskController.swift in Sources */,
 				11E107B521CD44FD00B7B074 /* QuizOngoingCoordinator.swift in Sources */,
 				8441DB5821CCF7D900B078DF /* DetailJanjiCoordinator.swift in Sources */,
+				13F4569D21CF985800CE45F1 /* CreateAskViewModel.swift in Sources */,
 				844C3D7A21C5230C00199871 /* RawRepresentable.swift in Sources */,
+				13F4569921CF982E00CE45F1 /* AskNavigator.swift in Sources */,
 				84E2854721CA1E8300298E31 /* PilpresType.swift in Sources */,
 				844C3D8521C5252800199871 /* LinimasaCoordinator.swift in Sources */,
 				11E107C121CF4C6B00B7B074 /* QuizInfoCell.swift in Sources */,

@@ -19,4 +19,13 @@ class HeaderAskCell: UITableViewCell, IReusableCell {
         disposeBag = DisposeBag()
     }
     
+    func bind(viewModel: AskViewModel) {
+        let tapGesture = UITapGestureRecognizer()
+        self.addGestureRecognizer(tapGesture)
+        
+        tapGesture.rx.event.mapToVoid()
+            .bind(to: viewModel.input.createTrigger)
+            .disposed(by: disposeBag)
+    }
+    
 }

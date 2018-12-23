@@ -7,9 +7,19 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class AskController: UITableViewController {
 
+    private let disposeBag: DisposeBag = DisposeBag()
+    private var viewModel: AskViewModel!
+    
+    convenience init(viewModel: AskViewModel) {
+        self.init()
+        self.viewModel = viewModel
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -21,6 +31,14 @@ class AskController: UITableViewController {
         tableView.separatorStyle = .singleLine
         tableView.separatorColor = UIColor.groupTableViewBackground
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        
+        viewModel.output.createSelected
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.infoSelected
+            .drive()
+            .disposed(by: disposeBag)
     }
 
 }
@@ -43,6 +61,7 @@ extension AskController {
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell(indexPath: indexPath) as HeaderAskCell
+            cell.bind(viewModel: viewModel)
             return cell
         default:
             let cell = tableView.dequeueReusableCell(indexPath: indexPath) as AskViewCell

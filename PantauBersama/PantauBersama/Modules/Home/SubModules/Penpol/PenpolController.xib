@@ -13,6 +13,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PenpolController" customModule="PantauBersama" customModuleProvider="target">
             <connections>
                 <outlet property="containerView" destination="DPh-lH-IWS" id="mI3-4X-PnG"/>
+                <outlet property="createAskButton" destination="vYV-pA-2lN" id="tae-HX-nZO"/>
+                <outlet property="filterButton" destination="eM8-C8-PV2" id="aiB-gU-k3t"/>
                 <outlet property="segmentedControl" destination="Zuj-sl-Ujr" id="V73-H2-Q6u"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
