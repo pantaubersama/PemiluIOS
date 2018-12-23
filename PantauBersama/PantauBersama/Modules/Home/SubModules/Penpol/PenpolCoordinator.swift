@@ -54,4 +54,9 @@ extension PenpolCoordinator: PenpolNavigator {
         let quizDetailCoordinator = QuizDetailCoordinator(navigationController: self.navigationController, quizModel: quiz)
         return coordinate(to: quizDetailCoordinator)
     }
+    
+    func openInfoQuiz() -> Observable<Void> {
+        let quizInfoCoordinator = QuizInfoCoordinator(navigationController: self.navigationController)
+        return coordinate(to: quizInfoCoordinator)
+    }
 }
