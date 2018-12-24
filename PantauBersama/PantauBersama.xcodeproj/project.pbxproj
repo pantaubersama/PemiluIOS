@@ -128,6 +128,10 @@
 		84A07FB821D0F0DD00269C6B /* IdentitasCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A07FB721D0F0DD00269C6B /* IdentitasCoordinator.swift */; };
 		84A07FBA21D0F13200269C6B /* IdentitasViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A07FB921D0F13200269C6B /* IdentitasViewModel.swift */; };
 		84A07FBC21D129FC00269C6B /* GroupProfileInfoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A07FBB21D129FC00269C6B /* GroupProfileInfoData.swift */; };
+		84A07FC021D1465C00269C6B /* ReqClusterController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84A07FBF21D1465C00269C6B /* ReqClusterController.xib */; };
+		84A07FC221D14D4F00269C6B /* ReqClusterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A07FC121D14D4F00269C6B /* ReqClusterController.swift */; };
+		84A07FC421D14E8000269C6B /* ReqClusterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A07FC321D14E8000269C6B /* ReqClusterViewModel.swift */; };
+		84A07FC621D14F3800269C6B /* ReqClusterCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A07FC521D14F3800269C6B /* ReqClusterCoordinator.swift */; };
 		84B2521B21CAA71200565D82 /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B2521A21CAA71200565D82 /* ViewModelType.swift */; };
 		84B2521E21CAB1BE00565D82 /* OnboardingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84B2521D21CAB1BE00565D82 /* OnboardingViewController.xib */; };
 		84B2522021CAB2B900565D82 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B2521F21CAB2B900565D82 /* OnboardingViewController.swift */; };
@@ -321,6 +325,10 @@
 		84A07FB721D0F0DD00269C6B /* IdentitasCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentitasCoordinator.swift; sourceTree = "<group>"; };
 		84A07FB921D0F13200269C6B /* IdentitasViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentitasViewModel.swift; sourceTree = "<group>"; };
 		84A07FBB21D129FC00269C6B /* GroupProfileInfoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupProfileInfoData.swift; sourceTree = "<group>"; };
+		84A07FBF21D1465C00269C6B /* ReqClusterController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReqClusterController.xib; sourceTree = "<group>"; };
+		84A07FC121D14D4F00269C6B /* ReqClusterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReqClusterController.swift; sourceTree = "<group>"; };
+		84A07FC321D14E8000269C6B /* ReqClusterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReqClusterViewModel.swift; sourceTree = "<group>"; };
+		84A07FC521D14F3800269C6B /* ReqClusterCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReqClusterCoordinator.swift; sourceTree = "<group>"; };
 		84B2521A21CAA71200565D82 /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
 		84B2521D21CAB1BE00565D82 /* OnboardingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnboardingViewController.xib; sourceTree = "<group>"; };
 		84B2521F21CAB2B900565D82 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
@@ -767,6 +775,7 @@
 		844C3D6A21C5177A00199871 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				84A07FBD21D1461800269C6B /* ReqCluster */,
 				84A07F9021D0D3EE00269C6B /* Verifikasi */,
 				849CABC521CE897E00912F8E /* Setting */,
 				845C56FA21CD136A00EDCDFE /* Profil */,
@@ -1049,6 +1058,25 @@
 			path = Success;
 			sourceTree = "<group>";
 		};
+		84A07FBD21D1461800269C6B /* ReqCluster */ = {
+			isa = PBXGroup;
+			children = (
+				84A07FBE21D1463C00269C6B /* ViewController */,
+				84A07FC321D14E8000269C6B /* ReqClusterViewModel.swift */,
+				84A07FC521D14F3800269C6B /* ReqClusterCoordinator.swift */,
+			);
+			path = ReqCluster;
+			sourceTree = "<group>";
+		};
+		84A07FBE21D1463C00269C6B /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				84A07FBF21D1465C00269C6B /* ReqClusterController.xib */,
+				84A07FC121D14D4F00269C6B /* ReqClusterController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		84B2521C21CAB18F00565D82 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
@@ -1270,6 +1298,7 @@
 				84A07F9721D0D4EA00269C6B /* IdentitasController.xib in Resources */,
 				845C570D21CE0C8100EDCDFE /* ClusterCell.xib in Resources */,
 				84A07FB421D0ECC100269C6B /* SuccessController.xib in Resources */,
+				84A07FC021D1465C00269C6B /* ReqClusterController.xib in Resources */,
 				84F892AA21C787D800DC1048 /* Lato-Bold.ttf in Resources */,
 				84A07FAD21D0E4FD00269C6B /* upload-ttd.json in Resources */,
 				84E2854D21CA4BC800298E31 /* FilterViewController.xib in Resources */,
@@ -1504,6 +1533,7 @@
 				11E107A821CD33CA00B7B074 /* CreateJanjiCoordinator.swift in Sources */,
 				11E107A721CD33CA00B7B074 /* CreateJanjiViewModel.swift in Sources */,
 				845C570221CD1AEB00EDCDFE /* ProfileController.swift in Sources */,
+				84A07FC221D14D4F00269C6B /* ReqClusterController.swift in Sources */,
 				11B3C79621D1126700EDCECB /* QuizAnswerKeyCell.swift in Sources */,
 				11E107C721CF535100B7B074 /* PenpolInfoViewModel.swift in Sources */,
 				13F4569F21CF986600CE45F1 /* CreateAskCoordinator.swift in Sources */,
@@ -1533,6 +1563,7 @@
 				13812C3D21CD41DC00CAB327 /* HeaderAskCell.swift in Sources */,
 				84F6981921C93B8900890917 /* LinimasaJanjiCell.swift in Sources */,
 				11E1079C21CD1B5F00B7B074 /* QuizNavigator.swift in Sources */,
+				84A07FC421D14E8000269C6B /* ReqClusterViewModel.swift in Sources */,
 				84F6981521C8FAB000890917 /* UIControl.swift in Sources */,
 				84A07FA421D0E27F00269C6B /* SignatureController.swift in Sources */,
 				8441DB5321CCF0C200B078DF /* DetailJanjiController.swift in Sources */,
@@ -1571,6 +1602,7 @@
 				84E2854721CA1E8300298E31 /* PilpresType.swift in Sources */,
 				844C3D8521C5252800199871 /* LinimasaCoordinator.swift in Sources */,
 				11E107C121CF4C6B00B7B074 /* PenpolnfoCell.swift in Sources */,
+				84A07FC621D14F3800269C6B /* ReqClusterCoordinator.swift in Sources */,
 				84E2855321CA524200298E31 /* FilterCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

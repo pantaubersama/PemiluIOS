@@ -36,8 +36,9 @@ class ProfileController: UIViewController {
         
         let back = UIBarButtonItem(image: #imageLiteral(resourceName: "back"), style: .plain, target: nil, action: nil)
         let setting = UIBarButtonItem(image: #imageLiteral(resourceName: "outlineSettings24Px"), style: .plain, target: nil, action: nil)
+        let cluster = UIBarButtonItem(image: #imageLiteral(resourceName: "icLaporActive"), style: .plain, target: nil, action: nil)
         
-        navigationItem.rightBarButtonItem = setting
+        navigationItem.rightBarButtonItems = [setting, cluster]
         navigationItem.leftBarButtonItem = back
         navigationController?.navigationBar.configure(with: .white)
         
@@ -128,6 +129,10 @@ class ProfileController: UIViewController {
             .bind(to: viewModel.input.settingI)
             .disposed(by: disposeBag)
         
+        cluster.rx.tap
+            .bind(to: viewModel.input.clusterI)
+            .disposed(by: disposeBag)
+        
         headerProfile.buttonVerified.rx.tap
             .bind(to: viewModel.input.verifikasiI)
             .disposed(by: disposeBag)
@@ -142,6 +147,10 @@ class ProfileController: UIViewController {
         
         viewModel.output.itemsO
             .drive(tableView.rx.items(dataSource: dataSource))
+            .disposed(by: disposeBag)
+        
+        viewModel.output.clusterO
+            .drive()
             .disposed(by: disposeBag)
     }
 }

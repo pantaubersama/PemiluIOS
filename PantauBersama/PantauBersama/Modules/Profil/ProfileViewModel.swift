@@ -13,12 +13,14 @@ protocol IProfileViewModelInput {
     var backI: AnyObserver<Void> { get }
     var settingI: AnyObserver<Void> { get }
     var verifikasiI: AnyObserver<Void> { get }
+    var clusterI: AnyObserver<Void> { get }
 }
 
 protocol IProfileViewModelOutput {
     var settingO: Driver<Void>! { get }
     var verifikasiO: Driver<Void>! { get }
     var itemsO: Driver<[SectionOfProfileData]> { get }
+    var clusterO: Driver<Void>! { get }
 }
 
 protocol IProfileViewModel {
@@ -39,15 +41,18 @@ final class ProfileViewModel: IProfileViewModel, IProfileViewModelInput, IProfil
     var backI: AnyObserver<Void>
     var settingI: AnyObserver<Void>
     var verifikasiI: AnyObserver<Void>
+    var clusterI: AnyObserver<Void>
     
     // Output
     var settingO: Driver<Void>!
     var verifikasiO: Driver<Void>!
     var itemsO: Driver<[SectionOfProfileData]>
+    var clusterO: Driver<Void>!
     
     private let backS = PublishSubject<Void>()
     private let settingS = PublishSubject<Void>()
     private let verifikasiS = PublishSubject<Void>()
+    private let clusterS = PublishSubject<Void>()
     
     init(navigator: ProfileNavigator) {
         self.navigator = navigator
@@ -56,6 +61,7 @@ final class ProfileViewModel: IProfileViewModel, IProfileViewModelInput, IProfil
         backI = backS.asObserver()
         settingI = settingS.asObserver()
         verifikasiI = verifikasiS.asObserver()
+        clusterI = clusterS.asObserver()
         
         let setting = settingS
             .flatMapLatest({ navigator.launchSetting() })
@@ -63,6 +69,10 @@ final class ProfileViewModel: IProfileViewModel, IProfileViewModelInput, IProfil
         
         let verifikasi = verifikasiS
             .flatMapLatest({ navigator.launchVerifikasi() })
+            .asDriver(onErrorJustReturn: ())
+        
+        let cluster = clusterS
+            .flatMapLatest({ navigator.launchReqCluster() })
             .asDriver(onErrorJustReturn: ())
         
         settingO = setting
@@ -81,6 +91,7 @@ final class ProfileViewModel: IProfileViewModel, IProfileViewModelInput, IProfil
                                     BadgeCellConfigured(item: BadgeCell.Input())
                 ])
             ])
+        clusterO = cluster
     }
     
 }

@@ -14,6 +14,7 @@ protocol ProfileNavigator {
     var finish: Observable<Void>! { get set }
     func launchSetting() -> Observable<Void>
     func launchVerifikasi() -> Observable<Void>
+    func launchReqCluster() -> Observable<Void>
 }
 
 
@@ -47,6 +48,10 @@ extension ProfileCoordinator: ProfileNavigator {
     func launchVerifikasi() -> Observable<Void>  {
         let identitasCoordinator = IdentitasCoordinator(navigationController: navigationController)
         return coordinate(to: identitasCoordinator)
+    }
+    func launchReqCluster() -> Observable<Void> {
+        let reqClusterCoordinator = ReqClusterCoordinator(navigationController: navigationController)
+        return coordinate(to: reqClusterCoordinator)
     }
     
 }
