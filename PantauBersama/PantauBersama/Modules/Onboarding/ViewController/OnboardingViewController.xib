@@ -14,6 +14,7 @@
             <connections>
                 <outlet property="buttonLewati" destination="o3c-wk-aNW" id="iOn-BW-J9a"/>
                 <outlet property="buttonMulai" destination="hf9-Zt-uM7" id="NkY-el-NsJ"/>
+                <outlet property="lottieView" destination="oVp-Aw-5WK" id="hOC-P2-hAT"/>
                 <outlet property="view" destination="iN0-l3-epB" id="PHj-Hm-g2G"/>
             </connections>
         </placeholder>
@@ -22,11 +23,40 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oVp-Aw-5WK" userLabel="lottieView">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="asset1" translatesAutoresizingMaskIntoConstraints="NO" id="iam-Y7-4JJ">
+                    <rect key="frame" x="137.5" y="229" width="100" height="59"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="100" id="NJd-LE-QXU"/>
+                        <constraint firstAttribute="height" constant="59" id="hlS-aR-BHp"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bxX-IW-iZE" customClass="Label" customModule="Common">
+                    <rect key="frame" x="99.5" y="318" width="176" height="31"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="31" id="PNc-WI-qZV"/>
+                        <constraint firstAttribute="width" constant="176" id="crl-Vf-abk"/>
+                    </constraints>
+                    <string key="text">Pantau Bersama untuk Indonesia
+yang lebih baik</string>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                            <real key="value" value="12"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hf9-Zt-uM7" customClass="Button" customModule="Common">
-                    <rect key="frame" x="60" y="309.5" width="255" height="48"/>
+                    <rect key="frame" x="112.5" y="399" width="150" height="30"/>
                     <color key="backgroundColor" red="0.68041622639999999" green="0.1499232352" blue="0.14898997550000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="48" id="yBQ-cM-Izl"/>
+                        <constraint firstAttribute="height" constant="30" id="Mc0-Mz-yK7"/>
+                        <constraint firstAttribute="width" constant="150" id="UUJ-ct-h24"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <state key="normal" title="Mulai">
@@ -39,7 +69,11 @@
                     </userDefinedRuntimeAttributes>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o3c-wk-aNW">
-                    <rect key="frame" x="60" y="372.5" width="255" height="26"/>
+                    <rect key="frame" x="112.5" y="434" width="150" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="150" id="USb-8W-23T"/>
+                        <constraint firstAttribute="height" constant="30" id="f3W-Sn-Mdf"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                     <state key="normal" title="Lewati">
                         <color key="titleColor" red="0.68041622639999999" green="0.1499232352" blue="0.14898997550000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -48,14 +82,23 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="hf9-Zt-uM7" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="60" id="1yG-Fd-2jg"/>
-                <constraint firstItem="o3c-wk-aNW" firstAttribute="top" secondItem="hf9-Zt-uM7" secondAttribute="bottom" constant="15" id="2zA-KY-TXi"/>
-                <constraint firstItem="o3c-wk-aNW" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="60" id="5fD-KH-ZxR"/>
-                <constraint firstItem="hf9-Zt-uM7" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="B4f-4G-3Uj"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="o3c-wk-aNW" secondAttribute="trailing" constant="60" id="rNo-ZZ-fEB"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="hf9-Zt-uM7" secondAttribute="trailing" constant="60" id="tNT-1M-72d"/>
+                <constraint firstItem="o3c-wk-aNW" firstAttribute="top" secondItem="hf9-Zt-uM7" secondAttribute="bottom" constant="5" id="0be-qU-fz2"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="oVp-Aw-5WK" secondAttribute="bottom" id="44r-79-Y47"/>
+                <constraint firstItem="iam-Y7-4JJ" firstAttribute="bottom" secondItem="bxX-IW-iZE" secondAttribute="top" constant="-30" id="Bjl-uS-kPG"/>
+                <constraint firstItem="hf9-Zt-uM7" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="JI9-70-xzZ"/>
+                <constraint firstItem="oVp-Aw-5WK" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="LRQ-Yc-POO"/>
+                <constraint firstItem="bxX-IW-iZE" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="Wnb-Tv-ecS"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="oVp-Aw-5WK" secondAttribute="trailing" id="cvS-QP-XEJ"/>
+                <constraint firstItem="bxX-IW-iZE" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="eOx-bL-JVa"/>
+                <constraint firstItem="hf9-Zt-uM7" firstAttribute="top" secondItem="bxX-IW-iZE" secondAttribute="bottom" constant="50" id="gho-JR-w5i"/>
+                <constraint firstItem="iam-Y7-4JJ" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="qfW-zN-YKZ"/>
+                <constraint firstItem="o3c-wk-aNW" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="rlO-m7-Exc"/>
+                <constraint firstItem="oVp-Aw-5WK" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="vF1-P1-mbl"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
         </view>
     </objects>
+    <resources>
+        <image name="asset1" width="100" height="59.5"/>
+    </resources>
 </document>

@@ -50,7 +50,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                                    provider: response.accessToken),
                             c: PantauAuthResponse.self)
                             .subscribe(onSuccess: { (response) in
+                                KeychainService.remove(type: NetworkKeychainKind.token)
+                                KeychainService.remove(type: NetworkKeychainKind.refreshToken)
                                 AppState.save(response)
+                                self.appCoordinator = AppCoordinator(window: self.window!)
+                                self.appCoordinator.start()
+                                    .subscribe()
+                                    .disposed(by: self.disposeBag)
                             }, onError: { (error) in
                                 print(error.localizedDescription)
                             })

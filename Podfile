@@ -56,6 +56,7 @@ target 'PantauBersama' do
 	application_pods
 	application_rx
 	networking_pods
+	pod 'lottie-ios'
 
 	target 'PantauBersamaTests'
 	inherit! :search_paths do
