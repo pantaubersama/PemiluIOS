@@ -8,11 +8,31 @@
 
 import UIKit
 import Common
+import RxSwift
 
-class BadgeCell: UITableViewCell, IReusableCell {
+typealias BadgeCellConfigured = CellConfigurator<BadgeCell, BadgeCell.Input>
+
+class BadgeCell: UITableViewCell {
+    
+    private var disposeBag: DisposeBag!
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        
+        disposeBag = nil
     }
     
+}
+
+extension BadgeCell: IReusableCell {
+    struct Input {
+        
+    }
+    
+    func configureCell(item: Input) {
+        let bag = DisposeBag()
+        
+        
+        disposeBag = bag
+    }
 }

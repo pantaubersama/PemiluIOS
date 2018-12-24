@@ -18,6 +18,7 @@ protocol IProfileViewModelInput {
 protocol IProfileViewModelOutput {
     var settingO: Driver<Void>! { get }
     var verifikasiO: Driver<Void>! { get }
+    var itemsO: Driver<[SectionOfProfileData]> { get }
 }
 
 protocol IProfileViewModel {
@@ -42,6 +43,7 @@ final class ProfileViewModel: IProfileViewModel, IProfileViewModelInput, IProfil
     // Output
     var settingO: Driver<Void>!
     var verifikasiO: Driver<Void>!
+    var itemsO: Driver<[SectionOfProfileData]>
     
     private let backS = PublishSubject<Void>()
     private let settingS = PublishSubject<Void>()
@@ -65,6 +67,20 @@ final class ProfileViewModel: IProfileViewModel, IProfileViewModelInput, IProfil
         
         settingO = setting
         verifikasiO = verifikasi
+        itemsO = Driver.just([
+            SectionOfProfileData(header: GroupProfileInfoData.cluster.title,
+                                 items: [
+                                    ClusterCellConfigured(item: ClusterCell.Input())
+                ]),
+            SectionOfProfileData(header: GroupProfileInfoData.biodata.title,
+                                 items: [
+                                    BiodataCellConfigured(item: IconTableCell.Input())
+                ]),
+            SectionOfProfileData(header: GroupProfileInfoData.badge.title,
+                                 items: [
+                                    BadgeCellConfigured(item: BadgeCell.Input())
+                ])
+            ])
     }
     
 }

@@ -8,12 +8,30 @@
 
 import UIKit
 import Common
+import RxSwift
 
-class ClusterCell: UITableViewCell, IReusableCell {
+typealias ClusterCellConfigured = CellConfigurator<ClusterCell, ClusterCell.Input>
+
+class ClusterCell: UITableViewCell {
     
+    private var disposeBag: DisposeBag!
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        
+        disposeBag = nil
     }
     
+}
+
+extension ClusterCell: IReusableCell {
+    struct Input {
+    }
+    
+    func configureCell(item: Input) {
+        let bag = DisposeBag()
+        
+        
+        disposeBag = bag
+    }
 }

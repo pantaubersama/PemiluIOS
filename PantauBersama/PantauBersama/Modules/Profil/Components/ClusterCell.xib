@@ -19,7 +19,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="vpQ-38-r3Q">
-                        <rect key="frame" x="20" y="18" width="355" height="24"/>
+                        <rect key="frame" x="8" y="18" width="367" height="24"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tLZ-4s-qiK">
                                 <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
@@ -28,7 +28,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Universitas Islam" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Rk-3t-wTc" customClass="Label" customModule="Common">
-                                <rect key="frame" x="34" y="0.0" width="287" height="24"/>
+                                <rect key="frame" x="34" y="0.0" width="299" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -39,7 +39,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BPc-dv-Jyy">
-                                <rect key="frame" x="331" y="0.0" width="24" height="24"/>
+                                <rect key="frame" x="343" y="0.0" width="24" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="24" id="HBJ-Lt-Tl0"/>
                                 </constraints>
@@ -52,7 +52,7 @@
                     </stackView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="vpQ-38-r3Q" firstAttribute="leading" secondItem="SDl-gc-iVO" secondAttribute="leading" constant="20" id="9xc-77-w7y"/>
+                    <constraint firstItem="vpQ-38-r3Q" firstAttribute="leading" secondItem="SDl-gc-iVO" secondAttribute="leading" constant="8" id="9xc-77-w7y"/>
                     <constraint firstItem="vpQ-38-r3Q" firstAttribute="centerY" secondItem="SDl-gc-iVO" secondAttribute="centerY" id="PPJ-SN-qaA"/>
                     <constraint firstAttribute="trailing" secondItem="vpQ-38-r3Q" secondAttribute="trailing" constant="14" id="hZO-f1-Ftu"/>
                 </constraints>

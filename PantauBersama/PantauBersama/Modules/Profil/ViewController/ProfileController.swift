@@ -10,6 +10,7 @@ import UIKit
 import RxCocoa
 import RxSwift
 import Common
+import RxDataSources
 
 class ProfileController: UIViewController {
     
@@ -23,6 +24,7 @@ class ProfileController: UIViewController {
     private lazy var janjiController = JanjiPolitikViewController()
     var viewModel: IProfileViewModel!
     private let disposeBag = DisposeBag()
+    private var dataSource: RxTableViewSectionedReloadDataSource<SectionOfProfileData>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -96,11 +98,27 @@ class ProfileController: UIViewController {
         
         // MARK: - TableViews
         // Register TableViews
-        tableView.registerReusableCell(SectionCell.self)
-        tableView.delegate = self
-        tableView.dataSource = self
+        tableView.dataSource = nil
+        tableView.delegate = nil
+        tableView.registerReusableCell(ClusterCell.self)
+        tableView.registerReusableCell(IconTableCell.self)
+        tableView.registerReusableCell(BadgeCell.self)
+        
         tableView.estimatedRowHeight = 44.0
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        tableView.tableFooterView = UIView()
+        
+        dataSource = RxTableViewSectionedReloadDataSource<SectionOfProfileData>(configureCell: { (dataSource, tableView, indexPath, item) -> UITableViewCell in
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: item.reuseIdentifier) else { return UITableViewCell() }
+            item.configure(cell: cell)
+            return cell
+            
+        })
+        
+        tableView.rx
+            .setDelegate(self)
+            .disposed(by: disposeBag)
         
         back.rx.tap
             .bind(to: viewModel.input.backI)
@@ -121,34 +139,27 @@ class ProfileController: UIViewController {
         viewModel.output.verifikasiO
             .drive()
             .disposed(by: disposeBag)
+        
+        viewModel.output.itemsO
+            .drive(tableView.rx.items(dataSource: dataSource))
+            .disposed(by: disposeBag)
     }
 }
 
-// Dummy
-// Strategy tableview begin updates, delete rows
-// need contact designer again ... hhh
-extension ProfileController: UITableViewDelegate, UITableViewDataSource {
+extension ProfileController: UITableViewDelegate {
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 45.0
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section {
-        case 0:
-            return 1
-        case 1:
-            return 3
-        case 2:
-            return 4
-        default:
-            return 0
-        }
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = SectionCell()
+        view.label.text = dataSource.sectionModels[section].header
+        return view
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(indexPath: indexPath) as SectionCell
-        return cell
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 1.0))
+        return view
     }
-    
 }
