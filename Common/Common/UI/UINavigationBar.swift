@@ -25,7 +25,7 @@ extension UINavigationBar {
             case .default:
                 return Color.primary_white
             case .kuis:
-                return Color.purple_primary
+                return Color.primary_red
             case .pantau:
                 return Color.primary_red
             }

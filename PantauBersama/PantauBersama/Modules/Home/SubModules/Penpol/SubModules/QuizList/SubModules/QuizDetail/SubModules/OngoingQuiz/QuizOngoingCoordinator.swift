@@ -10,15 +10,13 @@ import Foundation
 import Common
 import RxSwift
 
-protocol QuizOngoingNavigator {
-    var finish: Observable<Void>! { get set }
-    func openQuizResult()
+protocol QuizOngoingNavigator { 
+    func openQuizResult(finishQuiz: Bool) -> Observable<Void>
+    func exitQuiz()
 }
 
 class QuizOngoingCoordinator: BaseCoordinator<Void>, QuizOngoingNavigator {
     let navigationController: UINavigationController
-    var finish: Observable<Void>!
-    
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
@@ -26,6 +24,8 @@ class QuizOngoingCoordinator: BaseCoordinator<Void>, QuizOngoingNavigator {
     
     override func start() -> Observable<Void> {
         let viewController = QuizOngoingController()
+        let viewModel = QuizOngoingViewModel(navigator: self)
+        viewController.viewModel = viewModel
         var viewControllers: [UIViewController] = []
         viewController.hidesBottomBarWhenPushed = true
         self.navigationController.pushViewController(viewController, animated: true)
@@ -36,15 +36,22 @@ class QuizOngoingCoordinator: BaseCoordinator<Void>, QuizOngoingNavigator {
         })
         
         self.navigationController.viewControllers = viewControllers
-        finish = PublishSubject<Void>()
-        return finish.do(onNext: { (_) in
-            
-        })
+        return Observable.never()
     }
     
-    func openQuizResult() {
+    func openQuizResult(finishQuiz: Bool) -> Observable<Void> {
+        let quizResultCoordinator = QuizResultCoordinator(navigationController: self.navigationController)
+        
+        if finishQuiz {
+            return coordinate(to: quizResultCoordinator)
+        } else {
+            return Observable.never()
+        }
         
     }
     
+    func exitQuiz() {
+        self.navigationController.popViewController(animated: true)
+    }
     
 }

@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="395" id="KGk-i7-Jjw" customClass="QuizAnswerKeyCell" customModule="PantauBersama" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="322" height="395"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="322" height="394.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Pertanyaan pertama" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3At-xp-RoK" customClass="Label" customModule="Common">
+                        <rect key="frame" x="16" y="11" width="290" height="12"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                <real key="value" value="10"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Visi untuk indonesia kedepannya?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BNj-7Y-N3S" customClass="Label" customModule="Common">
+                        <rect key="frame" x="16" y="23" width="290" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="CcZ-yn-AZE"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                <real key="value" value="12"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="string" keyPath="typeLabel" value="bold"/>
+                        </userDefinedRuntimeAttributes>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="npS-M5-aR2">
+                        <rect key="frame" x="0.0" y="53.5" width="322" height="2"/>
+                        <color key="backgroundColor" red="0.92931067943572998" green="0.92946994304656982" blue="0.92930072546005249" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="2" id="SmM-hQ-1bQ"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rfp-qL-FzD">
+                        <rect key="frame" x="0.0" y="328.5" width="322" height="2"/>
+                        <color key="backgroundColor" red="0.92931067940000001" green="0.92946994299999997" blue="0.92930072549999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="2" id="Odp-3P-vFJ"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jokowi - Makruf" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YFy-3U-qfq" customClass="Label" customModule="Common">
+                        <rect key="frame" x="16" y="61" width="290" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="p0b-if-6I2"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                <real key="value" value="18"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="string" keyPath="typeLabel" value="bold"/>
+                        </userDefinedRuntimeAttributes>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wRT-RY-fAF" customClass="Label" customModule="Common">
+                        <rect key="frame" x="16" y="88" width="290" height="72"/>
+                        <constraints>
+                            <constraint firstAttribute="height" relation="lessThanOrEqual" priority="250" constant="173" id="o5f-rb-KmW"/>
+                        </constraints>
+                        <string key="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to Lor</string>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                <real key="value" value="12"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jokowi - Makruf" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XZ0-T4-P7m" customClass="Label" customModule="Common">
+                        <rect key="frame" x="16" y="172.5" width="290" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="dOo-eH-3nG"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                <real key="value" value="18"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="string" keyPath="typeLabel" value="bold"/>
+                        </userDefinedRuntimeAttributes>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gKQ-NB-TOV" customClass="Label" customModule="Common">
+                        <rect key="frame" x="16" y="199.5" width="290" height="123.5"/>
+                        <constraints>
+                            <constraint firstAttribute="height" priority="250" constant="185" id="Rj1-4u-hww"/>
+                        </constraints>
+                        <mutableString key="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to </mutableString>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                <real key="value" value="12"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Jawabanmu:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8LZ-LB-TGl" customClass="Label" customModule="Common">
+                        <rect key="frame" x="16" y="341.5" width="101" height="22"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="101" id="nq0-7u-Mm7"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                <real key="value" value="18"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="string" keyPath="typeLabel" value="bold"/>
+                        </userDefinedRuntimeAttributes>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Prabowo - Sandi" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nHV-pa-meL" customClass="Label" customModule="Common">
+                        <rect key="frame" x="125" y="342" width="196" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="OxG-Iq-KTW"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.94996398687362671" green="0.46688610315322876" blue="0.1163426861166954" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                <real key="value" value="18"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="string" keyPath="typeLabel" value="bold"/>
+                        </userDefinedRuntimeAttributes>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HUh-Jc-LkM">
+                        <rect key="frame" x="0.0" y="165" width="322" height="2"/>
+                        <color key="backgroundColor" red="0.92931067940000001" green="0.92946994299999997" blue="0.92930072549999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="2" id="JzV-fa-rcA"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="2" id="yf9-wI-SlA"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ydS-OJ-4tf">
+                        <rect key="frame" x="0.0" y="378.5" width="322" height="16"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="16" id="t15-ge-rsk"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" red="0.95675891637802124" green="0.95692259073257446" blue="0.95674854516983032" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                <constraints>
+                    <constraint firstItem="BNj-7Y-N3S" firstAttribute="top" secondItem="3At-xp-RoK" secondAttribute="bottom" id="0p5-UJ-SVV"/>
+                    <constraint firstItem="BNj-7Y-N3S" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="5Oc-b0-FtE"/>
+                    <constraint firstItem="gKQ-NB-TOV" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="7xc-qY-nmg"/>
+                    <constraint firstItem="npS-M5-aR2" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="8Oo-T2-0Kj"/>
+                    <constraint firstAttribute="trailing" secondItem="ydS-OJ-4tf" secondAttribute="trailing" id="8c2-XO-0VI"/>
+                    <constraint firstItem="nHV-pa-meL" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" constant="15" id="98t-81-vOZ"/>
+                    <constraint firstAttribute="trailing" secondItem="rfp-qL-FzD" secondAttribute="trailing" id="9HL-fz-Dce"/>
+                    <constraint firstItem="8LZ-LB-TGl" firstAttribute="top" secondItem="rfp-qL-FzD" secondAttribute="bottom" constant="11" id="9yv-OM-DTQ"/>
+                    <constraint firstItem="YFy-3U-qfq" firstAttribute="top" secondItem="npS-M5-aR2" secondAttribute="bottom" constant="5.5" id="Gtk-My-Kw1"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="3At-xp-RoK" secondAttribute="trailing" id="IWY-on-KgS"/>
+                    <constraint firstItem="wRT-RY-fAF" firstAttribute="top" secondItem="YFy-3U-qfq" secondAttribute="bottom" constant="6" id="KVV-jh-uRK"/>
+                    <constraint firstItem="rfp-qL-FzD" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="M4u-Uk-6ad"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="wRT-RY-fAF" secondAttribute="trailing" id="NBN-lQ-VDO"/>
+                    <constraint firstItem="nHV-pa-meL" firstAttribute="leading" secondItem="8LZ-LB-TGl" secondAttribute="trailing" constant="8" id="O8p-55-HPP"/>
+                    <constraint firstItem="YFy-3U-qfq" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="Odh-Jl-J1r"/>
+                    <constraint firstItem="gKQ-NB-TOV" firstAttribute="top" secondItem="XZ0-T4-P7m" secondAttribute="bottom" constant="5.9000000000000004" id="P0O-nX-S55"/>
+                    <constraint firstItem="wRT-RY-fAF" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="QTL-nu-k6u"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="BNj-7Y-N3S" secondAttribute="trailing" id="RGK-pU-iHh"/>
+                    <constraint firstItem="nHV-pa-meL" firstAttribute="centerY" secondItem="8LZ-LB-TGl" secondAttribute="centerY" id="RpS-zt-pOo"/>
+                    <constraint firstItem="XZ0-T4-P7m" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="Teb-rX-FGd"/>
+                    <constraint firstItem="XZ0-T4-P7m" firstAttribute="top" secondItem="HUh-Jc-LkM" secondAttribute="bottom" constant="5.5999999999999996" id="UbU-0d-bIP"/>
+                    <constraint firstItem="gKQ-NB-TOV" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="Unj-1b-I6e"/>
+                    <constraint firstAttribute="bottom" secondItem="ydS-OJ-4tf" secondAttribute="bottom" id="fK6-g8-gVa"/>
+                    <constraint firstItem="HUh-Jc-LkM" firstAttribute="top" secondItem="wRT-RY-fAF" secondAttribute="bottom" constant="5" id="feR-YF-tMC"/>
+                    <constraint firstItem="3At-xp-RoK" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="gLE-o2-HIW"/>
+                    <constraint firstItem="rfp-qL-FzD" firstAttribute="top" secondItem="gKQ-NB-TOV" secondAttribute="bottom" constant="5.5" id="gfr-Xl-ZAm"/>
+                    <constraint firstAttribute="trailing" secondItem="HUh-Jc-LkM" secondAttribute="trailing" id="hVV-QZ-CJh"/>
+                    <constraint firstItem="ydS-OJ-4tf" firstAttribute="top" secondItem="8LZ-LB-TGl" secondAttribute="bottom" constant="15" id="iDu-CU-Dfr"/>
+                    <constraint firstItem="npS-M5-aR2" firstAttribute="top" secondItem="BNj-7Y-N3S" secondAttribute="bottom" constant="9.5" id="jpx-6u-Rtp"/>
+                    <constraint firstItem="YFy-3U-qfq" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="m2v-Jo-m4M"/>
+                    <constraint firstItem="HUh-Jc-LkM" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="maB-om-FNi"/>
+                    <constraint firstItem="8LZ-LB-TGl" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="nsD-3u-oJe"/>
+                    <constraint firstItem="XZ0-T4-P7m" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="oYt-9Y-ilp"/>
+                    <constraint firstAttribute="trailing" secondItem="npS-M5-aR2" secondAttribute="trailing" id="rrg-g3-6L9"/>
+                    <constraint firstItem="3At-xp-RoK" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="rwu-4E-yao"/>
+                    <constraint firstItem="ydS-OJ-4tf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="vcD-4j-haY"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <point key="canvasLocation" x="137.59999999999999" y="251.42428785607197"/>
+        </tableViewCell>
+    </objects>
+</document>
