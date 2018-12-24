@@ -10,13 +10,17 @@ import UIKit
 import RxCocoa
 import RxSwift
 import Common
+import Lottie
 
 class OnboardingViewController: UIViewController {
     
+    @IBOutlet weak var lottieView: UIView!
     @IBOutlet weak var buttonMulai: Button!
     @IBOutlet weak var buttonLewati: UIButton!
     
     var viewModel: OnboardingViewModel!
+    private var landingAnimation: LOTAnimationView?
+    
     
     private let disposeBag = DisposeBag()
     
@@ -38,6 +42,18 @@ class OnboardingViewController: UIViewController {
         viewModel.output.bypassSelected
             .drive()
             .disposed(by: disposeBag)
+        
+        // MARK: Lottie
+        // Setting lottie background landing
+        landingAnimation = LOTAnimationView(name: "landing-page-backround-mobile")
+        landingAnimation!.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+        landingAnimation!.contentMode = .scaleAspectFill
+        landingAnimation!.frame = lottieView.bounds
+        lottieView.addSubview(landingAnimation!)
+        landingAnimation!.loopAnimation = true
+        landingAnimation!.play(fromProgress: 0,
+                               toProgress: 0.5,
+                               withCompletion: nil)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
