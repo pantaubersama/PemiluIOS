@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="BwModelicaSS01-BoldCondensed.otf">
+            <string>BwModelicaSS01-BoldCondensed</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SuccessController" customModule="PantauBersama" customModuleProvider="target">
+            <connections>
+                <outlet property="buttonFinish" destination="r6f-a8-jDv" id="oWc-b4-3q5"/>
+                <outlet property="lottieView" destination="hwW-cQ-KW3" id="73t-EU-DGy"/>
+                <outlet property="view" destination="iN0-l3-epB" id="CJu-IF-wik"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r6f-a8-jDv" customClass="Button" customModule="Common">
+                    <rect key="frame" x="0.0" y="620" width="375" height="47"/>
+                    <color key="backgroundColor" red="0.68041622639999999" green="0.1499232352" blue="0.14898997550000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="47" id="Gbl-2K-S1A"/>
+                    </constraints>
+                    <state key="normal" title="Button">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                            <real key="value" value="14"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hwW-cQ-KW3">
+                    <rect key="frame" x="67.5" y="213.5" width="240" height="240"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="240" id="px7-AH-1UG"/>
+                        <constraint firstAttribute="height" constant="240" id="wV5-EP-rLS"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pXC-l8-C1s">
+                    <rect key="frame" x="36" y="468.5" width="303" height="61.5"/>
+                    <string key="text">Yapp, Selamat
+
+Akunmu telah terverifikasi</string>
+                    <fontDescription key="fontDescription" name="BwModelicaSS01-BoldCondensed" family="Bw Modelica SS01" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="pXC-l8-C1s" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="36" id="1V4-yN-gHX"/>
+                <constraint firstItem="r6f-a8-jDv" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="6Zy-nk-Goa"/>
+                <constraint firstItem="hwW-cQ-KW3" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="6fh-4G-kO6"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="r6f-a8-jDv" secondAttribute="trailing" id="7vP-vX-A31"/>
+                <constraint firstItem="hwW-cQ-KW3" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="DwY-lJ-NRT"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="pXC-l8-C1s" secondAttribute="trailing" constant="36" id="PMU-ZN-7N5"/>
+                <constraint firstItem="pXC-l8-C1s" firstAttribute="top" secondItem="hwW-cQ-KW3" secondAttribute="bottom" constant="15" id="VjU-aN-7jP"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="r6f-a8-jDv" secondAttribute="bottom" id="vEI-fT-Oml"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+        </view>
+    </objects>
+</document>

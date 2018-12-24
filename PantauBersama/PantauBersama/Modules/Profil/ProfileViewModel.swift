@@ -12,10 +12,12 @@ import RxCocoa
 protocol IProfileViewModelInput {
     var backI: AnyObserver<Void> { get }
     var settingI: AnyObserver<Void> { get }
+    var verifikasiI: AnyObserver<Void> { get }
 }
 
 protocol IProfileViewModelOutput {
     var settingO: Driver<Void>! { get }
+    var verifikasiO: Driver<Void>! { get }
 }
 
 protocol IProfileViewModel {
@@ -35,26 +37,34 @@ final class ProfileViewModel: IProfileViewModel, IProfileViewModelInput, IProfil
     // Input
     var backI: AnyObserver<Void>
     var settingI: AnyObserver<Void>
+    var verifikasiI: AnyObserver<Void>
     
     // Output
     var settingO: Driver<Void>!
+    var verifikasiO: Driver<Void>!
     
     private let backS = PublishSubject<Void>()
     private let settingS = PublishSubject<Void>()
+    private let verifikasiS = PublishSubject<Void>()
     
     init(navigator: ProfileNavigator) {
         self.navigator = navigator
         self.navigator.finish = backS
         
         backI = backS.asObserver()
-        
         settingI = settingS.asObserver()
+        verifikasiI = verifikasiS.asObserver()
         
         let setting = settingS
             .flatMapLatest({ navigator.launchSetting() })
             .asDriver(onErrorJustReturn: ())
         
+        let verifikasi = verifikasiS
+            .flatMapLatest({ navigator.launchVerifikasi() })
+            .asDriver(onErrorJustReturn: ())
+        
         settingO = setting
+        verifikasiO = verifikasi
     }
     
 }

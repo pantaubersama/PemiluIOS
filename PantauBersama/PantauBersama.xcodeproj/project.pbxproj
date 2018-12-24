@@ -101,6 +101,22 @@
 		849CABCC21CE8A5100912F8E /* SettingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849CABCB21CE8A5100912F8E /* SettingCoordinator.swift */; };
 		849CABCE21CE8AC300912F8E /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849CABCD21CE8AC300912F8E /* SettingViewModel.swift */; };
 		84A07F8F21D0CC9400269C6B /* landing-page-backround-mobile.json in Resources */ = {isa = PBXBuildFile; fileRef = 84A07F8E21D0CC9400269C6B /* landing-page-backround-mobile.json */; };
+		84A07F9721D0D4EA00269C6B /* IdentitasController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84A07F9621D0D4EA00269C6B /* IdentitasController.xib */; };
+		84A07F9A21D0DBE200269C6B /* IdentitasController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A07F9921D0DBE200269C6B /* IdentitasController.swift */; };
+		84A07F9D21D0DC4B00269C6B /* KTPController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84A07F9C21D0DC4B00269C6B /* KTPController.xib */; };
+		84A07F9F21D0DFA200269C6B /* KTPController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A07F9E21D0DFA200269C6B /* KTPController.swift */; };
+		84A07FA221D0DFF600269C6B /* SignatureController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84A07FA121D0DFF600269C6B /* SignatureController.xib */; };
+		84A07FA421D0E27F00269C6B /* SignatureController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A07FA321D0E27F00269C6B /* SignatureController.swift */; };
+		84A07FA721D0E2E900269C6B /* SelfIdentitasController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84A07FA621D0E2E900269C6B /* SelfIdentitasController.xib */; };
+		84A07FAC21D0E4FD00269C6B /* selfie-id-card.json in Resources */ = {isa = PBXBuildFile; fileRef = 84A07FA821D0E4FD00269C6B /* selfie-id-card.json */; };
+		84A07FAD21D0E4FD00269C6B /* upload-ttd.json in Resources */ = {isa = PBXBuildFile; fileRef = 84A07FA921D0E4FD00269C6B /* upload-ttd.json */; };
+		84A07FAE21D0E4FD00269C6B /* validation-success.json in Resources */ = {isa = PBXBuildFile; fileRef = 84A07FAA21D0E4FD00269C6B /* validation-success.json */; };
+		84A07FAF21D0E4FD00269C6B /* memfoto-idcard.json in Resources */ = {isa = PBXBuildFile; fileRef = 84A07FAB21D0E4FD00269C6B /* memfoto-idcard.json */; };
+		84A07FB121D0E7B000269C6B /* SelfIdentitasController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A07FB021D0E7B000269C6B /* SelfIdentitasController.swift */; };
+		84A07FB421D0ECC100269C6B /* SuccessController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84A07FB321D0ECC100269C6B /* SuccessController.xib */; };
+		84A07FB621D0ED8100269C6B /* SuccessController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A07FB521D0ED8100269C6B /* SuccessController.swift */; };
+		84A07FB821D0F0DD00269C6B /* IdentitasCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A07FB721D0F0DD00269C6B /* IdentitasCoordinator.swift */; };
+		84A07FBA21D0F13200269C6B /* IdentitasViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A07FB921D0F13200269C6B /* IdentitasViewModel.swift */; };
 		84B2521B21CAA71200565D82 /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B2521A21CAA71200565D82 /* ViewModelType.swift */; };
 		84B2521E21CAB1BE00565D82 /* OnboardingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84B2521D21CAB1BE00565D82 /* OnboardingViewController.xib */; };
 		84B2522021CAB2B900565D82 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B2521F21CAB2B900565D82 /* OnboardingViewController.swift */; };
@@ -267,6 +283,22 @@
 		849CABCB21CE8A5100912F8E /* SettingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCoordinator.swift; sourceTree = "<group>"; };
 		849CABCD21CE8AC300912F8E /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 		84A07F8E21D0CC9400269C6B /* landing-page-backround-mobile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "landing-page-backround-mobile.json"; sourceTree = "<group>"; };
+		84A07F9621D0D4EA00269C6B /* IdentitasController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IdentitasController.xib; sourceTree = "<group>"; };
+		84A07F9921D0DBE200269C6B /* IdentitasController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentitasController.swift; sourceTree = "<group>"; };
+		84A07F9C21D0DC4B00269C6B /* KTPController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KTPController.xib; sourceTree = "<group>"; };
+		84A07F9E21D0DFA200269C6B /* KTPController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KTPController.swift; sourceTree = "<group>"; };
+		84A07FA121D0DFF600269C6B /* SignatureController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignatureController.xib; sourceTree = "<group>"; };
+		84A07FA321D0E27F00269C6B /* SignatureController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignatureController.swift; sourceTree = "<group>"; };
+		84A07FA621D0E2E900269C6B /* SelfIdentitasController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelfIdentitasController.xib; sourceTree = "<group>"; };
+		84A07FA821D0E4FD00269C6B /* selfie-id-card.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "selfie-id-card.json"; sourceTree = "<group>"; };
+		84A07FA921D0E4FD00269C6B /* upload-ttd.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "upload-ttd.json"; sourceTree = "<group>"; };
+		84A07FAA21D0E4FD00269C6B /* validation-success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "validation-success.json"; sourceTree = "<group>"; };
+		84A07FAB21D0E4FD00269C6B /* memfoto-idcard.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "memfoto-idcard.json"; sourceTree = "<group>"; };
+		84A07FB021D0E7B000269C6B /* SelfIdentitasController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfIdentitasController.swift; sourceTree = "<group>"; };
+		84A07FB321D0ECC100269C6B /* SuccessController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SuccessController.xib; sourceTree = "<group>"; };
+		84A07FB521D0ED8100269C6B /* SuccessController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessController.swift; sourceTree = "<group>"; };
+		84A07FB721D0F0DD00269C6B /* IdentitasCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentitasCoordinator.swift; sourceTree = "<group>"; };
+		84A07FB921D0F13200269C6B /* IdentitasViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentitasViewModel.swift; sourceTree = "<group>"; };
 		84B2521A21CAA71200565D82 /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
 		84B2521D21CAB1BE00565D82 /* OnboardingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnboardingViewController.xib; sourceTree = "<group>"; };
 		84B2521F21CAB2B900565D82 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
@@ -671,6 +703,7 @@
 		844C3D6A21C5177A00199871 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				84A07F9021D0D3EE00269C6B /* Verifikasi */,
 				849CABC521CE897E00912F8E /* Setting */,
 				845C56FA21CD136A00EDCDFE /* Profil */,
 				84B2521C21CAB18F00565D82 /* Onboarding */,
@@ -875,9 +908,80 @@
 		84A07F8D21D0CC8600269C6B /* Lottie */ = {
 			isa = PBXGroup;
 			children = (
+				84A07FAB21D0E4FD00269C6B /* memfoto-idcard.json */,
+				84A07FA821D0E4FD00269C6B /* selfie-id-card.json */,
+				84A07FA921D0E4FD00269C6B /* upload-ttd.json */,
+				84A07FAA21D0E4FD00269C6B /* validation-success.json */,
 				84A07F8E21D0CC9400269C6B /* landing-page-backround-mobile.json */,
 			);
 			path = Lottie;
+			sourceTree = "<group>";
+		};
+		84A07F9021D0D3EE00269C6B /* Verifikasi */ = {
+			isa = PBXGroup;
+			children = (
+				84A07F9421D0D4C400269C6B /* SubModules */,
+			);
+			path = Verifikasi;
+			sourceTree = "<group>";
+		};
+		84A07F9421D0D4C400269C6B /* SubModules */ = {
+			isa = PBXGroup;
+			children = (
+				84A07FB221D0E85B00269C6B /* Success */,
+				84A07FA021D0DFC500269C6B /* Signature */,
+				84A07F9B21D0DC2700269C6B /* KTP */,
+				84A07FA521D0E2C400269C6B /* Identitas+Self */,
+				84A07F9521D0D4CF00269C6B /* Identitas */,
+			);
+			path = SubModules;
+			sourceTree = "<group>";
+		};
+		84A07F9521D0D4CF00269C6B /* Identitas */ = {
+			isa = PBXGroup;
+			children = (
+				84A07F9621D0D4EA00269C6B /* IdentitasController.xib */,
+				84A07F9921D0DBE200269C6B /* IdentitasController.swift */,
+				84A07FB721D0F0DD00269C6B /* IdentitasCoordinator.swift */,
+				84A07FB921D0F13200269C6B /* IdentitasViewModel.swift */,
+			);
+			path = Identitas;
+			sourceTree = "<group>";
+		};
+		84A07F9B21D0DC2700269C6B /* KTP */ = {
+			isa = PBXGroup;
+			children = (
+				84A07F9C21D0DC4B00269C6B /* KTPController.xib */,
+				84A07F9E21D0DFA200269C6B /* KTPController.swift */,
+			);
+			path = KTP;
+			sourceTree = "<group>";
+		};
+		84A07FA021D0DFC500269C6B /* Signature */ = {
+			isa = PBXGroup;
+			children = (
+				84A07FA121D0DFF600269C6B /* SignatureController.xib */,
+				84A07FA321D0E27F00269C6B /* SignatureController.swift */,
+			);
+			path = Signature;
+			sourceTree = "<group>";
+		};
+		84A07FA521D0E2C400269C6B /* Identitas+Self */ = {
+			isa = PBXGroup;
+			children = (
+				84A07FA621D0E2E900269C6B /* SelfIdentitasController.xib */,
+				84A07FB021D0E7B000269C6B /* SelfIdentitasController.swift */,
+			);
+			path = "Identitas+Self";
+			sourceTree = "<group>";
+		};
+		84A07FB221D0E85B00269C6B /* Success */ = {
+			isa = PBXGroup;
+			children = (
+				84A07FB321D0ECC100269C6B /* SuccessController.xib */,
+				84A07FB521D0ED8100269C6B /* SuccessController.swift */,
+			);
+			path = Success;
 			sourceTree = "<group>";
 		};
 		84B2521C21CAB18F00565D82 /* Onboarding */ = {
@@ -1095,24 +1199,31 @@
 				84F892A921C787D800DC1048 /* Lato-BlackItalic.ttf in Resources */,
 				11D092E921CBEF6C0066D55D /* BannerInfoQuizCell.xib in Resources */,
 				8428AAAA21C7AF330008E975 /* GoogleService-Info-Staging.plist in Resources */,
+				84A07FAC21D0E4FD00269C6B /* selfie-id-card.json in Resources */,
 				11E1079221CD0FE200B7B074 /* QuizDetailController.xib in Resources */,
 				84B2521E21CAB1BE00565D82 /* OnboardingViewController.xib in Resources */,
+				84A07F9721D0D4EA00269C6B /* IdentitasController.xib in Resources */,
 				845C570D21CE0C8100EDCDFE /* ClusterCell.xib in Resources */,
+				84A07FB421D0ECC100269C6B /* SuccessController.xib in Resources */,
 				84F892AA21C787D800DC1048 /* Lato-Bold.ttf in Resources */,
+				84A07FAD21D0E4FD00269C6B /* upload-ttd.json in Resources */,
 				84E2854D21CA4BC800298E31 /* FilterViewController.xib in Resources */,
 				84F892AB21C787D800DC1048 /* Lato-BoldItalic.ttf in Resources */,
 				11E107A921CD33CA00B7B074 /* CreateJanjiController.xib in Resources */,
 				845C56FD21CD14CE00EDCDFE /* HeaderProfile.xib in Resources */,
 				13812C1F21CAA48700CAB327 /* PenpolController.xib in Resources */,
+				84A07F9D21D0DC4B00269C6B /* KTPController.xib in Resources */,
 				8441DB5621CCF19C00B078DF /* DetailJanjiController.xib in Resources */,
 				84F892AC21C787D800DC1048 /* Lato-Hairline.ttf in Resources */,
 				84F892AD21C787D800DC1048 /* Lato-HairlineItalic.ttf in Resources */,
 				84F892AE21C787D800DC1048 /* Lato-Italic.ttf in Resources */,
 				84F892AF21C787D800DC1048 /* Lato-Light.ttf in Resources */,
 				8428AAAD21C7B4B20008E975 /* GoogleService-Info.plist in Resources */,
+				84A07FAE21D0E4FD00269C6B /* validation-success.json in Resources */,
 				84F892B021C787D800DC1048 /* Lato-LightItalic.ttf in Resources */,
 				845C571721CE1B5900EDCDFE /* BadgeCell.xib in Resources */,
 				841CDA3D21C8BC1C0015680C /* LinimasaController.xib in Resources */,
+				84A07FA721D0E2E900269C6B /* SelfIdentitasController.xib in Resources */,
 				84F892B121C787D800DC1048 /* Lato-Regular.ttf in Resources */,
 				13812C3A21CC182500CAB327 /* AskViewCell.xib in Resources */,
 				84F6981721C9364700890917 /* LinimasaJanjiCell.xib in Resources */,
@@ -1128,7 +1239,9 @@
 				844C2BA521CC0F2500BC439A /* LinimasaHeaderView.xib in Resources */,
 				845C571321CE10C900EDCDFE /* IconTableCell.xib in Resources */,
 				844C3D4721C4ED6E00199871 /* Assets.xcassets in Resources */,
+				84A07FAF21D0E4FD00269C6B /* memfoto-idcard.json in Resources */,
 				11702DD921CB1205001AEE3F /* TrendCell.xib in Resources */,
+				84A07FA221D0DFF600269C6B /* SignatureController.xib in Resources */,
 				845C570921CD3D5700EDCDFE /* SectionCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1325,7 +1438,9 @@
 				844C3D8821C5265600199871 /* AppCoordinator.swift in Sources */,
 				8441DB4121CCBECF00B078DF /* FilterModel.swift in Sources */,
 				8441DB3C21CCA6C500B078DF /* ItemRadioCell.swift in Sources */,
+				84A07F9F21D0DFA200269C6B /* KTPController.swift in Sources */,
 				11E107C921CF626800B7B074 /* PenpolInfoCellViewModel.swift in Sources */,
+				84A07FB121D0E7B000269C6B /* SelfIdentitasController.swift in Sources */,
 				13812C3921CC182500CAB327 /* AskViewCell.swift in Sources */,
 				84B2526821CC01F000565D82 /* AppState.swift in Sources */,
 				11E1079621CD126900B7B074 /* QuizDetailViewModel.swift in Sources */,
@@ -1345,8 +1460,10 @@
 				84F6981921C93B8900890917 /* LinimasaJanjiCell.swift in Sources */,
 				11E1079C21CD1B5F00B7B074 /* QuizNavigator.swift in Sources */,
 				84F6981521C8FAB000890917 /* UIControl.swift in Sources */,
+				84A07FA421D0E27F00269C6B /* SignatureController.swift in Sources */,
 				8441DB5321CCF0C200B078DF /* DetailJanjiController.swift in Sources */,
 				84B2521B21CAA71200565D82 /* ViewModelType.swift in Sources */,
+				84A07FB821D0F0DD00269C6B /* IdentitasCoordinator.swift in Sources */,
 				11E107B721CD450B00B7B074 /* QuizOngoingViewModel.swift in Sources */,
 				84E2855921CA777D00298E31 /* Observable.swift in Sources */,
 				8441DB5A21CD087000B078DF /* JanjiType.swift in Sources */,
@@ -1358,15 +1475,18 @@
 				84E2855121CA4D4900298E31 /* FilterViewController.swift in Sources */,
 				84F6980921C8D28B00890917 /* PilpresViewController.swift in Sources */,
 				84D7A77821CE8CFF009502AF /* ProfileViewModel.swift in Sources */,
+				84A07F9A21D0DBE200269C6B /* IdentitasController.swift in Sources */,
 				11702DD821CB1205001AEE3F /* TrendCell.swift in Sources */,
 				844C3D7821C51EFD00199871 /* HomeCoordinator.swift in Sources */,
 				845C571921CE1C9900EDCDFE /* BadgeCell.swift in Sources */,
 				11E107C521CF534700B7B074 /* PenpolInfoCoordinator.swift in Sources */,
+				84A07FB621D0ED8100269C6B /* SuccessController.swift in Sources */,
 				845C570721CD1D8F00EDCDFE /* ProfileCoordinator.swift in Sources */,
 				84B2523021CAB61300565D82 /* OnboardingViewModel.swift in Sources */,
 				84B2522E21CAB53C00565D82 /* OnboardingCoordinator.swift in Sources */,
 				84B2522021CAB2B900565D82 /* OnboardingViewController.swift in Sources */,
 				13812C2E21CAA92100CAB327 /* AskController.swift in Sources */,
+				84A07FBA21D0F13200269C6B /* IdentitasViewModel.swift in Sources */,
 				11E107B521CD44FD00B7B074 /* QuizOngoingCoordinator.swift in Sources */,
 				8441DB5821CCF7D900B078DF /* DetailJanjiCoordinator.swift in Sources */,
 				13F4569D21CF985800CE45F1 /* CreateAskViewModel.swift in Sources */,

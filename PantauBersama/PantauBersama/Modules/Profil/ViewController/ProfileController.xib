@@ -13,6 +13,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProfileController" customModule="PantauBersama" customModuleProvider="target">
             <connections>
                 <outlet property="container" destination="nH3-C7-YkB" id="V7d-fT-goM"/>
+                <outlet property="headerProfile" destination="OTp-iP-8Pn" id="GXT-qZ-bZU"/>
                 <outlet property="scrollView" destination="W5k-U4-qnn" id="aH9-Pm-0kv"/>
                 <outlet property="segmentedControl" destination="PnU-fp-mxj" id="RJn-Qy-OJZ"/>
                 <outlet property="tableView" destination="nt3-77-nDQ" id="ByL-Eb-ThQ"/>

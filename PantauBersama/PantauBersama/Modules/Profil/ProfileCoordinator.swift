@@ -12,8 +12,8 @@ import UIKit
 
 protocol ProfileNavigator {
     var finish: Observable<Void>! { get set }
-    
     func launchSetting() -> Observable<Void>
+    func launchVerifikasi() -> Observable<Void>
 }
 
 
@@ -43,6 +43,10 @@ extension ProfileCoordinator: ProfileNavigator {
     func launchSetting() -> Observable<Void> {
         let settingCoordinator = SettingCoordinator(navigationController: navigationController)
         return coordinate(to: settingCoordinator)
+    }
+    func launchVerifikasi() -> Observable<Void>  {
+        let identitasCoordinator = IdentitasCoordinator(navigationController: navigationController)
+        return coordinate(to: identitasCoordinator)
     }
     
 }
