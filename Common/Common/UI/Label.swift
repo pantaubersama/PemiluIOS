@@ -11,16 +11,16 @@ import UIKit
 
 
 enum LabelType: String {
-    case bold = "Bold"
-    case black = "Black"
-    case blackItalic = "BlackItalic"
-    case boldItalic = "BoldItalic"
-    case hairline = "Hairline"
-    case hairlineItalic = "HairlineItalic"
-    case italic = "Italic"
-    case light = "Light"
-    case lightItalic = "LightItalic"
-    case regular = "Regular"
+    case bold = "bold"
+    case black = "black"
+    case blackItalic = "black-italic"
+    case boldItalic = "bold-italic"
+    case hairline = "hairline"
+    case hairlineItalic = "hairline-italic"
+    case italic = "italic"
+    case light = "light"
+    case lightItalic = "light-italic"
+    case regular = "regular"
 }
 
 
@@ -59,7 +59,7 @@ public class Label: UILabel {
     }
     
     @IBInspectable
-    public var typeLabel: String = "Regular" {
+    public var typeLabel: String = "regular" {
         didSet {
             if let newFont: LabelType = LabelType(rawValue: self.typeLabel.lowercased()) {
                 switch newFont {
@@ -85,6 +85,7 @@ public class Label: UILabel {
                     self.fontName = "Lato-Regular"
                 }
             }
+            initLabel()
         }
     }
 }

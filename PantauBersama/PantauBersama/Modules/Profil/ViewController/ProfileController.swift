@@ -17,6 +17,7 @@ class ProfileController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var container: UIView!
+    @IBOutlet weak var headerProfile: HeaderProfile!
     
     private lazy var pilpresController = PilpresViewController()
     private lazy var janjiController = JanjiPolitikViewController()
@@ -109,7 +110,15 @@ class ProfileController: UIViewController {
             .bind(to: viewModel.input.settingI)
             .disposed(by: disposeBag)
         
+        headerProfile.buttonVerified.rx.tap
+            .bind(to: viewModel.input.verifikasiI)
+            .disposed(by: disposeBag)
+        
         viewModel.output.settingO
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.verifikasiO
             .drive()
             .disposed(by: disposeBag)
     }
