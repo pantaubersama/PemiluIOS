@@ -8,11 +8,28 @@
 
 import UIKit
 import Common
+import RxSwift
 
-class IconTableCell: UITableViewCell, IReusableCell {
+typealias BiodataCellConfigured = CellConfigurator<IconTableCell, IconTableCell.Input>
+
+class IconTableCell: UITableViewCell {
+
+    private var disposeBag: DisposeBag!
     
     override func prepareForReuse() {
         super.prepareForReuse()
     }
     
+}
+
+extension IconTableCell: IReusableCell {
+    struct Input {
+        
+    }
+    
+    func configureCell(item: Input) {
+        let bag = DisposeBag()
+        
+        disposeBag = bag
+    }
 }

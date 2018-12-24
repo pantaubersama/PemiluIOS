@@ -9,13 +9,25 @@
 import UIKit
 import Common
 
-class SectionCell: UITableViewCell, IReusableCell {
+class SectionCell: UIView {
     
-    @IBOutlet weak var sectionLabel: Label!
-    @IBOutlet weak var buttonCell: UIButton!
+    @IBOutlet weak var label: Label!
+    @IBOutlet weak var button: UIButton!
     
-    override func prepareForReuse() {
-        super.prepareForReuse()
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setup()
     }
     
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        setup()
+    }
+    
+    private func setup() {
+        let view = loadNib()
+        view.frame = bounds
+        view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        addSubview(view)
+    }
 }

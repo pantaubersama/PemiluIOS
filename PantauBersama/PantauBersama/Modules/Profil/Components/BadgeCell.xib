@@ -19,32 +19,33 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="i2n-zw-tIT">
-                        <rect key="frame" x="20" y="0.0" width="341" height="69.5"/>
+                        <rect key="frame" x="8" y="0.0" width="353" height="69.5"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bCd-ox-pH6">
-                                <rect key="frame" x="0.0" y="0.0" width="70" height="69.5"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="badgeQuizLv31" translatesAutoresizingMaskIntoConstraints="NO" id="bCd-ox-pH6">
+                                <rect key="frame" x="0.0" y="2" width="70" height="66"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="70" id="bHx-rC-9Tr"/>
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="NM8-OP-6OZ">
-                                <rect key="frame" x="80" y="17.5" width="229" height="35"/>
+                                <rect key="frame" x="80" y="14.5" width="241" height="41"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="13k-v4-7gI" customClass="Label" customModule="Common">
-                                        <rect key="frame" x="0.0" y="0.0" width="229" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="241" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
-                                                <real key="value" value="17"/>
+                                                <real key="value" value="15"/>
                                             </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="typeLabel" value="bold"/>
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IWe-Hk-a4t" customClass="Label" customModule="Common">
-                                        <rect key="frame" x="0.0" y="20.5" width="229" height="14.5"/>
+                                        <rect key="frame" x="0.0" y="20.5" width="241" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" red="0.48628133540000001" green="0.4862622023" blue="0.48627519609999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
@@ -55,7 +56,7 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GgM-0D-jtW">
-                                <rect key="frame" x="319" y="24" width="22" height="22"/>
+                                <rect key="frame" x="331" y="24" width="22" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="22" id="kIH-Nk-PkP"/>
                                 </constraints>
@@ -67,7 +68,7 @@
                 <constraints>
                     <constraint firstItem="i2n-zw-tIT" firstAttribute="top" secondItem="KXP-0u-Fcn" secondAttribute="top" id="3oo-xi-ph2"/>
                     <constraint firstAttribute="trailing" secondItem="i2n-zw-tIT" secondAttribute="trailing" constant="14" id="EbO-Sx-BPZ"/>
-                    <constraint firstItem="i2n-zw-tIT" firstAttribute="leading" secondItem="KXP-0u-Fcn" secondAttribute="leading" constant="20" id="ewU-aX-tkd"/>
+                    <constraint firstItem="i2n-zw-tIT" firstAttribute="leading" secondItem="KXP-0u-Fcn" secondAttribute="leading" constant="8" id="ewU-aX-tkd"/>
                     <constraint firstAttribute="bottom" secondItem="i2n-zw-tIT" secondAttribute="bottom" id="fv5-k2-dEa"/>
                 </constraints>
             </tableViewCellContentView>
@@ -75,6 +76,7 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="badgeQuizLv31" width="66" height="66"/>
         <image name="icShare" width="20" height="20"/>
     </resources>
 </document>

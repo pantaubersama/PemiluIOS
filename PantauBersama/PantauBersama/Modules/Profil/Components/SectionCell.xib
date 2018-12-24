@@ -6,52 +6,57 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
-        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="52" id="GEm-tH-VuT" customClass="SectionCell" customModule="PantauBersama" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="322" height="52"/>
-            <autoresizingMask key="autoresizingMask"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="GEm-tH-VuT" id="dJk-jF-4Lq">
-                <rect key="frame" x="0.0" y="0.0" width="322" height="51.5"/>
-                <autoresizingMask key="autoresizingMask"/>
-                <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FWp-BY-e34" customClass="Label" customModule="Common">
-                        <rect key="frame" x="38" y="18.5" width="28.5" height="14.5"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
-                                <real key="value" value="12"/>
-                            </userDefinedRuntimeAttribute>
-                            <userDefinedRuntimeAttribute type="string" keyPath="typeLabel" value="bold"/>
-                        </userDefinedRuntimeAttributes>
-                    </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qX6-3l-vdS">
-                        <rect key="frame" x="278" y="14" width="24" height="24"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="24" id="RlU-LP-dtd"/>
-                            <constraint firstAttribute="height" constant="24" id="SUM-kb-svd"/>
-                        </constraints>
-                        <state key="normal" image="icExpandMore"/>
-                    </button>
-                </subviews>
-                <constraints>
-                    <constraint firstAttribute="trailing" secondItem="qX6-3l-vdS" secondAttribute="trailing" constant="20" id="Hao-4y-0gA"/>
-                    <constraint firstItem="FWp-BY-e34" firstAttribute="leading" secondItem="dJk-jF-4Lq" secondAttribute="leadingMargin" constant="22" id="QTw-ho-Hmd"/>
-                    <constraint firstItem="qX6-3l-vdS" firstAttribute="centerY" secondItem="dJk-jF-4Lq" secondAttribute="centerY" id="Y35-6r-9Rs"/>
-                    <constraint firstItem="FWp-BY-e34" firstAttribute="centerY" secondItem="dJk-jF-4Lq" secondAttribute="centerY" id="nSU-Y2-qVg"/>
-                </constraints>
-            </tableViewCellContentView>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SectionCell" customModule="PantauBersama" customModuleProvider="target">
             <connections>
-                <outlet property="buttonCell" destination="qX6-3l-vdS" id="nZq-mk-dkh"/>
-                <outlet property="sectionLabel" destination="FWp-BY-e34" id="H5t-Ey-sxn"/>
+                <outlet property="button" destination="spJ-TO-jaW" id="So3-rh-2QL"/>
+                <outlet property="label" destination="1u2-vW-MKT" id="Sx3-hD-Nke"/>
             </connections>
-            <point key="canvasLocation" x="-68.799999999999997" y="-96.251874062968525"/>
-        </tableViewCell>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="uKh-4k-pZx">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="a8n-XQ-h8f">
+                    <rect key="frame" x="16" y="0.0" width="351" height="44"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1u2-vW-MKT" customClass="Label" customModule="Common">
+                            <rect key="frame" x="0.0" y="12" width="321" height="20.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                    <real key="value" value="14"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="string" keyPath="typeLabel" value="bold"/>
+                            </userDefinedRuntimeAttributes>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="spJ-TO-jaW">
+                            <rect key="frame" x="321" y="10" width="30" height="24"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="30" id="gcz-RK-YSC"/>
+                            </constraints>
+                            <state key="normal" image="icExpandMore"/>
+                        </button>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="a8n-XQ-h8f" firstAttribute="leading" secondItem="vRw-k3-LlJ" secondAttribute="leading" constant="16" id="9AT-Qp-yAa"/>
+                <constraint firstAttribute="bottom" secondItem="a8n-XQ-h8f" secondAttribute="bottom" id="TMa-Nv-Of7"/>
+                <constraint firstItem="a8n-XQ-h8f" firstAttribute="top" secondItem="uKh-4k-pZx" secondAttribute="top" id="XZq-YD-zOh"/>
+                <constraint firstItem="vRw-k3-LlJ" firstAttribute="trailing" secondItem="a8n-XQ-h8f" secondAttribute="trailing" constant="8" id="bOX-fd-c0l"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vRw-k3-LlJ"/>
+            <point key="canvasLocation" x="-79.200000000000003" y="-326.53673163418296"/>
+        </view>
     </objects>
     <resources>
         <image name="icExpandMore" width="24" height="24"/>
