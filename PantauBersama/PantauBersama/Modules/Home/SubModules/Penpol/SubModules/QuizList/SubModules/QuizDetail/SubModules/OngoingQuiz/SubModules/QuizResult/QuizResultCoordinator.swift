@@ -37,7 +37,10 @@ class QuizResultCoordinator: BaseCoordinator<Void> {
         })
         
         self.navigationController.viewControllers = viewControllers
-        return Observable.never()
+        
+        return viewModel.output.back.do(onNext: { [weak self](_) in
+            self?.navigationController.popViewController(animated: true)
+        }).asObservable()
     }
 }
 

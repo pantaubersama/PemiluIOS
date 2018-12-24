@@ -16,7 +16,6 @@
                 <outlet property="btnBChoice" destination="EBh-42-4pT" id="ANJ-Y7-LL1"/>
                 <outlet property="ivQuiz" destination="45c-bt-rb0" id="g4Y-gh-9pK"/>
                 <outlet property="lbQuestion" destination="SYL-b2-hf3" id="bYo-5c-8ap"/>
-                <outlet property="lbQuestionIndex" destination="0dI-KQ-I5U" id="DPq-yq-Pa4"/>
                 <outlet property="tvAChoice" destination="25w-Cc-eoB" id="qYV-To-IO5"/>
                 <outlet property="tvBChoice" destination="ZzJ-be-NeW" id="Ybh-Ud-xgY"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -113,19 +112,8 @@
                         </view>
                     </subviews>
                 </stackView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pertanyaan no 1 dari 10" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0dI-KQ-I5U" customClass="Label" customModule="Common">
-                    <rect key="frame" x="232.33333333333334" y="59.999999999999993" width="124.66666666666666" height="14.666666666666664"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <nil key="highlightedColor"/>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
-                            <real key="value" value="12"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
-                </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SYL-b2-hf3" customClass="Label" customModule="Common">
-                    <rect key="frame" x="10" y="90.333333333333314" width="355" height="92"/>
+                    <rect key="frame" x="10" y="70.333333333333329" width="355" height="91.999999999999986"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="92" id="juC-Nc-OQ1"/>
                     </constraints>
@@ -142,11 +130,9 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="SYL-b2-hf3" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="26.329999999999998" id="4tp-Ig-YfQ"/>
                 <constraint firstItem="waj-8E-WAp" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="6Jm-dD-0tr"/>
                 <constraint firstItem="45c-bt-rb0" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="92w-RH-fg8"/>
-                <constraint firstItem="SYL-b2-hf3" firstAttribute="top" secondItem="0dI-KQ-I5U" secondAttribute="bottom" constant="15.67" id="CeT-CZ-LHU"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="0dI-KQ-I5U" secondAttribute="trailing" constant="18" id="DsD-Jb-mFl"/>
-                <constraint firstItem="0dI-KQ-I5U" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="60" id="Fkr-MA-E45"/>
                 <constraint firstItem="waj-8E-WAp" firstAttribute="top" secondItem="45c-bt-rb0" secondAttribute="bottom" constant="-30" id="MLr-44-PTl"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="waj-8E-WAp" secondAttribute="trailing" constant="16" id="SwF-Mo-GJx"/>
                 <constraint firstItem="45c-bt-rb0" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="VO1-Ca-NZ9"/>

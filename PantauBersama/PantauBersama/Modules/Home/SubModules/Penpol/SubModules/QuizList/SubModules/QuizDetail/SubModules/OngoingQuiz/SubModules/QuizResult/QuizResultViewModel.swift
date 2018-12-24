@@ -8,6 +8,8 @@
 
 import Foundation
 import Common
+import RxSwift
+import RxCocoa
 
 class QuizResultViewModel: ViewModelType {
     var input: Input
@@ -16,20 +18,23 @@ class QuizResultViewModel: ViewModelType {
     var navigator: QuizResultNavigator
     
     struct Input {
-        
+        let backTrigger: AnyObserver<Void>
     }
     
     struct Output {
-        
+        let back: Driver<Void>
     }
     
+    private let backSubject = PublishSubject<Void>()
     
     init(navigator: QuizResultNavigator) {
         self.navigator = navigator
         
-        input = Input()
+        input = Input(backTrigger: backSubject.asObserver())
         
-        output = Output()
+        let back = backSubject.asDriverOnErrorJustComplete()
+        
+        output = Output(back: back)
     }
     
 }
