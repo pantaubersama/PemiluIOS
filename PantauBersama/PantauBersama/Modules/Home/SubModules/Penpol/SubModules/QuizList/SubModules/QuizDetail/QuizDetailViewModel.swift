@@ -17,28 +17,32 @@ class QuizDetailViewModel: ViewModelType {
     
     struct Input {
         let startTrigger: AnyObserver<Void>
+        let backTrigger: AnyObserver<Void>
     }
     
     struct Output {
         let startSelected: Driver<Void>
+        let back: Driver<Void>
     }
     
     private let startSubject = PublishSubject<Void>()
-    var navigator: QuizDetailNavigator
+    private let backS = PublishSubject<Void>()
     
-    let backS = PublishSubject<Void>()
+    var navigator: QuizDetailNavigator
     
     init(navigator: QuizDetailNavigator) {
         self.navigator = navigator
         self.navigator.finish = backS
         
-        input = Input(startTrigger: startSubject.asObserver())
+        input = Input(startTrigger: startSubject.asObserver(), backTrigger: backS.asObserver())
         
         let start = startSubject
             .flatMap({navigator.startQuiz()})
             .asDriver(onErrorJustReturn: ())
         
-        output = Output(startSelected: start)
+        let back = backS.asDriverOnErrorJustComplete()
+        
+        output = Output(startSelected: start, back: back)
     }
     
 }
