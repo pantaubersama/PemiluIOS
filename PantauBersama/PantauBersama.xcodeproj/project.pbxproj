@@ -138,6 +138,9 @@
 		84B2522E21CAB53C00565D82 /* OnboardingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B2522D21CAB53C00565D82 /* OnboardingCoordinator.swift */; };
 		84B2523021CAB61300565D82 /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B2522F21CAB61300565D82 /* OnboardingViewModel.swift */; };
 		84B2526821CC01F000565D82 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B2526721CC01F000565D82 /* AppState.swift */; };
+		84D01B9821D208DE0000492F /* SectionOfSettingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D01B9721D208DE0000492F /* SectionOfSettingData.swift */; };
+		84D01B9B21D20C480000492F /* SettingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84D01B9A21D20C480000492F /* SettingCell.xib */; };
+		84D01B9D21D20CA20000492F /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D01B9C21D20CA20000492F /* SettingCell.swift */; };
 		84D7A77821CE8CFF009502AF /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D7A77721CE8CFF009502AF /* ProfileViewModel.swift */; };
 		84E2854421CA195C00298E31 /* CustomActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E2854321CA195C00298E31 /* CustomActionSheet.swift */; };
 		84E2854721CA1E8300298E31 /* PilpresType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E2854621CA1E8300298E31 /* PilpresType.swift */; };
@@ -336,6 +339,9 @@
 		84B2522F21CAB61300565D82 /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
 		84B2526021CBCB2E00565D82 /* PantauBersama.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PantauBersama.entitlements; sourceTree = "<group>"; };
 		84B2526721CC01F000565D82 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		84D01B9721D208DE0000492F /* SectionOfSettingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionOfSettingData.swift; sourceTree = "<group>"; };
+		84D01B9A21D20C480000492F /* SettingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingCell.xib; sourceTree = "<group>"; };
+		84D01B9C21D20CA20000492F /* SettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
 		84D7A77721CE8CFF009502AF /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		84E2854321CA195C00298E31 /* CustomActionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomActionSheet.swift; sourceTree = "<group>"; };
 		84E2854621CA1E8300298E31 /* PilpresType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PilpresType.swift; sourceTree = "<group>"; };
@@ -964,9 +970,11 @@
 		849CABC521CE897E00912F8E /* Setting */ = {
 			isa = PBXGroup;
 			children = (
+				84D01B9921D20C140000492F /* Components */,
 				849CABC621CE899600912F8E /* ViewController */,
 				849CABCB21CE8A5100912F8E /* SettingCoordinator.swift */,
 				849CABCD21CE8AC300912F8E /* SettingViewModel.swift */,
+				84D01B9721D208DE0000492F /* SectionOfSettingData.swift */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -1094,6 +1102,15 @@
 				84B2521F21CAB2B900565D82 /* OnboardingViewController.swift */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		84D01B9921D20C140000492F /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				84D01B9A21D20C480000492F /* SettingCell.xib */,
+				84D01B9C21D20CA20000492F /* SettingCell.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		84E2854121CA189B00298E31 /* CustomView */ = {
@@ -1327,6 +1344,7 @@
 				84F892B521C7887800DC1048 /* BwModelicaSS01-BoldCondensed.otf in Resources */,
 				845C570021CD195600EDCDFE /* ProfileController.xib in Resources */,
 				11B3C79721D1126700EDCECB /* QuizAnswerKeyCell.xib in Resources */,
+				84D01B9B21D20C480000492F /* SettingCell.xib in Resources */,
 				84F892A721C7875200DC1048 /* BwModelica-ThinCondensed.otf in Resources */,
 				8441DB3E21CCB80B00B078DF /* ItemRadioCell.xib in Resources */,
 				844C3D8C21C5323E00199871 /* LinimasaCell.xib in Resources */,
@@ -1521,6 +1539,7 @@
 				13812C2B21CAA71F00CAB327 /* PenpolCoordinator.swift in Sources */,
 				11E1079421CD101900B7B074 /* QuizDetailCoordinator.swift in Sources */,
 				11E107AE21CD42C400B7B074 /* QuizOngoingController.swift in Sources */,
+				84D01B9821D208DE0000492F /* SectionOfSettingData.swift in Sources */,
 				11E107DA21CFD99900B7B074 /* QuizResultCoordinator.swift in Sources */,
 				11E1079E21CD200500B7B074 /* PenpolViewModel.swift in Sources */,
 				11B3C79221D1110700EDCECB /* QuizAnswerController.swift in Sources */,
@@ -1583,6 +1602,7 @@
 				84F6980921C8D28B00890917 /* PilpresViewController.swift in Sources */,
 				84D7A77821CE8CFF009502AF /* ProfileViewModel.swift in Sources */,
 				84A07F9A21D0DBE200269C6B /* IdentitasController.swift in Sources */,
+				84D01B9D21D20CA20000492F /* SettingCell.swift in Sources */,
 				11702DD821CB1205001AEE3F /* TrendCell.swift in Sources */,
 				844C3D7821C51EFD00199871 /* HomeCoordinator.swift in Sources */,
 				845C571921CE1C9900EDCDFE /* BadgeCell.swift in Sources */,
