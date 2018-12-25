@@ -10,9 +10,8 @@ import Foundation
 import RxSwift
 import Common
 
-protocol PenpolNavigator: QuizNavigator {
+protocol PenpolNavigator: QuizNavigator, AskNavigator {
     func launchFilter() -> Observable<Void>
-    func launchCreateAsk() -> Observable<Void>
     func openInfoPenpol(infoType: PenpolInfoType) -> Observable<Void>
 }
 
@@ -34,6 +33,7 @@ class PenpolCoordinator: BaseCoordinator<Void> {
 }
 
 extension PenpolCoordinator: PenpolNavigator {
+    
     func launchFilter() -> Observable<Void> {
         let filterCoordinator = FilterCoordinator(navigationController: self.navigationController)
         return coordinate(to: filterCoordinator)
@@ -42,6 +42,14 @@ extension PenpolCoordinator: PenpolNavigator {
     func launchCreateAsk() -> Observable<Void> {
         let createAskCoordinator = CreateAskCoordinator(navigationController: self.navigationController)
         return coordinate(to: createAskCoordinator)
+    }
+    
+    func shareAsk(ask: Any) -> Observable<Void> {
+        // TODO: coordinate to share
+        let activityViewController = UIActivityViewController(activityItems: ["content to be shared" as NSString], applicationActivities: nil)
+        self.navigationController.present(activityViewController, animated: true, completion: nil)
+        
+        return Observable.never()
     }
     
     func openQuiz(quiz: Any) -> Observable<Void> {

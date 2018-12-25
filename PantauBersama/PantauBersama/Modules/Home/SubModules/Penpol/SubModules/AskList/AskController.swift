@@ -39,6 +39,52 @@ class AskController: UITableViewController {
         viewModel.output.infoSelected
             .drive()
             .disposed(by: disposeBag)
+        
+        viewModel.output.shareSelected
+            .drive()
+            .disposed(by: disposeBag)
+
+        viewModel.output.moreSelected
+            .asObservable()
+            .flatMapLatest({ [weak self] (ask) -> Observable<AskType> in
+                return Observable.create({ (observer) -> Disposable in
+
+                    let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+                    let hapus = UIAlertAction(title: "Hapus", style: .default, handler: { (_) in
+                        observer.onNext(AskType.hapus)
+                        observer.on(.completed)
+                    })
+                    let salin = UIAlertAction(title: "Salin Tautan", style: .default, handler: { (_) in
+                        observer.onNext(AskType.salin)
+                        observer.on(.completed)
+                    })
+                    let bagikan = UIAlertAction(title: "Bagikan", style: .default, handler: { (_) in
+                        observer.onNext(AskType.bagikan(ask: ask))
+                        observer.on(.completed)
+                    })
+                    let laporkan = UIAlertAction(title: "Laporkan", style: .default, handler: { (_) in
+                        observer.onNext(AskType.laporkan)
+                        observer.on(.completed)
+                    })
+                    let cancel = UIAlertAction(title: "Batal", style: .cancel, handler: nil)
+                    alert.addAction(hapus)
+                    alert.addAction(salin)
+                    alert.addAction(bagikan)
+                    alert.addAction(laporkan)
+                    alert.addAction(cancel)
+                    DispatchQueue.main.async {
+                        self?.navigationController?.present(alert, animated: true, completion: nil)
+                    }
+                    return Disposables.create()
+                })
+            })
+            .bind(to: viewModel.input.moreMenuTrigger)
+            .disposed(by: disposeBag)
+        
+        viewModel.output.moreMenuSelected
+            .drive()
+            .disposed(by: disposeBag)
+        
     }
 
 }
@@ -66,6 +112,8 @@ extension AskController {
             return cell
         default:
             let cell = tableView.dequeueReusableCell(indexPath: indexPath) as AskViewCell
+            cell.ask = "ask"
+            cell.bind(viewModel: viewModel)
             return cell
         }
     }
