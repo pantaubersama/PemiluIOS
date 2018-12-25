@@ -93,8 +93,8 @@ final class SettingViewModel: ISettingViewModel, ISettingViewModelInput, ISettin
                     return navigator.launchSignOut()
                 case .badge:
                     return navigator.launchBadge()
-//                case .updateProfile:
-//                    return navigator.launchProfileEdit(SectionOfProfileInfoData)
+                case .verifikasi:
+                    return navigator.launchVerifikasi(isVerified: true)
                 default:
                     return Observable.empty()
                 }

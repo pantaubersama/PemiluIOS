@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -19,17 +19,17 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hCF-Z5-5uL">
-                    <rect key="frame" x="0.0" y="20" width="375" height="48"/>
+                    <rect key="frame" x="0.0" y="20" width="320" height="48"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K8t-kO-1Yi">
-                            <rect key="frame" x="16" y="0.0" width="343" height="48"/>
+                            <rect key="frame" x="16" y="0.0" width="288" height="48"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Verifikasi Akun" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ujS-he-qJK" customClass="Label" customModule="Common">
-                                    <rect key="frame" x="0.0" y="0.0" width="307" height="48"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="252" height="48"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" red="0.68041622639999999" green="0.1499232352" blue="0.14898997550000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     <nil key="highlightedColor"/>
@@ -40,7 +40,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1/3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="haL-e7-PVt" customClass="Label" customModule="Common">
-                                    <rect key="frame" x="307" y="0.0" width="36" height="48"/>
+                                    <rect key="frame" x="252" y="0.0" width="36" height="48"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="36" id="cOU-43-MRN"/>
                                     </constraints>
@@ -66,14 +66,14 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mhz-t6-Mxl">
-                    <rect key="frame" x="0.0" y="68" width="375" height="1"/>
+                    <rect key="frame" x="0.0" y="68" width="320" height="1"/>
                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="TFx-3W-g9h"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r8l-ts-DO1" customClass="RoundView" customModule="Common">
-                    <rect key="frame" x="15" y="89" width="345" height="491"/>
+                    <rect key="frame" x="15" y="89" width="290" height="392"/>
                     <color key="backgroundColor" red="0.92550259828567505" green="0.92546778917312622" blue="0.92549145221710205" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -82,20 +82,20 @@
                     </userDefinedRuntimeAttributes>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QJr-5S-tGn" customClass="RoundView" customModule="Common">
-                    <rect key="frame" x="22" y="82" width="331" height="505"/>
+                    <rect key="frame" x="22" y="82" width="276" height="406"/>
                     <subviews>
-                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="POy-tZ-fhp">
-                            <rect key="frame" x="15" y="15" width="301" height="367.5"/>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="POy-tZ-fhp">
+                            <rect key="frame" x="15" y="15" width="246" height="340.5"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LCw-SA-QCs">
-                                    <rect key="frame" x="0.0" y="0.0" width="301" height="240"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="246" height="210"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="240" id="yzb-O7-jJj"/>
+                                        <constraint firstAttribute="height" constant="210" id="yzb-O7-jJj"/>
                                     </constraints>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Foto Diri Bersama Dengan KTP" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9RS-S8-6bL" customClass="Label" customModule="Common">
-                                    <rect key="frame" x="53.5" y="255" width="194" height="22"/>
+                                    <rect key="frame" x="26" y="220" width="194" height="22"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="22" id="4oT-ah-tFf"/>
                                     </constraints>
@@ -110,7 +110,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SMi-l7-PLT" customClass="Label" customModule="Common">
-                                    <rect key="frame" x="6" y="292" width="289.5" height="43.5"/>
+                                    <rect key="frame" x="5.5" y="252" width="235.5" height="58"/>
                                     <string key="text">Pastikan seluruh bagian wajah dari KTP anda gerada dalam bingkai foto dan terlihat jelas. Pastikan foto yang anda kirim adalar foto asli tanpa editan</string>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" red="0.48628133540000001" green="0.4862622023" blue="0.48627519609999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -122,14 +122,15 @@
                                     </userDefinedRuntimeAttributes>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Siap?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RHa-MC-eTq" customClass="Label" customModule="Common">
-                                    <rect key="frame" x="135" y="350.5" width="31.5" height="17"/>
+                                    <rect key="frame" x="103.5" y="320" width="39.5" height="20.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" red="0.48628133540000001" green="0.4862622023" blue="0.48627519609999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     <nil key="highlightedColor"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
-                                            <real key="value" value="14"/>
+                                            <real key="value" value="17"/>
                                         </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="typeLabel" value="bold"/>
                                     </userDefinedRuntimeAttributes>
                                 </label>
                             </subviews>
@@ -152,7 +153,7 @@
                     </userDefinedRuntimeAttributes>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6T9-He-tha" customClass="Button" customModule="Common">
-                    <rect key="frame" x="0.0" y="620" width="375" height="47"/>
+                    <rect key="frame" x="0.0" y="521" width="320" height="47"/>
                     <color key="backgroundColor" red="0.68041622639999999" green="0.1499232352" blue="0.14898997550000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="47" id="lyd-GL-dMU"/>

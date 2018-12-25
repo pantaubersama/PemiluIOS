@@ -9,11 +9,22 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import Common
 
 class ProfileEditController: UITableViewController {
     
     var viewModel: ProfileEditViewModel!
     private let disposeBag = DisposeBag()
+    
+    private var tableHeaderView: HeaderEditProfile = {
+       let view = HeaderEditProfile()
+        return view
+    }()
+    
+    private var tableFooterView: SubmitFooterView = {
+        let view = SubmitFooterView()
+        return view
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,8 +35,8 @@ class ProfileEditController: UITableViewController {
         
         // MARK: TableView
         tableView.registerReusableCell(TextViewCell.self)
-        tableView.registerReusableCell(DateViewCell.self)
-        
+        tableView.tableHeaderView = tableHeaderView
+        tableView.tableFooterView = tableFooterView
         
         back.rx.tap
             .bind(to: viewModel.input.backI)

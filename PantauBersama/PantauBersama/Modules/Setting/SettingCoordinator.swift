@@ -14,6 +14,7 @@ protocol SettingNavigator {
     func launchProfileEdit(_ item: SectionOfProfileInfoData) -> Observable<Void>
     func launchSignOut() -> Observable<Void>
     func launchBadge() -> Observable<Void>
+    func launchVerifikasi(isVerified: Bool) -> Observable<Void>
 }
 
 final class SettingCoordinator: BaseCoordinator<Void> {
@@ -67,5 +68,10 @@ extension SettingCoordinator: SettingNavigator {
     func launchBadge() -> Observable<Void> {
         let badgeCoordinator = BadgeCoordinator(navigationController: navigationController)
         return coordinate(to: badgeCoordinator)
+    }
+    
+    func launchVerifikasi(isVerified: Bool) -> Observable<Void> {
+        let verifikasiCoordinator = IdentitasCoordinator(navigationController: navigationController)
+        return coordinate(to: verifikasiCoordinator)
     }
 }
