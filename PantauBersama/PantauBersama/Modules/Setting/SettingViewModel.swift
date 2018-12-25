@@ -90,7 +90,9 @@ final class SettingViewModel: ISettingViewModel, ISettingViewModelInput, ISettin
             .flatMap { (type) -> Observable<Void> in
                 switch type {
                 case .logout:
-                    return navigator.launcSignOut()
+                    return navigator.launchSignOut()
+                case .badge:
+                    return navigator.launchBadge()
 //                case .updateProfile:
 //                    return navigator.launchProfileEdit(SectionOfProfileInfoData)
                 default:

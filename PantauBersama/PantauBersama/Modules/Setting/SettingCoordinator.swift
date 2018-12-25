@@ -12,7 +12,8 @@ import RxSwift
 protocol SettingNavigator {
     var finish: Observable<Void>! { get set }
     func launchProfileEdit(_ item: SectionOfProfileInfoData) -> Observable<Void>
-    func launcSignOut() -> Observable<Void>
+    func launchSignOut() -> Observable<Void>
+    func launchBadge() -> Observable<Void>
 }
 
 final class SettingCoordinator: BaseCoordinator<Void> {
@@ -43,7 +44,7 @@ extension SettingCoordinator: SettingNavigator {
         return coordinate(to: profileEditCoordinator)
     }
     
-    func launcSignOut() -> Observable<Void> {
+    func launchSignOut() -> Observable<Void> {
         let logoutCoordinator = LogoutCoordinator(navigationController: navigationController)
         return coordinate(to: logoutCoordinator)
             .filter({ $0 == .logout })
@@ -61,5 +62,10 @@ extension SettingCoordinator: SettingNavigator {
             return self.coordinate(to: appCoordinator)
         }
         return Observable.empty()
+    }
+    
+    func launchBadge() -> Observable<Void> {
+        let badgeCoordinator = BadgeCoordinator(navigationController: navigationController)
+        return coordinate(to: badgeCoordinator)
     }
 }

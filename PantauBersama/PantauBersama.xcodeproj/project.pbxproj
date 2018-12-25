@@ -73,6 +73,10 @@
 		840850D221D2632500696CB3 /* ProfileEditCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840850D121D2632500696CB3 /* ProfileEditCoordinator.swift */; };
 		840850D521D2741700696CB3 /* LogoutCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840850D421D2741700696CB3 /* LogoutCoordinator.swift */; };
 		840850D721D2802000696CB3 /* ProfileInfoDummyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840850D621D2802000696CB3 /* ProfileInfoDummyData.swift */; };
+		840850DB21D282B100696CB3 /* BadgeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840850DA21D282B100696CB3 /* BadgeController.swift */; };
+		840850DD21D2832200696CB3 /* BadgeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 840850DC21D2832200696CB3 /* BadgeController.xib */; };
+		840850DF21D2843D00696CB3 /* BadgeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840850DE21D2843D00696CB3 /* BadgeViewModel.swift */; };
+		840850E121D2844700696CB3 /* BadgeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840850E021D2844700696CB3 /* BadgeCoordinator.swift */; };
 		841CDA3D21C8BC1C0015680C /* LinimasaController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 841CDA3C21C8BC1C0015680C /* LinimasaController.xib */; };
 		8428AAA321C7A7790008E975 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8428AAA521C7A7790008E975 /* Localizable.strings */; };
 		8428AAAA21C7AF330008E975 /* GoogleService-Info-Staging.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8428AAA921C7AF330008E975 /* GoogleService-Info-Staging.plist */; };
@@ -277,6 +281,10 @@
 		840850D121D2632500696CB3 /* ProfileEditCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditCoordinator.swift; sourceTree = "<group>"; };
 		840850D421D2741700696CB3 /* LogoutCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutCoordinator.swift; sourceTree = "<group>"; };
 		840850D621D2802000696CB3 /* ProfileInfoDummyData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInfoDummyData.swift; sourceTree = "<group>"; };
+		840850DA21D282B100696CB3 /* BadgeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeController.swift; sourceTree = "<group>"; };
+		840850DC21D2832200696CB3 /* BadgeController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BadgeController.xib; sourceTree = "<group>"; };
+		840850DE21D2843D00696CB3 /* BadgeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeViewModel.swift; sourceTree = "<group>"; };
+		840850E021D2844700696CB3 /* BadgeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeCoordinator.swift; sourceTree = "<group>"; };
 		841CDA3C21C8BC1C0015680C /* LinimasaController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LinimasaController.xib; sourceTree = "<group>"; };
 		8428AAA021C7A7160008E975 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		8428AAA421C7A7790008E975 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -728,6 +736,8 @@
 			isa = PBXGroup;
 			children = (
 				840850D921D2827D00696CB3 /* ViewController */,
+				840850DE21D2843D00696CB3 /* BadgeViewModel.swift */,
+				840850E021D2844700696CB3 /* BadgeCoordinator.swift */,
 			);
 			path = Badge;
 			sourceTree = "<group>";
@@ -735,6 +745,8 @@
 		840850D921D2827D00696CB3 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				840850DA21D282B100696CB3 /* BadgeController.swift */,
+				840850DC21D2832200696CB3 /* BadgeController.xib */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1387,6 +1399,7 @@
 				11E107BD21CF4A6900B7B074 /* PenpolInfoController.xib in Resources */,
 				8428AAA321C7A7790008E975 /* Localizable.strings in Resources */,
 				13F4569521CF97DA00CE45F1 /* CreateAskController.xib in Resources */,
+				840850DD21D2832200696CB3 /* BadgeController.xib in Resources */,
 				11702DD321CB0287001AEE3F /* QuizCell.xib in Resources */,
 				84F892A821C787D800DC1048 /* Lato-Black.ttf in Resources */,
 				84F892B321C787F700DC1048 /* BwModelica-BlackCondensed.otf in Resources */,
@@ -1704,11 +1717,13 @@
 				845C570721CD1D8F00EDCDFE /* ProfileCoordinator.swift in Sources */,
 				84B2523021CAB61300565D82 /* OnboardingViewModel.swift in Sources */,
 				84B2522E21CAB53C00565D82 /* OnboardingCoordinator.swift in Sources */,
+				840850DB21D282B100696CB3 /* BadgeController.swift in Sources */,
 				84B2522021CAB2B900565D82 /* OnboardingViewController.swift in Sources */,
 				13812C2E21CAA92100CAB327 /* AskController.swift in Sources */,
 				84A07FBA21D0F13200269C6B /* IdentitasViewModel.swift in Sources */,
 				11E107B521CD44FD00B7B074 /* QuizOngoingCoordinator.swift in Sources */,
 				840850D221D2632500696CB3 /* ProfileEditCoordinator.swift in Sources */,
+				840850DF21D2843D00696CB3 /* BadgeViewModel.swift in Sources */,
 				8441DB5821CCF7D900B078DF /* DetailJanjiCoordinator.swift in Sources */,
 				13F4569D21CF985800CE45F1 /* CreateAskViewModel.swift in Sources */,
 				844C3D7A21C5230C00199871 /* RawRepresentable.swift in Sources */,
@@ -1717,6 +1732,7 @@
 				84E2854721CA1E8300298E31 /* PilpresType.swift in Sources */,
 				844C3D8521C5252800199871 /* LinimasaCoordinator.swift in Sources */,
 				11E107C121CF4C6B00B7B074 /* PenpolnfoCell.swift in Sources */,
+				840850E121D2844700696CB3 /* BadgeCoordinator.swift in Sources */,
 				840850D521D2741700696CB3 /* LogoutCoordinator.swift in Sources */,
 				84A07FC621D14F3800269C6B /* ReqClusterCoordinator.swift in Sources */,
 				84E2855321CA524200298E31 /* FilterCoordinator.swift in Sources */,
