@@ -7,3 +7,9 @@
 //
 
 import Foundation
+import RxSwift
+
+protocol AskNavigator {
+    func launchCreateAsk() -> Observable<Void>
+    func shareAsk(ask: Any) -> Observable<Void>
+}
