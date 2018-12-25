@@ -63,6 +63,16 @@
 		13F4569D21CF985800CE45F1 /* CreateAskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F4569C21CF985800CE45F1 /* CreateAskViewModel.swift */; };
 		13F4569F21CF986600CE45F1 /* CreateAskCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F4569E21CF986600CE45F1 /* CreateAskCoordinator.swift */; };
 		24F280C4B63852A75C32D7D7 /* Pods_PantauBersama_PantauBersamaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4CBA51E95EB1AE7C2940BC0 /* Pods_PantauBersama_PantauBersamaTests.framework */; };
+		840850BF21D256C200696CB3 /* SectionOfProfileInfoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840850BE21D256C200696CB3 /* SectionOfProfileInfoData.swift */; };
+		840850C321D25C7D00696CB3 /* ProfileEditController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840850C221D25C7D00696CB3 /* ProfileEditController.swift */; };
+		840850C521D25CB000696CB3 /* ProfileEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840850C421D25CB000696CB3 /* ProfileEditViewModel.swift */; };
+		840850C821D25D5800696CB3 /* TextViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 840850C721D25D5800696CB3 /* TextViewCell.xib */; };
+		840850CA21D25EB600696CB3 /* TextViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840850C921D25EB600696CB3 /* TextViewCell.swift */; };
+		840850CC21D2607000696CB3 /* DateViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 840850CB21D2606F00696CB3 /* DateViewCell.xib */; };
+		840850CE21D2611D00696CB3 /* DateViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840850CD21D2611D00696CB3 /* DateViewCell.swift */; };
+		840850D221D2632500696CB3 /* ProfileEditCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840850D121D2632500696CB3 /* ProfileEditCoordinator.swift */; };
+		840850D521D2741700696CB3 /* LogoutCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840850D421D2741700696CB3 /* LogoutCoordinator.swift */; };
+		840850D721D2802000696CB3 /* ProfileInfoDummyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840850D621D2802000696CB3 /* ProfileInfoDummyData.swift */; };
 		841CDA3D21C8BC1C0015680C /* LinimasaController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 841CDA3C21C8BC1C0015680C /* LinimasaController.xib */; };
 		8428AAA321C7A7790008E975 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8428AAA521C7A7790008E975 /* Localizable.strings */; };
 		8428AAAA21C7AF330008E975 /* GoogleService-Info-Staging.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8428AAA921C7AF330008E975 /* GoogleService-Info-Staging.plist */; };
@@ -257,6 +267,16 @@
 		2F6FF2F7B6D75F6A9B57EC24 /* Pods-PantauBersama.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PantauBersama.release.xcconfig"; path = "../Pods/Target Support Files/Pods-PantauBersama/Pods-PantauBersama.release.xcconfig"; sourceTree = "<group>"; };
 		37664EC0D75D639FE37581C6 /* Pods_PantauBersama.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PantauBersama.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7AB70A91ECE9FAB1A4B0959B /* Pods-PantauBersama-PantauBersamaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PantauBersama-PantauBersamaTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-PantauBersama-PantauBersamaTests/Pods-PantauBersama-PantauBersamaTests.release.xcconfig"; sourceTree = "<group>"; };
+		840850BE21D256C200696CB3 /* SectionOfProfileInfoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionOfProfileInfoData.swift; sourceTree = "<group>"; };
+		840850C221D25C7D00696CB3 /* ProfileEditController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditController.swift; sourceTree = "<group>"; };
+		840850C421D25CB000696CB3 /* ProfileEditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditViewModel.swift; sourceTree = "<group>"; };
+		840850C721D25D5800696CB3 /* TextViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextViewCell.xib; sourceTree = "<group>"; };
+		840850C921D25EB600696CB3 /* TextViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewCell.swift; sourceTree = "<group>"; };
+		840850CB21D2606F00696CB3 /* DateViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DateViewCell.xib; sourceTree = "<group>"; };
+		840850CD21D2611D00696CB3 /* DateViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateViewCell.swift; sourceTree = "<group>"; };
+		840850D121D2632500696CB3 /* ProfileEditCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditCoordinator.swift; sourceTree = "<group>"; };
+		840850D421D2741700696CB3 /* LogoutCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutCoordinator.swift; sourceTree = "<group>"; };
+		840850D621D2802000696CB3 /* ProfileInfoDummyData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInfoDummyData.swift; sourceTree = "<group>"; };
 		841CDA3C21C8BC1C0015680C /* LinimasaController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LinimasaController.xib; sourceTree = "<group>"; };
 		8428AAA021C7A7160008E975 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		8428AAA421C7A7790008E975 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -655,6 +675,70 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		840850BD21D2561F00696CB3 /* SubModules */ = {
+			isa = PBXGroup;
+			children = (
+				840850D821D2826600696CB3 /* Badge */,
+				840850C021D2592300696CB3 /* ProfileEdit */,
+				840850BE21D256C200696CB3 /* SectionOfProfileInfoData.swift */,
+				840850D621D2802000696CB3 /* ProfileInfoDummyData.swift */,
+			);
+			path = SubModules;
+			sourceTree = "<group>";
+		};
+		840850C021D2592300696CB3 /* ProfileEdit */ = {
+			isa = PBXGroup;
+			children = (
+				840850C621D25D0900696CB3 /* Components */,
+				840850C121D2593E00696CB3 /* ViewController */,
+				840850C421D25CB000696CB3 /* ProfileEditViewModel.swift */,
+				840850D121D2632500696CB3 /* ProfileEditCoordinator.swift */,
+			);
+			path = ProfileEdit;
+			sourceTree = "<group>";
+		};
+		840850C121D2593E00696CB3 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				840850C221D25C7D00696CB3 /* ProfileEditController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		840850C621D25D0900696CB3 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				840850C721D25D5800696CB3 /* TextViewCell.xib */,
+				840850C921D25EB600696CB3 /* TextViewCell.swift */,
+				840850CB21D2606F00696CB3 /* DateViewCell.xib */,
+				840850CD21D2611D00696CB3 /* DateViewCell.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		840850D321D273F700696CB3 /* Logout */ = {
+			isa = PBXGroup;
+			children = (
+				840850D421D2741700696CB3 /* LogoutCoordinator.swift */,
+			);
+			path = Logout;
+			sourceTree = "<group>";
+		};
+		840850D821D2826600696CB3 /* Badge */ = {
+			isa = PBXGroup;
+			children = (
+				840850D921D2827D00696CB3 /* ViewController */,
+			);
+			path = Badge;
+			sourceTree = "<group>";
+		};
+		840850D921D2827D00696CB3 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		841CDA3E21C8BD070015680C /* SubModules */ = {
 			isa = PBXGroup;
 			children = (
@@ -902,6 +986,7 @@
 		844C3D8621C5264C00199871 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				840850D321D273F700696CB3 /* Logout */,
 				844C3D8721C5265600199871 /* AppCoordinator.swift */,
 				84B2526721CC01F000565D82 /* AppState.swift */,
 			);
@@ -970,6 +1055,7 @@
 		849CABC521CE897E00912F8E /* Setting */ = {
 			isa = PBXGroup;
 			children = (
+				840850BD21D2561F00696CB3 /* SubModules */,
 				84D01B9921D20C140000492F /* Components */,
 				849CABC621CE899600912F8E /* ViewController */,
 				849CABCB21CE8A5100912F8E /* SettingCoordinator.swift */,
@@ -1349,12 +1435,14 @@
 				8441DB3E21CCB80B00B078DF /* ItemRadioCell.xib in Resources */,
 				844C3D8C21C5323E00199871 /* LinimasaCell.xib in Resources */,
 				13812C4221CD421C00CAB327 /* BannerInfoAskCell.xib in Resources */,
+				840850C821D25D5800696CB3 /* TextViewCell.xib in Resources */,
 				13812C3E21CD41DC00CAB327 /* HeaderAskCell.xib in Resources */,
 				844C2BA521CC0F2500BC439A /* LinimasaHeaderView.xib in Resources */,
 				845C571321CE10C900EDCDFE /* IconTableCell.xib in Resources */,
 				844C3D4721C4ED6E00199871 /* Assets.xcassets in Resources */,
 				11B3C79321D1110700EDCECB /* QuizAnswerController.xib in Resources */,
 				84A07FAF21D0E4FD00269C6B /* memfoto-idcard.json in Resources */,
+				840850CC21D2607000696CB3 /* DateViewCell.xib in Resources */,
 				11702DD921CB1205001AEE3F /* TrendCell.xib in Resources */,
 				84A07FA221D0DFF600269C6B /* SignatureController.xib in Resources */,
 				845C570921CD3D5700EDCDFE /* SectionCell.xib in Resources */,
@@ -1542,12 +1630,14 @@
 				84D01B9821D208DE0000492F /* SectionOfSettingData.swift in Sources */,
 				11E107DA21CFD99900B7B074 /* QuizResultCoordinator.swift in Sources */,
 				11E1079E21CD200500B7B074 /* PenpolViewModel.swift in Sources */,
+				840850CE21D2611D00696CB3 /* DateViewCell.swift in Sources */,
 				11B3C79221D1110700EDCECB /* QuizAnswerController.swift in Sources */,
 				13812C4121CD421C00CAB327 /* BannerInfoAskCell.swift in Sources */,
 				11E1079121CD0FE200B7B074 /* QuizDetailController.swift in Sources */,
 				11E107BC21CF4A6900B7B074 /* PenpolInfoController.swift in Sources */,
 				11D092E821CBEF6C0066D55D /* BannerInfoQuizCell.swift in Sources */,
 				844C3D7021C51D3500199871 /* PantauBarKind.swift in Sources */,
+				840850BF21D256C200696CB3 /* SectionOfProfileInfoData.swift in Sources */,
 				844C2BA721CC112700BC439A /* LinimasaHeaderView.swift in Sources */,
 				11E107A821CD33CA00B7B074 /* CreateJanjiCoordinator.swift in Sources */,
 				11E107A721CD33CA00B7B074 /* CreateJanjiViewModel.swift in Sources */,
@@ -1564,10 +1654,12 @@
 				84A07FB121D0E7B000269C6B /* SelfIdentitasController.swift in Sources */,
 				13812C3921CC182500CAB327 /* AskViewCell.swift in Sources */,
 				84B2526821CC01F000565D82 /* AppState.swift in Sources */,
+				840850CA21D25EB600696CB3 /* TextViewCell.swift in Sources */,
 				11E1079621CD126900B7B074 /* QuizDetailViewModel.swift in Sources */,
 				84F6981121C8E21B00890917 /* LinimasaCell.swift in Sources */,
 				11B3C78D21D110DA00EDCECB /* QuizAnswerViewModel.swift in Sources */,
 				13F4569721CF981E00CE45F1 /* AskViewModel.swift in Sources */,
+				840850C321D25C7D00696CB3 /* ProfileEditController.swift in Sources */,
 				11E107DB21CFD99900B7B074 /* QuizResultViewModel.swift in Sources */,
 				11E107AA21CD33CA00B7B074 /* CreateJanjiController.swift in Sources */,
 				845C570F21CE0DA400EDCDFE /* ClusterCell.swift in Sources */,
@@ -1597,6 +1689,7 @@
 				845C570521CD1C2300EDCDFE /* HeaderProfile.swift in Sources */,
 				844C3D8321C524F000199871 /* LinimasaController.swift in Sources */,
 				11702DD221CB0287001AEE3F /* QuizCell.swift in Sources */,
+				840850C521D25CB000696CB3 /* ProfileEditViewModel.swift in Sources */,
 				84E2855521CA570E00298E31 /* LinimasaViewModel.swift in Sources */,
 				84E2855121CA4D4900298E31 /* FilterViewController.swift in Sources */,
 				84F6980921C8D28B00890917 /* PilpresViewController.swift in Sources */,
@@ -1615,13 +1708,16 @@
 				13812C2E21CAA92100CAB327 /* AskController.swift in Sources */,
 				84A07FBA21D0F13200269C6B /* IdentitasViewModel.swift in Sources */,
 				11E107B521CD44FD00B7B074 /* QuizOngoingCoordinator.swift in Sources */,
+				840850D221D2632500696CB3 /* ProfileEditCoordinator.swift in Sources */,
 				8441DB5821CCF7D900B078DF /* DetailJanjiCoordinator.swift in Sources */,
 				13F4569D21CF985800CE45F1 /* CreateAskViewModel.swift in Sources */,
 				844C3D7A21C5230C00199871 /* RawRepresentable.swift in Sources */,
+				840850D721D2802000696CB3 /* ProfileInfoDummyData.swift in Sources */,
 				13F4569921CF982E00CE45F1 /* AskNavigator.swift in Sources */,
 				84E2854721CA1E8300298E31 /* PilpresType.swift in Sources */,
 				844C3D8521C5252800199871 /* LinimasaCoordinator.swift in Sources */,
 				11E107C121CF4C6B00B7B074 /* PenpolnfoCell.swift in Sources */,
+				840850D521D2741700696CB3 /* LogoutCoordinator.swift in Sources */,
 				84A07FC621D14F3800269C6B /* ReqClusterCoordinator.swift in Sources */,
 				84E2855321CA524200298E31 /* FilterCoordinator.swift in Sources */,
 			);
