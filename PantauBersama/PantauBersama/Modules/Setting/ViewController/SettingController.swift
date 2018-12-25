@@ -23,7 +23,7 @@ class SettingController: UITableViewController {
         title = "Setting"
         let back = UIBarButtonItem(image: #imageLiteral(resourceName: "back"), style: .plain, target: nil, action: nil)
         navigationItem.leftBarButtonItem = back
-        navigationController?.navigationBar.configure(with: .white)
+        
         
         // MARK:- TableViews
         tableView.estimatedRowHeight = UITableView.automaticDimension
@@ -48,12 +48,23 @@ class SettingController: UITableViewController {
             .setDelegate(self)
             .disposed(by: disposeBag)
         
+        tableView.rx.itemSelected
+            .bind(to: viewModel.input.itemSelectedI)
+            .disposed(by: disposeBag)
+        
         viewModel.output.itemsO
             .drive(tableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
         
+        viewModel.output.itemSelectedO
+            .drive()
+            .disposed(by: disposeBag)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.configure(with: .white)
+    }
 }
 
 extension SettingController {

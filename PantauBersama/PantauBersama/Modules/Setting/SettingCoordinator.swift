@@ -11,9 +11,13 @@ import RxSwift
 
 protocol SettingNavigator {
     var finish: Observable<Void>! { get set }
+    func launchProfileEdit(_ item: SectionOfProfileInfoData) -> Observable<Void>
+    func launchSignOut() -> Observable<Void>
+    func launchBadge() -> Observable<Void>
+    func launchVerifikasi(isVerified: Bool) -> Observable<Void>
 }
 
-final class SettingCoordinator: BaseCoordinator<Void>, SettingNavigator {
+final class SettingCoordinator: BaseCoordinator<Void> {
     
     private let navigationController: UINavigationController!
     var finish: Observable<Void>!
@@ -33,4 +37,41 @@ final class SettingCoordinator: BaseCoordinator<Void>, SettingNavigator {
         })
     }
     
+}
+
+extension SettingCoordinator: SettingNavigator {
+    func launchProfileEdit(_ item: SectionOfProfileInfoData) -> Observable<Void> {
+        let profileEditCoordinator = ProfileEditCoordinator(navigationController: navigationController, item: item)
+        return coordinate(to: profileEditCoordinator)
+    }
+    
+    func launchSignOut() -> Observable<Void> {
+        let logoutCoordinator = LogoutCoordinator(navigationController: navigationController)
+        return coordinate(to: logoutCoordinator)
+            .filter({ $0 == .logout })
+            .mapToVoid()
+            .flatMap({ [weak self] (_) -> Observable<Void> in
+                guard let `self` = self else { return Observable.empty() }
+                return self.launchOnboarding()
+            })
+        
+    }
+    
+    func launchOnboarding() -> Observable<Void> {
+        if let app = UIApplication.shared.delegate as? AppDelegate, let window = app.window {
+            let appCoordinator = AppCoordinator(window: window)
+            return self.coordinate(to: appCoordinator)
+        }
+        return Observable.empty()
+    }
+    
+    func launchBadge() -> Observable<Void> {
+        let badgeCoordinator = BadgeCoordinator(navigationController: navigationController)
+        return coordinate(to: badgeCoordinator)
+    }
+    
+    func launchVerifikasi(isVerified: Bool) -> Observable<Void> {
+        let verifikasiCoordinator = IdentitasCoordinator(navigationController: navigationController)
+        return coordinate(to: verifikasiCoordinator)
+    }
 }

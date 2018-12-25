@@ -11,10 +11,12 @@ import RxCocoa
 
 protocol ISettingViewModelInput {
     var backI: AnyObserver<Void> { get }
+    var itemSelectedI: AnyObserver<IndexPath> { get }
 }
 
 protocol ISettingViewModelOutput {
     var itemsO: Driver<[SectionOfSettingData]> { get }
+    var itemSelectedO: Driver<Void> { get }
 }
 
 protocol ISettingViewModel {
@@ -33,17 +35,22 @@ final class SettingViewModel: ISettingViewModel, ISettingViewModelInput, ISettin
     
     // Input
     var backI: AnyObserver<Void>
+    var itemSelectedI: AnyObserver<IndexPath>
     
     // Output
     var itemsO: Driver<[SectionOfSettingData]>
+    var itemSelectedO: Driver<Void>
     
     private let backS = PublishSubject<Void>()
+    private let editS = PublishSubject<Int>()
+    private let itemSelectedS = PublishSubject<IndexPath>()
     
     init(navigator: SettingNavigator) {
         self.navigator = navigator
         self.navigator.finish = backS
         
         backI = backS.asObserver()
+        itemSelectedI = itemSelectedS.asObserver()
         
         let items = Driver.just([
             SectionOfSettingData(header: nil, items: [
@@ -69,12 +76,33 @@ final class SettingViewModel: ISettingViewModel, ISettingViewModelInput, ISettin
                 SettingData.rate,
                 SettingData.share
                 ]),
-            SectionOfSettingData(header: nil, items: [
+            SectionOfSettingData(header: "", items: [
                 SettingData.logout
                 ])
             ])
         
+        let itemProfile: Observable<[SectionOfProfileInfoData]>
+        
+        let itemSelected = itemSelectedS
+            .withLatestFrom(items) { indexPath, item in
+                return item[indexPath.section].items[indexPath.row]
+            }
+            .flatMap { (type) -> Observable<Void> in
+                switch type {
+                case .logout:
+                    return navigator.launchSignOut()
+                case .badge:
+                    return navigator.launchBadge()
+                case .verifikasi:
+                    return navigator.launchVerifikasi(isVerified: true)
+                default:
+                    return Observable.empty()
+                }
+        }
+        
         itemsO = items
+        itemSelectedO = itemSelected.asDriverOnErrorJustComplete()
+        
     }
     
 }

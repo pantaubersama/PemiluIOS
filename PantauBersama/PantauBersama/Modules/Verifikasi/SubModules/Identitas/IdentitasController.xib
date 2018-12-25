@@ -108,7 +108,7 @@
                     <rect key="frame" x="22" y="82" width="276" height="406"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="OEg-B8-jxH">
-                            <rect key="frame" x="15" y="15" width="246" height="258"/>
+                            <rect key="frame" x="15" y="15" width="246" height="218"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="baselineVerified48Px" translatesAutoresizingMaskIntoConstraints="NO" id="tCa-Rl-aJZ">
                                     <rect key="frame" x="75" y="0.0" width="96" height="96"/>
@@ -127,9 +127,9 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YTx-pI-g9M" customClass="Label" customModule="Common">
-                                    <rect key="frame" x="6" y="138" width="234.5" height="120"/>
+                                    <rect key="frame" x="6" y="138" width="234.5" height="80"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="120" id="oBW-L3-QQR"/>
+                                        <constraint firstAttribute="height" constant="80" id="oBW-L3-QQR"/>
                                     </constraints>
                                     <string key="text">Dengan diverifikasi kamu akan….
 Mendapatkan manfaat dan is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</string>
@@ -146,14 +146,14 @@ Mendapatkan manfaat dan is simply dummy text of the printing and typesetting ind
                             </subviews>
                         </stackView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nqV-yo-deg">
-                            <rect key="frame" x="26" y="288" width="224" height="1"/>
+                            <rect key="frame" x="26" y="248" width="224" height="1"/>
                             <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="g6I-lT-HmR"/>
                             </constraints>
                         </view>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="sv0-Go-aTr">
-                            <rect key="frame" x="15" y="304" width="246" height="79.5"/>
+                            <rect key="frame" x="15" y="264" width="246" height="79.5"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Masukkan No Identitas KTP" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w3R-wf-Dwi">
                                     <rect key="frame" x="21" y="0.0" width="204.5" height="19.5"/>
@@ -229,6 +229,6 @@ Mendapatkan manfaat dan is simply dummy text of the printing and typesetting ind
         </view>
     </objects>
     <resources>
-        <image name="baselineVerified48Px" width="96" height="96"/>
+        <image name="baselineVerified48Px" width="24" height="24"/>
     </resources>
 </document>

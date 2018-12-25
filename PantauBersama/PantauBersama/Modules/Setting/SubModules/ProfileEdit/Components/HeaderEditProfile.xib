@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Lato-Italic.ttf">
+            <string>Lato-Italic</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HeaderEditProfile" customModule="PantauBersama" customModuleProvider="target">
+            <connections>
+                <outlet property="avatar" destination="TdL-oU-tcH" id="GPk-6Y-0OO"/>
+                <outlet property="buttonGanti" destination="itU-6Z-dQV" id="9jG-HS-6HZ"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="WCx-fC-W0B">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="140"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="EFl-DV-11P">
+                    <rect key="frame" x="16" y="16" width="343" height="108"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xoi-5O-JIT" customClass="RoundView" customModule="Common">
+                            <rect key="frame" x="139.5" y="0.0" width="64" height="64"/>
+                            <subviews>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icDummyPerson" translatesAutoresizingMaskIntoConstraints="NO" id="TdL-oU-tcH">
+                                    <rect key="frame" x="0.0" y="0.0" width="64" height="64"/>
+                                </imageView>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="TdL-oU-tcH" firstAttribute="leading" secondItem="Xoi-5O-JIT" secondAttribute="leading" id="6Ak-Qf-e4z"/>
+                                <constraint firstAttribute="width" constant="64" id="BKf-Tx-J7G"/>
+                                <constraint firstAttribute="bottom" secondItem="TdL-oU-tcH" secondAttribute="bottom" id="KmK-AI-NBp"/>
+                                <constraint firstAttribute="trailing" secondItem="TdL-oU-tcH" secondAttribute="trailing" id="aUL-Cn-NAB"/>
+                                <constraint firstAttribute="height" constant="64" id="gJO-4Z-heu"/>
+                                <constraint firstItem="TdL-oU-tcH" firstAttribute="top" secondItem="Xoi-5O-JIT" secondAttribute="top" id="kXI-3H-3uM"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="50"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="itU-6Z-dQV">
+                            <rect key="frame" x="0.0" y="74" width="343" height="34"/>
+                            <fontDescription key="fontDescription" name="Lato-Italic" family="Lato" pointSize="17"/>
+                            <state key="normal" title="Ganti Profil">
+                                <color key="titleColor" red="0.078431372550000003" green="0.74117647060000003" blue="0.60392156860000001" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                        </button>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="itU-6Z-dQV" secondAttribute="trailing" id="8hd-i8-oJz"/>
+                        <constraint firstItem="itU-6Z-dQV" firstAttribute="leading" secondItem="EFl-DV-11P" secondAttribute="leading" id="YZU-AG-8Dt"/>
+                    </constraints>
+                </stackView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZX2-a8-79m">
+                    <rect key="frame" x="0.0" y="139" width="375" height="1"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="NiH-j9-8VR"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="hOm-Xu-A2E" firstAttribute="bottom" secondItem="ZX2-a8-79m" secondAttribute="bottom" id="Di1-pv-2YA"/>
+                <constraint firstItem="EFl-DV-11P" firstAttribute="leading" secondItem="hOm-Xu-A2E" secondAttribute="leading" constant="16" id="EuT-7M-UoN"/>
+                <constraint firstItem="ZX2-a8-79m" firstAttribute="leading" secondItem="hOm-Xu-A2E" secondAttribute="leading" id="Jb1-Px-m4E"/>
+                <constraint firstItem="hOm-Xu-A2E" firstAttribute="trailing" secondItem="EFl-DV-11P" secondAttribute="trailing" constant="16" id="Wit-0J-7ih"/>
+                <constraint firstAttribute="bottom" secondItem="EFl-DV-11P" secondAttribute="bottom" constant="16" id="Wrq-Ti-0i0"/>
+                <constraint firstItem="EFl-DV-11P" firstAttribute="top" secondItem="WCx-fC-W0B" secondAttribute="top" constant="16" id="lks-nW-BrF"/>
+                <constraint firstItem="hOm-Xu-A2E" firstAttribute="trailing" secondItem="ZX2-a8-79m" secondAttribute="trailing" id="sgb-7T-5RQ"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="hOm-Xu-A2E"/>
+            <point key="canvasLocation" x="8.8000000000000007" y="-134.03298350824588"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="icDummyPerson" width="64" height="64"/>
+    </resources>
+</document>
