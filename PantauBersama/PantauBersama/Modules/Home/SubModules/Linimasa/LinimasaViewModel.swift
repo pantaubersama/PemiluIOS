@@ -29,7 +29,7 @@ final class LinimasaViewModel: ViewModelType {
         let profileSelected: Driver<Void>
     }
     
-    private let navigator: LinimasaNavigator
+    let navigator: LinimasaNavigator
     private let addSubject = PublishSubject<Void>()
     private let filterSubject = PublishSubject<Void>()
     private let refreshSubject = PublishSubject<Void>()

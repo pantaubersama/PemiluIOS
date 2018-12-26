@@ -8,11 +8,35 @@
 
 import UIKit
 import Common
+import RxSwift
 
 class LinimasaJanjiCell: UITableViewCell, IReusableCell {
     
-    override func prepareForReuse() {
-        super.prepareForReuse()
+    @IBOutlet weak var shareBtn: UIButton!
+    @IBOutlet weak var moreBtn: UIButton!
+    
+    private(set) var disposeBag = DisposeBag()
+    
+    var janji: Any! {
+        didSet {
+            
+        }
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        disposeBag = DisposeBag()
+    }
+    
+    func bind(viewModel: JanjiPolitikViewModel) {
+        shareBtn.rx.tap
+            .map({ self.janji })
+            .bind(to: viewModel.input.shareJanji)
+            .disposed(by: disposeBag)
+        
+        moreBtn.rx.tap
+            .map({ self.janji })
+            .bind(to: viewModel.input.moreTrigger)
+            .disposed(by: disposeBag)
+    }
 }

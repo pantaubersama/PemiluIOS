@@ -150,6 +150,10 @@
                     <constraint firstAttribute="bottom" secondItem="yN2-AG-qUF" secondAttribute="bottom" constant="16" id="j2u-eg-qqF"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="moreBtn" destination="FFb-Yl-kbS" id="iyq-jB-o5w"/>
+                <outlet property="shareBtn" destination="bis-jd-YIs" id="hG2-12-VEr"/>
+            </connections>
             <point key="canvasLocation" x="-113.59999999999999" y="135.832083958021"/>
         </tableViewCell>
     </objects>

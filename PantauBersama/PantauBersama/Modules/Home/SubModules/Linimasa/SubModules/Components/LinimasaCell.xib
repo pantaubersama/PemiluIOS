@@ -141,6 +141,7 @@
             <connections>
                 <outlet property="avatar" destination="vpl-MM-rZo" id="sPK-ok-fkH"/>
                 <outlet property="content" destination="yTc-rH-RRB" id="5pp-pg-1pa"/>
+                <outlet property="more" destination="H8n-35-M0y" id="lll-If-jn5"/>
                 <outlet property="name" destination="Rkp-BQ-KHE" id="POX-rU-xaj"/>
                 <outlet property="thumbnail" destination="NeP-4T-Gaz" id="YM9-iU-gDb"/>
                 <outlet property="titleTeam" destination="Txr-U2-bOb" id="bbv-FW-m90"/>

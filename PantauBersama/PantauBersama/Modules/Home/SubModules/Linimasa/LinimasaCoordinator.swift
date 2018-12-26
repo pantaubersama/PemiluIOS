@@ -9,15 +9,12 @@
 import UIKit
 import RxSwift
 
-protocol LinimasaNavigator {
+protocol LinimasaNavigator: PilpresNavigator, JanjiPolitikNavigator {
     func launchProfile() -> Observable<Void>
     func launchNotifications()
     func launchFilter() -> Observable<Void>
     func launchAddJanji() -> Observable<Void>
 }
-
-
-
 
 class LinimasaCoordinator: BaseCoordinator<Void> {
     
@@ -57,4 +54,37 @@ extension LinimasaCoordinator: LinimasaNavigator {
     func launchNotifications() {
         
     }
+ 
+    
+}
+
+extension LinimasaCoordinator: PilpresNavigator {
+    
+    func openTwitter(data: String) -> Observable<Void> {
+        UIApplication.shared.open(URL(string: "https://twitter.com/hanif_sgy")!, options: [:], completionHandler: nil)
+        return Observable.just(())
+    }
+    
+    
+    func sharePilpres(data: Any) -> Observable<Void> {
+        // TODO: coordinate to share
+        let activityViewController = UIActivityViewController(activityItems: ["content to be shared" as NSString], applicationActivities: nil)
+        self.navigationController.present(activityViewController, animated: true, completion: nil)
+        
+        return Observable.never()
+    }
+    
+    
+}
+
+
+extension LinimasaCoordinator: JanjiPolitikNavigator {
+    
+    func shareJanji(data: Any) -> Observable<Void> {
+        let activityViewController = UIActivityViewController(activityItems: ["content to be shared" as NSString], applicationActivities: nil)
+        self.navigationController.present(activityViewController, animated: true, completion: nil)
+        
+        return Observable.never()
+    }
+    
 }

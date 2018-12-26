@@ -15,6 +15,13 @@ class PilpresViewController: UITableViewController {
     private let disposeBag = DisposeBag()
     private var headerView: LinimasaHeaderView!
     
+    private var viewModel: PilpresViewModel!
+    
+    convenience init(viewModel: PilpresViewModel) {
+        self.init()
+        self.viewModel = viewModel
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.registerReusableCell(LinimasaCell.self)
@@ -26,6 +33,48 @@ class PilpresViewController: UITableViewController {
         headerView = LinimasaHeaderView()
         tableView.tableHeaderView = headerView
         tableView.tableFooterView = UIView()
+        
+        viewModel.output.shareSelected
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.moreSelected
+            .asObservable()
+            .flatMapLatest({ [weak self] (pilpres) -> Observable<PilpresType> in
+                return Observable.create({ (observer) -> Disposable in
+                    
+                    let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+                    let salin = UIAlertAction(title: "Salin Tautan", style: .default, handler: { (_) in
+                        observer.onNext(PilpresType.salin)
+                        observer.on(.completed)
+                    })
+                    let bagikan = UIAlertAction(title: "Bagikan", style: .default, handler: { (_) in
+                        observer.onNext(PilpresType.bagikan)
+                        observer.on(.completed)
+                    })
+                    let twitter = UIAlertAction(title: "Buka di Aplikasi Twitter", style: .default, handler: { (_) in
+                        observer.onNext(PilpresType.twitter)
+                        observer.on(.completed)
+                    })
+                    let cancel = UIAlertAction(title: "Batal", style: .cancel, handler: nil)
+                    alert.addAction(salin)
+                    alert.addAction(bagikan)
+                    alert.addAction(twitter)
+                    alert.addAction(cancel)
+                    DispatchQueue.main.async {
+                        self?.navigationController?.present(alert, animated: true, completion: nil)
+                    }
+                    return Disposables.create()
+                })
+            })
+            .bind(to: viewModel.input.moreMenuTrigger)
+            .disposed(by: disposeBag)
+        
+        viewModel.output.moreMenuSelected
+            .drive()
+            .disposed(by: disposeBag)
+        
+        
     }
     
 }
@@ -49,6 +98,8 @@ extension PilpresViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(indexPath: indexPath) as LinimasaCell
+        cell.pilpres = "pilpres"
+        cell.bind(viewModel: viewModel)
         return cell
     }
 }

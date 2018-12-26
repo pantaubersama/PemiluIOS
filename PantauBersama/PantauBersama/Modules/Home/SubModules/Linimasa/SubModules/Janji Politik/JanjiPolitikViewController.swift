@@ -7,10 +7,21 @@
 //
 
 import UIKit
+import RxCocoa
+import RxSwift
+import Common
 
 class JanjiPolitikViewController: UITableViewController {
     
     private var headerView: LinimasaHeaderView!
+    private var viewModel: JanjiPolitikViewModel!
+    private let disposeBag: DisposeBag = DisposeBag()
+    
+    convenience init(viewModel: JanjiPolitikViewModel) {
+        self.init()
+        self.viewModel = viewModel
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +36,50 @@ class JanjiPolitikViewController: UITableViewController {
         tableView.tableHeaderView = headerView
         tableView.tableFooterView = UIView()
         
+        viewModel.output.shareSelected
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.moreSelected
+            .asObservable()
+            .flatMapLatest({ [weak self] (pilpres) -> Observable<JanjiType> in
+                return Observable.create({ (observer) -> Disposable in
+                    
+                    let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+                    let hapus = UIAlertAction(title: "Hapus", style: .default, handler: { (_) in
+                        observer.onNext(JanjiType.hapus)
+                        observer.on(.completed)
+                    })
+                    let salin = UIAlertAction(title: "Salin Tautan", style: .default, handler: { (_) in
+                        observer.onNext(JanjiType.salin)
+                        observer.on(.completed)
+                    })
+                    let bagikan = UIAlertAction(title: "Bagikan", style: .default, handler: { (_) in
+                        observer.onNext(JanjiType.bagikan)
+                        observer.on(.completed)
+                    })
+                    let lapor = UIAlertAction(title: "Laporkan", style: .default, handler: { (_) in
+                        observer.onNext(JanjiType.laporkan)
+                        observer.on(.completed)
+                    })
+                    let cancel = UIAlertAction(title: "Batal", style: .cancel, handler: nil)
+                    alert.addAction(hapus)
+                    alert.addAction(salin)
+                    alert.addAction(bagikan)
+                    alert.addAction(lapor)
+                    alert.addAction(cancel)
+                    DispatchQueue.main.async {
+                        self?.navigationController?.present(alert, animated: true, completion: nil)
+                    }
+                    return Disposables.create()
+                })
+            })
+            .bind(to: viewModel.input.moreMenuTrigger)
+            .disposed(by: disposeBag)
+        
+        viewModel.output.moreMenuSelected
+            .drive()
+            .disposed(by: disposeBag)
     }
     
 }
@@ -48,6 +103,7 @@ extension JanjiPolitikViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(indexPath: indexPath) as LinimasaJanjiCell
+        cell.bind(viewModel: viewModel)
         return cell
     }
     

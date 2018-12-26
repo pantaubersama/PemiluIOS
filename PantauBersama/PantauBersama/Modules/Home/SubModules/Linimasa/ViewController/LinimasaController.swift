@@ -20,8 +20,11 @@ class LinimasaController: UIViewController {
     
     var viewModel: LinimasaViewModel!
     
-    private lazy var pilpresController = PilpresViewController()
-    private lazy var janjiController = JanjiPolitikViewController()
+    lazy var pilpresViewModel = PilpresViewModel(navigator: viewModel.navigator)
+    lazy var janjiViewModel = JanjiPolitikViewModel(navigator: viewModel.navigator)
+    
+    private lazy var pilpresController = PilpresViewController(viewModel: pilpresViewModel)
+    private lazy var janjiController = JanjiPolitikViewController(viewModel: janjiViewModel)
     
     private lazy var searchBar: UISearchBar = {
        let search = UISearchBar()
