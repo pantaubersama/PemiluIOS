@@ -62,6 +62,7 @@
 		13F4569921CF982E00CE45F1 /* AskNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F4569821CF982E00CE45F1 /* AskNavigator.swift */; };
 		13F4569D21CF985800CE45F1 /* CreateAskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F4569C21CF985800CE45F1 /* CreateAskViewModel.swift */; };
 		13F4569F21CF986600CE45F1 /* CreateAskCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F4569E21CF986600CE45F1 /* CreateAskCoordinator.swift */; };
+		13F456A921D2A68300CE45F1 /* AskType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F456A821D2A68300CE45F1 /* AskType.swift */; };
 		24F280C4B63852A75C32D7D7 /* Pods_PantauBersama_PantauBersamaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4CBA51E95EB1AE7C2940BC0 /* Pods_PantauBersama_PantauBersamaTests.framework */; };
 		840850BF21D256C200696CB3 /* SectionOfProfileInfoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840850BE21D256C200696CB3 /* SectionOfProfileInfoData.swift */; };
 		840850C321D25C7D00696CB3 /* ProfileEditController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840850C221D25C7D00696CB3 /* ProfileEditController.swift */; };
@@ -272,6 +273,7 @@
 		13F4569821CF982E00CE45F1 /* AskNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AskNavigator.swift; sourceTree = "<group>"; };
 		13F4569C21CF985800CE45F1 /* CreateAskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAskViewModel.swift; sourceTree = "<group>"; };
 		13F4569E21CF986600CE45F1 /* CreateAskCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAskCoordinator.swift; sourceTree = "<group>"; };
+		13F456A821D2A68300CE45F1 /* AskType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AskType.swift; sourceTree = "<group>"; };
 		26FDFCB449836F8CBC965641 /* Pods-PantauBersama-PantauBersamaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PantauBersama-PantauBersamaTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-PantauBersama-PantauBersamaTests/Pods-PantauBersama-PantauBersamaTests.debug.xcconfig"; sourceTree = "<group>"; };
 		2F6FF2F7B6D75F6A9B57EC24 /* Pods-PantauBersama.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PantauBersama.release.xcconfig"; path = "../Pods/Target Support Files/Pods-PantauBersama/Pods-PantauBersama.release.xcconfig"; sourceTree = "<group>"; };
 		37664EC0D75D639FE37581C6 /* Pods_PantauBersama.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PantauBersama.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1248,6 +1250,7 @@
 			children = (
 				84E2854621CA1E8300298E31 /* PilpresType.swift */,
 				8441DB5921CD087000B078DF /* JanjiType.swift */,
+				13F456A821D2A68300CE45F1 /* AskType.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -1651,6 +1654,7 @@
 				845C571521CE122B00EDCDFE /* IconTableCell.swift in Sources */,
 				84A07FBC21D129FC00269C6B /* GroupProfileInfoData.swift in Sources */,
 				11702DD521CB08DE001AEE3F /* QuizController.swift in Sources */,
+				13F456A921D2A68300CE45F1 /* AskType.swift in Sources */,
 				13812C1E21CAA48700CAB327 /* PenpolController.swift in Sources */,
 				844C3D7621C51EAF00199871 /* BaseCoordinator.swift in Sources */,
 				11E1079A21CD14A400B7B074 /* QuizViewModel.swift in Sources */,
