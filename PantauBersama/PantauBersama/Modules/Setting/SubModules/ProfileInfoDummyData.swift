@@ -43,7 +43,7 @@ final class ProfileInfoDummyData {
                 default:
                     return SectionOfProfileInfoData(id: "23123",
                                                     items: profileInformation,
-                                                    header: .editProfile)
+                                                    header: .editPassword)
                 }
         }
         return Observable.just(items)

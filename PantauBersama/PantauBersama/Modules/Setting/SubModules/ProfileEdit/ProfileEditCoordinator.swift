@@ -10,26 +10,26 @@ import RxSwift
 import UIKit
 
 protocol ProfileEditNavigator {
-    
+    var finish: Observable<Void>! { get set }
 }
 
 class ProfileEditCoordinator: BaseCoordinator<Void> {
     
     private let navigationController: UINavigationController
-    private let item: SectionOfProfileInfoData
+    var finish: Observable<Void>!
     
-    init(navigationController: UINavigationController, item: SectionOfProfileInfoData) {
+    init(navigationController: UINavigationController) {
         self.navigationController = navigationController
-        self.item = item
     }
     
     override func start() -> Observable<CoordinationResult> {
-        let viewModel = ProfileEditViewModel(navigator: self,
-                                             item: item)
+        let viewModel = ProfileEditViewModel(navigator: self)
         let viewController = ProfileEditController()
         viewController.viewModel = viewModel
         navigationController.pushViewController(viewController, animated: true)
-        return Observable.never()
+        return finish.do(onNext: { [weak self] (_) in
+            self?.navigationController.popViewController(animated: true)
+        })
     }
     
 }

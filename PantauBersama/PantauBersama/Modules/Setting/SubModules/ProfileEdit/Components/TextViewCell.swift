@@ -36,12 +36,12 @@ class TextViewCell: UITableViewCell {
 extension TextViewCell: IReusableCell {
     struct Input {
         let viewModel: ProfileEditViewModel
-        let index: Int
         let data: ProfileInfoField
     }
     
     func configureCell(item: Input) {
         let bag = DisposeBag()
+        titleLabel.text = item.data.key
         
         
     }
