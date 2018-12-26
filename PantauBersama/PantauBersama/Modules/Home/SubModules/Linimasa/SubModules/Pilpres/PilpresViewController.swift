@@ -34,9 +34,6 @@ class PilpresViewController: UITableViewController {
         tableView.tableHeaderView = headerView
         tableView.tableFooterView = UIView()
         
-        viewModel.output.shareSelected
-            .drive()
-            .disposed(by: disposeBag)
         
         viewModel.output.moreSelected
             .asObservable()
