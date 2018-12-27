@@ -23,8 +23,7 @@ class ProfileEditViewModel: ViewModelType {
     
     
     struct Output {
-        let items: Driver<[SectionOfProfileInfoData]>
-        let title: Driver<String>
+        let items: Driver<[SectionOfProfileEditData]>
     }
     
     private var navigator: ProfileEditNavigator
@@ -41,23 +40,19 @@ class ProfileEditViewModel: ViewModelType {
                       viewWillAppearI: viewWillAppearS.asObserver())
         
         // MARK: Build cell for UITableView
-        let items: Observable<[SectionOfProfileInfoData]> = viewWillAppearS
-            .flatMapLatest({ (_) -> Observable<[SectionOfProfileInfoData]> in
-                return ProfileInfoDummyData.profileInfoData()
-            })
-            .share()
-        let showItems = items
-            .map { (a) -> [SectionOfProfileInfoData] in
-                return a.map({ (b) -> SectionOfProfileInfoData in
-                    var temp = b
-                    temp.items = b.items
-                    return temp
-                })
-            }
+        let items = Driver.just([
+            SectionOfProfileEditData(items: [
+                SettingProfile.namaLengkap,
+                SettingProfile.username,
+                SettingProfile.lokasi,
+                SettingProfile.deksripsi,
+                SettingProfile.pendidikan,
+                SettingProfile.pekerjaan
+            ])
+        ])
         
         // MARK: Output
-        output = Output(items: showItems.asDriverOnErrorJustComplete(),
-                        title: Driver.just(""))
+        output = Output(items: items)
     }
     
 }

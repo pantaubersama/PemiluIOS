@@ -15,6 +15,7 @@ class SubmitFooterView: UIView {
     
     
     override init(frame: CGRect) {
+        let frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 47.0)
         super.init(frame: frame)
         setup()
     }

@@ -11,15 +11,15 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="70" id="O0k-3D-jOX" customClass="TextViewCell" customModule="PantauBersama" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="369" height="70"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="80" id="O0k-3D-jOX" customClass="TextViewCell" customModule="PantauBersama" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="369" height="80"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="O0k-3D-jOX" id="Bto-hE-moV">
-                <rect key="frame" x="0.0" y="0.0" width="369" height="69.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="369" height="79.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="L0R-6J-Zzm">
-                        <rect key="frame" x="16" y="14" width="337" height="47.5"/>
+                        <rect key="frame" x="16" y="8" width="337" height="66.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nama Depan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wxR-Sf-m5K" customClass="Label" customModule="Common">
                                 <rect key="frame" x="0.0" y="0.0" width="337" height="12"/>
@@ -37,7 +37,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="Dt1-p6-rx1" customClass="TextField" customModule="Common">
-                                <rect key="frame" x="0.0" y="22" width="337" height="25.5"/>
+                                <rect key="frame" x="0.0" y="22" width="337" height="44.5"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -52,16 +52,16 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="L0R-6J-Zzm" firstAttribute="leading" secondItem="Bto-hE-moV" secondAttribute="leading" constant="16" id="Oa3-SC-YD1"/>
-                    <constraint firstItem="L0R-6J-Zzm" firstAttribute="top" secondItem="Bto-hE-moV" secondAttribute="top" constant="14" id="Qpb-bo-ZHH"/>
+                    <constraint firstItem="L0R-6J-Zzm" firstAttribute="top" secondItem="Bto-hE-moV" secondAttribute="top" constant="8" id="Qpb-bo-ZHH"/>
                     <constraint firstAttribute="trailing" secondItem="L0R-6J-Zzm" secondAttribute="trailing" constant="16" id="egz-le-VGf"/>
-                    <constraint firstAttribute="bottom" secondItem="L0R-6J-Zzm" secondAttribute="bottom" constant="8" id="xlW-QA-wCF"/>
+                    <constraint firstAttribute="bottom" secondItem="L0R-6J-Zzm" secondAttribute="bottom" constant="5" id="xlW-QA-wCF"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="textField" destination="Dt1-p6-rx1" id="qQe-de-uVV"/>
                 <outlet property="titleLabel" destination="wxR-Sf-m5K" id="ux8-6u-Uvb"/>
             </connections>
-            <point key="canvasLocation" x="-204" y="42"/>
+            <point key="canvasLocation" x="-204" y="45.877061469265371"/>
         </tableViewCell>
     </objects>
 </document>

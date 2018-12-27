@@ -70,13 +70,19 @@ class SettingController: UITableViewController {
 extension SettingController {
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return dataSource.sectionModels[section].header != nil ? 48.0 : 1.0
+        return dataSource.sectionModels[section].header != nil ? 48.0 : 2.0
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = SectionCell()
         view.button.isHidden = true
         view.label.text = dataSource.sectionModels[section].header
+        return view
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let view = UIView()
+        view.backgroundColor = UIColor.groupTableViewBackground
         return view
     }
 }

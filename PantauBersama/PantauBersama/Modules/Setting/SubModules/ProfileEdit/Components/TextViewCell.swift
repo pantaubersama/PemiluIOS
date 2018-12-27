@@ -36,7 +36,7 @@ class TextViewCell: UITableViewCell {
 extension TextViewCell: IReusableCell {
     struct Input {
         let viewModel: ProfileEditViewModel
-        let data: ProfileInfoField
+        let data: SettingProfile
     }
     
     func configureCell(item: Input) {

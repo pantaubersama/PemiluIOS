@@ -12,50 +12,45 @@ import RxCocoa
 import Common
 import RxDataSources
 
-class ProfileEditController: UITableViewController {
+class ProfileEditController: UIViewController {
+    
+    @IBOutlet weak var tableView: UITableView!
     
     var viewModel: ProfileEditViewModel!
     private let disposeBag = DisposeBag()
-    var dataSource: RxTableViewSectionedReloadDataSource<SectionOfProfileInfoData>!
+    var dataSource: RxTableViewSectionedReloadDataSource<SectionOfProfileEditData>!
     
-    private var tableHeaderView: HeaderEditProfile = {
-       let view = HeaderEditProfile()
-        return view
-    }()
-    
-    private var tableFooterView: SubmitFooterView = {
-        let view = SubmitFooterView()
-        return view
-    }()
+    private var tableHeaderView: HeaderEditProfile!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        title = "Edit Profile"
         let back = UIBarButtonItem(image: #imageLiteral(resourceName: "back"), style: .plain, target: nil, action: nil)
         navigationItem.leftBarButtonItem = back
         navigationController?.navigationBar.configure(with: .white)
         
         // MARK: TableView
         tableView.registerReusableCell(TextViewCell.self)
+        tableHeaderView = HeaderEditProfile()
         tableView.tableHeaderView = tableHeaderView
-        tableView.tableFooterView = tableFooterView
         tableView.delegate = nil
         tableView.dataSource = nil
-        tableView.separatorColor = UIColor.groupTableViewBackground
+        tableView.separatorStyle = .none
+        tableView.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        tableView.estimatedRowHeight = 80.0
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.allowsSelection = false
         
         back.rx.tap
             .bind(to: viewModel.input.backI)
-            .disposed(by: disposeBag)
-        
-        viewModel.output.title
-            .drive(navigationItem.rx.title)
             .disposed(by: disposeBag)
         
         tableView.rx
             .setDelegate(self)
             .disposed(by: disposeBag)
         
-        dataSource = RxTableViewSectionedReloadDataSource<SectionOfProfileInfoData>(configureCell: { (dataSource, tableView, indexPath, item) in
+        dataSource = RxTableViewSectionedReloadDataSource<SectionOfProfileEditData>(configureCell: { (dataSource, tableView, indexPath, item) in
             let cell = tableView.dequeueReusableCell(indexPath: indexPath) as TextViewCell
             cell.configureCell(item: TextViewCell.Input(viewModel: self.viewModel, data: item))
             return cell
@@ -74,23 +69,6 @@ class ProfileEditController: UITableViewController {
     }
 }
 
-extension ProfileEditController {
+extension ProfileEditController: UITableViewDelegate {
     
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 140.0
-    }
-    
-    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 47.0
-    }
-    
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = tableHeaderView
-        return view
-    }
-    
-    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let view = tableFooterView
-        return view
-    }
 }

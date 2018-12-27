@@ -31,8 +31,6 @@ class ProfileController: UIViewController {
     private let disposeBag = DisposeBag()
     private var dataSource: RxTableViewSectionedReloadDataSource<SectionOfProfileData>!
     
-    private var expandNumber: Int = -1
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         

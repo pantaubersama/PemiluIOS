@@ -76,7 +76,7 @@ final class SettingViewModel: ISettingViewModel, ISettingViewModelInput, ISettin
                 SettingData.rate,
                 SettingData.share
                 ]),
-            SectionOfSettingData(header: "", items: [
+            SectionOfSettingData(header: nil, items: [
                 SettingData.logout
                 ])
             ])
