@@ -33,7 +33,7 @@ class SignatureController: UIViewController {
         lottieView.addSubview(signatureAnimation!)
         signatureAnimation!.loopAnimation = true
         signatureAnimation!.play(fromProgress: 0,
-                               toProgress: 0.5,
+                               toProgress: 1,
                                withCompletion: nil)
         
         button.addTarget(self, action: #selector(handleTap(sender:)), for: .touchUpInside)

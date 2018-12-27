@@ -105,14 +105,14 @@
                             <rect key="frame" x="15" y="15" width="246" height="376"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8BN-64-8Po">
-                                    <rect key="frame" x="0.0" y="0.0" width="246" height="210"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="246" height="240"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="210" id="sWQ-To-LW2"/>
+                                        <constraint firstAttribute="height" constant="240" id="sWQ-To-LW2"/>
                                     </constraints>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Foto KTP" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yzh-c5-8pQ" customClass="Label" customModule="Common">
-                                    <rect key="frame" x="94" y="220" width="58.5" height="22"/>
+                                    <rect key="frame" x="94" y="250" width="58.5" height="22"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="22" id="t5M-Vq-IS0"/>
                                     </constraints>
@@ -127,7 +127,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pastikan seluruh bagian KTP anda breada dalam bingkai foto ( KTP asli dan bukan fotokopi KTP)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dM8-Bg-nZs" customClass="Label" customModule="Common">
-                                    <rect key="frame" x="0.5" y="252" width="245.5" height="92"/>
+                                    <rect key="frame" x="0.5" y="282" width="245.5" height="62"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     <nil key="highlightedColor"/>

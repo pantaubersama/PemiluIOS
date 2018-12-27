@@ -32,7 +32,7 @@ class SuccessController: UIViewController {
         lottieView.addSubview(successAnimation!)
         successAnimation!.loopAnimation = true
         successAnimation!.play(fromProgress: 0,
-                               toProgress: 0.5,
+                               toProgress: 1,
                                withCompletion: nil)
         
         buttonFinish.addTarget(self, action: #selector(handleFinish(sender:)), for: .touchUpInside)

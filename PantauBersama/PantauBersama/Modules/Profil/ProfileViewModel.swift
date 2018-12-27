@@ -28,14 +28,20 @@ protocol IProfileViewModel {
     var output: IProfileViewModelOutput { get }
     
     var navigator: ProfileNavigator! { get }
+    var navigatorLinimasa: LinimasaNavigator! { get }
+    var navigatorPenpol: PenpolNavigator! { get }
+
 }
 
 final class ProfileViewModel: IProfileViewModel, IProfileViewModelInput, IProfileViewModelOutput {
+    
     
     var input: IProfileViewModelInput { return self }
     var output: IProfileViewModelOutput { return self }
     
     var navigator: ProfileNavigator!
+    var navigatorLinimasa: LinimasaNavigator!
+    var navigatorPenpol: PenpolNavigator!
     
     // Input
     var backI: AnyObserver<Void>
@@ -49,6 +55,7 @@ final class ProfileViewModel: IProfileViewModel, IProfileViewModelInput, IProfil
     var itemsO: Driver<[SectionOfProfileData]>
     var clusterO: Driver<Void>!
     
+    
     private let backS = PublishSubject<Void>()
     private let settingS = PublishSubject<Void>()
     private let verifikasiS = PublishSubject<Void>()
@@ -56,6 +63,8 @@ final class ProfileViewModel: IProfileViewModel, IProfileViewModelInput, IProfil
     
     init(navigator: ProfileNavigator) {
         self.navigator = navigator
+        self.navigatorLinimasa = navigator
+        self.navigatorPenpol = navigator
         self.navigator.finish = backS
         
         backI = backS.asObserver()
@@ -79,17 +88,11 @@ final class ProfileViewModel: IProfileViewModel, IProfileViewModelInput, IProfil
         verifikasiO = verifikasi
         itemsO = Driver.just([
             SectionOfProfileData(header: GroupProfileInfoData.cluster.title,
-                                 items: [
-                                    ClusterCellConfigured(item: ClusterCell.Input())
-                ]),
+                                 items: [GroupProfileInfoData.cluster]),
             SectionOfProfileData(header: GroupProfileInfoData.biodata.title,
-                                 items: [
-                                    BiodataCellConfigured(item: IconTableCell.Input())
-                ]),
+                                 items: [GroupProfileInfoData.biodata]),
             SectionOfProfileData(header: GroupProfileInfoData.badge.title,
-                                 items: [
-                                    BadgeCellConfigured(item: BadgeCell.Input())
-                ])
+                                 items: [GroupProfileInfoData.badge])
             ])
         clusterO = cluster
     }
