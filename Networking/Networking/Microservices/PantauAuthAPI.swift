@@ -7,10 +7,18 @@
 //
 
 import Moya
-
+import Common
 
 public enum PantauAuthAPI {
     case callback(code: String, provider: String)
+    
+    public enum GrantType: String {
+        case refreshToken = "refresh_token"
+    }
+    
+    case refresh(type: GrantType)
+    case revoke
+    
 }
 
 extension PantauAuthAPI: TargetType {
@@ -23,13 +31,17 @@ extension PantauAuthAPI: TargetType {
     }
     
     public var baseURL: URL {
-        return URL(string: "https://staging-auth.pantaubersama.com")!
+        return URL(string: AppContext.instance.infoForKey("URL_API_IDENTITAS"))!
     }
     
     public var path: String {
         switch self {
         case .callback:
             return "/v1/callback"
+        case .refresh:
+            return "/oauth/token"
+        case .revoke:
+            return "/ouath/revoke"
         }
     }
     
@@ -37,6 +49,8 @@ extension PantauAuthAPI: TargetType {
         switch self {
         case .callback:
             return .get
+        case .refresh, .revoke:
+            return .post
         }
     }
 
@@ -45,6 +59,21 @@ extension PantauAuthAPI: TargetType {
         case .callback(let (_, provider)):
             return [
                 "provider_token": provider
+            ]
+        case .refresh(let type):
+            let t = KeychainService.load(type: NetworkKeychainKind.refreshToken) ?? ""
+            return [
+                "grant_type": type.rawValue,
+                "client_id": AppContext.instance.infoForKey("CLIENT_ID_AUTH"),
+                "client_secret": AppContext.instance.infoForKey("CLIENT_SECRET_AUTH"),
+                "refresh_token": t
+            ]
+        case .revoke:
+            let t = KeychainService.load(type: NetworkKeychainKind.token) ?? ""
+            return [
+                "client_id": AppContext.instance.infoForKey("CLIENT_ID_AUTH"),
+                "client_secret": AppContext.instance.infoForKey("CLIENT_SECRET_AUTH"),
+                "token": t
             ]
         }
     }

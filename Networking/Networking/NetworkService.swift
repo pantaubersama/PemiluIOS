@@ -31,6 +31,32 @@ public extension NetworkService {
         return provider.rx.request(MultiTarget(t))
             .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background))
             .filterSuccessfulStatusAndRedirectCodes()
+            .retryWhen({ (e) in
+                Observable.zip(e, Observable.range(start: 1, count: 3), resultSelector: { $1 }).flatMap {
+                        i in
+                    return self.provider.rx.request(MultiTarget(PantauAuthAPI.refresh(type: .refreshToken)))
+                        .asObservable()
+                        .filterSuccessfulStatusAndRedirectCodes()
+                        .map(IdentitasResponses.self)
+                        .catchError({ (e) in
+                            if case MoyaError.statusCode(let response) = e {
+                                if response.statusCode == 401 {
+                                    print("Your session is expired....")
+                                }
+                            }
+                            return Observable.error(e)
+                        })
+                        .flatMapLatest({ (r) -> Observable<Void> in
+                            let t = r.accessToken
+                            let rt = r.refreshToken
+                            let tt = r.tokenType
+                            UserDefaults.Account.set(tt, forKey: .tokenType)
+                            KeychainService.update(type: NetworkKeychainKind.refreshToken, data: rt)
+                            KeychainService.update(type: NetworkKeychainKind.token, data: t)
+                            return Observable.empty()
+                        })
+                }
+            })
             .map(c.self)
             .catchError({ (error)  in
                 guard let errorResponse = error as? MoyaError else { return Single.error(NetworkError.IncorrectDataReturned) }
@@ -38,12 +64,6 @@ public extension NetworkService {
                 case .underlying(let (e, _)):
                     print(e.localizedDescription)
                     return Single.error(NetworkError(error: e as NSError))
-//                case .statusCode(let response):
-//                    print(response.statusCode)
-//                    if response.statusCode == 401 {
-//                        let urlString = "\(AppContext.instance.infoForKey("DOMAIN_SYMBOLIC"))?client_id=\(AppContext.instance.infoForKey("CLIENT_ID"))&response_type=code&redirect_uri=\(AppContext.instance.infoForKey("REDIRECT_URI"))&scope=public+email"
-//                        UIApplication.shared.open(URL(fileURLWithPath: urlString), options: [:], completionHandler: nil)
-//                    }
                 default:
                     let body = try
                         errorResponse.response?.map(ErrorResponse.self)
@@ -54,7 +74,6 @@ public extension NetworkService {
                         return Single.error(NetworkError.IncorrectDataReturned)
                     }
                 }
-//                return Single.error(NetworkError.Unknown)
             })
     }    
 }

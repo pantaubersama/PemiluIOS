@@ -14,10 +14,18 @@ APP_BUILD_VERSION = 1
 
 DISPLAY_NAME = Pantau Bersama Staging
 PRODUCT_BUNDLE_IDENTIFIER = com.pantaubersama.staging
-// Symbolic
+// Identitas
+// Use for get Token Identitas and callback Pantau
 CLIENT_ID = ad68192bfcfe8085492dc82af35e26c8ca92a8d08db9e9d7820e054a849d5add
 CLIENT_SECRET = bd09ebed07d20d7b438d96d7f8507922b25511887781740bbbb7ddb9a1055469
 REDIRECT_URI = pantaubersama.staging:/\/\oauth
 DOMAIN_SYMBOLIC = https:/\/\identitas.extrainteger.com
 URL_IDENTIFIER = pantaubersama.staging
 URL_SCHEMES = pantaubersama.staging
+// Pantau Auth
+// Use for Refresh Token and Revoke
+CLIENT_ID_AUTH = 5940ec97cf73967c5df108871443df0a58b5c2510004f9f70e959f29ced11e25
+CLIENT_SECRET_AUTH = bb431e39758118d64416a110b31c3c9c8667f9dc664527d0b0133e87ec5946e0
+// API URL Staging
+URL_API_AUTH = https:/\/\staging-auth.pantaubersama.com
+URL_API_IDENTITAS = https:/\/\identitas.extrainteger.com
