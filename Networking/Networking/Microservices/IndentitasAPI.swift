@@ -6,6 +6,10 @@
 //  Copyright © 2018 PantauBersama. All rights reserved.
 //
 
+// MARK:
+// Function Identitas Authentification
+// TODO:- Get access token from Identits
+
 import Moya
 import Common
 

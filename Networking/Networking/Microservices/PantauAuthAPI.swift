@@ -6,6 +6,12 @@
 //  Copyright © 2018 PantauBersama. All rights reserved.
 //
 
+
+
+// MARK:
+// Function Pantau Authorizations
+// TODO:- Get access token from Pantau
+
 import Moya
 import Common
 
@@ -31,7 +37,7 @@ extension PantauAuthAPI: TargetType {
     }
     
     public var baseURL: URL {
-        return URL(string: AppContext.instance.infoForKey("URL_API_IDENTITAS"))!
+        return URL(string: AppContext.instance.infoForKey("URL_API_AUTH"))!
     }
     
     public var path: String {

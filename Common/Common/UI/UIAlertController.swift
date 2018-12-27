@@ -11,11 +11,11 @@ import UIKit
 
 extension UIAlertController {
     
-    func show() {
+    public func show() {
         present(animated: true, completion: nil)
     }
     
-    func present(animated: Bool, completion: (() -> Void)?) {
+    public func present(animated: Bool, completion: (() -> Void)?) {
         guard let root = UIApplication.shared.keyWindow?.rootViewController else {
             return
         }
