@@ -8,11 +8,14 @@
 
 import UIKit
 import Common
+import RxSwift
 
 class SectionCell: UIView {
     
     @IBOutlet weak var label: Label!
     @IBOutlet weak var button: UIButton!
+    
+    var disposeBag: DisposeBag = DisposeBag()
     
     override init(frame: CGRect) {
         super.init(frame: frame)

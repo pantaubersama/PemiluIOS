@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 import UIKit
 
-protocol ProfileNavigator {
+protocol ProfileNavigator: LinimasaNavigator, PenpolNavigator {
     var finish: Observable<Void>! { get set }
     func launchSetting() -> Observable<Void>
     func launchVerifikasi() -> Observable<Void>
@@ -54,4 +54,58 @@ extension ProfileCoordinator: ProfileNavigator {
         return coordinate(to: reqClusterCoordinator)
     }
     
+}
+
+extension ProfileCoordinator: LinimasaNavigator {
+    
+    func launchProfile() -> Observable<Void> {
+        return Observable.never()
+    }
+    
+    func launchNotifications() {
+    }
+    
+    func launchFilter() -> Observable<Void> {
+        return Observable.never()
+    }
+    
+    func launchAddJanji() -> Observable<Void> {
+        return Observable.never()
+    }
+    
+    func sharePilpres(data: Any) -> Observable<Void> {
+        return Observable.never()
+    }
+    
+    func openTwitter(data: String) -> Observable<Void> {
+        return Observable.never()
+    }
+    
+    func shareJanji(data: Any) -> Observable<Void> {
+        return Observable.never()
+    }
+    
+}
+
+extension ProfileCoordinator: PenpolNavigator {
+    
+    func openInfoPenpol(infoType: PenpolInfoType) -> Observable<Void> {
+        return Observable.never()
+    }
+    
+    func openQuiz(quiz: Any) -> Observable<Void> {
+        return Observable.never()
+    }
+    
+    func shareQuiz(quiz: Any) -> Observable<Void> {
+        return Observable.never()
+    }
+    
+    func launchCreateAsk() -> Observable<Void> {
+        return Observable.never()
+    }
+    
+    func shareAsk(ask: Any) -> Observable<Void> {
+        return Observable.never()
+    }
 }

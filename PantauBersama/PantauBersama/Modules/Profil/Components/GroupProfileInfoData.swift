@@ -33,9 +33,9 @@ struct SectionOfProfileData {
 }
 
 extension SectionOfProfileData: SectionModelType {
-    typealias Item = ICellConfigurator
+    typealias Item = GroupProfileInfoData
     
-    init(original: SectionOfProfileData, items: [ICellConfigurator]) {
+    init(original: SectionOfProfileData, items: [GroupProfileInfoData]) {
         self = original
         self.items = items
     }

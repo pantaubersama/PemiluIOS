@@ -32,7 +32,7 @@ class KTPController: UIViewController {
         lottieView.addSubview(ktpAnimation!)
         ktpAnimation!.loopAnimation = true
         ktpAnimation!.play(fromProgress: 0,
-                                 toProgress: 0.5,
+                                 toProgress: 1,
                                  withCompletion: nil)
         
         buttonLanjut.addTarget(self, action: #selector(handleTap(sender:)), for: .touchUpInside)
