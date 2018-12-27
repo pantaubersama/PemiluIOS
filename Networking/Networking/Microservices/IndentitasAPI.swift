@@ -6,7 +6,12 @@
 //  Copyright © 2018 PantauBersama. All rights reserved.
 //
 
+// MARK:
+// Function Identitas Authentification
+// TODO:- Get access token from Identits
+
 import Moya
+import Common
 
 public enum IdentitasAPI {
     case loginIdentitas(code: String, grantType: String, clientId: String, clientSecret: String, redirectURI: String)
@@ -22,7 +27,7 @@ extension IdentitasAPI: TargetType {
     }
     
     public var baseURL: URL {
-        return URL(string: "https://identitas.extrainteger.com")!
+        return URL(string: AppContext.instance.infoForKey("URL_API_IDENTITAS") )!
     }
     
     public var path: String {

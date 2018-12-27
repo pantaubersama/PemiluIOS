@@ -2,6 +2,14 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>URL_API_IDENTITAS</key>
+	<string>$(URL_API_IDENTITAS)</string>
+	<key>URL_API_AUTH</key>
+	<string>$(URL_API_AUTH)</string>
+	<key>CLIENT_SECRET_AUTH</key>
+	<string>$(CLIENT_SECRET_AUTH)</string>
+	<key>CLIENT_ID_AUTH</key>
+	<string>$(CLIENT_ID_AUTH)</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>

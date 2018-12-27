@@ -18,6 +18,7 @@ public struct PantauAuthResponse: Codable {
         public var refreshToken: String
         public var expiresIn: Int
         public var createdAt: Int
+//        public var scopes: [String]
         
         private enum CodingKeys: String, CodingKey {
             case accessToken = "access_token"
@@ -25,6 +26,7 @@ public struct PantauAuthResponse: Codable {
             case refreshToken = "refresh_token"
             case expiresIn = "expires_in"
             case createdAt = "created_at"
+//            case scopes
         }
         
     }
