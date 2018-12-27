@@ -58,7 +58,6 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="1uJ-yT-PaQ" secondAttribute="bottom" id="EaE-uB-Nlv"/>
                                             <constraint firstItem="TM9-nI-ays" firstAttribute="centerX" secondItem="lLJ-qu-hwS" secondAttribute="centerX" id="Huy-mn-Afy"/>
@@ -108,7 +107,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="P26-B2-TId">
-                                                        <rect key="frame" x="30" y="0.0" width="150" height="28"/>
+                                                        <rect key="frame" x="30" y="2" width="150" height="24"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ariel Tatum Similikiti " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EG8-aL-cfG" customClass="Label" customModule="Common">
                                                                 <rect key="frame" x="0.0" y="0.0" width="150" height="12"/>
@@ -126,7 +125,10 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Kapan Kemana Indonesia?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dmG-lx-rVu" customClass="Label" customModule="Common">
-                                                                <rect key="frame" x="0.0" y="12" width="150" height="16"/>
+                                                                <rect key="frame" x="0.0" y="12" width="150" height="12"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="12" id="zhW-G6-GyK"/>
+                                                                </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="9"/>
                                                                 <color key="textColor" red="0.48627450980392156" green="0.48627450980392156" blue="0.48627450980392156" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                 <nil key="highlightedColor"/>

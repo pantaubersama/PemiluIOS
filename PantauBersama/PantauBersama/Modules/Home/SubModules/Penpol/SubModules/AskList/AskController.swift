@@ -28,6 +28,8 @@ class AskController: UITableViewController {
         tableView.registerReusableCell(AskViewCell.self)
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 44
         tableView.separatorStyle = .singleLine
         tableView.separatorColor = UIColor.groupTableViewBackground
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
