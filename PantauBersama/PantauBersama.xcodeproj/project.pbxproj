@@ -63,6 +63,10 @@
 		13F4569D21CF985800CE45F1 /* CreateAskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F4569C21CF985800CE45F1 /* CreateAskViewModel.swift */; };
 		13F4569F21CF986600CE45F1 /* CreateAskCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F4569E21CF986600CE45F1 /* CreateAskCoordinator.swift */; };
 		13F456A921D2A68300CE45F1 /* AskType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F456A821D2A68300CE45F1 /* AskType.swift */; };
+		13F456AE21D36A8500CE45F1 /* UndangAnggotaController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F456AC21D36A8500CE45F1 /* UndangAnggotaController.swift */; };
+		13F456AF21D36A8500CE45F1 /* UndangAnggotaController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13F456AD21D36A8500CE45F1 /* UndangAnggotaController.xib */; };
+		13F456B121D36D7800CE45F1 /* UndangAnggotaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F456B021D36D7800CE45F1 /* UndangAnggotaViewModel.swift */; };
+		13F456B321D36D8E00CE45F1 /* UndangAnggotaCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F456B221D36D8E00CE45F1 /* UndangAnggotaCoordinator.swift */; };
 		24F280C4B63852A75C32D7D7 /* Pods_PantauBersama_PantauBersamaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4CBA51E95EB1AE7C2940BC0 /* Pods_PantauBersama_PantauBersamaTests.framework */; };
 		840850BF21D256C200696CB3 /* SectionOfProfileInfoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840850BE21D256C200696CB3 /* SectionOfProfileInfoData.swift */; };
 		840850C321D25C7D00696CB3 /* ProfileEditController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840850C221D25C7D00696CB3 /* ProfileEditController.swift */; };
@@ -278,6 +282,10 @@
 		13F4569C21CF985800CE45F1 /* CreateAskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAskViewModel.swift; sourceTree = "<group>"; };
 		13F4569E21CF986600CE45F1 /* CreateAskCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAskCoordinator.swift; sourceTree = "<group>"; };
 		13F456A821D2A68300CE45F1 /* AskType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AskType.swift; sourceTree = "<group>"; };
+		13F456AC21D36A8500CE45F1 /* UndangAnggotaController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UndangAnggotaController.swift; sourceTree = "<group>"; };
+		13F456AD21D36A8500CE45F1 /* UndangAnggotaController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UndangAnggotaController.xib; sourceTree = "<group>"; };
+		13F456B021D36D7800CE45F1 /* UndangAnggotaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UndangAnggotaViewModel.swift; sourceTree = "<group>"; };
+		13F456B221D36D8E00CE45F1 /* UndangAnggotaCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UndangAnggotaCoordinator.swift; sourceTree = "<group>"; };
 		26FDFCB449836F8CBC965641 /* Pods-PantauBersama-PantauBersamaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PantauBersama-PantauBersamaTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-PantauBersama-PantauBersamaTests/Pods-PantauBersama-PantauBersamaTests.debug.xcconfig"; sourceTree = "<group>"; };
 		2F6FF2F7B6D75F6A9B57EC24 /* Pods-PantauBersama.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PantauBersama.release.xcconfig"; path = "../Pods/Target Support Files/Pods-PantauBersama/Pods-PantauBersama.release.xcconfig"; sourceTree = "<group>"; };
 		37664EC0D75D639FE37581C6 /* Pods_PantauBersama.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PantauBersama.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -692,6 +700,25 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
+		13F456AA21D3692B00CE45F1 /* Undang */ = {
+			isa = PBXGroup;
+			children = (
+				13F456AB21D3693F00CE45F1 /* ViewController */,
+				13F456B021D36D7800CE45F1 /* UndangAnggotaViewModel.swift */,
+				13F456B221D36D8E00CE45F1 /* UndangAnggotaCoordinator.swift */,
+			);
+			path = Undang;
+			sourceTree = "<group>";
+		};
+		13F456AB21D3693F00CE45F1 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				13F456AC21D36A8500CE45F1 /* UndangAnggotaController.swift */,
+				13F456AD21D36A8500CE45F1 /* UndangAnggotaController.xib */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		7A731F6B53E97C8104446F76 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -706,6 +733,7 @@
 		840850BD21D2561F00696CB3 /* SubModules */ = {
 			isa = PBXGroup;
 			children = (
+				13F456AA21D3692B00CE45F1 /* Undang */,
 				840850D821D2826600696CB3 /* Badge */,
 				840850C021D2592300696CB3 /* ProfileEdit */,
 				840850BE21D256C200696CB3 /* SectionOfProfileInfoData.swift */,
@@ -1454,6 +1482,7 @@
 				13812C1F21CAA48700CAB327 /* PenpolController.xib in Resources */,
 				84A07F9D21D0DC4B00269C6B /* KTPController.xib in Resources */,
 				8441DB5621CCF19C00B078DF /* DetailJanjiController.xib in Resources */,
+				13F456AF21D36A8500CE45F1 /* UndangAnggotaController.xib in Resources */,
 				84F892AC21C787D800DC1048 /* Lato-Hairline.ttf in Resources */,
 				84F892AD21C787D800DC1048 /* Lato-HairlineItalic.ttf in Resources */,
 				84F892AE21C787D800DC1048 /* Lato-Italic.ttf in Resources */,
@@ -1667,6 +1696,7 @@
 				84A07FBC21D129FC00269C6B /* GroupProfileInfoData.swift in Sources */,
 				11702DD521CB08DE001AEE3F /* QuizController.swift in Sources */,
 				13F456A921D2A68300CE45F1 /* AskType.swift in Sources */,
+				13F456B121D36D7800CE45F1 /* UndangAnggotaViewModel.swift in Sources */,
 				13812C1E21CAA48700CAB327 /* PenpolController.swift in Sources */,
 				844C3D7621C51EAF00199871 /* BaseCoordinator.swift in Sources */,
 				11E1079A21CD14A400B7B074 /* QuizViewModel.swift in Sources */,
@@ -1741,6 +1771,7 @@
 				840850C521D25CB000696CB3 /* ProfileEditViewModel.swift in Sources */,
 				84E2855521CA570E00298E31 /* LinimasaViewModel.swift in Sources */,
 				84E2855121CA4D4900298E31 /* FilterViewController.swift in Sources */,
+				13F456B321D36D8E00CE45F1 /* UndangAnggotaCoordinator.swift in Sources */,
 				84F6980921C8D28B00890917 /* PilpresViewController.swift in Sources */,
 				84D7A77821CE8CFF009502AF /* ProfileViewModel.swift in Sources */,
 				84A07F9A21D0DBE200269C6B /* IdentitasController.swift in Sources */,
@@ -1753,6 +1784,7 @@
 				84A07FB621D0ED8100269C6B /* SuccessController.swift in Sources */,
 				845C570721CD1D8F00EDCDFE /* ProfileCoordinator.swift in Sources */,
 				84E6934021D2946C00EA5464 /* HeaderEditProfile.swift in Sources */,
+				13F456AE21D36A8500CE45F1 /* UndangAnggotaController.swift in Sources */,
 				84B2523021CAB61300565D82 /* OnboardingViewModel.swift in Sources */,
 				84B2522E21CAB53C00565D82 /* OnboardingCoordinator.swift in Sources */,
 				840850DB21D282B100696CB3 /* BadgeController.swift in Sources */,
