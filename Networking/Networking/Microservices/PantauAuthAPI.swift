@@ -24,15 +24,19 @@ public enum PantauAuthAPI {
     
     case refresh(type: GrantType)
     case revoke
+    case me
     
 }
 
 extension PantauAuthAPI: TargetType {
     
     public var headers: [String: String]? {
+        let token = KeychainService.load(type: NetworkKeychainKind.token) ?? ""
+        print("TOKEN:\(token)")
         return [
             "Content-Type"  : "application/json",
             "Accept"        : "application/json",
+            "Authorization" : token
         ]
     }
     
@@ -48,15 +52,17 @@ extension PantauAuthAPI: TargetType {
             return "/oauth/token"
         case .revoke:
             return "/ouath/revoke"
+        case .me:
+            return "/v1/me"
         }
     }
     
     public var method: Moya.Method {
         switch self {
-        case .callback:
-            return .get
         case .refresh, .revoke:
             return .post
+        default:
+            return .get
         }
     }
 
@@ -81,6 +87,8 @@ extension PantauAuthAPI: TargetType {
                 "client_secret": AppContext.instance.infoForKey("CLIENT_SECRET_AUTH"),
                 "token": t
             ]
+        default:
+            return nil
         }
     }
     

@@ -8,6 +8,8 @@
 
 import RxSwift
 import RxCocoa
+import Networking
+import Common
 
 protocol IProfileViewModelInput {
     var backI: AnyObserver<Void> { get }
@@ -21,6 +23,7 @@ protocol IProfileViewModelOutput {
     var verifikasiO: Driver<Void>! { get }
     var itemsO: Driver<[SectionOfProfileData]> { get }
     var clusterO: Driver<Void>! { get }
+    var userDataO: Driver<UserResponse>! { get }
 }
 
 protocol IProfileViewModel {
@@ -54,6 +57,7 @@ final class ProfileViewModel: IProfileViewModel, IProfileViewModelInput, IProfil
     var verifikasiO: Driver<Void>!
     var itemsO: Driver<[SectionOfProfileData]>
     var clusterO: Driver<Void>!
+    var userDataO: Driver<UserResponse>!
     
     
     private let backS = PublishSubject<Void>()
@@ -84,6 +88,18 @@ final class ProfileViewModel: IProfileViewModel, IProfileViewModelInput, IProfil
             .flatMapLatest({ navigator.launchReqCluster() })
             .asDriver(onErrorJustReturn: ())
         
+        let userData = NetworkService.instance.requestObject(
+            PantauAuthAPI.me,
+            c: BaseResponse<UserResponse>.self)
+            .map({ $0.data })
+            .do(onSuccess: { (response) in
+                print(response)
+            }, onError: { (e) in
+                print(e.localizedDescription)
+            })
+            .asObservable()
+            .catchErrorJustComplete()
+        
         settingO = setting
         verifikasiO = verifikasi
         itemsO = Driver.just([
@@ -95,6 +111,7 @@ final class ProfileViewModel: IProfileViewModel, IProfileViewModelInput, IProfil
                                  items: [GroupProfileInfoData.badge])
             ])
         clusterO = cluster
+        userDataO = userData.asDriverOnErrorJustComplete()
     }
     
 }

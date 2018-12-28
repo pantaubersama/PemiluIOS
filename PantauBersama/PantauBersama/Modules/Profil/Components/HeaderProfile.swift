@@ -8,6 +8,7 @@
 
 import UIKit
 import Common
+import Networking
 
 @IBDesignable
 class HeaderProfile: UIView {
@@ -34,4 +35,7 @@ class HeaderProfile: UIView {
         addSubview(view)
     }
     
+    func configure(user: User) {
+        username.text = user.firstName ?? ""
+    }
 }
