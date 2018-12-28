@@ -31,22 +31,13 @@ public extension NetworkService {
         return provider.rx.request(MultiTarget(t))
             .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background))
             .filterSuccessfulStatusAndRedirectCodes()
-            .map(c.self)
-            .catchError({ (error)  in
-                guard let errorResponse = error as? MoyaError else { return Single.error(NetworkError.IncorrectDataReturned) }
-                switch errorResponse {
-                case .underlying(let (e, _)):
-                    print(e.localizedDescription)
-                    return Single.error(NetworkError(error: e as NSError))
-                default:
-                    let body = try
-                        errorResponse.response?.map(ErrorResponse.self)
-                    if let body = body {
-                        print(body.error.errors)
-                        return Single.error(NetworkError.SoftError(message: body.error.errors.first))
-                    } else {
-                        return Single.error(NetworkError.IncorrectDataReturned)
-                    }
+            .do(onSuccess: { (r) in
+                
+            }, onError: { (e) in
+                if case MoyaError.statusCode(let response) = e  {
+                    // here will check if token 401
+                    // will retry to refresh token
+                    print("STATUS CODE: \(response.statusCode)")
                 }
             })
             .retryWhen({ (e) in
@@ -84,6 +75,24 @@ public extension NetworkService {
                                 KeychainService.update(type: NetworkKeychainKind.token, data: t)
                             return Observable.empty()
                         })
+                }
+            })
+            .map(c.self)
+            .catchError({ (error)  in
+                guard let errorResponse = error as? MoyaError else { return Single.error(NetworkError.IncorrectDataReturned) }
+                switch errorResponse {
+                case .underlying(let (e, _)):
+                    print(e.localizedDescription)
+                    return Single.error(NetworkError(error: e as NSError))
+                default:
+                    let body = try
+                        errorResponse.response?.map(ErrorResponse.self)
+                    if let body = body {
+                        print(body.error.errors)
+                        return Single.error(NetworkError.SoftError(message: body.error.errors.first))
+                    } else {
+                        return Single.error(NetworkError.IncorrectDataReturned)
+                    }
                 }
             })
     }    

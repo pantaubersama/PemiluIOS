@@ -26,6 +26,9 @@
 		84D831F021C4DCEC00C437B7 /* Networking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84D831E621C4DCEC00C437B7 /* Networking.framework */; };
 		84D831F521C4DCEC00C437B7 /* NetworkingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D831F421C4DCEC00C437B7 /* NetworkingTests.swift */; };
 		84D831F721C4DCEC00C437B7 /* Networking.h in Headers */ = {isa = PBXBuildFile; fileRef = 84D831E921C4DCEC00C437B7 /* Networking.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		84FE6EB421D5F339009A0F55 /* UserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FE6EB321D5F339009A0F55 /* UserResponse.swift */; };
+		84FE6EB621D5F35E009A0F55 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FE6EB521D5F35E009A0F55 /* User.swift */; };
+		84FE6EB821D5F374009A0F55 /* BaseResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FE6EB721D5F374009A0F55 /* BaseResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +65,9 @@
 		84D831EF21C4DCEC00C437B7 /* NetworkingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NetworkingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		84D831F421C4DCEC00C437B7 /* NetworkingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingTests.swift; sourceTree = "<group>"; };
 		84D831F621C4DCEC00C437B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		84FE6EB321D5F339009A0F55 /* UserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResponse.swift; sourceTree = "<group>"; };
+		84FE6EB521D5F35E009A0F55 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		84FE6EB721D5F374009A0F55 /* BaseResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseResponse.swift; sourceTree = "<group>"; };
 		85BAE50647296BF2C83ACD7C /* Pods_Networking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Networking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3B2B1BD2456514F2D807A68 /* Pods-NetworkingTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NetworkingTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-NetworkingTests/Pods-NetworkingTests.debug.xcconfig"; sourceTree = "<group>"; };
 		FC9D77E9B7CE8AB5A8F185B6 /* Pods_NetworkingTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NetworkingTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -137,6 +143,9 @@
 				84B2526521CBFF0C00565D82 /* PantauAuthResponse.swift */,
 				84B2669C21D4BB1400C7B783 /* PantauRefreshResponse.swift */,
 				1183F0DD21D535C600435D31 /* QuestionResponse.swift */,
+				84FE6EB321D5F339009A0F55 /* UserResponse.swift */,
+				84FE6EB521D5F35E009A0F55 /* User.swift */,
+				84FE6EB721D5F374009A0F55 /* BaseResponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -387,10 +396,13 @@
 				84B2523321CAC6AA00565D82 /* NetworkService.swift in Sources */,
 				13F456B521D531D300CE45F1 /* LinimasaAPI.swift in Sources */,
 				84B2669D21D4BB1400C7B783 /* PantauRefreshResponse.swift in Sources */,
+				84FE6EB821D5F374009A0F55 /* BaseResponse.swift in Sources */,
 				84B2526421CBDE2600565D82 /* PantauAuthAPI.swift in Sources */,
+				84FE6EB621D5F35E009A0F55 /* User.swift in Sources */,
 				84B2523721CAC7D000565D82 /* NetworkError.swift in Sources */,
 				84B2523521CAC71400565D82 /* RequestLoadingPlugin.swift in Sources */,
 				84B2526621CBFF0C00565D82 /* PantauAuthResponse.swift in Sources */,
+				84FE6EB421D5F339009A0F55 /* UserResponse.swift in Sources */,
 				84B2522B21CAB47B00565D82 /* NetworkKeychainKind.swift in Sources */,
 				84B2524321CB7DF200565D82 /* IndentitasAPI.swift in Sources */,
 			);

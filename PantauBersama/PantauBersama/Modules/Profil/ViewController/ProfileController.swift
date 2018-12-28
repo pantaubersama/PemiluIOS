@@ -165,6 +165,22 @@ class ProfileController: UIViewController {
         viewModel.output.clusterO
             .drive()
             .disposed(by: disposeBag)
+        
+        viewModel.output.userDataO
+            .drive(onNext: { [weak self] (response) in
+                guard let `self` = self else { return }
+                let user = response.user
+                self.headerProfile.configure(user: user)
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.output.errorO
+            .drive(onNext: { [weak self] (error) in
+                guard let `self` = self else { return }
+                guard let alert = UIAlertController.alert(with: error) else { return }
+                self.navigationController?.present(alert, animated: true, completion: nil)
+            })
+            .disposed(by: disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
