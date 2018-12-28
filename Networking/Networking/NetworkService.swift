@@ -27,6 +27,12 @@ public struct NetworkService {
 
 public extension NetworkService {
     
+    // MARK:- Request Objet
+    // This Function will have two function
+    // first for request nd checking access token if 401 or not
+    // second for thrown into identitias auth if there's another error from refresh token / token is missing
+    // return Single<> will call last request with generated new token from 401
+    
     public func requestObject<T: TargetType, C: Decodable>(_ t: T, c: C.Type) -> Single<C> {
         return provider.rx.request(MultiTarget(t))
             .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background))
@@ -66,14 +72,14 @@ public extension NetworkService {
                             }
                             return Observable.error(e)
                         })
-                        .flatMapLatest({ (r) -> Observable<Void> in
+                        .flatMapLatest({ (r) -> Single<PantauRefreshResponse> in
                             let t = r.accessToken
                             let rt = r.refreshToken
                             let tt = r.tokenType
                                 UserDefaults.Account.set(tt, forKey: .tokenType)
                                 KeychainService.update(type: NetworkKeychainKind.refreshToken, data: rt)
                                 KeychainService.update(type: NetworkKeychainKind.token, data: t)
-                            return Observable.empty()
+                            return Single.just(r) // This function will refresh last request with new access token
                         })
                 }
             })
