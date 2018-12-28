@@ -15,10 +15,15 @@ import RxDataSources
 class ProfileController: UIViewController {
     
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var tableView: UITableView!
+//    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var container: UIView!
     @IBOutlet weak var headerProfile: HeaderProfile!
+    @IBOutlet weak var clusterButton: UIButton!
+    @IBOutlet weak var biodataButton: UIButton!
+    @IBOutlet weak var badgeButton: UIButton!
+    @IBOutlet weak var heightTableClusterConstant: NSLayoutConstraint!
+    @IBOutlet weak var heightTableBadgeConstant: NSLayoutConstraint!
     
     var viewModel: IProfileViewModel!
     
@@ -65,6 +70,28 @@ class ProfileController: UIViewController {
             .disposed(by: disposeBag)
         
         // MARK
+        // Section Selected
+        clusterButton.rx.tap.scan(false) { lastState, newValue in
+            return !lastState
+            }.subscribe(onNext: { [weak self] (value) in
+                guard let `self` = self else { return }
+                UIView.animate(withDuration: 0.3, animations: {
+                    self.heightTableClusterConstant.constant = value ? 47.0 : 0.0
+                })
+            })
+            .disposed(by: disposeBag)
+        
+        badgeButton.rx.tap.scan(false) { lastState, newValue in
+            return !lastState
+            }.subscribe(onNext: { [weak self] (value) in
+                guard let `self` = self else { return }
+                UIView.animate(withDuration: 0.3, animations: {
+                    self.heightTableBadgeConstant.constant = value ? 190.0 : 0.0
+                })
+            })
+            .disposed(by: disposeBag)
+        
+        // MARK
         // Handle scrollview
         Driver.merge([
                 self.janjiController.tableView.rx.contentOffset.asDriver(),
@@ -104,35 +131,28 @@ class ProfileController: UIViewController {
         
         // MARK: - TableViews
         // Register TableViews
-        tableView.dataSource = nil
-        tableView.delegate = nil
-        tableView.registerReusableCell(ClusterCell.self)
-        tableView.registerReusableCell(IconTableCell.self)
-        tableView.registerReusableCell(BadgeCell.self)
+//        tableView.dataSource = nil
+//        tableView.delegate = nil
+//        tableView.registerReusableCell(ClusterCell.self)
+//        tableView.registerReusableCell(IconTableCell.self)
+//        tableView.registerReusableCell(BadgeCell.self)
+//
+//        tableView.estimatedRowHeight = 44.0
+//        tableView.rowHeight = UITableView.automaticDimension
+//        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+//        tableView.tableFooterView = UIView()
         
-        tableView.estimatedRowHeight = 44.0
-        tableView.rowHeight = UITableView.automaticDimension
-        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        tableView.tableFooterView = UIView()
+//        dataSource = RxTableViewSectionedReloadDataSource<SectionOfProfileData>(configureCell: { (dataSource, tableView, indexPath, item) in
+//                guard let cell = tableView.dequeueReusableCell(withIdentifier: item.reuseIdentifier) else {
+//                    return UITableViewCell()
+//                }
+//                item.configure(cell: cell)
+//                return cell
+//        })
         
-        dataSource = RxTableViewSectionedReloadDataSource<SectionOfProfileData>(configureCell: { [weak self] (dataSource, tableView, indexPath, item) -> UITableViewCell in
-            guard let `self` = self else { return UITableViewCell() }
-            switch item {
-            case .cluster:
-                let cell = tableView.dequeueReusableCell(indexPath: indexPath) as ClusterCell
-                return cell
-            case .biodata:
-                let cell = tableView.dequeueReusableCell(indexPath: indexPath) as IconTableCell
-                return cell
-            case .badge:
-                let cell = tableView.dequeueReusableCell(indexPath: indexPath) as BadgeCell
-                return cell
-            }
-        })
-        
-        tableView.rx
-            .setDelegate(self)
-            .disposed(by: disposeBag)
+//        tableView.rx
+//            .setDelegate(self)
+//            .disposed(by: disposeBag)
         
         back.rx.tap
             .bind(to: viewModel.input.backI)
@@ -158,9 +178,9 @@ class ProfileController: UIViewController {
             .drive()
             .disposed(by: disposeBag)
         
-        viewModel.output.itemsO
-            .drive(tableView.rx.items(dataSource: dataSource))
-            .disposed(by: disposeBag)
+//        viewModel.output.itemsO
+//            .drive(tableView.rx.items(dataSource: dataSource))
+//            .disposed(by: disposeBag)
         
         viewModel.output.clusterO
             .drive()

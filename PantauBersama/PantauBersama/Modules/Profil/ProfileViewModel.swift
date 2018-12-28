@@ -80,6 +80,7 @@ final class ProfileViewModel: IProfileViewModel, IProfileViewModelInput, IProfil
         verifikasiI = verifikasiS.asObserver()
         clusterI = clusterS.asObserver()
         
+        
         let setting = settingS
             .flatMapLatest({ navigator.launchSetting() })
             .asDriver(onErrorJustReturn: ())
@@ -105,11 +106,17 @@ final class ProfileViewModel: IProfileViewModel, IProfileViewModelInput, IProfil
         verifikasiO = verifikasi
         itemsO = Driver.just([
             SectionOfProfileData(header: GroupProfileInfoData.cluster.title,
-                                 items: [GroupProfileInfoData.cluster]),
+                                 items: [
+                                    ClusterCellConfigured(item: ClusterCell.Input())
+                ]),
             SectionOfProfileData(header: GroupProfileInfoData.biodata.title,
-                                 items: [GroupProfileInfoData.biodata]),
+                                 items: [
+                                    BiodataCellConfigured(item: IconTableCell.Input())
+                ]),
             SectionOfProfileData(header: GroupProfileInfoData.badge.title,
-                                 items: [GroupProfileInfoData.badge])
+                                 items: [
+                                    BadgeCellConfigured(item: BadgeCell.Input())
+                ])
             ])
         clusterO = cluster
         userDataO = userData.asDriverOnErrorJustComplete()
