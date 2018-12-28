@@ -15,7 +15,6 @@ import RxDataSources
 class ProfileController: UIViewController {
     
     @IBOutlet weak var scrollView: UIScrollView!
-//    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var container: UIView!
     @IBOutlet weak var headerProfile: HeaderProfile!
@@ -25,6 +24,8 @@ class ProfileController: UIViewController {
     @IBOutlet weak var heightTableClusterConstant: NSLayoutConstraint!
     @IBOutlet weak var heightTableBadgeConstant: NSLayoutConstraint!
     @IBOutlet weak var heightBiodataConstant: NSLayoutConstraint!
+    @IBOutlet weak var tableViewCluster: UITableView!
+    @IBOutlet weak var tableViewBadge: UITableView!
     
     var viewModel: IProfileViewModel!
     
@@ -35,7 +36,9 @@ class ProfileController: UIViewController {
     private lazy var tanyaController = AskController(viewModel: tanyaViewModel)
     
     private let disposeBag = DisposeBag()
-    private var dataSource: RxTableViewSectionedReloadDataSource<SectionOfProfileData>!
+    private var dataSourceCluster: RxTableViewSectionedReloadDataSource<SectionOfProfileData>!
+    
+    private var dataSourceBadge: RxTableViewSectionedReloadDataSource<SectionOfProfileData>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -143,24 +146,27 @@ class ProfileController: UIViewController {
         
         // MARK: - TableViews
         // Register TableViews
-//        tableView.dataSource = nil
-//        tableView.delegate = nil
-//        tableView.registerReusableCell(ClusterCell.self)
-//        tableView.registerReusableCell(IconTableCell.self)
-//        tableView.registerReusableCell(BadgeCell.self)
-//
-//        tableView.estimatedRowHeight = 44.0
-//        tableView.rowHeight = UITableView.automaticDimension
-//        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-//        tableView.tableFooterView = UIView()
+        tableViewCluster.dataSource = nil
+        tableViewCluster.delegate = nil
+        tableViewCluster.registerReusableCell(ClusterCell.self)
+        tableViewBadge.dataSource = nil
+        tableViewBadge.delegate = nil
+        tableViewBadge.registerReusableCell(BadgeCell.self)
         
-//        dataSource = RxTableViewSectionedReloadDataSource<SectionOfProfileData>(configureCell: { (dataSource, tableView, indexPath, item) in
-//                guard let cell = tableView.dequeueReusableCell(withIdentifier: item.reuseIdentifier) else {
-//                    return UITableViewCell()
-//                }
-//                item.configure(cell: cell)
-//                return cell
-//        })
+        dataSourceCluster = RxTableViewSectionedReloadDataSource<SectionOfProfileData>(configureCell: { (dataSource, tableView, indexPath, item) in
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: item.reuseIdentifier) else {
+                    return UITableViewCell()
+                }
+                item.configure(cell: cell)
+                return cell
+        })
+        dataSourceBadge = RxTableViewSectionedReloadDataSource<SectionOfProfileData>(configureCell: { (dataSource, tableView, indexPath, item) in
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: item.reuseIdentifier) else {
+                return UITableViewCell()
+            }
+            item.configure(cell: cell)
+            return cell
+        })
         
 //        tableView.rx
 //            .setDelegate(self)
@@ -190,9 +196,13 @@ class ProfileController: UIViewController {
             .drive()
             .disposed(by: disposeBag)
         
-//        viewModel.output.itemsO
-//            .drive(tableView.rx.items(dataSource: dataSource))
-//            .disposed(by: disposeBag)
+        viewModel.output.itemsClusterO
+            .drive(tableViewCluster.rx.items(dataSource: dataSourceCluster))
+            .disposed(by: disposeBag)
+        
+        viewModel.output.itemsBadgeO
+            .drive(tableViewBadge.rx.items(dataSource: dataSourceBadge))
+            .disposed(by: disposeBag)
         
         viewModel.output.clusterO
             .drive()
@@ -222,19 +232,4 @@ class ProfileController: UIViewController {
 }
 
 extension ProfileController: UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 45.0
-    }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = SectionCell()
-        view.label.text = dataSource.sectionModels[section].header
-        return view
-    }
-    
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 1.0))
-        return view
-    }
 }

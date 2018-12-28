@@ -28,7 +28,6 @@ enum GroupProfileInfoData {
 }
 
 struct SectionOfProfileData {
-    var header: String?
     var items: [Item]
 }
 

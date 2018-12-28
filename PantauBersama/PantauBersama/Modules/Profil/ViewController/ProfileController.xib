@@ -22,6 +22,8 @@
                 <outlet property="heightTableClusterConstant" destination="fhv-qG-ZXr" id="4yP-D4-BvQ"/>
                 <outlet property="scrollView" destination="W5k-U4-qnn" id="aH9-Pm-0kv"/>
                 <outlet property="segmentedControl" destination="PnU-fp-mxj" id="RJn-Qy-OJZ"/>
+                <outlet property="tableViewBadge" destination="rSZ-8n-8m3" id="9sY-Jg-oRd"/>
+                <outlet property="tableViewCluster" destination="ieD-1k-W7p" id="kIv-DU-dQZ"/>
                 <outlet property="view" destination="iN0-l3-epB" id="6tN-cR-HGc"/>
             </connections>
         </placeholder>

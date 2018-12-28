@@ -21,7 +21,8 @@ protocol IProfileViewModelInput {
 protocol IProfileViewModelOutput {
     var settingO: Driver<Void>! { get }
     var verifikasiO: Driver<Void>! { get }
-    var itemsO: Driver<[SectionOfProfileData]> { get }
+    var itemsClusterO: Driver<[SectionOfProfileData]> { get }
+    var itemsBadgeO: Driver<[SectionOfProfileData]> { get }
     var clusterO: Driver<Void>! { get }
     var userDataO: Driver<UserResponse>! { get }
     var errorO: Driver<Error>! { get }
@@ -56,7 +57,8 @@ final class ProfileViewModel: IProfileViewModel, IProfileViewModelInput, IProfil
     // Output
     var settingO: Driver<Void>!
     var verifikasiO: Driver<Void>!
-    var itemsO: Driver<[SectionOfProfileData]>
+    var itemsClusterO: Driver<[SectionOfProfileData]>
+    var itemsBadgeO: Driver<[SectionOfProfileData]>
     var clusterO: Driver<Void>!
     var userDataO: Driver<UserResponse>!
     var errorO: Driver<Error>!
@@ -104,18 +106,15 @@ final class ProfileViewModel: IProfileViewModel, IProfileViewModelInput, IProfil
         
         settingO = setting
         verifikasiO = verifikasi
-        itemsO = Driver.just([
-            SectionOfProfileData(header: GroupProfileInfoData.cluster.title,
-                                 items: [
-                                    ClusterCellConfigured(item: ClusterCell.Input())
-                ]),
-            SectionOfProfileData(header: GroupProfileInfoData.biodata.title,
-                                 items: [
-                                    BiodataCellConfigured(item: IconTableCell.Input())
-                ]),
-            SectionOfProfileData(header: GroupProfileInfoData.badge.title,
-                                 items: [
-                                    BadgeCellConfigured(item: BadgeCell.Input())
+        
+        itemsClusterO = Driver.just([
+            SectionOfProfileData(items: [
+                ClusterCellConfigured(item: ClusterCell.Input())
+                ])
+            ])
+        itemsBadgeO = Driver.just([
+            SectionOfProfileData(items: [
+                BadgeCellConfigured(item: BadgeCell.Input())
                 ])
             ])
         clusterO = cluster
