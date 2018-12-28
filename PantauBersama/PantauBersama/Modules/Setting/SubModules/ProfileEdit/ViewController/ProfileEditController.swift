@@ -18,7 +18,7 @@ class ProfileEditController: UIViewController {
     
     var viewModel: ProfileEditViewModel!
     private let disposeBag = DisposeBag()
-    var dataSource: RxTableViewSectionedReloadDataSource<SectionOfProfileEditData>!
+    var dataSource: RxTableViewSectionedReloadDataSource<SectionOfProfileInfoData>!
     
     private var tableHeaderView: HeaderEditProfile!
     
@@ -38,7 +38,7 @@ class ProfileEditController: UIViewController {
         tableView.dataSource = nil
         tableView.separatorStyle = .none
         tableView.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        tableView.estimatedRowHeight = 80.0
+        tableView.estimatedRowHeight = 85.0
         tableView.rowHeight = UITableView.automaticDimension
         tableView.allowsSelection = false
         
@@ -50,7 +50,7 @@ class ProfileEditController: UIViewController {
             .setDelegate(self)
             .disposed(by: disposeBag)
         
-        dataSource = RxTableViewSectionedReloadDataSource<SectionOfProfileEditData>(configureCell: { (dataSource, tableView, indexPath, item) in
+        dataSource = RxTableViewSectionedReloadDataSource<SectionOfProfileInfoData>(configureCell: { (dataSource, tableView, indexPath, item) in
             let cell = tableView.dequeueReusableCell(indexPath: indexPath) as TextViewCell
             cell.configureCell(item: TextViewCell.Input(viewModel: self.viewModel, data: item))
             return cell

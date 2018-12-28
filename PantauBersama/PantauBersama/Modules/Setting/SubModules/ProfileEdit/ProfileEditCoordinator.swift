@@ -8,6 +8,7 @@
 
 import RxSwift
 import UIKit
+import Networking
 
 protocol ProfileEditNavigator {
     var finish: Observable<Void>! { get set }
@@ -17,13 +18,15 @@ class ProfileEditCoordinator: BaseCoordinator<Void> {
     
     private let navigationController: UINavigationController
     var finish: Observable<Void>!
+    private var data: User
     
-    init(navigationController: UINavigationController) {
+    init(navigationController: UINavigationController, data: User) {
         self.navigationController = navigationController
+        self.data = data
     }
     
     override func start() -> Observable<CoordinationResult> {
-        let viewModel = ProfileEditViewModel(navigator: self)
+        let viewModel = ProfileEditViewModel(navigator: self, data: data)
         let viewController = ProfileEditController()
         viewController.viewModel = viewModel
         navigationController.pushViewController(viewController, animated: true)

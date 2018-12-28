@@ -8,10 +8,11 @@
 
 import UIKit
 import RxSwift
+import Networking
 
 protocol SettingNavigator {
     var finish: Observable<Void>! { get set }
-    func launchProfileEdit() -> Observable<Void>
+    func launchProfileEdit(data: User) -> Observable<Void>
     func launchSignOut() -> Observable<Void>
     func launchBadge() -> Observable<Void>
     func launchVerifikasi(isVerified: Bool) -> Observable<Void>
@@ -21,14 +22,16 @@ final class SettingCoordinator: BaseCoordinator<Void> {
     
     private let navigationController: UINavigationController!
     var finish: Observable<Void>!
+    private var data: User
     
-    init(navigationController: UINavigationController) {
+    init(navigationController: UINavigationController, data: User) {
         self.navigationController = navigationController
+        self.data = data
     }
     
     override func start() -> Observable<CoordinationResult> {
         let viewController = SettingController()
-        let viewModel = SettingViewModel(navigator: self)
+        let viewModel = SettingViewModel(navigator: self, data: data)
         viewController.viewModel = viewModel
         viewController.hidesBottomBarWhenPushed = true
         navigationController.pushViewController(viewController, animated: true)
@@ -40,8 +43,8 @@ final class SettingCoordinator: BaseCoordinator<Void> {
 }
 
 extension SettingCoordinator: SettingNavigator {
-    func launchProfileEdit() -> Observable<Void> {
-        let profileEditCoordinator = ProfileEditCoordinator(navigationController: navigationController)
+    func launchProfileEdit(data: User) -> Observable<Void> {
+        let profileEditCoordinator = ProfileEditCoordinator(navigationController: navigationController, data: data)
         return coordinate(to: profileEditCoordinator)
     }
     

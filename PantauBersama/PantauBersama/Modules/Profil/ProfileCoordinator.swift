@@ -9,11 +9,12 @@
 import RxSwift
 import RxCocoa
 import UIKit
+import Networking
 
 protocol ProfileNavigator: LinimasaNavigator, PenpolNavigator {
     var finish: Observable<Void>! { get set }
-    func launchSetting() -> Observable<Void>
-    func launchVerifikasi() -> Observable<Void>
+    func launchSetting(user: User) -> Observable<Void>
+    func launchVerifikasi(user: User) -> Observable<Void>
     func launchReqCluster() -> Observable<Void>
 }
 
@@ -41,11 +42,11 @@ final class ProfileCoordinator: BaseCoordinator<Void> {
 
 extension ProfileCoordinator: ProfileNavigator {
     
-    func launchSetting() -> Observable<Void> {
-        let settingCoordinator = SettingCoordinator(navigationController: navigationController)
+    func launchSetting(user: User) -> Observable<Void> {
+        let settingCoordinator = SettingCoordinator(navigationController: navigationController, data: user)
         return coordinate(to: settingCoordinator)
     }
-    func launchVerifikasi() -> Observable<Void>  {
+    func launchVerifikasi(user: User) -> Observable<Void>  {
         let identitasCoordinator = IdentitasCoordinator(navigationController: navigationController)
         return coordinate(to: identitasCoordinator)
     }

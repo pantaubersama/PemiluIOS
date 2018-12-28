@@ -29,59 +29,75 @@ enum ProfileHeaderItem: Int {
 }
 
 final class ProfileInfoDummyData {
-    static func profileInfoData() -> Observable<[SectionOfProfileInfoData]> {
-        let profileInformation = generateProfileInformation()
-
+    static func profileInfoData(data: User) -> Observable<[SectionOfProfileInfoData]> {
+        let profileInformation = generateProfileInformation(data)
+        let generateUbahSandiInformation = generateUbahSandi(data)
+        let generateDataLaporInformation = generateDataLapor(data)
 
         let items = ProfileHeaderItem.items
             .map { (type) -> SectionOfProfileInfoData in
                 switch type {
                 case .editProfile:
-                    return SectionOfProfileInfoData(id: "23123",
+                    return SectionOfProfileInfoData(id: data.id,
                                                     items: profileInformation,
                                                     header: .editProfile)
-                default:
-                    return SectionOfProfileInfoData(id: "23123",
-                                                    items: profileInformation,
+                case .editPassword:
+                    return SectionOfProfileInfoData(id: data.id,
+                                                    items: generateUbahSandiInformation,
                                                     header: .editPassword)
+                case .editDataLapor:
+                    return SectionOfProfileInfoData(id: data.id,
+                                                    items: generateDataLaporInformation,
+                                                    header: .editDataLapor)
                 }
         }
         return Observable.just(items)
     }
 
-    private static func generateProfileInformation() -> [ProfileInfoField] {
+    private static func generateProfileInformation(_ data: User) -> [ProfileInfoField] {
         var profileInformation: [ProfileInfoField] = []
 
         profileInformation.append(ProfileInfoField(
             key: "Nama",
-            value: "Ali Muda",
+            value: data.firstName,
             fieldType: .text
         ))
         profileInformation.append(ProfileInfoField(
             key: "Username",
-            value: "@AliMuda",
+            value: data.lastName,
             fieldType: .username
         ))
         profileInformation.append(ProfileInfoField(
             key: "Lokasi",
-            value: "Godean",
+            value: data.lastName,
             fieldType: .text
         ))
         profileInformation.append(ProfileInfoField(
             key: "Deskripsi Tentang Kamu",
-            value: "Godean Ale",
+            value: data.lastName,
             fieldType: .text
         ))
         profileInformation.append(ProfileInfoField(
             key: "Pendidikan",
-            value: "Universitas Godean Ale",
+            value: data.lastName,
             fieldType: .text
         ))
         profileInformation.append(ProfileInfoField(
             key: "Pekerjaan",
-            value: "Ale",
+            value: data.lastName,
             fieldType: .text
         ))
         return profileInformation
+    }
+    
+    private static func generateUbahSandi(_ data: User) -> [ProfileInfoField] {
+        let sandiInformation: [ProfileInfoField] = []
+        
+        return sandiInformation
+    }
+    
+    private static func generateDataLapor(_ data: User) -> [ProfileInfoField] {
+        let dataLaporInformation: [ProfileInfoField] = []
+        return dataLaporInformation
     }
 }
