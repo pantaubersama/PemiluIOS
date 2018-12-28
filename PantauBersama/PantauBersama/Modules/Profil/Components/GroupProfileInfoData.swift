@@ -28,14 +28,13 @@ enum GroupProfileInfoData {
 }
 
 struct SectionOfProfileData {
-    var header: String?
     var items: [Item]
 }
 
 extension SectionOfProfileData: SectionModelType {
-    typealias Item = GroupProfileInfoData
+    typealias Item = ICellConfigurator
     
-    init(original: SectionOfProfileData, items: [GroupProfileInfoData]) {
+    init(original: SectionOfProfileData, items: [ICellConfigurator]) {
         self = original
         self.items = items
     }

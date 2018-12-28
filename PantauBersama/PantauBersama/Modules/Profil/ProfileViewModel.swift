@@ -21,7 +21,8 @@ protocol IProfileViewModelInput {
 protocol IProfileViewModelOutput {
     var settingO: Driver<Void>! { get }
     var verifikasiO: Driver<Void>! { get }
-    var itemsO: Driver<[SectionOfProfileData]> { get }
+    var itemsClusterO: Driver<[SectionOfProfileData]> { get }
+    var itemsBadgeO: Driver<[SectionOfProfileData]> { get }
     var clusterO: Driver<Void>! { get }
     var userDataO: Driver<UserResponse>! { get }
     var errorO: Driver<Error>! { get }
@@ -56,7 +57,8 @@ final class ProfileViewModel: IProfileViewModel, IProfileViewModelInput, IProfil
     // Output
     var settingO: Driver<Void>!
     var verifikasiO: Driver<Void>!
-    var itemsO: Driver<[SectionOfProfileData]>
+    var itemsClusterO: Driver<[SectionOfProfileData]>
+    var itemsBadgeO: Driver<[SectionOfProfileData]>
     var clusterO: Driver<Void>!
     var userDataO: Driver<UserResponse>!
     var errorO: Driver<Error>!
@@ -79,6 +81,7 @@ final class ProfileViewModel: IProfileViewModel, IProfileViewModelInput, IProfil
         settingI = settingS.asObserver()
         verifikasiI = verifikasiS.asObserver()
         clusterI = clusterS.asObserver()
+        
         
         let setting = settingS
             .flatMapLatest({ navigator.launchSetting() })
@@ -103,13 +106,16 @@ final class ProfileViewModel: IProfileViewModel, IProfileViewModelInput, IProfil
         
         settingO = setting
         verifikasiO = verifikasi
-        itemsO = Driver.just([
-            SectionOfProfileData(header: GroupProfileInfoData.cluster.title,
-                                 items: [GroupProfileInfoData.cluster]),
-            SectionOfProfileData(header: GroupProfileInfoData.biodata.title,
-                                 items: [GroupProfileInfoData.biodata]),
-            SectionOfProfileData(header: GroupProfileInfoData.badge.title,
-                                 items: [GroupProfileInfoData.badge])
+        
+        itemsClusterO = Driver.just([
+            SectionOfProfileData(items: [
+                ClusterCellConfigured(item: ClusterCell.Input())
+                ])
+            ])
+        itemsBadgeO = Driver.just([
+            SectionOfProfileData(items: [
+                BadgeCellConfigured(item: BadgeCell.Input())
+                ])
             ])
         clusterO = cluster
         userDataO = userData.asDriverOnErrorJustComplete()

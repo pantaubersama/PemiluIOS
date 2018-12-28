@@ -9,6 +9,7 @@
 import UIKit
 import Common
 import RxSwift
+import RxCocoa
 
 typealias ClusterCellConfigured = CellConfigurator<ClusterCell, ClusterCell.Input>
 
