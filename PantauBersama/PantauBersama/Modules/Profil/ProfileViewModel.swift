@@ -24,6 +24,7 @@ protocol IProfileViewModelOutput {
     var itemsO: Driver<[SectionOfProfileData]> { get }
     var clusterO: Driver<Void>! { get }
     var userDataO: Driver<UserResponse>! { get }
+    var errorO: Driver<Error>! { get }
 }
 
 protocol IProfileViewModel {
@@ -58,12 +59,15 @@ final class ProfileViewModel: IProfileViewModel, IProfileViewModelInput, IProfil
     var itemsO: Driver<[SectionOfProfileData]>
     var clusterO: Driver<Void>!
     var userDataO: Driver<UserResponse>!
+    var errorO: Driver<Error>!
     
     
     private let backS = PublishSubject<Void>()
     private let settingS = PublishSubject<Void>()
     private let verifikasiS = PublishSubject<Void>()
     private let clusterS = PublishSubject<Void>()
+    private let activityIndicator = ActivityIndicator()
+    private let errorTracker = ErrorTracker()
     
     init(navigator: ProfileNavigator) {
         self.navigator = navigator
@@ -92,11 +96,8 @@ final class ProfileViewModel: IProfileViewModel, IProfileViewModelInput, IProfil
             PantauAuthAPI.me,
             c: BaseResponse<UserResponse>.self)
             .map({ $0.data })
-            .do(onSuccess: { (response) in
-                print(response)
-            }, onError: { (e) in
-                print(e.localizedDescription)
-            })
+            .trackError(errorTracker)
+            .trackActivity(activityIndicator)
             .asObservable()
             .catchErrorJustComplete()
         
@@ -112,6 +113,8 @@ final class ProfileViewModel: IProfileViewModel, IProfileViewModelInput, IProfil
             ])
         clusterO = cluster
         userDataO = userData.asDriverOnErrorJustComplete()
+        
+        errorO = errorTracker.asDriver()
     }
     
 }
