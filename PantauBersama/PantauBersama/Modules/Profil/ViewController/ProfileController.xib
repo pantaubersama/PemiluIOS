@@ -17,6 +17,7 @@
                 <outlet property="clusterButton" destination="2Bk-Gz-hJX" id="l3Q-wB-KqS"/>
                 <outlet property="container" destination="nH3-C7-YkB" id="V7d-fT-goM"/>
                 <outlet property="headerProfile" destination="OTp-iP-8Pn" id="GXT-qZ-bZU"/>
+                <outlet property="heightBiodataConstant" destination="vSJ-VZ-plb" id="bjr-Hz-346"/>
                 <outlet property="heightTableBadgeConstant" destination="MuC-hZ-3vI" id="VWL-AY-YpX"/>
                 <outlet property="heightTableClusterConstant" destination="fhv-qG-ZXr" id="4yP-D4-BvQ"/>
                 <outlet property="scrollView" destination="W5k-U4-qnn" id="aH9-Pm-0kv"/>
@@ -43,7 +44,7 @@
                                     </constraints>
                                 </view>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="gih-E0-m54">
-                                    <rect key="frame" x="0.0" y="142" width="375" height="143"/>
+                                    <rect key="frame" x="0.0" y="142" width="375" height="144"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mZj-sJ-ibA">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="47"/>
@@ -185,8 +186,15 @@
                                                 <constraint firstAttribute="bottom" secondItem="Sam-h3-dps" secondAttribute="bottom" id="r9Y-CW-fky"/>
                                             </constraints>
                                         </view>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P7A-6P-eeq" customClass="BiodataView" customModule="PantauBersama" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="95" width="375" height="1"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="1" id="vSJ-VZ-plb"/>
+                                            </constraints>
+                                        </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CpA-Ms-Aoe">
-                                            <rect key="frame" x="0.0" y="95" width="375" height="47"/>
+                                            <rect key="frame" x="0.0" y="96" width="375" height="47"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="wSq-QZ-w3o">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="47"/>
@@ -247,7 +255,7 @@
                                             </constraints>
                                         </view>
                                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rSZ-8n-8m3">
-                                            <rect key="frame" x="0.0" y="142" width="375" height="1"/>
+                                            <rect key="frame" x="0.0" y="143" width="375" height="1"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="1" id="MuC-hZ-3vI"/>
@@ -257,7 +265,7 @@
                                     </subviews>
                                 </stackView>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FAj-hd-teM">
-                                    <rect key="frame" x="0.0" y="285" width="375" height="64"/>
+                                    <rect key="frame" x="0.0" y="286" width="375" height="64"/>
                                     <subviews>
                                         <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="PnU-fp-mxj">
                                             <rect key="frame" x="16" y="18" width="343" height="29"/>
@@ -280,7 +288,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nH3-C7-YkB" userLabel="Container">
-                                    <rect key="frame" x="0.0" y="349" width="375" height="665"/>
+                                    <rect key="frame" x="0.0" y="350" width="375" height="664"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </view>
                             </subviews>

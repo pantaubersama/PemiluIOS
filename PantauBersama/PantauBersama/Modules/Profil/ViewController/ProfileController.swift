@@ -24,6 +24,7 @@ class ProfileController: UIViewController {
     @IBOutlet weak var badgeButton: UIButton!
     @IBOutlet weak var heightTableClusterConstant: NSLayoutConstraint!
     @IBOutlet weak var heightTableBadgeConstant: NSLayoutConstraint!
+    @IBOutlet weak var heightBiodataConstant: NSLayoutConstraint!
     
     var viewModel: IProfileViewModel!
     
@@ -88,6 +89,17 @@ class ProfileController: UIViewController {
                 UIView.animate(withDuration: 0.3, animations: {
                     self.heightTableBadgeConstant.constant = value ? 190.0 : 0.0
                 })
+            })
+            .disposed(by: disposeBag)
+        
+        biodataButton.rx.tap.scan(false) { lastState, newValue in
+            return !lastState
+            }.subscribe(onNext: { [weak self] (value) in
+                guard let `self` = self else { return }
+                UIView.animate(withDuration: 0.3, animations: {
+                    self.heightBiodataConstant.constant = value ? 86.0 : 0.0
+                })
+                
             })
             .disposed(by: disposeBag)
         
