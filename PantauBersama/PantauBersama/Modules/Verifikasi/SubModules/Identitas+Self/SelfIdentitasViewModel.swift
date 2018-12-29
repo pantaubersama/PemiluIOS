@@ -12,11 +12,12 @@ import Networking
 
 protocol ISelfIdentitasViewModelInput {
     var backI: AnyObserver<Void> { get }
-    var photoI: AnyObserver<Void> { get }
+    var photoI: AnyObserver<UIImage?> { get }
 }
 
 protocol ISelfIdentitasViewModelOutput {
-
+    var photoO: Driver<Void>! { get }
+    var errorTrackerO: Driver<Error>! { get }
 }
 
 protocol ISelfIdentitasViewModel {
@@ -32,14 +33,16 @@ final class SelfIdentitasViewModel: ISelfIdentitasViewModelInput, ISelfIdentitas
     
     // MARK: Input
     var backI: AnyObserver<Void>
-    var photoI: AnyObserver<Void>
+    var photoI: AnyObserver<UIImage?>
     
     // MARK: Output
-    
+    var photoO: Driver<Void>!
+    var errorTrackerO: Driver<Error>!
     
     // MARK: Subject
     private let backS = PublishSubject<Void>()
-    private let photoS = PublishSubject<Void>()
+    private let photoS = PublishSubject<UIImage?>()
+    private let doneS = PublishSubject<Void>()
     
     init(navigator: SelfIdentitasNavigator) {
         self.navigator = navigator
@@ -50,5 +53,29 @@ final class SelfIdentitasViewModel: ISelfIdentitasViewModelInput, ISelfIdentitas
         
         backI = backS.asObserver()
         photoI = photoS.asObserver()
+        
+        let photoSelected = photoS
+            .flatMapLatest({ (image) -> Driver<BaseResponse<VerificationsResponse>> in
+                return NetworkService.instance
+                    .requestObject(PantauAuthAPI.putSelfieKTP(image: image),
+                                   c: BaseResponse<VerificationsResponse>.self)
+                    .do(onSuccess: { (response) in
+                        print(response.data.user)
+                    })
+                    .trackError(errorTracker)
+                    .trackActivity(activityIndicator)
+                    .asObservable()
+                    .asDriverOnErrorJustComplete()
+            })
+            .flatMapLatest({ _ in navigator.launchKTP() })
+            .mapToVoid()
+            .asDriverOnErrorJustComplete()
+        
+        
+        // MARK
+        // Output
+        photoO = photoSelected
+        errorTrackerO = errorTracker.asDriver()
     }
+    
 }

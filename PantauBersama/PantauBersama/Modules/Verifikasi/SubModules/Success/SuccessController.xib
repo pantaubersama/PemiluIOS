@@ -33,7 +33,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="47" id="Gbl-2K-S1A"/>
                     </constraints>
-                    <state key="normal" title="Button">
+                    <state key="normal" title="OKE">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
                     <userDefinedRuntimeAttributes>

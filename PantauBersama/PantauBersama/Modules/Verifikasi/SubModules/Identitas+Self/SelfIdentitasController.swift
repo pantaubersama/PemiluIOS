@@ -34,7 +34,7 @@ class SelfIdentitasController: UIViewController {
         // MARK:- Lottie
         selfieIdentitas = LOTAnimationView(name: "selfie-id-card")
         selfieIdentitas!.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        selfieIdentitas!.contentMode  = .scaleAspectFill
+        selfieIdentitas!.contentMode  = .scaleAspectFit
         selfieIdentitas!.frame = lottieView.bounds
         lottieView.addSubview(selfieIdentitas!)
         selfieIdentitas!.loopAnimation = true
@@ -48,26 +48,33 @@ class SelfIdentitasController: UIViewController {
         
         buttonLanjut.rx.tap
             .subscribe(onNext: { [weak self] (_) in
-                let controller = UIImagePickerController()
-                controller.sourceType = .camera
+                let controller = CameraController()
+                controller.type = .selfKtp
                 controller.delegate = self
                 self?.navigationController?.present(controller, animated: true, completion: nil)
             })
             .disposed(by: disposeBag)
         
+        viewModel.output.photoO
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.errorTrackerO
+            .drive(onNext: { [weak self] (e) in
+                guard let alert = UIAlertController.alert(with: e) else { return }
+                self?.navigationController?.present(alert, animated: true, completion: nil)
+            })
+            .disposed(by: disposeBag)
     }
 }
 
-
-extension SelfIdentitasController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        navigationController?.dismiss(animated: true, completion: { [weak self] in
-            guard let `self` = self else { return }
-            if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
-                print(image.debugDescription)
-            } else if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
-                print(image.debugDescription)
-            }
-        })
+// MARK
+// Handle camera delegate from camera controller
+// next step will improve this system using OCR
+// this system still using default camera to test API
+extension SelfIdentitasController: ICameraController {
+    func didFinishWith(image: UIImage) {
+        print("Gambar: \(image.jpegData(compressionQuality: 1.0))")
+        self.viewModel.input.photoI.onNext(image)
     }
 }

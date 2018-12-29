@@ -27,6 +27,9 @@ public enum PantauAuthAPI {
     case me
     case verifications
     case putKTP(ktp: String)
+    case putSelfieKTP(image: UIImage?)
+    case putFotoKTP(image: UIImage?)
+    case putSignature(image: UIImage?)
     
 }
 
@@ -60,6 +63,12 @@ extension PantauAuthAPI: TargetType {
             return "/v1/me/verifications"
         case .putKTP:
             return "/v1/verifications/ktp_number"
+        case .putSelfieKTP:
+            return "/v1/verifications/ktp_selfie"
+        case .putFotoKTP:
+            return "/v1/verifications/ktp_photo"
+        case .putSignature:
+            return "/v1/verifications/signature"
         }
     }
     
@@ -67,7 +76,10 @@ extension PantauAuthAPI: TargetType {
         switch self {
         case .refresh, .revoke:
             return .post
-        case .putKTP:
+        case .putKTP,
+             .putSelfieKTP,
+             .putFotoKTP,
+             .putSignature:
             return .put
         default:
             return .get
@@ -95,10 +107,6 @@ extension PantauAuthAPI: TargetType {
                 "client_secret": AppContext.instance.infoForKey("CLIENT_SECRET_AUTH"),
                 "token": t
             ]
-        case .putKTP(let ktp):
-            return [
-                "ktp_number": ktp
-            ]
         default:
             return nil
         }
@@ -115,6 +123,11 @@ extension PantauAuthAPI: TargetType {
     
     public var task: Task {
         switch self {
+        case .putKTP,
+             .putSelfieKTP,
+             .putFotoKTP,
+             .putSignature:
+            return .uploadMultipart(self.multipartBody ?? [])
         default:
             return .requestParameters(parameters: parameters ?? [:], encoding: parameterEncoding)
         }
@@ -136,6 +149,24 @@ extension PantauAuthAPI: TargetType {
         case .putKTP(let ktp):
             var multipartFormData = [MultipartFormData]()
             multipartFormData.append(buildMultipartFormData(key: "ktp_number", value: ktp))
+            return multipartFormData
+        case .putSelfieKTP(let image):
+            var multipartFormData = [MultipartFormData]()
+            if let selfie = image, let d = selfie.jpegData(compressionQuality: 0.1) {
+                multipartFormData.append(buildMultipartFormData(name: "ktp_selfie", value: d))
+                }
+            return multipartFormData
+        case .putFotoKTP(let image):
+            var multipartFormData = [MultipartFormData]()
+            if let selfie = image, let d = selfie.jpegData(compressionQuality: 0.1) {
+                multipartFormData.append(buildMultipartFormData(name: "ktp_photo", value: d))
+            }
+            return multipartFormData
+        case .putSignature(let image):
+            var multipartFormData = [MultipartFormData]()
+            if let selfie = image, let d = selfie.jpegData(compressionQuality: 0.1) {
+                multipartFormData.append(buildMultipartFormData(name: "signature", value: d))
+            }
             return multipartFormData
         default:
             return nil

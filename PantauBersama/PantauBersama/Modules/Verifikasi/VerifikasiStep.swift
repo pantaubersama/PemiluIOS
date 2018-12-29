@@ -8,9 +8,10 @@
 
 import Foundation
 
-enum VerifikasiStep: Int {
+enum VerifikasiStep {
     case identitas
     case selfKtp
     case ktp
     case signature
+    case `default`
 }

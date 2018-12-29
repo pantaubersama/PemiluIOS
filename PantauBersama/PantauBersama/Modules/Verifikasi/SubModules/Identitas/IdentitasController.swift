@@ -26,6 +26,7 @@ class IdentitasController: UIViewController {
         let back = UIBarButtonItem(image: #imageLiteral(resourceName: "back"), style: .plain, target: nil, action: nil)
         navigationItem.leftBarButtonItem = back
         navigationController?.navigationBar.configure(with: .white)
+        textFieldKTP.keyboardType = .numberPad
         
         back.rx.tap
             .bind(to: viewModel.input.backI)
@@ -42,6 +43,7 @@ class IdentitasController: UIViewController {
         viewModel.output.enable
             .do(onNext: { [weak self](enable) in
                 self?.buttonOke.backgroundColor = enable ? Color.primary_red : Color.grey_three
+                self?.textFieldKTP.lineColor = enable ? Color.secondary_cyan : Color.primary_red
             })
             .drive(buttonOke.rx.isEnabled)
             .disposed(by: disposeBag)

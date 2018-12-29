@@ -19,6 +19,9 @@ class SuccessController: UIViewController {
     
     private var successAnimation: LOTAnimationView?
     
+    private let disposeBag = DisposeBag()
+    var viewModel: SuccessViewModel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -35,12 +38,15 @@ class SuccessController: UIViewController {
                                toProgress: 1,
                                withCompletion: nil)
         
-        buttonFinish.addTarget(self, action: #selector(handleFinish(sender:)), for: .touchUpInside)
+        buttonFinish.rx.tap
+            .bind(to: viewModel.input.finishI)
+            .disposed(by: disposeBag)
+        
+        viewModel.output.finishO
+            .drive()
+            .disposed(by: disposeBag)
     }
     
-    @objc private func handleFinish(sender: UIButton) {
-        navigationController?.popToRootViewController(animated: true)
-    }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)

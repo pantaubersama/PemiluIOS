@@ -55,6 +55,15 @@ extension ProfileCoordinator: ProfileNavigator {
         case 2:
             let selfIdentitasCoordinator = SelfIdentitasCoordinator(navigationController: navigationController)
             return coordinate(to: selfIdentitasCoordinator)
+        case 3:
+            let ktpCoordinator = KTPCoordinator(navigationController: navigationController)
+            return coordinate(to: ktpCoordinator)
+        case 4:
+            let signatureCoordinator = SignatureCoordinator(navigationController: navigationController)
+            return coordinate(to: signatureCoordinator)
+        case 5:
+            let successCoordinator = SuccessCoordinator(navigationController: navigationController)
+            return coordinate(to: successCoordinator)
         default :
             let identitasCoordinator = IdentitasCoordinator(navigationController: navigationController)
             return coordinate(to: identitasCoordinator)

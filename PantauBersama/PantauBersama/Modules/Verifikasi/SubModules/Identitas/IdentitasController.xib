@@ -170,9 +170,6 @@ Mendapatkan manfaat dan is simply dummy text of the printing and typesetting ind
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits"/>
                                     <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="color" keyPath="activeLineColor">
-                                            <color key="value" red="0.078431372550000003" green="0.74117647060000003" blue="0.60392156860000001" alpha="1" colorSpace="calibratedRGB"/>
-                                        </userDefinedRuntimeAttribute>
                                         <userDefinedRuntimeAttribute type="color" keyPath="lineColor">
                                             <color key="value" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         </userDefinedRuntimeAttribute>
