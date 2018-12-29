@@ -9,6 +9,8 @@
 import UIKit
 import Lottie
 import Common
+import RxCocoa
+import RxSwift
 
 class SelfIdentitasController: UIViewController {
     
@@ -17,12 +19,14 @@ class SelfIdentitasController: UIViewController {
     
     private var selfieIdentitas: LOTAnimationView?
     
+    private let disposeBag = DisposeBag()
+    
     var viewModel: ISelfIdentitasViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let back = UIBarButtonItem(image: #imageLiteral(resourceName: "back"), style: .plain, target: self, action: #selector(handleBack(sender:)))
+        let back = UIBarButtonItem(image: #imageLiteral(resourceName: "back"), style: .plain, target: nil, action: nil)
         navigationItem.leftBarButtonItem = back
         navigationController?.navigationBar.configure(with: .white)
         
@@ -38,15 +42,32 @@ class SelfIdentitasController: UIViewController {
                                  toProgress: 1.0,
                                  withCompletion: nil)
         
-        buttonLanjut.addTarget(self, action: #selector(handleTap(sender:)), for: .touchUpInside)
+        back.rx.tap
+            .bind(to: viewModel.input.backI)
+            .disposed(by: disposeBag)
+        
+        buttonLanjut.rx.tap
+            .subscribe(onNext: { [weak self] (_) in
+                let controller = UIImagePickerController()
+                controller.sourceType = .camera
+                controller.delegate = self
+                self?.navigationController?.present(controller, animated: true, completion: nil)
+            })
+            .disposed(by: disposeBag)
+        
     }
-    
-    @objc private func handleBack(sender: UIBarButtonItem) {
-        navigationController?.popViewController(animated: true)
-    }
-    
-    @objc private func handleTap(sender: UIButton) {
-        let vc = KTPController()
-        navigationController?.pushViewController(vc, animated: true)
+}
+
+
+extension SelfIdentitasController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        navigationController?.dismiss(animated: true, completion: { [weak self] in
+            guard let `self` = self else { return }
+            if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+                print(image.debugDescription)
+            } else if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+                print(image.debugDescription)
+            }
+        })
     }
 }
