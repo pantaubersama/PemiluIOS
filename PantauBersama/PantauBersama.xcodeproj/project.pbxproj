@@ -93,6 +93,17 @@
 		8428AAAD21C7B4B20008E975 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8428AAAC21C7B4B10008E975 /* GoogleService-Info.plist */; };
 		842A49F521D7749D0050AA51 /* HeaderDataLapor.xib in Resources */ = {isa = PBXBuildFile; fileRef = 842A49F421D7749D0050AA51 /* HeaderDataLapor.xib */; };
 		842A49F721D775420050AA51 /* HeaderDataLapor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842A49F621D775420050AA51 /* HeaderDataLapor.swift */; };
+		842A49F921D789A30050AA51 /* VerifikasiStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842A49F821D789A30050AA51 /* VerifikasiStep.swift */; };
+		842A49FD21D799760050AA51 /* SelfIdentitasViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842A49FC21D799760050AA51 /* SelfIdentitasViewModel.swift */; };
+		842A49FF21D79AA70050AA51 /* SelfIdentitasCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842A49FE21D79AA70050AA51 /* SelfIdentitasCoordinator.swift */; };
+		842A4A0121D7C5160050AA51 /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842A4A0021D7C5160050AA51 /* CameraController.swift */; };
+		842A4A0321D7C6810050AA51 /* CameraController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 842A4A0221D7C6810050AA51 /* CameraController.xib */; };
+		842A4A0521D7E46B0050AA51 /* KTPCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842A4A0421D7E46B0050AA51 /* KTPCoordinator.swift */; };
+		842A4A0721D7E4740050AA51 /* KTPViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842A4A0621D7E4740050AA51 /* KTPViewModel.swift */; };
+		842A4A0921D7EA990050AA51 /* SignatureCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842A4A0821D7EA990050AA51 /* SignatureCoordinator.swift */; };
+		842A4A0B21D7EAA60050AA51 /* SignatureViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842A4A0A21D7EAA60050AA51 /* SignatureViewModel.swift */; };
+		842A4A0D21D7EDC10050AA51 /* SuccessCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842A4A0C21D7EDC10050AA51 /* SuccessCoordinator.swift */; };
+		842A4A0F21D7EE5F0050AA51 /* SuccessViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842A4A0E21D7EE5F0050AA51 /* SuccessViewModel.swift */; };
 		8441DB3C21CCA6C500B078DF /* ItemRadioCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441DB3B21CCA6C500B078DF /* ItemRadioCell.swift */; };
 		8441DB3E21CCB80B00B078DF /* ItemRadioCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8441DB3D21CCB80B00B078DF /* ItemRadioCell.xib */; };
 		8441DB4121CCBECF00B078DF /* FilterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441DB4021CCBECF00B078DF /* FilterModel.swift */; };
@@ -328,6 +339,17 @@
 		8428AAAC21C7B4B10008E975 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		842A49F421D7749D0050AA51 /* HeaderDataLapor.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderDataLapor.xib; sourceTree = "<group>"; };
 		842A49F621D775420050AA51 /* HeaderDataLapor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderDataLapor.swift; sourceTree = "<group>"; };
+		842A49F821D789A30050AA51 /* VerifikasiStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifikasiStep.swift; sourceTree = "<group>"; };
+		842A49FC21D799760050AA51 /* SelfIdentitasViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfIdentitasViewModel.swift; sourceTree = "<group>"; };
+		842A49FE21D79AA70050AA51 /* SelfIdentitasCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfIdentitasCoordinator.swift; sourceTree = "<group>"; };
+		842A4A0021D7C5160050AA51 /* CameraController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraController.swift; sourceTree = "<group>"; };
+		842A4A0221D7C6810050AA51 /* CameraController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CameraController.xib; sourceTree = "<group>"; };
+		842A4A0421D7E46B0050AA51 /* KTPCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KTPCoordinator.swift; sourceTree = "<group>"; };
+		842A4A0621D7E4740050AA51 /* KTPViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KTPViewModel.swift; sourceTree = "<group>"; };
+		842A4A0821D7EA990050AA51 /* SignatureCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignatureCoordinator.swift; sourceTree = "<group>"; };
+		842A4A0A21D7EAA60050AA51 /* SignatureViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignatureViewModel.swift; sourceTree = "<group>"; };
+		842A4A0C21D7EDC10050AA51 /* SuccessCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessCoordinator.swift; sourceTree = "<group>"; };
+		842A4A0E21D7EE5F0050AA51 /* SuccessViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessViewModel.swift; sourceTree = "<group>"; };
 		8441DB3B21CCA6C500B078DF /* ItemRadioCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemRadioCell.swift; sourceTree = "<group>"; };
 		8441DB3D21CCB80B00B078DF /* ItemRadioCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ItemRadioCell.xib; sourceTree = "<group>"; };
 		8441DB4021CCBECF00B078DF /* FilterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterModel.swift; sourceTree = "<group>"; };
@@ -1189,6 +1211,7 @@
 			isa = PBXGroup;
 			children = (
 				84A07F9421D0D4C400269C6B /* SubModules */,
+				842A49F821D789A30050AA51 /* VerifikasiStep.swift */,
 			);
 			path = Verifikasi;
 			sourceTree = "<group>";
@@ -1201,6 +1224,8 @@
 				84A07F9B21D0DC2700269C6B /* KTP */,
 				84A07FA521D0E2C400269C6B /* Identitas+Self */,
 				84A07F9521D0D4CF00269C6B /* Identitas */,
+				842A4A0021D7C5160050AA51 /* CameraController.swift */,
+				842A4A0221D7C6810050AA51 /* CameraController.xib */,
 			);
 			path = SubModules;
 			sourceTree = "<group>";
@@ -1221,6 +1246,8 @@
 			children = (
 				84A07F9C21D0DC4B00269C6B /* KTPController.xib */,
 				84A07F9E21D0DFA200269C6B /* KTPController.swift */,
+				842A4A0421D7E46B0050AA51 /* KTPCoordinator.swift */,
+				842A4A0621D7E4740050AA51 /* KTPViewModel.swift */,
 			);
 			path = KTP;
 			sourceTree = "<group>";
@@ -1230,6 +1257,8 @@
 			children = (
 				84A07FA121D0DFF600269C6B /* SignatureController.xib */,
 				84A07FA321D0E27F00269C6B /* SignatureController.swift */,
+				842A4A0821D7EA990050AA51 /* SignatureCoordinator.swift */,
+				842A4A0A21D7EAA60050AA51 /* SignatureViewModel.swift */,
 			);
 			path = Signature;
 			sourceTree = "<group>";
@@ -1239,6 +1268,8 @@
 			children = (
 				84A07FA621D0E2E900269C6B /* SelfIdentitasController.xib */,
 				84A07FB021D0E7B000269C6B /* SelfIdentitasController.swift */,
+				842A49FC21D799760050AA51 /* SelfIdentitasViewModel.swift */,
+				842A49FE21D79AA70050AA51 /* SelfIdentitasCoordinator.swift */,
 			);
 			path = "Identitas+Self";
 			sourceTree = "<group>";
@@ -1248,6 +1279,8 @@
 			children = (
 				84A07FB321D0ECC100269C6B /* SuccessController.xib */,
 				84A07FB521D0ED8100269C6B /* SuccessController.swift */,
+				842A4A0C21D7EDC10050AA51 /* SuccessCoordinator.swift */,
+				842A4A0E21D7EE5F0050AA51 /* SuccessViewModel.swift */,
 			);
 			path = Success;
 			sourceTree = "<group>";
@@ -1491,6 +1524,7 @@
 				8428AAA321C7A7790008E975 /* Localizable.strings in Resources */,
 				13F4569521CF97DA00CE45F1 /* CreateAskController.xib in Resources */,
 				840850DD21D2832200696CB3 /* BadgeController.xib in Resources */,
+				842A4A0321D7C6810050AA51 /* CameraController.xib in Resources */,
 				11702DD321CB0287001AEE3F /* QuizCell.xib in Resources */,
 				84F892A821C787D800DC1048 /* Lato-Black.ttf in Resources */,
 				84F892B321C787F700DC1048 /* BwModelica-BlackCondensed.otf in Resources */,
@@ -1743,6 +1777,7 @@
 				11E1079A21CD14A400B7B074 /* QuizViewModel.swift in Sources */,
 				13812C2B21CAA71F00CAB327 /* PenpolCoordinator.swift in Sources */,
 				11E1079421CD101900B7B074 /* QuizDetailCoordinator.swift in Sources */,
+				842A4A0B21D7EAA60050AA51 /* SignatureViewModel.swift in Sources */,
 				11E107AE21CD42C400B7B074 /* QuizOngoingController.swift in Sources */,
 				84D01B9821D208DE0000492F /* SectionOfSettingData.swift in Sources */,
 				11E107DA21CFD99900B7B074 /* QuizResultCoordinator.swift in Sources */,
@@ -1761,6 +1796,7 @@
 				11B145FE21D744A100BB26C8 /* BannerInfoAskView.swift in Sources */,
 				11E107A821CD33CA00B7B074 /* CreateJanjiCoordinator.swift in Sources */,
 				11E107A721CD33CA00B7B074 /* CreateJanjiViewModel.swift in Sources */,
+				842A4A0921D7EA990050AA51 /* SignatureCoordinator.swift in Sources */,
 				845C570221CD1AEB00EDCDFE /* ProfileController.swift in Sources */,
 				84A07FC221D14D4F00269C6B /* ReqClusterController.swift in Sources */,
 				11B3C79621D1126700EDCECB /* QuizAnswerKeyCell.swift in Sources */,
@@ -1771,10 +1807,12 @@
 				8441DB3C21CCA6C500B078DF /* ItemRadioCell.swift in Sources */,
 				84A07F9F21D0DFA200269C6B /* KTPController.swift in Sources */,
 				11E107C921CF626800B7B074 /* PenpolInfoCellViewModel.swift in Sources */,
+				842A4A0121D7C5160050AA51 /* CameraController.swift in Sources */,
 				84A07FB121D0E7B000269C6B /* SelfIdentitasController.swift in Sources */,
 				13812C3921CC182500CAB327 /* AskViewCell.swift in Sources */,
 				84B2526821CC01F000565D82 /* AppState.swift in Sources */,
 				84B4DED821D375C600F60258 /* JanjiPolitikNavigator.swift in Sources */,
+				842A49FF21D79AA70050AA51 /* SelfIdentitasCoordinator.swift in Sources */,
 				840850CA21D25EB600696CB3 /* TextViewCell.swift in Sources */,
 				11E1079621CD126900B7B074 /* QuizDetailViewModel.swift in Sources */,
 				84F6981121C8E21B00890917 /* LinimasaCell.swift in Sources */,
@@ -1802,6 +1840,7 @@
 				84F6981521C8FAB000890917 /* UIControl.swift in Sources */,
 				84A07FA421D0E27F00269C6B /* SignatureController.swift in Sources */,
 				8441DB5321CCF0C200B078DF /* DetailJanjiController.swift in Sources */,
+				842A49FD21D799760050AA51 /* SelfIdentitasViewModel.swift in Sources */,
 				84FE6EBA21D5FC9B009A0F55 /* ActivityIndicator.swift in Sources */,
 				11E107DD21CFD99900B7B074 /* QuizResultController.swift in Sources */,
 				84B2521B21CAA71200565D82 /* ViewModelType.swift in Sources */,
@@ -1827,8 +1866,10 @@
 				844C3D7821C51EFD00199871 /* HomeCoordinator.swift in Sources */,
 				845C571921CE1C9900EDCDFE /* BadgeCell.swift in Sources */,
 				11E107C521CF534700B7B074 /* PenpolInfoCoordinator.swift in Sources */,
+				842A4A0521D7E46B0050AA51 /* KTPCoordinator.swift in Sources */,
 				84A07FB621D0ED8100269C6B /* SuccessController.swift in Sources */,
 				845C570721CD1D8F00EDCDFE /* ProfileCoordinator.swift in Sources */,
+				842A4A0F21D7EE5F0050AA51 /* SuccessViewModel.swift in Sources */,
 				84E6934021D2946C00EA5464 /* HeaderEditProfile.swift in Sources */,
 				13F456AE21D36A8500CE45F1 /* UndangAnggotaController.swift in Sources */,
 				84B2523021CAB61300565D82 /* OnboardingViewModel.swift in Sources */,
@@ -1844,16 +1885,19 @@
 				84FE6EBE21D5FEA1009A0F55 /* Network+AlertController.swift in Sources */,
 				8441DB5821CCF7D900B078DF /* DetailJanjiCoordinator.swift in Sources */,
 				13F4569D21CF985800CE45F1 /* CreateAskViewModel.swift in Sources */,
+				842A49F921D789A30050AA51 /* VerifikasiStep.swift in Sources */,
 				11B145EE21D67C8200BB26C8 /* AskCellViewModel.swift in Sources */,
 				844C3D7A21C5230C00199871 /* RawRepresentable.swift in Sources */,
 				840850D721D2802000696CB3 /* ProfileInfoDummyData.swift in Sources */,
 				13F4569921CF982E00CE45F1 /* AskNavigator.swift in Sources */,
 				84E2854721CA1E8300298E31 /* PilpresType.swift in Sources */,
 				844C3D8521C5252800199871 /* LinimasaCoordinator.swift in Sources */,
+				842A4A0D21D7EDC10050AA51 /* SuccessCoordinator.swift in Sources */,
 				11E107C121CF4C6B00B7B074 /* PenpolnfoCell.swift in Sources */,
 				840850E121D2844700696CB3 /* BadgeCoordinator.swift in Sources */,
 				8409374B21D360D10024A444 /* PilpresViewModel.swift in Sources */,
 				840850D521D2741700696CB3 /* LogoutCoordinator.swift in Sources */,
+				842A4A0721D7E4740050AA51 /* KTPViewModel.swift in Sources */,
 				84A07FC621D14F3800269C6B /* ReqClusterCoordinator.swift in Sources */,
 				84E2855321CA524200298E31 /* FilterCoordinator.swift in Sources */,
 			);
@@ -2026,8 +2070,9 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 22QKGCKXRM;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = XLK9742Z44;
 				INFOPLIST_FILE = PantauBersama/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2035,6 +2080,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.pantaubersama.staging;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "Pantau Bersama Staging";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -2047,8 +2093,9 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 22QKGCKXRM;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = PantauBersama/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2056,6 +2103,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.pantaubersama.staging;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

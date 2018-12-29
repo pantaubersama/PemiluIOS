@@ -104,11 +104,23 @@ final class ProfileViewModel: IProfileViewModel, IProfileViewModelInput, IProfil
             .asDriver(onErrorJustReturn: ())
         
         // MARK
+        // Get verifications steps
+        let verifications = NetworkService.instance.requestObject(
+            PantauAuthAPI.verifications,
+            c: BaseResponse<VerificationsResponse>.self)
+            .map({ $0.data.user })
+            .trackError(errorTracker)
+            .trackActivity(activityIndicator)
+            .asObservable()
+            .catchErrorJustComplete()
+        
+        
+        // MARK
         // Click verifikasi with latest user data
         let verifikasi = verifikasiS
-            .withLatestFrom(userData)
+            .withLatestFrom(verifications)
             .flatMapLatest { (user) -> Observable<Void> in
-                return navigator.launchVerifikasi(user: user.user)
+                return navigator.launchVerifikasi(user: user)
             }
             .asDriver(onErrorJustReturn: ())
         

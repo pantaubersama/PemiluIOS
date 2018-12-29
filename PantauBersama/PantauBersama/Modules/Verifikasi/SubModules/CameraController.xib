@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CameraController" customModule="PantauBersama" customModuleProvider="target">
+            <connections>
+                <outlet property="cameraView" destination="rEY-FW-cbW" id="6Pj-zC-LNO"/>
+                <outlet property="cancelButton" destination="vUL-bn-Zhx" id="ZL7-ZO-bTp"/>
+                <outlet property="captureButton" destination="B27-YX-gEQ" id="2ed-EP-lwe"/>
+                <outlet property="done" destination="uq5-cF-1Ws" id="fV8-D4-XAn"/>
+                <outlet property="galleryButton" destination="ZTe-r1-V8n" id="yb2-1U-abR"/>
+                <outlet property="retake" destination="VkC-sH-JHb" id="NAW-Ry-RdP"/>
+                <outlet property="stackButton" destination="RvA-Mg-C11" id="htP-tg-pnN"/>
+                <outlet property="tempImage" destination="Hon-rv-9jE" id="3jn-JG-z4Q"/>
+                <outlet property="verifyFace" destination="u46-kD-Pbf" id="hdW-wP-6g0"/>
+                <outlet property="verifyKTP" destination="wJs-fn-ibA" id="DfC-YF-HFG"/>
+                <outlet property="view" destination="iN0-l3-epB" id="AXa-zL-sgw"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rEY-FW-cbW">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
+                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="verifyFace" translatesAutoresizingMaskIntoConstraints="NO" id="u46-kD-Pbf">
+                    <rect key="frame" x="112.5" y="120" width="150" height="220"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="220" id="7R5-nB-1MD"/>
+                        <constraint firstAttribute="width" constant="150" id="MHl-kx-svK"/>
+                    </constraints>
+                </imageView>
+                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="verifyId" translatesAutoresizingMaskIntoConstraints="NO" id="wJs-fn-ibA">
+                    <rect key="frame" x="104" y="390" width="167" height="97"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="97" id="9uO-D5-AhS"/>
+                        <constraint firstAttribute="width" constant="167" id="EJv-16-eZS"/>
+                    </constraints>
+                </imageView>
+                <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="52" translatesAutoresizingMaskIntoConstraints="NO" id="aMb-93-nPk">
+                    <rect key="frame" x="63.5" y="579" width="248" height="72"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vUL-bn-Zhx">
+                            <rect key="frame" x="0.0" y="18" width="36" height="36"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="36" id="r0b-K4-Pi0"/>
+                                <constraint firstAttribute="height" constant="36" id="x73-uP-7Zq"/>
+                            </constraints>
+                            <state key="normal" image="outlineClose24Px"/>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B27-YX-gEQ">
+                            <rect key="frame" x="88" y="0.0" width="72" height="72"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="72" id="NEG-EK-wgm"/>
+                                <constraint firstAttribute="height" constant="72" id="mEb-j9-e99"/>
+                            </constraints>
+                            <state key="normal" image="verifyCapture"/>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZTe-r1-V8n">
+                            <rect key="frame" x="212" y="18" width="36" height="36"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="36" id="376-nP-W6x"/>
+                                <constraint firstAttribute="width" constant="36" id="PFW-5Q-pMn"/>
+                            </constraints>
+                            <state key="normal" image="outlineImage24Px"/>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="72" id="ir4-P2-8rw"/>
+                    </constraints>
+                </stackView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Hon-rv-9jE">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                </imageView>
+                <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="RvA-Mg-C11" userLabel="stackButton">
+                    <rect key="frame" x="87.5" y="601" width="200" height="50"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VkC-sH-JHb">
+                            <rect key="frame" x="0.0" y="0.0" width="100" height="50"/>
+                            <state key="normal" title="Retake">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uq5-cF-1Ws">
+                            <rect key="frame" x="100" y="0.0" width="100" height="50"/>
+                            <state key="normal" title="Done">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                        </button>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="I30-Qz-ceZ"/>
+                        <constraint firstAttribute="width" constant="200" id="pGU-Zs-mjh"/>
+                    </constraints>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="Hon-rv-9jE" firstAttribute="bottom" secondItem="iN0-l3-epB" secondAttribute="bottom" id="2kY-ER-D5b"/>
+                <constraint firstItem="u46-kD-Pbf" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="5HH-DS-cg0"/>
+                <constraint firstItem="RvA-Mg-C11" firstAttribute="bottom" secondItem="iN0-l3-epB" secondAttribute="bottom" constant="-16" id="Ejz-to-NeV"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="rEY-FW-cbW" secondAttribute="bottom" id="GU4-tg-Egt"/>
+                <constraint firstItem="aMb-93-nPk" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="KQX-dg-dyi"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Hon-rv-9jE" secondAttribute="trailing" id="Lzd-s5-JRM"/>
+                <constraint firstItem="RvA-Mg-C11" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Nyl-77-ycZ"/>
+                <constraint firstItem="u46-kD-Pbf" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="100" id="TY8-Gw-AVQ"/>
+                <constraint firstItem="Hon-rv-9jE" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="WtR-X5-bfa"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="rEY-FW-cbW" secondAttribute="trailing" id="aaE-wj-0N4"/>
+                <constraint firstItem="wJs-fn-ibA" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="cj5-rh-JgQ"/>
+                <constraint firstItem="rEY-FW-cbW" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="ert-Qd-xJZ"/>
+                <constraint firstItem="aMb-93-nPk" firstAttribute="bottom" secondItem="iN0-l3-epB" secondAttribute="bottom" constant="-16" id="gSD-tY-SB1"/>
+                <constraint firstItem="wJs-fn-ibA" firstAttribute="top" secondItem="u46-kD-Pbf" secondAttribute="bottom" constant="50" id="oOe-BL-JA4"/>
+                <constraint firstItem="rEY-FW-cbW" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="qmA-vn-5uu"/>
+                <constraint firstItem="Hon-rv-9jE" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="tt7-8U-bmw"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="outlineClose24Px" width="36" height="36"/>
+        <image name="outlineImage24Px" width="36" height="36"/>
+        <image name="verifyCapture" width="72" height="72"/>
+        <image name="verifyFace" width="158" height="220"/>
+        <image name="verifyId" width="167" height="97"/>
+    </resources>
+</document>

@@ -39,6 +39,7 @@ class IdentitasCoordinator: BaseCoordinator<Void> {
 extension IdentitasCoordinator: IdentitasNavigator {
     
     func launchSelfIdentitas() -> Observable<Void> {
-        return Observable.just(())
+        let selfIdentitasCoordinator = SelfIdentitasCoordinator(navigationController: navigationController)
+        return coordinate(to: selfIdentitasCoordinator)
     }
 }

@@ -97,8 +97,8 @@ final class SettingViewModel: ISettingViewModel, ISettingViewModelInput, ISettin
                     return navigator.launchSignOut()
                 case .badge:
                     return navigator.launchBadge()
-                case .verifikasi:
-                    return navigator.launchVerifikasi(isVerified: true)
+//                case .verifikasi:
+//                    return navigator.launchVerifikasi(user: User)
                 case .updateProfile:
                     return navigator.launchProfileEdit(data: data, type: ProfileHeaderItem.editProfile)
                 case .updatePassword:

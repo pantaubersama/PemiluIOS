@@ -33,7 +33,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="47" id="Gbl-2K-S1A"/>
                     </constraints>
-                    <state key="normal" title="Button">
+                    <state key="normal" title="OKE">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
                     <userDefinedRuntimeAttributes>
@@ -54,7 +54,7 @@
                     <rect key="frame" x="36" y="468.5" width="303" height="61.5"/>
                     <string key="text">Yapp, Selamat
 
-Akunmu telah terverifikasi</string>
+Dalam proses pengecekan</string>
                     <fontDescription key="fontDescription" name="BwModelicaSS01-BoldCondensed" family="Bw Modelica SS01" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>

@@ -85,6 +85,9 @@
                                                                             <state key="normal" title="Belum Verifikasi" image="icUnverified">
                                                                                 <color key="titleColor" red="0.79608923200000004" green="0.79605895280000005" blue="0.79607945680000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                             </state>
+                                                                            <state key="selected" title="Terverifikasi" image="baselineVerified48Px">
+                                                                                <color key="titleColor" red="0.078431372550000003" green="0.74117647060000003" blue="0.60392156860000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                                            </state>
                                                                             <userDefinedRuntimeAttributes>
                                                                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                                                     <real key="value" value="5"/>
@@ -178,6 +181,7 @@ Who cares anyway!</string>
         </view>
     </objects>
     <resources>
+        <image name="baselineVerified48Px" width="16" height="16"/>
         <image name="icDummyPerson" width="64" height="64"/>
         <image name="icUnverified" width="16" height="16"/>
     </resources>

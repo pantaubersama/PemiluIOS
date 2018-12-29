@@ -68,7 +68,7 @@ enum SettingData: Int {
         case .updateDataLapor:
             return #imageLiteral(resourceName: "baselineProfile48Px")
         case .verifikasi:
-            return #imageLiteral(resourceName: "baselineVerified48Px")
+            return #imageLiteral(resourceName: "blackVerified")
         case .badge:
             return #imageLiteral(resourceName: "group1174")
         default:

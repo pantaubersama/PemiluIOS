@@ -14,7 +14,7 @@ import Networking
 protocol ProfileNavigator: LinimasaNavigator, PenpolNavigator {
     var finish: Observable<Void>! { get set }
     func launchSetting(user: User) -> Observable<Void>
-    func launchVerifikasi(user: User) -> Observable<Void>
+    func launchVerifikasi(user: VerificationsResponse.U) -> Observable<Void>
     func launchReqCluster() -> Observable<Void>
 }
 
@@ -46,9 +46,28 @@ extension ProfileCoordinator: ProfileNavigator {
         let settingCoordinator = SettingCoordinator(navigationController: navigationController, data: user)
         return coordinate(to: settingCoordinator)
     }
-    func launchVerifikasi(user: User) -> Observable<Void>  {
-        let identitasCoordinator = IdentitasCoordinator(navigationController: navigationController)
-        return coordinate(to: identitasCoordinator)
+    func launchVerifikasi(user: VerificationsResponse.U) -> Observable<Void>  {
+        print("STEP SAAT INI: \(user.step), proses berikutnya: \(user.nextStep)")
+        switch user.nextStep {
+        case 1:
+            let identitasCoordinator = IdentitasCoordinator(navigationController: navigationController)
+            return coordinate(to: identitasCoordinator)
+        case 2:
+            let selfIdentitasCoordinator = SelfIdentitasCoordinator(navigationController: navigationController)
+            return coordinate(to: selfIdentitasCoordinator)
+        case 3:
+            let ktpCoordinator = KTPCoordinator(navigationController: navigationController)
+            return coordinate(to: ktpCoordinator)
+        case 4:
+            let signatureCoordinator = SignatureCoordinator(navigationController: navigationController)
+            return coordinate(to: signatureCoordinator)
+        case 5:
+            let successCoordinator = SuccessCoordinator(navigationController: navigationController)
+            return coordinate(to: successCoordinator)
+        default :
+            let identitasCoordinator = IdentitasCoordinator(navigationController: navigationController)
+            return coordinate(to: identitasCoordinator)
+        }
     }
     func launchReqCluster() -> Observable<Void> {
         let reqClusterCoordinator = ReqClusterCoordinator(navigationController: navigationController)
