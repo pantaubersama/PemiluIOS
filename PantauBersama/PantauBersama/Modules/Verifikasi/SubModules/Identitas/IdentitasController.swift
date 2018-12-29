@@ -31,13 +31,30 @@ class IdentitasController: UIViewController {
             .bind(to: viewModel.input.backI)
             .disposed(by: disposeBag)
         
-        // dummy
-        buttonOke.addTarget(self, action: #selector(handleTap(sender:)), for: .touchUpInside)
+        textFieldKTP.rx.text.orEmpty
+            .bind(to: viewModel.input.newKTPInput)
+            .disposed(by: disposeBag)
+        
+        buttonOke.rx.tap
+            .bind(to: viewModel.input.nextTrigger)
+            .disposed(by: disposeBag)
+        
+        viewModel.output.enable
+            .do(onNext: { [weak self](enable) in
+                self?.buttonOke.backgroundColor = enable ? Color.primary_red : Color.grey_three
+            })
+            .drive(buttonOke.rx.isEnabled)
+            .disposed(by: disposeBag)
+        
+        viewModel.output.errorTrackerO
+            .drive(onNext: { [weak self] (e) in
+                guard let alert = UIAlertController.alert(with: e) else { return }
+                self?.navigationController?.present(alert, animated: true, completion: nil)
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.output.changeO
+            .drive()
+            .disposed(by: disposeBag)
     }
-    
-    @objc private func handleTap(sender: UIButton) {
-        let vc = SelfIdentitasController()
-        navigationController?.pushViewController(vc, animated: true)
-    }
-    
 }

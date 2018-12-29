@@ -90,6 +90,9 @@
 		8428AAAD21C7B4B20008E975 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8428AAAC21C7B4B10008E975 /* GoogleService-Info.plist */; };
 		842A49F521D7749D0050AA51 /* HeaderDataLapor.xib in Resources */ = {isa = PBXBuildFile; fileRef = 842A49F421D7749D0050AA51 /* HeaderDataLapor.xib */; };
 		842A49F721D775420050AA51 /* HeaderDataLapor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842A49F621D775420050AA51 /* HeaderDataLapor.swift */; };
+		842A49F921D789A30050AA51 /* VerifikasiStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842A49F821D789A30050AA51 /* VerifikasiStep.swift */; };
+		842A49FD21D799760050AA51 /* SelfIdentitasViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842A49FC21D799760050AA51 /* SelfIdentitasViewModel.swift */; };
+		842A49FF21D79AA70050AA51 /* SelfIdentitasCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842A49FE21D79AA70050AA51 /* SelfIdentitasCoordinator.swift */; };
 		8441DB3C21CCA6C500B078DF /* ItemRadioCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441DB3B21CCA6C500B078DF /* ItemRadioCell.swift */; };
 		8441DB3E21CCB80B00B078DF /* ItemRadioCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8441DB3D21CCB80B00B078DF /* ItemRadioCell.xib */; };
 		8441DB4121CCBECF00B078DF /* FilterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441DB4021CCBECF00B078DF /* FilterModel.swift */; };
@@ -322,6 +325,9 @@
 		8428AAAC21C7B4B10008E975 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		842A49F421D7749D0050AA51 /* HeaderDataLapor.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderDataLapor.xib; sourceTree = "<group>"; };
 		842A49F621D775420050AA51 /* HeaderDataLapor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderDataLapor.swift; sourceTree = "<group>"; };
+		842A49F821D789A30050AA51 /* VerifikasiStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifikasiStep.swift; sourceTree = "<group>"; };
+		842A49FC21D799760050AA51 /* SelfIdentitasViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfIdentitasViewModel.swift; sourceTree = "<group>"; };
+		842A49FE21D79AA70050AA51 /* SelfIdentitasCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfIdentitasCoordinator.swift; sourceTree = "<group>"; };
 		8441DB3B21CCA6C500B078DF /* ItemRadioCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemRadioCell.swift; sourceTree = "<group>"; };
 		8441DB3D21CCB80B00B078DF /* ItemRadioCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ItemRadioCell.xib; sourceTree = "<group>"; };
 		8441DB4021CCBECF00B078DF /* FilterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterModel.swift; sourceTree = "<group>"; };
@@ -1180,6 +1186,7 @@
 			isa = PBXGroup;
 			children = (
 				84A07F9421D0D4C400269C6B /* SubModules */,
+				842A49F821D789A30050AA51 /* VerifikasiStep.swift */,
 			);
 			path = Verifikasi;
 			sourceTree = "<group>";
@@ -1230,6 +1237,8 @@
 			children = (
 				84A07FA621D0E2E900269C6B /* SelfIdentitasController.xib */,
 				84A07FB021D0E7B000269C6B /* SelfIdentitasController.swift */,
+				842A49FC21D799760050AA51 /* SelfIdentitasViewModel.swift */,
+				842A49FE21D79AA70050AA51 /* SelfIdentitasCoordinator.swift */,
 			);
 			path = "Identitas+Self";
 			sourceTree = "<group>";
@@ -1760,6 +1769,7 @@
 				13812C3921CC182500CAB327 /* AskViewCell.swift in Sources */,
 				84B2526821CC01F000565D82 /* AppState.swift in Sources */,
 				84B4DED821D375C600F60258 /* JanjiPolitikNavigator.swift in Sources */,
+				842A49FF21D79AA70050AA51 /* SelfIdentitasCoordinator.swift in Sources */,
 				840850CA21D25EB600696CB3 /* TextViewCell.swift in Sources */,
 				11E1079621CD126900B7B074 /* QuizDetailViewModel.swift in Sources */,
 				84F6981121C8E21B00890917 /* LinimasaCell.swift in Sources */,
@@ -1787,6 +1797,7 @@
 				84F6981521C8FAB000890917 /* UIControl.swift in Sources */,
 				84A07FA421D0E27F00269C6B /* SignatureController.swift in Sources */,
 				8441DB5321CCF0C200B078DF /* DetailJanjiController.swift in Sources */,
+				842A49FD21D799760050AA51 /* SelfIdentitasViewModel.swift in Sources */,
 				84FE6EBA21D5FC9B009A0F55 /* ActivityIndicator.swift in Sources */,
 				11E107DD21CFD99900B7B074 /* QuizResultController.swift in Sources */,
 				84B2521B21CAA71200565D82 /* ViewModelType.swift in Sources */,
@@ -1829,6 +1840,7 @@
 				84FE6EBE21D5FEA1009A0F55 /* Network+AlertController.swift in Sources */,
 				8441DB5821CCF7D900B078DF /* DetailJanjiCoordinator.swift in Sources */,
 				13F4569D21CF985800CE45F1 /* CreateAskViewModel.swift in Sources */,
+				842A49F921D789A30050AA51 /* VerifikasiStep.swift in Sources */,
 				844C3D7A21C5230C00199871 /* RawRepresentable.swift in Sources */,
 				840850D721D2802000696CB3 /* ProfileInfoDummyData.swift in Sources */,
 				13F4569921CF982E00CE45F1 /* AskNavigator.swift in Sources */,

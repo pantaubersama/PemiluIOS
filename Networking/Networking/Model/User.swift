@@ -20,6 +20,7 @@ public struct User: Codable {
     public var isModerator: Bool
     public var cluster: Cluster?
     public var votePreference: Int?
+    public var verified: Bool
     
     private enum CodingKeys: String, CodingKey {
         case id
@@ -32,6 +33,7 @@ public struct User: Codable {
         case isModerator = "is_moderator"
         case cluster
         case votePreference = "vote_preference"
+        case verified
     }
     
 }

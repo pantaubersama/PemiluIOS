@@ -17,6 +17,8 @@ class SelfIdentitasController: UIViewController {
     
     private var selfieIdentitas: LOTAnimationView?
     
+    var viewModel: ISelfIdentitasViewModel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

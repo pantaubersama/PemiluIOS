@@ -1,23 +1,22 @@
 //
-//  IdentitasCoordinator.swift
+//  SelfIdentitasCoordinator.swift
 //  PantauBersama
 //
-//  Created by Hanif Sugiyanto on 24/12/18.
+//  Created by Hanif Sugiyanto on 29/12/18.
 //  Copyright © 2018 PantauBersama. All rights reserved.
 //
 
 import UIKit
-import RxSwift
 import RxCocoa
+import RxSwift
 
-protocol IdentitasNavigator {
+protocol SelfIdentitasNavigator {
     var finish: Observable<Void>! { get set }
-    func launchSelfIdentitas() -> Observable<Void>
 }
 
-class IdentitasCoordinator: BaseCoordinator<Void> {
+class SelfIdentitasCoordinator: BaseCoordinator<Void> {
     
-    private let navigationController: UINavigationController!
+    private let navigationController: UINavigationController
     var finish: Observable<Void>!
     
     init(navigationController: UINavigationController) {
@@ -25,21 +24,17 @@ class IdentitasCoordinator: BaseCoordinator<Void> {
     }
     
     override func start() -> Observable<CoordinationResult> {
-        let viewController = IdentitasController()
-        let viewModel = IdentitasViewModel(navigator: self)
+        let viewModel = SelfIdentitasViewModel(navigator: self)
+        let viewController = SelfIdentitasController()
         viewController.viewModel = viewModel
-        viewController.hidesBottomBarWhenPushed = true
         navigationController.pushViewController(viewController, animated: true)
         return finish.do(onNext: { [weak self] (_) in
             self?.navigationController.popViewController(animated: true)
         })
     }
+    
 }
 
-extension IdentitasCoordinator: IdentitasNavigator {
+extension SelfIdentitasCoordinator: SelfIdentitasNavigator {
     
-    func launchSelfIdentitas() -> Observable<Void> {
-        print("LAUNCH SELF IDENTITAS")
-        return Observable.just(())
-    }
 }

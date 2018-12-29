@@ -14,7 +14,7 @@ import Networking
 protocol ProfileNavigator: LinimasaNavigator, PenpolNavigator {
     var finish: Observable<Void>! { get set }
     func launchSetting(user: User) -> Observable<Void>
-    func launchVerifikasi(user: User) -> Observable<Void>
+    func launchVerifikasi(user: VerificationsResponse.U) -> Observable<Void>
     func launchReqCluster() -> Observable<Void>
 }
 
@@ -46,9 +46,16 @@ extension ProfileCoordinator: ProfileNavigator {
         let settingCoordinator = SettingCoordinator(navigationController: navigationController, data: user)
         return coordinate(to: settingCoordinator)
     }
-    func launchVerifikasi(user: User) -> Observable<Void>  {
-        let identitasCoordinator = IdentitasCoordinator(navigationController: navigationController)
-        return coordinate(to: identitasCoordinator)
+    func launchVerifikasi(user: VerificationsResponse.U) -> Observable<Void>  {
+        print("STEP SAAT INI: \(user.step)")
+        switch user.step {
+        case 1:
+            let identitasCoordinator = IdentitasCoordinator(navigationController: navigationController)
+            return coordinate(to: identitasCoordinator)
+        default :
+            let identitasCoordinator = IdentitasCoordinator(navigationController: navigationController)
+            return coordinate(to: identitasCoordinator)
+        }
     }
     func launchReqCluster() -> Observable<Void> {
         let reqClusterCoordinator = ReqClusterCoordinator(navigationController: navigationController)

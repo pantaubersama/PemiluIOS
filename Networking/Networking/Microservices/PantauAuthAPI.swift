@@ -25,6 +25,8 @@ public enum PantauAuthAPI {
     case refresh(type: GrantType)
     case revoke
     case me
+    case verifications
+    case putKTP(ktp: String)
     
 }
 
@@ -54,6 +56,10 @@ extension PantauAuthAPI: TargetType {
             return "/ouath/revoke"
         case .me:
             return "/v1/me"
+        case .verifications:
+            return "/v1/me/verifications"
+        case .putKTP:
+            return "/v1/verifications/ktp_number"
         }
     }
     
@@ -61,6 +67,8 @@ extension PantauAuthAPI: TargetType {
         switch self {
         case .refresh, .revoke:
             return .post
+        case .putKTP:
+            return .put
         default:
             return .get
         }
@@ -86,6 +94,10 @@ extension PantauAuthAPI: TargetType {
                 "client_id": AppContext.instance.infoForKey("CLIENT_ID_AUTH"),
                 "client_secret": AppContext.instance.infoForKey("CLIENT_SECRET_AUTH"),
                 "token": t
+            ]
+        case .putKTP(let ktp):
+            return [
+                "ktp_number": ktp
             ]
         default:
             return nil
@@ -117,5 +129,30 @@ extension PantauAuthAPI: TargetType {
     
     public var sampleData: Data {
         return Data()
+    }
+    
+    public var multipartBody: [MultipartFormData]? {
+        switch self {
+        case .putKTP(let ktp):
+            var multipartFormData = [MultipartFormData]()
+            multipartFormData.append(buildMultipartFormData(key: "ktp_number", value: ktp))
+            return multipartFormData
+        default:
+            return nil
+        }
+    }
+}
+
+
+extension PantauAuthAPI {
+    
+    private func buildMultipartFormData(key: String, value: String) -> MultipartFormData {
+        return MultipartFormData(provider: .data(value.data(using: String.Encoding.utf8, allowLossyConversion: true)!), name: key)
+    }
+    
+    private func buildMultipartFormData(name: String? = nil, value: Data) -> MultipartFormData {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "ddMMyyyyHHmmss"
+        return MultipartFormData(provider: .data(value), name: name ?? "image[]", fileName: "pantau-ios-\(dateFormatter.string(from: Date())).jpg", mimeType:"image/jpeg")
     }
 }

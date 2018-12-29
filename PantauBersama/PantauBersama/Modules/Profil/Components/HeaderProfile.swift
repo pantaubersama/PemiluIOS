@@ -37,5 +37,7 @@ class HeaderProfile: UIView {
     
     func configure(user: User) {
         username.text = user.firstName ?? ""
+        buttonVerified.isSelected = user.verified
+        buttonVerified.borderColor = user.verified ? Color.secondary_cyan : Color.grey_three
     }
 }

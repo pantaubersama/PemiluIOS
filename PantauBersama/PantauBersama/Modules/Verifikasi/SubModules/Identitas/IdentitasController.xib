@@ -229,6 +229,6 @@ Mendapatkan manfaat dan is simply dummy text of the printing and typesetting ind
         </view>
     </objects>
     <resources>
-        <image name="baselineVerified48Px" width="24" height="24"/>
+        <image name="baselineVerified48Px" width="16" height="16"/>
     </resources>
 </document>
