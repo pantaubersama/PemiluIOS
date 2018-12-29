@@ -25,6 +25,7 @@ class ProfileEditViewModel: ViewModelType {
     
     struct Output {
         let items: Driver<[SectionOfProfileInfoData]>
+        let title: Driver<String>
     }
     
     private var navigator: ProfileEditNavigator
@@ -32,11 +33,13 @@ class ProfileEditViewModel: ViewModelType {
     private let doneS = PublishSubject<Void>()
     private let viewWillAppearS = PublishSubject<Void>()
     private let data: User
+    private var type: ProfileHeaderItem
     
-    init(navigator: ProfileEditNavigator, data: User) {
+    init(navigator: ProfileEditNavigator, data: User, type: ProfileHeaderItem) {
         self.navigator = navigator
         self.navigator.finish = backS
         self.data = data
+        self.type = type
         // MARK: Input
         input = Input(backI: backS.asObserver(),
                       doneI: doneS.asObserver(),
@@ -49,7 +52,7 @@ class ProfileEditViewModel: ViewModelType {
         let items: Observable<[SectionOfProfileInfoData]> = viewWillAppearS
             .map({ data })
             .flatMapLatest { (data) -> Observable<[SectionOfProfileInfoData]> in
-                return ProfileInfoDummyData.profileInfoData(data: data)
+                return ProfileInfoDummyData.profileInfoData(data: data, type: type)
             }
             .share()
         
@@ -63,7 +66,8 @@ class ProfileEditViewModel: ViewModelType {
         }
         
         // MARK: Output
-        output = Output(items: showItems.asDriverOnErrorJustComplete())
+        output = Output(items: showItems.asDriverOnErrorJustComplete(),
+                        title: Driver.just(type.title))
     }
     
 }

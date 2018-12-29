@@ -12,7 +12,7 @@ import Networking
 
 protocol SettingNavigator {
     var finish: Observable<Void>! { get set }
-    func launchProfileEdit(data: User) -> Observable<Void>
+    func launchProfileEdit(data: User, type: ProfileHeaderItem) -> Observable<Void>
     func launchSignOut() -> Observable<Void>
     func launchBadge() -> Observable<Void>
     func launchVerifikasi(isVerified: Bool) -> Observable<Void>
@@ -43,8 +43,8 @@ final class SettingCoordinator: BaseCoordinator<Void> {
 }
 
 extension SettingCoordinator: SettingNavigator {
-    func launchProfileEdit(data: User) -> Observable<Void> {
-        let profileEditCoordinator = ProfileEditCoordinator(navigationController: navigationController, data: data)
+    func launchProfileEdit(data: User, type: ProfileHeaderItem) -> Observable<Void> {
+        let profileEditCoordinator = ProfileEditCoordinator(navigationController: navigationController, data: data, type: type)
         return coordinate(to: profileEditCoordinator)
     }
     

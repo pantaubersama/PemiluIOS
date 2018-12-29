@@ -29,29 +29,27 @@ enum ProfileHeaderItem: Int {
 }
 
 final class ProfileInfoDummyData {
-    static func profileInfoData(data: User) -> Observable<[SectionOfProfileInfoData]> {
+    static func profileInfoData(data: User, type: ProfileHeaderItem) -> Observable<[SectionOfProfileInfoData]> {
         let profileInformation = generateProfileInformation(data)
         let generateUbahSandiInformation = generateUbahSandi(data)
         let generateDataLaporInformation = generateDataLapor(data)
-
-        let items = ProfileHeaderItem.items
-            .map { (type) -> SectionOfProfileInfoData in
-                switch type {
-                case .editProfile:
-                    return SectionOfProfileInfoData(id: data.id,
-                                                    items: profileInformation,
-                                                    header: .editProfile)
-                case .editPassword:
-                    return SectionOfProfileInfoData(id: data.id,
-                                                    items: generateUbahSandiInformation,
-                                                    header: .editPassword)
-                case .editDataLapor:
-                    return SectionOfProfileInfoData(id: data.id,
-                                                    items: generateDataLaporInformation,
-                                                    header: .editDataLapor)
-                }
+        
+        var item: [SectionOfProfileInfoData] = []
+        switch type {
+        case .editProfile:
+            item.append(SectionOfProfileInfoData(id: data.id,
+                                                 items: profileInformation,
+                                                 header: .editProfile))
+        case .editPassword:
+            item.append(SectionOfProfileInfoData(id: data.id,
+                                                 items: generateUbahSandiInformation,
+                                                 header: .editPassword))
+        case .editDataLapor:
+            item.append(SectionOfProfileInfoData(id: data.id,
+                                                 items: generateDataLaporInformation,
+                                                 header: .editDataLapor))
         }
-        return Observable.just(items)
+        return Observable.just(item)
     }
 
     private static func generateProfileInformation(_ data: User) -> [ProfileInfoField] {
@@ -91,13 +89,74 @@ final class ProfileInfoDummyData {
     }
     
     private static func generateUbahSandi(_ data: User) -> [ProfileInfoField] {
-        let sandiInformation: [ProfileInfoField] = []
+        var sandiInformation: [ProfileInfoField] = []
+        
+        sandiInformation.append(ProfileInfoField(
+            key: "Masukan Kata Sandi Lama",
+            value: "123123",
+            fieldType: .password
+        ))
+        
+        sandiInformation.append(ProfileInfoField(
+            key: "Kata Sandi Baru",
+            value: "123123",
+            fieldType: .password
+        ))
+        
+        sandiInformation.append(ProfileInfoField(
+            key: "Konfirmasi Kata Sandi Baru",
+            value: "123123",
+            fieldType: .password
+        ))
         
         return sandiInformation
     }
     
     private static func generateDataLapor(_ data: User) -> [ProfileInfoField] {
-        let dataLaporInformation: [ProfileInfoField] = []
+        var dataLaporInformation: [ProfileInfoField] = []
+        
+        dataLaporInformation.append(ProfileInfoField(
+            key: "No KTP/SIM/Pasport",
+            value: "231312323",
+            fieldType: .number
+        ))
+        
+        dataLaporInformation.append(ProfileInfoField(
+            key: "Tempat Lahir",
+            value: "Yogyakarta",
+            fieldType: .text
+        ))
+        
+        dataLaporInformation.append(ProfileInfoField(
+            key: "Jenis Kelamin",
+            value: "Laki-laki",
+            fieldType: .dropdown
+        ))
+        
+        dataLaporInformation.append(ProfileInfoField(
+            key: "Pekerjaan",
+            value: "PNS",
+            fieldType: .text
+        ))
+        
+        dataLaporInformation.append(ProfileInfoField(
+            key: "Kewarganegaraan",
+            value: "Indonesia",
+            fieldType: .text
+        ))
+        
+        dataLaporInformation.append(ProfileInfoField(
+            key: "Alamat",
+            value: "Jalan Viva La",
+            fieldType: .text
+        ))
+        
+        dataLaporInformation.append(ProfileInfoField(
+            key: "No Tell/HP",
+            value: "0239929333",
+            fieldType: .text
+        ))
+        
         return dataLaporInformation
     }
 }

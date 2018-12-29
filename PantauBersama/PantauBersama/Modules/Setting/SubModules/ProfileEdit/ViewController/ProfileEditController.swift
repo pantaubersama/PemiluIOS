@@ -25,7 +25,6 @@ class ProfileEditController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "Edit Profile"
         let back = UIBarButtonItem(image: #imageLiteral(resourceName: "back"), style: .plain, target: nil, action: nil)
         navigationItem.leftBarButtonItem = back
         navigationController?.navigationBar.configure(with: .white)
@@ -41,6 +40,10 @@ class ProfileEditController: UIViewController {
         tableView.estimatedRowHeight = 85.0
         tableView.rowHeight = UITableView.automaticDimension
         tableView.allowsSelection = false
+        
+        viewModel.output.title
+            .drive(navigationItem.rx.title)
+            .disposed(by: disposeBag)
         
         back.rx.tap
             .bind(to: viewModel.input.backI)

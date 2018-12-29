@@ -15,6 +15,7 @@ enum FieldType {
     case date
     case number
     case username
+    case dropdown
 }
 
 struct ProfileInfoField {

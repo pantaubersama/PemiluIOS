@@ -100,7 +100,11 @@ final class SettingViewModel: ISettingViewModel, ISettingViewModelInput, ISettin
                 case .verifikasi:
                     return navigator.launchVerifikasi(isVerified: true)
                 case .updateProfile:
-                    return navigator.launchProfileEdit(data: data)
+                    return navigator.launchProfileEdit(data: data, type: ProfileHeaderItem.editProfile)
+                case .updatePassword:
+                    return navigator.launchProfileEdit(data: data, type: ProfileHeaderItem.editPassword)
+                case .updateDataLapor:
+                    return navigator.launchProfileEdit(data: data, type: ProfileHeaderItem.editDataLapor)
                 default:
                     return Observable.empty()
                 }
