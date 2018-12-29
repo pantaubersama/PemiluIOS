@@ -15,7 +15,7 @@ protocol SettingNavigator {
     func launchProfileEdit(data: User, type: ProfileHeaderItem) -> Observable<Void>
     func launchSignOut() -> Observable<Void>
     func launchBadge() -> Observable<Void>
-    func launchVerifikasi(isVerified: Bool) -> Observable<Void>
+    func launchVerifikasi(user: VerificationsResponse.U) -> Observable<Void>
 }
 
 final class SettingCoordinator: BaseCoordinator<Void> {
@@ -73,8 +73,26 @@ extension SettingCoordinator: SettingNavigator {
         return coordinate(to: badgeCoordinator)
     }
     
-    func launchVerifikasi(isVerified: Bool) -> Observable<Void> {
-        let verifikasiCoordinator = IdentitasCoordinator(navigationController: navigationController)
-        return coordinate(to: verifikasiCoordinator)
+    func launchVerifikasi(user: VerificationsResponse.U) -> Observable<Void> {
+        switch user.nextStep {
+        case 1:
+            let identitasCoordinator = IdentitasCoordinator(navigationController: navigationController)
+            return coordinate(to: identitasCoordinator)
+        case 2:
+            let selfIdentitasCoordinator = SelfIdentitasCoordinator(navigationController: navigationController)
+            return coordinate(to: selfIdentitasCoordinator)
+        case 3:
+            let ktpCoordinator = KTPCoordinator(navigationController: navigationController)
+            return coordinate(to: ktpCoordinator)
+        case 4:
+            let signatureCoordinator = SignatureCoordinator(navigationController: navigationController)
+            return coordinate(to: signatureCoordinator)
+        case 5:
+            let successCoordinator = SuccessCoordinator(navigationController: navigationController)
+            return coordinate(to: successCoordinator)
+        default :
+            let identitasCoordinator = IdentitasCoordinator(navigationController: navigationController)
+            return coordinate(to: identitasCoordinator)
+        }
     }
 }
