@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1151D16521D64CAA00E9F91D /* UIImageView+async.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1151D16421D64CAA00E9F91D /* UIImageView+async.swift */; };
 		11702DDB21CB1C5A001AEE3F /* ImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11702DDA21CB1C5A001AEE3F /* ImageButton.swift */; };
 		1D0E1E57B81AE85E2551744D /* Pods_Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44BB4E6DC2355C13791C68DB /* Pods_Common.framework */; };
 		841CDA4421C8BFB10015680C /* SegementedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841CDA4321C8BFB10015680C /* SegementedControl.swift */; };
@@ -52,6 +53,7 @@
 
 /* Begin PBXFileReference section */
 		02158AB122F8CEFF16E59736 /* Pods_CommonTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CommonTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1151D16421D64CAA00E9F91D /* UIImageView+async.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+async.swift"; sourceTree = "<group>"; };
 		11702DDA21CB1C5A001AEE3F /* ImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageButton.swift; sourceTree = "<group>"; };
 		40C1D3CEB3FC05B14DD97941 /* Pods-CommonTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CommonTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-CommonTests/Pods-CommonTests.release.xcconfig"; sourceTree = "<group>"; };
 		44BB4E6DC2355C13791C68DB /* Pods_Common.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Common.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -112,6 +114,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1151D16321D64C9300E9F91D /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				1151D16421D64CAA00E9F91D /* UIImageView+async.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		406DF036767B18029047AF30 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -188,6 +198,7 @@
 		84D831C421C4DCBB00C437B7 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				1151D16321D64C9300E9F91D /* Extension */,
 				84B2524A21CB839600565D82 /* AppContext */,
 				84B2522421CAB3ED00565D82 /* KeychainService */,
 				84B2522121CAB32200565D82 /* Userdefault */,
@@ -424,6 +435,7 @@
 				84B2522821CAB41400565D82 /* KeychainKind.swift in Sources */,
 				11702DDB21CB1C5A001AEE3F /* ImageButton.swift in Sources */,
 				84F8929521C77CCF00DC1048 /* UIColor.swift in Sources */,
+				1151D16521D64CAA00E9F91D /* UIImageView+async.swift in Sources */,
 				84F6980D21C8DC7F00890917 /* UINavigationBar.swift in Sources */,
 				841CDA4421C8BFB10015680C /* SegementedControl.swift in Sources */,
 				8428AA8F21C7A4420008E975 /* UITableView.swift in Sources */,

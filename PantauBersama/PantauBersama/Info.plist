@@ -2,72 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>URL_API_IDENTITAS</key>
-	<string>$(URL_API_IDENTITAS)</string>
-	<key>URL_API_AUTH</key>
-	<string>$(URL_API_AUTH)</string>
-	<key>CLIENT_SECRET_AUTH</key>
-	<string>$(CLIENT_SECRET_AUTH)</string>
-	<key>CLIENT_ID_AUTH</key>
-	<string>$(CLIENT_ID_AUTH)</string>
-	<key>CFBundleURLTypes</key>
-	<array>
-		<dict>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>$(URL_SCHEMES)</string>
-			</array>
-			<key>CFBundleURLName</key>
-			<string>$(URL_IDENTIFIER)</string>
-		</dict>
-	</array>
-	<key>REDIRECT_URI</key>
-	<string>$(REDIRECT_URI)</string>
-	<key>DOMAIN_SYMBOLIC</key>
-	<string>$(DOMAIN_SYMBOLIC)</string>
-	<key>CLIENT_SECRET</key>
-	<string>$(CLIENT_SECRET)</string>
-	<key>CLIENT_ID</key>
-	<string>$(CLIENT_ID)</string>
-	<key>UIAppFonts</key>
-	<array>
-		<string>Lato-Black.ttf</string>
-		<string>Lato-BlackItalic.ttf</string>
-		<string>Lato-Bold.ttf</string>
-		<string>Lato-BoldItalic.ttf</string>
-		<string>Lato-Hairline.ttf</string>
-		<string>Lato-HairlineItalic.ttf</string>
-		<string>Lato-Italic.ttf</string>
-		<string>Lato-Light.ttf</string>
-		<string>Lato-LightItalic.ttf</string>
-		<string>Lato-Regular.ttf</string>
-		<string>BwModelicaSS01-BoldCondensed.otf</string>
-		<string>BwModelica-BlackCondensed.otf</string>
-		<string>BwModelica-ThinCondensed.otf</string>
-	</array>
-	<key>Fabric</key>
-	<dict>
-		<key>APIKey</key>
-		<string>536361816a0d2006ea747cdd456218543609b7d7</string>
-		<key>Kits</key>
-		<array>
-			<dict>
-				<key>KitInfo</key>
-				<dict/>
-				<key>KitName</key>
-				<string>Crashlytics</string>
-			</dict>
-		</array>
-	</dict>
-	<key>NSAppTransportSecurity</key>
-	<dict>
-		<key>NSAllowsArbitraryLoads</key>
-		<true/>
-		<key>NSAllowsArbitraryLoadsInWebContent</key>
-		<true/>
-	</dict>
-	<key>UIStatusBarHidden</key>
-	<true/>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
@@ -84,16 +18,78 @@
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
 	<string>$(APP_VERSION)</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>$(URL_IDENTIFIER)</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>$(URL_SCHEMES)</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
 	<string>$(APP_BUILD_VERSION)</string>
+	<key>CLIENT_ID</key>
+	<string>$(CLIENT_ID)</string>
+	<key>CLIENT_ID_AUTH</key>
+	<string>$(CLIENT_ID_AUTH)</string>
+	<key>CLIENT_SECRET</key>
+	<string>$(CLIENT_SECRET)</string>
+	<key>CLIENT_SECRET_AUTH</key>
+	<string>$(CLIENT_SECRET_AUTH)</string>
+	<key>DOMAIN_SYMBOLIC</key>
+	<string>$(DOMAIN_SYMBOLIC)</string>
+	<key>Fabric</key>
+	<dict>
+		<key>APIKey</key>
+		<string>536361816a0d2006ea747cdd456218543609b7d7</string>
+		<key>Kits</key>
+		<array>
+			<dict>
+				<key>KitInfo</key>
+				<dict/>
+				<key>KitName</key>
+				<string>Crashlytics</string>
+			</dict>
+		</array>
+	</dict>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+		<key>NSAllowsArbitraryLoadsInWebContent</key>
+		<true/>
+	</dict>
+	<key>REDIRECT_URI</key>
+	<string>$(REDIRECT_URI)</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Lato-Black.ttf</string>
+		<string>Lato-BlackItalic.ttf</string>
+		<string>Lato-Bold.ttf</string>
+		<string>Lato-BoldItalic.ttf</string>
+		<string>Lato-Hairline.ttf</string>
+		<string>Lato-HairlineItalic.ttf</string>
+		<string>Lato-Italic.ttf</string>
+		<string>Lato-Light.ttf</string>
+		<string>Lato-LightItalic.ttf</string>
+		<string>Lato-Regular.ttf</string>
+		<string>BwModelicaSS01-BoldCondensed.otf</string>
+		<string>BwModelica-BlackCondensed.otf</string>
+		<string>BwModelica-ThinCondensed.otf</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
 	</array>
+	<key>UIStatusBarHidden</key>
+	<true/>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
@@ -107,5 +103,11 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>URL_API_AUTH</key>
+	<string>$(URL_API_AUTH)</string>
+	<key>URL_API_IDENTITAS</key>
+	<string>$(URL_API_IDENTITAS)</string>
+	<key>URL_API_PEMILU</key>
+	<string>$(URL_API_PEMILU)</string>
 </dict>
 </plist>

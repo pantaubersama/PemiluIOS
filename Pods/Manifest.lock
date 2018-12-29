@@ -1,5 +1,7 @@
 PODS:
   - Alamofire (4.8.0)
+  - AlamofireImage (3.5.0):
+    - Alamofire (~> 4.8)
   - Crashlytics (3.12.0):
     - Fabric (~> 1.9.0)
   - Differentiator (3.1.0)
@@ -73,6 +75,7 @@ PODS:
     - RxAtomic (~> 4.4)
 
 DEPENDENCIES:
+  - AlamofireImage
   - Crashlytics
   - Fabric
   - Firebase/Core
@@ -86,6 +89,7 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
+    - AlamofireImage
     - Crashlytics
     - Differentiator
     - Fabric
@@ -107,6 +111,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: 3ec537f71edc9804815215393ae2b1a8ea33a844
+  AlamofireImage: 1aea346f4dda2f6c67622fa5a89fcbb80d79cc16
   Crashlytics: 07fb167b1694128c1c9a5a5cc319b0e9c3ca0933
   Differentiator: be49ca3408f0ecfc761e4c7763d20c62be01b9ad
   Fabric: f988e33c97f08930a413e08123064d2e5f68d655
@@ -126,6 +131,6 @@ SPEC CHECKSUMS:
   RxDataSources: a843bad90c29817f5923ec8163f4af2de084ceb3
   RxSwift: 5976ecd04fc2fefd648827c23de5e11157faa973
 
-PODFILE CHECKSUM: 99b65bc2176e45598bdf8c997889eb6597d77c30
+PODFILE CHECKSUM: 7990c205714df2b0dc8a3b08cf815d72f530706e
 
 COCOAPODS: 1.5.3
