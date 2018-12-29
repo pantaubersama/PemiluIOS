@@ -9,13 +9,16 @@
 import Common
 import RxSwift
 import RxCocoa
+import Networking
+import RxDataSources
 
 class AskViewModel: ViewModelType {
     
     var input: Input
-    var output: Output
+    var output: Output!
     
     struct Input {
+        let nextPage: AnyObserver<Void>
         let createTrigger: AnyObserver<Void>
         let infoTrigger: AnyObserver<Void>
         let shareTrigger: AnyObserver<Any>
@@ -24,6 +27,7 @@ class AskViewModel: ViewModelType {
     }
     
     struct Output {
+        let askCells: Driver<[ICellConfigurator]>
         let createSelected: Driver<Void>
         let infoSelected: Driver<Void>
         let shareSelected: Driver<Void>
@@ -33,6 +37,7 @@ class AskViewModel: ViewModelType {
     }
     
     // TODO: replace any with Ask model
+    private let nextPageSubject = PublishSubject<Void>()
     private let createSubject = PublishSubject<Void>()
     private let infoSubject = PublishSubject<Void>()
     private let shareSubject = PublishSubject<Any>()
@@ -40,11 +45,13 @@ class AskViewModel: ViewModelType {
     private let moreMenuSubject = PublishSubject<AskType>()
     
     private let navigator: QuizNavigator
+    private let questionSectionModel: [SectionModel<String, Any>] = []
     
     init(navigator: PenpolNavigator) {
         self.navigator = navigator
         
         input = Input(
+            nextPage: nextPageSubject.asObserver(),
             createTrigger: createSubject.asObserver(),
             infoTrigger: infoSubject.asObserver(),
             shareTrigger: shareSubject.asObserver(),
@@ -76,7 +83,15 @@ class AskViewModel: ViewModelType {
             })
             .asDriverOnErrorJustComplete()
         
+        let askCells = askItem().map { (list) -> [ICellConfigurator] in
+            return list.map({ (questionModel) -> ICellConfigurator in
+                return AskViewCellConfigurator(item: AskViewCell.Input(viewModel: self, question: questionModel))
+            })
+        }.asDriverOnErrorJustComplete()
+        
+        
         output = Output(
+            askCells: askCells,
             createSelected: create,
             infoSelected: info,
             shareSelected: shareAsk,
@@ -84,5 +99,20 @@ class AskViewModel: ViewModelType {
             moreMenuSelected: moreMenuSelected)
     }
     
+    private func askItem() -> Observable<[QuestionModel]> {
+        return NetworkService.instance
+            .requestObject(TanyaKandidatAPI.getQuestions(page: 1, perpage: 10, filteredBy: .userVerifiedAll), c: QuestionsResponse.self)
+            .map { [weak self](response) -> [QuestionModel] in
+                guard let weakSelf = self else { return [] }
+                return weakSelf.generateQuestions(from: response)
+            }
+            .asObservable()
+            .catchErrorJustReturn([])
+    }
     
+    private func generateQuestions(from questionResponse: QuestionsResponse) -> [QuestionModel] {
+        return questionResponse.data.questions.map({ (questionResponse) -> QuestionModel in
+            return QuestionModel(question: questionResponse)
+        })
+    }
 }

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BannerInfoAskView"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="96"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ElQ-Rh-kjK" customClass="Label" customModule="Common">
+                    <rect key="frame" x="129" y="17" width="211" height="50"/>
+                    <string key="text">Apa yang ingin kamu tanyakan kepada Capres &amp; Cawapres Indonesia periode 2019 - 2024 Jokowi - Makruf dan Prabowo - Sandi Read more...</string>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.48621892929077148" green="0.48630648851394653" blue="0.48621344566345215" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                            <real key="value" value="8"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icBannerFooter" translatesAutoresizingMaskIntoConstraints="NO" id="B2U-AK-Kzu">
+                    <rect key="frame" x="0.0" y="72" width="375" height="24"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="24" id="PQI-dq-bIl"/>
+                    </constraints>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tanyaInfoIcon" translatesAutoresizingMaskIntoConstraints="NO" id="1Cg-Y5-9cy">
+                    <rect key="frame" x="23" y="18" width="95" height="69"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="69" id="OCN-uw-ZrU"/>
+                        <constraint firstAttribute="width" constant="95" id="ZDc-hv-Npb"/>
+                    </constraints>
+                </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r6G-D2-PCV">
+                    <rect key="frame" x="0.0" y="94" width="375" height="2"/>
+                    <color key="backgroundColor" red="0.93323183059692383" green="0.9333917498588562" blue="0.93322181701660156" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="tintColor" red="0.92931067943572998" green="0.92946994304656982" blue="0.92930072546005249" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="2" id="rYU-6X-UhT"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="1Cg-Y5-9cy" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="23" id="38X-gI-WcE"/>
+                <constraint firstItem="B2U-AK-Kzu" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="61t-kR-3fG"/>
+                <constraint firstItem="ElQ-Rh-kjK" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="17" id="7vH-nk-QRw"/>
+                <constraint firstItem="r6G-D2-PCV" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="Fg6-r4-vQn"/>
+                <constraint firstItem="B2U-AK-Kzu" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="PNT-vp-eTz"/>
+                <constraint firstItem="ElQ-Rh-kjK" firstAttribute="leading" secondItem="1Cg-Y5-9cy" secondAttribute="trailing" constant="11" id="XAC-kj-w5N"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="r6G-D2-PCV" secondAttribute="trailing" id="YrH-bM-shm"/>
+                <constraint firstItem="r6G-D2-PCV" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="ZbI-lO-Hrf"/>
+                <constraint firstItem="B2U-AK-Kzu" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="hFU-hn-4Ir"/>
+                <constraint firstAttribute="trailing" secondItem="ElQ-Rh-kjK" secondAttribute="trailing" constant="35" id="nUp-oE-gPI"/>
+                <constraint firstItem="B2U-AK-Kzu" firstAttribute="top" secondItem="ElQ-Rh-kjK" secondAttribute="bottom" constant="5" id="shE-FU-spe"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="1Cg-Y5-9cy" secondAttribute="bottom" constant="9" id="yw8-QQ-Y7P"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="53.600000000000001" y="99.850074962518747"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="icBannerFooter" width="360" height="28"/>
+        <image name="tanyaInfoIcon" width="95" height="69.5"/>
+    </resources>
+</document>

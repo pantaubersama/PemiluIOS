@@ -27,5 +27,6 @@ URL_SCHEMES = pantaubersama.staging
 CLIENT_ID_AUTH = 5940ec97cf73967c5df108871443df0a58b5c2510004f9f70e959f29ced11e25
 CLIENT_SECRET_AUTH = bb431e39758118d64416a110b31c3c9c8667f9dc664527d0b0133e87ec5946e0
 // API URL Staging
+URL_API_PEMILU = https:\/\/staging-pemilu.pantaubersama.com
 URL_API_AUTH = https:/\/\staging-auth.pantaubersama.com
 URL_API_IDENTITAS = https:/\/\identitas.extrainteger.com

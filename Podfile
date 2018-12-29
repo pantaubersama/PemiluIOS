@@ -25,7 +25,8 @@ def application_pods
     pod 'Firebase/Core'
     pod 'Fabric'
     pod 'Crashlytics'
-    pod 'IQKeyboardManagerSwift', '~> 6.2.0'    
+    pod 'IQKeyboardManagerSwift', '~> 6.2.0'
+    pod 'AlamofireImage'
 end
 
 
