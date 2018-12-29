@@ -9,6 +9,7 @@
 import RxSwift
 import RxCocoa
 import Common
+import Networking
 
 class ProfileEditViewModel: ViewModelType {
     
@@ -23,36 +24,50 @@ class ProfileEditViewModel: ViewModelType {
     
     
     struct Output {
-        let items: Driver<[SectionOfProfileEditData]>
+        let items: Driver<[SectionOfProfileInfoData]>
+        let title: Driver<String>
     }
     
     private var navigator: ProfileEditNavigator
     private let backS = PublishSubject<Void>()
     private let doneS = PublishSubject<Void>()
     private let viewWillAppearS = PublishSubject<Void>()
+    private let data: User
+    private var type: ProfileHeaderItem
     
-    init(navigator: ProfileEditNavigator) {
+    init(navigator: ProfileEditNavigator, data: User, type: ProfileHeaderItem) {
         self.navigator = navigator
         self.navigator.finish = backS
+        self.data = data
+        self.type = type
         // MARK: Input
         input = Input(backI: backS.asObserver(),
                       doneI: doneS.asObserver(),
                       viewWillAppearI: viewWillAppearS.asObserver())
         
-        // MARK: Build cell for UITableView
-        let items = Driver.just([
-            SectionOfProfileEditData(items: [
-                SettingProfile.namaLengkap,
-                SettingProfile.username,
-                SettingProfile.lokasi,
-                SettingProfile.deksripsi,
-                SettingProfile.pendidikan,
-                SettingProfile.pekerjaan
-            ])
-        ])
+        
+        // MARK:
+        // Observable user
+        // map to Section Of Profile Info Data
+        let items: Observable<[SectionOfProfileInfoData]> = viewWillAppearS
+            .map({ data })
+            .flatMapLatest { (data) -> Observable<[SectionOfProfileInfoData]> in
+                return ProfileInfoDummyData.profileInfoData(data: data, type: type)
+            }
+            .share()
+        
+        let showItems = items
+            .map { (a) -> [SectionOfProfileInfoData] in
+                return a.map({ (b) -> SectionOfProfileInfoData in
+                    var temp = b
+                    temp.items = b.items
+                    return temp
+                })
+        }
         
         // MARK: Output
-        output = Output(items: items)
+        output = Output(items: showItems.asDriverOnErrorJustComplete(),
+                        title: Driver.just(type.title))
     }
     
 }

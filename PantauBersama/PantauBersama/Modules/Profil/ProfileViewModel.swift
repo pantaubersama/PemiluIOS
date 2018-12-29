@@ -81,20 +81,10 @@ final class ProfileViewModel: IProfileViewModel, IProfileViewModelInput, IProfil
         settingI = settingS.asObserver()
         verifikasiI = verifikasiS.asObserver()
         clusterI = clusterS.asObserver()
+    
         
-        
-        let setting = settingS
-            .flatMapLatest({ navigator.launchSetting() })
-            .asDriver(onErrorJustReturn: ())
-        
-        let verifikasi = verifikasiS
-            .flatMapLatest({ navigator.launchVerifikasi() })
-            .asDriver(onErrorJustReturn: ())
-        
-        let cluster = clusterS
-            .flatMapLatest({ navigator.launchReqCluster() })
-            .asDriver(onErrorJustReturn: ())
-        
+        // MARK
+        // Get user data from cloud
         let userData = NetworkService.instance.requestObject(
             PantauAuthAPI.me,
             c: BaseResponse<UserResponse>.self)
@@ -103,6 +93,28 @@ final class ProfileViewModel: IProfileViewModel, IProfileViewModelInput, IProfil
             .trackActivity(activityIndicator)
             .asObservable()
             .catchErrorJustComplete()
+        
+        // MARK
+        // Click setting with latest user data
+        let setting = settingS
+            .withLatestFrom(userData)
+            .flatMapLatest { (user) -> Observable<Void> in
+                return navigator.launchSetting(user: user.user)
+            }
+            .asDriver(onErrorJustReturn: ())
+        
+        // MARK
+        // Click verifikasi with latest user data
+        let verifikasi = verifikasiS
+            .withLatestFrom(userData)
+            .flatMapLatest { (user) -> Observable<Void> in
+                return navigator.launchVerifikasi(user: user.user)
+            }
+            .asDriver(onErrorJustReturn: ())
+        
+        let cluster = clusterS
+            .flatMapLatest({ navigator.launchReqCluster() })
+            .asDriver(onErrorJustReturn: ())
         
         settingO = setting
         verifikasiO = verifikasi

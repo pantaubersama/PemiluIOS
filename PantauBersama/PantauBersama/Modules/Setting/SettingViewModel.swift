@@ -8,10 +8,12 @@
 
 import RxSwift
 import RxCocoa
+import Networking
 
 protocol ISettingViewModelInput {
     var backI: AnyObserver<Void> { get }
     var itemSelectedI: AnyObserver<IndexPath> { get }
+    var viewWillAppearTrigger: AnyObserver<Void> { get }
 }
 
 protocol ISettingViewModelOutput {
@@ -36,6 +38,7 @@ final class SettingViewModel: ISettingViewModel, ISettingViewModelInput, ISettin
     // Input
     var backI: AnyObserver<Void>
     var itemSelectedI: AnyObserver<IndexPath>
+    var viewWillAppearTrigger: AnyObserver<Void>
     
     // Output
     var itemsO: Driver<[SectionOfSettingData]>
@@ -44,13 +47,17 @@ final class SettingViewModel: ISettingViewModel, ISettingViewModelInput, ISettin
     private let backS = PublishSubject<Void>()
     private let editS = PublishSubject<Int>()
     private let itemSelectedS = PublishSubject<IndexPath>()
+    private let userData: User
+    private let viewWillAppearS = PublishSubject<Void>()
     
-    init(navigator: SettingNavigator) {
+    init(navigator: SettingNavigator, data: User) {
         self.navigator = navigator
         self.navigator.finish = backS
+        self.userData = data
         
         backI = backS.asObserver()
         itemSelectedI = itemSelectedS.asObserver()
+        viewWillAppearTrigger = viewWillAppearS.asObserver()
         
         let items = Driver.just([
             SectionOfSettingData(header: nil, items: [
@@ -80,9 +87,6 @@ final class SettingViewModel: ISettingViewModel, ISettingViewModelInput, ISettin
                 SettingData.logout
                 ])
             ])
-        
-        let itemProfile: Observable<[SectionOfProfileInfoData]>
-        
         let itemSelected = itemSelectedS
             .withLatestFrom(items) { indexPath, item in
                 return item[indexPath.section].items[indexPath.row]
@@ -96,7 +100,11 @@ final class SettingViewModel: ISettingViewModel, ISettingViewModelInput, ISettin
                 case .verifikasi:
                     return navigator.launchVerifikasi(isVerified: true)
                 case .updateProfile:
-                    return navigator.launchProfileEdit()
+                    return navigator.launchProfileEdit(data: data, type: ProfileHeaderItem.editProfile)
+                case .updatePassword:
+                    return navigator.launchProfileEdit(data: data, type: ProfileHeaderItem.editPassword)
+                case .updateDataLapor:
+                    return navigator.launchProfileEdit(data: data, type: ProfileHeaderItem.editDataLapor)
                 default:
                     return Observable.empty()
                 }

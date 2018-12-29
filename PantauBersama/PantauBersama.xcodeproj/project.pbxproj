@@ -88,6 +88,8 @@
 		8428AAA321C7A7790008E975 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8428AAA521C7A7790008E975 /* Localizable.strings */; };
 		8428AAAA21C7AF330008E975 /* GoogleService-Info-Staging.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8428AAA921C7AF330008E975 /* GoogleService-Info-Staging.plist */; };
 		8428AAAD21C7B4B20008E975 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8428AAAC21C7B4B10008E975 /* GoogleService-Info.plist */; };
+		842A49F521D7749D0050AA51 /* HeaderDataLapor.xib in Resources */ = {isa = PBXBuildFile; fileRef = 842A49F421D7749D0050AA51 /* HeaderDataLapor.xib */; };
+		842A49F721D775420050AA51 /* HeaderDataLapor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842A49F621D775420050AA51 /* HeaderDataLapor.swift */; };
 		8441DB3C21CCA6C500B078DF /* ItemRadioCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441DB3B21CCA6C500B078DF /* ItemRadioCell.swift */; };
 		8441DB3E21CCB80B00B078DF /* ItemRadioCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8441DB3D21CCB80B00B078DF /* ItemRadioCell.xib */; };
 		8441DB4121CCBECF00B078DF /* FilterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441DB4021CCBECF00B078DF /* FilterModel.swift */; };
@@ -318,6 +320,8 @@
 		8428AAA621C7A77C0008E975 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/Localizable.strings; sourceTree = "<group>"; };
 		8428AAA921C7AF330008E975 /* GoogleService-Info-Staging.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Staging.plist"; sourceTree = "<group>"; };
 		8428AAAC21C7B4B10008E975 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		842A49F421D7749D0050AA51 /* HeaderDataLapor.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderDataLapor.xib; sourceTree = "<group>"; };
+		842A49F621D775420050AA51 /* HeaderDataLapor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderDataLapor.swift; sourceTree = "<group>"; };
 		8441DB3B21CCA6C500B078DF /* ItemRadioCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemRadioCell.swift; sourceTree = "<group>"; };
 		8441DB3D21CCB80B00B078DF /* ItemRadioCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ItemRadioCell.xib; sourceTree = "<group>"; };
 		8441DB4021CCBECF00B078DF /* FilterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterModel.swift; sourceTree = "<group>"; };
@@ -786,6 +790,8 @@
 				84E6933F21D2946C00EA5464 /* HeaderEditProfile.swift */,
 				84E6934121D294FA00EA5464 /* SubmitFooterView.xib */,
 				84E6934321D2955800EA5464 /* SubmitFooterView.swift */,
+				842A49F421D7749D0050AA51 /* HeaderDataLapor.xib */,
+				842A49F621D775420050AA51 /* HeaderDataLapor.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -1528,6 +1534,7 @@
 				8441DB3E21CCB80B00B078DF /* ItemRadioCell.xib in Resources */,
 				844C3D8C21C5323E00199871 /* LinimasaCell.xib in Resources */,
 				13812C4221CD421C00CAB327 /* BannerInfoAskCell.xib in Resources */,
+				842A49F521D7749D0050AA51 /* HeaderDataLapor.xib in Resources */,
 				840850C821D25D5800696CB3 /* TextViewCell.xib in Resources */,
 				13812C3E21CD41DC00CAB327 /* HeaderAskCell.xib in Resources */,
 				844C2BA521CC0F2500BC439A /* LinimasaHeaderView.xib in Resources */,
@@ -1756,6 +1763,7 @@
 				840850CA21D25EB600696CB3 /* TextViewCell.swift in Sources */,
 				11E1079621CD126900B7B074 /* QuizDetailViewModel.swift in Sources */,
 				84F6981121C8E21B00890917 /* LinimasaCell.swift in Sources */,
+				842A49F721D775420050AA51 /* HeaderDataLapor.swift in Sources */,
 				11B3C78D21D110DA00EDCECB /* QuizAnswerViewModel.swift in Sources */,
 				13F4569721CF981E00CE45F1 /* AskViewModel.swift in Sources */,
 				840850C321D25C7D00696CB3 /* ProfileEditController.swift in Sources */,
