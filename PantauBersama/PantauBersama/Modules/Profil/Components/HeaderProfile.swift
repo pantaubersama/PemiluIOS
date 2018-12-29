@@ -36,9 +36,9 @@ class HeaderProfile: UIView {
     }
     
     func configure(user: User) {
-        print("STATUS: \(user.verified)")
         username.text = user.firstName ?? ""
         buttonVerified.isSelected = user.verified
         buttonVerified.borderColor = user.verified ? Color.secondary_cyan : Color.grey_three
+        buttonVerified.isEnabled = user.verified ? false : true
     }
 }
