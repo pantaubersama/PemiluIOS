@@ -1,21 +1,18 @@
 //
-//  HeaderEditProfile.swift
+//  HeaderDataLapor.swift
 //  PantauBersama
 //
-//  Created by Hanif Sugiyanto on 25/12/18.
+//  Created by Hanif Sugiyanto on 29/12/18.
 //  Copyright © 2018 PantauBersama. All rights reserved.
 //
 
 import UIKit
 import Common
 
-class HeaderEditProfile: UIView {
-    
-    @IBOutlet weak var avatar: UIImageView!
-    @IBOutlet weak var buttonGanti: UIButton!
+class HeaderDataLapor: UIView {
     
     override init(frame: CGRect) {
-//        let frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 140.0)
+//        let frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 82.0)
         super.init(frame: frame)
         setup()
     }

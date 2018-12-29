@@ -20,8 +20,6 @@ class ProfileEditController: UIViewController {
     private let disposeBag = DisposeBag()
     var dataSource: RxTableViewSectionedReloadDataSource<SectionOfProfileInfoData>!
     
-    private var tableHeaderView: HeaderEditProfile!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -31,8 +29,7 @@ class ProfileEditController: UIViewController {
         
         // MARK: TableView
         tableView.registerReusableCell(TextViewCell.self)
-        tableHeaderView = HeaderEditProfile()
-        tableView.tableHeaderView = tableHeaderView
+        tableView.tableFooterView = UIView()
         tableView.delegate = nil
         tableView.dataSource = nil
         tableView.separatorStyle = .none
@@ -73,5 +70,12 @@ class ProfileEditController: UIViewController {
 }
 
 extension ProfileEditController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = dataSource.sectionModels[section].header.headerView
+        return view
+    }
     
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return dataSource.sectionModels[section].header.sizeHeader
+    }
 }

@@ -26,6 +26,28 @@ enum ProfileHeaderItem: Int {
             return "Ubah Data Lapor"
         }
     }
+    
+    var headerView: UIView? {
+        switch self {
+        case .editProfile:
+            return HeaderEditProfile()
+        case .editDataLapor:
+            return HeaderDataLapor()
+        default:
+            return UIView()
+        }
+    }
+    
+    var sizeHeader: CGFloat {
+        switch self {
+        case .editProfile:
+            return 140.0
+        case .editDataLapor:
+            return 82.0
+        case .editPassword:
+            return 0.0
+        }
+    }
 }
 
 final class ProfileInfoDummyData {
