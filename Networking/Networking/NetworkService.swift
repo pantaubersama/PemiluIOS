@@ -34,11 +34,12 @@ public extension NetworkService {
     // return Single<> will call last request with generated new token from 401
     
     public func requestObject<T: TargetType, C: Decodable>(_ t: T, c: C.Type) -> Single<C> {
+        print("api url \(t.baseURL)\(t.path)")
         return provider.rx.request(MultiTarget(t))
             .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background))
             .filterSuccessfulStatusAndRedirectCodes()
             .do(onSuccess: { (r) in
-                
+                print("response \(try? JSONSerialization.jsonObject(with: r.data, options: .allowFragments))")
             }, onError: { (e) in
                 if case MoyaError.statusCode(let response) = e  {
                     // here will check if token 401
@@ -54,6 +55,7 @@ public extension NetworkService {
                         .filterSuccessfulStatusAndRedirectCodes()
                         .map(PantauRefreshResponse.self)
                         .catchError({ (e) in
+                            print("error \(e.localizedDescription)")
                             if case MoyaError.statusCode(let response) = e {
                                 print("Status response: ... \(response.statusCode)")
                                 if response.statusCode == 401 {
@@ -85,6 +87,7 @@ public extension NetworkService {
             })
             .map(c.self)
             .catchError({ (error)  in
+                print("error \(error.localizedDescription)")
                 guard let errorResponse = error as? MoyaError else { return Single.error(NetworkError.IncorrectDataReturned) }
                 switch errorResponse {
                 case .underlying(let (e, _)):

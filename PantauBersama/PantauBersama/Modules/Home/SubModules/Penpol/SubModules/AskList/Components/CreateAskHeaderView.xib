@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CreateAskHeaderView" customModule="PantauBersama" customModuleProvider="target">
+            <connections>
+                <outlet property="ivAvatar" destination="gtt-bl-BZ3" id="FaA-a1-KHZ"/>
+                <outlet property="lbFullname" destination="mzW-Jc-ESY" id="PJG-i8-jqS"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="82"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Apa Pertanyaanmu buat calon Capres Indonesia ?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F6v-Ce-lvW" customClass="Label" customModule="Common">
+                    <rect key="frame" x="24" y="42" width="280" height="14.5"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="14.5" id="2yq-eY-fS1"/>
+                        <constraint firstAttribute="width" constant="280" id="udz-gb-ZlN"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icDummyPerson" translatesAutoresizingMaskIntoConstraints="NO" id="gtt-bl-BZ3">
+                    <rect key="frame" x="24" y="18" width="16" height="16"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="16" id="FcR-Ye-xzq"/>
+                        <constraint firstAttribute="width" constant="16" id="Zcy-nF-QES"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Budi Santoso" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mzW-Jc-ESY" customClass="Label" customModule="Common">
+                    <rect key="frame" x="45" y="18" width="320" height="16"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="16" id="14Z-2B-BHP"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="7"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                            <real key="value" value="7"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="string" keyPath="typeLabel" value="Lato-Bold"/>
+                    </userDefinedRuntimeAttributes>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i3y-3V-lzJ">
+                    <rect key="frame" x="0.0" y="78" width="375" height="4"/>
+                    <color key="backgroundColor" red="0.93323183059692383" green="0.9333917498588562" blue="0.93322181701660156" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="4" id="J3m-Zp-iem"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="mzW-Jc-ESY" firstAttribute="centerY" secondItem="gtt-bl-BZ3" secondAttribute="centerY" id="3SQ-mq-KPG"/>
+                <constraint firstItem="F6v-Ce-lvW" firstAttribute="top" secondItem="gtt-bl-BZ3" secondAttribute="bottom" constant="8" id="B76-b9-0wi"/>
+                <constraint firstItem="i3y-3V-lzJ" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="G2f-9c-4LR"/>
+                <constraint firstItem="F6v-Ce-lvW" firstAttribute="leading" secondItem="gtt-bl-BZ3" secondAttribute="leading" id="H3R-pL-yyG"/>
+                <constraint firstItem="mzW-Jc-ESY" firstAttribute="leading" secondItem="gtt-bl-BZ3" secondAttribute="trailing" constant="5" id="IVv-7P-QLl"/>
+                <constraint firstItem="gtt-bl-BZ3" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="24" id="YrP-YD-30D"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="mzW-Jc-ESY" secondAttribute="trailing" constant="10" id="bfT-yZ-IfL"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="i3y-3V-lzJ" secondAttribute="trailing" id="dex-FP-VyG"/>
+                <constraint firstItem="gtt-bl-BZ3" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" constant="-15" id="gbJ-Cw-U2G"/>
+                <constraint firstItem="i3y-3V-lzJ" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="nKb-0N-8WO"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="138.40000000000001" y="108.84557721139431"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="icDummyPerson" width="64" height="64"/>
+    </resources>
+</document>

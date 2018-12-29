@@ -9,7 +9,7 @@
 import Moya
 import Common
 
-enum TanyaKandidatAPI {
+public enum TanyaKandidatAPI {
     public enum TanyaListFilter: String {
         case userVerifiedAll = "user_verified_all"
         case userVerifiedTrue = "user_verified_true"
@@ -26,32 +26,31 @@ enum TanyaKandidatAPI {
 
 extension TanyaKandidatAPI: TargetType {
     public var headers: [String: String]? {
-        let token = KeychainService.load(type: NetworkKeychainKind.token) ?? ""
         return [
             "Content-Type"  : "application/json",
             "Accept"        : "application/json",
-            "Authorization" : token
         ]
     }
     
     public var baseURL: URL {
-        return URL(string: AppContext.instance.infoForKey("URL_API_AUTH"))!
+        let url = URL(string: AppContext.instance.infoForKey("URL_API_PEMILU"))!
+        return url
     }
     
     public var path: String {
         switch self {
         case .deleteQuestion:
-            return "/v1/questions"
+            return "/pendidikan_politik/v1/questions"
         case .getQuestions:
-            return "/v1/questions"
+            return "/pendidikan_politik/v1/questions"
         case .createQuestion:
-            return "/v1/questions"
+            return "/pendidikan_politik/v1/questions"
         case .getQuestionDetail:
-            return "/v1/questions"
+            return "/pendidikan_politik/v1/questions"
         case .reportQuestion:
-            return "/v1/reports"
+            return "/pendidikan_politik/v1/reports"
         case .voteQuestion:
-            return "v1/votes"
+            return "/pendidikan_politik/v1/votes"
         }
     }
     

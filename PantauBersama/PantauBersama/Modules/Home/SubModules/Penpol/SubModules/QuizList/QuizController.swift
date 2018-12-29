@@ -9,6 +9,8 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import Common
+import AlamofireImage
 
 class QuizController: UITableViewController {
     private let disposeBag: DisposeBag = DisposeBag()
@@ -79,6 +81,8 @@ extension QuizController {
             let quizCell = tableView.dequeueReusableCell(indexPath: indexPath) as QuizCell
             quizCell.quiz = "quiz"
             quizCell.bind(viewModel: viewModel)
+//            quizCell.ivQuiz.af_setImage(withURL: <#T##URL#>)
+            quizCell.ivQuiz.show(fromURL: "https://d1u5p3l4wpay3k.cloudfront.net/dota2_gamepedia/8/8a/Rubick_icon.png")
             return quizCell
         }
     }

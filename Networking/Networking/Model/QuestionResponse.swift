@@ -12,20 +12,18 @@ import Foundation
 //
 //   let questionsResponse = try? newJSONDecoder().decode(QuestionsResponse.self, from: jsonData)
 
-import Foundation
-
 public struct QuestionsResponse: Codable {
-    let data: DataClass
+    public let data: DataClass
     
     public struct DataClass: Codable {
-        let questions: [Question]
-        let meta: Meta
+        public let questions: [Question]
+        public let meta: Meta
         
         public struct Meta: Codable {
-            let pages: Pages
+            public let pages: Pages
             
             public struct Pages: Codable {
-                let total, perPage, page: Int
+                public let total, perPage, page: Int
                 
                 enum CodingKeys: String, CodingKey {
                     case total
@@ -36,11 +34,11 @@ public struct QuestionsResponse: Codable {
         }
         
         public struct Question: Codable {
-            let id, body: String
-            let createdAt: CreatedAt
-            let created: String
-            let likeCount: Int
-            let user: User
+            public let id, body: String
+            public let createdAt: CreatedAt
+            public let created: String
+            public let likeCount: Int
+            public let user: User
             
             enum CodingKeys: String, CodingKey {
                 case id, body
@@ -52,7 +50,7 @@ public struct QuestionsResponse: Codable {
         }
         
         public struct CreatedAt: Codable {
-            let iso8601, en, id: String
+            public let iso8601, en, id: String
             
             enum CodingKeys: String, CodingKey {
                 case iso8601 = "iso_8601"
@@ -61,11 +59,11 @@ public struct QuestionsResponse: Codable {
         }
         
         public struct User: Codable {
-            let id, email, firstName, lastName: String
-            let username: String
-            let avatar: Avatar
-            let verified: Bool
-            let about: String
+            public let id, email, firstName, lastName: String
+            public let username: String?
+            public let avatar: Avatar
+            public let verified: Bool
+            public let about: String?
             
             enum CodingKeys: String, CodingKey {
                 case id, email
@@ -75,8 +73,8 @@ public struct QuestionsResponse: Codable {
             }
             
             public struct Avatar: Codable {
-                let url: String
-                let thumbnail, thumbnailSquare, medium, mediumSquare: ImageSize
+                public let url: String?
+                public let thumbnail, thumbnailSquare, medium, mediumSquare: ImageSize
                 
                 enum CodingKeys: String, CodingKey {
                     case url, thumbnail
@@ -85,8 +83,8 @@ public struct QuestionsResponse: Codable {
                     case mediumSquare = "medium_square"
                 }
                 
-                struct ImageSize: Codable {
-                    let url: String
+                public struct ImageSize: Codable {
+                    public let url: String?
                 }
             }
         }
