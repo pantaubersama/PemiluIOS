@@ -87,37 +87,31 @@ class AskController: UITableViewController {
             .drive()
             .disposed(by: disposeBag)
         
+        viewModel.input
+            .nextPageTrigger
+            .onNext(())
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         tableView.delegate = nil
         tableView.dataSource = nil
         viewModel.output.askCells
-            .drive(tableView.rx.items) {table, row, item -> UITableViewCell in
-            guard let cell = table.dequeueReusableCell(withIdentifier: item.reuseIdentifier) else {
-                return UITableViewCell()
-            }
-            
-            item.configure(cell: cell)
-            cell.tag = row
-            
-            return cell
-        }.disposed(by: disposeBag)
-        
-//        viewModel.output.askCells.drive(tableView.rx.items(dataSource: dataSource)).disposed(by: disposeBag)
-        
-//        tableView.rx.setDelegate(self).disposed(by: disposeBag)
-        
-      
-//
-//        viewModel.output.askCells.drive(tableView.rx.items) { (tableView, row, item) in
-//            guard let cell = tableView.dequeueReusableCell(withIdentifier: item.reuseIdentifier) else {
-//                return UITableViewCell()
-//            }
-//
-//            cell.tag = row
-//            item.configure(cell: cell)
-//
-//            return cell
-//        }.disposed(by: disposeBag)
-        
+            .asDriverOnErrorJustComplete()
+            .drive(tableView.rx.items) { [unowned self]table, row, item -> UITableViewCell in
+                // Loadmore trigger
+                if row == self.viewModel.output.askCells.value.count - 3 {
+                    self.viewModel.input.nextPageTrigger.onNext(())
+                }
+                guard let cell = table.dequeueReusableCell(withIdentifier: item.reuseIdentifier) else {
+                    return UITableViewCell()
+                }
+                
+                item.configure(cell: cell)
+                cell.tag = row
+                
+                return cell
+            }.disposed(by: disposeBag)
     }
 
 }

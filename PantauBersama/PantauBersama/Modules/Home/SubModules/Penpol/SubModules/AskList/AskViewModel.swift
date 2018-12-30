@@ -18,7 +18,7 @@ class AskViewModel: ViewModelType {
     var output: Output!
     
     struct Input {
-        let nextPage: AnyObserver<Void>
+        let nextPageTrigger: AnyObserver<Void>
         let createTrigger: AnyObserver<Void>
         let infoTrigger: AnyObserver<Void>
         let shareTrigger: AnyObserver<Any>
@@ -27,7 +27,7 @@ class AskViewModel: ViewModelType {
     }
     
     struct Output {
-        let askCells: Driver<[ICellConfigurator]>
+        let askCells: BehaviorRelay<[ICellConfigurator]>
         let createSelected: Driver<Void>
         let infoSelected: Driver<Void>
         let shareSelected: Driver<Void>
@@ -43,15 +43,19 @@ class AskViewModel: ViewModelType {
     private let shareSubject = PublishSubject<Any>()
     private let moreSubject = PublishSubject<Any>()
     private let moreMenuSubject = PublishSubject<AskType>()
+    private let askCellRelay = BehaviorRelay<[ICellConfigurator]>(value: [])
     
     private let navigator: QuizNavigator
     private let questionSectionModel: [SectionModel<String, Any>] = []
+    
+    private(set) var disposeBag = DisposeBag()
+    private var currentPage = 0
     
     init(navigator: PenpolNavigator) {
         self.navigator = navigator
         
         input = Input(
-            nextPage: nextPageSubject.asObserver(),
+            nextPageTrigger: nextPageSubject.asObserver(),
             createTrigger: createSubject.asObserver(),
             infoTrigger: infoSubject.asObserver(),
             shareTrigger: shareSubject.asObserver(),
@@ -83,15 +87,28 @@ class AskViewModel: ViewModelType {
             })
             .asDriverOnErrorJustComplete()
         
-        let askCells = askItem().map { (list) -> [ICellConfigurator] in
-            return list.map({ (questionModel) -> ICellConfigurator in
-                return AskViewCellConfigurator(item: AskViewCell.Input(viewModel: self, question: questionModel))
+        nextPageSubject
+            .flatMapLatest({self.askItem()})
+            .map { [weak self](list) -> [ICellConfigurator] in
+                guard let weakSelf = self else { return [] }
+                return list.map({ (questionModel) -> ICellConfigurator in
+                    return AskViewCellConfigurator(item: AskViewCell.Input(viewModel: weakSelf, question: questionModel))
+                })
+            }
+            .filter({ (questions) -> Bool in
+                return !questions.isEmpty
             })
-        }.asDriverOnErrorJustComplete()
+            .bind(onNext: { [weak self](loadedItem) in
+                guard let weakSelf = self else { return }
+                var newItem = weakSelf.askCellRelay.value
+                newItem.append(contentsOf: loadedItem)
+                weakSelf.askCellRelay.accept(newItem)
+            })
+            .disposed(by: disposeBag)
         
         
         output = Output(
-            askCells: askCells,
+            askCells: askCellRelay,
             createSelected: create,
             infoSelected: info,
             shareSelected: shareAsk,
@@ -100,8 +117,9 @@ class AskViewModel: ViewModelType {
     }
     
     private func askItem() -> Observable<[QuestionModel]> {
+        currentPage += 1
         return NetworkService.instance
-            .requestObject(TanyaKandidatAPI.getQuestions(page: 1, perpage: 10, filteredBy: .userVerifiedAll), c: QuestionsResponse.self)
+            .requestObject(TanyaKandidatAPI.getQuestions(page: currentPage, perpage: 10, filteredBy: .userVerifiedAll), c: QuestionsResponse.self)
             .map { [weak self](response) -> [QuestionModel] in
                 guard let weakSelf = self else { return [] }
                 return weakSelf.generateQuestions(from: response)

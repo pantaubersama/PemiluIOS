@@ -15,9 +15,9 @@ public struct QuestionModel {
     let createdAt: CreatedAt
     let created: String
     let likeCount: Int
-    let user: User
+    let user: Creator
     
-    init(question: QuestionsResponse.DataClass.Question) {
+    init(question: Question) {
         self.id = question.id
         self.body = question.body
         self.createdAt = CreatedAt(iso8601: question.createdAt.iso8601,
@@ -25,16 +25,16 @@ public struct QuestionModel {
                                  id: question.createdAt.id)
         self.created = question.created
         self.likeCount = question.likeCount
-        self.user = User(id: question.user.id,
+        self.user = Creator(id: question.user.id,
                          email: question.user.email,
                          firstName: question.user.firstName,
                          lastName: question.user.lastName,
                          username: question.user.username ?? "",
-                         avatar: User.Avatar(url: question.user.avatar.url ?? "",
-                                             thumbnail: User.Avatar.ImageSize(url: question.user.avatar.thumbnail.url ?? ""),
-                                             thumbnailSquare: User.Avatar.ImageSize(url: question.user.avatar.thumbnailSquare.url ?? ""),
-                                             medium: User.Avatar.ImageSize(url: question.user.avatar.medium.url ?? ""),
-                                             mediumSquare: User.Avatar.ImageSize(url: question.user.avatar.mediumSquare.url ?? "")),
+                         avatar: Creator.Avatar(url: question.user.avatar.url ?? "",
+                                             thumbnail: Creator.Avatar.ImageSize(url: question.user.avatar.thumbnail.url ?? ""),
+                                             thumbnailSquare: Creator.Avatar.ImageSize(url: question.user.avatar.thumbnailSquare.url ?? ""),
+                                             medium: Creator.Avatar.ImageSize(url: question.user.avatar.medium.url ?? ""),
+                                             mediumSquare: Creator.Avatar.ImageSize(url: question.user.avatar.mediumSquare.url ?? "")),
                          verified: question.user.verified,
                          about: question.user.about ?? "")
         
@@ -44,7 +44,7 @@ public struct QuestionModel {
         let iso8601, en, id: String
     }
     
-    public struct User: Codable {
+    public struct Creator: Codable {
         let id, email, firstName, lastName: String
         let username: String
         let avatar: Avatar
