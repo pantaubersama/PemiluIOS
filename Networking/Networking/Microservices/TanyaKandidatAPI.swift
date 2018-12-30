@@ -26,9 +26,11 @@ public enum TanyaKandidatAPI {
 
 extension TanyaKandidatAPI: TargetType {
     public var headers: [String: String]? {
+        let token = KeychainService.load(type: NetworkKeychainKind.token) ?? ""
         return [
             "Content-Type"  : "application/json",
             "Accept"        : "application/json",
+            "Authorization" : token
         ]
     }
     

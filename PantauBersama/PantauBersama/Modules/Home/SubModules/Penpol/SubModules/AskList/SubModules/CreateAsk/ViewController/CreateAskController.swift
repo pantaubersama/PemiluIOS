@@ -9,9 +9,12 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import Common
 
 class CreateAskController: UIViewController {
 
+    @IBOutlet weak var tvQuestion: UITextView!
+    @IBOutlet weak var lbQuestionLimit: Label!
     var viewModel: CreateAskViewModel!
     lazy var disposeBag = DisposeBag()
     
@@ -25,6 +28,7 @@ class CreateAskController: UIViewController {
         navigationItem.leftBarButtonItem = back
         navigationItem.rightBarButtonItem = done
         navigationController?.navigationBar.configure(with: .white)
+        tvQuestion.delegate = self
 
         // MARK
         // bind View Model
@@ -32,9 +36,27 @@ class CreateAskController: UIViewController {
             .bind(to: viewModel.input.backTrigger)
             .disposed(by: disposeBag)
         
+        done.rx.tap
+            .bind(to: viewModel.input.createTrigger)
+            .disposed(by: disposeBag)
+        
         viewModel.output.createSelected
             .drive()
             .disposed(by: disposeBag)
+        
+        tvQuestion.rx.text
+            .orEmpty
+            .map { "\($0.count)/260" }
+            .asDriverOnErrorJustComplete()
+            .drive(lbQuestionLimit.rx.text)
+            .disposed(by: disposeBag)
     }
 
+}
+
+extension CreateAskController: UITextViewDelegate {
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        let newText = (textView.text as NSString).replacingCharacters(in: range, with: text)
+        return newText.count < 261
+    }
 }

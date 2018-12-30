@@ -13,7 +13,7 @@ import RxCocoa
 
 class CreateAskViewModel: ViewModelType {
     var input: Input
-    var output: Output
+    var output: Output!
     
     struct Input {
         let backTrigger: AnyObserver<Void>
@@ -28,8 +28,6 @@ class CreateAskViewModel: ViewModelType {
     private let backSubject = PublishSubject<Void>()
     var navigator: CreateAskNavigator
     
-    
-    
     init(navigator: CreateAskNavigator) {
         self.navigator = navigator
         self.navigator.finish = backSubject
@@ -37,9 +35,17 @@ class CreateAskViewModel: ViewModelType {
         input = Input(backTrigger: backSubject.asObserver() ,createTrigger: createSubject.asObserver())
 
         let create = createSubject
-            .asDriver(onErrorJustReturn: ())
+            .do {
+                print("onNext")
+            }
+            .flatMap({ self.createQuestion() })
+            .asDriverOnErrorJustComplete()
 
         output = Output(createSelected: create )
+    }
+    
+    private func createQuestion() -> Observable<Void> {
+        return Observable.just(())
     }
     
 }
