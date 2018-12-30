@@ -10,6 +10,8 @@ import Foundation
 
 public struct PaginatableResponse<T>: Codable where T:Codable {
     
+    // MARK
+    // Pagination jika data meta diluar object data
     public let data: T
     public let meta: Meta
     

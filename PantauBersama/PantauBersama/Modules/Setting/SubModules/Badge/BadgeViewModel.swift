@@ -62,17 +62,17 @@ class BadgeViewModel: ViewModelType {
     }
     
     
-    private func transformToPage(response: PaginatableResponse<BadgesResponse>, batch: Batch) -> Page<[ICellConfigurator]> {
+    private func transformToPage(response: BaseResponse<BadgesResponse>, batch: Batch) -> Page<[ICellConfigurator]> {
         let list = response.data.badges
             .map { (badge) -> ICellConfigurator in
                 return BadgeCellConfigured.init(item: BadgeCell.Input(badges: badge))
         }
         
         let nextBatch = Batch(offset: batch.offset,
-                              limit: response.meta.pages.perPage ?? 10,
-                              total: response.meta.pages.total,
-                              count: response.meta.pages.page,
-                              page: response.meta.pages.page)
+                              limit: response.data.meta.pages.perPage ?? 10,
+                              total: response.data.meta.pages.total,
+                              count: response.data.meta.pages.page,
+                              page: response.data.meta.pages.page)
         return Page<[ICellConfigurator]>(
             item: list,
             batch: nextBatch
@@ -94,7 +94,7 @@ class BadgeViewModel: ViewModelType {
             Observable<Page<[ICellConfigurator]>> {
         return NetworkService.instance
             .requestObject(PantauAuthAPI.badges(page: batch.page, perPage: batch.limit),
-                           c: PaginatableResponse<BadgesResponse>.self)
+                           c: BaseResponse<BadgesResponse>.self)
             .map({ self.transformToPage(response: $0, batch: batch) })
             .asObservable()
             .paginate(nextPageTrigger: nextBatchTrigger, hasNextPage: { (result) -> Bool in

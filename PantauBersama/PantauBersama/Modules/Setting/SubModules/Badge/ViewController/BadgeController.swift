@@ -28,7 +28,7 @@ class BadgeController: UIViewController {
         tableView.delegate = nil
         tableView.dataSource = nil
         tableView.registerReusableCell(BadgeCell.self)
-        tableView.estimatedRowHeight = 73
+        tableView.estimatedRowHeight = 80
         tableView.rowHeight = UITableView.automaticDimension
           tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         
@@ -73,6 +73,9 @@ class BadgeController: UIViewController {
                 self.refreshControl.endRefreshing()
             })
             .disposed(by: disposeBag)
+        
+        tableView.rx.setDelegate(self)
+            .disposed(by: disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -80,4 +83,10 @@ class BadgeController: UIViewController {
         navigationController?.navigationBar.configure(with: .transparent)
     }
     
+}
+
+extension BadgeController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 80.0
+    }
 }

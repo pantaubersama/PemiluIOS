@@ -12,10 +12,28 @@ public struct BadgesResponse: Codable {
     
     public var achieved: [Badges]
     public var badges: [Badges]
+    public let meta: Meta
+    
+    public struct Meta: Codable {
+        public let pages: Pagination
+        
+        public struct Pagination: Codable {
+            public let total: Int
+            public let perPage: Int?
+            public let page: Int
+            
+            private enum CodingKeys: String, CodingKey {
+                case total
+                case perPage = "per_page"
+                case page
+            }
+        }
+    }
     
     private enum CodingKeys: String, CodingKey {
         case achieved = "achieved_badges"
         case badges
+        case meta
     }
     
 }
