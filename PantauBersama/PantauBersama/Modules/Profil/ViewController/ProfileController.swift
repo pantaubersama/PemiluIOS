@@ -152,6 +152,7 @@ class ProfileController: UIViewController {
         tableViewBadge.dataSource = nil
         tableViewBadge.delegate = nil
         tableViewBadge.registerReusableCell(BadgeCell.self)
+        tableViewBadge.tableFooterView = UIView()
         
         dataSourceCluster = RxTableViewSectionedReloadDataSource<SectionOfProfileData>(configureCell: { (dataSource, tableView, indexPath, item) in
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: item.reuseIdentifier) else {
@@ -168,9 +169,8 @@ class ProfileController: UIViewController {
             return cell
         })
         
-//        tableView.rx
-//            .setDelegate(self)
-//            .disposed(by: disposeBag)
+        tableViewBadge.rx.setDelegate(self)
+            .disposed(by: disposeBag)
         
         back.rx.tap
             .bind(to: viewModel.input.backI)
@@ -232,4 +232,16 @@ class ProfileController: UIViewController {
 }
 
 extension ProfileController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let button = Button()
+        button.setTitle("Lihat Lainnya", for: .normal)
+        button.setTitleColor(Color.grey_three, for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 32.0
+    }
 }

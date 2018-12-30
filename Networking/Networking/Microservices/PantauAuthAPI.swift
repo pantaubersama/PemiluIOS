@@ -30,6 +30,7 @@ public enum PantauAuthAPI {
     case putSelfieKTP(image: UIImage?)
     case putFotoKTP(image: UIImage?)
     case putSignature(image: UIImage?)
+    case badges(page: Int, perPage: Int)
     
 }
 
@@ -69,6 +70,8 @@ extension PantauAuthAPI: TargetType {
             return "/v1/verifications/ktp_photo"
         case .putSignature:
             return "/v1/verifications/signature"
+        case .badges:
+            return "/v1/badges"
         }
     }
     
@@ -106,6 +109,11 @@ extension PantauAuthAPI: TargetType {
                 "client_id": AppContext.instance.infoForKey("CLIENT_ID_AUTH"),
                 "client_secret": AppContext.instance.infoForKey("CLIENT_SECRET_AUTH"),
                 "token": t
+            ]
+        case .badges(let (page, perPage)):
+            return [
+                "page": page,
+                "per_page": perPage
             ]
         default:
             return nil
