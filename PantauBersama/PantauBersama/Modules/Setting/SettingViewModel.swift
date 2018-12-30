@@ -50,10 +50,14 @@ final class SettingViewModel: ISettingViewModel, ISettingViewModelInput, ISettin
     private let userData: User
     private let viewWillAppearS = PublishSubject<Void>()
     
+    
     init(navigator: SettingNavigator, data: User) {
         self.navigator = navigator
         self.navigator.finish = backS
         self.userData = data
+    
+        let errorTracker = ErrorTracker()
+        let activityIndicator = ActivityIndicator()
         
         backI = backS.asObserver()
         itemSelectedI = itemSelectedS.asObserver()
@@ -87,6 +91,13 @@ final class SettingViewModel: ISettingViewModel, ISettingViewModelInput, ISettin
                 SettingData.logout
                 ])
             ])
+        
+        let verifikasi = NetworkService.instance.requestObject(
+            PantauAuthAPI.verifications,
+            c: BaseResponse<VerificationsResponse>.self)
+            .map({ $0.data.user })
+            .asObservable()
+        
         let itemSelected = itemSelectedS
             .withLatestFrom(items) { indexPath, item in
                 return item[indexPath.section].items[indexPath.row]
@@ -97,8 +108,11 @@ final class SettingViewModel: ISettingViewModel, ISettingViewModelInput, ISettin
                     return navigator.launchSignOut()
                 case .badge:
                     return navigator.launchBadge()
-//                case .verifikasi:
-//                    return navigator.launchVerifikasi(user: User)
+                case .verifikasi:
+                    // MARK
+                    // Fetch verifications data
+                    return verifikasi.flatMapLatest({ navigator.launchVerifikasi(user: $0)})
+                    
                 case .updateProfile:
                     return navigator.launchProfileEdit(data: data, type: ProfileHeaderItem.editProfile)
                 case .updatePassword:
