@@ -15,6 +15,8 @@ class BadgeController: UIViewController {
     @IBOutlet weak var buttonClose: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
+    private let refreshControl = UIRefreshControl()
+    
     var viewModel: BadgeViewModel!
     private let disposeBag = DisposeBag()
     
@@ -23,41 +25,59 @@ class BadgeController: UIViewController {
         
         
         // MARK: TableView
-        tableView.delegate = self
-        tableView.dataSource = self
+        tableView.delegate = nil
+        tableView.dataSource = nil
         tableView.registerReusableCell(BadgeCell.self)
         tableView.estimatedRowHeight = 73
         tableView.rowHeight = UITableView.automaticDimension
           tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        
+        if #available(iOS 10.0, *) {
+            tableView.refreshControl = refreshControl
+        } else {
+            tableView.addSubview(refreshControl)
+        }
         
         // MARK: Bind viewModel
         buttonClose.rx.tap
             .bind(to: viewModel.input.backI)
             .disposed(by: disposeBag)
         
+        refreshControl.rx.controlEvent(.valueChanged)
+            .bind(to: viewModel.input.refreshI)
+            .disposed(by: disposeBag)
+        
+        tableView.rx.contentOffset
+            .distinctUntilChanged()
+            .flatMapLatest { (offset) -> Observable<Void> in
+                if offset.y > self.tableView.contentSize.height -
+                    (self.tableView.frame.height * 2) {
+                    return Observable.just(())
+                } else {
+                    return Observable.empty()
+                }
+            }
+            .bind(to: viewModel.input.nextTrigger)
+            .disposed(by: disposeBag)
+        
+        viewModel.output.badgeItems
+            .drive(tableView.rx.items) { (tableView, index, item) -> UITableViewCell in
+                let cell: BadgeCell = tableView.dequeueReusableCell()
+                item.configure(cell: cell)
+                return cell
+            }
+            .disposed(by: disposeBag)
+        
+        viewModel.output.loading
+            .drive(onNext: { [unowned self](loading) in
+                self.refreshControl.endRefreshing()
+            })
+            .disposed(by: disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.configure(with: .transparent)
     }
-    
-}
-
-
-extension BadgeController: UITableViewDataSource, UITableViewDelegate {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
-    }
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(indexPath: indexPath) as BadgeCell
-        return cell
-    }
-    
     
 }

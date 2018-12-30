@@ -22,7 +22,7 @@ protocol IProfileViewModelOutput {
     var settingO: Driver<Void>! { get }
     var verifikasiO: Driver<Void>! { get }
     var itemsClusterO: Driver<[SectionOfProfileData]> { get }
-    var itemsBadgeO: Driver<[SectionOfProfileData]> { get }
+    var itemsBadgeO: Driver<[SectionOfProfileData]>! { get }
     var clusterO: Driver<Void>! { get }
     var userDataO: Driver<UserResponse>! { get }
     var errorO: Driver<Error>! { get }
@@ -58,7 +58,7 @@ final class ProfileViewModel: IProfileViewModel, IProfileViewModelInput, IProfil
     var settingO: Driver<Void>!
     var verifikasiO: Driver<Void>!
     var itemsClusterO: Driver<[SectionOfProfileData]>
-    var itemsBadgeO: Driver<[SectionOfProfileData]>
+    var itemsBadgeO: Driver<[SectionOfProfileData]>!
     var clusterO: Driver<Void>!
     var userDataO: Driver<UserResponse>!
     var errorO: Driver<Error>!
@@ -128,6 +128,17 @@ final class ProfileViewModel: IProfileViewModel, IProfileViewModelInput, IProfil
             .flatMapLatest({ navigator.launchReqCluster() })
             .asDriver(onErrorJustReturn: ())
         
+        
+        // MARK
+        // Get Badges me
+        let badge = NetworkService.instance
+            .requestObject(PantauAuthAPI.badges(page: 1, perPage: 3), c: BaseResponse<BadgesResponse>.self)
+            .map({ $0.data })
+            .trackError(errorTracker)
+            .trackActivity(activityIndicator)
+            .asObservable()
+            .catchErrorJustComplete()
+        
         settingO = setting
         verifikasiO = verifikasi
         
@@ -136,11 +147,19 @@ final class ProfileViewModel: IProfileViewModel, IProfileViewModelInput, IProfil
                 ClusterCellConfigured(item: ClusterCell.Input())
                 ])
             ])
-        itemsBadgeO = Driver.just([
-            SectionOfProfileData(items: [
-                BadgeCellConfigured(item: BadgeCell.Input())
-                ])
-            ])
+        
+        // MARK
+        // Get Observable<[Badges>
+        // Into List
+        itemsBadgeO = badge
+            .map{ (list) -> [SectionOfProfileData] in
+                return list.achieved.compactMap({ (badge) -> SectionOfProfileData in
+                    return SectionOfProfileData(items: [BadgeCellConfigured(item: BadgeCell.Input(badges: badge))])
+                })
+            }
+            .asDriverOnErrorJustComplete()
+        
+        
         clusterO = cluster
         userDataO = userData.asDriverOnErrorJustComplete()
         
