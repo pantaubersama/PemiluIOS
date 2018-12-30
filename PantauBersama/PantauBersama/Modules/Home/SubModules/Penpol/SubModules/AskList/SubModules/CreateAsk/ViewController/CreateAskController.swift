@@ -12,7 +12,7 @@ import RxCocoa
 import Common
 
 class CreateAskController: UIViewController {
-
+    
     @IBOutlet weak var tvQuestion: UITextView!
     @IBOutlet weak var lbQuestionLimit: Label!
     var viewModel: CreateAskViewModel!
@@ -29,7 +29,7 @@ class CreateAskController: UIViewController {
         navigationItem.rightBarButtonItem = done
         navigationController?.navigationBar.configure(with: .white)
         tvQuestion.delegate = self
-
+        
         // MARK
         // bind View Model
         back.rx.tap
@@ -49,6 +49,20 @@ class CreateAskController: UIViewController {
             .map { "\($0.count)/260" }
             .asDriverOnErrorJustComplete()
             .drive(lbQuestionLimit.rx.text)
+            .disposed(by: disposeBag)
+        
+        let value = BehaviorRelay<String>(value: "")
+        
+        tvQuestion.rx.text
+            .orEmpty
+            .bind(to: viewModel.input.questionInput)
+            .disposed(by: disposeBag)
+        
+        value
+            .asObservable()
+            .subscribe { text in
+                print("this is the text \(text)")
+            }
             .disposed(by: disposeBag)
     }
 

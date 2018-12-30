@@ -37,6 +37,7 @@ class AskViewCell: UITableViewCell, IReusableCell  {
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        ivAvatar.image = #imageLiteral(resourceName: "icDummyPerson")
         disposeBag = DisposeBag()
     }
     
