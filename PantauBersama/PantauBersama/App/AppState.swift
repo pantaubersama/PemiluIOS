@@ -50,4 +50,16 @@ final class AppState {
         }
     }
     
+    class func saveMe(_ data: UserResponse) {
+        if let jsonData = try? JSONEncoder().encode(data) {
+            UserDefaults.Account.set(jsonData, forKey: .me)
+        }
+    }
+    
+    class func saveInformant(_ data: InformantResponse) {
+        if let jsonData = try? JSONEncoder().encode(data) {
+            UserDefaults.Account.set(jsonData, forKey: .informant)
+        }
+    }
+    
 }

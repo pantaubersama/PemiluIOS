@@ -31,6 +31,7 @@ public enum PantauAuthAPI {
     case putFotoKTP(image: UIImage?)
     case putSignature(image: UIImage?)
     case badges(page: Int, perPage: Int)
+    case meInformant
     
 }
 
@@ -72,6 +73,8 @@ extension PantauAuthAPI: TargetType {
             return "/v1/verifications/signature"
         case .badges:
             return "/v1/badges"
+        case .meInformant:
+            return "/v1/me/informants"
         }
     }
     

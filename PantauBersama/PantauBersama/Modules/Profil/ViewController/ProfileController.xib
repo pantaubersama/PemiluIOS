@@ -14,6 +14,7 @@
             <connections>
                 <outlet property="badgeButton" destination="RyV-2G-tO3" id="drj-7g-u04"/>
                 <outlet property="biodataButton" destination="0Kj-9b-KZp" id="9oI-1o-NsK"/>
+                <outlet property="biodataView" destination="P7A-6P-eeq" id="Hb3-GV-vXv"/>
                 <outlet property="clusterButton" destination="2Bk-Gz-hJX" id="l3Q-wB-KqS"/>
                 <outlet property="container" destination="nH3-C7-YkB" id="V7d-fT-goM"/>
                 <outlet property="headerProfile" destination="OTp-iP-8Pn" id="GXT-qZ-bZU"/>

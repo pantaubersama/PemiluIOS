@@ -26,6 +26,7 @@ class ProfileController: UIViewController {
     @IBOutlet weak var heightBiodataConstant: NSLayoutConstraint!
     @IBOutlet weak var tableViewCluster: UITableView!
     @IBOutlet weak var tableViewBadge: UITableView!
+    @IBOutlet weak var biodataView: BiodataView!
     
     var viewModel: IProfileViewModel!
     
@@ -216,6 +217,13 @@ class ProfileController: UIViewController {
             })
             .disposed(by: disposeBag)
         
+        viewModel.output.informantDataO
+            .drive(onNext: { [weak self] (response) in
+                guard let `self` = self else { return }
+                self.biodataView.configure(data: response)
+            })
+            .disposed(by: disposeBag)
+        
         viewModel.output.errorO
             .drive(onNext: { [weak self] (error) in
                 guard let `self` = self else { return }
@@ -227,7 +235,7 @@ class ProfileController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        viewModel.input.viewWillAppearI.onNext(())
     }
 }
 
@@ -237,11 +245,10 @@ extension ProfileController: UITableViewDelegate {
         let button = Button()
         button.setTitle("Lihat Lainnya", for: .normal)
         button.setTitleColor(Color.grey_three, for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 32.0
+        return 20.0
     }
 }

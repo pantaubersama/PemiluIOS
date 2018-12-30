@@ -7,9 +7,14 @@
 //
 
 import UIKit
+import Common
+import Networking
 
 @IBDesignable
 class BiodataView: UIView {
+    @IBOutlet weak var labelLocation: Label!
+    @IBOutlet weak var labelEducation: Label!
+    @IBOutlet weak var labelOccupation: Label!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -26,6 +31,12 @@ class BiodataView: UIView {
         view.frame = bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         addSubview(view)
+    }
+    
+    func configure(data: InformantResponse) {
+        labelLocation.text = data.informant.address
+        labelEducation.text = data.informant.occupation
+        labelOccupation.text = data.informant.occupation
     }
     
 }

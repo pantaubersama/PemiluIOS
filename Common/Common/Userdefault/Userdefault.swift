@@ -82,6 +82,8 @@ public extension UserDefaults {
             case firstTimeInstall
             case userData
             case tokenType
+            case me
+            case informant
         }
     }
 }

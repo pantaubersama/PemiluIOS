@@ -16,6 +16,7 @@ protocol IProfileViewModelInput {
     var settingI: AnyObserver<Void> { get }
     var verifikasiI: AnyObserver<Void> { get }
     var clusterI: AnyObserver<Void> { get }
+    var viewWillAppearI: AnyObserver<Void> { get }
 }
 
 protocol IProfileViewModelOutput {
@@ -26,6 +27,7 @@ protocol IProfileViewModelOutput {
     var clusterO: Driver<Void>! { get }
     var userDataO: Driver<UserResponse>! { get }
     var errorO: Driver<Error>! { get }
+    var informantDataO: Driver<InformantResponse>! { get }
 }
 
 protocol IProfileViewModel {
@@ -53,6 +55,7 @@ final class ProfileViewModel: IProfileViewModel, IProfileViewModelInput, IProfil
     var settingI: AnyObserver<Void>
     var verifikasiI: AnyObserver<Void>
     var clusterI: AnyObserver<Void>
+    var viewWillAppearI: AnyObserver<Void>
     
     // Output
     var settingO: Driver<Void>!
@@ -62,6 +65,7 @@ final class ProfileViewModel: IProfileViewModel, IProfileViewModelInput, IProfil
     var clusterO: Driver<Void>!
     var userDataO: Driver<UserResponse>!
     var errorO: Driver<Error>!
+    var informantDataO: Driver<InformantResponse>!
     
     
     private let backS = PublishSubject<Void>()
@@ -70,6 +74,7 @@ final class ProfileViewModel: IProfileViewModel, IProfileViewModelInput, IProfil
     private let clusterS = PublishSubject<Void>()
     private let activityIndicator = ActivityIndicator()
     private let errorTracker = ErrorTracker()
+    private let viewWillAppearS = PublishSubject<Void>()
     
     init(navigator: ProfileNavigator) {
         self.navigator = navigator
@@ -81,23 +86,47 @@ final class ProfileViewModel: IProfileViewModel, IProfileViewModelInput, IProfil
         settingI = settingS.asObserver()
         verifikasiI = verifikasiS.asObserver()
         clusterI = clusterS.asObserver()
-    
+        viewWillAppearI = viewWillAppearS.asObserver()
         
         // MARK
         // Get user data from cloud
-        let userData = NetworkService.instance.requestObject(
+        let cloud = NetworkService.instance.requestObject(
             PantauAuthAPI.me,
             c: BaseResponse<UserResponse>.self)
             .map({ $0.data })
+            .do(onSuccess: { (response) in
+                AppState.saveMe(response)
+            }, onError: { (e) in
+                print(e.localizedDescription)
+            })
             .trackError(errorTracker)
             .trackActivity(activityIndicator)
             .asObservable()
             .catchErrorJustComplete()
         
         // MARK
+        // Get Informations cloud
+        let informant = NetworkService.instance.requestObject(
+            PantauAuthAPI.meInformant,
+            c: BaseResponse<InformantResponse>.self)
+            .map({ $0.data })
+//            .do(onSuccess: { (response) in
+//                AppState.saveInformant(response)
+//            })
+            .do(onSuccess: { (response) in
+                AppState.saveInformant(response)
+            }, onError: { (e) in
+                print(e.localizedDescription)
+            })
+            .asObservable()
+            .trackError(errorTracker)
+            .trackActivity(activityIndicator)
+            .catchErrorJustComplete()
+        
+        // MARK
         // Click setting with latest user data
         let setting = settingS
-            .withLatestFrom(userData)
+            .withLatestFrom(cloud)
             .flatMapLatest { (user) -> Observable<Void> in
                 return navigator.launchSetting(user: user.user)
             }
@@ -161,8 +190,8 @@ final class ProfileViewModel: IProfileViewModel, IProfileViewModelInput, IProfil
         
         
         clusterO = cluster
-        userDataO = userData.asDriverOnErrorJustComplete()
-        
+        userDataO = cloud.asDriverOnErrorJustComplete()
+        informantDataO = informant.asDriverOnErrorJustComplete()
         errorO = errorTracker.asDriver()
     }
     

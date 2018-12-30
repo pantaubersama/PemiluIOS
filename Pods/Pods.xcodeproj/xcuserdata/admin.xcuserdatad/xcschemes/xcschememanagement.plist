@@ -11,6 +11,11 @@
 			<key>orderHint</key>
 			<integer>3</integer>
 		</dict>
+		<key>AlamofireImage.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>22</integer>
+		</dict>
 		<key>Differentiator.xcscheme</key>
 		<dict>
 			<key>isShown</key>

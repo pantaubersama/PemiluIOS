@@ -40,5 +40,15 @@ public struct User: Codable {
 
 
 public struct Cluster: Codable {
+    public let id: String
+    public var name: String?
+    public var isEligible: Bool
+    public var image: Avatar
     
+    private enum CodingKeys: String, CodingKey {
+        case id
+        case name
+        case isEligible = "is_eligible"
+        case image
+    }
 }
