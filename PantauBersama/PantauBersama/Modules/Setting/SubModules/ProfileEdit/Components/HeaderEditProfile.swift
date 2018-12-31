@@ -8,14 +8,18 @@
 
 import UIKit
 import Common
+import Networking
+import AlamofireImage
+import RxSwift
 
 class HeaderEditProfile: UIView {
     
     @IBOutlet weak var avatar: UIImageView!
     @IBOutlet weak var buttonGanti: UIButton!
     
+    var disposeBag: DisposeBag = DisposeBag()
+    
     override init(frame: CGRect) {
-//        let frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 140.0)
         super.init(frame: frame)
         setup()
     }
@@ -32,4 +36,9 @@ class HeaderEditProfile: UIView {
         addSubview(view)
     }
     
+    func configure(data: User) {
+        if let thumbnailMedium = data.avatar.mediumSquare.url {
+            avatar.af_setImage(withURL: URL(string: thumbnailMedium)!)
+        }
+    }
 }

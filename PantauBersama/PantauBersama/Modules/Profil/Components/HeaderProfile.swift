@@ -36,6 +36,9 @@ class HeaderProfile: UIView {
     }
     
     func configure(user: User) {
+        if let url = user.avatar.thumbnail.url {
+            avatar.af_setImage(withURL: URL(string: url)!)
+        }
         username.text = user.firstName ?? ""
         buttonVerified.isSelected = user.verified
         buttonVerified.borderColor = user.verified ? Color.secondary_cyan : Color.grey_three

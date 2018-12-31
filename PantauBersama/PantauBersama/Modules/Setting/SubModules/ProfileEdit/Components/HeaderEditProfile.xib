@@ -29,10 +29,10 @@
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="EFl-DV-11P">
                     <rect key="frame" x="16" y="16" width="343" height="108"/>
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xoi-5O-JIT" customClass="RoundView" customModule="Common">
+                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xoi-5O-JIT" customClass="RoundView" customModule="Common">
                             <rect key="frame" x="139.5" y="0.0" width="64" height="64"/>
                             <subviews>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icDummyPerson" translatesAutoresizingMaskIntoConstraints="NO" id="TdL-oU-tcH">
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TdL-oU-tcH">
                                     <rect key="frame" x="0.0" y="0.0" width="64" height="64"/>
                                 </imageView>
                             </subviews>
@@ -47,7 +47,7 @@
                             </constraints>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                    <real key="value" value="50"/>
+                                    <real key="value" value="32"/>
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                         </view>
@@ -87,7 +87,4 @@
             <point key="canvasLocation" x="8.8000000000000007" y="-134.03298350824588"/>
         </view>
     </objects>
-    <resources>
-        <image name="icDummyPerson" width="64" height="64"/>
-    </resources>
 </document>

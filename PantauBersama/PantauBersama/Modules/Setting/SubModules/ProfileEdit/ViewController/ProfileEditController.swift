@@ -11,6 +11,8 @@ import RxSwift
 import RxCocoa
 import Common
 import RxDataSources
+import Networking
+import AlamofireImage
 
 class ProfileEditController: UIViewController {
     
@@ -19,6 +21,18 @@ class ProfileEditController: UIViewController {
     var viewModel: ProfileEditViewModel!
     private let disposeBag = DisposeBag()
     var dataSource: RxTableViewSectionedReloadDataSource<SectionOfProfileInfoData>!
+    
+    private var headerEditProfile: HeaderEditProfile = {
+       let view = HeaderEditProfile()
+        return view
+    }()
+    
+    var user: User! {
+        didSet {
+            
+        }
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,23 +73,72 @@ class ProfileEditController: UIViewController {
         viewModel.output.items
             .drive(tableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
+        
+        viewModel.output.userData
+            .drive(onNext: { [weak self] (response) in
+                guard let `self` = self else { return }
+                self.headerEditProfile.configure(data: response)
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.output.avatarSelected
+            .drive()
+            .disposed(by: disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         viewModel.input.viewWillAppearI.onNext(())
-        
+        if let avatar = user.avatar.thumbnail.url {
+            headerEditProfile.avatar.af_setImage(withURL: URL(string: avatar)!)
+        }
     }
 }
 
 extension ProfileEditController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = dataSource.sectionModels[section].header.headerView
-        return view
+        let data = dataSource.sectionModels[section].header
+        switch data {
+        case .editProfile:
+            let view = headerEditProfile
+                view.buttonGanti.rx.tap
+                    .subscribe(onNext: { [weak self] (_) in
+                        let controller = UIImagePickerController()
+                        controller.sourceType = .photoLibrary
+                        controller.delegate = self
+                        self?.navigationController?.present(controller, animated: true, completion: nil)
+                    })
+                    .disposed(by: view.disposeBag)
+            return view
+        case .editDataLapor:
+            let view = HeaderDataLapor()
+            return view
+        default:
+            return nil
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return dataSource.sectionModels[section].header.sizeHeader
+    }
+}
+
+// MARK
+// Image picker controller
+extension ProfileEditController: UIImagePickerControllerDelegate,
+UINavigationControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+         navigationController?.dismiss(animated: true, completion: { [weak self] in
+            guard let `self` = self else { return }
+            if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+                self.headerEditProfile.avatar.image = image
+                self.viewModel.input.avatarI.onNext(image)
+            } else if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+                self.headerEditProfile.avatar.image = image
+                self.viewModel.input.avatarI.onNext(image)
+            }
+         })
     }
 }

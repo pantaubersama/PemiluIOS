@@ -21,6 +21,12 @@ public struct User: Codable {
     public var cluster: Cluster?
     public var votePreference: Int?
     public var verified: Bool
+    public var avatar: Avatar
+    public var username: String?
+    public var about: String?
+    public var location: String?
+    public var education: String?
+    public var occupation: String?
     
     private enum CodingKeys: String, CodingKey {
         case id
@@ -34,10 +40,15 @@ public struct User: Codable {
         case cluster
         case votePreference = "vote_preference"
         case verified
+        case avatar
+        case username
+        case about
+        case location
+        case education
+        case occupation
     }
     
 }
-
 
 public struct Cluster: Codable {
     public let id: String

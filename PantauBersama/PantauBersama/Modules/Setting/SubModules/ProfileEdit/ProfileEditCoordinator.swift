@@ -30,6 +30,7 @@ class ProfileEditCoordinator: BaseCoordinator<Void> {
     override func start() -> Observable<CoordinationResult> {
         let viewModel = ProfileEditViewModel(navigator: self, data: data, type: type)
         let viewController = ProfileEditController()
+        viewController.user = data
         viewController.viewModel = viewModel
         navigationController.pushViewController(viewController, animated: true)
         return finish.do(onNext: { [weak self] (_) in

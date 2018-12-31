@@ -84,27 +84,27 @@ final class ProfileInfoDummyData {
         ))
         profileInformation.append(ProfileInfoField(
             key: "Username",
-            value: data.lastName,
+            value: data.username,
             fieldType: .username
         ))
         profileInformation.append(ProfileInfoField(
             key: "Lokasi",
-            value: data.lastName,
+            value: data.location,
             fieldType: .text
         ))
         profileInformation.append(ProfileInfoField(
             key: "Deskripsi Tentang Kamu",
-            value: data.lastName,
+            value: data.about,
             fieldType: .text
         ))
         profileInformation.append(ProfileInfoField(
             key: "Pendidikan",
-            value: data.lastName,
+            value: data.education,
             fieldType: .text
         ))
         profileInformation.append(ProfileInfoField(
             key: "Pekerjaan",
-            value: data.lastName,
+            value: data.occupation,
             fieldType: .text
         ))
         return profileInformation
