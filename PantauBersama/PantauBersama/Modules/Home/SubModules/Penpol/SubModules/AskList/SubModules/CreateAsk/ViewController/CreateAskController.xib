@@ -12,6 +12,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CreateAskController" customModule="PantauBersama" customModuleProvider="target">
             <connections>
+                <outlet property="ivAvatar" destination="ynz-q0-pCE" id="nQ3-Zh-25Z"/>
+                <outlet property="lbFullname" destination="dzZ-vg-bbg" id="FcQ-BF-iIM"/>
                 <outlet property="lbQuestionLimit" destination="B7p-Tr-KGo" id="iBU-bp-MhY"/>
                 <outlet property="tvQuestion" destination="fUV-ow-i2d" id="u2d-hR-k8r"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -23,10 +25,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JIl-20-3R0">
-                    <rect key="frame" x="0.0" y="20" width="375" height="78"/>
+                    <rect key="frame" x="0.0" y="20" width="375" height="152"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Qg-E2-y23" customClass="Label" customModule="Common">
-                            <rect key="frame" x="20" y="15" width="335" height="48"/>
+                            <rect key="frame" x="20" y="15" width="335" height="122"/>
                             <string key="text">Buat pertanyaan singkat untuk pasangan calon presiden periode 2019 -2014. Pertanyaan terpilih akan disampaikan kepada kedua tim pasangan calon Presiden. 
 Gunakan tata Bahasa yang sopan</string>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -48,7 +50,7 @@ Gunakan tata Bahasa yang sopan</string>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L7F-5l-fl3" customClass="RoundView" customModule="Common">
-                    <rect key="frame" x="20" y="128" width="16" height="16"/>
+                    <rect key="frame" x="20" y="202" width="16" height="16"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icDummyPerson" translatesAutoresizingMaskIntoConstraints="NO" id="ynz-q0-pCE">
                             <rect key="frame" x="0.0" y="0.0" width="16" height="16"/>
@@ -71,7 +73,7 @@ Gunakan tata Bahasa yang sopan</string>
                     </userDefinedRuntimeAttributes>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Budi Santoso" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dzZ-vg-bbg" customClass="Label" customModule="Common">
-                    <rect key="frame" x="41" y="128" width="40.5" height="16"/>
+                    <rect key="frame" x="41" y="202" width="46.5" height="16"/>
                     <fontDescription key="fontDescription" type="system" pointSize="7"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -83,7 +85,7 @@ Gunakan tata Bahasa yang sopan</string>
                     </userDefinedRuntimeAttributes>
                 </label>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="fUV-ow-i2d">
-                    <rect key="frame" x="20" y="159" width="335" height="128"/>
+                    <rect key="frame" x="20" y="233" width="335" height="128"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="128" id="qOH-g8-Tl7"/>
@@ -92,7 +94,7 @@ Gunakan tata Bahasa yang sopan</string>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0/260" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B7p-Tr-KGo" customClass="Label" customModule="Common">
-                    <rect key="frame" x="328" y="297" width="27" height="12"/>
+                    <rect key="frame" x="308.5" y="371" width="46.5" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" red="0.48621892929999999" green="0.48630648850000002" blue="0.48621344570000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
