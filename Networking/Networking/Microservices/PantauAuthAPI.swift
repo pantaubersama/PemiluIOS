@@ -34,6 +34,7 @@ public enum PantauAuthAPI {
     case meInformant
     case meAvatar(avatar: UIImage?)
     case putMe(parameters: [String: Any])
+    case putInformants(parameters: [String: Any])
     
 }
 
@@ -79,6 +80,8 @@ extension PantauAuthAPI: TargetType {
             return "/v1/me/informants"
         case .meAvatar:
             return "/v1/me/avatar"
+        case .putInformants:
+            return "/v1/informants"
         }
     }
     
@@ -125,6 +128,8 @@ extension PantauAuthAPI: TargetType {
                 "per_page": perPage
             ]
         case .putMe(let parameters):
+            return parameters
+        case .putInformants(let parameters):
             return parameters
         default:
             return nil

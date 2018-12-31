@@ -19,7 +19,7 @@ class TextViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: Label!
     @IBOutlet weak var textField: TextField!
     
-    var disposeBag: DisposeBag!
+    var disposeBag: DisposeBag = DisposeBag()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -29,14 +29,15 @@ class TextViewCell: UITableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         
-        disposeBag = nil
+        disposeBag = DisposeBag()
     }
     
 }
 
 extension TextViewCell: IReusableCell {
     struct Input {
-        let viewModel: ProfileEditViewModel
+        let viewModel: EditViewModel
+        let index: Int
         let data: ProfileInfoField
     }
     
@@ -44,61 +45,42 @@ extension TextViewCell: IReusableCell {
         let bag = DisposeBag()
         let pickerView = UIPickerView()
         
-        titleLabel.text = item.data.key.title
-        textField.text = item.data.value
-        print(item.data.key)
-        switch item.data.key {
-        case .nama:
-            textField.rx.text
-                .orEmpty
-                .distinctUntilChanged()
-                .bind(to: item.viewModel.input.nameI)
-                .disposed(by: bag)
-        case .username:
-            textField.rx.text
-                .orEmpty
-                .distinctUntilChanged()
-                .bind(to: item.viewModel.input.usernameI)
-                .disposed(by: bag)
-        case .address:
-            textField.rx.text
-                .orEmpty
-                .distinctUntilChanged()
-                .bind(to: item.viewModel.input.addressI)
-                .disposed(by: bag)
-        case .about:
-            textField.rx.text
-                .orEmpty
-                .distinctUntilChanged()
-                .bind(to: item.viewModel.input.aboutI)
-                .disposed(by: bag)
-        case .pekerjaan:
-            textField.rx.text
-                .orEmpty
-                .distinctUntilChanged()
-                .bind(to: item.viewModel.input.occupationI)
-                .disposed(by: bag)
+        
+        item.viewModel.input.inputTrigger[item.index]
+            .bind(to: textField.rx.text)
+            .disposed(by: bag)
+        
+        
+        switch item.data.fieldType {
+        case .number:
+            textField.keyboardType = .numberPad
         case .gender:
             let data = [
                 Gender.female,
                 Gender.male
             ]
+            
             Observable.just(data)
                 .bind(to: pickerView.rx.itemTitles) { (row, element) in
                     return element.title
                 }
                 .disposed(by: bag)
             
-//            pickerView.rx.modelSelected(Gender.self)
-//                .flatMapLatest({ $0.first.map({ Observable.just($0) }) ?? Observable.empty() })
-//                        .map({ $0.title })
-//                        .bind(to: item.viewModel.input.inputTrigger[item.data.key.rawValue])
-//                        .disposed(by: bag)
-        
+            pickerView.rx.modelSelected(Gender.self)
+                .flatMapLatest({ $0.first.map({ Observable.just($0) }) ?? Observable.empty() })
+                .map({ $0.title })
+                .bind(to: item.viewModel.input.inputTrigger[item.index])
+                .disposed(by: bag)
+            
             textField.inputView = pickerView
-        disposeBag = bag
-        default: break
+        default:
+            textField.keyboardType = .default
         }
         
+        
+        titleLabel.text = item.data.key.title
+        textField.text = item.data.value
+
+        disposeBag = bag
     }
 }

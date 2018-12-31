@@ -16,6 +16,7 @@ class HeaderEditProfile: UIView {
     
     @IBOutlet weak var avatar: UIImageView!
     @IBOutlet weak var buttonGanti: UIButton!
+    @IBOutlet weak var sectionEdit: SectionItemCell!
     
     var disposeBag: DisposeBag = DisposeBag()
     

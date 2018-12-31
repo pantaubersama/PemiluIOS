@@ -10,14 +10,18 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HeaderDataLapor" customModule="PantauBersama" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HeaderDataLapor" customModule="PantauBersama" customModuleProvider="target">
+            <connections>
+                <outlet property="sectionEdit" destination="6ub-Em-Keb" id="ee7-Dy-1iu"/>
+            </connections>
+        </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="zgs-gS-PaP">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="82"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="129"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SSn-Cn-hNP" customClass="Label" customModule="Common">
-                    <rect key="frame" x="16" y="8" width="343" height="66"/>
+                    <rect key="frame" x="16" y="8" width="343" height="53"/>
                     <string key="text">Data ini digunakan untuk salah satu syarat dalam kontribusi melakukan Laporan dugaan pelanggaran pemilu di Pantau Bersama. Menggunakan format sesuai ketentuan Bawaslu. Data ini tidak akan muncul di profile pengguna.</string>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" red="0.4392156862745098" green="0.4392156862745098" blue="0.4392156862745098" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -28,17 +32,26 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6ub-Em-Keb" customClass="SectionItemCell" customModule="PantauBersama" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="81" width="375" height="48"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="48" id="Z7b-Ok-L0S"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="wsw-lK-I29" firstAttribute="trailing" secondItem="SSn-Cn-hNP" secondAttribute="trailing" constant="16" id="E3V-xk-hmo"/>
+                <constraint firstItem="wsw-lK-I29" firstAttribute="bottom" secondItem="6ub-Em-Keb" secondAttribute="bottom" id="Pas-rZ-xXF"/>
                 <constraint firstItem="SSn-Cn-hNP" firstAttribute="top" secondItem="wsw-lK-I29" secondAttribute="top" constant="8" id="abj-tg-cAC"/>
                 <constraint firstItem="SSn-Cn-hNP" firstAttribute="leading" secondItem="wsw-lK-I29" secondAttribute="leading" constant="16" id="djI-3S-kyV"/>
-                <constraint firstItem="wsw-lK-I29" firstAttribute="bottom" secondItem="SSn-Cn-hNP" secondAttribute="bottom" constant="8" id="iKc-DU-HYC"/>
+                <constraint firstItem="wsw-lK-I29" firstAttribute="trailing" secondItem="6ub-Em-Keb" secondAttribute="trailing" id="wj4-RW-VOW"/>
+                <constraint firstItem="6ub-Em-Keb" firstAttribute="leading" secondItem="wsw-lK-I29" secondAttribute="leading" id="ycy-FY-2zO"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="wsw-lK-I29"/>
-            <point key="canvasLocation" x="-279.19999999999999" y="-144.82758620689657"/>
+            <point key="canvasLocation" x="-279.19999999999999" y="-123.68815592203899"/>
         </view>
     </objects>
 </document>

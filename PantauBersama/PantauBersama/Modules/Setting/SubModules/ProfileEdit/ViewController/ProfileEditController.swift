@@ -17,7 +17,6 @@ import AlamofireImage
 class ProfileEditController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var updateButton: Button!
     
     var viewModel: ProfileEditViewModel!
     private let disposeBag = DisposeBag()
@@ -43,14 +42,15 @@ class ProfileEditController: UIViewController {
         navigationController?.navigationBar.configure(with: .white)
         
         // MARK: TableView
-        tableView.registerReusableCell(TextViewCell.self)
+        tableView.registerReusableCell(ItemInfoCell.self)
         tableView.tableFooterView = UIView()
         tableView.delegate = nil
         tableView.dataSource = nil
-        tableView.separatorStyle = .none
+        tableView.separatorStyle = .singleLine
+        tableView.separatorColor = Color.groupTableViewBackground
         tableView.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        tableView.estimatedRowHeight = 85.0
-        tableView.rowHeight = UITableView.automaticDimension
+        tableView.rowHeight = 90.0
+//        tableView.rowHeight = UITableView.automaticDimension
         tableView.allowsSelection = false
         
         viewModel.output.title
@@ -61,17 +61,17 @@ class ProfileEditController: UIViewController {
             .bind(to: viewModel.input.backI)
             .disposed(by: disposeBag)
         
-        updateButton.rx.tap
-            .bind(to: viewModel.input.doneI)
-            .disposed(by: disposeBag)
+//        updateButton.rx.tap
+//            .bind(to: viewModel.input.doneI)
+//            .disposed(by: disposeBag)
         
         tableView.rx
             .setDelegate(self)
             .disposed(by: disposeBag)
         
         dataSource = RxTableViewSectionedReloadDataSource<SectionOfProfileInfoData>(configureCell: { (dataSource, tableView, indexPath, item) in
-            let cell = tableView.dequeueReusableCell(indexPath: indexPath) as TextViewCell
-            cell.configureCell(item: TextViewCell.Input(viewModel: self.viewModel, data: item))
+            let cell = tableView.dequeueReusableCell(indexPath: indexPath) as ItemInfoCell
+            cell.configureCell(item: ItemInfoCell.Input(data: item))
             return cell
         })
         
@@ -90,10 +90,12 @@ class ProfileEditController: UIViewController {
             .drive()
             .disposed(by: disposeBag)
         
-        viewModel.output.done
+//        viewModel.output.done
+//            .drive()
+//            .disposed(by: disposeBag)
+        viewModel.output.editSelected
             .drive()
             .disposed(by: disposeBag)
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -120,12 +122,28 @@ extension ProfileEditController: UITableViewDelegate {
                         self?.navigationController?.present(controller, animated: true, completion: nil)
                     })
                     .disposed(by: view.disposeBag)
+                view.sectionEdit.buttonEdit.rx.tap
+                    .subscribe(onNext: { [weak self] (_) in
+                        self?.viewModel.input.editTrigger.onNext(section)
+                    })
+                    .disposed(by: view.disposeBag)
             return view
         case .editDataLapor:
             let view = HeaderDataLapor()
+            view.sectionEdit.buttonEdit.rx.tap
+                .subscribe(onNext: { [weak self] (_) in
+                    self?.viewModel.input.editTrigger.onNext(section)
+                })
+                .disposed(by: view.disposeBag)
             return view
         default:
-            return nil
+            let view = SectionItemCell()
+            view.buttonEdit.rx.tap
+                .subscribe(onNext: { [weak self] (_) in
+                    self?.viewModel.input.editTrigger.onNext(section)
+                })
+                .disposed(by: view.disposeBag)
+            return view
         }
     }
     

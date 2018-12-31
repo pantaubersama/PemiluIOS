@@ -80,6 +80,7 @@ struct ProfileInfoField {
     let key: key
     var value: String?
     let fieldType: FieldType
+    let parameter: String
 }
 
 struct SectionOfProfileInfoData {

@@ -19,7 +19,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="L0R-6J-Zzm">
-                        <rect key="frame" x="16" y="8" width="337" height="71.5"/>
+                        <rect key="frame" x="16" y="8" width="337" height="76.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nama Depan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wxR-Sf-m5K" customClass="Label" customModule="Common">
                                 <rect key="frame" x="0.0" y="0.0" width="337" height="14"/>
@@ -37,7 +37,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="Dt1-p6-rx1" customClass="TextField" customModule="Common">
-                                <rect key="frame" x="0.0" y="24" width="337" height="47.5"/>
+                                <rect key="frame" x="0.0" y="24" width="337" height="52.5"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -54,7 +54,7 @@
                     <constraint firstItem="L0R-6J-Zzm" firstAttribute="leading" secondItem="Bto-hE-moV" secondAttribute="leading" constant="16" id="Oa3-SC-YD1"/>
                     <constraint firstItem="L0R-6J-Zzm" firstAttribute="top" secondItem="Bto-hE-moV" secondAttribute="top" constant="8" id="Qpb-bo-ZHH"/>
                     <constraint firstAttribute="trailing" secondItem="L0R-6J-Zzm" secondAttribute="trailing" constant="16" id="egz-le-VGf"/>
-                    <constraint firstAttribute="bottom" secondItem="L0R-6J-Zzm" secondAttribute="bottom" constant="5" id="xlW-QA-wCF"/>
+                    <constraint firstAttribute="bottom" secondItem="L0R-6J-Zzm" secondAttribute="bottom" id="xlW-QA-wCF"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
