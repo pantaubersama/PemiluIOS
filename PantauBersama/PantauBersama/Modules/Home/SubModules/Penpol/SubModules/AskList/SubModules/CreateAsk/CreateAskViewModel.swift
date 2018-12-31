@@ -24,6 +24,7 @@ class CreateAskViewModel: ViewModelType {
     
     struct Output {
         let createSelected: Driver<Void>
+        let userData: Driver<UserResponse?>
     }
     
     private let createSubject = PublishSubject<Void>()
@@ -51,7 +52,15 @@ class CreateAskViewModel: ViewModelType {
             .merge(backSubject, create.asObservable())
             .take(1)
 
-        output = Output(createSelected: create)
+        
+        // MARK
+        // Get user data from userDefaults
+        let userData: Data? = UserDefaults.Account.get(forKey: .me)
+        let userResponse = try? JSONDecoder().decode(UserResponse.self, from: userData!)
+        let user = Observable.just(userResponse).asDriverOnErrorJustComplete()
+
+        output = Output(createSelected: create,
+                        userData: user)
     }
     
     private func createQuestion() -> Observable<QuestionModel> {

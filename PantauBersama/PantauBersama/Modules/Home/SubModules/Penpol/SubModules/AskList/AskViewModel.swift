@@ -34,7 +34,7 @@ class AskViewModel: ViewModelType {
         let shareSelected: Driver<Void>
         let moreSelected: Driver<QuestionModel>
         let moreMenuSelected: Driver<Void>
-        
+        let userData: Driver<UserResponse?>
     }
     
     private let loadQuestionSubject = PublishSubject<Void>()
@@ -45,6 +45,9 @@ class AskViewModel: ViewModelType {
     private let moreSubject = PublishSubject<QuestionModel>()
     private let moreMenuSubject = PublishSubject<AskType>()
     private let askCellRelay = BehaviorRelay<[ICellConfigurator]>(value: [])
+    
+    private let activityIndicator = ActivityIndicator()
+    private let errorTracker = ErrorTracker()
     
     private let navigator: QuizNavigator
     
@@ -122,6 +125,11 @@ class AskViewModel: ViewModelType {
             })
             .disposed(by: disposeBag)
         
+        // MARK
+        // Get user data from userDefaults
+        let userData: Data? = UserDefaults.Account.get(forKey: .me)
+        let userResponse = try? JSONDecoder().decode(UserResponse.self, from: userData!)
+        let user = Observable.just(userResponse).asDriverOnErrorJustComplete()
         
         output = Output(
             askCells: askCellRelay,
@@ -129,7 +137,8 @@ class AskViewModel: ViewModelType {
             infoSelected: info,
             shareSelected: shareAsk,
             moreSelected: moreAsk,
-            moreMenuSelected: moreMenuSelected)
+            moreMenuSelected: moreMenuSelected,
+            userData: user)
     }
     
     private func askItem(resetPage: Bool = false) -> Observable<[QuestionModel]> {

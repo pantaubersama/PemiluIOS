@@ -52,6 +52,16 @@ class CreateAskHeaderView: UIView {
             .mapToVoid()
             .bind(to: viewModel.input.createTrigger)
             .disposed(by: disposeBag)
+        
+        
+        viewModel.output.userData
+            .drive(onNext: { [weak self](userResponse) in
+                guard let weakSelf = self, let user = userResponse else { return }
+                // TODO: Set user avatar
+//                ivAvatar.show(fromURL: userResponse.user.)
+                weakSelf.lbFullname.text = (user.user.firstName ?? " ") + " " + (user.user.lastName ?? "")
+            })
+            .disposed(by: disposeBag)
     }
     
     

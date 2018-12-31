@@ -13,6 +13,8 @@ import Common
 
 class CreateAskController: UIViewController {
     
+    @IBOutlet weak var ivAvatar: UIImageView!
+    @IBOutlet weak var lbFullname: Label!
     @IBOutlet weak var tvQuestion: UITextView!
     @IBOutlet weak var lbQuestionLimit: Label!
     var viewModel: CreateAskViewModel!
@@ -43,6 +45,15 @@ class CreateAskController: UIViewController {
         viewModel.output.createSelected
             .drive()
             .disposed(by: disposeBag)
+        
+        let a = viewModel.output.userData
+        a.drive (onNext: { [weak self]user in
+            guard let weakSelf = self else { return }
+            // TODO: set avatar when user have avatar property
+//            weakSelf.ivAvatar.show(fromURL: <#T##String#>)
+            weakSelf.lbFullname.text = (user?.user.firstName ?? "") + " " + (user?.user.lastName ?? "")
+        })
+        .disposed(by: disposeBag)
         
         tvQuestion.rx.text
             .orEmpty
