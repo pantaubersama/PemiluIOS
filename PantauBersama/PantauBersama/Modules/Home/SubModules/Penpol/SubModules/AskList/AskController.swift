@@ -86,14 +86,13 @@ class AskController: UITableViewController {
         viewModel.output.moreMenuSelected
             .drive()
             .disposed(by: disposeBag)
-        
-        viewModel.input
-            .nextPageTrigger
-            .onNext(())
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        viewModel.input.loadQuestionTrigger
+            .onNext(())
+        
         tableView.delegate = nil
         tableView.dataSource = nil
         viewModel.output.askCells

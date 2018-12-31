@@ -18,11 +18,12 @@ class AskViewModel: ViewModelType {
     var output: Output!
     
     struct Input {
+        let loadQuestionTrigger: AnyObserver<Void>
         let nextPageTrigger: AnyObserver<Void>
         let createTrigger: AnyObserver<Void>
         let infoTrigger: AnyObserver<Void>
-        let shareTrigger: AnyObserver<Any>
-        let moreTrigger: AnyObserver<Any>
+        let shareTrigger: AnyObserver<QuestionModel>
+        let moreTrigger: AnyObserver<QuestionModel>
         let moreMenuTrigger: AnyObserver<AskType>
     }
     
@@ -31,22 +32,21 @@ class AskViewModel: ViewModelType {
         let createSelected: Driver<Void>
         let infoSelected: Driver<Void>
         let shareSelected: Driver<Void>
-        let moreSelected: Driver<Any>
+        let moreSelected: Driver<QuestionModel>
         let moreMenuSelected: Driver<Void>
         
     }
     
-    // TODO: replace any with Ask model
+    private let loadQuestionSubject = PublishSubject<Void>()
     private let nextPageSubject = PublishSubject<Void>()
     private let createSubject = PublishSubject<Void>()
     private let infoSubject = PublishSubject<Void>()
-    private let shareSubject = PublishSubject<Any>()
-    private let moreSubject = PublishSubject<Any>()
+    private let shareSubject = PublishSubject<QuestionModel>()
+    private let moreSubject = PublishSubject<QuestionModel>()
     private let moreMenuSubject = PublishSubject<AskType>()
     private let askCellRelay = BehaviorRelay<[ICellConfigurator]>(value: [])
     
     private let navigator: QuizNavigator
-    private let questionSectionModel: [SectionModel<String, Any>] = []
     
     private(set) var disposeBag = DisposeBag()
     private var currentPage = 0
@@ -55,6 +55,7 @@ class AskViewModel: ViewModelType {
         self.navigator = navigator
         
         input = Input(
+            loadQuestionTrigger: loadQuestionSubject.asObserver(),
             nextPageTrigger: nextPageSubject.asObserver(),
             createTrigger: createSubject.asObserver(),
             infoTrigger: infoSubject.asObserver(),
@@ -65,6 +66,7 @@ class AskViewModel: ViewModelType {
         let create = createSubject
             .flatMapLatest({navigator.launchCreateAsk()})
             .asDriver(onErrorJustReturn: ())
+        
         let info = infoSubject
             .flatMapLatest({navigator.openInfoPenpol(infoType: PenpolInfoType.Ask)})
             .asDriver(onErrorJustReturn: ())
@@ -86,6 +88,20 @@ class AskViewModel: ViewModelType {
                 }
             })
             .asDriverOnErrorJustComplete()
+        
+        loadQuestionSubject
+            .flatMapLatest({ self.askItem(resetPage: true) })
+            .map { [weak self](list) -> [ICellConfigurator] in
+                guard let weakSelf = self else { return [] }
+                return list.map({ (questionModel) -> ICellConfigurator in
+                    return AskViewCellConfigurator(item: AskViewCell.Input(viewModel: weakSelf, question: questionModel))
+                })
+            }.filter { (questions) -> Bool in
+                return !questions.isEmpty
+            }.bind { [weak self](loadedItem) in
+                guard let weakSelf = self else { return }
+                weakSelf.askCellRelay.accept(loadedItem)
+            }.disposed(by: disposeBag)
         
         nextPageSubject
             .flatMapLatest({self.askItem()})
@@ -116,7 +132,10 @@ class AskViewModel: ViewModelType {
             moreMenuSelected: moreMenuSelected)
     }
     
-    private func askItem() -> Observable<[QuestionModel]> {
+    private func askItem(resetPage: Bool = false) -> Observable<[QuestionModel]> {
+        if resetPage {
+            currentPage = 0
+        }
         currentPage += 1
         return NetworkService.instance
             .requestObject(TanyaKandidatAPI.getQuestions(page: currentPage, perpage: 10, filteredBy: .userVerifiedAll), c: QuestionsResponse.self)
