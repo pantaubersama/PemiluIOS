@@ -17,6 +17,8 @@ class PilpresViewController: UITableViewController {
     
     private var viewModel: PilpresViewModel!
     
+    var rControl : UIRefreshControl?
+    
     convenience init(viewModel: PilpresViewModel) {
         self.init()
         self.viewModel = viewModel
@@ -25,19 +27,37 @@ class PilpresViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.registerReusableCell(LinimasaCell.self)
-        tableView.delegate = self
-        tableView.dataSource = self
+        tableView.delegate = nil
+        tableView.dataSource = nil
         tableView.estimatedRowHeight = 44.0
         tableView.separatorStyle = .none
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         headerView = LinimasaHeaderView()
         tableView.tableHeaderView = headerView
         tableView.tableFooterView = UIView()
+        tableView.refreshControl = UIRefreshControl()
         
+        self.refreshControl?.rx.controlEvent(.valueChanged)
+            .bind(to: viewModel.input.refreshTrigger)
+            .disposed(by: disposeBag)
+        
+        viewModel.output.feedsCells
+            .do(onNext: { [weak self] (_) in
+                self?.refreshControl?.endRefreshing()
+            })
+            .drive(tableView.rx.items) { tableView, row, item in
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: item.reuseIdentifier) else {
+                    return UITableViewCell()
+                }
+                cell.tag = row
+                item.configure(cell: cell)
+                return cell
+            }
+            .disposed(by: disposeBag)
         
         viewModel.output.moreSelected
             .asObservable()
-            .flatMapLatest({ [weak self] (pilpres) -> Observable<PilpresType> in
+            .flatMapLatest({ [weak self] (feeds) -> Observable<PilpresType> in
                 return Observable.create({ (observer) -> Disposable in
                     
                     let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
@@ -78,25 +98,25 @@ class PilpresViewController: UITableViewController {
 
 
 // Dummy
-
-extension PilpresViewController {
-    
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 15
-    }
-    
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 150.0
-    }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(indexPath: indexPath) as LinimasaCell
-        cell.pilpres = "pilpres"
-        cell.bind(viewModel: viewModel)
-        return cell
-    }
-}
+//
+//extension PilpresViewController {
+//    
+//    override func numberOfSections(in tableView: UITableView) -> Int {
+//        return 1
+//    }
+//    
+//    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return 15
+//    }
+//    
+//    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return 150.0
+//    }
+//    
+//    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        let cell = tableView.dequeueReusableCell(indexPath: indexPath) as LinimasaCell
+//        cell.pilpres = "pilpres"
+//        cell.bind(viewModel: viewModel)
+//        return cell
+//    }
+//}

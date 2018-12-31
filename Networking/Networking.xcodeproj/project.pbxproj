@@ -14,6 +14,9 @@
 		11C7BB2321DB2A97008CA49B /* String+Copy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C7BB2221DB2A97008CA49B /* String+Copy.swift */; };
 		11C7BB2521DB36D5008CA49B /* QuestionReportResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C7BB2421DB36D5008CA49B /* QuestionReportResponse.swift */; };
 		13F456B521D531D300CE45F1 /* LinimasaAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F456B421D531D300CE45F1 /* LinimasaAPI.swift */; };
+		13F456B721DA7BD000CE45F1 /* Feeds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F456B621DA7BD000CE45F1 /* Feeds.swift */; };
+		13F456B921DA7F9A00CE45F1 /* FeedsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F456B821DA7F9A00CE45F1 /* FeedsResponse.swift */; };
+		13F456BB21DA806900CE45F1 /* Meta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F456BA21DA806900CE45F1 /* Meta.swift */; };
 		3937C71E623049AC040C9194 /* Pods_NetworkingTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC9D77E9B7CE8AB5A8F185B6 /* Pods_NetworkingTests.framework */; };
 		3A2C6CA971EDD4A483DECAB6 /* Pods_Networking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85BAE50647296BF2C83ACD7C /* Pods_Networking.framework */; };
 		842A49FB21D78B6A0050AA51 /* VerificationsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842A49FA21D78B6A0050AA51 /* VerificationsResponse.swift */; };
@@ -60,6 +63,9 @@
 		11C7BB2221DB2A97008CA49B /* String+Copy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Copy.swift"; sourceTree = "<group>"; };
 		11C7BB2421DB36D5008CA49B /* QuestionReportResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionReportResponse.swift; sourceTree = "<group>"; };
 		13F456B421D531D300CE45F1 /* LinimasaAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinimasaAPI.swift; sourceTree = "<group>"; };
+		13F456B621DA7BD000CE45F1 /* Feeds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feeds.swift; sourceTree = "<group>"; };
+		13F456B821DA7F9A00CE45F1 /* FeedsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedsResponse.swift; sourceTree = "<group>"; };
+		13F456BA21DA806900CE45F1 /* Meta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meta.swift; sourceTree = "<group>"; };
 		140DB7A15B4108998BABEF13 /* Pods-Networking.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Networking.release.xcconfig"; path = "../Pods/Target Support Files/Pods-Networking/Pods-Networking.release.xcconfig"; sourceTree = "<group>"; };
 		22CA8A8E534F0F359CC66429 /* Pods-Networking.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Networking.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-Networking/Pods-Networking.debug.xcconfig"; sourceTree = "<group>"; };
 		2A1DC7500A4E8322692EC937 /* Pods-NetworkingTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NetworkingTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-NetworkingTests/Pods-NetworkingTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -177,6 +183,9 @@
 				842B650D21D9505A00F95C13 /* InformantResponse.swift */,
 				84619D3421DA21A200EB58CF /* Gender.swift */,
 				11C7BB2421DB36D5008CA49B /* QuestionReportResponse.swift */,
+				13F456B621DA7BD000CE45F1 /* Feeds.swift */,
+				13F456B821DA7F9A00CE45F1 /* FeedsResponse.swift */,
+				13F456BA21DA806900CE45F1 /* Meta.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -429,7 +438,9 @@
 				84B2523A21CAC7FB00565D82 /* ErrorResponse.swift in Sources */,
 				84B2526221CBD99900565D82 /* IdentitasResponses.swift in Sources */,
 				11B145F021D68CFA00BB26C8 /* Page.swift in Sources */,
+				13F456B721DA7BD000CE45F1 /* Feeds.swift in Sources */,
 				1183F0DC21D4FC4800435D31 /* TanyaKandidatAPI.swift in Sources */,
+				13F456BB21DA806900CE45F1 /* Meta.swift in Sources */,
 				842B650E21D9505A00F95C13 /* InformantResponse.swift in Sources */,
 				842B650C21D9385100F95C13 /* Avatar.swift in Sources */,
 				11C7BB2321DB2A97008CA49B /* String+Copy.swift in Sources */,
@@ -444,6 +455,7 @@
 				84B2523721CAC7D000565D82 /* NetworkError.swift in Sources */,
 				84B2523521CAC71400565D82 /* RequestLoadingPlugin.swift in Sources */,
 				84B2526621CBFF0C00565D82 /* PantauAuthResponse.swift in Sources */,
+				13F456B921DA7F9A00CE45F1 /* FeedsResponse.swift in Sources */,
 				84FE6EB421D5F339009A0F55 /* UserResponse.swift in Sources */,
 				842A49FB21D78B6A0050AA51 /* VerificationsResponse.swift in Sources */,
 				8482E62E21D9017700D5DC07 /* PaginatableResponse.swift in Sources */,
