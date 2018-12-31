@@ -19,6 +19,7 @@ class BadgeCell: UITableViewCell {
     @IBOutlet weak var iconBadges: UIImageView!
     @IBOutlet weak var nameBadges: Label!
     @IBOutlet weak var descriptionBadges: Label!
+    @IBOutlet weak var shareButton: UIButton!
     
     private var disposeBag: DisposeBag!
     
@@ -33,16 +34,22 @@ class BadgeCell: UITableViewCell {
 extension BadgeCell: IReusableCell {
     struct Input {
         let badges: Badges
+        let isAchieved: Bool
     }
     
     func configureCell(item: Input) {
         let bag = DisposeBag()
         if let thumbnail = item.badges.image.thumbnail.url {
-            iconBadges.af_setImage(withURL: URL(string: thumbnail)!)
+            item.isAchieved ?
+                iconBadges.af_setImage(withURL: URL(string: thumbnail)!) :
+                // use gray images from url
+                iconBadges.af_setImage(withURL: URL(string: thumbnail)!)
         }
         nameBadges.text = item.badges.name
         descriptionBadges.text = item.badges.description
-        
+        nameBadges.textColor = item.isAchieved ? Color.primary_black : Color.grey_three
+        descriptionBadges.textColor = item.isAchieved ? Color.primary_black : Color.grey_three
+        shareButton.isHidden = !item.isAchieved
         disposeBag = bag
     }
 }

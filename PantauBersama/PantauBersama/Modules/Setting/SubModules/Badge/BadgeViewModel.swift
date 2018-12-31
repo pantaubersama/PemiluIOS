@@ -63,18 +63,24 @@ class BadgeViewModel: ViewModelType {
     
     
     private func transformToPage(response: BaseResponse<BadgesResponse>, batch: Batch) -> Page<[ICellConfigurator]> {
+        var items: [[ICellConfigurator]] = [[]]
         let list = response.data.badges
             .map { (badge) -> ICellConfigurator in
-                return BadgeCellConfigured.init(item: BadgeCell.Input(badges: badge))
+                return BadgeCellConfigured.init(item: BadgeCell.Input(badges: badge, isAchieved: false))
         }
-        
+        let achieved = response.data.achieved
+            .map { (badge) -> ICellConfigurator in
+                return BadgeCellConfigured.init(item: BadgeCell.Input(badges: badge, isAchieved: true))
+        }
+        items.append(achieved)
+        items.append(list)
         let nextBatch = Batch(offset: batch.offset,
                               limit: response.data.meta.pages.perPage ?? 10,
                               total: response.data.meta.pages.total,
                               count: response.data.meta.pages.page,
                               page: response.data.meta.pages.page)
         return Page<[ICellConfigurator]>(
-            item: list,
+            item: items.flatMap({ $0 }),
             batch: nextBatch
         )
     }

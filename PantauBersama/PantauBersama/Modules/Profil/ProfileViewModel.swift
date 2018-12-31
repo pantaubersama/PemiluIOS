@@ -183,7 +183,7 @@ final class ProfileViewModel: IProfileViewModel, IProfileViewModelInput, IProfil
         itemsBadgeO = badge
             .map{ (list) -> [SectionOfProfileData] in
                 return list.achieved.compactMap({ (badge) -> SectionOfProfileData in
-                    return SectionOfProfileData(items: [BadgeCellConfigured(item: BadgeCell.Input(badges: badge))])
+                    return SectionOfProfileData(items: [BadgeCellConfigured(item: BadgeCell.Input(badges: badge, isAchieved: true))])
                 })
             }
             .asDriverOnErrorJustComplete()

@@ -24,6 +24,7 @@
 		8441DB4721CCC8DE00B078DF /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441DB4621CCC8DE00B078DF /* TextField.swift */; };
 		8441DB4921CCC91500B078DF /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441DB4821CCC91500B078DF /* UITextField.swift */; };
 		845C571121CE0EDC00EDCDFE /* ICellConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845C571021CE0EDC00EDCDFE /* ICellConfigurator.swift */; };
+		84619D3321D9E4A900EB58CF /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84619D3221D9E4A900EB58CF /* UIImage.swift */; };
 		84B2522321CAB33700565D82 /* Userdefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B2522221CAB33700565D82 /* Userdefault.swift */; };
 		84B2522621CAB3FF00565D82 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B2522521CAB3FF00565D82 /* KeychainService.swift */; };
 		84B2522821CAB41400565D82 /* KeychainKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B2522721CAB41400565D82 /* KeychainKind.swift */; };
@@ -72,6 +73,7 @@
 		8441DB4621CCC8DE00B078DF /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		8441DB4821CCC91500B078DF /* UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
 		845C571021CE0EDC00EDCDFE /* ICellConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICellConfigurator.swift; sourceTree = "<group>"; };
+		84619D3221D9E4A900EB58CF /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 		84B2522221CAB33700565D82 /* Userdefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Userdefault.swift; sourceTree = "<group>"; };
 		84B2522521CAB3FF00565D82 /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
 		84B2522721CAB41400565D82 /* KeychainKind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainKind.swift; sourceTree = "<group>"; };
@@ -240,6 +242,7 @@
 				845C571021CE0EDC00EDCDFE /* ICellConfigurator.swift */,
 				84B2669821D4AE0900C7B783 /* UIAlertController.swift */,
 				84B2669A21D4B19200C7B783 /* UIApplication.swift */,
+				84619D3221D9E4A900EB58CF /* UIImage.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -420,6 +423,7 @@
 				84B2669B21D4B19200C7B783 /* UIApplication.swift in Sources */,
 				8428AA8B21C7A2EC0008E975 /* UIView.swift in Sources */,
 				84B2669921D4AE0900C7B783 /* UIAlertController.swift in Sources */,
+				84619D3321D9E4A900EB58CF /* UIImage.swift in Sources */,
 				8441DB4721CCC8DE00B078DF /* TextField.swift in Sources */,
 				84B2522621CAB3FF00565D82 /* KeychainService.swift in Sources */,
 				8428AA9421C7A4CD0008E975 /* Localized.swift in Sources */,
