@@ -13,6 +13,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProfileEditController" customModule="PantauBersama" customModuleProvider="target">
             <connections>
                 <outlet property="tableView" destination="uE6-KJ-L2d" id="bA7-an-1WP"/>
+                <outlet property="updateButton" destination="CbV-TY-zro" id="Mlc-ir-Ng0"/>
                 <outlet property="view" destination="iN0-l3-epB" id="rZj-Af-uSd"/>
             </connections>
         </placeholder>

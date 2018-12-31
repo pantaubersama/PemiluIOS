@@ -16,11 +16,69 @@ enum FieldType {
     case number
     case username
     case dropdown
+    case gender
+}
+
+enum key: Int {
+    case nama
+    case username
+    case lokasi
+    case about
+    case pendidikan
+    case pekerjaan
+    case sandiLama
+    case sandiBaru
+    case sandiKonfirmasi
+    case identitas
+    case pob
+    case dob
+    case gender
+    case nationality
+    case address
+    case phone
+    
+    var title: String {
+        switch self {
+        case .nama:
+            return "Nama"
+        case .username:
+            return "Username"
+        case .lokasi:
+            return "Lokasi"
+        case .about:
+            return "Deskripsi Tentang Kamu"
+        case .pendidikan:
+            return "Pendidikan"
+        case .pekerjaan:
+            return "Pekerjaan"
+        case .sandiLama:
+            return "Masukan Kata Sandi Lama"
+        case .sandiBaru:
+            return "Kata Sandi Baru"
+        case .sandiKonfirmasi:
+            return "Konfirmasi Kata Sandi Baru"
+        case .identitas:
+            return "No KTP/SIM/Pasport"
+        case .pob:
+            return "Tempat Lahir"
+        case .dob:
+            return "Tanggal Lahir"
+        case .gender:
+            return "Jenis Kelamin"
+        case .nationality:
+            return "Kewarganegaraan"
+        case .address:
+            return "Alamat"
+        case .phone:
+            return "No Tell/HP"
+        }
+    }
+    
 }
 
 struct ProfileInfoField {
-    let key: String
-    let value: String?
+    let key: key
+    var value: String?
     let fieldType: FieldType
 }
 

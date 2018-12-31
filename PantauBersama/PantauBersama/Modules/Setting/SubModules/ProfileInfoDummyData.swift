@@ -78,32 +78,32 @@ final class ProfileInfoDummyData {
         var profileInformation: [ProfileInfoField] = []
 
         profileInformation.append(ProfileInfoField(
-            key: "Nama",
+            key: .nama,
             value: data.firstName,
             fieldType: .text
         ))
         profileInformation.append(ProfileInfoField(
-            key: "Username",
+            key: .username,
             value: data.username,
             fieldType: .username
         ))
         profileInformation.append(ProfileInfoField(
-            key: "Lokasi",
+            key: .address,
             value: data.location,
             fieldType: .text
         ))
         profileInformation.append(ProfileInfoField(
-            key: "Deskripsi Tentang Kamu",
+            key: .about,
             value: data.about,
             fieldType: .text
         ))
         profileInformation.append(ProfileInfoField(
-            key: "Pendidikan",
+            key: .pendidikan,
             value: data.education,
             fieldType: .text
         ))
         profileInformation.append(ProfileInfoField(
-            key: "Pekerjaan",
+            key: .pekerjaan,
             value: data.occupation,
             fieldType: .text
         ))
@@ -114,19 +114,19 @@ final class ProfileInfoDummyData {
         var sandiInformation: [ProfileInfoField] = []
         
         sandiInformation.append(ProfileInfoField(
-            key: "Masukan Kata Sandi Lama",
+            key: .sandiLama,
             value: "123123",
             fieldType: .password
         ))
         
         sandiInformation.append(ProfileInfoField(
-            key: "Kata Sandi Baru",
+            key: .sandiBaru,
             value: "123123",
             fieldType: .password
         ))
         
         sandiInformation.append(ProfileInfoField(
-            key: "Konfirmasi Kata Sandi Baru",
+            key: .sandiKonfirmasi,
             value: "123123",
             fieldType: .password
         ))
@@ -138,43 +138,43 @@ final class ProfileInfoDummyData {
         var dataLaporInformation: [ProfileInfoField] = []
         
         dataLaporInformation.append(ProfileInfoField(
-            key: "No KTP/SIM/Pasport",
+            key: .identitas,
             value: "231312323",
             fieldType: .number
         ))
         
         dataLaporInformation.append(ProfileInfoField(
-            key: "Tempat Lahir",
+            key: .pob,
             value: "Yogyakarta",
             fieldType: .text
         ))
         
         dataLaporInformation.append(ProfileInfoField(
-            key: "Jenis Kelamin",
+            key: .gender,
             value: "Laki-laki",
             fieldType: .dropdown
         ))
         
         dataLaporInformation.append(ProfileInfoField(
-            key: "Pekerjaan",
+            key: .pekerjaan,
             value: "PNS",
             fieldType: .text
         ))
         
         dataLaporInformation.append(ProfileInfoField(
-            key: "Kewarganegaraan",
+            key: .nationality,
             value: "Indonesia",
             fieldType: .text
         ))
         
         dataLaporInformation.append(ProfileInfoField(
-            key: "Alamat",
+            key: .address,
             value: "Jalan Viva La",
             fieldType: .text
         ))
         
         dataLaporInformation.append(ProfileInfoField(
-            key: "No Tell/HP",
+            key: .phone,
             value: "0239929333",
             fieldType: .text
         ))

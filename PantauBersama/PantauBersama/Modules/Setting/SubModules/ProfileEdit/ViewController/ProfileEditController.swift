@@ -17,6 +17,7 @@ import AlamofireImage
 class ProfileEditController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var updateButton: Button!
     
     var viewModel: ProfileEditViewModel!
     private let disposeBag = DisposeBag()
@@ -60,6 +61,10 @@ class ProfileEditController: UIViewController {
             .bind(to: viewModel.input.backI)
             .disposed(by: disposeBag)
         
+        updateButton.rx.tap
+            .bind(to: viewModel.input.doneI)
+            .disposed(by: disposeBag)
+        
         tableView.rx
             .setDelegate(self)
             .disposed(by: disposeBag)
@@ -84,6 +89,11 @@ class ProfileEditController: UIViewController {
         viewModel.output.avatarSelected
             .drive()
             .disposed(by: disposeBag)
+        
+        viewModel.output.done
+            .drive()
+            .disposed(by: disposeBag)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {

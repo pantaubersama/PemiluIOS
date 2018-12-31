@@ -12,6 +12,7 @@ import Networking
 
 protocol ProfileEditNavigator {
     var finish: Observable<Void>! { get set }
+    func back()
 }
 
 class ProfileEditCoordinator: BaseCoordinator<Void> {
@@ -43,5 +44,7 @@ class ProfileEditCoordinator: BaseCoordinator<Void> {
 extension ProfileEditCoordinator: ProfileEditNavigator {
     
     
-    
+    func back() {
+        navigationController.popViewController(animated: true)
+    }
 }

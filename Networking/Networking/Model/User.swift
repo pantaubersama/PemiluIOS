@@ -27,6 +27,7 @@ public struct User: Codable {
     public var location: String?
     public var education: String?
     public var occupation: String?
+    public var informant: Informant?
     
     private enum CodingKeys: String, CodingKey {
         case id

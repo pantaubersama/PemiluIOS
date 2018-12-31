@@ -33,6 +33,7 @@ public enum PantauAuthAPI {
     case badges(page: Int, perPage: Int)
     case meInformant
     case meAvatar(avatar: UIImage?)
+    case putMe(parameters: [String: Any])
     
 }
 
@@ -60,7 +61,7 @@ extension PantauAuthAPI: TargetType {
             return "/oauth/token"
         case .revoke:
             return "/ouath/revoke"
-        case .me:
+        case .me, .putMe:
             return "/v1/me"
         case .verifications:
             return "/v1/me/verifications"
@@ -89,7 +90,8 @@ extension PantauAuthAPI: TargetType {
              .putSelfieKTP,
              .putFotoKTP,
              .putSignature,
-             .meAvatar:
+             .meAvatar,
+             .putMe:
             return .put
         default:
             return .get
@@ -122,6 +124,8 @@ extension PantauAuthAPI: TargetType {
                 "page": page,
                 "per_page": perPage
             ]
+        case .putMe(let parameters):
+            return parameters
         default:
             return nil
         }

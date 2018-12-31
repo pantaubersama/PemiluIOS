@@ -10,6 +10,7 @@ import UIKit
 import Common
 import RxSwift
 import RxCocoa
+import Networking
 
 typealias TextViewCellConfigured = CellConfigurator<TextViewCell, TextViewCell.Input>
 
@@ -41,8 +42,63 @@ extension TextViewCell: IReusableCell {
     
     func configureCell(item: Input) {
         let bag = DisposeBag()
-        titleLabel.text = item.data.key
+        let pickerView = UIPickerView()
+        
+        titleLabel.text = item.data.key.title
         textField.text = item.data.value
+        print(item.data.key)
+        switch item.data.key {
+        case .nama:
+            textField.rx.text
+                .orEmpty
+                .distinctUntilChanged()
+                .bind(to: item.viewModel.input.nameI)
+                .disposed(by: bag)
+        case .username:
+            textField.rx.text
+                .orEmpty
+                .distinctUntilChanged()
+                .bind(to: item.viewModel.input.usernameI)
+                .disposed(by: bag)
+        case .address:
+            textField.rx.text
+                .orEmpty
+                .distinctUntilChanged()
+                .bind(to: item.viewModel.input.addressI)
+                .disposed(by: bag)
+        case .about:
+            textField.rx.text
+                .orEmpty
+                .distinctUntilChanged()
+                .bind(to: item.viewModel.input.aboutI)
+                .disposed(by: bag)
+        case .pekerjaan:
+            textField.rx.text
+                .orEmpty
+                .distinctUntilChanged()
+                .bind(to: item.viewModel.input.occupationI)
+                .disposed(by: bag)
+        case .gender:
+            let data = [
+                Gender.female,
+                Gender.male
+            ]
+            Observable.just(data)
+                .bind(to: pickerView.rx.itemTitles) { (row, element) in
+                    return element.title
+                }
+                .disposed(by: bag)
+            
+//            pickerView.rx.modelSelected(Gender.self)
+//                .flatMapLatest({ $0.first.map({ Observable.just($0) }) ?? Observable.empty() })
+//                        .map({ $0.title })
+//                        .bind(to: item.viewModel.input.inputTrigger[item.data.key.rawValue])
+//                        .disposed(by: bag)
+        
+            textField.inputView = pickerView
+        disposeBag = bag
+        default: break
+        }
         
     }
 }
