@@ -34,7 +34,6 @@ class CreateAskViewModel: ViewModelType {
     
     init(navigator: CreateAskNavigator) {
         self.navigator = navigator
-        self.navigator.finish = backSubject
         
         input = Input(backTrigger: backSubject.asObserver(),
                       createTrigger: createSubject.asObserver(),
@@ -47,6 +46,10 @@ class CreateAskViewModel: ViewModelType {
             .flatMap({ self.createQuestion() })
             .mapToVoid()
             .asDriverOnErrorJustComplete()
+        
+        self.navigator.finish = Observable
+            .merge(backSubject, create.asObservable())
+            .take(1)
 
         output = Output(createSelected: create)
     }

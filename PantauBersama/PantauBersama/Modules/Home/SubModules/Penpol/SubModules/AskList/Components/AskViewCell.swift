@@ -47,17 +47,15 @@ class AskViewCell: UITableViewCell, IReusableCell  {
         lbAbout.text = item.question.user.about
         lbBody.text = item.question.body
         lbCreatedAt.text = item.question.createdAt.id
-    }
-    func bind(viewModel: AskViewModel) {
+        
         moreButton.rx.tap
-            .map({ self.ask })
-            .bind(to: viewModel.input.moreTrigger)
+            .map({ item.question })
+            .bind(to: item.viewModel.input.moreTrigger)
             .disposed(by: disposeBag)
         
         shareButton.rx.tap
-            .map({ self.ask })
-            .bind(to: viewModel.input.shareTrigger)
+            .map({ item.question })
+            .bind(to: item.viewModel.input.shareTrigger)
             .disposed(by: disposeBag)
-        
     }
 }
