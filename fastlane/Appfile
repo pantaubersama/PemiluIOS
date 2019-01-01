@@ -1,0 +1,17 @@
+
+# bundle identifier for each lane
+
+for_lane :beta do 
+	app_identifier("com.pantaubersama.staging")
+end
+
+for_lane :production do 
+	app_identifier("com.pantaubersama")
+end
+
+# apple id
+apple_id("helmy@extrainteger.com")
+
+itc_team_id("119548446") # App Store Connect Team ID
+team_id("XLK9742Z44") # Developer Portal Team ID
+
