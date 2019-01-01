@@ -16,8 +16,13 @@ public enum TanyaKandidatAPI {
         case userVerifiedFalse = "user_verified_false"
     }
     
+    public enum QuestionOrder: String {
+        case created = "created"
+        case cachedVoteUp = "cached_votes_up"
+    }
+    
     case deleteQuestion(id: String)
-    case getQuestions(page: Int, perpage: Int, filteredBy: TanyaListFilter)
+    case getQuestions(page: Int, perpage: Int, filteredBy: TanyaListFilter, orderedBy: QuestionOrder)
     case createQuestion(body: String)
     case getQuestionDetail(id: String)
     case reportQuestion(id: String, className: String)
@@ -73,11 +78,12 @@ extension TanyaKandidatAPI: TargetType {
             return [
                 "id": id
             ]
-        case .getQuestions(let (page, perpage, filteredBy)):
+        case .getQuestions(let (page, perpage, filteredBy, orderBy)):
             return [
                 "page": page,
                 "per_page": perpage,
-                "filter_by": filteredBy.rawValue
+                "filter_by": filteredBy.rawValue,
+                "order_by": orderBy.rawValue
             ]
         case .createQuestion(let body):
             return [

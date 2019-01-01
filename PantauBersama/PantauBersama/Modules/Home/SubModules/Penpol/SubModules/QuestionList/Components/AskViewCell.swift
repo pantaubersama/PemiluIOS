@@ -14,7 +14,7 @@ typealias AskViewCellConfigurator = CellConfigurator<AskViewCell, AskViewCell.In
 
 class AskViewCell: UITableViewCell, IReusableCell  {
     struct Input {
-        let viewModel: AskViewModel
+        let viewModel: QuestionViewModel
         let question: QuestionModel
     }
 
@@ -24,16 +24,11 @@ class AskViewCell: UITableViewCell, IReusableCell  {
     @IBOutlet weak var lbCreatedAt: Label!
     @IBOutlet weak var lbAbout: Label!
     @IBOutlet weak var lbFullname: Label!
+    @IBOutlet weak var lbVoteCount: Label!
     @IBOutlet weak var ivAvatar: UIImageView!
     @IBOutlet weak var moreButton: UIButton!
     @IBOutlet weak var shareButton: UIButton!
-    
-    // TODO: change to Ask model
-    var ask: Any! {
-        didSet {
-            // TODO: view configuration
-        }
-    }
+    @IBOutlet weak var voteButton: ImageButton!
     
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -47,6 +42,7 @@ class AskViewCell: UITableViewCell, IReusableCell  {
         lbAbout.text = item.question.user.about
         lbBody.text = item.question.body
         lbCreatedAt.text = item.question.createdAt.id
+        lbVoteCount.text = item.question.formatedLikeCount
         
         moreButton.rx.tap
             .map({ item.question })
