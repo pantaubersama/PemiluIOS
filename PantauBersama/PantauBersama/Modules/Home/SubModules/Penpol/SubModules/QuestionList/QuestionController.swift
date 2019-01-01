@@ -17,6 +17,13 @@ class QuestionController: UITableViewController {
     private let disposeBag: DisposeBag = DisposeBag()
     private var viewModel: QuestionViewModel!
     
+    lazy var loadingIndicator: UIActivityIndicatorView = {
+       let activityIndicator = UIActivityIndicatorView(style: .gray)
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        
+        return activityIndicator
+    }()
+    
     convenience init(viewModel: QuestionViewModel) {
         self.init()
         self.viewModel = viewModel
@@ -24,7 +31,9 @@ class QuestionController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.view.addSubview(loadingIndicator)
+        self.configureConstraint()
+        
         tableView.registerReusableCell(AskViewCell.self)
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 44
@@ -33,6 +42,15 @@ class QuestionController: UITableViewController {
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         tableView.tableHeaderView = HeaderAskView(viewModel: viewModel)
         tableView.tableFooterView = UIView()
+        
+        viewModel.output.loadingIndicator
+            .map { !$0 }
+            .drive(loadingIndicator.rx.isHidden)
+            .disposed(by: disposeBag)
+        
+        viewModel.output.loadingIndicator
+            .drive(loadingIndicator.rx.isAnimating)
+            .disposed(by: disposeBag)
         
         viewModel.output.createSelected
             .drive()
@@ -113,5 +131,14 @@ class QuestionController: UITableViewController {
                 
                 return cell
             }.disposed(by: disposeBag)
+    }
+    
+    private func configureConstraint() {
+        NSLayoutConstraint.activate([
+            loadingIndicator.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            loadingIndicator.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
+            loadingIndicator.widthAnchor.constraint(equalToConstant: 30),
+            loadingIndicator.heightAnchor.constraint(equalToConstant: 30)
+            ])
     }
 }

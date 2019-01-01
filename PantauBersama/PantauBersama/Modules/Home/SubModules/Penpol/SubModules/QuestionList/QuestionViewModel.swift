@@ -35,6 +35,7 @@ class QuestionViewModel: ViewModelType {
         let moreSelected: Driver<QuestionModel>
         let moreMenuSelected: Driver<String>
         let userData: Driver<UserResponse?>
+        let loadingIndicator: Driver<Bool>
     }
     
     private let loadQuestionSubject = PublishSubject<Void>()
@@ -103,7 +104,12 @@ class QuestionViewModel: ViewModelType {
             .asDriverOnErrorJustComplete()
         
         loadQuestionSubject
-            .flatMapLatest({ self.questionitem(resetPage: true) })
+            .flatMapLatest({ [weak self](_) -> Observable<[QuestionModel]> in
+                guard let weakSelf = self else { return Observable.empty() }
+                return weakSelf.questionitem(resetPage: true)
+                    .trackActivity(weakSelf.activityIndicator)
+                    .trackError(weakSelf.errorTracker)
+            })
             .map { [weak self](list) -> [ICellConfigurator] in
                 guard let weakSelf = self else { return [] }
                 return list.map({ (questionModel) -> ICellConfigurator in
@@ -148,7 +154,8 @@ class QuestionViewModel: ViewModelType {
             shareSelected: shareQuestion,
             moreSelected: moreQuestion,
             moreMenuSelected: moreMenuSelected,
-            userData: user)
+            userData: user,
+            loadingIndicator: activityIndicator.asDriver())
     }
     
     private func questionitem(resetPage: Bool = false) -> Observable<[QuestionModel]> {

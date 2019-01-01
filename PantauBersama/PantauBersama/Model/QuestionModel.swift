@@ -76,4 +76,13 @@ extension QuestionModel {
         
         return formatedCount
     }
+    
+    var isMyQuestion: Bool {
+        let userData: Data? = UserDefaults.Account.get(forKey: .me)
+        let userResponse = try? JSONDecoder().decode(UserResponse.self, from: userData!)
+        
+        let userId = userResponse?.user.id ?? ""
+        
+        return self.user.id == userId
+    }
 }
