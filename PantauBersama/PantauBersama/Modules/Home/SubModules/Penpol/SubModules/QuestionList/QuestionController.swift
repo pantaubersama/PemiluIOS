@@ -139,14 +139,6 @@ class QuestionController: UITableViewController {
                 UIAlertController.showAlert(withTitle: "", andMessage: message)
             })
             .disposed(by: disposeBag)
-        
-//        viewModel.output.deletedQuestoinIndex
-//            .drive(onNext: { [weak self](deletedIndex) in
-//                guard let weakSelf = self else { return }
-//                let deletedIndexPath = IndexPath(row: deletedIndex, section: 0)
-//                weakSelf.tableView.deleteRows(at: [deletedIndexPath], with: .fade)
-//            })
-//            .disposed(by: disposeBag)
     }
     
     private func configureConstraint() {

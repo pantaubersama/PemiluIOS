@@ -31,6 +31,7 @@ class AskViewCell: UITableViewCell, IReusableCell  {
     override func prepareForReuse() {
         super.prepareForReuse()
         ivAvatar.image = #imageLiteral(resourceName: "icDummyPerson")
+        voteButton.imageTintColor = #colorLiteral(red: 0.4862189293, green: 0.4863064885, blue: 0.4862134457, alpha: 1)
         disposeBag = DisposeBag()
     }
     
@@ -41,6 +42,15 @@ class AskViewCell: UITableViewCell, IReusableCell  {
         lbBody.text = item.question.body
         lbCreatedAt.text = item.question.createdAt.id
         lbVoteCount.text = item.question.formatedLikeCount
+        
+        if item.question.isLiked {
+            voteButton.imageTintColor = #colorLiteral(red: 0.6268306375, green: 0.04665903002, blue: 0.1100218222, alpha: 1)
+        }
+        
+        voteButton.rx.tap
+            .map({ item.question })
+            .bind(to: item.viewModel.input.voteTrigger)
+            .disposed(by: disposeBag)
         
         moreButton.rx.tap
             .map({ item.question })
