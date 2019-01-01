@@ -275,8 +275,10 @@
                 <outlet property="lbBody" destination="aOn-rt-VCD" id="XPp-8P-WHm"/>
                 <outlet property="lbCreatedAt" destination="rFT-2r-6Wi" id="B6f-Ib-bFd"/>
                 <outlet property="lbFullname" destination="EG8-aL-cfG" id="cJz-Hm-uFA"/>
+                <outlet property="lbVoteCount" destination="1uJ-yT-PaQ" id="lEj-JU-6aI"/>
                 <outlet property="moreButton" destination="Mf7-JO-fhr" id="bXu-uS-qhH"/>
                 <outlet property="shareButton" destination="new-44-Vpe" id="vp6-HC-tQg"/>
+                <outlet property="voteButton" destination="TM9-nI-ays" id="jMO-PR-eVa"/>
             </connections>
             <point key="canvasLocation" x="112" y="56.671664167916049"/>
         </tableViewCell>

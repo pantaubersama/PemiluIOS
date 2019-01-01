@@ -10,9 +10,9 @@ import Foundation
 import UIKit
 
 class HeaderAskView: UIView {
-    private var viewModel: AskViewModel?
+    private var viewModel: QuestionViewModel?
     
-    convenience init(viewModel: AskViewModel) {
+    convenience init(viewModel: QuestionViewModel) {
         self.init()
         self.viewModel = viewModel
         setup()

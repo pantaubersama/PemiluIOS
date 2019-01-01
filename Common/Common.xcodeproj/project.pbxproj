@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1151D16521D64CAA00E9F91D /* UIImageView+async.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1151D16421D64CAA00E9F91D /* UIImageView+async.swift */; };
 		11702DDB21CB1C5A001AEE3F /* ImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11702DDA21CB1C5A001AEE3F /* ImageButton.swift */; };
+		11C7BB2721DB3C34008CA49B /* UIAlertController+Dialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C7BB2621DB3C34008CA49B /* UIAlertController+Dialog.swift */; };
 		1D0E1E57B81AE85E2551744D /* Pods_Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44BB4E6DC2355C13791C68DB /* Pods_Common.framework */; };
 		841CDA4421C8BFB10015680C /* SegementedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841CDA4321C8BFB10015680C /* SegementedControl.swift */; };
 		8428AA8921C7A2A60008E975 /* RoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8428AA8821C7A2A60008E975 /* RoundView.swift */; };
@@ -57,6 +58,7 @@
 		02158AB122F8CEFF16E59736 /* Pods_CommonTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CommonTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1151D16421D64CAA00E9F91D /* UIImageView+async.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+async.swift"; sourceTree = "<group>"; };
 		11702DDA21CB1C5A001AEE3F /* ImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageButton.swift; sourceTree = "<group>"; };
+		11C7BB2621DB3C34008CA49B /* UIAlertController+Dialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Dialog.swift"; sourceTree = "<group>"; };
 		40C1D3CEB3FC05B14DD97941 /* Pods-CommonTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CommonTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-CommonTests/Pods-CommonTests.release.xcconfig"; sourceTree = "<group>"; };
 		44BB4E6DC2355C13791C68DB /* Pods_Common.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Common.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C08C67BBDD52BC5064B7EC3 /* Pods-CommonTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CommonTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-CommonTests/Pods-CommonTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -228,6 +230,7 @@
 		84F8929321C77C8D00DC1048 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				1151D16421D64CAA00E9F91D /* UIImageView+async.swift */,
 				84F8929421C77CCF00DC1048 /* UIColor.swift */,
 				84F8929621C783A700DC1048 /* Label.swift */,
 				8428AA8821C7A2A60008E975 /* RoundView.swift */,
@@ -246,6 +249,7 @@
 				84B2669821D4AE0900C7B783 /* UIAlertController.swift */,
 				84B2669A21D4B19200C7B783 /* UIApplication.swift */,
 				84619D3221D9E4A900EB58CF /* UIImage.swift */,
+				11C7BB2621DB3C34008CA49B /* UIAlertController+Dialog.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -424,6 +428,7 @@
 				84B2524C21CB83C700565D82 /* AppContext.swift in Sources */,
 				8441DB4921CCC91500B078DF /* UITextField.swift in Sources */,
 				84B2669B21D4B19200C7B783 /* UIApplication.swift in Sources */,
+				11C7BB2721DB3C34008CA49B /* UIAlertController+Dialog.swift in Sources */,
 				8428AA8B21C7A2EC0008E975 /* UIView.swift in Sources */,
 				84619D4621DB683300EB58CF /* DateHelper.swift in Sources */,
 				84B2669921D4AE0900C7B783 /* UIAlertController.swift in Sources */,

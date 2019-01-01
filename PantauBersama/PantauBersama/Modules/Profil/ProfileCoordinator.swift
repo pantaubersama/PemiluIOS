@@ -125,7 +125,7 @@ extension ProfileCoordinator: PenpolNavigator {
         return Observable.never()
     }
     
-    func shareAsk(ask: Any) -> Observable<Void> {
+    func shareQuestion(question: String) -> Observable<Void> {
         return Observable.never()
     }
 }
