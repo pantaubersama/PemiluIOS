@@ -49,19 +49,19 @@ extension LinimasaJanjiCell: IReusableCell {
         shareBtn.rx.tap
             .map({ janpol })
             .bind(to: item.viewModel.input.shareJanji)
-            .disposed(by: disposeBag)
+            .disposed(by: bag)
         
         moreBtn.rx.tap
             .map({ janpol })
             .bind(to: item.viewModel.input.moreTrigger)
-            .disposed(by: disposeBag)
+            .disposed(by: bag)
         
         disposeBag = bag
     }
     
     func configure(data: JanjiPolitik) {
         
-        fullname.text = data.user.firstName + " " + data.user.lastName 
+        fullname.text = data.user.firstName + " " + data.user.lastName
         dateCreate.text = data.createdAt
         title.text = data.title
         content.text = data.body

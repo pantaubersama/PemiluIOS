@@ -18,25 +18,30 @@ class PilpresViewModel: ViewModelType {
     
     struct Input {
         let refreshTrigger: AnyObserver<Void>
-        let moreTrigger: AnyObserver<Int>
+        let moreTrigger: AnyObserver<Feeds>
         let moreMenuTrigger: AnyObserver<PilpresType>
         let nextTrigger: AnyObserver<Void>
+        let viewWillAppearTrigger: AnyObserver<Void>
     }
     
     struct Output {
         let feedsCells: Driver<[ICellConfigurator]>
         let moreSelected: Driver<Feeds>
         let moreMenuSelected: Driver<Void>
+        let bannerInfo: Driver<BannerInfo>
+        let infoSelected: Driver<Void>
     }
     
     private let refreshSubject = PublishSubject<Void>()
-    private let moreSubject = PublishSubject<Int>()
+    private let moreSubject = PublishSubject<Feeds>()
     private let moreMenuSubject = PublishSubject<PilpresType>()
     private let nextSubject = PublishSubject<Void>()
+    private let viewWillAppearSubject = PublishSubject<Void>()
     
     private let navigator: PilpresNavigator
     let errorTracker = ErrorTracker()
     let activityIndicator = ActivityIndicator()
+    let headerViewModel = BannerHeaderViewModel()
     
     init(navigator: LinimasaNavigator) {
         self.navigator = navigator
@@ -45,7 +50,12 @@ class PilpresViewModel: ViewModelType {
             refreshTrigger: refreshSubject.asObserver(),
             moreTrigger: moreSubject.asObserver(),
             moreMenuTrigger: moreMenuSubject.asObserver(),
-            nextTrigger: nextSubject.asObserver())
+            nextTrigger: nextSubject.asObserver(),
+            viewWillAppearTrigger: viewWillAppearSubject.asObserver())
+        
+        let bannerInfo = viewWillAppearSubject
+            .flatMapLatest({ self.bannerInfo() })
+            .asDriverOnErrorJustComplete()
         
         // MARK:
         // Get feeds pagination
@@ -68,11 +78,7 @@ class PilpresViewModel: ViewModelType {
             }
         
         let moreSelected = moreSubject
-            .asObservable()
-            .withLatestFrom(feedsItems) { (row, feeds) in
-                return feeds[row]
-            }
-            .asDriverOnErrorJustComplete()
+            .asObserver().asDriverOnErrorJustComplete()
     
         let moreMenuSelected = moreMenuSubject
             .flatMapLatest({ (type) -> Observable<Void> in
@@ -87,9 +93,18 @@ class PilpresViewModel: ViewModelType {
             })
             .asDriverOnErrorJustComplete()
         
+        let infoSelected = headerViewModel.output.itemSelected
+            .asObservable()
+            .flatMapLatest({ (banner) -> Observable<Void> in
+                return navigator.launchBannerInfo(bannerInfo: banner)
+            })
+            .asDriverOnErrorJustComplete()
+        
         output = Output(feedsCells: feedsCells,
                         moreSelected: moreSelected,
-                        moreMenuSelected: moreMenuSelected)
+                        moreMenuSelected: moreMenuSelected,
+                        bannerInfo: bannerInfo,
+                        infoSelected: infoSelected)
         
     }
     
@@ -132,6 +147,17 @@ class PilpresViewModel: ViewModelType {
         )
     }
     
+    
+    private func bannerInfo() -> Observable<BannerInfo> {
+        return NetworkService.instance
+            .requestObject(
+                LinimasaAPI.getBannerInfos(pageName: "pilpres"),
+                c: BaseResponse<BannerInfoResponse>.self
+            )
+            .map{ ($0.data.bannerInfo) }
+            .asObservable()
+            .catchErrorJustComplete()
+    }
 }
 
 

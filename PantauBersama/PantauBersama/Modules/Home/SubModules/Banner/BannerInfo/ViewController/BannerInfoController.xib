@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BannerInfoController" customModule="PantauBersama" customModuleProvider="target">
+            <connections>
+                <outlet property="btnClose" destination="N80-k3-pak" id="syz-T4-ffB"/>
+                <outlet property="tableView" destination="PNM-yh-eut" id="HWP-f8-NeJ"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PNM-yh-eut">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="620"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </tableView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N80-k3-pak" customClass="ImageButton" customModule="Common">
+                    <rect key="frame" x="0.0" y="620" width="375" height="47"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="47" id="9Ip-9b-uZI"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="imageTintColor">
+                            <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="imagePressedTintColor">
+                            <color key="value" red="0.68041622639999999" green="0.1499232352" blue="0.14898997550000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="image" keyPath="imageIcon" value="outlineClose24Px"/>
+                    </userDefinedRuntimeAttributes>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="N80-k3-pak" secondAttribute="trailing" id="2EF-fH-NOn"/>
+                <constraint firstItem="PNM-yh-eut" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="5zk-Em-P7c"/>
+                <constraint firstItem="PNM-yh-eut" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="GHY-i8-YZS"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="N80-k3-pak" secondAttribute="bottom" id="SRS-bn-VHq"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="PNM-yh-eut" secondAttribute="trailing" id="U29-UJ-A65"/>
+                <constraint firstItem="N80-k3-pak" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="ZqJ-jA-bO2"/>
+                <constraint firstItem="N80-k3-pak" firstAttribute="top" secondItem="PNM-yh-eut" secondAttribute="bottom" id="yvA-TH-Ame"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="outlineClose24Px" width="36" height="36"/>
+    </resources>
+</document>

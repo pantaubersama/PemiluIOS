@@ -25,25 +25,6 @@ public struct UserJanpol: Codable {
     
 }
 
-public struct Image: Codable {
-    public var url: String?
-    public var small: Url?
-    public var medium: Url?
-    public var large: Url?
-    
-    public struct Url: Codable {
-        public var url: String?
-    }
-    
-    private enum CodingKeys: String, CodingKey {
-        case url
-        case small
-        case medium
-        case large
-    }
-    
-}
-
 public struct JanjiPolitik: Codable {
     
     public let id: String

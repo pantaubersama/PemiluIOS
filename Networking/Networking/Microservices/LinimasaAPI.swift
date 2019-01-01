@@ -10,7 +10,7 @@ import Moya
 import Common
 
 public enum LinimasaAPI {
-    case getBannerInfos
+    case getBannerInfos(pageName: String)
     case getFeeds(page: Int, perPage: Int)
     case getJanjiPolitiks(page: Int, perPage: Int)
     case deleteJanjiPolitiks(id: String)
@@ -37,7 +37,7 @@ extension LinimasaAPI: TargetType {
     public var path: String {
         switch self {
         case .getBannerInfos:
-            return "/linimasa/v1/banner_infos"
+            return "/linimasa/v1/banner_infos/show"
         case .getFeeds:
             return "/linimasa/v1/feeds/pilpres"
         case .getJanjiPolitiks,
@@ -50,6 +50,10 @@ extension LinimasaAPI: TargetType {
     
     public var parameters: [String: Any]? {
         switch self {
+        case .getBannerInfos(let pageName):
+            return [
+                "page_name": pageName
+            ]
         case .getFeeds(let (page, perPage)):
             return [
                 "page": page,

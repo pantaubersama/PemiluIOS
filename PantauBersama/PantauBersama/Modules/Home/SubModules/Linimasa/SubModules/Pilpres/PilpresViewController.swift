@@ -13,7 +13,7 @@ import RxSwift
 class PilpresViewController: UITableViewController {
     
     private let disposeBag = DisposeBag()
-    private var headerView: LinimasaHeaderView!
+    private var headerView: BannerHeaderView!
     
     private var viewModel: PilpresViewModel!
     
@@ -32,13 +32,19 @@ class PilpresViewController: UITableViewController {
         tableView.estimatedRowHeight = 44.0
         tableView.separatorStyle = .none
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        headerView = LinimasaHeaderView()
+        headerView = BannerHeaderView()
         tableView.tableHeaderView = headerView
         tableView.tableFooterView = UIView()
         tableView.refreshControl = UIRefreshControl()
         
         self.refreshControl?.rx.controlEvent(.valueChanged)
             .bind(to: viewModel.input.refreshTrigger)
+            .disposed(by: disposeBag)
+        
+        viewModel.output.bannerInfo
+            .drive(onNext: { (banner) in
+                self.headerView.config(banner: banner, viewModel: self.viewModel.headerViewModel)
+            })
             .disposed(by: disposeBag)
         
         viewModel.output.feedsCells
@@ -91,32 +97,17 @@ class PilpresViewController: UITableViewController {
             .drive()
             .disposed(by: disposeBag)
         
+        viewModel.output.infoSelected
+            .drive()
+            .disposed(by: disposeBag)
+
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        viewModel.input.viewWillAppearTrigger.onNext(())
+    }
+    
 }
-
-
-// Dummy
-//
-//extension PilpresViewController {
-//    
-//    override func numberOfSections(in tableView: UITableView) -> Int {
-//        return 1
-//    }
-//    
-//    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return 15
-//    }
-//    
-//    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return 150.0
-//    }
-//    
-//    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(indexPath: indexPath) as LinimasaCell
-//        cell.pilpres = "pilpres"
-//        cell.bind(viewModel: viewModel)
-//        return cell
-//    }
-//}

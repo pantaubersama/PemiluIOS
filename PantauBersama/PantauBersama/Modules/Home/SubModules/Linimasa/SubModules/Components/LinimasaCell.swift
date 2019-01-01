@@ -46,9 +46,9 @@ extension LinimasaCell: IReusableCell {
         configure(data: feeds)
         
         more.rx.tap
-            .map({ self.tag })
+            .map({ feeds })
             .bind(to: item.viewModel.input.moreTrigger)
-            .disposed(by: disposeBag)
+            .disposed(by: bag)
         
         disposeBag = bag
     }

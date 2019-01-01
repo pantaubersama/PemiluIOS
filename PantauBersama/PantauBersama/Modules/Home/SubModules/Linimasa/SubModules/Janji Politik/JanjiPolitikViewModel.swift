@@ -22,6 +22,7 @@ class JanjiPolitikViewModel: ViewModelType {
         let moreMenuTrigger: AnyObserver<JanjiType>
         let shareJanji: AnyObserver<Any>
         let nextTrigger: AnyObserver<Void>
+        let viewWillAppearTrigger: AnyObserver<Void>
     }
     
     struct Output {
@@ -29,6 +30,8 @@ class JanjiPolitikViewModel: ViewModelType {
         let moreSelected: Driver<JanjiPolitik>
         let moreMenuSelected: Driver<Void>
         let shareSelected: Driver<Void>
+        let bannerInfo: Driver<BannerInfo>
+        let infoSelected: Driver<Void>
     }
     
     private let refreshSubject = PublishSubject<Void>()
@@ -36,11 +39,13 @@ class JanjiPolitikViewModel: ViewModelType {
     private let moreMenuSubject = PublishSubject<JanjiType>()
     private let shareSubject = PublishSubject<Any>()
     private let nextSubject = PublishSubject<Void>()
+    private let viewWillAppearSubject = PublishSubject<Void>()
     
     private let navigator: JanjiPolitikNavigator
     
     let errorTracker = ErrorTracker()
     let activityIndicator = ActivityIndicator()
+    let headerViewModel = BannerHeaderViewModel()
     
     init(navigator: LinimasaNavigator) {
         self.navigator = navigator
@@ -49,7 +54,12 @@ class JanjiPolitikViewModel: ViewModelType {
                       moreTrigger: moreSubject.asObserver(),
                       moreMenuTrigger: moreMenuSubject.asObserver(),
                       shareJanji: shareSubject.asObserver(),
-                      nextTrigger: nextSubject.asObserver())
+                      nextTrigger: nextSubject.asObserver(),
+                      viewWillAppearTrigger: viewWillAppearSubject.asObserver())
+        
+        let bannerInfo = viewWillAppearSubject
+            .flatMapLatest({ self.bannerInfo() })
+            .asDriverOnErrorJustComplete()
         
         // MARK:
         // Get janji politik pagination
@@ -91,10 +101,19 @@ class JanjiPolitikViewModel: ViewModelType {
             }
             .asDriverOnErrorJustComplete()
         
+        let infoSelected = headerViewModel.output.itemSelected
+            .asObservable()
+            .flatMapLatest({ (banner) -> Observable<Void> in
+                return navigator.launchBannerInfo(bannerInfo: banner)
+            })
+            .asDriverOnErrorJustComplete()
+        
         output = Output(janpolCells: janpolCells,
                         moreSelected: moreSelected,
                         moreMenuSelected: moreMenuSelected,
-                        shareSelected: shareJanji)
+                        shareSelected: shareJanji,
+                        bannerInfo: bannerInfo,
+                        infoSelected: infoSelected)
     }
     
     private func paginateItems(
@@ -134,6 +153,17 @@ class JanjiPolitikViewModel: ViewModelType {
             item: response.data.janjiPolitiks,
             batch: nextBatch
         )
+    }
+    
+    private func bannerInfo() -> Observable<BannerInfo> {
+        return NetworkService.instance
+            .requestObject(
+                LinimasaAPI.getBannerInfos(pageName: "janji politik"),
+                c: BaseResponse<BannerInfoResponse>.self
+            )
+            .map{ ($0.data.bannerInfo) }
+            .asObservable()
+            .catchErrorJustComplete()
     }
     
 }
