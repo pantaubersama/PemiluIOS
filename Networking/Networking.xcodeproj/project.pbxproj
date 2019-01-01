@@ -17,6 +17,8 @@
 		13F456B721DA7BD000CE45F1 /* Feeds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F456B621DA7BD000CE45F1 /* Feeds.swift */; };
 		13F456B921DA7F9A00CE45F1 /* FeedsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F456B821DA7F9A00CE45F1 /* FeedsResponse.swift */; };
 		13F456BB21DA806900CE45F1 /* Meta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F456BA21DA806900CE45F1 /* Meta.swift */; };
+		13F456BD21DB668D00CE45F1 /* JanjiPolitik.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F456BC21DB668D00CE45F1 /* JanjiPolitik.swift */; };
+		13F456BF21DB67C100CE45F1 /* JanjiPolitikResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F456BE21DB67C100CE45F1 /* JanjiPolitikResponse.swift */; };
 		3937C71E623049AC040C9194 /* Pods_NetworkingTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC9D77E9B7CE8AB5A8F185B6 /* Pods_NetworkingTests.framework */; };
 		3A2C6CA971EDD4A483DECAB6 /* Pods_Networking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85BAE50647296BF2C83ACD7C /* Pods_Networking.framework */; };
 		842A49FB21D78B6A0050AA51 /* VerificationsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842A49FA21D78B6A0050AA51 /* VerificationsResponse.swift */; };
@@ -66,6 +68,8 @@
 		13F456B621DA7BD000CE45F1 /* Feeds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feeds.swift; sourceTree = "<group>"; };
 		13F456B821DA7F9A00CE45F1 /* FeedsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedsResponse.swift; sourceTree = "<group>"; };
 		13F456BA21DA806900CE45F1 /* Meta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meta.swift; sourceTree = "<group>"; };
+		13F456BC21DB668D00CE45F1 /* JanjiPolitik.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JanjiPolitik.swift; sourceTree = "<group>"; };
+		13F456BE21DB67C100CE45F1 /* JanjiPolitikResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JanjiPolitikResponse.swift; sourceTree = "<group>"; };
 		140DB7A15B4108998BABEF13 /* Pods-Networking.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Networking.release.xcconfig"; path = "../Pods/Target Support Files/Pods-Networking/Pods-Networking.release.xcconfig"; sourceTree = "<group>"; };
 		22CA8A8E534F0F359CC66429 /* Pods-Networking.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Networking.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-Networking/Pods-Networking.debug.xcconfig"; sourceTree = "<group>"; };
 		2A1DC7500A4E8322692EC937 /* Pods-NetworkingTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NetworkingTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-NetworkingTests/Pods-NetworkingTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -186,6 +190,8 @@
 				13F456B621DA7BD000CE45F1 /* Feeds.swift */,
 				13F456B821DA7F9A00CE45F1 /* FeedsResponse.swift */,
 				13F456BA21DA806900CE45F1 /* Meta.swift */,
+				13F456BC21DB668D00CE45F1 /* JanjiPolitik.swift */,
+				13F456BE21DB67C100CE45F1 /* JanjiPolitikResponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -447,6 +453,7 @@
 				84B2523321CAC6AA00565D82 /* NetworkService.swift in Sources */,
 				13F456B521D531D300CE45F1 /* LinimasaAPI.swift in Sources */,
 				84619D3521DA21A200EB58CF /* Gender.swift in Sources */,
+				13F456BD21DB668D00CE45F1 /* JanjiPolitik.swift in Sources */,
 				84B2669D21D4BB1400C7B783 /* PantauRefreshResponse.swift in Sources */,
 				84FE6EB821D5F374009A0F55 /* BaseResponse.swift in Sources */,
 				84B2526421CBDE2600565D82 /* PantauAuthAPI.swift in Sources */,
@@ -456,6 +463,7 @@
 				84B2523521CAC71400565D82 /* RequestLoadingPlugin.swift in Sources */,
 				84B2526621CBFF0C00565D82 /* PantauAuthResponse.swift in Sources */,
 				13F456B921DA7F9A00CE45F1 /* FeedsResponse.swift in Sources */,
+				13F456BF21DB67C100CE45F1 /* JanjiPolitikResponse.swift in Sources */,
 				84FE6EB421D5F339009A0F55 /* UserResponse.swift in Sources */,
 				842A49FB21D78B6A0050AA51 /* VerificationsResponse.swift in Sources */,
 				8482E62E21D9017700D5DC07 /* PaginatableResponse.swift in Sources */,

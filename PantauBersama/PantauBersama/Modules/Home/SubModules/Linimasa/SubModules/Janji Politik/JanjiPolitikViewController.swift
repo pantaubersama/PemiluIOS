@@ -26,8 +26,8 @@ class JanjiPolitikViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.registerReusableCell(LinimasaJanjiCell.self)
-        tableView.delegate = self
-        tableView.dataSource = self
+        tableView.delegate = nil
+        tableView.dataSource = nil
         tableView.estimatedRowHeight = 44.0
         tableView.separatorStyle = .singleLine
         tableView.separatorColor = UIColor.groupTableViewBackground
@@ -35,6 +35,25 @@ class JanjiPolitikViewController: UITableViewController {
         headerView = LinimasaHeaderView()
         tableView.tableHeaderView = headerView
         tableView.tableFooterView = UIView()
+        tableView.refreshControl = UIRefreshControl()
+        
+        self.refreshControl?.rx.controlEvent(.valueChanged)
+            .bind(to: viewModel.input.refreshTrigger)
+            .disposed(by: disposeBag)
+        
+        viewModel.output.janpolCells
+            .do(onNext: { [weak self] (_) in
+                self?.refreshControl?.endRefreshing()
+            })
+            .drive(tableView.rx.items) { tableView, row, item in
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: item.reuseIdentifier) else {
+                    return UITableViewCell()
+                }
+                item.configure(cell: cell)
+                return cell
+            }
+            .disposed(by: disposeBag)
+        
         
         viewModel.output.shareSelected
             .drive()
@@ -87,30 +106,30 @@ class JanjiPolitikViewController: UITableViewController {
 
 // Dummy
 
-extension JanjiPolitikViewController {
-    
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 15
-    }
-    
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 226.0
-    }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(indexPath: indexPath) as LinimasaJanjiCell
-        cell.bind(viewModel: viewModel)
-        return cell
-    }
-    
-    // dummy sembari nunggu API lewat sini dulu
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let detail = DetailJanjiController()
-        detail.hidesBottomBarWhenPushed = true
-        navigationController?.pushViewController(detail, animated: true)
-    }
-}
+//extension JanjiPolitikViewController {
+//    
+//    override func numberOfSections(in tableView: UITableView) -> Int {
+//        return 1
+//    }
+//    
+//    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return 15
+//    }
+//    
+//    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return 226.0
+//    }
+//    
+//    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        let cell = tableView.dequeueReusableCell(indexPath: indexPath) as LinimasaJanjiCell
+//        cell.bind(viewModel: viewModel)
+//        return cell
+//    }
+//    
+//    // dummy sembari nunggu API lewat sini dulu
+//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        let detail = DetailJanjiController()
+//        detail.hidesBottomBarWhenPushed = true
+//        navigationController?.pushViewController(detail, animated: true)
+//    }
+//}
