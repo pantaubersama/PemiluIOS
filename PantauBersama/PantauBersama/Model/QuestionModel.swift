@@ -15,6 +15,7 @@ public struct QuestionModel {
     let createdAt: CreatedAt
     let created: String
     let likeCount: Int
+    let isLiked: Bool
     let user: Creator
     
     init(question: Question) {
@@ -37,6 +38,7 @@ public struct QuestionModel {
                                              mediumSquare: Creator.Avatar.ImageSize(url: question.user.avatar.mediumSquare.url ?? "")),
                          verified: question.user.verified,
                          about: question.user.about ?? "")
+        self.isLiked = question.isLiked
         
     }
     

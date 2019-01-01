@@ -28,7 +28,7 @@ class QuestionViewModel: ViewModelType {
     }
     
     struct Output {
-        let questionCells: BehaviorRelay<[ICellConfigurator]>
+        let question: BehaviorRelay<[QuestionModel]>
         let createSelected: Driver<Void>
         let infoSelected: Driver<Void>
         let shareSelected: Driver<Void>
@@ -36,6 +36,7 @@ class QuestionViewModel: ViewModelType {
         let moreMenuSelected: Driver<String>
         let userData: Driver<UserResponse?>
         let loadingIndicator: Driver<Bool>
+        let deletedQuestoinIndex: Driver<Int>
     }
     
     private let loadQuestionSubject = PublishSubject<Void>()
@@ -45,7 +46,8 @@ class QuestionViewModel: ViewModelType {
     private let shareSubject = PublishSubject<QuestionModel>()
     private let moreSubject = PublishSubject<QuestionModel>()
     private let moreMenuSubject = PublishSubject<QuestionType>()
-    private let questionCellRelay = BehaviorRelay<[ICellConfigurator]>(value: [])
+    private let questionRelay = BehaviorRelay<[QuestionModel]>(value: [])
+    private let deletedQuestionSubject = PublishSubject<Int>()
     
     private let activityIndicator = ActivityIndicator()
     private let errorTracker = ErrorTracker()
@@ -93,7 +95,22 @@ class QuestionViewModel: ViewModelType {
                             return ""
                         })
                 case .hapus(let question):
-                    return Observable.empty()
+                    return weakSelf.deleteQuestion(question: question)
+                        .do(onNext: { (result) in
+                            var currentValue = weakSelf.questionRelay.value
+                            guard let index = currentValue.index(where: { item -> Bool in
+                                return item.id == result.question.id
+                            }) else {
+                                return
+                            }
+                            
+                            currentValue.remove(at: index)
+                            weakSelf.questionRelay.accept(currentValue)
+//                            weakSelf.deletedQuestionSubject.onNext(index)
+                        })
+                        .map({ (result) -> String in
+                            return result.status ? "delete succeeded" : "delete failed"
+                        })
                 case .laporkan(let question):
                     return weakSelf.reportQuestion(question: question)
                 case .salin(let question):
@@ -110,34 +127,23 @@ class QuestionViewModel: ViewModelType {
                     .trackActivity(weakSelf.activityIndicator)
                     .trackError(weakSelf.errorTracker)
             })
-            .map { [weak self](list) -> [ICellConfigurator] in
-                guard let weakSelf = self else { return [] }
-                return list.map({ (questionModel) -> ICellConfigurator in
-                    return AskViewCellConfigurator(item: AskViewCell.Input(viewModel: weakSelf, question: questionModel))
-                })
-            }.filter { (questions) -> Bool in
+            .filter { (questions) -> Bool in
                 return !questions.isEmpty
             }.bind { [weak self](loadedItem) in
                 guard let weakSelf = self else { return }
-                weakSelf.questionCellRelay.accept(loadedItem)
+                weakSelf.questionRelay.accept(loadedItem)
             }.disposed(by: disposeBag)
         
         nextPageSubject
             .flatMapLatest({ self.questionitem() })
-            .map { [weak self](list) -> [ICellConfigurator] in
-                guard let weakSelf = self else { return [] }
-                return list.map({ (questionModel) -> ICellConfigurator in
-                    return AskViewCellConfigurator(item: AskViewCell.Input(viewModel: weakSelf, question: questionModel))
-                })
-            }
             .filter({ (questions) -> Bool in
                 return !questions.isEmpty
             })
             .bind(onNext: { [weak self](loadedItem) in
                 guard let weakSelf = self else { return }
-                var newItem = weakSelf.questionCellRelay.value
+                var newItem = weakSelf.questionRelay.value
                 newItem.append(contentsOf: loadedItem)
-                weakSelf.questionCellRelay.accept(newItem)
+                weakSelf.questionRelay.accept(newItem)
             })
             .disposed(by: disposeBag)
         
@@ -148,14 +154,15 @@ class QuestionViewModel: ViewModelType {
         let user = Observable.just(userResponse).asDriverOnErrorJustComplete()
         
         output = Output(
-            questionCells: questionCellRelay,
+            question: questionRelay,
             createSelected: create,
             infoSelected: info,
             shareSelected: shareQuestion,
             moreSelected: moreQuestion,
             moreMenuSelected: moreMenuSelected,
             userData: user,
-            loadingIndicator: activityIndicator.asDriver())
+            loadingIndicator: activityIndicator.asDriver(),
+            deletedQuestoinIndex: deletedQuestionSubject.asDriverOnErrorJustComplete())
     }
     
     private func questionitem(resetPage: Bool = false) -> Observable<[QuestionModel]> {
@@ -164,7 +171,7 @@ class QuestionViewModel: ViewModelType {
         }
         currentPage += 1
         return NetworkService.instance
-            .requestObject(TanyaKandidatAPI.getQuestions(page: currentPage, perpage: 10, filteredBy: .userVerifiedAll, orderedBy: .cachedVoteUp), c: QuestionsResponse.self)
+            .requestObject(TanyaKandidatAPI.getQuestions(page: currentPage, perpage: 10, filteredBy: .userVerifiedAll, orderedBy: .created), c: QuestionsResponse.self)
             .map { [weak self](response) -> [QuestionModel] in
                 guard let weakSelf = self else { return [] }
                 return weakSelf.generateQuestions(from: response)
@@ -189,4 +196,20 @@ class QuestionViewModel: ViewModelType {
             .asObservable()
             .catchErrorJustReturn("Oops something went wrong")
     }
+    
+    private func deleteQuestion(question: QuestionModel) -> Observable<(question: QuestionModel, status: Bool)> {
+        return NetworkService.instance
+            .requestObject(TanyaKandidatAPI.deleteQuestion(id: question.id
+            ), c: QuestionResponse.self)
+            .map({ (response) -> (question: QuestionModel, status: Bool) in
+                let questionModel = QuestionModel(question: response.data.question)
+                let status = response.data.status
+                
+                return (questionModel, status)
+            })
+            .asObservable()
+            .catchErrorJustComplete()
+    }
+    
+    
 }
