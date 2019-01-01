@@ -17,7 +17,12 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CreateJanjiController" customModule="PantauBersama" customModuleProvider="target">
             <connections>
-                <outlet property="textView" destination="fCc-b7-q5R" id="zFe-K2-XW0"/>
+                <outlet property="avatar" destination="3Rf-JW-kJC" id="LRV-lF-QmR"/>
+                <outlet property="contentHeightConstraint" destination="JBd-cX-TG3" id="AmY-LU-hkG"/>
+                <outlet property="contentJanji" destination="fCc-b7-q5R" id="2xM-GH-9gg"/>
+                <outlet property="name" destination="hT9-vD-paj" id="R6h-aM-tq9"/>
+                <outlet property="textCount" destination="kAJ-9f-csg" id="VQL-p9-khp"/>
+                <outlet property="titleJanji" destination="OVn-bl-S9r" id="lya-BI-1vF"/>
                 <outlet property="view" destination="iN0-l3-epB" id="zvn-7y-SLH"/>
             </connections>
         </placeholder>
@@ -115,7 +120,7 @@ Gunakan tata Bahasa yang baik</string>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tTf-km-3j5">
                                     <rect key="frame" x="20" y="139" width="335" height="40"/>
                                     <subviews>
-                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OVn-bl-S9r" customClass="TextField" customModule="Common">
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Judul Janji Politik" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OVn-bl-S9r" customClass="TextField" customModule="Common">
                                             <rect key="frame" x="4" y="10" width="327" height="30"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -140,12 +145,14 @@ Gunakan tata Bahasa yang baik</string>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AcX-uT-Y1K">
-                                    <rect key="frame" x="20" y="179" width="335" height="488"/>
+                                    <rect key="frame" x="20" y="179" width="335" height="100"/>
                                     <subviews>
                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="fCc-b7-q5R">
-                                            <rect key="frame" x="0.0" y="0.0" width="335" height="488"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="335" height="100"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="100" id="JBd-cX-TG3"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="13"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences" textContentType="url"/>
                                         </textView>
@@ -153,11 +160,23 @@ Gunakan tata Bahasa yang baik</string>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstItem="fCc-b7-q5R" firstAttribute="leading" secondItem="AcX-uT-Y1K" secondAttribute="leading" id="4SF-Nd-wSx"/>
+                                        <constraint firstAttribute="bottom" secondItem="fCc-b7-q5R" secondAttribute="bottom" id="9uc-94-6Yh"/>
                                         <constraint firstItem="fCc-b7-q5R" firstAttribute="top" secondItem="AcX-uT-Y1K" secondAttribute="top" id="AWG-YT-gip"/>
                                         <constraint firstAttribute="trailing" secondItem="fCc-b7-q5R" secondAttribute="trailing" id="Wn1-mK-iFa"/>
-                                        <constraint firstAttribute="bottom" secondItem="fCc-b7-q5R" secondAttribute="bottom" id="sAi-tw-aW8"/>
                                     </constraints>
                                 </view>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0/160" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kAJ-9f-csg" customClass="Label" customModule="Common">
+                                    <rect key="frame" x="322.5" y="284" width="32.5" height="14.5"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                            <real key="value" value="12"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="typeLabel" value="Medium"/>
+                                    </userDefinedRuntimeAttributes>
+                                </label>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
@@ -171,8 +190,9 @@ Gunakan tata Bahasa yang baik</string>
                                 <constraint firstItem="tTf-km-3j5" firstAttribute="top" secondItem="GMt-8c-u9C" secondAttribute="bottom" id="W3y-sg-7gG"/>
                                 <constraint firstItem="9Gx-wA-ZrS" firstAttribute="top" secondItem="tVR-Tg-HAt" secondAttribute="top" id="W4j-05-snb"/>
                                 <constraint firstAttribute="trailing" secondItem="9Gx-wA-ZrS" secondAttribute="trailing" id="Z2Y-Zh-yHo"/>
+                                <constraint firstItem="kAJ-9f-csg" firstAttribute="trailing" secondItem="AcX-uT-Y1K" secondAttribute="trailing" id="cU5-zA-xWc"/>
                                 <constraint firstItem="AcX-uT-Y1K" firstAttribute="top" secondItem="tTf-km-3j5" secondAttribute="bottom" id="dQl-fG-WQN"/>
-                                <constraint firstAttribute="bottom" secondItem="AcX-uT-Y1K" secondAttribute="bottom" id="fK9-XV-WeS"/>
+                                <constraint firstItem="kAJ-9f-csg" firstAttribute="top" secondItem="AcX-uT-Y1K" secondAttribute="bottom" constant="5" id="kvZ-FR-DIG"/>
                                 <constraint firstItem="9Gx-wA-ZrS" firstAttribute="leading" secondItem="tVR-Tg-HAt" secondAttribute="leading" id="uRM-RQ-MlS"/>
                             </constraints>
                         </view>
