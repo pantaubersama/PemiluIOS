@@ -56,9 +56,10 @@
 		13812C1E21CAA48700CAB327 /* PenpolController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13812C1C21CAA48700CAB327 /* PenpolController.swift */; };
 		13812C1F21CAA48700CAB327 /* PenpolController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13812C1D21CAA48700CAB327 /* PenpolController.xib */; };
 		13812C2B21CAA71F00CAB327 /* PenpolCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13812C2A21CAA71F00CAB327 /* PenpolCoordinator.swift */; };
-		13812C2E21CAA92100CAB327 /* QuestionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13812C2C21CAA92100CAB327 /* QuestionController.swift */; };
 		13812C3921CC182500CAB327 /* AskViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13812C3721CC182500CAB327 /* AskViewCell.swift */; };
 		13812C3A21CC182500CAB327 /* AskViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13812C3821CC182500CAB327 /* AskViewCell.xib */; };
+		1385A3E421DBBA6700C2910F /* BannerHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844C2BA621CC112700BC439A /* BannerHeaderView.swift */; };
+		1385A3E521DBBA8200C2910F /* QuestionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13812C2C21CAA92100CAB327 /* QuestionController.swift */; };
 		13F4569421CF97DA00CE45F1 /* CreateAskController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F4569221CF97DA00CE45F1 /* CreateAskController.swift */; };
 		13F4569521CF97DA00CE45F1 /* CreateAskController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13F4569321CF97DA00CE45F1 /* CreateAskController.xib */; };
 		13F4569721CF981E00CE45F1 /* QuestionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F4569621CF981E00CE45F1 /* QuestionViewModel.swift */; };
@@ -119,7 +120,6 @@
 		8441DB5821CCF7D900B078DF /* DetailJanjiCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441DB5721CCF7D900B078DF /* DetailJanjiCoordinator.swift */; };
 		8441DB5A21CD087000B078DF /* JanjiType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441DB5921CD087000B078DF /* JanjiType.swift */; };
 		844C2BA521CC0F2500BC439A /* BannerHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 844C2BA421CC0F2500BC439A /* BannerHeaderView.xib */; };
-		844C2BA721CC112700BC439A /* BannerHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844C2BA621CC112700BC439A /* BannerHeaderView.swift */; };
 		844C3D3D21C4ED6D00199871 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844C3D3C21C4ED6D00199871 /* AppDelegate.swift */; };
 		844C3D4521C4ED6D00199871 /* PantauBersama.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 844C3D4321C4ED6D00199871 /* PantauBersama.xcdatamodeld */; };
 		844C3D4721C4ED6E00199871 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 844C3D4621C4ED6E00199871 /* Assets.xcassets */; };
@@ -1851,6 +1851,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1385A3E521DBBA8200C2910F /* QuestionController.swift in Sources */,
+				1385A3E421DBBA6700C2910F /* BannerHeaderView.swift in Sources */,
 				849CABCA21CE89DD00912F8E /* SettingController.swift in Sources */,
 				849CABCE21CE8AC300912F8E /* SettingViewModel.swift in Sources */,
 				845C571521CE122B00EDCDFE /* IconTableCell.swift in Sources */,
@@ -1879,9 +1881,7 @@
 				844C3D7021C51D3500199871 /* PantauBarKind.swift in Sources */,
 				11B1460221D749C300BB26C8 /* HeaderAskView.swift in Sources */,
 				840850BF21D256C200696CB3 /* SectionOfProfileInfoData.swift in Sources */,
-				844C2BA721CC112700BC439A /* LinimasaHeaderView.swift in Sources */,
 				84619D3821DA851200EB58CF /* EditViewModel.swift in Sources */,
-				844C2BA721CC112700BC439A /* BannerHeaderView.swift in Sources */,
 				11B145FE21D744A100BB26C8 /* BannerInfoAskView.swift in Sources */,
 				11E107A821CD33CA00B7B074 /* CreateJanjiCoordinator.swift in Sources */,
 				11E107A721CD33CA00B7B074 /* CreateJanjiViewModel.swift in Sources */,
@@ -1970,8 +1970,6 @@
 				84B2522E21CAB53C00565D82 /* OnboardingCoordinator.swift in Sources */,
 				840850DB21D282B100696CB3 /* BadgeController.swift in Sources */,
 				84B2522021CAB2B900565D82 /* OnboardingViewController.swift in Sources */,
-				13812C2E21CAA92100CAB327 /* QuestionController.swift in Sources */,
-				13812C2E21CAA92100CAB327 /* AskController.swift in Sources */,
 				13F456CB21DB88E700CE45F1 /* BannerInfoViewModel.swift in Sources */,
 				84A07FBA21D0F13200269C6B /* IdentitasViewModel.swift in Sources */,
 				11E107B521CD44FD00B7B074 /* QuizOngoingCoordinator.swift in Sources */,
