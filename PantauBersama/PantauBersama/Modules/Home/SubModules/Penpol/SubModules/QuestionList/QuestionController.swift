@@ -17,6 +17,13 @@ class QuestionController: UITableViewController {
     private let disposeBag: DisposeBag = DisposeBag()
     private var viewModel: QuestionViewModel!
     
+    lazy var loadingIndicator: UIActivityIndicatorView = {
+       let activityIndicator = UIActivityIndicatorView(style: .gray)
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        
+        return activityIndicator
+    }()
+    
     convenience init(viewModel: QuestionViewModel) {
         self.init()
         self.viewModel = viewModel
@@ -24,7 +31,9 @@ class QuestionController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.view.addSubview(loadingIndicator)
+        self.configureConstraint()
+        
         tableView.registerReusableCell(AskViewCell.self)
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 44
@@ -33,6 +42,44 @@ class QuestionController: UITableViewController {
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         tableView.tableHeaderView = HeaderAskView(viewModel: viewModel)
         tableView.tableFooterView = UIView()
+        
+        bindViewModel()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.input.loadQuestionTrigger
+            .onNext(())
+        
+        tableView.delegate = nil
+        tableView.dataSource = nil
+        viewModel.output.question
+            .asDriverOnErrorJustComplete()
+            .drive(tableView.rx.items) { [unowned self]table, row, item -> UITableViewCell in
+                // Loadmore trigger
+                if row == self.viewModel.output.question.value.count - 3 {
+                    self.viewModel.input.nextPageTrigger.onNext(())
+                }
+                guard let cell = table.dequeueReusableCell(withIdentifier: AskViewCell.reuseIdentifier) as? AskViewCell else {
+                    return UITableViewCell()
+                }
+                
+                cell.tag = row
+                cell.configureCell(item: AskViewCell.Input(viewModel: self.viewModel, question: item))
+                
+                return cell
+            }.disposed(by: disposeBag)
+    }
+    
+    private func bindViewModel() {
+        viewModel.output.loadingIndicator
+            .map { !$0 }
+            .drive(loadingIndicator.rx.isHidden)
+            .disposed(by: disposeBag)
+        
+        viewModel.output.loadingIndicator
+            .drive(loadingIndicator.rx.isAnimating)
+            .disposed(by: disposeBag)
         
         viewModel.output.createSelected
             .drive()
@@ -45,7 +92,7 @@ class QuestionController: UITableViewController {
         viewModel.output.shareSelected
             .drive()
             .disposed(by: disposeBag)
-
+        
         viewModel.output.moreSelected
             .asObservable()
             .flatMapLatest({ [weak self] (question) -> Observable<QuestionType> in
@@ -68,7 +115,11 @@ class QuestionController: UITableViewController {
                         observer.on(.completed)
                     })
                     let cancel = UIAlertAction(title: "Batal", style: .cancel, handler: nil)
-                    alert.addAction(hapus)
+                    
+                    if question.isMyQuestion {
+                        alert.addAction(hapus)
+                    }
+                    
                     alert.addAction(salin)
                     alert.addAction(bagikan)
                     alert.addAction(laporkan)
@@ -88,30 +139,22 @@ class QuestionController: UITableViewController {
                 UIAlertController.showAlert(withTitle: "", andMessage: message)
             })
             .disposed(by: disposeBag)
+        
+//        viewModel.output.deletedQuestoinIndex
+//            .drive(onNext: { [weak self](deletedIndex) in
+//                guard let weakSelf = self else { return }
+//                let deletedIndexPath = IndexPath(row: deletedIndex, section: 0)
+//                weakSelf.tableView.deleteRows(at: [deletedIndexPath], with: .fade)
+//            })
+//            .disposed(by: disposeBag)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        viewModel.input.loadQuestionTrigger
-            .onNext(())
-        
-        tableView.delegate = nil
-        tableView.dataSource = nil
-        viewModel.output.questionCells
-            .asDriverOnErrorJustComplete()
-            .drive(tableView.rx.items) { [unowned self]table, row, item -> UITableViewCell in
-                // Loadmore trigger
-                if row == self.viewModel.output.questionCells.value.count - 3 {
-                    self.viewModel.input.nextPageTrigger.onNext(())
-                }
-                guard let cell = table.dequeueReusableCell(withIdentifier: item.reuseIdentifier) else {
-                    return UITableViewCell()
-                }
-                
-                item.configure(cell: cell)
-                cell.tag = row
-                
-                return cell
-            }.disposed(by: disposeBag)
+    private func configureConstraint() {
+        NSLayoutConstraint.activate([
+            loadingIndicator.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            loadingIndicator.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
+            loadingIndicator.widthAnchor.constraint(equalToConstant: 30),
+            loadingIndicator.heightAnchor.constraint(equalToConstant: 30)
+            ])
     }
 }

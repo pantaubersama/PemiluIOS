@@ -15,6 +15,7 @@ public struct QuestionModel {
     let createdAt: CreatedAt
     let created: String
     let likeCount: Int
+    let isLiked: Bool
     let user: Creator
     
     init(question: Question) {
@@ -37,6 +38,7 @@ public struct QuestionModel {
                                              mediumSquare: Creator.Avatar.ImageSize(url: question.user.avatar.mediumSquare.url ?? "")),
                          verified: question.user.verified,
                          about: question.user.about ?? "")
+        self.isLiked = question.isLiked
         
     }
     
@@ -75,5 +77,14 @@ extension QuestionModel {
         formatedCount = "\(kFormat)K"
         
         return formatedCount
+    }
+    
+    var isMyQuestion: Bool {
+        let userData: Data? = UserDefaults.Account.get(forKey: .me)
+        let userResponse = try? JSONDecoder().decode(UserResponse.self, from: userData!)
+        
+        let userId = userResponse?.user.id ?? ""
+        
+        return self.user.id == userId
     }
 }

@@ -10,8 +10,6 @@ import UIKit
 import RxSwift
 import Common
 
-typealias AskViewCellConfigurator = CellConfigurator<AskViewCell, AskViewCell.Input>
-
 class AskViewCell: UITableViewCell, IReusableCell  {
     struct Input {
         let viewModel: QuestionViewModel

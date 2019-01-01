@@ -81,7 +81,7 @@
                             <constraint firstAttribute="height" constant="2" id="uZF-fn-sjf"/>
                         </constraints>
                     </view>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Diw-rf-oFM" customClass="ImageButton" customModule="Common">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Diw-rf-oFM" customClass="ImageButton" customModule="Common">
                         <rect key="frame" x="294" y="285.5" width="50" height="50"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="50" id="GJB-Zc-Q9N"/>
@@ -92,12 +92,12 @@
                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </state>
                         <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="image" keyPath="imageIcon" value="outlineShare24Px"/>
+                            <userDefinedRuntimeAttribute type="image" keyPath="imageIcon" value="icShare"/>
                             <userDefinedRuntimeAttribute type="color" keyPath="imageTintColor">
-                                <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="value" red="0.48621892929999999" green="0.48630648850000002" blue="0.48621344570000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="color" keyPath="imagePressedTintColor">
-                                <color key="value" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                <color key="value" red="0.91987603900000003" green="0.18888336419999999" blue="0.21535322069999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </button>
@@ -133,6 +133,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="outlineShare24Px" width="24" height="24"/>
+        <image name="icShare" width="20" height="20"/>
     </resources>
 </document>
