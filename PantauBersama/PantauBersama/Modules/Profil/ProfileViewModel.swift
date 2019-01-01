@@ -175,11 +175,10 @@ final class ProfileViewModel: IProfileViewModel, IProfileViewModelInput, IProfil
         settingO = setting
         verifikasiO = verifikasi
         
-        itemsClusterO = Driver.just([
-            SectionOfProfileData(items: [
-                ClusterCellConfigured(item: ClusterCell.Input())
-                ])
-            ])
+        itemsClusterO = userData
+            .map { (data) -> [SectionOfProfileData] in
+                return [SectionOfProfileData(items: [ClusterCellConfigured.init(item: ClusterCell.Input(data: data.user))])]
+            }.asDriver(onErrorJustReturn: [])
         
         // MARK
         // Get Observable<[Badges>
