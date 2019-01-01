@@ -12,12 +12,12 @@ import RxCocoa
 import RxDataSources
 import Common
 
-class AskController: UITableViewController {
+class QuestionController: UITableViewController {
 
     private let disposeBag: DisposeBag = DisposeBag()
-    private var viewModel: AskViewModel!
+    private var viewModel: QuestionViewModel!
     
-    convenience init(viewModel: AskViewModel) {
+    convenience init(viewModel: QuestionViewModel) {
         self.init()
         self.viewModel = viewModel
     }
@@ -48,24 +48,23 @@ class AskController: UITableViewController {
 
         viewModel.output.moreSelected
             .asObservable()
-            .flatMapLatest({ [weak self] (ask) -> Observable<AskType> in
+            .flatMapLatest({ [weak self] (question) -> Observable<QuestionType> in
                 return Observable.create({ (observer) -> Disposable in
-
                     let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
                     let hapus = UIAlertAction(title: "Hapus", style: .default, handler: { (_) in
-                        observer.onNext(AskType.hapus)
+                        observer.onNext(QuestionType.hapus(question: question))
                         observer.on(.completed)
                     })
                     let salin = UIAlertAction(title: "Salin Tautan", style: .default, handler: { (_) in
-                        observer.onNext(AskType.salin)
+                        observer.onNext(QuestionType.salin(question: question))
                         observer.on(.completed)
                     })
                     let bagikan = UIAlertAction(title: "Bagikan", style: .default, handler: { (_) in
-                        observer.onNext(AskType.bagikan(ask: ask))
+                        observer.onNext(QuestionType.bagikan(question: question))
                         observer.on(.completed)
                     })
                     let laporkan = UIAlertAction(title: "Laporkan", style: .default, handler: { (_) in
-                        observer.onNext(AskType.laporkan)
+                        observer.onNext(QuestionType.laporkan(question: question))
                         observer.on(.completed)
                     })
                     let cancel = UIAlertAction(title: "Batal", style: .cancel, handler: nil)
@@ -84,7 +83,10 @@ class AskController: UITableViewController {
             .disposed(by: disposeBag)
         
         viewModel.output.moreMenuSelected
-            .drive()
+            .filter { !$0.isEmpty }
+            .drive(onNext: { (message) in
+                UIAlertController.showAlert(withTitle: "", andMessage: message)
+            })
             .disposed(by: disposeBag)
     }
     
@@ -95,11 +97,11 @@ class AskController: UITableViewController {
         
         tableView.delegate = nil
         tableView.dataSource = nil
-        viewModel.output.askCells
+        viewModel.output.questionCells
             .asDriverOnErrorJustComplete()
             .drive(tableView.rx.items) { [unowned self]table, row, item -> UITableViewCell in
                 // Loadmore trigger
-                if row == self.viewModel.output.askCells.value.count - 3 {
+                if row == self.viewModel.output.questionCells.value.count - 3 {
                     self.viewModel.input.nextPageTrigger.onNext(())
                 }
                 guard let cell = table.dequeueReusableCell(withIdentifier: item.reuseIdentifier) else {
@@ -112,5 +114,4 @@ class AskController: UITableViewController {
                 return cell
             }.disposed(by: disposeBag)
     }
-
 }

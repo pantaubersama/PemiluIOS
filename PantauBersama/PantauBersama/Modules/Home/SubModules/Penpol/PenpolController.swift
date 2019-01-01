@@ -20,9 +20,9 @@ class PenpolController: UIViewController {
     private let disposeBag = DisposeBag()
     
     lazy var quizViewModel = QuizViewModel(navigator: viewModel.navigator)
-    lazy var askViewModel = AskViewModel(navigator: viewModel.navigator)
+    lazy var askViewModel = QuestionViewModel(navigator: viewModel.navigator)
     
-    lazy var askController = AskController(viewModel: askViewModel)
+    lazy var askController = QuestionController(viewModel: askViewModel)
     lazy var quisController = QuizController(viewModel: quizViewModel)
     
     private lazy var searchBar: UISearchBar = {

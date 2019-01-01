@@ -10,7 +10,7 @@ import Foundation
 import RxSwift
 import Common
 
-protocol PenpolNavigator: QuizNavigator, AskNavigator {
+protocol PenpolNavigator: QuizNavigator, QuestionNavigator {
     func launchFilter() -> Observable<Void>
     func openInfoPenpol(infoType: PenpolInfoType) -> Observable<Void>
 }
@@ -44,9 +44,9 @@ extension PenpolCoordinator: PenpolNavigator {
         return coordinate(to: createAskCoordinator)
     }
     
-    func shareAsk(ask: Any) -> Observable<Void> {
+    func shareQuestion(question: String) -> Observable<Void> {
         // TODO: coordinate to share
-        let activityViewController = UIActivityViewController(activityItems: ["content to be shared" as NSString], applicationActivities: nil)
+        let activityViewController = UIActivityViewController(activityItems: [question as NSString], applicationActivities: nil)
         self.navigationController.present(activityViewController, animated: true, completion: nil)
         
         return Observable.never()

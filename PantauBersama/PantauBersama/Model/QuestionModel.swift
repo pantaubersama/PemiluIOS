@@ -61,3 +61,19 @@ public struct QuestionModel {
         }
     }
 }
+
+extension QuestionModel {
+    var formatedLikeCount: String {
+        var formatedCount = "0"
+        
+        if likeCount < 1000 {
+            formatedCount = "\(likeCount)"
+            return formatedCount
+        }
+            
+        let kFormat = likeCount / 1000
+        formatedCount = "\(kFormat)K"
+        
+        return formatedCount
+    }
+}
