@@ -59,9 +59,16 @@ class ProfileEditViewModel: ViewModelType {
         // Observable user
         // map to Section Of Profile Info Data
         let items: Observable<[SectionOfProfileInfoData]> = viewWillAppearS
-            .map({ data })
-            .flatMapLatest { (data) -> Observable<[SectionOfProfileInfoData]> in
-                return ProfileInfoDummyData.profileInfoData(data: data, type: type)
+            .flatMapLatest({ (_) -> Observable<User> in
+                return NetworkService.instance
+                    .requestObject(PantauAuthAPI.me,
+                                   c: BaseResponse<UserResponse>.self)
+                    .map({ $0.data.user })
+                    .asObservable()
+                    .catchErrorJustComplete()
+            })
+            .flatMapLatest { (user) -> Observable<[SectionOfProfileInfoData]> in
+                return ProfileInfoDummyData.profileInfoData(data: user, type: type)
             }
             .share()
         
@@ -103,7 +110,7 @@ class ProfileEditViewModel: ViewModelType {
         
         // MARK
         // Get user data
-        let userData = viewWillAppearS
+        let userDataO = viewWillAppearS
             .withLatestFrom(Observable.just(data))
             .asDriverOnErrorJustComplete()
         
@@ -126,62 +133,11 @@ class ProfileEditViewModel: ViewModelType {
             .mapToVoid()
             .asDriverOnErrorJustComplete()
         
-        // MARK
-        // Enable update profile
-//        let profileUpdate = doneS
-//            .withLatestFrom(Observable.combineLatest(
-//                nameS, usernameS, addressS, aboutS,
-//                educationS, occupationS))
-//            .flatMapLatest { [weak self] (name, username, address, about,
-//                education, occupation) -> Observable<Void> in
-//                guard let `self` = self else { return Observable.empty() }
-//                return self.updateMe(firstName: name,
-//                                     lastName: name,
-//                                     username: username,
-//                                     about: about,
-//                                     location: address,
-//                                     education: education,
-//                                     occupation: occupation,
-//                                     errorTracker: self.errorTracker,
-//                                     activityIndicator: self.activityIndicator)
-//            .do(onNext: { (_) in
-//                navigator.back()
-//            })
-//        }.asDriverOnErrorJustComplete()
-        
-        
         // MARK: Output
         output = Output(items: showItems.asDriverOnErrorJustComplete(),
                         title: Driver.just(type.title),
-                        userData: userData,
+                        userData: userDataO,
                         avatarSelected: avatarSelected,
                         editSelected: editSelected.asDriverOnErrorJustComplete())
     }
-    
-    
-    private func updateMe(firstName: String, lastName: String, username: String,
-                          about: String, location: String, education: String, occupation: String, errorTracker: ErrorTracker, activityIndicator: ActivityIndicator) -> Observable<Void> {
-        print(firstName)
-        return NetworkService.instance
-            .requestObject(PantauAuthAPI.putMe(
-                parameters: [
-                    "first_name": firstName,
-                    "last_name": lastName,
-                    "username": username,
-                    "about": about,
-                    "location": location,
-                    "education": education,
-                    "occupation": occupation
-                ]), c: BaseResponse<UserResponse>.self)
-            .do(onSuccess: { (reponse) in
-                print("SUCCESS:\(reponse)")
-            }, onError: { (error) in
-                print(error.localizedDescription)
-            })
-            .trackError(errorTracker)
-            .trackActivity(activityIndicator)
-            .mapToVoid()
-            .catchErrorJustReturn(())
-    }
-    
 }

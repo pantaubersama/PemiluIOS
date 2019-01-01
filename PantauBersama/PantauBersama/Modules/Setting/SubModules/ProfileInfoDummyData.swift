@@ -78,10 +78,16 @@ final class ProfileInfoDummyData {
         var profileInformation: [ProfileInfoField] = []
 
         profileInformation.append(ProfileInfoField(
-            key: .nama,
+            key: .firstName,
             value: data.firstName,
             fieldType: .text,
             parameter: "first_name"
+        ))
+        profileInformation.append(ProfileInfoField(
+            key: .lastName,
+            value: data.lastName,
+            fieldType: .text,
+            parameter: "last_name"
         ))
         profileInformation.append(ProfileInfoField(
             key: .username,
@@ -148,49 +154,55 @@ final class ProfileInfoDummyData {
         
         dataLaporInformation.append(ProfileInfoField(
             key: .identitas,
-            value: "231312323",
+            value: data.informant?.identity,
             fieldType: .number,
             parameter: "identity_number"
         ))
         
         dataLaporInformation.append(ProfileInfoField(
             key: .pob,
-            value: "Yogyakarta",
+            value: data.informant?.pob,
             fieldType: .text,
             parameter: "pob"
         ))
         
         dataLaporInformation.append(ProfileInfoField(
+            key: .dob,
+            value: data.informant?.dob,
+            fieldType: .date,
+            parameter: "dob"))
+
+        dataLaporInformation.append(ProfileInfoField(
             key: .gender,
-            value: "Laki-laki",
+            value: data.informant?.genderString,
             fieldType: .gender,
             parameter: "gender"
         ))
         
         dataLaporInformation.append(ProfileInfoField(
             key: .pekerjaan,
-            value: "PNS",
+            value: data.informant?.occupation,
             fieldType: .text,
             parameter: "occupation"
         ))
         
         dataLaporInformation.append(ProfileInfoField(
             key: .nationality,
-            value: "Indonesia",
+            value: data.informant?.nationality,
             fieldType: .text,
             parameter: "nationality"
         ))
         
         dataLaporInformation.append(ProfileInfoField(
             key: .address,
-            value: "Jalan Viva La",
+            value: data.informant?.address,
             fieldType: .text,
             parameter: "address"
         ))
         
         dataLaporInformation.append(ProfileInfoField(
             key: .phone,
-            value: "0239929333",
+            value: data.informant?.phone,
             fieldType: .text,
             parameter: "phone_number"
         ))

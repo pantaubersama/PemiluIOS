@@ -19,6 +19,12 @@ class TextViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: Label!
     @IBOutlet weak var textField: TextField!
     
+    lazy var datePicker: UIDatePicker = {
+        let datePicker = UIDatePicker()
+        datePicker.datePickerMode = .date
+        return datePicker
+    }()
+    
     var disposeBag: DisposeBag = DisposeBag()
     
     override func awakeFromNib() {
@@ -45,6 +51,7 @@ extension TextViewCell: IReusableCell {
         let bag = DisposeBag()
         let pickerView = UIPickerView()
         
+        titleLabel.text = item.data.key.title
         
         item.viewModel.input.inputTrigger[item.index]
             .bind(to: textField.rx.text)
@@ -73,13 +80,34 @@ extension TextViewCell: IReusableCell {
                 .disposed(by: bag)
             
             textField.inputView = pickerView
+        case .date:
+            datePicker.datePickerMode = .date
+            
+            datePicker.rx.date
+                .skip(1)
+                .map { (date) -> String in
+                    return date.toString()
+                }
+                .bind(to: item.viewModel.input.inputTrigger[item.index])
+                .disposed(by: bag)
+            
+            textField.inputView = datePicker
+            
         default:
             textField.keyboardType = .default
         }
         
-        
-        titleLabel.text = item.data.key.title
-        textField.text = item.data.value
+        textField.rx.text
+            .do(onNext: { (text) in
+                switch item.data.fieldType {
+                case .gender:
+                    let row = Gender.index(title: text)
+                    pickerView.selectRow(row, inComponent: 0, animated: false)
+                default: break
+                }
+            })
+            .bind(to: item.viewModel.input.inputTrigger[item.index])
+            .disposed(by: bag)
 
         disposeBag = bag
     }

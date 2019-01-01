@@ -92,37 +92,51 @@ final class EditViewModel: ViewModelType {
         
         let doneAction = doneS
             .withLatestFrom(parameters)
-            .flatMapLatest ({ (parameters) -> Observable<BaseResponse<UserResponse>> in
-                var parameters = parameters
+            .flatMapLatest ({ (parameters) -> Observable<Void> in
+                let parameters = parameters
                 print(parameters)
                 switch item.header {
                     case .editProfile:
                         return NetworkService.instance
                         .requestObject(PantauAuthAPI.putMe(parameters: parameters), c: BaseResponse<UserResponse>.self)
+                            .do(onSuccess: { (response) in
+                                print(response.data.user)
+                                AppState.saveMe(response.data)
+                            }, onError: { (e) in
+                                print(e.localizedDescription)
+                            })
                         .trackError(errorTracker)
                         .trackActivity(activityIndicator)
                         .catchErrorJustComplete()
+                        .mapToVoid()
                 case .editPassword:
                     return NetworkService.instance
                     .requestObject(PantauAuthAPI.putMe(parameters: parameters), c: BaseResponse<UserResponse>.self)
                     .trackError(errorTracker)
                     .trackActivity(activityIndicator)
                     .catchErrorJustComplete()
+                    .mapToVoid()
                 case .editDataLapor:
                     return NetworkService.instance
-                        .requestObject(PantauAuthAPI.putInformants(parameters: parameters), c: BaseResponse<UserResponse>.self)
+                        .requestObject(PantauAuthAPI.putInformants(parameters: parameters), c: BaseResponse<InformantResponse>.self)
+                        .do(onSuccess: { (response) in
+                            AppState.saveInformant(response.data)
+                        }, onError: { (e) in
+                            print(e.localizedDescription)
+                        })
                         .trackError(errorTracker)
                         .trackActivity(activityIndicator)
                         .catchErrorJustComplete()
+                        .mapToVoid()
                 }
-            })
-            .do(onNext: { (response) in
-                let data = response.data
-                AppState.saveMe(data)
             })
             .mapToVoid()
         
         let actionSelected = doneAction
+            .do(onNext: { (_) in
+                navigator.back()
+            })
+        
         
         output = Output(items: Driver.just(items),
                         title: Driver.just(item.header.title),

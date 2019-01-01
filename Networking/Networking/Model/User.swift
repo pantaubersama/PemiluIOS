@@ -47,6 +47,7 @@ public struct User: Codable {
         case location
         case education
         case occupation
+        case informant
     }
     
 }

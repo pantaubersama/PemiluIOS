@@ -34,6 +34,7 @@ class EditController: UITableViewController {
         tableView.rowHeight = 90.0
         tableView.tableFooterView = UIView()
         tableView.registerReusableCell(TextViewCell.self)
+        tableView.allowsSelection = false
         
         back.rx.tap
             .bind(to: viewModel.input.backTrigger)
@@ -67,6 +68,10 @@ class EditController: UITableViewController {
                 guard let alert = UIAlertController.alert(with: e) else { return }
                 self?.navigationController?.present(alert, animated: true, completion: nil)
             })
+            .disposed(by: disposeBag)
+        
+        viewModel.output.actionSelected
+            .drive()
             .disposed(by: disposeBag)
     }
     

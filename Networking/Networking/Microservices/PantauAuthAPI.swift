@@ -94,7 +94,8 @@ extension PantauAuthAPI: TargetType {
              .putFotoKTP,
              .putSignature,
              .meAvatar,
-             .putMe:
+             .putMe,
+             .putInformants:
             return .put
         default:
             return .get

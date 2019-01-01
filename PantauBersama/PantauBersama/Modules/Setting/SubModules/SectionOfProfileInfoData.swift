@@ -20,7 +20,8 @@ enum FieldType {
 }
 
 enum key: Int {
-    case nama
+    case firstName
+    case lastName
     case username
     case lokasi
     case about
@@ -39,8 +40,10 @@ enum key: Int {
     
     var title: String {
         switch self {
-        case .nama:
-            return "Nama"
+        case .firstName:
+            return "Nama Depan"
+        case .lastName:
+            return "Nama Belakang"
         case .username:
             return "Username"
         case .lokasi:

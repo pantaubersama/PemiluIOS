@@ -50,7 +50,6 @@ class ProfileEditController: UIViewController {
         tableView.separatorColor = Color.groupTableViewBackground
         tableView.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         tableView.rowHeight = 90.0
-//        tableView.rowHeight = UITableView.automaticDimension
         tableView.allowsSelection = false
         
         viewModel.output.title
@@ -61,9 +60,6 @@ class ProfileEditController: UIViewController {
             .bind(to: viewModel.input.backI)
             .disposed(by: disposeBag)
         
-//        updateButton.rx.tap
-//            .bind(to: viewModel.input.doneI)
-//            .disposed(by: disposeBag)
         
         tableView.rx
             .setDelegate(self)
@@ -89,10 +85,7 @@ class ProfileEditController: UIViewController {
         viewModel.output.avatarSelected
             .drive()
             .disposed(by: disposeBag)
-        
-//        viewModel.output.done
-//            .drive()
-//            .disposed(by: disposeBag)
+
         viewModel.output.editSelected
             .drive()
             .disposed(by: disposeBag)
