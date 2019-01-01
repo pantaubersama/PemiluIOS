@@ -77,6 +77,10 @@ extension ProfileCoordinator: ProfileNavigator {
 }
 
 extension ProfileCoordinator: LinimasaNavigator {
+    func launchJanjiDetail(data: JanjiPolitik) -> Observable<Void> {
+        return Observable.never()
+    }
+    
     func launchBannerInfo(bannerInfo: BannerInfo) -> Observable<Void> {
         return Observable.never()
     }

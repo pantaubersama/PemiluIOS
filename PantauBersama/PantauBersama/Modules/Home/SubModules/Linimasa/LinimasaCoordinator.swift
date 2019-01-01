@@ -85,6 +85,10 @@ extension LinimasaCoordinator: PilpresNavigator {
 
 
 extension LinimasaCoordinator: JanjiPolitikNavigator {
+    func launchJanjiDetail(data: JanjiPolitik) -> Observable<Void> {
+        let janjiDetailCoordinator = DetailJanjiCoordinator(navigationController: navigationController, data: data)
+        return coordinate(to: janjiDetailCoordinator)
+    }
     
     func shareJanji(data: Any) -> Observable<Void> {
         let activityViewController = UIActivityViewController(activityItems: ["content to be shared" as NSString], applicationActivities: nil)

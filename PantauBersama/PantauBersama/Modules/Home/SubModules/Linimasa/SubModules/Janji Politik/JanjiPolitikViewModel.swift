@@ -23,6 +23,7 @@ class JanjiPolitikViewModel: ViewModelType {
         let shareJanji: AnyObserver<Any>
         let nextTrigger: AnyObserver<Void>
         let viewWillAppearTrigger: AnyObserver<Void>
+        var itemSelectedTrigger: AnyObserver<IndexPath>
     }
     
     struct Output {
@@ -32,6 +33,7 @@ class JanjiPolitikViewModel: ViewModelType {
         let shareSelected: Driver<Void>
         let bannerInfo: Driver<BannerInfo>
         let infoSelected: Driver<Void>
+        let itemSelected: Driver<Void>
     }
     
     private let refreshSubject = PublishSubject<Void>()
@@ -40,6 +42,7 @@ class JanjiPolitikViewModel: ViewModelType {
     private let shareSubject = PublishSubject<Any>()
     private let nextSubject = PublishSubject<Void>()
     private let viewWillAppearSubject = PublishSubject<Void>()
+    private let itemSelectedSubject = PublishSubject<IndexPath>()
     
     private let navigator: JanjiPolitikNavigator
     
@@ -55,7 +58,8 @@ class JanjiPolitikViewModel: ViewModelType {
                       moreMenuTrigger: moreMenuSubject.asObserver(),
                       shareJanji: shareSubject.asObserver(),
                       nextTrigger: nextSubject.asObserver(),
-                      viewWillAppearTrigger: viewWillAppearSubject.asObserver())
+                      viewWillAppearTrigger: viewWillAppearSubject.asObserver(),
+                      itemSelectedTrigger: itemSelectedSubject.asObserver())
         
         let bannerInfo = viewWillAppearSubject
             .flatMapLatest({ self.bannerInfo() })
@@ -108,12 +112,20 @@ class JanjiPolitikViewModel: ViewModelType {
             })
             .asDriverOnErrorJustComplete()
         
+        let itemSelected = itemSelectedSubject
+            .withLatestFrom(janpolItems) { (indexPath, items) -> JanjiPolitik in
+                return items[indexPath.row]
+            }
+            .flatMapLatest({ navigator.launchJanjiDetail(data: $0) })
+            .asDriverOnErrorJustComplete()
+        
         output = Output(janpolCells: janpolCells,
                         moreSelected: moreSelected,
                         moreMenuSelected: moreMenuSelected,
                         shareSelected: shareJanji,
                         bannerInfo: bannerInfo,
-                        infoSelected: infoSelected)
+                        infoSelected: infoSelected,
+                        itemSelected: itemSelected)
     }
     
     private func paginateItems(

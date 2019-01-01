@@ -61,12 +61,12 @@ extension LinimasaJanjiCell: IReusableCell {
     
     func configure(data: JanjiPolitik) {
         
-        fullname.text = data.user.firstName + " " + data.user.lastName
+        fullname.text = data.user.fullname
         dateCreate.text = data.createdAt
         title.text = data.title
         content.text = data.body
 
-        avatar.af_setImage(withURL: URL(string: data.image.large?.url ?? "")!)
+        avatar.af_setImage(withURL: URL(string: data.image.large.url)!)
         
     }
     

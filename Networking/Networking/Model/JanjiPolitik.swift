@@ -23,6 +23,9 @@ public struct UserJanpol: Codable {
         case lastName = "last_name"
     }
     
+    public var fullname: String? {
+        return firstName + " " + lastName
+    }
 }
 
 public struct JanjiPolitik: Codable {
