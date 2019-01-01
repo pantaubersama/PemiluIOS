@@ -1,21 +1,23 @@
 //
-//  SubmitFooterView.swift
+//  SectionItemCell.swift
 //  PantauBersama
 //
-//  Created by Hanif Sugiyanto on 25/12/18.
-//  Copyright © 2018 PantauBersama. All rights reserved.
+//  Created by Hanif Sugiyanto on 01/01/19.
+//  Copyright © 2019 PantauBersama. All rights reserved.
 //
 
 import UIKit
-import Common
+import RxSwift
 
-class SubmitFooterView: UIView {
+@IBDesignable
+class SectionItemCell: UIView {
     
-    @IBOutlet weak var button: Button!
+    @IBOutlet weak var buttonEdit: UIButton!
     
+    
+    var disposeBag: DisposeBag = DisposeBag()
     
     override init(frame: CGRect) {
-        let frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 47.0)
         super.init(frame: frame)
         setup()
     }

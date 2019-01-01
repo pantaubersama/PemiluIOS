@@ -32,6 +32,9 @@ public enum PantauAuthAPI {
     case putSignature(image: UIImage?)
     case badges(page: Int, perPage: Int)
     case meInformant
+    case meAvatar(avatar: UIImage?)
+    case putMe(parameters: [String: Any])
+    case putInformants(parameters: [String: Any])
     
 }
 
@@ -59,7 +62,7 @@ extension PantauAuthAPI: TargetType {
             return "/oauth/token"
         case .revoke:
             return "/ouath/revoke"
-        case .me:
+        case .me, .putMe:
             return "/v1/me"
         case .verifications:
             return "/v1/me/verifications"
@@ -75,6 +78,10 @@ extension PantauAuthAPI: TargetType {
             return "/v1/badges"
         case .meInformant:
             return "/v1/me/informants"
+        case .meAvatar:
+            return "/v1/me/avatar"
+        case .putInformants:
+            return "/v1/informants"
         }
     }
     
@@ -85,7 +92,10 @@ extension PantauAuthAPI: TargetType {
         case .putKTP,
              .putSelfieKTP,
              .putFotoKTP,
-             .putSignature:
+             .putSignature,
+             .meAvatar,
+             .putMe,
+             .putInformants:
             return .put
         default:
             return .get
@@ -118,6 +128,10 @@ extension PantauAuthAPI: TargetType {
                 "page": page,
                 "per_page": perPage
             ]
+        case .putMe(let parameters):
+            return parameters
+        case .putInformants(let parameters):
+            return parameters
         default:
             return nil
         }
@@ -137,7 +151,8 @@ extension PantauAuthAPI: TargetType {
         case .putKTP,
              .putSelfieKTP,
              .putFotoKTP,
-             .putSignature:
+             .putSignature,
+             .meAvatar:
             return .uploadMultipart(self.multipartBody ?? [])
         default:
             return .requestParameters(parameters: parameters ?? [:], encoding: parameterEncoding)
@@ -177,6 +192,12 @@ extension PantauAuthAPI: TargetType {
             var multipartFormData = [MultipartFormData]()
             if let selfie = image, let d = selfie.jpegData(compressionQuality: 0.1) {
                 multipartFormData.append(buildMultipartFormData(name: "signature", value: d))
+            }
+            return multipartFormData
+        case .meAvatar(let image):
+            var multipartFormData = [MultipartFormData]()
+            if let avatar = image, let d = avatar.jpegData(compressionQuality: 0.1) {
+                multipartFormData.append(buildMultipartFormData(name: "avatar", value: d))
             }
             return multipartFormData
         default:

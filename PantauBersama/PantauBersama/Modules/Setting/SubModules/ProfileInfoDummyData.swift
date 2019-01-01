@@ -41,11 +41,11 @@ enum ProfileHeaderItem: Int {
     var sizeHeader: CGFloat {
         switch self {
         case .editProfile:
-            return 140.0
+            return 172.0
         case .editDataLapor:
-            return 82.0
+            return 130.0
         case .editPassword:
-            return 0.0
+            return 48.0
         }
     }
 }
@@ -78,34 +78,46 @@ final class ProfileInfoDummyData {
         var profileInformation: [ProfileInfoField] = []
 
         profileInformation.append(ProfileInfoField(
-            key: "Nama",
+            key: .firstName,
             value: data.firstName,
-            fieldType: .text
+            fieldType: .text,
+            parameter: "first_name"
         ))
         profileInformation.append(ProfileInfoField(
-            key: "Username",
+            key: .lastName,
             value: data.lastName,
-            fieldType: .username
+            fieldType: .text,
+            parameter: "last_name"
         ))
         profileInformation.append(ProfileInfoField(
-            key: "Lokasi",
-            value: data.lastName,
-            fieldType: .text
+            key: .username,
+            value: data.username,
+            fieldType: .username,
+            parameter: "username"
         ))
         profileInformation.append(ProfileInfoField(
-            key: "Deskripsi Tentang Kamu",
-            value: data.lastName,
-            fieldType: .text
+            key: .address,
+            value: data.location,
+            fieldType: .text,
+            parameter: "location"
         ))
         profileInformation.append(ProfileInfoField(
-            key: "Pendidikan",
-            value: data.lastName,
-            fieldType: .text
+            key: .about,
+            value: data.about,
+            fieldType: .text,
+            parameter: "about"
         ))
         profileInformation.append(ProfileInfoField(
-            key: "Pekerjaan",
-            value: data.lastName,
-            fieldType: .text
+            key: .pendidikan,
+            value: data.education,
+            fieldType: .text,
+            parameter: "education"
+        ))
+        profileInformation.append(ProfileInfoField(
+            key: .pekerjaan,
+            value: data.occupation,
+            fieldType: .text,
+            parameter: "occupation"
         ))
         return profileInformation
     }
@@ -114,21 +126,24 @@ final class ProfileInfoDummyData {
         var sandiInformation: [ProfileInfoField] = []
         
         sandiInformation.append(ProfileInfoField(
-            key: "Masukan Kata Sandi Lama",
+            key: .sandiLama,
             value: "123123",
-            fieldType: .password
+            fieldType: .password,
+            parameter: ""
         ))
         
         sandiInformation.append(ProfileInfoField(
-            key: "Kata Sandi Baru",
+            key: .sandiBaru,
             value: "123123",
-            fieldType: .password
+            fieldType: .password,
+            parameter: ""
         ))
         
         sandiInformation.append(ProfileInfoField(
-            key: "Konfirmasi Kata Sandi Baru",
+            key: .sandiKonfirmasi,
             value: "123123",
-            fieldType: .password
+            fieldType: .password,
+            parameter: ""
         ))
         
         return sandiInformation
@@ -138,45 +153,58 @@ final class ProfileInfoDummyData {
         var dataLaporInformation: [ProfileInfoField] = []
         
         dataLaporInformation.append(ProfileInfoField(
-            key: "No KTP/SIM/Pasport",
-            value: "231312323",
-            fieldType: .number
+            key: .identitas,
+            value: data.informant?.identity,
+            fieldType: .number,
+            parameter: "identity_number"
         ))
         
         dataLaporInformation.append(ProfileInfoField(
-            key: "Tempat Lahir",
-            value: "Yogyakarta",
-            fieldType: .text
+            key: .pob,
+            value: data.informant?.pob,
+            fieldType: .text,
+            parameter: "pob"
         ))
         
         dataLaporInformation.append(ProfileInfoField(
-            key: "Jenis Kelamin",
-            value: "Laki-laki",
-            fieldType: .dropdown
+            key: .dob,
+            value: data.informant?.dob,
+            fieldType: .date,
+            parameter: "dob"))
+
+        dataLaporInformation.append(ProfileInfoField(
+            key: .gender,
+            value: data.informant?.genderString,
+            fieldType: .gender,
+            parameter: "gender"
         ))
         
         dataLaporInformation.append(ProfileInfoField(
-            key: "Pekerjaan",
-            value: "PNS",
-            fieldType: .text
+            key: .pekerjaan,
+            value: data.informant?.occupation,
+            fieldType: .text,
+            parameter: "occupation"
         ))
         
         dataLaporInformation.append(ProfileInfoField(
-            key: "Kewarganegaraan",
-            value: "Indonesia",
-            fieldType: .text
+            key: .nationality,
+            value: data.informant?.nationality,
+            fieldType: .text,
+            parameter: "nationality"
         ))
         
         dataLaporInformation.append(ProfileInfoField(
-            key: "Alamat",
-            value: "Jalan Viva La",
-            fieldType: .text
+            key: .address,
+            value: data.informant?.address,
+            fieldType: .text,
+            parameter: "address"
         ))
         
         dataLaporInformation.append(ProfileInfoField(
-            key: "No Tell/HP",
-            value: "0239929333",
-            fieldType: .text
+            key: .phone,
+            value: data.informant?.phone,
+            fieldType: .text,
+            parameter: "phone_number"
         ))
         
         return dataLaporInformation

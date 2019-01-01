@@ -32,38 +32,41 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8d3-CM-t9g">
                                     <rect key="frame" x="0.0" y="0.0" width="335" height="92"/>
                                     <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Ux-BK-12r">
+                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="2Ux-BK-12r">
                                             <rect key="frame" x="0.0" y="14" width="335" height="64"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XcL-Sd-5jW" customClass="RoundView" customModule="Common">
+                                                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XcL-Sd-5jW" customClass="RoundView" customModule="Common">
                                                     <rect key="frame" x="0.0" y="0.0" width="64" height="64"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icDummyPerson" translatesAutoresizingMaskIntoConstraints="NO" id="x5B-AN-vqg">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="x5B-AN-vqg">
                                                             <rect key="frame" x="0.0" y="0.0" width="64" height="64"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="64" id="NQk-Wz-Ste"/>
+                                                                <constraint firstAttribute="height" constant="64" id="eXf-AM-pfZ"/>
+                                                            </constraints>
                                                         </imageView>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="bottom" secondItem="x5B-AN-vqg" secondAttribute="bottom" id="C06-mw-YK0"/>
-                                                        <constraint firstAttribute="trailing" secondItem="x5B-AN-vqg" secondAttribute="trailing" id="CsB-bJ-EO4"/>
-                                                        <constraint firstItem="x5B-AN-vqg" firstAttribute="leading" secondItem="XcL-Sd-5jW" secondAttribute="leading" id="Ewb-OS-fTQ"/>
-                                                        <constraint firstAttribute="width" constant="64" id="RnU-nA-6ue"/>
-                                                        <constraint firstItem="x5B-AN-vqg" firstAttribute="top" secondItem="XcL-Sd-5jW" secondAttribute="top" id="for-i2-ZvJ"/>
+                                                        <constraint firstItem="x5B-AN-vqg" firstAttribute="leading" secondItem="XcL-Sd-5jW" secondAttribute="leading" id="7ds-EP-ovP"/>
+                                                        <constraint firstAttribute="bottom" secondItem="x5B-AN-vqg" secondAttribute="bottom" id="Pb7-rk-lew"/>
+                                                        <constraint firstAttribute="trailing" secondItem="x5B-AN-vqg" secondAttribute="trailing" id="Rt0-rl-5Hm"/>
+                                                        <constraint firstItem="x5B-AN-vqg" firstAttribute="top" secondItem="XcL-Sd-5jW" secondAttribute="top" id="yuF-mx-VhF"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                            <real key="value" value="50"/>
+                                                            <real key="value" value="32"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jfC-xH-fys">
-                                                    <rect key="frame" x="64" y="0.0" width="271" height="64"/>
+                                                    <rect key="frame" x="74" y="0.0" width="261" height="64"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="n4p-eB-jkT">
-                                                            <rect key="frame" x="0.0" y="0.0" width="271" height="64"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="261" height="64"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dov-tN-jr3" customClass="Label" customModule="Common">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="271" height="39"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="261" height="39"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -75,7 +78,7 @@
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bcm-oO-FEh">
-                                                                    <rect key="frame" x="0.0" y="39" width="271" height="25"/>
+                                                                    <rect key="frame" x="0.0" y="39" width="261" height="25"/>
                                                                     <subviews>
                                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oKm-Wt-jO4" customClass="Button" customModule="Common">
                                                                             <rect key="frame" x="0.0" y="0.0" width="123" height="25"/>
@@ -98,7 +101,7 @@
                                                                             </userDefinedRuntimeAttributes>
                                                                         </button>
                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0iN-j5-PvY">
-                                                                            <rect key="frame" x="123" y="0.0" width="148" height="25"/>
+                                                                            <rect key="frame" x="123" y="0.0" width="138" height="25"/>
                                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         </view>
                                                                     </subviews>
@@ -182,7 +185,6 @@ Who cares anyway!</string>
     </objects>
     <resources>
         <image name="baselineVerified48Px" width="16" height="16"/>
-        <image name="icDummyPerson" width="64" height="64"/>
         <image name="icUnverified" width="16" height="16"/>
     </resources>
 </document>

@@ -89,7 +89,8 @@ final class ProfileViewModel: IProfileViewModel, IProfileViewModelInput, IProfil
         viewWillAppearI = viewWillAppearS.asObserver()
         
         // MARK
-        // Get user data from cloud
+        // Get user data from cloud and Local
+        let local: Observable<UserResponse> = AppState.local(key: .me)
         let cloud = NetworkService.instance.requestObject(
             PantauAuthAPI.me,
             c: BaseResponse<UserResponse>.self)
@@ -103,6 +104,9 @@ final class ProfileViewModel: IProfileViewModel, IProfileViewModelInput, IProfil
             .trackActivity(activityIndicator)
             .asObservable()
             .catchErrorJustComplete()
+        
+        let userData = viewWillAppearS
+            .flatMapLatest({ Observable.merge(local, cloud)})
         
         // MARK
         // Get Informations cloud
@@ -126,7 +130,7 @@ final class ProfileViewModel: IProfileViewModel, IProfileViewModelInput, IProfil
         // MARK
         // Click setting with latest user data
         let setting = settingS
-            .withLatestFrom(cloud)
+            .withLatestFrom(userData)
             .flatMapLatest { (user) -> Observable<Void> in
                 return navigator.launchSetting(user: user.user)
             }
@@ -190,7 +194,7 @@ final class ProfileViewModel: IProfileViewModel, IProfileViewModelInput, IProfil
         
         
         clusterO = cluster
-        userDataO = cloud.asDriverOnErrorJustComplete()
+        userDataO = userData.asDriverOnErrorJustComplete()
         informantDataO = informant.asDriverOnErrorJustComplete()
         errorO = errorTracker.asDriver()
     }

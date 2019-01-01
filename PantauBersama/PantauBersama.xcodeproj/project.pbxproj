@@ -144,6 +144,13 @@
 		845C571521CE122B00EDCDFE /* IconTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845C571421CE122B00EDCDFE /* IconTableCell.swift */; };
 		845C571721CE1B5900EDCDFE /* BadgeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 845C571621CE1B5900EDCDFE /* BadgeCell.xib */; };
 		845C571921CE1C9900EDCDFE /* BadgeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845C571821CE1C9900EDCDFE /* BadgeCell.swift */; };
+		84619D3821DA851200EB58CF /* EditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84619D3721DA851200EB58CF /* EditViewModel.swift */; };
+		84619D3A21DA85D200EB58CF /* EditCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84619D3921DA85D200EB58CF /* EditCoordinator.swift */; };
+		84619D3C21DA88C800EB58CF /* ItemInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84619D3B21DA88C800EB58CF /* ItemInfoCell.xib */; };
+		84619D3E21DA89F600EB58CF /* ItemInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84619D3D21DA89F600EB58CF /* ItemInfoCell.swift */; };
+		84619D4021DA959400EB58CF /* SectionItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84619D3F21DA959400EB58CF /* SectionItemCell.swift */; };
+		84619D4221DA95D200EB58CF /* SectionItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84619D4121DA95D200EB58CF /* SectionItemCell.xib */; };
+		84619D4421DA9A9D00EB58CF /* EditController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84619D4321DA9A9D00EB58CF /* EditController.swift */; };
 		849CABCA21CE89DD00912F8E /* SettingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849CABC921CE89DD00912F8E /* SettingController.swift */; };
 		849CABCC21CE8A5100912F8E /* SettingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849CABCB21CE8A5100912F8E /* SettingCoordinator.swift */; };
 		849CABCE21CE8AC300912F8E /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849CABCD21CE8AC300912F8E /* SettingViewModel.swift */; };
@@ -192,8 +199,6 @@
 		84E2855B21CA7C4800298E31 /* FilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E2855A21CA7C4800298E31 /* FilterViewModel.swift */; };
 		84E6933E21D2936E00EA5464 /* HeaderEditProfile.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84E6933D21D2936E00EA5464 /* HeaderEditProfile.xib */; };
 		84E6934021D2946C00EA5464 /* HeaderEditProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E6933F21D2946C00EA5464 /* HeaderEditProfile.swift */; };
-		84E6934221D294FA00EA5464 /* SubmitFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84E6934121D294FA00EA5464 /* SubmitFooterView.xib */; };
-		84E6934421D2955800EA5464 /* SubmitFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E6934321D2955800EA5464 /* SubmitFooterView.swift */; };
 		84E6934621D296BB00EA5464 /* SectionOfProfileEditData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E6934521D296BB00EA5464 /* SectionOfProfileEditData.swift */; };
 		84F6980921C8D28B00890917 /* PilpresViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F6980821C8D28A00890917 /* PilpresViewController.swift */; };
 		84F6980B21C8D2B100890917 /* JanjiPolitikViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F6980A21C8D2B100890917 /* JanjiPolitikViewController.swift */; };
@@ -394,6 +399,13 @@
 		845C571421CE122B00EDCDFE /* IconTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconTableCell.swift; sourceTree = "<group>"; };
 		845C571621CE1B5900EDCDFE /* BadgeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BadgeCell.xib; sourceTree = "<group>"; };
 		845C571821CE1C9900EDCDFE /* BadgeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeCell.swift; sourceTree = "<group>"; };
+		84619D3721DA851200EB58CF /* EditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewModel.swift; sourceTree = "<group>"; };
+		84619D3921DA85D200EB58CF /* EditCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCoordinator.swift; sourceTree = "<group>"; };
+		84619D3B21DA88C800EB58CF /* ItemInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ItemInfoCell.xib; sourceTree = "<group>"; };
+		84619D3D21DA89F600EB58CF /* ItemInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemInfoCell.swift; sourceTree = "<group>"; };
+		84619D3F21DA959400EB58CF /* SectionItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionItemCell.swift; sourceTree = "<group>"; };
+		84619D4121DA95D200EB58CF /* SectionItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SectionItemCell.xib; sourceTree = "<group>"; };
+		84619D4321DA9A9D00EB58CF /* EditController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditController.swift; sourceTree = "<group>"; };
 		849CABC921CE89DD00912F8E /* SettingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingController.swift; sourceTree = "<group>"; };
 		849CABCB21CE8A5100912F8E /* SettingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCoordinator.swift; sourceTree = "<group>"; };
 		849CABCD21CE8AC300912F8E /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
@@ -443,8 +455,6 @@
 		84E2855A21CA7C4800298E31 /* FilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewModel.swift; sourceTree = "<group>"; };
 		84E6933D21D2936E00EA5464 /* HeaderEditProfile.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderEditProfile.xib; sourceTree = "<group>"; };
 		84E6933F21D2946C00EA5464 /* HeaderEditProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderEditProfile.swift; sourceTree = "<group>"; };
-		84E6934121D294FA00EA5464 /* SubmitFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SubmitFooterView.xib; sourceTree = "<group>"; };
-		84E6934321D2955800EA5464 /* SubmitFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitFooterView.swift; sourceTree = "<group>"; };
 		84E6934521D296BB00EA5464 /* SectionOfProfileEditData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionOfProfileEditData.swift; sourceTree = "<group>"; };
 		84F6980821C8D28A00890917 /* PilpresViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PilpresViewController.swift; sourceTree = "<group>"; };
 		84F6980A21C8D2B100890917 /* JanjiPolitikViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JanjiPolitikViewController.swift; sourceTree = "<group>"; };
@@ -791,6 +801,7 @@
 		840850C021D2592300696CB3 /* ProfileEdit */ = {
 			isa = PBXGroup;
 			children = (
+				84619D3621DA84EA00EB58CF /* EditController */,
 				840850C621D25D0900696CB3 /* Components */,
 				840850C121D2593E00696CB3 /* ViewController */,
 				840850C421D25CB000696CB3 /* ProfileEditViewModel.swift */,
@@ -818,10 +829,12 @@
 				840850CD21D2611D00696CB3 /* DateViewCell.swift */,
 				84E6933D21D2936E00EA5464 /* HeaderEditProfile.xib */,
 				84E6933F21D2946C00EA5464 /* HeaderEditProfile.swift */,
-				84E6934121D294FA00EA5464 /* SubmitFooterView.xib */,
-				84E6934321D2955800EA5464 /* SubmitFooterView.swift */,
 				842A49F421D7749D0050AA51 /* HeaderDataLapor.xib */,
 				842A49F621D775420050AA51 /* HeaderDataLapor.swift */,
+				84619D3B21DA88C800EB58CF /* ItemInfoCell.xib */,
+				84619D3D21DA89F600EB58CF /* ItemInfoCell.swift */,
+				84619D3F21DA959400EB58CF /* SectionItemCell.swift */,
+				84619D4121DA95D200EB58CF /* SectionItemCell.xib */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -1172,6 +1185,16 @@
 			children = (
 			);
 			path = SubModules;
+			sourceTree = "<group>";
+		};
+		84619D3621DA84EA00EB58CF /* EditController */ = {
+			isa = PBXGroup;
+			children = (
+				84619D3721DA851200EB58CF /* EditViewModel.swift */,
+				84619D3921DA85D200EB58CF /* EditCoordinator.swift */,
+				84619D4321DA9A9D00EB58CF /* EditController.swift */,
+			);
+			path = EditController;
 			sourceTree = "<group>";
 		};
 		849CABC521CE897E00912F8E /* Setting */ = {
@@ -1549,6 +1572,7 @@
 				845C56FD21CD14CE00EDCDFE /* HeaderProfile.xib in Resources */,
 				13812C1F21CAA48700CAB327 /* PenpolController.xib in Resources */,
 				84A07F9D21D0DC4B00269C6B /* KTPController.xib in Resources */,
+				84619D3C21DA88C800EB58CF /* ItemInfoCell.xib in Resources */,
 				8441DB5621CCF19C00B078DF /* DetailJanjiController.xib in Resources */,
 				13F456AF21D36A8500CE45F1 /* UndangAnggotaController.xib in Resources */,
 				84F892AC21C787D800DC1048 /* Lato-Hairline.ttf in Resources */,
@@ -1567,10 +1591,10 @@
 				84F6981721C9364700890917 /* LinimasaJanjiCell.xib in Resources */,
 				11E107DC21CFD99900B7B074 /* QuizResultController.xib in Resources */,
 				11E107C221CF4C6B00B7B074 /* PenpolInfoCell.xib in Resources */,
-				84E6934221D294FA00EA5464 /* SubmitFooterView.xib in Resources */,
 				844C3D4A21C4ED6E00199871 /* LaunchScreen.storyboard in Resources */,
 				84F892B521C7887800DC1048 /* BwModelicaSS01-BoldCondensed.otf in Resources */,
 				845C570021CD195600EDCDFE /* ProfileController.xib in Resources */,
+				84619D4221DA95D200EB58CF /* SectionItemCell.xib in Resources */,
 				11B3C79721D1126700EDCECB /* QuizAnswerKeyCell.xib in Resources */,
 				84D01B9B21D20C480000492F /* SettingCell.xib in Resources */,
 				84B2669F21D4DB9A00C7B783 /* ProfileEditController.xib in Resources */,
@@ -1793,6 +1817,7 @@
 				11B1460221D749C300BB26C8 /* HeaderAskView.swift in Sources */,
 				840850BF21D256C200696CB3 /* SectionOfProfileInfoData.swift in Sources */,
 				844C2BA721CC112700BC439A /* LinimasaHeaderView.swift in Sources */,
+				84619D3821DA851200EB58CF /* EditViewModel.swift in Sources */,
 				11B145FE21D744A100BB26C8 /* BannerInfoAskView.swift in Sources */,
 				11E107A821CD33CA00B7B074 /* CreateJanjiCoordinator.swift in Sources */,
 				11E107A721CD33CA00B7B074 /* CreateJanjiViewModel.swift in Sources */,
@@ -1804,6 +1829,7 @@
 				13F4569F21CF986600CE45F1 /* CreateAskCoordinator.swift in Sources */,
 				844C3D8821C5265600199871 /* AppCoordinator.swift in Sources */,
 				8441DB4121CCBECF00B078DF /* FilterModel.swift in Sources */,
+				84619D4021DA959400EB58CF /* SectionItemCell.swift in Sources */,
 				8441DB3C21CCA6C500B078DF /* ItemRadioCell.swift in Sources */,
 				84A07F9F21D0DFA200269C6B /* KTPController.swift in Sources */,
 				11E107C921CF626800B7B074 /* PenpolInfoCellViewModel.swift in Sources */,
@@ -1825,6 +1851,7 @@
 				845C570F21CE0DA400EDCDFE /* ClusterCell.swift in Sources */,
 				845C570B21CD3E9700EDCDFE /* SectionCell.swift in Sources */,
 				84E2854421CA195C00298E31 /* CustomActionSheet.swift in Sources */,
+				84619D3A21DA85D200EB58CF /* EditCoordinator.swift in Sources */,
 				844C3D6D21C51CE900199871 /* HomeController.swift in Sources */,
 				84E6934621D296BB00EA5464 /* SectionOfProfileEditData.swift in Sources */,
 				84F6980B21C8D2B100890917 /* JanjiPolitikViewController.swift in Sources */,
@@ -1836,6 +1863,7 @@
 				84F6981921C93B8900890917 /* LinimasaJanjiCell.swift in Sources */,
 				11E1079C21CD1B5F00B7B074 /* QuizNavigator.swift in Sources */,
 				1183F0E021D53A9100435D31 /* QuestionModel.swift in Sources */,
+				84619D3E21DA89F600EB58CF /* ItemInfoCell.swift in Sources */,
 				84A07FC421D14E8000269C6B /* ReqClusterViewModel.swift in Sources */,
 				84F6981521C8FAB000890917 /* UIControl.swift in Sources */,
 				84A07FA421D0E27F00269C6B /* SignatureController.swift in Sources */,
@@ -1862,10 +1890,10 @@
 				84A07F9A21D0DBE200269C6B /* IdentitasController.swift in Sources */,
 				84D01B9D21D20CA20000492F /* SettingCell.swift in Sources */,
 				11702DD821CB1205001AEE3F /* TrendCell.swift in Sources */,
-				84E6934421D2955800EA5464 /* SubmitFooterView.swift in Sources */,
 				844C3D7821C51EFD00199871 /* HomeCoordinator.swift in Sources */,
 				845C571921CE1C9900EDCDFE /* BadgeCell.swift in Sources */,
 				11E107C521CF534700B7B074 /* PenpolInfoCoordinator.swift in Sources */,
+				84619D4421DA9A9D00EB58CF /* EditController.swift in Sources */,
 				842A4A0521D7E46B0050AA51 /* KTPCoordinator.swift in Sources */,
 				84A07FB621D0ED8100269C6B /* SuccessController.swift in Sources */,
 				845C570721CD1D8F00EDCDFE /* ProfileCoordinator.swift in Sources */,

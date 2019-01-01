@@ -12,6 +12,8 @@ import Networking
 
 protocol ProfileEditNavigator {
     var finish: Observable<Void>! { get set }
+    func back()
+    func launchMore(_ item: SectionOfProfileInfoData) -> Observable<Void>
 }
 
 class ProfileEditCoordinator: BaseCoordinator<Void> {
@@ -30,6 +32,7 @@ class ProfileEditCoordinator: BaseCoordinator<Void> {
     override func start() -> Observable<CoordinationResult> {
         let viewModel = ProfileEditViewModel(navigator: self, data: data, type: type)
         let viewController = ProfileEditController()
+        viewController.user = data
         viewController.viewModel = viewModel
         navigationController.pushViewController(viewController, animated: true)
         return finish.do(onNext: { [weak self] (_) in
@@ -41,6 +44,12 @@ class ProfileEditCoordinator: BaseCoordinator<Void> {
 
 extension ProfileEditCoordinator: ProfileEditNavigator {
     
+    func launchMore(_ item: SectionOfProfileInfoData) -> Observable<Void> {
+        let editCoordinator = EditCoordinator(navigationController: navigationController, item: item)
+        return coordinate(to: editCoordinator)
+    }
     
-    
+    func back() {
+        navigationController.popViewController(animated: true)
+    }
 }

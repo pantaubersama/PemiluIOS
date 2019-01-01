@@ -19,7 +19,7 @@ public struct Informant: Codable {
     public let id: String
     public var identity: String?
     public var pob: String?
-    public var dob: String
+    public var dob: String?
     public var gender: Int?
     public var genderString: String?
     public var occupation: String?

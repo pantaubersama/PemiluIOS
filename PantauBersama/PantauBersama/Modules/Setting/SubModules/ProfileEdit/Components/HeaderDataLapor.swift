@@ -8,11 +8,17 @@
 
 import UIKit
 import Common
+import RxSwift
 
 class HeaderDataLapor: UIView {
     
+    @IBOutlet weak var sectionEdit: SectionItemCell!
+    
+    
+    var disposeBag: DisposeBag = DisposeBag()
+    
+    
     override init(frame: CGRect) {
-//        let frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 82.0)
         super.init(frame: frame)
         setup()
     }
