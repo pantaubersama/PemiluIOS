@@ -77,6 +77,10 @@ extension ProfileCoordinator: ProfileNavigator {
 }
 
 extension ProfileCoordinator: LinimasaNavigator {
+    func launchBannerInfo(bannerInfo: BannerInfo) -> Observable<Void> {
+        return Observable.never()
+    }
+    
     
     func launchProfile() -> Observable<Void> {
         return Observable.never()

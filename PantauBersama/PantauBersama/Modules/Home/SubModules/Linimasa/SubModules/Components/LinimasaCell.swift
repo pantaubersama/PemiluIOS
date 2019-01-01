@@ -10,8 +10,11 @@ import UIKit
 import Common
 import RxSwift
 import RxCocoa
+import Networking
 
-class LinimasaCell: UITableViewCell, IReusableCell  {
+typealias LinimasaCellConfigured = CellConfigurator<LinimasaCell, LinimasaCell.Input>
+
+class LinimasaCell: UITableViewCell  {
     
     @IBOutlet weak var avatar: UIImageView!
     @IBOutlet weak var name: Label!
@@ -20,25 +23,45 @@ class LinimasaCell: UITableViewCell, IReusableCell  {
     @IBOutlet weak var thumbnail: UIImageView!
     @IBOutlet weak var more: UIButton!
     
-    
     private(set) var disposeBag = DisposeBag()
-    
-    var pilpres: Any! {
-        didSet {
-            
-        }
-    }
     
     override func prepareForReuse() {
         super.prepareForReuse()
         disposeBag = DisposeBag()
     }
     
-    func bind(viewModel: PilpresViewModel) {
+}
+
+extension LinimasaCell: IReusableCell {
+    
+    struct Input {
+        let viewModel: PilpresViewModel
+        let feeds: Feeds
+    }
+    
+    func configureCell(item: Input) {
+        let feeds = item.feeds
+        let bag = DisposeBag()
+        
+        configure(data: feeds)
+        
         more.rx.tap
-            .map({ self.pilpres })
-            .bind(to: viewModel.input.moreTrigger)
-            .disposed(by: disposeBag)
+            .map({ feeds })
+            .bind(to: item.viewModel.input.moreTrigger)
+            .disposed(by: bag)
+        
+        disposeBag = bag
+    }
+    
+    func configure(data: Feeds) {
+        
+        name.text = data.account.name
+        content.text = data.source.text
+        titleTeam.text = data.team.title
+        
+        avatar.af_setImage(withURL: URL(string: data.account.profileImageUrl)!)
+        thumbnail.af_setImage(withURL: URL(string: data.team.avatar)!)
+
     }
     
 }
