@@ -41,6 +41,10 @@ class JanjiPolitikViewController: UITableViewController {
             .bind(to: viewModel.input.refreshTrigger)
             .disposed(by: disposeBag)
         
+        tableView.rx.itemSelected
+            .bind(to: viewModel.input.itemSelectedTrigger)
+            .disposed(by: disposeBag)
+        
         viewModel.output.bannerInfo
             .drive(onNext: { (banner) in
                 self.headerView.config(banner: banner, viewModel: self.viewModel.headerViewModel)
@@ -107,6 +111,10 @@ class JanjiPolitikViewController: UITableViewController {
             .disposed(by: disposeBag)
         
         viewModel.output.infoSelected
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.itemSelected
             .drive()
             .disposed(by: disposeBag)
     }

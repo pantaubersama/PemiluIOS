@@ -8,7 +8,9 @@
 
 import Foundation
 import RxSwift
+import Networking
 
 protocol JanjiPolitikNavigator {
     func shareJanji(data: Any) -> Observable<Void>
+    func launchJanjiDetail(data: JanjiPolitik) -> Observable<Void>
 }

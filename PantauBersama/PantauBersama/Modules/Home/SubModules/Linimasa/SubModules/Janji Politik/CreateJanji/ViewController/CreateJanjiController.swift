@@ -9,10 +9,16 @@
 import UIKit
 import RxCocoa
 import RxSwift
+import Common
 
 class CreateJanjiController: UIViewController {
     
-    @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var avatar: UIImageView!
+    @IBOutlet weak var name: Label!
+    @IBOutlet weak var titleJanji: TextField!
+    @IBOutlet weak var contentJanji: UITextView!
+    @IBOutlet weak var contentHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var textCount: Label!
     var viewModel: ICreateJanjiViewModel!
     
     private let disposeBag = DisposeBag()
@@ -28,6 +34,10 @@ class CreateJanjiController: UIViewController {
         navigationItem.rightBarButtonItem = done
         navigationController?.navigationBar.configure(with: .white)
         
+        contentJanji.rx
+            .setDelegate(self)
+            .disposed(by: disposeBag)
+        
         // MARK
         // Setup Editor
         // need editor custom
@@ -38,10 +48,100 @@ class CreateJanjiController: UIViewController {
         back.rx.tap
             .bind(to: viewModel.input.backI)
             .disposed(by: disposeBag)
+        
+        done.rx.tap
+            .bind(to: viewModel.input.doneI)
+            .disposed(by: disposeBag)
+        
+        titleJanji.rx.text.orEmpty
+            .bind(to: viewModel.input.titleI)
+            .disposed(by: disposeBag)
+        
+        contentJanji.rx.text.orEmpty
+            .bind(to: viewModel.input.bodyI)
+            .disposed(by: disposeBag)
+        
+        viewModel.output.userDataO
+            .drive(onNext: { [weak self] (response) in
+                guard let `self` = self else { return }
+                let user = response.user
+                
+                self.name.text = user.firstName
+                if let url = user.avatar.thumbnail.url {
+                    self.avatar.af_setImage(withURL: URL(string: url)!)
+                }
+                
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.output.enableO
+            .drive(done.rx.isEnabled)
+            .disposed(by: disposeBag)
+        
+        viewModel.output.doneO
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.errorO
+            .drive(onNext: { [weak self] (error) in
+                guard let `self` = self else { return }
+                guard let alert = UIAlertController.alert(with: error) else { return }
+                self.navigationController?.present(alert, animated: true, completion: nil)
+            })
+            .disposed(by: disposeBag)
     }
     
     private func setupEditorView() {
+        contentJanji.text = "Beri deskripsi detail lebih lanjut dari Judul"
+        contentJanji.textColor = UIColor.lightGray
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.input.viewWillAppearI.onNext(())
     }
     
 }
+
+extension CreateJanjiController: UITextViewDelegate {
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == UIColor.lightGray {
+            textView.text = nil
+            textView.textColor = UIColor.black
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            textView.text = "Beri deskripsi detail lebih lanjut dari Judul"
+            textView.textColor = UIColor.lightGray
+        }
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        let newLength =  textView.text.count + text.count - range.length
+        
+        textCount.text =  String(newLength) + "/160"
+
+        return newLength < 160
+    }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        let size = CGSize(width: textView.frame.width, height: .infinity)
+        let estimateSize = textView.sizeThatFits(size)
+        if estimateSize.height > 200 {
+            contentHeightConstraint.constant = 200
+            textView.isScrollEnabled = true
+        } else if estimateSize.height > 100 {
+            contentHeightConstraint.constant = estimateSize.height
+            textView.isScrollEnabled = false
+        } else {
+            contentHeightConstraint.constant = 100
+            textView.isScrollEnabled = false
+        }
+    }
+}
+
+
 

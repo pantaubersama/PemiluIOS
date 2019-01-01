@@ -11,10 +11,11 @@ import RxCocoa
 
 protocol CreateJanjiNavigator {
     var finish: Observable<Void>! { get set }
+    func back()
 }
 
 
-class CreateJanjCoordinator: BaseCoordinator<Void>, CreateJanjiNavigator {
+class CreateJanjCoordinator: BaseCoordinator<Void> {
     
     private var navigationController: UINavigationController!
     var finish: Observable<Void>!
@@ -32,5 +33,14 @@ class CreateJanjCoordinator: BaseCoordinator<Void>, CreateJanjiNavigator {
         return finish.do(onNext: { [weak self] (_) in
             self?.navigationController.popViewController(animated: true)
         })
+    }
+}
+
+extension CreateJanjCoordinator: CreateJanjiNavigator {
+    func back() {
+        guard let viewController = navigationController.viewControllers.first else {
+            return
+        }
+        navigationController.popToViewController(viewController, animated: true)
     }
 }
