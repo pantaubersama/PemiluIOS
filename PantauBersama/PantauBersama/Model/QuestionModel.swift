@@ -14,8 +14,8 @@ public struct QuestionModel {
     let id, body: String
     let createdAt: CreatedAt
     let created: String
-    let likeCount: Int
-    let isLiked: Bool
+    var likeCount: Int
+    var isLiked: Bool
     let user: Creator
     
     init(question: Question) {

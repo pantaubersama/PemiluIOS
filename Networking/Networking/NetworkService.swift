@@ -34,7 +34,7 @@ public extension NetworkService {
     // return Single<> will call last request with generated new token from 401
     
     public func requestObject<T: TargetType, C: Decodable>(_ t: T, c: C.Type) -> Single<C> {
-        print("request url \(t.baseURL) \(t.path) \(t.headers)")
+        print("base url \(t.baseURL)\(t.path) \(t.headers)")
         return provider.rx.request(MultiTarget(t))
             .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background))
             .filterSuccessfulStatusAndRedirectCodes()
