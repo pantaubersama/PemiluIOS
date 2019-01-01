@@ -25,7 +25,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lLJ-qu-hwS">
                                 <rect key="frame" x="0.0" y="38.5" width="65" height="50.5"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TM9-nI-ays" customClass="ImageButton" customModule="Common">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TM9-nI-ays" customClass="ImageButton" customModule="Common">
                                         <rect key="frame" x="14.5" y="0.0" width="36" height="36"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="36" id="Fu8-cR-vI4"/>
@@ -37,10 +37,10 @@
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="image" keyPath="imageIcon" value="icUpVoteInactive"/>
                                             <userDefinedRuntimeAttribute type="color" keyPath="imageTintColor">
-                                                <color key="value" red="0.44705882349999998" green="0.44705882349999998" blue="0.44705882349999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <color key="value" red="0.48621892929999999" green="0.48630648850000002" blue="0.48621344570000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="color" keyPath="imagePressedTintColor">
-                                                <color key="value" red="0.68041622639999999" green="0.1499232352" blue="0.14898997550000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <color key="value" red="0.62683063750000001" green="0.046659030019999999" blue="0.11002182219999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </button>
@@ -80,14 +80,11 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e7O-xs-yBC">
-                        <rect key="frame" x="0.0" y="128.5" width="322" height="1"/>
+                        <rect key="frame" x="0.0" y="125.5" width="322" height="4"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="1" id="ImR-lB-I6e"/>
-                        </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Kapan realisasi penghapusan system tenaga kerja alih daya diterapkan seutuhnya? Kita ini insan bukan seekor sapi!" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aOn-rt-VCD" customClass="Label" customModule="Common">
-                        <rect key="frame" x="72" y="48" width="233" height="46.5"/>
+                        <rect key="frame" x="72" y="48" width="233" height="43.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -98,24 +95,16 @@
                         </userDefinedRuntimeAttributes>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yCk-mR-ztm">
-                        <rect key="frame" x="72" y="98.5" width="250" height="30"/>
+                        <rect key="frame" x="72" y="95.5" width="250" height="30"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="new-44-Vpe">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="new-44-Vpe">
                                 <rect key="frame" x="171" y="5" width="20" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="E6r-KO-pPQ"/>
                                     <constraint firstAttribute="width" constant="20" id="oxt-Jg-tFu"/>
                                 </constraints>
+                                <color key="tintColor" red="0.48621892929999999" green="0.48630648850000002" blue="0.48621344570000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" image="icShare"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="image" keyPath="imageIcon" value="icShare"/>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="imageTintColor">
-                                        <color key="value" red="0.48627450979999998" green="0.48627450979999998" blue="0.48627450979999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="imagePressedTintColor">
-                                        <color key="value" red="0.68041622639999999" green="0.1499232352" blue="0.14898997550000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mf7-JO-fhr">
                                 <rect key="frame" x="211.5" y="5" width="20" height="20"/>
@@ -124,15 +113,6 @@
                                     <constraint firstAttribute="height" constant="20" id="xA4-iJ-Doo"/>
                                 </constraints>
                                 <state key="normal" image="icMore"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="image" keyPath="imageIcon" value="icMore"/>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="imageTintColor">
-                                        <color key="value" red="0.48627450979999998" green="0.48627450979999998" blue="0.48627450979999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="imagePressedTintColor">
-                                        <color key="value" red="0.68041622639999999" green="0.1499232352" blue="0.14898997550000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                             </button>
                         </subviews>
                         <constraints>
@@ -146,7 +126,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Axi-i4-D7b">
                         <rect key="frame" x="72" y="11" width="170" height="28"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="MWQ-A9-Ubk">
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="MWQ-A9-Ubk">
                                 <rect key="frame" x="0.0" y="0.0" width="170" height="28"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o5a-ue-j1v" customClass="RoundView" customModule="Common">
@@ -159,7 +139,6 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="UBx-Yl-Mcc" firstAttribute="leading" secondItem="o5a-ue-j1v" secondAttribute="leading" id="Cd5-39-RIi"/>
-                                            <constraint firstAttribute="height" constant="28" id="Cxs-lB-uTM"/>
                                             <constraint firstAttribute="bottom" secondItem="UBx-Yl-Mcc" secondAttribute="bottom" id="GPb-nV-Efy"/>
                                             <constraint firstItem="UBx-Yl-Mcc" firstAttribute="top" secondItem="o5a-ue-j1v" secondAttribute="top" id="PP4-Re-XU7"/>
                                             <constraint firstAttribute="trailing" secondItem="UBx-Yl-Mcc" secondAttribute="trailing" id="VzF-1f-nYs"/>
@@ -213,11 +192,6 @@
                                     </stackView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="o5a-ue-j1v" firstAttribute="top" secondItem="MWQ-A9-Ubk" secondAttribute="top" id="F67-4o-ype"/>
-                                    <constraint firstItem="P26-B2-TId" firstAttribute="top" secondItem="MWQ-A9-Ubk" secondAttribute="top" constant="2" id="FLb-HB-Chh"/>
-                                    <constraint firstItem="P26-B2-TId" firstAttribute="leading" secondItem="o5a-ue-j1v" secondAttribute="trailing" constant="2" id="bTP-b1-5Iz"/>
-                                    <constraint firstAttribute="bottom" secondItem="P26-B2-TId" secondAttribute="bottom" constant="2" id="cSY-aU-LpX"/>
-                                    <constraint firstAttribute="bottom" secondItem="o5a-ue-j1v" secondAttribute="bottom" id="ejR-jM-7dn"/>
                                     <constraint firstItem="o5a-ue-j1v" firstAttribute="leading" secondItem="MWQ-A9-Ubk" secondAttribute="leading" id="h2I-Wq-oem"/>
                                 </constraints>
                             </stackView>
@@ -265,7 +239,7 @@
                     <constraint firstAttribute="bottom" secondItem="e7O-xs-yBC" secondAttribute="bottom" id="l3n-T5-kqd"/>
                     <constraint firstAttribute="trailing" secondItem="aOn-rt-VCD" secondAttribute="trailing" constant="17" id="tzT-f4-RuD"/>
                     <constraint firstItem="rFT-2r-6Wi" firstAttribute="leading" secondItem="Axi-i4-D7b" secondAttribute="trailing" id="uhG-vB-TUs"/>
-                    <constraint firstItem="yCk-mR-ztm" firstAttribute="top" secondItem="aOn-rt-VCD" secondAttribute="bottom" constant="4" id="xZX-Pw-x8L"/>
+                    <constraint firstItem="yCk-mR-ztm" firstAttribute="top" secondItem="aOn-rt-VCD" secondAttribute="bottom" priority="750" constant="4" id="xZX-Pw-x8L"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

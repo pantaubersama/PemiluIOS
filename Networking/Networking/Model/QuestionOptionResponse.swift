@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct QuestionReportResponse: Codable {
+public struct QuestionOptionResponse: Codable {
     public let data: DataClass
 }
 

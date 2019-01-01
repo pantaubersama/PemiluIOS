@@ -8,12 +8,14 @@
 
 import UIKit
 import RxSwift
+import Networking
 
 protocol LinimasaNavigator: PilpresNavigator, JanjiPolitikNavigator {
     func launchProfile() -> Observable<Void>
     func launchNotifications()
     func launchFilter() -> Observable<Void>
     func launchAddJanji() -> Observable<Void>
+    func launchBannerInfo(bannerInfo: BannerInfo) -> Observable<Void>
 }
 
 class LinimasaCoordinator: BaseCoordinator<Void> {
@@ -34,6 +36,10 @@ class LinimasaCoordinator: BaseCoordinator<Void> {
 }
 
 extension LinimasaCoordinator: LinimasaNavigator {
+    func launchBannerInfo(bannerInfo: BannerInfo) -> Observable<Void> {
+        let bannerInfoCoordinator = BannerInfoCoordinator(navigationController: self.navigationController, bannerInfo: bannerInfo)
+        return coordinate(to: bannerInfoCoordinator)
+    }
     
     func launchFilter() -> Observable<Void> {
         let filterCoordinator = FilterCoordinator(navigationController: navigationController)
