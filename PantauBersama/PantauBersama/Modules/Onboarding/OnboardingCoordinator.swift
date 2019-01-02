@@ -41,8 +41,10 @@ extension OnboardingCoordinator: OnboardingNavigator {
     
     func signIn() -> Observable<Void> {
         let urlString = "\(AppContext.instance.infoForKey("DOMAIN_SYMBOLIC"))/oauth/authorize?client_id=\(AppContext.instance.infoForKey("CLIENT_ID"))&response_type=code&redirect_uri=\(AppContext.instance.infoForKey("REDIRECT_URI"))&scope="
-        UIApplication.shared.open(URL(string: urlString)!, options: [:], completionHandler: nil)
-        return Observable.just(())
+//        UIApplication.shared.open(URL(string: urlString)!, options: [:], completionHandler: nil)
+//        return Observable.just(())
+        let webCoordinator = WebCoordinator(window: self.window, url: urlString)
+        return coordinate(to: webCoordinator)
     }
     
     func bypass() -> Observable<Void> {

@@ -159,6 +159,9 @@
 		84619D4021DA959400EB58CF /* SectionItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84619D3F21DA959400EB58CF /* SectionItemCell.swift */; };
 		84619D4221DA95D200EB58CF /* SectionItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84619D4121DA95D200EB58CF /* SectionItemCell.xib */; };
 		84619D4421DA9A9D00EB58CF /* EditController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84619D4321DA9A9D00EB58CF /* EditController.swift */; };
+		84619D4921DC961A00EB58CF /* WebController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84619D4821DC961A00EB58CF /* WebController.swift */; };
+		84619D4B21DC9A6A00EB58CF /* WebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84619D4A21DC9A6A00EB58CF /* WebViewModel.swift */; };
+		84619D4D21DC9ABD00EB58CF /* WebCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84619D4C21DC9ABD00EB58CF /* WebCoordinator.swift */; };
 		849CABCA21CE89DD00912F8E /* SettingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849CABC921CE89DD00912F8E /* SettingController.swift */; };
 		849CABCC21CE8A5100912F8E /* SettingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849CABCB21CE8A5100912F8E /* SettingCoordinator.swift */; };
 		849CABCE21CE8AC300912F8E /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849CABCD21CE8AC300912F8E /* SettingViewModel.swift */; };
@@ -422,6 +425,9 @@
 		84619D3F21DA959400EB58CF /* SectionItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionItemCell.swift; sourceTree = "<group>"; };
 		84619D4121DA95D200EB58CF /* SectionItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SectionItemCell.xib; sourceTree = "<group>"; };
 		84619D4321DA9A9D00EB58CF /* EditController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditController.swift; sourceTree = "<group>"; };
+		84619D4821DC961A00EB58CF /* WebController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebController.swift; sourceTree = "<group>"; };
+		84619D4A21DC9A6A00EB58CF /* WebViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewModel.swift; sourceTree = "<group>"; };
+		84619D4C21DC9ABD00EB58CF /* WebCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebCoordinator.swift; sourceTree = "<group>"; };
 		849CABC921CE89DD00912F8E /* SettingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingController.swift; sourceTree = "<group>"; };
 		849CABCB21CE8A5100912F8E /* SettingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCoordinator.swift; sourceTree = "<group>"; };
 		849CABCD21CE8AC300912F8E /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
@@ -1060,6 +1066,7 @@
 		844C3D6A21C5177A00199871 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				84619D4721DC960100EB58CF /* WebController */,
 				84A07FBD21D1461800269C6B /* ReqCluster */,
 				84A07F9021D0D3EE00269C6B /* Verifikasi */,
 				849CABC521CE897E00912F8E /* Setting */,
@@ -1259,6 +1266,16 @@
 				84619D4321DA9A9D00EB58CF /* EditController.swift */,
 			);
 			path = EditController;
+			sourceTree = "<group>";
+		};
+		84619D4721DC960100EB58CF /* WebController */ = {
+			isa = PBXGroup;
+			children = (
+				84619D4821DC961A00EB58CF /* WebController.swift */,
+				84619D4A21DC9A6A00EB58CF /* WebViewModel.swift */,
+				84619D4C21DC9ABD00EB58CF /* WebCoordinator.swift */,
+			);
+			path = WebController;
 			sourceTree = "<group>";
 		};
 		849CABC521CE897E00912F8E /* Setting */ = {
@@ -1877,6 +1894,7 @@
 				840850CE21D2611D00696CB3 /* DateViewCell.swift in Sources */,
 				11B3C79221D1110700EDCECB /* QuizAnswerController.swift in Sources */,
 				84FE6EBC21D5FCB9009A0F55 /* ErrorTracker.swift in Sources */,
+				84619D4D21DC9ABD00EB58CF /* WebCoordinator.swift in Sources */,
 				11E1079121CD0FE200B7B074 /* QuizDetailController.swift in Sources */,
 				11E107BC21CF4A6900B7B074 /* PenpolInfoController.swift in Sources */,
 				11D092E821CBEF6C0066D55D /* BannerInfoQuizCell.swift in Sources */,
@@ -1905,6 +1923,7 @@
 				13812C3921CC182500CAB327 /* AskViewCell.swift in Sources */,
 				84B2526821CC01F000565D82 /* AppState.swift in Sources */,
 				84B4DED821D375C600F60258 /* JanjiPolitikNavigator.swift in Sources */,
+				84619D4B21DC9A6A00EB58CF /* WebViewModel.swift in Sources */,
 				842A49FF21D79AA70050AA51 /* SelfIdentitasCoordinator.swift in Sources */,
 				840850CA21D25EB600696CB3 /* TextViewCell.swift in Sources */,
 				11E1079621CD126900B7B074 /* QuizDetailViewModel.swift in Sources */,
@@ -1913,6 +1932,7 @@
 				11B3C78D21D110DA00EDCECB /* QuizAnswerViewModel.swift in Sources */,
 				13F4569721CF981E00CE45F1 /* QuestionViewModel.swift in Sources */,
 				840850C321D25C7D00696CB3 /* ProfileEditController.swift in Sources */,
+				84619D4921DC961A00EB58CF /* WebController.swift in Sources */,
 				11E107DB21CFD99900B7B074 /* QuizResultViewModel.swift in Sources */,
 				11E107AA21CD33CA00B7B074 /* CreateJanjiController.swift in Sources */,
 				845C570F21CE0DA400EDCDFE /* ClusterCell.swift in Sources */,
