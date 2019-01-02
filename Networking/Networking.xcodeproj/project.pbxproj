@@ -190,7 +190,6 @@
 				842B650B21D9385100F95C13 /* Avatar.swift */,
 				842B650D21D9505A00F95C13 /* InformantResponse.swift */,
 				84619D3421DA21A200EB58CF /* Gender.swift */,
-				11C7BB2421DB36D5008CA49B /* QuestionReportResponse.swift */,
 				13F456B621DA7BD000CE45F1 /* Feeds.swift */,
 				13F456B821DA7F9A00CE45F1 /* FeedsResponse.swift */,
 				13F456BA21DA806900CE45F1 /* Meta.swift */,
@@ -681,6 +680,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = XLK9742Z44;
 				INFOPLIST_FILE = NetworkingTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -700,6 +700,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = XLK9742Z44;
 				INFOPLIST_FILE = NetworkingTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

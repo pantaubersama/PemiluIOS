@@ -39,9 +39,9 @@ enum SettingData: Int {
         case .badge:
             return "Badge"
         case .twitter:
-            return nil
+            return "Connect Twitter"
         case .facebook:
-            return nil
+            return "Connect Facebook"
         case .cluster:
             return "Cluster"
         case .pusatBantuan:
@@ -71,6 +71,10 @@ enum SettingData: Int {
             return #imageLiteral(resourceName: "blackVerified")
         case .badge:
             return #imageLiteral(resourceName: "group1174")
+        case .twitter:
+            return #imageLiteral(resourceName: "icTwitterCircle")
+        case .facebook:
+            return #imageLiteral(resourceName: "facebook")
         default:
             return nil
         }

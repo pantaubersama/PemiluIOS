@@ -123,7 +123,6 @@
 		1151D16321D64C9300E9F91D /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				1151D16421D64CAA00E9F91D /* UIImageView+async.swift */,
 				84619D4521DB683300EB58CF /* DateHelper.swift */,
 			);
 			path = Extension;
@@ -601,6 +600,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F51EF50C46CE7E2E19AE1628 /* Pods-Common.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
@@ -628,6 +628,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D0C86F94B18D2CFB51A563DE /* Pods-Common.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
@@ -654,8 +655,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4C08C67BBDD52BC5064B7EC3 /* Pods-CommonTests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = XLK9742Z44;
 				INFOPLIST_FILE = CommonTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -673,8 +675,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 40C1D3CEB3FC05B14DD97941 /* Pods-CommonTests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = XLK9742Z44;
 				INFOPLIST_FILE = CommonTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
