@@ -9,7 +9,7 @@
 public struct Team: Codable {
     public let id: Int
     public let title: String
-    public let avatar: String
+    public let avatar: String?
 }
 
 public struct Source: Codable {
@@ -21,7 +21,7 @@ public struct Account: Codable {
     public let id: String
     public let name: String
     public let username: String
-    public let profileImageUrl: String
+    public let profileImageUrl: String?
     
     enum CodingKeys: String, CodingKey {
         case id, name, username

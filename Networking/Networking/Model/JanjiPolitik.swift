@@ -8,34 +8,14 @@
 
 import Foundation
 
-public struct UserJanpol: Codable {
-    
-    public let id: String
-    public var email: String
-    public var firstName: String
-    public var lastName: String
-
-    
-    private enum CodingKeys: String, CodingKey {
-        case id
-        case email
-        case firstName = "first_name"
-        case lastName = "last_name"
-    }
-    
-    public var fullname: String? {
-        return firstName + " " + lastName
-    }
-}
-
 public struct JanjiPolitik: Codable {
     
     public let id: String
     public var title: String
     public var body: String
-    public var image: Image
+    public var image: Image?
     public var createdAt: String
-    public var user: UserJanpol
+    public var user: UserPantau
     
     enum CodingKeys: String, CodingKey {
         case id, title, body, image, user
