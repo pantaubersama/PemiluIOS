@@ -59,8 +59,13 @@ extension LinimasaCell: IReusableCell {
         content.text = data.source.text
         titleTeam.text = data.team.title
         
-        avatar.af_setImage(withURL: URL(string: data.account.profileImageUrl)!)
-        thumbnail.af_setImage(withURL: URL(string: data.team.avatar)!)
+        if let avatarUrl = data.account.profileImageUrl {
+            avatar.af_setImage(withURL: URL(string: avatarUrl)!)
+        }
+
+        if let thumbnailUrl = data.team.avatar {
+            thumbnail.af_setImage(withURL: URL(string: thumbnailUrl)!)
+        }
 
     }
     

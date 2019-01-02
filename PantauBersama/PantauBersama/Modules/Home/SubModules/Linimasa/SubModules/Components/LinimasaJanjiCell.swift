@@ -66,7 +66,10 @@ extension LinimasaJanjiCell: IReusableCell {
         title.text = data.title
         content.text = data.body
 
-        avatar.af_setImage(withURL: URL(string: data.image.large.url)!)
+        // TODO: replace with user avatar
+        if let avatarUrl = data.image?.large?.url {
+            self.avatar.af_setImage(withURL: URL(string: avatarUrl)!)
+        }
         
     }
     

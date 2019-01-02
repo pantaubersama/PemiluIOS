@@ -111,7 +111,10 @@ class DetailJanjiController: UIViewController {
     func configure(data: JanjiPolitik) {
         headerTitle.text = data.title
         contentSource.text = data.body
-        image.af_setImage(withURL: URL(string: data.image.large.url)!)
+        
+        if let url = data.image?.large?.url {
+            image.af_setImage(withURL: URL(string: url)!)
+        }
         
         nameLabel.text = data.user.fullname
         motoLabel.text = ""
