@@ -111,6 +111,14 @@ class BuatProfileController: UIViewController {
             .drive()
             .disposed(by: disposeBag)
         
+        viewModel.output.isEnabled
+            .do(onNext: { [weak self] (enable) in
+                guard let `self` = self else { return }
+                self.nextButton.backgroundColor = enable ? Color.primary_red : Color.grey_one
+            })
+            .drive(nextButton.rx.isEnabled)
+            .disposed(by: disposeBag)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {

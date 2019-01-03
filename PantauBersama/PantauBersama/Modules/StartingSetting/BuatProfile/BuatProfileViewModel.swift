@@ -32,6 +32,7 @@ final class BuatProfileViewModel: ViewModelType {
         let done: Driver<Void>
         let userDataO: Driver<UserResponse>
         let avatarO: Driver<Void>
+        let isEnabled: Driver<Bool>
     }
     
     private let avatarS = PublishSubject<UIImage?>()
@@ -98,6 +99,16 @@ final class BuatProfileViewModel: ViewModelType {
             .mapToVoid()
             .asDriverOnErrorJustComplete()
         
+        let isEnabled = Observable.combineLatest(
+            fullNameS, usernameS, descS, locationS,
+            educationS, occupationS)
+            .map { (f,u,d,l,e,o) -> Bool in
+                return f.count > 0 && u.count > 0
+                    && d.count > 0 && l.count > 0
+                    && e.count > 0 && o.count > 0
+            }
+            .startWith(false)
+            .asDriverOnErrorJustComplete()
         
         let done = doneS
             .withLatestFrom(Observable.combineLatest(
@@ -121,7 +132,8 @@ final class BuatProfileViewModel: ViewModelType {
         
         output = Output(done: done,
                         userDataO: userData.asDriverOnErrorJustComplete(),
-                        avatarO: avatarSelected)
+                        avatarO: avatarSelected,
+                        isEnabled: isEnabled)
         
     }
     

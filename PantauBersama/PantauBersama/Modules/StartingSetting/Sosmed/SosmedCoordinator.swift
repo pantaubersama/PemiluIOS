@@ -10,15 +10,18 @@ import RxSwift
 
 protocol SosmedNavigator {
     var finish: Observable<Void>! { get set }
+    func launchHome() -> Observable<Void>
 }
 
 final class SosmedCoordinator: BaseCoordinator<Void> {
     
     private let navigationController: UINavigationController
     var finish: Observable<Void>!
+    private let window: UIWindow
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
+        self.window = UIWindow()
     }
     
     override func start() -> Observable<CoordinationResult> {
@@ -34,4 +37,8 @@ final class SosmedCoordinator: BaseCoordinator<Void> {
 }
 
 extension SosmedCoordinator: SosmedNavigator {
+    func launchHome() -> Observable<Void> {
+        let homeCoordinator = HomeCoordinator(window: self.window)
+        return coordinate(to: homeCoordinator)
+    }
 }

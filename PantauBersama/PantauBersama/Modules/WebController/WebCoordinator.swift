@@ -53,7 +53,16 @@ extension WebCoordinator: WebNavigator {
         // MARK
         // State when user first install, will coordinate into
         // start setting configurateion (i.e : Buat Profil)
-        let buatProfilCoordinator = BuatProfileCoordinator(window: self.window)
-        return self.coordinate(to: buatProfilCoordinator)
+        let first: Data? = UserDefaults.Account.get(forKey: .firstTimeInstall)
+        if first == nil {
+            let buatProfilCoordinator = BuatProfileCoordinator(window: self.window)
+            return self.coordinate(to: buatProfilCoordinator)
+        } else if first != nil {
+            appCoordinator = AppCoordinator(window: self.window)
+            appCoordinator.start()
+                .subscribe()
+                .disposed(by: disposeBag)
+        }
+        return Observable.empty()
     }
 }

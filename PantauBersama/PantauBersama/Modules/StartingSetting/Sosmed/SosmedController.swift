@@ -39,6 +39,10 @@ class SosmedController: UITableViewController {
             .bind(to: viewModel.input.backI)
             .disposed(by: disposeBag)
         
+        done.rx.tap
+            .bind(to: viewModel.input.doneI)
+            .disposed(by: disposeBag)
+        
         dataSource = RxTableViewSectionedReloadDataSource<SectionOfSettingData>(configureCell: { (dataSource, tableView, indexPath, item) -> UITableViewCell in
             let cell = tableView.dequeueReusableCell(indexPath: indexPath) as SettingCell
             cell.configureCell(item: SettingCell.Input(data: item))
@@ -53,6 +57,10 @@ class SosmedController: UITableViewController {
         
         viewModel.output.itemsO
             .drive(tableView.rx.items(dataSource: dataSource))
+            .disposed(by: disposeBag)
+        
+        viewModel.output.doneO
+            .drive()
             .disposed(by: disposeBag)
     }
     

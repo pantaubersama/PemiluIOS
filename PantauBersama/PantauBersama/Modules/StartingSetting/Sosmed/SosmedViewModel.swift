@@ -18,21 +18,27 @@ final class SosmedViewModel: ViewModelType {
     
     struct Input {
         let backI: AnyObserver<Void>
+        let doneI: AnyObserver<Void>
     }
     
     struct Output {
         let itemsO: Driver<[SectionOfSettingData]>
+        let doneO: Driver<Void>
 //        let itemsSelectedO: Driver<Void>
     }
     
     private let backS = PublishSubject<Void>()
+    private let doneS = PublishSubject<Void>()
     private var navigator: SosmedNavigator
     
     init(navigator: SosmedNavigator) {
         self.navigator = navigator
         self.navigator.finish = backS
         
-        input = Input(backI: backS.asObserver())
+        input = Input(
+            backI: backS.asObserver(),
+            doneI: doneS.asObserver()
+        )
         
         let items = Driver.just([
             SectionOfSettingData(header: "Twitter", items: [
@@ -43,8 +49,14 @@ final class SosmedViewModel: ViewModelType {
                 ])
             ])
         
+        let done = doneS
+            .flatMapLatest({ navigator.launchHome() })
+            .asDriverOnErrorJustComplete()
         
-        output = Output(itemsO: items)
+        output = Output(
+            itemsO: items,
+            doneO: done
+        )
         
     }
     
