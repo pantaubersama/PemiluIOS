@@ -17,20 +17,19 @@ protocol ICreateJanjiViewModelInput {
     var titleI: AnyObserver<String> { get }
     var bodyI: AnyObserver<String> { get }
     var viewWillAppearI: AnyObserver<Void> { get }
+    var imageI: AnyObserver<UIImage?> { get }
 }
 
 protocol ICreateJanjiViewModelOutput {
     var userDataO: Driver<UserResponse>! { get }
     var enableO: Driver<Bool>! { get }
     var errorO: Driver<Error>! { get }
-    var doneO: Driver<Void>! { get }
+    var actionO: Driver<Void>! { get }
 }
 
 protocol ICreateJanjiViewModel {
     var input: ICreateJanjiViewModelInput { get }
     var output: ICreateJanjiViewModelOutput { get }
-    
-    var navigator: CreateJanjiNavigator! { get }
 }
 
 final class CreateJanjiViewModel: ICreateJanjiViewModel, ICreateJanjiViewModelInput, ICreateJanjiViewModelOutput {
@@ -38,20 +37,19 @@ final class CreateJanjiViewModel: ICreateJanjiViewModel, ICreateJanjiViewModelIn
     var input: ICreateJanjiViewModelInput { return self }
     var output: ICreateJanjiViewModelOutput { return self }
     
-    var navigator: CreateJanjiNavigator!
-    
     // Input
     var backI: AnyObserver<Void>
     var doneI: AnyObserver<Void>
     var titleI: AnyObserver<String>
     var bodyI: AnyObserver<String>
     var viewWillAppearI: AnyObserver<Void>
+    var imageI: AnyObserver<UIImage?>
     
     // Output
     var userDataO: Driver<UserResponse>!
     var enableO: Driver<Bool>!
     var errorO: Driver<Error>!
-    var doneO: Driver<Void>!
+    var actionO: Driver<Void>!
     
     // Subject
     private let backS = PublishSubject<Void>()
@@ -59,13 +57,9 @@ final class CreateJanjiViewModel: ICreateJanjiViewModel, ICreateJanjiViewModelIn
     private let titleS = PublishSubject<String>()
     private let bodyS = PublishSubject<String>()
     private let viewWillAppearS = PublishSubject<Void>()
+    private let imageS = PublishSubject<UIImage?>()
     
-//    private let activityIndicator = ActivityIndicator()
-//    private let errorTracker = ErrorTracker()
-    
-    init(navigator: CreateJanjiNavigator) {
-        self.navigator = navigator
-        self.navigator.finish = backS
+    init() {
         
         let errorTracker = ErrorTracker()
         let activityIndicator = ActivityIndicator()
@@ -75,6 +69,7 @@ final class CreateJanjiViewModel: ICreateJanjiViewModel, ICreateJanjiViewModelIn
         titleI = titleS.asObserver()
         bodyI = bodyS.asObserver()
         viewWillAppearI = viewWillAppearS.asObserver()
+        imageI = imageS.asObserver()
         
         // MARK
         // Get user data from cloud and Local
@@ -104,28 +99,34 @@ final class CreateJanjiViewModel: ICreateJanjiViewModel, ICreateJanjiViewModelIn
             .startWith(false)
         
         let done = doneS
-            .withLatestFrom(Observable.combineLatest(titleS, bodyS))
-            .flatMapLatest({(title, desc) -> Driver<Void> in
+            .withLatestFrom(Observable.combineLatest(titleS, bodyS, imageS))
+            .flatMapLatest({(title, body, image) -> Observable<BaseResponse<CreateJanjiPolitikResponse>> in
                 return NetworkService.instance.requestObject(
                     LinimasaAPI.createJanjiPolitiks(
                         title: title,
-                        body: desc,
-                        image: nil),
-                    c: BaseResponse<JanjiPolitikResponse>.self)
+                        body: body,
+                        image: image),
+                    c: BaseResponse<CreateJanjiPolitikResponse>.self)
                     .trackError(errorTracker)
                     .trackActivity(activityIndicator)
-                    .mapToVoid()
-                    .asDriverOnErrorJustComplete()
+                    .catchErrorJustComplete()
             })
-            .do(onNext: { (_) in
-                navigator.back()
+            .do(onNext: { (response) in
+                print(response)
             })
-            .asDriverOnErrorJustComplete()
+            .mapToVoid()
+        
+        let actionSeleced = Observable
+            .merge([
+                backS,
+                done
+                ])
+            .take(1)
         
         userDataO = userData.asDriverOnErrorJustComplete()
         errorO = errorTracker.asDriver()
         enableO = enablePost.asDriverOnErrorJustComplete()
-        doneO = done
+        actionO = actionSeleced.asDriverOnErrorJustComplete()
     }
     
 }

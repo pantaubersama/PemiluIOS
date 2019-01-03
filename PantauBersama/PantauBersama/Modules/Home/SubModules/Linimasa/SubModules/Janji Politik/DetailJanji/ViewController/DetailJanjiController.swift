@@ -32,7 +32,6 @@ class DetailJanjiController: UIViewController {
     @IBOutlet weak var moreButton: UIButton!
     
     private let disposeBag = DisposeBag()
-    private lazy var janjiAlert = CustomActionSheet<JanjiType>(controller: self, with: [.hapus, .salin, .bagikan, .laporkan])
     var viewModel: DetailJanjiViewModel!
     
     override func viewDidLoad() {
@@ -59,12 +58,13 @@ class DetailJanjiController: UIViewController {
         
         viewModel.output.moreSelected
             .asObservable()
-            .flatMapLatest({ [weak self] (pilpres) -> Observable<JanjiType> in
+            .flatMapLatest({ [weak self] (janpol) -> Observable<JanjiType> in
                 return Observable.create({ (observer) -> Disposable in
+                    let myId = AppState.local()?.user.id
                     
                     let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
                     let hapus = UIAlertAction(title: "Hapus", style: .default, handler: { (_) in
-                        observer.onNext(JanjiType.hapus)
+                        observer.onNext(JanjiType.hapus(id: janpol.id))
                         observer.on(.completed)
                     })
                     let salin = UIAlertAction(title: "Salin Tautan", style: .default, handler: { (_) in
@@ -80,7 +80,9 @@ class DetailJanjiController: UIViewController {
                         observer.on(.completed)
                     })
                     let cancel = UIAlertAction(title: "Batal", style: .cancel, handler: nil)
-                    alert.addAction(hapus)
+                    if janpol.creator.id == myId {
+                        alert.addAction(hapus)
+                    }
                     alert.addAction(salin)
                     alert.addAction(bagikan)
                     alert.addAction(lapor)
@@ -111,19 +113,23 @@ class DetailJanjiController: UIViewController {
     func configure(data: JanjiPolitik) {
         headerTitle.text = data.title
         contentSource.text = data.body
+        contentSource.isScrollEnabled = false
         
         if let url = data.image?.large?.url {
             image.af_setImage(withURL: URL(string: url)!)
         }
         
-        nameLabel.text = data.creator.fullname
+        nameLabel.text = data.creator.fullName
         motoLabel.text = ""
         dateLabel.text = data.createdAt
         
         let size = CGSize(width: contentSource.frame.width, height: .infinity)
         let estimateSize = contentSource.sizeThatFits(size)
-        contentConstraintHeight.constant = estimateSize.height
-        
+        if estimateSize.height > 40 {
+            contentConstraintHeight.constant = estimateSize.height
+        } else {
+            contentConstraintHeight.constant = 40
+        }
         
     }
     
