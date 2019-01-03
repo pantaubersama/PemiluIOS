@@ -113,19 +113,23 @@ class DetailJanjiController: UIViewController {
     func configure(data: JanjiPolitik) {
         headerTitle.text = data.title
         contentSource.text = data.body
+        contentSource.isScrollEnabled = false
         
         if let url = data.image?.large?.url {
             image.af_setImage(withURL: URL(string: url)!)
         }
         
-        nameLabel.text = data.creator.fullname
+        nameLabel.text = data.creator.fullName
         motoLabel.text = ""
         dateLabel.text = data.createdAt
         
         let size = CGSize(width: contentSource.frame.width, height: .infinity)
         let estimateSize = contentSource.sizeThatFits(size)
-        contentConstraintHeight.constant = estimateSize.height
-        
+        if estimateSize.height > 40 {
+            contentConstraintHeight.constant = estimateSize.height
+        } else {
+            contentConstraintHeight.constant = 40
+        }
         
     }
     
