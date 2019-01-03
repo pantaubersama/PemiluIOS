@@ -116,7 +116,7 @@ class DetailJanjiController: UIViewController {
             image.af_setImage(withURL: URL(string: url)!)
         }
         
-        nameLabel.text = data.user.fullname
+        nameLabel.text = data.creator.fullname
         motoLabel.text = ""
         dateLabel.text = data.createdAt
         
