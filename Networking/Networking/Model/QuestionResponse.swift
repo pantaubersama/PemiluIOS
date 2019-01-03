@@ -68,7 +68,7 @@ public struct CreatedAt: Codable {
 }
 
 public struct Creator: Codable {
-    public let id, email, firstName, lastName: String
+    public let id, email, fullName: String
     public let username: String?
     public let avatar: Avatar
     public let verified: Bool
@@ -76,8 +76,7 @@ public struct Creator: Codable {
     
     enum CodingKeys: String, CodingKey {
         case id, email
-        case firstName = "first_name"
-        case lastName = "last_name"
+        case fullName = "full_name"
         case username, avatar, verified, about
     }
     

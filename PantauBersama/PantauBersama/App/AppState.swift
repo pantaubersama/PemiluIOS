@@ -22,6 +22,15 @@ final class AppState {
         return nil
     }
     
+    class func local() -> UserResponse? {
+        if let data: Data = UserDefaults.Account.get(forKey: .me) {
+            if let user = try? JSONDecoder().decode(UserResponse.self, from: data) {
+                return user
+            }
+        }
+        return nil
+    }
+    
     class func local<T: Codable>(key: UserDefaults.Account.AccountDefaultKey) -> Observable<T> {
         return UserDefaults.standard.rx
             .observe(Data.self,

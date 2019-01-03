@@ -19,6 +19,9 @@ class CreateJanjiController: UIViewController {
     @IBOutlet weak var contentJanji: UITextView!
     @IBOutlet weak var contentHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var textCount: Label!
+    @IBOutlet weak var image: UIImageView!
+    @IBOutlet weak var uploadButton: UIButton!
+    
     var viewModel: ICreateJanjiViewModel!
     
     private let disposeBag = DisposeBag()
@@ -61,6 +64,15 @@ class CreateJanjiController: UIViewController {
             .bind(to: viewModel.input.bodyI)
             .disposed(by: disposeBag)
         
+        uploadButton.rx.tap
+            .subscribe(onNext: { [weak self] (_) in
+                let controller = UIImagePickerController()
+                controller.sourceType = .photoLibrary
+                controller.delegate = self
+                self?.navigationController?.present(controller, animated: true, completion: nil)
+            })
+            .disposed(by: disposeBag)
+        
         viewModel.output.userDataO
             .drive(onNext: { [weak self] (response) in
                 guard let `self` = self else { return }
@@ -78,7 +90,7 @@ class CreateJanjiController: UIViewController {
             .drive(done.rx.isEnabled)
             .disposed(by: disposeBag)
         
-        viewModel.output.doneO
+        viewModel.output.actionO
             .drive()
             .disposed(by: disposeBag)
         
@@ -143,5 +155,18 @@ extension CreateJanjiController: UITextViewDelegate {
     }
 }
 
-
+extension CreateJanjiController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        navigationController?.dismiss(animated: true, completion: { [weak self] in
+            guard let `self` = self else { return }
+            if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+                self.image.image = image
+                self.viewModel.input.imageI.onNext(image)
+            } else if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+                self.image.image = image
+                self.viewModel.input.imageI.onNext(image)
+            }
+        })
+    }
+}
 

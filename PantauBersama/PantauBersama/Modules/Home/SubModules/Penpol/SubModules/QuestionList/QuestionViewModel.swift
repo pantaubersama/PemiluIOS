@@ -173,7 +173,7 @@ class QuestionViewModel: ViewModelType {
         // MARK
         // Get user data from userDefaults
         let userData: Data? = UserDefaults.Account.get(forKey: .me)
-        let userResponse = try? JSONDecoder().decode(UserResponse.self, from: userData!)
+        let userResponse = try? JSONDecoder().decode(UserResponse.self, from: userData ?? Data())
         let user = Observable.just(userResponse).asDriverOnErrorJustComplete()
         
         output = Output(

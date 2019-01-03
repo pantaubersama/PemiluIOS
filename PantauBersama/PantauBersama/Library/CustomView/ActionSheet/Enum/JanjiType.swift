@@ -8,9 +8,9 @@
 
 import UIKit
 
-enum JanjiType: Int, CustomStringConvertible {
+enum JanjiType {
     
-    case hapus
+    case hapus(id: String)
     case salin
     case bagikan
     case laporkan
