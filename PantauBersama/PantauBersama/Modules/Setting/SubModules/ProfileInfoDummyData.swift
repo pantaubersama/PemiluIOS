@@ -78,16 +78,10 @@ final class ProfileInfoDummyData {
         var profileInformation: [ProfileInfoField] = []
 
         profileInformation.append(ProfileInfoField(
-            key: .firstName,
-            value: data.firstName,
+            key: .fullName,
+            value: data.fullName,
             fieldType: .text,
-            parameter: "first_name"
-        ))
-        profileInformation.append(ProfileInfoField(
-            key: .lastName,
-            value: data.lastName,
-            fieldType: .text,
-            parameter: "last_name"
+            parameter: "full_name"
         ))
         profileInformation.append(ProfileInfoField(
             key: .username,

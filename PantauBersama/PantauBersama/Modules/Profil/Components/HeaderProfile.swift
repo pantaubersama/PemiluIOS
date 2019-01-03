@@ -39,7 +39,7 @@ class HeaderProfile: UIView {
         if let url = user.avatar.thumbnail.url {
             avatar.af_setImage(withURL: URL(string: url)!)
         }
-        username.text = user.firstName ?? ""
+        username.text = user.fullName ?? ""
         buttonVerified.isSelected = user.verified
         buttonVerified.borderColor = user.verified ? Color.secondary_cyan : Color.grey_three
         buttonVerified.isEnabled = user.verified ? false : true

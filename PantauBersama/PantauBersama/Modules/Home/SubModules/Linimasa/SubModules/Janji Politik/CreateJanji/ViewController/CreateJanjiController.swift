@@ -66,7 +66,7 @@ class CreateJanjiController: UIViewController {
                 guard let `self` = self else { return }
                 let user = response.user
                 
-                self.name.text = user.firstName
+                self.name.text = user.fullName
                 if let url = user.avatar.thumbnail.url {
                     self.avatar.af_setImage(withURL: URL(string: url)!)
                 }
