@@ -80,16 +80,11 @@ final class WebViewModel: ViewModelType {
             .do(onSuccess: { (response) in
                 KeychainService.remove(type: NetworkKeychainKind.token)
                 KeychainService.remove(type: NetworkKeychainKind.refreshToken)
-                print("AccessToken:...\(response.data?.accessToken ?? "")")
-                print("RefreshToken:...\(response.data?.refreshToken ?? "")")
                 AppState.save(response)
             })
             .asObservable()
             .mapToVoid()
-            .do(onNext: { [weak self] (_) in
-                guard let `self` = self else { return }
-                self.navigator.launchCoordinator()
-            })
+            .flatMapLatest({ self.navigator.launchCoordinator() })
             .asDriverOnErrorJustComplete()
     }
 }
