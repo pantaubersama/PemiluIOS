@@ -139,6 +139,13 @@
 		844C3D8521C5252800199871 /* LinimasaCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844C3D8421C5252800199871 /* LinimasaCoordinator.swift */; };
 		844C3D8821C5265600199871 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844C3D8721C5265600199871 /* AppCoordinator.swift */; };
 		844C3D8C21C5323E00199871 /* LinimasaCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 844C3D8B21C5323E00199871 /* LinimasaCell.xib */; };
+		8452A4C321DE1EF400196043 /* BuatProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8452A4C221DE1EF400196043 /* BuatProfileController.swift */; };
+		8452A4C521DE1F4300196043 /* BuatProfileController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8452A4C421DE1F4300196043 /* BuatProfileController.xib */; };
+		8452A4C921DE265500196043 /* BuatProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8452A4C821DE265500196043 /* BuatProfileViewModel.swift */; };
+		8452A4CB21DE271B00196043 /* BuatProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8452A4CA21DE271B00196043 /* BuatProfileCoordinator.swift */; };
+		8452A4D021DE544C00196043 /* SosmedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8452A4CF21DE544C00196043 /* SosmedController.swift */; };
+		8452A4D221DE54B800196043 /* SosmedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8452A4D121DE54B800196043 /* SosmedViewModel.swift */; };
+		8452A4D421DE55DE00196043 /* SosmedCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8452A4D321DE55DE00196043 /* SosmedCoordinator.swift */; };
 		845C56FD21CD14CE00EDCDFE /* HeaderProfile.xib in Resources */ = {isa = PBXBuildFile; fileRef = 845C56FC21CD14CE00EDCDFE /* HeaderProfile.xib */; };
 		845C570021CD195600EDCDFE /* ProfileController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 845C56FF21CD195600EDCDFE /* ProfileController.xib */; };
 		845C570221CD1AEB00EDCDFE /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845C570121CD1AEB00EDCDFE /* ProfileController.swift */; };
@@ -405,6 +412,13 @@
 		844C3D8421C5252800199871 /* LinimasaCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinimasaCoordinator.swift; sourceTree = "<group>"; };
 		844C3D8721C5265600199871 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		844C3D8B21C5323E00199871 /* LinimasaCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LinimasaCell.xib; sourceTree = "<group>"; };
+		8452A4C221DE1EF400196043 /* BuatProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuatProfileController.swift; sourceTree = "<group>"; };
+		8452A4C421DE1F4300196043 /* BuatProfileController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BuatProfileController.xib; sourceTree = "<group>"; };
+		8452A4C821DE265500196043 /* BuatProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuatProfileViewModel.swift; sourceTree = "<group>"; };
+		8452A4CA21DE271B00196043 /* BuatProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuatProfileCoordinator.swift; sourceTree = "<group>"; };
+		8452A4CF21DE544C00196043 /* SosmedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SosmedController.swift; sourceTree = "<group>"; };
+		8452A4D121DE54B800196043 /* SosmedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SosmedViewModel.swift; sourceTree = "<group>"; };
+		8452A4D321DE55DE00196043 /* SosmedCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SosmedCoordinator.swift; sourceTree = "<group>"; };
 		845C56FC21CD14CE00EDCDFE /* HeaderProfile.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderProfile.xib; sourceTree = "<group>"; };
 		845C56FF21CD195600EDCDFE /* ProfileController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileController.xib; sourceTree = "<group>"; };
 		845C570121CD1AEB00EDCDFE /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
@@ -1066,6 +1080,7 @@
 		844C3D6A21C5177A00199871 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				8452A4C621DE1F4900196043 /* StartingSetting */,
 				84619D4721DC960100EB58CF /* WebController */,
 				84A07FBD21D1461800269C6B /* ReqCluster */,
 				84A07F9021D0D3EE00269C6B /* Verifikasi */,
@@ -1208,6 +1223,36 @@
 				84F6981821C93B8900890917 /* LinimasaJanjiCell.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		8452A4C621DE1F4900196043 /* StartingSetting */ = {
+			isa = PBXGroup;
+			children = (
+				8452A4CC21DE52E200196043 /* Sosmed */,
+				8452A4C721DE24BC00196043 /* BuatProfile */,
+			);
+			path = StartingSetting;
+			sourceTree = "<group>";
+		};
+		8452A4C721DE24BC00196043 /* BuatProfile */ = {
+			isa = PBXGroup;
+			children = (
+				8452A4C221DE1EF400196043 /* BuatProfileController.swift */,
+				8452A4C421DE1F4300196043 /* BuatProfileController.xib */,
+				8452A4C821DE265500196043 /* BuatProfileViewModel.swift */,
+				8452A4CA21DE271B00196043 /* BuatProfileCoordinator.swift */,
+			);
+			path = BuatProfile;
+			sourceTree = "<group>";
+		};
+		8452A4CC21DE52E200196043 /* Sosmed */ = {
+			isa = PBXGroup;
+			children = (
+				8452A4CF21DE544C00196043 /* SosmedController.swift */,
+				8452A4D121DE54B800196043 /* SosmedViewModel.swift */,
+				8452A4D321DE55DE00196043 /* SosmedCoordinator.swift */,
+			);
+			path = Sosmed;
 			sourceTree = "<group>";
 		};
 		845C56FA21CD136A00EDCDFE /* Profil */ = {
@@ -1661,6 +1706,7 @@
 				84F892AC21C787D800DC1048 /* Lato-Hairline.ttf in Resources */,
 				84F892AD21C787D800DC1048 /* Lato-HairlineItalic.ttf in Resources */,
 				84F892AE21C787D800DC1048 /* Lato-Italic.ttf in Resources */,
+				8452A4C521DE1F4300196043 /* BuatProfileController.xib in Resources */,
 				84F892AF21C787D800DC1048 /* Lato-Light.ttf in Resources */,
 				8428AAAD21C7B4B20008E975 /* GoogleService-Info.plist in Resources */,
 				84A07FAE21D0E4FD00269C6B /* validation-success.json in Resources */,
@@ -1887,6 +1933,7 @@
 				13812C2B21CAA71F00CAB327 /* PenpolCoordinator.swift in Sources */,
 				11E1079421CD101900B7B074 /* QuizDetailCoordinator.swift in Sources */,
 				842A4A0B21D7EAA60050AA51 /* SignatureViewModel.swift in Sources */,
+				8452A4C921DE265500196043 /* BuatProfileViewModel.swift in Sources */,
 				11E107AE21CD42C400B7B074 /* QuizOngoingController.swift in Sources */,
 				84D01B9821D208DE0000492F /* SectionOfSettingData.swift in Sources */,
 				11E107DA21CFD99900B7B074 /* QuizResultCoordinator.swift in Sources */,
@@ -1903,13 +1950,16 @@
 				11B1460221D749C300BB26C8 /* HeaderAskView.swift in Sources */,
 				840850BF21D256C200696CB3 /* SectionOfProfileInfoData.swift in Sources */,
 				84619D3821DA851200EB58CF /* EditViewModel.swift in Sources */,
+				8452A4D421DE55DE00196043 /* SosmedCoordinator.swift in Sources */,
 				11B145FE21D744A100BB26C8 /* BannerInfoAskView.swift in Sources */,
 				11E107A821CD33CA00B7B074 /* CreateJanjiCoordinator.swift in Sources */,
 				11E107A721CD33CA00B7B074 /* CreateJanjiViewModel.swift in Sources */,
 				842A4A0921D7EA990050AA51 /* SignatureCoordinator.swift in Sources */,
+				8452A4D221DE54B800196043 /* SosmedViewModel.swift in Sources */,
 				845C570221CD1AEB00EDCDFE /* ProfileController.swift in Sources */,
 				84A07FC221D14D4F00269C6B /* ReqClusterController.swift in Sources */,
 				11B3C79621D1126700EDCECB /* QuizAnswerKeyCell.swift in Sources */,
+				8452A4CB21DE271B00196043 /* BuatProfileCoordinator.swift in Sources */,
 				11E107C721CF535100B7B074 /* PenpolInfoViewModel.swift in Sources */,
 				13F4569F21CF986600CE45F1 /* CreateAskCoordinator.swift in Sources */,
 				844C3D8821C5265600199871 /* AppCoordinator.swift in Sources */,
@@ -1934,6 +1984,7 @@
 				840850C321D25C7D00696CB3 /* ProfileEditController.swift in Sources */,
 				84619D4921DC961A00EB58CF /* WebController.swift in Sources */,
 				11E107DB21CFD99900B7B074 /* QuizResultViewModel.swift in Sources */,
+				8452A4D021DE544C00196043 /* SosmedController.swift in Sources */,
 				11E107AA21CD33CA00B7B074 /* CreateJanjiController.swift in Sources */,
 				845C570F21CE0DA400EDCDFE /* ClusterCell.swift in Sources */,
 				845C570B21CD3E9700EDCDFE /* SectionCell.swift in Sources */,
@@ -1976,6 +2027,7 @@
 				13F456B321D36D8E00CE45F1 /* UndangAnggotaCoordinator.swift in Sources */,
 				84F6980921C8D28B00890917 /* PilpresViewController.swift in Sources */,
 				84D7A77821CE8CFF009502AF /* ProfileViewModel.swift in Sources */,
+				8452A4C321DE1EF400196043 /* BuatProfileController.swift in Sources */,
 				84A07F9A21D0DBE200269C6B /* IdentitasController.swift in Sources */,
 				84D01B9D21D20CA20000492F /* SettingCell.swift in Sources */,
 				11702DD821CB1205001AEE3F /* TrendCell.swift in Sources */,

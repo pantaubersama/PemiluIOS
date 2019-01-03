@@ -97,6 +97,8 @@ final class SettingViewModel: ISettingViewModel, ISettingViewModelInput, ISettin
             c: BaseResponse<VerificationsResponse>.self)
             .map({ $0.data.user })
             .asObservable()
+            .trackError(errorTracker)
+            .trackActivity(activityIndicator)
         
         let itemSelected = itemSelectedS
             .withLatestFrom(items) { indexPath, item in
