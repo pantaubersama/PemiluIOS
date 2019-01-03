@@ -60,9 +60,6 @@ final class CreateJanjiViewModel: ICreateJanjiViewModel, ICreateJanjiViewModelIn
     private let bodyS = PublishSubject<String>()
     private let viewWillAppearS = PublishSubject<Void>()
     
-//    private let activityIndicator = ActivityIndicator()
-//    private let errorTracker = ErrorTracker()
-    
     init(navigator: CreateJanjiNavigator) {
         self.navigator = navigator
         self.navigator.finish = backS

@@ -61,6 +61,8 @@ class DetailJanjiViewModel: ViewModelType {
                     return navigator.shareJanji(data: "as")
                 case .salin:
                     return navigator.shareJanji(data: "as")
+                case .hapus(let id):
+                    return self.delete(id: id).mapToVoid()
                 default:
                     return Observable.empty()
                 }
@@ -75,4 +77,14 @@ class DetailJanjiViewModel: ViewModelType {
         
     }
     
+    private func delete(id: String) -> Observable<InfoResponse> {
+        return NetworkService.instance
+            .requestObject(
+                LinimasaAPI.deleteJanjiPolitiks(id: id),
+                c: InfoResponse.self)
+            .asObservable()
+            .trackError(errorTracker)
+            .trackActivity(activityIndicator)
+            .catchErrorJustComplete()
+    }
 }
