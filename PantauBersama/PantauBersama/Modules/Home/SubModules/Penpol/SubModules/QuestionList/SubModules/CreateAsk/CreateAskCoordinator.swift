@@ -18,7 +18,6 @@ class CreateAskCoordinator: BaseCoordinator<Void>, CreateAskNavigator {
     
     private let navigationController: UINavigationController
     
-    // TODO: replace any with Quiz model
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }

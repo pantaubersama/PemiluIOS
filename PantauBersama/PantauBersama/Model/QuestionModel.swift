@@ -28,8 +28,7 @@ public struct QuestionModel {
         self.likeCount = question.likeCount
         self.user = Creator(id: question.user.id,
                          email: question.user.email,
-                         firstName: question.user.firstName,
-                         lastName: question.user.lastName,
+                         fullName: question.user.fullName,
                          username: question.user.username ?? "",
                          avatar: Creator.Avatar(url: question.user.avatar.url ?? "",
                                              thumbnail: Creator.Avatar.ImageSize(url: question.user.avatar.thumbnail.url ?? ""),
@@ -47,7 +46,7 @@ public struct QuestionModel {
     }
     
     public struct Creator: Codable {
-        let id, email, firstName, lastName: String
+        let id, email, fullName: String
         let username: String
         let avatar: Avatar
         let verified: Bool
@@ -81,7 +80,7 @@ extension QuestionModel {
     
     var isMyQuestion: Bool {
         let userData: Data? = UserDefaults.Account.get(forKey: .me)
-        let userResponse = try? JSONDecoder().decode(UserResponse.self, from: userData!)
+        let userResponse = try? JSONDecoder().decode(UserResponse.self, from: userData ?? Data())
         
         let userId = userResponse?.user.id ?? ""
         

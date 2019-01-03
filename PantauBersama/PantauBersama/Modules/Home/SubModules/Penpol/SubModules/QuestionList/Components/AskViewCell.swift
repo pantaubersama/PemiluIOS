@@ -37,7 +37,7 @@ class AskViewCell: UITableViewCell, IReusableCell  {
     
     func configureCell(item: Input) {
         ivAvatar.show(fromURL: item.question.user.avatar.thumbnailSquare.url)
-        lbFullname.text = item.question.user.firstName + " " + item.question.user.lastName
+        lbFullname.text = item.question.user.fullName
         lbAbout.text = item.question.user.about
         lbBody.text = item.question.body
         lbCreatedAt.text = item.question.createdAt.id
