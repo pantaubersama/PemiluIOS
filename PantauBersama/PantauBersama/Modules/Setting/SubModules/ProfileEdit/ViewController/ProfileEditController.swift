@@ -89,6 +89,23 @@ class ProfileEditController: UIViewController {
         viewModel.output.editSelected
             .drive()
             .disposed(by: disposeBag)
+        
+        headerEditProfile.buttonGanti.rx.tap
+            .subscribe(onNext: { [weak self] (_) in
+                guard let `self` = self else { return }
+                let controller = UIImagePickerController()
+                controller.sourceType = .photoLibrary
+                controller.delegate = self
+                self.navigationController?.present(controller, animated: true, completion: nil)
+            })
+            .disposed(by: disposeBag)
+        
+        headerEditProfile.sectionEdit.buttonEdit.rx.tap
+            .subscribe(onNext: { [weak self] (_) in
+                guard let `self` = self else { return }
+                self.viewModel.input.editTrigger.onNext(0)
+            })
+            .disposed(by: disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -107,19 +124,6 @@ extension ProfileEditController: UITableViewDelegate {
         switch data {
         case .editProfile:
             let view = headerEditProfile
-                view.buttonGanti.rx.tap
-                    .subscribe(onNext: { [weak self] (_) in
-                        let controller = UIImagePickerController()
-                        controller.sourceType = .photoLibrary
-                        controller.delegate = self
-                        self?.navigationController?.present(controller, animated: true, completion: nil)
-                    })
-                    .disposed(by: view.disposeBag)
-                view.sectionEdit.buttonEdit.rx.tap
-                    .subscribe(onNext: { [weak self] (_) in
-                        self?.viewModel.input.editTrigger.onNext(section)
-                    })
-                    .disposed(by: view.disposeBag)
             return view
         case .editDataLapor:
             let view = HeaderDataLapor()

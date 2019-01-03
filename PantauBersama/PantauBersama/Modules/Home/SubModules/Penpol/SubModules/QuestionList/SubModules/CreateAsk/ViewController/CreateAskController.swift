@@ -51,7 +51,7 @@ class CreateAskController: UIViewController {
             guard let weakSelf = self else { return }
             // TODO: set avatar when user have avatar property
 //            weakSelf.ivAvatar.show(fromURL: <#T##String#>)
-            weakSelf.lbFullname.text = (user?.user.firstName ?? "") + " " + (user?.user.lastName ?? "")
+            weakSelf.lbFullname.text = (user?.user.fullName ?? "")
         })
         .disposed(by: disposeBag)
         
