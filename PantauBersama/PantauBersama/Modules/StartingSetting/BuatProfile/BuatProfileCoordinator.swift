@@ -38,6 +38,7 @@ final class BuatProfileCoordinator: BaseCoordinator<Void> {
 
 extension BuatProfileCoordinator: BuatProfileNavigator {
     func nextStep() -> Observable<Void> {
-        return Observable.just(())
+        let sosmedCoordinator = SosmedCoordinator(navigationController: self.navigationController)
+        return coordinate(to: sosmedCoordinator)
     }
 }

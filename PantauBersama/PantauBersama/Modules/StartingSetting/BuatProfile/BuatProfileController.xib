@@ -17,6 +17,15 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BuatProfileController" customModule="PantauBersama" customModuleProvider="target">
             <connections>
+                <outlet property="avatar" destination="BWX-s8-13G" id="oVY-eX-eqc"/>
+                <outlet property="buttonAvatar" destination="iGY-zX-bj4" id="g9k-rb-9Gs"/>
+                <outlet property="desc" destination="Pum-SU-BP9" id="pfl-Oi-gqA"/>
+                <outlet property="education" destination="O8r-8G-fYz" id="Fe1-i9-a3Y"/>
+                <outlet property="fullName" destination="8hZ-KC-EQ7" id="8Qb-kf-BI8"/>
+                <outlet property="location" destination="BTh-wS-QBU" id="6Pu-qx-ql1"/>
+                <outlet property="nextButton" destination="Mr2-xz-hu8" id="d7g-ty-wGb"/>
+                <outlet property="occupation" destination="kxj-tU-6Lg" id="Zb9-Bk-TDG"/>
+                <outlet property="username" destination="MDS-X1-REB" id="xEY-pi-Tsx"/>
                 <outlet property="view" destination="iN0-l3-epB" id="Qik-cS-t2Y"/>
             </connections>
         </placeholder>
