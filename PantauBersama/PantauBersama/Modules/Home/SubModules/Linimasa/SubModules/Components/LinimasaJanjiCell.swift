@@ -61,7 +61,7 @@ extension LinimasaJanjiCell: IReusableCell {
     
     func configure(data: JanjiPolitik) {
         
-        fullname.text = data.user.fullname
+        fullname.text = data.creator.fullname
         dateCreate.text = data.createdAt
         title.text = data.title
         content.text = data.body
