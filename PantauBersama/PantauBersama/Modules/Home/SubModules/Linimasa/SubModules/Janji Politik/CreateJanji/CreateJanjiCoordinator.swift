@@ -9,12 +9,6 @@
 import RxSwift
 import RxCocoa
 
-protocol CreateJanjiNavigator {
-    var finish: Observable<Void>! { get set }
-    func back()
-}
-
-
 class CreateJanjCoordinator: BaseCoordinator<Void> {
     
     private var navigationController: UINavigationController!
@@ -26,21 +20,15 @@ class CreateJanjCoordinator: BaseCoordinator<Void> {
     
     override func start() -> Observable<CoordinationResult> {
         let viewController = CreateJanjiController()
-        let viewModel = CreateJanjiViewModel(navigator: self)
+        let viewModel = CreateJanjiViewModel()
         viewController.viewModel = viewModel
         viewController.hidesBottomBarWhenPushed = true
         navigationController.pushViewController(viewController, animated: true)
-        return finish.do(onNext: { [weak self] (_) in
-            self?.navigationController.popViewController(animated: true)
-        })
-    }
-}
-
-extension CreateJanjCoordinator: CreateJanjiNavigator {
-    func back() {
-        guard let viewController = navigationController.viewControllers.first else {
-            return
-        }
-        navigationController.popToViewController(viewController, animated: true)
+        
+        return viewModel.output.actionO
+            .do(onNext: { [weak self] (_) in
+                self?.navigationController.popViewController(animated: true)
+            })
+            .asObservable()
     }
 }

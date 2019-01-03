@@ -19,3 +19,13 @@ public struct JanjiPolitikResponse: Codable {
     }
     
 }
+
+public struct CreateJanjiPolitikResponse: Codable {
+    
+    public var janjiPolitik: JanjiPolitik
+    
+    private enum CodingKeys: String, CodingKey {
+        case janjiPolitik = "janji_politik"
+    }
+    
+}
