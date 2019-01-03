@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1143E80621DE50BC003862B6 /* QuizzesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1143E80521DE50BC003862B6 /* QuizzesResponse.swift */; };
 		1183F0DC21D4FC4800435D31 /* TanyaKandidatAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1183F0DB21D4FC4800435D31 /* TanyaKandidatAPI.swift */; };
 		1183F0DE21D535C600435D31 /* QuestionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1183F0DD21D535C600435D31 /* QuestionResponse.swift */; };
 		11B145EC21D66A8400BB26C8 /* Batch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B145EB21D66A8400BB26C8 /* Batch.swift */; };
@@ -62,6 +63,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1143E80521DE50BC003862B6 /* QuizzesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizzesResponse.swift; sourceTree = "<group>"; };
 		1183F0DB21D4FC4800435D31 /* TanyaKandidatAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TanyaKandidatAPI.swift; sourceTree = "<group>"; };
 		1183F0DD21D535C600435D31 /* QuestionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionResponse.swift; sourceTree = "<group>"; };
 		11B145EB21D66A8400BB26C8 /* Batch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Batch.swift; sourceTree = "<group>"; };
@@ -204,6 +206,7 @@
 				11C7BB2421DB36D5008CA49B /* QuestionOptionResponse.swift */,
 				1311A96E21DD3011001B053B /* UserPantau.swift */,
 				13D9483921DDD56D00722EB1 /* InfoResponse.swift */,
+				1143E80521DE50BC003862B6 /* QuizzesResponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -479,6 +482,7 @@
 				84B2523521CAC71400565D82 /* RequestLoadingPlugin.swift in Sources */,
 				84B2526621CBFF0C00565D82 /* PantauAuthResponse.swift in Sources */,
 				13F456B921DA7F9A00CE45F1 /* FeedsResponse.swift in Sources */,
+				1143E80621DE50BC003862B6 /* QuizzesResponse.swift in Sources */,
 				13F456BF21DB67C100CE45F1 /* JanjiPolitikResponse.swift in Sources */,
 				84FE6EB421D5F339009A0F55 /* UserResponse.swift in Sources */,
 				842A49FB21D78B6A0050AA51 /* VerificationsResponse.swift in Sources */,
