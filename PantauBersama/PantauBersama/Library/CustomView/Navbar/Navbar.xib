@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="Navbar" customModule="PantauBersama" customModuleProvider="target">
+            <connections>
+                <outlet property="avatar" destination="UoW-Y2-fDX" id="uJi-L3-RxN"/>
+                <outlet property="note" destination="WW4-qD-nOf" id="4AJ-Ux-mIa"/>
+                <outlet property="notification" destination="qNP-6P-8Xb" id="DgB-WC-qmH"/>
+                <outlet property="profile" destination="Ljt-vi-8ru" id="dBt-G7-hTh"/>
+                <outlet property="search" destination="eQO-Po-gKA" id="C4i-gj-e9N"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="PWV-zN-nIN">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="JBb-Uh-YYS">
+                    <rect key="frame" x="16" y="0.0" width="343" height="56"/>
+                    <subviews>
+                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="akz-fj-HK6" customClass="RoundView" customModule="Common">
+                            <rect key="frame" x="0.0" y="10" width="36" height="36"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ljt-vi-8ru">
+                                    <rect key="frame" x="0.0" y="0.0" width="36" height="36"/>
+                                    <state key="normal">
+                                        <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                </button>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icDummyPerson" translatesAutoresizingMaskIntoConstraints="NO" id="UoW-Y2-fDX">
+                                    <rect key="frame" x="0.0" y="0.0" width="36" height="36"/>
+                                </imageView>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="Ljt-vi-8ru" secondAttribute="bottom" id="1Mv-jc-tE0"/>
+                                <constraint firstAttribute="trailing" secondItem="UoW-Y2-fDX" secondAttribute="trailing" id="3ZF-Z9-fvN"/>
+                                <constraint firstAttribute="bottom" secondItem="UoW-Y2-fDX" secondAttribute="bottom" id="8MX-EO-Khn"/>
+                                <constraint firstItem="UoW-Y2-fDX" firstAttribute="top" secondItem="akz-fj-HK6" secondAttribute="top" id="CH5-Nm-N9g"/>
+                                <constraint firstAttribute="height" constant="36" id="CJa-7n-d4B"/>
+                                <constraint firstAttribute="width" constant="36" id="CSY-tv-ptp"/>
+                                <constraint firstItem="UoW-Y2-fDX" firstAttribute="leading" secondItem="akz-fj-HK6" secondAttribute="leading" id="JCb-xc-HUX"/>
+                                <constraint firstItem="Ljt-vi-8ru" firstAttribute="leading" secondItem="akz-fj-HK6" secondAttribute="leading" id="Yfa-4T-ZuH"/>
+                                <constraint firstItem="Ljt-vi-8ru" firstAttribute="top" secondItem="akz-fj-HK6" secondAttribute="top" id="db0-M5-gn6"/>
+                                <constraint firstAttribute="trailing" secondItem="Ljt-vi-8ru" secondAttribute="trailing" id="p4J-WP-dOI"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="18"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                    <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <searchBar contentMode="redraw" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="eQO-Po-gKA">
+                            <rect key="frame" x="36" y="0.0" width="259" height="56"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </searchBar>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WW4-qD-nOf">
+                            <rect key="frame" x="295" y="16" width="24" height="24"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="24" id="NMv-vz-SOi"/>
+                                <constraint firstAttribute="width" constant="24" id="xMy-gY-coo"/>
+                            </constraints>
+                            <state key="normal" image="outlinePinned48Px"/>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qNP-6P-8Xb">
+                            <rect key="frame" x="319" y="16" width="24" height="24"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="24" id="wDo-8r-3NG"/>
+                                <constraint firstAttribute="height" constant="24" id="xn4-jY-phd"/>
+                            </constraints>
+                            <state key="normal" image="icNotif"/>
+                        </button>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" red="0.68041622639999999" green="0.1499232352" blue="0.14898997550000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <constraints>
+                <constraint firstItem="JBb-Uh-YYS" firstAttribute="leading" secondItem="Y7J-Zn-6vO" secondAttribute="leading" constant="16" id="3xc-PD-sBm"/>
+                <constraint firstAttribute="bottom" secondItem="JBb-Uh-YYS" secondAttribute="bottom" id="IvE-rR-aqS"/>
+                <constraint firstItem="Y7J-Zn-6vO" firstAttribute="trailing" secondItem="JBb-Uh-YYS" secondAttribute="trailing" constant="16" id="Viu-Cz-GVW"/>
+                <constraint firstItem="JBb-Uh-YYS" firstAttribute="top" secondItem="PWV-zN-nIN" secondAttribute="top" id="uOZ-wy-eqX"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="Y7J-Zn-6vO"/>
+            <point key="canvasLocation" x="-263.19999999999999" y="-98.050974512743636"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="icDummyPerson" width="64" height="64"/>
+        <image name="icNotif" width="24" height="24"/>
+        <image name="outlinePinned48Px" width="24" height="24"/>
+    </resources>
+</document>

@@ -15,6 +15,7 @@ class PenpolController: UIViewController {
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var createAskButton: UIButton!
     @IBOutlet weak var filterButton: UIButton!
+    @IBOutlet weak var navbar: Navbar!
     
     var viewModel: PenpolViewModel!
     private let disposeBag = DisposeBag()
@@ -24,25 +25,13 @@ class PenpolController: UIViewController {
     
     lazy var askController = QuestionController(viewModel: askViewModel)
     lazy var quisController = QuizController(viewModel: quizViewModel)
-    
-    private lazy var searchBar: UISearchBar = {
-        let search = UISearchBar()
-        search.searchBarStyle = .minimal
-        search.sizeToFit()
-        return search
-    }()
-    
+ 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         add(childViewController: askController, context: containerView)
         add(childViewController: quisController, context: containerView)
         
-        let notifications = UIBarButtonItem(image: #imageLiteral(resourceName: "icNotif"), style: .plain, target: nil, action: nil)
-        let profile = UIBarButtonItem(image: #imageLiteral(resourceName: "icDummyPerson"), style: .plain, target: nil, action: nil)
-        navigationItem.leftBarButtonItem = profile
-        navigationItem.rightBarButtonItem = notifications
-        navigationItem.titleView = searchBar
         
         createAskButton.rx.tap
             .bind(to: viewModel.input.addTrigger)
@@ -83,7 +72,10 @@ class PenpolController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.isHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = false
-        self.navigationController?.navigationBar.configure(type: .kuis)
     }
 }

@@ -15,6 +15,7 @@
                 <outlet property="addJanji" destination="MoL-38-eSA" id="C7k-eF-N4W"/>
                 <outlet property="container" destination="PT8-f3-VT0" id="3Nq-Xc-xiE"/>
                 <outlet property="filter" destination="t1X-nF-WRf" id="EKo-Vk-Lx1"/>
+                <outlet property="navbar" destination="0u4-6H-At0" id="LgV-Ug-TFW"/>
                 <outlet property="segementedControl" destination="jsX-sx-32M" id="FyS-67-n2f"/>
                 <outlet property="view" destination="iN0-l3-epB" id="f0V-WH-Ksr"/>
             </connections>
@@ -24,8 +25,15 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0u4-6H-At0" customClass="Navbar" customModule="PantauBersama" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="20" width="375" height="56"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="56" id="4Ob-XL-kke"/>
+                    </constraints>
+                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xE0-Bp-jp7">
-                    <rect key="frame" x="0.0" y="20" width="375" height="48"/>
+                    <rect key="frame" x="0.0" y="76" width="375" height="48"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xwb-h1-1TI">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="48"/>
@@ -80,7 +88,7 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PT8-f3-VT0" userLabel="Container">
-                    <rect key="frame" x="0.0" y="68" width="375" height="599"/>
+                    <rect key="frame" x="0.0" y="124" width="375" height="543"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
             </subviews>
@@ -88,11 +96,14 @@
             <constraints>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="PT8-f3-VT0" secondAttribute="bottom" id="6vd-7M-qOA"/>
                 <constraint firstItem="xE0-Bp-jp7" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="8Wz-nD-rES"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="0u4-6H-At0" secondAttribute="trailing" id="GEp-8m-4BP"/>
+                <constraint firstItem="0u4-6H-At0" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="ObM-cu-Wjt"/>
+                <constraint firstItem="0u4-6H-At0" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="enf-ZK-R1O"/>
                 <constraint firstItem="PT8-f3-VT0" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="hSj-21-cC7"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="PT8-f3-VT0" secondAttribute="trailing" id="kOU-xm-ogE"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="xE0-Bp-jp7" secondAttribute="trailing" id="mMc-eI-Dbg"/>
                 <constraint firstItem="PT8-f3-VT0" firstAttribute="top" secondItem="xE0-Bp-jp7" secondAttribute="bottom" id="wSc-UJ-fif"/>
-                <constraint firstItem="xE0-Bp-jp7" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="x78-rX-pWS"/>
+                <constraint firstItem="xE0-Bp-jp7" firstAttribute="top" secondItem="0u4-6H-At0" secondAttribute="bottom" id="x78-rX-pWS"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
         </view>

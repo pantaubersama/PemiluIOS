@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
-
+import Networking
 
 final class LinimasaViewModel: ViewModelType {
 
@@ -21,12 +21,14 @@ final class LinimasaViewModel: ViewModelType {
         let filterTrigger: AnyObserver<Void>
         let refreshTrigger: AnyObserver<Void>
         let profileTrigger: AnyObserver<Void>
+        let viewWillAppearTrigger: AnyObserver<Void>
     }
     
     struct Output {
         let filterSelected: Driver<Void>
         let addSelected: Driver<Void>
         let profileSelected: Driver<Void>
+        let userO: Driver<UserResponse>
     }
     
     let navigator: LinimasaNavigator
@@ -34,6 +36,7 @@ final class LinimasaViewModel: ViewModelType {
     private let filterSubject = PublishSubject<Void>()
     private let refreshSubject = PublishSubject<Void>()
     private let profileSubject = PublishSubject<Void>()
+    private let viewWillppearS = PublishSubject<Void>()
     
     init(navigator: LinimasaNavigator) {
         self.navigator = navigator
@@ -43,7 +46,8 @@ final class LinimasaViewModel: ViewModelType {
             addTrigger: addSubject.asObserver(),
             filterTrigger: filterSubject.asObserver(),
             refreshTrigger: refreshSubject.asObserver(),
-            profileTrigger: profileSubject.asObserver()
+            profileTrigger: profileSubject.asObserver(),
+            viewWillAppearTrigger: viewWillppearS.asObserver()
         )
         
         let filter = filterSubject
@@ -58,9 +62,17 @@ final class LinimasaViewModel: ViewModelType {
             .flatMapLatest({ navigator.launchProfile() })
             .asDriver(onErrorJustReturn: ())
         
+        // MARK
+        // Get local user response
+        let local: Observable<UserResponse> = AppState.local(key: .me)
+        let userData = viewWillppearS
+            .flatMapLatest({ local })
+            .asDriverOnErrorJustComplete()
+        
         output = Output(filterSelected: filter,
                         addSelected: add,
-                        profileSelected: profile)
+                        profileSelected: profile,
+                        userO: userData)
     }
     
 }
