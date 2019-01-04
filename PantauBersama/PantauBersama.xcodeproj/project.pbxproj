@@ -94,6 +94,8 @@
 		840850DD21D2832200696CB3 /* BadgeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 840850DC21D2832200696CB3 /* BadgeController.xib */; };
 		840850DF21D2843D00696CB3 /* BadgeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840850DE21D2843D00696CB3 /* BadgeViewModel.swift */; };
 		840850E121D2844700696CB3 /* BadgeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840850E021D2844700696CB3 /* BadgeCoordinator.swift */; };
+		840901B821DF1CBB001BF559 /* Navbar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 840901B721DF1CBB001BF559 /* Navbar.xib */; };
+		840901BA21DF1DE6001BF559 /* Navbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840901B921DF1DE6001BF559 /* Navbar.swift */; };
 		8409374B21D360D10024A444 /* PilpresViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8409374A21D360D10024A444 /* PilpresViewModel.swift */; };
 		8409374D21D361240024A444 /* PilpresNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8409374C21D361240024A444 /* PilpresNavigator.swift */; };
 		841CDA3D21C8BC1C0015680C /* LinimasaController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 841CDA3C21C8BC1C0015680C /* LinimasaController.xib */; };
@@ -360,6 +362,8 @@
 		840850DC21D2832200696CB3 /* BadgeController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BadgeController.xib; sourceTree = "<group>"; };
 		840850DE21D2843D00696CB3 /* BadgeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeViewModel.swift; sourceTree = "<group>"; };
 		840850E021D2844700696CB3 /* BadgeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeCoordinator.swift; sourceTree = "<group>"; };
+		840901B721DF1CBB001BF559 /* Navbar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Navbar.xib; sourceTree = "<group>"; };
+		840901B921DF1DE6001BF559 /* Navbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navbar.swift; sourceTree = "<group>"; };
 		8409374A21D360D10024A444 /* PilpresViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PilpresViewModel.swift; sourceTree = "<group>"; };
 		8409374C21D361240024A444 /* PilpresNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PilpresNavigator.swift; sourceTree = "<group>"; };
 		841CDA3C21C8BC1C0015680C /* LinimasaController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LinimasaController.xib; sourceTree = "<group>"; };
@@ -950,6 +954,15 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
+		840901B421DF181B001BF559 /* Navbar */ = {
+			isa = PBXGroup;
+			children = (
+				840901B721DF1CBB001BF559 /* Navbar.xib */,
+				840901B921DF1DE6001BF559 /* Navbar.swift */,
+			);
+			path = Navbar;
+			sourceTree = "<group>";
+		};
 		841CDA3E21C8BD070015680C /* SubModules */ = {
 			isa = PBXGroup;
 			children = (
@@ -1484,6 +1497,7 @@
 		84E2854121CA189B00298E31 /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
+				840901B421DF181B001BF559 /* Navbar */,
 				84E2854221CA18AB00298E31 /* ActionSheet */,
 			);
 			path = CustomView;
@@ -1693,6 +1707,7 @@
 				84A07FC021D1465C00269C6B /* ReqClusterController.xib in Resources */,
 				84F892AA21C787D800DC1048 /* Lato-Bold.ttf in Resources */,
 				13F456D421DB897500CE45F1 /* BannerInfoController.xib in Resources */,
+				840901B821DF1CBB001BF559 /* Navbar.xib in Resources */,
 				84A07FAD21D0E4FD00269C6B /* upload-ttd.json in Resources */,
 				84E2854D21CA4BC800298E31 /* FilterViewController.xib in Resources */,
 				84F892AB21C787D800DC1048 /* Lato-BoldItalic.ttf in Resources */,
@@ -1962,6 +1977,7 @@
 				8452A4CB21DE271B00196043 /* BuatProfileCoordinator.swift in Sources */,
 				11E107C721CF535100B7B074 /* PenpolInfoViewModel.swift in Sources */,
 				13F4569F21CF986600CE45F1 /* CreateAskCoordinator.swift in Sources */,
+				840901BA21DF1DE6001BF559 /* Navbar.swift in Sources */,
 				844C3D8821C5265600199871 /* AppCoordinator.swift in Sources */,
 				8441DB4121CCBECF00B078DF /* FilterModel.swift in Sources */,
 				84619D4021DA959400EB58CF /* SectionItemCell.swift in Sources */,

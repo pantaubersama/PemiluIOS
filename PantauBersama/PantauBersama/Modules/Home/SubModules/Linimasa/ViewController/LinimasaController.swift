@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import Common
+import AlamofireImage
 
 class LinimasaController: UIViewController {
     
@@ -17,7 +18,7 @@ class LinimasaController: UIViewController {
     @IBOutlet weak var addJanji: UIButton!
     @IBOutlet weak var segementedControl: SegementedControl!
     @IBOutlet weak var container: UIView!
-    
+    @IBOutlet weak var navbar: Navbar!
     var viewModel: LinimasaViewModel!
     
     lazy var pilpresViewModel = PilpresViewModel(navigator: viewModel.navigator)
@@ -40,14 +41,7 @@ class LinimasaController: UIViewController {
         
         add(childViewController: pilpresController, context: container)
         add(childViewController: janjiController, context: container)
-        
-        let notifications = UIBarButtonItem(image: #imageLiteral(resourceName: "icNotif"), style: .plain, target: nil, action: nil)
-        let profile = UIBarButtonItem(image: #imageLiteral(resourceName: "icDummyPerson"), style: .plain, target: nil, action: nil)
-        navigationItem.leftBarButtonItem = profile
-        navigationItem.rightBarButtonItem = notifications
-        navigationItem.titleView = searchBar
-        
-        
+    
         // MARK
         // bind to viewModel
         filter.rx.tap
@@ -57,8 +51,8 @@ class LinimasaController: UIViewController {
         addJanji.rx.tap
             .bind(to: viewModel.input.addTrigger)
             .disposed(by: disposeBag)
-        
-        profile.rx.tap
+    
+        navbar.profile.rx.tap
             .bind(to: viewModel.input.profileTrigger)
             .disposed(by: disposeBag)
         
@@ -72,6 +66,16 @@ class LinimasaController: UIViewController {
         
         viewModel.output.profileSelected
             .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.userO
+            .drive(onNext: { [weak self] (response) in
+                guard let `self` = self else { return }
+                let user = response.user
+                if let thumbnail = user.avatar.thumbnail.url {
+                    self.navbar.avatar.af_setImage(withURL: URL(string: thumbnail)!)
+                }
+            })
             .disposed(by: disposeBag)
         
         // MARK
@@ -123,7 +127,14 @@ class LinimasaController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.navigationController?.navigationBar.configure(type: .pantau)
+        navigationController?.navigationBar.isHidden = true
+        viewModel.input.viewWillAppearTrigger.onNext(())
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        navigationController?.navigationBar.isHidden = false
     }
     
 }
