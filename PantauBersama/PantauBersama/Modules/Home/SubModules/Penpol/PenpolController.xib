@@ -15,6 +15,7 @@
                 <outlet property="containerView" destination="DPh-lH-IWS" id="mI3-4X-PnG"/>
                 <outlet property="createAskButton" destination="vYV-pA-2lN" id="tae-HX-nZO"/>
                 <outlet property="filterButton" destination="eM8-C8-PV2" id="aiB-gU-k3t"/>
+                <outlet property="navbar" destination="mgK-vJ-xWz" id="4yL-Jg-sgD"/>
                 <outlet property="segmentedControl" destination="Zuj-sl-Ujr" id="V73-H2-Q6u"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -24,8 +25,15 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mgK-vJ-xWz" customClass="Navbar" customModule="PantauBersama" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="20" width="375" height="56"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="56" id="BsR-MB-dC6"/>
+                    </constraints>
+                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gTm-rd-zil">
-                    <rect key="frame" x="0.0" y="20" width="375" height="48"/>
+                    <rect key="frame" x="0.0" y="76" width="375" height="48"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i7k-Jl-WvV">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="48"/>
@@ -80,17 +88,20 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DPh-lH-IWS">
-                    <rect key="frame" x="0.0" y="68" width="375" height="599"/>
+                    <rect key="frame" x="0.0" y="124" width="375" height="543"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
             </subviews>
             <color key="backgroundColor" red="0.68041622639999999" green="0.1499232352" blue="0.14898997550000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
             <constraints>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="DPh-lH-IWS" secondAttribute="trailing" id="Boo-5K-fXi"/>
-                <constraint firstItem="gTm-rd-zil" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="O55-e2-vsS"/>
+                <constraint firstItem="mgK-vJ-xWz" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="KGa-x8-LtW"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="mgK-vJ-xWz" secondAttribute="trailing" id="MMN-d2-Q5N"/>
+                <constraint firstItem="gTm-rd-zil" firstAttribute="top" secondItem="mgK-vJ-xWz" secondAttribute="bottom" id="O55-e2-vsS"/>
                 <constraint firstItem="DPh-lH-IWS" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="PWU-bw-z4Y"/>
                 <constraint firstItem="gTm-rd-zil" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="a7m-Tr-wAa"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="DPh-lH-IWS" secondAttribute="bottom" id="b72-HF-aA6"/>
+                <constraint firstItem="mgK-vJ-xWz" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="cjV-3o-67W"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="gTm-rd-zil" secondAttribute="trailing" id="sf7-XT-pWv"/>
                 <constraint firstItem="DPh-lH-IWS" firstAttribute="top" secondItem="gTm-rd-zil" secondAttribute="bottom" id="ulg-kc-B8V"/>
             </constraints>
