@@ -58,7 +58,7 @@ public struct QuizzesResponse: Codable {
         }
     }
     
-    struct Image: Codable {
+    public struct Image: Codable {
         public let url: String
         public let thumbnail, thumbnailSquare, large, largeSquare: Large
         

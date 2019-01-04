@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1143E80621DE50BC003862B6 /* QuizzesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1143E80521DE50BC003862B6 /* QuizzesResponse.swift */; };
+		1143E80821DEC75D003862B6 /* QuizAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1143E80721DEC75D003862B6 /* QuizAPI.swift */; };
 		1183F0DC21D4FC4800435D31 /* TanyaKandidatAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1183F0DB21D4FC4800435D31 /* TanyaKandidatAPI.swift */; };
 		1183F0DE21D535C600435D31 /* QuestionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1183F0DD21D535C600435D31 /* QuestionResponse.swift */; };
 		11B145EC21D66A8400BB26C8 /* Batch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B145EB21D66A8400BB26C8 /* Batch.swift */; };
@@ -64,6 +65,7 @@
 
 /* Begin PBXFileReference section */
 		1143E80521DE50BC003862B6 /* QuizzesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizzesResponse.swift; sourceTree = "<group>"; };
+		1143E80721DEC75D003862B6 /* QuizAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizAPI.swift; sourceTree = "<group>"; };
 		1183F0DB21D4FC4800435D31 /* TanyaKandidatAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TanyaKandidatAPI.swift; sourceTree = "<group>"; };
 		1183F0DD21D535C600435D31 /* QuestionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionResponse.swift; sourceTree = "<group>"; };
 		11B145EB21D66A8400BB26C8 /* Batch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Batch.swift; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 				84B2526321CBDE2600565D82 /* PantauAuthAPI.swift */,
 				1183F0DB21D4FC4800435D31 /* TanyaKandidatAPI.swift */,
 				13F456B421D531D300CE45F1 /* LinimasaAPI.swift */,
+				1143E80721DEC75D003862B6 /* QuizAPI.swift */,
 			);
 			path = Microservices;
 			sourceTree = "<group>";
@@ -463,6 +466,7 @@
 				13D9483A21DDD56D00722EB1 /* InfoResponse.swift in Sources */,
 				1311A96F21DD3011001B053B /* UserPantau.swift in Sources */,
 				13F456B721DA7BD000CE45F1 /* Feeds.swift in Sources */,
+				1143E80821DEC75D003862B6 /* QuizAPI.swift in Sources */,
 				13F456C321DB7E1300CE45F1 /* BannerInfo.swift in Sources */,
 				1183F0DC21D4FC4800435D31 /* TanyaKandidatAPI.swift in Sources */,
 				13F456BB21DA806900CE45F1 /* Meta.swift in Sources */,
