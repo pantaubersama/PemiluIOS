@@ -12,14 +12,13 @@ import Networking
 
 protocol DetailJanjiNavigator {
     func shareJanji(data: Any) -> Observable<Void>
+    func close()
 }
 
 class DetailJanjiCoordinator: BaseCoordinator<Void> {
     
     private let navigationController: UINavigationController!
     private let data: JanjiPolitik
-    var finish: Observable<Void>!
-    
     
     init(navigationController: UINavigationController, data: JanjiPolitik) {
         self.navigationController = navigationController
@@ -31,13 +30,23 @@ class DetailJanjiCoordinator: BaseCoordinator<Void> {
         let viewModel = DetailJanjiViewModel(navigator: self, data: data)
         viewController.viewModel = viewModel
         viewController.hidesBottomBarWhenPushed = true
+        
         navigationController.pushViewController(viewController, animated: true)
-        return Observable.never()
+        return viewModel.output.closeSelected.do(onNext: { [weak self](_) in
+            self?.navigationController.popViewController(animated: true)
+        }).asObservable()
     }
     
 }
 
 extension DetailJanjiCoordinator: DetailJanjiNavigator {
+    func close() {
+        guard let viewController = navigationController.viewControllers.first else {
+            return
+        }
+        navigationController.popToViewController(viewController, animated: true)
+    }
+    
     func shareJanji(data: Any) -> Observable<Void> {
         let activityViewController = UIActivityViewController(activityItems: ["content to be shared" as NSString], applicationActivities: nil)
         self.navigationController.present(activityViewController, animated: true, completion: nil)

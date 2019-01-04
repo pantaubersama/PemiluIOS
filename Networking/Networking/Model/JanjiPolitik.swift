@@ -16,9 +16,10 @@ public struct JanjiPolitik: Codable {
     public var image: Image?
     public var createdAt: String
     public var creator: UserPantau
+    public var cluster: String?
     
     enum CodingKeys: String, CodingKey {
-        case id, title, body, image, creator
+        case id, title, body, image, creator,cluster
         case createdAt = "created_at"
     }
     

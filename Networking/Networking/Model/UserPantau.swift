@@ -13,11 +13,14 @@ public struct UserPantau: Codable {
     public let id: String
     public var email: String
     public var fullName: String
-    
+    public var about: String?
+    public var avatar: Avatar
     
     private enum CodingKeys: String, CodingKey {
         case id
         case email
         case fullName = "full_name"
+        case about
+        case avatar
     } 
 }

@@ -20,6 +20,7 @@ class DetailJanjiViewModel: ViewModelType {
         let moreTrigger: AnyObserver<Void>
         let moreMenuTrigger: AnyObserver<JanjiType>
         let shareTrigger: AnyObserver<Void>
+        let closeTrigger: AnyObserver<Void>
     }
     
     struct Output {
@@ -27,11 +28,13 @@ class DetailJanjiViewModel: ViewModelType {
         let moreSelected: Driver<JanjiPolitik>
         let moreMenuSelected: Driver<Void>
         let detailJanji: Driver<JanjiPolitik>
+        let closeSelected: Driver<Void>
     }
     
     private let moreSubject = PublishSubject<Void>()
     private let moreMenuSubject = PublishSubject<JanjiType>()
     private let shareSubject = PublishSubject<Void>()
+    private let closeSubject = PublishSubject<Void>()
     
     private let navigator: DetailJanjiNavigator
     let errorTracker = ErrorTracker()
@@ -44,7 +47,8 @@ class DetailJanjiViewModel: ViewModelType {
         input = Input(
             moreTrigger: moreSubject.asObserver(),
             moreMenuTrigger: moreMenuSubject.asObserver(),
-            shareTrigger: shareSubject.asObserver())
+            shareTrigger: shareSubject.asObserver(),
+            closeTrigger: closeSubject.asObserver())
         
         let moreSelected = moreSubject
             .flatMapLatest({ _ in Observable.of(data) })
@@ -62,18 +66,25 @@ class DetailJanjiViewModel: ViewModelType {
                 case .salin:
                     return navigator.shareJanji(data: "as")
                 case .hapus(let id):
-                    return self.delete(id: id).mapToVoid()
+                    return self.delete(id: id)
+                        .do(onNext: { (response) in
+                            print("delete response: \(response)")
+                            navigator.close()
+                        }).mapToVoid()
                 default:
                     return Observable.empty()
                 }
             }
             .asDriverOnErrorJustComplete()
         
+        let closeSelected = closeSubject.asDriverOnErrorJustComplete()
+        
         output = Output(
             shareSelected: shareJanji,
             moreSelected: moreSelected,
             moreMenuSelected: moreMenuSelected,
-            detailJanji: Driver.of(data))
+            detailJanji: Driver.of(data),
+            closeSelected: closeSelected)
         
     }
     
