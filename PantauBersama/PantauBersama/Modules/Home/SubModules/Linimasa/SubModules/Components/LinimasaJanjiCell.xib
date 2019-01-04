@@ -27,10 +27,10 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="51K-tT-fYB">
                                         <rect key="frame" x="0.0" y="0.0" width="358" height="24"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IhI-Ua-Ln5" customClass="RoundView" customModule="Common">
+                                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IhI-Ua-Ln5" customClass="RoundView" customModule="Common">
                                                 <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
                                                 <subviews>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icDummyPerson" translatesAutoresizingMaskIntoConstraints="NO" id="hVb-Fv-xxE">
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icDummyPerson" translatesAutoresizingMaskIntoConstraints="NO" id="hVb-Fv-xxE">
                                                         <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
                                                     </imageView>
                                                 </subviews>
@@ -42,6 +42,11 @@
                                                     <constraint firstItem="hVb-Fv-xxE" firstAttribute="leading" secondItem="IhI-Ua-Ln5" secondAttribute="leading" id="hu6-Lb-ZSe"/>
                                                     <constraint firstAttribute="bottom" secondItem="hVb-Fv-xxE" secondAttribute="bottom" id="nx2-gR-AfZ"/>
                                                 </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="12"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Anik Kemala," textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uez-rD-hVX" customClass="Label" customModule="Common">
                                                 <rect key="frame" x="29" y="0.0" width="264" height="24"/>

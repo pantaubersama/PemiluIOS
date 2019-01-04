@@ -30,6 +30,7 @@ class DetailJanjiController: UIViewController {
     
     @IBOutlet weak var shareButton: UIButton!
     @IBOutlet weak var moreButton: UIButton!
+    @IBOutlet weak var closeButton: ImageButton!
     
     private let disposeBag = DisposeBag()
     var viewModel: DetailJanjiViewModel!
@@ -37,11 +38,14 @@ class DetailJanjiController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         viewModel.output.detailJanji
             .drive(onNext: { (data) in
                 self.configure(data: data)
             })
+            .disposed(by: disposeBag)
+        
+        closeButton.rx.tap
+            .bind(to: viewModel.input.closeTrigger)
             .disposed(by: disposeBag)
         
         shareButton.rx.tap
@@ -120,7 +124,7 @@ class DetailJanjiController: UIViewController {
         }
         
         nameLabel.text = data.creator.fullName
-        motoLabel.text = ""
+        motoLabel.text = data.creator.about ?? ""
         dateLabel.text = data.createdAt
         
         let size = CGSize(width: contentSource.frame.width, height: .infinity)
@@ -131,6 +135,12 @@ class DetailJanjiController: UIViewController {
             contentConstraintHeight.constant = 40
         }
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
     }
     
 }
