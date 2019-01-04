@@ -155,14 +155,16 @@ class ProfileController: UIViewController {
         tableViewBadge.registerReusableCell(BadgeCell.self)
         tableViewBadge.tableFooterView = UIView()
         
-        dataSourceCluster = RxTableViewSectionedReloadDataSource<SectionOfProfileData>(configureCell: { (dataSource, tableView, indexPath, item) in
+        dataSourceCluster = RxTableViewSectionedReloadDataSource<SectionOfProfileData>(configureCell: {
+            (dataSource, tableView, indexPath, item) in
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: item.reuseIdentifier) else {
                     return UITableViewCell()
                 }
                 item.configure(cell: cell)
                 return cell
         })
-        dataSourceBadge = RxTableViewSectionedReloadDataSource<SectionOfProfileData>(configureCell: { (dataSource, tableView, indexPath, item) in
+        dataSourceBadge = RxTableViewSectionedReloadDataSource<SectionOfProfileData>(configureCell: {
+            (dataSource, tableView, indexPath, item) in
             guard let cell = tableView.dequeueReusableCell(withIdentifier: item.reuseIdentifier) else {
                 return UITableViewCell()
             }
