@@ -12,7 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LinimasaController" customModule="PantauBersama" customModuleProvider="target">
             <connections>
-                <outlet property="addJanji" destination="MoL-38-eSA" id="C7k-eF-N4W"/>
+                <outlet property="addJanji" destination="S76-QW-FoS" id="Voh-IF-C53"/>
                 <outlet property="container" destination="PT8-f3-VT0" id="3Nq-Xc-xiE"/>
                 <outlet property="filter" destination="t1X-nF-WRf" id="EKo-Vk-Lx1"/>
                 <outlet property="navbar" destination="0u4-6H-At0" id="LgV-Ug-TFW"/>
@@ -57,13 +57,6 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                 </view>
-                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MoL-38-eSA">
-                                    <rect key="frame" x="327" y="0.0" width="48" height="48"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="48" id="ZFf-VV-HPp"/>
-                                    </constraints>
-                                    <state key="normal" image="icAdd"/>
-                                </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t1X-nF-WRf">
                                     <rect key="frame" x="327" y="0.0" width="48" height="48"/>
                                     <constraints>
@@ -73,9 +66,6 @@
                                 </button>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <constraints>
-                                <constraint firstItem="MoL-38-eSA" firstAttribute="leading" secondItem="jsX-sx-32M" secondAttribute="trailing" id="OeM-ht-qPV"/>
-                            </constraints>
                         </stackView>
                     </subviews>
                     <color key="backgroundColor" red="0.68041622639999999" green="0.1499232352" blue="0.14898997550000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -91,6 +81,14 @@
                     <rect key="frame" x="0.0" y="124" width="375" height="543"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S76-QW-FoS">
+                    <rect key="frame" x="295" y="587" width="60" height="60"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="60" id="RXz-Is-ZvU"/>
+                        <constraint firstAttribute="width" constant="60" id="Tst-vM-2Ud"/>
+                    </constraints>
+                    <state key="normal" image="icCreate"/>
+                </button>
             </subviews>
             <color key="backgroundColor" red="0.68041622639999999" green="0.1499232352" blue="0.14898997550000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
             <constraints>
@@ -98,10 +96,12 @@
                 <constraint firstItem="xE0-Bp-jp7" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="8Wz-nD-rES"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="0u4-6H-At0" secondAttribute="trailing" id="GEp-8m-4BP"/>
                 <constraint firstItem="0u4-6H-At0" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="ObM-cu-Wjt"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="S76-QW-FoS" secondAttribute="trailing" constant="20" id="W8M-oT-lrR"/>
                 <constraint firstItem="0u4-6H-At0" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="enf-ZK-R1O"/>
                 <constraint firstItem="PT8-f3-VT0" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="hSj-21-cC7"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="PT8-f3-VT0" secondAttribute="trailing" id="kOU-xm-ogE"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="xE0-Bp-jp7" secondAttribute="trailing" id="mMc-eI-Dbg"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="S76-QW-FoS" secondAttribute="bottom" constant="20" id="qBm-CD-cWx"/>
                 <constraint firstItem="PT8-f3-VT0" firstAttribute="top" secondItem="xE0-Bp-jp7" secondAttribute="bottom" id="wSc-UJ-fif"/>
                 <constraint firstItem="xE0-Bp-jp7" firstAttribute="top" secondItem="0u4-6H-At0" secondAttribute="bottom" id="x78-rX-pWS"/>
             </constraints>
@@ -109,7 +109,7 @@
         </view>
     </objects>
     <resources>
-        <image name="icAdd" width="24" height="24"/>
+        <image name="icCreate" width="60" height="60"/>
         <image name="icFilter" width="24" height="24"/>
     </resources>
 </document>
