@@ -57,7 +57,7 @@ class CreateAskHeaderView: UIView {
         viewModel.output.userData
             .drive(onNext: { [weak self](userResponse) in
                 guard let weakSelf = self, let user = userResponse else { return }
-                weakSelf.ivAvatar.show(fromURL: userResponse?.user.avatar.thumbnailSquare.url ?? "")
+                weakSelf.ivAvatar.show(fromURL: userResponse?.user.avatar.thumbnail.url ?? "")
                 weakSelf.lbFullname.text = (user.user.fullName ?? " ")
             })
             .disposed(by: disposeBag)

@@ -33,20 +33,20 @@ public struct QuizzesResponse: Codable {
             case page
         }
     }
+}
+
+public struct Quiz: Codable {
+    public let id, title, description: String
+    public let image: Image?
+    public let quizQuestionsCount: Int
+    public let createdAt: CreatedAt
+    public let participationStatus: String
     
-    public struct Quiz: Codable {
-        public let id, title, description: String
-        public let image: Image
-        public let quizQuestionsCount: Int
-        public let createdAt: CreatedAt
-        public let participationStatus: String
-        
-        enum CodingKeys: String, CodingKey {
-            case id, title, description, image
-            case quizQuestionsCount = "quiz_questions_count"
-            case createdAt = "created_at"
-            case participationStatus = "participation_status"
-        }
+    enum CodingKeys: String, CodingKey {
+        case id, title, description, image
+        case quizQuestionsCount = "quiz_questions_count"
+        case createdAt = "created_at"
+        case participationStatus = "participation_status"
     }
     
     public struct CreatedAt: Codable {
@@ -59,8 +59,8 @@ public struct QuizzesResponse: Codable {
     }
     
     public struct Image: Codable {
-        public let url: String
-        public let thumbnail, thumbnailSquare, large, largeSquare: Large
+        public let url: String?
+        public let thumbnail, thumbnailSquare, large, largeSquare: ImageSize?
         
         enum CodingKeys: String, CodingKey {
             case url, thumbnail
@@ -70,8 +70,7 @@ public struct QuizzesResponse: Codable {
         }
     }
     
-    public struct Large: Codable {
-        public let url: String
+    public struct ImageSize: Codable {
+        public let url: String?
     }
-
 }

@@ -9,7 +9,7 @@
 import UIKit
 
 @IBDesignable
-public class Button: UIButton {
+open class Button: UIButton {
     
     override public init(frame: CGRect) {
         super.init(frame: frame)
@@ -21,7 +21,7 @@ public class Button: UIButton {
         sharedInit()
     }
     
-    override public func prepareForInterfaceBuilder() {
+    override open func prepareForInterfaceBuilder() {
         sharedInit()
     }
     

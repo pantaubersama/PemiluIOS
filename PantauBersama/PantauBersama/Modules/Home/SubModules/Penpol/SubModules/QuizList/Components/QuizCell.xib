@@ -55,7 +55,7 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iGR-to-vzk" customClass="Button" customModule="Common">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iGR-to-vzk" customClass="QuizButton" customModule="PantauBersama" customModuleProvider="target">
                         <rect key="frame" x="16" y="298.5" width="85" height="24"/>
                         <color key="backgroundColor" red="0.91987603902816772" green="0.18888336420059204" blue="0.21535322070121765" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>

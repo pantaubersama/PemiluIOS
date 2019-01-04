@@ -22,7 +22,7 @@ public enum QuizAPI {
     case getQuizQuestions(id: String)
     case answerQUestion(id: String, questionId: String, answerId: String)
     case getQuizDetail(id: String)
-    case getQuizzes(page: String, perPage: String, filterBy: QuizListFilter)
+    case getQuizzes(page: Int, perPage: Int, filterBy: QuizListFilter)
 }
 
 extension QuizAPI: TargetType {
@@ -43,17 +43,17 @@ extension QuizAPI: TargetType {
     public var path: String {
         switch self {
         case .getQuizSummary(let id):
-            return "/v1/quizzes/\(id)/summary"
+            return "/pendidikan_politik/v1/quizzes/\(id)/summary"
         case .getQuizResult(let id):
-            return "/v1/quizzes/\(id)/result"
+            return "/pendidikan_politik/v1/quizzes/\(id)/result"
         case .getQuizQuestions(let id):
-            return "/v1/quizzes/\(id)/questions"
+            return "/pendidikan_politik/v1/quizzes/\(id)/questions"
         case .answerQUestion(let (id, _, _)):
-            return "/v1/quizzes/\(id)/questions"
+            return "/pendidikan_politik/v1/quizzes/\(id)/questions"
         case .getQuizDetail(let id):
-            return "/v1/quizzes/\(id)"
+            return "/pendidikan_politik/v1/quizzes/\(id)"
         case .getQuizzes:
-            return "/v1/quizzes"
+            return "/pendidikan_politik/v1/quizzes"
         }
     }
     

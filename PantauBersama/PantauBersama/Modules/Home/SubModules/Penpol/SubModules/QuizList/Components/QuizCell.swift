@@ -12,37 +12,38 @@ import RxSwift
 import RxCocoa
 
 class QuizCell: UITableViewCell, IReusableCell {
+    struct Input {
+        let viewModel: QuizViewModel
+        let quiz: QuizModel
+    }
     @IBOutlet weak var ivQuiz: UIImageView!
     @IBOutlet weak var lbTitle: Label!
     @IBOutlet weak var lbTotalQuestion: Label!
-    @IBOutlet weak var btnQuiz: Button!
+    @IBOutlet weak var btnQuiz: QuizButton!
     @IBOutlet weak var btnShare: UIButton!
     
     private(set) var disposeBag: DisposeBag = DisposeBag()
-    
-    // TODO: change to Quiz model
-    var quiz: Any! {
-        didSet {
-            // TODO: view configuration
-        }
-    }
     
     override func prepareForReuse() {
         super.prepareForReuse()
         disposeBag = DisposeBag()
     }
     
-    func bind(viewModel: QuizViewModel) {
+    func configureCell(item: Input) {
+        ivQuiz.show(fromURL: item.quiz.image.thumbnail.url)
+        lbTitle.text = item.quiz.title
+        lbTotalQuestion.text = item.quiz.subtitle
+        
+        btnQuiz.setState(state: item.quiz.participationStatus)
+        
         btnQuiz.rx.tap
-            .map({ self.quiz })
-            .bind(to: viewModel.input.openQuizTrigger)
-            .disposed(by: disposeBag)
-
-        btnShare.rx.tap
-            .map({ self.quiz })
-            .bind(to: viewModel.input.shareTrigger)
+            .map({ item.quiz })
+            .bind(to: item.viewModel.input.openQuizTrigger)
             .disposed(by: disposeBag)
         
+        btnShare.rx.tap
+            .map({ item.quiz })
+            .bind(to: item.viewModel.input.shareTrigger)
+            .disposed(by: disposeBag)
     }
-    
 }

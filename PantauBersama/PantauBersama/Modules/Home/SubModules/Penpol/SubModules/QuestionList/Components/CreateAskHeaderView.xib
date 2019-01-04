@@ -31,7 +31,7 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icDummyPerson" translatesAutoresizingMaskIntoConstraints="NO" id="gtt-bl-BZ3">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icDummyPerson" translatesAutoresizingMaskIntoConstraints="NO" id="gtt-bl-BZ3" customClass="CircularUIImageView" customModule="Common">
                     <rect key="frame" x="24" y="18" width="16" height="16"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="16" id="FcR-Ye-xzq"/>

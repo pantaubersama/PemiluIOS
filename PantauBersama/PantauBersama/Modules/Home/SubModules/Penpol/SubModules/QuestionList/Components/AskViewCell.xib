@@ -132,7 +132,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o5a-ue-j1v" customClass="RoundView" customModule="Common">
                                         <rect key="frame" x="0.0" y="0.0" width="28" height="28"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icDummyPerson" translatesAutoresizingMaskIntoConstraints="NO" id="UBx-Yl-Mcc">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icDummyPerson" translatesAutoresizingMaskIntoConstraints="NO" id="UBx-Yl-Mcc" customClass="CircularUIImageView" customModule="Common">
                                                 <rect key="frame" x="0.0" y="0.0" width="28" height="28"/>
                                             </imageView>
                                         </subviews>
