@@ -125,7 +125,10 @@ class DetailJanjiController: UIViewController {
         
         nameLabel.text = data.creator.fullName
         motoLabel.text = data.creator.about ?? ""
-        dateLabel.text = data.createdAt
+        
+        if let date = data.createdAt.toDate(format: Constant.dateTimeFormat3)?.timeAgoSinceDate2 {
+            dateLabel.text = "Posted " + date
+        }
         
         let size = CGSize(width: contentSource.frame.width, height: .infinity)
         let estimateSize = contentSource.sizeThatFits(size)

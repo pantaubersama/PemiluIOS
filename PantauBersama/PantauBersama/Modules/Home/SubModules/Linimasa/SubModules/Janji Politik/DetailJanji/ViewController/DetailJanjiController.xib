@@ -149,7 +149,7 @@
                                             <rect key="frame" x="0.0" y="20" width="375" height="150"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="zjl-g1-UDK">
-                                                    <rect key="frame" x="0.0" y="34.5" width="375" height="81"/>
+                                                    <rect key="frame" x="0.0" y="31.5" width="375" height="87"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NpM-QJ-Tpk" customClass="RoundView" customModule="Common">
                                                             <rect key="frame" x="171.5" y="0.0" width="32" height="32"/>
@@ -203,9 +203,9 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Posted 8 days ago" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ohh-bs-Bry" customClass="Label" customModule="Common">
-                                                            <rect key="frame" x="148.5" y="73" width="78" height="8"/>
+                                                            <rect key="frame" x="148.5" y="73" width="78" height="14"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="height" constant="8" id="t3u-sO-ydU"/>
+                                                                <constraint firstAttribute="height" constant="14" id="t3u-sO-ydU"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
@@ -217,9 +217,6 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                     </subviews>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="81" id="stX-ZG-igA"/>
-                                                    </constraints>
                                                 </stackView>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
