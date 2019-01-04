@@ -96,6 +96,10 @@
 		840850E121D2844700696CB3 /* BadgeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840850E021D2844700696CB3 /* BadgeCoordinator.swift */; };
 		840901B821DF1CBB001BF559 /* Navbar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 840901B721DF1CBB001BF559 /* Navbar.xib */; };
 		840901BA21DF1DE6001BF559 /* Navbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840901B921DF1DE6001BF559 /* Navbar.swift */; };
+		840901BE21DF31CD001BF559 /* CatatanController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 840901BD21DF31CD001BF559 /* CatatanController.xib */; };
+		840901C021DF3BC7001BF559 /* CatatanController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840901BF21DF3BC7001BF559 /* CatatanController.swift */; };
+		840901C221DF3BDE001BF559 /* CatatanViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840901C121DF3BDE001BF559 /* CatatanViewModel.swift */; };
+		840901C421DF3BEC001BF559 /* CatatanCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840901C321DF3BEC001BF559 /* CatatanCoordinator.swift */; };
 		8409374B21D360D10024A444 /* PilpresViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8409374A21D360D10024A444 /* PilpresViewModel.swift */; };
 		8409374D21D361240024A444 /* PilpresNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8409374C21D361240024A444 /* PilpresNavigator.swift */; };
 		841CDA3D21C8BC1C0015680C /* LinimasaController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 841CDA3C21C8BC1C0015680C /* LinimasaController.xib */; };
@@ -364,6 +368,10 @@
 		840850E021D2844700696CB3 /* BadgeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeCoordinator.swift; sourceTree = "<group>"; };
 		840901B721DF1CBB001BF559 /* Navbar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Navbar.xib; sourceTree = "<group>"; };
 		840901B921DF1DE6001BF559 /* Navbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navbar.swift; sourceTree = "<group>"; };
+		840901BD21DF31CD001BF559 /* CatatanController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CatatanController.xib; sourceTree = "<group>"; };
+		840901BF21DF3BC7001BF559 /* CatatanController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatatanController.swift; sourceTree = "<group>"; };
+		840901C121DF3BDE001BF559 /* CatatanViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatatanViewModel.swift; sourceTree = "<group>"; };
+		840901C321DF3BEC001BF559 /* CatatanCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatatanCoordinator.swift; sourceTree = "<group>"; };
 		8409374A21D360D10024A444 /* PilpresViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PilpresViewModel.swift; sourceTree = "<group>"; };
 		8409374C21D361240024A444 /* PilpresNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PilpresNavigator.swift; sourceTree = "<group>"; };
 		841CDA3C21C8BC1C0015680C /* LinimasaController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LinimasaController.xib; sourceTree = "<group>"; };
@@ -963,6 +971,25 @@
 			path = Navbar;
 			sourceTree = "<group>";
 		};
+		840901BB21DF31AA001BF559 /* Catatan */ = {
+			isa = PBXGroup;
+			children = (
+				840901BC21DF31BB001BF559 /* ViewController */,
+				840901C121DF3BDE001BF559 /* CatatanViewModel.swift */,
+				840901C321DF3BEC001BF559 /* CatatanCoordinator.swift */,
+			);
+			path = Catatan;
+			sourceTree = "<group>";
+		};
+		840901BC21DF31BB001BF559 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				840901BD21DF31CD001BF559 /* CatatanController.xib */,
+				840901BF21DF3BC7001BF559 /* CatatanController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		841CDA3E21C8BD070015680C /* SubModules */ = {
 			isa = PBXGroup;
 			children = (
@@ -1093,6 +1120,7 @@
 		844C3D6A21C5177A00199871 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				840901BB21DF31AA001BF559 /* Catatan */,
 				8452A4C621DE1F4900196043 /* StartingSetting */,
 				84619D4721DC960100EB58CF /* WebController */,
 				84A07FBD21D1461800269C6B /* ReqCluster */,
@@ -1725,6 +1753,7 @@
 				84F892AF21C787D800DC1048 /* Lato-Light.ttf in Resources */,
 				8428AAAD21C7B4B20008E975 /* GoogleService-Info.plist in Resources */,
 				84A07FAE21D0E4FD00269C6B /* validation-success.json in Resources */,
+				840901BE21DF31CD001BF559 /* CatatanController.xib in Resources */,
 				84F892B021C787D800DC1048 /* Lato-LightItalic.ttf in Resources */,
 				845C571721CE1B5900EDCDFE /* BadgeCell.xib in Resources */,
 				841CDA3D21C8BC1C0015680C /* LinimasaController.xib in Resources */,
@@ -1951,11 +1980,13 @@
 				8452A4C921DE265500196043 /* BuatProfileViewModel.swift in Sources */,
 				11E107AE21CD42C400B7B074 /* QuizOngoingController.swift in Sources */,
 				84D01B9821D208DE0000492F /* SectionOfSettingData.swift in Sources */,
+				840901C221DF3BDE001BF559 /* CatatanViewModel.swift in Sources */,
 				11E107DA21CFD99900B7B074 /* QuizResultCoordinator.swift in Sources */,
 				11E1079E21CD200500B7B074 /* PenpolViewModel.swift in Sources */,
 				840850CE21D2611D00696CB3 /* DateViewCell.swift in Sources */,
 				11B3C79221D1110700EDCECB /* QuizAnswerController.swift in Sources */,
 				84FE6EBC21D5FCB9009A0F55 /* ErrorTracker.swift in Sources */,
+				840901C021DF3BC7001BF559 /* CatatanController.swift in Sources */,
 				84619D4D21DC9ABD00EB58CF /* WebCoordinator.swift in Sources */,
 				11E1079121CD0FE200B7B074 /* QuizDetailController.swift in Sources */,
 				11E107BC21CF4A6900B7B074 /* PenpolInfoController.swift in Sources */,
@@ -1991,6 +2022,7 @@
 				84B4DED821D375C600F60258 /* JanjiPolitikNavigator.swift in Sources */,
 				84619D4B21DC9A6A00EB58CF /* WebViewModel.swift in Sources */,
 				842A49FF21D79AA70050AA51 /* SelfIdentitasCoordinator.swift in Sources */,
+				840901C421DF3BEC001BF559 /* CatatanCoordinator.swift in Sources */,
 				840850CA21D25EB600696CB3 /* TextViewCell.swift in Sources */,
 				11E1079621CD126900B7B074 /* QuizDetailViewModel.swift in Sources */,
 				84F6981121C8E21B00890917 /* LinimasaCell.swift in Sources */,

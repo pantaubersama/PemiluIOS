@@ -16,6 +16,7 @@ protocol LinimasaNavigator: PilpresNavigator, JanjiPolitikNavigator {
     func launchFilter() -> Observable<Void>
     func launchAddJanji() -> Observable<Void>
     func launchBannerInfo(bannerInfo: BannerInfo) -> Observable<Void>
+    func launchNote() -> Observable<Void>
 }
 
 class LinimasaCoordinator: BaseCoordinator<Void> {
@@ -60,7 +61,11 @@ extension LinimasaCoordinator: LinimasaNavigator {
     func launchNotifications() {
         
     }
- 
+    
+    func launchNote() -> Observable<Void> {
+        let catatanCoordinator = CatatanCoordinator(navigationController: navigationController)
+        return coordinate(to: catatanCoordinator)
+    }
     
 }
 

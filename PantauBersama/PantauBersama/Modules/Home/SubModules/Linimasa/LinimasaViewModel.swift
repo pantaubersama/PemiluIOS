@@ -22,6 +22,7 @@ final class LinimasaViewModel: ViewModelType {
         let refreshTrigger: AnyObserver<Void>
         let profileTrigger: AnyObserver<Void>
         let viewWillAppearTrigger: AnyObserver<Void>
+        let catatanTrigger: AnyObserver<Void>
     }
     
     struct Output {
@@ -29,6 +30,7 @@ final class LinimasaViewModel: ViewModelType {
         let addSelected: Driver<Void>
         let profileSelected: Driver<Void>
         let userO: Driver<UserResponse>
+        let catatanSelected: Driver<Void>
     }
     
     let navigator: LinimasaNavigator
@@ -37,6 +39,7 @@ final class LinimasaViewModel: ViewModelType {
     private let refreshSubject = PublishSubject<Void>()
     private let profileSubject = PublishSubject<Void>()
     private let viewWillppearS = PublishSubject<Void>()
+    private let catatanS = PublishSubject<Void>()
     
     init(navigator: LinimasaNavigator) {
         self.navigator = navigator
@@ -47,7 +50,8 @@ final class LinimasaViewModel: ViewModelType {
             filterTrigger: filterSubject.asObserver(),
             refreshTrigger: refreshSubject.asObserver(),
             profileTrigger: profileSubject.asObserver(),
-            viewWillAppearTrigger: viewWillppearS.asObserver()
+            viewWillAppearTrigger: viewWillppearS.asObserver(),
+            catatanTrigger: catatanS.asObserver()
         )
         
         let filter = filterSubject
@@ -62,6 +66,10 @@ final class LinimasaViewModel: ViewModelType {
             .flatMapLatest({ navigator.launchProfile() })
             .asDriver(onErrorJustReturn: ())
         
+        let note = catatanS
+            .flatMapLatest({ navigator.launchNote() })
+            .asDriver(onErrorJustReturn: ())
+        
         // MARK
         // Get local user response
         let local: Observable<UserResponse> = AppState.local(key: .me)
@@ -72,7 +80,8 @@ final class LinimasaViewModel: ViewModelType {
         output = Output(filterSelected: filter,
                         addSelected: add,
                         profileSelected: profile,
-                        userO: userData)
+                        userO: userData,
+                        catatanSelected: note)
     }
     
 }

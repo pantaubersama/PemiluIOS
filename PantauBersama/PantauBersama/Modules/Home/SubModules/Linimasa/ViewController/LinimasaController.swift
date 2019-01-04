@@ -56,6 +56,10 @@ class LinimasaController: UIViewController {
             .bind(to: viewModel.input.profileTrigger)
             .disposed(by: disposeBag)
         
+        navbar.note.rx.tap
+            .bind(to: viewModel.input.catatanTrigger)
+            .disposed(by: disposeBag)
+        
         viewModel.output.filterSelected
             .drive()
             .disposed(by: disposeBag)
@@ -65,6 +69,10 @@ class LinimasaController: UIViewController {
             .disposed(by: disposeBag)
         
         viewModel.output.profileSelected
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.catatanSelected
             .drive()
             .disposed(by: disposeBag)
         
