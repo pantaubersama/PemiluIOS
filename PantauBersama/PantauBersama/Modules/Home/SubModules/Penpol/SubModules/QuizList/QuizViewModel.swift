@@ -20,18 +20,21 @@ class QuizViewModel: ViewModelType {
         let openQuizTrigger: AnyObserver<Any>
         let shareTrigger: AnyObserver<Any>
         let infoTrigger: AnyObserver<Void>
+        let shareTrendTrigger: AnyObserver<Any>
     }
     
     struct Output {
         let openQuizSelected: Driver<Void>
         let shareSelected: Driver<Void>
         let infoSelected: Driver<Void>
+        let shareTrendSelected: Driver<Void>
     }
     
     // TODO: replace any with Quiz model
     private let openQuizSubject = PublishSubject<Any>()
     private let shareSubject = PublishSubject<Any>()
     private let infoSubject = PublishSubject<Void>()
+    private let shareTrendSubject = PublishSubject<Any>()
     
     private let navigator: QuizNavigator
     
@@ -41,7 +44,8 @@ class QuizViewModel: ViewModelType {
         input = Input(
             openQuizTrigger: openQuizSubject.asObserver(),
             shareTrigger: shareSubject.asObserver(),
-            infoTrigger: infoSubject.asObserver())
+            infoTrigger: infoSubject.asObserver(),
+            shareTrendTrigger: shareTrendSubject.asObserver())
         
         let openQuiz = openQuizSubject
             .flatMapLatest({navigator.openQuiz(quiz: $0)})
@@ -52,11 +56,15 @@ class QuizViewModel: ViewModelType {
         let info = infoSubject
             .flatMapLatest({navigator.openInfoPenpol(infoType: PenpolInfoType.Quiz)})
             .asDriver(onErrorJustReturn: ())
+        let shareTrend = shareTrendSubject
+            .flatMapLatest({navigator.shareTrend(trend: $0)})
+            .asDriver(onErrorJustReturn: ())
         
         output = Output(
             openQuizSelected: openQuiz,
             shareSelected: shareQuiz,
-            infoSelected: info)
+            infoSelected: info,
+            shareTrendSelected: shareTrend)
     }
     
     

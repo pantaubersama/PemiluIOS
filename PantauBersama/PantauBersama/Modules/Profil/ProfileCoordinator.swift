@@ -133,6 +133,10 @@ extension ProfileCoordinator: PenpolNavigator {
         return Observable.never()
     }
     
+    func shareTrend(trend: Any) -> Observable<Void> {
+        return Observable.never()
+    }
+    
     func launchCreateAsk() -> Observable<Void> {
         return Observable.never()
     }
