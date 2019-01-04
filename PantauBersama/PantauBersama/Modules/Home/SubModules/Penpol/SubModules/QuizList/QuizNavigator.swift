@@ -13,4 +13,5 @@ protocol QuizNavigator {
     // TODO: replace Any with Quiz model
     func openQuiz(quiz: Any) -> Observable<Void>
     func shareQuiz(quiz: Any) -> Observable<Void>
+    func shareTrend(trend: Any) -> Observable<Void>
 }

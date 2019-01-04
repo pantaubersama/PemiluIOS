@@ -33,7 +33,7 @@ class PenpolCoordinator: BaseCoordinator<Void> {
 }
 
 extension PenpolCoordinator: PenpolNavigator {
-    
+
     func launchFilter() -> Observable<Void> {
         let filterCoordinator = FilterCoordinator(navigationController: self.navigationController)
         return coordinate(to: filterCoordinator)
@@ -58,6 +58,14 @@ extension PenpolCoordinator: PenpolNavigator {
     }
     
     func shareQuiz(quiz: Any) -> Observable<Void> {
+        // TODO: coordinate to share
+        let activityViewController = UIActivityViewController(activityItems: ["content to be shared" as NSString], applicationActivities: nil)
+        self.navigationController.present(activityViewController, animated: true, completion: nil)
+        
+        return Observable.never()
+    }
+    
+    func shareTrend(trend: Any) -> Observable<Void> {
         // TODO: coordinate to share
         let activityViewController = UIActivityViewController(activityItems: ["content to be shared" as NSString], applicationActivities: nil)
         self.navigationController.present(activityViewController, animated: true, completion: nil)
