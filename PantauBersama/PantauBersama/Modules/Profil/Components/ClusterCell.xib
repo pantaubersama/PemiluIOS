@@ -50,15 +50,48 @@
                             <constraint firstAttribute="height" constant="24" id="aTh-Ej-iTr"/>
                         </constraints>
                     </stackView>
+                    <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="pvp-Mf-wQh">
+                        <rect key="frame" x="16" y="16.5" width="359" height="27"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Belum ada Cluster" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1N7-It-9eh" customClass="Label" customModule="Common">
+                                <rect key="frame" x="0.0" y="0.0" width="96" height="27"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                        <real key="value" value="12"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jhh-K0-q4S" customClass="Button" customModule="Common">
+                                <rect key="frame" x="101" y="0.0" width="258" height="27"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="tintColor" red="0.68041622639999999" green="0.1499232352" blue="0.14898997550000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" title="(Request Cluster)"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                        <real key="value" value="12"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                        </subviews>
+                    </stackView>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="pvp-Mf-wQh" firstAttribute="leading" secondItem="SDl-gc-iVO" secondAttribute="leading" constant="16" id="1eJ-vK-2AS"/>
                     <constraint firstItem="vpQ-38-r3Q" firstAttribute="leading" secondItem="SDl-gc-iVO" secondAttribute="leading" constant="8" id="9xc-77-w7y"/>
                     <constraint firstItem="vpQ-38-r3Q" firstAttribute="centerY" secondItem="SDl-gc-iVO" secondAttribute="centerY" id="PPJ-SN-qaA"/>
                     <constraint firstAttribute="trailing" secondItem="vpQ-38-r3Q" secondAttribute="trailing" constant="14" id="hZO-f1-Ftu"/>
+                    <constraint firstItem="pvp-Mf-wQh" firstAttribute="centerY" secondItem="SDl-gc-iVO" secondAttribute="centerY" id="ihY-rn-wJ6"/>
+                    <constraint firstAttribute="trailing" secondItem="pvp-Mf-wQh" secondAttribute="trailing" constant="14" id="mxT-VB-QCF"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="buttonRequest" destination="jhh-K0-q4S" id="4y7-uP-HC2"/>
+                <outlet property="emptyCluster" destination="pvp-Mf-wQh" id="pJA-2V-LCK"/>
                 <outlet property="iconCluster" destination="tLZ-4s-qiK" id="dGD-NW-gT8"/>
+                <outlet property="more" destination="BPc-dv-Jyy" id="Vmb-Kv-h0e"/>
                 <outlet property="titleCluster" destination="0Rk-3t-wTc" id="haz-Pm-kdf"/>
             </connections>
             <point key="canvasLocation" x="109.59999999999999" y="99.850074962518747"/>

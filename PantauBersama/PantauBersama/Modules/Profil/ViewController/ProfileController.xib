@@ -14,11 +14,11 @@
             <connections>
                 <outlet property="badgeButton" destination="RyV-2G-tO3" id="drj-7g-u04"/>
                 <outlet property="biodataButton" destination="0Kj-9b-KZp" id="9oI-1o-NsK"/>
-                <outlet property="biodataView" destination="P7A-6P-eeq" id="Hb3-GV-vXv"/>
+                <outlet property="biodataContainer" destination="P7A-6P-eeq" id="ILR-4Q-1Rr"/>
                 <outlet property="clusterButton" destination="2Bk-Gz-hJX" id="l3Q-wB-KqS"/>
                 <outlet property="container" destination="nH3-C7-YkB" id="V7d-fT-goM"/>
                 <outlet property="headerProfile" destination="OTp-iP-8Pn" id="GXT-qZ-bZU"/>
-                <outlet property="heightBiodataConstant" destination="vSJ-VZ-plb" id="bjr-Hz-346"/>
+                <outlet property="heightBiodataConstant" destination="5d7-qz-Kdp" id="Bfr-fO-3BU"/>
                 <outlet property="heightTableBadgeConstant" destination="MuC-hZ-3vI" id="VWL-AY-YpX"/>
                 <outlet property="heightTableClusterConstant" destination="fhv-qG-ZXr" id="4yP-D4-BvQ"/>
                 <outlet property="scrollView" destination="W5k-U4-qnn" id="aH9-Pm-0kv"/>
@@ -116,7 +116,7 @@
                                                 <constraint firstAttribute="height" constant="47" id="uat-mS-4Xd"/>
                                             </constraints>
                                         </view>
-                                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ieD-1k-W7p">
+                                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ieD-1k-W7p">
                                             <rect key="frame" x="0.0" y="47" width="375" height="0.0"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
@@ -191,11 +191,11 @@
                                                 <constraint firstAttribute="bottom" secondItem="Sam-h3-dps" secondAttribute="bottom" id="r9Y-CW-fky"/>
                                             </constraints>
                                         </view>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P7A-6P-eeq" customClass="BiodataView" customModule="PantauBersama" customModuleProvider="target">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P7A-6P-eeq">
                                             <rect key="frame" x="0.0" y="94" width="375" height="0.0"/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" id="vSJ-VZ-plb"/>
+                                                <constraint firstAttribute="height" id="5d7-qz-Kdp"/>
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CpA-Ms-Aoe">
@@ -260,7 +260,7 @@
                                                 <constraint firstAttribute="bottom" secondItem="wSq-QZ-w3o" secondAttribute="bottom" id="xVv-wZ-Q66"/>
                                             </constraints>
                                         </view>
-                                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rSZ-8n-8m3">
+                                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rSZ-8n-8m3">
                                             <rect key="frame" x="0.0" y="141" width="375" height="0.0"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
