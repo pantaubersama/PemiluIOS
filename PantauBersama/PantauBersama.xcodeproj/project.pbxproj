@@ -54,6 +54,9 @@
 		11E107DB21CFD99900B7B074 /* QuizResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E107D621CFD99900B7B074 /* QuizResultViewModel.swift */; };
 		11E107DC21CFD99900B7B074 /* QuizResultController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11E107D821CFD99900B7B074 /* QuizResultController.xib */; };
 		11E107DD21CFD99900B7B074 /* QuizResultController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E107D921CFD99900B7B074 /* QuizResultController.swift */; };
+		137A29E821E11D0400F19072 /* HeaderQuizView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 137A29E721E11D0400F19072 /* HeaderQuizView.swift */; };
+		137A29EC21E11E7E00F19072 /* TrendHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 137A29EB21E11E7E00F19072 /* TrendHeaderView.swift */; };
+		137A29EE21E11E8F00F19072 /* TrendHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 137A29ED21E11E8F00F19072 /* TrendHeaderView.xib */; };
 		13812C1E21CAA48700CAB327 /* PenpolController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13812C1C21CAA48700CAB327 /* PenpolController.swift */; };
 		13812C1F21CAA48700CAB327 /* PenpolController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13812C1D21CAA48700CAB327 /* PenpolController.xib */; };
 		13812C2B21CAA71F00CAB327 /* PenpolCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13812C2A21CAA71F00CAB327 /* PenpolCoordinator.swift */; };
@@ -325,6 +328,9 @@
 		11E107D621CFD99900B7B074 /* QuizResultViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizResultViewModel.swift; sourceTree = "<group>"; };
 		11E107D821CFD99900B7B074 /* QuizResultController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuizResultController.xib; sourceTree = "<group>"; };
 		11E107D921CFD99900B7B074 /* QuizResultController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizResultController.swift; sourceTree = "<group>"; };
+		137A29E721E11D0400F19072 /* HeaderQuizView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderQuizView.swift; sourceTree = "<group>"; };
+		137A29EB21E11E7E00F19072 /* TrendHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendHeaderView.swift; sourceTree = "<group>"; };
+		137A29ED21E11E8F00F19072 /* TrendHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrendHeaderView.xib; sourceTree = "<group>"; };
 		13812C1C21CAA48700CAB327 /* PenpolController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PenpolController.swift; sourceTree = "<group>"; };
 		13812C1D21CAA48700CAB327 /* PenpolController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PenpolController.xib; sourceTree = "<group>"; };
 		13812C2A21CAA71F00CAB327 /* PenpolCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PenpolCoordinator.swift; sourceTree = "<group>"; };
@@ -563,6 +569,9 @@
 				11702DD021CB0287001AEE3F /* QuizCell.swift */,
 				11702DD121CB0287001AEE3F /* QuizCell.xib */,
 				1161F9F321DF4B4000C1BAD5 /* QuizButton.swift */,
+				137A29E721E11D0400F19072 /* HeaderQuizView.swift */,
+				137A29ED21E11E8F00F19072 /* TrendHeaderView.xib */,
+				137A29EB21E11E7E00F19072 /* TrendHeaderView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -1739,6 +1748,7 @@
 				84F892AA21C787D800DC1048 /* Lato-Bold.ttf in Resources */,
 				13F456D421DB897500CE45F1 /* BannerInfoController.xib in Resources */,
 				840901B821DF1CBB001BF559 /* Navbar.xib in Resources */,
+				137A29EE21E11E8F00F19072 /* TrendHeaderView.xib in Resources */,
 				84A07FAD21D0E4FD00269C6B /* upload-ttd.json in Resources */,
 				84E2854D21CA4BC800298E31 /* FilterViewController.xib in Resources */,
 				84F892AB21C787D800DC1048 /* Lato-BoldItalic.ttf in Resources */,
@@ -2073,6 +2083,7 @@
 				844C3D8321C524F000199871 /* LinimasaController.swift in Sources */,
 				11702DD221CB0287001AEE3F /* QuizCell.swift in Sources */,
 				840850C521D25CB000696CB3 /* ProfileEditViewModel.swift in Sources */,
+				137A29E821E11D0400F19072 /* HeaderQuizView.swift in Sources */,
 				84E2855521CA570E00298E31 /* LinimasaViewModel.swift in Sources */,
 				84E2855121CA4D4900298E31 /* FilterViewController.swift in Sources */,
 				13F456B321D36D8E00CE45F1 /* UndangAnggotaCoordinator.swift in Sources */,
@@ -2097,6 +2108,7 @@
 				84B2522E21CAB53C00565D82 /* OnboardingCoordinator.swift in Sources */,
 				1161F9F221DF3CC300C1BAD5 /* ImageModel.swift in Sources */,
 				840850DB21D282B100696CB3 /* BadgeController.swift in Sources */,
+				137A29EC21E11E7E00F19072 /* TrendHeaderView.swift in Sources */,
 				84B2522021CAB2B900565D82 /* OnboardingViewController.swift in Sources */,
 				13F456CB21DB88E700CE45F1 /* BannerInfoViewModel.swift in Sources */,
 				84A07FBA21D0F13200269C6B /* IdentitasViewModel.swift in Sources */,
