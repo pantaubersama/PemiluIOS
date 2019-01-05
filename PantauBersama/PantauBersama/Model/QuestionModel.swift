@@ -30,11 +30,11 @@ public struct QuestionModel {
                          email: question.user.email,
                          fullName: question.user.fullName,
                          username: question.user.username ?? "",
-                         avatar: Creator.Avatar(url: question.user.avatar.url ?? "",
-                                             thumbnail: Creator.Avatar.ImageSize(url: question.user.avatar.thumbnail.url ?? ""),
-                                             thumbnailSquare: Creator.Avatar.ImageSize(url: question.user.avatar.thumbnailSquare.url ?? ""),
-                                             medium: Creator.Avatar.ImageSize(url: question.user.avatar.medium.url ?? ""),
-                                             mediumSquare: Creator.Avatar.ImageSize(url: question.user.avatar.mediumSquare.url ?? "")),
+                         avatar: ImageModel(url: question.user.avatar.url ?? "",
+                                             thumbnail: ImageModel.ImageSize(url: question.user.avatar.thumbnail.url ?? ""),
+                                             thumbnailSquare: ImageModel.ImageSize(url: question.user.avatar.thumbnailSquare.url ?? ""),
+                                             medium: ImageModel.ImageSize(url: question.user.avatar.medium.url ?? ""),
+                                             mediumSquare: ImageModel.ImageSize(url: question.user.avatar.mediumSquare.url ?? "")),
                          verified: question.user.verified,
                          about: question.user.about ?? "")
         self.isLiked = question.isLiked
@@ -48,18 +48,9 @@ public struct QuestionModel {
     public struct Creator: Codable {
         let id, email, fullName: String
         let username: String
-        let avatar: Avatar
+        let avatar: ImageModel
         let verified: Bool
         let about: String
-        
-        public struct Avatar: Codable {
-            let url: String
-            let thumbnail, thumbnailSquare, medium, mediumSquare: ImageSize
-            
-            struct ImageSize: Codable {
-                let url: String
-            }
-        }
     }
 }
 

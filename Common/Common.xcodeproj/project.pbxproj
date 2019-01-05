@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1151D16521D64CAA00E9F91D /* UIImageView+async.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1151D16421D64CAA00E9F91D /* UIImageView+async.swift */; };
+		1161F9F021DF3A8D00C1BAD5 /* CircularUIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1161F9EF21DF3A8D00C1BAD5 /* CircularUIImageView.swift */; };
 		11702DDB21CB1C5A001AEE3F /* ImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11702DDA21CB1C5A001AEE3F /* ImageButton.swift */; };
 		11C7BB2721DB3C34008CA49B /* UIAlertController+Dialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C7BB2621DB3C34008CA49B /* UIAlertController+Dialog.swift */; };
 		1D0E1E57B81AE85E2551744D /* Pods_Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44BB4E6DC2355C13791C68DB /* Pods_Common.framework */; };
@@ -57,6 +58,7 @@
 /* Begin PBXFileReference section */
 		02158AB122F8CEFF16E59736 /* Pods_CommonTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CommonTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1151D16421D64CAA00E9F91D /* UIImageView+async.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+async.swift"; sourceTree = "<group>"; };
+		1161F9EF21DF3A8D00C1BAD5 /* CircularUIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularUIImageView.swift; sourceTree = "<group>"; };
 		11702DDA21CB1C5A001AEE3F /* ImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageButton.swift; sourceTree = "<group>"; };
 		11C7BB2621DB3C34008CA49B /* UIAlertController+Dialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Dialog.swift"; sourceTree = "<group>"; };
 		40C1D3CEB3FC05B14DD97941 /* Pods-CommonTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CommonTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-CommonTests/Pods-CommonTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -249,6 +251,7 @@
 				84B2669A21D4B19200C7B783 /* UIApplication.swift */,
 				84619D3221D9E4A900EB58CF /* UIImage.swift */,
 				11C7BB2621DB3C34008CA49B /* UIAlertController+Dialog.swift */,
+				1161F9EF21DF3A8D00C1BAD5 /* CircularUIImageView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -435,6 +438,7 @@
 				8441DB4721CCC8DE00B078DF /* TextField.swift in Sources */,
 				84B2522621CAB3FF00565D82 /* KeychainService.swift in Sources */,
 				8428AA9421C7A4CD0008E975 /* Localized.swift in Sources */,
+				1161F9F021DF3A8D00C1BAD5 /* CircularUIImageView.swift in Sources */,
 				84F8929721C783A700DC1048 /* Label.swift in Sources */,
 				8428AA9D21C7A5480008E975 /* Reachability.m in Sources */,
 				8428AA9121C7A4530008E975 /* UICollectionView.swift in Sources */,
