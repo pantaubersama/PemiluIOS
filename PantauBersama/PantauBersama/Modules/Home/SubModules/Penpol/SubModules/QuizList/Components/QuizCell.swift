@@ -27,6 +27,7 @@ class QuizCell: UITableViewCell, IReusableCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         disposeBag = DisposeBag()
+        btnQuiz.setTitle("", for: .normal)
     }
     
     func configureCell(item: Input) {

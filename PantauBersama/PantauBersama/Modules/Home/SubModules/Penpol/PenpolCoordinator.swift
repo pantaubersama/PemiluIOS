@@ -52,9 +52,18 @@ extension PenpolCoordinator: PenpolNavigator {
         return Observable.never()
     }
     
-    func openQuiz(quiz: Any) -> Observable<Void> {
-        let quizDetailCoordinator = QuizDetailCoordinator(navigationController: self.navigationController, quizModel: quiz)
-        return coordinate(to: quizDetailCoordinator)
+    func openQuiz(quiz: QuizModel) -> Observable<Void> {
+        switch quiz.participationStatus {
+        case .inProgress:
+            let coordinator = QuizOngoingCoordinator(navigationController: self.navigationController)
+            return coordinate(to: coordinator)
+        case .finished:
+            let coordinator = QuizResultCoordinator(navigationController: self.navigationController)
+            return coordinate(to: coordinator)
+        case .notParticipating:
+            let coordinator = QuizDetailCoordinator(navigationController: self.navigationController, quizModel: quiz)
+            return coordinate(to: coordinator)
+        }
     }
     
     func shareQuiz(quiz: Any) -> Observable<Void> {
