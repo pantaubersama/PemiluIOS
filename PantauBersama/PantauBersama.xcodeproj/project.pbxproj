@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1143E80B21E0DA24003862B6 /* TrendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1143E80921E0DA24003862B6 /* TrendCell.swift */; };
+		1143E80C21E0DA24003862B6 /* TrendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1143E80A21E0DA24003862B6 /* TrendCell.xib */; };
 		1161F9EE21DF378400C1BAD5 /* QuizModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1161F9ED21DF378400C1BAD5 /* QuizModel.swift */; };
 		1161F9F221DF3CC300C1BAD5 /* ImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1161F9F121DF3CC300C1BAD5 /* ImageModel.swift */; };
 		1161F9F421DF4B4000C1BAD5 /* QuizButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1161F9F321DF4B4000C1BAD5 /* QuizButton.swift */; };
@@ -276,6 +278,8 @@
 
 /* Begin PBXFileReference section */
 		04A224A86FBFD6EFE137644F /* Pods-PantauBersama.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PantauBersama.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-PantauBersama/Pods-PantauBersama.debug.xcconfig"; sourceTree = "<group>"; };
+		1143E80921E0DA24003862B6 /* TrendCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrendCell.swift; sourceTree = "<group>"; };
+		1143E80A21E0DA24003862B6 /* TrendCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TrendCell.xib; sourceTree = "<group>"; };
 		1161F9ED21DF378400C1BAD5 /* QuizModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizModel.swift; sourceTree = "<group>"; };
 		1161F9F121DF3CC300C1BAD5 /* ImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageModel.swift; sourceTree = "<group>"; };
 		1161F9F321DF4B4000C1BAD5 /* QuizButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizButton.swift; sourceTree = "<group>"; };
@@ -554,6 +558,8 @@
 		11702DCF21CB0241001AEE3F /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				1143E80921E0DA24003862B6 /* TrendCell.swift */,
+				1143E80A21E0DA24003862B6 /* TrendCell.xib */,
 				11702DD021CB0287001AEE3F /* QuizCell.swift */,
 				11702DD121CB0287001AEE3F /* QuizCell.xib */,
 				1161F9F321DF4B4000C1BAD5 /* QuizButton.swift */,
@@ -1729,6 +1735,7 @@
 				845C570D21CE0C8100EDCDFE /* ClusterCell.xib in Resources */,
 				84A07FB421D0ECC100269C6B /* SuccessController.xib in Resources */,
 				84A07FC021D1465C00269C6B /* ReqClusterController.xib in Resources */,
+				1143E80C21E0DA24003862B6 /* TrendCell.xib in Resources */,
 				84F892AA21C787D800DC1048 /* Lato-Bold.ttf in Resources */,
 				13F456D421DB897500CE45F1 /* BannerInfoController.xib in Resources */,
 				840901B821DF1CBB001BF559 /* Navbar.xib in Resources */,
@@ -2029,6 +2036,7 @@
 				8452A4D021DE544C00196043 /* SosmedController.swift in Sources */,
 				11E107AA21CD33CA00B7B074 /* CreateJanjiController.swift in Sources */,
 				845C570F21CE0DA400EDCDFE /* ClusterCell.swift in Sources */,
+				1143E80B21E0DA24003862B6 /* TrendCell.swift in Sources */,
 				845C570B21CD3E9700EDCDFE /* SectionCell.swift in Sources */,
 				84E2854421CA195C00298E31 /* CustomActionSheet.swift in Sources */,
 				84619D3A21DA85D200EB58CF /* EditCoordinator.swift in Sources */,
