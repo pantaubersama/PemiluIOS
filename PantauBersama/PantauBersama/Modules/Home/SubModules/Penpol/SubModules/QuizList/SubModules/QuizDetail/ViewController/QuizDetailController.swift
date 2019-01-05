@@ -23,6 +23,16 @@ class QuizDetailController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        bindViewModel()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.configure(with: .transparent)
+        self.navigationController?.navigationBar.tintColor = UIColor.clear
+    }
+    
+    private func bindViewModel() {
         btnStart.rx.tap
             .bind(to: viewModel.input.startTrigger)
             .disposed(by: disposeBag)
@@ -30,12 +40,18 @@ class QuizDetailController: UIViewController {
         viewModel.output.startSelected
             .drive()
             .disposed(by: disposeBag)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.navigationController?.navigationBar.configure(with: .transparent)
-        self.navigationController?.navigationBar.tintColor = UIColor.clear
+        
+        
+        viewModel.output.quiz
+            .drive(onNext: { [unowned self](quizModel) in
+                self.ivQuiz.show(fromURL: quizModel.image.url)
+                self.lbTitle.text = quizModel.title
+                self.lbQuestionCount.text = quizModel.subtitle
+                self.tvDescription.text = quizModel.description
+            })
+            .disposed(by: disposeBag)
+        
+        
     }
 
 }
