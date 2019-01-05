@@ -3,15 +3,53 @@ fastlane_version "2.112.0"
 
 default_platform(:ios)
 
+# CUSTOM LANES
 platform :ios do
-	# Webhook URL created in Slack
-	before_all do
-    	ENV["SLACK_URL"] = "https://hooks.slack.com/services/[webhook-url]" 
-  	end
 
-  	desc "Submit to a bew beta build  to apple testflight"
-  	lane :beta do
-    	build_app(scheme: "PantauBersamaStaging")
-    	upload_to_testflight
-  	end
+	# BEFOR ALL LANE RUNS
+	before_all do 
+		cocoapods(
+			clean: true
+		)
+	end
+
+	desc "Submit a new build staging AppStore (staging distribution)"
+	lane :develop do 
+		produce
+		match(type: "appstore")
+		gym(
+			export_method: "app-store",
+			export_options: {
+				provisioningProfiles: {
+					"com.pantaubersama.staging" => "match AppStore com.pantaubersama.staging"
+				}
+			}
+		)
+		upload_to_testflight(
+			username: "helmy@extrainteger.com",
+			app_identifier: "com.pantaubersama.staging"
+		)
+			error do |lane, exception|
+		end
+	end
+
+
+	desc "Submit a new build to AppStore"
+	lane :relase do 
+		produce
+		match(type: "appstore")
+		gym(
+			export_method: "app-store",
+			export_options: {
+				provisioningProfiles: {
+					"com.pantaubersama" => "match AppStore com.pantaubersama"
+				}
+			}
+		)
+
+
+			error do |lane, exception|
+		end
+	end
+
 end

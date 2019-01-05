@@ -25,8 +25,7 @@ iOS 10 or later
 
 >https://docs.fastlane.tools/getting-started/ios/setup/
 
-Need configure after we have AppStore Account ☺️ 
-We hopefully using fastlane to minimize waiting time for uploading App Store, effortless to code signing and more... 
+Please read all docs file in directory fastlane/ 
 
 ### How to Run
 
