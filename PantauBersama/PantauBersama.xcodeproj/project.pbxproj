@@ -2290,7 +2290,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = XLK9742Z44;
 				INFOPLIST_FILE = PantauBersama/Info.plist;
@@ -2300,7 +2300,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.pantaubersama.staging;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Pantau Bersama Staging Distribution";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development com.pantaubersama.staging";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -2323,7 +2323,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.pantaubersama;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Pantau Bersama Production";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.pantaubersama";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
