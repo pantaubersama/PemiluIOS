@@ -20,6 +20,9 @@ class ClusterCell: UITableViewCell {
     
     @IBOutlet weak var iconCluster: UIImageView!
     @IBOutlet weak var titleCluster: Label!
+    @IBOutlet weak var emptyCluster: UIStackView!
+    @IBOutlet weak var buttonRequest: Button!
+    @IBOutlet weak var more: UIButton!
     
     private var disposeBag: DisposeBag!
     
@@ -39,10 +42,16 @@ extension ClusterCell: IReusableCell {
     
     func configureCell(item: Input) {
         let bag = DisposeBag()
-        
-        titleCluster.text = item.data?.cluster?.name
-        if let thumbnail = item.data?.cluster?.image.thumbnail.url {
-            iconCluster.af_setImage(withURL: URL(string: thumbnail)!)
+        if item.data?.cluster != nil {
+            titleCluster.text = item.data?.cluster?.name
+            if let thumbnail = item.data?.cluster?.image.thumbnail.url {
+                iconCluster.af_setImage(withURL: URL(string: thumbnail)!)
+            }
+        } else {
+            titleCluster.isHidden = true
+            iconCluster.isHidden = true
+            more.isHidden = true
+            emptyCluster.isHidden = false
         }
         
         disposeBag = bag

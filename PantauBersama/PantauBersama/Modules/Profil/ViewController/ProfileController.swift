@@ -26,7 +26,13 @@ class ProfileController: UIViewController {
     @IBOutlet weak var heightBiodataConstant: NSLayoutConstraint!
     @IBOutlet weak var tableViewCluster: UITableView!
     @IBOutlet weak var tableViewBadge: UITableView!
-    @IBOutlet weak var biodataView: BiodataView!
+    @IBOutlet weak var biodataContainer: UIView!
+    
+    private lazy var biodataView: BiodataView = {
+       let b = BiodataView()
+        b.translatesAutoresizingMaskIntoConstraints = false
+        return b
+    }()
     
     var viewModel: IProfileViewModel!
     
@@ -44,6 +50,7 @@ class ProfileController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupBiodataView()
         // MARK
         // add child view
         add(childViewController: janjiController, context: container)
@@ -51,9 +58,8 @@ class ProfileController: UIViewController {
         
         let back = UIBarButtonItem(image: #imageLiteral(resourceName: "back"), style: .plain, target: nil, action: nil)
         let setting = UIBarButtonItem(image: #imageLiteral(resourceName: "outlineSettings24Px"), style: .plain, target: nil, action: nil)
-        let cluster = UIBarButtonItem(image: #imageLiteral(resourceName: "icLaporActive"), style: .plain, target: nil, action: nil)
         
-        navigationItem.rightBarButtonItems = [setting, cluster]
+        navigationItem.rightBarButtonItem = setting
         navigationItem.leftBarButtonItem = back
         navigationController?.navigationBar.configure(with: .white)
         
@@ -113,7 +119,12 @@ class ProfileController: UIViewController {
                 self.janjiController.tableView.rx.contentOffset.asDriver(),
                 self.tanyaController.tableView.rx.contentOffset.asDriver()
             ])
-            .drive(onNext: { (position) in
+            .drive(onNext: { [weak self] (position) in
+                guard let `self` = self else { return }
+                // need adjustment when user scroll tableview
+                self.heightTableClusterConstant.constant = 0.0
+                self.heightBiodataConstant.constant = 0.0
+                self.heightTableBadgeConstant.constant = 0.0
                 let headerViewHeight: CGFloat = 347 // calculate each subview from top to segmented
                 let halfHeaderViewHeight = headerViewHeight / 2
 
@@ -155,14 +166,16 @@ class ProfileController: UIViewController {
         tableViewBadge.registerReusableCell(BadgeCell.self)
         tableViewBadge.tableFooterView = UIView()
         
-        dataSourceCluster = RxTableViewSectionedReloadDataSource<SectionOfProfileData>(configureCell: { (dataSource, tableView, indexPath, item) in
+        dataSourceCluster = RxTableViewSectionedReloadDataSource<SectionOfProfileData>(configureCell: {
+            (dataSource, tableView, indexPath, item) in
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: item.reuseIdentifier) else {
                     return UITableViewCell()
                 }
                 item.configure(cell: cell)
                 return cell
         })
-        dataSourceBadge = RxTableViewSectionedReloadDataSource<SectionOfProfileData>(configureCell: { (dataSource, tableView, indexPath, item) in
+        dataSourceBadge = RxTableViewSectionedReloadDataSource<SectionOfProfileData>(configureCell: {
+            (dataSource, tableView, indexPath, item) in
             guard let cell = tableView.dequeueReusableCell(withIdentifier: item.reuseIdentifier) else {
                 return UITableViewCell()
             }
@@ -181,9 +194,9 @@ class ProfileController: UIViewController {
             .bind(to: viewModel.input.settingI)
             .disposed(by: disposeBag)
         
-        cluster.rx.tap
-            .bind(to: viewModel.input.clusterI)
-            .disposed(by: disposeBag)
+//        cluster.rx.tap
+//            .bind(to: viewModel.input.clusterI)
+//            .disposed(by: disposeBag)
         
         headerProfile.buttonVerified.rx.tap
             .bind(to: viewModel.input.verifikasiI)
@@ -251,4 +264,15 @@ extension ProfileController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 20.0
     }
+}
+
+extension ProfileController {
+    
+    private func setupBiodataView() {
+        biodataContainer.addSubview(biodataView)
+        biodataView.centerYAnchor.constraint(equalTo: biodataView.centerYAnchor).isActive = true
+        biodataView.leftAnchor.constraint(equalTo: biodataView.leftAnchor, constant: 16).isActive = true
+        biodataView.rightAnchor.constraint(equalTo: biodataView.rightAnchor, constant: 16).isActive = true
+    }
+    
 }
