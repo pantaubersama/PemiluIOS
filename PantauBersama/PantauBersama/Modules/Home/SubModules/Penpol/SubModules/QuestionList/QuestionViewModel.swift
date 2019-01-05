@@ -38,6 +38,7 @@ class QuestionViewModel: ViewModelType {
         let userData: Driver<UserResponse?>
         let loadingIndicator: Driver<Bool>
         let deletedQuestoinIndex: Driver<Int>
+        let bannerInfo: Driver<BannerInfo>
     }
     
     private let loadQuestionSubject = PublishSubject<Void>()
@@ -59,6 +60,8 @@ class QuestionViewModel: ViewModelType {
     private(set) var disposeBag = DisposeBag()
     private var currentPage = 0
     
+    let headerViewModel = BannerHeaderViewModel()
+    
     init(navigator: PenpolNavigator) {
         self.navigator = navigator
         
@@ -76,9 +79,12 @@ class QuestionViewModel: ViewModelType {
             .flatMapLatest({navigator.launchCreateAsk()})
             .asDriver(onErrorJustReturn: ())
         
-        let info = infoSubject
-            .flatMapLatest({navigator.openInfoPenpol(infoType: PenpolInfoType.Ask)})
-            .asDriver(onErrorJustReturn: ())
+        let infoSelected = headerViewModel.output.itemSelected
+            .asObservable()
+            .flatMapLatest({ (banner) -> Observable<Void> in
+                return navigator.launchBannerInfo(bannerInfo: banner)
+            })
+            .asDriverOnErrorJustComplete()
         
         let moreQuestion = moreSubject
             .asObserver().asDriverOnErrorJustComplete()
@@ -86,6 +92,10 @@ class QuestionViewModel: ViewModelType {
         let shareQuestion = shareSubject
             .flatMapLatest({navigator.shareQuestion(question: $0.body)})
             .asDriver(onErrorJustReturn: ())
+        
+        let bannerInfo = loadQuestionSubject
+            .flatMapLatest({ self.bannerInfo() })
+            .asDriverOnErrorJustComplete()
         
         let moreMenuSelected = moreMenuSubject
             .flatMapLatest({ [weak self](type) -> Observable<String> in
@@ -179,13 +189,14 @@ class QuestionViewModel: ViewModelType {
         output = Output(
             question: questionRelay,
             createSelected: create,
-            infoSelected: info,
+            infoSelected: infoSelected,
             shareSelected: shareQuestion,
             moreSelected: moreQuestion,
             moreMenuSelected: moreMenuSelected,
             userData: user,
             loadingIndicator: activityIndicator.asDriver(),
-            deletedQuestoinIndex: deletedQuestionSubject.asDriverOnErrorJustComplete())
+            deletedQuestoinIndex: deletedQuestionSubject.asDriverOnErrorJustComplete(),
+            bannerInfo: bannerInfo)
     }
     
     private func questionitem(resetPage: Bool = false) -> Observable<[QuestionModel]> {
@@ -243,6 +254,17 @@ class QuestionViewModel: ViewModelType {
                 
                 return (questionId, status)
             })
+            .asObservable()
+            .catchErrorJustComplete()
+    }
+    
+    private func bannerInfo() -> Observable<BannerInfo> {
+        return NetworkService.instance
+            .requestObject(
+                LinimasaAPI.getBannerInfos(pageName: "tanya"),
+                c: BaseResponse<BannerInfoResponse>.self
+            )
+            .map{ ($0.data.bannerInfo) }
             .asObservable()
             .catchErrorJustComplete()
     }

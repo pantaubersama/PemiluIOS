@@ -8,9 +8,12 @@
 
 import Foundation
 import UIKit
+import RxSwift
+import RxCocoa
 
 class HeaderAskView: UIView {
     private var viewModel: QuestionViewModel?
+    private let disposeBag: DisposeBag = DisposeBag()
     
     convenience init(viewModel: QuestionViewModel) {
         self.init()
@@ -31,7 +34,8 @@ class HeaderAskView: UIView {
     
     private func setup() {
         guard let viewModel = self.viewModel else { return }
-        let bannerInfoAskView = BannerInfoAskView(viewModel: viewModel)
+        
+        let bannerInfoAskView = BannerHeaderView()
         bannerInfoAskView.translatesAutoresizingMaskIntoConstraints = false
         
         let createAskHeaderView = CreateAskHeaderView(viewModel: viewModel)
@@ -53,5 +57,13 @@ class HeaderAskView: UIView {
             createAskHeaderView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             createAskHeaderView.heightAnchor.constraint(equalToConstant: 85)
             ])
+        
+        viewModel.output.bannerInfo
+            .drive(onNext: { (banner) in
+                bannerInfoAskView.config(banner: banner, viewModel: viewModel.headerViewModel)
+            })
+            .disposed(by: disposeBag)
     }
+    
+    
 }
