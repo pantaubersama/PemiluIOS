@@ -20,7 +20,7 @@ class QuizViewModel: ViewModelType {
     struct Input {
         let loadQuizTrigger: AnyObserver<Void>
         let nextPageTrigger: AnyObserver<Void>
-        let openQuizTrigger: AnyObserver<Any>
+        let openQuizTrigger: AnyObserver<QuizModel>
         let shareTrigger: AnyObserver<Any>
         let infoTrigger: AnyObserver<Void>
         let shareTrendTrigger: AnyObserver<Any>
@@ -38,7 +38,7 @@ class QuizViewModel: ViewModelType {
     // TODO: replace any with Quiz model
     private let loadQuizSubject = PublishSubject<Void>()
     private let nextPageSubject = PublishSubject<Void>()
-    private let openQuizSubject = PublishSubject<Any>()
+    private let openQuizSubject = PublishSubject<QuizModel>()
     private let shareSubject = PublishSubject<Any>()
     private let infoSubject = PublishSubject<Void>()
     private let shareTrendSubject = PublishSubject<Any>()

@@ -125,7 +125,7 @@ extension ProfileCoordinator: PenpolNavigator {
         return Observable.never()
     }
     
-    func openQuiz(quiz: Any) -> Observable<Void> {
+    func openQuiz(quiz: QuizModel) -> Observable<Void> {
         return Observable.never()
     }
     
