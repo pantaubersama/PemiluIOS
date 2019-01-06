@@ -18,7 +18,7 @@ class UndangAnggotaController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "Buat Pertanyaan"
+        title = "Undang Anggota"
         let back = UIBarButtonItem(image: #imageLiteral(resourceName: "back"), style: .plain, target: nil, action: nil)
         
         navigationItem.leftBarButtonItem = back
@@ -33,6 +33,12 @@ class UndangAnggotaController: UIViewController {
         viewModel.output.createSelected
             .drive()
             .disposed(by: disposeBag)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.navigationBar.configure(with: .white)
     }
 
 }

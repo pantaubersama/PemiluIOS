@@ -214,6 +214,7 @@
 		84B6D6E821E1E7FC00CD4BC8 /* ClusterCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B6D6E721E1E7FB00CD4BC8 /* ClusterCellViewModel.swift */; };
 		84B6D6EA21E223AA00CD4BC8 /* ClusterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84B6D6E921E223AA00CD4BC8 /* ClusterView.xib */; };
 		84B6D6EC21E2248300CD4BC8 /* ClusterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B6D6EB21E2248300CD4BC8 /* ClusterView.swift */; };
+		84B6D6EE21E2451600CD4BC8 /* ClusterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B6D6ED21E2451600CD4BC8 /* ClusterType.swift */; };
 		84D01B9821D208DE0000492F /* SectionOfSettingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D01B9721D208DE0000492F /* SectionOfSettingData.swift */; };
 		84D01B9B21D20C480000492F /* SettingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84D01B9A21D20C480000492F /* SettingCell.xib */; };
 		84D01B9D21D20CA20000492F /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D01B9C21D20CA20000492F /* SettingCell.swift */; };
@@ -499,6 +500,7 @@
 		84B6D6E721E1E7FB00CD4BC8 /* ClusterCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterCellViewModel.swift; sourceTree = "<group>"; };
 		84B6D6E921E223AA00CD4BC8 /* ClusterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ClusterView.xib; sourceTree = "<group>"; };
 		84B6D6EB21E2248300CD4BC8 /* ClusterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterView.swift; sourceTree = "<group>"; };
+		84B6D6ED21E2451600CD4BC8 /* ClusterType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterType.swift; sourceTree = "<group>"; };
 		84D01B9721D208DE0000492F /* SectionOfSettingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionOfSettingData.swift; sourceTree = "<group>"; };
 		84D01B9A21D20C480000492F /* SettingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingCell.xib; sourceTree = "<group>"; };
 		84D01B9C21D20CA20000492F /* SettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
@@ -1561,6 +1563,7 @@
 				84E2854621CA1E8300298E31 /* PilpresType.swift */,
 				8441DB5921CD087000B078DF /* JanjiType.swift */,
 				13F456A821D2A68300CE45F1 /* QuestionType.swift */,
+				84B6D6ED21E2451600CD4BC8 /* ClusterType.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -2053,6 +2056,7 @@
 				84E2854421CA195C00298E31 /* CustomActionSheet.swift in Sources */,
 				84619D3A21DA85D200EB58CF /* EditCoordinator.swift in Sources */,
 				844C3D6D21C51CE900199871 /* HomeController.swift in Sources */,
+				84B6D6EE21E2451600CD4BC8 /* ClusterType.swift in Sources */,
 				84E6934621D296BB00EA5464 /* SectionOfProfileEditData.swift in Sources */,
 				84F6980B21C8D2B100890917 /* JanjiPolitikViewController.swift in Sources */,
 				13F4569421CF97DA00CE45F1 /* CreateAskController.swift in Sources */,
@@ -2097,7 +2101,6 @@
 				84D01B9D21D20CA20000492F /* SettingCell.swift in Sources */,
 				844C3D7821C51EFD00199871 /* HomeCoordinator.swift in Sources */,
 				845C571921CE1C9900EDCDFE /* BadgeCell.swift in Sources */,
-				11E107C521CF534700B7B074 /* PenpolInfoCoordinator.swift in Sources */,
 				84B6D6E621E1069E00CD4BC8 /* KategoriClusterCoordinator.swift in Sources */,
 				84619D4421DA9A9D00EB58CF /* EditController.swift in Sources */,
 				84B6D6EC21E2248300CD4BC8 /* ClusterView.swift in Sources */,

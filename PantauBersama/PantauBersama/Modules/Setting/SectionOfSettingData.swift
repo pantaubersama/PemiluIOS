@@ -43,7 +43,7 @@ enum SettingData: Int {
         case .facebook:
             return "Connect Facebook"
         case .cluster:
-            return "Cluster"
+            return "Undang"
         case .pusatBantuan:
             return "Pusat Bantuan"
         case .pedomanKomunitas:

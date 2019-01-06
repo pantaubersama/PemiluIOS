@@ -3,17 +3,17 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "outlineLink24Px.png"
+      "filename" : "icRadioButtonOff.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "outlineLink24Px@2x.png"
+      "filename" : "icRadioButtonOff@2x.png"
     },
     {
       "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "outlineLink24Px@3x.png"
+      "filename" : "icRadioButtonOff@3x.png"
     }
   ],
   "info" : {

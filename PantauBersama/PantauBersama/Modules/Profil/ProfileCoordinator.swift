@@ -16,6 +16,7 @@ protocol ProfileNavigator: LinimasaNavigator, PenpolNavigator {
     func launchSetting(user: User) -> Observable<Void>
     func launchVerifikasi(user: VerificationsResponse.U) -> Observable<Void>
     func launchReqCluster() -> Observable<Void>
+    func launchUndangAnggota() -> Observable<Void>
 }
 
 
@@ -71,6 +72,11 @@ extension ProfileCoordinator: ProfileNavigator {
     func launchReqCluster() -> Observable<Void> {
         let reqClusterCoordinator = ReqClusterCoordinator(navigationController: navigationController)
         return coordinate(to: reqClusterCoordinator)
+    }
+    
+    func launchUndangAnggota() -> Observable<Void> {
+        let undangAnggotaCoordinator = UndangAnggotaCoordinator(navigationController: navigationController)
+        return coordinate(to: undangAnggotaCoordinator)
     }
     
 }

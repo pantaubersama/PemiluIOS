@@ -121,6 +121,8 @@ final class SettingViewModel: ISettingViewModel, ISettingViewModelInput, ISettin
                     return navigator.launchProfileEdit(data: data, type: ProfileHeaderItem.editPassword)
                 case .updateDataLapor:
                     return navigator.launchProfileEdit(data: data, type: ProfileHeaderItem.editDataLapor)
+                case .cluster:
+                    return navigator.launchUndang()
                 default:
                     return Observable.empty()
                 }

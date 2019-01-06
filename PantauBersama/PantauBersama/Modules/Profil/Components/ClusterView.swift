@@ -44,6 +44,11 @@ class ClusterView: UIView {
             viewNoCluster.isHidden = true
             buttonReqCluster.isHidden = true
             labelReqCluster.isHidden = true
+            nameCluster.text = data.cluster?.name
+            if let thumbnail = data.cluster?.image.thumbnail.url {
+                iconCluster.af_setImage(withURL: URL(string: thumbnail)!)
+            }
+            
             
         } else {
             viewCluster.isHidden = true

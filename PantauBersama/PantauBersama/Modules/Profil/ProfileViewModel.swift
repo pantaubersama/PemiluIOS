@@ -17,6 +17,7 @@ protocol IProfileViewModelInput {
     var verifikasiI: AnyObserver<Void> { get }
     var viewWillAppearI: AnyObserver<Void> { get }
     var reqClusterI: AnyObserver<Void> { get }
+    var clusterI: AnyObserver<ClusterType> { get }
 }
 
 protocol IProfileViewModelOutput {
@@ -26,6 +27,7 @@ protocol IProfileViewModelOutput {
     var userDataO: Driver<UserResponse>! { get }
     var errorO: Driver<Error>! { get }
     var reqClusterO: Driver<Void> { get }
+    var clusterActionO: Driver<Void> { get }
 }
 
 protocol IProfileViewModel {
@@ -54,6 +56,7 @@ final class ProfileViewModel: IProfileViewModel, IProfileViewModelInput, IProfil
     var verifikasiI: AnyObserver<Void>
     var viewWillAppearI: AnyObserver<Void>
     var reqClusterI: AnyObserver<Void>
+    var clusterI: AnyObserver<ClusterType>
     
     // Output
     var settingO: Driver<Void>!
@@ -62,6 +65,7 @@ final class ProfileViewModel: IProfileViewModel, IProfileViewModelInput, IProfil
     var userDataO: Driver<UserResponse>!
     var errorO: Driver<Error>!
     var reqClusterO: Driver<Void>
+    var clusterActionO: Driver<Void>
     
     
     private let backS = PublishSubject<Void>()
@@ -72,6 +76,7 @@ final class ProfileViewModel: IProfileViewModel, IProfileViewModelInput, IProfil
     private let errorTracker = ErrorTracker()
     private let viewWillAppearS = PublishSubject<Void>()
     private let viewModel = ClusterCellViewModel()
+    private let clusterS = PublishSubject<ClusterType>()
     
     init(navigator: ProfileNavigator) {
         self.navigator = navigator
@@ -86,6 +91,7 @@ final class ProfileViewModel: IProfileViewModel, IProfileViewModelInput, IProfil
         verifikasiI = verifikasiS.asObserver()
         viewWillAppearI = viewWillAppearS.asObserver()
         reqClusterI = reqClusterS.asObserver()
+        clusterI = clusterS.asObserver()
         
         // MARK
         // Get user data from cloud and Local
@@ -146,6 +152,19 @@ final class ProfileViewModel: IProfileViewModel, IProfileViewModelInput, IProfil
             .asObservable()
             .catchErrorJustComplete()
         
+        // MARK
+        // Cluster action
+        let clusterAction = clusterS
+            .flatMapLatest { (menu) -> Observable<Void> in
+                switch menu {
+                case .undang:
+                    return navigator.launchUndangAnggota()
+                case .leave:
+                    return Observable.empty()
+                }
+            }
+            .mapToVoid()
+        
         
         // MARK
         // Output
@@ -165,6 +184,7 @@ final class ProfileViewModel: IProfileViewModel, IProfileViewModelInput, IProfil
         reqClusterO = reqClusterS
             .flatMapLatest({ navigator.launchReqCluster() })
             .asDriverOnErrorJustComplete()
+        clusterActionO = clusterAction.asDriverOnErrorJustComplete()
     }
     
 }

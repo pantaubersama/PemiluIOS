@@ -42,7 +42,8 @@ class ProfileController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.clusterView.isHidden = true
+        self.biodataView.isHidden = true
         // MARK
         // add child view
         add(childViewController: janjiController, context: container)
@@ -78,9 +79,10 @@ class ProfileController: UIViewController {
             return !lastState
             }.subscribe(onNext: { [weak self] (value) in
                 guard let `self` = self else { return }
-                UIView.animate(withDuration: 0.3, animations: {
+                UIView.performWithoutAnimation {
                     self.heightClusterConstant.constant = value ? 48.0 : 0.0
-                })
+                    self.clusterView.isHidden = !value
+                }
             })
             .disposed(by: disposeBag)
         
@@ -88,9 +90,10 @@ class ProfileController: UIViewController {
             return !lastState
             }.subscribe(onNext: { [weak self] (value) in
                 guard let `self` = self else { return }
-                UIView.animate(withDuration: 0.3, animations: {
+                UIView.performWithoutAnimation {
                     self.heightTableBadgeConstant.constant = value ? 190.0 : 0.0
-                })
+                    self.tableViewBadge.isHidden = !value
+                }
             })
             .disposed(by: disposeBag)
         
@@ -98,10 +101,10 @@ class ProfileController: UIViewController {
             return !lastState
             }.subscribe(onNext: { [weak self] (value) in
                 guard let `self` = self else { return }
-                UIView.animate(withDuration: 0.3, animations: {
+                UIView.performWithoutAnimation {
                     self.heightBiodataConstant.constant = value ? 86.0 : 0.0
-                })
-                
+                    self.biodataView.isHidden = !value
+                }
             })
             .disposed(by: disposeBag)
         
@@ -214,6 +217,37 @@ class ProfileController: UIViewController {
             .disposed(by: disposeBag)
         
         viewModel.output.reqClusterO
+            .drive()
+            .disposed(by: disposeBag)
+        
+        clusterView.moreCluster.rx.tap
+            .flatMapLatest { (_) -> Observable<ClusterType> in
+                return Observable<ClusterType>.create { [weak self] (observer) -> Disposable in
+                    let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+                    let undang = UIAlertAction(title: "Undang Anggota", style: .default, handler: { (_) in
+                        observer.onNext(.undang)
+                        observer.on(.completed)
+                    })
+                    let leave = UIAlertAction(title: "Tinggalkan Cluster", style: .default, handler: { (_) in
+                        observer.onNext(.leave)
+                        observer.on(.completed)
+                    })
+                    let cancel = UIAlertAction(title: "Batal", style: .cancel, handler: { (_) in
+                        observer.on(.completed)
+                    })
+                    alert.addAction(undang)
+                    alert.addAction(leave)
+                    alert.addAction(cancel)
+                    DispatchQueue.main.async {
+                        self?.navigationController?.present(alert, animated: true, completion: nil)
+                    }
+                    return Disposables.create()
+                }
+            }
+            .bind(to: viewModel.input.clusterI)
+            .disposed(by: disposeBag)
+        
+        viewModel.output.clusterActionO
             .drive()
             .disposed(by: disposeBag)
         
