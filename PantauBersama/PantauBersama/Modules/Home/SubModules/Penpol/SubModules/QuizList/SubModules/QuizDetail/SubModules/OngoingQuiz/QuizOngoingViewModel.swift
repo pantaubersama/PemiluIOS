@@ -18,8 +18,8 @@ class QuizOngoingViewModel: ViewModelType {
     
     struct Input {
         let loadQuestionTrigger: AnyObserver<Void>
-        let answerATrigger: AnyObserver<Void>
-        let answerBTrigger: AnyObserver<Void>
+        let answerATrigger: AnyObserver<String>
+        let answerBTrigger: AnyObserver<String>
         let backTrigger: AnyObserver<Void>
     }
     
@@ -33,8 +33,8 @@ class QuizOngoingViewModel: ViewModelType {
     }
     
     let loadQuestionSubject = PublishSubject<Void>()
-    let answerASubject = PublishSubject<Void>()
-    let answerBSubject = PublishSubject<Void>()
+    let answerASubject = PublishSubject<String>()
+    let answerBSubject = PublishSubject<String>()
     let backSubject = PublishSubject<Void>()
     let questionRelay = BehaviorRelay<[QuizQuestionModel]>(value: [])
     
@@ -71,11 +71,27 @@ class QuizOngoingViewModel: ViewModelType {
             }
         }
         
-        let answerA = answerASubject.flatMap({ answerQuestion() })
+        let answerA = answerASubject
+            .map({ [weak self](answerContent) -> String in
+                guard let weakSelf = self else { return "" }
+                do {
+                    let index = try questionIndex.value()
+                    let answerId = weakSelf.questionRelay.value[index].answers.filter({ (answer) -> Bool in
+                        return answer.content == answerContent
+                    }).first?.id
+                    
+                    return answerId ?? ""
+                } catch let error {
+                    print("error mapping answerA \(error.localizedDescription)")
+                    return ""
+                }
+            })
+            .flatMap({ self.answerQuiz(questionId: self.questionRelay.value[try! questionIndex.value()].id, anwerId: $0, quizId: self.quiz.id)})
+            .flatMap({ _ in answerQuestion() })
             .flatMap({ navigator.openQuizResult(finishQuiz: $0) })
             .asDriverOnErrorJustComplete()
         
-        let answerB = answerBSubject.flatMap({ answerQuestion() })
+        let answerB = answerBSubject.flatMap({ _ in answerQuestion() })
             .flatMap({ navigator.openQuizResult(finishQuiz: $0) })
             .asDriverOnErrorJustComplete()
         
@@ -132,5 +148,12 @@ class QuizOngoingViewModel: ViewModelType {
             .catchErrorJustComplete()
     }
     
-    
+    private func answerQuiz(questionId: String, anwerId: String, quizId: String) -> Observable<Bool> {
+        return NetworkService.instance.requestObject(QuizAPI.answerQUestion(id: quizId, questionId: questionId, answerId: anwerId), c: QuizAnswerResponse.self)
+            .map({ (_) -> Bool in
+                return true
+            })
+            .asObservable()
+            .catchErrorJustComplete()
+    }
 }

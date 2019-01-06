@@ -26,7 +26,14 @@ class QuizResultController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        viewModel.output.result
+            .drive(onNext: { [weak self](result) in
+                guard let weakSelf = self else { return }
+                weakSelf.lbPaslon.text = result.name
+                weakSelf.lbPercent.text = result.percentage
+                weakSelf.lbResult.text = result.resultSummary
+                weakSelf.ivPaslon.show(fromURL: result.avatar)
+            }).disposed(by: disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
