@@ -38,14 +38,12 @@
                         <userDefinedRuntimeAttribute type="string" keyPath="typeLabel" value="bold"/>
                     </userDefinedRuntimeAttributes>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HnT-G4-mQ9" customClass="Label" customModule="Common">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HnT-G4-mQ9" customClass="Label" customModule="Common">
                     <rect key="frame" x="12.5" y="132.5" width="295" height="42"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="42" id="JBu-D0-OF3"/>
                         <constraint firstAttribute="width" constant="295" id="uEo-N1-0qd"/>
                     </constraints>
-                    <string key="text">Dari hasil pilhan Quiz minggu pertama,
-Roni Handoko lebih suka jawaban dari Paslon no 1</string>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
@@ -55,17 +53,16 @@ Roni Handoko lebih suka jawaban dari Paslon no 1</string>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </label>
-                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" insetsLayoutMarginsFromSafeArea="NO" image="icDummyPerson" translatesAutoresizingMaskIntoConstraints="NO" id="QEU-eJ-uO8">
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" insetsLayoutMarginsFromSafeArea="NO" image="icDummyPerson" translatesAutoresizingMaskIntoConstraints="NO" id="QEU-eJ-uO8" customClass="CircularUIImageView" customModule="Common">
                     <rect key="frame" x="85" y="184.5" width="150" height="150"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="150" id="fJ9-Iv-4vt"/>
                         <constraint firstAttribute="height" constant="150" id="r35-8m-ZxY"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="70%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bUS-ug-cTC" customClass="Label" customModule="Common">
-                    <rect key="frame" x="67" y="334.5" width="186" height="60"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bUS-ug-cTC" customClass="Label" customModule="Common">
+                    <rect key="frame" x="10" y="334.5" width="300" height="60"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="186" id="7db-gR-KFI"/>
                         <constraint firstAttribute="height" constant="60" id="ZYj-HI-rE9"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -78,8 +75,8 @@ Roni Handoko lebih suka jawaban dari Paslon no 1</string>
                         <userDefinedRuntimeAttribute type="string" keyPath="typeLabel" value="bold"/>
                     </userDefinedRuntimeAttributes>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jokowi - Makruf" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C1e-ri-Zhr" customClass="Label" customModule="Common">
-                    <rect key="frame" x="10" y="394.5" width="300" height="17"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C1e-ri-Zhr" customClass="Label" customModule="Common">
+                    <rect key="frame" x="10" y="394.5" width="300" height="0.0"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
@@ -90,7 +87,7 @@ Roni Handoko lebih suka jawaban dari Paslon no 1</string>
                     </userDefinedRuntimeAttributes>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Sn-a9-R1g" customClass="Button" customModule="Common">
-                    <rect key="frame" x="98" y="451.5" width="124" height="33"/>
+                    <rect key="frame" x="98" y="434.5" width="124" height="33"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="124" id="5MZ-2f-EqR"/>
                         <constraint firstAttribute="height" constant="33" id="mBA-2T-QrY"/>
@@ -130,6 +127,7 @@ Roni Handoko lebih suka jawaban dari Paslon no 1</string>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="bUS-ug-cTC" firstAttribute="leading" secondItem="ZYa-yX-JdA" secondAttribute="leading" constant="10" id="DE3-zB-bFh"/>
                 <constraint firstItem="C1e-ri-Zhr" firstAttribute="top" secondItem="bUS-ug-cTC" secondAttribute="bottom" id="JDt-Ms-r6g"/>
                 <constraint firstItem="ZYa-yX-JdA" firstAttribute="bottom" secondItem="haH-h3-qFH" secondAttribute="bottom" constant="14" id="OpK-w6-Y7W"/>
                 <constraint firstItem="ZYa-yX-JdA" firstAttribute="trailing" secondItem="C1e-ri-Zhr" secondAttribute="trailing" constant="10" id="Qeh-tQ-pWt"/>
@@ -137,6 +135,7 @@ Roni Handoko lebih suka jawaban dari Paslon no 1</string>
                 <constraint firstItem="doj-He-DaH" firstAttribute="centerX" secondItem="ZYa-yX-JdA" secondAttribute="centerX" id="Zeh-QG-aBD"/>
                 <constraint firstItem="doj-He-DaH" firstAttribute="top" secondItem="ZYa-yX-JdA" secondAttribute="top" constant="30" id="c4A-SV-QT4"/>
                 <constraint firstItem="QEU-eJ-uO8" firstAttribute="centerX" secondItem="ZYa-yX-JdA" secondAttribute="centerX" id="cJf-0i-L5H"/>
+                <constraint firstItem="ZYa-yX-JdA" firstAttribute="trailing" secondItem="bUS-ug-cTC" secondAttribute="trailing" constant="10" id="cKo-AD-0fE"/>
                 <constraint firstItem="8Sn-a9-R1g" firstAttribute="top" secondItem="C1e-ri-Zhr" secondAttribute="bottom" constant="40" id="drg-Uh-0yK"/>
                 <constraint firstItem="C1e-ri-Zhr" firstAttribute="leading" secondItem="ZYa-yX-JdA" secondAttribute="leading" constant="10" id="jM8-AO-mjR"/>
                 <constraint firstItem="ZYa-yX-JdA" firstAttribute="trailing" secondItem="haH-h3-qFH" secondAttribute="trailing" constant="27" id="mXe-jm-xr9"/>
