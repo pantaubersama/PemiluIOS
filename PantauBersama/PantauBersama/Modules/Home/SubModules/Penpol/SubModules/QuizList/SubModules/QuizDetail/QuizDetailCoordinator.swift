@@ -39,7 +39,7 @@ class QuizDetailCoordinator: BaseCoordinator<Void>, QuizDetailNavigator {
     }
     
     func startQuiz() -> Observable<Void> {
-        let quizOngoingCoordinator = QuizOngoingCoordinator(navigationController: self.navigationController)
+        let quizOngoingCoordinator = QuizOngoingCoordinator(navigationController: self.navigationController, quiz: quiz)
         return coordinate(to: quizOngoingCoordinator)
     }
 }
