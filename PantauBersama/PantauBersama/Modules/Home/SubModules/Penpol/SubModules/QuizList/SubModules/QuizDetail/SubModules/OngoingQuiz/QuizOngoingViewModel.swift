@@ -98,12 +98,14 @@ class QuizOngoingViewModel: ViewModelType {
         let back = backSubject
             .map { (_) -> Void in
                 do {
-                    let index = try questionIndex.value()
-                    if index == 0 {
-                        navigator.exitQuiz()
-                    } else {
-                        questionIndex.onNext(index - 1)
-                    }
+                    // for now make it always exit quiz when back, because cant answer a question more than once (cant change answer)
+//                    let index = try questionIndex.value()
+                    navigator.exitQuiz()
+//                    if index == 0 {
+//                        navigator.exitQuiz()
+//                    } else {
+//                        questionIndex.onNext(index - 1)
+//                    }
                 } catch let error {
                     print("error answer \(error.localizedDescription)")
                 }
@@ -117,7 +119,15 @@ class QuizOngoingViewModel: ViewModelType {
             .asDriverOnErrorJustComplete()
         
         let questionIndexTitle = questionIndex.asObserver()
-            .map({ "Pertanyaan no \($0 + 1) dari \(self.quiz.questionCount)" })
+            .skipWhile({ [weak self](_) -> Bool in
+                return self?.questionRelay.value.isEmpty ?? true
+            })
+            .map({ [weak self]index -> String in
+                guard let weakSelf = self else { return "" }
+                
+                let questionIndex = (index + 1) + weakSelf.questionRelay.value[index].answeredCount
+                return "Pertanyaan no \(questionIndex) dari \(weakSelf.quiz.questionCount)"
+            })
             .asDriver(onErrorJustReturn: "")
         
         loadQuestionSubject
@@ -141,7 +151,7 @@ class QuizOngoingViewModel: ViewModelType {
         return NetworkService.instance.requestObject(QuizAPI.getQuizQuestions(id: id), c: QuizQuestionsResponse.self)
             .map({ (response) -> [QuizQuestionModel] in
                 return response.data.questions.map({ (questionResponse) -> QuizQuestionModel in
-                    return QuizQuestionModel(quizQuestion: questionResponse)
+                    return QuizQuestionModel(quizQuestion: questionResponse, answeredQuestionCount: response.data.answeredQuestions.count)
                 })
             })
             .asObservable()
