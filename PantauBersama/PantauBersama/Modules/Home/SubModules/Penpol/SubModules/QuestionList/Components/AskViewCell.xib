@@ -23,32 +23,36 @@
                         <rect key="frame" x="0.0" y="0.0" width="65" height="127"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lLJ-qu-hwS">
-                                <rect key="frame" x="0.0" y="38.5" width="65" height="50.5"/>
+                                <rect key="frame" x="0.0" y="3.5" width="65" height="120"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TM9-nI-ays" customClass="ImageButton" customModule="Common">
-                                        <rect key="frame" x="14.5" y="0.0" width="36" height="36"/>
+                                    <view alpha="0.75" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RA4-DQ-J4T">
+                                        <rect key="frame" x="0.0" y="0.0" width="65" height="80"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TM9-nI-ays" customClass="ImageButton" customModule="Common">
+                                                <rect key="frame" x="14.5" y="0.0" width="36" height="80"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="36" id="hr9-WO-7Fn"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="imageTintColor">
+                                                        <color key="value" red="0.48621892929999999" green="0.48630648850000002" blue="0.48621344570000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="imagePressedTintColor">
+                                                        <color key="value" red="0.62683063750000001" green="0.046659030019999999" blue="0.11002182219999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="36" id="Fu8-cR-vI4"/>
-                                            <constraint firstAttribute="height" constant="36" id="bA9-lv-tOn"/>
-                                            <constraint firstAttribute="width" constant="36" id="gJx-Lf-vE0"/>
-                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="36" id="oCl-nJ-a3z"/>
+                                            <constraint firstAttribute="bottom" secondItem="TM9-nI-ays" secondAttribute="bottom" id="Kaw-cs-nFn"/>
+                                            <constraint firstItem="TM9-nI-ays" firstAttribute="centerX" secondItem="RA4-DQ-J4T" secondAttribute="centerX" id="R9c-Gh-mHZ"/>
+                                            <constraint firstAttribute="height" constant="80" id="alR-Z8-Mw6"/>
+                                            <constraint firstItem="TM9-nI-ays" firstAttribute="top" secondItem="RA4-DQ-J4T" secondAttribute="top" id="dP6-jw-BHd"/>
                                         </constraints>
-                                        <state key="normal" title="Button"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="image" keyPath="imageIcon" value="icUpVoteInactive"/>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="imageTintColor">
-                                                <color key="value" red="0.48621892929999999" green="0.48630648850000002" blue="0.48621344570000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="imagePressedTintColor">
-                                                <color key="value" red="0.62683063750000001" green="0.046659030019999999" blue="0.11002182219999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </button>
+                                    </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="21K" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1uJ-yT-PaQ" customClass="Label" customModule="Common">
-                                        <rect key="frame" x="3" y="36" width="59" height="14.5"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="14.5" id="Nnd-8S-Zjh"/>
-                                        </constraints>
+                                        <rect key="frame" x="3" y="80" width="59" height="14.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.44705882352941173" green="0.44705882352941173" blue="0.44705882352941173" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
@@ -61,14 +65,14 @@
                                     </label>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="TM9-nI-ays" firstAttribute="top" secondItem="lLJ-qu-hwS" secondAttribute="top" id="2iy-WI-hJ9"/>
-                                    <constraint firstAttribute="height" constant="50.5" id="ARi-1i-kxv"/>
+                                    <constraint firstAttribute="height" constant="120" id="ARi-1i-kxv"/>
                                     <constraint firstAttribute="width" constant="65" id="CCb-5Q-VD1"/>
-                                    <constraint firstAttribute="trailing" secondItem="1uJ-yT-PaQ" secondAttribute="trailing" constant="3" id="ibA-M9-0fx"/>
-                                    <constraint firstItem="TM9-nI-ays" firstAttribute="centerX" secondItem="lLJ-qu-hwS" secondAttribute="centerX" id="oGA-7x-kup"/>
-                                    <constraint firstItem="1uJ-yT-PaQ" firstAttribute="leading" secondItem="lLJ-qu-hwS" secondAttribute="leading" constant="3" id="vVR-FE-Dqa"/>
-                                    <constraint firstItem="1uJ-yT-PaQ" firstAttribute="centerX" secondItem="TM9-nI-ays" secondAttribute="centerX" id="xAy-V8-0Sx"/>
-                                    <constraint firstItem="1uJ-yT-PaQ" firstAttribute="top" secondItem="TM9-nI-ays" secondAttribute="bottom" id="zoo-xE-RoX"/>
+                                    <constraint firstAttribute="trailing" secondItem="RA4-DQ-J4T" secondAttribute="trailing" id="HET-YO-o5S"/>
+                                    <constraint firstAttribute="trailing" secondItem="1uJ-yT-PaQ" secondAttribute="trailing" constant="3" id="LOt-X8-v4K"/>
+                                    <constraint firstItem="RA4-DQ-J4T" firstAttribute="leading" secondItem="lLJ-qu-hwS" secondAttribute="leading" id="QRx-qy-GBm"/>
+                                    <constraint firstItem="RA4-DQ-J4T" firstAttribute="top" secondItem="lLJ-qu-hwS" secondAttribute="top" id="Tsu-p2-6JY"/>
+                                    <constraint firstItem="1uJ-yT-PaQ" firstAttribute="leading" secondItem="lLJ-qu-hwS" secondAttribute="leading" constant="3" id="WKf-Uv-lng"/>
+                                    <constraint firstItem="1uJ-yT-PaQ" firstAttribute="top" secondItem="RA4-DQ-J4T" secondAttribute="bottom" id="vnj-69-NYj"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -252,15 +256,15 @@
                 <outlet property="lbVoteCount" destination="1uJ-yT-PaQ" id="lEj-JU-6aI"/>
                 <outlet property="moreButton" destination="Mf7-JO-fhr" id="bXu-uS-qhH"/>
                 <outlet property="shareButton" destination="new-44-Vpe" id="vp6-HC-tQg"/>
+                <outlet property="voteActionView" destination="RA4-DQ-J4T" id="IyF-of-TRF"/>
                 <outlet property="voteButton" destination="TM9-nI-ays" id="jMO-PR-eVa"/>
             </connections>
-            <point key="canvasLocation" x="112" y="56.671664167916049"/>
+            <point key="canvasLocation" x="110.40000000000001" y="21.589205397301352"/>
         </tableViewCell>
     </objects>
     <resources>
         <image name="icDummyPerson" width="64" height="64"/>
         <image name="icMore" width="20" height="20"/>
         <image name="icShare" width="20" height="20"/>
-        <image name="icUpVoteInactive" width="36" height="36"/>
     </resources>
 </document>

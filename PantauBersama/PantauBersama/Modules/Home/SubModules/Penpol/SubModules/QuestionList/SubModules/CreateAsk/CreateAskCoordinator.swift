@@ -10,11 +10,13 @@ import RxSwift
 import RxCocoa
 
 protocol CreateAskNavigator {
-    var finish: Observable<Void>! { get set }
+    var back: Observable<Void>! { get set }
+    var createComplete: Observable<Void>! { get set }
 }
 
 class CreateAskCoordinator: BaseCoordinator<Void>, CreateAskNavigator {
-    var finish: Observable<Void>!
+    var back: Observable<Void>!
+    var createComplete: Observable<Void>!
     
     private let navigationController: UINavigationController
     
@@ -28,9 +30,18 @@ class CreateAskCoordinator: BaseCoordinator<Void>, CreateAskNavigator {
         viewController.viewModel = viewModel
         viewController.hidesBottomBarWhenPushed = true
         navigationController.pushViewController(viewController, animated: true)
-        return finish.do(onNext: { [weak self] (_) in
+        
+        let backObs = back.do(onNext: { [weak self](_) in
             self?.navigationController.popViewController(animated: true)
         })
+        
+        let createObs = createComplete.do(onNext: { [weak self](_) in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+                self?.navigationController.popViewController(animated: true)
+            })
+        })
+        
+        return Observable.merge(backObs, createObs)
     }
     
 }
