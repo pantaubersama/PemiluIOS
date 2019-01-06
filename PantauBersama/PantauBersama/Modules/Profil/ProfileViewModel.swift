@@ -15,19 +15,17 @@ protocol IProfileViewModelInput {
     var backI: AnyObserver<Void> { get }
     var settingI: AnyObserver<Void> { get }
     var verifikasiI: AnyObserver<Void> { get }
-    var clusterI: AnyObserver<Void> { get }
     var viewWillAppearI: AnyObserver<Void> { get }
+    var reqClusterI: AnyObserver<Void> { get }
 }
 
 protocol IProfileViewModelOutput {
     var settingO: Driver<Void>! { get }
     var verifikasiO: Driver<Void>! { get }
-    var itemsClusterO: Driver<[SectionOfProfileData]> { get }
     var itemsBadgeO: Driver<[SectionOfProfileData]>! { get }
-    var clusterO: Driver<Void>! { get }
     var userDataO: Driver<UserResponse>! { get }
     var errorO: Driver<Error>! { get }
-    var informantDataO: Driver<InformantResponse>! { get }
+    var reqClusterO: Driver<Void> { get }
 }
 
 protocol IProfileViewModel {
@@ -54,27 +52,26 @@ final class ProfileViewModel: IProfileViewModel, IProfileViewModelInput, IProfil
     var backI: AnyObserver<Void>
     var settingI: AnyObserver<Void>
     var verifikasiI: AnyObserver<Void>
-    var clusterI: AnyObserver<Void>
     var viewWillAppearI: AnyObserver<Void>
+    var reqClusterI: AnyObserver<Void>
     
     // Output
     var settingO: Driver<Void>!
     var verifikasiO: Driver<Void>!
-    var itemsClusterO: Driver<[SectionOfProfileData]>
     var itemsBadgeO: Driver<[SectionOfProfileData]>!
-    var clusterO: Driver<Void>!
     var userDataO: Driver<UserResponse>!
     var errorO: Driver<Error>!
-    var informantDataO: Driver<InformantResponse>!
+    var reqClusterO: Driver<Void>
     
     
     private let backS = PublishSubject<Void>()
     private let settingS = PublishSubject<Void>()
     private let verifikasiS = PublishSubject<Void>()
-    private let clusterS = PublishSubject<Void>()
+    private let reqClusterS = PublishSubject<Void>()
     private let activityIndicator = ActivityIndicator()
     private let errorTracker = ErrorTracker()
     private let viewWillAppearS = PublishSubject<Void>()
+    private let viewModel = ClusterCellViewModel()
     
     init(navigator: ProfileNavigator) {
         self.navigator = navigator
@@ -82,11 +79,13 @@ final class ProfileViewModel: IProfileViewModel, IProfileViewModelInput, IProfil
         self.navigatorPenpol = navigator
         self.navigator.finish = backS
         
+        // MARK
+        // Input
         backI = backS.asObserver()
         settingI = settingS.asObserver()
         verifikasiI = verifikasiS.asObserver()
-        clusterI = clusterS.asObserver()
         viewWillAppearI = viewWillAppearS.asObserver()
+        reqClusterI = reqClusterS.asObserver()
         
         // MARK
         // Get user data from cloud and Local
@@ -109,25 +108,6 @@ final class ProfileViewModel: IProfileViewModel, IProfileViewModelInput, IProfil
             .flatMapLatest({ Observable.merge(local, cloud)})
         
         // MARK
-        // Get Informations cloud
-        let informant = NetworkService.instance.requestObject(
-            PantauAuthAPI.meInformant,
-            c: BaseResponse<InformantResponse>.self)
-            .map({ $0.data })
-//            .do(onSuccess: { (response) in
-//                AppState.saveInformant(response)
-//            })
-            .do(onSuccess: { (response) in
-                AppState.saveInformant(response)
-            }, onError: { (e) in
-                print(e.localizedDescription)
-            })
-            .asObservable()
-            .trackError(errorTracker)
-            .trackActivity(activityIndicator)
-            .catchErrorJustComplete()
-        
-        // MARK
         // Click setting with latest user data
         let setting = settingS
             .withLatestFrom(userData)
@@ -147,7 +127,6 @@ final class ProfileViewModel: IProfileViewModel, IProfileViewModelInput, IProfil
             .asObservable()
             .catchErrorJustComplete()
         
-        
         // MARK
         // Click verifikasi with latest user data
         let verifikasi = verifikasiS
@@ -156,12 +135,7 @@ final class ProfileViewModel: IProfileViewModel, IProfileViewModelInput, IProfil
                 return navigator.launchVerifikasi(user: user)
             }
             .asDriver(onErrorJustReturn: ())
-        
-        let cluster = clusterS
-            .flatMapLatest({ navigator.launchReqCluster() })
-            .asDriver(onErrorJustReturn: ())
-        
-        
+
         // MARK
         // Get Badges me
         let badge = NetworkService.instance
@@ -172,17 +146,12 @@ final class ProfileViewModel: IProfileViewModel, IProfileViewModelInput, IProfil
             .asObservable()
             .catchErrorJustComplete()
         
+        
+        // MARK
+        // Output
         settingO = setting
         verifikasiO = verifikasi
         
-        itemsClusterO = userData
-            .map { (data) -> [SectionOfProfileData] in
-                return [SectionOfProfileData(items: [ClusterCellConfigured.init(item: ClusterCell.Input(data: data.user))])]
-            }.asDriver(onErrorJustReturn: [])
-        
-        // MARK
-        // Get Observable<[Badges>
-        // Into List
         itemsBadgeO = badge
             .map{ (list) -> [SectionOfProfileData] in
                 return list.achieved.compactMap({ (badge) -> SectionOfProfileData in
@@ -190,12 +159,12 @@ final class ProfileViewModel: IProfileViewModel, IProfileViewModelInput, IProfil
                 })
             }
             .asDriverOnErrorJustComplete()
-        
-        
-        clusterO = cluster
+    
         userDataO = userData.asDriverOnErrorJustComplete()
-        informantDataO = informant.asDriverOnErrorJustComplete()
         errorO = errorTracker.asDriver()
+        reqClusterO = reqClusterS
+            .flatMapLatest({ navigator.launchReqCluster() })
+            .asDriverOnErrorJustComplete()
     }
     
 }

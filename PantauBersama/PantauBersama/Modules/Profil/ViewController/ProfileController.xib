@@ -14,17 +14,18 @@
             <connections>
                 <outlet property="badgeButton" destination="RyV-2G-tO3" id="drj-7g-u04"/>
                 <outlet property="biodataButton" destination="0Kj-9b-KZp" id="9oI-1o-NsK"/>
-                <outlet property="biodataContainer" destination="P7A-6P-eeq" id="ILR-4Q-1Rr"/>
+                <outlet property="biodataView" destination="Hmd-9L-yvV" id="Hkd-Pm-zxL"/>
                 <outlet property="clusterButton" destination="2Bk-Gz-hJX" id="l3Q-wB-KqS"/>
+                <outlet property="clusterContainer" destination="Ohf-es-8tt" id="wna-cV-wJw"/>
+                <outlet property="clusterView" destination="Ohf-es-8tt" id="h9W-IL-bbE"/>
                 <outlet property="container" destination="nH3-C7-YkB" id="V7d-fT-goM"/>
                 <outlet property="headerProfile" destination="OTp-iP-8Pn" id="GXT-qZ-bZU"/>
-                <outlet property="heightBiodataConstant" destination="5d7-qz-Kdp" id="Bfr-fO-3BU"/>
+                <outlet property="heightBiodataConstant" destination="phZ-uL-2C8" id="yMa-xD-dzy"/>
+                <outlet property="heightClusterConstant" destination="zEe-yl-Xse" id="gA7-qH-GdI"/>
                 <outlet property="heightTableBadgeConstant" destination="MuC-hZ-3vI" id="VWL-AY-YpX"/>
-                <outlet property="heightTableClusterConstant" destination="fhv-qG-ZXr" id="4yP-D4-BvQ"/>
                 <outlet property="scrollView" destination="W5k-U4-qnn" id="aH9-Pm-0kv"/>
                 <outlet property="segmentedControl" destination="PnU-fp-mxj" id="RJn-Qy-OJZ"/>
                 <outlet property="tableViewBadge" destination="rSZ-8n-8m3" id="9sY-Jg-oRd"/>
-                <outlet property="tableViewCluster" destination="ieD-1k-W7p" id="kIv-DU-dQZ"/>
                 <outlet property="view" destination="iN0-l3-epB" id="6tN-cR-HGc"/>
             </connections>
         </placeholder>
@@ -116,14 +117,13 @@
                                                 <constraint firstAttribute="height" constant="47" id="uat-mS-4Xd"/>
                                             </constraints>
                                         </view>
-                                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ieD-1k-W7p">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ohf-es-8tt" userLabel="Cluster Container" customClass="ClusterView" customModule="PantauBersama" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="47" width="375" height="0.0"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" id="fhv-qG-ZXr"/>
+                                                <constraint firstAttribute="height" id="zEe-yl-Xse"/>
                                             </constraints>
-                                            <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        </tableView>
+                                        </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rG9-Lu-hyJ">
                                             <rect key="frame" x="0.0" y="47" width="375" height="47"/>
                                             <subviews>
@@ -191,11 +191,11 @@
                                                 <constraint firstAttribute="bottom" secondItem="Sam-h3-dps" secondAttribute="bottom" id="r9Y-CW-fky"/>
                                             </constraints>
                                         </view>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P7A-6P-eeq">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hmd-9L-yvV" customClass="BiodataView" customModule="PantauBersama" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="94" width="375" height="0.0"/>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" id="5d7-qz-Kdp"/>
+                                                <constraint firstAttribute="height" id="phZ-uL-2C8"/>
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CpA-Ms-Aoe">

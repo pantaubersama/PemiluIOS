@@ -38,6 +38,7 @@ extension ClusterCell: IReusableCell {
     
     struct Input {
         let data: User?
+        let viewModel: ClusterCellViewModel
     }
     
     func configureCell(item: Input) {
@@ -52,6 +53,9 @@ extension ClusterCell: IReusableCell {
             iconCluster.isHidden = true
             more.isHidden = true
             emptyCluster.isHidden = false
+            buttonRequest.rx.tap
+                .bind(to: item.viewModel.input.reqClusterTrigger)
+                .disposed(by: bag)
         }
         
         disposeBag = bag

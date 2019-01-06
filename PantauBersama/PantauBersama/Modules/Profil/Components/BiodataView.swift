@@ -10,7 +10,7 @@ import UIKit
 import Common
 import Networking
 
-@IBDesignable
+
 class BiodataView: UIView {
     @IBOutlet weak var labelLocation: Label!
     @IBOutlet weak var labelEducation: Label!
@@ -33,10 +33,10 @@ class BiodataView: UIView {
         addSubview(view)
     }
     
-    func configure(data: InformantResponse) {
-        labelLocation.text = data.informant.address
-        labelEducation.text = data.informant.occupation
-        labelOccupation.text = data.informant.occupation
+    func configure(data: User) {
+        labelLocation.text = data.informant?.address
+        labelEducation.text = data.education
+        labelOccupation.text = data.informant?.occupation
     }
     
 }

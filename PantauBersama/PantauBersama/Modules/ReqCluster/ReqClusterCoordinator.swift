@@ -12,6 +12,7 @@ import RxCocoa
 
 protocol ReqClusterNavigator {
     func back()
+    func launchKategori() -> Observable<Void>
 }
 
 final class ReqClusterCoordinator: BaseCoordinator<Void> {
@@ -37,4 +38,8 @@ extension ReqClusterCoordinator: ReqClusterNavigator {
         navigationController.popViewController(animated: true)
     }
     
+    func launchKategori() -> Observable<Void> {
+        let kategoriCoordinator = KategoriClusterCoordinator(navigationController: navigationController)
+        return coordinate(to: kategoriCoordinator)
+    }
 }

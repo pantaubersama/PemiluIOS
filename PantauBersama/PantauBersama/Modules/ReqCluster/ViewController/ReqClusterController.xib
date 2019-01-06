@@ -17,6 +17,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ReqClusterController" customModule="PantauBersama" customModuleProvider="target">
             <connections>
+                <outlet property="btnKategori" destination="JfC-8E-WZ1" id="hEz-iY-G8c"/>
+                <outlet property="buttonAddGambar" destination="OtF-ki-djp" id="sif-3Z-CIp"/>
+                <outlet property="iconCluster" destination="ugU-Tc-ZSr" id="f4s-xL-Rba"/>
+                <outlet property="tfNamaCluster" destination="by6-Od-0Fk" id="bYU-L0-r5y"/>
+                <outlet property="tvDeskripsi" destination="fnq-nK-i3l" id="ly0-hQ-8qP"/>
                 <outlet property="view" destination="iN0-l3-epB" id="E0W-0N-DzR"/>
             </connections>
         </placeholder>
@@ -69,7 +74,7 @@ Anda dpi mengundang, menerima angota lain</string>
                                                     <rect key="frame" x="0.0" y="16" width="375" height="144"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Isi Form di Bawah Ini :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0hc-Oa-E6B" customClass="Label" customModule="Common">
-                                                            <rect key="frame" x="105" y="0.0" width="165" height="48"/>
+                                                            <rect key="frame" x="129.5" y="0.0" width="116" height="48"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -88,7 +93,7 @@ Anda dpi mengundang, menerima angota lain</string>
                                                             </constraints>
                                                         </imageView>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OtF-ki-djp">
-                                                            <rect key="frame" x="135" y="116" width="105" height="17"/>
+                                                            <rect key="frame" x="137.5" y="116" width="100" height="17"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="17" id="G8L-bc-47K"/>
                                                             </constraints>
@@ -128,7 +133,7 @@ Anda dpi mengundang, menerima angota lain</string>
                                                     <rect key="frame" x="16" y="8" width="343" height="57"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nama" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ISg-jr-6ds" customClass="Label" customModule="Common">
-                                                            <rect key="frame" x="0.0" y="0.0" width="343" height="20.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="343" height="14.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
@@ -140,7 +145,7 @@ Anda dpi mengundang, menerima angota lain</string>
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nama Cluster" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="by6-Od-0Fk" customClass="TextField" customModule="Common">
-                                                            <rect key="frame" x="0.0" y="25.5" width="343" height="31.5"/>
+                                                            <rect key="frame" x="0.0" y="19.5" width="343" height="37.5"/>
                                                             <nil key="textColor"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits"/>
@@ -189,7 +194,7 @@ Anda dpi mengundang, menerima angota lain</string>
                                                     <rect key="frame" x="16" y="8" width="343" height="57"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Kategori" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aFc-DJ-bZw" customClass="Label" customModule="Common">
-                                                            <rect key="frame" x="0.0" y="0.0" width="343" height="20.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="343" height="14.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
@@ -200,20 +205,15 @@ Anda dpi mengundang, menerima angota lain</string>
                                                                 <userDefinedRuntimeAttribute type="string" keyPath="typeLabel" value="italic"/>
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
-                                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Pilih Kategori" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="I3l-uv-I7l" customClass="TextField" customModule="Common">
-                                                            <rect key="frame" x="0.0" y="25.5" width="343" height="31.5"/>
-                                                            <nil key="textColor"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                            <textInputTraits key="textInputTraits"/>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JfC-8E-WZ1" customClass="Button" customModule="Common">
+                                                            <rect key="frame" x="0.0" y="19.5" width="343" height="37.5"/>
+                                                            <state key="normal" title="Partai">
+                                                                <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            </state>
                                                             <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="color" keyPath="lineColor">
-                                                                    <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                </userDefinedRuntimeAttribute>
-                                                                <userDefinedRuntimeAttribute type="color" keyPath="activeLineColor">
-                                                                    <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="typeButton" value="bold"/>
                                                             </userDefinedRuntimeAttributes>
-                                                        </textField>
+                                                        </button>
                                                     </subviews>
                                                 </stackView>
                                             </subviews>
@@ -236,7 +236,7 @@ Anda dpi mengundang, menerima angota lain</string>
                                                     <rect key="frame" x="16" y="8" width="343" height="234"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Deskripsi" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UO2-Rx-Sl8" customClass="Label" customModule="Common">
-                                                            <rect key="frame" x="0.0" y="0.0" width="343" height="20.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="343" height="14.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
@@ -247,8 +247,8 @@ Anda dpi mengundang, menerima angota lain</string>
                                                                 <userDefinedRuntimeAttribute type="string" keyPath="typeLabel" value="italic"/>
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
-                                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="fnq-nK-i3l">
-                                                            <rect key="frame" x="0.0" y="20.5" width="343" height="213.5"/>
+                                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="fnq-nK-i3l">
+                                                            <rect key="frame" x="0.0" y="14.5" width="343" height="219.5"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>

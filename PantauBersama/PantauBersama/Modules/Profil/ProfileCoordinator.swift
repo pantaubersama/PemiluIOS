@@ -47,7 +47,6 @@ extension ProfileCoordinator: ProfileNavigator {
         return coordinate(to: settingCoordinator)
     }
     func launchVerifikasi(user: VerificationsResponse.U) -> Observable<Void>  {
-        print("STEP SAAT INI: \(user.step), proses berikutnya: \(user.nextStep)")
         switch user.nextStep {
         case 1:
             let identitasCoordinator = IdentitasCoordinator(navigationController: navigationController)
