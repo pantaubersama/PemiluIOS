@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1143E80621DE50BC003862B6 /* QuizzesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1143E80521DE50BC003862B6 /* QuizzesResponse.swift */; };
 		1143E80821DEC75D003862B6 /* QuizAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1143E80721DEC75D003862B6 /* QuizAPI.swift */; };
+		1143E81421E24946003862B6 /* QuizQuestionsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1143E81321E24946003862B6 /* QuizQuestionsResponse.swift */; };
 		1183F0DC21D4FC4800435D31 /* TanyaKandidatAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1183F0DB21D4FC4800435D31 /* TanyaKandidatAPI.swift */; };
 		1183F0DE21D535C600435D31 /* QuestionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1183F0DD21D535C600435D31 /* QuestionResponse.swift */; };
 		11B145EC21D66A8400BB26C8 /* Batch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B145EB21D66A8400BB26C8 /* Batch.swift */; };
@@ -66,6 +67,7 @@
 /* Begin PBXFileReference section */
 		1143E80521DE50BC003862B6 /* QuizzesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizzesResponse.swift; sourceTree = "<group>"; };
 		1143E80721DEC75D003862B6 /* QuizAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizAPI.swift; sourceTree = "<group>"; };
+		1143E81321E24946003862B6 /* QuizQuestionsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizQuestionsResponse.swift; sourceTree = "<group>"; };
 		1183F0DB21D4FC4800435D31 /* TanyaKandidatAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TanyaKandidatAPI.swift; sourceTree = "<group>"; };
 		1183F0DD21D535C600435D31 /* QuestionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionResponse.swift; sourceTree = "<group>"; };
 		11B145EB21D66A8400BB26C8 /* Batch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Batch.swift; sourceTree = "<group>"; };
@@ -210,6 +212,7 @@
 				1311A96E21DD3011001B053B /* UserPantau.swift */,
 				13D9483921DDD56D00722EB1 /* InfoResponse.swift */,
 				1143E80521DE50BC003862B6 /* QuizzesResponse.swift */,
+				1143E81321E24946003862B6 /* QuizQuestionsResponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -458,6 +461,7 @@
 				11B145EC21D66A8400BB26C8 /* Batch.swift in Sources */,
 				1183F0DE21D535C600435D31 /* QuestionResponse.swift in Sources */,
 				13F456C521DB7EF900CE45F1 /* Image.swift in Sources */,
+				1143E81421E24946003862B6 /* QuizQuestionsResponse.swift in Sources */,
 				11C7BB2521DB36D5008CA49B /* QuestionOptionResponse.swift in Sources */,
 				8482E63021D9048800D5DC07 /* Paginate.swift in Sources */,
 				84B2523A21CAC7FB00565D82 /* ErrorResponse.swift in Sources */,

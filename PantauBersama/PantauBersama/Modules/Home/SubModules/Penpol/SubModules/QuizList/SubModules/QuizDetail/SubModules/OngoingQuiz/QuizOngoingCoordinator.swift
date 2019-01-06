@@ -17,14 +17,16 @@ protocol QuizOngoingNavigator {
 
 class QuizOngoingCoordinator: BaseCoordinator<Void>, QuizOngoingNavigator {
     let navigationController: UINavigationController
+    let quiz: QuizModel
     
-    init(navigationController: UINavigationController) {
+    init(navigationController: UINavigationController, quiz: QuizModel) {
         self.navigationController = navigationController
+        self.quiz = quiz
     }
     
     override func start() -> Observable<Void> {
         let viewController = QuizOngoingController()
-        let viewModel = QuizOngoingViewModel(navigator: self)
+        let viewModel = QuizOngoingViewModel(navigator: self, quiz: quiz)
         viewController.viewModel = viewModel
         var viewControllers: [UIViewController] = []
         viewController.hidesBottomBarWhenPushed = true
