@@ -22,7 +22,7 @@ class HeaderQuizView: UIView {
     }
     
     override init(frame: CGRect) {
-        let frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 177)
+        let frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 325)
         super.init(frame: frame)
         setup()
     }
@@ -49,7 +49,6 @@ class HeaderQuizView: UIView {
             bannerInfoQuizView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             bannerInfoQuizView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             bannerInfoQuizView.topAnchor.constraint(equalTo: self.topAnchor),
-            bannerInfoQuizView.heightAnchor.constraint(equalToConstant: 85),
             
             // MARK: constraint createAskHeaderView
             trendHeaderView.topAnchor.constraint(equalTo: bannerInfoQuizView.bottomAnchor),

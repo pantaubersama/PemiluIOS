@@ -592,8 +592,6 @@
 		11702DCF21CB0241001AEE3F /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				1143E80921E0DA24003862B6 /* TrendCell.swift */,
-				1143E80A21E0DA24003862B6 /* TrendCell.xib */,
 				11702DD021CB0287001AEE3F /* QuizCell.swift */,
 				11702DD121CB0287001AEE3F /* QuizCell.xib */,
 				1161F9F321DF4B4000C1BAD5 /* QuizButton.swift */,
@@ -2127,7 +2125,6 @@
 				8452A4D021DE544C00196043 /* SosmedController.swift in Sources */,
 				11E107AA21CD33CA00B7B074 /* CreateJanjiController.swift in Sources */,
 				845C570F21CE0DA400EDCDFE /* ClusterCell.swift in Sources */,
-				1143E80B21E0DA24003862B6 /* TrendCell.swift in Sources */,
 				845C570B21CD3E9700EDCDFE /* SectionCell.swift in Sources */,
 				84E2854421CA195C00298E31 /* CustomActionSheet.swift in Sources */,
 				84619D3A21DA85D200EB58CF /* EditCoordinator.swift in Sources */,
