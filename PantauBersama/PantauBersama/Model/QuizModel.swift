@@ -33,7 +33,7 @@ class QuizModel {
     public enum QuizStatus: String {
         case notParticipating = "not_participating"
         case inProgress = "in_progress"
-        case finished = "finish"
+        case finished = "finished"
     }
 }
 

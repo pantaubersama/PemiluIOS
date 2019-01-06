@@ -27,11 +27,17 @@ class QuizOngoingController: UIViewController {
         
         btnAChoice.rx
             .tap
+            .map { [unowned self](_) -> String in
+                return self.tvAChoice.text
+            }
             .bind(to: viewModel.input.answerATrigger)
             .disposed(by: disposeBag)
         
         btnBChoice.rx
             .tap
+            .map { [unowned self](_) -> String in
+                return self.tvBChoice.text
+            }
             .bind(to: viewModel.input.answerBTrigger)
             .disposed(by: disposeBag)
         
