@@ -20,7 +20,7 @@ class QuizViewModel: ViewModelType {
     struct Input {
         let loadQuizTrigger: AnyObserver<Void>
         let nextPageTrigger: AnyObserver<Void>
-        let openQuizTrigger: AnyObserver<Any>
+        let openQuizTrigger: AnyObserver<QuizModel>
         let shareTrigger: AnyObserver<Any>
         let infoTrigger: AnyObserver<Void>
         let shareTrendTrigger: AnyObserver<Any>
@@ -33,12 +33,13 @@ class QuizViewModel: ViewModelType {
         let shareTrendSelected: Driver<Void>
         let laodingIndicator: Driver<Bool>
         let quizzes: BehaviorRelay<[QuizModel]>
+        let bannerInfo: Driver<BannerInfo>
     }
     
     // TODO: replace any with Quiz model
     private let loadQuizSubject = PublishSubject<Void>()
     private let nextPageSubject = PublishSubject<Void>()
-    private let openQuizSubject = PublishSubject<Any>()
+    private let openQuizSubject = PublishSubject<QuizModel>()
     private let shareSubject = PublishSubject<Any>()
     private let infoSubject = PublishSubject<Void>()
     private let shareTrendSubject = PublishSubject<Any>()
@@ -51,6 +52,8 @@ class QuizViewModel: ViewModelType {
     private var currentPage = 0
     
     private let disposeBag = DisposeBag()
+    
+    let headerViewModel = BannerHeaderViewModel()
     
     init(navigator: PenpolNavigator) {
         self.navigator = navigator
@@ -69,12 +72,18 @@ class QuizViewModel: ViewModelType {
         let shareQuiz = shareSubject
             .flatMapLatest({navigator.shareQuiz(quiz: $0)})
             .asDriver(onErrorJustReturn: ())
-        let info = infoSubject
-            .flatMapLatest({navigator.openInfoPenpol(infoType: PenpolInfoType.Quiz)})
-            .asDriver(onErrorJustReturn: ())
+        let infoSelected = headerViewModel.output.itemSelected
+            .asObservable()
+            .flatMapLatest({ (banner) -> Observable<Void> in
+                return navigator.launchBannerInfo(bannerInfo: banner)
+            })
+            .asDriverOnErrorJustComplete()
         let shareTrend = shareTrendSubject
             .flatMapLatest({navigator.shareTrend(trend: $0)})
             .asDriver(onErrorJustReturn: ())
+        let bannerInfo = loadQuizSubject
+            .flatMapLatest({ self.bannerInfo() })
+            .asDriverOnErrorJustComplete()
         
         loadQuizSubject
             .flatMapLatest({ [weak self](_) -> Observable<[QuizModel]> in
@@ -107,10 +116,11 @@ class QuizViewModel: ViewModelType {
         output = Output(
             openQuizSelected: openQuiz,
             shareSelected: shareQuiz,
-            infoSelected: info,
+            infoSelected: infoSelected,
             shareTrendSelected: shareTrend,
             laodingIndicator: activityIndicator.asDriver(),
-            quizzes: quizRelay)
+            quizzes: quizRelay,
+            bannerInfo: bannerInfo)
     }
     
     private func quizItems(resetPage: Bool = false) -> Observable<[QuizModel]> {
@@ -132,6 +142,17 @@ class QuizViewModel: ViewModelType {
         return quizResponse.data.quizzes.map({ (quizResponse) -> QuizModel in
             return QuizModel(quiz: quizResponse)
         })
+    }
+    
+    private func bannerInfo() -> Observable<BannerInfo> {
+        return NetworkService.instance
+            .requestObject(
+                LinimasaAPI.getBannerInfos(pageName: "kuis"),
+                c: BaseResponse<BannerInfoResponse>.self
+            )
+            .map{ ($0.data.bannerInfo) }
+            .asObservable()
+            .catchErrorJustComplete()
     }
     
 }

@@ -9,10 +9,11 @@
 import Foundation
 import RxSwift
 import Common
+import Networking
 
 protocol PenpolNavigator: QuizNavigator, QuestionNavigator {
     func launchFilter() -> Observable<Void>
-    func openInfoPenpol(infoType: PenpolInfoType) -> Observable<Void>
+    func launchBannerInfo(bannerInfo: BannerInfo) -> Observable<Void>
 }
 
 class PenpolCoordinator: BaseCoordinator<Void> {
@@ -52,9 +53,18 @@ extension PenpolCoordinator: PenpolNavigator {
         return Observable.never()
     }
     
-    func openQuiz(quiz: Any) -> Observable<Void> {
-        let quizDetailCoordinator = QuizDetailCoordinator(navigationController: self.navigationController, quizModel: quiz)
-        return coordinate(to: quizDetailCoordinator)
+    func openQuiz(quiz: QuizModel) -> Observable<Void> {
+        switch quiz.participationStatus {
+        case .inProgress:
+            let coordinator = QuizOngoingCoordinator(navigationController: self.navigationController)
+            return coordinate(to: coordinator)
+        case .finished:
+            let coordinator = QuizResultCoordinator(navigationController: self.navigationController)
+            return coordinate(to: coordinator)
+        case .notParticipating:
+            let coordinator = QuizDetailCoordinator(navigationController: self.navigationController, quizModel: quiz)
+            return coordinate(to: coordinator)
+        }
     }
     
     func shareQuiz(quiz: Any) -> Observable<Void> {
@@ -73,8 +83,8 @@ extension PenpolCoordinator: PenpolNavigator {
         return Observable.never()
     }
     
-    func openInfoPenpol(infoType: PenpolInfoType) -> Observable<Void> {
-        let penpolInfoCoordinator = PenpolInfoCoordinator(navigationController: self.navigationController, infoType: infoType)
-        return coordinate(to: penpolInfoCoordinator)
+    func launchBannerInfo(bannerInfo: BannerInfo) -> Observable<Void> {
+        let bannerInfoCoordinator = BannerInfoCoordinator(navigationController: self.navigationController, bannerInfo: bannerInfo)
+        return coordinate(to: bannerInfoCoordinator)
     }
 }

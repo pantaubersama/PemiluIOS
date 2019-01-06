@@ -120,11 +120,7 @@ extension ProfileCoordinator: LinimasaNavigator {
 
 extension ProfileCoordinator: PenpolNavigator {
     
-    func openInfoPenpol(infoType: PenpolInfoType) -> Observable<Void> {
-        return Observable.never()
-    }
-    
-    func openQuiz(quiz: Any) -> Observable<Void> {
+    func openQuiz(quiz: QuizModel) -> Observable<Void> {
         return Observable.never()
     }
     
