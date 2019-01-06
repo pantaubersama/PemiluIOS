@@ -41,16 +41,13 @@ class CreateAskViewModel: ViewModelType {
                       questionInput: questionRelay)
 
         let create = createSubject
-            .do {
-                print("onNext")
-            }
             .flatMap({ self.createQuestion() })
             .mapToVoid()
             .asDriverOnErrorJustComplete()
         
-        self.navigator.finish = Observable
-            .merge(backSubject, create.asObservable())
-            .take(1)
+        self.navigator.back = backSubject
+        
+        self.navigator.createComplete = create.asObservable()
 
         
         // MARK

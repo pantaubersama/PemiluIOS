@@ -86,7 +86,7 @@
                         <constraint firstAttribute="trailing" secondItem="X7p-nH-OxB" secondAttribute="trailing" constant="8" id="zds-u1-sIy"/>
                     </constraints>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NuD-Ha-H3o" customClass="Button" customModule="Common">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NuD-Ha-H3o" customClass="ActivityButton" customModule="Common">
                     <rect key="frame" x="18" y="515" width="284" height="38"/>
                     <color key="backgroundColor" red="0.24732968211174011" green="0.15957868099212646" blue="0.48993653059005737" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
