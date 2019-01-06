@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1143E80B21E0DA24003862B6 /* TrendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1143E80921E0DA24003862B6 /* TrendCell.swift */; };
 		1143E80C21E0DA24003862B6 /* TrendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1143E80A21E0DA24003862B6 /* TrendCell.xib */; };
+		1143E81021E212F7003862B6 /* upvote.json in Resources */ = {isa = PBXBuildFile; fileRef = 1143E80F21E212F7003862B6 /* upvote.json */; };
 		1161F9EE21DF378400C1BAD5 /* QuizModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1161F9ED21DF378400C1BAD5 /* QuizModel.swift */; };
 		1161F9F221DF3CC300C1BAD5 /* ImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1161F9F121DF3CC300C1BAD5 /* ImageModel.swift */; };
 		1161F9F421DF4B4000C1BAD5 /* QuizButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1161F9F321DF4B4000C1BAD5 /* QuizButton.swift */; };
@@ -276,6 +277,7 @@
 		04A224A86FBFD6EFE137644F /* Pods-PantauBersama.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PantauBersama.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-PantauBersama/Pods-PantauBersama.debug.xcconfig"; sourceTree = "<group>"; };
 		1143E80921E0DA24003862B6 /* TrendCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrendCell.swift; sourceTree = "<group>"; };
 		1143E80A21E0DA24003862B6 /* TrendCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TrendCell.xib; sourceTree = "<group>"; };
+		1143E80F21E212F7003862B6 /* upvote.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = upvote.json; sourceTree = "<group>"; };
 		1161F9ED21DF378400C1BAD5 /* QuizModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizModel.swift; sourceTree = "<group>"; };
 		1161F9F121DF3CC300C1BAD5 /* ImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageModel.swift; sourceTree = "<group>"; };
 		1161F9F321DF4B4000C1BAD5 /* QuizButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizButton.swift; sourceTree = "<group>"; };
@@ -1355,6 +1357,7 @@
 		84A07F8D21D0CC8600269C6B /* Lottie */ = {
 			isa = PBXGroup;
 			children = (
+				1143E80F21E212F7003862B6 /* upvote.json */,
 				84A07FAB21D0E4FD00269C6B /* memfoto-idcard.json */,
 				84A07FA821D0E4FD00269C6B /* selfie-id-card.json */,
 				84A07FA921D0E4FD00269C6B /* upload-ttd.json */,
@@ -1740,6 +1743,7 @@
 				84F892A721C7875200DC1048 /* BwModelica-ThinCondensed.otf in Resources */,
 				8441DB3E21CCB80B00B078DF /* ItemRadioCell.xib in Resources */,
 				844C3D8C21C5323E00199871 /* LinimasaCell.xib in Resources */,
+				1143E81021E212F7003862B6 /* upvote.json in Resources */,
 				842A49F521D7749D0050AA51 /* HeaderDataLapor.xib in Resources */,
 				840850C821D25D5800696CB3 /* TextViewCell.xib in Resources */,
 				844C2BA521CC0F2500BC439A /* BannerHeaderView.xib in Resources */,

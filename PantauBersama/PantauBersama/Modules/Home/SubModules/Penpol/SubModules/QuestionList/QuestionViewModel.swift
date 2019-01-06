@@ -164,6 +164,8 @@ class QuestionViewModel: ViewModelType {
             .filter({ $0.status })
             .bind { [weak self](result) in
                 guard let weakSelf = self else { return }
+                if !result.status { return }
+                
                 var currentValue = weakSelf.questionRelay.value
                 guard let index = currentValue.index(where: { item -> Bool in
                     return item.id == result.questionId

@@ -27,7 +27,6 @@ class QuizController: UITableViewController {
         tableView.rowHeight = 350
         tableView.separatorStyle = .none
         tableView.allowsSelection = false
-        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         tableView.tableHeaderView = HeaderQuizView(viewModel: viewModel)
         
         bindViewModel()

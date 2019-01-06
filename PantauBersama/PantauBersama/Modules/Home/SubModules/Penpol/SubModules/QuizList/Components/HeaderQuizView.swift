@@ -54,7 +54,8 @@ class HeaderQuizView: UIView {
             // MARK: constraint createAskHeaderView
             trendHeaderView.topAnchor.constraint(equalTo: bannerInfoQuizView.bottomAnchor),
             trendHeaderView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            trendHeaderView.trailingAnchor.constraint(equalTo: self.trailingAnchor)
+            trendHeaderView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            trendHeaderView.heightAnchor.constraint(equalToConstant: 260)
             ])
         
         viewModel.output.bannerInfo

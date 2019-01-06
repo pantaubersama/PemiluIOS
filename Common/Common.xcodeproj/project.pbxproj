@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1143E80E21E20C62003862B6 /* ActivityButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1143E80D21E20C62003862B6 /* ActivityButton.swift */; };
 		1151D16521D64CAA00E9F91D /* UIImageView+async.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1151D16421D64CAA00E9F91D /* UIImageView+async.swift */; };
 		1161F9F021DF3A8D00C1BAD5 /* CircularUIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1161F9EF21DF3A8D00C1BAD5 /* CircularUIImageView.swift */; };
 		11702DDB21CB1C5A001AEE3F /* ImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11702DDA21CB1C5A001AEE3F /* ImageButton.swift */; };
@@ -57,6 +58,7 @@
 
 /* Begin PBXFileReference section */
 		02158AB122F8CEFF16E59736 /* Pods_CommonTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CommonTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1143E80D21E20C62003862B6 /* ActivityButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityButton.swift; sourceTree = "<group>"; };
 		1151D16421D64CAA00E9F91D /* UIImageView+async.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+async.swift"; sourceTree = "<group>"; };
 		1161F9EF21DF3A8D00C1BAD5 /* CircularUIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularUIImageView.swift; sourceTree = "<group>"; };
 		11702DDA21CB1C5A001AEE3F /* ImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageButton.swift; sourceTree = "<group>"; };
@@ -252,6 +254,7 @@
 				84619D3221D9E4A900EB58CF /* UIImage.swift */,
 				11C7BB2621DB3C34008CA49B /* UIAlertController+Dialog.swift */,
 				1161F9EF21DF3A8D00C1BAD5 /* CircularUIImageView.swift */,
+				1143E80D21E20C62003862B6 /* ActivityButton.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -449,6 +452,7 @@
 				8428AA8921C7A2A60008E975 /* RoundView.swift in Sources */,
 				84E2854F21CA4C4700298E31 /* Button.swift in Sources */,
 				84B2522821CAB41400565D82 /* KeychainKind.swift in Sources */,
+				1143E80E21E20C62003862B6 /* ActivityButton.swift in Sources */,
 				11702DDB21CB1C5A001AEE3F /* ImageButton.swift in Sources */,
 				84F8929521C77CCF00DC1048 /* UIColor.swift in Sources */,
 				1151D16521D64CAA00E9F91D /* UIImageView+async.swift in Sources */,
