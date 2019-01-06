@@ -21,18 +21,13 @@ class ProfileController: UIViewController {
     @IBOutlet weak var clusterButton: UIButton!
     @IBOutlet weak var biodataButton: UIButton!
     @IBOutlet weak var badgeButton: UIButton!
-    @IBOutlet weak var heightTableClusterConstant: NSLayoutConstraint!
     @IBOutlet weak var heightTableBadgeConstant: NSLayoutConstraint!
-    @IBOutlet weak var heightBiodataConstant: NSLayoutConstraint!
-    @IBOutlet weak var tableViewCluster: UITableView!
     @IBOutlet weak var tableViewBadge: UITableView!
-    @IBOutlet weak var biodataContainer: UIView!
-    
-    private lazy var biodataView: BiodataView = {
-       let b = BiodataView()
-        b.translatesAutoresizingMaskIntoConstraints = false
-        return b
-    }()
+    @IBOutlet weak var clusterContainer: UIView!
+    @IBOutlet weak var heightClusterConstant: NSLayoutConstraint!
+    @IBOutlet weak var heightBiodataConstant: NSLayoutConstraint!
+    @IBOutlet weak var clusterView: ClusterView!
+    @IBOutlet weak var biodataView: BiodataView!
     
     var viewModel: IProfileViewModel!
     
@@ -43,14 +38,11 @@ class ProfileController: UIViewController {
     private lazy var tanyaController = JanjiPolitikViewController(viewModel: tanyaViewModel)
     
     private let disposeBag = DisposeBag()
-    private var dataSourceCluster: RxTableViewSectionedReloadDataSource<SectionOfProfileData>!
-    
     private var dataSourceBadge: RxTableViewSectionedReloadDataSource<SectionOfProfileData>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupBiodataView()
         // MARK
         // add child view
         add(childViewController: janjiController, context: container)
@@ -87,7 +79,7 @@ class ProfileController: UIViewController {
             }.subscribe(onNext: { [weak self] (value) in
                 guard let `self` = self else { return }
                 UIView.animate(withDuration: 0.3, animations: {
-                    self.heightTableClusterConstant.constant = value ? 47.0 : 0.0
+                    self.heightClusterConstant.constant = value ? 48.0 : 0.0
                 })
             })
             .disposed(by: disposeBag)
@@ -122,7 +114,7 @@ class ProfileController: UIViewController {
             .drive(onNext: { [weak self] (position) in
                 guard let `self` = self else { return }
                 // need adjustment when user scroll tableview
-                self.heightTableClusterConstant.constant = 0.0
+                self.heightClusterConstant.constant = 0.0
                 self.heightBiodataConstant.constant = 0.0
                 self.heightTableBadgeConstant.constant = 0.0
                 let headerViewHeight: CGFloat = 347 // calculate each subview from top to segmented
@@ -158,22 +150,11 @@ class ProfileController: UIViewController {
         
         // MARK: - TableViews
         // Register TableViews
-        tableViewCluster.dataSource = nil
-        tableViewCluster.delegate = nil
-        tableViewCluster.registerReusableCell(ClusterCell.self)
         tableViewBadge.dataSource = nil
         tableViewBadge.delegate = nil
         tableViewBadge.registerReusableCell(BadgeCell.self)
         tableViewBadge.tableFooterView = UIView()
         
-        dataSourceCluster = RxTableViewSectionedReloadDataSource<SectionOfProfileData>(configureCell: {
-            (dataSource, tableView, indexPath, item) in
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: item.reuseIdentifier) else {
-                    return UITableViewCell()
-                }
-                item.configure(cell: cell)
-                return cell
-        })
         dataSourceBadge = RxTableViewSectionedReloadDataSource<SectionOfProfileData>(configureCell: {
             (dataSource, tableView, indexPath, item) in
             guard let cell = tableView.dequeueReusableCell(withIdentifier: item.reuseIdentifier) else {
@@ -194,10 +175,6 @@ class ProfileController: UIViewController {
             .bind(to: viewModel.input.settingI)
             .disposed(by: disposeBag)
         
-//        cluster.rx.tap
-//            .bind(to: viewModel.input.clusterI)
-//            .disposed(by: disposeBag)
-        
         headerProfile.buttonVerified.rx.tap
             .bind(to: viewModel.input.verifikasiI)
             .disposed(by: disposeBag)
@@ -210,16 +187,8 @@ class ProfileController: UIViewController {
             .drive()
             .disposed(by: disposeBag)
         
-        viewModel.output.itemsClusterO
-            .drive(tableViewCluster.rx.items(dataSource: dataSourceCluster))
-            .disposed(by: disposeBag)
-        
         viewModel.output.itemsBadgeO
             .drive(tableViewBadge.rx.items(dataSource: dataSourceBadge))
-            .disposed(by: disposeBag)
-        
-        viewModel.output.clusterO
-            .drive()
             .disposed(by: disposeBag)
         
         viewModel.output.userDataO
@@ -227,13 +196,8 @@ class ProfileController: UIViewController {
                 guard let `self` = self else { return }
                 let user = response.user
                 self.headerProfile.configure(user: user)
-            })
-            .disposed(by: disposeBag)
-        
-        viewModel.output.informantDataO
-            .drive(onNext: { [weak self] (response) in
-                guard let `self` = self else { return }
-                self.biodataView.configure(data: response)
+                self.clusterView.configure(data: user)
+                self.biodataView.configure(data: user)
             })
             .disposed(by: disposeBag)
         
@@ -244,6 +208,15 @@ class ProfileController: UIViewController {
                 self.navigationController?.present(alert, animated: true, completion: nil)
             })
             .disposed(by: disposeBag)
+        
+        clusterView.buttonReqCluster.rx.tap
+            .bind(to: viewModel.input.reqClusterI)
+            .disposed(by: disposeBag)
+        
+        viewModel.output.reqClusterO
+            .drive()
+            .disposed(by: disposeBag)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -257,22 +230,11 @@ extension ProfileController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let button = Button()
         button.setTitle("Lihat Lainnya", for: .normal)
-        button.setTitleColor(Color.grey_three, for: .normal)
+        button.setTitleColor(Color.grey_one, for: .normal)
         return button
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 20.0
     }
-}
-
-extension ProfileController {
-    
-    private func setupBiodataView() {
-        biodataContainer.addSubview(biodataView)
-        biodataView.centerYAnchor.constraint(equalTo: biodataView.centerYAnchor).isActive = true
-        biodataView.leftAnchor.constraint(equalTo: biodataView.leftAnchor, constant: 16).isActive = true
-        biodataView.rightAnchor.constraint(equalTo: biodataView.rightAnchor, constant: 16).isActive = true
-    }
-    
 }
