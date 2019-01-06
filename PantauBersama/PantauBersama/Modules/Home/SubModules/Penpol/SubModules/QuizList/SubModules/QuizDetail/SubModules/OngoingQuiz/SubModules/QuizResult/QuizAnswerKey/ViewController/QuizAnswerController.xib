@@ -39,7 +39,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="47" id="rZc-my-57P"/>
                     </constraints>
-                    <state key="normal" image="outlineClose24Px"/>
+                    <state key="normal" image="outlineCloseBlack24Px"/>
                 </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -61,6 +61,6 @@
         </view>
     </objects>
     <resources>
-        <image name="outlineClose24Px" width="24" height="24"/>
+        <image name="outlineCloseBlack24Px" width="24" height="24"/>
     </resources>
 </document>
