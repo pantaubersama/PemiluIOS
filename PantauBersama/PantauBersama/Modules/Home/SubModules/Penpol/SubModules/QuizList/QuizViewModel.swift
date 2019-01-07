@@ -34,6 +34,7 @@ class QuizViewModel: ViewModelType {
         let laodingIndicator: Driver<Bool>
         let quizzes: BehaviorRelay<[QuizModel]>
         let bannerInfo: Driver<BannerInfo>
+        let totalResult: Driver<TrendResponse>
     }
     
     // TODO: replace any with Quiz model
@@ -84,6 +85,9 @@ class QuizViewModel: ViewModelType {
         let bannerInfo = loadQuizSubject
             .flatMapLatest({ self.bannerInfo() })
             .asDriverOnErrorJustComplete()
+        let totalResult = loadQuizSubject
+            .flatMapLatest({ self.totalResult() })
+            .asDriverOnErrorJustComplete()
         
         loadQuizSubject
             .flatMapLatest({ [weak self](_) -> Observable<[QuizModel]> in
@@ -120,7 +124,8 @@ class QuizViewModel: ViewModelType {
             shareTrendSelected: shareTrend,
             laodingIndicator: activityIndicator.asDriver(),
             quizzes: quizRelay,
-            bannerInfo: bannerInfo)
+            bannerInfo: bannerInfo,
+            totalResult: totalResult)
     }
     
     private func quizItems(resetPage: Bool = false) -> Observable<[QuizModel]> {
@@ -151,6 +156,17 @@ class QuizViewModel: ViewModelType {
                 c: BaseResponse<BannerInfoResponse>.self
             )
             .map{ ($0.data.bannerInfo) }
+            .asObservable()
+            .catchErrorJustComplete()
+    }
+    
+    private func totalResult() -> Observable<TrendResponse> {
+        return NetworkService.instance
+            .requestObject(
+                QuizAPI.getTotalResult(),
+                c: BaseResponse<TrendResponse>.self
+            )
+            .map{ ($0.data) }
             .asObservable()
             .catchErrorJustComplete()
     }

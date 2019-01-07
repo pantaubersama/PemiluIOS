@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1143E80B21E0DA24003862B6 /* TrendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1143E80921E0DA24003862B6 /* TrendCell.swift */; };
-		1143E80C21E0DA24003862B6 /* TrendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1143E80A21E0DA24003862B6 /* TrendCell.xib */; };
 		1143E81021E212F7003862B6 /* upvote.json in Resources */ = {isa = PBXBuildFile; fileRef = 1143E80F21E212F7003862B6 /* upvote.json */; };
 		1143E81221E23229003862B6 /* loading-pantau.json in Resources */ = {isa = PBXBuildFile; fileRef = 1143E81121E23229003862B6 /* loading-pantau.json */; };
 		1143E81621E24A6A003862B6 /* QuizQuestionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1143E81521E24A6A003862B6 /* QuizQuestionModel.swift */; };
@@ -295,7 +293,6 @@
 
 /* Begin PBXFileReference section */
 		04A224A86FBFD6EFE137644F /* Pods-PantauBersama.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PantauBersama.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-PantauBersama/Pods-PantauBersama.debug.xcconfig"; sourceTree = "<group>"; };
-		1143E80921E0DA24003862B6 /* TrendCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrendCell.swift; sourceTree = "<group>"; };
 		1143E80A21E0DA24003862B6 /* TrendCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TrendCell.xib; sourceTree = "<group>"; };
 		1143E80F21E212F7003862B6 /* upvote.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = upvote.json; sourceTree = "<group>"; };
 		1143E81121E23229003862B6 /* loading-pantau.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "loading-pantau.json"; sourceTree = "<group>"; };
@@ -1815,7 +1812,6 @@
 				845C570D21CE0C8100EDCDFE /* ClusterCell.xib in Resources */,
 				84A07FB421D0ECC100269C6B /* SuccessController.xib in Resources */,
 				84A07FC021D1465C00269C6B /* ReqClusterController.xib in Resources */,
-				1143E80C21E0DA24003862B6 /* TrendCell.xib in Resources */,
 				84B6D6E221E1028700CD4BC8 /* KategoriClusterController.xib in Resources */,
 				84F892AA21C787D800DC1048 /* Lato-Bold.ttf in Resources */,
 				13F456D421DB897500CE45F1 /* BannerInfoController.xib in Resources */,
