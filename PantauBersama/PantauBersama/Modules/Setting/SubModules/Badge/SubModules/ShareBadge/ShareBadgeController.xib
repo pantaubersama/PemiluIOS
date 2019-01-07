@@ -12,6 +12,12 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ShareBadgeController" customModule="PantauBersama" customModuleProvider="target">
             <connections>
+                <outlet property="about" destination="T15-k3-JlV" id="QEb-TH-wKX"/>
+                <outlet property="avatar" destination="HyE-Ua-v4L" id="xCr-wF-QBd"/>
+                <outlet property="fullname" destination="hqz-Pb-cMM" id="PTS-Ly-M5x"/>
+                <outlet property="iconBadges" destination="YFo-zY-3Db" id="gbt-Mh-iYT"/>
+                <outlet property="subtitleBadges" destination="QHJ-40-CJd" id="ohb-T7-9Ri"/>
+                <outlet property="titleBadges" destination="sNW-xg-Ig4" id="Udu-c2-SO9"/>
                 <outlet property="view" destination="iN0-l3-epB" id="ZIE-ka-U8O"/>
             </connections>
         </placeholder>
@@ -82,10 +88,10 @@
                     </constraints>
                 </imageView>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Ukf-fu-AYB">
-                    <rect key="frame" x="50" y="353.5" width="275" height="60"/>
+                    <rect key="frame" x="50" y="348.5" width="275" height="120"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sNW-xg-Ig4" customClass="Label" customModule="Common">
-                            <rect key="frame" x="108.5" y="0.0" width="58" height="30"/>
+                            <rect key="frame" x="108.5" y="0.0" width="58" height="60"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
@@ -96,16 +102,21 @@
                                 <userDefinedRuntimeAttribute type="string" keyPath="typeLabel" value="bold"/>
                             </userDefinedRuntimeAttributes>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QHJ-40-CJd">
-                            <rect key="frame" x="112.5" y="30" width="50" height="30"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QHJ-40-CJd" customClass="Label" customModule="Common">
+                            <rect key="frame" x="137.5" y="60" width="0.0" height="60"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="60" id="mTp-Hh-T7d"/>
+                            </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                    <real key="value" value="14"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
                         </label>
                     </subviews>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="60" id="G5f-2A-0yw"/>
-                    </constraints>
                 </stackView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -118,7 +129,7 @@
                 <constraint firstItem="YFo-zY-3Db" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="In5-J9-Ixu"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="sFo-3A-ucD" secondAttribute="trailing" constant="60" id="J5i-sJ-H0H"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Ukf-fu-AYB" secondAttribute="trailing" constant="50" id="Rqf-OL-671"/>
-                <constraint firstItem="Ukf-fu-AYB" firstAttribute="top" secondItem="YFo-zY-3Db" secondAttribute="bottom" constant="10" id="a7L-mG-njm"/>
+                <constraint firstItem="Ukf-fu-AYB" firstAttribute="top" secondItem="YFo-zY-3Db" secondAttribute="bottom" constant="5" id="a7L-mG-njm"/>
                 <constraint firstItem="sFo-3A-ucD" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="60" id="bru-FK-PQa"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="zPk-sP-iq5" secondAttribute="bottom" id="sKU-mw-wcy"/>
                 <constraint firstItem="zPk-sP-iq5" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="scc-bN-ZST"/>

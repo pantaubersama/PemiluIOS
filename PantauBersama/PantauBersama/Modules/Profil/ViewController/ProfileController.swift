@@ -158,8 +158,8 @@ class ProfileController: UIViewController {
         tableViewBadge.delegate = nil
         tableViewBadge.registerReusableCell(BadgeCell.self)
         tableViewBadge.tableFooterView = UIView()
-        tableViewBadge.rowHeight = 80.0
-        tableViewBadge.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        tableViewBadge.rowHeight = 48.0
+        tableViewBadge.contentInset = UIEdgeInsets(top: 5, left: 0, bottom: 5, right: 0)
         
         dataSourceBadge = RxTableViewSectionedReloadDataSource<SectionOfProfileData>(configureCell: {
             (dataSource, tableView, indexPath, item) in
@@ -285,5 +285,9 @@ extension ProfileController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 20.0
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 48.0
     }
 }

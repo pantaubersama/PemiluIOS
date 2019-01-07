@@ -65,9 +65,9 @@ public struct Badges: Codable {
 
 
 public struct AchievedResponse: Codable {
-    public let id: String
-    public let badge: Badges
-    public let user: UserMinimal?
+    public var id: String
+    public var badge: Badges
+    public var user: UserMinimal?
     
     enum CodingKeys: String, CodingKey {
         case id = "achieved_id"
@@ -94,5 +94,15 @@ public struct AchievedResponse: Codable {
             case about
         }
         
+    }
+}
+
+
+public struct AchievedSingleResponse: Codable {
+    
+    public var achieved: AchievedResponse
+    
+    private enum CodingKeys: String, CodingKey {
+        case achieved = "achieved_badge"
     }
 }

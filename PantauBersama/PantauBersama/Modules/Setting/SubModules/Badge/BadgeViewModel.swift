@@ -20,7 +20,7 @@ class BadgeViewModel: ViewModelType {
         let refreshI: AnyObserver<Void>
         let backI: AnyObserver<Void>
         let nextTrigger: AnyObserver<Void>
-        let shareI: AnyObserver<Void>
+        let shareI: AnyObserver<String>
     }
     
     struct Output {
@@ -35,7 +35,7 @@ class BadgeViewModel: ViewModelType {
     private let backS = PublishSubject<Void>()
     private let refreshS = PublishSubject<Void>()
     private let nextS = PublishSubject<Void>()
-    private let shareS = PublishSubject<Void>()
+    private let shareS = PublishSubject<String>()
     
     let errorTracker = ErrorTracker()
     let activityIndicator = ActivityIndicator()
@@ -61,7 +61,7 @@ class BadgeViewModel: ViewModelType {
         .asDriver(onErrorJustReturn: [])
         
         let share = shareS
-            .flatMapLatest({ navigator.launchShare() })
+            .flatMapLatest({ navigator.launchShare(id: $0) })
             .asDriverOnErrorJustComplete()
         
         let back = backS
@@ -83,11 +83,11 @@ class BadgeViewModel: ViewModelType {
         var items: [[ICellConfigurator]] = [[]]
         let list = response.data.badges
             .map { (badge) -> ICellConfigurator in
-                return BadgeCellConfigured.init(item: BadgeCell.Input(badges: badge, isAchieved: false, viewModel: self))
+                return BadgeCellConfigured.init(item: BadgeCell.Input(badges: badge, isAchieved: false, viewModel: self, idAchieved: nil))
         }
         let achieved = response.data.achieved
             .map { (badge) -> ICellConfigurator in
-                return BadgeCellConfigured.init(item: BadgeCell.Input(badges: badge.badge, isAchieved: true, viewModel: self))
+                return BadgeCellConfigured.init(item: BadgeCell.Input(badges: badge.badge, isAchieved: true, viewModel: self, idAchieved: badge.id))
         }
         items.append(achieved)
         items.append(list)

@@ -27,9 +27,8 @@ class BadgeController: UIViewController {
         tableView.delegate = nil
         tableView.dataSource = nil
         tableView.registerReusableCell(BadgeCell.self)
-        tableView.estimatedRowHeight = 80
-        tableView.rowHeight = UITableView.automaticDimension
-          tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        tableView.estimatedRowHeight = 48.0
+        tableView.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
         
         if #available(iOS 10.0, *) {
             tableView.refreshControl = refreshControl
@@ -96,6 +95,6 @@ class BadgeController: UIViewController {
 
 extension BadgeController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80.0
+        return 48.0
     }
 }

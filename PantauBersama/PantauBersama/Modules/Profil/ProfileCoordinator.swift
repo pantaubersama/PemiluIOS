@@ -150,8 +150,8 @@ extension ProfileCoordinator: PenpolNavigator {
 
 
 extension  ProfileCoordinator: BadgeNavigator {
-    func launchShare() -> Observable<Void> {
-        let shareCoordinator = ShareBadgeCoordinator(navigationController: navigationController)
+    func launchShare(id: String) -> Observable<Void> {
+        let shareCoordinator = ShareBadgeCoordinator(navigationController: navigationController, id: id)
         return coordinate(to: shareCoordinator)
     }
 }

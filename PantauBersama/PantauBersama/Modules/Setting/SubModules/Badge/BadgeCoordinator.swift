@@ -13,7 +13,7 @@ import Common
 
 protocol BadgeNavigator {
     func back()
-    func launchShare() -> Observable<Void>
+    func launchShare(id: String) -> Observable<Void>
 }
 
 final class BadgeCoordinator: BaseCoordinator<Void> {
@@ -38,8 +38,8 @@ extension BadgeCoordinator: BadgeNavigator {
     func back() {
         navigationController.popViewController(animated: true)
     }
-    func launchShare() -> Observable<Void> {
-        let shareCoordinator = ShareBadgeCoordinator(navigationController: navigationController)
+    func launchShare(id: String) -> Observable<Void> {
+        let shareCoordinator = ShareBadgeCoordinator(navigationController: navigationController, id: id)
         return coordinate(to: shareCoordinator)
     }
 }
