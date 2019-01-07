@@ -20,9 +20,9 @@ class HeaderQuizView: UIView {
         self.viewModel = viewModel
         setup()
     }
-    
+
     override init(frame: CGRect) {
-        let frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 177)
+        let frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 115)
         super.init(frame: frame)
         setup()
     }
@@ -38,7 +38,7 @@ class HeaderQuizView: UIView {
         let bannerInfoQuizView = BannerHeaderView()
         bannerInfoQuizView.translatesAutoresizingMaskIntoConstraints = false
         
-        let trendHeaderView = TrendHeaderView(viewModel: viewModel)
+        let trendHeaderView = TrendHeaderView()
         trendHeaderView.translatesAutoresizingMaskIntoConstraints = false
         
         addSubview(bannerInfoQuizView)
@@ -49,18 +49,30 @@ class HeaderQuizView: UIView {
             bannerInfoQuizView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             bannerInfoQuizView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             bannerInfoQuizView.topAnchor.constraint(equalTo: self.topAnchor),
-            bannerInfoQuizView.heightAnchor.constraint(equalToConstant: 85),
             
-            // MARK: constraint createAskHeaderView
+            // MARK: constraint trendHeaderView
             trendHeaderView.topAnchor.constraint(equalTo: bannerInfoQuizView.bottomAnchor),
             trendHeaderView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             trendHeaderView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            trendHeaderView.heightAnchor.constraint(equalToConstant: 260)
+            trendHeaderView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
             ])
+        
+        trendHeaderView.isHidden = true
         
         viewModel.output.bannerInfo
             .drive(onNext: { (banner) in
                 bannerInfoQuizView.config(banner: banner, viewModel: viewModel.headerViewModel)
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.output.totalResult
+            .drive(onNext: { (result) in
+                if result.meta.quizzes.finished >= 1 {
+                    trendHeaderView.isHidden = false
+                    self.frame.size.height = 325
+                    
+                    trendHeaderView.config(result: result, viewModel: viewModel)
+                }
             })
             .disposed(by: disposeBag)
     }

@@ -20,6 +20,7 @@
 		11D0669D21E26A07003AC9BB /* QuizResultResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D0669C21E26A07003AC9BB /* QuizResultResponse.swift */; };
 		11E798D421E2F4FA002AABDC /* QuizSummaryResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E798D321E2F4FA002AABDC /* QuizSummaryResponse.swift */; };
 		1311A96F21DD3011001B053B /* UserPantau.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1311A96E21DD3011001B053B /* UserPantau.swift */; };
+		137A2A0121E3C80F00F19072 /* TrendResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 137A2A0021E3C80F00F19072 /* TrendResponse.swift */; };
 		13D9483A21DDD56D00722EB1 /* InfoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D9483921DDD56D00722EB1 /* InfoResponse.swift */; };
 		13F456B521D531D300CE45F1 /* LinimasaAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F456B421D531D300CE45F1 /* LinimasaAPI.swift */; };
 		13F456B721DA7BD000CE45F1 /* Feeds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F456B621DA7BD000CE45F1 /* Feeds.swift */; };
@@ -81,6 +82,7 @@
 		11D0669C21E26A07003AC9BB /* QuizResultResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizResultResponse.swift; sourceTree = "<group>"; };
 		11E798D321E2F4FA002AABDC /* QuizSummaryResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSummaryResponse.swift; sourceTree = "<group>"; };
 		1311A96E21DD3011001B053B /* UserPantau.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPantau.swift; sourceTree = "<group>"; };
+		137A2A0021E3C80F00F19072 /* TrendResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendResponse.swift; sourceTree = "<group>"; };
 		13D9483921DDD56D00722EB1 /* InfoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoResponse.swift; sourceTree = "<group>"; };
 		13F456B421D531D300CE45F1 /* LinimasaAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinimasaAPI.swift; sourceTree = "<group>"; };
 		13F456B621DA7BD000CE45F1 /* Feeds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feeds.swift; sourceTree = "<group>"; };
@@ -222,6 +224,7 @@
 				1143E81721E25D1B003862B6 /* QuizAnswerResponse.swift */,
 				11D0669C21E26A07003AC9BB /* QuizResultResponse.swift */,
 				11E798D321E2F4FA002AABDC /* QuizSummaryResponse.swift */,
+				137A2A0021E3C80F00F19072 /* TrendResponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -496,6 +499,7 @@
 				84B2669D21D4BB1400C7B783 /* PantauRefreshResponse.swift in Sources */,
 				84FE6EB821D5F374009A0F55 /* BaseResponse.swift in Sources */,
 				84B2526421CBDE2600565D82 /* PantauAuthAPI.swift in Sources */,
+				137A2A0121E3C80F00F19072 /* TrendResponse.swift in Sources */,
 				84FE6EB621D5F35E009A0F55 /* User.swift in Sources */,
 				8482E62A21D8E5AB00D5DC07 /* BadgesResponse.swift in Sources */,
 				84B2523721CAC7D000565D82 /* NetworkError.swift in Sources */,

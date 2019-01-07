@@ -11,6 +11,7 @@ import UIKit
 import Common
 import RxSwift
 import RxCocoa
+import Networking
 
 class TrendHeaderView: UIView {
 
@@ -20,7 +21,6 @@ class TrendHeaderView: UIView {
     @IBOutlet weak var shareButton: UIButton!
     
     private(set) var disposeBag = DisposeBag()
-    private var viewModel: QuizViewModel?
     
     // TODO: change to trend model
     var trend: Any! {
@@ -29,39 +29,41 @@ class TrendHeaderView: UIView {
         }
     }
     
-    convenience init(viewModel: QuizViewModel) {
-        self.init()
-        self.viewModel = viewModel
-        
-        setup()
-    }
-    
     override init(frame: CGRect) {
         let frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 210)
         super.init(frame: frame)
+        
         setup()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        
         setup()
     }
     
     private func setup() {
+        disposeBag = DisposeBag()
+        
         let view = loadNib()
         view.frame = bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         addSubview(view)
-        
-        disposeBag = DisposeBag()
-        
-        guard let viewModel = self.viewModel else { return }
+    }
+    
+    func config(result: TrendResponse, viewModel: QuizViewModel) {
+        let kecenderungan = result.teams.max { $0.percentage?.isLess(than: $1.percentage ?? 0.0) ?? false }
+
+        if let avatarUrl = kecenderungan?.team.avatar {
+            ivPaslon.af_setImage(withURL: URL(string: avatarUrl)!)
+        }
+        lbKecenderungan.text = "Total Kecenderunganmu , \(result.meta.quizzes.finished) dari \(result.meta.quizzes.total) Kuis"
+        lbTotal.text = "\(String(describing: kecenderungan?.percentage)) (\(kecenderungan?.team.title ?? ""))"
         
         shareButton.rx.tap
             .map({ self.trend })
             .bind(to: viewModel.input.shareTrendTrigger)
             .disposed(by: disposeBag)
-    
     }
 
 }
