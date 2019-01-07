@@ -20,11 +20,11 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="260"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="213"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UIo-Fj-Qwx">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="260"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="212"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NTr-11-7Ka">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="210"/>
@@ -114,11 +114,12 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
+                        <constraint firstAttribute="bottom" secondItem="MKp-8P-9RB" secondAttribute="bottom" id="7GH-nY-xNp"/>
                         <constraint firstAttribute="trailing" secondItem="MKp-8P-9RB" secondAttribute="trailing" id="KUX-rC-SDh"/>
+                        <constraint firstItem="MKp-8P-9RB" firstAttribute="top" secondItem="NTr-11-7Ka" secondAttribute="bottom" id="Zfy-Qb-wx4"/>
                         <constraint firstAttribute="trailing" secondItem="NTr-11-7Ka" secondAttribute="trailing" id="bD9-lc-MYl"/>
                         <constraint firstItem="MKp-8P-9RB" firstAttribute="leading" secondItem="UIo-Fj-Qwx" secondAttribute="leading" id="jBR-OP-5kM"/>
                         <constraint firstItem="NTr-11-7Ka" firstAttribute="leading" secondItem="UIo-Fj-Qwx" secondAttribute="leading" id="mU0-pk-QOn"/>
-                        <constraint firstItem="MKp-8P-9RB" firstAttribute="top" secondItem="NTr-11-7Ka" secondAttribute="bottom" id="u1X-5L-7iU"/>
                         <constraint firstItem="NTr-11-7Ka" firstAttribute="top" secondItem="UIo-Fj-Qwx" secondAttribute="top" id="vZS-Pc-NMk"/>
                     </constraints>
                 </view>
@@ -126,13 +127,12 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="UIo-Fj-Qwx" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="PGc-QH-dj6"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="UIo-Fj-Qwx" secondAttribute="bottom" id="UFI-V9-Odd"/>
                 <constraint firstItem="UIo-Fj-Qwx" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="YCh-LA-pgA"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="UIo-Fj-Qwx" secondAttribute="trailing" id="uTI-AV-LyR"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <point key="canvasLocation" x="-212" y="-27.886056971514247"/>
+            <point key="canvasLocation" x="-212" y="-49.025487256371818"/>
         </view>
     </objects>
     <resources>
