@@ -12,7 +12,6 @@ import RxSwift
 
 class BadgeController: UIViewController {
     
-    @IBOutlet weak var buttonClose: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
     private let refreshControl = UIRefreshControl()
@@ -23,7 +22,7 @@ class BadgeController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        title = "Badges"
         // MARK: TableView
         tableView.delegate = nil
         tableView.dataSource = nil
@@ -38,8 +37,10 @@ class BadgeController: UIViewController {
             tableView.addSubview(refreshControl)
         }
         
+        let back = UIBarButtonItem(image: #imageLiteral(resourceName: "back"), style: .plain, target: nil, action: nil)
+        navigationItem.leftBarButtonItem = back
         // MARK: Bind viewModel
-        buttonClose.rx.tap
+        back.rx.tap
             .bind(to: viewModel.input.backI)
             .disposed(by: disposeBag)
         
@@ -76,11 +77,19 @@ class BadgeController: UIViewController {
         
         tableView.rx.setDelegate(self)
             .disposed(by: disposeBag)
+        
+        viewModel.output.shareO
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.backO
+            .drive()
+            .disposed(by: disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.navigationBar.configure(with: .transparent)
+        navigationController?.navigationBar.configure(with: .white)
     }
     
 }

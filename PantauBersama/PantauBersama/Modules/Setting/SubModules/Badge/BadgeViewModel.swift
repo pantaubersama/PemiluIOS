@@ -20,29 +20,34 @@ class BadgeViewModel: ViewModelType {
         let refreshI: AnyObserver<Void>
         let backI: AnyObserver<Void>
         let nextTrigger: AnyObserver<Void>
+        let shareI: AnyObserver<Void>
     }
     
     struct Output {
         let badgeItems: Driver<[ICellConfigurator]>
         let error: Driver<Error>
         let loading: Driver<Bool>
+        let shareO: Driver<Void>
+        let backO: Driver<Void>
     }
     
     private let navigator: BadgeNavigator!
     private let backS = PublishSubject<Void>()
     private let refreshS = PublishSubject<Void>()
     private let nextS = PublishSubject<Void>()
+    private let shareS = PublishSubject<Void>()
     
     let errorTracker = ErrorTracker()
     let activityIndicator = ActivityIndicator()
     
     init(navigator: BadgeNavigator) {
         self.navigator = navigator
-        self.navigator.finish = backS
         
         input = Input(refreshI: refreshS.asObserver(),
                       backI: backS.asObserver(),
-                      nextTrigger: nextS.asObserver())
+                      nextTrigger: nextS.asObserver(),
+                      shareI: shareS.asObserver()
+        )
         
         // MARK
         // Get All Badges, paginate
@@ -55,10 +60,22 @@ class BadgeViewModel: ViewModelType {
         }
         .asDriver(onErrorJustReturn: [])
         
+        let share = shareS
+            .flatMapLatest({ navigator.launchShare() })
+            .asDriverOnErrorJustComplete()
+        
+        let back = backS
+            .do(onNext: { (_) in
+                navigator.back()
+            })
+            .asDriverOnErrorJustComplete()
+
         
         output = Output(badgeItems: items,
                         error: errorTracker.asDriver(),
-                        loading: activityIndicator.asDriver())
+                        loading: activityIndicator.asDriver(),
+                        shareO: share,
+                        backO: back)
     }
     
     
@@ -66,11 +83,11 @@ class BadgeViewModel: ViewModelType {
         var items: [[ICellConfigurator]] = [[]]
         let list = response.data.badges
             .map { (badge) -> ICellConfigurator in
-                return BadgeCellConfigured.init(item: BadgeCell.Input(badges: badge, isAchieved: false))
+                return BadgeCellConfigured.init(item: BadgeCell.Input(badges: badge, isAchieved: false, viewModel: self))
         }
         let achieved = response.data.achieved
             .map { (badge) -> ICellConfigurator in
-                return BadgeCellConfigured.init(item: BadgeCell.Input(badges: badge, isAchieved: true))
+                return BadgeCellConfigured.init(item: BadgeCell.Input(badges: badge.badge, isAchieved: true, viewModel: self))
         }
         items.append(achieved)
         items.append(list)

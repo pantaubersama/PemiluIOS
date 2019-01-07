@@ -12,13 +12,13 @@ import RxSwift
 import Common
 
 protocol BadgeNavigator {
-    var finish: Observable<Void>! { get set }
+    func back()
+    func launchShare() -> Observable<Void>
 }
 
 final class BadgeCoordinator: BaseCoordinator<Void> {
     
     private let navigationController: UINavigationController!
-    var finish: Observable<Void>!
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
@@ -29,14 +29,18 @@ final class BadgeCoordinator: BaseCoordinator<Void> {
         let viewModel = BadgeViewModel(navigator: self)
         viewController.viewModel = viewModel
         navigationController.pushViewController(viewController, animated: true)
-        return finish.do(onNext: { [weak self] (_) in
-            self?.navigationController.popViewController(animated: true)
-        })
+        return Observable.empty()
     }
     
 }
 
 extension BadgeCoordinator: BadgeNavigator {
-    
+    func back() {
+        navigationController.popViewController(animated: true)
+    }
+    func launchShare() -> Observable<Void> {
+        let shareCoordinator = ShareBadgeCoordinator(navigationController: navigationController)
+        return coordinate(to: shareCoordinator)
+    }
 }
 

@@ -215,6 +215,10 @@
 		84B6D6EA21E223AA00CD4BC8 /* ClusterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84B6D6E921E223AA00CD4BC8 /* ClusterView.xib */; };
 		84B6D6EC21E2248300CD4BC8 /* ClusterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B6D6EB21E2248300CD4BC8 /* ClusterView.swift */; };
 		84B6D6EE21E2451600CD4BC8 /* ClusterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B6D6ED21E2451600CD4BC8 /* ClusterType.swift */; };
+		84B6D6F121E24CAA00CD4BC8 /* ShareBadgeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84B6D6F021E24CAA00CD4BC8 /* ShareBadgeController.xib */; };
+		84B6D6F321E30EA700CD4BC8 /* ShareBadgeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B6D6F221E30EA700CD4BC8 /* ShareBadgeController.swift */; };
+		84B6D6F621E30F8B00CD4BC8 /* ShareBadgeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B6D6F521E30F8B00CD4BC8 /* ShareBadgeViewModel.swift */; };
+		84B6D6F821E30FE400CD4BC8 /* ShareBadgeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B6D6F721E30FE400CD4BC8 /* ShareBadgeCoordinator.swift */; };
 		84D01B9821D208DE0000492F /* SectionOfSettingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D01B9721D208DE0000492F /* SectionOfSettingData.swift */; };
 		84D01B9B21D20C480000492F /* SettingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84D01B9A21D20C480000492F /* SettingCell.xib */; };
 		84D01B9D21D20CA20000492F /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D01B9C21D20CA20000492F /* SettingCell.swift */; };
@@ -501,6 +505,10 @@
 		84B6D6E921E223AA00CD4BC8 /* ClusterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ClusterView.xib; sourceTree = "<group>"; };
 		84B6D6EB21E2248300CD4BC8 /* ClusterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterView.swift; sourceTree = "<group>"; };
 		84B6D6ED21E2451600CD4BC8 /* ClusterType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterType.swift; sourceTree = "<group>"; };
+		84B6D6F021E24CAA00CD4BC8 /* ShareBadgeController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShareBadgeController.xib; sourceTree = "<group>"; };
+		84B6D6F221E30EA700CD4BC8 /* ShareBadgeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareBadgeController.swift; sourceTree = "<group>"; };
+		84B6D6F521E30F8B00CD4BC8 /* ShareBadgeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareBadgeViewModel.swift; sourceTree = "<group>"; };
+		84B6D6F721E30FE400CD4BC8 /* ShareBadgeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareBadgeCoordinator.swift; sourceTree = "<group>"; };
 		84D01B9721D208DE0000492F /* SectionOfSettingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionOfSettingData.swift; sourceTree = "<group>"; };
 		84D01B9A21D20C480000492F /* SettingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingCell.xib; sourceTree = "<group>"; };
 		84D01B9C21D20CA20000492F /* SettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
@@ -929,6 +937,7 @@
 		840850D821D2826600696CB3 /* Badge */ = {
 			isa = PBXGroup;
 			children = (
+				84B6D6EF21E24C8700CD4BC8 /* SubModules */,
 				840850D921D2827D00696CB3 /* ViewController */,
 				840850DE21D2843D00696CB3 /* BadgeViewModel.swift */,
 				840850E021D2844700696CB3 /* BadgeCoordinator.swift */,
@@ -1530,6 +1539,25 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
+		84B6D6EF21E24C8700CD4BC8 /* SubModules */ = {
+			isa = PBXGroup;
+			children = (
+				84B6D6F421E30F7600CD4BC8 /* ShareBadge */,
+			);
+			path = SubModules;
+			sourceTree = "<group>";
+		};
+		84B6D6F421E30F7600CD4BC8 /* ShareBadge */ = {
+			isa = PBXGroup;
+			children = (
+				84B6D6F021E24CAA00CD4BC8 /* ShareBadgeController.xib */,
+				84B6D6F221E30EA700CD4BC8 /* ShareBadgeController.swift */,
+				84B6D6F521E30F8B00CD4BC8 /* ShareBadgeViewModel.swift */,
+				84B6D6F721E30FE400CD4BC8 /* ShareBadgeCoordinator.swift */,
+			);
+			path = ShareBadge;
+			sourceTree = "<group>";
+		};
 		84D01B9921D20C140000492F /* Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -1756,6 +1784,7 @@
 				840901B821DF1CBB001BF559 /* Navbar.xib in Resources */,
 				137A29EE21E11E8F00F19072 /* TrendHeaderView.xib in Resources */,
 				84A07FAD21D0E4FD00269C6B /* upload-ttd.json in Resources */,
+				84B6D6F121E24CAA00CD4BC8 /* ShareBadgeController.xib in Resources */,
 				84E2854D21CA4BC800298E31 /* FilterViewController.xib in Resources */,
 				84F892AB21C787D800DC1048 /* Lato-BoldItalic.ttf in Resources */,
 				11E107A921CD33CA00B7B074 /* CreateJanjiController.xib in Resources */,
@@ -2002,6 +2031,7 @@
 				840901C221DF3BDE001BF559 /* CatatanViewModel.swift in Sources */,
 				11E107DA21CFD99900B7B074 /* QuizResultCoordinator.swift in Sources */,
 				11E1079E21CD200500B7B074 /* PenpolViewModel.swift in Sources */,
+				84B6D6F621E30F8B00CD4BC8 /* ShareBadgeViewModel.swift in Sources */,
 				840850CE21D2611D00696CB3 /* DateViewCell.swift in Sources */,
 				11B3C79221D1110700EDCECB /* QuizAnswerController.swift in Sources */,
 				84FE6EBC21D5FCB9009A0F55 /* ErrorTracker.swift in Sources */,
@@ -2059,12 +2089,14 @@
 				84B6D6EE21E2451600CD4BC8 /* ClusterType.swift in Sources */,
 				84E6934621D296BB00EA5464 /* SectionOfProfileEditData.swift in Sources */,
 				84F6980B21C8D2B100890917 /* JanjiPolitikViewController.swift in Sources */,
+				84B6D6F821E30FE400CD4BC8 /* ShareBadgeCoordinator.swift in Sources */,
 				13F4569421CF97DA00CE45F1 /* CreateAskController.swift in Sources */,
 				849CABCC21CE8A5100912F8E /* SettingCoordinator.swift in Sources */,
 				844C3D4521C4ED6D00199871 /* PantauBersama.xcdatamodeld in Sources */,
 				13F456D321DB897500CE45F1 /* BannerInfoController.swift in Sources */,
 				84B4DED621D36EDC00F60258 /* JanjiPolitikViewModel.swift in Sources */,
 				84E2855B21CA7C4800298E31 /* FilterViewModel.swift in Sources */,
+				84B6D6F321E30EA700CD4BC8 /* ShareBadgeController.swift in Sources */,
 				84F6981921C93B8900890917 /* LinimasaJanjiCell.swift in Sources */,
 				11E1079C21CD1B5F00B7B074 /* QuizNavigator.swift in Sources */,
 				1183F0E021D53A9100435D31 /* QuestionModel.swift in Sources */,

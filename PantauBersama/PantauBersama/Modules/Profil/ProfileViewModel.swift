@@ -21,6 +21,7 @@ protocol IProfileViewModelInput {
 }
 
 protocol IProfileViewModelOutput {
+    var backO: Driver<Void> { get }
     var settingO: Driver<Void>! { get }
     var verifikasiO: Driver<Void>! { get }
     var itemsBadgeO: Driver<[SectionOfProfileData]>! { get }
@@ -28,6 +29,7 @@ protocol IProfileViewModelOutput {
     var errorO: Driver<Error>! { get }
     var reqClusterO: Driver<Void> { get }
     var clusterActionO: Driver<Void> { get }
+    var shareBadgeO: Driver<Void> { get }
 }
 
 protocol IProfileViewModel {
@@ -37,6 +39,7 @@ protocol IProfileViewModel {
     var navigator: ProfileNavigator! { get }
     var navigatorLinimasa: LinimasaNavigator! { get }
     var navigatorPenpol: PenpolNavigator! { get }
+    var navigatorBadge: BadgeNavigator! { get }
 
 }
 
@@ -49,6 +52,7 @@ final class ProfileViewModel: IProfileViewModel, IProfileViewModelInput, IProfil
     var navigator: ProfileNavigator!
     var navigatorLinimasa: LinimasaNavigator!
     var navigatorPenpol: PenpolNavigator!
+    var navigatorBadge: BadgeNavigator!
     
     // Input
     var backI: AnyObserver<Void>
@@ -66,6 +70,8 @@ final class ProfileViewModel: IProfileViewModel, IProfileViewModelInput, IProfil
     var errorO: Driver<Error>!
     var reqClusterO: Driver<Void>
     var clusterActionO: Driver<Void>
+    var backO: Driver<Void>
+    var shareBadgeO: Driver<Void>
     
     
     private let backS = PublishSubject<Void>()
@@ -82,7 +88,10 @@ final class ProfileViewModel: IProfileViewModel, IProfileViewModelInput, IProfil
         self.navigator = navigator
         self.navigatorLinimasa = navigator
         self.navigatorPenpol = navigator
-        self.navigator.finish = backS
+        self.navigatorBadge = navigator
+        
+        
+        let badgeViewModel = BadgeViewModel(navigator: navigatorBadge)
         
         // MARK
         // Input
@@ -173,8 +182,8 @@ final class ProfileViewModel: IProfileViewModel, IProfileViewModelInput, IProfil
         
         itemsBadgeO = badge
             .map{ (list) -> [SectionOfProfileData] in
-                return list.achieved.compactMap({ (badge) -> SectionOfProfileData in
-                    return SectionOfProfileData(items: [BadgeCellConfigured(item: BadgeCell.Input(badges: badge, isAchieved: true))])
+                return list.achieved.compactMap({ (achieved) -> SectionOfProfileData in
+                    return SectionOfProfileData(items: [BadgeCellConfigured(item: BadgeCell.Input(badges: achieved.badge, isAchieved: true, viewModel: badgeViewModel))])
                 })
             }
             .asDriverOnErrorJustComplete()
@@ -185,6 +194,10 @@ final class ProfileViewModel: IProfileViewModel, IProfileViewModelInput, IProfil
             .flatMapLatest({ navigator.launchReqCluster() })
             .asDriverOnErrorJustComplete()
         clusterActionO = clusterAction.asDriverOnErrorJustComplete()
+        backO = backS.do(onNext: { (_) in
+            navigator.back()
+            }).asDriverOnErrorJustComplete()
+        shareBadgeO = badgeViewModel.output.shareO
     }
     
 }
