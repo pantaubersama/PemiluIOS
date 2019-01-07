@@ -58,7 +58,7 @@ class TrendHeaderView: UIView {
             ivPaslon.af_setImage(withURL: URL(string: avatarUrl)!)
         }
         lbKecenderungan.text = "Total Kecenderunganmu , \(result.meta.quizzes.finished) dari \(result.meta.quizzes.total) Kuis"
-        lbTotal.text = "\(String(describing: kecenderungan?.percentage)) (\(kecenderungan?.team.title ?? ""))"
+        lbTotal.text = "\(Double(kecenderungan?.percentage ?? 0.0)) (\(kecenderungan?.team.title ?? ""))"
         
         shareButton.rx.tap
             .map({ self.trend })

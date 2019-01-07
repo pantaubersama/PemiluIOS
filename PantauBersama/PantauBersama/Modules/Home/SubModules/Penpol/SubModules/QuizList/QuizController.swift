@@ -15,6 +15,7 @@ import AlamofireImage
 class QuizController: UITableViewController {
     private let disposeBag: DisposeBag = DisposeBag()
     private var viewModel: QuizViewModel!
+    lazy var tableHeaderView = HeaderQuizView()
     
     convenience init(viewModel: QuizViewModel) {
         self.init()
@@ -27,7 +28,9 @@ class QuizController: UITableViewController {
         tableView.rowHeight = 350
         tableView.separatorStyle = .none
         tableView.allowsSelection = false
-        tableView.tableHeaderView = HeaderQuizView(viewModel: viewModel)
+        tableView.tableHeaderView = tableHeaderView
+        
+        tableHeaderView.config(viewModel: viewModel)
         
         bindViewModel()
     }

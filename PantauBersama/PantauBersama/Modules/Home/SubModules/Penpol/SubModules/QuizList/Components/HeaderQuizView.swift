@@ -12,29 +12,9 @@ import RxSwift
 import RxCocoa
 
 class HeaderQuizView: UIView {
-    private var viewModel: QuizViewModel?
     private let disposeBag: DisposeBag = DisposeBag()
     
-    convenience init(viewModel: QuizViewModel) {
-        self.init()
-        self.viewModel = viewModel
-        setup()
-    }
-
-    override init(frame: CGRect) {
-        let frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 115)
-        super.init(frame: frame)
-        setup()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        setup()
-    }
-    
-    private func setup() {
-        guard let viewModel = self.viewModel else { return }
-        
+    func config(viewModel: QuizViewModel) {
         let bannerInfoQuizView = BannerHeaderView()
         bannerInfoQuizView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -49,6 +29,7 @@ class HeaderQuizView: UIView {
             bannerInfoQuizView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             bannerInfoQuizView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             bannerInfoQuizView.topAnchor.constraint(equalTo: self.topAnchor),
+            bannerInfoQuizView.bottomAnchor.constraint(equalTo: trendHeaderView.topAnchor),
             
             // MARK: constraint trendHeaderView
             trendHeaderView.topAnchor.constraint(equalTo: bannerInfoQuizView.bottomAnchor),
@@ -69,9 +50,12 @@ class HeaderQuizView: UIView {
             .drive(onNext: { (result) in
                 if result.meta.quizzes.finished >= 1 {
                     trendHeaderView.isHidden = false
-                    self.frame.size.height = 325
+                    self.frame.size.height = 327
                     
                     trendHeaderView.config(result: result, viewModel: viewModel)
+                    trendHeaderView.layoutIfNeeded()
+                } else {
+                    self.frame.size.height = 115
                 }
             })
             .disposed(by: disposeBag)
