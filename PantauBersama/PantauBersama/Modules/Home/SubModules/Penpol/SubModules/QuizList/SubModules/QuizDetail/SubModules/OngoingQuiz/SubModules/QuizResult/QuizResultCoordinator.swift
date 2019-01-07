@@ -10,9 +10,8 @@ import Foundation
 import RxSwift
 import Common
 protocol QuizResultNavigator {
-    // TODO: replace Any with Quiz model
-    func shareQuizResult() -> Observable<Any>
-    func openAnswerKey() -> Observable<Any>
+    func shareQuizResult(quizModel: QuizResultModel) -> Observable<Void>
+    func openSummary(quizModel: QuizModel) -> Observable<Void>
 }
 
 class QuizResultCoordinator: BaseCoordinator<Void> {
@@ -47,11 +46,12 @@ class QuizResultCoordinator: BaseCoordinator<Void> {
 }
 
 extension QuizResultCoordinator: QuizResultNavigator {
-    func shareQuizResult() -> Observable<Any> {
+    func shareQuizResult(quizModel: QuizResultModel) -> Observable<Void> {
         return Observable.never()
     }
     
-    func openAnswerKey() -> Observable<Any> {
-        return Observable.never()
+    func openSummary(quizModel: QuizModel) -> Observable<Void> {
+        let quizSummaryCoordinator = QuizSummaryCoordinator(navigationController: self.navigationController, quiz: self.quiz)
+        return coordinate(to: quizSummaryCoordinator)
     }
 }

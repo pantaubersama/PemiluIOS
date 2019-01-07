@@ -18,14 +18,17 @@ class QuizResultViewModel: ViewModelType {
     
     struct Input {
         let backTrigger: AnyObserver<Void>
+        let openSummaryTrigger: AnyObserver<Void>
     }
     
     struct Output {
         let back: Driver<Void>
         let result: Driver<QuizResultModel>
+        let openSummary: Driver<Void>
     }
     
     private let backSubject = PublishSubject<Void>()
+    private let openSummarySubject = PublishSubject<Void>()
     
     var navigator: QuizResultNavigator
     var quiz: QuizModel
@@ -34,14 +37,22 @@ class QuizResultViewModel: ViewModelType {
         self.navigator = navigator
         self.quiz = quiz
         
-        input = Input(backTrigger: backSubject.asObserver())
+        input = Input(backTrigger: backSubject.asObserver(),
+                      openSummaryTrigger: openSummarySubject.asObserver())
         
         let back = backSubject.asDriverOnErrorJustComplete()
         
         let result = quizResult(id: quiz.id)
             .asDriverOnErrorJustComplete()
         
-        output = Output(back: back, result: result)
+        let openSummary = openSummarySubject
+            .map({ self.quiz })
+            .flatMapLatest({ navigator.openSummary(quizModel: $0) })
+            .asDriverOnErrorJustComplete()
+        
+        output = Output(back: back,
+                        result: result,
+                        openSummary: openSummary)
     }
     
     private func quizResult(id: String) -> Observable<QuizResultModel> {
