@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import Common
+import Lottie
 
 class CreateAskController: UIViewController {
     
@@ -17,11 +18,24 @@ class CreateAskController: UIViewController {
     @IBOutlet weak var lbFullname: Label!
     @IBOutlet weak var tvQuestion: UITextView!
     @IBOutlet weak var lbQuestionLimit: Label!
+    
+    lazy var loadingAnimation: LOTAnimationView = {
+        let loadingAnimation = LOTAnimationView(name: "loading-pantau")
+        loadingAnimation.translatesAutoresizingMaskIntoConstraints = false
+        loadingAnimation.loopAnimation = true
+        loadingAnimation.contentMode = .center
+        
+        return loadingAnimation
+    }()
+    
     var viewModel: CreateAskViewModel!
     lazy var disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.addSubview(loadingAnimation)
+        loadingAnimation.isHidden = true
+        configureConstraint()
         
         title = "Buat Pertanyaan"
         let back = UIBarButtonItem(image: #imageLiteral(resourceName: "back"), style: .plain, target: nil, action: nil)
@@ -39,6 +53,13 @@ class CreateAskController: UIViewController {
             .disposed(by: disposeBag)
         
         done.rx.tap
+            .filter({ [unowned self](_) -> Bool in
+                return !self.tvQuestion.text.isEmpty
+            })
+            .do(onNext: { [unowned self](_) in
+                self.loadingAnimation.isHidden = false
+                self.loadingAnimation.play()
+            })
             .bind(to: viewModel.input.createTrigger)
             .disposed(by: disposeBag)
         
@@ -69,12 +90,23 @@ class CreateAskController: UIViewController {
             .bind(to: viewModel.input.questionInput)
             .disposed(by: disposeBag)
         
+        
         value
             .asObservable()
             .subscribe { text in
                 print("this is the text \(text)")
             }
             .disposed(by: disposeBag)
+    }
+    
+    private func configureConstraint() {
+        NSLayoutConstraint.activate([
+            // MARK: consraint loadingAnimation
+            loadingAnimation.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
+            loadingAnimation.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            loadingAnimation.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20),
+            loadingAnimation.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20)
+            ])
     }
 
 }

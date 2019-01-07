@@ -24,15 +24,26 @@ class QuizOngoingController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         btnAChoice.rx
             .tap
+            .map { [unowned self](_) -> String in
+                return self.tvAChoice.text
+            }
             .bind(to: viewModel.input.answerATrigger)
             .disposed(by: disposeBag)
         
         btnBChoice.rx
             .tap
+            .map { [unowned self](_) -> String in
+                return self.tvBChoice.text
+            }
             .bind(to: viewModel.input.answerBTrigger)
             .disposed(by: disposeBag)
+        
+        viewModel.input
+            .loadQuestionTrigger
+            .onNext(())
         
         viewModel.output.answerA
             .drive()
@@ -46,18 +57,29 @@ class QuizOngoingController: UIViewController {
             .drive()
             .disposed(by: disposeBag)
         
+        viewModel.output.quiz
+            .drive(onNext: { [unowned self]quiz in
+                self.ivQuiz.show(fromURL: quiz.image.url)
+            })
+            .disposed(by: disposeBag)
+        
         viewModel.output.question
-            .drive(onNext: { [unowned self]questions in
-                self.tvAChoice.text = questions[0]
-                self.tvBChoice.text = questions[1]
+            .drive(onNext: { [unowned self]question in
+                self.lbQuestion.text = question.content
+                self.tvAChoice.text = question.answers[0].content
+                self.tvBChoice.text = question.answers[1].content
             }).disposed(by: disposeBag)
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        let quizIndex = UIBarButtonItem(title: "Pertanyaan no 10 dari 10", style: .plain, target: self, action: nil)
+        let quizIndex = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
         quizIndex.tintColor = .white
+        
+        viewModel.output.questionsIndexTitle
+            .drive(quizIndex.rx.title)
+            .disposed(by: disposeBag)
         
         let back = UIBarButtonItem(image: #imageLiteral(resourceName: "back"), style: .plain, target: self, action: nil)
         self.navigationItem.leftBarButtonItem = back

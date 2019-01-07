@@ -25,11 +25,15 @@ class CreateAskViewModel: ViewModelType {
     struct Output {
         let createSelected: Driver<Void>
         let userData: Driver<UserResponse?>
+        let loadingIndicator: Driver<Bool>
     }
     
     private let createSubject = PublishSubject<Void>()
     private let backSubject = PublishSubject<Void>()
     private let questionRelay = BehaviorRelay<String>(value: "")
+    
+    private let activityIndicator = ActivityIndicator()
+    private let errorTracker = ErrorTracker()
     
     var navigator: CreateAskNavigator
     
@@ -43,6 +47,8 @@ class CreateAskViewModel: ViewModelType {
         let create = createSubject
             .flatMap({ self.createQuestion() })
             .mapToVoid()
+            .trackActivity(activityIndicator)
+            .trackError(errorTracker)
             .asDriverOnErrorJustComplete()
         
         self.navigator.back = backSubject
@@ -57,7 +63,8 @@ class CreateAskViewModel: ViewModelType {
         let user = Observable.just(userResponse).asDriverOnErrorJustComplete()
 
         output = Output(createSelected: create,
-                        userData: user)
+                        userData: user,
+                        loadingIndicator: activityIndicator.asDriver())
     }
     
     private func createQuestion() -> Observable<QuestionModel> {

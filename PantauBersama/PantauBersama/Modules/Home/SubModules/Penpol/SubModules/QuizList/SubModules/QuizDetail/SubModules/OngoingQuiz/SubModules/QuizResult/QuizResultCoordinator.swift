@@ -10,21 +10,22 @@ import Foundation
 import RxSwift
 import Common
 protocol QuizResultNavigator {
-    // TODO: replace Any with Quiz model
-    func shareQuizResult() -> Observable<Any>
-    func openAnswerKey() -> Observable<Any>
+    func shareQuizResult(quizModel: QuizResultModel) -> Observable<Void>
+    func openSummary(quizModel: QuizModel) -> Observable<Void>
 }
 
 class QuizResultCoordinator: BaseCoordinator<Void> {
     let navigationController: UINavigationController
+    let quiz: QuizModel
     
-    init(navigationController: UINavigationController) {
+    init(navigationController: UINavigationController, quiz: QuizModel) {
         self.navigationController = navigationController
+        self.quiz = quiz
     }
     
     override func start() -> Observable<Void> {
         let viewController = QuizResultController()
-        let viewModel = QuizResultViewModel(navigator: self)
+        let viewModel = QuizResultViewModel(navigator: self, quiz: quiz)
         viewController.viewModel = viewModel
         
         var viewControllers: [UIViewController] = []
@@ -45,11 +46,12 @@ class QuizResultCoordinator: BaseCoordinator<Void> {
 }
 
 extension QuizResultCoordinator: QuizResultNavigator {
-    func shareQuizResult() -> Observable<Any> {
+    func shareQuizResult(quizModel: QuizResultModel) -> Observable<Void> {
         return Observable.never()
     }
     
-    func openAnswerKey() -> Observable<Any> {
-        return Observable.never()
+    func openSummary(quizModel: QuizModel) -> Observable<Void> {
+        let quizSummaryCoordinator = QuizSummaryCoordinator(navigationController: self.navigationController, quiz: self.quiz)
+        return coordinate(to: quizSummaryCoordinator)
     }
 }

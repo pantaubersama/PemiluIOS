@@ -26,7 +26,28 @@ class QuizResultController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        viewModel.output.result
+            .drive(onNext: { [weak self](result) in
+                guard let weakSelf = self else { return }
+                weakSelf.lbPaslon.text = result.name
+                weakSelf.lbPercent.text = result.percentage
+                weakSelf.lbResult.text = result.resultSummary
+                weakSelf.ivPaslon.show(fromURL: result.avatar)
+            }).disposed(by: disposeBag)
+        
+        viewModel.output.openSummary
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.back
+            .drive()
+            .disposed(by: disposeBag)
+        
+        btnAnswerKey.rx.tap
+            .bind(to: viewModel.input.openSummaryTrigger)
+            .disposed(by: disposeBag)
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -38,13 +59,8 @@ class QuizResultController: UIViewController {
         
         // TODO: for mock only, move navigation to coordinator
         back.rx.tap
-            .bind { [unowned self](_) in
-                self.navigationController?.popViewController(animated: true)
-            }.disposed(by: disposeBag)
+            .bind(to: viewModel.input.backTrigger)
+            .disposed(by: disposeBag)
         
-        btnAnswerKey.rx.tap
-            .bind(onNext: { [unowned self](_) in
-                self.navigationController?.present(QuizAnswerController(), animated: true, completion: nil)
-            }).disposed(by: disposeBag)
     }
 }

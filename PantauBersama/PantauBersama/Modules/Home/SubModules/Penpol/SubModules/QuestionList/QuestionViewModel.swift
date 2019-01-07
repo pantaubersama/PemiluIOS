@@ -64,7 +64,6 @@ class QuestionViewModel: ViewModelType {
     
     init(navigator: PenpolNavigator) {
         self.navigator = navigator
-        
         input = Input(
             loadQuestionTrigger: loadQuestionSubject.asObserver(),
             nextPageTrigger: nextPageSubject.asObserver(),

@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="QuizAnswerController" customModule="PantauBersama" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="QuizSummaryController" customModule="PantauBersama" customModuleProvider="target">
             <connections>
                 <outlet property="btnClose" destination="pLe-af-hEX" id="m5X-jC-iXW"/>
                 <outlet property="ivQuiz" destination="f0E-bx-bqB" id="TNr-i7-xbW"/>
@@ -39,7 +35,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="47" id="rZc-my-57P"/>
                     </constraints>
-                    <state key="normal" image="outlineClose24Px"/>
+                    <state key="normal" image="outlineCloseBlack24Px"/>
                 </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -61,6 +57,6 @@
         </view>
     </objects>
     <resources>
-        <image name="outlineClose24Px" width="24" height="24"/>
+        <image name="outlineCloseBlack24Px" width="24" height="24"/>
     </resources>
 </document>

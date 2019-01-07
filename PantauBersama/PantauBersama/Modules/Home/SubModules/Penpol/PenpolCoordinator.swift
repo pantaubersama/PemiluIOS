@@ -56,10 +56,10 @@ extension PenpolCoordinator: PenpolNavigator {
     func openQuiz(quiz: QuizModel) -> Observable<Void> {
         switch quiz.participationStatus {
         case .inProgress:
-            let coordinator = QuizOngoingCoordinator(navigationController: self.navigationController)
+            let coordinator = QuizOngoingCoordinator(navigationController: self.navigationController, quiz: quiz)
             return coordinate(to: coordinator)
         case .finished:
-            let coordinator = QuizResultCoordinator(navigationController: self.navigationController)
+            let coordinator = QuizResultCoordinator(navigationController: self.navigationController, quiz: quiz)
             return coordinate(to: coordinator)
         case .notParticipating:
             let coordinator = QuizDetailCoordinator(navigationController: self.navigationController, quizModel: quiz)
