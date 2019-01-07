@@ -19,8 +19,6 @@ class PenpolFilterController: UIViewController {
     private let disposeBag = DisposeBag()
     private var selectedFilter: [PenpolFilterModel.FilterItem] = []
     
-    private var applyDisposal: Disposable?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
@@ -34,14 +32,41 @@ class PenpolFilterController: UIViewController {
             .bind(to: viewModel.input.filterTrigger)
             .disposed(by: disposeBag)
         
-        applyDisposal = btnApply.rx.tap
+        btnApply.rx.tap
             .bind(to: viewModel.input.applyTrigger)
-        
-        applyDisposal?.disposed(by: disposeBag)
+            .disposed(by: disposeBag)
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.title = "Filter"
+        
+        let back = UIBarButtonItem(image: #imageLiteral(resourceName: "back"), style: .plain, target: self, action: nil)
+        back.rx.tap
+            .bind { [unowned self](_) in
+                self.navigationController?.popViewController(animated: true)
+            }
+            .disposed(by: disposeBag)
+        
+        let reset = UIBarButtonItem(title: "RESET", style: .plain, target: self, action: nil)
+        reset.tintColor = #colorLiteral(red: 0.7418265939, green: 0.03327297792, blue: 0.1091294661, alpha: 1)
+        
+        reset.rx.tap
+            .bind { [unowned self](_) in
+                self.selectedFilter.removeAll()
+                if let selectedRow = self.tableView.indexPathsForSelectedRows {
+                    selectedRow.forEach({ (indexPath) in
+                        self.tableView.deselectRow(at: indexPath, animated: true)
+                    })
+                }
+            }
+            .disposed(by: disposeBag)
+        
+        
+        self.navigationItem.leftBarButtonItem = back
+        self.navigationItem.rightBarButtonItem = reset
+        self.navigationController?.navigationBar.configure(with: .white)
     }
 }
 
