@@ -35,6 +35,8 @@ extension BadgeCell: IReusableCell {
     struct Input {
         let badges: Badges
         let isAchieved: Bool
+        let viewModel: BadgeViewModel
+        let idAchieved: String?
     }
     
     func configureCell(item: Input) {
@@ -50,6 +52,14 @@ extension BadgeCell: IReusableCell {
         nameBadges.textColor = item.isAchieved ? Color.primary_black : Color.grey_three
         descriptionBadges.textColor = item.isAchieved ? Color.primary_black : Color.grey_three
         shareButton.isHidden = !item.isAchieved
+        
+        print("ID ACHIEVED: \(item.idAchieved)")
+        
+        shareButton.rx.tap
+            .map { item.idAchieved ?? "" }
+            .bind(to: item.viewModel.input.shareI)
+            .disposed(by: bag)
+        
         disposeBag = bag
     }
 }

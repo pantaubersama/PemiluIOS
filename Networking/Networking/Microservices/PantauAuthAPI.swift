@@ -35,6 +35,7 @@ public enum PantauAuthAPI {
     case meAvatar(avatar: UIImage?)
     case putMe(parameters: [String: Any])
     case putInformants(parameters: [String: Any])
+    case achievedBadges(id: String)
     
 }
 
@@ -42,7 +43,6 @@ extension PantauAuthAPI: TargetType {
     
     public var headers: [String: String]? {
         let token = KeychainService.load(type: NetworkKeychainKind.token) ?? ""
-        print("TOKEN:\(token)")
         return [
             "Content-Type"  : "application/json",
             "Accept"        : "application/json",
@@ -82,6 +82,8 @@ extension PantauAuthAPI: TargetType {
             return "/v1/me/avatar"
         case .putInformants:
             return "/v1/informants"
+        case .achievedBadges(let id):
+            return "/v1/achieved_badges/\(id)"
         }
     }
     

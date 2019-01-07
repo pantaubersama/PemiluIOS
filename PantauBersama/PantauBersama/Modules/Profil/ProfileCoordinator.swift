@@ -11,8 +11,8 @@ import RxCocoa
 import UIKit
 import Networking
 
-protocol ProfileNavigator: LinimasaNavigator, PenpolNavigator {
-    var finish: Observable<Void>! { get set }
+protocol ProfileNavigator: LinimasaNavigator, PenpolNavigator, BadgeNavigator {
+    func back()
     func launchSetting(user: User) -> Observable<Void>
     func launchVerifikasi(user: VerificationsResponse.U) -> Observable<Void>
     func launchReqCluster() -> Observable<Void>
@@ -23,7 +23,6 @@ protocol ProfileNavigator: LinimasaNavigator, PenpolNavigator {
 final class ProfileCoordinator: BaseCoordinator<Void> {
     
     private var navigationController: UINavigationController!
-    var finish: Observable<Void>!
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
@@ -35,13 +34,15 @@ final class ProfileCoordinator: BaseCoordinator<Void> {
         viewController.viewModel = viewModel
         viewController.hidesBottomBarWhenPushed = true
         navigationController.pushViewController(viewController, animated: true)
-        return finish.do(onNext: { [weak self] (_) in
-            self?.navigationController.popViewController(animated: true)
-        })
+        return Observable.empty()
     }
 }
 
 extension ProfileCoordinator: ProfileNavigator {
+    
+    func back() {
+        navigationController.popViewController(animated: true)
+    }
     
     func launchSetting(user: User) -> Observable<Void> {
         let settingCoordinator = SettingCoordinator(navigationController: navigationController, data: user)
@@ -144,5 +145,13 @@ extension ProfileCoordinator: PenpolNavigator {
     
     func shareQuestion(question: String) -> Observable<Void> {
         return Observable.never()
+    }
+}
+
+
+extension  ProfileCoordinator: BadgeNavigator {
+    func launchShare(id: String) -> Observable<Void> {
+        let shareCoordinator = ShareBadgeCoordinator(navigationController: navigationController, id: id)
+        return coordinate(to: shareCoordinator)
     }
 }

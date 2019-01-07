@@ -12,7 +12,6 @@ import RxSwift
 
 class BadgeController: UIViewController {
     
-    @IBOutlet weak var buttonClose: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
     private let refreshControl = UIRefreshControl()
@@ -23,14 +22,13 @@ class BadgeController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        title = "Badges"
         // MARK: TableView
         tableView.delegate = nil
         tableView.dataSource = nil
         tableView.registerReusableCell(BadgeCell.self)
-        tableView.estimatedRowHeight = 80
-        tableView.rowHeight = UITableView.automaticDimension
-          tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        tableView.estimatedRowHeight = 48.0
+        tableView.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
         
         if #available(iOS 10.0, *) {
             tableView.refreshControl = refreshControl
@@ -38,8 +36,10 @@ class BadgeController: UIViewController {
             tableView.addSubview(refreshControl)
         }
         
+        let back = UIBarButtonItem(image: #imageLiteral(resourceName: "back"), style: .plain, target: nil, action: nil)
+        navigationItem.leftBarButtonItem = back
         // MARK: Bind viewModel
-        buttonClose.rx.tap
+        back.rx.tap
             .bind(to: viewModel.input.backI)
             .disposed(by: disposeBag)
         
@@ -76,17 +76,25 @@ class BadgeController: UIViewController {
         
         tableView.rx.setDelegate(self)
             .disposed(by: disposeBag)
+        
+        viewModel.output.shareO
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.backO
+            .drive()
+            .disposed(by: disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.navigationBar.configure(with: .transparent)
+        navigationController?.navigationBar.configure(with: .white)
     }
     
 }
 
 extension BadgeController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80.0
+        return 48.0
     }
 }

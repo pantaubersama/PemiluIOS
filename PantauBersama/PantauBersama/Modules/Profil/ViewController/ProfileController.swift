@@ -44,6 +44,7 @@ class ProfileController: UIViewController {
         super.viewDidLoad()
         self.clusterView.isHidden = true
         self.biodataView.isHidden = true
+        title = "Profil"
         // MARK
         // add child view
         add(childViewController: janjiController, context: container)
@@ -157,6 +158,8 @@ class ProfileController: UIViewController {
         tableViewBadge.delegate = nil
         tableViewBadge.registerReusableCell(BadgeCell.self)
         tableViewBadge.tableFooterView = UIView()
+        tableViewBadge.rowHeight = 48.0
+        tableViewBadge.contentInset = UIEdgeInsets(top: 5, left: 0, bottom: 5, right: 0)
         
         dataSourceBadge = RxTableViewSectionedReloadDataSource<SectionOfProfileData>(configureCell: {
             (dataSource, tableView, indexPath, item) in
@@ -251,6 +254,14 @@ class ProfileController: UIViewController {
             .drive()
             .disposed(by: disposeBag)
         
+        viewModel.output.backO
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.shareBadgeO
+            .drive()
+            .disposed(by: disposeBag)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -262,13 +273,21 @@ class ProfileController: UIViewController {
 extension ProfileController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let button = Button()
-        button.setTitle("Lihat Lainnya", for: .normal)
-        button.setTitleColor(Color.grey_one, for: .normal)
-        return button
+        if dataSourceBadge.sectionModels[section].items.count == 3 {
+            let button = Button()
+            button.setTitle("Lihat Lainnya", for: .normal)
+            button.setTitleColor(Color.grey_one, for: .normal)
+            return button
+        } else {
+            return UIView()
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 20.0
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 48.0
     }
 }
