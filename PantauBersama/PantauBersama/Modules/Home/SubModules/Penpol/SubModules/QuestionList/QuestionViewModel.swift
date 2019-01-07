@@ -26,6 +26,7 @@ class QuestionViewModel: ViewModelType {
         let moreTrigger: AnyObserver<QuestionModel>
         let moreMenuTrigger: AnyObserver<QuestionType>
         let voteTrigger: AnyObserver<QuestionModel>
+        let filterTrigger: AnyObserver<[PenpolFilterModel.FilterItem]>
     }
     
     struct Output {
@@ -39,6 +40,7 @@ class QuestionViewModel: ViewModelType {
         let loadingIndicator: Driver<Bool>
         let deletedQuestoinIndex: Driver<Int>
         let bannerInfo: Driver<BannerInfo>
+        let filter: Driver<Void>
     }
     
     private let loadQuestionSubject = PublishSubject<Void>()
@@ -51,6 +53,7 @@ class QuestionViewModel: ViewModelType {
     private let questionRelay = BehaviorRelay<[QuestionModel]>(value: [])
     private let deletedQuestionSubject = PublishSubject<Int>()
     private let voteSubject = PublishSubject<QuestionModel>()
+    private let filterSubject = PublishSubject<[PenpolFilterModel.FilterItem]>()
     
     private let activityIndicator = ActivityIndicator()
     private let errorTracker = ErrorTracker()
@@ -59,6 +62,7 @@ class QuestionViewModel: ViewModelType {
     
     private(set) var disposeBag = DisposeBag()
     private var currentPage = 0
+    private var filterItems: [PenpolFilterModel.FilterItem] = []
     
     let headerViewModel = BannerHeaderViewModel()
     
@@ -72,7 +76,8 @@ class QuestionViewModel: ViewModelType {
             shareTrigger: shareSubject.asObserver(),
             moreTrigger: moreSubject.asObserver(),
             moreMenuTrigger: moreMenuSubject.asObserver(),
-            voteTrigger: voteSubject.asObserver())
+            voteTrigger: voteSubject.asObserver(),
+            filterTrigger: filterSubject.asObserver())
         
         let create = createSubject
             .flatMapLatest({navigator.launchCreateAsk()})
@@ -129,6 +134,14 @@ class QuestionViewModel: ViewModelType {
                     return Observable.just("copied")
                 }
             })
+            .asDriverOnErrorJustComplete()
+        
+        let filter = filterSubject
+            .do(onNext: { [weak self](filterItems) in
+                guard let weakSelf = self else { return }
+                weakSelf.filterItems = filterItems
+            })
+            .mapToVoid()
             .asDriverOnErrorJustComplete()
         
         loadQuestionSubject
@@ -197,7 +210,8 @@ class QuestionViewModel: ViewModelType {
             userData: user,
             loadingIndicator: activityIndicator.asDriver(),
             deletedQuestoinIndex: deletedQuestionSubject.asDriverOnErrorJustComplete(),
-            bannerInfo: bannerInfo)
+            bannerInfo: bannerInfo,
+            filter: filter)
     }
     
     private func questionitem(resetPage: Bool = false) -> Observable<[QuestionModel]> {
@@ -205,8 +219,26 @@ class QuestionViewModel: ViewModelType {
             currentPage = 0
         }
         currentPage += 1
+        
+        var filteredBy: TanyaKandidatAPI.TanyaListFilter = .userVerifiedAll
+        var orderedBy: TanyaKandidatAPI.QuestionOrder = .created
+        
+        if !self.filterItems.isEmpty {
+            let filterByString = filterItems.filter({ (filterItem) -> Bool in
+                return filterItem.paramKey == "filter_by"
+            }).first?.paramValue
+            
+            let orderByString = filterItems.filter { (filterItem) -> Bool in
+                return filterItem.paramKey == "order_by"
+            }.first?.paramValue
+            
+            filteredBy = TanyaKandidatAPI.TanyaListFilter(rawValue: filterByString ?? "user_verified_all") ?? .userVerifiedAll
+            orderedBy = TanyaKandidatAPI.QuestionOrder(rawValue: orderByString ?? "created") ?? .created
+            
+        }
+        
         return NetworkService.instance
-            .requestObject(TanyaKandidatAPI.getQuestions(page: currentPage, perpage: 10, filteredBy: .userVerifiedAll, orderedBy: .created), c: QuestionsResponse.self)
+            .requestObject(TanyaKandidatAPI.getQuestions(page: currentPage, perpage: 10, filteredBy: filteredBy, orderedBy: orderedBy), c: QuestionsResponse.self)
             .map { [weak self](response) -> [QuestionModel] in
                 guard let weakSelf = self else { return [] }
                 return weakSelf.generateQuestions(from: response)

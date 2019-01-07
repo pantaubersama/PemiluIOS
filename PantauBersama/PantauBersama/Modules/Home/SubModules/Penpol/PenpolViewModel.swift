@@ -17,7 +17,7 @@ class PenpolViewModel: ViewModelType {
     
     struct Input {
         let addTrigger: AnyObserver<Void>
-        let filterTrigger: AnyObserver<Void>
+        let filterTrigger: AnyObserver<(type: FilterType, filterTrigger: AnyObserver<[PenpolFilterModel.FilterItem]>)>
         let refreshTrigger: AnyObserver<Void>
     }
     
@@ -28,7 +28,7 @@ class PenpolViewModel: ViewModelType {
     
     let navigator: PenpolNavigator
     private let addSubject = PublishSubject<Void>()
-    private let filterSubject = PublishSubject<Void>()
+    private let filterSubject = PublishSubject<(type: FilterType, filterTrigger: AnyObserver<[PenpolFilterModel.FilterItem]>)>()
     private let refreshSubject = PublishSubject<Void>()
     
     init(navigator: PenpolNavigator) {
@@ -41,7 +41,7 @@ class PenpolViewModel: ViewModelType {
             .asDriver(onErrorJustReturn: ())
         
         let filter = filterSubject
-            .flatMap({navigator.launchFilter()})
+            .flatMap({ navigator.launchFilter(filterType: $0.type, filterTrigger: $0.filterTrigger) })
             .asDriver(onErrorJustReturn: ())
         
         output = Output(filterSelected: filter, addSelected: add)

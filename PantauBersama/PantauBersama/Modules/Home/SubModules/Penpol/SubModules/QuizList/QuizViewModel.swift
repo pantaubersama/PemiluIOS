@@ -24,6 +24,7 @@ class QuizViewModel: ViewModelType {
         let shareTrigger: AnyObserver<Any>
         let infoTrigger: AnyObserver<Void>
         let shareTrendTrigger: AnyObserver<Any>
+        let filterTrigger: AnyObserver<[PenpolFilterModel.FilterItem]>
     }
     
     struct Output {
@@ -35,6 +36,7 @@ class QuizViewModel: ViewModelType {
         let quizzes: BehaviorRelay<[QuizModel]>
         let bannerInfo: Driver<BannerInfo>
         let totalResult: Driver<TrendResponse>
+        let filter: Driver<Void>
     }
     
     // TODO: replace any with Quiz model
@@ -44,6 +46,7 @@ class QuizViewModel: ViewModelType {
     private let shareSubject = PublishSubject<Any>()
     private let infoSubject = PublishSubject<Void>()
     private let shareTrendSubject = PublishSubject<Any>()
+    private let filterSubject = PublishSubject<[PenpolFilterModel.FilterItem]>()
     private let quizRelay = BehaviorRelay<[QuizModel]>(value: [])
     
     private let activityIndicator = ActivityIndicator()
@@ -65,7 +68,8 @@ class QuizViewModel: ViewModelType {
             openQuizTrigger: openQuizSubject.asObserver(),
             shareTrigger: shareSubject.asObserver(),
             infoTrigger: infoSubject.asObserver(),
-            shareTrendTrigger: shareTrendSubject.asObserver())
+            shareTrendTrigger: shareTrendSubject.asObserver(),
+            filterTrigger: filterSubject.asObserver())
         
         let openQuiz = openQuizSubject
             .flatMapLatest({navigator.openQuiz(quiz: $0)})
@@ -82,11 +86,19 @@ class QuizViewModel: ViewModelType {
         let shareTrend = shareTrendSubject
             .flatMapLatest({navigator.shareTrend(trend: $0)})
             .asDriver(onErrorJustReturn: ())
+        
         let bannerInfo = loadQuizSubject
             .flatMapLatest({ self.bannerInfo() })
             .asDriverOnErrorJustComplete()
         let totalResult = loadQuizSubject
             .flatMapLatest({ self.totalResult() })
+            .asDriverOnErrorJustComplete()
+        
+        let filter = filterSubject
+            .do(onNext: { (_) in
+                print("filter here")
+            })
+            .mapToVoid()
             .asDriverOnErrorJustComplete()
         
         loadQuizSubject
@@ -125,7 +137,8 @@ class QuizViewModel: ViewModelType {
             laodingIndicator: activityIndicator.asDriver(),
             quizzes: quizRelay,
             bannerInfo: bannerInfo,
-            totalResult: totalResult)
+            totalResult: totalResult,
+            filter: filter)
     }
     
     private func quizItems(resetPage: Bool = false) -> Observable<[QuizModel]> {

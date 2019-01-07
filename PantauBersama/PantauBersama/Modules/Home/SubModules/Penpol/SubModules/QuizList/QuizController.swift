@@ -73,5 +73,9 @@ class QuizController: UITableViewController {
             .drive()
             .disposed(by: disposeBag)
         
+        viewModel.output.filter
+            .drive()
+            .disposed(by: disposeBag)
+        
     }
 }
