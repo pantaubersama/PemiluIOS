@@ -12,13 +12,14 @@ import Common
 import Networking
 
 protocol PenpolNavigator: QuizNavigator, QuestionNavigator {
-    func launchFilter() -> Observable<Void>
+    func launchFilter(filterType: FilterType, filterTrigger: AnyObserver<[PenpolFilterModel.FilterItem]>) -> Observable<Void>
     func launchBannerInfo(bannerInfo: BannerInfo) -> Observable<Void>
 }
 
 class PenpolCoordinator: BaseCoordinator<Void> {
     
     private let navigationController: UINavigationController!
+    private var filterCoordinator: PenpolFilterCoordinator!
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
@@ -35,8 +36,14 @@ class PenpolCoordinator: BaseCoordinator<Void> {
 
 extension PenpolCoordinator: PenpolNavigator {
 
-    func launchFilter() -> Observable<Void> {
-        let filterCoordinator = FilterCoordinator(navigationController: self.navigationController)
+    func launchFilter(filterType: FilterType, filterTrigger: AnyObserver<[PenpolFilterModel.FilterItem]>) -> Observable<Void> {
+//        let filterCoordinator = FilterCoordinator(navigationController: self.navigationController)
+//        return coordinate(to: filterCoordinator)
+        
+        if filterCoordinator == nil {
+            filterCoordinator = PenpolFilterCoordinator(navigationController: self.navigationController, filterType: filterType, filterTrigger: filterTrigger)
+        }
+        
         return coordinate(to: filterCoordinator)
     }
     

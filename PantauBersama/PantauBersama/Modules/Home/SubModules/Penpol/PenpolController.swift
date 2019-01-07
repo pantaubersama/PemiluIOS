@@ -38,6 +38,9 @@ class PenpolController: UIViewController {
             .disposed(by: disposeBag)
         
         filterButton.rx.tap
+            .map { [unowned self](_) -> (type: FilterType, filterTrigger: AnyObserver<[PenpolFilterModel.FilterItem]>) in
+                return self.askController.view.alpha == 1.0 ? (type: .question, filterTrigger: self.askViewModel.input.filterTrigger) : (type: .quiz, filterTrigger: self.quizViewModel.input.filterTrigger)
+            }
             .bind(to: viewModel.input.filterTrigger)
             .disposed(by: disposeBag)
         

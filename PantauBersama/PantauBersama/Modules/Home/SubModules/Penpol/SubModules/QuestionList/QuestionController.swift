@@ -139,6 +139,10 @@ class QuestionController: UITableViewController {
                 UIAlertController.showAlert(withTitle: "", andMessage: message)
             })
             .disposed(by: disposeBag)
+        
+        viewModel.output.filter
+            .drive()
+            .disposed(by: disposeBag)
     }
     
     private func configureConstraint() {

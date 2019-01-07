@@ -27,6 +27,7 @@ def application_pods
     pod 'Crashlytics'
     pod 'IQKeyboardManagerSwift', '~> 6.2.0'
     pod 'AlamofireImage'
+    pod 'LTHRadioButton'
 end
 
 
