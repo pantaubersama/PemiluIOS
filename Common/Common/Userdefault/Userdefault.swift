@@ -87,3 +87,18 @@ public extension UserDefaults {
         }
     }
 }
+
+public extension UserDefaults {
+    public static func setSelectedFilter(value: String, isSelected: Bool) {
+        let userDefault = UserDefaults.standard
+        if isSelected {
+            userDefault.set(true, forKey: value)
+        } else {
+            userDefault.removeObject(forKey: value)
+        }
+    }
+    
+    public static func isSelectedFilter(value: String) -> Bool {
+        return UserDefaults.standard.bool(forKey: value)
+    }
+}

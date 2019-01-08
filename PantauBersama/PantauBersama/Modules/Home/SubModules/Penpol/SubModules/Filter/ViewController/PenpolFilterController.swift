@@ -35,7 +35,7 @@ class PenpolFilterController: UIViewController {
             .do(onNext: { [unowned self](filterItems) in
                 self.reset()
                 filterItems.forEach({ (filterItem) in
-                    UserDefaults.standard.set(true, forKey: filterItem.paramValue)
+                    UserDefaults.setSelectedFilter(value: filterItem.paramValue, isSelected: true)
                 })
             })
             .bind(to: viewModel.input.filterTrigger)
@@ -87,7 +87,7 @@ class PenpolFilterController: UIViewController {
     
     private func reset() {
         self.selectedFilter.forEach({ (filterItem) in
-            UserDefaults.standard.removeObject(forKey: filterItem.paramValue)
+            UserDefaults.setSelectedFilter(value: filterItem.paramValue, isSelected: false)
         })
         self.selectedFilter.removeAll()
         self.nameCluster = "Pilih Cluster"
@@ -178,7 +178,7 @@ extension PenpolFilterController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        var selectedItem = viewModel.output.filterItems[indexPath.section].items[indexPath.row]
+        let selectedItem = viewModel.output.filterItems[indexPath.section].items[indexPath.row]
       
         if selectedItem.type == FilterViewType.text {
             if let navigationController = self.navigationController {
@@ -199,7 +199,7 @@ extension PenpolFilterController: UITableViewDelegate {
                         return filterItem.paramKey == selectedItem.paramKey
                     }) {
                         let removeItem = self.selectedFilter[removeIndex]
-                        UserDefaults.standard.removeObject(forKey: removeItem.paramValue)
+                        UserDefaults.setSelectedFilter(value: removeItem.paramValue, isSelected: false)
                         self.selectedFilter.remove(at: removeIndex)
                     }
                 }
