@@ -65,6 +65,19 @@ class JanjiPolitikViewController: UITableViewController {
             }
             .disposed(by: disposeBag)
         
+        tableView.rx.contentOffset
+            .distinctUntilChanged()
+            .flatMapLatest { (offset) -> Observable<Void> in
+                if offset.y > self.tableView.contentSize.height -
+                    (self.tableView.frame.height * 2) {
+                    return Observable.just(())
+                } else {
+                    return Observable.empty()
+                }
+            }
+            .bind(to: viewModel.input.nextTrigger)
+            .disposed(by: disposeBag)
+        
         
         viewModel.output.shareSelected
             .drive()

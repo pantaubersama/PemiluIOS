@@ -24,6 +24,7 @@ class JanjiPolitikViewModel: ViewModelType {
         let nextTrigger: AnyObserver<Void>
         let viewWillAppearTrigger: AnyObserver<Void>
         var itemSelectedTrigger: AnyObserver<IndexPath>
+        let filterTrigger: AnyObserver<[PenpolFilterModel.FilterItem]>
     }
     
     struct Output {
@@ -34,6 +35,7 @@ class JanjiPolitikViewModel: ViewModelType {
         let bannerInfo: Driver<BannerInfo>
         let infoSelected: Driver<Void>
         let itemSelected: Driver<Void>
+        let filter: Driver<Void>
     }
     
     private let refreshSubject = PublishSubject<Void>()
@@ -43,12 +45,14 @@ class JanjiPolitikViewModel: ViewModelType {
     private let nextSubject = PublishSubject<Void>()
     private let viewWillAppearSubject = PublishSubject<Void>()
     private let itemSelectedSubject = PublishSubject<IndexPath>()
+    private let filterSubject = PublishSubject<[PenpolFilterModel.FilterItem]>()
     
     private let navigator: JanjiPolitikNavigator
     
     let errorTracker = ErrorTracker()
     let activityIndicator = ActivityIndicator()
     let headerViewModel = BannerHeaderViewModel()
+    private var filterItems: [PenpolFilterModel.FilterItem] = []
     
     init(navigator: LinimasaNavigator) {
         self.navigator = navigator
@@ -59,7 +63,8 @@ class JanjiPolitikViewModel: ViewModelType {
                       shareJanji: shareSubject.asObserver(),
                       nextTrigger: nextSubject.asObserver(),
                       viewWillAppearTrigger: viewWillAppearSubject.asObserver(),
-                      itemSelectedTrigger: itemSelectedSubject.asObserver())
+                      itemSelectedTrigger: itemSelectedSubject.asObserver(),
+                      filterTrigger: filterSubject.asObserver())
         
         let bannerInfo = viewWillAppearSubject
             .flatMapLatest({ self.bannerInfo() })
@@ -121,13 +126,23 @@ class JanjiPolitikViewModel: ViewModelType {
             .flatMapLatest({ navigator.launchJanjiDetail(data: $0) })
             .asDriverOnErrorJustComplete()
         
+        let filter = filterSubject
+            .do(onNext: { [weak self] (filterItems) in
+                guard let `self` = self else { return  }
+                print("Filter \(filterItems)")
+                self.filterItems = filterItems
+            })
+            .mapToVoid()
+            .asDriverOnErrorJustComplete()
+        
         output = Output(janpolCells: janpolCells,
                         moreSelected: moreSelected,
                         moreMenuSelected: moreMenuSelected,
                         shareSelected: shareJanji,
                         bannerInfo: bannerInfo,
                         infoSelected: infoSelected,
-                        itemSelected: itemSelected)
+                        itemSelected: itemSelected,
+                        filter: filter)
     }
     
     private func paginateItems(

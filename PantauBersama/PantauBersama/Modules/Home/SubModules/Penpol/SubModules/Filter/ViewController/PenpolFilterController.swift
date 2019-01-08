@@ -85,8 +85,30 @@ extension PenpolFilterController: UITableViewDataSource {
             cell.configureCell(item: item)
             return cell
         case .text:
-            // TODO: text item
-            return UITableViewCell()
+            // TODO: when user start to text item
+            // will launch cluster search controller
+            let cell = UITableViewCell()
+//            let textInput = Button()
+//            textInput.translatesAutoresizingMaskIntoConstraints = false
+//            textInput.layer.cornerRadius = 4
+//            textInput.layer.borderColor = Color.grey_one.cgColor
+//            cell.addSubview(textInput)
+//            NSLayoutConstraint.activate([
+//                textInput.topAnchor.constraint(equalTo: cell.topAnchor),
+//                textInput.leadingAnchor.constraint(equalTo: cell.leadingAnchor, constant: 16),
+//                textInput.trailingAnchor.constraint(equalTo: cell.trailingAnchor, constant: -16),
+//                textInput.heightAnchor.constraint(equalToConstant: 48.0)
+//            ])
+//            textInput.rx.tap
+//                .bind { [unowned self] in
+//                    if let navigationController = self.navigationController {
+//                        let viewModel = ClusterSearchViewModel()
+//                        let vc = ClusterSearchController(viewModel: viewModel)
+//                        navigationController.pushViewController(vc, animated: true)
+//                    }
+//                }
+//                .disposed(by: disposeBag)
+            return cell
         }
     }
     

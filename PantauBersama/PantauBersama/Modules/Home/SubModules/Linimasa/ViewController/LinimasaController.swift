@@ -46,7 +46,8 @@ class LinimasaController: UIViewController {
         // bind to viewModel
         filter.rx.tap
             .map { [unowned self] (_) -> (type: FilterType, filterTrigger: AnyObserver<[PenpolFilterModel.FilterItem]>) in
-                return self.pilpresController.view.alpha == 1.0 ? (type: .pilpres, filterTrigger: self.pilpresViewModel.input.filterTrigger) : (type: .pilpres, filterTrigger: self.pilpresViewModel.input.filterTrigger)
+                return self.pilpresController.view.alpha == 1.0 ? (type: .pilpres, filterTrigger: self.pilpresViewModel.input.filterTrigger) :
+                    (type: .janji, filterTrigger: self.janjiViewModel.input.filterTrigger)
             }
             .bind(to: viewModel.input.filterTrigger)
             .disposed(by: disposeBag)

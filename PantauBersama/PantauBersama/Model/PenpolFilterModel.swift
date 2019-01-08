@@ -55,4 +55,20 @@ extension PenpolFilterModel {
         filterItems.append(sumberFilter)
         return filterItems
     }
+    
+    static func generateJanjiFilter() -> [PenpolFilterModel] {
+        var filterItems: [PenpolFilterModel] = []
+        
+        let cluster = FilterItem(paramKey: "cluster_id", paramValue: "", title: "Cluster", type: .text)
+        let clusterFilter = PenpolFilterModel(paramKey: "cluster_id", title: "Cluster", items: [cluster])
+        let all = FilterItem(paramKey: "filter_by", paramValue: "user_verified_all", title: "Semua", type: .radio)
+        let notVerified = FilterItem(paramKey: "filter_by", paramValue: "user_verified_false", title: "Belum Verifikasi", type: .radio)
+        let verified = FilterItem(paramKey: "filter_by", paramValue: "user_verified_true", title: "Terverifikasi", type: .radio)
+        let userFilter = PenpolFilterModel(paramKey: "filter_by", title: "User", items: [all, notVerified, verified])
+        
+        filterItems.append(clusterFilter)
+        filterItems.append(userFilter)
+        
+        return filterItems
+    }
 }
