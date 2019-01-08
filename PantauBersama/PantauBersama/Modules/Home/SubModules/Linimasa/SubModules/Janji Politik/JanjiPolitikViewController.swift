@@ -146,16 +146,24 @@ class JanjiPolitikViewController: UITableViewController {
             .drive()
             .disposed(by: disposeBag)
         
+        viewModel.output.filter
+            .drive(onNext: { [weak self] (_) in
+                // set to top of table view after set filter
+                self?.refreshControl?.sendActions(for: .valueChanged)
+
+                let indexPath = IndexPath(row: 0, section: 0)
+                self?.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+                
+            })
+            .disposed(by: disposeBag)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         viewModel.input.viewWillAppearTrigger.onNext(())
-        
-        viewModel.output.filter
-            .drive()
-            .disposed(by: disposeBag)
+
     }
 }
 

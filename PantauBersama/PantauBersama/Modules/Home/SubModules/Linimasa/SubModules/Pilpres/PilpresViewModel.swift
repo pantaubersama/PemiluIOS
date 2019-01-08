@@ -73,7 +73,7 @@ class PilpresViewModel: ViewModelType {
         
         // MARK:
         // Get feeds pagination
-        let feedsItems = Observable.combineLatest(viewWillAppearSubject, refreshSubject.startWith(()))
+        let feedsItems = refreshSubject.startWith(())
             .flatMapLatest { [unowned self] (_) -> Observable<[Feeds]> in
                 return self.paginateItems(nextBatchTrigger: self.nextSubject.asObservable(), filter: self.filterItems.first?.paramValue ?? "team_all")
                     .trackError(self.errorTracker)
