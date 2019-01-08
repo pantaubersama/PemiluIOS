@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import RxSwift
 
 enum FilterViewType {
     case radio
@@ -20,7 +21,7 @@ struct PenpolFilterModel {
     
     struct FilterItem {
         let paramKey: String
-        let paramValue: String
+        var paramValue: String
         let title: String
         let type: FilterViewType
     }

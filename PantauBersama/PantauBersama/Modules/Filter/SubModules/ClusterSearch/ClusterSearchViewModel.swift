@@ -24,14 +24,14 @@ final class ClusterSearchViewModel: ViewModelType {
     
     struct Input {
         let backI: AnyObserver<Void>
-//        let itemSelected: AnyObserver<IndexPath>
+        let itemSelected: AnyObserver<IndexPath>
         let query: AnyObserver<String>
         let nextI: AnyObserver<Void>
     }
     
     struct Output {
-//        let result: Driver<ClusterResult>
         let items: Driver<[ICellConfigurator]>
+        let selected: Driver<Void>
     }
     
     private let backS = PublishSubject<Void>()
@@ -40,11 +40,13 @@ final class ClusterSearchViewModel: ViewModelType {
     private let nextS = PublishSubject<Void>()
     let errorTracker = ErrorTracker()
     let activityIndicator = ActivityIndicator()
+    var delegate: IClusterSearchDelegate!
     
     init() {
         
+        
         input = Input(backI: backS.asObserver(),
-//                      itemSelected: itemSelectedS.asObserver(),
+                      itemSelected: itemSelectedS.asObserver(),
                       query: queryS.asObserver(),
                       nextI: nextS.asObserver())
         
@@ -65,21 +67,18 @@ final class ClusterSearchViewModel: ViewModelType {
                 })
         }
         
-//        let itemSelected = itemSelectedS
-//            .withLatestFrom(cluster) { (indexPath, cluster) in
-//                return cluster[indexPath.row]
-//            }
-//            .asDriverOnErrorJustComplete()
+        let itemSelected = itemSelectedS
+            .withLatestFrom(cluster) { (indexPath, items) -> Observable<Void> in
+                let items = items[indexPath.row]
+                return self.delegate.didSelectCluster(item: items, index: indexPath)
+            }
+//            .flatMapLatest({ self.delegate.didSelectCluster(item: $0)})
+            .mapToVoid()
+            .asDriverOnErrorJustComplete()
         
         
-//        let back = backS
-//            .map({ ClusterResult.cancel })
-//            .asDriverOnErrorJustComplete()
-        
-//        let result = Driver.merge(back,back)
-        
-        
-        output = Output(items: clusterCell.asDriver(onErrorJustReturn: []))
+        output = Output(items: clusterCell.asDriver(onErrorJustReturn: []),
+                        selected: itemSelected)
         
     }
     

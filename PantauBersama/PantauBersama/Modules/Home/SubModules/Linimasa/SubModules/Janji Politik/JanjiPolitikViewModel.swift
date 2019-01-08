@@ -72,9 +72,13 @@ class JanjiPolitikViewModel: ViewModelType {
         
         // MARK:
         // Get janji politik pagination
-        let janpolItems = refreshSubject.startWith(())
+        let janpolItems = Observable.combineLatest(viewWillAppearSubject, refreshSubject.startWith(()))
             .flatMapLatest { [unowned self] (_) -> Observable<[JanjiPolitik]> in
-                return self.paginateItems(nextBatchTrigger: self.nextSubject.asObservable())
+               
+                let cid = self.filterItems.filter({ $0.paramKey == "cluster_id"}).first?.paramValue
+                let filter = self.filterItems.filter({ $0.paramKey == "filter_by"}).first?.paramValue
+                
+                return self.paginateItems(nextBatchTrigger: self.nextSubject.asObservable(), cid: cid ?? "", filter: filter ?? "")
                     .trackError(self.errorTracker)
                     .trackActivity(self.activityIndicator)
                     .catchErrorJustReturn([])
@@ -147,8 +151,8 @@ class JanjiPolitikViewModel: ViewModelType {
     
     private func paginateItems(
         batch: Batch = Batch.initial,
-        nextBatchTrigger: Observable<Void>) -> Observable<[JanjiPolitik]> {
-        return recursivelyPaginateItems(batch: batch, nextBatchTrigger: nextBatchTrigger)
+        nextBatchTrigger: Observable<Void>, cid: String, filter: String) -> Observable<[JanjiPolitik]> {
+        return recursivelyPaginateItems(batch: batch, nextBatchTrigger: nextBatchTrigger, cid: cid, filter: filter)
             .scan([], accumulator: { (accumulator, page) in
                 return accumulator + page.item
             })
@@ -156,17 +160,17 @@ class JanjiPolitikViewModel: ViewModelType {
     
     private func recursivelyPaginateItems(
         batch: Batch,
-        nextBatchTrigger: Observable<Void>) ->
+        nextBatchTrigger: Observable<Void>, cid: String, filter: String) ->
         Observable<Page<[JanjiPolitik]>> {
             return NetworkService.instance
-                .requestObject(LinimasaAPI.getJanjiPolitiks(page: batch.page, perPage: batch.limit),
+                .requestObject(LinimasaAPI.getJanjiPolitiks(cid: cid, filter: filter, page: batch.page, perPage: batch.limit),
                                c: BaseResponse<JanjiPolitikResponse>.self)
                 .map({ self.transformToPage(response: $0, batch: batch) })
                 .asObservable()
                 .paginate(nextPageTrigger: nextBatchTrigger, hasNextPage: { (result) -> Bool in
                     return result.batch.next().hasNextPage
                 }, nextPageFactory: { (result) -> Observable<Page<[JanjiPolitik]>> in
-                    self.recursivelyPaginateItems(batch: result.batch.next(), nextBatchTrigger: nextBatchTrigger)
+                    self.recursivelyPaginateItems(batch: result.batch.next(), nextBatchTrigger: nextBatchTrigger, cid: cid, filter: filter)
                 })
                 .share(replay: 1, scope: .whileConnected)
             

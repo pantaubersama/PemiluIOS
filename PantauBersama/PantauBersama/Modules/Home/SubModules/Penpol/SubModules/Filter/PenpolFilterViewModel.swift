@@ -18,25 +18,30 @@ class PenpolFilterViewModel: ViewModelType {
     struct Input {
         let filterTrigger: AnyObserver<[PenpolFilterModel.FilterItem]>
         let applyTrigger: AnyObserver<Void>
+        let cidTrigger: BehaviorSubject<String>
     }
     
     struct Output {
         let filterItems: [PenpolFilterModel]
         let apply: Driver<Void>
+        let cid: Driver<String>
     }
     
     private let filterItems: [PenpolFilterModel]
     private let filterTrigger: AnyObserver<[PenpolFilterModel.FilterItem]>
     private let applySubject = PublishSubject<Void>()
+    private let cidSubject = BehaviorSubject<String>(value: "")
     
     init(filterItems: [PenpolFilterModel], filterTrigger: AnyObserver<[PenpolFilterModel.FilterItem]>) {
         self.filterItems = filterItems
         self.filterTrigger = filterTrigger
-        input = Input(filterTrigger: filterTrigger, applyTrigger: applySubject.asObserver())
+        input = Input(filterTrigger: filterTrigger,
+                      applyTrigger: applySubject.asObserver(),
+                      cidTrigger: cidSubject.asObserver())
         
         let apply = applySubject
             .asDriverOnErrorJustComplete()
         
-        output = Output(filterItems: self.filterItems, apply: apply)
+        output = Output(filterItems: self.filterItems, apply: apply, cid: cidSubject.asDriver(onErrorJustReturn: ""))
     }
 }

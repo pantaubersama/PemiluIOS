@@ -239,7 +239,7 @@
 		84B7B8BE21E47B400099E7E3 /* ClusterSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B7B8BD21E47B400099E7E3 /* ClusterSearchViewModel.swift */; };
 		84B7B8C121E487FB0099E7E3 /* ClusterSearchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84B7B8C021E487FB0099E7E3 /* ClusterSearchCell.xib */; };
 		84B7B8C321E488D00099E7E3 /* ClusterSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B7B8C221E488D00099E7E3 /* ClusterSearchCell.swift */; };
-		84B7B8C521E48C5C0099E7E3 /* ClusterSearchCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B7B8C421E48C5C0099E7E3 /* ClusterSearchCoordinator.swift */; };
+		84B7B8C721E4A0A00099E7E3 /* IClusterSearchDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B7B8C621E4A0A00099E7E3 /* IClusterSearchDelegate.swift */; };
 		84D01B9821D208DE0000492F /* SectionOfSettingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D01B9721D208DE0000492F /* SectionOfSettingData.swift */; };
 		84D01B9B21D20C480000492F /* SettingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84D01B9A21D20C480000492F /* SettingCell.xib */; };
 		84D01B9D21D20CA20000492F /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D01B9C21D20CA20000492F /* SettingCell.swift */; };
@@ -550,7 +550,7 @@
 		84B7B8BD21E47B400099E7E3 /* ClusterSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterSearchViewModel.swift; sourceTree = "<group>"; };
 		84B7B8C021E487FB0099E7E3 /* ClusterSearchCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ClusterSearchCell.xib; sourceTree = "<group>"; };
 		84B7B8C221E488D00099E7E3 /* ClusterSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterSearchCell.swift; sourceTree = "<group>"; };
-		84B7B8C421E48C5C0099E7E3 /* ClusterSearchCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterSearchCoordinator.swift; sourceTree = "<group>"; };
+		84B7B8C621E4A0A00099E7E3 /* IClusterSearchDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IClusterSearchDelegate.swift; sourceTree = "<group>"; };
 		84D01B9721D208DE0000492F /* SectionOfSettingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionOfSettingData.swift; sourceTree = "<group>"; };
 		84D01B9A21D20C480000492F /* SettingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingCell.xib; sourceTree = "<group>"; };
 		84D01B9C21D20CA20000492F /* SettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
@@ -1678,7 +1678,7 @@
 				84B7B8BD21E47B400099E7E3 /* ClusterSearchViewModel.swift */,
 				84B7B8C021E487FB0099E7E3 /* ClusterSearchCell.xib */,
 				84B7B8C221E488D00099E7E3 /* ClusterSearchCell.swift */,
-				84B7B8C421E48C5C0099E7E3 /* ClusterSearchCoordinator.swift */,
+				84B7B8C621E4A0A00099E7E3 /* IClusterSearchDelegate.swift */,
 			);
 			path = ClusterSearch;
 			sourceTree = "<group>";
@@ -2180,7 +2180,6 @@
 				84B6D6E421E1062500CD4BC8 /* KategoriClusterViewModel.swift in Sources */,
 				84619D4D21DC9ABD00EB58CF /* WebCoordinator.swift in Sources */,
 				11E1079121CD0FE200B7B074 /* QuizDetailController.swift in Sources */,
-				84B7B8C521E48C5C0099E7E3 /* ClusterSearchCoordinator.swift in Sources */,
 				84FE6EC621D6361C009A0F55 /* BiodataView.swift in Sources */,
 				844C3D7021C51D3500199871 /* PantauBarKind.swift in Sources */,
 				11B1460221D749C300BB26C8 /* HeaderAskView.swift in Sources */,
@@ -2305,6 +2304,7 @@
 				13F456CB21DB88E700CE45F1 /* BannerInfoViewModel.swift in Sources */,
 				84A07FBA21D0F13200269C6B /* IdentitasViewModel.swift in Sources */,
 				11E107B521CD44FD00B7B074 /* QuizOngoingCoordinator.swift in Sources */,
+				84B7B8C721E4A0A00099E7E3 /* IClusterSearchDelegate.swift in Sources */,
 				840850D221D2632500696CB3 /* ProfileEditCoordinator.swift in Sources */,
 				8409374D21D361240024A444 /* PilpresNavigator.swift in Sources */,
 				840850DF21D2843D00696CB3 /* BadgeViewModel.swift in Sources */,

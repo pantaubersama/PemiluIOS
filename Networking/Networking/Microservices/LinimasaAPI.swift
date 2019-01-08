@@ -12,7 +12,7 @@ import Common
 public enum LinimasaAPI {
     case getBannerInfos(pageName: String)
     case getFeeds(filter: String, page: Int, perPage: Int)
-    case getJanjiPolitiks(page: Int, perPage: Int)
+    case getJanjiPolitiks(cid: String, filter: String, page: Int, perPage: Int)
     case deleteJanjiPolitiks(id: String)
     case createJanjiPolitiks(title: String, body: String, image: UIImage?)
     case editJanjiPolitiks(title: String, image: UIImage?)
@@ -60,8 +60,10 @@ extension LinimasaAPI: TargetType {
                 "page": page,
                 "per_page": perPage
             ]
-        case .getJanjiPolitiks(let (page, perPage)):
+        case .getJanjiPolitiks(let (cid, filter, page, perPage)):
             return [
+                "cluster_id": cid,
+                "filter_by": filter,
                 "page": page,
                 "per_page": perPage
             ]

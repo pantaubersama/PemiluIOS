@@ -18,7 +18,6 @@ class ClusterSearchController: UITableViewController {
         searchBar.sizeToFit()
         return searchBar
     }()
-    
     var viewModel: ClusterSearchViewModel!
     
     init(viewModel: ClusterSearchViewModel = ClusterSearchViewModel()) {
@@ -39,7 +38,7 @@ class ClusterSearchController: UITableViewController {
     
         tableView.dataSource = nil
         tableView.delegate = nil
-        tableView.estimatedRowHeight = 50.0
+        tableView.rowHeight = 75.0
         tableView.separatorStyle = .singleLine
         tableView.separatorColor = UIColor.groupTableViewBackground
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
@@ -74,6 +73,17 @@ class ClusterSearchController: UITableViewController {
             .bind(to: viewModel.input.nextI)
             .disposed(by: disposeBag)
         
+        tableView.rx.itemSelected
+            .bind(to: viewModel.input.itemSelected)
+            .disposed(by: disposeBag)
+        
+        tableView.rx.setDelegate(self)
+            .disposed(by: disposeBag)
+        
+        viewModel.output.selected
+            .drive()
+            .disposed(by: disposeBag)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -82,11 +92,17 @@ class ClusterSearchController: UITableViewController {
         let back = UIBarButtonItem(image: #imageLiteral(resourceName: "back"), style: .plain, target: nil, action: nil)
         navigationItem.leftBarButtonItem = back
         
-//        back.rx.tap
-//            .bind { [weak self] (_) in
-//                self?.navigationController?.popViewController(animated: true)
-//            }
-//            .disposed(by: disposeBag)
+        back.rx.tap
+            .bind { [weak self] (_) in
+                self?.navigationController?.popViewController(animated: true)
+            }
+            .disposed(by: disposeBag)
     }
     
+}
+
+extension ClusterSearchController {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        navigationController?.popViewController(animated: true)
+    }
 }
