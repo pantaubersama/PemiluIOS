@@ -54,6 +54,8 @@ extension LinimasaCoordinator: LinimasaNavigator {
         if filterCoordinator == nil {
             filterCoordinator = PenpolFilterCoordinator(navigationController: navigationController, filterType: filterType, filterTrigger: filterTrigger)
         }
+        
+        filterCoordinator.filterType = filterType
         return coordinate(to: filterCoordinator)
     }
     
