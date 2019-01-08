@@ -76,9 +76,9 @@ extension PenpolFilterModel {
         
         let cluster = FilterItem(paramKey: "cluster_id", paramValue: "", title: "Cluster", type: .text, isSelected: true)
         let clusterFilter = PenpolFilterModel(paramKey: "cluster_id", title: "Cluster", items: [cluster])
-        let all = FilterItem(paramKey: "filter_by", paramValue: "user_verified_all", title: "Semua", type: .radio, isSelected: isSelected(key: "user_verified_false"))
-        let notVerified = FilterItem(paramKey: "filter_by", paramValue: "user_verified_false", title: "Belum Verifikasi", type: .radio, isSelected: isSelected(key: "user_verified_false"))
-        let verified = FilterItem(paramKey: "filter_by", paramValue: "user_verified_true", title: "Terverifikasi", type: .radio, isSelected: isSelected(key: "user_verified_true"))
+        let all = FilterItem(paramKey: "filter_by", paramValue: "user_verified_all", title: "Semua", type: .radio, isSelected: false)
+        let notVerified = FilterItem(paramKey: "filter_by", paramValue: "user_verified_false", title: "Belum Verifikasi", type: .radio, isSelected: false)
+        let verified = FilterItem(paramKey: "filter_by", paramValue: "user_verified_true", title: "Terverifikasi", type: .radio, isSelected: false)
         let userFilter = PenpolFilterModel(paramKey: "filter_by", title: "User", items: [all, notVerified, verified])
         
         filterItems.append(clusterFilter)
@@ -90,6 +90,7 @@ extension PenpolFilterModel {
     static func generateQuizFilter() -> [PenpolFilterModel] {
         var filterItems: [PenpolFilterModel] = []
         
+
         func isSelected(key: String) -> Bool {
             return UserDefaults.standard.bool(forKey: key)
         }
@@ -98,6 +99,7 @@ extension PenpolFilterModel {
         let notParticipating = FilterItem(paramKey: "filter_by", paramValue: "not_participating", title: "Belum Diikuti", type: .radio, isSelected: isSelected(key: "not_participating"))
         let inProgress = FilterItem(paramKey: "filter_by", paramValue: "in_progress", title: "Belum Selesai", type: .radio, isSelected: isSelected(key: "in_progress"))
         let finished = FilterItem(paramKey: "filter_by", paramValue: "finished", title: "Selesai", type: .radio, isSelected: isSelected(key: "finished"))
+
         let quizFilter = PenpolFilterModel(paramKey: "filter_by", title: "Quiz", items: [all, notParticipating, inProgress, finished])
         
         filterItems.append(quizFilter)
