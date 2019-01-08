@@ -46,6 +46,7 @@ extension PenpolFilterModel {
         return filterItems
     }
     
+
     static func generatePilpresFilter() -> [PenpolFilterModel] {
         var filterItems: [PenpolFilterModel] = []
         
@@ -69,6 +70,20 @@ extension PenpolFilterModel {
         
         filterItems.append(clusterFilter)
         filterItems.append(userFilter)
+        
+        return filterItems
+    }
+
+    static func generateQuizFilter() -> [PenpolFilterModel] {
+        var filterItems: [PenpolFilterModel] = []
+        
+        let all = FilterItem(paramKey: "filter_by", paramValue: "all", title: "Semua", type: .radio)
+        let notParticipating = FilterItem(paramKey: "filter_by", paramValue: "not_participating", title: "Belum Diikuti", type: .radio)
+        let inProgress = FilterItem(paramKey: "filter_by", paramValue: "in_progress", title: "Belum Selesai", type: .radio)
+        let finished = FilterItem(paramKey: "filter_by", paramValue: "finished", title: "Selesai", type: .radio)
+        let quizFilter = PenpolFilterModel(paramKey: "filter_by", title: "Quiz", items: [all, notParticipating, inProgress, finished])
+        
+        filterItems.append(quizFilter)
         
         return filterItems
     }

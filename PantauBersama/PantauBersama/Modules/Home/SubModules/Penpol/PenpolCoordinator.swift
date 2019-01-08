@@ -44,6 +44,8 @@ extension PenpolCoordinator: PenpolNavigator {
             filterCoordinator = PenpolFilterCoordinator(navigationController: self.navigationController, filterType: filterType, filterTrigger: filterTrigger)
         }
         
+        filterCoordinator.filterType = filterType
+        
         return coordinate(to: filterCoordinator)
     }
     

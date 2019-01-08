@@ -20,10 +20,17 @@ public enum FilterType {
 
 class PenpolFilterCoordinator: BaseCoordinator<Void> {
     let navigationController: UINavigationController
-    let filterType: FilterType
+    var filterType: FilterType {
+        didSet {
+            if oldValue != filterType {
+                reloadFilterTable = true
+            }
+        }
+    }
     let filterTrigger: AnyObserver<[PenpolFilterModel.FilterItem]>
     private var viewController: PenpolFilterController!
     private var viewModel: PenpolFilterViewModel!
+    private var reloadFilterTable: Bool = false
     
     init(navigationController: UINavigationController, filterType: FilterType, filterTrigger: AnyObserver<[PenpolFilterModel.FilterItem]>) {
         self.navigationController = navigationController
@@ -38,7 +45,7 @@ class PenpolFilterCoordinator: BaseCoordinator<Void> {
         
         viewModel = PenpolFilterViewModel(filterItems: generateFilterItems(), filterTrigger: filterTrigger)
         viewController.viewModel = viewModel
-        
+        viewController.reloadTable = reloadFilterTable
         viewController.hidesBottomBarWhenPushed = true
         
         navigationController.pushViewController(viewController, animated: true)
@@ -55,7 +62,7 @@ class PenpolFilterCoordinator: BaseCoordinator<Void> {
         case .question:
             return PenpolFilterModel.generateQuestionFilter()
         case .quiz:
-            return []
+            return PenpolFilterModel.generateQuizFilter()
         case .pilpres:
             return PenpolFilterModel.generatePilpresFilter()
         case .janji:

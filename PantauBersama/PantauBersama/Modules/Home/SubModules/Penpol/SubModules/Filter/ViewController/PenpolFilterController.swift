@@ -16,6 +16,7 @@ class PenpolFilterController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var btnApply: Button!
     var viewModel: PenpolFilterViewModel!
+    var reloadTable: Bool = false
     private let disposeBag = DisposeBag()
     private var selectedFilter: [PenpolFilterModel.FilterItem] = []
     private var clusterId: String? = nil
@@ -43,6 +44,11 @@ class PenpolFilterController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.title = "Filter"
+        
+        if reloadTable {
+            self.selectedFilter.removeAll()
+            self.tableView.reloadData()
+        }
         
         let back = UIBarButtonItem(image: #imageLiteral(resourceName: "back"), style: .plain, target: self, action: nil)
         back.rx.tap
