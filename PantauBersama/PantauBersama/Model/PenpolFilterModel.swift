@@ -90,7 +90,6 @@ extension PenpolFilterModel {
     static func generateQuizFilter() -> [PenpolFilterModel] {
         var filterItems: [PenpolFilterModel] = []
         
-
         func isSelected(key: String) -> Bool {
             return UserDefaults.standard.bool(forKey: key)
         }
@@ -99,7 +98,6 @@ extension PenpolFilterModel {
         let notParticipating = FilterItem(paramKey: "filter_by", paramValue: "not_participating", title: "Belum Diikuti", type: .radio, isSelected: isSelected(key: "not_participating"))
         let inProgress = FilterItem(paramKey: "filter_by", paramValue: "in_progress", title: "Belum Selesai", type: .radio, isSelected: isSelected(key: "in_progress"))
         let finished = FilterItem(paramKey: "filter_by", paramValue: "finished", title: "Selesai", type: .radio, isSelected: isSelected(key: "finished"))
-
         let quizFilter = PenpolFilterModel(paramKey: "filter_by", title: "Quiz", items: [all, notParticipating, inProgress, finished])
         
         filterItems.append(quizFilter)

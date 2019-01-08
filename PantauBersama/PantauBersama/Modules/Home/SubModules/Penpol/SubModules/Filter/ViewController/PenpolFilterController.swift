@@ -195,6 +195,14 @@ extension PenpolFilterController: UITableViewDelegate {
             selectedRows.forEach { (selectedIndex) in
                 if selectedIndex.section == indexPath.section {
                     tableView.deselectRow(at: selectedIndex, animated: true)
+                    
+                    if let removeIndex = self.selectedFilter.lastIndex(where: { (filterItem) -> Bool in
+                        return filterItem.paramKey == selectedItem.paramKey
+                    }) {
+                        let removeItem = self.selectedFilter[removeIndex]
+                        UserDefaults.standard.removeObject(forKey: removeItem.paramValue)
+                        self.selectedFilter.remove(at: removeIndex)
+                    }
                 }
             }
         }
