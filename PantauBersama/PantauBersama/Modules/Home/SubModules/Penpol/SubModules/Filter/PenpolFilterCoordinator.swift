@@ -30,8 +30,6 @@ class PenpolFilterCoordinator: BaseCoordinator<Void> {
         }
     }
     let filterTrigger: AnyObserver<[PenpolFilterModel.FilterItem]>
-    private var viewController: PenpolFilterController!
-    private var viewModel: PenpolFilterViewModel!
     private var reloadFilterTable: Bool = false
     
     init(navigationController: UINavigationController, filterType: FilterType, filterTrigger: AnyObserver<[PenpolFilterModel.FilterItem]>) {
@@ -41,11 +39,8 @@ class PenpolFilterCoordinator: BaseCoordinator<Void> {
     }
     
     override func start() -> Observable<Void> {
-        if viewController == nil {
-            viewController = PenpolFilterController()
-        }
-        
-        viewModel = PenpolFilterViewModel(filterItems: generateFilterItems(), filterTrigger: filterTrigger)
+        let viewController = PenpolFilterController()
+        let viewModel = PenpolFilterViewModel(filterItems: generateFilterItems(), filterTrigger: filterTrigger)
         viewController.viewModel = viewModel
         viewController.reloadTable = reloadFilterTable
         viewController.hidesBottomBarWhenPushed = true

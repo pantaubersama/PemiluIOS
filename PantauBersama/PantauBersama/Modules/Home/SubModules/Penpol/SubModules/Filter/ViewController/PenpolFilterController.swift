@@ -32,6 +32,12 @@ class PenpolFilterController: UIViewController {
         
         btnApply.rx.tap
             .map({ self.selectedFilter })
+            .do(onNext: { [unowned self](filterItems) in
+                self.reset()
+                filterItems.forEach({ (filterItem) in
+                    UserDefaults.standard.set(true, forKey: filterItem.paramValue)
+                })
+            })
             .bind(to: viewModel.input.filterTrigger)
             .disposed(by: disposeBag)
         
@@ -62,19 +68,7 @@ class PenpolFilterController: UIViewController {
         
         reset.rx.tap
             .bind { [unowned self](_) in
-                self.selectedFilter.forEach({ (filterItem) in
-                    UserDefaults.standard.removeObject(forKey: filterItem.paramValue)
-                })
-                self.selectedFilter.removeAll()
-                self.nameCluster = "Pilih Cluster"
-                if let selectedRow = self.tableView.indexPathsForSelectedRows {
-                    selectedRow.forEach({ (indexPath) in
-                        DispatchQueue.main.async {
-                            self.tableView.deselectRow(at: indexPath, animated: true)
-                            self.tableView.reloadData()
-                        }
-                    })
-                }
+                self.reset()
             }
             .disposed(by: disposeBag)
         
@@ -89,6 +83,22 @@ class PenpolFilterController: UIViewController {
         self.navigationItem.leftBarButtonItem = back
         self.navigationItem.rightBarButtonItem = reset
         self.navigationController?.navigationBar.configure(with: .white)
+    }
+    
+    private func reset() {
+        self.selectedFilter.forEach({ (filterItem) in
+            UserDefaults.standard.removeObject(forKey: filterItem.paramValue)
+        })
+        self.selectedFilter.removeAll()
+        self.nameCluster = "Pilih Cluster"
+        if let selectedRow = self.tableView.indexPathsForSelectedRows {
+            selectedRow.forEach({ (indexPath) in
+                DispatchQueue.main.async {
+                    self.tableView.deselectRow(at: indexPath, animated: true)
+                    self.tableView.reloadData()
+                }
+            })
+        }
     }
 }
 
@@ -181,26 +191,20 @@ extension PenpolFilterController: UITableViewDelegate {
         }
         
         if let selectedRows = tableView.indexPathsForSelectedRows {
+            //1. remove all selected row
             selectedRows.forEach { (selectedIndex) in
                 if selectedIndex.section == indexPath.section {
                     tableView.deselectRow(at: selectedIndex, animated: true)
-                    
-                    if let removeIndex = self.selectedFilter.lastIndex(where: { (filterItem) -> Bool in
-                        return filterItem.paramKey == selectedItem.paramKey
-                    }) {
-                        self.selectedFilter.remove(at: removeIndex)
-                        UserDefaults.standard.removeObject(forKey: selectedItem.paramValue)
-                    }
                 }
             }
         }
         
+        //2. append selected item to the list of selectedFilter (validated to prevent duplication needed)
         if !self.selectedFilter.contains(where: { (filterItem) -> Bool in
             return filterItem.paramValue == selectedItem.paramValue
         }) {
             
             self.selectedFilter.append(selectedItem)
-            UserDefaults.standard.set(true, forKey: selectedItem.paramValue)
         }
         
         return indexPath
