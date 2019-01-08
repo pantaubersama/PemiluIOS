@@ -17,11 +17,13 @@ protocol LinimasaNavigator: PilpresNavigator, JanjiPolitikNavigator {
     func launchAddJanji() -> Observable<Void>
     func launchBannerInfo(bannerInfo: BannerInfo) -> Observable<Void>
     func launchNote() -> Observable<Void>
+    func launchFilter(filterType: FilterType, filterTrigger: AnyObserver<[PenpolFilterModel.FilterItem]>) -> Observable<Void>
 }
 
 class LinimasaCoordinator: BaseCoordinator<Void> {
     
     var navigationController: UINavigationController!
+    private var filterCoordinator: PenpolFilterCoordinator!
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
@@ -43,7 +45,15 @@ extension LinimasaCoordinator: LinimasaNavigator {
     }
     
     func launchFilter() -> Observable<Void> {
-        let filterCoordinator = FilterCoordinator(navigationController: navigationController)
+//        let filterCoordinator = FilterCoordinator(navigationController: navigationController)
+//        return coordinate(to: filterCoordinator)
+        return Observable.empty()
+    }
+    
+    func launchFilter(filterType: FilterType, filterTrigger: AnyObserver<[PenpolFilterModel.FilterItem]>) -> Observable<Void> {
+        if filterCoordinator == nil {
+            filterCoordinator = PenpolFilterCoordinator(navigationController: navigationController, filterType: filterType, filterTrigger: filterTrigger)
+        }
         return coordinate(to: filterCoordinator)
     }
     

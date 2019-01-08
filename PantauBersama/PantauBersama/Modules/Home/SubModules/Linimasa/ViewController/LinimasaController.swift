@@ -45,6 +45,9 @@ class LinimasaController: UIViewController {
         // MARK
         // bind to viewModel
         filter.rx.tap
+            .map { [unowned self] (_) -> (type: FilterType, filterTrigger: AnyObserver<[PenpolFilterModel.FilterItem]>) in
+                return self.pilpresController.view.alpha == 1.0 ? (type: .pilpres, filterTrigger: self.pilpresViewModel.input.filterTrigger) : (type: .pilpres, filterTrigger: self.pilpresViewModel.input.filterTrigger)
+            }
             .bind(to: viewModel.input.filterTrigger)
             .disposed(by: disposeBag)
         
@@ -73,6 +76,10 @@ class LinimasaController: UIViewController {
             .disposed(by: disposeBag)
         
         viewModel.output.catatanSelected
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.filterSelected
             .drive()
             .disposed(by: disposeBag)
         

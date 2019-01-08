@@ -14,6 +14,7 @@ import RxCocoa
 public enum FilterType {
     case question
     case quiz
+    case pilpres
 }
 
 class PenpolFilterCoordinator: BaseCoordinator<Void> {
@@ -54,6 +55,8 @@ class PenpolFilterCoordinator: BaseCoordinator<Void> {
             return PenpolFilterModel.generateQuestionFilter()
         case .quiz:
             return []
+        case .pilpres:
+            return PenpolFilterModel.generatePilpresFilter()
         }
     }
 }
