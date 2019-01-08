@@ -95,7 +95,6 @@ class PenpolFilterController: UIViewController {
             selectedRow.forEach({ (indexPath) in
                 DispatchQueue.main.async {
                     self.tableView.deselectRow(at: indexPath, animated: true)
-                    self.tableView.reloadData()
                 }
             })
         }
@@ -108,7 +107,7 @@ extension PenpolFilterController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var item = viewModel.output.filterItems[indexPath.section].items[indexPath.row]
+        let item = viewModel.output.filterItems[indexPath.section].items[indexPath.row]
         
         if item.isSelected {
             tableView.selectRow(at: indexPath, animated: false, scrollPosition: UITableView.ScrollPosition.none)
