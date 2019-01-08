@@ -48,8 +48,16 @@ class PilpresViewController: UITableViewController {
             .disposed(by: disposeBag)
         
         viewModel.output.feedsCells
-            .do(onNext: { [weak self] (_) in
-                self?.refreshControl?.endRefreshing()
+            .do(onNext: { [weak self] (items) in
+                guard let `self` = self else { return }
+                self.tableView.backgroundView = nil
+                if items.count == 0 {
+                    self.emptyView.frame = self.tableView.bounds
+                    self.tableView.backgroundView = self.emptyView
+                } else {
+                    self.tableView.backgroundView = nil
+                }
+                self.refreshControl?.endRefreshing()
             })
             .drive(tableView.rx.items) { tableView, row, item in
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: item.reuseIdentifier) else {
