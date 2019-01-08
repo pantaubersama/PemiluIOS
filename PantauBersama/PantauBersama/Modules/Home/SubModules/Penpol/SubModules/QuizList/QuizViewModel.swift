@@ -54,6 +54,7 @@ class QuizViewModel: ViewModelType {
     
     private let navigator: QuizNavigator
     private var currentPage = 0
+    private var filterItems: [PenpolFilterModel.FilterItem] = []
     
     private let disposeBag = DisposeBag()
     
@@ -95,8 +96,9 @@ class QuizViewModel: ViewModelType {
             .asDriverOnErrorJustComplete()
         
         let filter = filterSubject
-            .do(onNext: { (_) in
-                print("filter here")
+            .do(onNext: { [weak self](filterItems) in
+                guard let weakSelf = self else { return }
+                weakSelf.filterItems = filterItems
             })
             .mapToVoid()
             .asDriverOnErrorJustComplete()
@@ -108,7 +110,6 @@ class QuizViewModel: ViewModelType {
                     .trackActivity(weakSelf.activityIndicator)
                     .trackError(weakSelf.errorTracker)
             })
-            .filter({ !$0.isEmpty })
             .bind { [weak self](loadedItem) in
                 guard let weakSelf = self else { return }
                 weakSelf.quizRelay.accept(loadedItem)
@@ -146,8 +147,18 @@ class QuizViewModel: ViewModelType {
             currentPage = 0
         }
         
+        var filteredBy: QuizAPI.QuizListFilter = .all
+        
+        if !self.filterItems.isEmpty {
+            let filterByString = filterItems.filter({ (filterItem) -> Bool in
+                return filterItem.paramKey == "filter_by"
+            }).first?.paramValue
+            
+            filteredBy = QuizAPI.QuizListFilter(rawValue: filterByString ?? "all") ?? .all
+        }
+        
         currentPage += 1
-        return NetworkService.instance.requestObject(QuizAPI.getQuizzes(page: currentPage, perPage: 10, filterBy: .all), c: QuizzesResponse.self)
+        return NetworkService.instance.requestObject(QuizAPI.getQuizzes(page: currentPage, perPage: 10, filterBy: filteredBy), c: QuizzesResponse.self)
             .map { [weak self](response) -> [QuizModel] in
                 guard let weakSelf = self else { return [] }
                 return weakSelf.generateQuizzes(from: response)

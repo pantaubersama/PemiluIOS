@@ -45,7 +45,12 @@ extension UIImageView {
             //3. save update image data to CacheManager
             let image = UIImage(data: imageData)
             UIImageView.imageCache.setObject(image as AnyObject, forKey: stringUrl as AnyObject)
-            try! imageData.write(to: imageURL)
+            
+            do {
+                try? imageData.write(to: imageURL)
+            } catch let error {
+                print("error write image from url \(error.localizedDescription)")
+            }
             
             //4. display image data
             DispatchQueue.main.async {

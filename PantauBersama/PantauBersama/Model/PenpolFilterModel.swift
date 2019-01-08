@@ -9,9 +9,9 @@
 import Foundation
 import RxSwift
 
-enum FilterViewType {
-    case radio
-    case text
+enum FilterViewType: String {
+    case radio = "radio"
+    case text = "text"
 }
 
 struct PenpolFilterModel {
@@ -24,6 +24,7 @@ struct PenpolFilterModel {
         var paramValue: String
         let title: String
         let type: FilterViewType
+        let isSelected: Bool
     }
 }
 
@@ -31,13 +32,17 @@ extension PenpolFilterModel {
     static func generateQuestionFilter() -> [PenpolFilterModel] {
         var filterItems: [PenpolFilterModel] = []
         
-        let all = FilterItem(paramKey: "filter_by", paramValue: "user_verified_all", title: "Semua", type: .radio)
-        let notVerified = FilterItem(paramKey: "filter_by", paramValue: "user_verified_false", title: "Belum Verifikasi", type: .radio)
-        let verified = FilterItem(paramKey: "filter_by", paramValue: "user_verified_true", title: "Terverifikasi", type: .radio)
+        func isSelected(key: String) -> Bool {
+            return UserDefaults.standard.bool(forKey: key)
+        }
+        
+        let all = FilterItem(paramKey: "filter_by", paramValue: "user_verified_all", title: "Semua", type: .radio, isSelected: isSelected(key: "user_verified_all"))
+        let notVerified = FilterItem(paramKey: "filter_by", paramValue: "user_verified_false", title: "Belum Verifikasi", type: .radio, isSelected: isSelected(key: "user_verified_false"))
+        let verified = FilterItem(paramKey: "filter_by", paramValue: "user_verified_true", title: "Terverifikasi", type: .radio, isSelected: isSelected(key: "user_verified_true"))
         let userFilter = PenpolFilterModel(paramKey: "filter_by", title: "User", items: [all, notVerified, verified])
         
-        let newest = FilterItem(paramKey: "order_by", paramValue: "created", title: "Paling Baru", type: .radio)
-        let voteCount = FilterItem(paramKey: "order_by", paramValue: "cached_votes_up", title: "Paling Banyak Divoting", type: .radio)
+        let newest = FilterItem(paramKey: "order_by", paramValue: "created", title: "Paling Baru", type: .radio, isSelected: isSelected(key: "created"))
+        let voteCount = FilterItem(paramKey: "order_by", paramValue: "cached_votes_up", title: "Paling Banyak Divoting", type: .radio, isSelected: isSelected(key: "cached_votes_up"))
         let orderFilter = PenpolFilterModel(paramKey: "order_by", title: "Urutan", items: [newest, voteCount])
         
         filterItems.append(userFilter)
@@ -46,12 +51,17 @@ extension PenpolFilterModel {
         return filterItems
     }
     
+
     static func generatePilpresFilter() -> [PenpolFilterModel] {
         var filterItems: [PenpolFilterModel] = []
         
-        let all = FilterItem(paramKey: "filter_by", paramValue: "team_all", title: "Semua", type: .radio)
-        let paslonSatu = FilterItem(paramKey: "filter_by", paramValue: "team_id_1", title: "Team Jokowi - Makruf", type: .radio)
-        let paslonDua = FilterItem(paramKey: "filter_by", paramValue: "team_id_2", title: "Team Prabowo - Sandi", type: .radio)
+        func isSelected(key: String) -> Bool {
+            return UserDefaults.standard.bool(forKey: key)
+        }
+        
+        let all = FilterItem(paramKey: "filter_by", paramValue: "team_all", title: "Semua", type: .radio, isSelected: isSelected(key: "team_all"))
+        let paslonSatu = FilterItem(paramKey: "filter_by", paramValue: "team_id_1", title: "Team Jokowi - Makruf", type: .radio, isSelected: isSelected(key: "team_id_1"))
+        let paslonDua = FilterItem(paramKey: "filter_by", paramValue: "team_id_2", title: "Team Prabowo - Sandi", type: .radio, isSelected: isSelected(key: "team_id_2"))
         let sumberFilter = PenpolFilterModel(paramKey: "filter_by", title: "Sumber dari", items: [all, paslonSatu, paslonDua])
         filterItems.append(sumberFilter)
         return filterItems
@@ -60,15 +70,37 @@ extension PenpolFilterModel {
     static func generateJanjiFilter() -> [PenpolFilterModel] {
         var filterItems: [PenpolFilterModel] = []
         
-        let cluster = FilterItem(paramKey: "cluster_id", paramValue: "", title: "Cluster", type: .text)
+        func isSelected(key: String) -> Bool {
+            return UserDefaults.standard.bool(forKey: key)
+        }
+        
+        let cluster = FilterItem(paramKey: "cluster_id", paramValue: "", title: "Cluster", type: .text, isSelected: true)
         let clusterFilter = PenpolFilterModel(paramKey: "cluster_id", title: "Cluster", items: [cluster])
-        let all = FilterItem(paramKey: "filter_by", paramValue: "user_verified_all", title: "Semua", type: .radio)
-        let notVerified = FilterItem(paramKey: "filter_by", paramValue: "user_verified_false", title: "Belum Verifikasi", type: .radio)
-        let verified = FilterItem(paramKey: "filter_by", paramValue: "user_verified_true", title: "Terverifikasi", type: .radio)
+        let all = FilterItem(paramKey: "filter_by", paramValue: "user_verified_all", title: "Semua", type: .radio, isSelected: false)
+        let notVerified = FilterItem(paramKey: "filter_by", paramValue: "user_verified_false", title: "Belum Verifikasi", type: .radio, isSelected: false)
+        let verified = FilterItem(paramKey: "filter_by", paramValue: "user_verified_true", title: "Terverifikasi", type: .radio, isSelected: false)
         let userFilter = PenpolFilterModel(paramKey: "filter_by", title: "User", items: [all, notVerified, verified])
         
         filterItems.append(clusterFilter)
         filterItems.append(userFilter)
+        
+        return filterItems
+    }
+
+    static func generateQuizFilter() -> [PenpolFilterModel] {
+        var filterItems: [PenpolFilterModel] = []
+        
+        func isSelected(key: String) -> Bool {
+            return UserDefaults.standard.bool(forKey: key)
+        }
+        
+        let all = FilterItem(paramKey: "filter_by", paramValue: "all", title: "Semua", type: .radio, isSelected: isSelected(key: "all"))
+        let notParticipating = FilterItem(paramKey: "filter_by", paramValue: "not_participating", title: "Belum Diikuti", type: .radio, isSelected: isSelected(key: "not_participating"))
+        let inProgress = FilterItem(paramKey: "filter_by", paramValue: "in_progress", title: "Belum Selesai", type: .radio, isSelected: isSelected(key: "in_progress"))
+        let finished = FilterItem(paramKey: "filter_by", paramValue: "finished", title: "Selesai", type: .radio, isSelected: isSelected(key: "finished"))
+        let quizFilter = PenpolFilterModel(paramKey: "filter_by", title: "Quiz", items: [all, notParticipating, inProgress, finished])
+        
+        filterItems.append(quizFilter)
         
         return filterItems
     }
