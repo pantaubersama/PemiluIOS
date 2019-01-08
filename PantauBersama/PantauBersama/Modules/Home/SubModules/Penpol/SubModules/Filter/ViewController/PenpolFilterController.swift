@@ -97,6 +97,10 @@ extension PenpolFilterController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var item = viewModel.output.filterItems[indexPath.section].items[indexPath.row]
         
+        if item.isSelected {
+            selectedFilter.append(item)
+        }
+        
         switch item.type {
         case .radio:
             let cell = tableView.dequeueReusableCell(withIdentifier: FilterRadioCell.reuseIdentifier) as! FilterRadioCell
@@ -181,6 +185,7 @@ extension PenpolFilterController: UITableViewDelegate {
                         return filterItem.paramKey == selectedItem.paramKey
                     }) {
                         self.selectedFilter.remove(at: removeIndex)
+                        UserDefaults.standard.removeObject(forKey: selectedItem.paramValue)
                     }
                 }
             }
@@ -191,13 +196,13 @@ extension PenpolFilterController: UITableViewDelegate {
         }) {
             
             self.selectedFilter.append(selectedItem)
+            UserDefaults.standard.set(true, forKey: selectedItem.paramValue)
         }
         
         return indexPath
     }
     
     func tableView(_ tableView: UITableView, willDeselectRowAt indexPath: IndexPath) -> IndexPath? {
-        let item = viewModel.output.filterItems[indexPath.section].items[indexPath.row]
         if let selectedRows = tableView.indexPathsForSelectedRows {
             for row in selectedRows {
                 if row == indexPath {

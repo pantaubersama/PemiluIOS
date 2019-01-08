@@ -79,6 +79,15 @@ class QuestionViewModel: ViewModelType {
             voteTrigger: voteSubject.asObserver(),
             filterTrigger: filterSubject.asObserver())
         
+        // TODO: ELEK GARIS KERAS
+        let cachedFilter = PenpolFilterModel.generateQuestionFilter()
+        cachedFilter.forEach { (filterModel) in
+            let selectedItem = filterModel.items.filter({ (filterItem) -> Bool in
+                return filterItem.isSelected
+            })
+            self.filterItems.append(contentsOf: selectedItem)
+        }
+        
         let create = createSubject
             .flatMapLatest({navigator.launchCreateAsk()})
             .asDriver(onErrorJustReturn: ())

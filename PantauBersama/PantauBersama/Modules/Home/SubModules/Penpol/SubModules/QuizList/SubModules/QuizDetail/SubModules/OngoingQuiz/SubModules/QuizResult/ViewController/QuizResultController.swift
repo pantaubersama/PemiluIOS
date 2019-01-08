@@ -46,8 +46,6 @@ class QuizResultController: UIViewController {
         btnAnswerKey.rx.tap
             .bind(to: viewModel.input.openSummaryTrigger)
             .disposed(by: disposeBag)
-        
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {

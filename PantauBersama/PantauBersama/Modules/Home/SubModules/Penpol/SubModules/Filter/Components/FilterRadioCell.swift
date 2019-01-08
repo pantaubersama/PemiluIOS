@@ -14,6 +14,8 @@ class FilterRadioCell: UITableViewCell, IReusableCell {
     @IBOutlet weak var radioView: UIView!
     @IBOutlet weak var lbTitle: Label!
     
+    var item: PenpolFilterModel.FilterItem!
+    
     lazy var radioButton: LTHRadioButton = {
         let rb = LTHRadioButton(selectedColor: .red)
         rb.contentMode = .center
@@ -34,15 +36,24 @@ class FilterRadioCell: UITableViewCell, IReusableCell {
         )
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+    }
+    
     func configureCell(item: PenpolFilterModel.FilterItem) {
+        self.item = item
         lbTitle.text = item.title
+        
+        if item.isSelected {
+            radioButton.select()
+        }
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         if selected {
             radioButton.select()
-        } else {
+        } else if !item.isSelected {
             radioButton.deselect()
         }
         // Configure the view for the selected state

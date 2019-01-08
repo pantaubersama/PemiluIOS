@@ -24,6 +24,8 @@ class PenpolFilterCoordinator: BaseCoordinator<Void> {
         didSet {
             if oldValue != filterType {
                 reloadFilterTable = true
+            } else {
+                reloadFilterTable = false
             }
         }
     }
