@@ -17,6 +17,7 @@ class JanjiPolitikViewController: UITableViewController {
     private var headerView: BannerHeaderView!
     private var viewModel: JanjiPolitikViewModel!
     private let disposeBag: DisposeBag = DisposeBag()
+    private var emptyView = EmptyView()
     
     convenience init(viewModel: JanjiPolitikViewModel) {
         self.init()
@@ -53,8 +54,16 @@ class JanjiPolitikViewController: UITableViewController {
             .disposed(by: disposeBag)
         
         viewModel.output.janpolCells
-            .do(onNext: { [weak self] (_) in
-                self?.refreshControl?.endRefreshing()
+            .do(onNext: { [weak self] (items) in
+                guard let `self` = self else { return }
+                self.tableView.backgroundView = nil
+                if items.count == 0 {
+                    self.emptyView.frame = self.tableView.bounds
+                    self.tableView.backgroundView = self.emptyView
+                } else {
+                    self.tableView.backgroundView = nil
+                }
+                self.refreshControl?.endRefreshing()
             })
             .drive(tableView.rx.items) { tableView, row, item in
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: item.reuseIdentifier) else {
@@ -63,6 +72,19 @@ class JanjiPolitikViewController: UITableViewController {
                 item.configure(cell: cell)
                 return cell
             }
+            .disposed(by: disposeBag)
+        
+        tableView.rx.contentOffset
+            .distinctUntilChanged()
+            .flatMapLatest { (offset) -> Observable<Void> in
+                if offset.y > self.tableView.contentSize.height -
+                    (self.tableView.frame.height * 2) {
+                    return Observable.just(())
+                } else {
+                    return Observable.empty()
+                }
+            }
+            .bind(to: viewModel.input.nextTrigger)
             .disposed(by: disposeBag)
         
         
@@ -123,12 +145,17 @@ class JanjiPolitikViewController: UITableViewController {
         viewModel.output.itemSelected
             .drive()
             .disposed(by: disposeBag)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         viewModel.input.viewWillAppearTrigger.onNext(())
+        
+        viewModel.output.filter
+            .drive()
+            .disposed(by: disposeBag)
     }
 }
 

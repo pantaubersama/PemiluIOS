@@ -39,6 +39,7 @@ final class EmptyView: UIView {
         lotieView!.contentMode = .scaleAspectFill
         lotieView!.frame = container.bounds
         container.addSubview(lotieView!)
+        lotieView!.loopAnimation = true
         lotieView!.play(fromProgress: 0.0,
                         toProgress: 1.0,
                         withCompletion: nil)

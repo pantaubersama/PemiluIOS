@@ -24,6 +24,7 @@ class JanjiPolitikViewModel: ViewModelType {
         let nextTrigger: AnyObserver<Void>
         let viewWillAppearTrigger: AnyObserver<Void>
         var itemSelectedTrigger: AnyObserver<IndexPath>
+        let filterTrigger: AnyObserver<[PenpolFilterModel.FilterItem]>
     }
     
     struct Output {
@@ -34,6 +35,7 @@ class JanjiPolitikViewModel: ViewModelType {
         let bannerInfo: Driver<BannerInfo>
         let infoSelected: Driver<Void>
         let itemSelected: Driver<Void>
+        let filter: Driver<Void>
     }
     
     private let refreshSubject = PublishSubject<Void>()
@@ -43,12 +45,14 @@ class JanjiPolitikViewModel: ViewModelType {
     private let nextSubject = PublishSubject<Void>()
     private let viewWillAppearSubject = PublishSubject<Void>()
     private let itemSelectedSubject = PublishSubject<IndexPath>()
+    private let filterSubject = PublishSubject<[PenpolFilterModel.FilterItem]>()
     
     private let navigator: JanjiPolitikNavigator
     
     let errorTracker = ErrorTracker()
     let activityIndicator = ActivityIndicator()
     let headerViewModel = BannerHeaderViewModel()
+    private var filterItems: [PenpolFilterModel.FilterItem] = []
     
     init(navigator: LinimasaNavigator) {
         self.navigator = navigator
@@ -59,7 +63,8 @@ class JanjiPolitikViewModel: ViewModelType {
                       shareJanji: shareSubject.asObserver(),
                       nextTrigger: nextSubject.asObserver(),
                       viewWillAppearTrigger: viewWillAppearSubject.asObserver(),
-                      itemSelectedTrigger: itemSelectedSubject.asObserver())
+                      itemSelectedTrigger: itemSelectedSubject.asObserver(),
+                      filterTrigger: filterSubject.asObserver())
         
         let bannerInfo = viewWillAppearSubject
             .flatMapLatest({ self.bannerInfo() })
@@ -67,9 +72,13 @@ class JanjiPolitikViewModel: ViewModelType {
         
         // MARK:
         // Get janji politik pagination
-        let janpolItems = refreshSubject.startWith(())
+        let janpolItems = Observable.combineLatest(viewWillAppearSubject, refreshSubject.startWith(()))
             .flatMapLatest { [unowned self] (_) -> Observable<[JanjiPolitik]> in
-                return self.paginateItems(nextBatchTrigger: self.nextSubject.asObservable())
+               
+                let cid = self.filterItems.filter({ $0.paramKey == "cluster_id"}).first?.paramValue
+                let filter = self.filterItems.filter({ $0.paramKey == "filter_by"}).first?.paramValue
+                
+                return self.paginateItems(nextBatchTrigger: self.nextSubject.asObservable(), cid: cid ?? "", filter: filter ?? "")
                     .trackError(self.errorTracker)
                     .trackActivity(self.activityIndicator)
                     .catchErrorJustReturn([])
@@ -121,19 +130,29 @@ class JanjiPolitikViewModel: ViewModelType {
             .flatMapLatest({ navigator.launchJanjiDetail(data: $0) })
             .asDriverOnErrorJustComplete()
         
+        let filter = filterSubject
+            .do(onNext: { [weak self] (filterItems) in
+                guard let `self` = self else { return  }
+                print("Filter \(filterItems)")
+                self.filterItems = filterItems
+            })
+            .mapToVoid()
+            .asDriverOnErrorJustComplete()
+        
         output = Output(janpolCells: janpolCells,
                         moreSelected: moreSelected,
                         moreMenuSelected: moreMenuSelected,
                         shareSelected: shareJanji,
                         bannerInfo: bannerInfo,
                         infoSelected: infoSelected,
-                        itemSelected: itemSelected)
+                        itemSelected: itemSelected,
+                        filter: filter)
     }
     
     private func paginateItems(
         batch: Batch = Batch.initial,
-        nextBatchTrigger: Observable<Void>) -> Observable<[JanjiPolitik]> {
-        return recursivelyPaginateItems(batch: batch, nextBatchTrigger: nextBatchTrigger)
+        nextBatchTrigger: Observable<Void>, cid: String, filter: String) -> Observable<[JanjiPolitik]> {
+        return recursivelyPaginateItems(batch: batch, nextBatchTrigger: nextBatchTrigger, cid: cid, filter: filter)
             .scan([], accumulator: { (accumulator, page) in
                 return accumulator + page.item
             })
@@ -141,17 +160,17 @@ class JanjiPolitikViewModel: ViewModelType {
     
     private func recursivelyPaginateItems(
         batch: Batch,
-        nextBatchTrigger: Observable<Void>) ->
+        nextBatchTrigger: Observable<Void>, cid: String, filter: String) ->
         Observable<Page<[JanjiPolitik]>> {
             return NetworkService.instance
-                .requestObject(LinimasaAPI.getJanjiPolitiks(page: batch.page, perPage: batch.limit),
+                .requestObject(LinimasaAPI.getJanjiPolitiks(cid: cid, filter: filter, page: batch.page, perPage: batch.limit),
                                c: BaseResponse<JanjiPolitikResponse>.self)
                 .map({ self.transformToPage(response: $0, batch: batch) })
                 .asObservable()
                 .paginate(nextPageTrigger: nextBatchTrigger, hasNextPage: { (result) -> Bool in
                     return result.batch.next().hasNextPage
                 }, nextPageFactory: { (result) -> Observable<Page<[JanjiPolitik]>> in
-                    self.recursivelyPaginateItems(batch: result.batch.next(), nextBatchTrigger: nextBatchTrigger)
+                    self.recursivelyPaginateItems(batch: result.batch.next(), nextBatchTrigger: nextBatchTrigger, cid: cid, filter: filter)
                 })
                 .share(replay: 1, scope: .whileConnected)
             

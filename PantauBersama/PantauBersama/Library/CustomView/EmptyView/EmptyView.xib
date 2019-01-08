@@ -21,16 +21,18 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p9l-a9-sZI">
-                    <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                    <rect key="frame" x="97.5" y="243.5" width="180" height="180"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="180" id="6zt-ha-csl"/>
+                        <constraint firstAttribute="width" constant="180" id="bNd-Eh-jF2"/>
+                    </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="p9l-a9-sZI" secondAttribute="trailing" id="dxL-pu-3yk"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="p9l-a9-sZI" secondAttribute="bottom" id="ea6-9E-mHD"/>
-                <constraint firstItem="p9l-a9-sZI" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="fNO-ud-fcd"/>
-                <constraint firstItem="p9l-a9-sZI" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="whZ-AK-HWT"/>
+                <constraint firstItem="p9l-a9-sZI" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="NJ9-RE-LjK"/>
+                <constraint firstItem="p9l-a9-sZI" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="eFC-e6-c6L"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
         </view>

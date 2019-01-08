@@ -235,6 +235,11 @@
 		84B7B8B321E4454B0099E7E3 /* EmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84B7B8B221E4454B0099E7E3 /* EmptyView.xib */; };
 		84B7B8B521E445D00099E7E3 /* empty-status.json in Resources */ = {isa = PBXBuildFile; fileRef = 84B7B8B421E445D00099E7E3 /* empty-status.json */; };
 		84B7B8B721E446180099E7E3 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B7B8B621E446180099E7E3 /* EmptyView.swift */; };
+		84B7B8BC21E47A8F0099E7E3 /* ClusterSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B7B8BB21E47A8F0099E7E3 /* ClusterSearchController.swift */; };
+		84B7B8BE21E47B400099E7E3 /* ClusterSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B7B8BD21E47B400099E7E3 /* ClusterSearchViewModel.swift */; };
+		84B7B8C121E487FB0099E7E3 /* ClusterSearchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84B7B8C021E487FB0099E7E3 /* ClusterSearchCell.xib */; };
+		84B7B8C321E488D00099E7E3 /* ClusterSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B7B8C221E488D00099E7E3 /* ClusterSearchCell.swift */; };
+		84B7B8C721E4A0A00099E7E3 /* IClusterSearchDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B7B8C621E4A0A00099E7E3 /* IClusterSearchDelegate.swift */; };
 		84D01B9821D208DE0000492F /* SectionOfSettingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D01B9721D208DE0000492F /* SectionOfSettingData.swift */; };
 		84D01B9B21D20C480000492F /* SettingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84D01B9A21D20C480000492F /* SettingCell.xib */; };
 		84D01B9D21D20CA20000492F /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D01B9C21D20CA20000492F /* SettingCell.swift */; };
@@ -541,6 +546,11 @@
 		84B7B8B221E4454B0099E7E3 /* EmptyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyView.xib; sourceTree = "<group>"; };
 		84B7B8B421E445D00099E7E3 /* empty-status.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "empty-status.json"; sourceTree = "<group>"; };
 		84B7B8B621E446180099E7E3 /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
+		84B7B8BB21E47A8F0099E7E3 /* ClusterSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ClusterSearchController.swift; path = PantauBersama/Modules/Filter/SubModules/ClusterSearch/ClusterSearchController.swift; sourceTree = SOURCE_ROOT; };
+		84B7B8BD21E47B400099E7E3 /* ClusterSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterSearchViewModel.swift; sourceTree = "<group>"; };
+		84B7B8C021E487FB0099E7E3 /* ClusterSearchCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ClusterSearchCell.xib; sourceTree = "<group>"; };
+		84B7B8C221E488D00099E7E3 /* ClusterSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterSearchCell.swift; sourceTree = "<group>"; };
+		84B7B8C621E4A0A00099E7E3 /* IClusterSearchDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IClusterSearchDelegate.swift; sourceTree = "<group>"; };
 		84D01B9721D208DE0000492F /* SectionOfSettingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionOfSettingData.swift; sourceTree = "<group>"; };
 		84D01B9A21D20C480000492F /* SettingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingCell.xib; sourceTree = "<group>"; };
 		84D01B9C21D20CA20000492F /* SettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
@@ -1653,6 +1663,26 @@
 			path = EmptyView;
 			sourceTree = "<group>";
 		};
+		84B7B8BA21E47A740099E7E3 /* SubModules */ = {
+			isa = PBXGroup;
+			children = (
+				84B7B8BF21E487E60099E7E3 /* ClusterSearch */,
+			);
+			path = SubModules;
+			sourceTree = "<group>";
+		};
+		84B7B8BF21E487E60099E7E3 /* ClusterSearch */ = {
+			isa = PBXGroup;
+			children = (
+				84B7B8BB21E47A8F0099E7E3 /* ClusterSearchController.swift */,
+				84B7B8BD21E47B400099E7E3 /* ClusterSearchViewModel.swift */,
+				84B7B8C021E487FB0099E7E3 /* ClusterSearchCell.xib */,
+				84B7B8C221E488D00099E7E3 /* ClusterSearchCell.swift */,
+				84B7B8C621E4A0A00099E7E3 /* IClusterSearchDelegate.swift */,
+			);
+			path = ClusterSearch;
+			sourceTree = "<group>";
+		};
 		84D01B9921D20C140000492F /* Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -1695,6 +1725,7 @@
 		84E2854A21CA4B7100298E31 /* Filter */ = {
 			isa = PBXGroup;
 			children = (
+				84B7B8BA21E47A740099E7E3 /* SubModules */,
 				8441DB3A21CCA69500B078DF /* Components */,
 				84E2854B21CA4BB600298E31 /* ViewController */,
 				84E2855221CA524200298E31 /* FilterCoordinator.swift */,
@@ -1934,6 +1965,7 @@
 				11B3C79321D1110700EDCECB /* QuizSummaryController.xib in Resources */,
 				84A07FAF21D0E4FD00269C6B /* memfoto-idcard.json in Resources */,
 				840850CC21D2607000696CB3 /* DateViewCell.xib in Resources */,
+				84B7B8C121E487FB0099E7E3 /* ClusterSearchCell.xib in Resources */,
 				84A07FA221D0DFF600269C6B /* SignatureController.xib in Resources */,
 				845C570921CD3D5700EDCDFE /* SectionCell.xib in Resources */,
 				11B145FC21D72FFA00BB26C8 /* CreateAskHeaderView.xib in Resources */,
@@ -2121,9 +2153,11 @@
 				849CABCE21CE8AC300912F8E /* SettingViewModel.swift in Sources */,
 				845C571521CE122B00EDCDFE /* IconTableCell.swift in Sources */,
 				84A07FBC21D129FC00269C6B /* GroupProfileInfoData.swift in Sources */,
+				84B7B8BC21E47A8F0099E7E3 /* ClusterSearchController.swift in Sources */,
 				137A29F321E2261A00F19072 /* ComingsoonController.swift in Sources */,
 				11702DD521CB08DE001AEE3F /* QuizController.swift in Sources */,
 				13F456A921D2A68300CE45F1 /* QuestionType.swift in Sources */,
+				84B7B8C321E488D00099E7E3 /* ClusterSearchCell.swift in Sources */,
 				13F456B121D36D7800CE45F1 /* UndangAnggotaViewModel.swift in Sources */,
 				13812C1E21CAA48700CAB327 /* PenpolController.swift in Sources */,
 				11B145F821D72D9B00BB26C8 /* CreateAskHeaderView.swift in Sources */,
@@ -2229,6 +2263,7 @@
 				844C3D3D21C4ED6D00199871 /* AppDelegate.swift in Sources */,
 				11B3C78B21D110CB00EDCECB /* QuizSummaryCoordinator.swift in Sources */,
 				1161F9F421DF4B4000C1BAD5 /* QuizButton.swift in Sources */,
+				84B7B8BE21E47B400099E7E3 /* ClusterSearchViewModel.swift in Sources */,
 				845C570521CD1C2300EDCDFE /* HeaderProfile.swift in Sources */,
 				84B6D6E821E1E7FC00CD4BC8 /* ClusterCellViewModel.swift in Sources */,
 				844C3D8321C524F000199871 /* LinimasaController.swift in Sources */,
@@ -2269,6 +2304,7 @@
 				13F456CB21DB88E700CE45F1 /* BannerInfoViewModel.swift in Sources */,
 				84A07FBA21D0F13200269C6B /* IdentitasViewModel.swift in Sources */,
 				11E107B521CD44FD00B7B074 /* QuizOngoingCoordinator.swift in Sources */,
+				84B7B8C721E4A0A00099E7E3 /* IClusterSearchDelegate.swift in Sources */,
 				840850D221D2632500696CB3 /* ProfileEditCoordinator.swift in Sources */,
 				8409374D21D361240024A444 /* PilpresNavigator.swift in Sources */,
 				840850DF21D2843D00696CB3 /* BadgeViewModel.swift in Sources */,

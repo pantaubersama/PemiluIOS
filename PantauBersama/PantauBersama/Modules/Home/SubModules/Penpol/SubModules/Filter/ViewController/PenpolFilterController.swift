@@ -10,14 +10,16 @@ import UIKit
 import Common
 import RxSwift
 import RxCocoa
+import Networking
 
 class PenpolFilterController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var btnApply: Button!
-    
     var viewModel: PenpolFilterViewModel!
     private let disposeBag = DisposeBag()
     private var selectedFilter: [PenpolFilterModel.FilterItem] = []
+    private var clusterId: String? = nil
+    private var nameCluster: String? = "Pilih Cluster"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,14 +57,25 @@ class PenpolFilterController: UIViewController {
         reset.rx.tap
             .bind { [unowned self](_) in
                 self.selectedFilter.removeAll()
+                self.nameCluster = "Pilih Cluster"
                 if let selectedRow = self.tableView.indexPathsForSelectedRows {
                     selectedRow.forEach({ (indexPath) in
-                        self.tableView.deselectRow(at: indexPath, animated: true)
+                        DispatchQueue.main.async {
+                            self.tableView.deselectRow(at: indexPath, animated: true)
+                            self.tableView.reloadData()
+                        }
                     })
                 }
             }
             .disposed(by: disposeBag)
         
+        viewModel.output.cid
+            .drive(onNext: { [weak self] (s) in
+                guard let `self` = self else { return }
+                if let index = self.selectedFilter.index(where: { $0.paramKey == "cluster_id" }) {
+                    self.selectedFilter[index].paramValue = s
+                }
+            }).disposed(by: disposeBag)
         
         self.navigationItem.leftBarButtonItem = back
         self.navigationItem.rightBarButtonItem = reset
@@ -76,7 +89,7 @@ extension PenpolFilterController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let item = viewModel.output.filterItems[indexPath.section].items[indexPath.row]
+        var item = viewModel.output.filterItems[indexPath.section].items[indexPath.row]
         
         switch item.type {
         case .radio:
@@ -85,8 +98,12 @@ extension PenpolFilterController: UITableViewDataSource {
             cell.configureCell(item: item)
             return cell
         case .text:
-            // TODO: text item
-            return UITableViewCell()
+            // TODO: when user start to text item
+            // will launch cluster search controller
+            let cell = UITableViewCell()
+            cell.textLabel?.text = self.nameCluster
+            
+            return cell
         }
     }
     
@@ -138,7 +155,16 @@ extension PenpolFilterController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        let selectedItem = viewModel.output.filterItems[indexPath.section].items[indexPath.row]
+        var selectedItem = viewModel.output.filterItems[indexPath.section].items[indexPath.row]
+      
+        if selectedItem.type == FilterViewType.text {
+            if let navigationController = self.navigationController {
+                let viewModel = ClusterSearchViewModel()
+                viewModel.delegate = self
+                let vc = ClusterSearchController(viewModel: viewModel)
+                navigationController.pushViewController(vc, animated: true)
+            }
+        }
         
         if let selectedRows = tableView.indexPathsForSelectedRows {
             selectedRows.forEach { (selectedIndex) in
@@ -157,6 +183,7 @@ extension PenpolFilterController: UITableViewDelegate {
         if !self.selectedFilter.contains(where: { (filterItem) -> Bool in
             return filterItem.paramValue == selectedItem.paramValue
         }) {
+            
             self.selectedFilter.append(selectedItem)
         }
         
@@ -174,5 +201,18 @@ extension PenpolFilterController: UITableViewDelegate {
         }
         
         return indexPath
+    }
+}
+
+extension PenpolFilterController: IClusterSearchDelegate {
+    func didSelectCluster(item: ClusterDetail, index: IndexPath) -> Observable<Void> {
+        let values = item.id
+        let key = item.name
+        DispatchQueue.main.async {
+            self.viewModel.input.cidTrigger.onNext((values))
+            self.nameCluster = key
+            self.tableView.reloadData()
+        }
+        return Observable.just(())
     }
 }

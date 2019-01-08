@@ -63,3 +63,46 @@ public struct Cluster: Codable {
         case image
     }
 }
+
+
+public struct Clusters: Codable {
+    public let clusters: [ClusterDetail]
+    public let meta: Meta
+}
+
+
+public struct ClusterDetail: Codable {
+    public let id: String
+    public let name: String
+    public let image: Avatar
+    public let isDisplayed: Bool?
+    public let categoryId: String?
+    public let category: ClusterCategory?
+    public let description: String?
+    public let memberCount: Int
+    public let isEligible: Bool?
+    public let magicLink: String?
+    public let isLinkActive: Bool?
+    public let status: String?
+    
+    private enum CodingKeys: String, CodingKey {
+        case id
+        case name
+        case image
+        case isDisplayed = "is_displayed"
+        case categoryId = "category_id"
+        case category
+        case description
+        case memberCount = "members_count"
+        case isEligible = "is_eligible"
+        case magicLink = "magic_link"
+        case isLinkActive = "is_link_active"
+        case status
+    }
+}
+
+
+public struct ClusterCategory: Codable {
+    public let id: String
+    public let name: String
+}
