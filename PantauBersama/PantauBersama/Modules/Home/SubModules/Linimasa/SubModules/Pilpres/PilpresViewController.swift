@@ -14,7 +14,7 @@ class PilpresViewController: UITableViewController {
     
     private let disposeBag = DisposeBag()
     private var headerView: BannerHeaderView!
-    
+    private var emptyView = EmptyView()
     private var viewModel: PilpresViewModel!
     
     var rControl : UIRefreshControl?
@@ -61,6 +61,20 @@ class PilpresViewController: UITableViewController {
             }
             .disposed(by: disposeBag)
         
+        tableView.rx.contentOffset
+            .distinctUntilChanged()
+            .flatMapLatest { (offset) -> Observable<Void> in
+                if offset.y > self.tableView.contentSize.height -
+                    (self.tableView.frame.height * 2) {
+                    return Observable.just(())
+                } else {
+                    return Observable.empty()
+                }
+            }
+            .bind(to: viewModel.input.nextTrigger)
+            .disposed(by: disposeBag)
+        
+        
         viewModel.output.moreSelected
             .asObservable()
             .flatMapLatest({ [weak self] (feeds) -> Observable<PilpresType> in
@@ -100,14 +114,16 @@ class PilpresViewController: UITableViewController {
         viewModel.output.infoSelected
             .drive()
             .disposed(by: disposeBag)
-
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         viewModel.input.viewWillAppearTrigger.onNext(())
+        
+        viewModel.output.filter
+            .drive()
+            .disposed(by: disposeBag)
     }
     
 }

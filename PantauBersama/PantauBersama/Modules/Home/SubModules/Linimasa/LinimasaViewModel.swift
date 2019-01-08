@@ -18,7 +18,7 @@ final class LinimasaViewModel: ViewModelType {
     
     struct Input {
         let addTrigger: AnyObserver<Void>
-        let filterTrigger: AnyObserver<Void>
+        let filterTrigger: AnyObserver<(type: FilterType, filterTrigger: AnyObserver<[PenpolFilterModel.FilterItem]>)>
         let refreshTrigger: AnyObserver<Void>
         let profileTrigger: AnyObserver<Void>
         let viewWillAppearTrigger: AnyObserver<Void>
@@ -35,7 +35,7 @@ final class LinimasaViewModel: ViewModelType {
     
     let navigator: LinimasaNavigator
     private let addSubject = PublishSubject<Void>()
-    private let filterSubject = PublishSubject<Void>()
+    private let filterSubject = PublishSubject<(type: FilterType, filterTrigger: AnyObserver<[PenpolFilterModel.FilterItem]>)>()
     private let refreshSubject = PublishSubject<Void>()
     private let profileSubject = PublishSubject<Void>()
     private let viewWillppearS = PublishSubject<Void>()
@@ -55,7 +55,7 @@ final class LinimasaViewModel: ViewModelType {
         )
         
         let filter = filterSubject
-            .flatMapLatest{(navigator.launchFilter())}
+            .flatMap({ navigator.launchFilter(filterType: $0.type, filterTrigger: $0.filterTrigger)})
             .asDriver(onErrorJustReturn: ())
         
         let add = addSubject

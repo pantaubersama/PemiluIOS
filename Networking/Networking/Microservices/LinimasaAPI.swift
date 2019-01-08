@@ -11,7 +11,7 @@ import Common
 
 public enum LinimasaAPI {
     case getBannerInfos(pageName: String)
-    case getFeeds(page: Int, perPage: Int)
+    case getFeeds(filter: String, page: Int, perPage: Int)
     case getJanjiPolitiks(page: Int, perPage: Int)
     case deleteJanjiPolitiks(id: String)
     case createJanjiPolitiks(title: String, body: String, image: UIImage?)
@@ -54,8 +54,9 @@ extension LinimasaAPI: TargetType {
             return [
                 "page_name": pageName
             ]
-        case .getFeeds(let (page, perPage)):
+        case .getFeeds(let (filter, page, perPage)):
             return [
+                "filter_by": filter,
                 "page": page,
                 "per_page": perPage
             ]

@@ -232,6 +232,9 @@
 		84B6D6F321E30EA700CD4BC8 /* ShareBadgeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B6D6F221E30EA700CD4BC8 /* ShareBadgeController.swift */; };
 		84B6D6F621E30F8B00CD4BC8 /* ShareBadgeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B6D6F521E30F8B00CD4BC8 /* ShareBadgeViewModel.swift */; };
 		84B6D6F821E30FE400CD4BC8 /* ShareBadgeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B6D6F721E30FE400CD4BC8 /* ShareBadgeCoordinator.swift */; };
+		84B7B8B321E4454B0099E7E3 /* EmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84B7B8B221E4454B0099E7E3 /* EmptyView.xib */; };
+		84B7B8B521E445D00099E7E3 /* empty-status.json in Resources */ = {isa = PBXBuildFile; fileRef = 84B7B8B421E445D00099E7E3 /* empty-status.json */; };
+		84B7B8B721E446180099E7E3 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B7B8B621E446180099E7E3 /* EmptyView.swift */; };
 		84D01B9821D208DE0000492F /* SectionOfSettingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D01B9721D208DE0000492F /* SectionOfSettingData.swift */; };
 		84D01B9B21D20C480000492F /* SettingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84D01B9A21D20C480000492F /* SettingCell.xib */; };
 		84D01B9D21D20CA20000492F /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D01B9C21D20CA20000492F /* SettingCell.swift */; };
@@ -300,7 +303,6 @@
 
 /* Begin PBXFileReference section */
 		04A224A86FBFD6EFE137644F /* Pods-PantauBersama.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PantauBersama.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-PantauBersama/Pods-PantauBersama.debug.xcconfig"; sourceTree = "<group>"; };
-		1143E80A21E0DA24003862B6 /* TrendCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TrendCell.xib; sourceTree = "<group>"; };
 		1143E80F21E212F7003862B6 /* upvote.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = upvote.json; sourceTree = "<group>"; };
 		1143E81121E23229003862B6 /* loading-pantau.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "loading-pantau.json"; sourceTree = "<group>"; };
 		1143E81521E24A6A003862B6 /* QuizQuestionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizQuestionModel.swift; sourceTree = "<group>"; };
@@ -536,6 +538,9 @@
 		84B6D6F221E30EA700CD4BC8 /* ShareBadgeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareBadgeController.swift; sourceTree = "<group>"; };
 		84B6D6F521E30F8B00CD4BC8 /* ShareBadgeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareBadgeViewModel.swift; sourceTree = "<group>"; };
 		84B6D6F721E30FE400CD4BC8 /* ShareBadgeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareBadgeCoordinator.swift; sourceTree = "<group>"; };
+		84B7B8B221E4454B0099E7E3 /* EmptyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyView.xib; sourceTree = "<group>"; };
+		84B7B8B421E445D00099E7E3 /* empty-status.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "empty-status.json"; sourceTree = "<group>"; };
+		84B7B8B621E446180099E7E3 /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
 		84D01B9721D208DE0000492F /* SectionOfSettingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionOfSettingData.swift; sourceTree = "<group>"; };
 		84D01B9A21D20C480000492F /* SettingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingCell.xib; sourceTree = "<group>"; };
 		84D01B9C21D20CA20000492F /* SettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
@@ -1463,6 +1468,7 @@
 		84A07F8D21D0CC8600269C6B /* Lottie */ = {
 			isa = PBXGroup;
 			children = (
+				84B7B8B421E445D00099E7E3 /* empty-status.json */,
 				1143E81121E23229003862B6 /* loading-pantau.json */,
 				1143E80F21E212F7003862B6 /* upvote.json */,
 				137A29F521E2303400F19072 /* coming-soon-coffee.json */,
@@ -1638,6 +1644,15 @@
 			path = ShareBadge;
 			sourceTree = "<group>";
 		};
+		84B7B8B121E4453A0099E7E3 /* EmptyView */ = {
+			isa = PBXGroup;
+			children = (
+				84B7B8B221E4454B0099E7E3 /* EmptyView.xib */,
+				84B7B8B621E446180099E7E3 /* EmptyView.swift */,
+			);
+			path = EmptyView;
+			sourceTree = "<group>";
+		};
 		84D01B9921D20C140000492F /* Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -1650,6 +1665,7 @@
 		84E2854121CA189B00298E31 /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
+				84B7B8B121E4453A0099E7E3 /* EmptyView */,
 				840901B421DF181B001BF559 /* Navbar */,
 				84E2854221CA18AB00298E31 /* ActionSheet */,
 			);
@@ -1841,6 +1857,7 @@
 				13F4569521CF97DA00CE45F1 /* CreateAskController.xib in Resources */,
 				840850DD21D2832200696CB3 /* BadgeController.xib in Resources */,
 				842A4A0321D7C6810050AA51 /* CameraController.xib in Resources */,
+				84B7B8B521E445D00099E7E3 /* empty-status.json in Resources */,
 				11702DD321CB0287001AEE3F /* QuizCell.xib in Resources */,
 				84F892A821C787D800DC1048 /* Lato-Black.ttf in Resources */,
 				84F892B321C787F700DC1048 /* BwModelica-BlackCondensed.otf in Resources */,
@@ -1889,6 +1906,7 @@
 				841CDA3D21C8BC1C0015680C /* LinimasaController.xib in Resources */,
 				84A07FA721D0E2E900269C6B /* SelfIdentitasController.xib in Resources */,
 				84E6933E21D2936E00EA5464 /* HeaderEditProfile.xib in Resources */,
+				84B7B8B321E4454B0099E7E3 /* EmptyView.xib in Resources */,
 				84F892B121C787D800DC1048 /* Lato-Regular.ttf in Resources */,
 				13812C3A21CC182500CAB327 /* AskViewCell.xib in Resources */,
 				84F6981721C9364700890917 /* LinimasaJanjiCell.xib in Resources */,
@@ -2189,6 +2207,7 @@
 				84B4DED621D36EDC00F60258 /* JanjiPolitikViewModel.swift in Sources */,
 				84E2855B21CA7C4800298E31 /* FilterViewModel.swift in Sources */,
 				84B6D6F321E30EA700CD4BC8 /* ShareBadgeController.swift in Sources */,
+				84B7B8B721E446180099E7E3 /* EmptyView.swift in Sources */,
 				84F6981921C93B8900890917 /* LinimasaJanjiCell.swift in Sources */,
 				11E1079C21CD1B5F00B7B074 /* QuizNavigator.swift in Sources */,
 				1183F0E021D53A9100435D31 /* QuestionModel.swift in Sources */,
