@@ -62,6 +62,9 @@ class PenpolFilterController: UIViewController {
         
         reset.rx.tap
             .bind { [unowned self](_) in
+                self.selectedFilter.forEach({ (filterItem) in
+                    UserDefaults.standard.removeObject(forKey: filterItem.paramValue)
+                })
                 self.selectedFilter.removeAll()
                 self.nameCluster = "Pilih Cluster"
                 if let selectedRow = self.tableView.indexPathsForSelectedRows {
@@ -98,6 +101,7 @@ extension PenpolFilterController: UITableViewDataSource {
         var item = viewModel.output.filterItems[indexPath.section].items[indexPath.row]
         
         if item.isSelected {
+            tableView.selectRow(at: indexPath, animated: false, scrollPosition: UITableView.ScrollPosition.none)
             selectedFilter.append(item)
         }
         

@@ -53,7 +53,7 @@ class FilterRadioCell: UITableViewCell, IReusableCell {
         super.setSelected(selected, animated: animated)
         if selected {
             radioButton.select()
-        } else if !item.isSelected {
+        } else {
             radioButton.deselect()
         }
         // Configure the view for the selected state
