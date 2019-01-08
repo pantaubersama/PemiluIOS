@@ -148,7 +148,15 @@ class QuestionViewModel: ViewModelType {
         let filter = filterSubject
             .do(onNext: { [weak self](filterItems) in
                 guard let weakSelf = self else { return }
-                weakSelf.filterItems = filterItems
+                
+                let filter = filterItems.filter({ (filterItem) -> Bool in
+                    return filterItem.id.contains("question")
+                })
+                
+                if !filter.isEmpty {
+                    weakSelf.filterItems = filterItems
+                }
+                
             })
             .mapToVoid()
             .asDriverOnErrorJustComplete()

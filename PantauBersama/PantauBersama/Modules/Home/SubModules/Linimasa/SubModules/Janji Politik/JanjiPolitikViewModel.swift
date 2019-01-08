@@ -134,7 +134,14 @@ class JanjiPolitikViewModel: ViewModelType {
             .do(onNext: { [weak self] (filterItems) in
                 guard let `self` = self else { return  }
                 print("Filter \(filterItems)")
-                self.filterItems = filterItems
+                
+                let filter = filterItems.filter({ (filterItem) -> Bool in
+                    return filterItem.id.contains("janji")
+                })
+                
+                if !filter.isEmpty {
+                    self.filterItems = filterItems
+                }
             })
             .mapToVoid()
             .asDriverOnErrorJustComplete()

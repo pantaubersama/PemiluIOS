@@ -66,7 +66,14 @@ class PilpresViewModel: ViewModelType {
             .do(onNext: { [weak self] (filterItems) in
                 guard let `self` = self else { return  }
                 print("Filter \(filterItems)")
-                self.filterItems = filterItems
+                
+                let filter = filterItems.filter({ (filterItem) -> Bool in
+                    return filterItem.id.contains("pilpres")
+                })
+                
+                if !filter.isEmpty {
+                    self.filterItems = filterItems
+                }
             })
             .mapToVoid()
             .asDriverOnErrorJustComplete()
