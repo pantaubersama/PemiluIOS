@@ -11,6 +11,10 @@ import RxCocoa
 import Networking
 import Common
 
+enum CategoriesResult {
+    case done(categories: ClusterCategory)
+}
+
 class KategoriClusterViewModel: ViewModelType {
     
     var input: Input
@@ -23,11 +27,13 @@ class KategoriClusterViewModel: ViewModelType {
         let addI: AnyObserver<Void>
         let refreshI: AnyObserver<Void>
         let viewWillAppearI: AnyObserver<String>
+        let itemSelectedI: AnyObserver<IndexPath>
     }
     
     struct Output {
         let itemsO: Driver<[String]>
         let addO: Driver<Void>
+        let resultO: Driver<CategoriesResult>
     }
     
     private let backS = PublishSubject<Void>()
@@ -37,6 +43,7 @@ class KategoriClusterViewModel: ViewModelType {
     private let addS = PublishSubject<Void>()
     private let refreshS = PublishSubject<Void>()
     private let viewWillAppearS = PublishSubject<String>()
+    private let itemSelectedS = PublishSubject<IndexPath>()
     let errorTracker = ErrorTracker()
     let activityIndicator = ActivityIndicator()
     
@@ -49,7 +56,8 @@ class KategoriClusterViewModel: ViewModelType {
                       nextI: nextS.asObserver(),
                       addI: addS.asObserver(),
                       refreshI: refreshS.asObserver(),
-                      viewWillAppearI: viewWillAppearS.asObserver())
+                      viewWillAppearI: viewWillAppearS.asObserver(),
+                      itemSelectedI: itemSelectedS.asObserver())
         
         let query = queryS
             .startWith((""))
@@ -67,7 +75,7 @@ class KategoriClusterViewModel: ViewModelType {
             }
             .asDriver(onErrorJustReturn: [])
         
-        let clusterCell = categories
+        let categoiesCell = categories
             .map { (list) -> [String] in
                 return list.map({ (categories) -> String in
                     return categories.name
@@ -78,7 +86,17 @@ class KategoriClusterViewModel: ViewModelType {
             .flatMapLatest({ navigator.launchAdd() })
             .asDriverOnErrorJustComplete()
         
-        output = Output(itemsO: clusterCell.asDriver(onErrorJustReturn: []), addO: add)
+        let itemSelected = itemSelectedS
+            .withLatestFrom(categories) { (indexPath, items) in
+                return items[indexPath.row]
+            }
+            .map({ CategoriesResult.done(categories: $0)})
+            .asDriverOnErrorJustComplete()
+        
+        
+        output = Output(itemsO: categoiesCell.asDriver(onErrorJustReturn: []),
+                        addO: add,
+                        resultO: itemSelected)
         
     }
     

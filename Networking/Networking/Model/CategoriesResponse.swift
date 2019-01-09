@@ -8,6 +8,12 @@
 
 import Foundation
 
+public protocol ICategories {
+    var id: String { get }
+    var name: String { get }
+}
+
+
 public struct CategoriesResponse: Codable {
     public var categories: [ClusterCategory]
     public var meta: Meta

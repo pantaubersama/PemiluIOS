@@ -8,6 +8,7 @@
 
 import RxSwift
 import RxCocoa
+import Networking
 
 class ReqClusterViewModel: ViewModelType {
     
@@ -22,6 +23,7 @@ class ReqClusterViewModel: ViewModelType {
     struct Output {
         let backO: Driver<Void>!
         let kategoriO: Driver<Void>!
+//        let categories: Driver<ClusterCategory>
     }
     
     private let navigator: ReqClusterNavigator!
@@ -46,7 +48,8 @@ class ReqClusterViewModel: ViewModelType {
         
         output = Output(
             backO: back.asDriverOnErrorJustComplete(),
-            kategoriO: launchKategori
-        )
+            kategoriO: launchKategori)
+//            categories: Driver.just(ClusterCategory)
+//        )
     }
 }
