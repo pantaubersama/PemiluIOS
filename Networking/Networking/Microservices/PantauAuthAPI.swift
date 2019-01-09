@@ -37,6 +37,7 @@ public enum PantauAuthAPI {
     case putInformants(parameters: [String: Any])
     case achievedBadges(id: String)
     case clusters(q: String, page: Int, perPage: Int)
+    case categories(q: String, page: Int, perPage: Int)
     
 }
 
@@ -87,6 +88,8 @@ extension PantauAuthAPI: TargetType {
             return "/v1/achieved_badges/\(id)"
         case .clusters:
             return "/v1/clusters"
+        case .categories:
+            return "/v1/categories"
         }
     }
     
@@ -138,6 +141,12 @@ extension PantauAuthAPI: TargetType {
         case .putInformants(let parameters):
             return parameters
         case .clusters(let (q, page, perPage)):
+            return [
+                "q": q,
+                "page": page,
+                "per_page": perPage
+            ]
+        case .categories(let (q, page, perPage)):
             return [
                 "q": q,
                 "page": page,
