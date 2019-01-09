@@ -38,6 +38,7 @@ public enum PantauAuthAPI {
     case achievedBadges(id: String)
     case clusters(q: String, page: Int, perPage: Int)
     case categories(q: String, page: Int, perPage: Int)
+    case createCategories(t: String)
     
 }
 
@@ -88,14 +89,17 @@ extension PantauAuthAPI: TargetType {
             return "/v1/achieved_badges/\(id)"
         case .clusters:
             return "/v1/clusters"
-        case .categories:
+        case .categories,
+             .createCategories:
             return "/v1/categories"
         }
     }
     
     public var method: Moya.Method {
         switch self {
-        case .refresh, .revoke:
+        case .refresh,
+             .revoke,
+             .createCategories:
             return .post
         case .putKTP,
              .putSelfieKTP,
@@ -148,9 +152,13 @@ extension PantauAuthAPI: TargetType {
             ]
         case .categories(let (q, page, perPage)):
             return [
-                "q": q,
+                "name": q,
                 "page": page,
                 "per_page": perPage
+            ]
+        case .createCategories(let t):
+            return [
+                "name": t
             ]
         default:
             return nil

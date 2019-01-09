@@ -240,6 +240,10 @@
 		84B7B8C121E487FB0099E7E3 /* ClusterSearchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84B7B8C021E487FB0099E7E3 /* ClusterSearchCell.xib */; };
 		84B7B8C321E488D00099E7E3 /* ClusterSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B7B8C221E488D00099E7E3 /* ClusterSearchCell.swift */; };
 		84B7B8C721E4A0A00099E7E3 /* IClusterSearchDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B7B8C621E4A0A00099E7E3 /* IClusterSearchDelegate.swift */; };
+		84B7B8CC21E5B24B0099E7E3 /* AddKategoriController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84B7B8CB21E5B24B0099E7E3 /* AddKategoriController.xib */; };
+		84B7B8CE21E5B4CD0099E7E3 /* AddKategoriController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B7B8CD21E5B4CD0099E7E3 /* AddKategoriController.swift */; };
+		84B7B8D021E5B5D40099E7E3 /* AddKategoriViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B7B8CF21E5B5D40099E7E3 /* AddKategoriViewModel.swift */; };
+		84B7B8D221E5B9640099E7E3 /* AddKategoriCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B7B8D121E5B9640099E7E3 /* AddKategoriCoordinator.swift */; };
 		84D01B9821D208DE0000492F /* SectionOfSettingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D01B9721D208DE0000492F /* SectionOfSettingData.swift */; };
 		84D01B9B21D20C480000492F /* SettingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84D01B9A21D20C480000492F /* SettingCell.xib */; };
 		84D01B9D21D20CA20000492F /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D01B9C21D20CA20000492F /* SettingCell.swift */; };
@@ -551,6 +555,10 @@
 		84B7B8C021E487FB0099E7E3 /* ClusterSearchCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ClusterSearchCell.xib; sourceTree = "<group>"; };
 		84B7B8C221E488D00099E7E3 /* ClusterSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterSearchCell.swift; sourceTree = "<group>"; };
 		84B7B8C621E4A0A00099E7E3 /* IClusterSearchDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IClusterSearchDelegate.swift; sourceTree = "<group>"; };
+		84B7B8CB21E5B24B0099E7E3 /* AddKategoriController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddKategoriController.xib; sourceTree = "<group>"; };
+		84B7B8CD21E5B4CD0099E7E3 /* AddKategoriController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddKategoriController.swift; sourceTree = "<group>"; };
+		84B7B8CF21E5B5D40099E7E3 /* AddKategoriViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddKategoriViewModel.swift; sourceTree = "<group>"; };
+		84B7B8D121E5B9640099E7E3 /* AddKategoriCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddKategoriCoordinator.swift; sourceTree = "<group>"; };
 		84D01B9721D208DE0000492F /* SectionOfSettingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionOfSettingData.swift; sourceTree = "<group>"; };
 		84D01B9A21D20C480000492F /* SettingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingCell.xib; sourceTree = "<group>"; };
 		84D01B9C21D20CA20000492F /* SettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
@@ -1619,6 +1627,7 @@
 		84B6D6DD21E1022500CD4BC8 /* KategoriCluster */ = {
 			isa = PBXGroup;
 			children = (
+				84B7B8CA21E5B1180099E7E3 /* Components */,
 				84B6D6DE21E1023000CD4BC8 /* ViewController */,
 				84B6D6E321E1062500CD4BC8 /* KategoriClusterViewModel.swift */,
 				84B6D6E521E1069E00CD4BC8 /* KategoriClusterCoordinator.swift */,
@@ -1681,6 +1690,17 @@
 				84B7B8C621E4A0A00099E7E3 /* IClusterSearchDelegate.swift */,
 			);
 			path = ClusterSearch;
+			sourceTree = "<group>";
+		};
+		84B7B8CA21E5B1180099E7E3 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				84B7B8CB21E5B24B0099E7E3 /* AddKategoriController.xib */,
+				84B7B8CD21E5B4CD0099E7E3 /* AddKategoriController.swift */,
+				84B7B8CF21E5B5D40099E7E3 /* AddKategoriViewModel.swift */,
+				84B7B8D121E5B9640099E7E3 /* AddKategoriCoordinator.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		84D01B9921D20C140000492F /* Components */ = {
@@ -1915,6 +1935,7 @@
 				84B6D6F121E24CAA00CD4BC8 /* ShareBadgeController.xib in Resources */,
 				84E2854D21CA4BC800298E31 /* FilterViewController.xib in Resources */,
 				1143E81221E23229003862B6 /* loading-pantau.json in Resources */,
+				84B7B8CC21E5B24B0099E7E3 /* AddKategoriController.xib in Resources */,
 				84F892AB21C787D800DC1048 /* Lato-BoldItalic.ttf in Resources */,
 				11E107A921CD33CA00B7B074 /* CreateJanjiController.xib in Resources */,
 				845C56FD21CD14CE00EDCDFE /* HeaderProfile.xib in Resources */,
@@ -2250,6 +2271,7 @@
 				84A07FC421D14E8000269C6B /* ReqClusterViewModel.swift in Sources */,
 				84F6981521C8FAB000890917 /* UIControl.swift in Sources */,
 				84A07FA421D0E27F00269C6B /* SignatureController.swift in Sources */,
+				84B7B8D021E5B5D40099E7E3 /* AddKategoriViewModel.swift in Sources */,
 				8441DB5321CCF0C200B078DF /* DetailJanjiController.swift in Sources */,
 				1385A3E721DBC32B00C2910F /* DetailJanjiViewModel.swift in Sources */,
 				842A49FD21D799760050AA51 /* SelfIdentitasViewModel.swift in Sources */,
@@ -2266,6 +2288,7 @@
 				84B7B8BE21E47B400099E7E3 /* ClusterSearchViewModel.swift in Sources */,
 				845C570521CD1C2300EDCDFE /* HeaderProfile.swift in Sources */,
 				84B6D6E821E1E7FC00CD4BC8 /* ClusterCellViewModel.swift in Sources */,
+				84B7B8CE21E5B4CD0099E7E3 /* AddKategoriController.swift in Sources */,
 				844C3D8321C524F000199871 /* LinimasaController.swift in Sources */,
 				11702DD221CB0287001AEE3F /* QuizCell.swift in Sources */,
 				840850C521D25CB000696CB3 /* ProfileEditViewModel.swift in Sources */,
@@ -2291,6 +2314,7 @@
 				84A07FB621D0ED8100269C6B /* SuccessController.swift in Sources */,
 				845C570721CD1D8F00EDCDFE /* ProfileCoordinator.swift in Sources */,
 				842A4A0F21D7EE5F0050AA51 /* SuccessViewModel.swift in Sources */,
+				84B7B8D221E5B9640099E7E3 /* AddKategoriCoordinator.swift in Sources */,
 				84E6934021D2946C00EA5464 /* HeaderEditProfile.swift in Sources */,
 				13F456AE21D36A8500CE45F1 /* UndangAnggotaController.swift in Sources */,
 				1161F9EE21DF378400C1BAD5 /* QuizModel.swift in Sources */,

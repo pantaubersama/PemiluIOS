@@ -20,16 +20,23 @@ class KategoriClusterViewModel: ViewModelType {
         let backI: AnyObserver<Void>
         let queryI: AnyObserver<String>
         let nextI: AnyObserver<Void>
+        let addI: AnyObserver<Void>
+        let refreshI: AnyObserver<Void>
+        let viewWillAppearI: AnyObserver<String>
     }
     
     struct Output {
         let itemsO: Driver<[String]>
+        let addO: Driver<Void>
     }
     
     private let backS = PublishSubject<Void>()
     private var navigator: KategoriClusterProtocol
     private let queryS = PublishSubject<String>()
     private let nextS = PublishSubject<Void>()
+    private let addS = PublishSubject<Void>()
+    private let refreshS = PublishSubject<Void>()
+    private let viewWillAppearS = PublishSubject<String>()
     let errorTracker = ErrorTracker()
     let activityIndicator = ActivityIndicator()
     
@@ -39,9 +46,18 @@ class KategoriClusterViewModel: ViewModelType {
         
         input = Input(backI: backS.asObserver(),
                       queryI: queryS.asObserver(),
-                      nextI: nextS.asObserver())
+                      nextI: nextS.asObserver(),
+                      addI: addS.asObserver(),
+                      refreshI: refreshS.asObserver(),
+                      viewWillAppearI: viewWillAppearS.asObserver())
         
-        let categories = queryS.startWith((""))
+        let query = queryS
+            .startWith((""))
+        
+        let refreshWithLatestQuery = refreshS
+            .withLatestFrom(query)
+        
+        let categories = Observable.merge(query, refreshWithLatestQuery, viewWillAppearS.asObservable())
             .flatMapLatest { [weak self] (s) -> Observable<[ClusterCategory]> in
                 guard let `self` = self else { return Observable.empty() }
                 return self.paginateItems(nextBatchTrigger: self.nextS.asObservable(), q: s)
@@ -58,7 +74,11 @@ class KategoriClusterViewModel: ViewModelType {
                 })
         }
         
-        output = Output(itemsO: clusterCell.asDriver(onErrorJustReturn: []))
+        let add = addS
+            .flatMapLatest({ navigator.launchAdd() })
+            .asDriverOnErrorJustComplete()
+        
+        output = Output(itemsO: clusterCell.asDriver(onErrorJustReturn: []), addO: add)
         
     }
     

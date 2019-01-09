@@ -12,3 +12,12 @@ public struct CategoriesResponse: Codable {
     public var categories: [ClusterCategory]
     public var meta: Meta
 }
+
+public struct SingleCategory: Codable {
+    public var category: Category
+}
+
+public struct Category: Codable {
+    public var id: String
+    public var name: String
+}

@@ -20,6 +20,9 @@ class KategoriClusterController: UIViewController {
         return search
     }()
     
+    private let rControl = UIRefreshControl()
+    
+    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var buttonAdd: Button!
     
@@ -41,6 +44,12 @@ class KategoriClusterController: UIViewController {
         let back = UIBarButtonItem(image: #imageLiteral(resourceName: "back"), style: .plain, target: nil, action: nil)
         navigationItem.leftBarButtonItem = back
         
+        if #available(iOS 10.0, *) {
+            tableView.refreshControl = rControl
+        } else {
+            tableView.addSubview(rControl)
+        }
+        
         back.rx.tap
             .bind(to: viewModel.input.backI)
             .disposed(by: disposeBag)
@@ -52,7 +61,14 @@ class KategoriClusterController: UIViewController {
             .bind(to: viewModel.input.queryI)
             .disposed(by: disposeBag)
         
+        rControl.rx.controlEvent(.valueChanged)
+            .bind(to: viewModel.input.refreshI)
+            .disposed(by: disposeBag)
+        
         viewModel.output.itemsO
+            .do(onNext: { [weak self] (_) in
+                self?.rControl.endRefreshing()
+            })
             .drive(tableView.rx.items) { tableView, row, item in
                 let cell = UITableViewCell()
                 cell.textLabel?.text = item
@@ -73,6 +89,13 @@ class KategoriClusterController: UIViewController {
             .bind(to: viewModel.input.nextI)
             .disposed(by: disposeBag)
         
+        buttonAdd.rx.tap
+            .bind(to: viewModel.input.addI)
+            .disposed(by: disposeBag)
+        
+        viewModel.output.addO
+            .drive()
+            .disposed(by: disposeBag)
         
     }
     
@@ -80,7 +103,7 @@ class KategoriClusterController: UIViewController {
         super.viewWillAppear(animated)
         
         navigationController?.navigationBar.configure(type: .pantau)
-        
+        viewModel.input.viewWillAppearI.onNext((""))
     }
     
 }
