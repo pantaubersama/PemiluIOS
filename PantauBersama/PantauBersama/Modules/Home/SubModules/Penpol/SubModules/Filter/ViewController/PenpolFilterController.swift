@@ -35,7 +35,7 @@ class PenpolFilterController: UIViewController {
             .do(onNext: { [unowned self](filterItems) in
                 self.reset()
                 filterItems.forEach({ (filterItem) in
-                    UserDefaults.setSelectedFilter(value: filterItem.paramValue, isSelected: true)
+                    UserDefaults.setSelectedFilter(value: filterItem.id, isSelected: true)
                 })
             })
             .bind(to: viewModel.input.filterTrigger)
@@ -87,7 +87,7 @@ class PenpolFilterController: UIViewController {
     
     private func reset() {
         self.selectedFilter.forEach({ (filterItem) in
-            UserDefaults.setSelectedFilter(value: filterItem.paramValue, isSelected: false)
+            UserDefaults.setSelectedFilter(value: filterItem.id, isSelected: false)
         })
         self.selectedFilter.removeAll()
         self.nameCluster = "Pilih Cluster"
@@ -199,7 +199,7 @@ extension PenpolFilterController: UITableViewDelegate {
                         return filterItem.paramKey == selectedItem.paramKey
                     }) {
                         let removeItem = self.selectedFilter[removeIndex]
-                        UserDefaults.setSelectedFilter(value: removeItem.paramValue, isSelected: false)
+                        UserDefaults.setSelectedFilter(value: removeItem.id, isSelected: false)
                         self.selectedFilter.remove(at: removeIndex)
                     }
                 }
@@ -208,9 +208,8 @@ extension PenpolFilterController: UITableViewDelegate {
         
         //2. append selected item to the list of selectedFilter (validated to prevent duplication needed)
         if !self.selectedFilter.contains(where: { (filterItem) -> Bool in
-            return filterItem.paramValue == selectedItem.paramValue
+            return filterItem.id == selectedItem.id
         }) {
-            
             self.selectedFilter.append(selectedItem)
         }
         

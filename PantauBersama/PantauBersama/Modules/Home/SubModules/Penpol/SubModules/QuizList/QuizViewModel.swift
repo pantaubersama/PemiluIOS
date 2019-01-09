@@ -98,7 +98,13 @@ class QuizViewModel: ViewModelType {
         let filter = filterSubject
             .do(onNext: { [weak self](filterItems) in
                 guard let weakSelf = self else { return }
-                weakSelf.filterItems = filterItems
+                let filter = filterItems.filter({ (filterItem) -> Bool in
+                    return filterItem.id.contains("quiz")
+                })
+                
+                if !filter.isEmpty {
+                    weakSelf.filterItems = filterItems
+                }
             })
             .mapToVoid()
             .asDriverOnErrorJustComplete()
