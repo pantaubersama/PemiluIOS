@@ -72,7 +72,7 @@ class JanjiPolitikViewModel: ViewModelType {
         
         // MARK:
         // Get janji politik pagination
-        let janpolItems = Observable.combineLatest(viewWillAppearSubject, refreshSubject.startWith(()))
+        let janpolItems = refreshSubject.startWith(())
             .flatMapLatest { [unowned self] (_) -> Observable<[JanjiPolitik]> in
                
                 let cid = self.filterItems.filter({ $0.paramKey == "cluster_id"}).first?.paramValue
