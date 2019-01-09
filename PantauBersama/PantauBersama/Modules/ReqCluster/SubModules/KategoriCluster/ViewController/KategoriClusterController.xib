@@ -12,6 +12,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="KategoriClusterController" customModule="PantauBersama" customModuleProvider="target">
             <connections>
+                <outlet property="buttonAdd" destination="m8V-cl-iA5" id="OK1-ww-vEC"/>
+                <outlet property="tableView" destination="PSr-R8-aMP" id="YOx-p2-cIf"/>
                 <outlet property="view" destination="iN0-l3-epB" id="Wkr-Z5-djc"/>
             </connections>
         </placeholder>

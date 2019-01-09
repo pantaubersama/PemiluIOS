@@ -40,7 +40,9 @@ class QuizResultViewModel: ViewModelType {
         input = Input(backTrigger: backSubject.asObserver(),
                       openSummaryTrigger: openSummarySubject.asObserver())
         
-        let back = backSubject.asDriverOnErrorJustComplete()
+        let back = backSubject
+            .flatMapLatest({ navigator.finishQuiz() })
+            .asDriverOnErrorJustComplete()
         
         let result = quizResult(id: quiz.id)
             .asDriverOnErrorJustComplete()

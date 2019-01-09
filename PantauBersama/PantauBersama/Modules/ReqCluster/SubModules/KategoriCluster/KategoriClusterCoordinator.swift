@@ -10,6 +10,7 @@ import RxSwift
 
 protocol KategoriClusterProtocol {
     var finish: Observable<Void>! { get set }
+    func launchAdd() -> Observable<Void>
 }
 
 final class KategoriClusterCoordinator: BaseCoordinator<Void> {
@@ -34,5 +35,8 @@ final class KategoriClusterCoordinator: BaseCoordinator<Void> {
 }
 
 extension KategoriClusterCoordinator: KategoriClusterProtocol {
-    
+    func launchAdd() -> Observable<Void> {
+        let addCoordinator = AddKategoriCoordinator(navigationController: navigationController)
+        return coordinate(to: addCoordinator)
+    }
 }

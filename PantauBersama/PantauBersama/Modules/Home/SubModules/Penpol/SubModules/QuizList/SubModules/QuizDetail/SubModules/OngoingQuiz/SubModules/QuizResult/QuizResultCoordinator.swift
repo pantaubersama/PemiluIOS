@@ -12,6 +12,7 @@ import Common
 protocol QuizResultNavigator {
     func shareQuizResult(quizModel: QuizResultModel) -> Observable<Void>
     func openSummary(quizModel: QuizModel) -> Observable<Void>
+    func finishQuiz() -> Observable<Void>
 }
 
 class QuizResultCoordinator: BaseCoordinator<Void> {
@@ -39,9 +40,7 @@ class QuizResultCoordinator: BaseCoordinator<Void> {
         
         self.navigationController.viewControllers = viewControllers
         
-        return viewModel.output.back.do(onNext: { [weak self](_) in
-            self?.navigationController.popViewController(animated: true)
-        }).asObservable()
+        return Observable.never()
     }
 }
 
@@ -53,5 +52,10 @@ extension QuizResultCoordinator: QuizResultNavigator {
     func openSummary(quizModel: QuizModel) -> Observable<Void> {
         let quizSummaryCoordinator = QuizSummaryCoordinator(navigationController: self.navigationController, quiz: self.quiz)
         return coordinate(to: quizSummaryCoordinator)
+    }
+    
+    func finishQuiz() -> Observable<Void> {
+        self.navigationController.popViewController(animated: true)
+        return Observable.never()
     }
 }
