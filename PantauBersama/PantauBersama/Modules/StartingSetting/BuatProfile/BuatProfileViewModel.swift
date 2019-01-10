@@ -33,6 +33,7 @@ final class BuatProfileViewModel: ViewModelType {
         let userDataO: Driver<UserResponse>
         let avatarO: Driver<Void>
         let isEnabled: Driver<Bool>
+        let errorO: Driver<Error>
     }
     
     private let avatarS = PublishSubject<UIImage?>()
@@ -103,9 +104,9 @@ final class BuatProfileViewModel: ViewModelType {
             fullNameS, usernameS, descS, locationS,
             educationS, occupationS)
             .map { (f,u,d,l,e,o) -> Bool in
-                return f.count > 0 && u.count > 0
-                    && d.count > 0 && l.count > 0
-                    && e.count > 0 && o.count > 0
+                return f.count > 0 && u.count > 0 // assume fullname and username not nil from symbolic
+//                    && d.count > 0 && l.count > 0
+//                    && e.count > 0 && o.count > 0
             }
             .startWith(false)
             .asDriverOnErrorJustComplete()
@@ -133,7 +134,7 @@ final class BuatProfileViewModel: ViewModelType {
         output = Output(done: done,
                         userDataO: userData.asDriverOnErrorJustComplete(),
                         avatarO: avatarSelected,
-                        isEnabled: isEnabled)
+                        isEnabled: isEnabled, errorO: errorTracker.asDriver())
         
     }
     
@@ -145,7 +146,7 @@ final class BuatProfileViewModel: ViewModelType {
         return NetworkService.instance
             .requestObject(PantauAuthAPI.putMe(
                 parameters: [
-                    "fullname": fullname,
+                    "full_name": fullname,
                     "username": username,
                     "about": desc,
                     "location": location,
@@ -155,6 +156,8 @@ final class BuatProfileViewModel: ViewModelType {
                 c: BaseResponse<UserResponse>.self)
             .do(onSuccess: { (response) in
                 AppState.saveMe(response.data)
+            }, onError: { (e) in
+                print(e.localizedDescription)
             })
             .trackError(errorTracker)
             .trackActivity(activityIndicator)

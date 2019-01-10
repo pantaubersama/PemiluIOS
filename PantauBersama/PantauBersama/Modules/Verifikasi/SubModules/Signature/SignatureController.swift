@@ -73,7 +73,6 @@ class SignatureController: UIViewController {
 // this system still using default camera to test API
 extension SignatureController: ICameraController {
     func didFinishWith(image: UIImage) {
-        print("Gambar: \(image.jpegData(compressionQuality: 1.0))")
         self.viewModel.input.photoI.onNext(image)
     }
 }

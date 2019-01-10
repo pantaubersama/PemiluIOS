@@ -41,38 +41,32 @@ class BuatProfileController: UIViewController {
         
         fullName.rx.text
             .orEmpty
-            .distinctUntilChanged()
             .bind(to: viewModel.input.fullNameI)
             .disposed(by: disposeBag)
         
         username.rx.text
             .orEmpty
-            .distinctUntilChanged()
             .bind(to: viewModel.input.usernameI)
             .disposed(by: disposeBag)
         
         
         desc.rx.text
             .orEmpty
-            .distinctUntilChanged()
             .bind(to: viewModel.input.decsI)
             .disposed(by: disposeBag)
         
         location.rx.text
             .orEmpty
-            .distinctUntilChanged()
             .bind(to: viewModel.input.locationI)
             .disposed(by: disposeBag)
         
         education.rx.text
             .orEmpty
-            .distinctUntilChanged()
             .bind(to: viewModel.input.educationI)
             .disposed(by: disposeBag)
         
         occupation.rx.text
             .orEmpty
-            .distinctUntilChanged()
             .bind(to: viewModel.input.occupationI)
             .disposed(by: disposeBag)
         
@@ -111,12 +105,19 @@ class BuatProfileController: UIViewController {
             .drive()
             .disposed(by: disposeBag)
         
-        viewModel.output.isEnabled
-            .do(onNext: { [weak self] (enable) in
-                guard let `self` = self else { return }
-                self.nextButton.backgroundColor = enable ? Color.primary_red : Color.grey_one
+//        viewModel.output.isEnabled
+//            .do(onNext: { [weak self] (enable) in
+//                guard let `self` = self else { return }
+//                self.nextButton.backgroundColor = enable ? Color.primary_red : Color.grey_one
+//            })
+//            .drive(nextButton.rx.isEnabled)
+//            .disposed(by: disposeBag)
+        
+        viewModel.output.errorO
+            .drive(onNext: { [weak self] (e) in
+                guard let alert = UIAlertController.alert(with: e) else { return }
+                self?.navigationController?.present(alert, animated: true, completion: nil)
             })
-            .drive(nextButton.rx.isEnabled)
             .disposed(by: disposeBag)
         
     }

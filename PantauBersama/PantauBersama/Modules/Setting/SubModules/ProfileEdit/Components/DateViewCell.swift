@@ -47,6 +47,6 @@ extension DateViewCell: IReusableCell {
     }
     
     func configureCell(item: Input) {
-        let bag = DisposeBag()
+//        let bag = DisposeBag()
     }
 }
