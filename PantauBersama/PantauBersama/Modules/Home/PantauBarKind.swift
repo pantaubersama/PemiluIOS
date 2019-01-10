@@ -18,15 +18,15 @@ enum PantauBarKind: Int {
     var title: String? {
         switch self {
         case .linimasa:
-            return "Linimasa"
+            return "Menyerap"
         case .penpol:
-            return "Pendidikan Politik"
+            return "Menggali"
         case .wordstadium:
-            return "Wordstadium"
+            return "Menguji"
         case .lapor:
-            return "Lapor"
+            return "Merayakan"
         case .rekap:
-            return "Rekap"
+            return "Menjaga"
         }
     }
     
@@ -62,7 +62,7 @@ enum PantauBarKind: Int {
     
     var navigationController: UINavigationController {
         let n = UINavigationController()
-//        n.tabBarItem.title = self.title
+        n.tabBarItem.title = self.title
         n.tabBarItem.image = self.icon
         n.tabBarItem.selectedImage = self.iconSelected
         return n
