@@ -92,7 +92,7 @@ class ProfileController: UIViewController {
             }.subscribe(onNext: { [weak self] (value) in
                 guard let `self` = self else { return }
                 UIView.performWithoutAnimation {
-                    self.heightTableBadgeConstant.constant = value ? 190.0 : 0.0
+                    self.heightTableBadgeConstant.constant = value ? 170.0 : 0.0
                     self.tableViewBadge.isHidden = !value
                 }
             })
@@ -158,8 +158,8 @@ class ProfileController: UIViewController {
         tableViewBadge.delegate = nil
         tableViewBadge.registerReusableCell(BadgeCell.self)
         tableViewBadge.tableFooterView = UIView()
-        tableViewBadge.rowHeight = 48.0
-        tableViewBadge.contentInset = UIEdgeInsets(top: 5, left: 0, bottom: 5, right: 0)
+        tableViewBadge.estimatedRowHeight = 50.0
+        tableViewBadge.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         
         dataSourceBadge = RxTableViewSectionedReloadDataSource<SectionOfProfileData>(configureCell: {
             (dataSource, tableView, indexPath, item) in
@@ -288,6 +288,6 @@ extension ProfileController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 48.0
+        return 50.0
     }
 }

@@ -11,27 +11,43 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="48" id="iLl-4r-tdd" customClass="BadgeCell" customModule="PantauBersama" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="28" id="iLl-4r-tdd" customClass="BadgeCell" customModule="PantauBersama" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="iLl-4r-tdd" id="KXP-0u-Fcn">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="69.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="49.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="i2n-zw-tIT">
-                        <rect key="frame" x="8" y="0.0" width="353" height="69.5"/>
+                        <rect key="frame" x="8" y="0.0" width="353" height="49.5"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="badgeQuizLv31" translatesAutoresizingMaskIntoConstraints="NO" id="bCd-ox-pH6">
-                                <rect key="frame" x="0.0" y="2" width="70" height="66"/>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QX3-Z0-PBg" customClass="RoundView" customModule="Common">
+                                <rect key="frame" x="0.0" y="1" width="48" height="48"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="badgeQuizLv31" translatesAutoresizingMaskIntoConstraints="NO" id="aLw-Yd-PBz">
+                                        <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="70" id="bHx-rC-9Tr"/>
+                                    <constraint firstItem="aLw-Yd-PBz" firstAttribute="leading" secondItem="QX3-Z0-PBg" secondAttribute="leading" id="B9Y-So-zc0"/>
+                                    <constraint firstItem="aLw-Yd-PBz" firstAttribute="top" secondItem="QX3-Z0-PBg" secondAttribute="top" id="VZ0-Nv-7dp"/>
+                                    <constraint firstAttribute="height" constant="48" id="Z14-Sf-vN2"/>
+                                    <constraint firstAttribute="trailing" secondItem="aLw-Yd-PBz" secondAttribute="trailing" id="aut-hF-gTn"/>
+                                    <constraint firstAttribute="width" constant="48" id="gu8-ph-QNk"/>
+                                    <constraint firstAttribute="bottom" secondItem="aLw-Yd-PBz" secondAttribute="bottom" id="il5-rK-yDs"/>
                                 </constraints>
-                            </imageView>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="24"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="NM8-OP-6OZ">
-                                <rect key="frame" x="80" y="19" width="241" height="31.5"/>
+                                <rect key="frame" x="58" y="9" width="263" height="31.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="13k-v4-7gI" customClass="Label" customModule="Common">
-                                        <rect key="frame" x="0.0" y="0.0" width="241" height="18"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="263" height="18"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -43,7 +59,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IWe-Hk-a4t" customClass="Label" customModule="Common">
-                                        <rect key="frame" x="0.0" y="18" width="241" height="13.5"/>
+                                        <rect key="frame" x="0.0" y="18" width="263" height="13.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.48628133540000001" green="0.4862622023" blue="0.48627519609999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
@@ -56,7 +72,7 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GgM-0D-jtW">
-                                <rect key="frame" x="331" y="24" width="22" height="22"/>
+                                <rect key="frame" x="331" y="14" width="22" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="22" id="kIH-Nk-PkP"/>
                                 </constraints>
@@ -74,11 +90,11 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="descriptionBadges" destination="IWe-Hk-a4t" id="3s9-XZ-OgQ"/>
-                <outlet property="iconBadges" destination="bCd-ox-pH6" id="Q7w-3c-7Ei"/>
+                <outlet property="iconBadges" destination="aLw-Yd-PBz" id="Oh9-nd-Gj9"/>
                 <outlet property="nameBadges" destination="13k-v4-7gI" id="0gH-o1-jMu"/>
                 <outlet property="shareButton" destination="GgM-0D-jtW" id="Ckr-ae-beo"/>
             </connections>
-            <point key="canvasLocation" x="138.40000000000001" y="167.76611694152925"/>
+            <point key="canvasLocation" x="138.40000000000001" y="158.32083958020991"/>
         </tableViewCell>
     </objects>
     <resources>
