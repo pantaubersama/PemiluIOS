@@ -10,6 +10,8 @@ import Foundation
 import UIKit
 import WebKit
 import Common
+import RxSwift
+import RxCocoa
 
 class WKWebviewCustom: UIViewController, WKNavigationDelegate, WKUIDelegate {
    
@@ -29,6 +31,9 @@ class WKWebviewCustom: UIViewController, WKNavigationDelegate, WKUIDelegate {
     var activityIndicator: UIActivityIndicatorView!
     var url: String? = nil
     
+    var viewModel: WKWebViewModel!
+    private let disposeBag: DisposeBag = DisposeBag()
+    
     deinit {
         wkwebView.removeObserver(self, forKeyPath: "estimatedProgress")
     }
@@ -47,34 +52,32 @@ class WKWebviewCustom: UIViewController, WKNavigationDelegate, WKUIDelegate {
         }
     }
     
-    
     override func viewDidLoad() {
+        view = wkwebView
+        wkwebView.navigationDelegate = self
         
         let back = UIBarButtonItem(image: #imageLiteral(resourceName: "back"), style: .plain, target: self, action: #selector(handleBack(sender:)))
         navigationItem.leftBarButtonItem = back
         navigationController?.navigationBar.configure(with: .white)
         
-        view = wkwebView
-        wkwebView.navigationDelegate = self
-        
-        activityIndicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
-        activityIndicator.hidesWhenStopped = true
-        activityIndicator.style = UIActivityIndicatorView.Style.gray
-        navigationItem.titleView = activityIndicator
-        
+        // configure activity indicator
+        configureActivity()
         // configure progressview
-        [progressView].forEach { self.view.addSubview($0) }
-        progressView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        progressView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        if #available(iOS 11.0, *) {
-            progressView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        configureProgressView()
+
+        
+        // TODO : some for reasons coming soon will disappear,
+        // and we will need viewModel and coordinator
+        if url == nil {
+            viewModel.output.urlO
+                .drive(onNext: { [weak self] (url) in
+                    guard let `self` = self else { return }
+                    self.wkwebView.load(URLRequest(url: URL(string: url)!))
+                })
+                .disposed(by: disposeBag)
         } else {
-            progressView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+            wkwebView.load(URLRequest(url: URL(string: url ?? "")!))
         }
-        progressView.heightAnchor.constraint(equalToConstant: 2).isActive = true
-        
-        
-        wkwebView.load(URLRequest(url: URL(string: url ?? "")!))
     }
     
     func showActivityIndicator(show: Bool) {
@@ -122,4 +125,25 @@ extension WKWebviewCustom {
             self.progressView.alpha = 0
         }, completion: nil)
     }
+    
+    func configureActivity() {
+        activityIndicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.style = UIActivityIndicatorView.Style.gray
+        navigationItem.titleView = activityIndicator
+    }
+    
+    func configureProgressView() {
+        [progressView].forEach { self.view.addSubview($0) }
+        progressView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        progressView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        if #available(iOS 11.0, *) {
+            progressView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        } else {
+            progressView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        }
+        progressView.heightAnchor.constraint(equalToConstant: 2).isActive = true
+        
+    }
 }
+

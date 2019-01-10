@@ -188,6 +188,8 @@
 		84619D4D21DC9ABD00EB58CF /* WebCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84619D4C21DC9ABD00EB58CF /* WebCoordinator.swift */; };
 		848B039921E7AA8C002CAA40 /* WKWebview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848B039821E7AA8C002CAA40 /* WKWebview.swift */; };
 		848B039C21E7AADF002CAA40 /* WKWebview.xib in Resources */ = {isa = PBXBuildFile; fileRef = 848B039B21E7AADF002CAA40 /* WKWebview.xib */; };
+		848B039F21E7B538002CAA40 /* WKWebCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848B039E21E7B538002CAA40 /* WKWebCoordinator.swift */; };
+		848B03A121E7B5DE002CAA40 /* WKWebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848B03A021E7B5DE002CAA40 /* WKWebViewModel.swift */; };
 		849CABCA21CE89DD00912F8E /* SettingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849CABC921CE89DD00912F8E /* SettingController.swift */; };
 		849CABCC21CE8A5100912F8E /* SettingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849CABCB21CE8A5100912F8E /* SettingCoordinator.swift */; };
 		849CABCE21CE8AC300912F8E /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849CABCD21CE8AC300912F8E /* SettingViewModel.swift */; };
@@ -504,6 +506,8 @@
 		84619D4C21DC9ABD00EB58CF /* WebCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebCoordinator.swift; sourceTree = "<group>"; };
 		848B039821E7AA8C002CAA40 /* WKWebview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKWebview.swift; sourceTree = "<group>"; };
 		848B039B21E7AADF002CAA40 /* WKWebview.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WKWebview.xib; sourceTree = "<group>"; };
+		848B039E21E7B538002CAA40 /* WKWebCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKWebCoordinator.swift; sourceTree = "<group>"; };
+		848B03A021E7B5DE002CAA40 /* WKWebViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKWebViewModel.swift; sourceTree = "<group>"; };
 		849CABC921CE89DD00912F8E /* SettingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingController.swift; sourceTree = "<group>"; };
 		849CABCB21CE8A5100912F8E /* SettingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCoordinator.swift; sourceTree = "<group>"; };
 		849CABCD21CE8AC300912F8E /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
@@ -1469,10 +1473,20 @@
 		848B039A21E7AA9F002CAA40 /* WKWebview */ = {
 			isa = PBXGroup;
 			children = (
+				848B039D21E7B515002CAA40 /* ViewController */,
+				848B039E21E7B538002CAA40 /* WKWebCoordinator.swift */,
+				848B03A021E7B5DE002CAA40 /* WKWebViewModel.swift */,
+			);
+			path = WKWebview;
+			sourceTree = "<group>";
+		};
+		848B039D21E7B515002CAA40 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
 				848B039821E7AA8C002CAA40 /* WKWebview.swift */,
 				848B039B21E7AADF002CAA40 /* WKWebview.xib */,
 			);
-			path = WKWebview;
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		849CABC521CE897E00912F8E /* Setting */ = {
@@ -2212,6 +2226,7 @@
 				840850CE21D2611D00696CB3 /* DateViewCell.swift in Sources */,
 				11B3C79221D1110700EDCECB /* QuizSummaryController.swift in Sources */,
 				84FE6EBC21D5FCB9009A0F55 /* ErrorTracker.swift in Sources */,
+				848B039F21E7B538002CAA40 /* WKWebCoordinator.swift in Sources */,
 				840901C021DF3BC7001BF559 /* CatatanController.swift in Sources */,
 				84B6D6E421E1062500CD4BC8 /* KategoriClusterViewModel.swift in Sources */,
 				84619D4D21DC9ABD00EB58CF /* WebCoordinator.swift in Sources */,
@@ -2368,6 +2383,7 @@
 				842A4A0721D7E4740050AA51 /* KTPViewModel.swift in Sources */,
 				84A07FC621D14F3800269C6B /* ReqClusterCoordinator.swift in Sources */,
 				84E2855321CA524200298E31 /* FilterCoordinator.swift in Sources */,
+				848B03A121E7B5DE002CAA40 /* WKWebViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
