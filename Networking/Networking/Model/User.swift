@@ -77,7 +77,7 @@ public struct ClusterDetail: Codable {
     public let image: Avatar
     public let isDisplayed: Bool?
     public let categoryId: String?
-    public let category: ClusterCategory?
+    public let category: Category?
     public let description: String?
     public let memberCount: Int
     public let isEligible: Bool?
@@ -101,8 +101,6 @@ public struct ClusterDetail: Codable {
     }
 }
 
-
-public struct ClusterCategory: Codable {
-    public let id: String
-    public let name: String
+public struct SingleCluster: Codable {
+    public let cluster: ClusterDetail
 }

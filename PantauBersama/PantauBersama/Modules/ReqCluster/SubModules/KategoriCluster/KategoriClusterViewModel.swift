@@ -11,10 +11,6 @@ import RxCocoa
 import Networking
 import Common
 
-enum CategoriesResult {
-    case done(categories: ClusterCategory)
-}
-
 class KategoriClusterViewModel: ViewModelType {
     
     var input: Input
@@ -33,7 +29,7 @@ class KategoriClusterViewModel: ViewModelType {
     struct Output {
         let itemsO: Driver<[String]>
         let addO: Driver<Void>
-        let resultO: Driver<CategoriesResult>
+        let resultO: Driver<ResultCategory>
     }
     
     private let backS = PublishSubject<Void>()
@@ -49,7 +45,6 @@ class KategoriClusterViewModel: ViewModelType {
     
     init(navigator: KategoriClusterProtocol) {
         self.navigator = navigator
-        self.navigator.finish = backS
         
         input = Input(backI: backS.asObserver(),
                       queryI: queryS.asObserver(),
@@ -66,14 +61,13 @@ class KategoriClusterViewModel: ViewModelType {
             .withLatestFrom(query)
         
         let categories = Observable.merge(query, refreshWithLatestQuery, viewWillAppearS.asObservable())
-            .flatMapLatest { [weak self] (s) -> Observable<[ClusterCategory]> in
+            .flatMapLatest { [weak self] (s) -> Observable<[ICategories]> in
                 guard let `self` = self else { return Observable.empty() }
                 return self.paginateItems(nextBatchTrigger: self.nextS.asObservable(), q: s)
                     .trackError(self.errorTracker)
                     .trackActivity(self.activityIndicator)
-                    .catchErrorJustReturn([])
+                    .asObservable()
             }
-            .asDriver(onErrorJustReturn: [])
         
         let categoiesCell = categories
             .map { (list) -> [String] in
@@ -86,11 +80,12 @@ class KategoriClusterViewModel: ViewModelType {
             .flatMapLatest({ navigator.launchAdd() })
             .asDriverOnErrorJustComplete()
         
+        
         let itemSelected = itemSelectedS
-            .withLatestFrom(categories) { (indexPath, items) in
-                return items[indexPath.row]
+            .withLatestFrom(categories) { (indexPath, category) in
+                return category[indexPath.row]
             }
-            .map({ CategoriesResult.done(categories: $0)})
+            .map({ ResultCategory.done(data: $0 )})
             .asDriverOnErrorJustComplete()
         
         
@@ -102,7 +97,7 @@ class KategoriClusterViewModel: ViewModelType {
     
     private func paginateItems(
         batch: Batch = Batch.initial,
-        nextBatchTrigger: Observable<Void>, q: String) -> Observable<[ClusterCategory]> {
+        nextBatchTrigger: Observable<Void>, q: String) -> Observable<[ICategories]> {
         return recursivelyPaginateItems(batch: batch, nextBatchTrigger: nextBatchTrigger, q: q)
             .scan([], accumulator: { (accumulator, page) in
                 return accumulator + page.item
@@ -112,7 +107,7 @@ class KategoriClusterViewModel: ViewModelType {
     private func recursivelyPaginateItems(
         batch: Batch,
         nextBatchTrigger: Observable<Void>, q: String) ->
-        Observable<Page<[ClusterCategory]>> {
+        Observable<Page<[ICategories]>> {
             return NetworkService.instance
                 .requestObject(PantauAuthAPI.categories(q: q, page: batch.page, perPage: batch.limit),
                                c: BaseResponse<CategoriesResponse>.self)
@@ -120,20 +115,20 @@ class KategoriClusterViewModel: ViewModelType {
                 .asObservable()
                 .paginate(nextPageTrigger: nextBatchTrigger, hasNextPage: { (result) -> Bool in
                     return result.batch.next().hasNextPage
-                }, nextPageFactory: { (result) -> Observable<Page<[ClusterCategory]>> in
+                }, nextPageFactory: { (result) -> Observable<Page<[ICategories]>> in
                     self.recursivelyPaginateItems(batch: result.batch.next(), nextBatchTrigger: nextBatchTrigger, q: q)
                 })
                 .share(replay: 1, scope: .whileConnected)
             
     }
     
-    private func transfromToPage(response: BaseResponse<CategoriesResponse>, batch: Batch) -> Page<[ClusterCategory]> {
+    private func transfromToPage(response: BaseResponse<CategoriesResponse>, batch: Batch) -> Page<[ICategories]> {
         let nextBatch = Batch(offset: batch.offset,
                               limit: response.data.meta.pages.perPage ?? 10,
                               total: response.data.meta.pages.total,
                               count: response.data.meta.pages.page,
                               page: response.data.meta.pages.page)
-        return Page<[ClusterCategory]>(
+        return Page<[ICategories]>(
         item: response.data.categories,
         batch: nextBatch)
         

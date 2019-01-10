@@ -11,11 +11,10 @@ import RxCocoa
 
 
 protocol ReqClusterNavigator {
-    func back()
-    func launchKategori() -> Observable<Void>
+    func launchKategori() -> Observable<ResultCategory>
 }
 
-final class ReqClusterCoordinator: BaseCoordinator<Void> {
+final class ReqClusterCoordinator: BaseCoordinator<ResultRequest> {
     
     var navigationController: UINavigationController!
     
@@ -24,22 +23,25 @@ final class ReqClusterCoordinator: BaseCoordinator<Void> {
     }
     
     override func start() -> Observable<CoordinationResult> {
-        let viewController = ReqClusterController()
         let viewModel = ReqClusterViewModel(navigator: self)
+        let viewController = ReqClusterController()
         viewController.viewModel = viewModel
         navigationController.pushViewController(viewController, animated: true)
-        return Observable.never()
+        return viewModel.output.backO
+            .do(onNext: { [weak self] (_) in
+                self?.navigationController.popViewController(animated: true)
+            })
+            .asObservable()
+            .take(1)
     }
     
 }
 
 extension ReqClusterCoordinator: ReqClusterNavigator {
-    func back() {
-        navigationController.popViewController(animated: true)
+    
+    func launchKategori() -> Observable<ResultCategory> {
+        let categoryCoordinator = KategoriClusterCoordinator(navigationController: navigationController)
+        return coordinate(to: categoryCoordinator)
     }
     
-    func launchKategori() -> Observable<Void> {
-        let kategoriCoordinator = KategoriClusterCoordinator(navigationController: navigationController)
-        return coordinate(to: kategoriCoordinator)
-    }
 }

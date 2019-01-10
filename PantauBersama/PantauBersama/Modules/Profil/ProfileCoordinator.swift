@@ -73,6 +73,8 @@ extension ProfileCoordinator: ProfileNavigator {
     func launchReqCluster() -> Observable<Void> {
         let reqClusterCoordinator = ReqClusterCoordinator(navigationController: navigationController)
         return coordinate(to: reqClusterCoordinator)
+            .filter({ $0 == .create })
+            .mapToVoid()
     }
     
     func launchUndangAnggota() -> Observable<Void> {

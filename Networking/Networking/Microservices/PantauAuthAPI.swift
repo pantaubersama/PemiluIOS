@@ -39,6 +39,7 @@ public enum PantauAuthAPI {
     case clusters(q: String, page: Int, perPage: Int)
     case categories(q: String, page: Int, perPage: Int)
     case createCategories(t: String)
+    case createCluster(name: String, id: String, desc: String, image: UIImage?)
     
 }
 
@@ -87,7 +88,8 @@ extension PantauAuthAPI: TargetType {
             return "/v1/informants"
         case .achievedBadges(let id):
             return "/v1/achieved_badges/\(id)"
-        case .clusters:
+        case .clusters,
+             .createCluster:
             return "/v1/clusters"
         case .categories,
              .createCategories:
@@ -99,7 +101,8 @@ extension PantauAuthAPI: TargetType {
         switch self {
         case .refresh,
              .revoke,
-             .createCategories:
+             .createCategories,
+             .createCluster:
             return .post
         case .putKTP,
              .putSelfieKTP,
@@ -180,7 +183,8 @@ extension PantauAuthAPI: TargetType {
              .putSelfieKTP,
              .putFotoKTP,
              .putSignature,
-             .meAvatar:
+             .meAvatar,
+             .createCluster:
             return .uploadMultipart(self.multipartBody ?? [])
         default:
             return .requestParameters(parameters: parameters ?? [:], encoding: parameterEncoding)
@@ -227,6 +231,15 @@ extension PantauAuthAPI: TargetType {
             if let avatar = image, let d = avatar.jpegData(compressionQuality: 0.1) {
                 multipartFormData.append(buildMultipartFormData(name: "avatar", value: d))
             }
+            return multipartFormData
+        case .createCluster(let (name, id, desc, image)):
+            var multipartFormData = [MultipartFormData]()
+            if let avatar = image, let d = avatar.jpegData(compressionQuality: 0.1) {
+                multipartFormData.append(buildMultipartFormData(name: "image", value: d))
+            }
+            multipartFormData.append(buildMultipartFormData(key: "name", value: name))
+            multipartFormData.append(buildMultipartFormData(key: "category_id", value: id))
+            multipartFormData.append(buildMultipartFormData(key: "description", value: desc))
             return multipartFormData
         default:
             return nil
