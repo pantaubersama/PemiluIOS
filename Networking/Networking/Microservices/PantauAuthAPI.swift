@@ -40,6 +40,7 @@ public enum PantauAuthAPI {
     case categories(q: String, page: Int, perPage: Int)
     case createCategories(t: String)
     case createCluster(name: String, id: String, desc: String, image: UIImage?)
+    case votePreference(vote: Int)
     
 }
 
@@ -94,6 +95,8 @@ extension PantauAuthAPI: TargetType {
         case .categories,
              .createCategories:
             return "/v1/categories"
+        case .votePreference:
+            return "/v1/me/vote_preference"
         }
     }
     
@@ -110,7 +113,8 @@ extension PantauAuthAPI: TargetType {
              .putSignature,
              .meAvatar,
              .putMe,
-             .putInformants:
+             .putInformants,
+             .votePreference:
             return .put
         default:
             return .get
@@ -184,7 +188,8 @@ extension PantauAuthAPI: TargetType {
              .putFotoKTP,
              .putSignature,
              .meAvatar,
-             .createCluster:
+             .createCluster,
+             .votePreference:
             return .uploadMultipart(self.multipartBody ?? [])
         default:
             return .requestParameters(parameters: parameters ?? [:], encoding: parameterEncoding)
@@ -240,6 +245,10 @@ extension PantauAuthAPI: TargetType {
             multipartFormData.append(buildMultipartFormData(key: "name", value: name))
             multipartFormData.append(buildMultipartFormData(key: "category_id", value: id))
             multipartFormData.append(buildMultipartFormData(key: "description", value: desc))
+            return multipartFormData
+        case .votePreference(let vote):
+            var multipartFormData = [MultipartFormData]()
+            multipartFormData.append(buildMultipartFormData(key: "vote_preference", value: "\(vote)"))
             return multipartFormData
         default:
             return nil

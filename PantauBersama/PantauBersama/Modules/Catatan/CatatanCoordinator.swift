@@ -9,7 +9,8 @@
 import RxSwift
 
 protocol CatatanNavigator {
-   var finish: Observable<Void>! { get set }
+    var finish: Observable<Void>! { get set }
+    func back() -> Observable<Void>
 }
 
 final class CatatanCoordinator: BaseCoordinator<Void> {
@@ -36,5 +37,8 @@ final class CatatanCoordinator: BaseCoordinator<Void> {
 }
 
 extension CatatanCoordinator: CatatanNavigator {
-    
+    func back() -> Observable<Void> {
+        navigationController.popViewController(animated: true)
+        return Observable.empty()
+    }
 }
