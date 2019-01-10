@@ -12,8 +12,12 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ComingsoonController" customModule="PantauBersama" customModuleProvider="target">
             <connections>
+                <outlet property="facebook" destination="CM8-Oq-znh" id="j8A-0J-bJm"/>
+                <outlet property="instagram" destination="Ock-vb-z1L" id="OaV-VO-M4i"/>
                 <outlet property="lottieView" destination="2du-LF-bTR" id="T87-WB-4sH"/>
                 <outlet property="navbar" destination="wjw-PF-gto" id="3k5-Ji-ujV"/>
+                <outlet property="pantau" destination="9yJ-qq-KDJ" id="lqL-40-BgP"/>
+                <outlet property="twitter" destination="6Pe-K3-ose" id="RTZ-Gf-s54"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -71,34 +75,38 @@ Pantau Bersama untuk info tanggal updatenya</string>
                         <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="bj0-Ov-eBR">
                             <rect key="frame" x="85.5" y="329.5" width="204" height="36"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icPantau" translatesAutoresizingMaskIntoConstraints="NO" id="mzF-hJ-7TV">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9yJ-qq-KDJ">
                                     <rect key="frame" x="0.0" y="0.0" width="36" height="36"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="36" id="EGb-0H-npv"/>
-                                        <constraint firstAttribute="width" constant="36" id="qBY-Bd-Rw3"/>
+                                        <constraint firstAttribute="width" constant="36" id="ed8-Uz-ohl"/>
+                                        <constraint firstAttribute="height" constant="36" id="ug4-Y6-EHH"/>
                                     </constraints>
-                                </imageView>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="facebook" translatesAutoresizingMaskIntoConstraints="NO" id="del-IE-MBm">
+                                    <state key="normal" image="icPantau"/>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CM8-Oq-znh">
                                     <rect key="frame" x="56" y="0.0" width="36" height="36"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="36" id="wl2-Fs-Aef"/>
-                                        <constraint firstAttribute="width" constant="36" id="xlj-vu-aNZ"/>
+                                        <constraint firstAttribute="width" constant="36" id="tNs-fM-5SY"/>
+                                        <constraint firstAttribute="height" constant="36" id="ukR-eD-dvw"/>
                                     </constraints>
-                                </imageView>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icInstagram" translatesAutoresizingMaskIntoConstraints="NO" id="SnY-UD-hhC">
+                                    <state key="normal" image="facebook1"/>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ock-vb-z1L">
                                     <rect key="frame" x="112" y="0.0" width="36" height="36"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="36" id="5B5-Et-mzd"/>
-                                        <constraint firstAttribute="height" constant="36" id="XEu-8m-jHa"/>
+                                        <constraint firstAttribute="height" constant="36" id="VDD-hu-Hpn"/>
+                                        <constraint firstAttribute="width" constant="36" id="WYV-fT-GGV"/>
                                     </constraints>
-                                </imageView>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icTwitter" translatesAutoresizingMaskIntoConstraints="NO" id="29D-jq-VZt">
+                                    <state key="normal" image="icInstagram"/>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Pe-K3-ose">
                                     <rect key="frame" x="168" y="0.0" width="36" height="36"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="36" id="0nF-4d-DC1"/>
-                                        <constraint firstAttribute="height" constant="36" id="h9j-Q0-gnO"/>
+                                        <constraint firstAttribute="width" constant="36" id="8jO-ju-KRB"/>
+                                        <constraint firstAttribute="height" constant="36" id="yVY-aN-UK7"/>
                                     </constraints>
-                                </imageView>
+                                    <state key="normal" image="icTwitter"/>
+                                </button>
                             </subviews>
                         </stackView>
                     </subviews>
@@ -129,7 +137,7 @@ Pantau Bersama untuk info tanggal updatenya</string>
         </view>
     </objects>
     <resources>
-        <image name="facebook" width="24" height="24"/>
+        <image name="facebook1" width="36" height="36"/>
         <image name="icInstagram" width="36" height="36"/>
         <image name="icPantau" width="36" height="36"/>
         <image name="icTwitter" width="36" height="36"/>
