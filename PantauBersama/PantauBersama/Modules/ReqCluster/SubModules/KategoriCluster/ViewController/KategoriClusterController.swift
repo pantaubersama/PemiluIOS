@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import Common
+import Networking
 
 class KategoriClusterController: UIViewController {
     
@@ -28,6 +29,15 @@ class KategoriClusterController: UIViewController {
     
     var viewModel: KategoriClusterViewModel!
     private let disposeBag = DisposeBag()
+    
+    init(viewModel: KategoriClusterViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -97,6 +107,13 @@ class KategoriClusterController: UIViewController {
             .drive()
             .disposed(by: disposeBag)
         
+        tableView.rx.itemSelected
+            .bind(to: viewModel.input.itemSelectedI)
+            .disposed(by: disposeBag)
+        
+        viewModel.output.resultO
+            .drive()
+            .disposed(by: disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {

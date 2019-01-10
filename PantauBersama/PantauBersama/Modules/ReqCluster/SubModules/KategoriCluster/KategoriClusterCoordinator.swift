@@ -7,29 +7,31 @@
 //
 
 import RxSwift
+import Networking
 
 protocol KategoriClusterProtocol {
-    var finish: Observable<Void>! { get set }
     func launchAdd() -> Observable<Void>
 }
 
-final class KategoriClusterCoordinator: BaseCoordinator<Void> {
+final class KategoriClusterCoordinator: BaseCoordinator<ResultCategory> {
     
     private let navigationController: UINavigationController!
-    var finish: Observable<Void>!
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
     
-    override func start() -> Observable<Void> {
+    override func start() -> Observable<CoordinationResult> {
         let viewModel = KategoriClusterViewModel(navigator: self)
-        let viewController = KategoriClusterController()
+        let viewController = KategoriClusterController(viewModel: viewModel)
         viewController.viewModel = viewModel
         navigationController.pushViewController(viewController, animated: true)
-        return finish.do(onNext: { [weak self] (_) in
-            self?.navigationController.popViewController(animated: true)
-        })
+        return viewModel.output.resultO
+            .asObservable()
+            .take(1)
+            .do(onNext: { [weak self] (_) in
+                self?.navigationController.popViewController(animated: true)
+            })
     }
     
 }

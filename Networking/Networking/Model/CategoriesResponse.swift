@@ -15,7 +15,7 @@ public protocol ICategories {
 
 
 public struct CategoriesResponse: Codable {
-    public var categories: [ClusterCategory]
+    public var categories: [Category]
     public var meta: Meta
 }
 
@@ -23,7 +23,7 @@ public struct SingleCategory: Codable {
     public var category: Category
 }
 
-public struct Category: Codable {
+public struct Category: Codable, ICategories {
     public var id: String
     public var name: String
 }
