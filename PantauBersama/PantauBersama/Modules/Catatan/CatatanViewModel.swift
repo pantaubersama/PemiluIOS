@@ -21,6 +21,7 @@ class CatatanViewModel: ViewModelType {
         let viewWillAppearI: AnyObserver<Void>
         let notePreferenceI: AnyObserver<String>
         let notePreferenceValueI: BehaviorSubject<Int>
+        let updateI: AnyObserver<Void>
     }
     
     struct Output {
@@ -28,6 +29,9 @@ class CatatanViewModel: ViewModelType {
         let userDataO: Driver<UserResponse>
         let notePreferenceO: Driver<String>
         let notePreferenceValueO: Driver<Int>
+        let enableO: Driver<Bool>
+        let updateO: Driver<Void>
+        let errorTracker: Driver<Error>
     }
     
     private var navigator: CatatanNavigator
@@ -37,6 +41,7 @@ class CatatanViewModel: ViewModelType {
     private let viewWillAppearS = PublishSubject<Void>()
     private let notePreferenceS = PublishSubject<String>()
     private let notePreferenceValueS = BehaviorSubject<Int>(value: 0)
+    private let updateS = PublishSubject<Void>()
     
     init(navigator: CatatanNavigator) {
         self.navigator = navigator
@@ -46,7 +51,8 @@ class CatatanViewModel: ViewModelType {
             backI: backS.asObserver(),
             viewWillAppearI: viewWillAppearS.asObserver(),
             notePreferenceI: notePreferenceS.asObserver(),
-            notePreferenceValueI: notePreferenceValueS.asObserver()
+            notePreferenceValueI: notePreferenceValueS.asObserver(),
+            updateI: updateS.asObserver()
         )
         
         // MARK
@@ -74,11 +80,38 @@ class CatatanViewModel: ViewModelType {
         let note = notePreferenceS
             .asDriverOnErrorJustComplete()
         
+        let enable = notePreferenceValueS
+            .map { (i) -> Bool in
+                return i > 0
+            }.startWith(false)
+            .asDriverOnErrorJustComplete()
+        
+        let update = updateS
+            .withLatestFrom(notePreferenceValueS)
+            .flatMapLatest { [weak self] (i) -> Observable<BaseResponse<UserResponse>> in
+                guard let `self` = self else { return Observable.empty() }
+                return NetworkService.instance
+                    .requestObject(PantauAuthAPI.votePreference(vote: i),
+                                   c: BaseResponse<UserResponse>.self)
+                    .trackError(self.errorTracker)
+                    .trackActivity(self.activityIndicator)
+                    .do(onNext: { (r) in
+                        AppState.saveMe(r.data)
+                    })
+                    .asObservable()
+                    .catchErrorJustComplete()
+            }
+            .mapToVoid()
+            .flatMapLatest({ navigator.back() })
+            .asDriverOnErrorJustComplete()
         
         output = Output(totalResultO: totalResult,
                         userDataO: userData.asDriverOnErrorJustComplete(),
                         notePreferenceO: note,
-                        notePreferenceValueO: notePreferenceValueS.asDriverOnErrorJustComplete())
+                        notePreferenceValueO: notePreferenceValueS.asDriverOnErrorJustComplete(),
+                        enableO: enable,
+                        updateO: update,
+                        errorTracker: errorTracker.asDriver())
     }
     
     private func totalResult() -> Observable<TrendResponse> {

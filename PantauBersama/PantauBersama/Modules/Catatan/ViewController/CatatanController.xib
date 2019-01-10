@@ -21,6 +21,7 @@
                 <outlet property="labelPercentage" destination="5JW-72-Ymj" id="pEK-Vh-eM6"/>
                 <outlet property="labelPreference" destination="EeV-iS-0Ec" id="mTG-iK-cNN"/>
                 <outlet property="notePreference" destination="62y-QT-9Va" id="7zJ-eq-BT0"/>
+                <outlet property="updateButton" destination="euc-Rn-MJ9" id="AAW-S2-KU1"/>
                 <outlet property="view" destination="iN0-l3-epB" id="k7F-SH-moc"/>
             </connections>
         </placeholder>

@@ -23,11 +23,16 @@ class CatatanController: UIViewController {
     @IBOutlet weak var notePreference: Label!
     @IBOutlet weak var containerPaslonSatu: UIView!
     @IBOutlet weak var containerPaslonDua: UIView!
+    private var buttonGroup: [Button] = []
+    private var containerGroup: [UIView] = []
+    @IBOutlet weak var updateButton: Button!
     
     private let disposeBag: DisposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        buttonGroup = [buttonPaslonSatu, buttonPaslonDua, buttonGolput]
+        containerGroup = [containerPaslonSatu, containerPaslonDua]
         
         navigationController?.navigationBar.configure(with: .white)
         title = "Catatan Pilihanku"
@@ -62,6 +67,10 @@ class CatatanController: UIViewController {
             .bind(to: viewModel.input.notePreferenceValueI)
             .disposed(by: disposeBag)
         
+        updateButton.rx.tap
+            .bind(to: viewModel.input.updateI)
+            .disposed(by: disposeBag)
+        
         viewModel.output.totalResultO
             .drive(onNext: { [weak self] (response) in
                 guard let `self` = self else { return }
@@ -70,7 +79,7 @@ class CatatanController: UIViewController {
                     self.iconPreference.af_setImage(withURL: URL(string: avatarUrl)!)
                 }
                 self.labelPreference.text = "\(response.meta.quizzes.finished) dari \(response.meta.quizzes.total) Kuis"
-                self.labelPercentage.text = "\(Double(preference?.percentage ?? 0.0)) (\(preference?.team.title ?? ""))"
+                self.labelPercentage.text = "\(Double(preference?.percentage ?? 0.0))% (\(preference?.team.title ?? ""))"
             })
             .disposed(by: disposeBag)
         
@@ -79,12 +88,12 @@ class CatatanController: UIViewController {
                 guard let `self` = self else { return }
                 if let votePreference = response.user.votePreference {
                     switch votePreference {
-                    case 0:
+                    case 1:
                         self.buttonPaslonSatu.layer.borderColor = Color.orange_warm.cgColor
                         self.buttonPaslonSatu.setTitleColor(Color.orange_warm, for: .normal)
                         self.containerPaslonSatu.layer.borderColor = Color.orange_warm.cgColor
                         self.notePreference.text = "(Jokowi - Makruf)"
-                    case 1:
+                    case 2:
                         self.buttonPaslonDua.layer.borderColor = Color.orange_warm.cgColor
                         self.buttonPaslonDua.setTitleColor(Color.orange_warm, for: .normal)
                         self.containerPaslonDua.layer.borderColor = Color.orange_warm.cgColor
@@ -110,39 +119,42 @@ class CatatanController: UIViewController {
         viewModel.output.notePreferenceValueO
             .drive(onNext: { [weak self] (i) in
                 guard let `self` = self else { return }
+                self.resetButton()
                 switch i {
                 case 1:
                     self.buttonPaslonSatu.layer.borderColor = Color.orange_warm.cgColor
                     self.buttonPaslonSatu.setTitleColor(Color.orange_warm, for: .normal)
                     self.containerPaslonSatu.layer.borderColor = Color.orange_warm.cgColor
-                    self.buttonPaslonDua.layer.borderColor = Color.grey_five.cgColor
-                    self.buttonPaslonDua.setTitleColor(Color.grey_five, for: .normal)
-                    self.containerPaslonDua.layer.borderColor = Color.grey_five.cgColor
-                    self.buttonGolput.layer.borderColor = Color.grey_five.cgColor
-                    self.buttonGolput.setTitleColor(Color.grey_five, for: .normal)
                 case 2:
                     self.buttonPaslonDua.layer.borderColor = Color.orange_warm.cgColor
                     self.buttonPaslonDua.setTitleColor(Color.orange_warm, for: .normal)
                     self.containerPaslonDua.layer.borderColor = Color.orange_warm.cgColor
-                    self.buttonPaslonSatu.layer.borderColor = Color.grey_five.cgColor
-                    self.buttonPaslonSatu.setTitleColor(Color.grey_five, for: .normal)
-                    self.containerPaslonSatu.layer.borderColor = Color.grey_five.cgColor
-                    self.buttonGolput.layer.borderColor = Color.grey_five.cgColor
-                    self.buttonGolput.setTitleColor(Color.grey_five, for: .normal)
                 case 3:
                     self.buttonGolput.layer.borderColor = Color.orange_warm.cgColor
                     self.buttonGolput.setTitleColor(Color.orange_warm, for: .normal)
-                    self.buttonPaslonSatu.layer.borderColor = Color.grey_five.cgColor
-                    self.buttonPaslonSatu.setTitleColor(Color.grey_five, for: .normal)
-                    self.containerPaslonSatu.layer.borderColor = Color.grey_five.cgColor
-                    self.buttonPaslonDua.layer.borderColor = Color.grey_five.cgColor
-                    self.buttonPaslonDua.setTitleColor(Color.grey_five, for: .normal)
-                    self.containerPaslonDua.layer.borderColor = Color.grey_five.cgColor
                 default: break
                 }
             })
             .disposed(by: disposeBag)
         
+        viewModel.output.enableO
+            .do(onNext: { [weak self] (enable) in
+                guard let `self` = self else { return }
+                self.updateButton.backgroundColor = enable ? Color.primary_red : Color.grey_one
+            })
+            .drive(updateButton.rx.isEnabled)
+            .disposed(by: disposeBag)
+        
+        viewModel.output.updateO
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.errorTracker
+            .drive(onNext: { [weak self] (e) in
+                guard let alert = UIAlertController.alert(with: e) else { return }
+                self?.navigationController?.present(alert, animated: true, completion: nil)
+            })
+            .disposed(by: disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -156,7 +168,13 @@ class CatatanController: UIViewController {
 extension CatatanController {
     
     private func resetButton() {
-        
+        buttonGroup.forEach { (b) in
+            b.borderColor = Color.grey_five
+            b.setTitleColor(Color.grey_five, for: .normal)
+        }
+        containerGroup.forEach { (v) in
+            v.layer.borderColor = Color.grey_five.cgColor
+        }
     }
     
 }
