@@ -39,13 +39,15 @@ public struct Quiz: Codable {
     public let id, title, description: String
     public let image: Image?
     public let quizQuestionsCount: Int
-    public let createdAt: CreatedAt
+    public let createdAt: String
+    public let createdAtInWord: CreatedAt
     public let participationStatus: String
     
     enum CodingKeys: String, CodingKey {
         case id, title, description, image
         case quizQuestionsCount = "quiz_questions_count"
         case createdAt = "created_at"
+        case createdAtInWord = "created_at_in_word"
         case participationStatus = "participation_status"
     }
     

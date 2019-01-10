@@ -21,9 +21,9 @@ public struct QuestionModel {
     init(question: Question) {
         self.id = question.id
         self.body = question.body
-        self.createdAt = CreatedAt(iso8601: question.createdAt.iso8601,
-                                 en: question.createdAt.en,
-                                 id: question.createdAt.id)
+        self.createdAt = CreatedAt(iso8601: question.createdAtInWord.iso8601,
+                                 en: question.createdAtInWord.en,
+                                 id: question.createdAtInWord.id)
         self.created = question.created
         self.likeCount = question.likeCount
         self.user = Creator(id: question.user.id,
