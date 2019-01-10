@@ -42,7 +42,8 @@ public struct QuestionsResponse: Codable {
 
 public struct Question: Codable {
     public let id, body: String
-    public let createdAt: CreatedAt
+    public let createdAt: String
+    public let createdAtInWord: CreatedAt
     public let created: String
     public let likeCount: Int
     public let user: Creator
@@ -51,6 +52,7 @@ public struct Question: Codable {
     enum CodingKeys: String, CodingKey {
         case id, body
         case createdAt = "created_at"
+        case createdAtInWord = "created_at_in_word"
         case created
         case likeCount = "like_count"
         case user

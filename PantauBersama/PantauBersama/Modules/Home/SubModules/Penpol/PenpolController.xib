@@ -13,7 +13,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PenpolController" customModule="PantauBersama" customModuleProvider="target">
             <connections>
                 <outlet property="containerView" destination="DPh-lH-IWS" id="mI3-4X-PnG"/>
-                <outlet property="createAskButton" destination="vYV-pA-2lN" id="tae-HX-nZO"/>
+                <outlet property="createAskButton" destination="1UB-mh-9cm" id="Ps9-Od-hrA"/>
                 <outlet property="filterButton" destination="eM8-C8-PV2" id="aiB-gU-k3t"/>
                 <outlet property="navbar" destination="mgK-vJ-xWz" id="4yL-Jg-sgD"/>
                 <outlet property="segmentedControl" destination="Zuj-sl-Ujr" id="V73-H2-Q6u"/>
@@ -39,7 +39,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="375" height="48"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zuj-sl-Ujr" customClass="SegementedControl" customModule="Common">
-                                    <rect key="frame" x="0.0" y="0.0" width="279" height="48"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="327" height="48"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="string" keyPath="titles" value="Tanya Kandidat, Kuis"/>
@@ -57,13 +57,6 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                 </view>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vYV-pA-2lN">
-                                    <rect key="frame" x="279" y="0.0" width="48" height="48"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="48" id="f58-tU-nVV"/>
-                                    </constraints>
-                                    <state key="normal" image="icAdd"/>
-                                </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eM8-C8-PV2">
                                     <rect key="frame" x="327" y="0.0" width="48" height="48"/>
                                     <constraints>
@@ -73,9 +66,6 @@
                                 </button>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <constraints>
-                                <constraint firstItem="vYV-pA-2lN" firstAttribute="leading" secondItem="Zuj-sl-Ujr" secondAttribute="trailing" id="VTu-wy-qK7"/>
-                            </constraints>
                         </stackView>
                     </subviews>
                     <color key="backgroundColor" red="0.68041622639999999" green="0.1499232352" blue="0.14898997550000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -91,6 +81,14 @@
                     <rect key="frame" x="0.0" y="124" width="375" height="543"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1UB-mh-9cm">
+                    <rect key="frame" x="295" y="587" width="60" height="60"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="60" id="ZeO-QG-yD4"/>
+                        <constraint firstAttribute="width" constant="60" id="xIi-HJ-Fqj"/>
+                    </constraints>
+                    <state key="normal" image="icCreate"/>
+                </button>
             </subviews>
             <color key="backgroundColor" red="0.68041622639999999" green="0.1499232352" blue="0.14898997550000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
             <constraints>
@@ -102,6 +100,8 @@
                 <constraint firstItem="gTm-rd-zil" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="a7m-Tr-wAa"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="DPh-lH-IWS" secondAttribute="bottom" id="b72-HF-aA6"/>
                 <constraint firstItem="mgK-vJ-xWz" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="cjV-3o-67W"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="1UB-mh-9cm" secondAttribute="trailing" constant="20" id="gwv-ot-eft"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="1UB-mh-9cm" secondAttribute="bottom" constant="20" id="qU4-E2-18T"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="gTm-rd-zil" secondAttribute="trailing" id="sf7-XT-pWv"/>
                 <constraint firstItem="DPh-lH-IWS" firstAttribute="top" secondItem="gTm-rd-zil" secondAttribute="bottom" id="ulg-kc-B8V"/>
             </constraints>
@@ -110,7 +110,7 @@
         </view>
     </objects>
     <resources>
-        <image name="icAdd" width="24" height="24"/>
+        <image name="icCreate" width="60" height="60"/>
         <image name="icFilter" width="24" height="24"/>
     </resources>
 </document>
