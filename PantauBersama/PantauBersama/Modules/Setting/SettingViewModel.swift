@@ -122,7 +122,13 @@ final class SettingViewModel: ISettingViewModel, ISettingViewModelInput, ISettin
                 case .updateDataLapor:
                     return navigator.launchProfileEdit(data: data, type: ProfileHeaderItem.editDataLapor)
                 case .cluster:
-                    return navigator.launchUndang()
+                    // MARK
+                    // If user data cluster == nil return alert
+                    if data.cluster == nil {
+                        return navigator.launchAlertUndang()
+                    } else {
+                        return navigator.launchUndang()
+                    }
                 default:
                     return Observable.empty()
                 }

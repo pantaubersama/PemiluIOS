@@ -39,9 +39,20 @@ class HeaderProfile: UIView {
         if let url = user.avatar.thumbnail.url {
             avatar.af_setImage(withURL: URL(string: url)!)
         }
+      
+        status.text = user.about
         username.text = user.fullName ?? ""
         buttonVerified.isSelected = user.verified
         buttonVerified.borderColor = user.verified ? Color.secondary_cyan : Color.grey_three
+        if user.verified == true {
+            buttonVerified.setTitle("Terverifikasi", for: .normal)
+            buttonVerified.setTitleColor(Color.secondary_cyan, for: .normal)
+            buttonVerified.setImage(#imageLiteral(resourceName: "baselineVerified48Px"), for: .normal)
+        } else {
+            buttonVerified.setTitle("Belum Verifikasi", for: .normal)
+            buttonVerified.setTitleColor(Color.grey_three, for: .normal)
+            buttonVerified.setImage(#imageLiteral(resourceName: "icUnverified"), for: .normal)
+        }
         buttonVerified.isEnabled = user.verified ? false : true
     }
 }

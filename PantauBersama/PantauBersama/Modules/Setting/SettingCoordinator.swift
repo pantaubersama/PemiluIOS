@@ -10,6 +10,11 @@ import UIKit
 import RxSwift
 import Networking
 
+enum UndangCluster {
+    case cancel
+    case buat(item: ResultRequest)
+}
+
 protocol SettingNavigator {
     var finish: Observable<Void>! { get set }
     func launchProfileEdit(data: User, type: ProfileHeaderItem) -> Observable<Void>
@@ -17,6 +22,8 @@ protocol SettingNavigator {
     func launchBadge() -> Observable<Void>
     func launchVerifikasi(user: VerificationsResponse.U) -> Observable<Void>
     func launchUndang() -> Observable<Void>
+    func launchAlertUndang() -> Observable<Void>
+    func launchReqCluster() -> Observable<ResultRequest>
 }
 
 final class SettingCoordinator: BaseCoordinator<Void> {
@@ -100,5 +107,37 @@ extension SettingCoordinator: SettingNavigator {
     func launchUndang() -> Observable<Void> {
         let undangCoordinator = UndangAnggotaCoordinator(navigationController: navigationController)
         return coordinate(to: undangCoordinator)
+    }
+    
+    func launchAlertUndang() -> Observable<Void> {
+        return Observable<UndangCluster>.create({ [weak self] (observer) -> Disposable in
+            let alert = UIAlertController(title: "Anda belum memiliki Cluster", message: "Apakah anda ingin request buat Cluster?", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Batal", style: .cancel, handler: { (_) in
+                observer.onNext(UndangCluster.cancel)
+                observer.on(.completed)
+            }))
+            alert.addAction(UIAlertAction(title: "Ya", style: .default
+                , handler: { (_) in
+                    observer.onNext(UndangCluster.buat(item: ResultRequest.create))
+                    observer.on(.completed)
+            }))
+            DispatchQueue.main.async {
+                self?.navigationController.present(alert, animated: true, completion: nil)
+            }
+            return Disposables.create()
+        })
+        .flatMapLatest({ (undang) -> Observable<ResultRequest> in
+            switch undang {
+            case .buat(item: ResultRequest.create):
+                return self.launchReqCluster()
+            default: return Observable.empty()
+            }
+        })
+        .mapToVoid()
+    }
+    
+    func launchReqCluster() -> Observable<ResultRequest> {
+        let reqClusterCoordinator = ReqClusterCoordinator(navigationController: navigationController)
+        return coordinate(to: reqClusterCoordinator)
     }
 }
