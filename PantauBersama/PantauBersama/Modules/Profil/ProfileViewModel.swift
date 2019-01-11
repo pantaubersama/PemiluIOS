@@ -176,7 +176,12 @@ final class ProfileViewModel: IProfileViewModel, IProfileViewModelInput, IProfil
             .filter({ $0 == .undang })
             .withLatestFrom(userData)
             .flatMap { (user) -> Observable<Void> in
-                return navigator.launchUndangAnggota(data: user.user)
+                // TODO : Hanya moderator yang bisa mengundang clustet
+                if user.user.isModerator == true {
+                    return navigator.launchUndangAnggota(data: user.user)
+                } else {
+                    return navigator.lauchAlertCluster()
+                }
             }
             .mapToVoid()
         

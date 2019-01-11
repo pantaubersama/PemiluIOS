@@ -24,6 +24,7 @@ protocol SettingNavigator {
     func launchUndang(data: User) -> Observable<Void>
     func launchAlertUndang() -> Observable<Void>
     func launchReqCluster() -> Observable<ResultRequest>
+    func launchAlertCluster() -> Observable<Void>
 }
 
 final class SettingCoordinator: BaseCoordinator<Void> {
@@ -139,5 +140,20 @@ extension SettingCoordinator: SettingNavigator {
     func launchReqCluster() -> Observable<ResultRequest> {
         let reqClusterCoordinator = ReqClusterCoordinator(navigationController: navigationController)
         return coordinate(to: reqClusterCoordinator)
+    }
+    
+    func launchAlertCluster() -> Observable<Void> {
+        return Observable<ClusterOption>.create({ [weak self] (observer) -> Disposable in
+            let alert = UIAlertController(title: nil, message: "Anda bukan moderator atau admin dari Cluster ini", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Oke", style: .default
+                , handler: { (_) in
+                    observer.onNext(.done)
+                    observer.on(.completed)
+            }))
+            DispatchQueue.main.async {
+                self?.navigationController.present(alert, animated: true, completion: nil)
+            }
+            return Disposables.create()
+        }).mapToVoid()
     }
 }

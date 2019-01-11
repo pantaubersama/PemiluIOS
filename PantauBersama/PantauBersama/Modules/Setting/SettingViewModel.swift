@@ -126,8 +126,10 @@ final class SettingViewModel: ISettingViewModel, ISettingViewModelInput, ISettin
                     // If user data cluster == nil return alert
                     if data.cluster == nil {
                         return navigator.launchAlertUndang()
-                    } else {
+                    } else if data.isModerator == true {
                         return navigator.launchUndang(data: data)
+                    } else {
+                        return navigator.launchAlertCluster()
                     }
                 default:
                     return Observable.empty()
