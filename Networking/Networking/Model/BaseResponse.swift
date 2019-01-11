@@ -11,3 +11,8 @@ import Foundation
 public struct BaseResponse<T: Codable>: Codable {
     public var data: T
 }
+
+// use this one for type Array
+public struct BaseResponses<T: Codable>: Codable {
+    public var data: [T]
+}

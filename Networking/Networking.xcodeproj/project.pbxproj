@@ -54,6 +54,7 @@
 		84D831F021C4DCEC00C437B7 /* Networking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84D831E621C4DCEC00C437B7 /* Networking.framework */; };
 		84D831F521C4DCEC00C437B7 /* NetworkingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D831F421C4DCEC00C437B7 /* NetworkingTests.swift */; };
 		84D831F721C4DCEC00C437B7 /* Networking.h in Headers */ = {isa = PBXBuildFile; fileRef = 84D831E921C4DCEC00C437B7 /* Networking.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		84FC35EE21E89BE4005FB016 /* ClusterResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FC35ED21E89BE4005FB016 /* ClusterResponse.swift */; };
 		84FE6EB421D5F339009A0F55 /* UserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FE6EB321D5F339009A0F55 /* UserResponse.swift */; };
 		84FE6EB621D5F35E009A0F55 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FE6EB521D5F35E009A0F55 /* User.swift */; };
 		84FE6EB821D5F374009A0F55 /* BaseResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FE6EB721D5F374009A0F55 /* BaseResponse.swift */; };
@@ -121,6 +122,7 @@
 		84D831EF21C4DCEC00C437B7 /* NetworkingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NetworkingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		84D831F421C4DCEC00C437B7 /* NetworkingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingTests.swift; sourceTree = "<group>"; };
 		84D831F621C4DCEC00C437B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		84FC35ED21E89BE4005FB016 /* ClusterResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterResponse.swift; sourceTree = "<group>"; };
 		84FE6EB321D5F339009A0F55 /* UserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResponse.swift; sourceTree = "<group>"; };
 		84FE6EB521D5F35E009A0F55 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		84FE6EB721D5F374009A0F55 /* BaseResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseResponse.swift; sourceTree = "<group>"; };
@@ -228,6 +230,7 @@
 				11E798D321E2F4FA002AABDC /* QuizSummaryResponse.swift */,
 				137A2A0021E3C80F00F19072 /* TrendResponse.swift */,
 				84B7B8C821E4E6730099E7E3 /* CategoriesResponse.swift */,
+				84FC35ED21E89BE4005FB016 /* ClusterResponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -480,6 +483,7 @@
 				11D0669D21E26A07003AC9BB /* QuizResultResponse.swift in Sources */,
 				11C7BB2521DB36D5008CA49B /* QuestionOptionResponse.swift in Sources */,
 				8482E63021D9048800D5DC07 /* Paginate.swift in Sources */,
+				84FC35EE21E89BE4005FB016 /* ClusterResponse.swift in Sources */,
 				84B2523A21CAC7FB00565D82 /* ErrorResponse.swift in Sources */,
 				84B2526221CBD99900565D82 /* IdentitasResponses.swift in Sources */,
 				11B145F021D68CFA00BB26C8 /* Page.swift in Sources */,

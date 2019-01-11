@@ -42,6 +42,8 @@ public enum PantauAuthAPI {
     case createCluster(name: String, id: String, desc: String, image: UIImage?)
     case votePreference(vote: Int)
     case deleteCluster
+    case clusterMagicLink(id: String, enable: Bool)
+    case clusterInvite(emails: String)
     
 }
 
@@ -100,6 +102,10 @@ extension PantauAuthAPI: TargetType {
             return "/v1/me/vote_preference"
         case .deleteCluster:
             return "/v1/me/clusters"
+        case .clusterMagicLink(let (id, _)):
+            return "/v1/clusters/\(id)/magic_link"
+        case .clusterInvite:
+            return "/v1/clusters/invite"
         }
     }
     
@@ -108,7 +114,9 @@ extension PantauAuthAPI: TargetType {
         case .refresh,
              .revoke,
              .createCategories,
-             .createCluster:
+             .createCluster,
+             .clusterMagicLink,
+             .clusterInvite:
             return .post
         case .putKTP,
              .putSelfieKTP,
@@ -194,7 +202,9 @@ extension PantauAuthAPI: TargetType {
              .putSignature,
              .meAvatar,
              .createCluster,
-             .votePreference:
+             .votePreference,
+             .clusterMagicLink,
+             .clusterInvite:
             return .uploadMultipart(self.multipartBody ?? [])
         default:
             return .requestParameters(parameters: parameters ?? [:], encoding: parameterEncoding)
@@ -254,6 +264,14 @@ extension PantauAuthAPI: TargetType {
         case .votePreference(let vote):
             var multipartFormData = [MultipartFormData]()
             multipartFormData.append(buildMultipartFormData(key: "vote_preference", value: "\(vote)"))
+            return multipartFormData
+        case .clusterMagicLink(let (_, enable)):
+            var multipartFormData = [MultipartFormData]()
+            multipartFormData.append(buildMultipartFormData(key: "enable", value: "\(enable)"))
+            return multipartFormData
+        case .clusterInvite(let emails):
+            var multipartFormData = [MultipartFormData]()
+            multipartFormData.append(buildMultipartFormData(key: "emails", value: emails))
             return multipartFormData
         default:
             return nil

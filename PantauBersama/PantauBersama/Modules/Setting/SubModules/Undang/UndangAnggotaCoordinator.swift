@@ -12,9 +12,10 @@ import Networking
 
 protocol UndangAnggotaNavigator {
     var finish: Observable<Void>! { get set }
+    func success() -> Observable<Void>
 }
 
-class UndangAnggotaCoordinator : BaseCoordinator<Void>, UndangAnggotaNavigator {
+class UndangAnggotaCoordinator : BaseCoordinator<Void> {
     var finish: Observable<Void>!
     
     private let navigationController: UINavigationController
@@ -36,4 +37,20 @@ class UndangAnggotaCoordinator : BaseCoordinator<Void>, UndangAnggotaNavigator {
         })
     }
     
+}
+
+extension UndangAnggotaCoordinator: UndangAnggotaNavigator {
+    func success() -> Observable<Void> {
+        return Observable<Any>.create({ [weak self] (observer) -> Disposable in
+            let alert = UIAlertController(title: "Sukses", message: "Behasil menambahkan email", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Oke", style: .default, handler: { (_) in
+                observer.onNext(())
+                observer.on(.completed)
+            }))
+            DispatchQueue.main.async {
+                self?.navigationController.present(alert, animated: true, completion: nil)
+            }
+            return Disposables.create()
+        }).mapToVoid()
+    }
 }

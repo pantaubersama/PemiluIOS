@@ -44,6 +44,7 @@
 		84F6980D21C8DC7F00890917 /* UINavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F6980C21C8DC7F00890917 /* UINavigationBar.swift */; };
 		84F8929521C77CCF00DC1048 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F8929421C77CCF00DC1048 /* UIColor.swift */; };
 		84F8929721C783A700DC1048 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F8929621C783A700DC1048 /* Label.swift */; };
+		84FC35F021E89FC4005FB016 /* ValidEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FC35EF21E89FC4005FB016 /* ValidEmail.swift */; };
 		C6B88B100524603839760787 /* Pods_CommonTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02158AB122F8CEFF16E59736 /* Pods_CommonTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -101,6 +102,7 @@
 		84F6980C21C8DC7F00890917 /* UINavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationBar.swift; sourceTree = "<group>"; };
 		84F8929421C77CCF00DC1048 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		84F8929621C783A700DC1048 /* Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
+		84FC35EF21E89FC4005FB016 /* ValidEmail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidEmail.swift; sourceTree = "<group>"; };
 		D0C86F94B18D2CFB51A563DE /* Pods-Common.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Common.release.xcconfig"; path = "../Pods/Target Support Files/Pods-Common/Pods-Common.release.xcconfig"; sourceTree = "<group>"; };
 		F51EF50C46CE7E2E19AE1628 /* Pods-Common.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Common.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-Common/Pods-Common.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -131,6 +133,7 @@
 			children = (
 				84619D4521DB683300EB58CF /* DateHelper.swift */,
 				11E798D721E327D5002AABDC /* StringFormatter.swift */,
+				84FC35EF21E89FC4005FB016 /* ValidEmail.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -463,6 +466,7 @@
 				841CDA4421C8BFB10015680C /* SegementedControl.swift in Sources */,
 				8428AA8F21C7A4420008E975 /* UITableView.swift in Sources */,
 				845C571121CE0EDC00EDCDFE /* ICellConfigurator.swift in Sources */,
+				84FC35F021E89FC4005FB016 /* ValidEmail.swift in Sources */,
 				11E798D821E327D5002AABDC /* StringFormatter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
