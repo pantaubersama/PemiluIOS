@@ -18,6 +18,7 @@ protocol ProfileNavigator: LinimasaNavigator, PenpolNavigator, BadgeNavigator {
     func launchReqCluster() -> Observable<Void>
     func launchUndangAnggota(data: User) -> Observable<Void>
     func launchAlertExitCluster() -> Observable<Void>
+    func lauchAlertCluster() -> Observable<Void>
 }
 
 
@@ -103,6 +104,21 @@ extension ProfileCoordinator: ProfileNavigator {
             .filter({ $0 == .done })
             .mapToVoid()
             .flatMapLatest({ self.deleteCluster() })
+    }
+    
+    func lauchAlertCluster() -> Observable<Void> {
+        return Observable<ClusterOption>.create({ [weak self] (observer) -> Disposable in
+            let alert = UIAlertController(title: nil, message: "Anda bukan moderator atau admin dari Cluster ini", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Oke", style: .default
+                , handler: { (_) in
+                    observer.onNext(.done)
+                    observer.on(.completed)
+            }))
+            DispatchQueue.main.async {
+                self?.navigationController.present(alert, animated: true, completion: nil)
+            }
+            return Disposables.create()
+        }).mapToVoid()
     }
     
 }
