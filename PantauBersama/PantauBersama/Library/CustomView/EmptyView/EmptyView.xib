@@ -21,18 +21,32 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p9l-a9-sZI">
-                    <rect key="frame" x="97.5" y="243.5" width="180" height="180"/>
+                    <rect key="frame" x="97.5" y="263.5" width="180" height="180"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="180" id="6zt-ha-csl"/>
                         <constraint firstAttribute="width" constant="180" id="bNd-Eh-jF2"/>
                     </constraints>
                 </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Oops.. data tidak tersedia" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TfI-a5-HRi" customClass="Label" customModule="Common">
+                    <rect key="frame" x="20" y="448.5" width="335" height="16"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                            <real key="value" value="13"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </label>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="TfI-a5-HRi" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="LSL-rZ-bIF"/>
                 <constraint firstItem="p9l-a9-sZI" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="NJ9-RE-LjK"/>
-                <constraint firstItem="p9l-a9-sZI" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="eFC-e6-c6L"/>
+                <constraint firstItem="p9l-a9-sZI" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="20" id="eFC-e6-c6L"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="TfI-a5-HRi" secondAttribute="trailing" constant="20" id="pxt-HP-NDA"/>
+                <constraint firstItem="TfI-a5-HRi" firstAttribute="top" secondItem="p9l-a9-sZI" secondAttribute="bottom" constant="5" id="tg5-66-zsp"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
         </view>
