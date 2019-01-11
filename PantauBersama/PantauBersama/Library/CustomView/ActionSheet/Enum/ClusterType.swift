@@ -12,3 +12,8 @@ enum ClusterType: Int {
     case undang
     case leave
 }
+
+enum ClusterOption {
+    case cancel
+    case done
+}

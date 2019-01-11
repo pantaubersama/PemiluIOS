@@ -164,13 +164,19 @@ final class ProfileViewModel: IProfileViewModel, IProfileViewModelInput, IProfil
         // MARK
         // Cluster action
         let clusterAction = clusterS
-            .flatMapLatest { (menu) -> Observable<Void> in
-                switch menu {
-                case .undang:
-                    return navigator.launchUndangAnggota()
+            .flatMapLatest({ (type) -> Observable<ClusterType> in
+                switch type {
                 case .leave:
-                    return Observable.empty()
+                    return navigator.launchAlertExitCluster()
+                        .map({ ClusterType.leave })
+                case .undang:
+                    return Observable.just(ClusterType.undang)
                 }
+            })
+            .filter({ $0 == .undang })
+            .withLatestFrom(userData)
+            .flatMap { (user) -> Observable<Void> in
+                return navigator.launchUndangAnggota(data: user.user)
             }
             .mapToVoid()
         

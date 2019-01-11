@@ -41,6 +41,7 @@ public enum PantauAuthAPI {
     case createCategories(t: String)
     case createCluster(name: String, id: String, desc: String, image: UIImage?)
     case votePreference(vote: Int)
+    case deleteCluster
     
 }
 
@@ -97,6 +98,8 @@ extension PantauAuthAPI: TargetType {
             return "/v1/categories"
         case .votePreference:
             return "/v1/me/vote_preference"
+        case .deleteCluster:
+            return "/v1/me/clusters"
         }
     }
     
@@ -116,6 +119,8 @@ extension PantauAuthAPI: TargetType {
              .putInformants,
              .votePreference:
             return .put
+        case .deleteCluster:
+            return .delete
         default:
             return .get
         }

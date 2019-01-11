@@ -9,11 +9,18 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import Common
 
 class UndangAnggotaController: UIViewController {
 
     var viewModel: UndangAnggotaViewModel!
     lazy var disposeBag = DisposeBag()
+    @IBOutlet weak var containerLink: RoundView!
+    @IBOutlet weak var tfLink: TextField!
+    @IBOutlet weak var switchButton: UISwitch!
+    @IBOutlet weak var lblState: Label!
+    @IBOutlet weak var tfEmail: TextField!
+    @IBOutlet weak var btnUndang: Button!
     
     override func viewDidLoad() {
         super.viewDidLoad()

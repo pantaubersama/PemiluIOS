@@ -104,3 +104,8 @@ public struct ClusterDetail: Codable {
 public struct SingleCluster: Codable {
     public let cluster: ClusterDetail
 }
+
+public struct DeleteCluster: Codable {
+    public let status: Bool
+    public let cluster: ClusterDetail
+}
