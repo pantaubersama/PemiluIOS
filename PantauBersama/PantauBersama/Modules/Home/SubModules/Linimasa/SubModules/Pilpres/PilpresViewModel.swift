@@ -21,7 +21,6 @@ class PilpresViewModel: ViewModelType {
         let moreTrigger: AnyObserver<Feeds>
         let moreMenuTrigger: AnyObserver<PilpresType>
         let nextTrigger: AnyObserver<Void>
-        let viewWillAppearTrigger: AnyObserver<Void>
         let filterTrigger: AnyObserver<[PenpolFilterModel.FilterItem]>
     }
     
@@ -38,7 +37,6 @@ class PilpresViewModel: ViewModelType {
     private let moreSubject = PublishSubject<Feeds>()
     private let moreMenuSubject = PublishSubject<PilpresType>()
     private let nextSubject = PublishSubject<Void>()
-    private let viewWillAppearSubject = PublishSubject<Void>()
      private let filterSubject = PublishSubject<[PenpolFilterModel.FilterItem]>()
     
     private let navigator: PilpresNavigator
@@ -55,10 +53,9 @@ class PilpresViewModel: ViewModelType {
             moreTrigger: moreSubject.asObserver(),
             moreMenuTrigger: moreMenuSubject.asObserver(),
             nextTrigger: nextSubject.asObserver(),
-            viewWillAppearTrigger: viewWillAppearSubject.asObserver(),
             filterTrigger: filterSubject.asObserver())
         
-        let bannerInfo = viewWillAppearSubject
+        let bannerInfo = refreshSubject.startWith(())
             .flatMapLatest({ self.bannerInfo() })
             .asDriverOnErrorJustComplete()
         

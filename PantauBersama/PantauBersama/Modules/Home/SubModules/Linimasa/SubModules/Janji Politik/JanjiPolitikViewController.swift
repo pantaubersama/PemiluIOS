@@ -12,18 +12,21 @@ import RxSwift
 import Common
 import Networking
 
-class JanjiPolitikViewController: UITableViewController {
+class JanjiPolitikViewController: UITableViewController,IJanpolViewController {
     
     private var headerView: BannerHeaderView!
-    private var viewModel: JanjiPolitikViewModel!
-    private let disposeBag: DisposeBag = DisposeBag()
+    internal let disposeBag = DisposeBag()
     private var emptyView = EmptyView()
     
-    convenience init(viewModel: JanjiPolitikViewModel) {
+    var viewModel: IJanpolListViewModel!
+    var pageType: JanpolPageType!
+    internal lazy var rControl = UIRefreshControl()
+    
+    convenience init(viewModel: IJanpolListViewModel, pageType: JanpolPageType) {
         self.init()
         self.viewModel = viewModel
+        self.pageType  = pageType
     }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,135 +37,28 @@ class JanjiPolitikViewController: UITableViewController {
         tableView.separatorStyle = .singleLine
         tableView.separatorColor = UIColor.groupTableViewBackground
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        headerView = BannerHeaderView()
-        tableView.tableHeaderView = headerView
+  
+        
         tableView.tableFooterView = UIView()
-        tableView.refreshControl = UIRefreshControl()
+        tableView.refreshControl = rControl
         
-        self.refreshControl?.rx.controlEvent(.valueChanged)
-            .bind(to: viewModel.input.refreshTrigger)
-            .disposed(by: disposeBag)
+        bind(tableView: tableView, refreshControl: rControl, emptyView: emptyView, with: viewModel)
         
-        tableView.rx.itemSelected
-            .bind(to: viewModel.input.itemSelectedTrigger)
-            .disposed(by: disposeBag)
-        
-        viewModel.output.bannerInfo
-            .drive(onNext: { (banner) in
-                self.headerView.config(banner: banner, viewModel: self.viewModel.headerViewModel)
-            })
-            .disposed(by: disposeBag)
-        
-        viewModel.output.janpolCells
-            .do(onNext: { [weak self] (items) in
-                guard let `self` = self else { return }
-                self.tableView.backgroundView = nil
-                if items.count == 0 {
-                    self.emptyView.frame = self.tableView.bounds
-                    self.tableView.backgroundView = self.emptyView
-                } else {
-                    self.tableView.backgroundView = nil
-                }
-                self.refreshControl?.endRefreshing()
-            })
-            .drive(tableView.rx.items) { tableView, row, item in
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: item.reuseIdentifier) else {
-                    return UITableViewCell()
-                }
-                item.configure(cell: cell)
-                return cell
+        if let page = self.pageType {
+            switch page{
+            case .allJanpol:
+                headerView = BannerHeaderView()
+                tableView.tableHeaderView = headerView
+                bind(headerView: headerView, with: viewModel)
+            default:
+                tableView.tableHeaderView = nil
             }
-            .disposed(by: disposeBag)
-        
-        tableView.rx.contentOffset
-            .distinctUntilChanged()
-            .flatMapLatest { (offset) -> Observable<Void> in
-                if offset.y > self.tableView.contentSize.height -
-                    (self.tableView.frame.height * 2) {
-                    return Observable.just(())
-                } else {
-                    return Observable.empty()
-                }
-            }
-            .bind(to: viewModel.input.nextTrigger)
-            .disposed(by: disposeBag)
-        
-        
-        viewModel.output.shareSelected
-            .drive()
-            .disposed(by: disposeBag)
-        
-        viewModel.output.moreSelected
-            .asObservable()
-            .flatMapLatest({ [weak self] (janpol) -> Observable<JanjiType> in
-                return Observable.create({ (observer) -> Disposable in
-                    let myId = AppState.local()?.user.id
-                    
-                    let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-                    let hapus = UIAlertAction(title: "Hapus", style: .default, handler: { (_) in
-                        observer.onNext(JanjiType.hapus(id: janpol.id))
-                        observer.on(.completed)
-                    })
-                    let salin = UIAlertAction(title: "Salin Tautan", style: .default, handler: { (_) in
-                        observer.onNext(JanjiType.salin)
-                        observer.on(.completed)
-                    })
-                    let bagikan = UIAlertAction(title: "Bagikan", style: .default, handler: { (_) in
-                        observer.onNext(JanjiType.bagikan)
-                        observer.on(.completed)
-                    })
-                    let lapor = UIAlertAction(title: "Laporkan", style: .default, handler: { (_) in
-                        observer.onNext(JanjiType.laporkan)
-                        observer.on(.completed)
-                    })
-                    let cancel = UIAlertAction(title: "Batal", style: .cancel, handler: nil)
-                    
-                    if janpol.creator.id == myId {
-                        alert.addAction(hapus)
-                    }
-                    
-                    alert.addAction(salin)
-                    alert.addAction(bagikan)
-                    alert.addAction(lapor)
-                    alert.addAction(cancel)
-                    DispatchQueue.main.async {
-                        self?.navigationController?.present(alert, animated: true, completion: nil)
-                    }
-                    return Disposables.create()
-                })
-            })
-            .bind(to: viewModel.input.moreMenuTrigger)
-            .disposed(by: disposeBag)
-        
-        viewModel.output.moreMenuSelected
-            .drive()
-            .disposed(by: disposeBag)
-        
-        viewModel.output.infoSelected
-            .drive()
-            .disposed(by: disposeBag)
-        
-        viewModel.output.itemSelected
-            .drive()
-            .disposed(by: disposeBag)
-        
-        viewModel.output.filter
-            .drive(onNext: { [weak self] (_) in
-                // set to top of table view after set filter
-                self?.refreshControl?.sendActions(for: .valueChanged)
-
-                let indexPath = IndexPath(row: 0, section: 0)
-                self?.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
-                
-            })
-            .disposed(by: disposeBag)
+        }
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        viewModel.input.viewWillAppearTrigger.onNext(())
 
     }
 }

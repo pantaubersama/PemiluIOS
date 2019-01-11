@@ -36,7 +36,7 @@ class LinimasaJanjiCell: UITableViewCell {
 extension LinimasaJanjiCell: IReusableCell {
     
     struct Input {
-        let viewModel: JanjiPolitikViewModel
+        let viewModel: IJanpolListViewModel
         let janpol: JanjiPolitik
     }
     
@@ -48,12 +48,12 @@ extension LinimasaJanjiCell: IReusableCell {
         
         shareBtn.rx.tap
             .map({ janpol })
-            .bind(to: item.viewModel.input.shareJanji)
+            .bind(to: item.viewModel.input.shareJanjiI)
             .disposed(by: bag)
         
         moreBtn.rx.tap
             .map({ janpol })
-            .bind(to: item.viewModel.input.moreTrigger)
+            .bind(to: item.viewModel.input.moreI)
             .disposed(by: bag)
         
         disposeBag = bag

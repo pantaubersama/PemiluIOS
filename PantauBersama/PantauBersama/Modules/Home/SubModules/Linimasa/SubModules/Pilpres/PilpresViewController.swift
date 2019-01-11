@@ -137,8 +137,7 @@ class PilpresViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        viewModel.input.viewWillAppearTrigger.onNext(())
+
     }
     
 }

@@ -11,7 +11,7 @@ import RxCocoa
 import UIKit
 import Networking
 
-protocol ProfileNavigator: LinimasaNavigator, PenpolNavigator, BadgeNavigator {
+protocol ProfileNavigator: BadgeNavigator,IJanpolNavigator {
     func back()
     func launchSetting(user: User) -> Observable<Void>
     func launchVerifikasi(user: VerificationsResponse.U) -> Observable<Void>
@@ -24,7 +24,7 @@ protocol ProfileNavigator: LinimasaNavigator, PenpolNavigator, BadgeNavigator {
 
 final class ProfileCoordinator: BaseCoordinator<Void> {
     
-    private var navigationController: UINavigationController!
+    internal var navigationController: UINavigationController!
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
@@ -123,75 +123,75 @@ extension ProfileCoordinator: ProfileNavigator {
     
 }
 
-extension ProfileCoordinator: LinimasaNavigator {
-    func launchNote() -> Observable<Void> {
-        return Observable.never()
-    }
-    
-    func launchJanjiDetail(data: JanjiPolitik) -> Observable<Void> {
-        return Observable.never()
-    }
-    
-    func launchBannerInfo(bannerInfo: BannerInfo) -> Observable<Void> {
-        return Observable.never()
-    }
-    
-    
-    func launchProfile() -> Observable<Void> {
-        return Observable.never()
-    }
-    
-    func launchNotifications() {
-    }
-    
-    func launchFilter() -> Observable<Void> {
-        return Observable.never()
-    }
-    
-    func launchAddJanji() -> Observable<Void> {
-        return Observable.never()
-    }
-    
-    func sharePilpres(data: Any) -> Observable<Void> {
-        return Observable.never()
-    }
-    
-    func openTwitter(data: String) -> Observable<Void> {
-        return Observable.never()
-    }
-    
-    func shareJanji(data: Any) -> Observable<Void> {
-        return Observable.never()
-    }
-    
-}
+//extension ProfileCoordinator: LinimasaNavigator {
+//    func launchNote() -> Observable<Void> {
+//        return Observable.never()
+//    }
+//
+//    func launchJanjiDetail(data: JanjiPolitik) -> Observable<Void> {
+//        return Observable.never()
+//    }
+//
+//    func launchBannerInfo(bannerInfo: BannerInfo) -> Observable<Void> {
+//        return Observable.never()
+//    }
+//
+//
+//    func launchProfile() -> Observable<Void> {
+//        return Observable.never()
+//    }
+//
+//    func launchNotifications() {
+//    }
+//
+//    func launchFilter() -> Observable<Void> {
+//        return Observable.never()
+//    }
+//
+//    func launchAddJanji() -> Observable<Void> {
+//        return Observable.never()
+//    }
+//
+//    func sharePilpres(data: Any) -> Observable<Void> {
+//        return Observable.never()
+//    }
+//
+//    func openTwitter(data: String) -> Observable<Void> {
+//        return Observable.never()
+//    }
+//
+//    func shareJanji(data: Any) -> Observable<Void> {
+//        return Observable.never()
+//    }
+//
+//}
 
-extension ProfileCoordinator: PenpolNavigator {
-    func launchFilter(filterType: FilterType, filterTrigger: AnyObserver<[PenpolFilterModel.FilterItem]>) -> Observable<Void> {
-        return Observable.never()
-    }
-    
-    
-    func openQuiz(quiz: QuizModel) -> Observable<Void> {
-        return Observable.never()
-    }
-    
-    func shareQuiz(quiz: Any) -> Observable<Void> {
-        return Observable.never()
-    }
-    
-    func shareTrend(trend: Any) -> Observable<Void> {
-        return Observable.never()
-    }
-    
-    func launchCreateAsk() -> Observable<Void> {
-        return Observable.never()
-    }
-    
-    func shareQuestion(question: String) -> Observable<Void> {
-        return Observable.never()
-    }
-}
+//extension ProfileCoordinator: PenpolNavigator {
+//    func launchFilter(filterType: FilterType, filterTrigger: AnyObserver<[PenpolFilterModel.FilterItem]>) -> Observable<Void> {
+//        return Observable.never()
+//    }
+//
+//
+//    func openQuiz(quiz: QuizModel) -> Observable<Void> {
+//        return Observable.never()
+//    }
+//
+//    func shareQuiz(quiz: Any) -> Observable<Void> {
+//        return Observable.never()
+//    }
+//
+//    func shareTrend(trend: Any) -> Observable<Void> {
+//        return Observable.never()
+//    }
+//
+//    func launchCreateAsk() -> Observable<Void> {
+//        return Observable.never()
+//    }
+//
+//    func shareQuestion(question: String) -> Observable<Void> {
+//        return Observable.never()
+//    }
+//}
 
 
 extension  ProfileCoordinator: BadgeNavigator {
