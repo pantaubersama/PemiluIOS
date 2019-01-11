@@ -21,7 +21,7 @@ protocol SettingNavigator {
     func launchSignOut() -> Observable<Void>
     func launchBadge() -> Observable<Void>
     func launchVerifikasi(user: VerificationsResponse.U) -> Observable<Void>
-    func launchUndang() -> Observable<Void>
+    func launchUndang(data: User) -> Observable<Void>
     func launchAlertUndang() -> Observable<Void>
     func launchReqCluster() -> Observable<ResultRequest>
 }
@@ -104,8 +104,8 @@ extension SettingCoordinator: SettingNavigator {
         }
     }
     
-    func launchUndang() -> Observable<Void> {
-        let undangCoordinator = UndangAnggotaCoordinator(navigationController: navigationController)
+    func launchUndang(data: User) -> Observable<Void> {
+        let undangCoordinator = UndangAnggotaCoordinator(navigationController: navigationController, data: data)
         return coordinate(to: undangCoordinator)
     }
     

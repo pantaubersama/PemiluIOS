@@ -16,7 +16,8 @@ protocol ProfileNavigator: LinimasaNavigator, PenpolNavigator, BadgeNavigator {
     func launchSetting(user: User) -> Observable<Void>
     func launchVerifikasi(user: VerificationsResponse.U) -> Observable<Void>
     func launchReqCluster() -> Observable<Void>
-    func launchUndangAnggota() -> Observable<Void>
+    func launchUndangAnggota(data: User) -> Observable<Void>
+    func launchAlertExitCluster() -> Observable<Void>
 }
 
 
@@ -77,9 +78,31 @@ extension ProfileCoordinator: ProfileNavigator {
             .mapToVoid()
     }
     
-    func launchUndangAnggota() -> Observable<Void> {
-        let undangAnggotaCoordinator = UndangAnggotaCoordinator(navigationController: navigationController)
+    func launchUndangAnggota(data: User) -> Observable<Void> {
+        let undangAnggotaCoordinator = UndangAnggotaCoordinator(navigationController: navigationController, data: data)
         return coordinate(to: undangAnggotaCoordinator)
+    }
+    
+    func launchAlertExitCluster() -> Observable<Void> {
+        return Observable<ClusterOption>.create({ [weak self] (observer) -> Disposable in
+            let alert = UIAlertController(title: nil, message: "Apakah anda ingin keluar dari Cluster?", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Batal", style: .cancel, handler: { (_) in
+                observer.onNext(.cancel)
+                observer.on(.completed)
+            }))
+            alert.addAction(UIAlertAction(title: "Ya", style: .default
+                , handler: { (_) in
+                    observer.onNext(.done)
+                    observer.on(.completed)
+            }))
+            DispatchQueue.main.async {
+                self?.navigationController.present(alert, animated: true, completion: nil)
+            }
+            return Disposables.create()
+        })
+            .filter({ $0 == .done })
+            .mapToVoid()
+            .flatMapLatest({ self.deleteCluster() })
     }
     
 }
@@ -159,5 +182,17 @@ extension  ProfileCoordinator: BadgeNavigator {
     func launchShare(id: String) -> Observable<Void> {
         let shareCoordinator = ShareBadgeCoordinator(navigationController: navigationController, id: id)
         return coordinate(to: shareCoordinator)
+    }
+}
+
+extension ProfileCoordinator {
+    
+    func deleteCluster() -> Observable<Void> {
+        return NetworkService.instance
+            .requestObject(PantauAuthAPI.deleteCluster,
+                           c: BaseResponse<DeleteCluster>.self)
+            .asObservable()
+            .catchErrorJustComplete()
+            .mapToVoid()
     }
 }

@@ -10,6 +10,7 @@ import Foundation
 import Common
 import RxSwift
 import RxCocoa
+import Networking
 
 class UndangAnggotaViewModel: ViewModelType {
     var input: Input
@@ -27,10 +28,12 @@ class UndangAnggotaViewModel: ViewModelType {
     private let undangSubject = PublishSubject<Void>()
     private let backSubject = PublishSubject<Void>()
     var navigator: UndangAnggotaNavigator
+    private let data: User
     
-    init(navigator: UndangAnggotaNavigator) {
+    init(navigator: UndangAnggotaNavigator, data: User) {
         self.navigator = navigator
         self.navigator.finish = backSubject
+        self.data = data
         
         input = Input(backTrigger: backSubject.asObserver() ,undangTrigger: undangSubject.asObserver())
         
