@@ -17,7 +17,7 @@ public struct User: Codable {
     public var provider: String?
     public var isAdmin: Bool
     public var isModerator: Bool
-    public var cluster: Cluster?
+    public var cluster: ClusterDetail?
     public var votePreference: Int?
     public var verified: Bool
     public var avatar: Avatar

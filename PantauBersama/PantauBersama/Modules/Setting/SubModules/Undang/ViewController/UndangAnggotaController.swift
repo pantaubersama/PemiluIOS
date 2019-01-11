@@ -40,6 +40,39 @@ class UndangAnggotaController: UIViewController {
         viewModel.output.createSelected
             .drive()
             .disposed(by: disposeBag)
+        
+        switchButton.rx.isOn
+            .do(onNext: { [weak self] (value) in
+                guard let `self` = self else { return }
+                self.lblState.text  = value ? "Link aktif" : "Link tidak aktif"
+                self.containerLink.backgroundColor = value ? Color.primary_white : Color.grey_three
+                self.tfLink.backgroundColor = value ? Color.primary_white : Color.grey_three
+            })
+            .bind(to: viewModel.input.switchTrigger)
+            .disposed(by: disposeBag)
+        
+        viewModel.output.switchSelected
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.switchLabelSelected
+            .drive(onNext: { [weak self] (s) in
+                self?.lblState.text = s
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.output.userData
+            .drive(onNext: { [weak self] (response) in
+                guard let `self` = self else { return }
+                if let state = response.cluster?.isLinkActive {
+                    self.switchButton.isOn = state
+                    self.lblState.text = state ? "Link aktif" : "Link tidak aktif"
+                    self.containerLink.backgroundColor = state ? Color.primary_white : Color.grey_three
+                    self.tfLink.backgroundColor = state ? Color.primary_white : Color.grey_three
+                }
+            })
+            .disposed(by: disposeBag)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {

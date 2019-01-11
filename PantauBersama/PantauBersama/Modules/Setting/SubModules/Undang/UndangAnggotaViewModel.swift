@@ -19,14 +19,22 @@ class UndangAnggotaViewModel: ViewModelType {
     struct Input {
         let backTrigger: AnyObserver<Void>
         let undangTrigger: AnyObserver<Void>
+        let switchTrigger: BehaviorSubject<Bool>
+        let switchLabelTrigger: AnyObserver<String>
     }
     
     struct Output {
         let createSelected: Driver<Void>
+        let switchSelected: Driver<Void>
+        let switchLabelSelected: Driver<String>
+        let userData: Driver<User>
     }
     
     private let undangSubject = PublishSubject<Void>()
     private let backSubject = PublishSubject<Void>()
+    private let switchSubject = BehaviorSubject<Bool>(value: false)
+    private let switchLabelSubject = PublishSubject<String>()
+    
     var navigator: UndangAnggotaNavigator
     private let data: User
     
@@ -35,12 +43,41 @@ class UndangAnggotaViewModel: ViewModelType {
         self.navigator.finish = backSubject
         self.data = data
         
-        input = Input(backTrigger: backSubject.asObserver() ,undangTrigger: undangSubject.asObserver())
+        let errorTracker = ErrorTracker()
+        let activityIndicator = ActivityIndicator()
+        
+        input = Input(backTrigger: backSubject.asObserver(),
+                      undangTrigger: undangSubject.asObserver(),
+                      switchTrigger: switchSubject.asObserver(),
+                      switchLabelTrigger: switchLabelSubject.asObserver())
         
         let create = undangSubject
             .asDriver(onErrorJustReturn: ())
         
-        output = Output(createSelected: create )
+        
+        let magicLink = switchSubject
+            .flatMapLatest { (value) -> Observable<Void> in
+                print(value)
+                return NetworkService.instance
+                    .requestObject(PantauAuthAPI
+                        .clusterMagicLink(id: data.cluster?.id ?? "",
+                                          enable: value),
+                                   c: BaseResponse<SingleCluster>.self)
+                    .trackError(errorTracker)
+                    .trackActivity(activityIndicator)
+                    .asObservable()
+                    .catchErrorJustComplete()
+                    .mapToVoid()
+            }
+        
+        let label = switchLabelSubject
+            .asDriverOnErrorJustComplete()
+        
+        
+        output = Output(createSelected: create,
+                        switchSelected: magicLink.asDriverOnErrorJustComplete(),
+                        switchLabelSelected: label,
+                        userData: Driver.just(data))
     }
     
 }
