@@ -21,19 +21,23 @@ class UndangAnggotaViewModel: ViewModelType {
         let undangTrigger: AnyObserver<Void>
         let switchTrigger: BehaviorSubject<Bool>
         let switchLabelTrigger: AnyObserver<String>
+        let emailTrigger: AnyObserver<String>
     }
     
     struct Output {
         let createSelected: Driver<Void>
-        let switchSelected: Driver<Void>
+        let switchSelected: Driver<String>
         let switchLabelSelected: Driver<String>
         let userData: Driver<User>
+        let enable: Driver<Bool>
     }
     
     private let undangSubject = PublishSubject<Void>()
     private let backSubject = PublishSubject<Void>()
     private let switchSubject = BehaviorSubject<Bool>(value: false)
     private let switchLabelSubject = PublishSubject<String>()
+    private let emailSubject = PublishSubject<String>()
+    private let emailInput = PublishSubject<Void>()
     
     var navigator: UndangAnggotaNavigator
     private let data: User
@@ -49,14 +53,11 @@ class UndangAnggotaViewModel: ViewModelType {
         input = Input(backTrigger: backSubject.asObserver(),
                       undangTrigger: undangSubject.asObserver(),
                       switchTrigger: switchSubject.asObserver(),
-                      switchLabelTrigger: switchLabelSubject.asObserver())
-        
-        let create = undangSubject
-            .asDriver(onErrorJustReturn: ())
-        
+                      switchLabelTrigger: switchLabelSubject.asObserver(),
+                      emailTrigger: emailSubject.asObserver())
         
         let magicLink = switchSubject
-            .flatMapLatest { (value) -> Observable<Void> in
+            .flatMapLatest { (value) -> Observable<String> in
                 print(value)
                 return NetworkService.instance
                     .requestObject(PantauAuthAPI
@@ -66,18 +67,40 @@ class UndangAnggotaViewModel: ViewModelType {
                     .trackError(errorTracker)
                     .trackActivity(activityIndicator)
                     .asObservable()
-                    .catchErrorJustComplete()
-                    .mapToVoid()
+                    .map({ $0.data.cluster.magicLink ?? "" })
             }
         
         let label = switchLabelSubject
             .asDriverOnErrorJustComplete()
         
+        let undangEmail = undangSubject
+            .withLatestFrom(emailSubject)
+            .flatMapLatest { (email) -> Observable<Void> in
+                return NetworkService.instance
+                    .requestObject(PantauAuthAPI.clusterInvite(emails: email)
+                        , c: BaseResponses<ClusterInvite>.self)
+                    .trackError(errorTracker)
+                    .trackActivity(activityIndicator)
+                    .asObservable()
+                    .mapToVoid()
+            }.flatMapLatest({ navigator.success() })
+            .catchErrorJustComplete()
         
-        output = Output(createSelected: create,
+        
+        let enable = emailSubject
+            .map({ (email) -> Bool in
+                return email.isValidEmail()
+                || email.contains(",") // regex multiple emails, need improve later
+            })
+            .startWith(false)
+            .asDriverOnErrorJustComplete()
+        
+        
+        output = Output(createSelected: undangEmail.asDriverOnErrorJustComplete(),
                         switchSelected: magicLink.asDriverOnErrorJustComplete(),
                         switchLabelSelected: label,
-                        userData: Driver.just(data))
+                        userData: Driver.just(data),
+                        enable: enable)
     }
     
 }

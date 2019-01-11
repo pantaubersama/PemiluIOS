@@ -41,7 +41,7 @@
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                         </label>
-                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Masukan Email disini" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="o4A-4v-77Z" customClass="TextField" customModule="Common">
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Masukan Email  (Pisahkan dengan koma)" textAlignment="natural" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="o4A-4v-77Z" customClass="TextField" customModule="Common">
                             <rect key="frame" x="0.0" y="38" width="288" height="42"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="42" id="DyG-Oe-JNH"/>

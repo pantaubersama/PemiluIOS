@@ -43,6 +43,7 @@ public enum PantauAuthAPI {
     case votePreference(vote: Int)
     case deleteCluster
     case clusterMagicLink(id: String, enable: Bool)
+    case clusterInvite(emails: String)
     
 }
 
@@ -103,6 +104,8 @@ extension PantauAuthAPI: TargetType {
             return "/v1/me/clusters"
         case .clusterMagicLink(let (id, _)):
             return "/v1/clusters/\(id)/magic_link"
+        case .clusterInvite:
+            return "/v1/clusters/invite"
         }
     }
     
@@ -112,7 +115,8 @@ extension PantauAuthAPI: TargetType {
              .revoke,
              .createCategories,
              .createCluster,
-             .clusterMagicLink:
+             .clusterMagicLink,
+             .clusterInvite:
             return .post
         case .putKTP,
              .putSelfieKTP,
@@ -199,7 +203,8 @@ extension PantauAuthAPI: TargetType {
              .meAvatar,
              .createCluster,
              .votePreference,
-             .clusterMagicLink:
+             .clusterMagicLink,
+             .clusterInvite:
             return .uploadMultipart(self.multipartBody ?? [])
         default:
             return .requestParameters(parameters: parameters ?? [:], encoding: parameterEncoding)
@@ -263,6 +268,10 @@ extension PantauAuthAPI: TargetType {
         case .clusterMagicLink(let (_, enable)):
             var multipartFormData = [MultipartFormData]()
             multipartFormData.append(buildMultipartFormData(key: "enable", value: "\(enable)"))
+            return multipartFormData
+        case .clusterInvite(let emails):
+            var multipartFormData = [MultipartFormData]()
+            multipartFormData.append(buildMultipartFormData(key: "emails", value: emails))
             return multipartFormData
         default:
             return nil
