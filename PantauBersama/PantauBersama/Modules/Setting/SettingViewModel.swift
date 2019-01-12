@@ -69,34 +69,36 @@ final class SettingViewModel: ISettingViewModel, ISettingViewModelInput, ISettin
         viewWillAppearTrigger = viewWillAppearS.asObserver()
         itemTwitterI = itemTwitterS.asObserver()
         
-        let items = Driver.just([
-            SectionOfSettingData(header: nil, items: [
+        let item = Observable.just([
+                SectionOfSettingData(header: nil, items: [
                 SettingData.updateProfile,
                 SettingData.updatePassword,
                 SettingData.updateDataLapor,
                 SettingData.verifikasi,
                 SettingData.badge
-                ]),
+            ]),
             SectionOfSettingData(header: "Twitter", items: [
                 SettingData.twitter
-                ]),
+            ]),
             SectionOfSettingData(header: "Facebook", items: [
                 SettingData.facebook
-                ]),
+            ]),
             SectionOfSettingData(header: "Cluster", items: [
                 SettingData.cluster
-                ]),
+            ]),
             SectionOfSettingData(header: "Support", items: [
                 SettingData.pusatBantuan,
                 SettingData.pedomanKomunitas,
                 SettingData.tentang,
                 SettingData.rate,
                 SettingData.share
-                ]),
-            SectionOfSettingData(header: nil, items: [
-                SettingData.logout
-                ])
-            ])
+            ]),
+        SectionOfSettingData(header: nil, items: [
+            SettingData.logout ])])
+        
+        let items = viewWillAppearS
+            .withLatestFrom(item)
+            .asDriverOnErrorJustComplete()
         
         let verifikasi = NetworkService.instance.requestObject(
             PantauAuthAPI.verifications,
