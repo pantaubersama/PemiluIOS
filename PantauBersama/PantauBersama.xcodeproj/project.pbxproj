@@ -266,6 +266,7 @@
 		84E6933E21D2936E00EA5464 /* HeaderEditProfile.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84E6933D21D2936E00EA5464 /* HeaderEditProfile.xib */; };
 		84E6934021D2946C00EA5464 /* HeaderEditProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E6933F21D2946C00EA5464 /* HeaderEditProfile.swift */; };
 		84E6934621D296BB00EA5464 /* SectionOfProfileEditData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E6934521D296BB00EA5464 /* SectionOfProfileEditData.swift */; };
+		84F1F21321E910DE004515A4 /* Twitter+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F1F21221E910DE004515A4 /* Twitter+Rx.swift */; };
 		84F6980921C8D28B00890917 /* PilpresViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F6980821C8D28A00890917 /* PilpresViewController.swift */; };
 		84F6980B21C8D2B100890917 /* JanjiPolitikViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F6980A21C8D2B100890917 /* JanjiPolitikViewController.swift */; };
 		84F6981121C8E21B00890917 /* LinimasaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F6981021C8E21B00890917 /* LinimasaCell.swift */; };
@@ -588,6 +589,7 @@
 		84E6933D21D2936E00EA5464 /* HeaderEditProfile.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderEditProfile.xib; sourceTree = "<group>"; };
 		84E6933F21D2946C00EA5464 /* HeaderEditProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderEditProfile.swift; sourceTree = "<group>"; };
 		84E6934521D296BB00EA5464 /* SectionOfProfileEditData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionOfProfileEditData.swift; sourceTree = "<group>"; };
+		84F1F21221E910DE004515A4 /* Twitter+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Twitter+Rx.swift"; sourceTree = "<group>"; };
 		84F6980821C8D28A00890917 /* PilpresViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PilpresViewController.swift; sourceTree = "<group>"; };
 		84F6980A21C8D2B100890917 /* JanjiPolitikViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JanjiPolitikViewController.swift; sourceTree = "<group>"; };
 		84F6981021C8E21B00890917 /* LinimasaCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinimasaCell.swift; sourceTree = "<group>"; };
@@ -1282,6 +1284,7 @@
 		844C3D7321C51E7E00199871 /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				84F1F20921E8D987004515A4 /* Twitter */,
 				84E2854121CA189B00298E31 /* CustomView */,
 				844C3D7521C51EAF00199871 /* BaseCoordinator.swift */,
 				844C3D7921C5230C00199871 /* RawRepresentable.swift */,
@@ -1806,6 +1809,14 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
+		84F1F20921E8D987004515A4 /* Twitter */ = {
+			isa = PBXGroup;
+			children = (
+				84F1F21221E910DE004515A4 /* Twitter+Rx.swift */,
+			);
+			path = Twitter;
+			sourceTree = "<group>";
+		};
 		84F6980721C8D23900890917 /* Janji Politik */ = {
 			isa = PBXGroup;
 			children = (
@@ -1870,6 +1881,7 @@
 				844C3D6721C4EDF100199871 /* CopyFiles */,
 				FB87C8E89D65B40FDEF51D35 /* [CP] Embed Pods Frameworks */,
 				8428AAAB21C7B1D30008E975 /* ShellScript */,
+				8D5084A9214D1C63BBF42182 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1889,6 +1901,7 @@
 				844C3D4D21C4ED6E00199871 /* Frameworks */,
 				844C3D4E21C4ED6E00199871 /* Resources */,
 				7C41DB0AFAA1DA87ABDD8FD3 /* [CP] Embed Pods Frameworks */,
+				BEA8FA2C1E40F76BD4206529 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2070,6 +2083,8 @@
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/LTHRadioButton/LTHRadioButton.framework",
+				"${PODS_ROOT}/TwitterCore/iOS/TwitterCore.framework",
+				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework",
 				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -2089,6 +2104,8 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LTHRadioButton.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwitterCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwitterKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lottie.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -2115,6 +2132,28 @@
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${PODS_ROOT}/Fabric/run\" 536361816a0d2006ea747cdd456218543609b7d7 d96f55a01d4a4efd856e23e31a9b32b526a24dfea02bd75db028592eaa3188c9\n";
 		};
+		8D5084A9214D1C63BBF42182 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/../Pods/Target Support Files/Pods-PantauBersama/Pods-PantauBersama-resources.sh",
+				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework/TwitterKitResources.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TwitterKitResources.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-PantauBersama/Pods-PantauBersama-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		BD69F6DEF48FE2F0A82FA3A3 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2135,6 +2174,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BEA8FA2C1E40F76BD4206529 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/../Pods/Target Support Files/Pods-PantauBersama-PantauBersamaTests/Pods-PantauBersama-PantauBersamaTests-resources.sh",
+				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework/TwitterKitResources.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TwitterKitResources.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-PantauBersama-PantauBersamaTests/Pods-PantauBersama-PantauBersamaTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D1138D5EE223F3B675D546DA /* [CP] Check Pods Manifest.lock */ = {
@@ -2180,6 +2241,8 @@
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/LTHRadioButton/LTHRadioButton.framework",
+				"${PODS_ROOT}/TwitterCore/iOS/TwitterCore.framework",
+				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework",
 				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -2199,6 +2262,8 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LTHRadioButton.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwitterCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwitterKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lottie.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -2225,6 +2290,7 @@
 				11702DD521CB08DE001AEE3F /* QuizController.swift in Sources */,
 				13F456A921D2A68300CE45F1 /* QuestionType.swift in Sources */,
 				84B7B8C321E488D00099E7E3 /* ClusterSearchCell.swift in Sources */,
+				84F1F21321E910DE004515A4 /* Twitter+Rx.swift in Sources */,
 				13F456B121D36D7800CE45F1 /* UndangAnggotaViewModel.swift in Sources */,
 				13812C1E21CAA48700CAB327 /* PenpolController.swift in Sources */,
 				11B145F821D72D9B00BB26C8 /* CreateAskHeaderView.swift in Sources */,

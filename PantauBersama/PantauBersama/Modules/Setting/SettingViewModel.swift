@@ -9,6 +9,7 @@
 import RxSwift
 import RxCocoa
 import Networking
+import TwitterKit
 
 protocol ISettingViewModelInput {
     var backI: AnyObserver<Void> { get }
@@ -131,6 +132,22 @@ final class SettingViewModel: ISettingViewModel, ISettingViewModelInput, ISettin
                     } else {
                         return navigator.launchAlertCluster()
                     }
+                case .twitter:
+                    return TWTRTwitter.sharedInstance().loginTwitter()
+                        .flatMapLatest({ (session) -> Observable<Void> in
+                            return NetworkService.instance
+                                .requestObject(PantauAuthAPI
+                                    .accountsConnect(
+                                        type: "twitter",
+                                        oauthToken: session.authToken,
+                                        oauthSecret: session.authTokenSecret),
+                                               c: BaseResponse<AccountResponse>.self)
+                                .trackError(errorTracker)
+                                .trackActivity(activityIndicator)
+                                .catchErrorJustComplete()
+                                .mapToVoid()
+                        })
+                        .mapToVoid()
                 default:
                     return Observable.empty()
                 }

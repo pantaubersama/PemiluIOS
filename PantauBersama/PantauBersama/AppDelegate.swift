@@ -16,6 +16,7 @@ import Networking
 import Common
 import Moya
 import IQKeyboardManagerSwift
+import TwitterKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -26,6 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        let schemeTwitter = AppContext.instance.infoForKey("TWITTER_SCHEME")
         // MARK
         // Handler from URL Schemes
         // Get code from oauth identitas, then parse into callback
@@ -73,15 +75,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     }
                     .disposed(by: disposeBag)
             }
-            
-            
+        } else if schemeTwitter == url.scheme {
+            return TWTRTwitter.sharedInstance().application(app, open: url, options: options)
         }
         #else
         if "pantaubersama://oauth" == url.scheme {
             
         }
         #endif
-        return false
+        return TWTRTwitter.sharedInstance().application(app, open: url, options: options)
     }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -100,6 +102,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
         }
         
+        // MARK: Configuration twitter
+        configurationTwitter()
         
         Fabric.with([Crashlytics.self])
         #if DEBUG
@@ -191,5 +195,14 @@ extension URL {
             .queryItems?
             .first { $0.name == parameter }?
             .value
+    }
+}
+
+extension AppDelegate {
+    
+    func configurationTwitter() {
+        TWTRTwitter.sharedInstance()
+            .start(withConsumerKey: AppContext.instance.infoForKey("KEY_TWITTER"),
+                   consumerSecret: AppContext.instance.infoForKey("SECRET_TWITTER"))
     }
 }

@@ -2,6 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>SECRET_TWITTER</key>
+	<string>$(SECRET_TWITTER)</string>
+	<key>KEY_TWITTER</key>
+	<string>$(KEY_TWITTER)</string>
+	<key>TWITTER_SCHEME</key>
+	<string>$(TWITTER_SCHEME)</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Pantau Bersama memerlukan akses pustaka foto untuk melakukan proses input verifikasi serta mengganti profile gambar</string>
 	<key>CFBundleDevelopmentRegion</key>
@@ -23,13 +29,27 @@
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
-			<key>CFBundleURLName</key>
-			<string>$(URL_IDENTIFIER)</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>$(URL_SCHEMES)</string>
+				<string>$(URL_SCHEME)</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>$(TWITTER_SCHEME)</string>
+			</array>
+		</dict>
+	</array>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string></string>
+		<string>twitter</string>
+		<string>twitterauth</string>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>$(APP_BUILD_VERSION)</string>

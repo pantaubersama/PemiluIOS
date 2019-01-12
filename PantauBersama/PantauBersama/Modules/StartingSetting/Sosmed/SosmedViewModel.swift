@@ -9,7 +9,7 @@
 import RxSwift
 import RxCocoa
 import Networking
-
+import TwitterKit
 
 final class SosmedViewModel: ViewModelType {
     
@@ -19,16 +19,18 @@ final class SosmedViewModel: ViewModelType {
     struct Input {
         let backI: AnyObserver<Void>
         let doneI: AnyObserver<Void>
+        let itemSelectedI: AnyObserver<IndexPath>
     }
     
     struct Output {
         let itemsO: Driver<[SectionOfSettingData]>
         let doneO: Driver<Void>
-//        let itemsSelectedO: Driver<Void>
+        let itemsSelectedO: Driver<Void>
     }
     
     private let backS = PublishSubject<Void>()
     private let doneS = PublishSubject<Void>()
+    private let itemSelectedS = PublishSubject<IndexPath>()
     private var navigator: SosmedNavigator
     
     init(navigator: SosmedNavigator) {
@@ -37,7 +39,8 @@ final class SosmedViewModel: ViewModelType {
         
         input = Input(
             backI: backS.asObserver(),
-            doneI: doneS.asObserver()
+            doneI: doneS.asObserver(),
+            itemSelectedI: itemSelectedS.asObserver()
         )
         
         let items = Driver.just([
@@ -53,10 +56,31 @@ final class SosmedViewModel: ViewModelType {
             .flatMapLatest({ navigator.launchHome() })
             .asDriverOnErrorJustComplete()
         
+        let itemSelected = itemSelectedS
+            .withLatestFrom(items) { indexPath, item in
+                return item[indexPath.section].items[indexPath.row]
+            }
+            .flatMapLatest { (type) -> Observable<Void> in
+                switch type {
+                case .twitter:
+                    return Observable.just(TWTRTwitter.sharedInstance().logIn(completion: { (session, error) in
+                        if (session != nil) {
+                            print("signed in as \(session?.userName)");
+                        } else {
+                            print("error: \(error?.localizedDescription)");
+                        }
+                    })).mapToVoid()
+                case .facebook:
+                    return Observable.empty()
+                default: return Observable.empty()
+                }
+            }
+        
+        
         output = Output(
             itemsO: items,
-            doneO: done
-        )
+            doneO: done,
+            itemsSelectedO: itemSelected.asDriverOnErrorJustComplete())
         
     }
     
