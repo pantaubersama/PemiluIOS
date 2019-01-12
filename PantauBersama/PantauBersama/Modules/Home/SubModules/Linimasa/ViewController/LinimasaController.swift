@@ -22,10 +22,10 @@ class LinimasaController: UIViewController {
     var viewModel: LinimasaViewModel!
     
     lazy var pilpresViewModel = PilpresViewModel(navigator: viewModel.navigator)
-    lazy var janjiViewModel = JanjiPolitikViewModel(navigator: viewModel.navigator)
+    lazy var janjiViewModel = JanpolListViewModel(navigator: viewModel.navigator)
     
     private lazy var pilpresController = PilpresViewController(viewModel: pilpresViewModel)
-    private lazy var janjiController = JanjiPolitikViewController(viewModel: janjiViewModel)
+    private lazy var janjiController = JanjiPolitikViewController(viewModel: janjiViewModel, pageType: .allJanpol)
     
     private lazy var searchBar: UISearchBar = {
        let search = UISearchBar()
@@ -48,7 +48,7 @@ class LinimasaController: UIViewController {
             .map { [unowned self] (_) -> (type: FilterType, filterTrigger: AnyObserver<[PenpolFilterModel.FilterItem]>) in
                 return self.pilpresController.view.alpha == 1.0 ?
                     (type: .pilpres, filterTrigger: self.pilpresViewModel.input.filterTrigger) :
-                    (type: .janji, filterTrigger: self.janjiViewModel.input.filterTrigger)
+                    (type: .janji, filterTrigger: self.janjiViewModel.filterI)
             }
             .bind(to: viewModel.input.filterTrigger)
             .disposed(by: disposeBag)

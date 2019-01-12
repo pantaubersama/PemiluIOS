@@ -123,10 +123,12 @@ class DetailJanjiController: UIViewController {
             image.af_setImage(withURL: URL(string: url)!)
         }
         
-        nameParpol.text = data.creator.cluster.name
-        jumlahAnggota.text = "\(data.creator.cluster.memberCount)"
-        if let url = data.creator.cluster.image.medium.url {
-            iconParpol.af_setImage(withURL: URL(string: url)!)
+        if let cluster = data.creator.cluster {
+            nameParpol.text = cluster.name
+            jumlahAnggota.text = "\(cluster.memberCount)"
+            if let url = cluster.image.medium.url {
+                iconParpol.af_setImage(withURL: URL(string: url)!)
+            }
         }
         
         nameLabel.text = data.creator.fullName

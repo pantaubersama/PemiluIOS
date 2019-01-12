@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import Networking
 
-protocol LinimasaNavigator: PilpresNavigator, JanjiPolitikNavigator {
+protocol LinimasaNavigator: PilpresNavigator,IJanpolNavigator {
     func launchProfile() -> Observable<Void>
     func launchNotifications()
     func launchFilter() -> Observable<Void>
@@ -97,21 +97,5 @@ extension LinimasaCoordinator: PilpresNavigator {
         return Observable.never()
     }
     
-    
-}
-
-
-extension LinimasaCoordinator: JanjiPolitikNavigator {
-    func launchJanjiDetail(data: JanjiPolitik) -> Observable<Void> {
-        let janjiDetailCoordinator = DetailJanjiCoordinator(navigationController: navigationController, data: data)
-        return coordinate(to: janjiDetailCoordinator)
-    }
-    
-    func shareJanji(data: Any) -> Observable<Void> {
-        let activityViewController = UIActivityViewController(activityItems: ["content to be shared" as NSString], applicationActivities: nil)
-        self.navigationController.present(activityViewController, animated: true, completion: nil)
-        
-        return Observable.never()
-    }
     
 }

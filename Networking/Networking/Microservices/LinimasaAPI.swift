@@ -16,6 +16,7 @@ public enum LinimasaAPI {
     case deleteJanjiPolitiks(id: String)
     case createJanjiPolitiks(title: String, body: String, image: UIImage?)
     case editJanjiPolitiks(title: String, image: UIImage?)
+    case getMyJanjiPolitiks(query: String, page: Int, perPage: Int)
 }
 
 extension LinimasaAPI: TargetType {
@@ -45,6 +46,8 @@ extension LinimasaAPI: TargetType {
              .createJanjiPolitiks,
              .editJanjiPolitiks:
             return "/linimasa/v1/janji_politiks"
+        case .getMyJanjiPolitiks:
+            return "/linimasa/v1/janji_politiks/me"
         }
     }
     
@@ -71,6 +74,12 @@ extension LinimasaAPI: TargetType {
             return [
                 "id": id
             ]
+        case .getMyJanjiPolitiks(let (query, page, perPage)):
+            return [
+                "q": query,
+                "page": page,
+                "per_page": perPage
+            ]
         default:
             return nil
         }
@@ -80,7 +89,8 @@ extension LinimasaAPI: TargetType {
         switch self {
         case .getBannerInfos,
              .getFeeds,
-             .getJanjiPolitiks:
+             .getJanjiPolitiks,
+             .getMyJanjiPolitiks:
             return .get
         case .deleteJanjiPolitiks:
             return .delete

@@ -31,11 +31,11 @@ class ProfileController: UIViewController {
     
     var viewModel: IProfileViewModel!
     
-    lazy var janjiViewModel: JanjiPolitikViewModel = JanjiPolitikViewModel(navigator: viewModel.navigatorLinimasa)
-    lazy var tanyaViewModel: JanjiPolitikViewModel = JanjiPolitikViewModel(navigator: viewModel.navigatorLinimasa)
+    lazy var myJanpolViewModel: MyJanpolListViewModel = MyJanpolListViewModel(navigator: viewModel.navigator)
+    lazy var myAskViewModel: MyJanpolListViewModel = MyJanpolListViewModel(navigator: viewModel.navigator)
     
-    private lazy var janjiController = JanjiPolitikViewController(viewModel: janjiViewModel)
-    private lazy var tanyaController = JanjiPolitikViewController(viewModel: tanyaViewModel)
+    private lazy var janjiController = JanjiPolitikViewController(viewModel: myJanpolViewModel, pageType: .myJanpol)
+    private lazy var tanyaController = JanjiPolitikViewController(viewModel: myAskViewModel, pageType: .myJanpol)
     
     private let disposeBag = DisposeBag()
     private var dataSourceBadge: RxTableViewSectionedReloadDataSource<SectionOfProfileData>!

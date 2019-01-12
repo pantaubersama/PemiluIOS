@@ -31,7 +31,7 @@ public struct CreatorJanpol: Codable {
     public var fullName: String
     public var about: String?
     public var avatar: Avatar
-    public var cluster: ClusterDetail
+    public var cluster: ClusterDetail?
     
     private enum CodingKeys: String, CodingKey {
         case id

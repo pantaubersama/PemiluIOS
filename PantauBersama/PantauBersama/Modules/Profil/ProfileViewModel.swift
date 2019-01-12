@@ -86,8 +86,8 @@ final class ProfileViewModel: IProfileViewModel, IProfileViewModelInput, IProfil
     
     init(navigator: ProfileNavigator) {
         self.navigator = navigator
-        self.navigatorLinimasa = navigator
-        self.navigatorPenpol = navigator
+//        self.navigatorLinimasa = navigator
+//        self.navigatorPenpol = navigator
         self.navigatorBadge = navigator
         
         
