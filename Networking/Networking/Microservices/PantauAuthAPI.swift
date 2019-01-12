@@ -45,6 +45,7 @@ public enum PantauAuthAPI {
     case clusterMagicLink(id: String, enable: Bool)
     case clusterInvite(emails: String)
     case accountsConnect(type: String, oauthToken: String, oauthSecret: String)
+    case accountDisconnect(type: String)
 }
 
 extension PantauAuthAPI: TargetType {
@@ -108,6 +109,8 @@ extension PantauAuthAPI: TargetType {
             return "/v1/clusters/invite"
         case .accountsConnect:
             return "/v1/accounts/connect"
+        case .accountDisconnect:
+            return "/v1/accounts/disconnect"
         }
     }
     
@@ -130,7 +133,8 @@ extension PantauAuthAPI: TargetType {
              .putInformants,
              .votePreference:
             return .put
-        case .deleteCluster:
+        case .deleteCluster,
+             .accountDisconnect:
             return .delete
         default:
             return .get
@@ -182,6 +186,10 @@ extension PantauAuthAPI: TargetType {
         case .createCategories(let t):
             return [
                 "name": t
+            ]
+        case .accountDisconnect(let type):
+            return [
+                "account_type": type
             ]
         default:
             return nil

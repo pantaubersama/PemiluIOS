@@ -8,6 +8,7 @@
 
 import UIKit
 import Common
+import RxSwift
 
 typealias SettingCellConfigured = CellConfigurator<SettingCell, SettingCell.Input>
 
@@ -16,9 +17,16 @@ class SettingCell: UITableViewCell {
     @IBOutlet weak var leftIcon: UIImageView!
     @IBOutlet weak var label: Label!
     
+    var disposeBag: DisposeBag!
     
     override func awakeFromNib() {
         super.awakeFromNib()
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        disposeBag = nil
     }
     
 }

@@ -10,6 +10,7 @@ import RxSwift
 import RxCocoa
 import UIKit
 import RxDataSources
+import TwitterKit
 
 class SettingController: UITableViewController {
     
@@ -59,11 +60,31 @@ class SettingController: UITableViewController {
         viewModel.output.itemSelectedO
             .drive()
             .disposed(by: disposeBag)
+        
+        viewModel.output.itemTwitterO
+            .drive()
+            .disposed(by: disposeBag)
+       
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.configure(with: .white)
+        
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+        
+        if let uid: String = UserDefaults.Account.get(forKey: .userIdTwitter) {
+            let client = TWTRAPIClient(userID: uid)
+            TWTRTwitter.sharedInstance()
+                .rx_loadUserWithID(userID: uid, client: client)
+                .subscribe(onNext: { [weak self] (user) in
+                    UserDefaults.Account.set("Connected as \(user.name)", forKey: .usernameTwitter)
+                    self?.viewModel.input.itemTwitterI.onNext((user.name))
+                })
+                .disposed(by: disposeBag)
+        }
     }
 }
 

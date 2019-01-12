@@ -84,6 +84,8 @@ public extension UserDefaults {
             case tokenType
             case me
             case informant
+            case userIdTwitter
+            case usernameTwitter
         }
     }
 }

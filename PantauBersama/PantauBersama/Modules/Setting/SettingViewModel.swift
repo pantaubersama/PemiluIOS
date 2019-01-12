@@ -15,11 +15,13 @@ protocol ISettingViewModelInput {
     var backI: AnyObserver<Void> { get }
     var itemSelectedI: AnyObserver<IndexPath> { get }
     var viewWillAppearTrigger: AnyObserver<Void> { get }
+    var itemTwitterI: AnyObserver<String> { get }
 }
 
 protocol ISettingViewModelOutput {
     var itemsO: Driver<[SectionOfSettingData]> { get }
     var itemSelectedO: Driver<Void> { get }
+    var itemTwitterO: Driver<String> { get }
 }
 
 protocol ISettingViewModel {
@@ -40,17 +42,19 @@ final class SettingViewModel: ISettingViewModel, ISettingViewModelInput, ISettin
     var backI: AnyObserver<Void>
     var itemSelectedI: AnyObserver<IndexPath>
     var viewWillAppearTrigger: AnyObserver<Void>
+    var itemTwitterI: AnyObserver<String>
     
     // Output
     var itemsO: Driver<[SectionOfSettingData]>
     var itemSelectedO: Driver<Void>
+    var itemTwitterO: Driver<String>
     
     private let backS = PublishSubject<Void>()
     private let editS = PublishSubject<Int>()
     private let itemSelectedS = PublishSubject<IndexPath>()
     private let userData: User
     private let viewWillAppearS = PublishSubject<Void>()
-    
+    private let itemTwitterS = PublishSubject<String>()
     
     init(navigator: SettingNavigator, data: User) {
         self.navigator = navigator
@@ -63,6 +67,7 @@ final class SettingViewModel: ISettingViewModel, ISettingViewModelInput, ISettin
         backI = backS.asObserver()
         itemSelectedI = itemSelectedS.asObserver()
         viewWillAppearTrigger = viewWillAppearS.asObserver()
+        itemTwitterI = itemTwitterS.asObserver()
         
         let items = Driver.just([
             SectionOfSettingData(header: nil, items: [
@@ -133,21 +138,27 @@ final class SettingViewModel: ISettingViewModel, ISettingViewModelInput, ISettin
                         return navigator.launchAlertCluster()
                     }
                 case .twitter:
-                    return TWTRTwitter.sharedInstance().loginTwitter()
-                        .flatMapLatest({ (session) -> Observable<Void> in
-                            return NetworkService.instance
-                                .requestObject(PantauAuthAPI
-                                    .accountsConnect(
-                                        type: "twitter",
-                                        oauthToken: session.authToken,
-                                        oauthSecret: session.authTokenSecret),
-                                               c: BaseResponse<AccountResponse>.self)
-                                .trackError(errorTracker)
-                                .trackActivity(activityIndicator)
-                                .catchErrorJustComplete()
-                                .mapToVoid()
-                        })
-                        .mapToVoid()
+                    if data.twitter == true {
+                        return navigator.launchTwitterAlert()
+                    } else {
+                        return TWTRTwitter.sharedInstance().loginTwitter()
+                            .flatMapLatest({ (session) -> Observable<Void> in
+                                UserDefaults.Account.set("Connected as \(session.userName)", forKey: .usernameTwitter)
+                                UserDefaults.Account.set(session.userID, forKey: .userIdTwitter)
+                                return NetworkService.instance
+                                    .requestObject(PantauAuthAPI
+                                        .accountsConnect(
+                                            type: "twitter",
+                                            oauthToken: session.authToken,
+                                            oauthSecret: session.authTokenSecret),
+                                                   c: BaseResponse<AccountResponse>.self)
+                                    .trackError(errorTracker)
+                                    .trackActivity(activityIndicator)
+                                    .catchErrorJustComplete()
+                                    .mapToVoid()
+                            })
+                            .mapToVoid()
+                    }
                 default:
                     return Observable.empty()
                 }
@@ -155,7 +166,7 @@ final class SettingViewModel: ISettingViewModel, ISettingViewModelInput, ISettin
         
         itemsO = items
         itemSelectedO = itemSelected.asDriverOnErrorJustComplete()
-        
+        itemTwitterO = itemTwitterS.asDriver(onErrorJustReturn: "")
     }
     
 }

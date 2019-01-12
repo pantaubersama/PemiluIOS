@@ -15,6 +15,11 @@ enum UndangCluster {
     case buat(item: ResultRequest)
 }
 
+enum TwitterState {
+    case cancel
+    case signOut
+}
+
 protocol SettingNavigator {
     var finish: Observable<Void>! { get set }
     func launchProfileEdit(data: User, type: ProfileHeaderItem) -> Observable<Void>
@@ -25,6 +30,7 @@ protocol SettingNavigator {
     func launchAlertUndang() -> Observable<Void>
     func launchReqCluster() -> Observable<ResultRequest>
     func launchAlertCluster() -> Observable<Void>
+    func launchTwitterAlert() -> Observable<Void>
 }
 
 final class SettingCoordinator: BaseCoordinator<Void> {
@@ -155,5 +161,38 @@ extension SettingCoordinator: SettingNavigator {
             }
             return Disposables.create()
         }).mapToVoid()
+    }
+    
+    func launchTwitterAlert() -> Observable<Void> {
+        return Observable<TwitterState>.create({ [weak self] (observer) -> Disposable in
+            let alert = UIAlertController(title: nil, message: "Anda telah login dengan akun twitter anda sebelumnya, apakah anda ingin keluar?", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Batal", style: .cancel, handler: { (_) in
+                observer.onNext(TwitterState.cancel)
+                observer.on(.completed)
+            }))
+            alert.addAction(UIAlertAction(title: "Sign Out", style: .destructive, handler: { (UIAlertAction_) in
+                observer.onNext(TwitterState.signOut)
+                observer.on(.completed)
+            }))
+            DispatchQueue.main.async {
+                self?.navigationController.present(alert, animated: true, completion: nil)
+            }
+            return Disposables.create()
+        })
+            .filter({ $0 == .signOut })
+            .mapToVoid()
+            .flatMap({ (_) -> Observable<Void> in
+                // Reset Account for user id twitter and username
+                UserDefaults.Account.reset(forKey: .userIdTwitter)
+                UserDefaults.Account.reset(forKey: .usernameTwitter)
+                return NetworkService.instance
+                    .requestObject(
+                        PantauAuthAPI
+                            .accountDisconnect(type: "twitter"),
+                        c: BaseResponse<AccountResponse>.self)
+                    .asObservable()
+                    .catchErrorJustComplete()
+                    .mapToVoid()
+            })
     }
 }
