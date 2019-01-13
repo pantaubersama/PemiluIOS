@@ -29,6 +29,7 @@ def application_pods
     pod 'AlamofireImage'
     pod 'LTHRadioButton'
     pod 'TwitterKit'
+    pod 'FBSDKLoginKit'
 end
 
 

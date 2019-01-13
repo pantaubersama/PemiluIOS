@@ -2,6 +2,16 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>FacebookAppID</key>
+	<string>$(FACEBOOK_ID)</string>
+	<key>FacebookDisplayName</key>
+	<string>$(FACEBOOK_DISPLAY_NAME)</string>
+	<key>FACEBOOK_DISPLAY_NAME</key>
+	<string>$(FACEBOOK_DISPLAY_NAME)</string>
+	<key>FACEBOOK_ID</key>
+	<string>$(FACEBOOK_ID)</string>
+	<key>FACEBOOK_SCHEME</key>
+	<string>$(FACEBOOK_SCHEME)</string>
 	<key>SECRET_TWITTER</key>
 	<string>$(SECRET_TWITTER)</string>
 	<key>KEY_TWITTER</key>
@@ -44,12 +54,24 @@
 				<string>$(TWITTER_SCHEME)</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>$(FACEBOOK_SCHEME)</string>
+			</array>
+		</dict>
 	</array>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string></string>
 		<string>twitter</string>
 		<string>twitterauth</string>
+		<string>fbauth2</string>
+		<string>fbapi</string>
+		<string>fb-messenger-share-api</string>
+		<string>fbshareextension</string>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>$(APP_BUILD_VERSION)</string>

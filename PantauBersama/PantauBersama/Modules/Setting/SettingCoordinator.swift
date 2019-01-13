@@ -9,13 +9,14 @@
 import UIKit
 import RxSwift
 import Networking
+import FBSDKLoginKit
 
 enum UndangCluster {
     case cancel
     case buat(item: ResultRequest)
 }
 
-enum TwitterState {
+enum SosmedState {
     case cancel
     case signOut
 }
@@ -31,6 +32,7 @@ protocol SettingNavigator {
     func launchReqCluster() -> Observable<ResultRequest>
     func launchAlertCluster() -> Observable<Void>
     func launchTwitterAlert() -> Observable<Void>
+    func launchFacebookAlert() -> Observable<Void>
 }
 
 final class SettingCoordinator: BaseCoordinator<Void> {
@@ -46,6 +48,7 @@ final class SettingCoordinator: BaseCoordinator<Void> {
     
     override func start() -> Observable<CoordinationResult> {
         let viewController = SettingController()
+        viewController.data = data
         let viewModel = SettingViewModel(navigator: self, data: data)
         viewController.viewModel = viewModel
         viewController.hidesBottomBarWhenPushed = true
@@ -164,14 +167,14 @@ extension SettingCoordinator: SettingNavigator {
     }
     
     func launchTwitterAlert() -> Observable<Void> {
-        return Observable<TwitterState>.create({ [weak self] (observer) -> Disposable in
+        return Observable<SosmedState>.create({ [weak self] (observer) -> Disposable in
             let alert = UIAlertController(title: nil, message: "Anda telah login dengan akun twitter anda sebelumnya, apakah anda ingin keluar?", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Batal", style: .cancel, handler: { (_) in
-                observer.onNext(TwitterState.cancel)
+                observer.onNext(SosmedState.cancel)
                 observer.on(.completed)
             }))
             alert.addAction(UIAlertAction(title: "Sign Out", style: .destructive, handler: { (UIAlertAction_) in
-                observer.onNext(TwitterState.signOut)
+                observer.onNext(SosmedState.signOut)
                 observer.on(.completed)
             }))
             DispatchQueue.main.async {
@@ -189,6 +192,38 @@ extension SettingCoordinator: SettingNavigator {
                     .requestObject(
                         PantauAuthAPI
                             .accountDisconnect(type: "twitter"),
+                        c: BaseResponse<AccountResponse>.self)
+                    .asObservable()
+                    .catchErrorJustComplete()
+                    .mapToVoid()
+            })
+    }
+    
+    func launchFacebookAlert() -> Observable<Void> {
+        return Observable<SosmedState>.create({ [weak self] (observer) -> Disposable in
+            let alert = UIAlertController(title: nil, message: "Anda telah login dengan akun facebook anda sebelumnya, apakah anda ingin keluar?", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Batal", style: .cancel, handler: { (_) in
+                observer.onNext(SosmedState.cancel)
+                observer.on(.completed)
+            }))
+            alert.addAction(UIAlertAction(title: "Sign Out", style: .destructive, handler: { (UIAlertAction_) in
+                observer.onNext(SosmedState.signOut)
+                observer.on(.completed)
+            }))
+            DispatchQueue.main.async {
+                self?.navigationController.present(alert, animated: true, completion: nil)
+            }
+            return Disposables.create()
+        })
+            .filter({ $0 == .signOut })
+            .mapToVoid()
+            .flatMap({ (_) -> Observable<Void> in
+                // Reset Account for user facebook
+                UserDefaults.Account.reset(forKey: .usernameFacebook)
+                return NetworkService.instance
+                    .requestObject(
+                        PantauAuthAPI
+                            .accountDisconnect(type: "facebook"),
                         c: BaseResponse<AccountResponse>.self)
                     .asObservable()
                     .catchErrorJustComplete()

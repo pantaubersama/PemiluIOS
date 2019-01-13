@@ -19,7 +19,7 @@ public extension TWTRTwitter {
     
     // MARK: - Login twitter
     // Parameter client: API Client used to laod the request
-    public func rx_login(client: TWTRAPIClient) -> Observable<TWTRSession> {
+    public func rx_loginTwitter(client: TWTRAPIClient) -> Observable<TWTRSession> {
         return Observable.create({ (observer: AnyObserver<TWTRSession>) -> Disposable in
             self.logIn(completion: { (session, error) in
                 guard let session = session else {
@@ -35,7 +35,7 @@ public extension TWTRTwitter {
     
     // MARK: - Loads twitter user
     // parameter userID and client used to load the request
-    public func rx_loadUserWithID(userID: String, client: TWTRAPIClient) -> Observable<TWTRUser> {
+    public func rx_loadUserWithIDTwitter(userID: String, client: TWTRAPIClient) -> Observable<TWTRUser> {
         return Observable.create({ (observer: AnyObserver<TWTRUser>) -> Disposable in
             client.loadUser(withID: userID, completion: { (user, error) in
                 guard let user = user else {
@@ -52,8 +52,8 @@ public extension TWTRTwitter {
     // MARK
     // Login using Twitter
     public func loginTwitter() -> Observable<TWTRSession> {
-        return Observable.create({ (observer: AnyObserver<TWTRSession>) -> Disposable in
-            self.logIn(completion: { (session, error) in
+        return Observable.create({ [weak self] (observer: AnyObserver<TWTRSession>) -> Disposable in
+            self?.logIn(completion: { (session, error) in
                 guard let session = session else {
                     observer.onError(error ?? TwitterError.unknown)
                     return

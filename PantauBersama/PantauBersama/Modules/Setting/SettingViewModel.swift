@@ -10,18 +10,24 @@ import RxSwift
 import RxCocoa
 import Networking
 import TwitterKit
+import FBSDKLoginKit
+import FBSDKCoreKit
 
 protocol ISettingViewModelInput {
     var backI: AnyObserver<Void> { get }
     var itemSelectedI: AnyObserver<IndexPath> { get }
     var viewWillAppearTrigger: AnyObserver<Void> { get }
     var itemTwitterI: AnyObserver<String> { get }
+    var viewControllerTrigger: AnyObserver<UIViewController?> { get }
+    var facebookI: AnyObserver<FBSDKLoginManagerLoginResult?> { get }
 }
 
 protocol ISettingViewModelOutput {
     var itemsO: Driver<[SectionOfSettingData]> { get }
     var itemSelectedO: Driver<Void> { get }
     var itemTwitterO: Driver<String> { get }
+    var facebookO: Driver<Void> { get }
+    var facebookMeO: Driver<MeFacebookResponse> { get }
 }
 
 protocol ISettingViewModel {
@@ -43,11 +49,16 @@ final class SettingViewModel: ISettingViewModel, ISettingViewModelInput, ISettin
     var itemSelectedI: AnyObserver<IndexPath>
     var viewWillAppearTrigger: AnyObserver<Void>
     var itemTwitterI: AnyObserver<String>
+    var viewControllerTrigger: AnyObserver<UIViewController?>
+    var facebookI: AnyObserver<FBSDKLoginManagerLoginResult?>
     
     // Output
     var itemsO: Driver<[SectionOfSettingData]>
     var itemSelectedO: Driver<Void>
     var itemTwitterO: Driver<String>
+    var facebookO: Driver<Void>
+    var facebookMeO: Driver<MeFacebookResponse>
+    
     
     private let backS = PublishSubject<Void>()
     private let editS = PublishSubject<Int>()
@@ -55,6 +66,8 @@ final class SettingViewModel: ISettingViewModel, ISettingViewModelInput, ISettin
     private let userData: User
     private let viewWillAppearS = PublishSubject<Void>()
     private let itemTwitterS = PublishSubject<String>()
+    private let viewControllerS = PublishSubject<UIViewController?>()
+    private let facebookS = PublishSubject<FBSDKLoginManagerLoginResult?>()
     
     init(navigator: SettingNavigator, data: User) {
         self.navigator = navigator
@@ -68,6 +81,8 @@ final class SettingViewModel: ISettingViewModel, ISettingViewModelInput, ISettin
         itemSelectedI = itemSelectedS.asObserver()
         viewWillAppearTrigger = viewWillAppearS.asObserver()
         itemTwitterI = itemTwitterS.asObserver()
+        viewControllerTrigger = viewControllerS.asObserver()
+        facebookI = facebookS.asObserver()
         
         let item = Observable.just([
                 SectionOfSettingData(header: nil, items: [
@@ -161,14 +176,51 @@ final class SettingViewModel: ISettingViewModel, ISettingViewModelInput, ISettin
                             })
                             .mapToVoid()
                     }
+                case .facebook:
+                    if data.facebook == true {
+                        return navigator.launchFacebookAlert()
+                    } else {
+                        return Observable.empty()
+                    }
                 default:
                     return Observable.empty()
                 }
         }
         
+        
+        // MARK
+        // Facbeook
+        let facebook = facebookS
+            .flatMapLatest { (result) -> Observable<Void> in
+                if let token = result?.token.tokenString {
+                    return NetworkService.instance
+                        .requestObject(PantauAuthAPI
+                            .accountsConnect(type: "facebook",
+                                             oauthToken: token,
+                                             oauthSecret: ""),
+                                       c: BaseResponse<AccountResponse>.self)
+                        .trackError(errorTracker)
+                        .trackActivity(activityIndicator)
+                        .catchErrorJustComplete()
+                        .mapToVoid()
+                } else {
+                    return Observable.empty()
+                }
+            }.mapToVoid()
+        
+        let meFacebook = viewWillAppearS
+            .flatMapLatest { (_) -> Observable<MeFacebookResponse> in
+                if let request = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "name, email, gender, birthday, photos"]) {
+                    return request.fetchMeFacebook()
+                }
+                return Observable<MeFacebookResponse>.empty()
+            }
+        
         itemsO = items
         itemSelectedO = itemSelected.asDriverOnErrorJustComplete()
         itemTwitterO = itemTwitterS.asDriver(onErrorJustReturn: "")
+        facebookO = facebook.asDriverOnErrorJustComplete()
+        facebookMeO = meFacebook.asDriverOnErrorJustComplete()
     }
     
 }

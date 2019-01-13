@@ -11,12 +11,15 @@ import RxCocoa
 import UIKit
 import RxDataSources
 import TwitterKit
+import FBSDKLoginKit
+import Networking
 
 class SettingController: UITableViewController {
     
     var viewModel: ISettingViewModel!
     private let disposeBag = DisposeBag()
     var dataSource: RxTableViewSectionedReloadDataSource<SectionOfSettingData>!
+    var data: User!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,6 +53,22 @@ class SettingController: UITableViewController {
             .disposed(by: disposeBag)
         
         tableView.rx.itemSelected
+            .do(onNext: { (indexPath) in
+                switch indexPath.section {
+                case 2:
+                    let manager: FBSDKLoginManager = FBSDKLoginManager()
+                    manager.logIn(withReadPermissions:  ["public_profile", "email"],
+                                  from: self, handler: { [weak self] (result, error) in
+                        if let error = error {
+                            print(error.localizedDescription)
+                            return
+                        }
+                        self?.viewModel.input.facebookI.onNext((result))
+                    })
+                    
+                default: break
+                }
+            })
             .bind(to: viewModel.input.itemSelectedI)
             .disposed(by: disposeBag)
         
@@ -64,6 +83,19 @@ class SettingController: UITableViewController {
         viewModel.output.itemTwitterO
             .drive()
             .disposed(by: disposeBag)
+        
+        viewModel.output.facebookO
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.facebookMeO
+            .do(onNext: { (n,_,_,_,_) in
+                if let username = n {
+                    UserDefaults.Account.set("Connected as \(username)", forKey: .usernameFacebook)
+                }
+            })
+            .drive()
+            .disposed(by: disposeBag)
        
     }
     
@@ -71,6 +103,7 @@ class SettingController: UITableViewController {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.configure(with: .white)
         viewModel.input.viewWillAppearTrigger.onNext(())
+        viewModel.input.viewControllerTrigger.onNext((self.presentedViewController))
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }

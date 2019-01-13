@@ -86,6 +86,7 @@ public extension UserDefaults {
             case informant
             case userIdTwitter
             case usernameTwitter
+            case usernameFacebook
         }
     }
 }
