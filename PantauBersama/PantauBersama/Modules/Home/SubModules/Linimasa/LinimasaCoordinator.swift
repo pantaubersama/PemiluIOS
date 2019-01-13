@@ -18,6 +18,7 @@ protocol LinimasaNavigator: PilpresNavigator,IJanpolNavigator {
     func launchBannerInfo(bannerInfo: BannerInfo) -> Observable<Void>
     func launchNote() -> Observable<Void>
     func launchFilter(filterType: FilterType, filterTrigger: AnyObserver<[PenpolFilterModel.FilterItem]>) -> Observable<Void>
+    func launchSearch() -> Observable<Void>
 }
 
 class LinimasaCoordinator: BaseCoordinator<Void> {
@@ -39,6 +40,11 @@ class LinimasaCoordinator: BaseCoordinator<Void> {
 }
 
 extension LinimasaCoordinator: LinimasaNavigator {
+    func launchSearch() -> Observable<Void> {
+        let searchCoordinator = SearchCoordinator(navigationController: self.navigationController)
+        return coordinate(to: searchCoordinator)
+    }
+    
     func launchBannerInfo(bannerInfo: BannerInfo) -> Observable<Void> {
         let bannerInfoCoordinator = BannerInfoCoordinator(navigationController: self.navigationController, bannerInfo: bannerInfo)
         return coordinate(to: bannerInfoCoordinator)
