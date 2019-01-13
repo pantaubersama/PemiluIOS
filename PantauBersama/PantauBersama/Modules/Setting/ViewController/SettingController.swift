@@ -21,6 +21,7 @@ class SettingController: UITableViewController {
     var dataSource: RxTableViewSectionedReloadDataSource<SectionOfSettingData>!
     var data: User!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -37,6 +38,11 @@ class SettingController: UITableViewController {
         tableView.dataSource = nil
         tableView.registerReusableCell(SettingCell.self)
         tableView.tableFooterView = UIView()
+        tableView.refreshControl = UIRefreshControl()
+        
+        tableView.refreshControl?.rx.controlEvent(.valueChanged)
+            .bind(to: viewModel.input.refreshI)
+            .disposed(by: disposeBag)
         
         back.rx.tap
             .bind(to: viewModel.input.backI)
@@ -69,6 +75,7 @@ class SettingController: UITableViewController {
                                 } else {
                                     guard let token = result.token.tokenString else { return }
                                     self?.viewModel.input.facebookI.onNext((token))
+                                    self?.viewModel.input.facebookGraphI.onNext(())
                                 }
                         })
                     }
@@ -79,6 +86,9 @@ class SettingController: UITableViewController {
             .disposed(by: disposeBag)
         
         viewModel.output.itemsO
+            .do(onNext: { [weak self] (_) in
+                self?.refreshControl?.endRefreshing()
+            })
             .drive(tableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
         
@@ -101,6 +111,19 @@ class SettingController: UITableViewController {
                 }
             })
             .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.loadingO
+            .drive(onNext: { [unowned self](loading) in
+                self.tableView.refreshControl?.endRefreshing()
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.output.errorO
+            .drive(onNext: { [weak self] (e) in
+                guard let alert = UIAlertController.alert(with: e) else { return }
+                self?.navigationController?.present(alert, animated: true, completion: nil)
+            })
             .disposed(by: disposeBag)
        
     }

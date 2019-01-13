@@ -20,7 +20,9 @@ protocol ISettingViewModelInput {
     var itemTwitterI: AnyObserver<String> { get }
     var viewControllerTrigger: AnyObserver<UIViewController?> { get }
     var facebookI: AnyObserver<String> { get }
-}
+    var facebookGraphI: AnyObserver<Void> { get }
+    var refreshI: AnyObserver<Void> { get }
+ }
 
 protocol ISettingViewModelOutput {
     var itemsO: Driver<[SectionOfSettingData]> { get }
@@ -28,6 +30,8 @@ protocol ISettingViewModelOutput {
     var itemTwitterO: Driver<String> { get }
     var facebookO: Driver<Void> { get }
     var facebookMeO: Driver<MeFacebookResponse> { get }
+    var loadingO: Driver<Bool> { get }
+    var errorO: Driver<Error> { get }
 }
 
 protocol ISettingViewModel {
@@ -51,6 +55,8 @@ final class SettingViewModel: ISettingViewModel, ISettingViewModelInput, ISettin
     var itemTwitterI: AnyObserver<String>
     var viewControllerTrigger: AnyObserver<UIViewController?>
     var facebookI: AnyObserver<String>
+    var facebookGraphI: AnyObserver<Void>
+    var refreshI: AnyObserver<Void>
     
     // Output
     var itemsO: Driver<[SectionOfSettingData]>
@@ -58,6 +64,8 @@ final class SettingViewModel: ISettingViewModel, ISettingViewModelInput, ISettin
     var itemTwitterO: Driver<String>
     var facebookO: Driver<Void>
     var facebookMeO: Driver<MeFacebookResponse>
+    var loadingO: Driver<Bool>
+    var errorO: Driver<Error>
     
     
     private let backS = PublishSubject<Void>()
@@ -68,6 +76,8 @@ final class SettingViewModel: ISettingViewModel, ISettingViewModelInput, ISettin
     private let itemTwitterS = PublishSubject<String>()
     private let viewControllerS = PublishSubject<UIViewController?>()
     private let facebookS = PublishSubject<String>()
+    private let facebookGraphS = PublishSubject<Void>()
+    private let refreshS = PublishSubject<Void>()
     
     init(navigator: SettingNavigator, data: User) {
         self.navigator = navigator
@@ -83,6 +93,24 @@ final class SettingViewModel: ISettingViewModel, ISettingViewModelInput, ISettin
         itemTwitterI = itemTwitterS.asObserver()
         viewControllerTrigger = viewControllerS.asObserver()
         facebookI = facebookS.asObserver()
+        facebookGraphI = facebookGraphS.asObserver()
+        refreshI = refreshS.asObserver()
+        
+        let cloudMe = NetworkService.instance
+            .requestObject(PantauAuthAPI.me,
+                           c: BaseResponse<UserResponse>.self)
+            .map({ $0.data.user })
+            .trackError(errorTracker)
+            .trackActivity(activityIndicator)
+            .asObservable()
+            .catchErrorJustComplete()
+        
+        let userLocal = Observable.just(data)
+        let userCombined = viewWillAppearS
+            .flatMapLatest({ Observable.merge(userLocal, cloudMe)})
+            .map({ $0 })
+        
+        let refresh = refreshS.startWith(())
         
         let item = Observable.just([
                 SectionOfSettingData(header: nil, items: [
@@ -111,7 +139,7 @@ final class SettingViewModel: ISettingViewModel, ISettingViewModelInput, ISettin
         SectionOfSettingData(header: nil, items: [
             SettingData.logout ])])
         
-        let items = viewWillAppearS
+        let items = Observable.combineLatest(viewWillAppearS, refresh)
             .withLatestFrom(item)
             .asDriverOnErrorJustComplete()
         
@@ -204,7 +232,7 @@ final class SettingViewModel: ISettingViewModel, ISettingViewModelInput, ISettin
                     .mapToVoid()
             }.mapToVoid()
         
-        let meFacebook = viewWillAppearS
+        let meFacebook = facebookGraphS
             .flatMapLatest { (_) -> Observable<MeFacebookResponse> in
                 if let request = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "name, email, gender, birthday, photos"]) {
                     return request.fetchMeFacebook()
@@ -217,6 +245,8 @@ final class SettingViewModel: ISettingViewModel, ISettingViewModelInput, ISettin
         itemTwitterO = itemTwitterS.asDriver(onErrorJustReturn: "")
         facebookO = facebook.asDriverOnErrorJustComplete()
         facebookMeO = meFacebook.asDriverOnErrorJustComplete()
+        loadingO = activityIndicator.asDriver()
+        errorO = errorTracker.asDriver()
     }
     
 }

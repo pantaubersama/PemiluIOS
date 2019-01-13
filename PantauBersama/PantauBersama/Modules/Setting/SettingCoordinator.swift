@@ -184,7 +184,8 @@ extension SettingCoordinator: SettingNavigator {
         })
             .filter({ $0 == .signOut })
             .mapToVoid()
-            .flatMap({ (_) -> Observable<Void> in
+            .flatMap({ [weak self] (_) -> Observable<Void> in
+                self?.navigationController.popViewController(animated: true)
                 // Reset Account for user id twitter and username
                 UserDefaults.Account.reset(forKey: .userIdTwitter)
                 UserDefaults.Account.reset(forKey: .usernameTwitter)
@@ -217,7 +218,8 @@ extension SettingCoordinator: SettingNavigator {
         })
             .filter({ $0 == .signOut })
             .mapToVoid()
-            .flatMap({ (_) -> Observable<Void> in
+            .flatMap({ [weak self] (_) -> Observable<Void> in
+                self?.navigationController.popViewController(animated: true)
                 // Reset Account for user facebook
                 UserDefaults.Account.reset(forKey: .usernameFacebook)
                 return NetworkService.instance

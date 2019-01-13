@@ -28,8 +28,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-        let schemeTwitter = AppContext.instance.infoForKey("TWITTER_SCHEME")
-        let schemeFacebook = AppContext.instance.infoForKey("FACEBOOK_SCHEME")
+        let schemeTwitter = TWTRTwitter.sharedInstance().application(app, open: url, options: options)
+        let schemeFacebook = FBSDKApplicationDelegate.sharedInstance().application(app, open: url, options: options)
         // MARK
         // Handler from URL Schemes
         // Get code from oauth identitas, then parse into callback
@@ -40,17 +40,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if let code = url.getQueryString(parameter: "code") {
                loginSymbolic(code: code)
             }
-        } else if schemeTwitter == url.scheme {
-            return TWTRTwitter.sharedInstance().application(app, open: url, options: options)
-        } else if schemeFacebook == url.scheme {
-            return FBSDKApplicationDelegate.sharedInstance().application(app, open: url, options: options)
         }
         #else
         if "pantaubersama://oauth" == url.scheme {
             
         }
         #endif
-        return false
+        return schemeTwitter || schemeFacebook
     }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
