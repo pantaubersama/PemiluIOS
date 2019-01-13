@@ -105,8 +105,8 @@ final class BuatProfileViewModel: ViewModelType {
             educationS, occupationS)
             .map { (f,u,d,l,e,o) -> Bool in
                 return f.count > 0 && u.count > 0 // assume fullname and username not nil from symbolic
-//                    && d.count > 0 && l.count > 0
-//                    && e.count > 0 && o.count > 0
+                    && d.count > 0 && l.count > 0
+                    && e.count > 0 && o.count > 0
             }
             .startWith(false)
             .asDriverOnErrorJustComplete()
@@ -126,6 +126,8 @@ final class BuatProfileViewModel: ViewModelType {
                                  errorTracker: errorTracker,
                                  activityIndicator: activityIndicator)
             }
+            .trackError(errorTracker)
+            .trackActivity(activityIndicator)
             .flatMapLatest({ navigator.nextStep() })
             .asDriverOnErrorJustComplete()
         
@@ -134,7 +136,8 @@ final class BuatProfileViewModel: ViewModelType {
         output = Output(done: done,
                         userDataO: userData.asDriverOnErrorJustComplete(),
                         avatarO: avatarSelected,
-                        isEnabled: isEnabled, errorO: errorTracker.asDriver())
+                        isEnabled: isEnabled,
+                        errorO: errorTracker.asDriver())
         
     }
     
