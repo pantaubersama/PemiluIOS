@@ -30,3 +30,12 @@ CLIENT_SECRET_AUTH = bb431e39758118d64416a110b31c3c9c8667f9dc664527d0b0133e87ec5
 URL_API_PEMILU = https:\/\/staging-pemilu.pantaubersama.com
 URL_API_AUTH = https:/\/\staging-auth.pantaubersama.com
 URL_API_IDENTITAS = https:/\/\identitas.extrainteger.com
+// Consumer key and secret twitter
+KEY_TWITTER = gnWWCXI8Ki255KFtEyWcIcYrh
+SECRET_TWITTER = qQroOfVy6IIg6yr6s3cIResqI6w9EYqRz6cO1KoS9iWibQgXyR
+TWITTER_SCHEME = twitterkit-gnWWCXI8Ki255KFtEyWcIcYrh
+CALLBACK_TWITTER = pantaubersama.staging
+// Facebook
+FACEBOOK_SCHEME = fb487265651802954
+FACEBOOK_ID = 487265651802954
+FACEBOOK_DISPLAY_NAME = Pantau Bersama Staging

@@ -39,9 +39,9 @@ enum SettingData: Int {
         case .badge:
             return "Badge"
         case .twitter:
-            return "Connect Twitter"
+            return UserDefaults.Account.get(forKey: .usernameTwitter) ?? "Connect Twitter"
         case .facebook:
-            return "Connect Facebook"
+            return UserDefaults.Account.get(forKey: .usernameFacebook) ?? "Connect Facebook"
         case .cluster:
             return "Undang"
         case .pusatBantuan:

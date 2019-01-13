@@ -2,10 +2,20 @@ PODS:
   - Alamofire (4.8.0)
   - AlamofireImage (3.5.0):
     - Alamofire (~> 4.8)
+  - Bolts (1.9.0):
+    - Bolts/AppLinks (= 1.9.0)
+    - Bolts/Tasks (= 1.9.0)
+  - Bolts/AppLinks (1.9.0):
+    - Bolts/Tasks
+  - Bolts/Tasks (1.9.0)
   - Crashlytics (3.12.0):
     - Fabric (~> 1.9.0)
   - Differentiator (3.1.0)
   - Fabric (1.9.0)
+  - FBSDKCoreKit (4.39.1):
+    - Bolts (~> 1.9)
+  - FBSDKLoginKit (4.39.1):
+    - FBSDKCoreKit
   - Firebase/Core (5.14.0):
     - Firebase/CoreOnly
     - FirebaseAnalytics (= 5.4.0)
@@ -74,11 +84,15 @@ PODS:
     - RxSwift (~> 4.0)
   - RxSwift (4.4.0):
     - RxAtomic (~> 4.4)
+  - TwitterCore (3.2.0)
+  - TwitterKit (3.4.2):
+    - TwitterCore (>= 3.2.0)
 
 DEPENDENCIES:
   - AlamofireImage
   - Crashlytics
   - Fabric
+  - FBSDKLoginKit
   - Firebase/Core
   - IQKeyboardManagerSwift (~> 6.2.0)
   - lottie-ios
@@ -87,14 +101,18 @@ DEPENDENCIES:
   - RxCocoa (= 4.4.0)
   - RxDataSources (~> 3.1.0)
   - RxSwift (= 4.4.0)
+  - TwitterKit
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
     - AlamofireImage
+    - Bolts
     - Crashlytics
     - Differentiator
     - Fabric
+    - FBSDKCoreKit
+    - FBSDKLoginKit
     - Firebase
     - FirebaseAnalytics
     - FirebaseCore
@@ -111,13 +129,18 @@ SPEC REPOS:
     - RxCocoa
     - RxDataSources
     - RxSwift
+    - TwitterCore
+    - TwitterKit
 
 SPEC CHECKSUMS:
   Alamofire: 3ec537f71edc9804815215393ae2b1a8ea33a844
   AlamofireImage: 1aea346f4dda2f6c67622fa5a89fcbb80d79cc16
+  Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   Crashlytics: 07fb167b1694128c1c9a5a5cc319b0e9c3ca0933
   Differentiator: be49ca3408f0ecfc761e4c7763d20c62be01b9ad
   Fabric: f988e33c97f08930a413e08123064d2e5f68d655
+  FBSDKCoreKit: f442aa96179cc9b382bb4abeb7e340a47cca8f91
+  FBSDKLoginKit: c3079d9a4db27c492287b1eed7a4272b28cf8a59
   Firebase: 963d5685fae888a56d6d4d9cfce6b9c976958798
   FirebaseAnalytics: c06f9d70577d79074214700a71fd5d39de5550fb
   FirebaseCore: 8f49b70f57ab5cbb032ef41d64992ded21606459
@@ -134,7 +157,9 @@ SPEC CHECKSUMS:
   RxCocoa: df63ebf7b9a70d6b4eeea407ed5dd4efc8979749
   RxDataSources: a843bad90c29817f5923ec8163f4af2de084ceb3
   RxSwift: 5976ecd04fc2fefd648827c23de5e11157faa973
+  TwitterCore: 8cbc9ad34d91c63a0035ea05bfbfc0d7ca72a28c
+  TwitterKit: 5e4f41d70b9abdb41df5467f52d7aa2c0fd26ebb
 
-PODFILE CHECKSUM: bc63a01d5e40a17982d4558488f769d6a76a6fc3
+PODFILE CHECKSUM: 57d36860b77c281b8a2e22f3bdc771ab7230b0fe
 
 COCOAPODS: 1.5.3

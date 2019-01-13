@@ -54,12 +54,19 @@ class SosmedController: UITableViewController {
             .setDelegate(self)
             .disposed(by: disposeBag)
         
+        tableView.rx.itemSelected
+            .bind(to: viewModel.input.itemSelectedI)
+            .disposed(by: disposeBag)
         
         viewModel.output.itemsO
             .drive(tableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
         
         viewModel.output.doneO
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.itemsSelectedO
             .drive()
             .disposed(by: disposeBag)
     }

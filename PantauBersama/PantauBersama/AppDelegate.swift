@@ -16,6 +16,8 @@ import Networking
 import Common
 import Moya
 import IQKeyboardManagerSwift
+import TwitterKit
+import FBSDKLoginKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -26,6 +28,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        let schemeTwitter = TWTRTwitter.sharedInstance().application(app, open: url, options: options)
+        let schemeFacebook = FBSDKApplicationDelegate.sharedInstance().application(app, open: url, options: options)
         // MARK
         // Handler from URL Schemes
         // Get code from oauth identitas, then parse into callback
@@ -34,54 +38,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         #if DEBUG
         if "pantaubersama.staging" == url.scheme {
             if let code = url.getQueryString(parameter: "code") {
-                NetworkService.instance.requestObject(
-                    IdentitasAPI.loginIdentitas(code: code,
-                                                grantType: "authorization_code",
-                                                clientId: AppContext.instance.infoForKey("CLIENT_ID"),
-                                                clientSecret: AppContext.instance.infoForKey("CLIENT_SECRET"),
-                                                redirectURI: AppContext.instance.infoForKey("REDIRECT_URI")),
-                    c: IdentitasResponses.self)
-                    .subscribe(onSuccess: { (response) in
-                        print("AccessTokenIdentitas: \(response.accessToken)")
-                        print("RefreshTokenIdentitas: \(response.refreshToken)")
-                        
-                        // MARK
-                        // Exchange token identitas to get token pantau
-                        // Save this token
-                        NetworkService.instance.requestObject(
-                            PantauAuthAPI.callback(code: "",
-                                                   provider: response.accessToken),
-                            c: PantauAuthResponse.self)
-                            .subscribe(onSuccess: { (response) in
-                                KeychainService.remove(type: NetworkKeychainKind.token)
-                                KeychainService.remove(type: NetworkKeychainKind.refreshToken)
-                                print("AccessToken:...\(response.data?.accessToken ?? "")")
-                                print("RefreshToken:...\(response.data?.refreshToken ?? "")")
-                                AppState.save(response)
-                                self.appCoordinator = AppCoordinator(window: self.window!)
-                                self.appCoordinator.start()
-                                    .subscribe()
-                                    .disposed(by: self.disposeBag)
-                            }, onError: { (error) in
-                                // error from callback auth pantau
-                                print(error.localizedDescription)
-                            })
-                            .disposed(by: self.disposeBag)
-                    }) { (error) in
-                        // error from Identitas
-                        print(error.localizedDescription)
-                    }
-                    .disposed(by: disposeBag)
+               loginSymbolic(code: code)
             }
-            
-            
         }
         #else
         if "pantaubersama://oauth" == url.scheme {
             
         }
         #endif
-        return false
+        return schemeTwitter || schemeFacebook
     }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -100,6 +65,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
         }
         
+        // MARK: Configuration twitter
+        configurationTwitter()
+        // MARK: Configuration Facebook
+        FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         
         Fabric.with([Crashlytics.self])
         #if DEBUG
@@ -191,5 +160,55 @@ extension URL {
             .queryItems?
             .first { $0.name == parameter }?
             .value
+    }
+}
+
+extension AppDelegate {
+    
+    func configurationTwitter() {
+        TWTRTwitter.sharedInstance()
+            .start(withConsumerKey: AppContext.instance.infoForKey("KEY_TWITTER"),
+                   consumerSecret: AppContext.instance.infoForKey("SECRET_TWITTER"))
+    }
+    
+    func loginSymbolic(code: String) {
+        NetworkService.instance.requestObject(
+            IdentitasAPI.loginIdentitas(code: code,
+                                        grantType: "authorization_code",
+                                        clientId: AppContext.instance.infoForKey("CLIENT_ID"),
+                                        clientSecret: AppContext.instance.infoForKey("CLIENT_SECRET"),
+                                        redirectURI: AppContext.instance.infoForKey("REDIRECT_URI")),
+            c: IdentitasResponses.self)
+            .subscribe(onSuccess: { (response) in
+                print("AccessTokenIdentitas: \(response.accessToken)")
+                print("RefreshTokenIdentitas: \(response.refreshToken)")
+                
+                // MARK
+                // Exchange token identitas to get token pantau
+                // Save this token
+                NetworkService.instance.requestObject(
+                    PantauAuthAPI.callback(code: "",
+                                           provider: response.accessToken),
+                    c: PantauAuthResponse.self)
+                    .subscribe(onSuccess: { (response) in
+                        KeychainService.remove(type: NetworkKeychainKind.token)
+                        KeychainService.remove(type: NetworkKeychainKind.refreshToken)
+                        print("AccessToken:...\(response.data?.accessToken ?? "")")
+                        print("RefreshToken:...\(response.data?.refreshToken ?? "")")
+                        AppState.save(response)
+                        self.appCoordinator = AppCoordinator(window: self.window!)
+                        self.appCoordinator.start()
+                            .subscribe()
+                            .disposed(by: self.disposeBag)
+                    }, onError: { (error) in
+                        // error from callback auth pantau
+                        print(error.localizedDescription)
+                    })
+                    .disposed(by: self.disposeBag)
+            }) { (error) in
+                // error from Identitas
+                print(error.localizedDescription)
+            }
+            .disposed(by: disposeBag)
     }
 }

@@ -44,7 +44,8 @@ public enum PantauAuthAPI {
     case deleteCluster
     case clusterMagicLink(id: String, enable: Bool)
     case clusterInvite(emails: String)
-    
+    case accountsConnect(type: String, oauthToken: String, oauthSecret: String)
+    case accountDisconnect(type: String)
 }
 
 extension PantauAuthAPI: TargetType {
@@ -106,6 +107,10 @@ extension PantauAuthAPI: TargetType {
             return "/v1/clusters/\(id)/magic_link"
         case .clusterInvite:
             return "/v1/clusters/invite"
+        case .accountsConnect:
+            return "/v1/accounts/connect"
+        case .accountDisconnect:
+            return "/v1/accounts/disconnect"
         }
     }
     
@@ -116,7 +121,8 @@ extension PantauAuthAPI: TargetType {
              .createCategories,
              .createCluster,
              .clusterMagicLink,
-             .clusterInvite:
+             .clusterInvite,
+             .accountsConnect:
             return .post
         case .putKTP,
              .putSelfieKTP,
@@ -127,7 +133,8 @@ extension PantauAuthAPI: TargetType {
              .putInformants,
              .votePreference:
             return .put
-        case .deleteCluster:
+        case .deleteCluster,
+             .accountDisconnect:
             return .delete
         default:
             return .get
@@ -180,6 +187,10 @@ extension PantauAuthAPI: TargetType {
             return [
                 "name": t
             ]
+        case .accountDisconnect(let type):
+            return [
+                "account_type": type
+            ]
         default:
             return nil
         }
@@ -204,7 +215,8 @@ extension PantauAuthAPI: TargetType {
              .createCluster,
              .votePreference,
              .clusterMagicLink,
-             .clusterInvite:
+             .clusterInvite,
+             .accountsConnect:
             return .uploadMultipart(self.multipartBody ?? [])
         default:
             return .requestParameters(parameters: parameters ?? [:], encoding: parameterEncoding)
@@ -272,6 +284,12 @@ extension PantauAuthAPI: TargetType {
         case .clusterInvite(let emails):
             var multipartFormData = [MultipartFormData]()
             multipartFormData.append(buildMultipartFormData(key: "emails", value: emails))
+            return multipartFormData
+        case .accountsConnect(let (type, token, secret)):
+            var multipartFormData = [MultipartFormData]()
+            multipartFormData.append(buildMultipartFormData(key: "account_type", value: type))
+            multipartFormData.append(buildMultipartFormData(key: "oauth_access_token", value: token))
+            multipartFormData.append(buildMultipartFormData(key: "oauth_access_token_secret", value: secret))
             return multipartFormData
         default:
             return nil

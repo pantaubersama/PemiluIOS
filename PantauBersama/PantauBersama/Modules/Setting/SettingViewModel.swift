@@ -9,16 +9,29 @@
 import RxSwift
 import RxCocoa
 import Networking
+import TwitterKit
+import FBSDKLoginKit
+import FBSDKCoreKit
 
 protocol ISettingViewModelInput {
     var backI: AnyObserver<Void> { get }
     var itemSelectedI: AnyObserver<IndexPath> { get }
     var viewWillAppearTrigger: AnyObserver<Void> { get }
-}
+    var itemTwitterI: AnyObserver<String> { get }
+    var viewControllerTrigger: AnyObserver<UIViewController?> { get }
+    var facebookI: AnyObserver<String> { get }
+    var facebookGraphI: AnyObserver<Void> { get }
+    var refreshI: AnyObserver<Void> { get }
+ }
 
 protocol ISettingViewModelOutput {
     var itemsO: Driver<[SectionOfSettingData]> { get }
     var itemSelectedO: Driver<Void> { get }
+    var itemTwitterO: Driver<String> { get }
+    var facebookO: Driver<Void> { get }
+    var facebookMeO: Driver<MeFacebookResponse> { get }
+    var loadingO: Driver<Bool> { get }
+    var errorO: Driver<Error> { get }
 }
 
 protocol ISettingViewModel {
@@ -39,17 +52,32 @@ final class SettingViewModel: ISettingViewModel, ISettingViewModelInput, ISettin
     var backI: AnyObserver<Void>
     var itemSelectedI: AnyObserver<IndexPath>
     var viewWillAppearTrigger: AnyObserver<Void>
+    var itemTwitterI: AnyObserver<String>
+    var viewControllerTrigger: AnyObserver<UIViewController?>
+    var facebookI: AnyObserver<String>
+    var facebookGraphI: AnyObserver<Void>
+    var refreshI: AnyObserver<Void>
     
     // Output
     var itemsO: Driver<[SectionOfSettingData]>
     var itemSelectedO: Driver<Void>
+    var itemTwitterO: Driver<String>
+    var facebookO: Driver<Void>
+    var facebookMeO: Driver<MeFacebookResponse>
+    var loadingO: Driver<Bool>
+    var errorO: Driver<Error>
+    
     
     private let backS = PublishSubject<Void>()
     private let editS = PublishSubject<Int>()
     private let itemSelectedS = PublishSubject<IndexPath>()
     private let userData: User
     private let viewWillAppearS = PublishSubject<Void>()
-    
+    private let itemTwitterS = PublishSubject<String>()
+    private let viewControllerS = PublishSubject<UIViewController?>()
+    private let facebookS = PublishSubject<String>()
+    private let facebookGraphS = PublishSubject<Void>()
+    private let refreshS = PublishSubject<Void>()
     
     init(navigator: SettingNavigator, data: User) {
         self.navigator = navigator
@@ -62,35 +90,58 @@ final class SettingViewModel: ISettingViewModel, ISettingViewModelInput, ISettin
         backI = backS.asObserver()
         itemSelectedI = itemSelectedS.asObserver()
         viewWillAppearTrigger = viewWillAppearS.asObserver()
+        itemTwitterI = itemTwitterS.asObserver()
+        viewControllerTrigger = viewControllerS.asObserver()
+        facebookI = facebookS.asObserver()
+        facebookGraphI = facebookGraphS.asObserver()
+        refreshI = refreshS.asObserver()
         
-        let items = Driver.just([
-            SectionOfSettingData(header: nil, items: [
+        let cloudMe = NetworkService.instance
+            .requestObject(PantauAuthAPI.me,
+                           c: BaseResponse<UserResponse>.self)
+            .map({ $0.data.user })
+            .trackError(errorTracker)
+            .trackActivity(activityIndicator)
+            .asObservable()
+            .catchErrorJustComplete()
+        
+        let userLocal = Observable.just(data)
+        let userCombined = viewWillAppearS
+            .flatMapLatest({ Observable.merge(userLocal, cloudMe)})
+            .map({ $0 })
+        
+        let refresh = refreshS.startWith(())
+        
+        let item = Observable.just([
+                SectionOfSettingData(header: nil, items: [
                 SettingData.updateProfile,
                 SettingData.updatePassword,
                 SettingData.updateDataLapor,
                 SettingData.verifikasi,
                 SettingData.badge
-                ]),
+            ]),
             SectionOfSettingData(header: "Twitter", items: [
                 SettingData.twitter
-                ]),
+            ]),
             SectionOfSettingData(header: "Facebook", items: [
                 SettingData.facebook
-                ]),
+            ]),
             SectionOfSettingData(header: "Cluster", items: [
                 SettingData.cluster
-                ]),
+            ]),
             SectionOfSettingData(header: "Support", items: [
                 SettingData.pusatBantuan,
                 SettingData.pedomanKomunitas,
                 SettingData.tentang,
                 SettingData.rate,
                 SettingData.share
-                ]),
-            SectionOfSettingData(header: nil, items: [
-                SettingData.logout
-                ])
-            ])
+            ]),
+        SectionOfSettingData(header: nil, items: [
+            SettingData.logout ])])
+        
+        let items = Observable.combineLatest(viewWillAppearS, refresh)
+            .withLatestFrom(item)
+            .asDriverOnErrorJustComplete()
         
         let verifikasi = NetworkService.instance.requestObject(
             PantauAuthAPI.verifications,
@@ -131,14 +182,71 @@ final class SettingViewModel: ISettingViewModel, ISettingViewModelInput, ISettin
                     } else {
                         return navigator.launchAlertCluster()
                     }
+                case .twitter:
+                    if data.twitter == true {
+                        return navigator.launchTwitterAlert()
+                    } else {
+                        return TWTRTwitter.sharedInstance().loginTwitter()
+                            .flatMapLatest({ (session) -> Observable<Void> in
+                                UserDefaults.Account.set("Connected as \(session.userName)", forKey: .usernameTwitter)
+                                UserDefaults.Account.set(session.userID, forKey: .userIdTwitter)
+                                return NetworkService.instance
+                                    .requestObject(PantauAuthAPI
+                                        .accountsConnect(
+                                            type: "twitter",
+                                            oauthToken: session.authToken,
+                                            oauthSecret: session.authTokenSecret),
+                                                   c: BaseResponse<AccountResponse>.self)
+                                    .trackError(errorTracker)
+                                    .trackActivity(activityIndicator)
+                                    .catchErrorJustComplete()
+                                    .mapToVoid()
+                            })
+                            .mapToVoid()
+                    }
+                case .facebook:
+                    if data.facebook == true {
+                        return navigator.launchFacebookAlert()
+                    } else {
+                        return Observable.empty()
+                    }
                 default:
                     return Observable.empty()
                 }
         }
         
+        
+        // MARK
+        // Facbeook
+        let facebook = facebookS
+            .flatMapLatest { (result) -> Observable<Void> in
+                return NetworkService.instance
+                    .requestObject(PantauAuthAPI
+                        .accountsConnect(type: "facebook",
+                                         oauthToken: result,
+                                         oauthSecret: ""),
+                                   c: BaseResponse<AccountResponse>.self)
+                    .trackError(errorTracker)
+                    .trackActivity(activityIndicator)
+                    .catchErrorJustComplete()
+                    .mapToVoid()
+            }.mapToVoid()
+        
+        let meFacebook = facebookGraphS
+            .flatMapLatest { (_) -> Observable<MeFacebookResponse> in
+                if let request = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "name, email, gender, birthday, photos"]) {
+                    return request.fetchMeFacebook()
+                }
+                return Observable<MeFacebookResponse>.empty()
+            }
+        
         itemsO = items
         itemSelectedO = itemSelected.asDriverOnErrorJustComplete()
-        
+        itemTwitterO = itemTwitterS.asDriver(onErrorJustReturn: "")
+        facebookO = facebook.asDriverOnErrorJustComplete()
+        facebookMeO = meFacebook.asDriverOnErrorJustComplete()
+        loadingO = activityIndicator.asDriver()
+        errorO = errorTracker.asDriver()
     }
     
 }

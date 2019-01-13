@@ -9,10 +9,16 @@
 import UIKit
 import RxSwift
 import Networking
+import FBSDKLoginKit
 
 enum UndangCluster {
     case cancel
     case buat(item: ResultRequest)
+}
+
+enum SosmedState {
+    case cancel
+    case signOut
 }
 
 protocol SettingNavigator {
@@ -25,6 +31,8 @@ protocol SettingNavigator {
     func launchAlertUndang() -> Observable<Void>
     func launchReqCluster() -> Observable<ResultRequest>
     func launchAlertCluster() -> Observable<Void>
+    func launchTwitterAlert() -> Observable<Void>
+    func launchFacebookAlert() -> Observable<Void>
 }
 
 final class SettingCoordinator: BaseCoordinator<Void> {
@@ -40,6 +48,7 @@ final class SettingCoordinator: BaseCoordinator<Void> {
     
     override func start() -> Observable<CoordinationResult> {
         let viewController = SettingController()
+        viewController.data = data
         let viewModel = SettingViewModel(navigator: self, data: data)
         viewController.viewModel = viewModel
         viewController.hidesBottomBarWhenPushed = true
@@ -155,5 +164,72 @@ extension SettingCoordinator: SettingNavigator {
             }
             return Disposables.create()
         }).mapToVoid()
+    }
+    
+    func launchTwitterAlert() -> Observable<Void> {
+        return Observable<SosmedState>.create({ [weak self] (observer) -> Disposable in
+            let alert = UIAlertController(title: nil, message: "Anda telah login dengan akun twitter anda sebelumnya, apakah anda ingin keluar?", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Batal", style: .cancel, handler: { (_) in
+                observer.onNext(SosmedState.cancel)
+                observer.on(.completed)
+            }))
+            alert.addAction(UIAlertAction(title: "Sign Out", style: .destructive, handler: { (UIAlertAction_) in
+                observer.onNext(SosmedState.signOut)
+                observer.on(.completed)
+            }))
+            DispatchQueue.main.async {
+                self?.navigationController.present(alert, animated: true, completion: nil)
+            }
+            return Disposables.create()
+        })
+            .filter({ $0 == .signOut })
+            .mapToVoid()
+            .flatMap({ [weak self] (_) -> Observable<Void> in
+                self?.navigationController.popViewController(animated: true)
+                // Reset Account for user id twitter and username
+                UserDefaults.Account.reset(forKey: .userIdTwitter)
+                UserDefaults.Account.reset(forKey: .usernameTwitter)
+                return NetworkService.instance
+                    .requestObject(
+                        PantauAuthAPI
+                            .accountDisconnect(type: "twitter"),
+                        c: BaseResponse<AccountResponse>.self)
+                    .asObservable()
+                    .catchErrorJustComplete()
+                    .mapToVoid()
+            })
+    }
+    
+    func launchFacebookAlert() -> Observable<Void> {
+        return Observable<SosmedState>.create({ [weak self] (observer) -> Disposable in
+            let alert = UIAlertController(title: nil, message: "Anda telah login dengan akun facebook anda sebelumnya, apakah anda ingin keluar?", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Batal", style: .cancel, handler: { (_) in
+                observer.onNext(SosmedState.cancel)
+                observer.on(.completed)
+            }))
+            alert.addAction(UIAlertAction(title: "Sign Out", style: .destructive, handler: { (UIAlertAction_) in
+                observer.onNext(SosmedState.signOut)
+                observer.on(.completed)
+            }))
+            DispatchQueue.main.async {
+                self?.navigationController.present(alert, animated: true, completion: nil)
+            }
+            return Disposables.create()
+        })
+            .filter({ $0 == .signOut })
+            .mapToVoid()
+            .flatMap({ [weak self] (_) -> Observable<Void> in
+                self?.navigationController.popViewController(animated: true)
+                // Reset Account for user facebook
+                UserDefaults.Account.reset(forKey: .usernameFacebook)
+                return NetworkService.instance
+                    .requestObject(
+                        PantauAuthAPI
+                            .accountDisconnect(type: "facebook"),
+                        c: BaseResponse<AccountResponse>.self)
+                    .asObservable()
+                    .catchErrorJustComplete()
+                    .mapToVoid()
+            })
     }
 }
