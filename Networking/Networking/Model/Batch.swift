@@ -26,7 +26,7 @@ public struct Batch {
 
 public extension Batch {
     public var hasNextPage: Bool {
-        return !(total == 0)
+        return !(total == page)
     }
 }
 

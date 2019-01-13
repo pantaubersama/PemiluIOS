@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import Networking
 
-protocol LinimasaNavigator: PilpresNavigator,IJanpolNavigator {
+protocol LinimasaNavigator: PilpresNavigator, IJanpolNavigator {
     func launchProfile() -> Observable<Void>
     func launchNotifications()
     func launchFilter() -> Observable<Void>
@@ -23,7 +23,22 @@ protocol LinimasaNavigator: PilpresNavigator,IJanpolNavigator {
 
 class LinimasaCoordinator: BaseCoordinator<Void> {
     
-    var navigationController: UINavigationController!
+//    var navigationController: UINavigationController!
+//    private var filterCoordinator: PenpolFilterCoordinator!
+//
+//    init(navigationController: UINavigationController) {
+//        self.navigationController = navigationController
+//    }
+//
+//    override func start() -> Observable<CoordinationResult> {
+//        let viewController = LinimasaController()
+//        let viewModel = LinimasaViewModel(navigator: self)
+//        viewController.viewModel = viewModel
+//        navigationController.setViewControllers([viewController], animated: true)
+//        return Observable.never()
+//    }
+    
+    internal let navigationController: UINavigationController!
     private var filterCoordinator: PenpolFilterCoordinator!
     
     init(navigationController: UINavigationController) {

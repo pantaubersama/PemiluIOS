@@ -11,14 +11,14 @@ import RxSwift
 import Common
 import Networking
 
-protocol PenpolNavigator: QuizNavigator, QuestionNavigator {
+protocol PenpolNavigator: QuizNavigator, IQuestionNavigator {
     func launchFilter(filterType: FilterType, filterTrigger: AnyObserver<[PenpolFilterModel.FilterItem]>) -> Observable<Void>
     func launchBannerInfo(bannerInfo: BannerInfo) -> Observable<Void>
 }
 
 class PenpolCoordinator: BaseCoordinator<Void> {
     
-    private let navigationController: UINavigationController!
+    internal let navigationController: UINavigationController!
     private var filterCoordinator: PenpolFilterCoordinator!
     
     init(navigationController: UINavigationController) {

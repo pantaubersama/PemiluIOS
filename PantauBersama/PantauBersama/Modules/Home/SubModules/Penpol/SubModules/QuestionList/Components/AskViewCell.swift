@@ -11,9 +11,11 @@ import RxSwift
 import Common
 import Lottie
 
+typealias AskViewCellConfigured = CellConfigurator<AskViewCell, AskViewCell.Input>
+
 class AskViewCell: UITableViewCell, IReusableCell  {
     struct Input {
-        let viewModel: QuestionViewModel
+        let viewModel: IQuestionListViewModel
         let question: QuestionModel
     }
 
@@ -83,7 +85,7 @@ class AskViewCell: UITableViewCell, IReusableCell  {
                 self.lbVoteCount.text = "\(questionModel.likeCount + 1)"
                 self.voteAnimation.play(completion: { (finished) in
                     if finished {
-                        item.viewModel.input.voteTrigger.onNext(questionModel)
+                        item.viewModel.input.voteI.onNext(questionModel)
                     }
                 })
             })
@@ -91,12 +93,12 @@ class AskViewCell: UITableViewCell, IReusableCell  {
         
         moreButton.rx.tap
             .map({ item.question })
-            .bind(to: item.viewModel.input.moreTrigger)
+            .bind(to: item.viewModel.input.moreI)
             .disposed(by: disposeBag)
         
         shareButton.rx.tap
             .map({ item.question })
-            .bind(to: item.viewModel.input.shareTrigger)
+            .bind(to: item.viewModel.input.shareQuestionI)
             .disposed(by: disposeBag)
     }
 }

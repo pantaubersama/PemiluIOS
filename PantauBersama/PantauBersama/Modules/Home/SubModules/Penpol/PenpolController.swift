@@ -20,10 +20,15 @@ class PenpolController: UIViewController {
     var viewModel: PenpolViewModel!
     private let disposeBag = DisposeBag()
     
+//<<<<<<< HEAD
+//    lazy var quizViewModel = QuizViewModel(navigator: viewModel.navigator, showTableHeader: true)
+//    lazy var askViewModel = QuestionViewModel(navigator: viewModel.navigator, showTableHeader: true)
+//=======
     lazy var quizViewModel = QuizViewModel(navigator: viewModel.navigator, showTableHeader: true)
-    lazy var askViewModel = QuestionViewModel(navigator: viewModel.navigator, showTableHeader: true)
+    lazy var askViewModel = QuestionListViewModel(navigator: viewModel.navigator)
+//>>>>>>> [Bhakti][Refactor] Refactor tanya kandidat
     
-    lazy var askController = QuestionController(viewModel: askViewModel)
+    lazy var askController = QuestionController(viewModel: askViewModel, pageType: QuestionPageType.allQuestion)
     lazy var quisController = QuizController(viewModel: quizViewModel)
  
     override func viewDidLoad() {
@@ -39,7 +44,7 @@ class PenpolController: UIViewController {
         
         filterButton.rx.tap
             .map { [unowned self](_) -> (type: FilterType, filterTrigger: AnyObserver<[PenpolFilterModel.FilterItem]>) in
-                return self.askController.view.alpha == 1.0 ? (type: .question, filterTrigger: self.askViewModel.input.filterTrigger) : (type: .quiz, filterTrigger: self.quizViewModel.input.filterTrigger)
+                return self.askController.view.alpha == 1.0 ? (type: .question, filterTrigger: self.askViewModel.input.filterI) : (type: .quiz, filterTrigger: self.quizViewModel.input.filterTrigger)
             }
             .bind(to: viewModel.input.filterTrigger)
             .disposed(by: disposeBag)
