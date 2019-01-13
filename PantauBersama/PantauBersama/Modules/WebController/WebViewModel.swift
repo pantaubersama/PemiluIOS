@@ -42,12 +42,29 @@ final class WebViewModel: ViewModelType {
                       codeI: codeS.asObserver(),
                       nextI: nextS.asObserver())
         
+        
+        let errorTracker = ErrorTracker()
+        let activityIndicator = ActivityIndicator()
+        
         let back = backS
             .do(onNext: { (_) in
                 navigator.back()
             })
             .asDriverOnErrorJustComplete()
         
+        // MARK
+        // Get user data from cloud and checking local
+        let local: Observable<UserResponse> = AppState.local(key: .me)
+        let cloud = NetworkService.instance
+            .requestObject(PantauAuthAPI.me,
+                           c: BaseResponse<UserResponse>.self)
+            .map({ $0.data })
+            .trackError(errorTracker)
+            .trackActivity(activityIndicator)
+            .asObservable()
+            .catchErrorJustComplete()
+        // merge local and cloud
+        let userData = Observable.merge(local, cloud)
         
         let nextSelected = codeS
             .flatMapLatest { (code) -> Driver<Void> in
@@ -62,7 +79,7 @@ final class WebViewModel: ViewModelType {
                                    c: IdentitasResponses.self)
                     .asObservable()
                     .asDriverOnErrorJustComplete()
-                    .flatMapLatest({ self.callBackPantau(provider: $0.accessToken)})
+                    .flatMapLatest({ self.callBackPantau(provider: $0.accessToken, user: userData)})
                 
         }
         
@@ -72,7 +89,7 @@ final class WebViewModel: ViewModelType {
         
     }
     
-    private func callBackPantau(provider: String) -> Driver<Void> {
+    private func callBackPantau(provider: String, user: Observable<UserResponse>) -> Driver<Void> {
         return NetworkService.instance
             .requestObject(PantauAuthAPI.callback(code: "",
                                                   provider: provider),
@@ -84,7 +101,7 @@ final class WebViewModel: ViewModelType {
             })
             .asObservable()
             .mapToVoid()
-            .flatMapLatest({ self.navigator.launchCoordinator() })
+            .flatMapLatest({ self.navigator.launchCoordinator(user: user)})
             .asDriverOnErrorJustComplete()
     }
 }

@@ -11,6 +11,7 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 import Common
+import FBSDKLoginKit
 
 class SosmedController: UITableViewController {
     
@@ -34,6 +35,11 @@ class SosmedController: UITableViewController {
         tableView.dataSource = nil
         tableView.registerReusableCell(SettingCell.self)
         tableView.tableFooterView = UIView()
+        tableView.refreshControl = UIRefreshControl()
+        
+        tableView.refreshControl?.rx.controlEvent(.valueChanged)
+            .bind(to: viewModel.input.refreshI)
+            .disposed(by: disposeBag)
         
         back.rx.tap
             .bind(to: viewModel.input.backI)
@@ -55,10 +61,34 @@ class SosmedController: UITableViewController {
             .disposed(by: disposeBag)
         
         tableView.rx.itemSelected
+            .do(onNext: { [weak self] (indexPath) in
+                switch indexPath.section {
+                case 1:
+                    let manager: FBSDKLoginManager = FBSDKLoginManager()
+                    manager.logIn(
+                        withReadPermissions:  ["public_profile", "email"],
+                        from: self, handler: { [weak self] (result, error) in
+                            if error != nil {
+                            }
+                            guard let result = result else { return }
+                            if result.isCancelled == true {
+                                
+                            } else {
+                                guard let token = result.token.tokenString else { return }
+                                self?.viewModel.input.facebookI.onNext((token))
+                                self?.viewModel.input.facebookGraphI.onNext(())
+                            }
+                    })
+                default: break
+                }
+            })
             .bind(to: viewModel.input.itemSelectedI)
             .disposed(by: disposeBag)
         
         viewModel.output.itemsO
+            .do(onNext: { [weak self] (_) in
+                self?.refreshControl?.endRefreshing()
+            })
             .drive(tableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
         
@@ -69,6 +99,39 @@ class SosmedController: UITableViewController {
         viewModel.output.itemsSelectedO
             .drive()
             .disposed(by: disposeBag)
+        
+        viewModel.output.loadingO
+            .drive(onNext: { [unowned self](loading) in
+                self.tableView.refreshControl?.endRefreshing()
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.output.errorO
+            .drive(onNext: { [weak self] (e) in
+                guard let alert = UIAlertController.alert(with: e) else { return }
+                self?.navigationController?.present(alert, animated: true, completion: nil)
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.output.facebookO
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.facebookMeO
+            .do(onNext: { (n,_,_,_,_) in
+                if let username = n {
+                    UserDefaults.Account.set("Connected as \(username)", forKey: .usernameFacebook)
+                }
+            })
+            .drive()
+            .disposed(by: disposeBag)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.configure(with: .white)
+        viewModel.input.viewWillAppearI.onNext(())
+        
     }
     
 }

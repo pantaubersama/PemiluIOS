@@ -7,11 +7,12 @@
 //
 
 import RxSwift
-
+import Networking
 
 protocol WebNavigator {
     func back()
-    func launchCoordinator() -> Observable<Void>
+    func launchCoordinator(user: Observable<UserResponse>) -> Observable<Void>
+    func launcBuatProfile() -> Observable<Void>
 }
 
 final class WebCoordinator: BaseCoordinator<Void> {
@@ -49,20 +50,26 @@ extension WebCoordinator: WebNavigator {
             .disposed(by: disposeBag)
     }
     
-    func launchCoordinator() -> Observable<Void> {
+    func launchCoordinator(user: Observable<UserResponse>) -> Observable<Void> {
         // MARK
-        // State when user first install, will coordinate into
-        // start setting configurateion (i.e : Buat Profil)
-        let first: Data? = UserDefaults.Account.get(forKey: .firstTimeInstall)
-        if first == nil {
-            let buatProfilCoordinator = BuatProfileCoordinator(window: self.window)
-            return self.coordinate(to: buatProfilCoordinator)
-        } else if first != nil {
-            appCoordinator = AppCoordinator(window: self.window)
-            appCoordinator.start()
-                .subscribe()
-                .disposed(by: disposeBag)
-        }
-        return Observable.empty()
+        // Right now if username == nil, will launch buat profile
+        return user.map({ [weak self] (user) -> Observable<Void> in
+            guard let `self` = self else { return Observable.empty() }
+            if user.user.username == nil {
+                return self.launcBuatProfile()
+            } else {
+                self.appCoordinator = AppCoordinator(window: self.window)
+                self.appCoordinator.start()
+                    .subscribe()
+                    .disposed(by: self.disposeBag)
+
+                return Observable.empty()
+            }
+        }).mapToVoid()
+    }
+    
+    func launcBuatProfile() -> Observable<Void> {
+        let buatProfilCoordinator = BuatProfileCoordinator(window: self.window)
+        return self.coordinate(to: buatProfilCoordinator)
     }
 }
