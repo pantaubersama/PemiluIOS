@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		11145F5121EACC6E0046F2AA /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11145F5021EACC6E0046F2AA /* CustomTabBar.swift */; };
 		1143E80E21E20C62003862B6 /* ActivityButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1143E80D21E20C62003862B6 /* ActivityButton.swift */; };
 		1151D16521D64CAA00E9F91D /* UIImageView+async.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1151D16421D64CAA00E9F91D /* UIImageView+async.swift */; };
 		1161F9F021DF3A8D00C1BAD5 /* CircularUIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1161F9EF21DF3A8D00C1BAD5 /* CircularUIImageView.swift */; };
@@ -60,6 +61,7 @@
 
 /* Begin PBXFileReference section */
 		02158AB122F8CEFF16E59736 /* Pods_CommonTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CommonTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		11145F5021EACC6E0046F2AA /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		1143E80D21E20C62003862B6 /* ActivityButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityButton.swift; sourceTree = "<group>"; };
 		1151D16421D64CAA00E9F91D /* UIImageView+async.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+async.swift"; sourceTree = "<group>"; };
 		1161F9EF21DF3A8D00C1BAD5 /* CircularUIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularUIImageView.swift; sourceTree = "<group>"; };
@@ -261,6 +263,7 @@
 				11C7BB2621DB3C34008CA49B /* UIAlertController+Dialog.swift */,
 				1161F9EF21DF3A8D00C1BAD5 /* CircularUIImageView.swift */,
 				1143E80D21E20C62003862B6 /* ActivityButton.swift */,
+				11145F5021EACC6E0046F2AA /* CustomTabBar.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -443,6 +446,7 @@
 				8428AA8B21C7A2EC0008E975 /* UIView.swift in Sources */,
 				84619D4621DB683300EB58CF /* DateHelper.swift in Sources */,
 				84B2669921D4AE0900C7B783 /* UIAlertController.swift in Sources */,
+				11145F5121EACC6E0046F2AA /* CustomTabBar.swift in Sources */,
 				84619D3321D9E4A900EB58CF /* UIImage.swift in Sources */,
 				8441DB4721CCC8DE00B078DF /* TextField.swift in Sources */,
 				84B2522621CAB3FF00565D82 /* KeychainService.swift in Sources */,

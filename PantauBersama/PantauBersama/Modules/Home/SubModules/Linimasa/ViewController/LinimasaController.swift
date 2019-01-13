@@ -44,6 +44,13 @@ class LinimasaController: UIViewController {
     
         // MARK
         // bind to viewModel
+        navbar.search.rx.textDidBeginEditing
+            .do(onNext: { [unowned self](_) in
+                self.navbar.search.endEditing(true)
+            })
+            .bind(to: viewModel.input.searchTrigger)
+            .disposed(by: disposeBag)
+        
         filter.rx.tap
             .map { [unowned self] (_) -> (type: FilterType, filterTrigger: AnyObserver<[PenpolFilterModel.FilterItem]>) in
                 return self.pilpresController.view.alpha == 1.0 ?
@@ -82,6 +89,10 @@ class LinimasaController: UIViewController {
             .disposed(by: disposeBag)
         
         viewModel.output.filterSelected
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.searchSelected
             .drive()
             .disposed(by: disposeBag)
         

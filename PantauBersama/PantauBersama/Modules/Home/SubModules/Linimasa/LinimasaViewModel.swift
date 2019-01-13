@@ -17,6 +17,7 @@ final class LinimasaViewModel: ViewModelType {
     var output: Output
     
     struct Input {
+        let searchTrigger: AnyObserver<Void>
         let addTrigger: AnyObserver<Void>
         let filterTrigger: AnyObserver<(type: FilterType, filterTrigger: AnyObserver<[PenpolFilterModel.FilterItem]>)>
         let refreshTrigger: AnyObserver<Void>
@@ -26,6 +27,7 @@ final class LinimasaViewModel: ViewModelType {
     }
     
     struct Output {
+        let searchSelected: Driver<Void>
         let filterSelected: Driver<Void>
         let addSelected: Driver<Void>
         let profileSelected: Driver<Void>
@@ -39,6 +41,7 @@ final class LinimasaViewModel: ViewModelType {
     private let refreshSubject = PublishSubject<Void>()
     private let profileSubject = PublishSubject<Void>()
     private let viewWillppearS = PublishSubject<Void>()
+    private let searchSubject = PublishSubject<Void>()
     private let catatanS = PublishSubject<Void>()
     
     init(navigator: LinimasaNavigator) {
@@ -46,6 +49,7 @@ final class LinimasaViewModel: ViewModelType {
         
         
         input = Input(
+            searchTrigger: searchSubject.asObserver(),
             addTrigger: addSubject.asObserver(),
             filterTrigger: filterSubject.asObserver(),
             refreshTrigger: refreshSubject.asObserver(),
@@ -70,6 +74,10 @@ final class LinimasaViewModel: ViewModelType {
             .flatMapLatest({ navigator.launchNote() })
             .asDriver(onErrorJustReturn: ())
         
+        let search = searchSubject
+            .flatMapLatest({ navigator.launchSearch() })
+            .asDriver(onErrorJustReturn: ())
+        
         // MARK
         // Get local user response
         let local: Observable<UserResponse> = AppState.local(key: .me)
@@ -77,7 +85,8 @@ final class LinimasaViewModel: ViewModelType {
             .flatMapLatest({ local })
             .asDriverOnErrorJustComplete()
         
-        output = Output(filterSelected: filter,
+        output = Output(searchSelected: search,
+                        filterSelected: filter,
                         addSelected: add,
                         profileSelected: profile,
                         userO: userData,
