@@ -12,11 +12,11 @@ import RxCocoa
 
 class SearchViewModel: ViewModelType {
     struct Input {
-        
+        let backTrigger: AnyObserver<Void>
     }
     
     struct Output {
-        
+        let back: Driver<Void>
     }
     
     var input: Input
@@ -24,11 +24,17 @@ class SearchViewModel: ViewModelType {
     
     let navigator: SearchNavigator
     
+    let backSubject = PublishSubject<Void>()
+    
     init(navigator: SearchNavigator) {
         self.navigator = navigator
         
-        input = Input()
+        input = Input(backTrigger: backSubject.asObserver())
         
-        output = Output()
+        let back = backSubject
+            .flatMapLatest({ navigator.finishSearch() })
+            .asDriverOnErrorJustComplete()
+        
+        output = Output(back: back)
     }
 }

@@ -12,7 +12,7 @@ import RxCocoa
 import Networking
 
 protocol SearchNavigator: PenpolNavigator {
-    
+    func finishSearch() -> Observable<Void>
 }
 
 class SearchCoordinator: BaseCoordinator<Void> {
@@ -29,6 +29,7 @@ class SearchCoordinator: BaseCoordinator<Void> {
         viewController.viewModel = viewModel
         
         internalNavigationController = UINavigationController(rootViewController: viewController)
+        internalNavigationController.modalTransitionStyle = .crossDissolve
         navigationController.present(internalNavigationController, animated: true, completion: nil)
         
         return Observable.never()
@@ -36,6 +37,11 @@ class SearchCoordinator: BaseCoordinator<Void> {
 }
 
 extension SearchCoordinator: SearchNavigator {
+    func finishSearch() -> Observable<Void> {
+        navigationController.dismiss(animated: true, completion: nil)
+        return Observable.never()
+    }
+    
     func launchFilter(filterType: FilterType, filterTrigger: AnyObserver<[PenpolFilterModel.FilterItem]>) -> Observable<Void> {
         return Observable.never()
     }

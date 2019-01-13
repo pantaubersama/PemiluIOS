@@ -11,6 +11,12 @@
 		11145F5621EACCEC0046F2AA /* SearchController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11145F5421EACCEC0046F2AA /* SearchController.xib */; };
 		11145F5921EAD31A0046F2AA /* SearchCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11145F5821EAD31A0046F2AA /* SearchCoordinator.swift */; };
 		11145F5B21EAD3240046F2AA /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11145F5A21EAD3240046F2AA /* SearchViewModel.swift */; };
+		11145F5D21EAF2670046F2AA /* SearchNavbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11145F5C21EAF2670046F2AA /* SearchNavbar.swift */; };
+		11145F5F21EAF2730046F2AA /* SearchNavbar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11145F5E21EAF2730046F2AA /* SearchNavbar.xib */; };
+		11145F6521EB44920046F2AA /* CustomMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11145F6321EB44920046F2AA /* CustomMenuCell.swift */; };
+		11145F6621EB44920046F2AA /* CustomMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11145F6421EB44920046F2AA /* CustomMenuCell.xib */; };
+		11145F6921EB47310046F2AA /* CustomMenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11145F6821EB47310046F2AA /* CustomMenuBar.swift */; };
+		11145F6B21EB473B0046F2AA /* CustomMenuBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11145F6A21EB473B0046F2AA /* CustomMenuBar.xib */; };
 		1143E81021E212F7003862B6 /* upvote.json in Resources */ = {isa = PBXBuildFile; fileRef = 1143E80F21E212F7003862B6 /* upvote.json */; };
 		1143E81221E23229003862B6 /* loading-pantau.json in Resources */ = {isa = PBXBuildFile; fileRef = 1143E81121E23229003862B6 /* loading-pantau.json */; };
 		1143E81621E24A6A003862B6 /* QuizQuestionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1143E81521E24A6A003862B6 /* QuizQuestionModel.swift */; };
@@ -329,6 +335,12 @@
 		11145F5421EACCEC0046F2AA /* SearchController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchController.xib; sourceTree = "<group>"; };
 		11145F5821EAD31A0046F2AA /* SearchCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCoordinator.swift; sourceTree = "<group>"; };
 		11145F5A21EAD3240046F2AA /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		11145F5C21EAF2670046F2AA /* SearchNavbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchNavbar.swift; sourceTree = "<group>"; };
+		11145F5E21EAF2730046F2AA /* SearchNavbar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchNavbar.xib; sourceTree = "<group>"; };
+		11145F6321EB44920046F2AA /* CustomMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMenuCell.swift; sourceTree = "<group>"; };
+		11145F6421EB44920046F2AA /* CustomMenuCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomMenuCell.xib; sourceTree = "<group>"; };
+		11145F6821EB47310046F2AA /* CustomMenuBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMenuBar.swift; sourceTree = "<group>"; };
+		11145F6A21EB473B0046F2AA /* CustomMenuBar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomMenuBar.xib; sourceTree = "<group>"; };
 		1143E80F21E212F7003862B6 /* upvote.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = upvote.json; sourceTree = "<group>"; };
 		1143E81121E23229003862B6 /* loading-pantau.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "loading-pantau.json"; sourceTree = "<group>"; };
 		1143E81521E24A6A003862B6 /* QuizQuestionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizQuestionModel.swift; sourceTree = "<group>"; };
@@ -666,6 +678,17 @@
 				11145F5421EACCEC0046F2AA /* SearchController.xib */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		11145F6721EB471C0046F2AA /* MenuBar */ = {
+			isa = PBXGroup;
+			children = (
+				11145F6321EB44920046F2AA /* CustomMenuCell.swift */,
+				11145F6421EB44920046F2AA /* CustomMenuCell.xib */,
+				11145F6821EB47310046F2AA /* CustomMenuBar.swift */,
+				11145F6A21EB473B0046F2AA /* CustomMenuBar.xib */,
+			);
+			path = MenuBar;
 			sourceTree = "<group>";
 		};
 		11702DCF21CB0241001AEE3F /* Components */ = {
@@ -1106,8 +1129,10 @@
 		840901B421DF181B001BF559 /* Navbar */ = {
 			isa = PBXGroup;
 			children = (
-				840901B721DF1CBB001BF559 /* Navbar.xib */,
 				840901B921DF1DE6001BF559 /* Navbar.swift */,
+				840901B721DF1CBB001BF559 /* Navbar.xib */,
+				11145F5C21EAF2670046F2AA /* SearchNavbar.swift */,
+				11145F5E21EAF2730046F2AA /* SearchNavbar.xib */,
 			);
 			path = Navbar;
 			sourceTree = "<group>";
@@ -1791,6 +1816,7 @@
 		84E2854121CA189B00298E31 /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
+				11145F6721EB471C0046F2AA /* MenuBar */,
 				848B039A21E7AA9F002CAA40 /* WKWebview */,
 				84B7B8B121E4453A0099E7E3 /* EmptyView */,
 				840901B421DF181B001BF559 /* Navbar */,
@@ -2034,6 +2060,7 @@
 				1143E81221E23229003862B6 /* loading-pantau.json in Resources */,
 				84B7B8CC21E5B24B0099E7E3 /* AddKategoriController.xib in Resources */,
 				84F892AB21C787D800DC1048 /* Lato-BoldItalic.ttf in Resources */,
+				11145F6621EB44920046F2AA /* CustomMenuCell.xib in Resources */,
 				11E107A921CD33CA00B7B074 /* CreateJanjiController.xib in Resources */,
 				845C56FD21CD14CE00EDCDFE /* HeaderProfile.xib in Resources */,
 				13812C1F21CAA48700CAB327 /* PenpolController.xib in Resources */,
@@ -2044,6 +2071,7 @@
 				13F456AF21D36A8500CE45F1 /* UndangAnggotaController.xib in Resources */,
 				84F892AC21C787D800DC1048 /* Lato-Hairline.ttf in Resources */,
 				84F892AD21C787D800DC1048 /* Lato-HairlineItalic.ttf in Resources */,
+				11145F5F21EAF2730046F2AA /* SearchNavbar.xib in Resources */,
 				84F892AE21C787D800DC1048 /* Lato-Italic.ttf in Resources */,
 				8452A4C521DE1F4300196043 /* BuatProfileController.xib in Resources */,
 				84F892AF21C787D800DC1048 /* Lato-Light.ttf in Resources */,
@@ -2081,6 +2109,7 @@
 				84B6D6EA21E223AA00CD4BC8 /* ClusterView.xib in Resources */,
 				845C571321CE10C900EDCDFE /* IconTableCell.xib in Resources */,
 				11145F5621EACCEC0046F2AA /* SearchController.xib in Resources */,
+				11145F6B21EB473B0046F2AA /* CustomMenuBar.xib in Resources */,
 				844C3D4721C4ED6E00199871 /* Assets.xcassets in Resources */,
 				11B3C79321D1110700EDCECB /* QuizSummaryController.xib in Resources */,
 				84A07FAF21D0E4FD00269C6B /* memfoto-idcard.json in Resources */,
@@ -2340,6 +2369,7 @@
 				84B7B8BC21E47A8F0099E7E3 /* ClusterSearchController.swift in Sources */,
 				137A29F321E2261A00F19072 /* ComingsoonController.swift in Sources */,
 				11702DD521CB08DE001AEE3F /* QuizController.swift in Sources */,
+				11145F5D21EAF2670046F2AA /* SearchNavbar.swift in Sources */,
 				13F456A921D2A68300CE45F1 /* QuestionType.swift in Sources */,
 				84B7B8C321E488D00099E7E3 /* ClusterSearchCell.swift in Sources */,
 				84F1F21321E910DE004515A4 /* Twitter+Rx.swift in Sources */,
@@ -2382,6 +2412,7 @@
 				84A07FC221D14D4F00269C6B /* ReqClusterController.swift in Sources */,
 				11B3C79621D1126700EDCECB /* QuizSummaryKeyCell.swift in Sources */,
 				11D066AC21E38850003AC9BB /* PenpolFilterModel.swift in Sources */,
+				11145F6921EB47310046F2AA /* CustomMenuBar.swift in Sources */,
 				8452A4CB21DE271B00196043 /* BuatProfileCoordinator.swift in Sources */,
 				13F4569F21CF986600CE45F1 /* CreateAskCoordinator.swift in Sources */,
 				840901BA21DF1DE6001BF559 /* Navbar.swift in Sources */,
@@ -2389,6 +2420,7 @@
 				8441DB4121CCBECF00B078DF /* FilterModel.swift in Sources */,
 				84619D4021DA959400EB58CF /* SectionItemCell.swift in Sources */,
 				8441DB3C21CCA6C500B078DF /* ItemRadioCell.swift in Sources */,
+				11145F6521EB44920046F2AA /* CustomMenuCell.swift in Sources */,
 				84A07F9F21D0DFA200269C6B /* KTPController.swift in Sources */,
 				842A4A0121D7C5160050AA51 /* CameraController.swift in Sources */,
 				11D066B021E399C1003AC9BB /* FilterRadioCell.swift in Sources */,
