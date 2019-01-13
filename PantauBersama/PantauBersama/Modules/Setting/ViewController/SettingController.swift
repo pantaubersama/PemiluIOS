@@ -53,19 +53,25 @@ class SettingController: UITableViewController {
             .disposed(by: disposeBag)
         
         tableView.rx.itemSelected
-            .do(onNext: { (indexPath) in
+            .do(onNext: { [weak self] (indexPath) in
                 switch indexPath.section {
                 case 2:
-                    let manager: FBSDKLoginManager = FBSDKLoginManager()
-                    manager.logIn(withReadPermissions:  ["public_profile", "email"],
-                                  from: self, handler: { [weak self] (result, error) in
-                        if let error = error {
-                            print(error.localizedDescription)
-                            return
-                        }
-                        self?.viewModel.input.facebookI.onNext((result))
-                    })
-                    
+                    if self?.data.facebook == false {
+                        let manager: FBSDKLoginManager = FBSDKLoginManager()
+                        manager.logIn(
+                            withReadPermissions:  ["public_profile", "email"],
+                            from: self, handler: { [weak self] (result, error) in
+                                if error != nil {
+                                }
+                                guard let result = result else { return }
+                                if result.isCancelled == true {
+                                    
+                                } else {
+                                    guard let token = result.token.tokenString else { return }
+                                    self?.viewModel.input.facebookI.onNext((token))
+                                }
+                        })
+                    }
                 default: break
                 }
             })

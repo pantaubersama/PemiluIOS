@@ -19,7 +19,7 @@ protocol ISettingViewModelInput {
     var viewWillAppearTrigger: AnyObserver<Void> { get }
     var itemTwitterI: AnyObserver<String> { get }
     var viewControllerTrigger: AnyObserver<UIViewController?> { get }
-    var facebookI: AnyObserver<FBSDKLoginManagerLoginResult?> { get }
+    var facebookI: AnyObserver<String> { get }
 }
 
 protocol ISettingViewModelOutput {
@@ -50,7 +50,7 @@ final class SettingViewModel: ISettingViewModel, ISettingViewModelInput, ISettin
     var viewWillAppearTrigger: AnyObserver<Void>
     var itemTwitterI: AnyObserver<String>
     var viewControllerTrigger: AnyObserver<UIViewController?>
-    var facebookI: AnyObserver<FBSDKLoginManagerLoginResult?>
+    var facebookI: AnyObserver<String>
     
     // Output
     var itemsO: Driver<[SectionOfSettingData]>
@@ -67,7 +67,7 @@ final class SettingViewModel: ISettingViewModel, ISettingViewModelInput, ISettin
     private let viewWillAppearS = PublishSubject<Void>()
     private let itemTwitterS = PublishSubject<String>()
     private let viewControllerS = PublishSubject<UIViewController?>()
-    private let facebookS = PublishSubject<FBSDKLoginManagerLoginResult?>()
+    private let facebookS = PublishSubject<String>()
     
     init(navigator: SettingNavigator, data: User) {
         self.navigator = navigator
@@ -192,20 +192,16 @@ final class SettingViewModel: ISettingViewModel, ISettingViewModelInput, ISettin
         // Facbeook
         let facebook = facebookS
             .flatMapLatest { (result) -> Observable<Void> in
-                if let token = result?.token.tokenString {
-                    return NetworkService.instance
-                        .requestObject(PantauAuthAPI
-                            .accountsConnect(type: "facebook",
-                                             oauthToken: token,
-                                             oauthSecret: ""),
-                                       c: BaseResponse<AccountResponse>.self)
-                        .trackError(errorTracker)
-                        .trackActivity(activityIndicator)
-                        .catchErrorJustComplete()
-                        .mapToVoid()
-                } else {
-                    return Observable.empty()
-                }
+                return NetworkService.instance
+                    .requestObject(PantauAuthAPI
+                        .accountsConnect(type: "facebook",
+                                         oauthToken: result,
+                                         oauthSecret: ""),
+                                   c: BaseResponse<AccountResponse>.self)
+                    .trackError(errorTracker)
+                    .trackActivity(activityIndicator)
+                    .catchErrorJustComplete()
+                    .mapToVoid()
             }.mapToVoid()
         
         let meFacebook = viewWillAppearS
