@@ -63,6 +63,7 @@ class SearchController: UIViewController {
                     self.hideAllChilds()
                     switch index {
                     case 0:
+                        self.listUserController.view.alpha = 1.0
                         break
                     case 1:
                         break
@@ -93,6 +94,7 @@ class SearchController: UIViewController {
         self.quisController.view.alpha = 0.0
         self.pilpresController.view.alpha = 0.0
         self.janjiController.view.alpha = 0.0
+        self.listUserController.view.alpha = 0.0
     }
     
     override func viewWillAppear(_ animated: Bool) {
