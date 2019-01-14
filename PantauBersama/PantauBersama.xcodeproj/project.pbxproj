@@ -83,6 +83,7 @@
 		13BF405121EBAA1E005C9A64 /* IQuestionListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BF405021EBAA1E005C9A64 /* IQuestionListViewController.swift */; };
 		13BF405321EBAA8F005C9A64 /* IQuestionListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BF405221EBAA8F005C9A64 /* IQuestionListViewModel.swift */; };
 		13BF405521EBADBF005C9A64 /* QuestionListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BF405421EBADBF005C9A64 /* QuestionListViewModel.swift */; };
+		13BF405B21EC7B6B005C9A64 /* MyQuestionListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BF405A21EC7B6B005C9A64 /* MyQuestionListViewModel.swift */; };
 		13E9D78821E8F025006A0890 /* IJanpolListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E9D78721E8F025006A0890 /* IJanpolListViewModel.swift */; };
 		13E9D78B21E8FCF6006A0890 /* IJanpolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E9D78A21E8FCF5006A0890 /* IJanpolViewController.swift */; };
 		13E9D78E21E9171E006A0890 /* JanpolListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E9D78D21E9171E006A0890 /* JanpolListViewModel.swift */; };
@@ -406,6 +407,7 @@
 		13BF405021EBAA1E005C9A64 /* IQuestionListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IQuestionListViewController.swift; sourceTree = "<group>"; };
 		13BF405221EBAA8F005C9A64 /* IQuestionListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IQuestionListViewModel.swift; sourceTree = "<group>"; };
 		13BF405421EBADBF005C9A64 /* QuestionListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionListViewModel.swift; sourceTree = "<group>"; };
+		13BF405A21EC7B6B005C9A64 /* MyQuestionListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQuestionListViewModel.swift; sourceTree = "<group>"; };
 		13E9D78721E8F025006A0890 /* IJanpolListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IJanpolListViewModel.swift; sourceTree = "<group>"; };
 		13E9D78A21E8FCF5006A0890 /* IJanpolViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IJanpolViewController.swift; sourceTree = "<group>"; };
 		13E9D78D21E9171E006A0890 /* JanpolListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JanpolListViewModel.swift; sourceTree = "<group>"; };
@@ -1520,6 +1522,7 @@
 			children = (
 				84B6D6E721E1E7FB00CD4BC8 /* ClusterCellViewModel.swift */,
 				13E9D78F21E92934006A0890 /* MyJanpolListViewModel.swift */,
+				13BF405A21EC7B6B005C9A64 /* MyQuestionListViewModel.swift */,
 			);
 			path = SubModules;
 			sourceTree = "<group>";
@@ -2477,6 +2480,7 @@
 				84A07FB821D0F0DD00269C6B /* IdentitasCoordinator.swift in Sources */,
 				11E107B721CD450B00B7B074 /* QuizOngoingViewModel.swift in Sources */,
 				84E2855921CA777D00298E31 /* Observable.swift in Sources */,
+				13BF405B21EC7B6B005C9A64 /* MyQuestionListViewModel.swift in Sources */,
 				8441DB5A21CD087000B078DF /* JanjiType.swift in Sources */,
 				844C3D3D21C4ED6D00199871 /* AppDelegate.swift in Sources */,
 				11B3C78B21D110CB00EDCECB /* QuizSummaryCoordinator.swift in Sources */,

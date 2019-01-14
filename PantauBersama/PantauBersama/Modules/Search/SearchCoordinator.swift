@@ -15,12 +15,14 @@ protocol SearchNavigator: PenpolNavigator {
     func finishSearch() -> Observable<Void>
 }
 
+//<<<<<<< HEAD
 class SearchCoordinator: BaseCoordinator<Void> {
 //<<<<<<< HEAD
     private let externalNavigationController: UINavigationController
 //=======
 //    internal let navigationController: UINavigationController
 //>>>>>>> [Bhakti][Refactor] Refactor tanya kandidat
+
     private(set) var internalNavigationController: UINavigationController!
     
     var navigationController: UINavigationController! {

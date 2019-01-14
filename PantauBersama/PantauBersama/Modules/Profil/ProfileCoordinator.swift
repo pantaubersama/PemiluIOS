@@ -11,7 +11,7 @@ import RxCocoa
 import UIKit
 import Networking
 
-protocol ProfileNavigator: BadgeNavigator,IJanpolNavigator {
+protocol ProfileNavigator: BadgeNavigator,IJanpolNavigator,IQuestionNavigator {
     func back()
     func launchSetting(user: User) -> Observable<Void>
     func launchVerifikasi(user: VerificationsResponse.U) -> Observable<Void>
@@ -24,7 +24,7 @@ protocol ProfileNavigator: BadgeNavigator,IJanpolNavigator {
 
 final class ProfileCoordinator: BaseCoordinator<Void> {
     
-    internal var navigationController: UINavigationController!
+    var navigationController: UINavigationController!
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController

@@ -49,19 +49,6 @@ extension PenpolCoordinator: PenpolNavigator {
         return coordinate(to: filterCoordinator)
     }
     
-    func launchCreateAsk() -> Observable<Void> {
-        let createAskCoordinator = CreateAskCoordinator(navigationController: self.navigationController)
-        return coordinate(to: createAskCoordinator)
-    }
-    
-    func shareQuestion(question: String) -> Observable<Void> {
-        // TODO: coordinate to share
-        let activityViewController = UIActivityViewController(activityItems: [question as NSString], applicationActivities: nil)
-        self.navigationController.present(activityViewController, animated: true, completion: nil)
-        
-        return Observable.never()
-    }
-    
     func openQuiz(quiz: QuizModel) -> Observable<Void> {
         switch quiz.participationStatus {
         case .inProgress:

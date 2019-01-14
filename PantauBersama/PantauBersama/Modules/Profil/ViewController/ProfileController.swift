@@ -32,10 +32,11 @@ class ProfileController: UIViewController {
     var viewModel: IProfileViewModel!
     
     lazy var myJanpolViewModel: MyJanpolListViewModel = MyJanpolListViewModel(navigator: viewModel.navigator)
-    lazy var myAskViewModel: MyJanpolListViewModel = MyJanpolListViewModel(navigator: viewModel.navigator)
+    lazy var myQuestionViewModel: MyQuestionListViewModel = MyQuestionListViewModel(navigator: viewModel.navigator)
     
     private lazy var janjiController = JanjiPolitikViewController(viewModel: myJanpolViewModel, pageType: .myJanpol)
-    private lazy var tanyaController = JanjiPolitikViewController(viewModel: myAskViewModel, pageType: .myJanpol)
+    private lazy var tanyaController = QuestionController(viewModel: myQuestionViewModel, pageType: .myQuestion)
+    private lazy var emptyController = UIViewController()
     
     private let disposeBag = DisposeBag()
     private var dataSourceBadge: RxTableViewSectionedReloadDataSource<SectionOfProfileData>!
@@ -49,6 +50,7 @@ class ProfileController: UIViewController {
         // add child view
         add(childViewController: janjiController, context: container)
         add(childViewController: tanyaController, context: container)
+        add(childViewController: emptyController, context: container)
         
         let back = UIBarButtonItem(image: #imageLiteral(resourceName: "back"), style: .plain, target: nil, action: nil)
         let setting = UIBarButtonItem(image: #imageLiteral(resourceName: "outlineSettings24Px"), style: .plain, target: nil, action: nil)
@@ -66,9 +68,15 @@ class ProfileController: UIViewController {
                     if i == 0 {
                         self.janjiController.view.alpha = 1.0
                         self.tanyaController.view.alpha = 0.0
-                    } else {
+                        self.emptyController.view.alpha = 0.0
+                    } else if i == 1{
                         self.janjiController.view.alpha = 0.0
                         self.tanyaController.view.alpha = 1.0
+                        self.emptyController.view.alpha = 0.0
+                    } else {
+                        self.janjiController.view.alpha = 0.0
+                        self.tanyaController.view.alpha = 0.0
+                        self.emptyController.view.alpha = 1.0
                     }
                 })
             })
