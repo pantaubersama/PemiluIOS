@@ -17,7 +17,7 @@ public enum TanyaKandidatAPI {
     }
     
     public enum QuestionOrder: String {
-        case created = "created"
+        case created = "created_at"
         case cachedVoteUp = "cached_votes_up"
     }
     
