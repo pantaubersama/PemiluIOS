@@ -38,7 +38,7 @@ extension PenpolFilterModel {
         let verified = FilterItem(id: "question-verified", paramKey: "filter_by", paramValue: "user_verified_true", title: "Terverifikasi", type: .radio, isSelected: UserDefaults.isSelectedFilter(value: "question-verified"))
         let userFilter = PenpolFilterModel(paramKey: "filter_by", title: "User", items: [all, notVerified, verified])
         
-        let newest = FilterItem(id: "question-newest", paramKey: "order_by", paramValue: "created", title: "Paling Baru", type: .radio, isSelected: UserDefaults.isSelectedFilter(value: "question-newest"))
+        let newest = FilterItem(id: "question-newest", paramKey: "order_by", paramValue: "created_at", title: "Paling Baru", type: .radio, isSelected: UserDefaults.isSelectedFilter(value: "question-newest"))
         let voteCount = FilterItem(id: "question-votecount", paramKey: "order_by", paramValue: "cached_votes_up", title: "Paling Banyak Divoting", type: .radio, isSelected: UserDefaults.isSelectedFilter(value: "question-votecount"))
         let orderFilter = PenpolFilterModel(paramKey: "order_by", title: "Urutan", items: [newest, voteCount])
         
