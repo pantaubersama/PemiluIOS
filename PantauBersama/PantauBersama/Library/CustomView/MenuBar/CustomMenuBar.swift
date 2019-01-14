@@ -29,7 +29,8 @@ class CustomMenuBar: UIView {
         }
     }
     
-    var selectedItem = BehaviorRelay<Int>(value: 0)
+    private let selectedItem = BehaviorRelay<Int>(value: 0)
+    var selectedIndex: Driver<Int>!
     private let disposeBag = DisposeBag()
     
     override init(frame: CGRect) {
@@ -59,6 +60,7 @@ class CustomMenuBar: UIView {
                 }
             })
             .disposed(by: disposeBag)
+        selectedIndex = selectedItem.asDriver()
     }
 }
 
@@ -69,6 +71,7 @@ extension CustomMenuBar: UICollectionViewDataSource, UICollectionViewDelegateFlo
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CustomMenuCell.identifier, for: indexPath) as! CustomMenuCell
+        cell.configureItem(item: menuItem[indexPath.row])
         return cell
     }
     
@@ -84,6 +87,7 @@ extension CustomMenuBar: UICollectionViewDataSource, UICollectionViewDelegateFlo
 
 extension CustomMenuBar: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        selectedItem.accept(indexPath.row)
         if indexPath.row < (menuItem.count - 1) {
             collectionView.scrollToItem(at: IndexPath(row: indexPath.row + 1, section: 0), at: .right, animated: true)
         }

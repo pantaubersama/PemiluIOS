@@ -11,16 +11,20 @@ import RxSwift
 import RxCocoa
 import Networking
 
-protocol SearchNavigator: PenpolNavigator {
+protocol SearchNavigator: PenpolNavigator, LinimasaNavigator {
     func finishSearch() -> Observable<Void>
 }
 
 class SearchCoordinator: BaseCoordinator<Void> {
-    private let navigationController: UINavigationController
+    private let externalNavigationController: UINavigationController
     private(set) var internalNavigationController: UINavigationController!
     
+    var navigationController: UINavigationController! {
+        return externalNavigationController
+    }
+    
     init(navigationController: UINavigationController) {
-        self.navigationController = navigationController
+        self.externalNavigationController = navigationController
     }
     
     override func start() -> Observable<Void> {
@@ -37,6 +41,39 @@ class SearchCoordinator: BaseCoordinator<Void> {
 }
 
 extension SearchCoordinator: SearchNavigator {
+    
+    func launchProfile() -> Observable<Void> {
+        return Observable.never()
+    }
+    
+    func launchNotifications() {
+        
+    }
+    
+    func launchFilter() -> Observable<Void> {
+        return Observable.never()
+    }
+    
+    func launchAddJanji() -> Observable<Void> {
+        return Observable.never()
+    }
+    
+    func launchNote() -> Observable<Void> {
+        return Observable.never()
+    }
+    
+    func launchSearch() -> Observable<Void> {
+        return Observable.never()
+    }
+    
+    func sharePilpres(data: Any) -> Observable<Void> {
+        return Observable.never()
+    }
+    
+    func openTwitter(data: String) -> Observable<Void> {
+        return Observable.never()
+    }
+    
     func finishSearch() -> Observable<Void> {
         navigationController.dismiss(animated: true, completion: nil)
         return Observable.never()

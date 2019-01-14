@@ -33,6 +33,7 @@ class JanpolListViewModel: IJanpolListViewModel, IJanpolListViewModelInput, IJan
     var filterO: Driver<Void>!
     var bannerO: Driver<BannerInfo>!
     var bannerSelectedO: Driver<Void>!
+    var showHeaderO: Driver<Bool>!
     
     private let refreshSubject = PublishSubject<Void>()
     private let moreSubject = PublishSubject<JanjiPolitik>()
@@ -48,7 +49,7 @@ class JanpolListViewModel: IJanpolListViewModel, IJanpolListViewModelInput, IJan
     
     private var filterItems: [PenpolFilterModel.FilterItem] = []
     
-    init(navigator: IJanpolNavigator) {
+    init(navigator: IJanpolNavigator, showTableHeader: Bool) {
         refreshI = refreshSubject.asObserver()
         nextPageI = nextSubject.asObserver()
         moreI = moreSubject.asObserver()
@@ -135,6 +136,8 @@ class JanpolListViewModel: IJanpolListViewModel, IJanpolListViewModelInput, IJan
                 return navigator.launchBannerInfo(bannerInfo: banner)
             })
             .asDriverOnErrorJustComplete()
+        
+        showHeaderO = BehaviorRelay<Bool>(value: showTableHeader).asDriver()
         
     }
     

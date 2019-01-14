@@ -37,6 +37,7 @@ protocol IJanpolListViewModelOutput {
     var filterO: Driver<Void>! { get }
     var bannerO: Driver<BannerInfo>! { get }
     var bannerSelectedO: Driver<Void>! { get }
+    var showHeaderO: Driver<Bool>! { get }
 }
 
 protocol IJanpolListViewModel {

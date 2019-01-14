@@ -31,6 +31,7 @@ class PilpresViewModel: ViewModelType {
         let bannerInfo: Driver<BannerInfo>
         let infoSelected: Driver<Void>
         let filter: Driver<Void>
+        let showHeader: Driver<Bool>
     }
     
     private let refreshSubject = PublishSubject<Void>()
@@ -45,7 +46,7 @@ class PilpresViewModel: ViewModelType {
     let headerViewModel = BannerHeaderViewModel()
     private var filterItems: [PenpolFilterModel.FilterItem] = []
     
-    init(navigator: LinimasaNavigator) {
+    init(navigator: LinimasaNavigator, showTableHeader: Bool) {
         self.navigator = navigator
         
         input = Input(
@@ -118,12 +119,15 @@ class PilpresViewModel: ViewModelType {
             })
             .asDriverOnErrorJustComplete()
         
+        let showTableHeader = BehaviorRelay<Bool>(value: showTableHeader).asDriver()
+        
         output = Output(feedsCells: feedsCells,
                         moreSelected: moreSelected,
                         moreMenuSelected: moreMenuSelected,
                         bannerInfo: bannerInfo,
                         infoSelected: infoSelected,
-                        filter: filter)
+                        filter: filter,
+                        showHeader: showTableHeader)
         
     }
     

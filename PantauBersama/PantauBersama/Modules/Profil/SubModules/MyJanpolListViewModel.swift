@@ -13,6 +13,7 @@ import Networking
 
 class MyJanpolListViewModel: IJanpolListViewModel, IJanpolListViewModelInput, IJanpolListViewModelOutput {
     
+    
     var input: IJanpolListViewModelInput { return self }
     var output: IJanpolListViewModelOutput { return self }
     
@@ -33,6 +34,7 @@ class MyJanpolListViewModel: IJanpolListViewModel, IJanpolListViewModelInput, IJ
     var filterO: Driver<Void>!
     var bannerO: Driver<BannerInfo>!
     var bannerSelectedO: Driver<Void>!
+    var showHeaderO: Driver<Bool>!
     
     private let refreshSubject = PublishSubject<Void>()
     private let moreSubject = PublishSubject<JanjiPolitik>()

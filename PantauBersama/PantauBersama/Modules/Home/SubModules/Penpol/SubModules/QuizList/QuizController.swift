@@ -28,7 +28,14 @@ class QuizController: UITableViewController {
         tableView.rowHeight = 350
         tableView.separatorStyle = .none
         tableView.allowsSelection = false
-        tableView.tableHeaderView = tableHeaderView
+        
+        viewModel.output.showHeader
+            .drive(onNext: { [unowned self]isHeaderShown in
+                if isHeaderShown {
+                    self.tableView.tableHeaderView = self.tableHeaderView
+                }
+            })
+            .disposed(by: disposeBag)
         
         tableHeaderView.config(viewModel: viewModel)
         

@@ -40,8 +40,15 @@ class QuestionController: UITableViewController {
         tableView.separatorStyle = .singleLine
         tableView.separatorColor = UIColor.groupTableViewBackground
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        tableView.tableHeaderView = HeaderAskView(viewModel: viewModel)
         tableView.tableFooterView = UIView()
+        
+        viewModel.output.showHeader
+            .drive(onNext: { [unowned self]isHeaderShown in
+                if isHeaderShown {
+                    self.tableView.tableHeaderView = HeaderAskView(viewModel: self.viewModel)
+                }
+            })
+            .disposed(by: disposeBag)
         
         bindViewModel()
     }
