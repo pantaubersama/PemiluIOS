@@ -22,7 +22,8 @@ public enum TanyaKandidatAPI {
     }
     
     case deleteQuestion(id: String)
-    case getQuestions(page: Int, perpage: Int, filteredBy: TanyaListFilter, orderedBy: QuestionOrder)
+    case getQuestions(page: Int, perpage: Int, filteredBy: String, orderedBy: String)
+    case getMyQuestions(page: Int, perpage: Int)
     case createQuestion(body: String)
     case getQuestionDetail(id: String)
     case reportQuestion(id: String, className: String)
@@ -58,6 +59,8 @@ extension TanyaKandidatAPI: TargetType {
             return "/pendidikan_politik/v1/reports"
         case .voteQuestion:
             return "/pendidikan_politik/v1/votes"
+        case .getMyQuestions:
+            return "/pendidikan_politik/v1/me/questions"
         }
     }
     
@@ -65,7 +68,7 @@ extension TanyaKandidatAPI: TargetType {
         switch self {
         case .deleteQuestion:
             return .delete
-        case .getQuestions, .getQuestionDetail:
+        case .getQuestions, .getQuestionDetail, .getMyQuestions:
             return .get
         case .createQuestion, .reportQuestion, .voteQuestion:
             return .post
@@ -82,8 +85,8 @@ extension TanyaKandidatAPI: TargetType {
             return [
                 "page": page,
                 "per_page": perpage,
-                "filter_by": filteredBy.rawValue,
-                "order_by": orderBy.rawValue
+                "filter_by": filteredBy,
+                "order_by": orderBy
             ]
         case .createQuestion(let body):
             return [
@@ -102,6 +105,11 @@ extension TanyaKandidatAPI: TargetType {
             return [
                 "id": id,
                 "class_name": className
+            ]
+        case .getMyQuestions(let (page, perpage)):
+            return [
+                "page": page,
+                "per_page": perpage
             ]
         }
     }

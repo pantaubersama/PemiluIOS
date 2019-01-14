@@ -13,9 +13,9 @@ import Networking
 public struct QuestionModel {
     let id, body: String
     let createdAt: CreatedAt
-    let created: String
     var likeCount: Int
     var isLiked: Bool
+    var isReported: Bool
     let user: Creator
     
     init(question: Question) {
@@ -24,7 +24,6 @@ public struct QuestionModel {
         self.createdAt = CreatedAt(iso8601: question.createdAtInWord.iso8601,
                                  en: question.createdAtInWord.en,
                                  id: question.createdAtInWord.id)
-        self.created = question.createdAt
         self.likeCount = question.likeCount
         self.user = Creator(id: question.user.id,
                          email: question.user.email,
@@ -38,6 +37,7 @@ public struct QuestionModel {
                          verified: question.user.verified,
                          about: question.user.about ?? "")
         self.isLiked = question.isLiked
+        self.isReported = question.isReported
         
     }
     

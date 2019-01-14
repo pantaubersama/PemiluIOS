@@ -47,6 +47,7 @@ public struct Question: Codable {
     public let likeCount: Int
     public let user: Creator
     public let isLiked: Bool
+    public let isReported: Bool
     
     enum CodingKeys: String, CodingKey {
         case id, body
@@ -55,6 +56,7 @@ public struct Question: Codable {
         case likeCount = "like_count"
         case user
         case isLiked = "is_liked"
+        case isReported = "is_reported"
     }
 }
 

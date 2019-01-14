@@ -81,7 +81,7 @@ class QuizViewModel: ViewModelType {
         let infoSelected = headerViewModel.output.itemSelected
             .asObservable()
             .flatMapLatest({ (banner) -> Observable<Void> in
-                return navigator.launchBannerInfo(bannerInfo: banner)
+                return navigator.launchPenpolBannerInfo(bannerInfo: banner)
             })
             .asDriverOnErrorJustComplete()
         let shareTrend = shareTrendSubject

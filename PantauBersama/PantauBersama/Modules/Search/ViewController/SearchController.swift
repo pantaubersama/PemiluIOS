@@ -19,14 +19,14 @@ class SearchController: UIViewController {
     private let disposeBag = DisposeBag()
     
     lazy var quizViewModel = QuizViewModel(navigator: viewModel.navigator, showTableHeader: false)
-    lazy var askViewModel = QuestionViewModel(navigator: viewModel.navigator, showTableHeader: false)
+    lazy var askViewModel = QuestionListViewModel(navigator: viewModel.navigator, showTableHeader: false)
     lazy var pilpresViewModel = PilpresViewModel(navigator: viewModel.navigator, showTableHeader: false)
     lazy var janjiPolitikViewModel = JanpolListViewModel(navigator: viewModel.navigator, showTableHeader: false)
     
     lazy var askController = QuestionController(viewModel: askViewModel)
     lazy var quisController = QuizController(viewModel: quizViewModel)
     lazy var pilpresController = PilpresViewController(viewModel: pilpresViewModel)
-    lazy var janjiController = JanjiPolitikViewController(viewModel: janjiPolitikViewModel, pageType: .allJanpol)
+    lazy var janjiController = JanjiPolitikViewController(viewModel: janjiPolitikViewModel)
     
     override func viewDidLoad() {
         super.viewDidLoad()

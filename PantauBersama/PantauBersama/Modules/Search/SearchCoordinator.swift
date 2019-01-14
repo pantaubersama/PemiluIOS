@@ -16,7 +16,9 @@ protocol SearchNavigator: PenpolNavigator, LinimasaNavigator {
 }
 
 class SearchCoordinator: BaseCoordinator<Void> {
+
     private let externalNavigationController: UINavigationController
+
     private(set) var internalNavigationController: UINavigationController!
     
     var navigationController: UINavigationController! {
@@ -41,6 +43,9 @@ class SearchCoordinator: BaseCoordinator<Void> {
 }
 
 extension SearchCoordinator: SearchNavigator {
+    func launchPenpolBannerInfo(bannerInfo: BannerInfo) -> Observable<Void> {
+        return Observable.never()
+    }
     
     func launchProfile() -> Observable<Void> {
         return Observable.never()
@@ -74,16 +79,16 @@ extension SearchCoordinator: SearchNavigator {
         return Observable.never()
     }
     
+    func launchBannerInfo(bannerInfo: BannerInfo) -> Observable<Void> {
+        return Observable.never()
+    }
+    
     func finishSearch() -> Observable<Void> {
-        navigationController.dismiss(animated: true, completion: nil)
+        externalNavigationController.dismiss(animated: true, completion: nil)
         return Observable.never()
     }
     
     func launchFilter(filterType: FilterType, filterTrigger: AnyObserver<[PenpolFilterModel.FilterItem]>) -> Observable<Void> {
-        return Observable.never()
-    }
-    
-    func launchBannerInfo(bannerInfo: BannerInfo) -> Observable<Void> {
         return Observable.never()
     }
     
@@ -106,6 +111,7 @@ extension SearchCoordinator: SearchNavigator {
     func shareQuestion(question: String) -> Observable<Void> {
         return Observable.never()
     }
+
     
     
 }

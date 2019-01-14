@@ -16,11 +16,11 @@ class CreateAskHeaderView: UIView {
     @IBOutlet weak var ivAvatar: UIImageView!
     @IBOutlet weak var lbFullname: Label!
     
-    private var viewModel: QuestionViewModel?
+    private var viewModel: IQuestionListViewModel?
     
     private(set) var disposeBag = DisposeBag()
     
-    convenience init(viewModel: QuestionViewModel) {
+    convenience init(viewModel: IQuestionListViewModel) {
         self.init()
         self.viewModel = viewModel
         
@@ -50,11 +50,11 @@ class CreateAskHeaderView: UIView {
         guard let viewModel = self.viewModel else { return }
         tapGesture.rx.event
             .mapToVoid()
-            .bind(to: viewModel.input.createTrigger)
+            .bind(to: viewModel.input.createI)
             .disposed(by: disposeBag)
         
         
-        viewModel.output.userData
+        viewModel.output.userDataO
             .drive(onNext: { [weak self](userResponse) in
                 guard let weakSelf = self, let user = userResponse else { return }
                 weakSelf.ivAvatar.show(fromURL: userResponse?.user.avatar.thumbnail.url ?? "")

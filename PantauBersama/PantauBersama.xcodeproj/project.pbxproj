@@ -30,8 +30,6 @@
 		11B145EE21D67C8200BB26C8 /* AskCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B145ED21D67C8200BB26C8 /* AskCellViewModel.swift */; };
 		11B145F821D72D9B00BB26C8 /* CreateAskHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B145F721D72D9B00BB26C8 /* CreateAskHeaderView.swift */; };
 		11B145FC21D72FFA00BB26C8 /* CreateAskHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11B145FB21D72FFA00BB26C8 /* CreateAskHeaderView.xib */; };
-		11B145FE21D744A100BB26C8 /* BannerInfoAskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B145FD21D744A100BB26C8 /* BannerInfoAskView.swift */; };
-		11B1460021D744B000BB26C8 /* BannerInfoAskView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11B145FF21D744B000BB26C8 /* BannerInfoAskView.xib */; };
 		11B1460221D749C300BB26C8 /* HeaderAskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B1460121D749C300BB26C8 /* HeaderAskView.swift */; };
 		11B3C78B21D110CB00EDCECB /* QuizSummaryCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B3C78A21D110CB00EDCECB /* QuizSummaryCoordinator.swift */; };
 		11B3C78D21D110DA00EDCECB /* QuizSummaryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B3C78C21D110DA00EDCECB /* QuizSummaryViewModel.swift */; };
@@ -82,13 +80,16 @@
 		1385A3E421DBBA6700C2910F /* BannerHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844C2BA621CC112700BC439A /* BannerHeaderView.swift */; };
 		1385A3E521DBBA8200C2910F /* QuestionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13812C2C21CAA92100CAB327 /* QuestionController.swift */; };
 		1385A3E721DBC32B00C2910F /* DetailJanjiViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1385A3E621DBC32B00C2910F /* DetailJanjiViewModel.swift */; };
+		13BF405121EBAA1E005C9A64 /* IQuestionListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BF405021EBAA1E005C9A64 /* IQuestionListViewController.swift */; };
+		13BF405321EBAA8F005C9A64 /* IQuestionListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BF405221EBAA8F005C9A64 /* IQuestionListViewModel.swift */; };
+		13BF405521EBADBF005C9A64 /* QuestionListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BF405421EBADBF005C9A64 /* QuestionListViewModel.swift */; };
+		13BF405B21EC7B6B005C9A64 /* MyQuestionListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BF405A21EC7B6B005C9A64 /* MyQuestionListViewModel.swift */; };
 		13E9D78821E8F025006A0890 /* IJanpolListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E9D78721E8F025006A0890 /* IJanpolListViewModel.swift */; };
 		13E9D78B21E8FCF6006A0890 /* IJanpolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E9D78A21E8FCF5006A0890 /* IJanpolViewController.swift */; };
 		13E9D78E21E9171E006A0890 /* JanpolListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E9D78D21E9171E006A0890 /* JanpolListViewModel.swift */; };
 		13E9D79021E92934006A0890 /* MyJanpolListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E9D78F21E92934006A0890 /* MyJanpolListViewModel.swift */; };
 		13F4569421CF97DA00CE45F1 /* CreateAskController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F4569221CF97DA00CE45F1 /* CreateAskController.swift */; };
 		13F4569521CF97DA00CE45F1 /* CreateAskController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13F4569321CF97DA00CE45F1 /* CreateAskController.xib */; };
-		13F4569721CF981E00CE45F1 /* QuestionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F4569621CF981E00CE45F1 /* QuestionViewModel.swift */; };
 		13F4569921CF982E00CE45F1 /* QuestionNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F4569821CF982E00CE45F1 /* QuestionNavigator.swift */; };
 		13F4569D21CF985800CE45F1 /* CreateAskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F4569C21CF985800CE45F1 /* CreateAskViewModel.swift */; };
 		13F4569F21CF986600CE45F1 /* CreateAskCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F4569E21CF986600CE45F1 /* CreateAskCoordinator.swift */; };
@@ -354,8 +355,6 @@
 		11B145ED21D67C8200BB26C8 /* AskCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AskCellViewModel.swift; sourceTree = "<group>"; };
 		11B145F721D72D9B00BB26C8 /* CreateAskHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAskHeaderView.swift; sourceTree = "<group>"; };
 		11B145FB21D72FFA00BB26C8 /* CreateAskHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateAskHeaderView.xib; sourceTree = "<group>"; };
-		11B145FD21D744A100BB26C8 /* BannerInfoAskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerInfoAskView.swift; sourceTree = "<group>"; };
-		11B145FF21D744B000BB26C8 /* BannerInfoAskView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BannerInfoAskView.xib; sourceTree = "<group>"; };
 		11B1460121D749C300BB26C8 /* HeaderAskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderAskView.swift; sourceTree = "<group>"; };
 		11B3C78A21D110CB00EDCECB /* QuizSummaryCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSummaryCoordinator.swift; sourceTree = "<group>"; };
 		11B3C78C21D110DA00EDCECB /* QuizSummaryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSummaryViewModel.swift; sourceTree = "<group>"; };
@@ -405,13 +404,16 @@
 		13812C3721CC182500CAB327 /* AskViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AskViewCell.swift; sourceTree = "<group>"; };
 		13812C3821CC182500CAB327 /* AskViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AskViewCell.xib; sourceTree = "<group>"; };
 		1385A3E621DBC32B00C2910F /* DetailJanjiViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailJanjiViewModel.swift; sourceTree = "<group>"; };
+		13BF405021EBAA1E005C9A64 /* IQuestionListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IQuestionListViewController.swift; sourceTree = "<group>"; };
+		13BF405221EBAA8F005C9A64 /* IQuestionListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IQuestionListViewModel.swift; sourceTree = "<group>"; };
+		13BF405421EBADBF005C9A64 /* QuestionListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionListViewModel.swift; sourceTree = "<group>"; };
+		13BF405A21EC7B6B005C9A64 /* MyQuestionListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQuestionListViewModel.swift; sourceTree = "<group>"; };
 		13E9D78721E8F025006A0890 /* IJanpolListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IJanpolListViewModel.swift; sourceTree = "<group>"; };
 		13E9D78A21E8FCF5006A0890 /* IJanpolViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IJanpolViewController.swift; sourceTree = "<group>"; };
 		13E9D78D21E9171E006A0890 /* JanpolListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JanpolListViewModel.swift; sourceTree = "<group>"; };
 		13E9D78F21E92934006A0890 /* MyJanpolListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyJanpolListViewModel.swift; sourceTree = "<group>"; };
 		13F4569221CF97DA00CE45F1 /* CreateAskController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAskController.swift; sourceTree = "<group>"; };
 		13F4569321CF97DA00CE45F1 /* CreateAskController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateAskController.xib; sourceTree = "<group>"; };
-		13F4569621CF981E00CE45F1 /* QuestionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewModel.swift; sourceTree = "<group>"; };
 		13F4569821CF982E00CE45F1 /* QuestionNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionNavigator.swift; sourceTree = "<group>"; };
 		13F4569C21CF985800CE45F1 /* CreateAskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAskViewModel.swift; sourceTree = "<group>"; };
 		13F4569E21CF986600CE45F1 /* CreateAskCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAskCoordinator.swift; sourceTree = "<group>"; };
@@ -889,8 +891,10 @@
 				13F456A021CF9AB400CE45F1 /* SubModules */,
 				13812C3621CC17FE00CAB327 /* Components */,
 				13812C2C21CAA92100CAB327 /* QuestionController.swift */,
-				13F4569621CF981E00CE45F1 /* QuestionViewModel.swift */,
 				13F4569821CF982E00CE45F1 /* QuestionNavigator.swift */,
+				13BF405421EBADBF005C9A64 /* QuestionListViewModel.swift */,
+				13BF405021EBAA1E005C9A64 /* IQuestionListViewController.swift */,
+				13BF405221EBAA8F005C9A64 /* IQuestionListViewModel.swift */,
 			);
 			path = QuestionList;
 			sourceTree = "<group>";
@@ -925,8 +929,6 @@
 				13812C3821CC182500CAB327 /* AskViewCell.xib */,
 				11B145F721D72D9B00BB26C8 /* CreateAskHeaderView.swift */,
 				11B145FB21D72FFA00BB26C8 /* CreateAskHeaderView.xib */,
-				11B145FD21D744A100BB26C8 /* BannerInfoAskView.swift */,
-				11B145FF21D744B000BB26C8 /* BannerInfoAskView.xib */,
 				11B1460121D749C300BB26C8 /* HeaderAskView.swift */,
 			);
 			path = Components;
@@ -1520,6 +1522,7 @@
 			children = (
 				84B6D6E721E1E7FB00CD4BC8 /* ClusterCellViewModel.swift */,
 				13E9D78F21E92934006A0890 /* MyJanpolListViewModel.swift */,
+				13BF405A21EC7B6B005C9A64 /* MyQuestionListViewModel.swift */,
 			);
 			path = SubModules;
 			sourceTree = "<group>";
@@ -2038,7 +2041,6 @@
 				84A07F8F21D0CC9400269C6B /* landing-page-backround-mobile.json in Resources */,
 				11E107AF21CD42C400B7B074 /* QuizOngoingController.xib in Resources */,
 				84F892A921C787D800DC1048 /* Lato-BlackItalic.ttf in Resources */,
-				11B1460021D744B000BB26C8 /* BannerInfoAskView.xib in Resources */,
 				13F456D021DB894500CE45F1 /* BannerInfoViewCell.xib in Resources */,
 				8428AAAA21C7AF330008E975 /* GoogleService-Info-Staging.plist in Resources */,
 				84A07FAC21D0E4FD00269C6B /* selfie-id-card.json in Resources */,
@@ -2402,7 +2404,6 @@
 				840850BF21D256C200696CB3 /* SectionOfProfileInfoData.swift in Sources */,
 				84619D3821DA851200EB58CF /* EditViewModel.swift in Sources */,
 				8452A4D421DE55DE00196043 /* SosmedCoordinator.swift in Sources */,
-				11B145FE21D744A100BB26C8 /* BannerInfoAskView.swift in Sources */,
 				11E107A821CD33CA00B7B074 /* CreateJanjiCoordinator.swift in Sources */,
 				11E107A721CD33CA00B7B074 /* CreateJanjiViewModel.swift in Sources */,
 				842A4A0921D7EA990050AA51 /* SignatureCoordinator.swift in Sources */,
@@ -2438,7 +2439,6 @@
 				84F6981121C8E21B00890917 /* LinimasaCell.swift in Sources */,
 				842A49F721D775420050AA51 /* HeaderDataLapor.swift in Sources */,
 				11B3C78D21D110DA00EDCECB /* QuizSummaryViewModel.swift in Sources */,
-				13F4569721CF981E00CE45F1 /* QuestionViewModel.swift in Sources */,
 				840850C321D25C7D00696CB3 /* ProfileEditController.swift in Sources */,
 				11145F5921EAD31A0046F2AA /* SearchCoordinator.swift in Sources */,
 				84619D4921DC961A00EB58CF /* WebController.swift in Sources */,
@@ -2454,6 +2454,7 @@
 				84E6934621D296BB00EA5464 /* SectionOfProfileEditData.swift in Sources */,
 				84F6980B21C8D2B100890917 /* JanjiPolitikViewController.swift in Sources */,
 				84B6D6F821E30FE400CD4BC8 /* ShareBadgeCoordinator.swift in Sources */,
+				13BF405121EBAA1E005C9A64 /* IQuestionListViewController.swift in Sources */,
 				13F4569421CF97DA00CE45F1 /* CreateAskController.swift in Sources */,
 				849CABCC21CE8A5100912F8E /* SettingCoordinator.swift in Sources */,
 				844C3D4521C4ED6D00199871 /* PantauBersama.xcdatamodeld in Sources */,
@@ -2479,10 +2480,12 @@
 				84A07FB821D0F0DD00269C6B /* IdentitasCoordinator.swift in Sources */,
 				11E107B721CD450B00B7B074 /* QuizOngoingViewModel.swift in Sources */,
 				84E2855921CA777D00298E31 /* Observable.swift in Sources */,
+				13BF405B21EC7B6B005C9A64 /* MyQuestionListViewModel.swift in Sources */,
 				8441DB5A21CD087000B078DF /* JanjiType.swift in Sources */,
 				844C3D3D21C4ED6D00199871 /* AppDelegate.swift in Sources */,
 				11B3C78B21D110CB00EDCECB /* QuizSummaryCoordinator.swift in Sources */,
 				1161F9F421DF4B4000C1BAD5 /* QuizButton.swift in Sources */,
+				13BF405321EBAA8F005C9A64 /* IQuestionListViewModel.swift in Sources */,
 				84B7B8BE21E47B400099E7E3 /* ClusterSearchViewModel.swift in Sources */,
 				845C570521CD1C2300EDCDFE /* HeaderProfile.swift in Sources */,
 				84B6D6E821E1E7FC00CD4BC8 /* ClusterCellViewModel.swift in Sources */,
@@ -2549,6 +2552,7 @@
 				844C3D8521C5252800199871 /* LinimasaCoordinator.swift in Sources */,
 				842A4A0D21D7EDC10050AA51 /* SuccessCoordinator.swift in Sources */,
 				13E9D78821E8F025006A0890 /* IJanpolListViewModel.swift in Sources */,
+				13BF405521EBADBF005C9A64 /* QuestionListViewModel.swift in Sources */,
 				13F456D621DBA2F600CE45F1 /* BannerHeaderViewModel.swift in Sources */,
 				840850E121D2844700696CB3 /* BadgeCoordinator.swift in Sources */,
 				11D066A421E3850E003AC9BB /* PenpolFilterController.swift in Sources */,

@@ -10,10 +10,9 @@ import UIKit
 import RxSwift
 import Networking
 
-protocol LinimasaNavigator: PilpresNavigator,IJanpolNavigator {
+protocol LinimasaNavigator: PilpresNavigator, IJanpolNavigator {
     func launchProfile() -> Observable<Void>
     func launchNotifications()
-    func launchFilter() -> Observable<Void>
     func launchAddJanji() -> Observable<Void>
     func launchBannerInfo(bannerInfo: BannerInfo) -> Observable<Void>
     func launchNote() -> Observable<Void>
@@ -25,11 +24,11 @@ class LinimasaCoordinator: BaseCoordinator<Void> {
     
     var navigationController: UINavigationController!
     private var filterCoordinator: PenpolFilterCoordinator!
-    
+
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
-    
+
     override func start() -> Observable<CoordinationResult> {
         let viewController = LinimasaController()
         let viewModel = LinimasaViewModel(navigator: self)
@@ -48,12 +47,6 @@ extension LinimasaCoordinator: LinimasaNavigator {
     func launchBannerInfo(bannerInfo: BannerInfo) -> Observable<Void> {
         let bannerInfoCoordinator = BannerInfoCoordinator(navigationController: self.navigationController, bannerInfo: bannerInfo)
         return coordinate(to: bannerInfoCoordinator)
-    }
-    
-    func launchFilter() -> Observable<Void> {
-//        let filterCoordinator = FilterCoordinator(navigationController: navigationController)
-//        return coordinate(to: filterCoordinator)
-        return Observable.empty()
     }
     
     func launchFilter(filterType: FilterType, filterTrigger: AnyObserver<[PenpolFilterModel.FilterItem]>) -> Observable<Void> {
@@ -85,9 +78,6 @@ extension LinimasaCoordinator: LinimasaNavigator {
         return coordinate(to: catatanCoordinator)
     }
     
-}
-
-extension LinimasaCoordinator: PilpresNavigator {
     
     func openTwitter(data: String) -> Observable<Void> {
         UIApplication.shared.open(URL(string: "https://twitter.com/hanif_sgy")!, options: [:], completionHandler: nil)
@@ -102,6 +92,5 @@ extension LinimasaCoordinator: PilpresNavigator {
         
         return Observable.never()
     }
-    
     
 }

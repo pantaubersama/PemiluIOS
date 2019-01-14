@@ -12,10 +12,10 @@ import RxSwift
 import RxCocoa
 
 class HeaderAskView: UIView {
-    private var viewModel: QuestionViewModel?
+    private var viewModel: IQuestionListViewModel?
     private let disposeBag: DisposeBag = DisposeBag()
     
-    convenience init(viewModel: QuestionViewModel) {
+    convenience init(viewModel: IQuestionListViewModel) {
         self.init()
         self.viewModel = viewModel
         setup()
@@ -58,7 +58,7 @@ class HeaderAskView: UIView {
             createAskHeaderView.heightAnchor.constraint(equalToConstant: 85)
             ])
         
-        viewModel.output.bannerInfo
+        viewModel.output.bannerO
             .drive(onNext: { (banner) in
                 bannerInfoAskView.config(banner: banner, viewModel: viewModel.headerViewModel)
             })

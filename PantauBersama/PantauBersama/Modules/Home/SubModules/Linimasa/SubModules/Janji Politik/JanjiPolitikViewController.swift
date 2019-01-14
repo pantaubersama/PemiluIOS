@@ -19,13 +19,11 @@ class JanjiPolitikViewController: UITableViewController,IJanpolViewController {
     private var emptyView = EmptyView()
     
     var viewModel: IJanpolListViewModel!
-    var pageType: JanpolPageType!
     internal lazy var rControl = UIRefreshControl()
     
-    convenience init(viewModel: IJanpolListViewModel, pageType: JanpolPageType) {
+    convenience init(viewModel: IJanpolListViewModel) {
         self.init()
         self.viewModel = viewModel
-        self.pageType  = pageType
     }
     
     override func viewDidLoad() {
@@ -44,21 +42,14 @@ class JanjiPolitikViewController: UITableViewController,IJanpolViewController {
         
         bind(tableView: tableView, refreshControl: rControl, emptyView: emptyView, with: viewModel)
         
-        if let page = self.pageType {
-            switch page{
-            case .allJanpol:
-                viewModel.output.showHeaderO
-                    .drive(onNext: { [unowned self](isHeaderShown) in
-                        if isHeaderShown {
-                            self.headerView = BannerHeaderView()
-                            self.tableView.tableHeaderView = self.headerView
-                            self.bind(headerView: self.headerView, with: self.viewModel)
-                        }
-                    })
-            default:
-                tableView.tableHeaderView = nil
-            }
-        }
+        viewModel.output.showHeaderO
+            .drive(onNext: { [unowned self](isHeaderShown) in
+                if isHeaderShown {
+                    self.headerView = BannerHeaderView()
+                    self.tableView.tableHeaderView = self.headerView
+                    self.bind(headerView: self.headerView, with: self.viewModel)
+                }
+            }).disposed(by: disposeBag)
         
     }
     
