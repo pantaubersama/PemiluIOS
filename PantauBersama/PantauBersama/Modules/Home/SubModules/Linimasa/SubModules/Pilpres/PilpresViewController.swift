@@ -32,19 +32,26 @@ class PilpresViewController: UITableViewController {
         tableView.estimatedRowHeight = 44.0
         tableView.separatorStyle = .none
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        headerView = BannerHeaderView()
-        tableView.tableHeaderView = headerView
         tableView.tableFooterView = UIView()
         tableView.refreshControl = UIRefreshControl()
         
-        self.refreshControl?.rx.controlEvent(.valueChanged)
-            .bind(to: viewModel.input.refreshTrigger)
+        viewModel.output.showHeader
+            .drive(onNext: { [unowned self](isHeaderShown) in
+                if isHeaderShown {
+                    self.headerView = BannerHeaderView()
+                    self.tableView.tableHeaderView = self.headerView
+                    
+                    self.viewModel.output.bannerInfo
+                        .drive(onNext: { (banner) in
+                            self.headerView.config(banner: banner, viewModel: self.viewModel.headerViewModel)
+                        })
+                        .disposed(by: self.disposeBag)
+                }
+            })
             .disposed(by: disposeBag)
         
-        viewModel.output.bannerInfo
-            .drive(onNext: { (banner) in
-                self.headerView.config(banner: banner, viewModel: self.viewModel.headerViewModel)
-            })
+        self.refreshControl?.rx.controlEvent(.valueChanged)
+            .bind(to: viewModel.input.refreshTrigger)
             .disposed(by: disposeBag)
         
         viewModel.output.feedsCells

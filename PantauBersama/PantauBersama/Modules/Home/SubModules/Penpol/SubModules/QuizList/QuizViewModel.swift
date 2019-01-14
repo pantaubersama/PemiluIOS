@@ -37,9 +37,9 @@ class QuizViewModel: ViewModelType {
         let bannerInfo: Driver<BannerInfo>
         let totalResult: Driver<TrendResponse>
         let filter: Driver<Void>
+        let showHeader: Driver<Bool>
     }
     
-    // TODO: replace any with Quiz model
     private let loadQuizSubject = PublishSubject<Void>()
     private let nextPageSubject = PublishSubject<Void>()
     private let openQuizSubject = PublishSubject<QuizModel>()
@@ -60,7 +60,7 @@ class QuizViewModel: ViewModelType {
     
     let headerViewModel = BannerHeaderViewModel()
     
-    init(navigator: PenpolNavigator) {
+    init(navigator: PenpolNavigator, showTableHeader: Bool) {
         self.navigator = navigator
         
         input = Input(
@@ -136,6 +136,8 @@ class QuizViewModel: ViewModelType {
             }
             .disposed(by: disposeBag)
         
+        let showTableHeader = BehaviorRelay<Bool>(value: showTableHeader).asDriver()
+        
         output = Output(
             openQuizSelected: openQuiz,
             shareSelected: shareQuiz,
@@ -145,7 +147,8 @@ class QuizViewModel: ViewModelType {
             quizzes: quizRelay,
             bannerInfo: bannerInfo,
             totalResult: totalResult,
-            filter: filter)
+            filter: filter,
+            showHeader: showTableHeader)
     }
     
     private func quizItems(resetPage: Bool = false) -> Observable<[QuizModel]> {

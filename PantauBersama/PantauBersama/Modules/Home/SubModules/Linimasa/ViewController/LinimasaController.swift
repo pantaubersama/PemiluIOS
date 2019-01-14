@@ -21,8 +21,8 @@ class LinimasaController: UIViewController {
     @IBOutlet weak var navbar: Navbar!
     var viewModel: LinimasaViewModel!
     
-    lazy var pilpresViewModel = PilpresViewModel(navigator: viewModel.navigator)
-    lazy var janjiViewModel = JanpolListViewModel(navigator: viewModel.navigator)
+    lazy var pilpresViewModel = PilpresViewModel(navigator: viewModel.navigator, showTableHeader: true)
+    lazy var janjiViewModel = JanpolListViewModel(navigator: viewModel.navigator, showTableHeader: true)
     
     private lazy var pilpresController = PilpresViewController(viewModel: pilpresViewModel)
     private lazy var janjiController = JanjiPolitikViewController(viewModel: janjiViewModel, pageType: .allJanpol)

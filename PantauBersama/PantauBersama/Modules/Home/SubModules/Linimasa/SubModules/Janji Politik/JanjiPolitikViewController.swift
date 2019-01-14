@@ -47,9 +47,14 @@ class JanjiPolitikViewController: UITableViewController,IJanpolViewController {
         if let page = self.pageType {
             switch page{
             case .allJanpol:
-                headerView = BannerHeaderView()
-                tableView.tableHeaderView = headerView
-                bind(headerView: headerView, with: viewModel)
+                viewModel.output.showHeaderO
+                    .drive(onNext: { [unowned self](isHeaderShown) in
+                        if isHeaderShown {
+                            self.headerView = BannerHeaderView()
+                            self.tableView.tableHeaderView = self.headerView
+                            self.bind(headerView: self.headerView, with: self.viewModel)
+                        }
+                    })
             default:
                 tableView.tableHeaderView = nil
             }

@@ -41,6 +41,7 @@ class QuestionViewModel: ViewModelType {
         let deletedQuestoinIndex: Driver<Int>
         let bannerInfo: Driver<BannerInfo>
         let filter: Driver<Void>
+        let showHeader: Driver<Bool>
     }
     
     private let loadQuestionSubject = PublishSubject<Void>()
@@ -66,7 +67,7 @@ class QuestionViewModel: ViewModelType {
     
     let headerViewModel = BannerHeaderViewModel()
     
-    init(navigator: PenpolNavigator) {
+    init(navigator: PenpolNavigator, showTableHeader: Bool) {
         self.navigator = navigator
         input = Input(
             loadQuestionTrigger: loadQuestionSubject.asObserver(),
@@ -217,6 +218,8 @@ class QuestionViewModel: ViewModelType {
         let userResponse = try? JSONDecoder().decode(UserResponse.self, from: userData ?? Data())
         let user = Observable.just(userResponse).asDriverOnErrorJustComplete()
         
+        let showTableHeader = BehaviorRelay<Bool>(value: showTableHeader).asDriver()
+        
         output = Output(
             question: questionRelay,
             createSelected: create,
@@ -228,7 +231,8 @@ class QuestionViewModel: ViewModelType {
             loadingIndicator: activityIndicator.asDriver(),
             deletedQuestoinIndex: deletedQuestionSubject.asDriverOnErrorJustComplete(),
             bannerInfo: bannerInfo,
-            filter: filter)
+            filter: filter,
+            showHeader: showTableHeader)
     }
     
     private func questionitem(resetPage: Bool = false) -> Observable<[QuestionModel]> {
