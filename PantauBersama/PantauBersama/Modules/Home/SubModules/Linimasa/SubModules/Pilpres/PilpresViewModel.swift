@@ -17,7 +17,7 @@ class PilpresViewModel: ViewModelType {
     var output: Output!
     
     struct Input {
-        let refreshTrigger: AnyObserver<Void>
+        let refreshTrigger: AnyObserver<String>
         let moreTrigger: AnyObserver<Feeds>
         let moreMenuTrigger: AnyObserver<PilpresType>
         let nextTrigger: AnyObserver<Void>
@@ -34,7 +34,7 @@ class PilpresViewModel: ViewModelType {
         let showHeader: Driver<Bool>
     }
     
-    private let refreshSubject = PublishSubject<Void>()
+    private let refreshSubject = PublishSubject<String>()
     private let moreSubject = PublishSubject<Feeds>()
     private let moreMenuSubject = PublishSubject<PilpresType>()
     private let nextSubject = PublishSubject<Void>()
@@ -45,8 +45,9 @@ class PilpresViewModel: ViewModelType {
     let activityIndicator = ActivityIndicator()
     let headerViewModel = BannerHeaderViewModel()
     private var filterItems: [PenpolFilterModel.FilterItem] = []
+    private let disposeBag = DisposeBag()
     
-    init(navigator: LinimasaNavigator, showTableHeader: Bool) {
+    init(navigator: LinimasaNavigator, searchTrigger: PublishSubject<String>? = nil, showTableHeader: Bool) {
         self.navigator = navigator
         
         input = Input(
@@ -56,8 +57,8 @@ class PilpresViewModel: ViewModelType {
             nextTrigger: nextSubject.asObserver(),
             filterTrigger: filterSubject.asObserver())
         
-        let bannerInfo = refreshSubject.startWith(())
-            .flatMapLatest({ self.bannerInfo() })
+        let bannerInfo = refreshSubject.startWith("")
+            .flatMapLatest({ _ in self.bannerInfo() })
             .asDriverOnErrorJustComplete()
         
         let filter = filterSubject
@@ -76,9 +77,13 @@ class PilpresViewModel: ViewModelType {
             .mapToVoid()
             .asDriverOnErrorJustComplete()
         
+        searchTrigger?.asObserver()
+            .bind(to: refreshSubject)
+            .disposed(by: disposeBag)
+        
         // MARK:
         // Get feeds pagination
-        let feedsItems = refreshSubject.startWith(())
+        let feedsItems = refreshSubject.startWith("")
             .flatMapLatest { [unowned self] (_) -> Observable<[Feeds]> in
                 return self.paginateItems(nextBatchTrigger: self.nextSubject.asObservable(), filter: self.filterItems.first?.paramValue ?? "team_all")
                     .trackError(self.errorTracker)

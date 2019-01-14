@@ -20,7 +20,7 @@ class SearchController: UIViewController {
     
     lazy var quizViewModel = QuizViewModel(navigator: viewModel.navigator, showTableHeader: false)
     lazy var askViewModel = QuestionListViewModel(navigator: viewModel.navigator, showTableHeader: false)
-    lazy var pilpresViewModel = PilpresViewModel(navigator: viewModel.navigator, showTableHeader: false)
+    lazy var pilpresViewModel = PilpresViewModel(navigator: viewModel.navigator, searchTrigger: viewModel.searchSubject, showTableHeader: false)
     lazy var janjiPolitikViewModel = JanpolListViewModel(navigator: viewModel.navigator, showTableHeader: false)
     lazy var listUserViewModel = ListUserViewModel(searchTrigger: viewModel.searchSubject)
     
@@ -51,7 +51,7 @@ class SearchController: UIViewController {
         
         navbar.tfSearch.rx.text
             .orEmpty
-            .debounce(1, scheduler: MainScheduler.instance)
+            .debounce(0.5, scheduler: MainScheduler.instance)
             .bind(to: viewModel.input.searchInputTrigger).disposed(by: disposeBag)
         viewModel.output.back
             .drive()
