@@ -68,11 +68,32 @@ class QuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelInput
         
         error = errorTracker.asDriver()
         
+        let cachedFilter = PenpolFilterModel.generateQuestionFilter()
+        cachedFilter.forEach { (filterModel) in
+            let selectedItem = filterModel.items.filter({ (filterItem) -> Bool in
+                return filterItem.isSelected
+            })
+            self.filterItems.append(contentsOf: selectedItem)
+        }
+        
         // MARK:
         // Get question pagination
         refreshSubject.startWith(()).flatMapLatest { [unowned self] (_) -> Observable<[QuestionModel]> in
-            let filteredBy = self.filterItems.filter({ $0.paramKey == "filter_by"}).first?.paramValue
-            let orderedBy = self.filterItems.filter({ $0.paramKey == "order_by"}).first?.paramValue
+            var filteredBy = self.filterItems.filter({ $0.paramKey == "filter_by"}).first?.paramValue
+            var orderedBy = self.filterItems.filter({ $0.paramKey == "order_by"}).first?.paramValue
+            
+            if !self.filterItems.isEmpty {
+                let filterByString = self.filterItems.filter({ (filterItem) -> Bool in
+                    return filterItem.paramKey == "filter_by"
+                }).first?.paramValue
+                
+                let orderByString = self.filterItems.filter { (filterItem) -> Bool in
+                    return filterItem.paramKey == "order_by"
+                    }.first?.paramValue
+                
+                filteredBy = filterByString ?? "user_verified_all"
+                orderedBy = orderByString ?? "created_at"
+            }
                 
             return self.paginateItems(nextBatchTrigger: self.nextSubject.asObservable(), filteredBy: filteredBy ?? "user_verified_all", orderedBy: orderedBy ?? "created_at")
                 .trackError(self.errorTracker)

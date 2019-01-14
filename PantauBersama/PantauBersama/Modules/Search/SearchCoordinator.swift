@@ -84,6 +84,7 @@ extension SearchCoordinator: SearchNavigator {
     }
     
     func finishSearch() -> Observable<Void> {
+        externalNavigationController.dismiss(animated: true, completion: nil)
         return Observable.never()
     }
     
