@@ -23,12 +23,12 @@ class ListUserViewModel: ViewModelType {
     var output: Output!
     
     private var currentPage = 0
+    private let disposeBag = DisposeBag()
     
     init(searchTrigger: PublishSubject<String>) {
         input = Input()
         
         let searchedUser = searchTrigger
-            .debounce(2, scheduler: MainScheduler.instance)
             .flatMapLatest({ self.searchUser(query: $0) })
             .asDriver(onErrorJustReturn: [])
         
@@ -36,13 +36,21 @@ class ListUserViewModel: ViewModelType {
     }
     
     private func searchUser(resetPage: Bool = false, query: String) -> Observable<[User]> {
+        if query.isEmpty {
+            currentPage = 0
+            return Observable.just([])
+        }
+        
         if resetPage {
             currentPage = 0
         }
-        currentPage += 1
         
         return NetworkService.instance.requestObject(PantauAuthAPI.users(page: currentPage, perPage: 10, query: query), c: UsersResponse.self)
-            .map({ (response) -> [User] in
+            .map({ [weak self](response) -> [User] in
+                guard let weakSelf = self else { return [] }
+                if response.data.users.count == 10 {
+                    weakSelf.currentPage += 1
+                }
                 return response.data.users
             })
             .asObservable()

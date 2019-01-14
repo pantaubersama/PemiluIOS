@@ -30,6 +30,8 @@ class ListUserController: UITableViewController {
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         tableView.tableFooterView = UIView()
         
+        tableView.delegate = nil
+        tableView.dataSource = nil
         viewModel.output.searchedUser
             .drive(tableView.rx.items) { tableView, row, item -> UITableViewCell in
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: ListUserCell.reuseIdentifier) as? ListUserCell else {
