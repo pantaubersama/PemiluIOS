@@ -12,11 +12,6 @@ import RxCocoa
 import Networking
 import Common
 
-enum JanpolPageType {
-    case allJanpol
-    case myJanpol
-}
-
 protocol IJanpolListViewModelInput {
     var refreshI: AnyObserver<Void> { get }
     var nextPageI: AnyObserver<Void> { get }

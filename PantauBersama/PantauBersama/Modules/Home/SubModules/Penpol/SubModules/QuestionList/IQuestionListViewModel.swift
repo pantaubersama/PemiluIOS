@@ -12,11 +12,6 @@ import RxCocoa
 import Networking
 import Common
 
-enum QuestionPageType {
-    case allQuestion
-    case myQuestion
-}
-
 protocol IQuestionListViewModelInput {
     var refreshI: AnyObserver<Void> { get }
     var nextPageI: AnyObserver<Void> { get }
