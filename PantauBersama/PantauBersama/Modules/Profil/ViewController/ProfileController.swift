@@ -31,11 +31,11 @@ class ProfileController: UIViewController {
     
     var viewModel: IProfileViewModel!
     
-    lazy var myJanpolViewModel: MyJanpolListViewModel = MyJanpolListViewModel(navigator: viewModel.navigator)
-    lazy var myQuestionViewModel: MyQuestionListViewModel = MyQuestionListViewModel(navigator: viewModel.navigator)
+    lazy var myJanpolViewModel: MyJanpolListViewModel = MyJanpolListViewModel(navigator: viewModel.navigator, showTableHeader: false)
+    lazy var myQuestionViewModel: MyQuestionListViewModel = MyQuestionListViewModel(navigator: viewModel.navigator, showTableHeader: false)
     
-    private lazy var janjiController = JanjiPolitikViewController(viewModel: myJanpolViewModel, pageType: .myJanpol)
-    private lazy var tanyaController = QuestionController(viewModel: myQuestionViewModel, pageType: .myQuestion)
+    private lazy var janjiController = JanjiPolitikViewController(viewModel: myJanpolViewModel)
+    private lazy var tanyaController = QuestionController(viewModel: myQuestionViewModel)
     private lazy var emptyController = UIViewController()
     
     private let disposeBag = DisposeBag()

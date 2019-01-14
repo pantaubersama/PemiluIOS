@@ -133,7 +133,7 @@ class JanpolListViewModel: IJanpolListViewModel, IJanpolListViewModelInput, IJan
         bannerSelectedO = headerViewModel.output.itemSelected
             .asObservable()
             .flatMapLatest({ (banner) -> Observable<Void> in
-                return navigator.launchBannerInfo(bannerInfo: banner)
+                return navigator.launchJanpolBannerInfo(bannerInfo: banner)
             })
             .asDriverOnErrorJustComplete()
         

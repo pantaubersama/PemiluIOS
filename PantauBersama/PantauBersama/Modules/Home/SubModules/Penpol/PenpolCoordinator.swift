@@ -13,7 +13,7 @@ import Networking
 
 protocol PenpolNavigator: QuizNavigator, IQuestionNavigator {
     func launchFilter(filterType: FilterType, filterTrigger: AnyObserver<[PenpolFilterModel.FilterItem]>) -> Observable<Void>
-    func launchBannerInfo(bannerInfo: BannerInfo) -> Observable<Void>
+    func launchPenpolBannerInfo(bannerInfo: BannerInfo) -> Observable<Void>
 }
 
 class PenpolCoordinator: BaseCoordinator<Void> {
@@ -79,7 +79,7 @@ extension PenpolCoordinator: PenpolNavigator {
         return Observable.never()
     }
     
-    func launchBannerInfo(bannerInfo: BannerInfo) -> Observable<Void> {
+    func launchPenpolBannerInfo(bannerInfo: BannerInfo) -> Observable<Void> {
         let bannerInfoCoordinator = BannerInfoCoordinator(navigationController: self.navigationController, bannerInfo: bannerInfo)
         return coordinate(to: bannerInfoCoordinator)
     }

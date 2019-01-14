@@ -11,7 +11,7 @@ import RxCocoa
 import UIKit
 import Networking
 
-protocol ProfileNavigator: BadgeNavigator,IJanpolNavigator,IQuestionNavigator {
+protocol ProfileNavigator: BadgeNavigator,IQuestionNavigator,IJanpolNavigator {
     func back()
     func launchSetting(user: User) -> Observable<Void>
     func launchVerifikasi(user: VerificationsResponse.U) -> Observable<Void>
@@ -121,6 +121,10 @@ extension ProfileCoordinator: ProfileNavigator {
         }).mapToVoid()
     }
     
+    func launchShare(id: String) -> Observable<Void> {
+        let shareCoordinator = ShareBadgeCoordinator(navigationController: navigationController, id: id)
+        return coordinate(to: shareCoordinator)
+    }
 }
 
 //extension ProfileCoordinator: LinimasaNavigator {
@@ -194,12 +198,12 @@ extension ProfileCoordinator: ProfileNavigator {
 //}
 
 
-extension  ProfileCoordinator: BadgeNavigator {
-    func launchShare(id: String) -> Observable<Void> {
-        let shareCoordinator = ShareBadgeCoordinator(navigationController: navigationController, id: id)
-        return coordinate(to: shareCoordinator)
-    }
-}
+//extension  ProfileCoordinator: BadgeNavigator {
+//    func launchShare(id: String) -> Observable<Void> {
+//        let shareCoordinator = ShareBadgeCoordinator(navigationController: navigationController, id: id)
+//        return coordinate(to: shareCoordinator)
+//    }
+//}
 
 extension ProfileCoordinator {
     

@@ -40,6 +40,7 @@ protocol IQuestionListViewModelOutput {
     var userDataO: Driver<UserResponse?>! { get }
     var deleteO: Driver<Int>! { get }
     var createO: Driver<Void>! { get }
+    var showHeaderO: Driver<Bool>! { get }
 }
 
 protocol IQuestionListViewModel {

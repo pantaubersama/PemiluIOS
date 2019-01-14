@@ -50,7 +50,7 @@ class MyJanpolListViewModel: IJanpolListViewModel, IJanpolListViewModelInput, IJ
     
     private var filterItems: [PenpolFilterModel.FilterItem] = []
     
-    init(navigator: IJanpolNavigator) {
+    init(navigator: IJanpolNavigator, showTableHeader: Bool) {
         refreshI = refreshSubject.asObserver()
         nextPageI = nextSubject.asObserver()
         moreI = moreSubject.asObserver()
@@ -63,8 +63,6 @@ class MyJanpolListViewModel: IJanpolListViewModel, IJanpolListViewModelInput, IJ
         
         let janpolItems = refreshSubject.startWith(())
             .flatMapLatest { [unowned self] (_) -> Observable<[JanjiPolitik]> in
-//                let cid = self.filterItems.filter({ $0.paramKey == "cluster_id"}).first?.paramValue
-//                let filter = self.filterItems.filter({ $0.paramKey == "filter_by"}).first?.paramValue
                 
                 return self.paginateItems(nextBatchTrigger: self.nextSubject.asObservable(), cid: "", filter: "")
                     .trackError(self.errorTracker)
@@ -134,9 +132,11 @@ class MyJanpolListViewModel: IJanpolListViewModel, IJanpolListViewModelInput, IJ
         bannerSelectedO = headerViewModel.output.itemSelected
             .asObservable()
             .flatMapLatest({ (banner) -> Observable<Void> in
-                return navigator.launchBannerInfo(bannerInfo: banner)
+                return navigator.launchJanpolBannerInfo(bannerInfo: banner)
             })
             .asDriverOnErrorJustComplete()
+        
+        showHeaderO = BehaviorRelay<Bool>(value: showTableHeader).asDriver()
         
     }
     

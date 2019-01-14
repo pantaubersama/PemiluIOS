@@ -11,17 +11,13 @@ import RxSwift
 import RxCocoa
 import Networking
 
-protocol SearchNavigator: PenpolNavigator {
+protocol SearchNavigator: PenpolNavigator, LinimasaNavigator {
     func finishSearch() -> Observable<Void>
 }
 
-//<<<<<<< HEAD
 class SearchCoordinator: BaseCoordinator<Void> {
-//<<<<<<< HEAD
+
     private let externalNavigationController: UINavigationController
-//=======
-//    internal let navigationController: UINavigationController
-//>>>>>>> [Bhakti][Refactor] Refactor tanya kandidat
 
     private(set) var internalNavigationController: UINavigationController!
     
@@ -47,6 +43,46 @@ class SearchCoordinator: BaseCoordinator<Void> {
 }
 
 extension SearchCoordinator: SearchNavigator {
+    func launchPenpolBannerInfo(bannerInfo: BannerInfo) -> Observable<Void> {
+        return Observable.never()
+    }
+    
+    func launchProfile() -> Observable<Void> {
+        return Observable.never()
+    }
+    
+    func launchNotifications() {
+        
+    }
+    
+    func launchFilter() -> Observable<Void> {
+        return Observable.never()
+    }
+    
+    func launchAddJanji() -> Observable<Void> {
+        return Observable.never()
+    }
+    
+    func launchNote() -> Observable<Void> {
+        return Observable.never()
+    }
+    
+    func launchSearch() -> Observable<Void> {
+        return Observable.never()
+    }
+    
+    func sharePilpres(data: Any) -> Observable<Void> {
+        return Observable.never()
+    }
+    
+    func openTwitter(data: String) -> Observable<Void> {
+        return Observable.never()
+    }
+    
+    func launchBannerInfo(bannerInfo: BannerInfo) -> Observable<Void> {
+        return Observable.never()
+    }
+    
     func finishSearch() -> Observable<Void> {
         return Observable.never()
     }
@@ -74,72 +110,7 @@ extension SearchCoordinator: SearchNavigator {
     func shareQuestion(question: String) -> Observable<Void> {
         return Observable.never()
     }
-    
-    
-//    func launchProfile() -> Observable<Void> {
-//        return Observable.never()
-//    }
-//
-//    func launchNotifications() {
-//
-//    }
-//
-//    func launchFilter() -> Observable<Void> {
-//        return Observable.never()
-//    }
-//
-//    func launchAddJanji() -> Observable<Void> {
-//        return Observable.never()
-//    }
-//
-//    func launchNote() -> Observable<Void> {
-//        return Observable.never()
-//    }
-//
-//    func launchSearch() -> Observable<Void> {
-//        return Observable.never()
-//    }
-//
-//    func sharePilpres(data: Any) -> Observable<Void> {
-//        return Observable.never()
-//    }
-//
-//    func openTwitter(data: String) -> Observable<Void> {
-//        return Observable.never()
-//    }
-//
-//    func finishSearch() -> Observable<Void> {
-//        navigationController.dismiss(animated: true, completion: nil)
-//        return Observable.never()
-//    }
-    
-//    func launchFilter(filterType: FilterType, filterTrigger: AnyObserver<[PenpolFilterModel.FilterItem]>) -> Observable<Void> {
-//        return Observable.never()
-//    }
-//
-//    func launchBannerInfo(bannerInfo: BannerInfo) -> Observable<Void> {
-//        return Observable.never()
-//    }
-//
-//    func openQuiz(quiz: QuizModel) -> Observable<Void> {
-//        return Observable.never()
-//    }
-//
-//    func shareQuiz(quiz: Any) -> Observable<Void> {
-//        return Observable.never()
-//    }
-//
-//    func shareTrend(trend: Any) -> Observable<Void> {
-//        return Observable.never()
-//    }
-//
-//    func launchCreateAsk() -> Observable<Void> {
-//        return Observable.never()
-//    }
-//
-//    func shareQuestion(question: String) -> Observable<Void> {
-//        return Observable.never()
-//    }
+
     
     
 }

@@ -12,6 +12,7 @@ import RxCocoa
 import Networking
 
 class QuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelInput, IQuestionListViewModelOutput{
+    
     var input: IQuestionListViewModelInput { return self }
     var output: IQuestionListViewModelOutput { return self }
     
@@ -35,6 +36,7 @@ class QuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelInput
     var userDataO: Driver<UserResponse?>!
     var deleteO: Driver<Int>!
     var createO: Driver<Void>!
+    var showHeaderO: Driver<Bool>!
     
     private let refreshSubject = PublishSubject<Void>()
     private let moreSubject = PublishSubject<QuestionModel>()
@@ -54,7 +56,7 @@ class QuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelInput
     private var filterItems: [PenpolFilterModel.FilterItem] = []
     private(set) var disposeBag = DisposeBag()
     
-    init(navigator: PenpolNavigator) {
+    init(navigator: PenpolNavigator, showTableHeader: Bool) {
         refreshI = refreshSubject.asObserver()
         nextPageI = nextSubject.asObserver()
         moreI = moreSubject.asObserver()
@@ -163,9 +165,11 @@ class QuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelInput
         bannerSelectedO = headerViewModel.output.itemSelected
             .asObservable()
             .flatMapLatest({ (banner) -> Observable<Void> in
-                return navigator.launchBannerInfo(bannerInfo: banner)
+                return navigator.launchPenpolBannerInfo(bannerInfo: banner)
             })
             .asDriverOnErrorJustComplete()
+        
+        showHeaderO = BehaviorRelay<Bool>(value: showTableHeader).asDriver()
         
         let userData: Data? = UserDefaults.Account.get(forKey: .me)
         let userResponse = try? JSONDecoder().decode(UserResponse.self, from: userData ?? Data())

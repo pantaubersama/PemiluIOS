@@ -12,6 +12,7 @@ import RxCocoa
 import Networking
 
 class MyQuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelInput, IQuestionListViewModelOutput{
+    
     var input: IQuestionListViewModelInput { return self }
     var output: IQuestionListViewModelOutput { return self }
     
@@ -35,6 +36,7 @@ class MyQuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelInp
     var userDataO: Driver<UserResponse?>!
     var deleteO: Driver<Int>!
     var createO: Driver<Void>!
+    var showHeaderO: Driver<Bool>!
     
     private let refreshSubject = PublishSubject<Void>()
     private let moreSubject = PublishSubject<QuestionModel>()
@@ -54,7 +56,7 @@ class MyQuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelInp
     private var filterItems: [PenpolFilterModel.FilterItem] = []
     private(set) var disposeBag = DisposeBag()
     
-    init(navigator: IQuestionNavigator) {
+    init(navigator: IQuestionNavigator, showTableHeader: Bool) {
         refreshI = refreshSubject.asObserver()
         nextPageI = nextSubject.asObserver()
         moreI = moreSubject.asObserver()
@@ -188,6 +190,8 @@ class MyQuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelInp
                 weakSelf.questionRelay.accept(currentValue)
             }
             .disposed(by: disposeBag)
+        
+        showHeaderO = BehaviorRelay<Bool>(value: showTableHeader).asDriver()
         
     }
     
