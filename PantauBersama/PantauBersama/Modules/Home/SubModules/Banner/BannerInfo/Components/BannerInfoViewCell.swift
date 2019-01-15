@@ -62,6 +62,9 @@ extension BannerInfoViewCell: IReusableCell {
         tvDescription.textContainer.lineBreakMode = .byWordWrapping
         tvDescription.isScrollEnabled = false
         
+        if let imageUrl = item.bannerInfo.image.large?.url {
+            ivImage.af_setImage(withURL: URL(string: imageUrl)!)
+        }
     }
     
 }

@@ -71,7 +71,7 @@ class AskViewCell: UITableViewCell, IReusableCell  {
         lbFullname.text = item.question.user.fullName
         lbAbout.text = item.question.user.about
         lbBody.text = item.question.body
-        lbCreatedAt.text = item.question.createdAt.id
+        lbCreatedAt.text = item.question.createdAt.iso8601.toDate(format: Constant.dateTimeFormat3)?.timeAgoSinceDate2
         lbVoteCount.text = item.question.formatedLikeCount
         
         if item.question.isLiked {
