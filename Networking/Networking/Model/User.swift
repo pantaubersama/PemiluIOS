@@ -15,8 +15,8 @@ public struct User: Codable {
     public var fullName: String?
     public var uid: String?
     public var provider: String?
-    public var isAdmin: Bool
-    public var isModerator: Bool
+    public var isAdmin: Bool?
+    public var isModerator: Bool?
     public var cluster: ClusterDetail?
     public var votePreference: Int?
     public var verified: Bool

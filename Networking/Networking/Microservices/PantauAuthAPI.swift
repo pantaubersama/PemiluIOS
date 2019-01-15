@@ -46,6 +46,7 @@ public enum PantauAuthAPI {
     case clusterInvite(emails: String)
     case accountsConnect(type: String, oauthToken: String, oauthSecret: String)
     case accountDisconnect(type: String)
+    case users(page: Int, perPage: Int, query: String)
 }
 
 extension PantauAuthAPI: TargetType {
@@ -111,6 +112,8 @@ extension PantauAuthAPI: TargetType {
             return "/v1/accounts/connect"
         case .accountDisconnect:
             return "/v1/accounts/disconnect"
+        case .users:
+            return "/v1/users"
         }
     }
     
@@ -190,6 +193,12 @@ extension PantauAuthAPI: TargetType {
         case .accountDisconnect(let type):
             return [
                 "account_type": type
+            ]
+        case .users(let page, let perPage, let query):
+            return [
+                "page": page,
+                "per_page": perPage,
+                "q": query
             ]
         default:
             return nil

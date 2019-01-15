@@ -51,6 +51,9 @@ class PilpresViewController: UITableViewController {
             .disposed(by: disposeBag)
         
         self.refreshControl?.rx.controlEvent(.valueChanged)
+            .map({ (_) -> String in
+                return ""
+            })
             .bind(to: viewModel.input.refreshTrigger)
             .disposed(by: disposeBag)
         

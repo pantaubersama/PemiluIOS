@@ -26,6 +26,10 @@
 		11702DD221CB0287001AEE3F /* QuizCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11702DD021CB0287001AEE3F /* QuizCell.swift */; };
 		11702DD321CB0287001AEE3F /* QuizCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11702DD121CB0287001AEE3F /* QuizCell.xib */; };
 		11702DD521CB08DE001AEE3F /* QuizController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11702DD421CB08DE001AEE3F /* QuizController.swift */; };
+		118149E521EC622900192E97 /* ListUserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118149E421EC622800192E97 /* ListUserController.swift */; };
+		118149E721EC625200192E97 /* ListUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118149E621EC625200192E97 /* ListUserViewModel.swift */; };
+		118149EF21EC718800192E97 /* ListUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118149ED21EC718800192E97 /* ListUserCell.swift */; };
+		118149F021EC718800192E97 /* ListUserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 118149EE21EC718800192E97 /* ListUserCell.xib */; };
 		1183F0E021D53A9100435D31 /* QuestionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1183F0DF21D53A9100435D31 /* QuestionModel.swift */; };
 		11B145EE21D67C8200BB26C8 /* AskCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B145ED21D67C8200BB26C8 /* AskCellViewModel.swift */; };
 		11B145F821D72D9B00BB26C8 /* CreateAskHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B145F721D72D9B00BB26C8 /* CreateAskHeaderView.swift */; };
@@ -351,6 +355,10 @@
 		11702DD021CB0287001AEE3F /* QuizCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizCell.swift; sourceTree = "<group>"; };
 		11702DD121CB0287001AEE3F /* QuizCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuizCell.xib; sourceTree = "<group>"; };
 		11702DD421CB08DE001AEE3F /* QuizController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizController.swift; sourceTree = "<group>"; };
+		118149E421EC622800192E97 /* ListUserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListUserController.swift; sourceTree = "<group>"; };
+		118149E621EC625200192E97 /* ListUserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListUserViewModel.swift; sourceTree = "<group>"; };
+		118149ED21EC718800192E97 /* ListUserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListUserCell.swift; sourceTree = "<group>"; };
+		118149EE21EC718800192E97 /* ListUserCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListUserCell.xib; sourceTree = "<group>"; };
 		1183F0DF21D53A9100435D31 /* QuestionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionModel.swift; sourceTree = "<group>"; };
 		11B145ED21D67C8200BB26C8 /* AskCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AskCellViewModel.swift; sourceTree = "<group>"; };
 		11B145F721D72D9B00BB26C8 /* CreateAskHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAskHeaderView.swift; sourceTree = "<group>"; };
@@ -666,6 +674,7 @@
 		11145F5221EACCCC0046F2AA /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				118149E121EC61FC00192E97 /* Submodules */,
 				11145F5721EAD2F00046F2AA /* ViewController */,
 				11145F5821EAD31A0046F2AA /* SearchCoordinator.swift */,
 				11145F5A21EAD3240046F2AA /* SearchViewModel.swift */,
@@ -704,6 +713,41 @@
 				137A29EB21E11E7E00F19072 /* TrendHeaderView.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		118149E121EC61FC00192E97 /* Submodules */ = {
+			isa = PBXGroup;
+			children = (
+				118149E221EC620A00192E97 /* ListUsers */,
+			);
+			path = Submodules;
+			sourceTree = "<group>";
+		};
+		118149E221EC620A00192E97 /* ListUsers */ = {
+			isa = PBXGroup;
+			children = (
+				118149EC21EC717100192E97 /* Component */,
+				118149E321EC621600192E97 /* ViewController */,
+				118149E621EC625200192E97 /* ListUserViewModel.swift */,
+			);
+			path = ListUsers;
+			sourceTree = "<group>";
+		};
+		118149E321EC621600192E97 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				118149E421EC622800192E97 /* ListUserController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		118149EC21EC717100192E97 /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				118149ED21EC718800192E97 /* ListUserCell.swift */,
+				118149EE21EC718800192E97 /* ListUserCell.xib */,
+			);
+			path = Component;
 			sourceTree = "<group>";
 		};
 		11B3C78921D10EE600EDCECB /* QuizSummary */ = {
@@ -2081,6 +2125,7 @@
 				84A07FAE21D0E4FD00269C6B /* validation-success.json in Resources */,
 				840901BE21DF31CD001BF559 /* CatatanController.xib in Resources */,
 				84F892B021C787D800DC1048 /* Lato-LightItalic.ttf in Resources */,
+				118149F021EC718800192E97 /* ListUserCell.xib in Resources */,
 				845C571721CE1B5900EDCDFE /* BadgeCell.xib in Resources */,
 				841CDA3D21C8BC1C0015680C /* LinimasaController.xib in Resources */,
 				84A07FA721D0E2E900269C6B /* SelfIdentitasController.xib in Resources */,
@@ -2441,9 +2486,11 @@
 				11B3C78D21D110DA00EDCECB /* QuizSummaryViewModel.swift in Sources */,
 				840850C321D25C7D00696CB3 /* ProfileEditController.swift in Sources */,
 				11145F5921EAD31A0046F2AA /* SearchCoordinator.swift in Sources */,
+				118149E721EC625200192E97 /* ListUserViewModel.swift in Sources */,
 				84619D4921DC961A00EB58CF /* WebController.swift in Sources */,
 				11E107DB21CFD99900B7B074 /* QuizResultViewModel.swift in Sources */,
 				8452A4D021DE544C00196043 /* SosmedController.swift in Sources */,
+				118149E521EC622900192E97 /* ListUserController.swift in Sources */,
 				11E107AA21CD33CA00B7B074 /* CreateJanjiController.swift in Sources */,
 				845C570F21CE0DA400EDCDFE /* ClusterCell.swift in Sources */,
 				845C570B21CD3E9700EDCDFE /* SectionCell.swift in Sources */,
@@ -2514,6 +2561,7 @@
 				84B6D6EC21E2248300CD4BC8 /* ClusterView.swift in Sources */,
 				84B6D6E021E1024900CD4BC8 /* KategoriClusterController.swift in Sources */,
 				842A4A0521D7E46B0050AA51 /* KTPCoordinator.swift in Sources */,
+				118149EF21EC718800192E97 /* ListUserCell.swift in Sources */,
 				84A07FB621D0ED8100269C6B /* SuccessController.swift in Sources */,
 				845C570721CD1D8F00EDCDFE /* ProfileCoordinator.swift in Sources */,
 				842A4A0F21D7EE5F0050AA51 /* SuccessViewModel.swift in Sources */,

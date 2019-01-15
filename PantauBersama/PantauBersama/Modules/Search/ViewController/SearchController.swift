@@ -20,13 +20,15 @@ class SearchController: UIViewController {
     
     lazy var quizViewModel = QuizViewModel(navigator: viewModel.navigator, showTableHeader: false)
     lazy var askViewModel = QuestionListViewModel(navigator: viewModel.navigator, showTableHeader: false)
-    lazy var pilpresViewModel = PilpresViewModel(navigator: viewModel.navigator, showTableHeader: false)
+    lazy var pilpresViewModel = PilpresViewModel(navigator: viewModel.navigator, searchTrigger: viewModel.searchSubject, showTableHeader: false)
     lazy var janjiPolitikViewModel = JanpolListViewModel(navigator: viewModel.navigator, showTableHeader: false)
+    lazy var listUserViewModel = ListUserViewModel(searchTrigger: viewModel.searchSubject)
     
     lazy var askController = QuestionController(viewModel: askViewModel)
     lazy var quisController = QuizController(viewModel: quizViewModel)
     lazy var pilpresController = PilpresViewController(viewModel: pilpresViewModel)
     lazy var janjiController = JanjiPolitikViewController(viewModel: janjiPolitikViewModel)
+    lazy var listUserController = ListUserController(viewModel: listUserViewModel)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +36,7 @@ class SearchController: UIViewController {
         add(childViewController: askController, context: container)
         add(childViewController: janjiController, context: container)
         add(childViewController: pilpresController, context: container)
+        add(childViewController: listUserController, context: container)
         
         customMenuBar.menuItem = [MenuItem(title: "Orang"),
                                   MenuItem(title: "Cluster"),
@@ -46,6 +49,10 @@ class SearchController: UIViewController {
             .bind(to: viewModel.input.backTrigger)
             .disposed(by: disposeBag)
         
+        navbar.tfSearch.rx.text
+            .orEmpty
+            .debounce(0.5, scheduler: MainScheduler.instance)
+            .bind(to: viewModel.input.searchInputTrigger).disposed(by: disposeBag)
         viewModel.output.back
             .drive()
             .disposed(by: disposeBag)
@@ -56,6 +63,7 @@ class SearchController: UIViewController {
                     self.hideAllChilds()
                     switch index {
                     case 0:
+                        self.listUserController.view.alpha = 1.0
                         break
                     case 1:
                         break
@@ -86,6 +94,7 @@ class SearchController: UIViewController {
         self.quisController.view.alpha = 0.0
         self.pilpresController.view.alpha = 0.0
         self.janjiController.view.alpha = 0.0
+        self.listUserController.view.alpha = 0.0
     }
     
     override func viewWillAppear(_ animated: Bool) {
