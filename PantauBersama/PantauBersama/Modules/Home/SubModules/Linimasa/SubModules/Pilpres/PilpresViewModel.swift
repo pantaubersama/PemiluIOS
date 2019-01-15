@@ -78,14 +78,14 @@ class PilpresViewModel: ViewModelType {
             .asDriverOnErrorJustComplete()
         
         searchTrigger?.asObserver()
-            .bind(to: refreshSubject)
+            .bind(to: input.refreshTrigger)
             .disposed(by: disposeBag)
         
         // MARK:
         // Get feeds pagination
         let feedsItems = refreshSubject.startWith("")
-            .flatMapLatest { [unowned self] (_) -> Observable<[Feeds]> in
-                return self.paginateItems(nextBatchTrigger: self.nextSubject.asObservable(), filter: self.filterItems.first?.paramValue ?? "team_all")
+            .flatMapLatest { [unowned self] (query) -> Observable<[Feeds]> in
+                return self.paginateItems(nextBatchTrigger: self.nextSubject.asObservable(), filter: self.filterItems.first?.paramValue ?? "team_all", query: query)
                     .trackError(self.errorTracker)
                     .trackActivity(self.activityIndicator)
                     .catchErrorJustReturn([])
@@ -138,8 +138,10 @@ class PilpresViewModel: ViewModelType {
     
     private func paginateItems(
         batch: Batch = Batch.initial,
-        nextBatchTrigger: Observable<Void>, filter: String) -> Observable<[Feeds]> {
-        return recursivelyPaginateItems(batch: batch, nextBatchTrigger: nextBatchTrigger, filter: filter)
+        nextBatchTrigger: Observable<Void>,
+        filter: String,
+        query: String) -> Observable<[Feeds]> {
+        return recursivelyPaginateItems(batch: batch, nextBatchTrigger: nextBatchTrigger, filter: filter, query: query)
             .scan([], accumulator: { (accumulator, page) in
                 return accumulator + page.item
             })
@@ -148,17 +150,18 @@ class PilpresViewModel: ViewModelType {
     private func recursivelyPaginateItems(
         batch: Batch,
         nextBatchTrigger: Observable<Void>,
-        filter: String) ->
+        filter: String,
+        query: String) ->
         Observable<Page<[Feeds]>> {
             return NetworkService.instance
-                .requestObject(LinimasaAPI.getFeeds(filter: filter, page: batch.page, perPage: batch.limit),
+                .requestObject(LinimasaAPI.getFeeds(filter: filter, page: batch.page, perPage: batch.limit, query: query),
                                c: BaseResponse<FeedsResponse>.self)
                 .map({ self.transformToPage(response: $0, batch: batch) })
                 .asObservable()
                 .paginate(nextPageTrigger: nextBatchTrigger, hasNextPage: { (result) -> Bool in
                     return result.batch.next().hasNextPage
                 }, nextPageFactory: { (result) -> Observable<Page<[Feeds]>> in
-                    self.recursivelyPaginateItems(batch: result.batch.next(), nextBatchTrigger: nextBatchTrigger, filter: filter)
+                    self.recursivelyPaginateItems(batch: result.batch.next(), nextBatchTrigger: nextBatchTrigger, filter: filter, query: query)
                 })
                 .share(replay: 1, scope: .whileConnected)
             
