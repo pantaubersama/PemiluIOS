@@ -91,12 +91,18 @@ class KategoriClusterViewModel: ViewModelType {
                 return category[indexPath.row]
             }
             .map({ ResultCategory.done(data: $0 )})
+        
+        let back = backS
+            .map({ ResultCategory.cancel })
+        
+        let result = Observable.merge(itemSelected, back)
+            .take(1)
             .asDriverOnErrorJustComplete()
         
         
         output = Output(itemsO: categoiesCell.asDriver(onErrorJustReturn: []),
                         addO: add.asDriverOnErrorJustComplete(),
-                        resultO: itemSelected)
+                        resultO: result)
         
     }
     

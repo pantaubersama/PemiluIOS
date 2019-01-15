@@ -209,7 +209,7 @@ Anda dpi mengundang, menerima angota lain</string>
                                                         </label>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JfC-8E-WZ1" customClass="Button" customModule="Common">
                                                             <rect key="frame" x="0.0" y="19.5" width="343" height="37.5"/>
-                                                            <state key="normal" title="Partai">
+                                                            <state key="normal" title="Pilih Kategori">
                                                                 <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                             </state>
                                                             <userDefinedRuntimeAttributes>
