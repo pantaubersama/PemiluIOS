@@ -28,7 +28,7 @@ class KategoriClusterViewModel: ViewModelType {
     
     struct Output {
         let itemsO: Driver<[String]>
-        let addO: Driver<Void>
+        let addO: Driver<AddKategoriResult>
         let resultO: Driver<ResultCategory>
     }
     
@@ -78,7 +78,12 @@ class KategoriClusterViewModel: ViewModelType {
         
         let add = addS
             .flatMapLatest({ navigator.launchAdd() })
-            .asDriverOnErrorJustComplete()
+            .do(onNext: { (result) in
+                switch result {
+                case .ok: print("Created Kategory ")
+                default: break
+                }
+            })
         
         
         let itemSelected = itemSelectedS
@@ -90,7 +95,7 @@ class KategoriClusterViewModel: ViewModelType {
         
         
         output = Output(itemsO: categoiesCell.asDriver(onErrorJustReturn: []),
-                        addO: add,
+                        addO: add.asDriverOnErrorJustComplete(),
                         resultO: itemSelected)
         
     }

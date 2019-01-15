@@ -104,6 +104,13 @@ class KategoriClusterController: UIViewController {
             .disposed(by: disposeBag)
         
         viewModel.output.addO
+            .do(onNext: { [weak self] (result) in
+                switch result {
+                case .ok:
+                    self?.rControl.sendActions(for: .valueChanged)
+                default: break
+                }
+            })
             .drive()
             .disposed(by: disposeBag)
         

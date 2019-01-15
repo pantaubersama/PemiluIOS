@@ -42,7 +42,7 @@ class AddKategoriController: UIViewController {
         viewModel.output.isEnabled
             .do(onNext: { [weak self] (enable) in
                 guard let `self` = self else { return }
-                self.buttonBuat.tintColor = enable ? Color.primary_red : Color.grey_two
+                self.buttonBuat.tintColor = enable ? Color.primary_red : Color.grey_five
             })
             .drive(buttonBuat.rx.isEnabled)
             .disposed(by: disposeBag)

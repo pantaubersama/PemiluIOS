@@ -13,7 +13,7 @@ protocol AddKategoriNavigator {
     func back() -> Observable<Void>
 }
 
-final class AddKategoriCoordinator: BaseCoordinator<Void> {
+final class AddKategoriCoordinator: BaseCoordinator<AddKategoriResult> {
     
     private let navigationController: UINavigationController
     private let viewController: AddKategoriController
@@ -23,7 +23,7 @@ final class AddKategoriCoordinator: BaseCoordinator<Void> {
         self.viewController = AddKategoriController()
     }
     
-    override func start() -> Observable<Void> {
+    override func start() -> Observable<CoordinationResult> {
         let viewModel = AddKategoriViewModel(navigator: self)
         let viewController = AddKategoriController()
         viewController.viewModel = viewModel
@@ -32,7 +32,12 @@ final class AddKategoriCoordinator: BaseCoordinator<Void> {
         viewController.modalPresentationStyle = UIModalPresentationStyle.overFullScreen
         viewController.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
         navigationController.present(viewController, animated: true, completion: nil)
-        return Observable.empty()
+        return viewModel.output.actionSelected
+            .asObservable()
+            .take(1)
+            .do(onNext: { [weak self] (_) in
+                self?.navigationController.dismiss(animated: true, completion: nil)
+            })
     }
     
 }

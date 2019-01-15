@@ -29,7 +29,7 @@ final class AddKategoriViewModel: ViewModelType {
     }
     
     struct Output {
-        let actionSelected: Driver<Void>
+        let actionSelected: Driver<AddKategoriResult>
         let isEnabled: Driver<Bool>
         let cancelO: Driver<Void>
     }
@@ -61,9 +61,6 @@ final class AddKategoriViewModel: ViewModelType {
                     .catchErrorJustComplete()
             }.mapToVoid()
     
-        let send = sendSelected
-            .flatMapLatest({ navigator.back() })
-        
         let cancel = cancelSubject
             .flatMapLatest({ navigator.back() })
         
@@ -75,7 +72,11 @@ final class AddKategoriViewModel: ViewModelType {
             .startWith(false)
             .asDriverOnErrorJustComplete()
         
-        output = Output(actionSelected: send.asDriverOnErrorJustComplete(),
+        let actionSelected = sendSelected
+            .map({ AddKategoriResult.ok })
+            .asDriverOnErrorJustComplete()
+        
+        output = Output(actionSelected: actionSelected,
                         isEnabled: isEnabled,
                         cancelO: cancel.asDriverOnErrorJustComplete())
     }
