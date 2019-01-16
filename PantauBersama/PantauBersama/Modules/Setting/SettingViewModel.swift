@@ -171,7 +171,7 @@ final class SettingViewModel: ISettingViewModel, ISettingViewModelInput, ISettin
                     return navigator.launchProfileEdit(data: data, type: ProfileHeaderItem.editProfile)
                 case .updatePassword:
                     let urlEditProfile = "\(AppContext.instance.infoForKey("DOMAIN_SYMBOLIC"))/users/edit"
-                    return navigator.launchEditPassword(link: urlEditProfile)
+                    return navigator.launchWKWeb(link: urlEditProfile)
                 case .updateDataLapor:
                     return navigator.launchProfileEdit(data: data, type: ProfileHeaderItem.editDataLapor)
                 case .cluster:
@@ -212,6 +212,10 @@ final class SettingViewModel: ISettingViewModel, ISettingViewModelInput, ISettin
                     } else {
                         return Observable.empty()
                     }
+                case .pusatBantuan:
+                    return navigator.launchWKWeb(link: AppContext.instance.infoForKey("FAQ_PANTAU"))
+                case .pedomanKomunitas:
+                    return navigator.launchWKWeb(link: AppContext.instance.infoForKey("COMMUNITY_PANTAU"))
                 default:
                     return Observable.empty()
                 }

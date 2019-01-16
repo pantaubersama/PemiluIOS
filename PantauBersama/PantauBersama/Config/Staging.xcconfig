@@ -39,3 +39,6 @@ CALLBACK_TWITTER = pantaubersama.staging
 FACEBOOK_SCHEME = fb487265651802954
 FACEBOOK_ID = 487265651802954
 FACEBOOK_DISPLAY_NAME = Pantau Bersama Staging
+// Pantau FAQ and Komunitas
+FAQ_PANTAU = https:/\/\pantaubersama.faq.extrainteger.com/\
+COMMUNITY_PANTAU = https:/\/\pantaubersama.faq.extrainteger.com/\5
