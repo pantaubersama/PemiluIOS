@@ -126,7 +126,7 @@ class DetailJanjiController: UIViewController {
         if let cluster = data.creator.cluster {
             nameParpol.text = cluster.name
             jumlahAnggota.text = "\(cluster.memberCount)"
-            if let url = cluster.image.medium.url {
+            if let url = cluster.image?.medium.url {
                 iconParpol.af_setImage(withURL: URL(string: url)!)
             }
         }

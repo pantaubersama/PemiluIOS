@@ -40,7 +40,7 @@ extension ClusterSearchCell: IReusableCell {
     
     func configureCell(item: Input) {
         print(item.data)
-        if let thumbnail = item.data.image.thumbnail.url {
+        if let thumbnail = item.data.image?.thumbnail.url {
             icon.af_setImage(withURL: URL(string: thumbnail)!)
         }
         nameCluster.text = item.data.name

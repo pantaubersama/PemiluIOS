@@ -37,6 +37,12 @@ class PenpolController: UIViewController {
         add(childViewController: askController, context: containerView)
         add(childViewController: quisController, context: containerView)
         
+        navbar.search.rx.textDidBeginEditing
+            .do(onNext: { [unowned self](_) in
+                self.navbar.search.endEditing(true)
+            })
+            .bind(to: viewModel.input.searchTrigger)
+            .disposed(by: disposeBag)
         
         createAskButton.rx.tap
             .bind(to: viewModel.input.addTrigger)
@@ -72,6 +78,10 @@ class PenpolController: UIViewController {
             .disposed(by: disposeBag)
         
         viewModel.output.filterSelected
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.searchSelected
             .drive()
             .disposed(by: disposeBag)
         

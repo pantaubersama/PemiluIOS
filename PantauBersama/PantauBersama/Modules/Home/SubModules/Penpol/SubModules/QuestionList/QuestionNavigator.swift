@@ -14,15 +14,15 @@ import Networking
 protocol IQuestionNavigator: class {
     var navigationController: UINavigationController! { get }
     
-    func launchCreateAsk() -> Observable<Void>
+    func launchCreateAsk(loadCreatedTrigger: AnyObserver<Void>) -> Observable<Void>
     func shareQuestion(question: String) -> Observable<Void>
     func launchQuestionBannerInfo(bannerInfo: BannerInfo) -> Observable<Void>
 }
 
 extension IQuestionNavigator where Self: BaseCoordinator<Void> {
     
-    func launchCreateAsk() -> Observable<Void> {
-        let createAskCoordinator = CreateAskCoordinator(navigationController: self.navigationController)
+    func launchCreateAsk(loadCreatedTrigger: AnyObserver<Void>) -> Observable<Void> {
+        let createAskCoordinator = CreateAskCoordinator(navigationController: self.navigationController, loadCreatedTrigger: loadCreatedTrigger)
         return coordinate(to: createAskCoordinator)
     }
     

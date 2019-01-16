@@ -14,6 +14,7 @@ import Networking
 protocol PenpolNavigator: QuizNavigator, IQuestionNavigator {
     func launchFilter(filterType: FilterType, filterTrigger: AnyObserver<[PenpolFilterModel.FilterItem]>) -> Observable<Void>
     func launchPenpolBannerInfo(bannerInfo: BannerInfo) -> Observable<Void>
+    func launchSearch() -> Observable<Void>
 }
 
 class PenpolCoordinator: BaseCoordinator<Void> {
@@ -36,6 +37,11 @@ class PenpolCoordinator: BaseCoordinator<Void> {
 
 extension PenpolCoordinator: PenpolNavigator {
 
+    func launchSearch() -> Observable<Void> {
+        let searchCoordinator = SearchCoordinator(navigationController: self.navigationController)
+        return coordinate(to: searchCoordinator)
+    }
+    
     func launchFilter(filterType: FilterType, filterTrigger: AnyObserver<[PenpolFilterModel.FilterItem]>) -> Observable<Void> {
 //        let filterCoordinator = FilterCoordinator(navigationController: self.navigationController)
 //        return coordinate(to: filterCoordinator)

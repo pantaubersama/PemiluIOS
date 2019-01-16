@@ -9,8 +9,8 @@
 import Foundation
 
 public protocol ICategories {
-    var id: String { get }
-    var name: String { get }
+    var id: String? { get }
+    var name: String? { get }
 }
 
 
@@ -24,6 +24,6 @@ public struct SingleCategory: Codable {
 }
 
 public struct Category: Codable, ICategories {
-    public var id: String
-    public var name: String
+    public var id: String?
+    public var name: String?
 }

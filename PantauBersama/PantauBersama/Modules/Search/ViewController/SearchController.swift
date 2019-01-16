@@ -21,7 +21,7 @@ class SearchController: UIViewController {
     lazy var quizViewModel = QuizViewModel(navigator: viewModel.navigator, showTableHeader: false)
     lazy var askViewModel = QuestionListViewModel(navigator: viewModel.navigator, showTableHeader: false)
     lazy var pilpresViewModel = PilpresViewModel(navigator: viewModel.navigator, searchTrigger: viewModel.searchSubject, showTableHeader: false)
-    lazy var janjiPolitikViewModel = JanpolListViewModel(navigator: viewModel.navigator, showTableHeader: false)
+    lazy var janjiPolitikViewModel = JanpolListViewModel(navigator: viewModel.navigator, searchTrigger: viewModel.searchSubject,    showTableHeader: false)
     lazy var listUserViewModel = ListUserViewModel(searchTrigger: viewModel.searchSubject)
     
     lazy var askController = QuestionController(viewModel: askViewModel)

@@ -17,7 +17,7 @@ class MyJanpolListViewModel: IJanpolListViewModel, IJanpolListViewModelInput, IJ
     var input: IJanpolListViewModelInput { return self }
     var output: IJanpolListViewModelOutput { return self }
     
-    var refreshI: AnyObserver<Void>
+    var refreshI: AnyObserver<String>
     var nextPageI: AnyObserver<Void>
     var shareJanjiI: AnyObserver<Any>
     var moreI: AnyObserver<JanjiPolitik>
@@ -36,7 +36,7 @@ class MyJanpolListViewModel: IJanpolListViewModel, IJanpolListViewModelInput, IJ
     var bannerSelectedO: Driver<Void>!
     var showHeaderO: Driver<Bool>!
     
-    private let refreshSubject = PublishSubject<Void>()
+    private let refreshSubject = PublishSubject<String>()
     private let moreSubject = PublishSubject<JanjiPolitik>()
     private let moreMenuSubject = PublishSubject<JanjiType>()
     private let shareSubject = PublishSubject<Any>()
@@ -61,10 +61,10 @@ class MyJanpolListViewModel: IJanpolListViewModel, IJanpolListViewModelInput, IJ
         
         error = errorTracker.asDriver()
         
-        let janpolItems = refreshSubject.startWith(())
-            .flatMapLatest { [unowned self] (_) -> Observable<[JanjiPolitik]> in
+        let janpolItems = refreshSubject
+            .flatMapLatest { [unowned self] (query) -> Observable<[JanjiPolitik]> in
                 
-                return self.paginateItems(nextBatchTrigger: self.nextSubject.asObservable(), cid: "", filter: "")
+                return self.paginateItems(nextBatchTrigger: self.nextSubject.asObservable(), cid: "", filter: "", query: query)
                     .trackError(self.errorTracker)
                     .trackActivity(self.activityIndicator)
                     .catchErrorJustReturn([])
@@ -125,8 +125,8 @@ class MyJanpolListViewModel: IJanpolListViewModel, IJanpolListViewModelInput, IJ
             .mapToVoid()
             .asDriverOnErrorJustComplete()
         
-        bannerO = refreshSubject.startWith(())
-            .flatMapLatest({ self.bannerInfo() })
+        bannerO = refreshSubject.startWith("")
+            .flatMapLatest({ _ in self.bannerInfo() })
             .asDriverOnErrorJustComplete()
         
         bannerSelectedO = headerViewModel.output.itemSelected
@@ -142,17 +142,20 @@ class MyJanpolListViewModel: IJanpolListViewModel, IJanpolListViewModelInput, IJ
     
     func recursivelyPaginateItems(
         batch: Batch,
-        nextBatchTrigger: Observable<Void>, cid: String, filter: String) ->
+        nextBatchTrigger: Observable<Void>,
+        cid: String,
+        filter: String,
+        query: String) ->
         Observable<Page<[JanjiPolitik]>> {
             return NetworkService.instance
-                .requestObject(LinimasaAPI.getMyJanjiPolitiks(query: filter, page: batch.page, perPage: batch.limit),
+                .requestObject(LinimasaAPI.getMyJanjiPolitiks(filter: filter, page: batch.page, perPage: batch.limit, query: query),
                                c: BaseResponse<JanjiPolitikResponse>.self)
                 .map({ self.transformToPage(response: $0, batch: batch) })
                 .asObservable()
                 .paginate(nextPageTrigger: nextBatchTrigger, hasNextPage: { (result) -> Bool in
                     return result.batch.next().hasNextPage
                 }, nextPageFactory: { (result) -> Observable<Page<[JanjiPolitik]>> in
-                    self.recursivelyPaginateItems(batch: result.batch.next(), nextBatchTrigger: nextBatchTrigger, cid: cid, filter: filter)
+                    self.recursivelyPaginateItems(batch: result.batch.next(), nextBatchTrigger: nextBatchTrigger, cid: cid, filter: filter, query: query)
                 })
                 .share(replay: 1, scope: .whileConnected)
             

@@ -234,7 +234,7 @@ extension PenpolFilterController: IClusterSearchDelegate {
         let values = item.id
         let key = item.name
         DispatchQueue.main.async {
-            self.viewModel.input.cidTrigger.onNext((values))
+            self.viewModel.input.cidTrigger.onNext((values ?? ""))
             self.nameCluster = key
             self.tableView.reloadData()
         }

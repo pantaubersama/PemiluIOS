@@ -38,6 +38,10 @@ public extension NetworkService {
         return provider.rx.request(MultiTarget(t))
             .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background))
             .filterSuccessfulStatusAndRedirectCodes()
+            .do(onSuccess: { (response) in
+                let json = try? JSONSerialization.jsonObject(with: response.data, options: JSONSerialization.ReadingOptions.allowFragments) as? [String: Any]
+                print("json response \(json)")
+            })
             .do(onError: { (e) in
                 if case MoyaError.statusCode(let response) = e  {
                     // here will check if token 401

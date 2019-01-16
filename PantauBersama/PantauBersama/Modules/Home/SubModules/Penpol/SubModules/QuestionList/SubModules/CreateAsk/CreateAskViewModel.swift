@@ -34,6 +34,7 @@ class CreateAskViewModel: ViewModelType {
     
     private let activityIndicator = ActivityIndicator()
     private let errorTracker = ErrorTracker()
+    private let disposeBag = DisposeBag()
     
     var navigator: CreateAskNavigator
     

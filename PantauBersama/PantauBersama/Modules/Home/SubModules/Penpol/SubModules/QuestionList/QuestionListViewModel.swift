@@ -24,6 +24,7 @@ class QuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelInput
     var shareQuestionI: AnyObserver<QuestionModel>
     var voteI: AnyObserver<QuestionModel>
     var createI: AnyObserver<Void>
+    var loadCreatedI: AnyObserver<Void>
     
     var items: Driver<[ICellConfigurator]>!
     var error: Driver<Error>!
@@ -48,6 +49,7 @@ class QuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelInput
     private let voteSubject = PublishSubject<QuestionModel>()
     private let deletedQuestionSubject = PublishSubject<Int>()
     private let questionRelay = BehaviorRelay<[QuestionModel]>(value: [])
+    private let loadCreated = PublishSubject<Void>()
     
     internal let errorTracker = ErrorTracker()
     internal let activityIndicator = ActivityIndicator()
@@ -65,6 +67,7 @@ class QuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelInput
         voteI = voteSubject.asObserver()
         filterI = filterSubject.asObserver()
         createI = createSubject.asObserver()
+        loadCreatedI = loadCreated.asObserver()
         
         error = errorTracker.asDriver()
         
@@ -75,6 +78,18 @@ class QuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelInput
             })
             self.filterItems.append(contentsOf: selectedItem)
         }
+        
+        loadCreated.startWith(()).flatMapLatest { [unowned self](_) -> Observable<[QuestionModel]> in
+            return self.paginateItems(nextBatchTrigger: self.nextSubject.asObservable(), filteredBy: "user_verified_all", orderedBy: "created_at")
+                .trackError(self.errorTracker)
+                .trackActivity(self.activityIndicator)
+                .catchErrorJustReturn([])
+            }.filter { (questions) -> Bool in
+                return !questions.isEmpty
+            }.bind { [weak self](loadedItem) in
+                guard let weakSelf = self else { return }
+                weakSelf.questionRelay.accept(loadedItem)
+            }.disposed(by: disposeBag)
         
         // MARK:
         // Get question pagination
@@ -176,7 +191,7 @@ class QuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelInput
             .asDriverOnErrorJustComplete()
         
         createO = createSubject
-            .flatMapLatest({navigator.launchCreateAsk()})
+            .flatMapLatest({ navigator.launchCreateAsk(loadCreatedTrigger: self.loadCreatedI) })
             .asDriver(onErrorJustReturn: ())
         
         bannerO = refreshSubject.startWith(())
