@@ -57,6 +57,14 @@ class PilpresViewModel: ViewModelType {
             nextTrigger: nextSubject.asObserver(),
             filterTrigger: filterSubject.asObserver())
         
+        let cachedFilter = PenpolFilterModel.generatePilpresFilter()
+        cachedFilter.forEach { (filterModel) in
+            let selectedItem = filterModel.items.filter({ (filterItem) -> Bool in
+                return filterItem.isSelected
+            })
+            self.filterItems.append(contentsOf: selectedItem)
+        }
+        
         let bannerInfo = refreshSubject.startWith("")
             .flatMapLatest({ _ in self.bannerInfo() })
             .asDriverOnErrorJustComplete()

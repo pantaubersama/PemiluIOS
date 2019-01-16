@@ -95,6 +95,15 @@ class QuizViewModel: ViewModelType {
             .flatMapLatest({ self.totalResult() })
             .asDriverOnErrorJustComplete()
         
+        let cachedFilter = PenpolFilterModel.generateQuizFilter()
+        cachedFilter.forEach { (filterModel) in
+            let selectedItem = filterModel.items.filter({ (filterItem) -> Bool in
+                return filterItem.isSelected
+            })
+            self.filterItems.append(contentsOf: selectedItem)
+        }
+        
+        
         let filter = filterSubject
             .do(onNext: { [weak self](filterItems) in
                 guard let weakSelf = self else { return }

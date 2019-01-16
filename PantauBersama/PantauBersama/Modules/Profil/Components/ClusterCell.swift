@@ -45,7 +45,7 @@ extension ClusterCell: IReusableCell {
         let bag = DisposeBag()
         if item.data?.cluster != nil {
             titleCluster.text = item.data?.cluster?.name
-            if let thumbnail = item.data?.cluster?.image.thumbnail.url {
+            if let thumbnail = item.data?.cluster?.image?.thumbnail.url {
                 iconCluster.af_setImage(withURL: URL(string: thumbnail)!)
             }
         } else {

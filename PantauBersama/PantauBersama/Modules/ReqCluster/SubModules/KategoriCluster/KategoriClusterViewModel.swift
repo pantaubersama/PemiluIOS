@@ -72,7 +72,7 @@ class KategoriClusterViewModel: ViewModelType {
         let categoiesCell = categories
             .map { (list) -> [String] in
                 return list.map({ (categories) -> String in
-                    return categories.name
+                    return categories.name ?? ""
                 })
         }
         

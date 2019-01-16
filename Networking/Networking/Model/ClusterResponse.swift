@@ -33,14 +33,14 @@ public struct Clusters: Codable {
 
 
 public struct ClusterDetail: Codable {
-    public let id: String
-    public let name: String
-    public let image: Avatar
+    public let id: String?
+    public let name: String?
+    public let image: Avatar?
     public let isDisplayed: Bool?
     public let categoryId: String?
     public let category: Category?
     public let description: String?
-    public let memberCount: Int
+    public let memberCount: Int?
     public let isEligible: Bool?
     public let magicLink: String?
     public let isLinkActive: Bool?

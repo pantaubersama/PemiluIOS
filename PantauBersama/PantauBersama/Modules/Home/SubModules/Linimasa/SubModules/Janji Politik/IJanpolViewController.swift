@@ -53,6 +53,7 @@ extension IJanpolViewController {
             .disposed(by: disposeBag)
         
         refreshControl.rx.controlEvent(.valueChanged)
+            .map({ "" })
             .bind(to: viewModel.input.refreshI)
             .disposed(by: disposeBag)
         

@@ -12,11 +12,11 @@ import Common
 public enum LinimasaAPI {
     case getBannerInfos(pageName: String)
     case getFeeds(filter: String, page: Int, perPage: Int, query: String)
-    case getJanjiPolitiks(cid: String, filter: String, page: Int, perPage: Int)
+    case getJanjiPolitiks(query: String, cid: String, filter: String, page: Int, perPage: Int)
     case deleteJanjiPolitiks(id: String)
     case createJanjiPolitiks(title: String, body: String, image: UIImage?)
     case editJanjiPolitiks(title: String, image: UIImage?)
-    case getMyJanjiPolitiks(query: String, page: Int, perPage: Int)
+    case getMyJanjiPolitiks(filter: String, page: Int, perPage: Int, query: String)
 }
 
 extension LinimasaAPI: TargetType {
@@ -64,8 +64,9 @@ extension LinimasaAPI: TargetType {
                 "per_page": perPage,
                 "q": query
             ]
-        case .getJanjiPolitiks(let (cid, filter, page, perPage)):
+        case .getJanjiPolitiks(let (query, cid, filter, page, perPage)):
             return [
+                "q": query,
                 "cluster_id": cid,
                 "filter_by": filter,
                 "page": page,
@@ -75,7 +76,7 @@ extension LinimasaAPI: TargetType {
             return [
                 "id": id
             ]
-        case .getMyJanjiPolitiks(let (query, page, perPage)):
+        case .getMyJanjiPolitiks(let (query, _, page, perPage)):
             return [
                 "q": query,
                 "page": page,

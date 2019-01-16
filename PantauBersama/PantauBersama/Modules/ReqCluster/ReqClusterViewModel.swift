@@ -98,7 +98,7 @@ class ReqClusterViewModel: ViewModelType {
             clusterAvatarS
             ).map { (n, d, id, a) -> Bool in
                 return n.count > 0 && d.count > 0
-                && id.count > 0 && a != nil
+                    && id?.count ?? 0 > 0 && a != nil
             }.startWith(false)
             .asDriverOnErrorJustComplete()
         
@@ -108,7 +108,7 @@ class ReqClusterViewModel: ViewModelType {
                 return NetworkService.instance
                     .requestObject(PantauAuthAPI
                         .createCluster(name: name,
-                                       id: id,
+                                       id: id ?? "",
                                        desc: desc,
                                        image: avatar),
                                    c: BaseResponse<SingleCluster>.self)

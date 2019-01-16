@@ -19,9 +19,11 @@ class CreateAskCoordinator: BaseCoordinator<Void>, CreateAskNavigator {
     var createComplete: Observable<Void>!
     
     private let navigationController: UINavigationController
+    private let loadCreatedTrigger: AnyObserver<Void>
     
-    init(navigationController: UINavigationController) {
+    init(navigationController: UINavigationController, loadCreatedTrigger: AnyObserver<Void>) {
         self.navigationController = navigationController
+        self.loadCreatedTrigger = loadCreatedTrigger
     }
     
     override func start() -> Observable<CoordinationResult> {
@@ -38,6 +40,7 @@ class CreateAskCoordinator: BaseCoordinator<Void>, CreateAskNavigator {
         let createObs = createComplete.do(onNext: { [weak self](_) in
             DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
                 self?.navigationController.popViewController(animated: true)
+                self?.loadCreatedTrigger.onNext(())
             })
         })
         

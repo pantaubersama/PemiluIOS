@@ -16,7 +16,7 @@ class JanpolListViewModel: IJanpolListViewModel, IJanpolListViewModelInput, IJan
     var input: IJanpolListViewModelInput { return self }
     var output: IJanpolListViewModelOutput { return self }
     
-    var refreshI: AnyObserver<Void>
+    var refreshI: AnyObserver<String>
     var nextPageI: AnyObserver<Void>
     var shareJanjiI: AnyObserver<Any>
     var moreI: AnyObserver<JanjiPolitik>
@@ -35,7 +35,7 @@ class JanpolListViewModel: IJanpolListViewModel, IJanpolListViewModelInput, IJan
     var bannerSelectedO: Driver<Void>!
     var showHeaderO: Driver<Bool>!
     
-    private let refreshSubject = PublishSubject<Void>()
+    private let refreshSubject = PublishSubject<String>()
     private let moreSubject = PublishSubject<JanjiPolitik>()
     private let moreMenuSubject = PublishSubject<JanjiType>()
     private let shareSubject = PublishSubject<Any>()
@@ -48,8 +48,9 @@ class JanpolListViewModel: IJanpolListViewModel, IJanpolListViewModelInput, IJan
     internal let headerViewModel = BannerHeaderViewModel()
     
     private var filterItems: [PenpolFilterModel.FilterItem] = []
+    private let disposeBag = DisposeBag()
     
-    init(navigator: IJanpolNavigator, showTableHeader: Bool) {
+    init(navigator: IJanpolNavigator, searchTrigger: PublishSubject<String>? = nil, showTableHeader: Bool) {
         refreshI = refreshSubject.asObserver()
         nextPageI = nextSubject.asObserver()
         moreI = moreSubject.asObserver()
@@ -60,12 +61,21 @@ class JanpolListViewModel: IJanpolListViewModel, IJanpolListViewModelInput, IJan
         
         error = errorTracker.asDriver()
         
-        let janpolItems = refreshSubject.startWith(())
-            .flatMapLatest { [unowned self] (_) -> Observable<[JanjiPolitik]> in
+        let cachedFilter = PenpolFilterModel.generateJanjiFilter()
+        cachedFilter.forEach { (filterModel) in
+            let selectedItem = filterModel.items.filter({ (filterItem) -> Bool in
+                return filterItem.isSelected
+            })
+            self.filterItems.append(contentsOf: selectedItem)
+        }
+        
+        
+        let janpolItems = refreshSubject
+            .flatMapLatest { [unowned self] (query) -> Observable<[JanjiPolitik]> in
                 let cid = self.filterItems.filter({ $0.paramKey == "cluster_id"}).first?.paramValue
                 let filter = self.filterItems.filter({ $0.paramKey == "filter_by"}).first?.paramValue
                 
-                return self.paginateItems(nextBatchTrigger: self.nextSubject.asObservable(), cid: cid ?? "", filter: filter ?? "")
+                return self.paginateItems(nextBatchTrigger: self.nextSubject.asObservable(), cid: cid ?? "", filter: filter ?? "", query: query)
                     .trackError(self.errorTracker)
                     .trackActivity(self.activityIndicator)
                     .catchErrorJustReturn([])
@@ -126,8 +136,12 @@ class JanpolListViewModel: IJanpolListViewModel, IJanpolListViewModelInput, IJan
             .mapToVoid()
             .asDriverOnErrorJustComplete()
         
-        bannerO = refreshSubject.startWith(())
-            .flatMapLatest({ self.bannerInfo() })
+        searchTrigger?.asObserver()
+            .bind(to: refreshI)
+            .disposed(by: disposeBag)
+        
+        bannerO = refreshSubject.startWith("")
+            .flatMapLatest({ _ in self.bannerInfo() })
             .asDriverOnErrorJustComplete()
 
         bannerSelectedO = headerViewModel.output.itemSelected
@@ -143,17 +157,20 @@ class JanpolListViewModel: IJanpolListViewModel, IJanpolListViewModelInput, IJan
     
     func recursivelyPaginateItems(
         batch: Batch,
-        nextBatchTrigger: Observable<Void>, cid: String, filter: String) ->
+        nextBatchTrigger: Observable<Void>,
+        cid: String,
+        filter: String,
+        query: String) ->
         Observable<Page<[JanjiPolitik]>> {
             return NetworkService.instance
-                .requestObject(LinimasaAPI.getJanjiPolitiks(cid: cid, filter: filter, page: batch.page, perPage: batch.limit),
+                .requestObject(LinimasaAPI.getJanjiPolitiks(query: query, cid: cid, filter: filter, page: batch.page, perPage: batch.limit),
                                c: BaseResponse<JanjiPolitikResponse>.self)
                 .map({ self.transformToPage(response: $0, batch: batch) })
                 .asObservable()
                 .paginate(nextPageTrigger: nextBatchTrigger, hasNextPage: { (result) -> Bool in
                     return result.batch.next().hasNextPage
                 }, nextPageFactory: { (result) -> Observable<Page<[JanjiPolitik]>> in
-                    self.recursivelyPaginateItems(batch: result.batch.next(), nextBatchTrigger: nextBatchTrigger, cid: cid, filter: filter)
+                    self.recursivelyPaginateItems(batch: result.batch.next(), nextBatchTrigger: nextBatchTrigger, cid: cid, filter: filter, query: query)
                 })
                 .share(replay: 1, scope: .whileConnected)
             

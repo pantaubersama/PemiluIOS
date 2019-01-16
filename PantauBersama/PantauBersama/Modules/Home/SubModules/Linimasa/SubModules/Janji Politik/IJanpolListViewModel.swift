@@ -13,7 +13,7 @@ import Networking
 import Common
 
 protocol IJanpolListViewModelInput {
-    var refreshI: AnyObserver<Void> { get }
+    var refreshI: AnyObserver<String> { get }
     var nextPageI: AnyObserver<Void> { get }
     var shareJanjiI: AnyObserver<Any> { get }
     var moreI: AnyObserver<JanjiPolitik> { get }
@@ -44,8 +44,8 @@ protocol IJanpolListViewModel {
     var headerViewModel: BannerHeaderViewModel { get }
     
     func transformToPage(response: BaseResponse<JanjiPolitikResponse>, batch: Batch) -> Page<[JanjiPolitik]>
-    func paginateItems(batch: Batch, nextBatchTrigger: Observable<Void>, cid: String, filter: String) -> Observable<[JanjiPolitik]>
-    func recursivelyPaginateItems(batch: Batch, nextBatchTrigger: Observable<Void>, cid: String, filter: String) -> Observable<Page<[JanjiPolitik]>>
+    func paginateItems(batch: Batch, nextBatchTrigger: Observable<Void>, cid: String, filter: String, query: String) -> Observable<[JanjiPolitik]>
+    func recursivelyPaginateItems(batch: Batch, nextBatchTrigger: Observable<Void>, cid: String, filter: String, query: String) -> Observable<Page<[JanjiPolitik]>>
 }
 
 extension IJanpolListViewModel {
@@ -64,8 +64,8 @@ extension IJanpolListViewModel {
     
     func paginateItems(
         batch: Batch = Batch.initial,
-        nextBatchTrigger: Observable<Void>, cid: String, filter: String) -> Observable<[JanjiPolitik]> {
-        return recursivelyPaginateItems(batch: batch, nextBatchTrigger: nextBatchTrigger, cid: cid, filter: filter)
+        nextBatchTrigger: Observable<Void>, cid: String, filter: String, query: String) -> Observable<[JanjiPolitik]> {
+        return recursivelyPaginateItems(batch: batch, nextBatchTrigger: nextBatchTrigger, cid: cid, filter: filter, query: query)
             .scan([], accumulator: { (accumulator, page) in
                 return accumulator + page.item
             })

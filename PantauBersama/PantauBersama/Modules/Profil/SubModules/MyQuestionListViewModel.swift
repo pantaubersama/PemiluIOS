@@ -24,6 +24,7 @@ class MyQuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelInp
     var shareQuestionI: AnyObserver<QuestionModel>
     var voteI: AnyObserver<QuestionModel>
     var createI: AnyObserver<Void>
+    var loadCreatedI: AnyObserver<Void>
     
     var items: Driver<[ICellConfigurator]>!
     var error: Driver<Error>!
@@ -48,6 +49,7 @@ class MyQuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelInp
     private let voteSubject = PublishSubject<QuestionModel>()
     private let deletedQuestionSubject = PublishSubject<Int>()
     private let questionRelay = BehaviorRelay<[QuestionModel]>(value: [])
+    private let loadCreated = PublishSubject<Void>()
     
     internal let errorTracker = ErrorTracker()
     internal let activityIndicator = ActivityIndicator()
@@ -65,6 +67,7 @@ class MyQuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelInp
         voteI = voteSubject.asObserver()
         filterI = filterSubject.asObserver()
         createI = createSubject.asObserver()
+        loadCreatedI = loadCreated.asObserver()
         
         error = errorTracker.asDriver()
         
@@ -155,7 +158,7 @@ class MyQuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelInp
             .asDriverOnErrorJustComplete()
         
         createO = createSubject
-            .flatMapLatest({navigator.launchCreateAsk()})
+            .flatMapLatest({navigator.launchCreateAsk(loadCreatedTrigger: self.loadCreatedI)})
             .asDriver(onErrorJustReturn: ())
         
         bannerO = refreshSubject.startWith(())

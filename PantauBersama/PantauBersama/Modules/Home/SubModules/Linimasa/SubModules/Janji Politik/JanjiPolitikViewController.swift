@@ -51,6 +51,8 @@ class JanjiPolitikViewController: UITableViewController,IJanpolViewController {
                 }
             }).disposed(by: disposeBag)
         
+        viewModel.input.refreshI.onNext("")
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
