@@ -21,6 +21,7 @@ final class WKWebViewModel: ViewModelType {
     
     struct Output {
         let urlO: Driver<String>
+        let backO: Driver<Void>
     }
     
     private var navigator: WKWebNavigator
@@ -29,12 +30,18 @@ final class WKWebViewModel: ViewModelType {
     
     init(navigator: WKWebNavigator, url: String) {
         self.navigator = navigator
-        self.navigator.finish = backS
         self.url = url
         
         input = Input(backI: backS.asObserver())
         
-        output = Output(urlO: Driver.just(url).asDriver(onErrorJustReturn: ""))
+        let back = backS
+            .do(onNext: { (_) in
+                navigator.back()
+            })
+        
+        
+        output = Output(urlO: Driver.just(url).asDriver(onErrorJustReturn: ""),
+                        backO: back.asDriverOnErrorJustComplete())
         
     }
     

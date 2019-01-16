@@ -68,15 +68,15 @@ class WKWebviewCustom: UIViewController, WKNavigationDelegate, WKUIDelegate {
         
         // TODO : some for reasons coming soon will disappear,
         // and we will need viewModel and coordinator
-        if url == nil {
+        if url != nil {
+            wkwebView.load(URLRequest(url: URL(string: url ?? "")!))
+        } else {
             viewModel.output.urlO
                 .drive(onNext: { [weak self] (url) in
                     guard let `self` = self else { return }
                     self.wkwebView.load(URLRequest(url: URL(string: url)!))
                 })
                 .disposed(by: disposeBag)
-        } else {
-            wkwebView.load(URLRequest(url: URL(string: url ?? "")!))
         }
     }
     
@@ -105,8 +105,20 @@ class WKWebviewCustom: UIViewController, WKNavigationDelegate, WKUIDelegate {
     
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         
-        decisionHandler(.allow)
-    }
+        // MARK
+        // TODO: For change password handler
+            if navigationAction.request.url?.absoluteString == "\(AppContext.instance.infoForKey("DOMAIN_SYMBOLIC"))/" {
+                decisionHandler(.cancel)
+                let alert = UIAlertController(title: "Sukses", message: "Berhasil update sandi", preferredStyle: .alert)
+                let ok = UIAlertAction(title: "OK", style: .default) { [weak self] (_) in
+                    self?.navigationController?.popViewController(animated: true)
+                }
+                alert.addAction(ok)
+                self.present(alert, animated: true, completion: nil)
+            } else {
+                decisionHandler(.allow)
+            }
+        }
     
     @objc private func handleBack(sender: UIBarButtonItem) {
         navigationController?.popViewController(animated: true)

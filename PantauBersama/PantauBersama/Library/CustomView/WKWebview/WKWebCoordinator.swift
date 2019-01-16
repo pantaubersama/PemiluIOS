@@ -9,13 +9,12 @@
 import RxSwift
 
 protocol WKWebNavigator {
-    var finish: Observable<Void>! { get set }
+    func back()
 }
 
 final class WKWebCoordinator: BaseCoordinator<Void> {
     
     private let navigationController: UINavigationController
-    var finish: Observable<Void>!
     private let url: String
     
     init(navigationController: UINavigationController, url: String) {
@@ -24,16 +23,18 @@ final class WKWebCoordinator: BaseCoordinator<Void> {
     }
     
     override func start() -> Observable<Void> {
+        let viewModel = WKWebViewModel(navigator: self, url: url)
         let viewController = WKWebviewCustom()
+        viewController.viewModel = viewModel
         viewController.hidesBottomBarWhenPushed = true
         navigationController.pushViewController(viewController, animated: true)
-        return finish.do(onNext: { [weak self] (_) in
-            self?.navigationController.popViewController(animated: true)
-        })
+        return Observable.empty()
     }
     
 }
 
 extension WKWebCoordinator: WKWebNavigator {
-    
+    func back() {
+        navigationController.popViewController(animated: true)
+    }
 }

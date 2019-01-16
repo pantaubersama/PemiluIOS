@@ -12,6 +12,7 @@ import Networking
 import TwitterKit
 import FBSDKLoginKit
 import FBSDKCoreKit
+import Common
 
 protocol ISettingViewModelInput {
     var backI: AnyObserver<Void> { get }
@@ -169,7 +170,8 @@ final class SettingViewModel: ISettingViewModel, ISettingViewModelInput, ISettin
                 case .updateProfile:
                     return navigator.launchProfileEdit(data: data, type: ProfileHeaderItem.editProfile)
                 case .updatePassword:
-                    return navigator.launchProfileEdit(data: data, type: ProfileHeaderItem.editPassword)
+                    let urlEditProfile = "\(AppContext.instance.infoForKey("DOMAIN_SYMBOLIC"))/users/edit"
+                    return navigator.launchEditPassword(link: urlEditProfile)
                 case .updateDataLapor:
                     return navigator.launchProfileEdit(data: data, type: ProfileHeaderItem.editDataLapor)
                 case .cluster:

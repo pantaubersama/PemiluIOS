@@ -33,6 +33,7 @@ protocol SettingNavigator {
     func launchAlertCluster() -> Observable<Void>
     func launchTwitterAlert() -> Observable<Void>
     func launchFacebookAlert() -> Observable<Void>
+    func launchEditPassword(link: String) -> Observable<Void>
 }
 
 final class SettingCoordinator: BaseCoordinator<Void> {
@@ -231,5 +232,10 @@ extension SettingCoordinator: SettingNavigator {
                     .catchErrorJustComplete()
                     .mapToVoid()
             })
+    }
+    
+    func launchEditPassword(link: String) -> Observable<Void> {
+        let webCoordinator = WKWebCoordinator(navigationController: navigationController, url: link)
+        return coordinate(to: webCoordinator)
     }
 }
