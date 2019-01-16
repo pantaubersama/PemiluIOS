@@ -266,6 +266,10 @@
 		84B7B8CE21E5B4CD0099E7E3 /* AddKategoriController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B7B8CD21E5B4CD0099E7E3 /* AddKategoriController.swift */; };
 		84B7B8D021E5B5D40099E7E3 /* AddKategoriViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B7B8CF21E5B5D40099E7E3 /* AddKategoriViewModel.swift */; };
 		84B7B8D221E5B9640099E7E3 /* AddKategoriCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B7B8D121E5B9640099E7E3 /* AddKategoriCoordinator.swift */; };
+		84CA10BF21EF0DE80025CF10 /* AboutController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84CA10BE21EF0DE80025CF10 /* AboutController.xib */; };
+		84CA10C121EF107E0025CF10 /* AboutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CA10C021EF107E0025CF10 /* AboutController.swift */; };
+		84CA10C321EF10E20025CF10 /* AboutCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CA10C221EF10E20025CF10 /* AboutCoordinator.swift */; };
+		84CA10C521EF12800025CF10 /* AboutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CA10C421EF12800025CF10 /* AboutViewModel.swift */; };
 		84D01B9821D208DE0000492F /* SectionOfSettingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D01B9721D208DE0000492F /* SectionOfSettingData.swift */; };
 		84D01B9B21D20C480000492F /* SettingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84D01B9A21D20C480000492F /* SettingCell.xib */; };
 		84D01B9D21D20CA20000492F /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D01B9C21D20CA20000492F /* SettingCell.swift */; };
@@ -605,6 +609,10 @@
 		84B7B8CD21E5B4CD0099E7E3 /* AddKategoriController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddKategoriController.swift; sourceTree = "<group>"; };
 		84B7B8CF21E5B5D40099E7E3 /* AddKategoriViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddKategoriViewModel.swift; sourceTree = "<group>"; };
 		84B7B8D121E5B9640099E7E3 /* AddKategoriCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddKategoriCoordinator.swift; sourceTree = "<group>"; };
+		84CA10BE21EF0DE80025CF10 /* AboutController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AboutController.xib; sourceTree = "<group>"; };
+		84CA10C021EF107E0025CF10 /* AboutController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutController.swift; sourceTree = "<group>"; };
+		84CA10C221EF10E20025CF10 /* AboutCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutCoordinator.swift; sourceTree = "<group>"; };
+		84CA10C421EF12800025CF10 /* AboutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewModel.swift; sourceTree = "<group>"; };
 		84D01B9721D208DE0000492F /* SectionOfSettingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionOfSettingData.swift; sourceTree = "<group>"; };
 		84D01B9A21D20C480000492F /* SettingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingCell.xib; sourceTree = "<group>"; };
 		84D01B9C21D20CA20000492F /* SettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
@@ -1851,6 +1859,17 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		84CA10BD21EF0DCF0025CF10 /* About */ = {
+			isa = PBXGroup;
+			children = (
+				84CA10BE21EF0DE80025CF10 /* AboutController.xib */,
+				84CA10C021EF107E0025CF10 /* AboutController.swift */,
+				84CA10C221EF10E20025CF10 /* AboutCoordinator.swift */,
+				84CA10C421EF12800025CF10 /* AboutViewModel.swift */,
+			);
+			path = About;
+			sourceTree = "<group>";
+		};
 		84D01B9921D20C140000492F /* Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -1863,6 +1882,7 @@
 		84E2854121CA189B00298E31 /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
+				84CA10BD21EF0DCF0025CF10 /* About */,
 				11145F6721EB471C0046F2AA /* MenuBar */,
 				848B039A21E7AA9F002CAA40 /* WKWebview */,
 				84B7B8B121E4453A0099E7E3 /* EmptyView */,
@@ -2077,6 +2097,7 @@
 				8428AAA321C7A7790008E975 /* Localizable.strings in Resources */,
 				13F4569521CF97DA00CE45F1 /* CreateAskController.xib in Resources */,
 				840850DD21D2832200696CB3 /* BadgeController.xib in Resources */,
+				84CA10BF21EF0DE80025CF10 /* AboutController.xib in Resources */,
 				842A4A0321D7C6810050AA51 /* CameraController.xib in Resources */,
 				84B7B8B521E445D00099E7E3 /* empty-status.json in Resources */,
 				11702DD321CB0287001AEE3F /* QuizCell.xib in Resources */,
@@ -2454,6 +2475,7 @@
 				842A4A0921D7EA990050AA51 /* SignatureCoordinator.swift in Sources */,
 				8452A4D221DE54B800196043 /* SosmedViewModel.swift in Sources */,
 				845C570221CD1AEB00EDCDFE /* ProfileController.swift in Sources */,
+				84CA10C121EF107E0025CF10 /* AboutController.swift in Sources */,
 				11D0669F21E26A57003AC9BB /* QuizResultModel.swift in Sources */,
 				84A07FC221D14D4F00269C6B /* ReqClusterController.swift in Sources */,
 				11B3C79621D1126700EDCECB /* QuizSummaryKeyCell.swift in Sources */,
@@ -2474,6 +2496,7 @@
 				13812C3921CC182500CAB327 /* AskViewCell.swift in Sources */,
 				137A29F821E2327D00F19072 /* ComingsoonCoordinator.swift in Sources */,
 				84B2526821CC01F000565D82 /* AppState.swift in Sources */,
+				84CA10C521EF12800025CF10 /* AboutViewModel.swift in Sources */,
 				84B4DED821D375C600F60258 /* JanjiPolitikNavigator.swift in Sources */,
 				84619D4B21DC9A6A00EB58CF /* WebViewModel.swift in Sources */,
 				13E9D78B21E8FCF6006A0890 /* IJanpolViewController.swift in Sources */,
@@ -2578,6 +2601,7 @@
 				137A29EC21E11E7E00F19072 /* TrendHeaderView.swift in Sources */,
 				11145F5521EACCEC0046F2AA /* SearchController.swift in Sources */,
 				84B2522021CAB2B900565D82 /* OnboardingViewController.swift in Sources */,
+				84CA10C321EF10E20025CF10 /* AboutCoordinator.swift in Sources */,
 				848B039921E7AA8C002CAA40 /* WKWebview.swift in Sources */,
 				13F456CB21DB88E700CE45F1 /* BannerInfoViewModel.swift in Sources */,
 				84A07FBA21D0F13200269C6B /* IdentitasViewModel.swift in Sources */,

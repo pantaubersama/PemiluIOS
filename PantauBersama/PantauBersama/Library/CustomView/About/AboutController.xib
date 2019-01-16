@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AboutController" customModule="PantauBersama" customModuleProvider="target">
+            <connections>
+                <outlet property="buttonClose" destination="Smc-EM-0Tv" id="XDm-bn-rRz"/>
+                <outlet property="buttonLisensi" destination="vfl-rl-wuw" id="Ab8-Tl-usH"/>
+                <outlet property="version" destination="bbz-2A-yFp" id="xHo-FH-iww"/>
+                <outlet property="view" destination="iN0-l3-epB" id="EdT-vP-D97"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fsN-db-06j">
+                    <rect key="frame" x="0.0" y="620" width="375" height="47"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Smc-EM-0Tv">
+                            <rect key="frame" x="175.5" y="11.5" width="24" height="24"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="24" id="R9A-MP-RCC"/>
+                                <constraint firstAttribute="width" constant="24" id="vxR-Iw-fsi"/>
+                            </constraints>
+                            <state key="normal" image="outlineCloseBlack24Px"/>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="47" id="OOK-Ze-3MV"/>
+                        <constraint firstItem="Smc-EM-0Tv" firstAttribute="centerX" secondItem="fsN-db-06j" secondAttribute="centerX" id="bXj-2k-XZL"/>
+                        <constraint firstItem="Smc-EM-0Tv" firstAttribute="centerY" secondItem="fsN-db-06j" secondAttribute="centerY" id="ltc-3C-B8U"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tLC-aJ-3Hg">
+                    <rect key="frame" x="0.0" y="619" width="375" height="1"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="Lmg-sg-IEM"/>
+                    </constraints>
+                </view>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconPantau" translatesAutoresizingMaskIntoConstraints="NO" id="YC8-eb-4AJ">
+                    <rect key="frame" x="104" y="180" width="167" height="93"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="167" id="GCA-Py-dcT"/>
+                        <constraint firstAttribute="height" constant="93" id="HXW-fb-wWM"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Versi 1.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bbz-2A-yFp" customClass="Label" customModule="Common">
+                    <rect key="frame" x="154.5" y="301" width="66" height="20.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="typeLabel" value="bold"/>
+                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                            <real key="value" value="17"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </label>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="zSm-Gd-noR">
+                    <rect key="frame" x="112.5" y="337.5" width="150" height="50"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="© 2019" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pzc-1W-zN8" customClass="Label" customModule="Common">
+                            <rect key="frame" x="53.5" y="0.0" width="43.5" height="25"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                    <real key="value" value="13"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="All rights reserved" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1fL-Ky-Aqc" customClass="Label" customModule="Common">
+                            <rect key="frame" x="23" y="25" width="104" height="25"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                    <real key="value" value="13"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </label>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="150" id="VYE-xG-NI8"/>
+                        <constraint firstAttribute="height" constant="50" id="WSN-FM-1Zf"/>
+                    </constraints>
+                </stackView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vfl-rl-wuw" customClass="Button" customModule="Common">
+                    <rect key="frame" x="162.5" y="419.5" width="50" height="29"/>
+                    <state key="normal" title="LISENSI">
+                        <color key="titleColor" red="0.68041622639999999" green="0.1499232352" blue="0.14898997550000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="typeButton" value="bold"/>
+                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                            <real key="value" value="14"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="zSm-Gd-noR" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="5pV-du-ggF"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="tLC-aJ-3Hg" secondAttribute="trailing" id="7Iy-Bt-dV8"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="fsN-db-06j" secondAttribute="trailing" id="8YC-Ab-SGU"/>
+                <constraint firstItem="tLC-aJ-3Hg" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="FQs-2U-Unm"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="fsN-db-06j" secondAttribute="bottom" id="Fvz-aZ-5eJ"/>
+                <constraint firstItem="fsN-db-06j" firstAttribute="top" secondItem="tLC-aJ-3Hg" secondAttribute="bottom" id="K7J-NJ-w33"/>
+                <constraint firstItem="bbz-2A-yFp" firstAttribute="top" secondItem="YC8-eb-4AJ" secondAttribute="bottom" constant="28" id="Q4s-mX-Mez"/>
+                <constraint firstItem="vfl-rl-wuw" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="X2l-BZ-BeO"/>
+                <constraint firstItem="vfl-rl-wuw" firstAttribute="top" secondItem="zSm-Gd-noR" secondAttribute="bottom" constant="32" id="cbN-8u-93o"/>
+                <constraint firstItem="YC8-eb-4AJ" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="160" id="dxV-zM-Yum"/>
+                <constraint firstItem="zSm-Gd-noR" firstAttribute="top" secondItem="bbz-2A-yFp" secondAttribute="bottom" constant="16" id="udc-uN-fE6"/>
+                <constraint firstItem="YC8-eb-4AJ" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="wRF-ap-kv2"/>
+                <constraint firstItem="fsN-db-06j" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="yc2-cf-Nc2"/>
+                <constraint firstItem="bbz-2A-yFp" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="yeS-i7-5Yp"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="iconPantau" width="168" height="94"/>
+        <image name="outlineCloseBlack24Px" width="24" height="24"/>
+    </resources>
+</document>

@@ -34,6 +34,7 @@ protocol SettingNavigator {
     func launchTwitterAlert() -> Observable<Void>
     func launchFacebookAlert() -> Observable<Void>
     func launchWKWeb(link: String) -> Observable<Void>
+    func launchAbout() -> Observable<Void>
 }
 
 final class SettingCoordinator: BaseCoordinator<Void> {
@@ -237,5 +238,10 @@ extension SettingCoordinator: SettingNavigator {
     func launchWKWeb(link: String) -> Observable<Void> {
         let webCoordinator = WKWebCoordinator(navigationController: navigationController, url: link)
         return coordinate(to: webCoordinator)
+    }
+    
+    func launchAbout() -> Observable<Void> {
+        let aboutCoordinator = AboutCoordinator(navigationController: navigationController)
+        return coordinate(to: aboutCoordinator)
     }
 }
