@@ -19,7 +19,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="360" height="349.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="m7t-WD-Q18">
+                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="m7t-WD-Q18">
                         <rect key="frame" x="16" y="21" width="328" height="212"/>
                         <color key="backgroundColor" red="0.50737317010000005" green="0.80225958289999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
