@@ -29,7 +29,13 @@ class QuizDetailController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.configure(with: .transparent)
-        self.navigationController?.navigationBar.tintColor = UIColor.clear
+        
+        let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "back"), style: UIBarButtonItem.Style.plain, target: self, action: nil)        
+        self.navigationItem.leftBarButtonItem = backButton
+        backButton.rx.tap
+            .bind(to: viewModel.input.backTrigger)
+            .disposed(by: disposeBag)
+        self.navigationController?.navigationBar.tintColor = UIColor.white
     }
     
     private func bindViewModel() {

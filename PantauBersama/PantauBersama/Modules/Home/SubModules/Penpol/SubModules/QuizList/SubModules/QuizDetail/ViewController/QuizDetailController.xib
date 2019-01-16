@@ -25,7 +25,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VY7-EO-c5R">
+                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VY7-EO-c5R">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="255"/>
                     <color key="backgroundColor" red="0.95000237229999995" green="0.46290111540000001" blue="0.1104531065" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
@@ -113,7 +113,7 @@
                 <constraint firstItem="NuD-Ha-H3o" firstAttribute="width" secondItem="0ef-Sp-GnM" secondAttribute="width" id="VRE-aC-esU"/>
                 <constraint firstItem="VY7-EO-c5R" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="hgk-cj-Pdy"/>
             </constraints>
-            <nil key="simulatedTopBarMetrics"/>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="52.5" y="63.380281690140848"/>
         </view>
