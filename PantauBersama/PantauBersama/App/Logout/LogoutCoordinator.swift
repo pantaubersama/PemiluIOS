@@ -31,9 +31,6 @@ class LogoutCoordinator: BaseCoordinator<LogoutType> {
                 observer.on(.completed)
             }))
             alert.addAction(UIAlertAction(title: "Ya", style: .default, handler: { (_) in
-                UserDefaults.Account.reset()
-                KeychainService.remove(type: NetworkKeychainKind.token)
-                KeychainService.remove(type: NetworkKeychainKind.refreshToken)
                 observer.onNext(LogoutType.logout)
                 observer.on(.completed)
             }))
@@ -42,5 +39,41 @@ class LogoutCoordinator: BaseCoordinator<LogoutType> {
             }
             return Disposables.create()
         })
+            .filter({ $0 == .logout })
+            .mapToVoid()
+            .flatMap({ [weak self] (_) -> Observable<LogoutType> in
+                // TODO: Reset All Account Sosmed and User Defaults Account
+                guard let `self` = self else { return Observable.empty() }
+                return self.logoutSosmed()
+            })
+    }
+    
+    private func logoutSosmed() -> Observable<LogoutType> {
+        let facebook = NetworkService.instance
+            .requestObject(
+                PantauAuthAPI
+                    .accountDisconnect(type: "facebook"),
+                c: BaseResponse<AccountResponse>.self)
+            .asObservable()
+            .catchErrorJustComplete()
+            .mapToVoid()
+        let twitter = NetworkService.instance
+            .requestObject(
+                PantauAuthAPI
+                    .accountDisconnect(type: "twitter"),
+                c: BaseResponse<AccountResponse>.self)
+            .asObservable()
+            .catchErrorJustComplete()
+            .mapToVoid()
+        return Observable.merge(facebook,
+                                twitter)
+            .do(onNext: { () in
+                // TODO: Remove all account 
+                UserDefaults.Account.reset()
+                KeychainService.remove(type: NetworkKeychainKind.token)
+                KeychainService.remove(type: NetworkKeychainKind.refreshToken)
+            })
+            .map({ LogoutType.logout })
+            .asObservable()
     }
 }
