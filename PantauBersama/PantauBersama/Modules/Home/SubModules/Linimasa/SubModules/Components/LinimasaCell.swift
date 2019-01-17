@@ -16,7 +16,7 @@ typealias LinimasaCellConfigured = CellConfigurator<LinimasaCell, LinimasaCell.I
 
 class LinimasaCell: UITableViewCell  {
     
-    @IBOutlet weak var avatar: UIImageView!
+    @IBOutlet weak var avatar: CircularUIImageView!
     @IBOutlet weak var name: Label!
     @IBOutlet weak var content: Label!
     @IBOutlet weak var titleTeam: Label!
