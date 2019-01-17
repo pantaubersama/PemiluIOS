@@ -120,15 +120,24 @@ class DetailJanjiController: UIViewController {
         contentSource.isScrollEnabled = false
         
         if let url = data.image?.large?.url {
-            image.af_setImage(withURL: URL(string: url)!)
+            image.af_setImage(withURL: URL(string: url)!, placeholderImage: nil, filter: nil, imageTransition: .crossDissolve(0.3), completion: { (response) in
+                if let image = response.result.value{
+                    DispatchQueue.main.async {
+                        let aspectRatio = image.size.width / image.size.height
+                        let newHeight = self.image.frame.width / aspectRatio
+                        self.image.frame.size = CGSize(width: self.image.frame.width, height: newHeight)
+                    }
+                }
+            })
         }
         
         if let cluster = data.creator.cluster {
             nameParpol.text = cluster.name
-            jumlahAnggota.text = "\(cluster.memberCount)"
+            jumlahAnggota.text = "\(cluster.memberCount ?? 0)"
             if let url = cluster.image?.medium.url {
                 iconParpol.af_setImage(withURL: URL(string: url)!)
             }
+            
         }
         
         nameLabel.text = data.creator.fullName
