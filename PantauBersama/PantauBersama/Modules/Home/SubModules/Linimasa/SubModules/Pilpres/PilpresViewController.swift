@@ -92,6 +92,10 @@ class PilpresViewController: UITableViewController {
             .bind(to: viewModel.input.nextTrigger)
             .disposed(by: disposeBag)
         
+        tableView.rx.itemSelected
+            .bind(to: viewModel.input.itemSelectTrigger)
+            .disposed(by: disposeBag)
+        
         
         viewModel.output.moreSelected
             .asObservable()
@@ -142,6 +146,10 @@ class PilpresViewController: UITableViewController {
                 self?.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
                 
             })
+            .disposed(by: disposeBag)
+        
+        viewModel.output.itemSelected
+            .drive()
             .disposed(by: disposeBag)
     }
     

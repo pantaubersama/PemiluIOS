@@ -18,6 +18,7 @@ protocol LinimasaNavigator: PilpresNavigator, IJanpolNavigator {
     func launchNote() -> Observable<Void>
     func launchFilter(filterType: FilterType, filterTrigger: AnyObserver<[PenpolFilterModel.FilterItem]>) -> Observable<Void>
     func launchSearch() -> Observable<Void>
+    func launcWebView(link: String) -> Observable<Void>
 }
 
 class LinimasaCoordinator: BaseCoordinator<Void> {
@@ -91,6 +92,11 @@ extension LinimasaCoordinator: LinimasaNavigator {
         self.navigationController.present(activityViewController, animated: true, completion: nil)
         
         return Observable.never()
+    }
+    
+    func launcWebView(link: String) -> Observable<Void> {
+        let wkwebCoordinator = WKWebCoordinator(navigationController: navigationController, url: link)
+        return coordinate(to: wkwebCoordinator)
     }
     
 }

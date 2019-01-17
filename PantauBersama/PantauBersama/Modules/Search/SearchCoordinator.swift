@@ -43,6 +43,10 @@ class SearchCoordinator: BaseCoordinator<Void> {
 }
 
 extension SearchCoordinator: SearchNavigator {
+    func launcWebView(link: String) -> Observable<Void> {
+        return Observable.never()
+    }
+    
     func launchPenpolBannerInfo(bannerInfo: BannerInfo) -> Observable<Void> {
         return Observable.never()
     }

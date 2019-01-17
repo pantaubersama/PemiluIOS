@@ -22,6 +22,7 @@ class PilpresViewModel: ViewModelType {
         let moreMenuTrigger: AnyObserver<PilpresType>
         let nextTrigger: AnyObserver<Void>
         let filterTrigger: AnyObserver<[PenpolFilterModel.FilterItem]>
+        let itemSelectTrigger: AnyObserver<IndexPath>
     }
     
     struct Output {
@@ -32,13 +33,15 @@ class PilpresViewModel: ViewModelType {
         let infoSelected: Driver<Void>
         let filter: Driver<Void>
         let showHeader: Driver<Bool>
+        let itemSelected: Driver<Void>
     }
     
     private let refreshSubject = PublishSubject<String>()
     private let moreSubject = PublishSubject<Feeds>()
     private let moreMenuSubject = PublishSubject<PilpresType>()
     private let nextSubject = PublishSubject<Void>()
-     private let filterSubject = PublishSubject<[PenpolFilterModel.FilterItem]>()
+    private let filterSubject = PublishSubject<[PenpolFilterModel.FilterItem]>()
+    private let itemSelectedS = PublishSubject<IndexPath>()
     
     private let navigator: PilpresNavigator
     let errorTracker = ErrorTracker()
@@ -55,7 +58,8 @@ class PilpresViewModel: ViewModelType {
             moreTrigger: moreSubject.asObserver(),
             moreMenuTrigger: moreMenuSubject.asObserver(),
             nextTrigger: nextSubject.asObserver(),
-            filterTrigger: filterSubject.asObserver())
+            filterTrigger: filterSubject.asObserver(),
+            itemSelectTrigger: itemSelectedS.asObserver())
         
         let cachedFilter = PenpolFilterModel.generatePilpresFilter()
         cachedFilter.forEach { (filterModel) in
@@ -134,13 +138,25 @@ class PilpresViewModel: ViewModelType {
         
         let showTableHeader = BehaviorRelay<Bool>(value: showTableHeader).asDriver()
         
+        // MARK
+        // item selected will launch WKWebView
+        let selected = itemSelectedS
+            .withLatestFrom(feedsItems) { (indexPath, items) -> Feeds in
+                return items[indexPath.row]
+            }
+            .flatMapLatest({ navigator.launcWebView(
+                link: "https://twitter.com/itdoesnotmatter/status/\($0.source.id)")})
+            .asDriverOnErrorJustComplete()
+        
+        
         output = Output(feedsCells: feedsCells,
                         moreSelected: moreSelected,
                         moreMenuSelected: moreMenuSelected,
                         bannerInfo: bannerInfo,
                         infoSelected: infoSelected,
                         filter: filter,
-                        showHeader: showTableHeader)
+                        showHeader: showTableHeader,
+                        itemSelected: selected)
         
     }
     
