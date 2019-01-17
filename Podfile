@@ -30,6 +30,7 @@ def application_pods
     pod 'LTHRadioButton'
     pod 'TwitterKit'
     pod 'FBSDKLoginKit'
+    pod 'lottie-ios'
 end
 
 
@@ -60,7 +61,6 @@ target 'PantauBersama' do
 	application_pods
 	application_rx
 	networking_pods
-	pod 'lottie-ios'
 
 	target 'PantauBersamaTests'
 	inherit! :search_paths do

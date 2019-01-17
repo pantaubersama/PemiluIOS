@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>URL_SCHEMES</key>
+	<string>$(URL_SCHEMES)</string>
 	<key>COMMUNITY_PANTAU</key>
 	<string>$(COMMUNITY_PANTAU)</string>
 	<key>FAQ_PANTAU</key>
@@ -47,7 +49,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>$(URL_SCHEME)</string>
+				<string>$(URL_SCHEMES)</string>
 			</array>
 		</dict>
 		<dict>
@@ -109,8 +111,16 @@
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
-		<key>NSAllowsArbitraryLoadsInWebContent</key>
-		<true/>
+		<key>NSExceptionDomains</key>
+		<dict>
+			<key>example.com</key>
+			<dict>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+			</dict>
+		</dict>
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>Pantau Bersama memerlukan akses camera untuk melakukan proses input verifikasi</string>
@@ -157,20 +167,5 @@
 	<string>$(URL_API_IDENTITAS)</string>
 	<key>URL_API_PEMILU</key>
 	<string>$(URL_API_PEMILU)</string>
-    <key>NSAppTransportSecurity</key>
-    <dict>
-        <key>NSAllowsArbitraryLoads</key>
-        <true/>
-        <key>NSExceptionDomains</key>
-        <dict>
-            <key>example.com</key>
-            <dict>
-                <key>NSExceptionAllowsInsecureHTTPLoads</key>
-                <true/>
-                <key>NSIncludesSubdomains</key>
-                <true/>
-            </dict>
-        </dict>
-    </dict>
 </dict>
 </plist>

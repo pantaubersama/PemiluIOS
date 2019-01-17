@@ -62,12 +62,12 @@ public extension NetworkService {
                                 print("Status response: ... \(response.statusCode)")
                                 if response.statusCode == 401 {
                                     print("Your session is expired....")
-                                    let alert = UIAlertController(title: "Warning", message: "Your session is expired", preferredStyle: .alert)
-                                    alert.addAction(UIAlertAction(title: "Logout", style: .destructive, handler: { (_) in
+                                    let alert = UIAlertController(title: "Perhatian", message: "Sesi Anda terlah berakhir, silahkan login terlebih dahulu", preferredStyle: .alert)
+                                    alert.addAction(UIAlertAction(title: "Login", style: .destructive, handler: { (_) in
                                         KeychainService.remove(type: NetworkKeychainKind.token)
                                         KeychainService.remove(type: NetworkKeychainKind.refreshToken)
                                         // need improve this later
-                                        // todo using wkwbview ??
+                                        // todo using wkwbview or using another framework to handle auth
                                         let url = "\(AppContext.instance.infoForKey("DOMAIN_SYMBOLIC"))/oauth/authorize?client_id=\(AppContext.instance.infoForKey("CLIENT_ID"))&response_type=code&redirect_uri=\(AppContext.instance.infoForKey("REDIRECT_URI"))&scope="
                                         UIApplication.shared.open(URL(string: url)!, options: [:], completionHandler: nil)
                                     }))

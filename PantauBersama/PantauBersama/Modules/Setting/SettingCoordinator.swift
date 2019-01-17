@@ -24,7 +24,7 @@ enum SosmedState {
 protocol SettingNavigator {
     var finish: Observable<Void>! { get set }
     func launchProfileEdit(data: User, type: ProfileHeaderItem) -> Observable<Void>
-    func launchSignOut() -> Observable<Void>
+    func launchSignOut(data: User) -> Observable<Void>
     func launchBadge() -> Observable<Void>
     func launchVerifikasi(user: VerificationsResponse.U) -> Observable<Void>
     func launchUndang(data: User) -> Observable<Void>
@@ -68,8 +68,8 @@ extension SettingCoordinator: SettingNavigator {
         return coordinate(to: profileEditCoordinator)
     }
     
-    func launchSignOut() -> Observable<Void> {
-        let logoutCoordinator = LogoutCoordinator(navigationController: navigationController)
+    func launchSignOut(data: User) -> Observable<Void> {
+        let logoutCoordinator = LogoutCoordinator(navigationController: navigationController, data: data)
         return coordinate(to: logoutCoordinator)
             .filter({ $0 == .logout })
             .mapToVoid()
