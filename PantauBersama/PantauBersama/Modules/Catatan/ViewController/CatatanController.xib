@@ -12,11 +12,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CatatanController" customModule="PantauBersama" customModuleProvider="target">
             <connections>
-                <outlet property="buttonGolput" destination="Yzj-yE-8Xp" id="V5w-JJ-fX1"/>
-                <outlet property="buttonPaslonDua" destination="HEj-1N-Ocv" id="7XS-0a-rUm"/>
-                <outlet property="buttonPaslonSatu" destination="fJf-lF-gJS" id="yZL-rQ-9bB"/>
-                <outlet property="containerPaslonDua" destination="U83-LO-gzn" id="rAU-wt-XSl"/>
-                <outlet property="containerPaslonSatu" destination="lbb-To-gSp" id="PAe-mC-fWo"/>
+                <outlet property="buttonGolput" destination="aio-6v-rLM" id="5Ka-dD-6wi"/>
+                <outlet property="buttonPaslonDua" destination="Hha-SY-grd" id="5CR-QG-cU6"/>
+                <outlet property="buttonPaslonSatu" destination="Vei-NQ-J54" id="wcH-dB-yla"/>
+                <outlet property="containerPaslonDua" destination="sCm-Ri-iBm" id="U5v-gI-5cW"/>
+                <outlet property="containerPaslonSatu" destination="dwg-xU-fvt" id="tiX-8P-Ojt"/>
                 <outlet property="iconPreference" destination="32g-Jb-cYj" id="p0R-GV-bWC"/>
                 <outlet property="labelPercentage" destination="5JW-72-Ymj" id="pEK-Vh-eM6"/>
                 <outlet property="labelPreference" destination="EeV-iS-0Ec" id="mTG-iK-cNN"/>
@@ -89,167 +89,7 @@
                         <constraint firstAttribute="height" constant="30" id="y6d-AC-1d0"/>
                     </constraints>
                 </stackView>
-                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="VaQ-jx-796">
-                    <rect key="frame" x="16" y="120" width="288" height="205"/>
-                    <subviews>
-                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="hUe-al-thA">
-                            <rect key="frame" x="0.0" y="0.0" width="288" height="150"/>
-                            <subviews>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nVg-zL-SyI">
-                                    <rect key="frame" x="0.0" y="0.0" width="139" height="150"/>
-                                    <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="pj1-EW-V9q">
-                                            <rect key="frame" x="0.0" y="0.0" width="139" height="150"/>
-                                            <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lbb-To-gSp">
-                                                    <rect key="frame" x="0.0" y="0.0" width="139" height="125"/>
-                                                    <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="jokowi" translatesAutoresizingMaskIntoConstraints="NO" id="Z02-hI-69L">
-                                                            <rect key="frame" x="0.0" y="0.0" width="139" height="125"/>
-                                                        </imageView>
-                                                    </subviews>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="trailing" secondItem="Z02-hI-69L" secondAttribute="trailing" id="3S1-JH-qm4"/>
-                                                        <constraint firstAttribute="bottom" secondItem="Z02-hI-69L" secondAttribute="bottom" id="930-Ct-pNb"/>
-                                                        <constraint firstItem="Z02-hI-69L" firstAttribute="top" secondItem="lbb-To-gSp" secondAttribute="top" id="UO6-Lc-7DO"/>
-                                                        <constraint firstAttribute="height" constant="125" id="bz9-PH-b4t"/>
-                                                        <constraint firstItem="Z02-hI-69L" firstAttribute="leading" secondItem="lbb-To-gSp" secondAttribute="leading" id="pEa-id-Cxr"/>
-                                                    </constraints>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
-                                                            <integer key="value" value="2"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                    </userDefinedRuntimeAttributes>
-                                                </view>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fJf-lF-gJS" customClass="Button" customModule="Common">
-                                                    <rect key="frame" x="0.0" y="125" width="139" height="25"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="25" id="rl7-xT-Wdr"/>
-                                                    </constraints>
-                                                    <state key="normal" title="Jokowi - Ma'ruf">
-                                                        <color key="titleColor" red="0.30980392159999998" green="0.30980392159999998" blue="0.30980392159999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                    </state>
-                                                    <state key="selected">
-                                                        <color key="titleColor" red="0.92693734169999997" green="0.71449714900000005" blue="0.29399454590000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                    </state>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
-                                                            <real key="value" value="12"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                            <color key="value" red="0.30980392159999998" green="0.30980392159999998" blue="0.30980392159999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                    </userDefinedRuntimeAttributes>
-                                                </button>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="fJf-lF-gJS" secondAttribute="trailing" id="GiB-Hx-6wU"/>
-                                                <constraint firstItem="fJf-lF-gJS" firstAttribute="leading" secondItem="pj1-EW-V9q" secondAttribute="leading" id="HQz-bI-tMm"/>
-                                                <constraint firstAttribute="trailing" secondItem="lbb-To-gSp" secondAttribute="trailing" id="Qfi-KO-dss"/>
-                                                <constraint firstItem="lbb-To-gSp" firstAttribute="leading" secondItem="pj1-EW-V9q" secondAttribute="leading" id="wOT-TO-Mtl"/>
-                                                <constraint firstItem="lbb-To-gSp" firstAttribute="top" secondItem="pj1-EW-V9q" secondAttribute="top" id="x1t-9V-gYy"/>
-                                            </constraints>
-                                        </stackView>
-                                    </subviews>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <constraints>
-                                        <constraint firstItem="pj1-EW-V9q" firstAttribute="leading" secondItem="nVg-zL-SyI" secondAttribute="leading" id="FD8-rp-VoX"/>
-                                        <constraint firstAttribute="trailing" secondItem="pj1-EW-V9q" secondAttribute="trailing" id="ISA-dm-bi5"/>
-                                        <constraint firstAttribute="bottom" secondItem="pj1-EW-V9q" secondAttribute="bottom" id="UmU-tU-62f"/>
-                                        <constraint firstItem="pj1-EW-V9q" firstAttribute="top" secondItem="nVg-zL-SyI" secondAttribute="top" id="azO-dp-dTT"/>
-                                    </constraints>
-                                </view>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KhD-Sp-gJq">
-                                    <rect key="frame" x="149" y="0.0" width="139" height="150"/>
-                                    <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="sxj-Xd-XYU">
-                                            <rect key="frame" x="0.0" y="0.0" width="139" height="150"/>
-                                            <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U83-LO-gzn">
-                                                    <rect key="frame" x="0.0" y="0.0" width="139" height="125"/>
-                                                    <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="group2162" translatesAutoresizingMaskIntoConstraints="NO" id="SUO-ll-Xcd">
-                                                            <rect key="frame" x="0.0" y="0.0" width="139" height="125"/>
-                                                        </imageView>
-                                                    </subviews>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="125" id="MRw-cu-RX3"/>
-                                                        <constraint firstAttribute="trailing" secondItem="SUO-ll-Xcd" secondAttribute="trailing" id="OP9-k7-nBC"/>
-                                                        <constraint firstAttribute="bottom" secondItem="SUO-ll-Xcd" secondAttribute="bottom" id="X2b-al-li2"/>
-                                                        <constraint firstItem="SUO-ll-Xcd" firstAttribute="top" secondItem="U83-LO-gzn" secondAttribute="top" id="mTt-nM-cr9"/>
-                                                        <constraint firstItem="SUO-ll-Xcd" firstAttribute="leading" secondItem="U83-LO-gzn" secondAttribute="leading" id="nmy-ch-yjX"/>
-                                                    </constraints>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
-                                                            <integer key="value" value="2"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                    </userDefinedRuntimeAttributes>
-                                                </view>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HEj-1N-Ocv" customClass="Button" customModule="Common">
-                                                    <rect key="frame" x="0.0" y="125" width="139" height="25"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="25" id="ew3-J9-4rd"/>
-                                                    </constraints>
-                                                    <state key="normal" title="Prabowo - Sandi">
-                                                        <color key="titleColor" red="0.30980392159999998" green="0.30980392159999998" blue="0.30980392159999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                    </state>
-                                                    <state key="selected">
-                                                        <color key="titleColor" red="0.92693734169999997" green="0.71449714900000005" blue="0.29399454590000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                    </state>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
-                                                            <real key="value" value="12"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                            <color key="value" red="0.30980392159999998" green="0.30980392159999998" blue="0.30980392159999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                    </userDefinedRuntimeAttributes>
-                                                </button>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="HEj-1N-Ocv" secondAttribute="trailing" id="0ZY-UP-7xQ"/>
-                                                <constraint firstItem="U83-LO-gzn" firstAttribute="leading" secondItem="sxj-Xd-XYU" secondAttribute="leading" id="42e-t3-hYd"/>
-                                                <constraint firstItem="HEj-1N-Ocv" firstAttribute="leading" secondItem="sxj-Xd-XYU" secondAttribute="leading" id="Jdp-YC-uM8"/>
-                                                <constraint firstAttribute="trailing" secondItem="U83-LO-gzn" secondAttribute="trailing" id="RhU-Va-fEU"/>
-                                                <constraint firstItem="U83-LO-gzn" firstAttribute="top" secondItem="sxj-Xd-XYU" secondAttribute="top" id="wbe-XR-sge"/>
-                                            </constraints>
-                                        </stackView>
-                                    </subviews>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <constraints>
-                                        <constraint firstAttribute="bottom" secondItem="sxj-Xd-XYU" secondAttribute="bottom" id="WYf-07-Vfn"/>
-                                        <constraint firstItem="sxj-Xd-XYU" firstAttribute="leading" secondItem="KhD-Sp-gJq" secondAttribute="leading" id="Yhn-mG-bkB"/>
-                                        <constraint firstItem="sxj-Xd-XYU" firstAttribute="top" secondItem="KhD-Sp-gJq" secondAttribute="top" id="b0F-et-4QS"/>
-                                        <constraint firstAttribute="trailing" secondItem="sxj-Xd-XYU" secondAttribute="trailing" id="h5f-8l-4zQ"/>
-                                    </constraints>
-                                </view>
-                            </subviews>
-                        </stackView>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yzj-yE-8Xp" customClass="Button" customModule="Common">
-                            <rect key="frame" x="0.0" y="164" width="288" height="41"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="41" id="Kp4-Ad-4Pq"/>
-                            </constraints>
-                            <state key="normal" title="Belum menentukan pilihan">
-                                <color key="titleColor" red="0.30980392159999998" green="0.30980392159999998" blue="0.30980392159999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                            </state>
-                            <state key="selected">
-                                <color key="titleColor" red="0.92693734169999997" green="0.71449714900000005" blue="0.29399454590000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                            </state>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                    <color key="value" red="0.30980392156862746" green="0.30980392156862746" blue="0.30980392156862746" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                </userDefinedRuntimeAttribute>
-                            </userDefinedRuntimeAttributes>
-                        </button>
-                    </subviews>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="205" id="Npj-c3-mJ0"/>
-                    </constraints>
-                </stackView>
-                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="7ca-AP-IUA">
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="7ca-AP-IUA" userLabel="BottomStack">
                     <rect key="frame" x="0.0" y="471" width="320" height="97"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mWt-w1-1S2">
@@ -328,10 +168,10 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9lW-3r-UM6">
-                    <rect key="frame" x="0.0" y="383" width="320" height="87"/>
+                    <rect key="frame" x="0.0" y="400" width="320" height="70"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="KBV-Qw-0Uf">
-                            <rect key="frame" x="16" y="19.5" width="288" height="48"/>
+                            <rect key="frame" x="16" y="11" width="288" height="48"/>
                             <subviews>
                                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PAs-Rv-nVM" customClass="RoundView" customModule="Common">
                                     <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
@@ -408,31 +248,147 @@
                     </subviews>
                     <color key="backgroundColor" red="0.95687562230000001" green="0.95683962109999998" blue="0.95686405900000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="87" id="ELe-QU-I03"/>
+                        <constraint firstAttribute="height" constant="70" id="ELe-QU-I03"/>
                         <constraint firstItem="KBV-Qw-0Uf" firstAttribute="centerY" secondItem="9lW-3r-UM6" secondAttribute="centerY" id="P90-dE-22D"/>
                         <constraint firstAttribute="trailing" secondItem="KBV-Qw-0Uf" secondAttribute="trailing" constant="16" id="kjZ-8r-UX3"/>
                         <constraint firstItem="KBV-Qw-0Uf" firstAttribute="leading" secondItem="9lW-3r-UM6" secondAttribute="leading" constant="16" id="zmQ-Hf-s7f"/>
                     </constraints>
                 </view>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="Ezb-Q5-W2V">
+                    <rect key="frame" x="1" y="129" width="318" height="230"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="xix-11-QHB">
+                            <rect key="frame" x="0.0" y="0.0" width="318" height="175"/>
+                            <subviews>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="zs0-NA-hZM">
+                                    <rect key="frame" x="0.0" y="0.0" width="150" height="175"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dwg-xU-fvt">
+                                            <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="jokowi" translatesAutoresizingMaskIntoConstraints="NO" id="01a-Df-PzR">
+                                                    <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="150" id="0Tl-ap-wEL"/>
+                                                <constraint firstAttribute="trailing" secondItem="01a-Df-PzR" secondAttribute="trailing" id="IRa-cR-BRy"/>
+                                                <constraint firstAttribute="bottom" secondItem="01a-Df-PzR" secondAttribute="bottom" id="Iad-J1-MOj"/>
+                                                <constraint firstItem="01a-Df-PzR" firstAttribute="top" secondItem="dwg-xU-fvt" secondAttribute="top" id="e1h-SF-8mn"/>
+                                                <constraint firstItem="01a-Df-PzR" firstAttribute="leading" secondItem="dwg-xU-fvt" secondAttribute="leading" id="uRB-fe-D0z"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                                    <integer key="value" value="2"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColor">
+                                                    <color key="value" red="0.48628133540000001" green="0.4862622023" blue="0.48627519609999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vei-NQ-J54" customClass="Button" customModule="Common">
+                                            <rect key="frame" x="0.0" y="150" width="150" height="25"/>
+                                            <state key="normal" title="Jokowi - Ma'ruf">
+                                                <color key="titleColor" red="0.48628133540000001" green="0.4862622023" blue="0.48627519609999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            </state>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                    <real key="value" value="16"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                    <color key="value" red="0.48628133540000001" green="0.4862622023" blue="0.48627519609999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </button>
+                                    </subviews>
+                                </stackView>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Xwk-ab-z2f">
+                                    <rect key="frame" x="168" y="0.0" width="150" height="175"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sCm-Ri-iBm">
+                                            <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="prabowo-sandi" translatesAutoresizingMaskIntoConstraints="NO" id="5gn-dV-3PX">
+                                                    <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstItem="5gn-dV-3PX" firstAttribute="top" secondItem="sCm-Ri-iBm" secondAttribute="top" id="CSr-g5-p3m"/>
+                                                <constraint firstAttribute="height" constant="150" id="UL3-tW-aal"/>
+                                                <constraint firstAttribute="trailing" secondItem="5gn-dV-3PX" secondAttribute="trailing" id="j9i-xm-RXS"/>
+                                                <constraint firstAttribute="bottom" secondItem="5gn-dV-3PX" secondAttribute="bottom" id="jgl-UH-1Id"/>
+                                                <constraint firstItem="5gn-dV-3PX" firstAttribute="leading" secondItem="sCm-Ri-iBm" secondAttribute="leading" id="rMv-ri-QrM"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                                    <integer key="value" value="2"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColor">
+                                                    <color key="value" red="0.48628133540000001" green="0.4862622023" blue="0.48627519609999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hha-SY-grd" customClass="Button" customModule="Common">
+                                            <rect key="frame" x="0.0" y="150" width="150" height="25"/>
+                                            <state key="normal" title="Prabowo - Sandi">
+                                                <color key="titleColor" red="0.48628133540000001" green="0.4862622023" blue="0.48627519609999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            </state>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                    <real key="value" value="16"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                    <color key="value" red="0.48628133540000001" green="0.4862622023" blue="0.48627519609999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </button>
+                                    </subviews>
+                                </stackView>
+                            </subviews>
+                        </stackView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aio-6v-rLM" customClass="Button" customModule="Common">
+                            <rect key="frame" x="0.0" y="189" width="318" height="41"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="41" id="7m1-rp-488"/>
+                            </constraints>
+                            <state key="normal" title="Belum menentukan pilihan">
+                                <color key="titleColor" red="0.30980392159999998" green="0.30980392159999998" blue="0.30980392159999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                    <color key="value" red="0.48628133540000001" green="0.4862622023" blue="0.48627519609999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                    <real key="value" value="16"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </button>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="318" id="SXc-jL-1f2"/>
+                        <constraint firstAttribute="height" constant="230" id="bUf-Dl-Auy"/>
+                    </constraints>
+                </stackView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="jQ8-us-39E" secondAttribute="trailing" constant="8" id="1XD-0t-tFN"/>
                 <constraint firstItem="5dY-xG-eHZ" firstAttribute="top" secondItem="9lW-3r-UM6" secondAttribute="bottom" id="4I1-mT-xNs"/>
                 <constraint firstItem="dCN-QD-0Dh" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="86m-cw-crS"/>
+                <constraint firstItem="Ezb-Q5-W2V" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="-40" id="8ub-Kw-9qC"/>
                 <constraint firstItem="jQ8-us-39E" firstAttribute="top" secondItem="dCN-QD-0Dh" secondAttribute="bottom" constant="8" id="A40-qE-Leg"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="VaQ-jx-796" secondAttribute="trailing" constant="16" id="Adw-BI-4gW"/>
-                <constraint firstAttribute="bottom" secondItem="7ca-AP-IUA" secondAttribute="bottom" id="Ro2-vs-MeV"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="7ca-AP-IUA" secondAttribute="bottom" id="Ro2-vs-MeV"/>
                 <constraint firstItem="7ca-AP-IUA" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="YK0-DD-Xzq"/>
                 <constraint firstItem="5dY-xG-eHZ" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="a24-Qf-ZlO"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="9lW-3r-UM6" secondAttribute="trailing" id="eYq-eL-dIx"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="dCN-QD-0Dh" secondAttribute="trailing" id="hfS-5W-ZX5"/>
                 <constraint firstItem="7ca-AP-IUA" firstAttribute="top" secondItem="5dY-xG-eHZ" secondAttribute="bottom" id="iQf-J2-aaZ"/>
-                <constraint firstItem="VaQ-jx-796" firstAttribute="top" secondItem="jQ8-us-39E" secondAttribute="bottom" constant="16" id="j0q-oR-aQN"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="7ca-AP-IUA" secondAttribute="trailing" id="jpp-W6-bKV"/>
+                <constraint firstItem="Ezb-Q5-W2V" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="mZ4-lE-wba"/>
                 <constraint firstItem="dCN-QD-0Dh" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="mhq-0J-Kp4"/>
                 <constraint firstItem="jQ8-us-39E" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="8" id="rHx-Dy-v7n"/>
-                <constraint firstItem="VaQ-jx-796" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="saW-o2-jRp"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="5dY-xG-eHZ" secondAttribute="trailing" id="vDB-xq-jdP"/>
                 <constraint firstItem="9lW-3r-UM6" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="vVk-4P-fH6"/>
             </constraints>
@@ -440,7 +396,7 @@
         </view>
     </objects>
     <resources>
-        <image name="group2162" width="150" height="150"/>
         <image name="jokowi" width="150" height="150"/>
+        <image name="prabowo-sandi" width="150" height="150"/>
     </resources>
 </document>

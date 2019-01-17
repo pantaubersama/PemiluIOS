@@ -169,11 +169,11 @@ extension CatatanController {
     
     private func resetButton() {
         buttonGroup.forEach { (b) in
-            b.borderColor = Color.grey_five
-            b.setTitleColor(Color.grey_five, for: .normal)
+            b.borderColor = Color.grey_four
+            b.setTitleColor(Color.grey_four, for: .normal)
         }
         containerGroup.forEach { (v) in
-            v.layer.borderColor = Color.grey_five.cgColor
+            v.layer.borderColor = Color.grey_four.cgColor
         }
     }
     
