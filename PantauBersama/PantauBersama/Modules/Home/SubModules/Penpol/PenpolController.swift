@@ -37,6 +37,14 @@ class PenpolController: UIViewController {
         add(childViewController: askController, context: containerView)
         add(childViewController: quisController, context: containerView)
         
+        navbar.profile.rx.tap
+            .bind(to: viewModel.input.profileTrigger)
+            .disposed(by: disposeBag)
+        
+        navbar.note.rx.tap
+            .bind(to: viewModel.input.catatanTrigger)
+            .disposed(by: disposeBag)
+        
         navbar.search.rx.textDidBeginEditing
             .do(onNext: { [unowned self](_) in
                 self.navbar.search.endEditing(true)
@@ -85,12 +93,31 @@ class PenpolController: UIViewController {
             .drive()
             .disposed(by: disposeBag)
         
+        viewModel.output.userO
+            .drive(onNext: { [weak self] (response) in
+                guard let `self` = self else { return }
+                let user = response.user
+                if let thumbnail = user.avatar.thumbnail.url {
+                    self.navbar.avatar.af_setImage(withURL: URL(string: thumbnail)!)
+                }
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.output.profileSelected
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.catatanSelected
+            .drive()
+            .disposed(by: disposeBag)
+        
     }
 
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = true
+        viewModel.input.viewWillAppearTrigger.onNext(())
     }
     
     override func viewWillDisappear(_ animated: Bool) {

@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import Networking
+import Common
 
 final class LinimasaViewModel: ViewModelType {
 
@@ -43,6 +44,8 @@ final class LinimasaViewModel: ViewModelType {
     private let viewWillppearS = PublishSubject<Void>()
     private let searchSubject = PublishSubject<Void>()
     private let catatanS = PublishSubject<Void>()
+    private let activityIndicator = ActivityIndicator()
+    private let errorTracker = ErrorTracker()
     
     init(navigator: LinimasaNavigator) {
         self.navigator = navigator
@@ -80,9 +83,21 @@ final class LinimasaViewModel: ViewModelType {
         
         // MARK
         // Get local user response
+        let cloud = NetworkService.instance.requestObject(
+            PantauAuthAPI.me,
+            c: BaseResponse<UserResponse>.self)
+            .map({ $0.data })
+            .do(onSuccess: { (response) in
+                AppState.saveMe(response)
+            })
+            .trackError(errorTracker)
+            .trackActivity(activityIndicator)
+            .asObservable()
+            .catchErrorJustComplete()
+        
         let local: Observable<UserResponse> = AppState.local(key: .me)
         let userData = viewWillppearS
-            .flatMapLatest({ local })
+            .flatMapLatest({ Observable.merge(cloud, local) })
             .asDriverOnErrorJustComplete()
         
         output = Output(searchSelected: search,

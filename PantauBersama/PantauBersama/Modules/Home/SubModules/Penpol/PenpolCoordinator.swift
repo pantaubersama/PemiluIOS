@@ -15,6 +15,8 @@ protocol PenpolNavigator: QuizNavigator, IQuestionNavigator {
     func launchFilter(filterType: FilterType, filterTrigger: AnyObserver<[PenpolFilterModel.FilterItem]>) -> Observable<Void>
     func launchPenpolBannerInfo(bannerInfo: BannerInfo) -> Observable<Void>
     func launchSearch() -> Observable<Void>
+    func launchNote() -> Observable<Void>
+    func launchProfile() -> Observable<Void>
 }
 
 class PenpolCoordinator: BaseCoordinator<Void> {
@@ -88,5 +90,15 @@ extension PenpolCoordinator: PenpolNavigator {
     func launchPenpolBannerInfo(bannerInfo: BannerInfo) -> Observable<Void> {
         let bannerInfoCoordinator = BannerInfoCoordinator(navigationController: self.navigationController, bannerInfo: bannerInfo)
         return coordinate(to: bannerInfoCoordinator)
+    }
+    
+    func launchNote() -> Observable<Void> {
+        let catatanCoordinator = CatatanCoordinator(navigationController: navigationController)
+        return coordinate(to: catatanCoordinator)
+    }
+    
+    func launchProfile() -> Observable<Void> {
+        let profileCoordinator = ProfileCoordinator(navigationController: navigationController)
+        return coordinate(to: profileCoordinator)
     }
 }
