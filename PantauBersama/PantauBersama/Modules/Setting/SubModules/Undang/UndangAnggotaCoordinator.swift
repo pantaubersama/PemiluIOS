@@ -51,6 +51,9 @@ extension UndangAnggotaCoordinator: UndangAnggotaNavigator {
                 self?.navigationController.present(alert, animated: true, completion: nil)
             }
             return Disposables.create()
+        }).do(onNext: { [weak self] (_) in
+            self?.navigationController.popViewController(animated: true)
         }).mapToVoid()
+        
     }
 }
