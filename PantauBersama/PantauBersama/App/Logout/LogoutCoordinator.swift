@@ -18,9 +18,11 @@ enum LogoutType {
 
 class LogoutCoordinator: BaseCoordinator<LogoutType> {
     private let navigationController: UINavigationController
+    private var data: User
     
-    init(navigationController: UINavigationController) {
+    init(navigationController: UINavigationController, data: User) {
         self.navigationController = navigationController
+        self.data = data
     }
     
     override func start() -> Observable<CoordinationResult> {
@@ -43,8 +45,21 @@ class LogoutCoordinator: BaseCoordinator<LogoutType> {
             .mapToVoid()
             .flatMap({ [weak self] (_) -> Observable<LogoutType> in
                 // TODO: Reset All Account Sosmed and User Defaults Account
+                // If user have logged in sosmed must reset
                 guard let `self` = self else { return Observable.empty() }
-                return self.logoutSosmed()
+                if self.data.twitter && self.data.facebook == true {
+                    return self.logoutSosmed()
+                } else if self.data.facebook == true {
+                    return self.logoutFacebook()
+                } else if self.data.twitter == true {
+                    return self.logoutTwitter()
+                } else {
+                    // just account
+                    UserDefaults.Account.reset()
+                    KeychainService.remove(type: NetworkKeychainKind.token)
+                    KeychainService.remove(type: NetworkKeychainKind.refreshToken)
+                    return Observable.just(LogoutType.logout)
+                }
             })
     }
     
@@ -76,4 +91,45 @@ class LogoutCoordinator: BaseCoordinator<LogoutType> {
             .map({ LogoutType.logout })
             .asObservable()
     }
+    
+    private func logoutFacebook() -> Observable<LogoutType> {
+        let facebook = NetworkService.instance
+            .requestObject(
+                PantauAuthAPI
+                    .accountDisconnect(type: "facebook"),
+                c: BaseResponse<AccountResponse>.self)
+            .asObservable()
+            .catchErrorJustComplete()
+            .mapToVoid()
+        return facebook
+            .do(onNext: { () in
+                // TODO: Remove all account
+                UserDefaults.Account.reset()
+                KeychainService.remove(type: NetworkKeychainKind.token)
+                KeychainService.remove(type: NetworkKeychainKind.refreshToken)
+            })
+            .map({ LogoutType.logout })
+            .asObservable()
+    }
+    
+    private func logoutTwitter() -> Observable<LogoutType> {
+        let twitter = NetworkService.instance
+            .requestObject(
+                PantauAuthAPI
+                    .accountDisconnect(type: "twitter"),
+                c: BaseResponse<AccountResponse>.self)
+            .asObservable()
+            .catchErrorJustComplete()
+            .mapToVoid()
+        return twitter
+            .do(onNext: { () in
+                // TODO: Remove all account
+                UserDefaults.Account.reset()
+                KeychainService.remove(type: NetworkKeychainKind.token)
+                KeychainService.remove(type: NetworkKeychainKind.refreshToken)
+            })
+            .map({ LogoutType.logout })
+            .asObservable()
+    }
+
 }
