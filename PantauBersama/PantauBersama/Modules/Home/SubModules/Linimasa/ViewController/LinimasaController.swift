@@ -36,11 +36,33 @@ class LinimasaController: UIViewController {
     
     private let disposeBag = DisposeBag()
     
+    private var isEnableCreateJanpol = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         add(childViewController: pilpresController, context: container)
         add(childViewController: janjiController, context: container)
+        
+        // MARK
+        // segmented control value
+        // assign extension Reactive UIControl
+        segementedControl.rx.value
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [unowned self] i in
+                UIView.animate(withDuration: 0.3, animations: {
+                    if i == 0 {
+                        self.pilpresController.view.alpha = 1.0
+                        self.janjiController.view.alpha = 0.0
+                        self.addJanji.isHidden = true
+                    } else {
+                        self.pilpresController.view.alpha = 0.0
+                        self.janjiController.view.alpha = 1.0
+                        self.addJanji.isHidden = !self.isEnableCreateJanpol
+                    }
+                })
+            })
+            .disposed(by: disposeBag)
     
         // MARK
         // bind to viewModel
@@ -103,28 +125,12 @@ class LinimasaController: UIViewController {
                 if let thumbnail = user.avatar.thumbnail.url {
                     self.navbar.avatar.af_setImage(withURL: URL(string: thumbnail)!)
                 }
+                
+                self.isEnableCreateJanpol = user.cluster != nil
             })
             .disposed(by: disposeBag)
         
-        // MARK
-        // segmented control value
-        // assign extension Reactive UIControl
-        segementedControl.rx.value
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [unowned self] i in
-                UIView.animate(withDuration: 0.3, animations: {
-                    if i == 0 {
-                        self.pilpresController.view.alpha = 1.0
-                        self.janjiController.view.alpha = 0.0
-                        self.addJanji.isHidden = true
-                    } else {
-                        self.pilpresController.view.alpha = 0.0
-                        self.janjiController.view.alpha = 1.0
-                        self.addJanji.isHidden = false
-                    }
-                })
-            })
-            .disposed(by: disposeBag)
+
         
         // MARK
         // Navigation bar hide
