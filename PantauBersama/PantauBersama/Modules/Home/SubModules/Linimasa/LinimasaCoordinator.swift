@@ -81,7 +81,21 @@ extension LinimasaCoordinator: LinimasaNavigator {
     
     
     func openTwitter(data: String) -> Observable<Void> {
-        UIApplication.shared.open(URL(string: "https://twitter.com/hanif_sgy")!, options: [:], completionHandler: nil)
+        if (UIApplication.shared.canOpenURL(URL(string:"twitter://")!)) {
+            print("Twitter is installed")
+            UIApplication.shared.open(URL(string: "twitter://status?id=\(data)")!, options: [:], completionHandler: nil)
+        } else {
+            return Observable<Void>.create({ [weak self] (observer) -> Disposable in
+                let alert = UIAlertController(title: nil, message: "Anda tidak memiliki aplikasi Twitter", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
+                    observer.onCompleted()
+                }))
+                DispatchQueue.main.async {
+                    self?.navigationController.present(alert, animated: true, completion: nil)
+                }
+                return Disposables.create()
+            })
+        }
         return Observable.just(())
     }
     

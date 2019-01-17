@@ -104,15 +104,15 @@ class PilpresViewController: UITableViewController {
                     
                     let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
                     let salin = UIAlertAction(title: "Salin Tautan", style: .default, handler: { (_) in
-                        observer.onNext(PilpresType.salin)
+                        observer.onNext(PilpresType.salin(data: feeds))
                         observer.on(.completed)
                     })
                     let bagikan = UIAlertAction(title: "Bagikan", style: .default, handler: { (_) in
-                        observer.onNext(PilpresType.bagikan)
+                        observer.onNext(PilpresType.bagikan(data: feeds))
                         observer.on(.completed)
                     })
                     let twitter = UIAlertAction(title: "Buka di Aplikasi Twitter", style: .default, handler: { (_) in
-                        observer.onNext(PilpresType.twitter)
+                        observer.onNext(PilpresType.twitter(data: feeds))
                         observer.on(.completed)
                     })
                     let cancel = UIAlertAction(title: "Batal", style: .cancel, handler: nil)

@@ -28,7 +28,7 @@ class PilpresViewModel: ViewModelType {
     struct Output {
         let feedsCells: Driver<[ICellConfigurator]>
         let moreSelected: Driver<Feeds>
-        let moreMenuSelected: Driver<Void>
+        let moreMenuSelected: Driver<String>
         let bannerInfo: Driver<BannerInfo>
         let infoSelected: Driver<Void>
         let filter: Driver<Void>
@@ -117,14 +117,26 @@ class PilpresViewModel: ViewModelType {
             .asObserver().asDriverOnErrorJustComplete()
     
         let moreMenuSelected = moreMenuSubject
-            .flatMapLatest({ (type) -> Observable<Void> in
+            .flatMapLatest({ (type) -> Observable<String> in
                 switch type {
-                case .salin:
-                    return navigator.sharePilpres(data: "data")
-                case .bagikan:
-                    return navigator.sharePilpres(data: "bagi")
-                case .twitter:
-                    return navigator.openTwitter(data: "www.twitter.com")
+                case .salin(let feeds):
+                    let contentToShare = feeds.source.text
+                    return navigator.sharePilpres(data: contentToShare)
+                        .map({ (_) -> String in
+                            return ""
+                        })
+                case .bagikan(let feeds):
+                    let contentToShare = feeds.source.text
+                    return navigator.sharePilpres(data: contentToShare)
+                        .map({ (_) -> String in
+                            return ""
+                        })
+                case .twitter(let feeds):
+                    let id = feeds.source.id
+                    return navigator.openTwitter(data: id)
+                        .map({ (_) -> String in
+                            return ""
+                        })
                 }
             })
             .asDriverOnErrorJustComplete()

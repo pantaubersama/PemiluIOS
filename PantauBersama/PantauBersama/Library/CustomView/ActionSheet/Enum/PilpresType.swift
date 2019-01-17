@@ -6,32 +6,12 @@
 //  Copyright © 2018 PantauBersama. All rights reserved.
 //
 import UIKit
+import Networking
 
-enum PilpresType: Int, CustomStringConvertible {
+enum PilpresType {
     
-    case salin
-    case bagikan
-    case twitter
+    case salin(data: Feeds)
+    case bagikan(data: Feeds)
+    case twitter(data: Feeds)
     
-    var image: UIImage? {
-        switch self {
-        case .salin:
-           return #imageLiteral(resourceName: "outlineLink24Px")
-        case .bagikan:
-            return #imageLiteral(resourceName: "outlineShare24Px")
-        case .twitter:
-            return #imageLiteral(resourceName: "twitter")
-        }
-    }
-    
-    var description: String {
-        switch self {
-        case .salin:
-            return "Salin Tautan"
-        case .bagikan:
-            return "Bagikan"
-        case .twitter:
-            return "Buka di Aplikasi Twitter"
-        }
-    }
 }
