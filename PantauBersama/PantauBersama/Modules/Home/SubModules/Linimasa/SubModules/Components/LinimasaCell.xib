@@ -18,29 +18,19 @@
                 <rect key="frame" x="0.0" y="0.0" width="394" height="147.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6MA-Hn-8KQ" customClass="RoundView" customModule="Common">
+                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6MA-Hn-8KQ" customClass="RoundView" customModule="Common">
                         <rect key="frame" x="16" y="31" width="40" height="40"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icDummyPerson" translatesAutoresizingMaskIntoConstraints="NO" id="vpl-MM-rZo" customClass="CircularUIImageView" customModule="Common">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icDummyPerson" translatesAutoresizingMaskIntoConstraints="NO" id="vpl-MM-rZo" customClass="CircularUIImageView" customModule="Common">
                                 <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icTwitterCircle" translatesAutoresizingMaskIntoConstraints="NO" id="1O5-VK-eg6">
-                                <rect key="frame" x="0.0" y="26" width="22" height="22"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="22" id="419-v5-EuX"/>
-                                    <constraint firstAttribute="width" constant="22" id="TcX-qg-C1L"/>
-                                </constraints>
-                            </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="40" id="0Km-AQ-jsJ"/>
-                            <constraint firstItem="vpl-MM-rZo" firstAttribute="top" secondItem="6MA-Hn-8KQ" secondAttribute="top" id="FXv-vb-0zb"/>
-                            <constraint firstItem="vpl-MM-rZo" firstAttribute="leading" secondItem="6MA-Hn-8KQ" secondAttribute="leading" id="HlC-ya-9it"/>
-                            <constraint firstAttribute="bottom" secondItem="1O5-VK-eg6" secondAttribute="bottom" constant="-8" id="ccw-Gm-9ke"/>
-                            <constraint firstAttribute="trailing" secondItem="vpl-MM-rZo" secondAttribute="trailing" id="kXd-h5-BoT"/>
-                            <constraint firstItem="1O5-VK-eg6" firstAttribute="leading" secondItem="6MA-Hn-8KQ" secondAttribute="leading" id="s8Z-e9-pno"/>
-                            <constraint firstAttribute="bottom" secondItem="vpl-MM-rZo" secondAttribute="bottom" id="sfR-kL-fcg"/>
+                            <constraint firstAttribute="bottom" secondItem="vpl-MM-rZo" secondAttribute="bottom" id="DUx-qT-TQi"/>
+                            <constraint firstItem="vpl-MM-rZo" firstAttribute="leading" secondItem="6MA-Hn-8KQ" secondAttribute="leading" id="agh-T6-fAk"/>
+                            <constraint firstAttribute="trailing" secondItem="vpl-MM-rZo" secondAttribute="trailing" id="fBd-Zo-fSC"/>
+                            <constraint firstItem="vpl-MM-rZo" firstAttribute="top" secondItem="6MA-Hn-8KQ" secondAttribute="top" id="sTW-E8-6ev"/>
                             <constraint firstAttribute="height" constant="40" id="vor-pt-EVq"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
@@ -49,6 +39,13 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icTwitterCircle" translatesAutoresizingMaskIntoConstraints="NO" id="1O5-VK-eg6">
+                        <rect key="frame" x="14" y="58" width="22" height="22"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="22" id="0B9-dd-0K5"/>
+                            <constraint firstAttribute="width" constant="22" id="Anq-a8-JNT"/>
+                        </constraints>
+                    </imageView>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="1O6-eJ-vtF">
                         <rect key="frame" x="64" y="14" width="314" height="119.5"/>
                         <subviews>
@@ -127,9 +124,11 @@
                 <constraints>
                     <constraint firstItem="NeP-4T-Gaz" firstAttribute="top" secondItem="sbp-4b-2nr" secondAttribute="firstBaseline" constant="14" id="2Hs-pE-GuT"/>
                     <constraint firstAttribute="trailing" secondItem="DhU-2g-ffc" secondAttribute="trailing" id="4zb-eu-IEi"/>
+                    <constraint firstItem="1O5-VK-eg6" firstAttribute="top" secondItem="6MA-Hn-8KQ" secondAttribute="bottomMargin" constant="-5" id="6Ad-3o-cId"/>
                     <constraint firstAttribute="trailing" secondItem="1O6-eJ-vtF" secondAttribute="trailing" constant="16" id="96R-9K-A15"/>
                     <constraint firstItem="1O6-eJ-vtF" firstAttribute="leading" secondItem="6MA-Hn-8KQ" secondAttribute="trailing" constant="8" id="CYd-ni-2o1"/>
                     <constraint firstItem="6MA-Hn-8KQ" firstAttribute="leading" secondItem="sbp-4b-2nr" secondAttribute="leading" constant="16" id="Gbw-cl-5AP"/>
+                    <constraint firstItem="1O5-VK-eg6" firstAttribute="leading" secondItem="6MA-Hn-8KQ" secondAttribute="leadingMargin" constant="-10" id="HG4-oS-m7n"/>
                     <constraint firstAttribute="bottom" secondItem="DhU-2g-ffc" secondAttribute="bottom" id="KFC-YS-UYA"/>
                     <constraint firstItem="1O6-eJ-vtF" firstAttribute="top" secondItem="sbp-4b-2nr" secondAttribute="top" constant="14" id="LYa-uE-ZXH"/>
                     <constraint firstItem="6MA-Hn-8KQ" firstAttribute="top" secondItem="NeP-4T-Gaz" secondAttribute="bottom" constant="5" id="Tnm-T2-CqF"/>
