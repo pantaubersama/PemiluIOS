@@ -50,11 +50,8 @@
                         <constraint firstAttribute="height" constant="240" id="wV5-EP-rLS"/>
                     </constraints>
                 </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pXC-l8-C1s">
-                    <rect key="frame" x="36" y="468.5" width="303" height="61.5"/>
-                    <string key="text">Yapp, Selamat
-
-Dalam proses pengecekan</string>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yaay! Akunmu sudah lengkap untuk proses verifikasi!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pXC-l8-C1s">
+                    <rect key="frame" x="36" y="468.5" width="303" height="41"/>
                     <fontDescription key="fontDescription" name="BwModelicaSS01-BoldCondensed" family="Bw Modelica SS01" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>

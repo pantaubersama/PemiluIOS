@@ -79,7 +79,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="47" id="agB-vH-NWp"/>
                     </constraints>
-                    <state key="normal" title="Lanjut">
+                    <state key="normal" title="LANJUT">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
                     <userDefinedRuntimeAttributes>
@@ -126,10 +126,13 @@
                                         <userDefinedRuntimeAttribute type="string" keyPath="typeLabel" value="bold"/>
                                     </userDefinedRuntimeAttributes>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pastikan seluruh bagian KTP anda breada dalam bingkai foto ( KTP asli dan bukan fotokopi KTP)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dM8-Bg-nZs" customClass="Label" customModule="Common">
-                                    <rect key="frame" x="0.5" y="282" width="245.5" height="62"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Potret foto KTP asli kamu dan pastikan semua terlihat jelas dalam satu frame." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dM8-Bg-nZs" customClass="Label" customModule="Common">
+                                    <rect key="frame" x="3.5" y="282" width="239.5" height="60"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="60" id="j2Q-np-fph"/>
+                                    </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <color key="textColor" red="0.48628133540000001" green="0.4862622023" blue="0.48627519609999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     <nil key="highlightedColor"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
@@ -138,10 +141,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Siap?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XhG-3H-YsC" customClass="Label" customModule="Common">
-                                    <rect key="frame" x="103.5" y="354" width="39.5" height="22"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="22" id="AJn-ZM-pql"/>
-                                    </constraints>
+                                    <rect key="frame" x="103.5" y="352" width="39.5" height="24"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" red="0.48628133540000001" green="0.4862622023" blue="0.48627519609999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     <nil key="highlightedColor"/>
@@ -154,8 +154,8 @@
                                 </label>
                             </subviews>
                             <constraints>
-                                <constraint firstItem="8BN-64-8Po" firstAttribute="leading" secondItem="MS3-9l-Mhp" secondAttribute="leading" id="ASd-cC-Zxq"/>
-                                <constraint firstAttribute="trailing" secondItem="8BN-64-8Po" secondAttribute="trailing" id="Rlj-Av-l10"/>
+                                <constraint firstAttribute="trailing" secondItem="8BN-64-8Po" secondAttribute="trailing" id="Nct-VW-1jC"/>
+                                <constraint firstItem="8BN-64-8Po" firstAttribute="leading" secondItem="MS3-9l-Mhp" secondAttribute="leading" id="tdo-S4-AC4"/>
                             </constraints>
                         </stackView>
                     </subviews>

@@ -35,14 +35,14 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
                 <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="verifyFace" translatesAutoresizingMaskIntoConstraints="NO" id="u46-kD-Pbf">
-                    <rect key="frame" x="112.5" y="120" width="150" height="220"/>
+                    <rect key="frame" x="112.5" y="80" width="150" height="220"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="220" id="7R5-nB-1MD"/>
                         <constraint firstAttribute="width" constant="150" id="MHl-kx-svK"/>
                     </constraints>
                 </imageView>
                 <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="verifyId" translatesAutoresizingMaskIntoConstraints="NO" id="wJs-fn-ibA">
-                    <rect key="frame" x="104" y="390" width="167" height="97"/>
+                    <rect key="frame" x="104" y="350" width="167" height="97"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="97" id="9uO-D5-AhS"/>
                         <constraint firstAttribute="width" constant="167" id="EJv-16-eZS"/>
@@ -115,7 +115,7 @@
                 <constraint firstItem="aMb-93-nPk" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="KQX-dg-dyi"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Hon-rv-9jE" secondAttribute="trailing" id="Lzd-s5-JRM"/>
                 <constraint firstItem="RvA-Mg-C11" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Nyl-77-ycZ"/>
-                <constraint firstItem="u46-kD-Pbf" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="100" id="TY8-Gw-AVQ"/>
+                <constraint firstItem="u46-kD-Pbf" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="80" id="TY8-Gw-AVQ"/>
                 <constraint firstItem="Hon-rv-9jE" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="WtR-X5-bfa"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="rEY-FW-cbW" secondAttribute="trailing" id="aaE-wj-0N4"/>
                 <constraint firstItem="wJs-fn-ibA" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="cj5-rh-JgQ"/>

@@ -38,7 +38,7 @@ class SelfIdentitasCoordinator: BaseCoordinator<Void> {
 
 extension SelfIdentitasCoordinator: SelfIdentitasNavigator {
     func launchKTP() -> Observable<Void> {
-        print("AKU DISINI")
-        return Observable.never()
+        let ktpCoordinator = KTPCoordinator(navigationController: navigationController)
+        return coordinate(to: ktpCoordinator)
     }
 }
