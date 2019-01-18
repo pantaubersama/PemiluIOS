@@ -43,6 +43,10 @@ class SearchCoordinator: BaseCoordinator<Void> {
 }
 
 extension SearchCoordinator: SearchNavigator {
+    func launchUpdates(type: TypeUpdates) -> Observable<Void> {
+        return Observable.empty()
+    }
+    
     func launcWebView(link: String) -> Observable<Void> {
         return Observable.never()
     }

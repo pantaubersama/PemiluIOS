@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UpdatesView" customModule="PantauBersama" customModuleProvider="target">
+            <connections>
+                <outlet property="btnForceUpdate" destination="7sx-SI-ry4" id="5r0-yb-haJ"/>
+                <outlet property="btnSkipUpdate" destination="BTA-pj-At7" id="VMA-rB-J8d"/>
+                <outlet property="btnUpdateNow" destination="2nn-gZ-pLI" id="3mj-3b-2rn"/>
+                <outlet property="lblInfo" destination="hSR-3j-2Xb" id="YNy-rK-CUJ"/>
+                <outlet property="view" destination="UoR-qn-CBB" id="T8t-PS-b67"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="UoR-qn-CBB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tad-st-j8E" customClass="RoundView" customModule="Common">
+                    <rect key="frame" x="0.0" y="387" width="375" height="280"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Wb9-9S-qSX">
+                            <rect key="frame" x="40" y="32" width="295" height="184"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconPantau" translatesAutoresizingMaskIntoConstraints="NO" id="tFt-Qr-lBB">
+                                    <rect key="frame" x="64" y="0.0" width="167" height="93"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="167" id="Euq-zU-Xtp"/>
+                                        <constraint firstAttribute="height" constant="93" id="T1R-u8-Vup"/>
+                                    </constraints>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ada fitur baru pada aplikasi Pantau Bersama " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hSR-3j-2Xb" customClass="Label" customModule="Common">
+                                    <rect key="frame" x="12" y="103" width="271.5" height="81"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                            <real key="value" value="14"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </label>
+                            </subviews>
+                        </stackView>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A6u-j5-bvN">
+                            <rect key="frame" x="0.0" y="232" width="375" height="48"/>
+                            <subviews>
+                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="LIh-sS-y19">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="48"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BTA-pj-At7" customClass="Button" customModule="Common">
+                                            <rect key="frame" x="0.0" y="0.0" width="187.5" height="48"/>
+                                            <state key="normal" title="Nanti Saja">
+                                                <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </state>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="typeButton" value="bold"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2nn-gZ-pLI" customClass="Button" customModule="Common">
+                                            <rect key="frame" x="187.5" y="0.0" width="187.5" height="48"/>
+                                            <state key="normal" title="Perbarui Sekarang">
+                                                <color key="titleColor" red="0.68041622639999999" green="0.1499232352" blue="0.14898997550000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            </state>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="typeButton" value="bold"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </button>
+                                    </subviews>
+                                </stackView>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="LIh-sS-y19" firstAttribute="top" secondItem="A6u-j5-bvN" secondAttribute="top" id="BNm-c8-c14"/>
+                                <constraint firstAttribute="trailing" secondItem="LIh-sS-y19" secondAttribute="trailing" id="Ex9-g1-MJv"/>
+                                <constraint firstItem="LIh-sS-y19" firstAttribute="leading" secondItem="A6u-j5-bvN" secondAttribute="leading" id="Fsj-FV-EmB"/>
+                                <constraint firstAttribute="bottom" secondItem="LIh-sS-y19" secondAttribute="bottom" id="cIb-ph-TzB"/>
+                                <constraint firstAttribute="height" constant="48" id="kdU-Kw-1Ua"/>
+                            </constraints>
+                        </view>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7sx-SI-ry4" customClass="Button" customModule="Common">
+                            <rect key="frame" x="0.0" y="232" width="375" height="48"/>
+                            <color key="backgroundColor" red="0.68041622639999999" green="0.1499232352" blue="0.14898997550000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="48" id="pV1-tS-8D1"/>
+                            </constraints>
+                            <state key="normal" title="PERBARUI SEKARANG">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="A6u-j5-bvN" secondAttribute="trailing" id="5YD-p8-Crg"/>
+                        <constraint firstAttribute="trailing" secondItem="7sx-SI-ry4" secondAttribute="trailing" id="Fz4-ku-PNk"/>
+                        <constraint firstItem="Wb9-9S-qSX" firstAttribute="leading" secondItem="Tad-st-j8E" secondAttribute="leading" constant="40" id="L8j-DB-R5F"/>
+                        <constraint firstItem="Wb9-9S-qSX" firstAttribute="bottom" secondItem="7sx-SI-ry4" secondAttribute="top" constant="-16" id="LYb-M3-8ke"/>
+                        <constraint firstAttribute="bottom" secondItem="7sx-SI-ry4" secondAttribute="bottom" id="MRE-a3-P0r"/>
+                        <constraint firstItem="Wb9-9S-qSX" firstAttribute="top" secondItem="Tad-st-j8E" secondAttribute="top" constant="32" id="O3D-qY-p1M"/>
+                        <constraint firstItem="A6u-j5-bvN" firstAttribute="leading" secondItem="Tad-st-j8E" secondAttribute="leading" id="Tia-p4-j1h"/>
+                        <constraint firstAttribute="height" constant="280" id="Vf1-8q-8Uk"/>
+                        <constraint firstItem="A6u-j5-bvN" firstAttribute="bottom" secondItem="Tad-st-j8E" secondAttribute="bottom" id="gnj-4y-aHd"/>
+                        <constraint firstItem="7sx-SI-ry4" firstAttribute="leading" secondItem="Tad-st-j8E" secondAttribute="leading" id="hgD-nh-RMc"/>
+                        <constraint firstAttribute="trailing" secondItem="Wb9-9S-qSX" secondAttribute="trailing" constant="40" id="s8f-Mo-zbL"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="leftRadius">
+                            <real key="value" value="0.0"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="rightRadius">
+                            <real key="value" value="0.0"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="11"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="Tad-st-j8E" firstAttribute="trailing" secondItem="OpN-eB-SME" secondAttribute="trailing" id="sd0-Yh-pok"/>
+                <constraint firstItem="OpN-eB-SME" firstAttribute="bottom" secondItem="Tad-st-j8E" secondAttribute="bottom" id="xed-LY-A23"/>
+                <constraint firstItem="Tad-st-j8E" firstAttribute="leading" secondItem="OpN-eB-SME" secondAttribute="leading" id="y7t-ih-DUK"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="OpN-eB-SME"/>
+            <point key="canvasLocation" x="-189.59999999999999" y="-37.331334332833585"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="iconPantau" width="168" height="94"/>
+    </resources>
+</document>

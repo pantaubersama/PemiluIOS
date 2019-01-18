@@ -73,6 +73,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             FirebaseApp.configure(options: options!)
         #endif
         
+        // MARK: Check version
+        
+        
         return true
     }
 
@@ -173,9 +176,6 @@ extension AppDelegate {
                                         redirectURI: AppContext.instance.infoForKey("REDIRECT_URI")),
             c: IdentitasResponses.self)
             .subscribe(onSuccess: { (response) in
-                print("AccessTokenIdentitas: \(response.accessToken)")
-                print("RefreshTokenIdentitas: \(response.refreshToken)")
-                
                 // MARK
                 // Exchange token identitas to get token pantau
                 // Save this token
@@ -186,22 +186,14 @@ extension AppDelegate {
                     .subscribe(onSuccess: { (response) in
                         KeychainService.remove(type: NetworkKeychainKind.token)
                         KeychainService.remove(type: NetworkKeychainKind.refreshToken)
-                        print("AccessToken:...\(response.data?.accessToken ?? "")")
-                        print("RefreshToken:...\(response.data?.refreshToken ?? "")")
                         AppState.save(response)
                         self.appCoordinator = AppCoordinator(window: self.window!)
                         self.appCoordinator.start()
                             .subscribe()
                             .disposed(by: self.disposeBag)
-                    }, onError: { (error) in
-                        // error from callback auth pantau
-                        print(error.localizedDescription)
                     })
                     .disposed(by: self.disposeBag)
-            }) { (error) in
-                // error from Identitas
-                print(error.localizedDescription)
-            }
+            })
             .disposed(by: disposeBag)
     }
 }

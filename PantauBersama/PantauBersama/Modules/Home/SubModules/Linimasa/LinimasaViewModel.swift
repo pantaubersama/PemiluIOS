@@ -34,6 +34,7 @@ final class LinimasaViewModel: ViewModelType {
         let profileSelected: Driver<Void>
         let userO: Driver<UserResponse>
         let catatanSelected: Driver<Void>
+        let updatesO: Driver<Void>
     }
     
     let navigator: LinimasaNavigator
@@ -100,12 +101,35 @@ final class LinimasaViewModel: ViewModelType {
             .flatMapLatest({ Observable.merge(cloud, local) })
             .asDriverOnErrorJustComplete()
         
+        // TODO
+        // Check for updates minor, feature and force
+        let cloudVersion = viewWillppearS
+            .flatMapLatest { (_) -> Observable<AppVersionResponse> in
+                return NetworkService
+                    .instance.requestObject(
+                        LinimasaAPI.appVersions(type: "ios"),
+                        c: BaseResponse<AppVersionResponse>.self)
+                    .map({ $0.data })
+                    .asObservable()
+        }
+        
+        let versions = cloudVersion
+            .flatMapLatest { (version) -> Observable<Void> in
+                if version.app.forceUpdate == true {
+                    return navigator.launchUpdates(type: .major)
+                } else {
+                    // will check versioning
+                    return Observable.empty()
+                }
+        }
+        
         output = Output(searchSelected: search,
                         filterSelected: filter,
                         addSelected: add,
                         profileSelected: profile,
                         userO: userData,
-                        catatanSelected: note)
+                        catatanSelected: note,
+                        updatesO: versions.asDriverOnErrorJustComplete())
     }
     
 }

@@ -311,6 +311,10 @@
 		84FE6EBE21D5FEA1009A0F55 /* Network+AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FE6EBD21D5FEA1009A0F55 /* Network+AlertController.swift */; };
 		84FE6EC421D634CD009A0F55 /* BiodataView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84FE6EC321D634CD009A0F55 /* BiodataView.xib */; };
 		84FE6EC621D6361C009A0F55 /* BiodataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FE6EC521D6361C009A0F55 /* BiodataView.swift */; };
+		84FF8A9421F2180F00AA8CF3 /* UpdatesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84FF8A9321F2180F00AA8CF3 /* UpdatesView.xib */; };
+		84FF8A9621F21A8300AA8CF3 /* UpdatesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FF8A9521F21A8300AA8CF3 /* UpdatesView.swift */; };
+		84FF8A9921F21D0000AA8CF3 /* UpdatesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FF8A9821F21D0000AA8CF3 /* UpdatesCoordinator.swift */; };
+		84FF8A9F21F21F3A00AA8CF3 /* UpdatesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FF8A9E21F21F3A00AA8CF3 /* UpdatesViewModel.swift */; };
 		F9E6A81363EEA62DC5165AFE /* Pods_PantauBersama.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37664EC0D75D639FE37581C6 /* Pods_PantauBersama.framework */; };
 /* End PBXBuildFile section */
 
@@ -654,6 +658,10 @@
 		84FE6EBD21D5FEA1009A0F55 /* Network+AlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Network+AlertController.swift"; sourceTree = "<group>"; };
 		84FE6EC321D634CD009A0F55 /* BiodataView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BiodataView.xib; sourceTree = "<group>"; };
 		84FE6EC521D6361C009A0F55 /* BiodataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiodataView.swift; sourceTree = "<group>"; };
+		84FF8A9321F2180F00AA8CF3 /* UpdatesView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UpdatesView.xib; sourceTree = "<group>"; };
+		84FF8A9521F21A8300AA8CF3 /* UpdatesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatesView.swift; sourceTree = "<group>"; };
+		84FF8A9821F21D0000AA8CF3 /* UpdatesCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatesCoordinator.swift; sourceTree = "<group>"; };
+		84FF8A9E21F21F3A00AA8CF3 /* UpdatesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatesViewModel.swift; sourceTree = "<group>"; };
 		C4CBA51E95EB1AE7C2940BC0 /* Pods_PantauBersama_PantauBersamaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PantauBersama_PantauBersamaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -1882,6 +1890,7 @@
 		84E2854121CA189B00298E31 /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
+				84FF8A9221F217FB00AA8CF3 /* Updates */,
 				84CA10BD21EF0DCF0025CF10 /* About */,
 				11145F6721EB471C0046F2AA /* MenuBar */,
 				848B039A21E7AA9F002CAA40 /* WKWebview */,
@@ -1997,6 +2006,25 @@
 				84F892B421C7887800DC1048 /* BwModelicaSS01-BoldCondensed.otf */,
 			);
 			path = BWModelica;
+			sourceTree = "<group>";
+		};
+		84FF8A9221F217FB00AA8CF3 /* Updates */ = {
+			isa = PBXGroup;
+			children = (
+				84FF8A9821F21D0000AA8CF3 /* UpdatesCoordinator.swift */,
+				84FF8A9721F21CE800AA8CF3 /* ViewController */,
+				84FF8A9E21F21F3A00AA8CF3 /* UpdatesViewModel.swift */,
+			);
+			path = Updates;
+			sourceTree = "<group>";
+		};
+		84FF8A9721F21CE800AA8CF3 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				84FF8A9321F2180F00AA8CF3 /* UpdatesView.xib */,
+				84FF8A9521F21A8300AA8CF3 /* UpdatesView.swift */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -2126,6 +2154,7 @@
 				84B6D6F121E24CAA00CD4BC8 /* ShareBadgeController.xib in Resources */,
 				84E2854D21CA4BC800298E31 /* FilterViewController.xib in Resources */,
 				1143E81221E23229003862B6 /* loading-pantau.json in Resources */,
+				84FF8A9421F2180F00AA8CF3 /* UpdatesView.xib in Resources */,
 				84B7B8CC21E5B24B0099E7E3 /* AddKategoriController.xib in Resources */,
 				84F892AB21C787D800DC1048 /* Lato-BoldItalic.ttf in Resources */,
 				11145F6621EB44920046F2AA /* CustomMenuCell.xib in Resources */,
@@ -2446,6 +2475,7 @@
 				11B145F821D72D9B00BB26C8 /* CreateAskHeaderView.swift in Sources */,
 				844C3D7621C51EAF00199871 /* BaseCoordinator.swift in Sources */,
 				11E1079A21CD14A400B7B074 /* QuizViewModel.swift in Sources */,
+				84FF8A9621F21A8300AA8CF3 /* UpdatesView.swift in Sources */,
 				13812C2B21CAA71F00CAB327 /* PenpolCoordinator.swift in Sources */,
 				11E1079421CD101900B7B074 /* QuizDetailCoordinator.swift in Sources */,
 				842A4A0B21D7EAA60050AA51 /* SignatureViewModel.swift in Sources */,
@@ -2472,6 +2502,7 @@
 				8452A4D421DE55DE00196043 /* SosmedCoordinator.swift in Sources */,
 				11E107A821CD33CA00B7B074 /* CreateJanjiCoordinator.swift in Sources */,
 				11E107A721CD33CA00B7B074 /* CreateJanjiViewModel.swift in Sources */,
+				84FF8A9921F21D0000AA8CF3 /* UpdatesCoordinator.swift in Sources */,
 				842A4A0921D7EA990050AA51 /* SignatureCoordinator.swift in Sources */,
 				8452A4D221DE54B800196043 /* SosmedViewModel.swift in Sources */,
 				845C570221CD1AEB00EDCDFE /* ProfileController.swift in Sources */,
@@ -2633,6 +2664,7 @@
 				842A4A0721D7E4740050AA51 /* KTPViewModel.swift in Sources */,
 				84A07FC621D14F3800269C6B /* ReqClusterCoordinator.swift in Sources */,
 				84E2855321CA524200298E31 /* FilterCoordinator.swift in Sources */,
+				84FF8A9F21F21F3A00AA8CF3 /* UpdatesViewModel.swift in Sources */,
 				848B03A121E7B5DE002CAA40 /* WKWebViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
