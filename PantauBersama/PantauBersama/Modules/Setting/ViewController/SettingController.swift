@@ -87,7 +87,7 @@ class SettingController: UITableViewController {
         
         viewModel.output.itemsO
             .do(onNext: { [weak self] (_) in
-                self?.refreshControl?.endRefreshing()
+                self?.tableView.refreshControl?.endRefreshing()
             })
             .drive(tableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
@@ -105,7 +105,8 @@ class SettingController: UITableViewController {
             .disposed(by: disposeBag)
         
         viewModel.output.facebookMeO
-            .do(onNext: { (n,_,_,_,_) in
+            .do(onNext: { [weak self] (n,_,_,_,_) in
+                self?.tableView.refreshControl?.sendActions(for: .valueChanged)
                 if let username = n {
                     UserDefaults.Account.set("Connected as \(username)", forKey: .usernameFacebook)
                 }
@@ -125,6 +126,14 @@ class SettingController: UITableViewController {
                 self?.navigationController?.present(alert, animated: true, completion: nil)
             })
             .disposed(by: disposeBag)
+        
+        viewModel.output.meO
+            .do(onNext: { [weak self] (user) in
+                guard let `self` = self else { return }
+                self.data = user
+            })
+            .drive()
+            .disposed(by: disposeBag)
        
     }
     
@@ -132,10 +141,7 @@ class SettingController: UITableViewController {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.configure(with: .white)
         viewModel.input.viewWillAppearTrigger.onNext(())
-        viewModel.input.viewControllerTrigger.onNext((self.presentedViewController))
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
+        viewModel.input.refreshI.onNext(())
     }
 }
 
