@@ -41,11 +41,14 @@ extension BadgeCell: IReusableCell {
     
     func configureCell(item: Input) {
         let bag = DisposeBag()
-        if let thumbnail = item.badges.image.thumbnail.url {
-            item.isAchieved ?
-                iconBadges.af_setImage(withURL: URL(string: thumbnail)!) :
-                // use gray images from url
+        if item.isAchieved == true {
+            if let thumbnail = item.badges.image.thumbnail.url {
                 iconBadges.af_setImage(withURL: URL(string: thumbnail)!)
+            }
+        } else {
+            if let thumbnail = item.badges.imageGrey?.thumbnail.url {
+                iconBadges.af_setImage(withURL: URL(string: thumbnail)!)
+            }
         }
         nameBadges.text = item.badges.name
         descriptionBadges.text = item.badges.description

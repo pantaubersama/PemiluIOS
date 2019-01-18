@@ -45,6 +45,7 @@ public struct Badges: Codable {
     public var name: String?
     public var description: String?
     public var image: Avatar
+    public var imageGrey: AvatarGrey?
     public var position: Int
     
     
@@ -60,6 +61,25 @@ public struct Badges: Codable {
         public struct ImageSize: Codable {
             public let url: String?
         }
+    }
+    
+    public struct AvatarGrey: Codable {
+        public let url: String?
+        public let thumbnail, thumbnailSquare: ImageSize
+        
+        enum CodingKeys: String, CodingKey {
+            case url, thumbnail
+            case thumbnailSquare = "thumbnail_square"
+        }
+        
+        public struct ImageSize: Codable {
+            public let url: String?
+        }
+    }
+    
+    private enum CodingKeys: String, CodingKey {
+        case id, name, description, position, image
+        case imageGrey = "image_gray"
     }
 }
 
