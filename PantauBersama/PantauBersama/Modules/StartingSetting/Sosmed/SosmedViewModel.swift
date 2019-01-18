@@ -65,19 +65,32 @@ final class SosmedViewModel: ViewModelType {
             facebookGraphI: facebookGraphS.asObserver()
         )
         
-        let refresh = refreshS.startWith(())
+        let cloudMe = Observable.merge(viewWillAppearS.asObservable(),
+                                       refreshS.asObservable())
+            .flatMapLatest { (_) -> Observable<User> in
+                return NetworkService.instance
+                    .requestObject(PantauAuthAPI.me,
+                                   c: BaseResponse<UserResponse>.self)
+                    .map({ $0.data.user })
+                    .trackError(errorTracker)
+                    .trackActivity(activityIndicator)
+                    .asObservable()
+                    .catchErrorJustComplete()
+            }
         
-        let items = Observable.just([
-            SectionOfSettingData(header: "Twitter", items: [
-                SettingData.twitter
-                ]),
-            SectionOfSettingData(header: "Facebook", items: [
-                SettingData.facebook
-                ])
-            ])
+        let items = cloudMe
+            .flatMapLatest { (user) -> Observable<[SectionOfSettingData]> in
+                return Observable.just([
+                    SectionOfSettingData(header: "Twitter", items: [
+                        SettingData.twitter(data: user)
+                        ]),
+                    SectionOfSettingData(header: "Facebook", items: [
+                        SettingData.facebook(data: user)
+                        ])
+                    ])
+            }
         
-        let item = Observable.combineLatest(viewWillAppearS, refresh)
-            .withLatestFrom(items)
+        let item = items
             .asDriverOnErrorJustComplete()
         
         let done = doneS

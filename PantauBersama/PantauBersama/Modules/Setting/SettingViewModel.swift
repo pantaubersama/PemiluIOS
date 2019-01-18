@@ -19,7 +19,6 @@ protocol ISettingViewModelInput {
     var itemSelectedI: AnyObserver<IndexPath> { get }
     var viewWillAppearTrigger: AnyObserver<Void> { get }
     var itemTwitterI: AnyObserver<String> { get }
-    var viewControllerTrigger: AnyObserver<UIViewController?> { get }
     var facebookI: AnyObserver<String> { get }
     var facebookGraphI: AnyObserver<Void> { get }
     var refreshI: AnyObserver<Void> { get }
@@ -33,6 +32,7 @@ protocol ISettingViewModelOutput {
     var facebookMeO: Driver<MeFacebookResponse> { get }
     var loadingO: Driver<Bool> { get }
     var errorO: Driver<Error> { get }
+    var meO: Driver<User> { get }
 }
 
 protocol ISettingViewModel {
@@ -54,7 +54,6 @@ final class SettingViewModel: ISettingViewModel, ISettingViewModelInput, ISettin
     var itemSelectedI: AnyObserver<IndexPath>
     var viewWillAppearTrigger: AnyObserver<Void>
     var itemTwitterI: AnyObserver<String>
-    var viewControllerTrigger: AnyObserver<UIViewController?>
     var facebookI: AnyObserver<String>
     var facebookGraphI: AnyObserver<Void>
     var refreshI: AnyObserver<Void>
@@ -67,6 +66,7 @@ final class SettingViewModel: ISettingViewModel, ISettingViewModelInput, ISettin
     var facebookMeO: Driver<MeFacebookResponse>
     var loadingO: Driver<Bool>
     var errorO: Driver<Error>
+    var meO: Driver<User>
     
     
     private let backS = PublishSubject<Void>()
@@ -92,56 +92,55 @@ final class SettingViewModel: ISettingViewModel, ISettingViewModelInput, ISettin
         itemSelectedI = itemSelectedS.asObserver()
         viewWillAppearTrigger = viewWillAppearS.asObserver()
         itemTwitterI = itemTwitterS.asObserver()
-        viewControllerTrigger = viewControllerS.asObserver()
         facebookI = facebookS.asObserver()
         facebookGraphI = facebookGraphS.asObserver()
         refreshI = refreshS.asObserver()
         
-        let cloudMe = NetworkService.instance
-            .requestObject(PantauAuthAPI.me,
-                           c: BaseResponse<UserResponse>.self)
-            .map({ $0.data.user })
-            .trackError(errorTracker)
-            .trackActivity(activityIndicator)
-            .asObservable()
-            .catchErrorJustComplete()
+        let cloudMe = Observable.merge(
+            viewWillAppearS.asObservable(),
+            refreshS.asObservable())
+            .flatMapLatest { (_) -> Observable<User> in
+                return NetworkService.instance
+                    .requestObject(PantauAuthAPI.me,
+                                   c: BaseResponse<UserResponse>.self)
+                    .map({ $0.data.user })
+                    .trackError(errorTracker)
+                    .trackActivity(activityIndicator)
+                    .asObservable()
+                    .catchErrorJustComplete()
+            }
         
-        let userLocal = Observable.just(data)
-        let userCombined = viewWillAppearS
-            .flatMapLatest({ Observable.merge(userLocal, cloudMe)})
-            .map({ $0 })
+        let item = cloudMe
+            .flatMapLatest { (user) -> Observable<[SectionOfSettingData]> in
+                return Observable.just([
+                    SectionOfSettingData(header: nil, items: [
+                        SettingData.updateProfile,
+                        SettingData.updatePassword,
+                        SettingData.updateDataLapor,
+                        SettingData.verifikasi,
+                        SettingData.badge
+                        ]),
+                    SectionOfSettingData(header: "Twitter", items: [
+                        SettingData.twitter(data: user)
+                        ]),
+                    SectionOfSettingData(header: "Facebook", items: [
+                        SettingData.facebook(data: user)
+                        ]),
+                    SectionOfSettingData(header: "Cluster", items: [
+                        SettingData.cluster
+                        ]),
+                    SectionOfSettingData(header: "Support", items: [
+                        SettingData.pusatBantuan,
+                        SettingData.pedomanKomunitas,
+                        SettingData.tentang,
+                        SettingData.rate,
+                        SettingData.share
+                        ]),
+                    SectionOfSettingData(header: nil, items: [
+                        SettingData.logout ])])
+            }
         
-        let refresh = refreshS.startWith(())
-        
-        let item = Observable.just([
-                SectionOfSettingData(header: nil, items: [
-                SettingData.updateProfile,
-                SettingData.updatePassword,
-                SettingData.updateDataLapor,
-                SettingData.verifikasi,
-                SettingData.badge
-            ]),
-            SectionOfSettingData(header: "Twitter", items: [
-                SettingData.twitter
-            ]),
-            SectionOfSettingData(header: "Facebook", items: [
-                SettingData.facebook
-            ]),
-            SectionOfSettingData(header: "Cluster", items: [
-                SettingData.cluster
-            ]),
-            SectionOfSettingData(header: "Support", items: [
-                SettingData.pusatBantuan,
-                SettingData.pedomanKomunitas,
-                SettingData.tentang,
-                SettingData.rate,
-                SettingData.share
-            ]),
-        SectionOfSettingData(header: nil, items: [
-            SettingData.logout ])])
-        
-        let items = Observable.combineLatest(viewWillAppearS, refresh)
-            .withLatestFrom(item)
+        let items = item
             .asDriverOnErrorJustComplete()
         
         let verifikasi = NetworkService.instance.requestObject(
@@ -184,8 +183,8 @@ final class SettingViewModel: ISettingViewModel, ISettingViewModelInput, ISettin
                     } else {
                         return navigator.launchAlertCluster()
                     }
-                case .twitter:
-                    if data.twitter == true {
+                case .twitter(let user):
+                    if user.twitter == true {
                         return navigator.launchTwitterAlert()
                     } else {
                         return TWTRTwitter.sharedInstance().loginTwitter()
@@ -206,8 +205,8 @@ final class SettingViewModel: ISettingViewModel, ISettingViewModelInput, ISettin
                             })
                             .mapToVoid()
                     }
-                case .facebook:
-                    if data.facebook == true {
+                case .facebook(let user):
+                    if user.facebook == true {
                         return navigator.launchFacebookAlert()
                     } else {
                         return Observable.empty()
@@ -255,6 +254,7 @@ final class SettingViewModel: ISettingViewModel, ISettingViewModelInput, ISettin
         facebookMeO = meFacebook.asDriverOnErrorJustComplete()
         loadingO = activityIndicator.asDriver()
         errorO = errorTracker.asDriver()
+        meO = cloudMe.asDriverOnErrorJustComplete()
     }
     
 }

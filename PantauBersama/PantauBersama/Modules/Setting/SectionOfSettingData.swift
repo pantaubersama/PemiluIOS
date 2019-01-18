@@ -9,15 +9,16 @@
 import Foundation
 import RxDataSources
 import UIKit
+import Networking
 
-enum SettingData: Int {
+enum SettingData {
     case updateProfile
     case updatePassword
     case updateDataLapor
     case verifikasi
     case badge
-    case twitter
-    case facebook
+    case twitter(data: User)
+    case facebook(data: User)
     case cluster
     case pusatBantuan
     case pedomanKomunitas

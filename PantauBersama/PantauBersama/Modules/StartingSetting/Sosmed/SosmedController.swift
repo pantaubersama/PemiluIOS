@@ -118,7 +118,8 @@ class SosmedController: UITableViewController {
             .disposed(by: disposeBag)
         
         viewModel.output.facebookMeO
-            .do(onNext: { (n,_,_,_,_) in
+            .do(onNext: { [weak self] (n,_,_,_,_) in
+                self?.tableView.refreshControl?.sendActions(for: .valueChanged)
                 if let username = n {
                     UserDefaults.Account.set("Connected as \(username)", forKey: .usernameFacebook)
                 }
@@ -131,7 +132,7 @@ class SosmedController: UITableViewController {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.configure(with: .white)
         viewModel.input.viewWillAppearI.onNext(())
-        
+        viewModel.input.refreshI.onNext(())
     }
     
 }
