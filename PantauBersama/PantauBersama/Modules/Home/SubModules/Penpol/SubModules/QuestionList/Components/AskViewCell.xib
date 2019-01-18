@@ -210,7 +210,7 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ask 8 days ago" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rFT-2r-6Wi" customClass="Label" customModule="Common">
-                        <rect key="frame" x="242" y="11" width="60" height="28"/>
+                        <rect key="frame" x="246.5" y="11" width="57.5" height="28"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="28" id="J23-7h-XkX"/>
                         </constraints>
@@ -234,7 +234,7 @@
                     <constraint firstItem="e7O-xs-yBC" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="M8I-HK-BXi"/>
                     <constraint firstItem="Axi-i4-D7b" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11" id="OIm-Xh-8tt"/>
                     <constraint firstItem="Axi-i4-D7b" firstAttribute="leading" secondItem="aOn-rt-VCD" secondAttribute="leading" id="XwP-sQ-J9h"/>
-                    <constraint firstAttribute="trailing" secondItem="rFT-2r-6Wi" secondAttribute="trailing" constant="20" id="Yag-vX-UI7"/>
+                    <constraint firstAttribute="trailing" secondItem="rFT-2r-6Wi" secondAttribute="trailing" constant="18" id="Yag-vX-UI7"/>
                     <constraint firstAttribute="trailing" secondItem="e7O-xs-yBC" secondAttribute="trailing" id="dgK-m7-8LX"/>
                     <constraint firstItem="aOn-rt-VCD" firstAttribute="leading" secondItem="ieX-MR-89K" secondAttribute="trailing" constant="7" id="dsM-eF-xA3"/>
                     <constraint firstItem="rFT-2r-6Wi" firstAttribute="centerY" secondItem="MWQ-A9-Ubk" secondAttribute="centerY" id="fVq-tD-R0q"/>
@@ -242,7 +242,6 @@
                     <constraint firstItem="yCk-mR-ztm" firstAttribute="leading" secondItem="aOn-rt-VCD" secondAttribute="leading" id="kHu-7X-vtv"/>
                     <constraint firstAttribute="bottom" secondItem="e7O-xs-yBC" secondAttribute="bottom" id="l3n-T5-kqd"/>
                     <constraint firstAttribute="trailing" secondItem="aOn-rt-VCD" secondAttribute="trailing" constant="17" id="tzT-f4-RuD"/>
-                    <constraint firstItem="rFT-2r-6Wi" firstAttribute="leading" secondItem="Axi-i4-D7b" secondAttribute="trailing" id="uhG-vB-TUs"/>
                     <constraint firstItem="yCk-mR-ztm" firstAttribute="top" secondItem="aOn-rt-VCD" secondAttribute="bottom" priority="750" constant="4" id="xZX-Pw-x8L"/>
                 </constraints>
             </tableViewCellContentView>

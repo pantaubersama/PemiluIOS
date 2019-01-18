@@ -148,7 +148,7 @@ class MyJanpolListViewModel: IJanpolListViewModel, IJanpolListViewModelInput, IJ
         query: String) ->
         Observable<Page<[JanjiPolitik]>> {
             return NetworkService.instance
-                .requestObject(LinimasaAPI.getMyJanjiPolitiks(filter: filter, page: batch.page, perPage: batch.limit, query: query),
+                .requestObject(LinimasaAPI.getMyJanjiPolitiks(page: batch.page, perPage: batch.limit, query: query),
                                c: BaseResponse<JanjiPolitikResponse>.self)
                 .map({ self.transformToPage(response: $0, batch: batch) })
                 .asObservable()

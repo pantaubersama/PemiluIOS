@@ -44,9 +44,9 @@ class BannerHeaderView: UIView {
         
         switch banner.pageName {
         case .tanya:
-            ivInfoBackground.image = UIImage(named: "icHeaderPilpres")
-        case .kuis:
             ivInfoBackground.image = UIImage(named: "icBannerAsk")
+        case .kuis:
+            ivInfoBackground.image = UIImage(named: "icBannerQuestion")
         case .janji_politik:
             ivInfoBackground.image = UIImage(named: "icHeaderJanpol")
         case .pilpres:

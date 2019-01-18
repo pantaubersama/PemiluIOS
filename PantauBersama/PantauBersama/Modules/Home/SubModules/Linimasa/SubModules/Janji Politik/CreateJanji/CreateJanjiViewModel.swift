@@ -99,7 +99,7 @@ final class CreateJanjiViewModel: ICreateJanjiViewModel, ICreateJanjiViewModelIn
             .startWith(false)
         
         let done = doneS
-            .withLatestFrom(Observable.combineLatest(titleS, bodyS, imageS))
+            .withLatestFrom(Observable.combineLatest(titleS, bodyS, imageS.startWith(nil)))
             .flatMapLatest({(title, body, image) -> Observable<BaseResponse<CreateJanjiPolitikResponse>> in
                 return NetworkService.instance.requestObject(
                     LinimasaAPI.createJanjiPolitiks(
