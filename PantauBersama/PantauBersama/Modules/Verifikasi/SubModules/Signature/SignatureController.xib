@@ -78,7 +78,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="47" id="j34-6d-zSy"/>
                     </constraints>
-                    <state key="normal" title="Selesaikan">
+                    <state key="normal" title="LANJUT">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
                     <userDefinedRuntimeAttributes>
@@ -125,11 +125,8 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Y5-xF-MD6" customClass="Label" customModule="Common">
-                                    <rect key="frame" x="19" y="257" width="208.5" height="43.5"/>
-                                    <string key="text">Yakk, langkah terakhir
-foto tanda tanganmu diatas kertas putih
-dengan kameramu</string>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Langkah terakhir verifikasi! Foto tandatangan kamu yang sama dengan KTP asli di atas kertas putih." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Y5-xF-MD6" customClass="Label" customModule="Common">
+                                    <rect key="frame" x="0.5" y="257" width="245.5" height="43.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" red="0.48628133540000001" green="0.4862622023" blue="0.48627519609999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     <nil key="highlightedColor"/>

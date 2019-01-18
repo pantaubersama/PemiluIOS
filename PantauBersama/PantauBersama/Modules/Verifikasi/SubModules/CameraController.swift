@@ -68,6 +68,7 @@ public class CameraController: UIViewController {
         captureButton.addTarget(self, action: #selector(handleTakePhoto(sender:)), for: .touchUpInside)
         retake.addTarget(self, action: #selector(handleRetake(sender:)), for: .touchUpInside)
         done.addTarget(self, action: #selector(handleDone(sender:)), for: .touchUpInside)
+        galleryButton.addTarget(self, action: #selector(handleGallery(sender:)), for: .touchUpInside)
     }
     
     @objc private func handleDismiss(sender: UIButton) {
@@ -79,11 +80,20 @@ public class CameraController: UIViewController {
     }
     
     @objc private func handleDone(sender: UIButton) {
+        // TODO: Delegate to ICameraController
         dismiss(animated: true) {
             if let data = self.imageData {
                 self.delegate?.didFinishWith(image: data)
             }
         }
+    }
+    
+    @objc private func handleGallery(sender: UIButton) {
+        let controller = UIImagePickerController()
+        controller.sourceType = .photoLibrary
+        controller.delegate = self
+        controller.allowsEditing = true
+        self.present(controller, animated: true, completion: nil)
     }
     
     private func initializeCamera() {
@@ -152,4 +162,24 @@ extension CameraController: AVCapturePhotoCaptureDelegate {
         self.tempImage.isHidden = false
         self.stackButton.isHidden = false
     }
+}
+
+
+extension CameraController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        self.dismiss(animated: true, completion: { [weak self] in
+            guard let `self` = self else { return }
+            if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+                self.dismiss(animated: true, completion: {
+                    self.delegate?.didFinishWith(image: image)
+                })
+            } else if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+                self.dismiss(animated: true, completion: {
+                    self.delegate?.didFinishWith(image: image)
+                })
+            }
+        })
+    }
+    
 }

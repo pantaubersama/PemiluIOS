@@ -108,17 +108,17 @@
                     <rect key="frame" x="22" y="82" width="276" height="406"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="OEg-B8-jxH">
-                            <rect key="frame" x="15" y="15" width="246" height="218"/>
+                            <rect key="frame" x="15" y="15" width="246" height="268"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="baselineVerified48Px" translatesAutoresizingMaskIntoConstraints="NO" id="tCa-Rl-aJZ">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="verifiedLarge" translatesAutoresizingMaskIntoConstraints="NO" id="tCa-Rl-aJZ">
                                     <rect key="frame" x="75" y="0.0" width="96" height="96"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="96" id="1zU-Lx-OMX"/>
                                         <constraint firstAttribute="width" constant="96" id="4g9-hX-CVA"/>
                                     </constraints>
                                 </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Kenapa Akunmu Perlu Diverifikasi?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NXC-F8-rbz">
-                                    <rect key="frame" x="2" y="106" width="242" height="22"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Kenapa akunmu perlu diverifikasi?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NXC-F8-rbz">
+                                    <rect key="frame" x="3.5" y="106" width="239" height="22"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="22" id="M2f-Jv-3SS"/>
                                     </constraints>
@@ -126,59 +126,69 @@
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YTx-pI-g9M" customClass="Label" customModule="Common">
-                                    <rect key="frame" x="6" y="138" width="234.5" height="80"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="14" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YTx-pI-g9M" customClass="Label" customModule="Common">
+                                    <rect key="frame" x="1.5" y="138" width="243.5" height="130"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="80" id="oBW-L3-QQR"/>
+                                        <constraint firstAttribute="height" constant="130" id="oBW-L3-QQR"/>
                                     </constraints>
-                                    <string key="text">Dengan diverifikasi kamu akan….
-Mendapatkan manfaat dan is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</string>
+                                    <string key="text">Apabila akun kamu telah terverifikasi, badge centang hijau akan terpasang di profile. Ini menunjukkan informasi yang kamu bagikan sudah sesuai antara identitas online dan offline. 
+Selain itu, poin-poin interaksi akun yang telah terverifikasi akan terarsip rapi dalam Symbolic id.</string>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" red="0.22353291510000001" green="0.22352305049999999" blue="0.2235297561" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     <nil key="highlightedColor"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
-                                            <real key="value" value="14"/>
+                                            <real key="value" value="12"/>
                                         </userDefinedRuntimeAttribute>
-                                        <userDefinedRuntimeAttribute type="string" keyPath="typeLabel" value="medium"/>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="typeLabel" value="regular"/>
                                     </userDefinedRuntimeAttributes>
                                 </label>
                             </subviews>
                         </stackView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nqV-yo-deg">
-                            <rect key="frame" x="26" y="248" width="224" height="1"/>
-                            <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <rect key="frame" x="26" y="283" width="224" height="1"/>
+                            <color key="backgroundColor" red="0.79608923200000004" green="0.79605895280000005" blue="0.79607945680000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="g6I-lT-HmR"/>
                             </constraints>
                         </view>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="sv0-Go-aTr">
-                            <rect key="frame" x="15" y="264" width="246" height="79.5"/>
+                            <rect key="frame" x="15" y="299" width="246" height="89"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Masukkan No Identitas KTP" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w3R-wf-Dwi">
-                                    <rect key="frame" x="21" y="0.0" width="204.5" height="19.5"/>
-                                    <fontDescription key="fontDescription" name="BwModelicaSS01-BoldCondensed" family="Bw Modelica SS01" pointSize="16"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Masukkan Nomor Induk Kependudukan/Nomor KTP" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w3R-wf-Dwi">
+                                    <rect key="frame" x="10.5" y="0.0" width="225" height="29"/>
+                                    <fontDescription key="fontDescription" name="BwModelicaSS01-BoldCondensed" family="Bw Modelica SS01" pointSize="12"/>
                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="No. Identitas" textAlignment="center" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="Ou9-YT-sim" customClass="TextField" customModule="Common">
-                                    <rect key="frame" x="0.0" y="39.5" width="246" height="40"/>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ClX-LX-I26">
+                                    <rect key="frame" x="0.0" y="49" width="246" height="40"/>
+                                    <subviews>
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="No. Identitas" textAlignment="center" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="Ou9-YT-sim" customClass="TextField" customModule="Common">
+                                            <rect key="frame" x="0.0" y="0.0" width="246" height="40"/>
+                                            <nil key="textColor"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="lineColor">
+                                                    <color key="value" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </textField>
+                                    </subviews>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="40" id="byB-UJ-s3H"/>
+                                        <constraint firstAttribute="bottom" secondItem="Ou9-YT-sim" secondAttribute="bottom" id="99o-ii-z3H"/>
+                                        <constraint firstAttribute="height" constant="40" id="KMF-D5-tIg"/>
+                                        <constraint firstItem="Ou9-YT-sim" firstAttribute="leading" secondItem="ClX-LX-I26" secondAttribute="leading" id="jFy-bC-3Zd"/>
+                                        <constraint firstItem="Ou9-YT-sim" firstAttribute="top" secondItem="ClX-LX-I26" secondAttribute="top" id="peP-Eo-Rnx"/>
+                                        <constraint firstAttribute="trailing" secondItem="Ou9-YT-sim" secondAttribute="trailing" id="vjI-Mn-slR"/>
                                     </constraints>
-                                    <nil key="textColor"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits"/>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="color" keyPath="lineColor">
-                                            <color key="value" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                        </userDefinedRuntimeAttribute>
-                                    </userDefinedRuntimeAttributes>
-                                </textField>
+                                </view>
                             </subviews>
                             <constraints>
-                                <constraint firstItem="Ou9-YT-sim" firstAttribute="leading" secondItem="sv0-Go-aTr" secondAttribute="leading" id="gAX-zU-v7K"/>
-                                <constraint firstAttribute="trailing" secondItem="Ou9-YT-sim" secondAttribute="trailing" id="woo-gd-bm8"/>
+                                <constraint firstItem="ClX-LX-I26" firstAttribute="leading" secondItem="sv0-Go-aTr" secondAttribute="leading" id="EYT-UC-Vsc"/>
+                                <constraint firstAttribute="trailing" secondItem="ClX-LX-I26" secondAttribute="trailing" id="cgL-5l-EgJ"/>
                             </constraints>
                         </stackView>
                     </subviews>
@@ -189,7 +199,7 @@ Mendapatkan manfaat dan is simply dummy text of the printing and typesetting ind
                         <constraint firstAttribute="trailing" secondItem="sv0-Go-aTr" secondAttribute="trailing" constant="15" id="a6c-R8-KyS"/>
                         <constraint firstItem="OEg-B8-jxH" firstAttribute="top" secondItem="u1N-vc-2q7" secondAttribute="top" constant="15" id="cfo-mz-gvO"/>
                         <constraint firstItem="OEg-B8-jxH" firstAttribute="leading" secondItem="u1N-vc-2q7" secondAttribute="leading" constant="15" id="hkA-sM-zCH"/>
-                        <constraint firstItem="nqV-yo-deg" firstAttribute="top" secondItem="OEg-B8-jxH" secondAttribute="bottom" constant="15" id="l6C-YT-Xo6"/>
+                        <constraint firstItem="nqV-yo-deg" firstAttribute="top" secondItem="OEg-B8-jxH" secondAttribute="bottom" id="l6C-YT-Xo6"/>
                         <constraint firstAttribute="trailing" secondItem="nqV-yo-deg" secondAttribute="trailing" constant="26" id="nyq-Mm-Iv0"/>
                         <constraint firstAttribute="trailing" secondItem="OEg-B8-jxH" secondAttribute="trailing" constant="15" id="rtL-pJ-IK2"/>
                         <constraint firstItem="sv0-Go-aTr" firstAttribute="top" secondItem="nqV-yo-deg" secondAttribute="bottom" constant="15" id="xcQ-ki-7Vx"/>
@@ -226,6 +236,6 @@ Mendapatkan manfaat dan is simply dummy text of the printing and typesetting ind
         </view>
     </objects>
     <resources>
-        <image name="baselineVerified48Px" width="16" height="16"/>
+        <image name="verifiedLarge" width="96" height="96"/>
     </resources>
 </document>

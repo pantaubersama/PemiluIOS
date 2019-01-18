@@ -30,9 +30,9 @@ class KTPController: UIViewController {
         navigationController?.navigationBar.configure(with: .white)
         
         // MARK:- Lottie
-        ktpAnimation = LOTAnimationView(name: "memfoto-idcard")
+        ktpAnimation = LOTAnimationView(name: "data_fotoktp")
         ktpAnimation!.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        ktpAnimation!.contentMode  = .scaleAspectFill
+        ktpAnimation!.contentMode  = .scaleAspectFit
         ktpAnimation!.frame = lottieView.bounds
         lottieView.addSubview(ktpAnimation!)
         ktpAnimation!.loopAnimation = true

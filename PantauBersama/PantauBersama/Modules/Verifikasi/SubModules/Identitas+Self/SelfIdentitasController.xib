@@ -85,7 +85,7 @@
                     <rect key="frame" x="22" y="82" width="276" height="406"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="POy-tZ-fhp">
-                            <rect key="frame" x="15" y="15" width="246" height="340.5"/>
+                            <rect key="frame" x="15" y="15" width="246" height="326"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LCw-SA-QCs">
                                     <rect key="frame" x="0.0" y="0.0" width="246" height="210"/>
@@ -94,8 +94,8 @@
                                         <constraint firstAttribute="height" constant="210" id="yzb-O7-jJj"/>
                                     </constraints>
                                 </view>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Foto Diri Bersama Dengan KTP" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9RS-S8-6bL" customClass="Label" customModule="Common">
-                                    <rect key="frame" x="26" y="220" width="194" height="22"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Foto Diri Bersama KTP" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9RS-S8-6bL" customClass="Label" customModule="Common">
+                                    <rect key="frame" x="52" y="220" width="142.5" height="22"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="22" id="4oT-ah-tFf"/>
                                     </constraints>
@@ -109,9 +109,9 @@
                                         <userDefinedRuntimeAttribute type="string" keyPath="typeLabel" value="bold"/>
                                     </userDefinedRuntimeAttributes>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SMi-l7-PLT" customClass="Label" customModule="Common">
-                                    <rect key="frame" x="5.5" y="252" width="235.5" height="58"/>
-                                    <string key="text">Pastikan seluruh bagian wajah dari KTP anda gerada dalam bingkai foto dan terlihat jelas. Pastikan foto yang anda kirim adalar foto asli tanpa editan</string>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SMi-l7-PLT" customClass="Label" customModule="Common">
+                                    <rect key="frame" x="0.5" y="252" width="245" height="43.5"/>
+                                    <string key="text">Jangan lupa pastikan seluruh bagian wajah dan KTP berada dalam satu frame. Agar lebih jelas, tidak perlu diedit berlebihan, ya :)</string>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" red="0.48628133540000001" green="0.4862622023" blue="0.48627519609999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     <nil key="highlightedColor"/>
@@ -122,7 +122,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Siap?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RHa-MC-eTq" customClass="Label" customModule="Common">
-                                    <rect key="frame" x="103.5" y="320" width="39.5" height="20.5"/>
+                                    <rect key="frame" x="103.5" y="305.5" width="39.5" height="20.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" red="0.48628133540000001" green="0.4862622023" blue="0.48627519609999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     <nil key="highlightedColor"/>
@@ -158,7 +158,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="47" id="lyd-GL-dMU"/>
                     </constraints>
-                    <state key="normal" title="Lanjut">
+                    <state key="normal" title="LANJUT">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
                     <userDefinedRuntimeAttributes>
