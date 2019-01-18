@@ -51,6 +51,7 @@ class SearchViewModel: ViewModelType {
         output = Output(back: back, searchTrigger: searchSubject, recentlySearched: recentlySaerched)
         
         output.searchTrigger
+            .filter({ !$0.isEmpty })
             .subscribe(onNext: { (query) in
                 UserDefaults.addRecentlySearched(query: query)
             })

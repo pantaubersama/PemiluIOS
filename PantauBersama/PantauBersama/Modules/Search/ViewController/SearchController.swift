@@ -106,8 +106,7 @@ class SearchController: UIViewController {
             }
             .disposed(by: disposeBag)
         
-//        let a = tableViewRecentlySearched.rx.itemSelected
-//        a.
+        self.viewModel.input.loadRecentlySearched.onNext(())
     }
     
     private func hideAllChilds() {
