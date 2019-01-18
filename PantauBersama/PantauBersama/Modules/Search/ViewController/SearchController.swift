@@ -14,6 +14,7 @@ class SearchController: UIViewController {
     @IBOutlet weak var navbar: SearchNavbar!
     @IBOutlet weak var customMenuBar: CustomMenuBar!
     @IBOutlet weak var container: UIView!
+    @IBOutlet weak var tableViewRecentlySearched: UITableView!
     
     var viewModel: SearchViewModel!
     private let disposeBag = DisposeBag()
@@ -32,6 +33,8 @@ class SearchController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableViewRecentlySearched.tableFooterView = UIView()
+        
         add(childViewController: quisController, context: container)
         add(childViewController: askController, context: container)
         add(childViewController: janjiController, context: container)
@@ -51,8 +54,14 @@ class SearchController: UIViewController {
         
         navbar.tfSearch.rx.text
             .orEmpty
+            .do(onNext: { [unowned self](text) in
+                self.tableViewRecentlySearched.isHidden = !text.isEmpty
+                self.viewModel.input.loadRecentlySearched.onNext(())
+            })
             .debounce(0.5, scheduler: MainScheduler.instance)
             .bind(to: viewModel.input.searchInputTrigger).disposed(by: disposeBag)
+        
+        
         viewModel.output.back
             .drive()
             .disposed(by: disposeBag)
@@ -87,6 +96,18 @@ class SearchController: UIViewController {
                 })
             })
             .disposed(by: disposeBag)
+        
+        viewModel.output.recentlySearched
+            .drive(tableViewRecentlySearched.rx.items) { tableView, row, item -> UITableViewCell in
+                let cell = UITableViewCell()
+                cell.textLabel?.text = item
+                
+                return cell
+            }
+            .disposed(by: disposeBag)
+        
+//        let a = tableViewRecentlySearched.rx.itemSelected
+//        a.
     }
     
     private func hideAllChilds() {

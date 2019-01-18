@@ -104,4 +104,28 @@ public extension UserDefaults {
     public static func isSelectedFilter(value: String) -> Bool {
         return UserDefaults.standard.bool(forKey: value)
     }
+    
+    public static func addRecentlySearched(query: String) {
+        let lowerCasedQuery = query.lowercased()
+        var newRecentlySearched: [String] = []
+        if let cachedRecentlySearched = getRecentlySearched() {
+            newRecentlySearched = cachedRecentlySearched
+        }
+        
+        if newRecentlySearched.contains(lowerCasedQuery) {
+            let containedIndex = newRecentlySearched.firstIndex { (cachedQuery) -> Bool in
+                return cachedQuery.lowercased() == lowerCasedQuery
+            }
+            
+            newRecentlySearched.remove(at: containedIndex!)
+        }
+        
+        newRecentlySearched.insert(lowerCasedQuery, at: 0)
+        
+        UserDefaults.standard.set(newRecentlySearched, forKey: "recently_searched")
+    }
+    
+    public static func getRecentlySearched() -> [String]? {
+        return UserDefaults.standard.array(forKey: "recently_searched") as? [String]
+    }
 }
