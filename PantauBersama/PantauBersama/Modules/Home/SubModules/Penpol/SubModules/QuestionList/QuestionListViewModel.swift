@@ -16,7 +16,7 @@ class QuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelInput
     var input: IQuestionListViewModelInput { return self }
     var output: IQuestionListViewModelOutput { return self }
     
-    var refreshI: AnyObserver<Void>
+    var refreshI: AnyObserver<String>
     var nextPageI: AnyObserver<Void>
     var moreI: AnyObserver<QuestionModel>
     var moreMenuI: AnyObserver<QuestionType>
@@ -39,7 +39,7 @@ class QuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelInput
     var createO: Driver<Void>!
     var showHeaderO: Driver<Bool>!
     
-    private let refreshSubject = PublishSubject<Void>()
+    private let refreshSubject = PublishSubject<String>()
     private let moreSubject = PublishSubject<QuestionModel>()
     private let moreMenuSubject = PublishSubject<QuestionType>()
     private let nextSubject = PublishSubject<Void>()
@@ -58,7 +58,7 @@ class QuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelInput
     private var filterItems: [PenpolFilterModel.FilterItem] = []
     private(set) var disposeBag = DisposeBag()
     
-    init(navigator: PenpolNavigator, showTableHeader: Bool) {
+    init(navigator: PenpolNavigator, searchTrigger: PublishSubject<String>? = nil, showTableHeader: Bool) {
         refreshI = refreshSubject.asObserver()
         nextPageI = nextSubject.asObserver()
         moreI = moreSubject.asObserver()
@@ -79,8 +79,12 @@ class QuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelInput
             self.filterItems.append(contentsOf: selectedItem)
         }
         
+        searchTrigger?.asObserver()
+            .bind(to: refreshI)
+            .disposed(by: disposeBag)
+        
         loadCreated.startWith(()).flatMapLatest { [unowned self](_) -> Observable<[QuestionModel]> in
-            return self.paginateItems(nextBatchTrigger: self.nextSubject.asObservable(), filteredBy: "user_verified_all", orderedBy: "created_at")
+            return self.paginateItems(nextBatchTrigger: self.nextSubject.asObservable(), filteredBy: "user_verified_all", orderedBy: "created_at", query: "")
                 .trackError(self.errorTracker)
                 .trackActivity(self.activityIndicator)
                 .catchErrorJustReturn([])
@@ -93,7 +97,7 @@ class QuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelInput
         
         // MARK:
         // Get question pagination
-        refreshSubject.startWith(()).flatMapLatest { [unowned self] (_) -> Observable<[QuestionModel]> in
+        refreshSubject.startWith("").flatMapLatest { [unowned self] (query) -> Observable<[QuestionModel]> in
             var filteredBy = self.filterItems.filter({ $0.paramKey == "filter_by"}).first?.paramValue
             var orderedBy = self.filterItems.filter({ $0.paramKey == "order_by"}).first?.paramValue
             
@@ -110,7 +114,7 @@ class QuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelInput
                 orderedBy = orderByString ?? "created_at"
             }
                 
-            return self.paginateItems(nextBatchTrigger: self.nextSubject.asObservable(), filteredBy: filteredBy ?? "user_verified_all", orderedBy: orderedBy ?? "created_at")
+            return self.paginateItems(nextBatchTrigger: self.nextSubject.asObservable(), filteredBy: filteredBy ?? "user_verified_all", orderedBy: orderedBy ?? "created_at", query: query)
                 .trackError(self.errorTracker)
                 .trackActivity(self.activityIndicator)
                 .catchErrorJustReturn([])
@@ -194,7 +198,8 @@ class QuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelInput
             .flatMapLatest({ navigator.launchCreateAsk(loadCreatedTrigger: self.loadCreatedI) })
             .asDriver(onErrorJustReturn: ())
         
-        bannerO = refreshSubject.startWith(())
+        bannerO = refreshSubject.startWith("")
+            .mapToVoid()
             .flatMapLatest({ self.bannerInfo() })
             .asDriverOnErrorJustComplete()
         
@@ -238,16 +243,19 @@ class QuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelInput
     
     func recursivelyPaginateItems(
         batch: Batch,
-        nextBatchTrigger: Observable<Void>, filteredBy: String, orderedBy: String) ->
+        nextBatchTrigger: Observable<Void>,
+        filteredBy: String,
+        orderedBy: String,
+        query: String) ->
         Observable<Page<[QuestionModel]>> {
             return NetworkService.instance
-                .requestObject(TanyaKandidatAPI.getQuestions(page: batch.page, perpage: batch.limit, filteredBy: filteredBy, orderedBy: orderedBy), c: QuestionsResponse.self)
+                .requestObject(TanyaKandidatAPI.getQuestions(page: batch.page, perpage: batch.limit, filteredBy: filteredBy, orderedBy: orderedBy, query: query), c: QuestionsResponse.self)
                 .map({ self.transformToPage(response: $0, batch: batch) })
                 .asObservable()
                 .paginate(nextPageTrigger: nextBatchTrigger, hasNextPage: { (result) -> Bool in
                     return result.batch.next().hasNextPage
                 }, nextPageFactory: { (result) -> Observable<Page<[QuestionModel]>> in
-                    self.recursivelyPaginateItems(batch: result.batch.next(), nextBatchTrigger: nextBatchTrigger, filteredBy: filteredBy, orderedBy: orderedBy)
+                    self.recursivelyPaginateItems(batch: result.batch.next(), nextBatchTrigger: nextBatchTrigger, filteredBy: filteredBy, orderedBy: orderedBy, query: query)
                 })
                 .share(replay: 1, scope: .whileConnected)
             

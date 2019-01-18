@@ -14,7 +14,9 @@ class SearchViewModel: ViewModelType {
     struct Input {
         let backTrigger: AnyObserver<Void>
         let searchInputTrigger: AnyObserver<String>
-        let loadRecentlySearched: AnyObserver<Void>
+        let loadRecentlyTrigger: AnyObserver<Void>
+        let itemSelectedTrigger: AnyObserver<IndexPath>
+        let clearRecentSearchTrigger: AnyObserver<Void>
     }
     
     struct Output {
@@ -31,6 +33,8 @@ class SearchViewModel: ViewModelType {
     let searchSubject = PublishSubject<String>()
     private let backSubject = PublishSubject<Void>()
     private let recentlySearchedSubject = PublishSubject<Void>()
+    private let itemSelectedSubject = PublishSubject<IndexPath>()
+    private let clearRecentSearchSubject = PublishSubject<Void>()
     private let disposeBag = DisposeBag()
     
     init(navigator: SearchNavigator) {
@@ -38,7 +42,9 @@ class SearchViewModel: ViewModelType {
         
         input = Input(backTrigger: backSubject.asObserver(),
                       searchInputTrigger: searchSubject.asObserver(),
-                      loadRecentlySearched: recentlySearchedSubject.asObserver())
+                      loadRecentlyTrigger: recentlySearchedSubject.asObserver(),
+                      itemSelectedTrigger: itemSelectedSubject.asObserver(),
+                      clearRecentSearchTrigger: clearRecentSearchSubject.asObserver())
         
         let back = backSubject
             .flatMapLatest({ navigator.finishSearch() })
@@ -47,6 +53,18 @@ class SearchViewModel: ViewModelType {
         let recentlySaerched = recentlySearchedSubject
             .flatMapLatest({ _ in Observable.just(UserDefaults.getRecentlySearched() ?? []) })
             .asDriver(onErrorJustReturn: [])
+        
+        itemSelectedSubject
+            .withLatestFrom(recentlySaerched) { (indexPath, items) -> String in
+                return items[indexPath.row]
+            }
+            .bind(to: searchSubject)
+            .disposed(by: disposeBag)
+        
+        clearRecentSearchSubject.flatMapLatest({ _ in Observable.just(UserDefaults.clearRecentlySearched() )})
+            .bind(to: input.loadRecentlyTrigger)
+            .disposed(by: disposeBag)
+        
         
         output = Output(back: back, searchTrigger: searchSubject, recentlySearched: recentlySaerched)
         

@@ -140,4 +140,8 @@ public extension UserDefaults {
     public static func getRecentlySearched() -> [String]? {
         return UserDefaults.standard.array(forKey: "recently_searched") as? [String]
     }
+    
+    public static func clearRecentlySearched() {
+        UserDefaults.standard.removeObject(forKey: "recently_searched")
+    }
 }
