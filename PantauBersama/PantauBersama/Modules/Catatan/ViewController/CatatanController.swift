@@ -46,7 +46,7 @@ class CatatanController: UIViewController {
         buttonPaslonSatu.rx.tap
             .map {(1)}
             .do(onNext: { [weak self] (_) in
-                self?.viewModel.input.notePreferenceI.onNext(("(Jokowi - Makruf)"))
+                self?.viewModel.input.notePreferenceI.onNext(("(Jokowi - Ma'ruf)"))
             })
             .bind(to: viewModel.input.notePreferenceValueI)
             .disposed(by: disposeBag)
@@ -92,7 +92,7 @@ class CatatanController: UIViewController {
                         self.buttonPaslonSatu.layer.borderColor = Color.orange_warm.cgColor
                         self.buttonPaslonSatu.setTitleColor(Color.orange_warm, for: .normal)
                         self.containerPaslonSatu.layer.borderColor = Color.orange_warm.cgColor
-                        self.notePreference.text = "(Jokowi - Makruf)"
+                        self.notePreference.text = "(Jokowi - Ma'ruf)"
                     case 2:
                         self.buttonPaslonDua.layer.borderColor = Color.orange_warm.cgColor
                         self.buttonPaslonDua.setTitleColor(Color.orange_warm, for: .normal)

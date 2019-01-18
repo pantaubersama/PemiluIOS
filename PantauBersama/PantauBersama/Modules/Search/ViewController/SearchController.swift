@@ -40,7 +40,7 @@ class SearchController: UIViewController {
         
         customMenuBar.menuItem = [MenuItem(title: "Orang"),
                                   MenuItem(title: "Cluster"),
-                                  MenuItem(title: "Pilpres"),
+                                  MenuItem(title: "Linimasa"),
                                   MenuItem(title: "Janji Politik"),
                                   MenuItem(title: "Tanya"),
                                   MenuItem(title: "Quiz"),

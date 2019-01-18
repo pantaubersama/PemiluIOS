@@ -36,20 +36,17 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="702"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rHs-fJ-85y">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="702"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="708"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Ciy-Bh-2QO">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="702"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="708"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sAh-XA-LtJ">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="84"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B2Y-cS-Cjo" customClass="Label" customModule="Common">
-                                                    <rect key="frame" x="20" y="8" width="335" height="68"/>
-                                                    <string key="text">Cluster adalah……
-Request Cluster berarti anda setuju untuk bertanggung jawab ….
-Bila disetujui Otomatis anda akan menjadi admin…..
-Anda dpi mengundang, menerima angota lain</string>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B2Y-cS-Cjo" customClass="Label" customModule="Common">
+                                                    <rect key="frame" x="20" y="8" width="335" height="74"/>
+                                                    <string key="text">Cluster menunjukkan preferensi kelompok kamu. Seperti wadah berisi kumpulan user yang memiliki kesamaan suatu hal; misalnya partai, alumni kampus, sekolah, organisasi, dan/atau komunitas tertentu. Dalam Cluster, kamu bisa menemukan atau mengumpulkan user-user lain dengan minat selaras.</string>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -63,20 +60,20 @@ Anda dpi mengundang, menerima angota lain</string>
                                             <color key="backgroundColor" red="0.95687562230000001" green="0.95683962109999998" blue="0.95686405900000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="B2Y-cS-Cjo" secondAttribute="bottom" constant="8" id="Mhw-va-q5Z"/>
-                                                <constraint firstAttribute="height" constant="84" id="ho5-MU-zC4"/>
+                                                <constraint firstAttribute="height" constant="90" id="ho5-MU-zC4"/>
                                                 <constraint firstItem="B2Y-cS-Cjo" firstAttribute="top" secondItem="sAh-XA-LtJ" secondAttribute="top" constant="8" id="j5h-Th-Xmg"/>
                                                 <constraint firstItem="B2Y-cS-Cjo" firstAttribute="leading" secondItem="sAh-XA-LtJ" secondAttribute="leading" constant="20" id="s39-CN-utZ"/>
                                                 <constraint firstAttribute="trailing" secondItem="B2Y-cS-Cjo" secondAttribute="trailing" constant="20" id="tjq-eX-Lmw"/>
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xbV-kN-n9P">
-                                            <rect key="frame" x="0.0" y="84" width="375" height="160"/>
+                                            <rect key="frame" x="0.0" y="90" width="375" height="160"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="CYn-79-i3A">
                                                     <rect key="frame" x="0.0" y="16" width="375" height="144"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Isi Form di Bawah Ini :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0hc-Oa-E6B" customClass="Label" customModule="Common">
-                                                            <rect key="frame" x="129.5" y="0.0" width="116" height="48"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lengkapi formulir di bawah ini: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0hc-Oa-E6B" customClass="Label" customModule="Common">
+                                                            <rect key="frame" x="104.5" y="0.0" width="166.5" height="48"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -129,7 +126,7 @@ Anda dpi mengundang, menerima angota lain</string>
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SUn-vS-5ta">
-                                            <rect key="frame" x="0.0" y="244" width="375" height="73"/>
+                                            <rect key="frame" x="0.0" y="250" width="375" height="73"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="dVq-Ic-WWF">
                                                     <rect key="frame" x="16" y="8" width="343" height="57"/>
@@ -183,7 +180,7 @@ Anda dpi mengundang, menerima angota lain</string>
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y7T-x7-Mn4">
-                                            <rect key="frame" x="0.0" y="317" width="375" height="73"/>
+                                            <rect key="frame" x="0.0" y="323" width="375" height="73"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qh6-ge-D1y">
                                                     <rect key="frame" x="0.0" y="72" width="375" height="1"/>
@@ -232,7 +229,7 @@ Anda dpi mengundang, menerima angota lain</string>
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TWB-pW-u3j">
-                                            <rect key="frame" x="0.0" y="390" width="375" height="250"/>
+                                            <rect key="frame" x="0.0" y="396" width="375" height="250"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="d7H-e9-eRW">
                                                     <rect key="frame" x="16" y="8" width="343" height="234"/>
@@ -268,14 +265,14 @@ Anda dpi mengundang, menerima angota lain</string>
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="olO-LX-EgS">
-                                            <rect key="frame" x="0.0" y="640" width="375" height="15"/>
+                                            <rect key="frame" x="0.0" y="646" width="375" height="15"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="15" id="H6D-4e-rhK"/>
                                             </constraints>
                                         </view>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A9k-QM-kaV" customClass="Button" customModule="Common">
-                                            <rect key="frame" x="0.0" y="655" width="375" height="47"/>
+                                            <rect key="frame" x="0.0" y="661" width="375" height="47"/>
                                             <color key="backgroundColor" red="0.68041622639999999" green="0.1499232352" blue="0.14898997550000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="47" id="p1M-eU-mvs"/>

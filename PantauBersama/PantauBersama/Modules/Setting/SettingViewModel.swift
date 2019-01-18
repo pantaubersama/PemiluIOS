@@ -129,7 +129,7 @@ final class SettingViewModel: ISettingViewModel, ISettingViewModelInput, ISettin
                     SectionOfSettingData(header: "Cluster", items: [
                         SettingData.cluster
                         ]),
-                    SectionOfSettingData(header: "Support", items: [
+                    SectionOfSettingData(header: "SUPPORT", items: [
                         SettingData.pusatBantuan,
                         SettingData.pedomanKomunitas,
                         SettingData.tentang,

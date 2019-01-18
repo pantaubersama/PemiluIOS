@@ -22,7 +22,7 @@
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SSn-Cn-hNP" customClass="Label" customModule="Common">
                     <rect key="frame" x="16" y="8" width="343" height="53"/>
-                    <string key="text">Data ini digunakan untuk salah satu syarat dalam kontribusi melakukan Laporan dugaan pelanggaran pemilu di Pantau Bersama. Menggunakan format sesuai ketentuan Bawaslu. Data ini tidak akan muncul di profile pengguna.</string>
+                    <string key="text">Data Lapor digunakan sebagai salah satu syarat kontribusi melakukan laporan dugaan pelanggaran Pemilu melalui Pantau Bersama Pemilu 2019. Formulir menyesuaikan format sesuai ketentuan yang diatur Bawaslu. Data di bawah ini tidak akan ditampilkan di profil pengguna.</string>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" red="0.4392156862745098" green="0.4392156862745098" blue="0.4392156862745098" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <nil key="highlightedColor"/>

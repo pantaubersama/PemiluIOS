@@ -42,7 +42,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="327" height="48"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="string" keyPath="titles" value="Pilpres, Janji Politik"/>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="titles" value="Linimasa, Janji Politik"/>
                                         <userDefinedRuntimeAttribute type="color" keyPath="textColor">
                                             <color key="value" red="0.79608923200000004" green="0.79605895280000005" blue="0.79607945680000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         </userDefinedRuntimeAttribute>

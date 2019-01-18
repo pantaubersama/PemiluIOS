@@ -46,7 +46,7 @@ enum key: Int {
         case .lokasi:
             return "Lokasi"
         case .about:
-            return "Deskripsi Tentang Kamu"
+            return "Bio"
         case .pendidikan:
             return "Pendidikan"
         case .pekerjaan:
@@ -70,7 +70,7 @@ enum key: Int {
         case .address:
             return "Alamat"
         case .phone:
-            return "No Tell/HP"
+            return "No Telp/HP"
         }
     }
     
