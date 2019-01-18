@@ -22,7 +22,7 @@ public enum TanyaKandidatAPI {
     }
     
     case deleteQuestion(id: String)
-    case getQuestions(page: Int, perpage: Int, filteredBy: String, orderedBy: String)
+    case getQuestions(page: Int, perpage: Int, filteredBy: String, orderedBy: String, query: String)
     case getMyQuestions(page: Int, perpage: Int)
     case createQuestion(body: String)
     case getQuestionDetail(id: String)
@@ -81,12 +81,13 @@ extension TanyaKandidatAPI: TargetType {
             return [
                 "id": id
             ]
-        case .getQuestions(let (page, perpage, filteredBy, orderBy)):
+        case .getQuestions(let (page, perpage, filteredBy, orderBy, query)):
             return [
                 "page": page,
                 "per_page": perpage,
                 "filter_by": filteredBy,
-                "order_by": orderBy
+                "order_by": orderBy,
+                "q": query
             ]
         case .createQuestion(let body):
             return [
