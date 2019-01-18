@@ -18,7 +18,7 @@ class LinimasaJanjiCell: UITableViewCell {
     @IBOutlet weak var avatar: UIImageView!
     @IBOutlet weak var fullname: Label!
     @IBOutlet weak var dateCreate: Label!
-    @IBOutlet weak var title: Label!
+    @IBOutlet weak var title: UILabel!
     @IBOutlet weak var content: Label!
     @IBOutlet weak var shareBtn: UIButton!
     @IBOutlet weak var moreBtn: UIButton!
@@ -60,8 +60,11 @@ extension LinimasaJanjiCell: IReusableCell {
     }
     
     func configure(data: JanjiPolitik) {
-        
-        fullname.text = data.creator.fullName
+        if data.creator.cluster != nil {
+            fullname.text = "\(data.creator.fullName), \(data.creator.cluster?.name ?? "")"
+        } else {
+            fullname.text = data.creator.fullName
+        }
         dateCreate.text = data.createdAt.toDate(format: Constant.dateTimeFormat3)?.timeAgoSinceDate2
         title.text = data.title
         content.text = data.body

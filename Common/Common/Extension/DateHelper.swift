@@ -142,25 +142,25 @@ extension Date {
             return self.toString()
         }
         else if (day >= 4){
-            return "4 day ago"
+            return "4 hari lalu"
         }else if (day >= 3){
-            return "3 day ago"
+            return "3 hari lalu"
         }else if (day >= 2){
-            return "2 day ago"
+            return "2 hari lalu"
         }else if (day >= 1){
-            return "1 day ago"
+            return "1 hari lalu"
         } else if (hour >= 2) {
-            return "\(hour) hours ago"
+            return "\(hour) jam lalu"
         } else if (hour >= 1){
-            return "1 hour ago"
+            return "1 jam lalu"
         } else if (minute >= 2) {
-            return "\(minute) minutes ago"
+            return "\(minute) menit lalu"
         } else if (minute >= 1){
             return "1 minute ago"
         } else if (second >= 3) {
-            return "\(second) seconds ago"
+            return "\(second) detik lalu"
         } else {
-            return "Just now"
+            return "Saat ini"
         }
     }
 }

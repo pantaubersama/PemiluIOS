@@ -9,6 +9,11 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="BwModelicaSS01-BoldCondensed.otf">
+            <string>BwModelicaSS01-BoldCondensed</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -84,12 +89,12 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e7O-xs-yBC">
-                        <rect key="frame" x="0.0" y="125.5" width="322" height="4"/>
+                        <rect key="frame" x="0.0" y="129.5" width="322" height="0.0"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Kapan realisasi penghapusan system tenaga kerja alih daya diterapkan seutuhnya? Kita ini insan bukan seekor sapi!" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aOn-rt-VCD" customClass="Label" customModule="Common">
-                        <rect key="frame" x="72" y="48" width="233" height="43.5"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Kapan realisasi penghapusan system tenaga kerja alih daya diterapkan seutuhnya? Kita ini insan bukan seekor sapi!" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aOn-rt-VCD">
+                        <rect key="frame" x="72" y="48" width="233" height="47.5"/>
+                        <fontDescription key="fontDescription" name="BwModelicaSS01-BoldCondensed" family="Bw Modelica SS01" pointSize="12"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                         <userDefinedRuntimeAttributes>
@@ -99,7 +104,7 @@
                         </userDefinedRuntimeAttributes>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yCk-mR-ztm">
-                        <rect key="frame" x="72" y="95.5" width="250" height="30"/>
+                        <rect key="frame" x="72" y="99.5" width="250" height="30"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="new-44-Vpe">
                                 <rect key="frame" x="171" y="5" width="20" height="20"/>
@@ -169,7 +174,7 @@
                                                     <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
                                                         <real key="value" value="10"/>
                                                     </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="typeLabel" value="Lato-Bold"/>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="typeLabel" value="bold"/>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Kapan Kemana Indonesia?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dmG-lx-rVu" customClass="Label" customModule="Common">
@@ -249,7 +254,7 @@
             <connections>
                 <outlet property="ivAvatar" destination="UBx-Yl-Mcc" id="qjc-nx-AYF"/>
                 <outlet property="lbAbout" destination="dmG-lx-rVu" id="sOH-rn-4rX"/>
-                <outlet property="lbBody" destination="aOn-rt-VCD" id="XPp-8P-WHm"/>
+                <outlet property="lbBody" destination="aOn-rt-VCD" id="zJQ-IK-Rck"/>
                 <outlet property="lbCreatedAt" destination="rFT-2r-6Wi" id="B6f-Ib-bFd"/>
                 <outlet property="lbFullname" destination="EG8-aL-cfG" id="cJz-Hm-uFA"/>
                 <outlet property="lbVoteCount" destination="1uJ-yT-PaQ" id="lEj-JU-6aI"/>

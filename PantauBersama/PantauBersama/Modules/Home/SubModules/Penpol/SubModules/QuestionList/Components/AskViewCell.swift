@@ -22,7 +22,7 @@ class AskViewCell: UITableViewCell, IReusableCell  {
     private(set) var disposeBag = DisposeBag()
     
     @IBOutlet weak var voteActionView: UIView!
-    @IBOutlet weak var lbBody: Label!
+    @IBOutlet weak var lbBody: UILabel!
     @IBOutlet weak var lbCreatedAt: Label!
     @IBOutlet weak var lbAbout: Label!
     @IBOutlet weak var lbFullname: Label!
