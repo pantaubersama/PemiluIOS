@@ -9,8 +9,9 @@
 import Foundation
 import RxSwift
 import Common
+
 protocol QuizResultNavigator {
-    func shareQuizResult(quizModel: QuizResultModel) -> Observable<Void>
+    func shareQuizResult(quizModel: QuizModel) -> Observable<Void>
     func openSummary(quizModel: QuizModel) -> Observable<Void>
     func finishQuiz() -> Observable<Void>
 }
@@ -45,7 +46,10 @@ class QuizResultCoordinator: BaseCoordinator<Void> {
 }
 
 extension QuizResultCoordinator: QuizResultNavigator {
-    func shareQuizResult(quizModel: QuizResultModel) -> Observable<Void> {
+    func shareQuizResult(quizModel: QuizModel) -> Observable<Void> {
+        let askString = "Kamu sudah ikut? Aku sudah dapat hasilnya 😎 \(AppContext.instance.infoForKey("URL_API_PEMILU"))/share/badge/\(quizModel.id)"
+        let activityViewController = UIActivityViewController(activityItems: [askString as NSString], applicationActivities: nil)
+        self.navigationController.present(activityViewController, animated: true, completion: nil)
         return Observable.never()
     }
     

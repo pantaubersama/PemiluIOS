@@ -143,7 +143,7 @@ class QuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelInput
                 guard let weakSelf = self else { return Observable.empty() }
                 switch type {
                 case .bagikan(let question):
-                    let contentToShare = question.body
+                    let contentToShare = question.id
                     return navigator.shareQuestion(question: contentToShare)
                         .map({ (_) -> String in
                             return ""
@@ -168,14 +168,15 @@ class QuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelInput
                 case .laporkan(let question):
                     return weakSelf.reportQuestion(question: question)
                 case .salin(let question):
-                    question.body.copyToClipboard()
-                    return Observable.just("copied")
+                    let data = "\(AppContext.instance.infoForKey("URL_API_PEMILU"))/share/tanya/\(question.id)"
+                    data.copyToClipboard()
+                    return Observable.just("Tautan telah tersalin")
                 }
             })
             .asDriverOnErrorJustComplete()
         
         shareSelectedO = shareSubject
-            .flatMapLatest({navigator.shareQuestion(question: $0.body)})
+            .flatMapLatest({navigator.shareQuestion(question: $0.id)})
             .asDriver(onErrorJustReturn: ())
         
         filterO = filterSubject

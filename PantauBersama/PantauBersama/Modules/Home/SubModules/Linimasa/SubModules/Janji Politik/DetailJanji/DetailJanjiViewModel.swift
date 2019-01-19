@@ -55,16 +55,16 @@ class DetailJanjiViewModel: ViewModelType {
             .asDriverOnErrorJustComplete()
         
         let shareJanji = shareSubject
-            .flatMapLatest({ _ in navigator.shareJanji(data: "Any") })
+            .flatMapLatest({ _ in navigator.shareJanji(data: data) })
             .asDriver(onErrorJustReturn: ())
         
         let moreMenuSelected = moreMenuSubject
             .flatMapLatest { (type) -> Observable<Void> in
                 switch type {
                 case .bagikan:
-                    return navigator.shareJanji(data: "as")
+                    return navigator.shareJanji(data: data)
                 case .salin:
-                    return navigator.shareJanji(data: "as")
+                    return navigator.shareJanji(data: data)
                 case .hapus(let id):
                     return self.delete(id: id)
                         .do(onNext: { (response) in

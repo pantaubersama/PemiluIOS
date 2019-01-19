@@ -26,7 +26,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="45c-bt-rb0">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="headerOnGoing" translatesAutoresizingMaskIntoConstraints="NO" id="45c-bt-rb0">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="229"/>
                     <color key="backgroundColor" red="0.95000237229999995" green="0.46290111540000001" blue="0.1104531065" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
@@ -144,4 +144,7 @@
             <point key="canvasLocation" x="136.875" y="126.7605633802817"/>
         </view>
     </objects>
+    <resources>
+        <image name="headerOnGoing" width="360" height="209"/>
+    </resources>
 </document>

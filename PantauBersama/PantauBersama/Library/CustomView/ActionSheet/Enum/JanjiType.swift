@@ -7,13 +7,14 @@
 //
 
 import UIKit
+import Networking
 
 enum JanjiType {
     
     case hapus(id: String)
-    case salin
-    case bagikan
-    case laporkan
+    case salin(data: JanjiPolitik)
+    case bagikan(data: JanjiPolitik)
+    case laporkan(data: JanjiPolitik)
     
     var image: UIImage? {
         switch self {

@@ -15,7 +15,7 @@ import Common
 protocol IJanpolListViewModelInput {
     var refreshI: AnyObserver<String> { get }
     var nextPageI: AnyObserver<Void> { get }
-    var shareJanjiI: AnyObserver<Any> { get }
+    var shareJanjiI: AnyObserver<JanjiPolitik> { get }
     var moreI: AnyObserver<JanjiPolitik> { get }
     var moreMenuI: AnyObserver<JanjiType> { get }
     var itemSelectedI: AnyObserver<IndexPath> { get }

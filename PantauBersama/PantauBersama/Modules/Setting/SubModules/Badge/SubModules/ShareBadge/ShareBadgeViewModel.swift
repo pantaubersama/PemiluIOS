@@ -19,10 +19,12 @@ final class ShareBadgeViewModel: ViewModelType {
     struct Input {
         let backI: AnyObserver<Void>
         let viewWillAppearI: AnyObserver<Void>
+        let shareI: AnyObserver<Void>
     }
     
     struct Output {
         let dataO: Driver<AchievedSingleResponse>
+        let shareO: Driver<Void>
     }
     
     private var navigator: ShareBadgeNavigator
@@ -30,13 +32,15 @@ final class ShareBadgeViewModel: ViewModelType {
     private let activityIndicator = ActivityIndicator()
     private let errorTracker = ErrorTracker()
     private let viewWillAppearS = PublishSubject<Void>()
+    private let shareS = PublishSubject<Void>()
     
     init(navigator: ShareBadgeNavigator, id: String) {
         self.navigator = navigator
         self.navigator.finish = backS
         
         input = Input(backI: backS.asObserver(),
-                      viewWillAppearI: viewWillAppearS.asObserver())
+                      viewWillAppearI: viewWillAppearS.asObserver(),
+                      shareI: shareS.asObserver())
         
         // MARK
         // Get data from cloud
@@ -52,10 +56,12 @@ final class ShareBadgeViewModel: ViewModelType {
         let badgeData = viewWillAppearS
             .flatMapLatest({ data })
             
+        let share = shareS
+            .flatMapLatest({ navigator.shareBadge(id: id) })
         
         
-        
-        output = Output(dataO: badgeData.asDriverOnErrorJustComplete())
+        output = Output(dataO: badgeData.asDriverOnErrorJustComplete(),
+                        shareO: share.asDriverOnErrorJustComplete())
         
     }
     

@@ -46,11 +46,19 @@ class QuizResultController: UIViewController {
         btnAnswerKey.rx.tap
             .bind(to: viewModel.input.openSummaryTrigger)
             .disposed(by: disposeBag)
+        
+        btnShare.rx.tap
+            .bind(to: viewModel.input.shareTrigger)
+            .disposed(by: disposeBag)
+        
+        viewModel.output.share
+            .drive()
+            .disposed(by: disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        let back = UIBarButtonItem(image: #imageLiteral(resourceName: "back"), style: .plain, target: self, action: nil)
+        let back = UIBarButtonItem(image: #imageLiteral(resourceName: "back"), style: .plain, target: nil, action: nil)
         self.navigationItem.leftBarButtonItem = back
         self.navigationController?.navigationBar.configure(with: .transparent)
         self.navigationController?.navigationBar.tintColor = #colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1)

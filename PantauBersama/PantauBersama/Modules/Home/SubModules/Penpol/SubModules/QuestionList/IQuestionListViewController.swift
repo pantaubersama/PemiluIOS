@@ -100,10 +100,10 @@ extension IQuestionListViewController {
                         observer.onNext(QuestionType.bagikan(question: question))
                         observer.on(.completed)
                     })
-                    let laporkan = UIAlertAction(title: "Laporkan", style: .default, handler: { (_) in
-                        observer.onNext(QuestionType.laporkan(question: question))
-                        observer.on(.completed)
-                    })
+//                    let laporkan = UIAlertAction(title: "Laporkan", style: .default, handler: { (_) in
+//                        observer.onNext(QuestionType.laporkan(question: question))
+//                        observer.on(.completed)
+//                    })
                     let cancel = UIAlertAction(title: "Batal", style: .cancel, handler: nil)
                     
                     if question.isMyQuestion {
@@ -112,7 +112,7 @@ extension IQuestionListViewController {
                     
                     alert.addAction(salin)
                     alert.addAction(bagikan)
-                    alert.addAction(laporkan)
+//                    alert.addAction(laporkan)
                     alert.addAction(cancel)
                     DispatchQueue.main.async {
                         self?.navigationController?.present(alert, animated: true, completion: nil)
