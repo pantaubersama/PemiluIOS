@@ -9,6 +9,7 @@
 import Foundation
 
 public struct TrendResponse: Codable {
+    public let user: User
     public let teams: [TeamElement]
     public let meta: MetaTrend
     

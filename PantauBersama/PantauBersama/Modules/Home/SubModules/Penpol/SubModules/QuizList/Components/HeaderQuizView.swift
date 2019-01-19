@@ -50,6 +50,7 @@ class HeaderQuizView: UIView {
         
         viewModel.output.totalResult
             .drive(onNext: { (result) in
+                print(result)
                 if result.meta.quizzes.finished >= 1 {
                     trendHeaderView.isHidden = false
                     self.frame.size.height = 327
