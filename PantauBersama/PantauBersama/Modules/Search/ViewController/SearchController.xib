@@ -34,7 +34,7 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L2A-ke-cdQ">
-                    <rect key="frame" x="0.0" y="124" width="375" height="543"/>
+                    <rect key="frame" x="0.0" y="159" width="375" height="508"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XQr-Er-O8u" customClass="CustomMenuBar" customModule="PantauBersama" customModuleProvider="target">
@@ -42,6 +42,33 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="48" id="Fhj-eQ-TGB"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OgS-If-HKZ">
+                    <rect key="frame" x="0.0" y="124" width="375" height="35"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dhC-JR-KDF" customClass="Button" customModule="Common">
+                            <rect key="frame" x="282" y="5.5" width="58" height="24"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="24" id="kyG-Or-XkB"/>
+                            </constraints>
+                            <color key="tintColor" red="0.43529412150000002" green="0.4431372583" blue="0.47450980539999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <inset key="imageEdgeInsets" minX="85" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <state key="normal" title="Filter" image="icFilterGrey">
+                                <color key="titleColor" red="0.43529412150000002" green="0.4431372583" blue="0.47450980539999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                    <real key="value" value="14"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="dhC-JR-KDF" secondAttribute="trailing" constant="35" id="5uE-FN-Kt0"/>
+                        <constraint firstAttribute="height" constant="35" id="uPy-dN-Z3B"/>
+                        <constraint firstItem="dhC-JR-KDF" firstAttribute="centerY" secondItem="OgS-If-HKZ" secondAttribute="centerY" id="v2Q-Oh-Zks"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="93S-sh-dgx">
@@ -96,9 +123,10 @@
                 <constraint firstItem="93S-sh-dgx" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="11i-ro-rXi"/>
                 <constraint firstItem="93S-sh-dgx" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="2QL-Hj-eYh"/>
                 <constraint firstItem="93S-sh-dgx" firstAttribute="top" secondItem="XQr-Er-O8u" secondAttribute="bottom" id="2br-UK-iKm"/>
+                <constraint firstItem="L2A-ke-cdQ" firstAttribute="top" secondItem="OgS-If-HKZ" secondAttribute="bottom" id="Bxk-Yg-fVl"/>
                 <constraint firstItem="L2A-ke-cdQ" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="GMF-Rw-Xdg"/>
-                <constraint firstItem="L2A-ke-cdQ" firstAttribute="top" secondItem="XQr-Er-O8u" secondAttribute="bottom" id="Hfe-J8-yQa"/>
                 <constraint firstItem="kQk-F0-Q7v" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="KuQ-WA-L5V"/>
+                <constraint firstItem="OgS-If-HKZ" firstAttribute="top" secondItem="XQr-Er-O8u" secondAttribute="bottom" id="M63-sX-V5s"/>
                 <constraint firstItem="93S-sh-dgx" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="PaH-eA-MDP"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="XQr-Er-O8u" secondAttribute="trailing" id="Pjn-gh-Iea"/>
                 <constraint firstItem="kQk-F0-Q7v" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="Rfx-k5-Rfj"/>
@@ -106,10 +134,15 @@
                 <constraint firstItem="XQr-Er-O8u" firstAttribute="top" secondItem="kQk-F0-Q7v" secondAttribute="bottom" id="cjB-ni-4qd"/>
                 <constraint firstItem="XQr-Er-O8u" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="h38-z0-ibS"/>
                 <constraint firstItem="kQk-F0-Q7v" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="n31-TU-0h6"/>
+                <constraint firstItem="OgS-If-HKZ" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="pMB-5B-J3W"/>
                 <constraint firstItem="L2A-ke-cdQ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="pbl-kS-Ufa"/>
+                <constraint firstItem="OgS-If-HKZ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="uPT-rl-j5e"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="138.40000000000001" y="147.97601199400302"/>
         </view>
     </objects>
+    <resources>
+        <image name="icFilterGrey" width="24" height="24"/>
+    </resources>
 </document>

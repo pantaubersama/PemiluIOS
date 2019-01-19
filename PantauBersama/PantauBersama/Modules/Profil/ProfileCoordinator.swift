@@ -41,6 +41,10 @@ final class ProfileCoordinator: BaseCoordinator<Void> {
 }
 
 extension ProfileCoordinator: ProfileNavigator {
+    func launchJanjiDetail(data: JanjiPolitik) -> Observable<Void> {
+        let janjiDetailCoordinator = DetailJanjiCoordinator(navigationController: navigationController, data: data)
+        return coordinate(to: janjiDetailCoordinator)
+    }
     
     func back() {
         navigationController.popViewController(animated: true)

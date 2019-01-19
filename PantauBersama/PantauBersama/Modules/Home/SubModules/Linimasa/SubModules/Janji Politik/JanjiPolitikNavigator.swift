@@ -20,6 +20,7 @@ protocol IJanpolNavigator: class {
 }
 
 extension IJanpolNavigator where Self: BaseCoordinator<Void> {
+
     func launchJanjiDetail(data: JanjiPolitik) -> Observable<Void> {
         let janjiDetailCoordinator = DetailJanjiCoordinator(navigationController: navigationController, data: data)
         return coordinate(to: janjiDetailCoordinator)
@@ -28,6 +29,7 @@ extension IJanpolNavigator where Self: BaseCoordinator<Void> {
     func shareJanji(data: JanjiPolitik) -> Observable<Void> {
         let share = "Sudah tahu Janji yang ini, belum? Siap-siap catatan, ya! ✔️ \(AppContext.instance.infoForKey("URL_API_PEMILU"))/share/janjipolitik/\(data.id)"
         let activityViewController = UIActivityViewController(activityItems: [share as NSString], applicationActivities: nil)
+
         self.navigationController.present(activityViewController, animated: true, completion: nil)
         
         return Observable.never()
