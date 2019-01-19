@@ -26,12 +26,14 @@ class SearchController: UIViewController {
     lazy var pilpresViewModel = PilpresViewModel(navigator: viewModel.navigator, searchTrigger: viewModel.searchSubject, showTableHeader: false)
     lazy var janjiPolitikViewModel = JanpolListViewModel(navigator: viewModel.navigator, searchTrigger: viewModel.searchSubject,    showTableHeader: false)
     lazy var listUserViewModel = ListUserViewModel(searchTrigger: viewModel.searchSubject)
+    lazy var listClusterViewModel = ClusterSearchViewModel(searchTrigger: viewModel.searchSubject)
     
     lazy var askController = QuestionController(viewModel: askViewModel)
     lazy var quisController = QuizController(viewModel: quizViewModel)
     lazy var pilpresController = PilpresViewController(viewModel: pilpresViewModel)
     lazy var janjiController = JanjiPolitikViewController(viewModel: janjiPolitikViewModel)
     lazy var listUserController = ListUserController(viewModel: listUserViewModel)
+    lazy var listClusterController = ListClusterController(viewModel: listClusterViewModel)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +44,7 @@ class SearchController: UIViewController {
         add(childViewController: janjiController, context: container)
         add(childViewController: pilpresController, context: container)
         add(childViewController: listUserController, context: container)
+        add(childViewController: listClusterController, context: container)
         
         customMenuBar.menuItem = [MenuItem(title: "Orang"),
                                   MenuItem(title: "Cluster"),
@@ -77,6 +80,7 @@ class SearchController: UIViewController {
                         self.listUserController.view.alpha = 1.0
                         break
                     case 1:
+                        self.listClusterController.view.alpha = 1.0
                         break
                     case 2:
                         self.pilpresController.view.alpha = 1.0
@@ -129,6 +133,7 @@ class SearchController: UIViewController {
         self.pilpresController.view.alpha = 0.0
         self.janjiController.view.alpha = 0.0
         self.listUserController.view.alpha = 0.0
+        self.listClusterController.view.alpha = 0.0
     }
     
     override func viewWillAppear(_ animated: Bool) {
