@@ -9,8 +9,10 @@
 import UIKit
 import RxCocoa
 import RxSwift
+import Common
 
 class SearchController: UIViewController {
+    @IBOutlet weak var btnFilter: Button!
     @IBOutlet weak var navbar: SearchNavbar!
     @IBOutlet weak var customMenuBar: CustomMenuBar!
     @IBOutlet weak var container: UIView!
@@ -125,15 +127,44 @@ class SearchController: UIViewController {
             .bind(to: viewModel.input.clearRecentSearchTrigger)
             .disposed(by: disposeBag)
         
+        btnFilter.rx.tap
+            .map({ self.filterType() })
+            .bind(to: viewModel.input.filterTrigger)
+            .disposed(by: disposeBag)
+        
+        viewModel.output.filterSelected
+            .drive()
+            .disposed(by: disposeBag)
+        
     }
     
     private func hideAllChilds() {
-        self.askController.view.alpha = 0.0
-        self.quisController.view.alpha = 0.0
-        self.pilpresController.view.alpha = 0.0
-        self.janjiController.view.alpha = 0.0
-        self.listUserController.view.alpha = 0.0
-        self.listClusterController.view.alpha = 0.0
+        askController.view.alpha = 0.0
+        quisController.view.alpha = 0.0
+        pilpresController.view.alpha = 0.0
+        janjiController.view.alpha = 0.0
+        listUserController.view.alpha = 0.0
+        listClusterController.view.alpha = 0.0
+    }
+    
+    private func filterType() -> (type: FilterType, filterTrigger:  AnyObserver<[PenpolFilterModel.FilterItem]>) {
+        if askController.view.alpha == 1.0 {
+            return (type: .question, filterTrigger: askViewModel.input.filterI)
+        }
+        
+        if quisController.view.alpha == 1.0 {
+            return (type: .quiz, filterTrigger: quizViewModel.input.filterTrigger)
+        }
+        
+        if pilpresController.view.alpha == 1.0 {
+            return (type: .pilpres, filterTrigger: pilpresViewModel.input.filterTrigger)
+        }
+        
+        if janjiController.view.alpha == 1.9 {
+            return (type: .janji, filterTrigger: janjiPolitikViewModel.input.filterI)
+        }
+        
+        return (type: .question, filterTrigger: askViewModel.input.filterI)
     }
     
     override func viewWillAppear(_ animated: Bool) {

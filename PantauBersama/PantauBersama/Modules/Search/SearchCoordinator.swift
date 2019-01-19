@@ -18,8 +18,8 @@ protocol SearchNavigator: PenpolNavigator, LinimasaNavigator {
 class SearchCoordinator: BaseCoordinator<Void> {
 
     private let externalNavigationController: UINavigationController
-
-    private(set) var internalNavigationController: UINavigationController!
+    
+    private var filterCoordinator: PenpolFilterCoordinator!
     
     var navigationController: UINavigationController! {
         return externalNavigationController
@@ -63,10 +63,6 @@ extension SearchCoordinator: SearchNavigator {
     
     func launchNotifications() {
         
-    }
-    
-    func launchFilter() -> Observable<Void> {
-        return Observable.never()
     }
     
     func launchAddJanji() -> Observable<Void> {
@@ -117,7 +113,13 @@ extension SearchCoordinator: SearchNavigator {
     }
     
     func launchFilter(filterType: FilterType, filterTrigger: AnyObserver<[PenpolFilterModel.FilterItem]>) -> Observable<Void> {
-        return Observable.never()
+        if filterCoordinator == nil {
+            filterCoordinator = PenpolFilterCoordinator(navigationController: self.navigationController, filterType: filterType, filterTrigger: filterTrigger)
+        }
+        
+        filterCoordinator.filterType = filterType
+        
+        return coordinate(to: filterCoordinator)
     }
     
     func openQuiz(quiz: QuizModel) -> Observable<Void> {

@@ -17,12 +17,14 @@ class SearchViewModel: ViewModelType {
         let loadRecentlyTrigger: AnyObserver<Void>
         let itemSelectedTrigger: AnyObserver<IndexPath>
         let clearRecentSearchTrigger: AnyObserver<Void>
+        let filterTrigger: AnyObserver<(type: FilterType, filterTrigger: AnyObserver<[PenpolFilterModel.FilterItem]>)>
     }
     
     struct Output {
         let back: Driver<Void>
         let searchTrigger: PublishSubject<String>
         let recentlySearched: Driver<[String]>
+        let filterSelected: Driver<Void>
     }
     
     var input: Input
@@ -36,6 +38,7 @@ class SearchViewModel: ViewModelType {
     private let itemSelectedSubject = PublishSubject<IndexPath>()
     private let clearRecentSearchSubject = PublishSubject<Void>()
     private let disposeBag = DisposeBag()
+    private let filterSubject = PublishSubject<(type: FilterType, filterTrigger: AnyObserver<[PenpolFilterModel.FilterItem]>)>()
     
     init(navigator: SearchNavigator) {
         self.navigator = navigator
@@ -44,7 +47,8 @@ class SearchViewModel: ViewModelType {
                       searchInputTrigger: searchSubject.asObserver(),
                       loadRecentlyTrigger: recentlySearchedSubject.asObserver(),
                       itemSelectedTrigger: itemSelectedSubject.asObserver(),
-                      clearRecentSearchTrigger: clearRecentSearchSubject.asObserver())
+                      clearRecentSearchTrigger: clearRecentSearchSubject.asObserver(),
+                      filterTrigger: filterSubject.asObserver())
         
         let back = backSubject
             .flatMapLatest({ navigator.finishSearch() })
@@ -65,8 +69,11 @@ class SearchViewModel: ViewModelType {
             .bind(to: input.loadRecentlyTrigger)
             .disposed(by: disposeBag)
         
+        let filter = filterSubject
+            .flatMap({ navigator.launchFilter(filterType: $0.type, filterTrigger: $0.filterTrigger) })
+            .asDriver(onErrorJustReturn: ())
         
-        output = Output(back: back, searchTrigger: searchSubject, recentlySearched: recentlySaerched)
+        output = Output(back: back, searchTrigger: searchSubject, recentlySearched: recentlySaerched, filterSelected: filter)
         
         output.searchTrigger
             .filter({ !$0.isEmpty })
