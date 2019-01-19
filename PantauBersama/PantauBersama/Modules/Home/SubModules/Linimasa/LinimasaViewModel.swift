@@ -118,12 +118,14 @@ final class LinimasaViewModel: ViewModelType {
                 if version.app.forceUpdate == true {
                     return navigator.launchUpdates(type: .major)
                 } else {
-                    if version.app.version?.versionToInt()
-                        .lexicographicallyPrecedes(versionString().versionToInt()) == true {
-                        return navigator.launchUpdates(type: .minor)
+                    if let new = version.app.version {
+                        if new.compare(versionString(), options: .numeric) == .orderedDescending {
+                                print("We have new ones in AppStore")
+                                return navigator.launchUpdates(type: .minor)
+                        }
                     }
-                    return Observable.empty()
                 }
+                return Observable.empty()
             }
         
         output = Output(searchSelected: search,

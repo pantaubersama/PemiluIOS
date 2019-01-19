@@ -31,7 +31,7 @@ class AboutController: UIViewController {
             .drive()
             .disposed(by: disposeBag)
         
-        version.text = versionString()
+        version.text = "Versi \(versionString())"
     }
     
     override func viewWillAppear(_ animated: Bool) {
