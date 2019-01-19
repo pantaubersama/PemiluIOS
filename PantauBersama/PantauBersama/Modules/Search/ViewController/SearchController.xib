@@ -13,6 +13,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchController" customModule="PantauBersama" customModuleProvider="target">
             <connections>
                 <outlet property="btnClearRecentSearch" destination="yNn-Et-0Be" id="aRJ-tm-v64"/>
+                <outlet property="btnFilter" destination="dhC-JR-KDF" id="nC1-nX-wpm"/>
                 <outlet property="container" destination="L2A-ke-cdQ" id="Lmj-6v-D6i"/>
                 <outlet property="customMenuBar" destination="XQr-Er-O8u" id="Zu8-bi-CNZ"/>
                 <outlet property="navbar" destination="kQk-F0-Q7v" id="PgW-rh-NSr"/>
@@ -48,7 +49,7 @@
                     <rect key="frame" x="0.0" y="124" width="375" height="35"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dhC-JR-KDF" customClass="Button" customModule="Common">
-                            <rect key="frame" x="282" y="5.5" width="58" height="24"/>
+                            <rect key="frame" x="281" y="5.5" width="59" height="24"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="24" id="kyG-Or-XkB"/>
                             </constraints>
