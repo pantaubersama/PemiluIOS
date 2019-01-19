@@ -104,4 +104,44 @@ public extension UserDefaults {
     public static func isSelectedFilter(value: String) -> Bool {
         return UserDefaults.standard.bool(forKey: value)
     }
+    
+    public static func addRecentlySearched(query: String) {
+        if query.isEmpty {
+            return
+        }
+        
+        let lowerCasedQuery = query.lowercased()
+        var newRecentlySearched: [String] = []
+        
+        // get existing recently search if exist
+        if let cachedRecentlySearched = getRecentlySearched() {
+            newRecentlySearched = cachedRecentlySearched
+        }
+        
+        // if query already contaned inside existing list, then just reorder to the first order
+        if newRecentlySearched.contains(lowerCasedQuery) {
+            let containedIndex = newRecentlySearched.firstIndex { (cachedQuery) -> Bool in
+                return cachedQuery.lowercased() == lowerCasedQuery
+            }
+            
+            newRecentlySearched.remove(at: containedIndex!)
+        }
+        
+        // if existing list already reached limit (5) than remove the oldest one
+        if newRecentlySearched.count == 5 {
+            newRecentlySearched.removeLast()
+        }
+        
+        newRecentlySearched.insert(lowerCasedQuery, at: 0)
+        
+        UserDefaults.standard.set(newRecentlySearched, forKey: "recently_searched")
+    }
+    
+    public static func getRecentlySearched() -> [String]? {
+        return UserDefaults.standard.array(forKey: "recently_searched") as? [String]
+    }
+    
+    public static func clearRecentlySearched() {
+        UserDefaults.standard.removeObject(forKey: "recently_searched")
+    }
 }

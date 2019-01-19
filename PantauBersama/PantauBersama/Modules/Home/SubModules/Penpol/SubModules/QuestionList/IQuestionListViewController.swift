@@ -22,6 +22,7 @@ extension IQuestionListViewController {
     func bind(tableView: UITableView, refreshControl: UIRefreshControl, emptyView: EmptyView, with viewModel: IQuestionListViewModel) {
         
         refreshControl.rx.controlEvent(.valueChanged)
+            .map({ "" })
             .bind(to: viewModel.input.refreshI)
             .disposed(by: disposeBag)
         

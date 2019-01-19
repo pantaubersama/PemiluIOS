@@ -26,10 +26,14 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bgquizresult" translatesAutoresizingMaskIntoConstraints="NO" id="IRF-kf-QgY">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RESULT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="doj-He-DaH" customClass="Label" customModule="Common">
-                    <rect key="frame" x="121.5" y="94" width="77.5" height="26.5"/>
+                    <rect key="frame" x="121.5" y="79" width="77.5" height="26.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" red="0.62683063750000001" green="0.046659030019999999" blue="0.11002182219999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="textColor" red="0.91987603900000003" green="0.18888336419999999" blue="0.21535322069999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
@@ -39,7 +43,7 @@
                     </userDefinedRuntimeAttributes>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HnT-G4-mQ9" customClass="Label" customModule="Common">
-                    <rect key="frame" x="12.5" y="132.5" width="295" height="42"/>
+                    <rect key="frame" x="12.5" y="117.5" width="295" height="42"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="42" id="JBu-D0-OF3"/>
                         <constraint firstAttribute="width" constant="295" id="uEo-N1-0qd"/>
@@ -54,19 +58,19 @@
                     </userDefinedRuntimeAttributes>
                 </label>
                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" insetsLayoutMarginsFromSafeArea="NO" image="icDummyPerson" translatesAutoresizingMaskIntoConstraints="NO" id="QEU-eJ-uO8" customClass="CircularUIImageView" customModule="Common">
-                    <rect key="frame" x="85" y="184.5" width="150" height="150"/>
+                    <rect key="frame" x="85" y="169.5" width="150" height="150"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="150" id="fJ9-Iv-4vt"/>
                         <constraint firstAttribute="height" constant="150" id="r35-8m-ZxY"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bUS-ug-cTC" customClass="Label" customModule="Common">
-                    <rect key="frame" x="10" y="334.5" width="300" height="60"/>
+                    <rect key="frame" x="10" y="319.5" width="300" height="60"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="60" id="ZYj-HI-rE9"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
@@ -76,9 +80,9 @@
                     </userDefinedRuntimeAttributes>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C1e-ri-Zhr" customClass="Label" customModule="Common">
-                    <rect key="frame" x="10" y="394.5" width="300" height="0.0"/>
+                    <rect key="frame" x="10" y="379.5" width="300" height="0.0"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
@@ -87,22 +91,23 @@
                     </userDefinedRuntimeAttributes>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Sn-a9-R1g" customClass="Button" customModule="Common">
-                    <rect key="frame" x="98" y="434.5" width="124" height="33"/>
+                    <rect key="frame" x="98" y="419.5" width="124" height="33"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="124" id="5MZ-2f-EqR"/>
                         <constraint firstAttribute="height" constant="33" id="mBA-2T-QrY"/>
                     </constraints>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
                     <inset key="imageEdgeInsets" minX="-20" minY="0.0" maxX="0.0" maxY="0.0"/>
-                    <state key="normal" title="BAGIKAN" image="icShare">
-                        <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <state key="normal" title="BAGIKAN" image="outlineShareWhite">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                             <real key="value" value="14"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                            <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
                             <real key="value" value="14"/>
@@ -116,7 +121,7 @@
                         <constraint firstAttribute="height" constant="30" id="xsD-12-2YT"/>
                     </constraints>
                     <state key="normal" title="Lihat kunci jawaban &gt;&gt;&gt;">
-                        <color key="titleColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -133,7 +138,7 @@
                 <constraint firstItem="ZYa-yX-JdA" firstAttribute="trailing" secondItem="C1e-ri-Zhr" secondAttribute="trailing" constant="10" id="Qeh-tQ-pWt"/>
                 <constraint firstItem="QEU-eJ-uO8" firstAttribute="top" secondItem="HnT-G4-mQ9" secondAttribute="bottom" constant="10" id="UJo-46-hwN"/>
                 <constraint firstItem="doj-He-DaH" firstAttribute="centerX" secondItem="ZYa-yX-JdA" secondAttribute="centerX" id="Zeh-QG-aBD"/>
-                <constraint firstItem="doj-He-DaH" firstAttribute="top" secondItem="ZYa-yX-JdA" secondAttribute="top" constant="30" id="c4A-SV-QT4"/>
+                <constraint firstItem="doj-He-DaH" firstAttribute="top" secondItem="ZYa-yX-JdA" secondAttribute="top" constant="15" id="c4A-SV-QT4"/>
                 <constraint firstItem="QEU-eJ-uO8" firstAttribute="centerX" secondItem="ZYa-yX-JdA" secondAttribute="centerX" id="cJf-0i-L5H"/>
                 <constraint firstItem="ZYa-yX-JdA" firstAttribute="trailing" secondItem="bUS-ug-cTC" secondAttribute="trailing" constant="10" id="cKo-AD-0fE"/>
                 <constraint firstItem="8Sn-a9-R1g" firstAttribute="top" secondItem="C1e-ri-Zhr" secondAttribute="bottom" constant="40" id="drg-Uh-0yK"/>
@@ -152,7 +157,8 @@
         </view>
     </objects>
     <resources>
+        <image name="bgquizresult" width="360" height="640"/>
         <image name="icDummyPerson" width="64" height="64"/>
-        <image name="icShare" width="20" height="20"/>
+        <image name="outlineShareWhite" width="24" height="24"/>
     </resources>
 </document>
