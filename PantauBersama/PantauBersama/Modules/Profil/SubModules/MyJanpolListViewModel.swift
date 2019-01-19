@@ -90,9 +90,9 @@ class MyJanpolListViewModel: IJanpolListViewModel, IJanpolListViewModelInput, IJ
         moreSelectedO = moreSubject
             .asObserver().asDriverOnErrorJustComplete()
         
-//        shareSelectedO = shareSubject
-//            .flatMapLatest({ _ in navigator.shareJanji(data: "Any") })
-//            .asDriver(onErrorJustReturn: ())
+        shareSelectedO = shareSubject
+            .flatMapLatest({ navigator.shareJanji(data: $0) })
+            .asDriver(onErrorJustReturn: ())
         
         moreMenuSelectedO = moreMenuSubject
             .flatMapLatest { (type) -> Observable<Void> in

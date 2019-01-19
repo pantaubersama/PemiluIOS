@@ -176,7 +176,7 @@ class QuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelInput
             .asDriverOnErrorJustComplete()
         
         shareSelectedO = shareSubject
-            .flatMapLatest({navigator.shareQuestion(question: $0.body)})
+            .flatMapLatest({navigator.shareQuestion(question: $0.id)})
             .asDriver(onErrorJustReturn: ())
         
         filterO = filterSubject

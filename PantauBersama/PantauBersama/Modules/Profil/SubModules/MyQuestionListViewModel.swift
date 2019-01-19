@@ -106,7 +106,7 @@ class MyQuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelInp
                 guard let weakSelf = self else { return Observable.empty() }
                 switch type {
                 case .bagikan(let question):
-                    let contentToShare = question.body
+                    let contentToShare = question.id
                     return navigator.shareQuestion(question: contentToShare)
                         .map({ (_) -> String in
                             return ""
@@ -138,7 +138,7 @@ class MyQuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelInp
             .asDriverOnErrorJustComplete()
         
         shareSelectedO = shareSubject
-            .flatMapLatest({navigator.shareQuestion(question: $0.body)})
+            .flatMapLatest({navigator.shareQuestion(question: $0.id)})
             .asDriver(onErrorJustReturn: ())
         
         filterO = filterSubject
