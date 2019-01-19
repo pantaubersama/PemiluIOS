@@ -33,22 +33,24 @@ class SearchCoordinator: BaseCoordinator<Void> {
         let viewController = SearchController()
         let viewModel = SearchViewModel(navigator: self)
         viewController.viewModel = viewModel
+        viewController.hidesBottomBarWhenPushed = true
         
-        internalNavigationController = UINavigationController(rootViewController: viewController)
-        internalNavigationController.modalTransitionStyle = .crossDissolve
-        navigationController.present(internalNavigationController, animated: true, completion: nil)
+        navigationController.pushViewController(viewController, animated: true)
         
         return Observable.never()
     }
 }
 
 extension SearchCoordinator: SearchNavigator {
+    
     func launchUpdates(type: TypeUpdates) -> Observable<Void> {
-        return Observable.empty()
+        let updatesView = UpdatesCoordinator(navigationController: navigationController, type: type)
+        return coordinate(to: updatesView)
     }
     
     func launcWebView(link: String) -> Observable<Void> {
-        return Observable.never()
+        let wkwebCoordinator = WKWebCoordinator(navigationController: navigationController, url: link)
+        return coordinate(to: wkwebCoordinator)
     }
     
     func launchPenpolBannerInfo(bannerInfo: BannerInfo) -> Observable<Void> {
@@ -80,11 +82,29 @@ extension SearchCoordinator: SearchNavigator {
     }
     
     func sharePilpres(data: Any) -> Observable<Void> {
+        let activityViewController = UIActivityViewController(activityItems: ["content to be shared" as NSString], applicationActivities: nil)
+        self.navigationController.present(activityViewController, animated: true, completion: nil)
+        
         return Observable.never()
     }
     
     func openTwitter(data: String) -> Observable<Void> {
-        return Observable.never()
+        if (UIApplication.shared.canOpenURL(URL(string:"twitter://")!)) {
+            print("Twitter is installed")
+            UIApplication.shared.open(URL(string: "twitter://status?id=\(data)")!, options: [:], completionHandler: nil)
+        } else {
+            return Observable<Void>.create({ [weak self] (observer) -> Disposable in
+                let alert = UIAlertController(title: nil, message: "Anda tidak memiliki aplikasi Twitter", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
+                    observer.onCompleted()
+                }))
+                DispatchQueue.main.async {
+                    self?.navigationController.present(alert, animated: true, completion: nil)
+                }
+                return Disposables.create()
+            })
+        }
+        return Observable.just(())
     }
     
     func launchBannerInfo(bannerInfo: BannerInfo) -> Observable<Void> {
@@ -92,7 +112,7 @@ extension SearchCoordinator: SearchNavigator {
     }
     
     func finishSearch() -> Observable<Void> {
-        externalNavigationController.dismiss(animated: true, completion: nil)
+        navigationController.popViewController(animated: true)
         return Observable.never()
     }
     
@@ -117,6 +137,10 @@ extension SearchCoordinator: SearchNavigator {
     }
     
     func shareQuestion(question: String) -> Observable<Void> {
+        // TODO: coordinate to share
+        let activityViewController = UIActivityViewController(activityItems: [question as NSString], applicationActivities: nil)
+        self.navigationController.present(activityViewController, animated: true, completion: nil)
+        
         return Observable.never()
     }
 

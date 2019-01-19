@@ -46,6 +46,11 @@ class LinimasaCoordinator: BaseCoordinator<Void> {
 }
 
 extension LinimasaCoordinator: LinimasaNavigator {
+    func launchJanjiDetail(data: JanjiPolitik) -> Observable<Void> {
+        let janjiDetailCoordinator = DetailJanjiCoordinator(navigationController: navigationController, data: data)
+        return coordinate(to: janjiDetailCoordinator)
+    }
+    
     func launchSearch() -> Observable<Void> {
         let searchCoordinator = SearchCoordinator(navigationController: self.navigationController)
         return coordinate(to: searchCoordinator)
