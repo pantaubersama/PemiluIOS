@@ -22,6 +22,7 @@ class LinimasaCell: UITableViewCell  {
     @IBOutlet weak var titleTeam: Label!
     @IBOutlet weak var thumbnail: UIImageView!
     @IBOutlet weak var more: UIButton!
+    @IBOutlet weak var username: Label!
     
     private(set) var disposeBag = DisposeBag()
     
@@ -54,10 +55,11 @@ extension LinimasaCell: IReusableCell {
     }
     
     func configure(data: Feeds) {
-        
         name.text = data.account.name
+        let date = data.createdAt.toDate(format: Constant.dateTimeFormat3)?.timeAgoSinceDate2
+        username.text = "@\(data.account.username) • \(date ?? "")"
         content.text = data.source.text
-        titleTeam.text = data.team.title
+        titleTeam.text = "Disematkan dari \(data.team.title)"
         
         if let avatarUrl = data.account.profileImageUrl {
             avatar.af_setImage(withURL: URL(string: avatarUrl)!)
