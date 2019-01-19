@@ -7,9 +7,10 @@
 //
 
 import RxSwift
+import Common
 
 protocol UpdatesNavigator {
-    func nextTime() -> Observable<Void>
+    func nextTime()
     func update()
 }
 
@@ -39,11 +40,19 @@ final class UpdatesCoordinator: BaseCoordinator<Void> {
 
 extension UpdatesCoordinator: UpdatesNavigator {
     
-    func nextTime() -> Observable<Void> {
-        return Observable.empty()
+    func nextTime() {
+        navigationController.presentedViewController?.dismiss(animated: true, completion: nil)
     }
     
     func update() {
-        
+        if let url = URL(string: AppContext.instance.infoForKey("AppStoreURL")),
+            UIApplication.shared.canOpenURL(url)
+        {
+            if #available(iOS 10.0, *) {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            } else {
+                UIApplication.shared.openURL(url)
+            }
+        }
     }
 }

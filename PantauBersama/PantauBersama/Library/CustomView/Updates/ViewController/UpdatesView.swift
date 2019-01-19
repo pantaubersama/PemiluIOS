@@ -24,8 +24,19 @@ class UpdatesView: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         self.view.backgroundColor = UIColor.black.withAlphaComponent(0.6)
+        
+        btnForceUpdate.rx.tap
+            .bind(to: viewModel.input.updateI)
+            .disposed(by: disposeBag)
+        
+        btnUpdateNow.rx.tap
+            .bind(to: viewModel.input.updateI)
+            .disposed(by: disposeBag)
+        
+        btnSkipUpdate.rx.tap
+            .bind(to: viewModel.input.nextTimeI)
+            .disposed(by: disposeBag)
         
         viewModel.output.typeO
             .do(onNext: { [weak self] (type) in
@@ -40,6 +51,14 @@ class UpdatesView: UIViewController {
                     self.btnUpdateNow.isHidden = false
                 }
             })
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.updateO
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.nextTimeO
             .drive()
             .disposed(by: disposeBag)
     }

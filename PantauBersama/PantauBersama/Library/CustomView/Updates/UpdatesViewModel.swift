@@ -40,9 +40,21 @@ final class UpdatesViewModel: ViewModelType {
             nextTimeI: nextTimeS.asObserver()
         )
         
+        let nextTime = nextTimeS
+            .do(onNext: { (_) in
+                navigator.nextTime()
+            })
+            .asDriverOnErrorJustComplete()
+        
+        let update = updateS
+            .do(onNext: { (_) in
+                navigator.update()
+            })
+            .asDriverOnErrorJustComplete()
+        
         output = Output(
-            updateO: updateS.asDriverOnErrorJustComplete(),
-            nextTimeO: nextTimeS.asDriverOnErrorJustComplete(),
+            updateO: update,
+            nextTimeO: nextTime,
             typeO: Observable.just(type).asDriverOnErrorJustComplete()
         )
     }

@@ -118,10 +118,13 @@ final class LinimasaViewModel: ViewModelType {
                 if version.app.forceUpdate == true {
                     return navigator.launchUpdates(type: .major)
                 } else {
-                    // will check versioning
+                    if version.app.version?.versionToInt()
+                        .lexicographicallyPrecedes(versionString().versionToInt()) == true {
+                        return navigator.launchUpdates(type: .minor)
+                    }
                     return Observable.empty()
                 }
-        }
+            }
         
         output = Output(searchSelected: search,
                         filterSelected: filter,

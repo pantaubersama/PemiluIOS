@@ -14,3 +14,11 @@ public func versionString() -> String {
     let build = dictionary["CFBundleVersion"] as! String
     return "Versi \(version).\(build)"
 }
+
+
+extension String {
+    public func versionToInt() -> [Int] {
+        return self.components(separatedBy: ".")
+            .map { Int.init($0) ?? 0 }
+    }
+}

@@ -42,3 +42,5 @@ FACEBOOK_DISPLAY_NAME = Pantau Bersama Staging
 // Pantau FAQ and Komunitas
 FAQ_PANTAU = https:/\/\pantaubersama.faq.extrainteger.com/\
 COMMUNITY_PANTAU = https:/\/\pantaubersama.faq.extrainteger.com/\5
+// URL itms
+APP_STORE_URL = itms-apps:/\/\itunes.apple.com/app/id1448203130
