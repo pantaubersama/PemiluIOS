@@ -42,13 +42,19 @@ final class ClusterSearchViewModel: ViewModelType {
     let activityIndicator = ActivityIndicator()
     var delegate: IClusterSearchDelegate!
     
-    init() {
+    private let disposeBag = DisposeBag()
+    init(searchTrigger: PublishSubject<String>? = nil) {
         
         
         input = Input(backI: backS.asObserver(),
                       itemSelected: itemSelectedS.asObserver(),
                       query: queryS.asObserver(),
                       nextI: nextS.asObserver())
+        
+        
+        searchTrigger?.asObserver()
+            .bind(to: input.query)
+            .disposed(by: disposeBag)
         
         let cluster = queryS.startWith((""))
             .flatMapLatest { [weak self] (s) -> Observable<[ClusterDetail]> in
