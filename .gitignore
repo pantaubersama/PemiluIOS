@@ -163,7 +163,8 @@ playground.xcworkspace
 # screenshots whenever they are needed.
 # For more information about the recommended setup visit:
 # https://docs.fastlane.tools/best-practices/source-control/#source-control
-
+fastlane/report.xml
+fastlane/screenshots
 
 # Code Injection
 #
@@ -177,6 +178,13 @@ playground.xcworkspace
 # gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
 
 ## User settings
+
+# Ignore config files
+*/Config/*.config
+
+# Ignore plist Firebase
+*/Config/GoogleService-Info-Staging.plist
+*/Config/GoogleService-Info.plist
 
 ## compatibility with Xcode 8 and earlier (ignoring not required starting Xcode 9)
 
