@@ -33,28 +33,23 @@ class SearchCoordinator: BaseCoordinator<Void> {
         let viewController = SearchController()
         let viewModel = SearchViewModel(navigator: self)
         viewController.viewModel = viewModel
+        viewController.hidesBottomBarWhenPushed = true
         
-        internalNavigationController = UINavigationController(rootViewController: viewController)
-        internalNavigationController.modalTransitionStyle = .crossDissolve
-        navigationController.present(internalNavigationController, animated: true, completion: nil)
+        navigationController.pushViewController(viewController, animated: true)
         
         return Observable.never()
     }
 }
 
 extension SearchCoordinator: SearchNavigator {
-    func launchJanjiDetail(data: JanjiPolitik) -> Observable<Void> {
-        let janjiDetailCoordinator = DetailJanjiCoordinator(navigationController: internalNavigationController, data: data)
-        return coordinate(to: janjiDetailCoordinator)
-    }
     
     func launchUpdates(type: TypeUpdates) -> Observable<Void> {
-        let updatesView = UpdatesCoordinator(navigationController: internalNavigationController, type: type)
+        let updatesView = UpdatesCoordinator(navigationController: navigationController, type: type)
         return coordinate(to: updatesView)
     }
     
     func launcWebView(link: String) -> Observable<Void> {
-        let wkwebCoordinator = WKWebCoordinator(navigationController: internalNavigationController, url: link)
+        let wkwebCoordinator = WKWebCoordinator(navigationController: navigationController, url: link)
         return coordinate(to: wkwebCoordinator)
     }
     
@@ -88,7 +83,7 @@ extension SearchCoordinator: SearchNavigator {
     
     func sharePilpres(data: Any) -> Observable<Void> {
         let activityViewController = UIActivityViewController(activityItems: ["content to be shared" as NSString], applicationActivities: nil)
-        self.internalNavigationController.present(activityViewController, animated: true, completion: nil)
+        self.navigationController.present(activityViewController, animated: true, completion: nil)
         
         return Observable.never()
     }
@@ -104,7 +99,7 @@ extension SearchCoordinator: SearchNavigator {
                     observer.onCompleted()
                 }))
                 DispatchQueue.main.async {
-                    self?.internalNavigationController.present(alert, animated: true, completion: nil)
+                    self?.navigationController.present(alert, animated: true, completion: nil)
                 }
                 return Disposables.create()
             })
@@ -117,7 +112,7 @@ extension SearchCoordinator: SearchNavigator {
     }
     
     func finishSearch() -> Observable<Void> {
-        externalNavigationController.dismiss(animated: true, completion: nil)
+        navigationController.popViewController(animated: true)
         return Observable.never()
     }
     
@@ -144,7 +139,7 @@ extension SearchCoordinator: SearchNavigator {
     func shareQuestion(question: String) -> Observable<Void> {
         // TODO: coordinate to share
         let activityViewController = UIActivityViewController(activityItems: [question as NSString], applicationActivities: nil)
-        self.internalNavigationController.present(activityViewController, animated: true, completion: nil)
+        self.navigationController.present(activityViewController, animated: true, completion: nil)
         
         return Observable.never()
     }

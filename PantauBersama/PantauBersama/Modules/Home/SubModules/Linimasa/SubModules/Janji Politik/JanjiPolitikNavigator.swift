@@ -20,7 +20,6 @@ protocol IJanpolNavigator: class {
 }
 
 extension IJanpolNavigator where Self: BaseCoordinator<Void> {
-
     func launchJanjiDetail(data: JanjiPolitik) -> Observable<Void> {
         let janjiDetailCoordinator = DetailJanjiCoordinator(navigationController: navigationController, data: data)
         return coordinate(to: janjiDetailCoordinator)
