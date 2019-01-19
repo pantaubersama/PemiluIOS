@@ -104,7 +104,7 @@ extension SearchCoordinator: SearchNavigator {
         return Observable.never()
     }
     
-    func shareQuiz(quiz: Any) -> Observable<Void> {
+    func shareQuiz(quiz: QuizModel) -> Observable<Void> {
         return Observable.never()
     }
     

@@ -21,7 +21,7 @@ class QuizViewModel: ViewModelType {
         let loadQuizTrigger: AnyObserver<Void>
         let nextPageTrigger: AnyObserver<Void>
         let openQuizTrigger: AnyObserver<QuizModel>
-        let shareTrigger: AnyObserver<Any>
+        let shareTrigger: AnyObserver<QuizModel>
         let infoTrigger: AnyObserver<Void>
         let shareTrendTrigger: AnyObserver<Any>
         let filterTrigger: AnyObserver<[PenpolFilterModel.FilterItem]>
@@ -43,7 +43,7 @@ class QuizViewModel: ViewModelType {
     private let loadQuizSubject = PublishSubject<Void>()
     private let nextPageSubject = PublishSubject<Void>()
     private let openQuizSubject = PublishSubject<QuizModel>()
-    private let shareSubject = PublishSubject<Any>()
+    private let shareSubject = PublishSubject<QuizModel>()
     private let infoSubject = PublishSubject<Void>()
     private let shareTrendSubject = PublishSubject<Any>()
     private let filterSubject = PublishSubject<[PenpolFilterModel.FilterItem]>()

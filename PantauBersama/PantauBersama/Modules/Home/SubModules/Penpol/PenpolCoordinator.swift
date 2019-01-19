@@ -71,9 +71,10 @@ extension PenpolCoordinator: PenpolNavigator {
         }
     }
     
-    func shareQuiz(quiz: Any) -> Observable<Void> {
+    func shareQuiz(quiz: QuizModel) -> Observable<Void> {
         // TODO: coordinate to share
-        let activityViewController = UIActivityViewController(activityItems: ["content to be shared" as NSString], applicationActivities: nil)
+        let share = "Iseng-iseng serius main Kuis ini dulu. Kira-kira masih cocok apa ternyata malah nggak cocok, yaa 😶 \(AppContext.instance.infoForKey("URL_API_PEMILU"))/share/kui/\(quiz.id)"
+        let activityViewController = UIActivityViewController(activityItems: [share as NSString], applicationActivities: nil)
         self.navigationController.present(activityViewController, animated: true, completion: nil)
         
         return Observable.never()
