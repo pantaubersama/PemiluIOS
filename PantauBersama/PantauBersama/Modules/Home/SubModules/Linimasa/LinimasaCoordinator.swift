@@ -10,6 +10,11 @@ import UIKit
 import RxSwift
 import Networking
 
+enum TypeUpdates {
+    case minor
+    case major
+}
+
 protocol LinimasaNavigator: PilpresNavigator, IJanpolNavigator {
     func launchProfile() -> Observable<Void>
     func launchNotifications()
@@ -19,6 +24,7 @@ protocol LinimasaNavigator: PilpresNavigator, IJanpolNavigator {
     func launchFilter(filterType: FilterType, filterTrigger: AnyObserver<[PenpolFilterModel.FilterItem]>) -> Observable<Void>
     func launchSearch() -> Observable<Void>
     func launcWebView(link: String) -> Observable<Void>
+    func launchUpdates(type: TypeUpdates) -> Observable<Void>
 }
 
 class LinimasaCoordinator: BaseCoordinator<Void> {
@@ -111,6 +117,11 @@ extension LinimasaCoordinator: LinimasaNavigator {
     func launcWebView(link: String) -> Observable<Void> {
         let wkwebCoordinator = WKWebCoordinator(navigationController: navigationController, url: link)
         return coordinate(to: wkwebCoordinator)
+    }
+    
+    func launchUpdates(type: TypeUpdates) -> Observable<Void> {
+        let updatesView = UpdatesCoordinator(navigationController: navigationController, type: type)
+        return coordinate(to: updatesView)
     }
     
 }
