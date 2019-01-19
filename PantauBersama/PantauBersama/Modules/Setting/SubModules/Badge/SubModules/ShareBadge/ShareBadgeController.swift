@@ -19,6 +19,7 @@ class ShareBadgeController: UIViewController {
     @IBOutlet weak var iconBadges: UIImageView!
     @IBOutlet weak var titleBadges: Label!
     @IBOutlet weak var subtitleBadges: Label!
+    @IBOutlet weak var share: Button!
     
     var viewModel: ShareBadgeViewModel!
     private let disposeBag: DisposeBag = DisposeBag()
@@ -26,10 +27,14 @@ class ShareBadgeController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let share = UIBarButtonItem(image: #imageLiteral(resourceName: "icShare"), style: .plain, target: nil, action: nil)
+//        let share = UIBarButtonItem(image: #imageLiteral(resourceName: "icShare"), style: .plain, target: nil, action: nil)
         let back = UIBarButtonItem(image: #imageLiteral(resourceName: "back"), style: .plain, target: nil, action: nil)
         navigationItem.leftBarButtonItem = back
-        navigationItem.rightBarButtonItem = share
+//        navigationItem.rightBarButtonItem = share
+        
+        share.rx.tap
+            .bind(to: viewModel.input.shareI)
+            .disposed(by: disposeBag)
         
         back.rx.tap
             .bind(to: viewModel.input.backI)
@@ -51,13 +56,17 @@ class ShareBadgeController: UIViewController {
             })
             .disposed(by: disposeBag)
         
+        viewModel.output.shareO
+            .drive()
+            .disposed(by: disposeBag)
+        
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        navigationController?.navigationBar.configure(with: .white)
+        self.navigationController?.navigationBar.configure(with: .transparent)
+        self.navigationController?.navigationBar.tintColor = #colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1)
         viewModel.input.viewWillAppearI.onNext(())
     }
     

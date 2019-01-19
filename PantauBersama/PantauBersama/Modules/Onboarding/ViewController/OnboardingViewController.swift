@@ -52,7 +52,7 @@ class OnboardingViewController: UIViewController {
         lottieView.addSubview(landingAnimation!)
         landingAnimation!.loopAnimation = true
         landingAnimation!.play(fromProgress: 0,
-                               toProgress: 0.5,
+                               toProgress: 1.0,
                                withCompletion: nil)
     }
     

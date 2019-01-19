@@ -9,9 +9,10 @@
 import RxSwift
 import RxCocoa
 import Networking
+import Common
 
 protocol DetailJanjiNavigator {
-    func shareJanji(data: Any) -> Observable<Void>
+    func shareJanji(data: JanjiPolitik) -> Observable<Void>
     func close()
 }
 
@@ -47,8 +48,9 @@ extension DetailJanjiCoordinator: DetailJanjiNavigator {
         navigationController.popToViewController(viewController, animated: true)
     }
     
-    func shareJanji(data: Any) -> Observable<Void> {
-        let activityViewController = UIActivityViewController(activityItems: ["content to be shared" as NSString], applicationActivities: nil)
+    func shareJanji(data: JanjiPolitik) -> Observable<Void> {
+        let share = "Sudah tahu Janji yang ini, belum? Siap-siap catatan, ya! ✔️ \(AppContext.instance.infoForKey("URL_API_PEMILU"))/share/janjipolitik/\(data.id)"
+        let activityViewController = UIActivityViewController(activityItems: [share as NSString], applicationActivities: nil)
         self.navigationController.present(activityViewController, animated: true, completion: nil)
         
         return Observable.never()

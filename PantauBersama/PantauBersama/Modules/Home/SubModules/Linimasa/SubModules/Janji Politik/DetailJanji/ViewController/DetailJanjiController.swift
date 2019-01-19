@@ -72,24 +72,24 @@ class DetailJanjiController: UIViewController {
                         observer.on(.completed)
                     })
                     let salin = UIAlertAction(title: "Salin Tautan", style: .default, handler: { (_) in
-                        observer.onNext(JanjiType.salin)
+                        observer.onNext(JanjiType.salin(data: janpol))
                         observer.on(.completed)
                     })
                     let bagikan = UIAlertAction(title: "Bagikan", style: .default, handler: { (_) in
-                        observer.onNext(JanjiType.bagikan)
+                        observer.onNext(JanjiType.bagikan(data: janpol))
                         observer.on(.completed)
                     })
-                    let lapor = UIAlertAction(title: "Laporkan", style: .default, handler: { (_) in
-                        observer.onNext(JanjiType.laporkan)
-                        observer.on(.completed)
-                    })
+//                    let lapor = UIAlertAction(title: "Laporkan", style: .default, handler: { (_) in
+//                        observer.onNext(JanjiType.laporkan)
+//                        observer.on(.completed)
+//                    })
                     let cancel = UIAlertAction(title: "Batal", style: .cancel, handler: nil)
                     if janpol.creator.id == myId {
                         alert.addAction(hapus)
                     }
                     alert.addAction(salin)
                     alert.addAction(bagikan)
-                    alert.addAction(lapor)
+//                    alert.addAction(lapor)
                     alert.addAction(cancel)
                     DispatchQueue.main.async {
                         self?.navigationController?.present(alert, animated: true, completion: nil)
@@ -133,7 +133,7 @@ class DetailJanjiController: UIViewController {
         
         if let cluster = data.creator.cluster {
             nameParpol.text = cluster.name
-            jumlahAnggota.text = "\(cluster.memberCount ?? 0)"
+            jumlahAnggota.text = "\(cluster.memberCount ?? 0) anggota"
             if let url = cluster.image?.medium.url {
                 iconParpol.af_setImage(withURL: URL(string: url)!)
             }

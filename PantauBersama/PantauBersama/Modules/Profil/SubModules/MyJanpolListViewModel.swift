@@ -19,7 +19,7 @@ class MyJanpolListViewModel: IJanpolListViewModel, IJanpolListViewModelInput, IJ
     
     var refreshI: AnyObserver<String>
     var nextPageI: AnyObserver<Void>
-    var shareJanjiI: AnyObserver<Any>
+    var shareJanjiI: AnyObserver<JanjiPolitik>
     var moreI: AnyObserver<JanjiPolitik>
     var moreMenuI: AnyObserver<JanjiType>
     var itemSelectedI: AnyObserver<IndexPath>
@@ -39,7 +39,7 @@ class MyJanpolListViewModel: IJanpolListViewModel, IJanpolListViewModelInput, IJ
     private let refreshSubject = PublishSubject<String>()
     private let moreSubject = PublishSubject<JanjiPolitik>()
     private let moreMenuSubject = PublishSubject<JanjiType>()
-    private let shareSubject = PublishSubject<Any>()
+    private let shareSubject = PublishSubject<JanjiPolitik>()
     private let nextSubject = PublishSubject<Void>()
     private let itemSelectedSubject = PublishSubject<IndexPath>()
     private let filterSubject = PublishSubject<[PenpolFilterModel.FilterItem]>()
@@ -90,17 +90,18 @@ class MyJanpolListViewModel: IJanpolListViewModel, IJanpolListViewModelInput, IJ
         moreSelectedO = moreSubject
             .asObserver().asDriverOnErrorJustComplete()
         
-        shareSelectedO = shareSubject
-            .flatMapLatest({ _ in navigator.shareJanji(data: "Any") })
-            .asDriver(onErrorJustReturn: ())
+//        shareSelectedO = shareSubject
+//            .flatMapLatest({ _ in navigator.shareJanji(data: "Any") })
+//            .asDriver(onErrorJustReturn: ())
         
         moreMenuSelectedO = moreMenuSubject
             .flatMapLatest { (type) -> Observable<Void> in
                 switch type {
-                case .bagikan:
-                    return navigator.shareJanji(data: "as")
+                case .bagikan(let data):
+                    return navigator.shareJanji(data: data)
                 case .salin:
-                    return navigator.shareJanji(data: "as")
+//                    return navigator.shareJanji(data: "as")
+                    return Observable.empty()
                 case .hapus(let id):
                     return self.delete(id: id).mapToVoid()
                 default:

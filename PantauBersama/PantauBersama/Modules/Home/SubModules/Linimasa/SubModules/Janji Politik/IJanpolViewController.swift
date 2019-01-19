@@ -84,17 +84,17 @@ extension IJanpolViewController {
                         observer.on(.completed)
                     })
                     let salin = UIAlertAction(title: "Salin Tautan", style: .default, handler: { (_) in
-                        observer.onNext(JanjiType.salin)
+                        observer.onNext(JanjiType.salin(data: janpol))
                         observer.on(.completed)
                     })
                     let bagikan = UIAlertAction(title: "Bagikan", style: .default, handler: { (_) in
-                        observer.onNext(JanjiType.bagikan)
+                        observer.onNext(JanjiType.bagikan(data: janpol))
                         observer.on(.completed)
                     })
-                    let lapor = UIAlertAction(title: "Laporkan", style: .default, handler: { (_) in
-                        observer.onNext(JanjiType.laporkan)
-                        observer.on(.completed)
-                    })
+//                    let lapor = UIAlertAction(title: "Laporkan", style: .default, handler: { (_) in
+//                        observer.onNext(JanjiType.laporkan)
+//                        observer.on(.completed)
+//                    })
                     let cancel = UIAlertAction(title: "Batal", style: .cancel, handler: nil)
                     
                     if janpol.creator.id == myId {
@@ -103,7 +103,7 @@ extension IJanpolViewController {
                     
                     alert.addAction(salin)
                     alert.addAction(bagikan)
-                    alert.addAction(lapor)
+//                    alert.addAction(lapor)
                     alert.addAction(cancel)
                     DispatchQueue.main.async {
                         self?.navigationController?.present(alert, animated: true, completion: nil)

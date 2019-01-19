@@ -30,7 +30,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="375" height="210"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="fCt-yG-beF">
-                                    <rect key="frame" x="87.5" y="43" width="200" height="124"/>
+                                    <rect key="frame" x="87.5" y="54" width="200" height="102"/>
                                     <subviews>
                                         <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7bC-1s-TO8" customClass="RoundView" customModule="Common">
                                             <rect key="frame" x="70" y="0.0" width="60" height="60"/>
@@ -82,18 +82,21 @@
                                                 <userDefinedRuntimeAttribute type="string" keyPath="typeLabel" value="bold"/>
                                             </userDefinedRuntimeAttributes>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hQ7-IX-BXl">
-                                            <rect key="frame" x="70" y="102" width="60" height="22"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="60" id="TR2-dV-SHO"/>
-                                            </constraints>
-                                            <state key="normal" image="icShare"/>
-                                        </button>
                                     </subviews>
                                 </stackView>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hQ7-IX-BXl">
+                                    <rect key="frame" x="157.5" y="164" width="60" height="32"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="32" id="BpU-54-9b1"/>
+                                        <constraint firstAttribute="width" constant="60" id="IgE-1l-rL2"/>
+                                    </constraints>
+                                    <state key="normal" image="icShare"/>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" red="0.97636479139999999" green="0.97653168440000004" blue="0.9763541818" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
+                                <constraint firstItem="hQ7-IX-BXl" firstAttribute="centerX" secondItem="NTr-11-7Ka" secondAttribute="centerX" id="0d7-7l-m2n"/>
+                                <constraint firstItem="hQ7-IX-BXl" firstAttribute="top" secondItem="fCt-yG-beF" secondAttribute="bottom" constant="8" id="XZw-8I-Cav"/>
                                 <constraint firstItem="fCt-yG-beF" firstAttribute="centerX" secondItem="NTr-11-7Ka" secondAttribute="centerX" id="htz-d6-5iQ"/>
                                 <constraint firstItem="fCt-yG-beF" firstAttribute="centerY" secondItem="NTr-11-7Ka" secondAttribute="centerY" id="p1L-xv-LiM"/>
                                 <constraint firstAttribute="height" constant="210" id="z2c-jX-II7"/>

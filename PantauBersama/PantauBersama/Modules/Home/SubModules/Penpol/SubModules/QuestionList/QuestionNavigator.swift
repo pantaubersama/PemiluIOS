@@ -10,6 +10,7 @@
 import Foundation
 import RxSwift
 import Networking
+import Common
 
 protocol IQuestionNavigator: class {
     var navigationController: UINavigationController! { get }
@@ -28,7 +29,8 @@ extension IQuestionNavigator where Self: BaseCoordinator<Void> {
     
     func shareQuestion(question: String) -> Observable<Void> {
         // TODO: coordinate to share
-        let activityViewController = UIActivityViewController(activityItems: [question as NSString], applicationActivities: nil)
+        let askString = "Menurutmu gimana? \(AppContext.instance.infoForKey("URL_API_PEMILU"))/share/tanya/\(question)"
+        let activityViewController = UIActivityViewController(activityItems: [askString as NSString], applicationActivities: nil)
         self.navigationController.present(activityViewController, animated: true, completion: nil)
         
         return Observable.never()

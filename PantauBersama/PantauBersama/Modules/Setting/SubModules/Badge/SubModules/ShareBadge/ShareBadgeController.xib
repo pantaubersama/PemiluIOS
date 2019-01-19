@@ -16,6 +16,7 @@
                 <outlet property="avatar" destination="HyE-Ua-v4L" id="xCr-wF-QBd"/>
                 <outlet property="fullname" destination="hqz-Pb-cMM" id="PTS-Ly-M5x"/>
                 <outlet property="iconBadges" destination="YFo-zY-3Db" id="gbt-Mh-iYT"/>
+                <outlet property="share" destination="wPA-n4-pcE" id="Mbg-dU-zly"/>
                 <outlet property="subtitleBadges" destination="QHJ-40-CJd" id="ohb-T7-9Ri"/>
                 <outlet property="titleBadges" destination="sNW-xg-Ig4" id="Udu-c2-SO9"/>
                 <outlet property="view" destination="iN0-l3-epB" id="ZIE-ka-U8O"/>

@@ -47,7 +47,7 @@ class LogoutCoordinator: BaseCoordinator<LogoutType> {
                 // TODO: Reset All Account Sosmed and User Defaults Account
                 // If user have logged in sosmed must reset
                 guard let `self` = self else { return Observable.empty() }
-                if self.data.twitter && self.data.facebook == true {
+                if self.data.twitter == true && self.data.facebook == true {
                     return self.logoutSosmed()
                 } else if self.data.facebook == true {
                     return self.logoutFacebook()

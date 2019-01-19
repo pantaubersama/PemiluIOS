@@ -57,11 +57,12 @@ class QuizOngoingController: UIViewController {
             .drive()
             .disposed(by: disposeBag)
         
-        viewModel.output.quiz
-            .drive(onNext: { [unowned self]quiz in
-                self.ivQuiz.show(fromURL: quiz.image.url)
-            })
-            .disposed(by: disposeBag)
+        // statis images
+//        viewModel.output.quiz
+//            .drive(onNext: { [unowned self]quiz in
+//                self.ivQuiz.show(fromURL: quiz.image.url)
+//            })
+//            .disposed(by: disposeBag)
         
         viewModel.output.question
             .drive(onNext: { [unowned self]question in

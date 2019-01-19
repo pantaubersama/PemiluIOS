@@ -7,9 +7,11 @@
 //
 
 import RxSwift
+import Common
 
 protocol ShareBadgeNavigator {
     var finish: Observable<Void>! { get set }
+    func shareBadge(id: String) -> Observable<Void>
 }
 
 final class ShareBadgeCoordinator: BaseCoordinator<Void> {
@@ -36,5 +38,10 @@ final class ShareBadgeCoordinator: BaseCoordinator<Void> {
 }
 
 extension ShareBadgeCoordinator: ShareBadgeNavigator {
-    
+    func shareBadge(id: String) -> Observable<Void> {
+        let askString = "Yeay! I got the badge 🤘 \(AppContext.instance.infoForKey("URL_API_PEMILU"))/share/badge/\(id)"
+        let activityViewController = UIActivityViewController(activityItems: [askString as NSString], applicationActivities: nil)
+        self.navigationController.present(activityViewController, animated: true, completion: nil)
+        return Observable.never()
+    }
 }
