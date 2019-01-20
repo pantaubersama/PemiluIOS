@@ -13,10 +13,12 @@ import RxCocoa
 
 class ListUserViewModel: ViewModelType {
     struct Input {
+        let filterTrigger: AnyObserver<[PenpolFilterModel.FilterItem]>
     }
     
     struct Output {
         let searchedUser: Driver<[User]>
+        let filter: Driver<Void>
     }
     
     var input: Input
@@ -24,15 +26,41 @@ class ListUserViewModel: ViewModelType {
     
     private var currentPage = 0
     private let disposeBag = DisposeBag()
+    private var filterItems: [PenpolFilterModel.FilterItem] = []
+    private let filterSubject = PublishSubject<[PenpolFilterModel.FilterItem]>()
     
     init(searchTrigger: PublishSubject<String>) {
-        input = Input()
+        input = Input(filterTrigger: filterSubject.asObserver())
+        
+        let cachedFilter = PenpolFilterModel.generateUsersFilter()
+        cachedFilter.forEach { (filterModel) in
+            let selectedItem = filterModel.items.filter({ (filterItem) -> Bool in
+                return filterItem.isSelected
+            })
+            self.filterItems.append(contentsOf: selectedItem)
+        }
         
         let searchedUser = searchTrigger
-            .flatMapLatest({ self.searchUser(query: $0) })
+            .flatMapLatest({ self.searchUser(resetPage: true, query: $0) })
             .asDriver(onErrorJustReturn: [])
         
-        output = Output(searchedUser: searchedUser)
+        let filter = filterSubject
+            .do(onNext: { [weak self] (filterItems) in
+                guard let `self` = self else { return  }
+                print("Filter \(filterItems)")
+                
+                let filter = filterItems.filter({ (filterItem) -> Bool in
+                    return filterItem.id.contains("user")
+                })
+                
+                if !filter.isEmpty {
+                    self.filterItems = filterItems
+                }
+            })
+            .mapToVoid()
+            .asDriverOnErrorJustComplete()
+        
+        output = Output(searchedUser: searchedUser, filter: filter)
     }
     
     private func searchUser(resetPage: Bool = false, query: String) -> Observable<[User]> {
@@ -45,7 +73,16 @@ class ListUserViewModel: ViewModelType {
             currentPage = 0
         }
         
-        return NetworkService.instance.requestObject(PantauAuthAPI.users(page: currentPage, perPage: 10, query: query), c: UsersResponse.self)
+        var filteredBy = ""
+        if !self.filterItems.isEmpty {
+            let filterByString = self.filterItems.filter({ (filterItem) -> Bool in
+                return filterItem.paramKey == "filter_by"
+            }).first?.paramValue
+            
+            filteredBy = filterByString ?? "verified_all"
+        }
+        
+        return NetworkService.instance.requestObject(PantauAuthAPI.users(page: currentPage, perPage: 10, query: query, filterBy: PantauAuthAPI.UserListFilter(rawValue: filteredBy) ?? .userVerifiedAll), c: UsersResponse.self)
             .map({ [weak self](response) -> [User] in
                 guard let weakSelf = self else { return [] }
                 if response.data.users.count == 10 {

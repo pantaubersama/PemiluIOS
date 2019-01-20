@@ -160,8 +160,12 @@ class SearchController: UIViewController {
             return (type: .pilpres, filterTrigger: pilpresViewModel.input.filterTrigger)
         }
         
-        if janjiController.view.alpha == 1.9 {
+        if janjiController.view.alpha == 1.0 {
             return (type: .janji, filterTrigger: janjiPolitikViewModel.input.filterI)
+        }
+        
+        if listUserController.view.alpha == 1.0 {
+            return (type: .user, filterTrigger: listUserViewModel.input.filterTrigger)
         }
         
         return (type: .question, filterTrigger: askViewModel.input.filterI)
