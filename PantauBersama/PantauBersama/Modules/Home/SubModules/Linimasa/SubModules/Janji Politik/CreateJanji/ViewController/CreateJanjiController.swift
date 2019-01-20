@@ -20,7 +20,12 @@ class CreateJanjiController: UIViewController {
     @IBOutlet weak var contentHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var textCount: Label!
     @IBOutlet weak var image: UIImageView!
-    @IBOutlet weak var uploadButton: UIButton!
+    
+    private lazy var toolbar: UIToolbar = {
+        let bar = UIToolbar()
+        bar.sizeToFit()
+        return bar
+    }()
     
     var viewModel: ICreateJanjiViewModel!
     
@@ -36,6 +41,12 @@ class CreateJanjiController: UIViewController {
         navigationItem.leftBarButtonItem = back
         navigationItem.rightBarButtonItem = done
         navigationController?.navigationBar.configure(with: .white)
+        
+        let unggah = UIBarButtonItem(image: #imageLiteral(resourceName: "outlineImage24Px"), style: .plain, target: nil, action: nil)
+        let doneBar = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(dismissKeyboard(sender:)))
+        unggah.tintColor = Color.primary_black
+        toolbar.items = [unggah, doneBar]
+        contentJanji.inputAccessoryView = toolbar
         
         contentJanji.rx
             .setDelegate(self)
@@ -64,7 +75,7 @@ class CreateJanjiController: UIViewController {
             .bind(to: viewModel.input.bodyI)
             .disposed(by: disposeBag)
         
-        uploadButton.rx.tap
+        unggah.rx.tap
             .subscribe(onNext: { [weak self] (_) in
                 let controller = UIImagePickerController()
                 controller.sourceType = .photoLibrary
@@ -113,6 +124,9 @@ class CreateJanjiController: UIViewController {
         viewModel.input.viewWillAppearI.onNext(())
     }
     
+    @objc private func dismissKeyboard(sender: UIBarButtonItem) {
+        contentJanji.endEditing(true)
+    }
 }
 
 extension CreateJanjiController: UITextViewDelegate {

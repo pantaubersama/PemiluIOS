@@ -9,10 +9,15 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Lato-Regular.ttf">
+            <string>Lato-Regular</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BannerHeaderView" customModule="PantauBersama" customModuleProvider="target">
             <connections>
-                <outlet property="body" destination="MaX-Ti-Y5i" id="I6U-z7-lHf"/>
+                <outlet property="body" destination="MaX-Ti-Y5i" id="eCK-gw-9YM"/>
                 <outlet property="ivInfoBackground" destination="txW-9G-3a9" id="No9-Xq-tAc"/>
             </connections>
         </placeholder>
@@ -24,14 +29,13 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icHeaderPilpres" translatesAutoresizingMaskIntoConstraints="NO" id="txW-9G-3a9">
                     <rect key="frame" x="0.0" y="10" width="356" height="105"/>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MaX-Ti-Y5i" customClass="Label" customModule="Common">
-                    <rect key="frame" x="151" y="10" width="200" height="50"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MaX-Ti-Y5i" customClass="Label" customModule="Common">
+                    <rect key="frame" x="128" y="10" width="220" height="50"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="50" id="Lgg-t2-FHd"/>
-                        <constraint firstAttribute="width" constant="200" id="if9-qw-PTM"/>
+                        <constraint firstAttribute="height" priority="750" constant="50" id="Lgg-t2-FHd"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="12"/>
+                    <color key="textColor" red="0.48628133540000001" green="0.4862622023" blue="0.48627519609999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <nil key="highlightedColor"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
@@ -44,10 +48,11 @@
             <constraints>
                 <constraint firstItem="txW-9G-3a9" firstAttribute="leading" secondItem="9wS-Gm-6hW" secondAttribute="leading" id="S3s-oL-kxf"/>
                 <constraint firstAttribute="bottom" secondItem="txW-9G-3a9" secondAttribute="bottom" id="TmS-F1-lFA"/>
-                <constraint firstItem="9wS-Gm-6hW" firstAttribute="trailing" secondItem="MaX-Ti-Y5i" secondAttribute="trailing" constant="5" id="aEL-u9-P1l"/>
+                <constraint firstAttribute="trailing" secondItem="MaX-Ti-Y5i" secondAttribute="trailing" constant="8" id="b1Y-nq-O3l"/>
                 <constraint firstItem="txW-9G-3a9" firstAttribute="top" secondItem="vQY-d5-Nyp" secondAttribute="top" constant="10" id="bN6-px-eFp"/>
                 <constraint firstItem="9wS-Gm-6hW" firstAttribute="trailing" secondItem="txW-9G-3a9" secondAttribute="trailing" id="cjI-eO-kUh"/>
                 <constraint firstItem="MaX-Ti-Y5i" firstAttribute="top" secondItem="9wS-Gm-6hW" secondAttribute="top" constant="10" id="cl7-vN-ugn"/>
+                <constraint firstItem="MaX-Ti-Y5i" firstAttribute="centerX" secondItem="vQY-d5-Nyp" secondAttribute="centerX" constant="60" id="cqm-Gk-d8j"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="9wS-Gm-6hW"/>

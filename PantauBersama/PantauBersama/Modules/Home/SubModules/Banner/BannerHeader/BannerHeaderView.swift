@@ -41,7 +41,11 @@ class BannerHeaderView: UIView {
     
     func config(banner: BannerInfo, viewModel: BannerHeaderViewModel) {
         body.text = banner.body
-        
+        if let readmore = UIFont(name: "Lato-Bold", size: 12) {
+            DispatchQueue.main.async { [weak self] in
+                self?.body.addTrailing(with: "...", moreText: "Read more", moreTextFont: readmore, moreTextColor: Color.primary_black)
+            }
+        }
         switch banner.pageName {
         case .tanya:
             ivInfoBackground.image = UIImage(named: "icBannerAsk")
