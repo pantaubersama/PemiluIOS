@@ -37,10 +37,10 @@
                     </constraints>
                 </view>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="0oE-tX-nGf">
-                    <rect key="frame" x="80" y="324" width="160" height="150"/>
+                    <rect key="frame" x="40" y="324" width="240" height="150"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l8s-o0-6Dj">
-                            <rect key="frame" x="54.5" y="0.0" width="51" height="25"/>
+                            <rect key="frame" x="94.5" y="0.0" width="51" height="25"/>
                             <constraints>
                                 <constraint firstAttribute="height" priority="750" constant="25" id="gas-LC-cqu"/>
                             </constraints>
@@ -49,7 +49,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tMz-Km-QOW" customClass="Label" customModule="Common">
-                            <rect key="frame" x="61" y="25" width="38" height="125"/>
+                            <rect key="frame" x="101" y="25" width="38" height="125"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" red="0.48628133540000001" green="0.4862622023" blue="0.48627519609999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <nil key="highlightedColor"/>
@@ -70,8 +70,8 @@
                 <constraint firstItem="bD5-tu-K5S" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="WVP-9G-2d1"/>
                 <constraint firstItem="bD5-tu-K5S" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="-100" id="jnD-W5-i2C"/>
                 <constraint firstItem="0oE-tX-nGf" firstAttribute="top" secondItem="bD5-tu-K5S" secondAttribute="bottom" constant="5" id="niu-3k-irl"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="0oE-tX-nGf" secondAttribute="trailing" constant="80" id="uHF-3s-Ngl"/>
-                <constraint firstItem="0oE-tX-nGf" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="80" id="xUt-ts-dm7"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="0oE-tX-nGf" secondAttribute="trailing" constant="40" id="uHF-3s-Ngl"/>
+                <constraint firstItem="0oE-tX-nGf" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="40" id="xUt-ts-dm7"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
         </view>
