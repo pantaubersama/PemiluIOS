@@ -22,7 +22,7 @@ class HeaderAskView: UIView {
     }
     
     override init(frame: CGRect) {
-        let frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 177)
+        let frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 200)
         super.init(frame: frame)
         setup()
     }
@@ -49,7 +49,7 @@ class HeaderAskView: UIView {
             bannerInfoAskView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             bannerInfoAskView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             bannerInfoAskView.topAnchor.constraint(equalTo: self.topAnchor),
-            bannerInfoAskView.heightAnchor.constraint(equalToConstant: 85),
+            bannerInfoAskView.heightAnchor.constraint(equalToConstant: 115),
             
             // MARK: constraint createAskHeaderView
             createAskHeaderView.topAnchor.constraint(equalTo: bannerInfoAskView.bottomAnchor),

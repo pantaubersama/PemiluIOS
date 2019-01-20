@@ -52,7 +52,7 @@ public class SegementedControl: UIControl {
     }
     
     @IBInspectable
-    public var font: UIFont = UIFont.systemFont(ofSize: 14, weight: .semibold) {
+    public var font: UIFont = UIFont(name: "Lato-Bold", size: 16.0)! {
         didSet {
             updateView()
         }
