@@ -19,6 +19,7 @@ protocol IQuestionListViewModelInput {
     var moreI: AnyObserver<QuestionModel> { get }
     var moreMenuI: AnyObserver<QuestionType> { get }
     var voteI: AnyObserver<QuestionModel> { get }
+    var unVoteI: AnyObserver<QuestionModel> { get }
     var filterI: AnyObserver<[PenpolFilterModel.FilterItem]> {get}
     var createI: AnyObserver<Void> {get}
 }
@@ -108,6 +109,19 @@ extension IQuestionListViewModel {
     func voteQuestion(question: QuestionModel) -> Observable<(questionId: String, status: Bool)> {
         return NetworkService.instance
             .requestObject(TanyaKandidatAPI.voteQuestion(id: question.id, className: "Question"), c: QuestionOptionResponse.self)
+            .map({ (response) -> (question: String, status: Bool) in
+                let questionId = question.id
+                let status = response.data.vote.status
+                
+                return (questionId, status)
+            })
+            .asObservable()
+            .catchErrorJustComplete()
+    }
+    
+    func deleteVoteQuestion(question: QuestionModel) -> Observable<(questionId: String, status: Bool)> {
+        return NetworkService.instance
+            .requestObject(TanyaKandidatAPI.deleteVoteQuestion(id: question.id, className: "Question"), c: QuestionOptionResponse.self)
             .map({ (response) -> (question: String, status: Bool) in
                 let questionId = question.id
                 let status = response.data.vote.status

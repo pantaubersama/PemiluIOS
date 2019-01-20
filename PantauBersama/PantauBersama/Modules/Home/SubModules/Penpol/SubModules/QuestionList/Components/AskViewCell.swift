@@ -81,13 +81,17 @@ class AskViewCell: UITableViewCell, IReusableCell  {
         voteButton.rx.tap
             .map({ item.question })
             .bind(onNext: { (questionModel) in
-                if questionModel.isLiked { return } // terminate process when user already liked this questionModel
-                self.lbVoteCount.text = "\(questionModel.likeCount + 1)"
-                self.voteAnimation.play(completion: { (finished) in
-                    if finished {
-                        item.viewModel.input.voteI.onNext(questionModel)
-                    }
-                })
+                if questionModel.isLiked {
+                    self.lbVoteCount.text = "\(questionModel.likeCount - 1)"
+                    item.viewModel.input.unVoteI.onNext(questionModel)
+                } else {
+                    self.lbVoteCount.text = "\(questionModel.likeCount + 1)"
+                    self.voteAnimation.play(completion: { (finished) in
+                        if finished {
+                            item.viewModel.input.voteI.onNext(questionModel)
+                        }
+                    })
+                }
             })
             .disposed(by: disposeBag)
         

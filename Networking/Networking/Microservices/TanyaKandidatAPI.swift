@@ -28,6 +28,7 @@ public enum TanyaKandidatAPI {
     case getQuestionDetail(id: String)
     case reportQuestion(id: String, className: String)
     case voteQuestion(id: String, className: String)
+    case deleteVoteQuestion(id: String, className: String)
 }
 
 extension TanyaKandidatAPI: TargetType {
@@ -57,7 +58,7 @@ extension TanyaKandidatAPI: TargetType {
             return "/pendidikan_politik/v1/questions"
         case .reportQuestion:
             return "/pendidikan_politik/v1/reports"
-        case .voteQuestion:
+        case .voteQuestion, .deleteVoteQuestion:
             return "/pendidikan_politik/v1/votes"
         case .getMyQuestions:
             return "/pendidikan_politik/v1/me/questions"
@@ -66,7 +67,7 @@ extension TanyaKandidatAPI: TargetType {
     
     public var method: Moya.Method {
         switch self {
-        case .deleteQuestion:
+        case .deleteQuestion, .deleteVoteQuestion:
             return .delete
         case .getQuestions, .getQuestionDetail, .getMyQuestions:
             return .get
@@ -102,7 +103,7 @@ extension TanyaKandidatAPI: TargetType {
                 "id": id,
                 "class_name": className
             ]
-        case .voteQuestion(let (id, className)):
+        case .voteQuestion(let (id, className)), .deleteVoteQuestion(let (id, className)):
             return [
                 "id": id,
                 "class_name": className

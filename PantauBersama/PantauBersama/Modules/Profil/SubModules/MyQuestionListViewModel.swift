@@ -23,6 +23,7 @@ class MyQuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelInp
     var filterI: AnyObserver<[PenpolFilterModel.FilterItem]>
     var shareQuestionI: AnyObserver<QuestionModel>
     var voteI: AnyObserver<QuestionModel>
+    var unVoteI: AnyObserver<QuestionModel>
     var createI: AnyObserver<Void>
     var loadCreatedI: AnyObserver<Void>
     
@@ -47,6 +48,7 @@ class MyQuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelInp
     private let createSubject = PublishSubject<Void>()
     private let shareSubject = PublishSubject<QuestionModel>()
     private let voteSubject = PublishSubject<QuestionModel>()
+    private let unVoteSubject = PublishSubject<QuestionModel>()
     private let deletedQuestionSubject = PublishSubject<Int>()
     private let questionRelay = BehaviorRelay<[QuestionModel]>(value: [])
     private let loadCreated = PublishSubject<Void>()
@@ -65,6 +67,7 @@ class MyQuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelInp
         moreMenuI = moreMenuSubject.asObserver()
         shareQuestionI = shareSubject.asObserver()
         voteI = voteSubject.asObserver()
+        unVoteI = unVoteSubject.asObserver()
         filterI = filterSubject.asObserver()
         createI = createSubject.asObserver()
         loadCreatedI = loadCreated.asObserver()
@@ -189,6 +192,29 @@ class MyQuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelInp
                 var updateQuestion = currentValue[index]
                 updateQuestion.isLiked = true
                 updateQuestion.likeCount = updateQuestion.likeCount + 1
+                currentValue.remove(at: index)
+                currentValue.insert(updateQuestion, at: index)
+                weakSelf.questionRelay.accept(currentValue)
+            }
+            .disposed(by: disposeBag)
+        
+        unVoteSubject
+            .flatMapLatest({ self.deleteVoteQuestion(question: $0) })
+            .filter({ $0.status })
+            .bind { [weak self](result) in
+                guard let weakSelf = self else { return }
+                if !result.status { return }
+                
+                var currentValue = weakSelf.questionRelay.value
+                guard let index = currentValue.index(where: { item -> Bool in
+                    return item.id == result.questionId
+                }) else {
+                    return
+                }
+                
+                var updateQuestion = currentValue[index]
+                updateQuestion.isLiked = false
+                updateQuestion.likeCount = updateQuestion.likeCount - 1
                 currentValue.remove(at: index)
                 currentValue.insert(updateQuestion, at: index)
                 weakSelf.questionRelay.accept(currentValue)
