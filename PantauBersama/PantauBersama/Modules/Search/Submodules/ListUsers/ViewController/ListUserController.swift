@@ -44,5 +44,9 @@ class ListUserController: UITableViewController {
                 return cell
             }
             .disposed(by: disposeBag)
+        
+        viewModel.output.filter
+            .drive()
+            .disposed(by: disposeBag)
     }
 }
