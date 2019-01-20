@@ -31,6 +31,7 @@ def application_pods
     pod 'TwitterKit'
     pod 'FBSDKLoginKit'
     pod 'lottie-ios'
+    pod 'Firebase/Messaging'
 end
 
 

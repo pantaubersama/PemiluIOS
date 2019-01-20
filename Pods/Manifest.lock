@@ -21,6 +21,9 @@ PODS:
     - FirebaseAnalytics (= 5.4.0)
   - Firebase/CoreOnly (5.14.0):
     - FirebaseCore (= 5.1.9)
+  - Firebase/Messaging (5.14.0):
+    - Firebase/CoreOnly
+    - FirebaseMessaging (= 3.2.2)
   - FirebaseAnalytics (5.4.0):
     - FirebaseCore (~> 5.1)
     - FirebaseInstanceID (~> 3.3)
@@ -30,12 +33,20 @@ PODS:
     - GoogleUtilities/Network (~> 5.2)
     - "GoogleUtilities/NSData+zlib (~> 5.2)"
     - nanopb (~> 0.3)
+  - FirebaseAnalyticsInterop (1.1.0)
   - FirebaseCore (5.1.9):
     - GoogleUtilities/Logger (~> 5.2)
   - FirebaseInstanceID (3.3.0):
     - FirebaseCore (~> 5.1)
     - GoogleUtilities/Environment (~> 5.3)
     - GoogleUtilities/UserDefaults (~> 5.3)
+  - FirebaseMessaging (3.2.2):
+    - FirebaseAnalyticsInterop (~> 1.1)
+    - FirebaseCore (~> 5.1)
+    - FirebaseInstanceID (~> 3.0)
+    - GoogleUtilities/Environment (~> 5.2)
+    - GoogleUtilities/Reachability (~> 5.2)
+    - Protobuf (~> 3.1)
   - GoogleAppMeasurement (5.4.0):
     - GoogleUtilities/AppDelegateSwizzler (~> 5.2)
     - GoogleUtilities/MethodSwizzler (~> 5.2)
@@ -74,6 +85,7 @@ PODS:
     - nanopb/encode (= 0.3.901)
   - nanopb/decode (0.3.901)
   - nanopb/encode (0.3.901)
+  - Protobuf (3.6.1)
   - Result (4.0.0)
   - RxAtomic (4.4.0)
   - RxCocoa (4.4.0):
@@ -94,6 +106,7 @@ DEPENDENCIES:
   - Fabric
   - FBSDKLoginKit
   - Firebase/Core
+  - Firebase/Messaging
   - IQKeyboardManagerSwift (~> 6.2.0)
   - lottie-ios
   - LTHRadioButton
@@ -115,8 +128,10 @@ SPEC REPOS:
     - FBSDKLoginKit
     - Firebase
     - FirebaseAnalytics
+    - FirebaseAnalyticsInterop
     - FirebaseCore
     - FirebaseInstanceID
+    - FirebaseMessaging
     - GoogleAppMeasurement
     - GoogleUtilities
     - IQKeyboardManagerSwift
@@ -124,6 +139,7 @@ SPEC REPOS:
     - LTHRadioButton
     - Moya
     - nanopb
+    - Protobuf
     - Result
     - RxAtomic
     - RxCocoa
@@ -143,8 +159,10 @@ SPEC CHECKSUMS:
   FBSDKLoginKit: c3079d9a4db27c492287b1eed7a4272b28cf8a59
   Firebase: 963d5685fae888a56d6d4d9cfce6b9c976958798
   FirebaseAnalytics: c06f9d70577d79074214700a71fd5d39de5550fb
+  FirebaseAnalyticsInterop: e5f21be9af6548372e2f0815834ff909bff395a2
   FirebaseCore: 8f49b70f57ab5cbb032ef41d64992ded21606459
   FirebaseInstanceID: e2fa4cb35ef5558c200f7f0ad8a53e212215f93e
+  FirebaseMessaging: b412996f6a09337d232bb3a6676ce4d1f353d024
   GoogleAppMeasurement: 98b71f5e04142793729a5ef23e5b96651ff4b70f
   GoogleUtilities: 95996bea7c7d9b8fb811b7507669a4a8762f80c7
   IQKeyboardManagerSwift: b07ccf9d8cafe993dcd6cb794eb4ba34611a0c4e
@@ -152,6 +170,7 @@ SPEC CHECKSUMS:
   LTHRadioButton: 7a02c232383530c5882f7bef0dfd0f6466f5ff11
   Moya: cf730b3cd9e005401ef37a85143aa141a12fd38f
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
+  Protobuf: 1eb9700044745f00181c136ef21b8ff3ad5a0fd5
   Result: 7645bb3f50c2ce726dd0ff2fa7b6f42bbe6c3713
   RxAtomic: eacf60db868c96bfd63320e28619fe29c179656f
   RxCocoa: df63ebf7b9a70d6b4eeea407ed5dd4efc8979749
@@ -160,6 +179,6 @@ SPEC CHECKSUMS:
   TwitterCore: 8cbc9ad34d91c63a0035ea05bfbfc0d7ca72a28c
   TwitterKit: 5e4f41d70b9abdb41df5467f52d7aa2c0fd26ebb
 
-PODFILE CHECKSUM: 22b9955c02dd74964f23933101d43c33a1a3f36a
+PODFILE CHECKSUM: 99b7420f2887cdac00f0ef82c2c1561cbb87b27b
 
 COCOAPODS: 1.5.3

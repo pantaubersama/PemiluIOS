@@ -15,7 +15,13 @@ platform :ios do
 
 	desc "Submit a new build staging AppStore (staging distribution)"
 	lane :develop do 
-		produce
+		produce(
+			app_identifier: "com.pantaubersama.staging",
+			skip_itc: true,
+			enable_services: {
+				push_notification: "on"
+			}
+		)
 		match(type: "appstore")
 		gym(
 			export_method: "app-store",
@@ -36,7 +42,13 @@ platform :ios do
 
 	desc "Submit a new build to AppStore"
 	lane :relase do 
-		produce
+		produce(
+			app_identifier: "com.pantaubersama",
+			skip_itc: true,
+			enable_services: {
+				push_notification: "on"
+			}
+		)
 		match(type: "appstore")
 		gym(
 			export_method: "app-store",

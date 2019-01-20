@@ -53,6 +53,7 @@ public enum PantauAuthAPI {
     case accountsConnect(type: String, oauthToken: String, oauthSecret: String)
     case accountDisconnect(type: String)
     case users(page: Int, perPage: Int, query: String, filterBy: UserListFilter)
+    case firebaseKeys(deviceToken: String, type: String)
 }
 
 extension PantauAuthAPI: TargetType {
@@ -120,6 +121,8 @@ extension PantauAuthAPI: TargetType {
             return "/v1/accounts/disconnect"
         case .users:
             return "/v1/users"
+        case .firebaseKeys:
+            return "/v1/me/firebase_keys"
         }
     }
     
@@ -140,7 +143,8 @@ extension PantauAuthAPI: TargetType {
              .meAvatar,
              .putMe,
              .putInformants,
-             .votePreference:
+             .votePreference,
+             .firebaseKeys:
             return .put
         case .deleteCluster,
              .accountDisconnect:
@@ -232,7 +236,8 @@ extension PantauAuthAPI: TargetType {
              .votePreference,
              .clusterMagicLink,
              .clusterInvite,
-             .accountsConnect:
+             .accountsConnect,
+             .firebaseKeys:
             return .uploadMultipart(self.multipartBody ?? [])
         default:
             return .requestParameters(parameters: parameters ?? [:], encoding: parameterEncoding)
@@ -306,6 +311,11 @@ extension PantauAuthAPI: TargetType {
             multipartFormData.append(buildMultipartFormData(key: "account_type", value: type))
             multipartFormData.append(buildMultipartFormData(key: "oauth_access_token", value: token))
             multipartFormData.append(buildMultipartFormData(key: "oauth_access_token_secret", value: secret))
+            return multipartFormData
+        case .firebaseKeys(let (token, type)):
+            var multipartFormData = [MultipartFormData]()
+            multipartFormData.append(buildMultipartFormData(key: "firebase_key", value: token))
+            multipartFormData.append(buildMultipartFormData(key: "firebase_key_type", value: type))
             return multipartFormData
         default:
             return nil

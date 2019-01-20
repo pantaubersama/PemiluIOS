@@ -18,6 +18,8 @@ import Moya
 import IQKeyboardManagerSwift
 import TwitterKit
 import FBSDKLoginKit
+import FirebaseMessaging
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -62,8 +64,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         configurationTwitter()
         // MARK: Configuration Facebook
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
-        
+        // MARK: Configuration Crashlytics
         Fabric.with([Crashlytics.self])
+        // MARK: Register Notifications
+        registerForRemoteNotifications(application)
+        Messaging.messaging().delegate = self
+        
         #if DEBUG
             let filePath = Bundle.main.path(forResource: "GoogleService-Info-Staging", ofType: "plist")!
             let options = FirebaseOptions(contentsOfFile: filePath)
@@ -88,6 +94,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        ReachabilityManager.shared.stopMonitoring()
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
@@ -148,6 +155,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
+    
+    // MARK: Register remote notifications
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        Messaging.messaging().apnsToken = deviceToken as Data
+    }
+    // MARK: Remote receive notifications
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
+        Messaging.messaging().appDidReceiveMessage(userInfo)
+        if UIApplication.shared.applicationState == .active {
+//            Parser.parse(userInfo: userInfo, active: true)
+        } else {
+//            Parser.parse(userInfo: userInfo, active: false)
+        }
+    }
 }
 
 extension URL {
@@ -168,7 +189,6 @@ extension AppDelegate {
     }
     
     func loginSymbolic(code: String) {
-        print(code)
         NetworkService.instance.requestObject(
             IdentitasAPI.loginIdentitas(code: code,
                                         grantType: "authorization_code",
@@ -197,4 +217,58 @@ extension AppDelegate {
             })
             .disposed(by: disposeBag)
     }
+}
+
+// MARK: - UNUserNotification
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    fileprivate func registerForRemoteNotifications(_ application: UIApplication) {
+        if #available(iOS 10.0, *) {
+            // For iOS 10 display notification (sent via APNS)
+            UNUserNotificationCenter.current().delegate = self
+            
+            let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+            UNUserNotificationCenter.current().requestAuthorization(
+                options: authOptions,
+                completionHandler: {_, _ in })
+        } else {
+            let settings: UIUserNotificationSettings =
+                UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+            application.registerUserNotificationSettings(settings)
+        }
+        
+        application.registerForRemoteNotifications()
+    }
+}
+
+extension AppDelegate: MessagingDelegate {
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
+        print("Firebase registration token: \(fcmToken)")
+        
+        // TODO: If necessary send token to application server.
+        // Note: This callback is fired at each app startup and whenever a new token is generated.
+        InstanceID.instanceID().instanceID { [weak self] (result, error) in
+            guard let `self` = self else { return }
+            if let error = error {
+                print("Error fetching remote instange ID: \(error)")
+            } else if let result = result {
+                print("Remote instance ID token: \(result.token)")
+                let user: Observable<UserResponse> = AppState.local(key: .userData)
+                user.flatMap({ (_) in
+                    return NetworkService.instance
+                        .requestObject(PantauAuthAPI
+                            .firebaseKeys(deviceToken: result.token,
+                                          type: "ios"),
+                                    c: BaseResponse<InfoFirebaseResponse>.self)
+                })
+                    .subscribe(onNext: { (response) in
+                        print("Success:", response.data)
+                    }, onError: { (error) in
+                        print("Error:", error.localizedDescription)
+                    })
+                    .disposed(by: self.disposeBag)
+            }
+        }
+    }
+    
+    
 }
