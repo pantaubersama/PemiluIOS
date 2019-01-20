@@ -24,7 +24,6 @@
                 <outlet property="name" destination="hT9-vD-paj" id="R6h-aM-tq9"/>
                 <outlet property="textCount" destination="kAJ-9f-csg" id="VQL-p9-khp"/>
                 <outlet property="titleJanji" destination="OVn-bl-S9r" id="lya-BI-1vF"/>
-                <outlet property="uploadButton" destination="1RS-mV-f2X" id="gyG-sy-Ih5"/>
                 <outlet property="view" destination="iN0-l3-epB" id="zvn-7y-SLH"/>
             </connections>
         </placeholder>
@@ -177,19 +176,13 @@
                                         <userDefinedRuntimeAttribute type="string" keyPath="typeLabel" value="Medium"/>
                                     </userDefinedRuntimeAttributes>
                                 </label>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imageDefault" translatesAutoresizingMaskIntoConstraints="NO" id="AmO-lY-vpc">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AmO-lY-vpc">
                                     <rect key="frame" x="20" y="284" width="80" height="80"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="80" id="CMC-nO-ePw"/>
                                         <constraint firstAttribute="width" constant="80" id="EGh-3b-4lz"/>
                                     </constraints>
                                 </imageView>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1RS-mV-f2X">
-                                    <rect key="frame" x="33" y="366" width="54" height="30"/>
-                                    <state key="normal" title="Unggah">
-                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </state>
-                                </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
@@ -204,12 +197,10 @@
                                 <constraint firstItem="tTf-km-3j5" firstAttribute="top" secondItem="GMt-8c-u9C" secondAttribute="bottom" id="W3y-sg-7gG"/>
                                 <constraint firstItem="9Gx-wA-ZrS" firstAttribute="top" secondItem="tVR-Tg-HAt" secondAttribute="top" id="W4j-05-snb"/>
                                 <constraint firstAttribute="trailing" secondItem="9Gx-wA-ZrS" secondAttribute="trailing" id="Z2Y-Zh-yHo"/>
-                                <constraint firstItem="1RS-mV-f2X" firstAttribute="top" secondItem="AmO-lY-vpc" secondAttribute="bottom" constant="2" id="Zt9-sT-ayF"/>
                                 <constraint firstItem="kAJ-9f-csg" firstAttribute="trailing" secondItem="AcX-uT-Y1K" secondAttribute="trailing" id="cU5-zA-xWc"/>
                                 <constraint firstItem="AcX-uT-Y1K" firstAttribute="top" secondItem="tTf-km-3j5" secondAttribute="bottom" id="dQl-fG-WQN"/>
                                 <constraint firstItem="kAJ-9f-csg" firstAttribute="top" secondItem="AcX-uT-Y1K" secondAttribute="bottom" constant="5" id="kvZ-FR-DIG"/>
                                 <constraint firstItem="9Gx-wA-ZrS" firstAttribute="leading" secondItem="tVR-Tg-HAt" secondAttribute="leading" id="uRM-RQ-MlS"/>
-                                <constraint firstItem="1RS-mV-f2X" firstAttribute="centerX" secondItem="AmO-lY-vpc" secondAttribute="centerX" id="wFt-7u-XSF"/>
                                 <constraint firstItem="AmO-lY-vpc" firstAttribute="top" secondItem="AcX-uT-Y1K" secondAttribute="bottom" constant="5" id="xs9-fA-eZ1"/>
                             </constraints>
                         </view>
@@ -237,6 +228,5 @@
     </objects>
     <resources>
         <image name="icDummyPerson" width="64" height="64"/>
-        <image name="imageDefault" width="24" height="24"/>
     </resources>
 </document>
