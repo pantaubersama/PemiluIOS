@@ -22,6 +22,7 @@ class LinimasaJanjiCell: UITableViewCell {
     @IBOutlet weak var content: Label!
     @IBOutlet weak var shareBtn: UIButton!
     @IBOutlet weak var moreBtn: UIButton!
+    @IBOutlet weak var clusterName: Label!
     
     private(set) var disposeBag: DisposeBag = DisposeBag()
     
@@ -61,7 +62,8 @@ extension LinimasaJanjiCell: IReusableCell {
     
     func configure(data: JanjiPolitik) {
         if data.creator.cluster != nil {
-            fullname.text = "\(data.creator.fullName), \(data.creator.cluster?.name ?? "")"
+            fullname.text = "\(data.creator.fullName),"
+            clusterName.text = data.creator.cluster?.name ?? ""
         } else {
             fullname.text = data.creator.fullName
         }
