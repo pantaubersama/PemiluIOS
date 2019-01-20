@@ -18,6 +18,12 @@ import Common
 public enum PantauAuthAPI {
     case callback(code: String, provider: String)
     
+    public enum UserListFilter: String {
+        case userVerifiedAll = "verified_all"
+        case userVerifiedTrue = "verified_true"
+        case userVerifiedFalse = "verified_false"
+    }
+    
     public enum GrantType: String {
         case refreshToken = "refresh_token"
     }
@@ -46,7 +52,7 @@ public enum PantauAuthAPI {
     case clusterInvite(emails: String)
     case accountsConnect(type: String, oauthToken: String, oauthSecret: String)
     case accountDisconnect(type: String)
-    case users(page: Int, perPage: Int, query: String)
+    case users(page: Int, perPage: Int, query: String, filterBy: UserListFilter)
 }
 
 extension PantauAuthAPI: TargetType {
@@ -194,11 +200,12 @@ extension PantauAuthAPI: TargetType {
             return [
                 "account_type": type
             ]
-        case .users(let page, let perPage, let query):
+        case .users(let page, let perPage, let query, let filterBy):
             return [
                 "page": page,
                 "per_page": perPage,
-                "q": query
+                "q": query,
+                "filter_by": filterBy.rawValue
             ]
         default:
             return nil

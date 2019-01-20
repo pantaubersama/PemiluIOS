@@ -16,6 +16,8 @@ public enum FilterType {
     case quiz
     case pilpres
     case janji
+    case user
+    case cluster
 }
 
 class PenpolFilterCoordinator: BaseCoordinator<Void> {
@@ -64,6 +66,11 @@ class PenpolFilterCoordinator: BaseCoordinator<Void> {
             return PenpolFilterModel.generatePilpresFilter()
         case .janji:
             return PenpolFilterModel.generateJanjiFilter()
+        case .user:
+            return PenpolFilterModel.generateUsersFilter()
+        case .cluster:
+            
+            return PenpolFilterModel.generateUsersFilter()
         }
     }
 }

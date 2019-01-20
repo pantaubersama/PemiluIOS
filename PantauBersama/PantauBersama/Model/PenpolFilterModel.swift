@@ -90,4 +90,17 @@ extension PenpolFilterModel {
         
         return filterItems
     }
+    
+    static func generateUsersFilter() -> [PenpolFilterModel] {
+        var filterItems: [PenpolFilterModel] = []
+        
+        let all = FilterItem(id: "user-all", paramKey: "filter_by", paramValue: "verified_all", title: "Semua", type: .radio, isSelected: UserDefaults.isSelectedFilter(value: "user-all"))
+        let notVerified = FilterItem(id: "user-notverified", paramKey: "filter_by", paramValue: "verified_false", title: "Belum Verifikasi", type: .radio, isSelected: UserDefaults.isSelectedFilter(value: "user-notverified"))
+        let verified = FilterItem(id: "user-verified", paramKey: "filter_by", paramValue: "verified_true", title: "Terverifikasi", type: .radio, isSelected: UserDefaults.isSelectedFilter(value: "user-verified"))
+        let userFilter = PenpolFilterModel(paramKey: "filter_by", title: "User", items: [all, notVerified, verified])
+        
+        filterItems.append(userFilter)
+        
+        return filterItems
+    }
 }
