@@ -25,6 +25,7 @@ class SearchViewModel: ViewModelType {
         let searchTrigger: PublishSubject<String>
         let recentlySearched: Driver<[String]>
         let filterSelected: Driver<Void>
+        let selectRecentlySearched: Driver<String>
     }
     
     var input: Input
@@ -37,6 +38,7 @@ class SearchViewModel: ViewModelType {
     private let recentlySearchedSubject = PublishSubject<Void>()
     private let itemSelectedSubject = PublishSubject<IndexPath>()
     private let clearRecentSearchSubject = PublishSubject<Void>()
+    private let selectRecentlySearchedSubject = PublishSubject<String>()
     private let disposeBag = DisposeBag()
     private let filterSubject = PublishSubject<(type: FilterType, filterTrigger: AnyObserver<[PenpolFilterModel.FilterItem]>)>()
     
@@ -62,6 +64,9 @@ class SearchViewModel: ViewModelType {
             .withLatestFrom(recentlySaerched) { (indexPath, items) -> String in
                 return items[indexPath.row]
             }
+            .do(onNext: { [weak self](selectedItem) in
+                self?.selectRecentlySearchedSubject.asObserver().onNext(selectedItem)
+            })
             .bind(to: searchSubject)
             .disposed(by: disposeBag)
         
@@ -73,7 +78,7 @@ class SearchViewModel: ViewModelType {
             .flatMap({ navigator.launchFilter(filterType: $0.type, filterTrigger: $0.filterTrigger) })
             .asDriver(onErrorJustReturn: ())
         
-        output = Output(back: back, searchTrigger: searchSubject, recentlySearched: recentlySaerched, filterSelected: filter)
+        output = Output(back: back, searchTrigger: searchSubject, recentlySearched: recentlySaerched, filterSelected: filter, selectRecentlySearched: selectRecentlySearchedSubject.asDriver(onErrorJustReturn: ""))
         
         output.searchTrigger
             .filter({ !$0.isEmpty })

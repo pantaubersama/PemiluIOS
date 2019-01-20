@@ -59,16 +59,6 @@ class SearchController: UIViewController {
             .bind(to: viewModel.input.backTrigger)
             .disposed(by: disposeBag)
         
-        navbar.tfSearch.rx.text
-            .orEmpty
-            .do(onNext: { [unowned self](text) in
-                self.recentSearchContainer.isHidden = !text.isEmpty
-                self.viewModel.input.loadRecentlyTrigger.onNext(())
-            })
-            .debounce(0.5, scheduler: MainScheduler.instance)
-            .bind(to: viewModel.input.searchInputTrigger).disposed(by: disposeBag)
-        
-        
         viewModel.output.back
             .drive()
             .disposed(by: disposeBag)
@@ -136,6 +126,12 @@ class SearchController: UIViewController {
             .drive()
             .disposed(by: disposeBag)
         
+        viewModel.output.selectRecentlySearched
+            .do(onNext: { [unowned self](_) in
+                self.navbar.tfSearch.resignFirstResponder()
+            })
+            .drive(navbar.tfSearch.rx.text)
+            .disposed(by: disposeBag)
     }
     
     private func hideAllChilds() {
@@ -168,12 +164,24 @@ class SearchController: UIViewController {
             return (type: .user, filterTrigger: listUserViewModel.input.filterTrigger)
         }
         
+        if listClusterController.view.alpha == 1.0 {
+            return (type: .cluster, filterTrigger: listClusterViewModel.input.filterI)
+        }
+        
         return (type: .question, filterTrigger: askViewModel.input.filterI)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = true
+        navbar.tfSearch.rx.text
+            .orEmpty
+            .do(onNext: { [unowned self](text) in
+                self.recentSearchContainer.isHidden = !text.isEmpty
+                self.viewModel.input.loadRecentlyTrigger.onNext(())
+            })
+            .debounce(0.5, scheduler: MainScheduler.instance)
+            .bind(to: viewModel.input.searchInputTrigger).disposed(by: disposeBag)
     }
     
     override func viewWillDisappear(_ animated: Bool) {

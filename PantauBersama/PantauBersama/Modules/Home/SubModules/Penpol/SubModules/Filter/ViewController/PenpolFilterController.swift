@@ -182,10 +182,16 @@ extension PenpolFilterController: UITableViewDelegate {
       
         if selectedItem.type == FilterViewType.text {
             if let navigationController = self.navigationController {
-                let viewModel = ClusterSearchViewModel()
-                viewModel.delegate = self
-                let vc = ClusterSearchController(viewModel: viewModel)
-                navigationController.pushViewController(vc, animated: true)
+                if selectedItem.id == "janji-cluster" {
+                    let viewModel = ClusterSearchViewModel()
+                    viewModel.delegate = self
+                    let vc = ClusterSearchController(viewModel: viewModel)
+                    navigationController.pushViewController(vc, animated: true)
+                }
+                
+                if selectedItem.id == "cluster-categories" {
+                    print("push cluster category")
+                }
             }
         }
         
