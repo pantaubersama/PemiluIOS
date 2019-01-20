@@ -49,12 +49,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let defaults = UserDefaults.standard
         if defaults.object(forKey: "isFirstTime") == nil {
+            window?.rootViewController = StartOnboardingController()
+            window?.makeKeyAndVisible()
+        } else {
             appCoordinator = AppCoordinator(window: window!)
             appCoordinator.start()
                 .subscribe()
                 .disposed(by: disposeBag)
-        } else {
-            
         }
         
         // MARK: Configuration twitter
