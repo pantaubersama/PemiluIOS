@@ -287,6 +287,15 @@
 		84E521AE21F3986D00B7CCBA /* ShareTrendController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E521AD21F3986D00B7CCBA /* ShareTrendController.swift */; };
 		84E521B021F398B600B7CCBA /* ShareTrendViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E521AF21F398B600B7CCBA /* ShareTrendViewModel.swift */; };
 		84E521B221F398E900B7CCBA /* ShareTrendCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E521B121F398E900B7CCBA /* ShareTrendCoordinator.swift */; };
+		84E521B621F4A22B00B7CCBA /* StartOnboardingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E521B521F4A22B00B7CCBA /* StartOnboardingController.swift */; };
+		84E521B821F4A4E900B7CCBA /* StartOnboardingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84E521B721F4A4E900B7CCBA /* StartOnboardingController.xib */; };
+		84E521BA21F4A70E00B7CCBA /* ItemOnboardingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84E521B921F4A70E00B7CCBA /* ItemOnboardingController.xib */; };
+		84E521BC21F4A81700B7CCBA /* ItemOnboardingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E521BB21F4A81700B7CCBA /* ItemOnboardingController.swift */; };
+		84E521BE21F4AA9300B7CCBA /* ob2_linimasa.json in Resources */ = {isa = PBXBuildFile; fileRef = 84E521BD21F4AA9300B7CCBA /* ob2_linimasa.json */; };
+		84E521C321F4AB2F00B7CCBA /* ob1_wordstadium.json in Resources */ = {isa = PBXBuildFile; fileRef = 84E521BF21F4AB2F00B7CCBA /* ob1_wordstadium.json */; };
+		84E521C421F4AB2F00B7CCBA /* ob4_lapor.json in Resources */ = {isa = PBXBuildFile; fileRef = 84E521C021F4AB2F00B7CCBA /* ob4_lapor.json */; };
+		84E521C521F4AB2F00B7CCBA /* ob3_penpol.json in Resources */ = {isa = PBXBuildFile; fileRef = 84E521C121F4AB2F00B7CCBA /* ob3_penpol.json */; };
+		84E521C621F4AB2F00B7CCBA /* ob5_perhitungan.json in Resources */ = {isa = PBXBuildFile; fileRef = 84E521C221F4AB2F00B7CCBA /* ob5_perhitungan.json */; };
 		84E6933E21D2936E00EA5464 /* HeaderEditProfile.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84E6933D21D2936E00EA5464 /* HeaderEditProfile.xib */; };
 		84E6934021D2946C00EA5464 /* HeaderEditProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E6933F21D2946C00EA5464 /* HeaderEditProfile.swift */; };
 		84E6934621D296BB00EA5464 /* SectionOfProfileEditData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E6934521D296BB00EA5464 /* SectionOfProfileEditData.swift */; };
@@ -639,6 +648,15 @@
 		84E521AD21F3986D00B7CCBA /* ShareTrendController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareTrendController.swift; sourceTree = "<group>"; };
 		84E521AF21F398B600B7CCBA /* ShareTrendViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareTrendViewModel.swift; sourceTree = "<group>"; };
 		84E521B121F398E900B7CCBA /* ShareTrendCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareTrendCoordinator.swift; sourceTree = "<group>"; };
+		84E521B521F4A22B00B7CCBA /* StartOnboardingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartOnboardingController.swift; sourceTree = "<group>"; };
+		84E521B721F4A4E900B7CCBA /* StartOnboardingController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StartOnboardingController.xib; sourceTree = "<group>"; };
+		84E521B921F4A70E00B7CCBA /* ItemOnboardingController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ItemOnboardingController.xib; sourceTree = "<group>"; };
+		84E521BB21F4A81700B7CCBA /* ItemOnboardingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemOnboardingController.swift; sourceTree = "<group>"; };
+		84E521BD21F4AA9300B7CCBA /* ob2_linimasa.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ob2_linimasa.json; sourceTree = "<group>"; };
+		84E521BF21F4AB2F00B7CCBA /* ob1_wordstadium.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ob1_wordstadium.json; sourceTree = "<group>"; };
+		84E521C021F4AB2F00B7CCBA /* ob4_lapor.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ob4_lapor.json; sourceTree = "<group>"; };
+		84E521C121F4AB2F00B7CCBA /* ob3_penpol.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ob3_penpol.json; sourceTree = "<group>"; };
+		84E521C221F4AB2F00B7CCBA /* ob5_perhitungan.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ob5_perhitungan.json; sourceTree = "<group>"; };
 		84E6933D21D2936E00EA5464 /* HeaderEditProfile.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderEditProfile.xib; sourceTree = "<group>"; };
 		84E6933F21D2946C00EA5464 /* HeaderEditProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderEditProfile.swift; sourceTree = "<group>"; };
 		84E6934521D296BB00EA5464 /* SectionOfProfileEditData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionOfProfileEditData.swift; sourceTree = "<group>"; };
@@ -1670,6 +1688,11 @@
 		84A07F8D21D0CC8600269C6B /* Lottie */ = {
 			isa = PBXGroup;
 			children = (
+				84E521BF21F4AB2F00B7CCBA /* ob1_wordstadium.json */,
+				84E521C121F4AB2F00B7CCBA /* ob3_penpol.json */,
+				84E521C021F4AB2F00B7CCBA /* ob4_lapor.json */,
+				84E521C221F4AB2F00B7CCBA /* ob5_perhitungan.json */,
+				84E521BD21F4AA9300B7CCBA /* ob2_linimasa.json */,
 				8416657021F1CA58008A53D4 /* data_fotoktp.json */,
 				84B7B8B421E445D00099E7E3 /* empty-status.json */,
 				1143E81121E23229003862B6 /* loading-pantau.json */,
@@ -1784,6 +1807,7 @@
 		84B2521C21CAB18F00565D82 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
+				84E521B321F4A0B800B7CCBA /* SubModules */,
 				84B2522C21CAB52200565D82 /* ViewController */,
 				84B2522D21CAB53C00565D82 /* OnboardingCoordinator.swift */,
 				84B2522F21CAB61300565D82 /* OnboardingViewModel.swift */,
@@ -1981,6 +2005,25 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
+		84E521B321F4A0B800B7CCBA /* SubModules */ = {
+			isa = PBXGroup;
+			children = (
+				84E521B421F4A0C100B7CCBA /* StartOnboarding */,
+			);
+			path = SubModules;
+			sourceTree = "<group>";
+		};
+		84E521B421F4A0C100B7CCBA /* StartOnboarding */ = {
+			isa = PBXGroup;
+			children = (
+				84E521B521F4A22B00B7CCBA /* StartOnboardingController.swift */,
+				84E521B721F4A4E900B7CCBA /* StartOnboardingController.xib */,
+				84E521B921F4A70E00B7CCBA /* ItemOnboardingController.xib */,
+				84E521BB21F4A81700B7CCBA /* ItemOnboardingController.swift */,
+			);
+			path = StartOnboarding;
+			sourceTree = "<group>";
+		};
 		84F1F20921E8D987004515A4 /* Twitter */ = {
 			isa = PBXGroup;
 			children = (
@@ -2161,6 +2204,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84E521C521F4AB2F00B7CCBA /* ob3_penpol.json in Resources */,
 				8428AAA321C7A7790008E975 /* Localizable.strings in Resources */,
 				8416657121F1CA58008A53D4 /* data_fotoktp.json in Resources */,
 				13F4569521CF97DA00CE45F1 /* CreateAskController.xib in Resources */,
@@ -2170,6 +2214,7 @@
 				84B7B8B521E445D00099E7E3 /* empty-status.json in Resources */,
 				11702DD321CB0287001AEE3F /* QuizCell.xib in Resources */,
 				84F892A821C787D800DC1048 /* Lato-Black.ttf in Resources */,
+				84E521B821F4A4E900B7CCBA /* StartOnboardingController.xib in Resources */,
 				84F892B321C787F700DC1048 /* BwModelica-BlackCondensed.otf in Resources */,
 				84A07F8F21D0CC9400269C6B /* landing-page-backround-mobile.json in Resources */,
 				11E107AF21CD42C400B7B074 /* QuizOngoingController.xib in Resources */,
@@ -2184,9 +2229,11 @@
 				845C570D21CE0C8100EDCDFE /* ClusterCell.xib in Resources */,
 				84A07FB421D0ECC100269C6B /* SuccessController.xib in Resources */,
 				84A07FC021D1465C00269C6B /* ReqClusterController.xib in Resources */,
+				84E521BE21F4AA9300B7CCBA /* ob2_linimasa.json in Resources */,
 				84B6D6E221E1028700CD4BC8 /* KategoriClusterController.xib in Resources */,
 				84F892AA21C787D800DC1048 /* Lato-Bold.ttf in Resources */,
 				13F456D421DB897500CE45F1 /* BannerInfoController.xib in Resources */,
+				84E521C421F4AB2F00B7CCBA /* ob4_lapor.json in Resources */,
 				840901B821DF1CBB001BF559 /* Navbar.xib in Resources */,
 				84E521AC21F3957F00B7CCBA /* ShareTrendController.xib in Resources */,
 				137A29EE21E11E8F00F19072 /* TrendHeaderView.xib in Resources */,
@@ -2195,6 +2242,7 @@
 				84E2854D21CA4BC800298E31 /* FilterViewController.xib in Resources */,
 				1143E81221E23229003862B6 /* loading-pantau.json in Resources */,
 				84FF8A9421F2180F00AA8CF3 /* UpdatesView.xib in Resources */,
+				84E521BA21F4A70E00B7CCBA /* ItemOnboardingController.xib in Resources */,
 				84B7B8CC21E5B24B0099E7E3 /* AddKategoriController.xib in Resources */,
 				84F892AB21C787D800DC1048 /* Lato-BoldItalic.ttf in Resources */,
 				11145F6621EB44920046F2AA /* CustomMenuCell.xib in Resources */,
@@ -2202,6 +2250,7 @@
 				845C56FD21CD14CE00EDCDFE /* HeaderProfile.xib in Resources */,
 				13812C1F21CAA48700CAB327 /* PenpolController.xib in Resources */,
 				84A07F9D21D0DC4B00269C6B /* KTPController.xib in Resources */,
+				84E521C621F4AB2F00B7CCBA /* ob5_perhitungan.json in Resources */,
 				137A29F421E2261A00F19072 /* ComingsoonController.xib in Resources */,
 				84619D3C21DA88C800EB58CF /* ItemInfoCell.xib in Resources */,
 				8441DB5621CCF19C00B078DF /* DetailJanjiController.xib in Resources */,
@@ -2248,6 +2297,7 @@
 				845C571321CE10C900EDCDFE /* IconTableCell.xib in Resources */,
 				11145F5621EACCEC0046F2AA /* SearchController.xib in Resources */,
 				11145F6B21EB473B0046F2AA /* CustomMenuBar.xib in Resources */,
+				84E521C321F4AB2F00B7CCBA /* ob1_wordstadium.json in Resources */,
 				844C3D4721C4ED6E00199871 /* Assets.xcassets in Resources */,
 				11B3C79321D1110700EDCECB /* QuizSummaryController.xib in Resources */,
 				840850CC21D2607000696CB3 /* DateViewCell.xib in Resources */,
@@ -2498,6 +2548,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1385A3E521DBBA8200C2910F /* QuestionController.swift in Sources */,
+				84E521B621F4A22B00B7CCBA /* StartOnboardingController.swift in Sources */,
 				1385A3E421DBBA6700C2910F /* BannerHeaderView.swift in Sources */,
 				849CABCA21CE89DD00912F8E /* SettingController.swift in Sources */,
 				849CABCE21CE8AC300912F8E /* SettingViewModel.swift in Sources */,
@@ -2567,6 +2618,7 @@
 				13812C3921CC182500CAB327 /* AskViewCell.swift in Sources */,
 				137A29F821E2327D00F19072 /* ComingsoonCoordinator.swift in Sources */,
 				84B2526821CC01F000565D82 /* AppState.swift in Sources */,
+				84E521BC21F4A81700B7CCBA /* ItemOnboardingController.swift in Sources */,
 				84CA10C521EF12800025CF10 /* AboutViewModel.swift in Sources */,
 				84B4DED821D375C600F60258 /* JanjiPolitikNavigator.swift in Sources */,
 				84619D4B21DC9A6A00EB58CF /* WebViewModel.swift in Sources */,
