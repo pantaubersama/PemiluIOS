@@ -1,8 +1,8 @@
 //
-//  ShareBadgeController.swift
+//  ShareTrendController.swift
 //  PantauBersama
 //
-//  Created by Hanif Sugiyanto on 07/01/19.
+//  Created by Hanif Sugiyanto on 20/01/19.
 //  Copyright © 2019 PantauBersama. All rights reserved.
 //
 
@@ -11,17 +11,17 @@ import RxSwift
 import RxCocoa
 import Common
 
-class ShareBadgeController: UIViewController {
+class ShareTrendController: UIViewController {
     
-    @IBOutlet weak var avatar: UIImageView!
-    @IBOutlet weak var fullname: Label!
-    @IBOutlet weak var about: Label!
-    @IBOutlet weak var iconBadges: UIImageView!
-    @IBOutlet weak var titleBadges: Label!
-    @IBOutlet weak var subtitleBadges: Label!
+    @IBOutlet weak var ivPaslon: CircularUIImageView!
+    @IBOutlet weak var lblPercentage: UILabel!
+    @IBOutlet weak var lblTeam: UILabel!
     @IBOutlet weak var share: Button!
+    @IBOutlet weak var lblDesc: Label!
+    @IBOutlet weak var lblUsername: Label!
+    @IBOutlet weak var lblSubDesc: Label!
     
-    var viewModel: ShareBadgeViewModel!
+    var viewModel: ShareTrendViewModel!
     private let disposeBag: DisposeBag = DisposeBag()
     
     override func viewDidLoad() {
@@ -41,25 +41,22 @@ class ShareBadgeController: UIViewController {
         viewModel.output.dataO
             .drive(onNext: { [weak self] (response) in
                 guard let `self` = self else { return }
-                if let thumbnail = response.achieved.user?.avatar?.thumbnail.url {
-                    self.avatar.af_setImage(withURL: URL(string: thumbnail)!)
-                }
-                if let iconThumb = response.achieved.badge.image.thumbnail.url {
-                    self.iconBadges.af_setImage(withURL: URL(string: iconThumb)!)
-                }
-                self.fullname.text = response.achieved.user?.fullName
-                self.about.text = response.achieved.user?.about
-                self.titleBadges.text = response.achieved.badge.name
-                self.subtitleBadges.text = response.achieved.badge.description
+                  let kecenderungan = response.teams.max { $0.percentage?.isLess(than: $1.percentage ?? 0.0) ?? false }
+                    if let avatarUrl = kecenderungan?.team.avatar {
+                        self.ivPaslon.af_setImage(withURL: URL(string: avatarUrl)!)
+                    }
+                    self.lblDesc.text = "Total Kecenderunganmu \(response.meta.quizzes.finished) dari \(response.meta.quizzes.total) kuis,"
+                    self.lblUsername.text = response.user.fullName
+                    self.lblUsername.text = "lebih suka jawaban dari Paslon no \(kecenderungan?.team.title ?? "")"
+                    self.lblPercentage.text = "\(Double(kecenderungan?.percentage ?? 0.0))"
+                    self.lblTeam.text = "\(kecenderungan?.team.title ?? "")"
             })
             .disposed(by: disposeBag)
         
         viewModel.output.shareO
             .drive()
             .disposed(by: disposeBag)
-        
     }
-    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

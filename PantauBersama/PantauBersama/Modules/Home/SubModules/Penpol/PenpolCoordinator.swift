@@ -82,10 +82,8 @@ extension PenpolCoordinator: PenpolNavigator {
     
     func shareTrend(trend: Any) -> Observable<Void> {
         // TODO: coordinate to share
-        let activityViewController = UIActivityViewController(activityItems: ["content to be shared" as NSString], applicationActivities: nil)
-        self.navigationController.present(activityViewController, animated: true, completion: nil)
-        
-        return Observable.never()
+        let trendCoordinator = ShareTrendCoordinator(navigationController: navigationController)
+        return coordinate(to: trendCoordinator)
     }
     
     func launchPenpolBannerInfo(bannerInfo: BannerInfo) -> Observable<Void> {
