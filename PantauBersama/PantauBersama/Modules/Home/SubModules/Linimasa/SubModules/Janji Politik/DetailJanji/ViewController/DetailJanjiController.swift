@@ -101,7 +101,10 @@ class DetailJanjiController: UIViewController {
             .disposed(by: disposeBag)
         
         viewModel.output.moreMenuSelected
-            .drive()
+            .filter { !$0.isEmpty }
+            .drive(onNext: { (message) in
+                UIAlertController.showAlert(withTitle: "", andMessage: message)
+            })
             .disposed(by: disposeBag)
         
         // MARK

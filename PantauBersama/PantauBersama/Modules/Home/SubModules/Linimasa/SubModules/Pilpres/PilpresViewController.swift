@@ -103,21 +103,21 @@ class PilpresViewController: UITableViewController {
                 return Observable.create({ (observer) -> Disposable in
                     
                     let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-                    let salin = UIAlertAction(title: "Salin Tautan", style: .default, handler: { (_) in
-                        observer.onNext(PilpresType.salin(data: feeds))
-                        observer.on(.completed)
-                    })
-                    let bagikan = UIAlertAction(title: "Bagikan", style: .default, handler: { (_) in
-                        observer.onNext(PilpresType.bagikan(data: feeds))
-                        observer.on(.completed)
-                    })
+//                    let salin = UIAlertAction(title: "Salin Tautan", style: .default, handler: { (_) in
+//                        observer.onNext(PilpresType.salin(data: feeds))
+//                        observer.on(.completed)
+//                    })
+//                    let bagikan = UIAlertAction(title: "Bagikan", style: .default, handler: { (_) in
+//                        observer.onNext(PilpresType.bagikan(data: feeds))
+//                        observer.on(.completed)
+//                    })
                     let twitter = UIAlertAction(title: "Buka di Aplikasi Twitter", style: .default, handler: { (_) in
                         observer.onNext(PilpresType.twitter(data: feeds))
                         observer.on(.completed)
                     })
                     let cancel = UIAlertAction(title: "Batal", style: .cancel, handler: nil)
-                    alert.addAction(salin)
-                    alert.addAction(bagikan)
+//                    alert.addAction(salin)
+//                    alert.addAction(bagikan)
                     alert.addAction(twitter)
                     alert.addAction(cancel)
                     DispatchQueue.main.async {

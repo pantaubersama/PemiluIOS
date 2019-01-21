@@ -123,7 +123,10 @@ extension IJanpolViewController {
             .disposed(by: disposeBag)
         
         viewModel.output.moreMenuSelectedO
-            .drive()
+            .filter { !$0.isEmpty }
+            .drive(onNext: { (message) in
+                UIAlertController.showAlert(withTitle: "", andMessage: message)
+            })
             .disposed(by: disposeBag)
         
         viewModel.output.itemSelectedO

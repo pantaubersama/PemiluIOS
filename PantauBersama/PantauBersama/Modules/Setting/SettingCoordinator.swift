@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import Networking
 import FBSDKLoginKit
+import Common
 
 enum UndangCluster {
     case cancel
@@ -35,6 +36,8 @@ protocol SettingNavigator {
     func launchFacebookAlert() -> Observable<Void>
     func launchWKWeb(link: String) -> Observable<Void>
     func launchAbout() -> Observable<Void>
+    func launchRate() -> Observable<Void>
+    func lauchShareApp() -> Observable<Void>
 }
 
 final class SettingCoordinator: BaseCoordinator<Void> {
@@ -243,5 +246,24 @@ extension SettingCoordinator: SettingNavigator {
     func launchAbout() -> Observable<Void> {
         let aboutCoordinator = AboutCoordinator(navigationController: navigationController)
         return coordinate(to: aboutCoordinator)
+    }
+    
+    func launchRate() -> Observable<Void> {
+        
+        if let url = URL(string : "itms-apps://itunes.apple.com/app/id\(AppContext.instance.infoForKey("AppStoreId"))?mt=8&action=write-review") {
+            if #available(iOS 10.0, *) {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            } else {
+                UIApplication.shared.openURL(url)
+            }
+        }
+        return Observable.empty()
+    }
+    
+    func lauchShareApp() -> Observable<Void> {
+        let shareLink = "Rayakan partisipasi pesta demokrasi. Pantau Bersama Pemilu 2019. Download lewat Appstore : \(AppContext.instance.infoForKey("AppStoreURL"))"
+        let activityViewController = UIActivityViewController(activityItems: [shareLink as NSString], applicationActivities: nil)
+        self.navigationController.present(activityViewController, animated: true, completion: nil)
+        return Observable.empty()
     }
 }
