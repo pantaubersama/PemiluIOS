@@ -17,7 +17,7 @@ class FilterRadioCell: UITableViewCell, IReusableCell {
     var item: PenpolFilterModel.FilterItem!
     
     lazy var radioButton: LTHRadioButton = {
-        let rb = LTHRadioButton(selectedColor: .red)
+        let rb = LTHRadioButton(selectedColor: Color.primary_red)
         rb.contentMode = .center
         rb.translatesAutoresizingMaskIntoConstraints = false
         

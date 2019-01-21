@@ -13,6 +13,7 @@ import Networking
 
 class JanpolListViewModel: IJanpolListViewModel, IJanpolListViewModelInput, IJanpolListViewModelOutput {
     
+    
     var input: IJanpolListViewModelInput { return self }
     var output: IJanpolListViewModelOutput { return self }
     

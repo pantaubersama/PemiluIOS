@@ -64,7 +64,7 @@ class PenpolFilterController: UIViewController {
             .disposed(by: disposeBag)
         
         let reset = UIBarButtonItem(title: "RESET", style: .plain, target: self, action: nil)
-        reset.tintColor = #colorLiteral(red: 0.7418265939, green: 0.03327297792, blue: 0.1091294661, alpha: 1)
+        reset.tintColor = Color.primary_red
         
         reset.rx.tap
             .bind { [unowned self](_) in
@@ -98,6 +98,7 @@ class PenpolFilterController: UIViewController {
                 }
             })
         }
+        UserDefaults.Account.reset(forKey: .clusterName)
     }
 }
 
@@ -124,7 +125,8 @@ extension PenpolFilterController: UITableViewDataSource {
             // TODO: when user start to text item
             // will launch cluster search controller
             let cell = UITableViewCell()
-            cell.textLabel?.text = self.nameCluster
+            print(UserDefaults.Account.get(forKey: .clusterName) ?? "")
+            cell.textLabel?.text = UserDefaults.Account.get(forKey: .clusterName) ?? "Pilih Cluster"
             
             return cell
         }
@@ -136,7 +138,7 @@ extension PenpolFilterController: UITableViewDataSource {
         
         let separator = UIView()
         separator.translatesAutoresizingMaskIntoConstraints = false
-        separator.backgroundColor = .lightGray
+        separator.backgroundColor = UIColor.groupTableViewBackground
         
         let title = Label()
         title.typeLabel = "bold"
@@ -238,10 +240,10 @@ extension PenpolFilterController: UITableViewDelegate {
 extension PenpolFilterController: IClusterSearchDelegate {
     func didSelectCluster(item: ClusterDetail, index: IndexPath) -> Observable<Void> {
         let values = item.id
-        let key = item.name
+        UserDefaults.Account.set(item.name ?? "", forKey: .clusterName)
         DispatchQueue.main.async {
             self.viewModel.input.cidTrigger.onNext((values ?? ""))
-            self.nameCluster = key
+            self.clusterId = values
             self.tableView.reloadData()
         }
         return Observable.just(())

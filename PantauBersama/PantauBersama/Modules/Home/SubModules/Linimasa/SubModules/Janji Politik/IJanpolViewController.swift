@@ -62,8 +62,8 @@ extension IJanpolViewController {
                 // set to top of table view after set filter
                 refreshControl.sendActions(for: .valueChanged)
                 
-                let indexPath = IndexPath(row: 0, section: 0)
-                tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+//                let indexPath = IndexPath(row: 0, section: 0)
+//                tableView.scrollToRow(at: indexPath, at: .top, animated: true)
                 
             })
             .disposed(by: disposeBag)

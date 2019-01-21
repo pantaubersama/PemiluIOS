@@ -10,7 +10,7 @@
 // https://help.apple.com/xcode/#/dev745c5c974
 
 APP_VERSION = 1.0
-APP_BUILD_VERSION = 8
+APP_BUILD_VERSION = 10
 
 DISPLAY_NAME = Pantau Bersama Staging
 PRODUCT_BUNDLE_IDENTIFIER = com.pantaubersama.staging

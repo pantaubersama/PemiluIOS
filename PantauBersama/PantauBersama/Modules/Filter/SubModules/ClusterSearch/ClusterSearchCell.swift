@@ -17,7 +17,7 @@ typealias ClusterSearchCellConfigured = CellConfigurator<ClusterSearchCell, Clus
 
 class ClusterSearchCell: UITableViewCell {
     
-    @IBOutlet weak var icon: UIImageView!
+    @IBOutlet weak var icon: CircularUIImageView!
     @IBOutlet weak var nameCluster: Label!
     @IBOutlet weak var countMember: Label!
     
@@ -44,7 +44,7 @@ extension ClusterSearchCell: IReusableCell {
             icon.af_setImage(withURL: URL(string: thumbnail)!)
         }
         nameCluster.text = item.data.name
-        countMember.text = "\(item.data.memberCount) Anggota"
+        countMember.text = "\(item.data.memberCount ?? 0) Anggota"
     }
     
 }
