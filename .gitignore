@@ -179,12 +179,10 @@ fastlane/screenshots
 
 ## User settings
 
-# Ignore config files
-*/Config/*.config
-
+# Ignore config files and 
 # Ignore plist Firebase
-*/Config/GoogleService-Info-Staging.plist
-*/Config/GoogleService-Info.plist
+/Config
+
 
 ## compatibility with Xcode 8 and earlier (ignoring not required starting Xcode 9)
 
