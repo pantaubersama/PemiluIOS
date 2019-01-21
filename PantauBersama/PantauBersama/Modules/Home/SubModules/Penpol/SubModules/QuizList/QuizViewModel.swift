@@ -165,7 +165,7 @@ class QuizViewModel: ViewModelType {
             currentPage = 0
         }
         
-        var filteredBy: QuizAPI.QuizListFilter = .all
+        var filteredBy: QuizAPI.QuizListFilter = .finished
         
         if !self.filterItems.isEmpty {
             let filterByString = filterItems.filter({ (filterItem) -> Bool in
@@ -176,7 +176,7 @@ class QuizViewModel: ViewModelType {
         }
         
         currentPage += 1
-        return NetworkService.instance.requestObject(QuizAPI.getParticipatedQuizzes(page: currentPage, perPage: 10, filterBy: filteredBy), c: QuizzesResponse.self)
+        return NetworkService.instance.requestObject(QuizAPI.getParticipatedQuizzes(query: "", page: currentPage, perPage: 10, filterBy: filteredBy), c: QuizzesResponse.self)
             .map { [weak self](response) -> [QuizModel] in
                 guard let weakSelf = self else { return [] }
                 return weakSelf.generateQuizzes(from: response)
