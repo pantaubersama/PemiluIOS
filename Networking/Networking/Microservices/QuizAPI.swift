@@ -23,6 +23,7 @@ public enum QuizAPI {
     case answerQUestion(id: String, questionId: String, answerId: String)
     case getQuizDetail(id: String)
     case getQuizzes(page: Int, perPage: Int, filterBy: QuizListFilter)
+    case getParticipatedQuizzes(page: Int, perPage: Int, filterBy: QuizListFilter)
     case getTotalResult()
 }
 
@@ -55,6 +56,8 @@ extension QuizAPI: TargetType {
             return "/pendidikan_politik/v1/quizzes/\(id)"
         case .getQuizzes:
             return "/pendidikan_politik/v1/quizzes"
+        case .getParticipatedQuizzes:
+            return "/pendidikan_politik/v1/quizzes/participated"
         case .getTotalResult:
             return "/pendidikan_politik/v1/me/quizzes"
         }
@@ -94,6 +97,12 @@ extension QuizAPI: TargetType {
                 "id": id
             ]
         case .getQuizzes(let (page, perPage, filterBy)):
+            return [
+                "page": page,
+                "per_page": perPage,
+                "filter_by": filterBy
+            ]
+        case .getParticipatedQuizzes(let (page, perPage, filterBy)):
             return [
                 "page": page,
                 "per_page": perPage,
