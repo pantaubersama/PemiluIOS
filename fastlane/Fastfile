@@ -58,6 +58,10 @@ platform :ios do
 				}
 			}
 		)
+		upload_to_testflight(
+			username: "helmy@extrainteger.com",
+			app_identifier: "com.pantaubersama"
+		)
 
 
 			error do |lane, exception|
