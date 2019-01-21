@@ -41,7 +41,7 @@ class HeaderProfile: UIView {
         }
       
         status.text = user.about
-        username.text = user.fullName ?? ""
+        username.text = "\(user.fullName ?? "") @\(user.username ?? "")"
         buttonVerified.isSelected = user.verified
         buttonVerified.borderColor = user.verified ? Color.secondary_cyan : Color.grey_three
         if user.verified == true {

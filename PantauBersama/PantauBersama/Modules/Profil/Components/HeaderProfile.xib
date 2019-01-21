@@ -38,7 +38,7 @@
                                                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XcL-Sd-5jW" customClass="RoundView" customModule="Common">
                                                     <rect key="frame" x="0.0" y="0.0" width="64" height="64"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="x5B-AN-vqg">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icDummyPerson" translatesAutoresizingMaskIntoConstraints="NO" id="x5B-AN-vqg">
                                                             <rect key="frame" x="0.0" y="0.0" width="64" height="64"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="64" id="NQk-Wz-Ste"/>
@@ -183,6 +183,7 @@
     </objects>
     <resources>
         <image name="baselineVerified48Px" width="16" height="16"/>
+        <image name="icDummyPerson" width="64" height="64"/>
         <image name="icUnverified" width="16" height="16"/>
     </resources>
 </document>

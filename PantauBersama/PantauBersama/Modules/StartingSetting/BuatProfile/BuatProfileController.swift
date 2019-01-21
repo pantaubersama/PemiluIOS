@@ -84,6 +84,8 @@ class BuatProfileController: UIViewController {
                 self.location.text = user.location
                 self.education.text = user.education
                 self.occupation.text = user.occupation
+                self.viewModel.input.fullNameI.onNext(user.fullName ?? "")
+                self.viewModel.input.usernameI.onNext(user.username ?? "")
             })
             .disposed(by: disposeBag)
         
