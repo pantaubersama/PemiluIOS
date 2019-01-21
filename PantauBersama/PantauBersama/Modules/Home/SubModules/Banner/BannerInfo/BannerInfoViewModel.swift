@@ -22,19 +22,16 @@ class BannerInfoViewModel: ViewModelType {
     
     struct Output {
         let finish: Driver<Void>
-        let bannerInfoCell: Driver<[ICellConfigurator]>
+        let bannerInfo: Driver<BannerInfo>
     }
     
     private let finishSubject = PublishSubject<Void>()
+    
     init(bannerInfo: BannerInfo) {
         input = Input(finishTrigger: finishSubject.asObserver())
         
-        let bannerInfoCells = [BannerInfoViewCellConfigurator(item: BannerInfoViewCell.Input(bannerInfo: bannerInfo))]
-        
-        let bannerCellDriver: Driver<[ICellConfigurator]> = Observable.just(bannerInfoCells).asDriverOnErrorJustComplete()
-        
         let finish = finishSubject.asDriverOnErrorJustComplete()
         output = Output(finish: finish,
-                        bannerInfoCell: bannerCellDriver)
+                        bannerInfo: Driver.just(bannerInfo))
     }
 }
