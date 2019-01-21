@@ -29,7 +29,6 @@ class WKWebviewCustom: UIViewController, WKNavigationDelegate, WKUIDelegate {
     }()
     
     var activityIndicator: UIActivityIndicatorView!
-    var url: String? = nil
     
     var viewModel: WKWebViewModel!
     private let disposeBag: DisposeBag = DisposeBag()
@@ -68,16 +67,12 @@ class WKWebviewCustom: UIViewController, WKNavigationDelegate, WKUIDelegate {
         
         // TODO : some for reasons coming soon will disappear,
         // and we will need viewModel and coordinator
-        if url != nil {
-            wkwebView.load(URLRequest(url: URL(string: url ?? "")!))
-        } else {
-            viewModel.output.urlO
-                .drive(onNext: { [weak self] (url) in
-                    guard let `self` = self else { return }
-                    self.wkwebView.load(URLRequest(url: URL(string: url)!))
-                })
-                .disposed(by: disposeBag)
-        }
+        viewModel.output.urlO
+            .drive(onNext: { [weak self] (url) in
+                guard let `self` = self else { return }
+                self.wkwebView.load(URLRequest(url: URL(string: url)!))
+            })
+            .disposed(by: disposeBag)
     }
     
     func showActivityIndicator(show: Bool) {

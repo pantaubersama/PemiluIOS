@@ -123,7 +123,7 @@ Pantau Bersama untuk info tanggal updatenya</string>
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="0.68041622639999999" green="0.1499232352" blue="0.14898997550000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="sqf-Ok-8eZ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="0wq-HB-dfV"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="sqf-Ok-8eZ" secondAttribute="bottom" id="1IL-zf-k6V"/>
