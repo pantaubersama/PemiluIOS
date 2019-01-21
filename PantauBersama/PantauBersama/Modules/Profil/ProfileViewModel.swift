@@ -18,6 +18,7 @@ protocol IProfileViewModelInput {
     var viewWillAppearI: AnyObserver<Void> { get }
     var reqClusterI: AnyObserver<Void> { get }
     var clusterI: AnyObserver<ClusterType> { get }
+    var lihatBadgeI: AnyObserver<Void> { get }
 }
 
 protocol IProfileViewModelOutput {
@@ -30,6 +31,7 @@ protocol IProfileViewModelOutput {
     var reqClusterO: Driver<Void> { get }
     var clusterActionO: Driver<Void> { get }
     var shareBadgeO: Driver<Void> { get }
+    var lihatBadgeO: Driver<Void> { get }
 }
 
 protocol IProfileViewModel {
@@ -61,6 +63,7 @@ final class ProfileViewModel: IProfileViewModel, IProfileViewModelInput, IProfil
     var viewWillAppearI: AnyObserver<Void>
     var reqClusterI: AnyObserver<Void>
     var clusterI: AnyObserver<ClusterType>
+    var lihatBadgeI: AnyObserver<Void>
     
     // Output
     var settingO: Driver<Void>!
@@ -72,6 +75,7 @@ final class ProfileViewModel: IProfileViewModel, IProfileViewModelInput, IProfil
     var clusterActionO: Driver<Void>
     var backO: Driver<Void>
     var shareBadgeO: Driver<Void>
+    var lihatBadgeO: Driver<Void>
     
     
     private let backS = PublishSubject<Void>()
@@ -83,6 +87,7 @@ final class ProfileViewModel: IProfileViewModel, IProfileViewModelInput, IProfil
     private let viewWillAppearS = PublishSubject<Void>()
     private let viewModel = ClusterCellViewModel()
     private let clusterS = PublishSubject<ClusterType>()
+    private let lihatBadgeS = PublishSubject<Void>()
     
     init(navigator: ProfileNavigator) {
         self.navigator = navigator
@@ -101,6 +106,7 @@ final class ProfileViewModel: IProfileViewModel, IProfileViewModelInput, IProfil
         viewWillAppearI = viewWillAppearS.asObserver()
         reqClusterI = reqClusterS.asObserver()
         clusterI = clusterS.asObserver()
+        lihatBadgeI = lihatBadgeS.asObserver()
         
         // MARK
         // Get user data from cloud and Local
@@ -209,6 +215,9 @@ final class ProfileViewModel: IProfileViewModel, IProfileViewModelInput, IProfil
             navigator.back()
             }).asDriverOnErrorJustComplete()
         shareBadgeO = badgeViewModel.output.shareO
+        lihatBadgeO = lihatBadgeS
+            .flatMapLatest({ navigator.launchBadge() })
+            .asDriverOnErrorJustComplete()
     }
     
 }
