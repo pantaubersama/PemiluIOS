@@ -23,9 +23,9 @@ enum PantauBarKind: Int {
             return "Menggali"
         case .wordstadium:
             return "Menguji"
-        case .lapor:
-            return "Merayakan"
         case .rekap:
+            return "Merayakan"
+        case .lapor:
             return "Menjaga"
         }
     }
