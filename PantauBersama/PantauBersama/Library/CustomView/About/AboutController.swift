@@ -27,7 +27,15 @@ class AboutController: UIViewController {
             .bind(to: viewModel.input.backI)
             .disposed(by: disposeBag)
         
+        buttonLisensi.rx.tap
+            .bind(to: viewModel.input.licenseI)
+            .disposed(by: disposeBag)
+        
         viewModel.output.backO
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.licenseO
             .drive()
             .disposed(by: disposeBag)
         
