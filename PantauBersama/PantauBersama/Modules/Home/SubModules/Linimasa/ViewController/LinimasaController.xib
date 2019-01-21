@@ -44,7 +44,7 @@
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="string" keyPath="titles" value="Linimasa, Janji Politik"/>
                                         <userDefinedRuntimeAttribute type="color" keyPath="textColor">
-                                            <color key="value" red="0.79608923200000004" green="0.79605895280000005" blue="0.79607945680000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <color key="value" red="0.97647058823529409" green="0.97644716499999995" blue="0.97647196049999996" alpha="0.76000000000000001" colorSpace="custom" customColorSpace="displayP3"/>
                                         </userDefinedRuntimeAttribute>
                                         <userDefinedRuntimeAttribute type="color" keyPath="selectedColor">
                                             <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -90,7 +90,7 @@
                     <state key="normal" image="icCreate"/>
                 </button>
             </subviews>
-            <color key="backgroundColor" red="0.68041622639999999" green="0.1499232352" blue="0.14898997550000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="PT8-f3-VT0" secondAttribute="bottom" id="6vd-7M-qOA"/>
                 <constraint firstItem="xE0-Bp-jp7" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="8Wz-nD-rES"/>

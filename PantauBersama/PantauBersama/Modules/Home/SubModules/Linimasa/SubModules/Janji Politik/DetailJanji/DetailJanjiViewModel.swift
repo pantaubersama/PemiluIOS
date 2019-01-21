@@ -26,7 +26,7 @@ class DetailJanjiViewModel: ViewModelType {
     struct Output {
         let shareSelected: Driver<Void>
         let moreSelected: Driver<JanjiPolitik>
-        let moreMenuSelected: Driver<Void>
+        let moreMenuSelected: Driver<String>
         let detailJanji: Driver<JanjiPolitik>
         let closeSelected: Driver<Void>
     }
@@ -59,18 +59,26 @@ class DetailJanjiViewModel: ViewModelType {
             .asDriver(onErrorJustReturn: ())
         
         let moreMenuSelected = moreMenuSubject
-            .flatMapLatest { (type) -> Observable<Void> in
+            .flatMapLatest { (type) -> Observable<String> in
                 switch type {
                 case .bagikan:
                     return navigator.shareJanji(data: data)
+                        .map({ (_) -> String in
+                            return ""
+                        })
                 case .salin:
-                    return navigator.shareJanji(data: data)
+                    let urlSalin = "\(AppContext.instance.infoForKey("URL_API_PEMILU"))/share/janjipolitik/\(data.id)"
+                    urlSalin.copyToClipboard()
+                    return Observable.just("Tautan telah tersalin")
                 case .hapus(let id):
                     return self.delete(id: id)
                         .do(onNext: { (response) in
                             print("delete response: \(response)")
                             navigator.close()
-                        }).mapToVoid()
+                        })
+                        .map({ (_) -> String in
+                            return ""
+                        })
                 default:
                     return Observable.empty()
                 }

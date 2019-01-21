@@ -134,8 +134,9 @@ class MyQuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelInp
                 case .laporkan(let question):
                     return weakSelf.reportQuestion(question: question)
                 case .salin(let question):
-                    question.body.copyToClipboard()
-                    return Observable.just("copied")
+                    let data = "\(AppContext.instance.infoForKey("URL_API_PEMILU"))/share/tanya/\(question.id)"
+                    data.copyToClipboard()
+                    return Observable.just("Tautan telah tersalin")
                 }
             })
             .asDriverOnErrorJustComplete()

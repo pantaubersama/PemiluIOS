@@ -40,10 +40,7 @@ class PenpolController: UIViewController {
             .bind(to: viewModel.input.catatanTrigger)
             .disposed(by: disposeBag)
         
-        navbar.search.rx.textDidBeginEditing
-            .do(onNext: { [unowned self](_) in
-                self.navbar.search.endEditing(true)
-            })
+        navbar.search.rx.tap
             .bind(to: viewModel.input.searchTrigger)
             .disposed(by: disposeBag)
         

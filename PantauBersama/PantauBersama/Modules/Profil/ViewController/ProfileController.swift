@@ -28,6 +28,9 @@ class ProfileController: UIViewController {
     @IBOutlet weak var heightBiodataConstant: NSLayoutConstraint!
     @IBOutlet weak var clusterView: ClusterView!
     @IBOutlet weak var biodataView: BiodataView!
+    @IBOutlet weak var lihatBadge: Button!
+    @IBOutlet weak var containerLihat: UIView!
+    @IBOutlet weak var containerlihatConstant: NSLayoutConstraint!
     
     var viewModel: IProfileViewModel!
     
@@ -43,8 +46,6 @@ class ProfileController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.clusterView.isHidden = true
-        self.biodataView.isHidden = true
         title = "Profil"
         // MARK
         // add child view
@@ -84,29 +85,32 @@ class ProfileController: UIViewController {
         
         // MARK
         // Section Selected
-        clusterButton.rx.tap.scan(false) { lastState, newValue in
+        clusterButton.rx.tap.scan(true) { lastState, newValue in
             return !lastState
             }.subscribe(onNext: { [weak self] (value) in
                 guard let `self` = self else { return }
                 UIView.performWithoutAnimation {
-                    self.heightClusterConstant.constant = value ? 48.0 : 0.0
+                    self.heightClusterConstant.constant = value ? 50.0 : 0.0
                     self.clusterView.isHidden = !value
                 }
             })
             .disposed(by: disposeBag)
         
-        badgeButton.rx.tap.scan(false) { lastState, newValue in
+        badgeButton.rx.tap.scan(true) { lastState, newValue in
             return !lastState
             }.subscribe(onNext: { [weak self] (value) in
                 guard let `self` = self else { return }
                 UIView.performWithoutAnimation {
-                    self.heightTableBadgeConstant.constant = value ? 170.0 : 0.0
+                    self.heightTableBadgeConstant.constant = value ? 160.0 : 0.0
                     self.tableViewBadge.isHidden = !value
+                    self.containerlihatConstant.constant = value ? 30.0 : 0.0
+                    self.containerLihat.isHidden = !value
+                    self.lihatBadge.isHidden = false
                 }
             })
             .disposed(by: disposeBag)
         
-        biodataButton.rx.tap.scan(false) { lastState, newValue in
+        biodataButton.rx.tap.scan(true) { lastState, newValue in
             return !lastState
             }.subscribe(onNext: { [weak self] (value) in
                 guard let `self` = self else { return }
@@ -115,6 +119,10 @@ class ProfileController: UIViewController {
                     self.biodataView.isHidden = !value
                 }
             })
+            .disposed(by: disposeBag)
+        
+        lihatBadge.rx.tap
+            .bind(to: viewModel.input.lihatBadgeI)
             .disposed(by: disposeBag)
         
         // MARK
@@ -126,10 +134,7 @@ class ProfileController: UIViewController {
             .drive(onNext: { [weak self] (position) in
                 guard let `self` = self else { return }
                 // need adjustment when user scroll tableview
-                self.heightClusterConstant.constant = 0.0
-                self.heightBiodataConstant.constant = 0.0
-                self.heightTableBadgeConstant.constant = 0.0
-                let headerViewHeight: CGFloat = 347 // calculate each subview from top to segmented
+                let headerViewHeight: CGFloat = 430 // calculate each subview from top to segmented
                 let halfHeaderViewHeight = headerViewHeight / 2
 
                 UIView.animate(withDuration: 0.3, animations: {
@@ -151,6 +156,10 @@ class ProfileController: UIViewController {
 
                         if (position.y >= halfHeaderViewHeight)
                             && tableView!.contentSize.height < minimumTableViewContentSizeHeight {
+                            self.heightClusterConstant.constant = 0.0
+                            self.heightBiodataConstant.constant = 0.0
+                            self.heightTableBadgeConstant.constant = 0.0
+                            self.lihatBadge.isHidden = true
                             tableView!.contentSize = CGSize(width: tableView!.contentSize.width,
                                                             height: minimumTableViewContentSizeHeight + 2)
                         }
@@ -166,8 +175,8 @@ class ProfileController: UIViewController {
         tableViewBadge.delegate = nil
         tableViewBadge.registerReusableCell(BadgeCell.self)
         tableViewBadge.tableFooterView = UIView()
-        tableViewBadge.estimatedRowHeight = 50.0
-        tableViewBadge.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        tableViewBadge.rowHeight = 50.0
+        tableViewBadge.contentInset = UIEdgeInsets(top: 5, left: 0, bottom: 5, right: 0)
         
         dataSourceBadge = RxTableViewSectionedReloadDataSource<SectionOfProfileData>(configureCell: {
             (dataSource, tableView, indexPath, item) in
@@ -177,9 +186,6 @@ class ProfileController: UIViewController {
             item.configure(cell: cell)
             return cell
         })
-        
-        tableViewBadge.rx.setDelegate(self)
-            .disposed(by: disposeBag)
         
         back.rx.tap
             .bind(to: viewModel.input.backI)
@@ -270,32 +276,14 @@ class ProfileController: UIViewController {
             .drive()
             .disposed(by: disposeBag)
         
+        viewModel.output.lihatBadgeO
+            .drive()
+            .disposed(by: disposeBag)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewModel.input.viewWillAppearI.onNext(())
-    }
-}
-
-extension ProfileController: UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        if dataSourceBadge.sectionModels[section].items.count == 3 {
-            let button = Button()
-            button.setTitle("Lihat Lainnya", for: .normal)
-            button.setTitleColor(Color.grey_one, for: .normal)
-            return button
-        } else {
-            return UIView()
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 20.0
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50.0
     }
 }
