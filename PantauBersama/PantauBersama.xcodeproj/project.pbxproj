@@ -105,8 +105,6 @@
 		13F456B321D36D8E00CE45F1 /* UndangAnggotaCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F456B221D36D8E00CE45F1 /* UndangAnggotaCoordinator.swift */; };
 		13F456C921DB88B000CE45F1 /* BannerInfoCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F456C821DB88B000CE45F1 /* BannerInfoCoordinator.swift */; };
 		13F456CB21DB88E700CE45F1 /* BannerInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F456CA21DB88E700CE45F1 /* BannerInfoViewModel.swift */; };
-		13F456CF21DB894500CE45F1 /* BannerInfoViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F456CD21DB894500CE45F1 /* BannerInfoViewCell.swift */; };
-		13F456D021DB894500CE45F1 /* BannerInfoViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13F456CE21DB894500CE45F1 /* BannerInfoViewCell.xib */; };
 		13F456D321DB897500CE45F1 /* BannerInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F456D121DB897500CE45F1 /* BannerInfoController.swift */; };
 		13F456D421DB897500CE45F1 /* BannerInfoController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13F456D221DB897500CE45F1 /* BannerInfoController.xib */; };
 		13F456D621DBA2F600CE45F1 /* BannerHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F456D521DBA2F600CE45F1 /* BannerHeaderViewModel.swift */; };
@@ -455,8 +453,6 @@
 		13F456B221D36D8E00CE45F1 /* UndangAnggotaCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UndangAnggotaCoordinator.swift; sourceTree = "<group>"; };
 		13F456C821DB88B000CE45F1 /* BannerInfoCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerInfoCoordinator.swift; sourceTree = "<group>"; };
 		13F456CA21DB88E700CE45F1 /* BannerInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerInfoViewModel.swift; sourceTree = "<group>"; };
-		13F456CD21DB894500CE45F1 /* BannerInfoViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerInfoViewCell.swift; sourceTree = "<group>"; };
-		13F456CE21DB894500CE45F1 /* BannerInfoViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BannerInfoViewCell.xib; sourceTree = "<group>"; };
 		13F456D121DB897500CE45F1 /* BannerInfoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerInfoController.swift; sourceTree = "<group>"; };
 		13F456D221DB897500CE45F1 /* BannerInfoController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BannerInfoController.xib; sourceTree = "<group>"; };
 		13F456D521DBA2F600CE45F1 /* BannerHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerHeaderViewModel.swift; sourceTree = "<group>"; };
@@ -1089,7 +1085,6 @@
 		13F456C621DB884600CE45F1 /* BannerInfo */ = {
 			isa = PBXGroup;
 			children = (
-				13F456CC21DB891400CE45F1 /* Components */,
 				13F456C721DB887100CE45F1 /* ViewController */,
 				13F456C821DB88B000CE45F1 /* BannerInfoCoordinator.swift */,
 				13F456CA21DB88E700CE45F1 /* BannerInfoViewModel.swift */,
@@ -1104,15 +1099,6 @@
 				13F456D221DB897500CE45F1 /* BannerInfoController.xib */,
 			);
 			path = ViewController;
-			sourceTree = "<group>";
-		};
-		13F456CC21DB891400CE45F1 /* Components */ = {
-			isa = PBXGroup;
-			children = (
-				13F456CD21DB894500CE45F1 /* BannerInfoViewCell.swift */,
-				13F456CE21DB894500CE45F1 /* BannerInfoViewCell.xib */,
-			);
-			path = Components;
 			sourceTree = "<group>";
 		};
 		13F456D721DBACF400CE45F1 /* Banner */ = {
@@ -2222,7 +2208,6 @@
 				84A07F8F21D0CC9400269C6B /* landing-page-backround-mobile.json in Resources */,
 				11E107AF21CD42C400B7B074 /* QuizOngoingController.xib in Resources */,
 				84F892A921C787D800DC1048 /* Lato-BlackItalic.ttf in Resources */,
-				13F456D021DB894500CE45F1 /* BannerInfoViewCell.xib in Resources */,
 				8428AAAA21C7AF330008E975 /* GoogleService-Info-Staging.plist in Resources */,
 				84A07FAC21D0E4FD00269C6B /* selfie-id-card.json in Resources */,
 				11D066B121E399C1003AC9BB /* FilterRadioCell.xib in Resources */,
@@ -2744,7 +2729,6 @@
 				840850D221D2632500696CB3 /* ProfileEditCoordinator.swift in Sources */,
 				8409374D21D361240024A444 /* PilpresNavigator.swift in Sources */,
 				840850DF21D2843D00696CB3 /* BadgeViewModel.swift in Sources */,
-				13F456CF21DB894500CE45F1 /* BannerInfoViewCell.swift in Sources */,
 				13E9D79021E92934006A0890 /* MyJanpolListViewModel.swift in Sources */,
 				84FE6EBE21D5FEA1009A0F55 /* Network+AlertController.swift in Sources */,
 				8441DB5821CCF7D900B078DF /* DetailJanjiCoordinator.swift in Sources */,
