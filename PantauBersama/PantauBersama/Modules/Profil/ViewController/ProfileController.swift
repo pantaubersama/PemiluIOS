@@ -29,6 +29,8 @@ class ProfileController: UIViewController {
     @IBOutlet weak var clusterView: ClusterView!
     @IBOutlet weak var biodataView: BiodataView!
     @IBOutlet weak var lihatBadge: Button!
+    @IBOutlet weak var containerLihat: UIView!
+    @IBOutlet weak var containerlihatConstant: NSLayoutConstraint!
     
     var viewModel: IProfileViewModel!
     
@@ -83,29 +85,32 @@ class ProfileController: UIViewController {
         
         // MARK
         // Section Selected
-        clusterButton.rx.tap.scan(false) { lastState, newValue in
+        clusterButton.rx.tap.scan(true) { lastState, newValue in
             return !lastState
             }.subscribe(onNext: { [weak self] (value) in
                 guard let `self` = self else { return }
                 UIView.performWithoutAnimation {
-                    self.heightClusterConstant.constant = value ? 48.0 : 0.0
+                    self.heightClusterConstant.constant = value ? 50.0 : 0.0
                     self.clusterView.isHidden = !value
                 }
             })
             .disposed(by: disposeBag)
         
-        badgeButton.rx.tap.scan(false) { lastState, newValue in
+        badgeButton.rx.tap.scan(true) { lastState, newValue in
             return !lastState
             }.subscribe(onNext: { [weak self] (value) in
                 guard let `self` = self else { return }
                 UIView.performWithoutAnimation {
                     self.heightTableBadgeConstant.constant = value ? 160.0 : 0.0
                     self.tableViewBadge.isHidden = !value
+                    self.containerlihatConstant.constant = value ? 30.0 : 0.0
+                    self.containerLihat.isHidden = !value
+                    self.lihatBadge.isHidden = false
                 }
             })
             .disposed(by: disposeBag)
         
-        biodataButton.rx.tap.scan(false) { lastState, newValue in
+        biodataButton.rx.tap.scan(true) { lastState, newValue in
             return !lastState
             }.subscribe(onNext: { [weak self] (value) in
                 guard let `self` = self else { return }
@@ -154,6 +159,7 @@ class ProfileController: UIViewController {
                             self.heightClusterConstant.constant = 0.0
                             self.heightBiodataConstant.constant = 0.0
                             self.heightTableBadgeConstant.constant = 0.0
+                            self.lihatBadge.isHidden = true
                             tableView!.contentSize = CGSize(width: tableView!.contentSize.width,
                                                             height: minimumTableViewContentSizeHeight + 2)
                         }
