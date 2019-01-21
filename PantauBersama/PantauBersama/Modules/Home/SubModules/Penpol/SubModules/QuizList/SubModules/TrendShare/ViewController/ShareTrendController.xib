@@ -85,10 +85,10 @@
                     </userDefinedRuntimeAttributes>
                 </button>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="bDD-ZV-YZg">
-                    <rect key="frame" x="32" y="84.5" width="256" height="72.5"/>
+                    <rect key="frame" x="16" y="84.5" width="288" height="72.5"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RESULT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2bO-y5-abV" customClass="Label" customModule="Common">
-                            <rect key="frame" x="89.5" y="0.0" width="77.5" height="26.5"/>
+                            <rect key="frame" x="105.5" y="0.0" width="77.5" height="26.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" red="0.68041622639999999" green="0.1499232352" blue="0.14898997550000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <nil key="highlightedColor"/>
@@ -100,10 +100,10 @@
                             </userDefinedRuntimeAttributes>
                         </label>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="Iw6-h8-z4d">
-                            <rect key="frame" x="0.0" y="41.5" width="256" height="31"/>
+                            <rect key="frame" x="0.0" y="41.5" width="288" height="31"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Ve-Zh-iJt" customClass="Label" customModule="Common">
-                                    <rect key="frame" x="113.5" y="0.0" width="29" height="14"/>
+                                    <rect key="frame" x="129.5" y="0.0" width="29" height="14"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" red="0.48628133540000001" green="0.4862622023" blue="0.48627519609999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     <nil key="highlightedColor"/>
@@ -114,11 +114,11 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                 </label>
-                                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IKF-DO-dDp">
-                                    <rect key="frame" x="113" y="17" width="30" height="14"/>
+                                <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="IKF-DO-dDp">
+                                    <rect key="frame" x="0.0" y="17" width="288" height="14"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2ev-qm-c0f" customClass="Label" customModule="Common">
-                                            <rect key="frame" x="0.0" y="0.0" width="1" height="14"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2ev-qm-c0f" customClass="Label" customModule="Common">
+                                            <rect key="frame" x="0.0" y="0.0" width="29" height="14"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" priority="750" constant="1" id="haP-lf-Sgq"/>
                                             </constraints>
@@ -133,7 +133,7 @@
                                             </userDefinedRuntimeAttributes>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nIf-Sk-g3J" customClass="Label" customModule="Common">
-                                            <rect key="frame" x="1" y="0.0" width="29" height="14"/>
+                                            <rect key="frame" x="29" y="0.0" width="259" height="14"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.48628133540000001" green="0.4862622023" blue="0.48627519609999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <nil key="highlightedColor"/>
@@ -148,6 +148,8 @@
                                 </stackView>
                             </subviews>
                             <constraints>
+                                <constraint firstItem="IKF-DO-dDp" firstAttribute="leading" secondItem="Iw6-h8-z4d" secondAttribute="leading" id="7zZ-CZ-G8f"/>
+                                <constraint firstAttribute="trailing" secondItem="IKF-DO-dDp" secondAttribute="trailing" id="S1I-1X-T8C"/>
                                 <constraint firstAttribute="height" constant="31" id="dpE-ea-gYn"/>
                             </constraints>
                         </stackView>
@@ -168,10 +170,10 @@
                 <constraint firstItem="nZc-Tl-dJO" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="Hpa-fn-Zue"/>
                 <constraint firstItem="Kod-0g-DPs" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="KMg-CA-riA"/>
                 <constraint firstItem="dup-CH-Ziy" firstAttribute="top" secondItem="nZc-Tl-dJO" secondAttribute="bottom" constant="48" id="L4p-KM-ljK"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="bDD-ZV-YZg" secondAttribute="trailing" constant="32" id="bgM-xU-JY2"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="bDD-ZV-YZg" secondAttribute="trailing" constant="16" id="bgM-xU-JY2"/>
                 <constraint firstItem="nZc-Tl-dJO" firstAttribute="top" secondItem="Kod-0g-DPs" secondAttribute="bottom" constant="5" id="ndY-qs-xZC"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="yAT-ao-ScI" secondAttribute="bottom" id="sJn-ez-fdH"/>
-                <constraint firstItem="bDD-ZV-YZg" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="32" id="tD0-mb-kjR"/>
+                <constraint firstItem="bDD-ZV-YZg" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="tD0-mb-kjR"/>
                 <constraint firstItem="yAT-ao-ScI" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="vdK-UL-E9n"/>
                 <constraint firstItem="Kod-0g-DPs" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="-20" id="xtT-g6-b5w"/>
             </constraints>

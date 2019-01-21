@@ -28,6 +28,7 @@ final class ShareTrendCoordinator: BaseCoordinator<Void> {
         let viewController = ShareTrendController()
         let viewModel = ShareTrendViewModel(navigator: self)
         viewController.viewModel = viewModel
+        viewController.hidesBottomBarWhenPushed = true
         navigationController.pushViewController(viewController, animated: true)
         return finish.do(onNext: { [weak self] (_) in
             self?.navigationController.popViewController(animated: true)

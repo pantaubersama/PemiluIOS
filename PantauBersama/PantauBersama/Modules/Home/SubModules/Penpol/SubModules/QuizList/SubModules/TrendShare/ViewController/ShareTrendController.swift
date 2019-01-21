@@ -26,7 +26,7 @@ class ShareTrendController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        lblUsername.sizeToFit()
         let back = UIBarButtonItem(image: #imageLiteral(resourceName: "back"), style: .plain, target: nil, action: nil)
         navigationItem.leftBarButtonItem = back
         
@@ -47,7 +47,7 @@ class ShareTrendController: UIViewController {
                     }
                     self.lblDesc.text = "Total Kecenderunganmu \(response.meta.quizzes.finished) dari \(response.meta.quizzes.total) kuis,"
                     self.lblUsername.text = response.user.fullName
-                    self.lblUsername.text = "lebih suka jawaban dari Paslon no \(kecenderungan?.team.title ?? "")"
+                    self.lblSubDesc.text = " lebih suka jawaban dari Paslon no \(kecenderungan?.team.id ?? 0)"
                     self.lblPercentage.text = "\(Double(kecenderungan?.percentage ?? 0.0))"
                     self.lblTeam.text = "\(kecenderungan?.team.title ?? "")"
             })

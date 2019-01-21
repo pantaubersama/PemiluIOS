@@ -20,7 +20,7 @@ class TrendHeaderView: UIView {
     @IBOutlet weak var lbKecenderungan: Label!
     @IBOutlet weak var shareButton: UIButton!
     
-    private(set) var disposeBag = DisposeBag()
+    private var disposeBag = DisposeBag()
     
     // TODO: change to trend model
     var trend: Any! {
@@ -59,11 +59,6 @@ class TrendHeaderView: UIView {
         }
         lbKecenderungan.text = "Total Kecenderunganmu , \(result.meta.quizzes.finished) dari \(result.meta.quizzes.total) Kuis"
         lbTotal.text = "\(Double(kecenderungan?.percentage ?? 0.0)) (\(kecenderungan?.team.title ?? ""))"
-        
-        shareButton.rx.tap
-            .map({ self.trend })
-            .bind(to: viewModel.input.shareTrendTrigger)
-            .disposed(by: disposeBag)
     }
 
 }

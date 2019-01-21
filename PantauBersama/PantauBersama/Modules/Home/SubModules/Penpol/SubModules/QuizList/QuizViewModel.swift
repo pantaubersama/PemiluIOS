@@ -23,7 +23,7 @@ class QuizViewModel: ViewModelType {
         let openQuizTrigger: AnyObserver<QuizModel>
         let shareTrigger: AnyObserver<QuizModel>
         let infoTrigger: AnyObserver<Void>
-        let shareTrendTrigger: AnyObserver<Any>
+        let shareTrendTrigger: AnyObserver<Void>
         let filterTrigger: AnyObserver<[PenpolFilterModel.FilterItem]>
     }
     
@@ -45,7 +45,7 @@ class QuizViewModel: ViewModelType {
     private let openQuizSubject = PublishSubject<QuizModel>()
     private let shareSubject = PublishSubject<QuizModel>()
     private let infoSubject = PublishSubject<Void>()
-    private let shareTrendSubject = PublishSubject<Any>()
+    private let shareTrendSubject = PublishSubject<Void>()
     private let filterSubject = PublishSubject<[PenpolFilterModel.FilterItem]>()
     private let quizRelay = BehaviorRelay<[QuizModel]>(value: [])
     
@@ -85,7 +85,7 @@ class QuizViewModel: ViewModelType {
             })
             .asDriverOnErrorJustComplete()
         let shareTrend = shareTrendSubject
-            .flatMapLatest({navigator.shareTrend(trend: $0)})
+            .flatMapLatest({navigator.shareTrend()})
             .asDriver(onErrorJustReturn: ())
         
         let bannerInfo = loadQuizSubject
