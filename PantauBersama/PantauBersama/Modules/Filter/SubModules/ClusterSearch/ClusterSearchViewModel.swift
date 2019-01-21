@@ -27,6 +27,7 @@ final class ClusterSearchViewModel: ViewModelType {
         let itemSelected: AnyObserver<IndexPath>
         let query: AnyObserver<String>
         let nextI: AnyObserver<Void>
+        let filterI: AnyObserver<[PenpolFilterModel.FilterItem]>
     }
     
     struct Output {
@@ -38,10 +39,12 @@ final class ClusterSearchViewModel: ViewModelType {
     private let itemSelectedS = PublishSubject<IndexPath>()
     private let queryS = PublishSubject<String>()
     private let nextS = PublishSubject<Void>()
+    private let filterS = PublishSubject<[PenpolFilterModel.FilterItem]>()
     let errorTracker = ErrorTracker()
     let activityIndicator = ActivityIndicator()
     var delegate: IClusterSearchDelegate!
     
+    private var filterItems: [PenpolFilterModel.FilterItem] = []
     private let disposeBag = DisposeBag()
     init(searchTrigger: PublishSubject<String>? = nil) {
         
@@ -49,8 +52,16 @@ final class ClusterSearchViewModel: ViewModelType {
         input = Input(backI: backS.asObserver(),
                       itemSelected: itemSelectedS.asObserver(),
                       query: queryS.asObserver(),
-                      nextI: nextS.asObserver())
+                      nextI: nextS.asObserver(),
+                      filterI: filterS.asObserver())
         
+        let cachedFilter = PenpolFilterModel.generateQuestionFilter()
+        cachedFilter.forEach { (filterModel) in
+            let selectedItem = filterModel.items.filter({ (filterItem) -> Bool in
+                return filterItem.isSelected
+            })
+            self.filterItems.append(contentsOf: selectedItem)
+        }
         
         searchTrigger?.asObserver()
             .bind(to: input.query)

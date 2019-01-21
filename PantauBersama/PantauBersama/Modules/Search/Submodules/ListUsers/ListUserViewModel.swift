@@ -64,7 +64,7 @@ class ListUserViewModel: ViewModelType {
     }
     
     private func searchUser(resetPage: Bool = false, query: String) -> Observable<[User]> {
-        if query.isEmpty {
+         if query.isEmpty {
             currentPage = 0
             return Observable.just([])
         }
