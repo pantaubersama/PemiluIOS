@@ -181,7 +181,7 @@ fastlane/screenshots
 
 # Ignore config files and 
 # Ignore plist Firebase
-/PantauBersama/Config
+/PantauBersama/PantauBersama/Config
 
 
 ## compatibility with Xcode 8 and earlier (ignoring not required starting Xcode 9)
