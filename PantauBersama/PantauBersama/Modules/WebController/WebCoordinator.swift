@@ -55,7 +55,7 @@ extension WebCoordinator: WebNavigator {
         // Right now if username == nil, will launch buat profile
         return user.map({ [weak self] (user) -> Observable<Void> in
             guard let `self` = self else { return Observable.empty() }
-            if user.user.username == nil {
+            if user.user.about == nil {
                 return self.launcBuatProfile()
             } else {
                 self.appCoordinator = AppCoordinator(window: self.window)
