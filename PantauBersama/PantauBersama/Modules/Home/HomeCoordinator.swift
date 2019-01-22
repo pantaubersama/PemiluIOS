@@ -35,6 +35,7 @@ class HomeCoordinator: BaseCoordinator<Void> {
         viewController.tabBar.tintColor = Color.primary_red
         viewController.tabBar.barTintColor = UIColor.white
         viewController.viewControllers = viewControllers
+        viewController.selectedIndex = 1
         
         let coordinates = viewControllers.enumerated()
             .map { (offset, element) -> Observable<Void> in

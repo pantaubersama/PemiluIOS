@@ -36,7 +36,7 @@ class MyQuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelInp
     var filterO: Driver<Void>!
     var bannerO: Driver<BannerInfo>!
     var bannerSelectedO: Driver<Void>!
-    var userDataO: Driver<UserResponse?>!
+    var userDataO: Driver<UserResponse>!
     var deleteO: Driver<Int>!
     var createO: Driver<Void>!
     var showHeaderO: Driver<Bool>!
@@ -84,7 +84,7 @@ class MyQuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelInp
             let filteredBy = self.filterItems.filter({ $0.paramKey == "filter_by"}).first?.paramValue
             let orderedBy = self.filterItems.filter({ $0.paramKey == "order_by"}).first?.paramValue
             
-            return self.paginateItems(nextBatchTrigger: self.nextSubject.asObservable(), filteredBy: filteredBy ?? "user_verified_all", orderedBy: orderedBy ?? "created_at", query: query)
+            return self.paginateItems(nextBatchTrigger: self.nextSubject.asObservable(), filteredBy: filteredBy ?? "user_verified_all", orderedBy: orderedBy ?? "cached_votes_up", query: query)
                 .trackError(self.errorTracker)
                 .trackActivity(self.activityIndicator)
                 .catchErrorJustReturn([])
@@ -186,9 +186,11 @@ class MyQuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelInp
         
         bannerSelectedO = Driver.empty()
         
-        let userData: Data? = UserDefaults.Account.get(forKey: .me)
-        let userResponse = try? JSONDecoder().decode(UserResponse.self, from: userData ?? Data())
-        userDataO = Observable.just(userResponse).asDriverOnErrorJustComplete()
+//        let userData: Data? = UserDefaults.Account.get(forKey: .me)
+//        let userResponse = try? JSONDecoder().decode(UserResponse.self, from: userData ?? Data())
+//        userDataO = Observable.just(userResponse).asDriverOnErrorJustComplete()
+        let local: Observable<UserResponse> = AppState.local(key: .me)
+        userDataO = local.asDriverOnErrorJustComplete()
         
         voteSubject
             .flatMapLatest({ self.voteQuestion(question: $0) })

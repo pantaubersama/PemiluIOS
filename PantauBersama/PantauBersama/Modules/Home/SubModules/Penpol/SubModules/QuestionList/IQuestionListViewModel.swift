@@ -34,7 +34,7 @@ protocol IQuestionListViewModelOutput {
     var filterO: Driver<Void>! { get }
     var bannerO: Driver<BannerInfo>! { get }
     var bannerSelectedO: Driver<Void>! { get }
-    var userDataO: Driver<UserResponse?>! { get }
+    var userDataO: Driver<UserResponse>! { get }
     var deleteO: Driver<Int>! { get }
     var createO: Driver<Void>! { get }
     var showHeaderO: Driver<Bool>! { get }

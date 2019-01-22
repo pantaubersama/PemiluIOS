@@ -36,7 +36,7 @@ class QuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelInput
     var filterO: Driver<Void>!
     var bannerO: Driver<BannerInfo>!
     var bannerSelectedO: Driver<Void>!
-    var userDataO: Driver<UserResponse?>!
+    var userDataO: Driver<UserResponse>!
     var deleteO: Driver<Int>!
     var createO: Driver<Void>!
     var showHeaderO: Driver<Bool>!
@@ -95,7 +95,7 @@ class QuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelInput
             .disposed(by: disposeBag)
         
         loadCreated.startWith(()).flatMapLatest { [unowned self](_) -> Observable<[QuestionModel]> in
-            return self.paginateItems(nextBatchTrigger: self.nextSubject.asObservable(), filteredBy: "user_verified_all", orderedBy: "created_at", query: "")
+            return self.paginateItems(nextBatchTrigger: self.nextSubject.asObservable(), filteredBy: "user_verified_all", orderedBy: "cached_votes_up", query: "")
                 .trackError(self.errorTracker)
                 .trackActivity(self.activityIndicator)
                 .catchErrorJustReturn([])
@@ -236,9 +236,10 @@ class QuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelInput
         
         showHeaderO = BehaviorRelay<Bool>(value: showTableHeader).asDriver()
         
-        let userData: Data? = UserDefaults.Account.get(forKey: .me)
-        let userResponse = try? JSONDecoder().decode(UserResponse.self, from: userData ?? Data())
-        userDataO = Observable.just(userResponse).asDriverOnErrorJustComplete()
+//        let userData: Data? = UserDefaults.Account.get(forKey: .me)
+//        let userResponse = try? JSONDecoder().decode(UserResponse.self, from: userData ?? Data())
+        let local: Observable<UserResponse> = AppState.local(key: .me)
+        userDataO = local.asDriverOnErrorJustComplete()
         
         voteSubject
             .flatMapLatest({ self.voteQuestion(question: $0) })
