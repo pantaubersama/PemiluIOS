@@ -59,6 +59,7 @@ class QuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelInput
     
     private var filterItems: [PenpolFilterModel.FilterItem] = []
     private(set) var disposeBag = DisposeBag()
+    private var searchQuery = ""
     
     init(navigator: PenpolNavigator, searchTrigger: PublishSubject<String>? = nil, showTableHeader: Bool) {
         refreshI = refreshSubject.asObserver()
@@ -83,6 +84,9 @@ class QuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelInput
         }
         
         searchTrigger?.asObserver()
+            .do(onNext: { [weak self](query) in
+                self?.searchQuery = query
+            })
             .bind(to: refreshI)
             .disposed(by: disposeBag)
         
@@ -100,7 +104,7 @@ class QuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelInput
         
         // MARK:
         // Get question pagination
-        refreshSubject.startWith("").flatMapLatest { [unowned self] (query) -> Observable<[QuestionModel]> in
+        refreshSubject.flatMapLatest { [unowned self] (query) -> Observable<[QuestionModel]> in
             var filteredBy = self.filterItems.filter({ $0.paramKey == "filter_by"}).first?.paramValue
             var orderedBy = self.filterItems.filter({ $0.paramKey == "order_by"}).first?.paramValue
             
@@ -277,13 +281,13 @@ class QuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelInput
         query: String) ->
         Observable<Page<[QuestionModel]>> {
             return NetworkService.instance
-                .requestObject(TanyaKandidatAPI.getQuestions(page: batch.page, perpage: batch.limit, filteredBy: filteredBy, orderedBy: orderedBy, query: query), c: QuestionsResponse.self)
+                .requestObject(TanyaKandidatAPI.getQuestions(query: query, page: batch.page, perpage: batch.limit, filteredBy: filteredBy, orderedBy: orderedBy), c: QuestionsResponse.self)
                 .map({ self.transformToPage(response: $0, batch: batch) })
                 .asObservable()
                 .paginate(nextPageTrigger: nextBatchTrigger, hasNextPage: { (result) -> Bool in
                     return result.batch.next().hasNextPage
                 }, nextPageFactory: { (result) -> Observable<Page<[QuestionModel]>> in
-                    self.recursivelyPaginateItems(batch: result.batch.next(), nextBatchTrigger: nextBatchTrigger, filteredBy: filteredBy, orderedBy: orderedBy, query: query)
+                    return self.recursivelyPaginateItems(batch: result.batch.next(), nextBatchTrigger: nextBatchTrigger, filteredBy: filteredBy, orderedBy: orderedBy, query: self.searchQuery)
                 })
                 .share(replay: 1, scope: .whileConnected)
             
