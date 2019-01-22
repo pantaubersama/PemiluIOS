@@ -105,6 +105,16 @@ class MyQuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelInp
                 })
         }
         
+        // MARK
+        // Selected Item
+        let item = questionRelay.asDriverOnErrorJustComplete()
+        itemSelectedO = itemSelectedS
+            .withLatestFrom(item) { (indexPath, items) -> QuestionModel in
+                return items[indexPath.row]
+            }
+            .flatMapLatest({ navigator.launchDetailAsk(data: $0.id) })
+            .asDriverOnErrorJustComplete()
+        
         moreSelectedO = moreSubject
             .asObserver().asDriverOnErrorJustComplete()
         
