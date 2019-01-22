@@ -26,6 +26,7 @@ class QuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelInput
     var unVoteI: AnyObserver<QuestionModel>
     var createI: AnyObserver<Void>
     var loadCreatedI: AnyObserver<Void>
+    var itemSelectedI: AnyObserver<IndexPath>
     
     var items: Driver<[ICellConfigurator]>!
     var error: Driver<Error>!
@@ -39,6 +40,7 @@ class QuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelInput
     var deleteO: Driver<Int>!
     var createO: Driver<Void>!
     var showHeaderO: Driver<Bool>!
+    var itemSelectedO: Driver<Void>!
     
     private let refreshSubject = PublishSubject<String>()
     private let moreSubject = PublishSubject<QuestionModel>()
@@ -52,6 +54,7 @@ class QuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelInput
     private let deletedQuestionSubject = PublishSubject<Int>()
     private let questionRelay = BehaviorRelay<[QuestionModel]>(value: [])
     private let loadCreated = PublishSubject<Void>()
+    private let itemSelectedS = PublishSubject<IndexPath>()
     
     internal let errorTracker = ErrorTracker()
     internal let activityIndicator = ActivityIndicator()
@@ -72,6 +75,7 @@ class QuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelInput
         filterI = filterSubject.asObserver()
         createI = createSubject.asObserver()
         loadCreatedI = loadCreated.asObserver()
+        itemSelectedI = itemSelectedS.asObserver()
         
         error = errorTracker.asDriver()
         
@@ -141,6 +145,18 @@ class QuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelInput
                     return AskViewCellConfigured(item: AskViewCell.Input(viewModel: self, question: question))
                 })
         }
+        
+        // MARK
+        // Selected Item
+        let item = questionRelay.asDriverOnErrorJustComplete()
+        itemSelectedO = itemSelectedS
+            .withLatestFrom(item) { (indexPath, items) -> QuestionModel in
+                return items[indexPath.row]
+            }
+            .flatMapLatest({ navigator.launchDetailAsk(data: $0.id) })
+            .asDriverOnErrorJustComplete()
+        
+        
     
         moreSelectedO = moreSubject
             .asObserver().asDriverOnErrorJustComplete()

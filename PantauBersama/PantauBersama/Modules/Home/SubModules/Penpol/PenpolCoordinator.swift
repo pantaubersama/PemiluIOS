@@ -17,6 +17,7 @@ protocol PenpolNavigator: QuizNavigator, IQuestionNavigator {
     func launchSearch() -> Observable<Void>
     func launchNote() -> Observable<Void>
     func launchProfile() -> Observable<Void>
+    func launchDetailAsk(data: String) -> Observable<Void>
 }
 
 class PenpolCoordinator: BaseCoordinator<Void> {
@@ -99,5 +100,10 @@ extension PenpolCoordinator: PenpolNavigator {
     func launchProfile() -> Observable<Void> {
         let profileCoordinator = ProfileCoordinator(navigationController: navigationController)
         return coordinate(to: profileCoordinator)
+    }
+    
+    func launchDetailAsk(data: String) -> Observable<Void> {
+        let detailAskCoordinator = DetailAskCoordinator(navigationController: navigationController, data: data)
+        return coordinate(to: detailAskCoordinator)
     }
 }
