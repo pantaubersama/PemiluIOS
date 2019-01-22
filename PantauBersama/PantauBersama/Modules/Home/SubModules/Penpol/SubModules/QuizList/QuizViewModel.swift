@@ -129,6 +129,7 @@ class QuizViewModel: ViewModelType {
         loadQuizSubject
             .flatMapLatest({ [weak self](_) -> Observable<[QuizModel]> in
                 guard let weakSelf = self else { return Observable.empty() }
+                weakSelf.loadQuizKindOrder = 0
                 return weakSelf.quizItems(resetPage: true)
                     .map { [weak self](response) -> [QuizModel] in
                         guard let weakSelf = self else { return [] }
