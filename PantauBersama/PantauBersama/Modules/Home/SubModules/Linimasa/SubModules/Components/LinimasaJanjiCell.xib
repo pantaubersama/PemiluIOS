@@ -24,7 +24,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="yN2-AG-qUF">
-                        <rect key="frame" x="16" y="16" width="374" height="193.5"/>
+                        <rect key="frame" x="16" y="16.5" width="374" height="214"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jbr-Bz-2xg">
                                 <rect key="frame" x="0.0" y="0.0" width="374" height="24"/>
@@ -120,21 +120,33 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="typeLabel" value="Bold"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cne-q9-qzT" customClass="Label" customModule="Common">
-                                <rect key="frame" x="0.0" y="84" width="374" height="80.5"/>
-                                <string key="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchang</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
-                                        <real key="value" value="12"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="typeLabel" value="Medium"/>
-                                </userDefinedRuntimeAttributes>
-                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="hJg-nK-NJt">
+                                <rect key="frame" x="0.0" y="84" width="374" height="101"/>
+                                <subviews>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cne-q9-qzT" customClass="Label" customModule="Common">
+                                        <rect key="frame" x="0.0" y="0.0" width="289" height="101"/>
+                                        <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                <real key="value" value="12"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="typeLabel" value="Medium"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5o6-Ax-H04">
+                                        <rect key="frame" x="294" y="0.0" width="80" height="101"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="80" id="0lT-vx-Ghb"/>
+                                            <constraint firstAttribute="width" constant="80" id="HV4-tS-UsQ"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                            </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fIH-Vv-VKz">
-                                <rect key="frame" x="0.0" y="169.5" width="374" height="24"/>
+                                <rect key="frame" x="0.0" y="190" width="374" height="24"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="21" translatesAutoresizingMaskIntoConstraints="NO" id="Jfh-Lk-CeW">
                                         <rect key="frame" x="305" y="0.0" width="69" height="24"/>
@@ -180,6 +192,7 @@
                 <outlet property="content" destination="cne-q9-qzT" id="OI2-a8-vps"/>
                 <outlet property="dateCreate" destination="ASA-U6-GH9" id="16u-U0-AH0"/>
                 <outlet property="fullname" destination="uez-rD-hVX" id="Tb8-JX-wlI"/>
+                <outlet property="imagejJanpol" destination="5o6-Ax-H04" id="UN3-zs-U2t"/>
                 <outlet property="moreBtn" destination="FFb-Yl-kbS" id="iyq-jB-o5w"/>
                 <outlet property="shareBtn" destination="bis-jd-YIs" id="hG2-12-VEr"/>
                 <outlet property="title" destination="MLf-mX-deF" id="0j9-ah-0ef"/>
