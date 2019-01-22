@@ -100,21 +100,19 @@ final class BuatProfileViewModel: ViewModelType {
             .mapToVoid()
             .asDriverOnErrorJustComplete()
         
-        let isEnabled = Observable.combineLatest(
-            fullNameS, usernameS, descS, locationS,
-            educationS, occupationS)
-            .map { (f,u,d,l,e,o) -> Bool in
-                return f.count > 0 && u.count > 0 // assume fullname and username not nil from symbolic
-                    && d.count > 0 && l.count > 0
-                    && e.count > 0 && o.count > 0
-            }
-            .startWith(false)
-            .asDriverOnErrorJustComplete()
-        
+        let form = userData.flatMapLatest { (user) in
+            return Observable.combineLatest(
+                self.fullNameS.startWith(user.user.fullName ?? ""),
+                self.usernameS.startWith(user.user.username ?? ""),
+                self.descS.startWith(user.user.about ?? ""),
+                self.locationS.startWith(user.user.location ?? ""),
+                self.educationS.startWith(user.user.education ?? ""),
+                self.occupationS.startWith(user.user.occupation ?? "")
+                )
+        }.share()
+
         let done = doneS
-            .withLatestFrom(Observable.combineLatest(
-                fullNameS, usernameS, descS,
-                locationS, educationS, occupationS))
+            .withLatestFrom(form)
             .flatMapLatest { [weak self] (f,u,d,l,e,o) -> Observable<Void> in
                 guard let `self` = self else { return Observable.empty() }
                 return self.save(fullname: f,
@@ -136,7 +134,7 @@ final class BuatProfileViewModel: ViewModelType {
         output = Output(done: done,
                         userDataO: userData.asDriverOnErrorJustComplete(),
                         avatarO: avatarSelected,
-                        isEnabled: isEnabled,
+                        isEnabled: Driver.just(true),
                         errorO: errorTracker.asDriver())
         
     }
