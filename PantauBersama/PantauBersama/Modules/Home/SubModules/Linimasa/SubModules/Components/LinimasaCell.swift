@@ -56,8 +56,8 @@ extension LinimasaCell: IReusableCell {
     
     func configure(data: Feeds) {
         name.text = data.account.name
-        let date = data.createdAt.toDate(format: Constant.dateTimeFormat3)?.timeAgoSinceDate2
-        username.text = "@\(data.account.username) • \(date ?? "")"
+        let date = data.createdAtWord.id
+        username.text = "@\(data.account.username) • \(date)"
         content.text = data.source.text
         titleTeam.text = "Disematkan dari \(data.team.title)"
         

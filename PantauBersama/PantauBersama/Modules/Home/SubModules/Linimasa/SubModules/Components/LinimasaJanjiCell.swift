@@ -67,7 +67,7 @@ extension LinimasaJanjiCell: IReusableCell {
         } else {
             fullname.text = data.creator.fullName
         }
-        dateCreate.text = data.createdAt.toDate(format: Constant.dateTimeFormat3)?.timeAgoSinceDate2
+        dateCreate.text = data.createdAtWord.id
         title.text = data.title
         content.text = data.body
         
