@@ -49,10 +49,10 @@ class QuizController: UITableViewController {
         
         tableView.delegate = nil
         tableView.dataSource = nil
-        let a = viewModel.output.quizzes
-        a.bind(to: tableView.rx.items) { [unowned self]tableView, row, item -> UITableViewCell in
+        viewModel.output.quizzes
+            .bind(to: tableView.rx.items) { [unowned self]tableView, row, item -> UITableViewCell in
             // Loadmore trigger
-            if row == self.viewModel.output.quizzes.value.count - 3 {
+            if row == self.viewModel.output.quizzes.value.count - 1 {
                 self.viewModel.input.nextPageTrigger.onNext(())
             }
             guard let cell = tableView.dequeueReusableCell(withIdentifier: QuizCell.reuseIdentifier) as? QuizCell else {

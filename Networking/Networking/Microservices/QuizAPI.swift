@@ -22,7 +22,7 @@ public enum QuizAPI {
     case getQuizQuestions(id: String)
     case answerQUestion(id: String, questionId: String, answerId: String)
     case getQuizDetail(id: String)
-    case getQuizzes(page: Int, perPage: Int, filterBy: QuizListFilter)
+    case getQuizzes(query: String, page: Int, perPage: Int)
     case getParticipatedQuizzes(query: String, page: Int, perPage: Int, filterBy: QuizListFilter)
     case getTotalResult()
 }
@@ -96,11 +96,11 @@ extension QuizAPI: TargetType {
             return [
                 "id": id
             ]
-        case .getQuizzes(let (page, perPage, filterBy)):
+        case .getQuizzes(let (query, page, perPage)):
             return [
                 "page": page,
                 "per_page": perPage,
-                "filter_by": filterBy
+                "q": query
             ]
         case .getParticipatedQuizzes(let (query, page, perPage, filterBy)):
             return [
