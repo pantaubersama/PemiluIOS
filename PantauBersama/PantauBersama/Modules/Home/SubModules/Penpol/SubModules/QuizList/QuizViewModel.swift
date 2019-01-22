@@ -60,7 +60,16 @@ class QuizViewModel: ViewModelType {
     
     private let navigator: QuizNavigator
     private var currentPage = 0
-    private var filterItems: [PenpolFilterModel.FilterItem] = []
+    private var filterItems: [PenpolFilterModel.FilterItem] = [] {
+        didSet {
+            if let filterByString = filterItems.filter({ (filterItem) -> Bool in
+                return filterItem.paramKey == "filter_by"
+            }).first?.paramValue {
+                self.filterOrder = QuizAPI.QuizListFilter(rawValue: filterByString) ?? .all
+            }
+        }
+    }
+    private var filterOrder: QuizAPI.QuizListFilter = .all
     
     private let disposeBag = DisposeBag()
     
@@ -119,6 +128,12 @@ class QuizViewModel: ViewModelType {
                 return filterItem.isSelected
             })
             self.filterItems.append(contentsOf: selectedItem)
+        }
+        
+        if let filterByString = filterItems.filter({ (filterItem) -> Bool in
+            return filterItem.paramKey == "filter_by"
+        }).first?.paramValue {
+            self.filterOrder = QuizAPI.QuizListFilter(rawValue: filterByString) ?? .all
         }
         
         
@@ -182,6 +197,7 @@ class QuizViewModel: ViewModelType {
         
         nextPageSubject
             .flatMapLatest({ [weak self](_) -> Observable<[QuizModel]> in
+                // in progress
                 guard let weakSelf = self else { return Observable.empty() }
                 return weakSelf.quizItems()
                     .map { [weak self](response) -> [QuizModel] in
@@ -190,8 +206,9 @@ class QuizViewModel: ViewModelType {
                 }
             })
             .flatMapLatest({ [weak self](quizzes) -> Observable<[QuizModel]> in
+                // not participating
                 guard let weakSelf = self else { return Observable.empty() }
-                if quizzes.isEmpty {
+                if quizzes.isEmpty && weakSelf.filterOrder == .all {
                     weakSelf.loadQuizKindOrder += 1
                     return weakSelf.quizItems(resetPage: true)
                         .map { [weak self](response) -> [QuizModel] in
@@ -203,8 +220,9 @@ class QuizViewModel: ViewModelType {
                 return Observable.just(quizzes)
             })
             .flatMapLatest({ [weak self](quizzes) -> Observable<[QuizModel]> in
+                // finished
                 guard let weakSelf = self else { return Observable.empty() }
-                if quizzes.isEmpty {
+                if quizzes.isEmpty && weakSelf.filterOrder == .all {
                     weakSelf.loadQuizKindOrder += 1
                     return weakSelf.quizItems(resetPage: true)
                         .map { [weak self](response) -> [QuizModel] in
@@ -244,27 +262,25 @@ class QuizViewModel: ViewModelType {
             currentPage = 0
         }
         
-//        var filteredBy: QuizAPI.QuizListFilter = .finished
-        
-//        if !self.filterItems.isEmpty {
-//            let filterByString = filterItems.filter({ (filterItem) -> Bool in
-//                return filterItem.paramKey == "filter_by"
-//            }).first?.paramValue
-//
-//            filteredBy = QuizAPI.QuizListFilter(rawValue: filterByString ?? "all") ?? .all
-//        }
-        
         currentPage += 1
+        
+        if filterOrder == .notParticipating {
+            return NetworkService.instance.requestObject(QuizAPI.getQuizzes(query: self.searchQuery, page: currentPage, perPage: 30), c: QuizzesResponse.self)
+                .asObservable()
+        } else if filterOrder != .all {
+            return NetworkService.instance.requestObject(QuizAPI.getParticipatedQuizzes(query: self.searchQuery, page: currentPage, perPage: 30, filterBy: filterOrder), c: QuizzesResponse.self)
+                .asObservable()
+        }
         
         switch loadQuizKindOrder {
         case 0:
-            return NetworkService.instance.requestObject(QuizAPI.getParticipatedQuizzes(query: self.searchQuery, page: currentPage, perPage: 10, filterBy: .inProgress), c: QuizzesResponse.self)
+            return NetworkService.instance.requestObject(QuizAPI.getParticipatedQuizzes(query: self.searchQuery, page: currentPage, perPage: 30, filterBy: .inProgress), c: QuizzesResponse.self)
                 .asObservable()
         case 1:
-            return NetworkService.instance.requestObject(QuizAPI.getQuizzes(query: self.searchQuery, page: currentPage, perPage: 10), c: QuizzesResponse.self)
+            return NetworkService.instance.requestObject(QuizAPI.getQuizzes(query: self.searchQuery, page: currentPage, perPage: 30), c: QuizzesResponse.self)
                 .asObservable()
         case 2:
-            return NetworkService.instance.requestObject(QuizAPI.getParticipatedQuizzes(query: self.searchQuery, page: currentPage, perPage: 10, filterBy: .finished), c: QuizzesResponse.self)
+            return NetworkService.instance.requestObject(QuizAPI.getParticipatedQuizzes(query: self.searchQuery, page: currentPage, perPage: 30, filterBy: .finished), c: QuizzesResponse.self)
                 .asObservable()
         default:
             return Observable<QuizzesResponse>.empty()

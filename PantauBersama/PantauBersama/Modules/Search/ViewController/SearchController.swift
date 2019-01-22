@@ -53,8 +53,7 @@ class SearchController: UIViewController {
                                   MenuItem(title: "Linimasa"),
                                   MenuItem(title: "Janji Politik"),
                                   MenuItem(title: "Tanya"),
-                                  MenuItem(title: "Quiz"),
-                                  MenuItem(title: "Wordstadium")]
+                                  MenuItem(title: "Quiz")]
         navbar.btnBack.rx.tap
             .bind(to: viewModel.input.backTrigger)
             .disposed(by: disposeBag)
@@ -85,8 +84,6 @@ class SearchController: UIViewController {
                         break
                     case 5:
                         self.quisController.view.alpha = 1.0
-                        break
-                    case 6:
                         break
                     default:
                         break
