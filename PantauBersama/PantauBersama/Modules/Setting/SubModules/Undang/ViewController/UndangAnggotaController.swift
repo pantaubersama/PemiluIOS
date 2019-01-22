@@ -63,7 +63,7 @@ class UndangAnggotaController: UIViewController {
         viewModel.output.switchSelected
             .drive(onNext: { [weak self] (s) in
                 guard let `self` = self else { return }
-                self.tfLink.text = "pantaubersama.com/magic/link/\(s)"
+                self.tfLink.text = "https://pantaubersama.com/magic/link/\(s)"
             })
             .disposed(by: disposeBag)
         

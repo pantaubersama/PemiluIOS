@@ -86,10 +86,10 @@ extension IQuestionListViewModel {
         return NetworkService.instance
             .requestObject(TanyaKandidatAPI.reportQuestion(id: question.id, className: "Question"), c: QuestionOptionResponse.self)
             .map { (response) -> String in
-                return response.data.vote.status ? "success report" : response.data.vote.text
+                return response.data.vote.status ? "laporan berhasil" : response.data.vote.text
             }
             .asObservable()
-            .catchErrorJustReturn("Oops something went wrong")
+            .catchErrorJustReturn("Terjadi kesalahan")
     }
     
     func deleteQuestion(question: QuestionModel) -> Observable<(question: QuestionModel, status: Bool)> {

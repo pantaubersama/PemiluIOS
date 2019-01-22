@@ -115,7 +115,7 @@ class CreateJanjiController: UIViewController {
     }
     
     private func setupEditorView() {
-        contentJanji.text = "Beri deskripsi detail lebih lanjut dari Judul"
+        contentJanji.text = "Berikan deskripsi atau detil lebih lanjut terkait Janji Politik yang akan disampaikan di kolom ini."
         contentJanji.textColor = UIColor.lightGray
     }
 
@@ -140,7 +140,7 @@ extension CreateJanjiController: UITextViewDelegate {
     
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
-            textView.text = "Beri deskripsi detail lebih lanjut dari Judul"
+            textView.text = "Berikan deskripsi atau detil lebih lanjut terkait Janji Politik yang akan disampaikan di kolom ini."
             textView.textColor = UIColor.lightGray
         }
     }

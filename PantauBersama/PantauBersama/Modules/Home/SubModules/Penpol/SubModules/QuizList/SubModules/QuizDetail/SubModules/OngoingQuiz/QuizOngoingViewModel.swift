@@ -126,7 +126,7 @@ class QuizOngoingViewModel: ViewModelType {
                 guard let weakSelf = self else { return "" }
                 
                 let questionIndex = (index + 1) + weakSelf.questionRelay.value[index].answeredCount
-                return "Pertanyaan no \(questionIndex) dari \(weakSelf.quiz.questionCount)"
+                return "Pertanyaan \(questionIndex) dari \(weakSelf.quiz.questionCount)"
             })
             .asDriver(onErrorJustReturn: "")
         

@@ -33,7 +33,7 @@ class SuccessController: UIViewController {
         successAnimation!.contentMode  = .scaleAspectFill
         successAnimation!.frame = lottieView.bounds
         lottieView.addSubview(successAnimation!)
-        successAnimation!.loopAnimation = true
+        successAnimation!.loopAnimation = false
         successAnimation!.play(fromProgress: 0,
                                toProgress: 1,
                                withCompletion: nil)

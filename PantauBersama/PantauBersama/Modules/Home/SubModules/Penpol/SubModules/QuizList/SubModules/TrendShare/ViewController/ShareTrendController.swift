@@ -45,7 +45,7 @@ class ShareTrendController: UIViewController {
                     if let avatarUrl = kecenderungan?.team.avatar {
                         self.ivPaslon.af_setImage(withURL: URL(string: avatarUrl)!)
                     }
-                    self.lblDesc.text = "Total Kecenderunganmu \(response.meta.quizzes.finished) dari \(response.meta.quizzes.total) kuis,"
+                    self.lblDesc.text = "Total Kecenderunganmu \(response.meta.quizzes.finished) dari \(response.meta.quizzes.total) Quiz,"
                     self.lblUsername.text = response.user.fullName
                     self.lblSubDesc.text = " lebih suka jawaban dari Paslon no \(kecenderungan?.team.id ?? 0)"
                     self.lblPercentage.text = "\(Double(kecenderungan?.percentage ?? 0.0))%"

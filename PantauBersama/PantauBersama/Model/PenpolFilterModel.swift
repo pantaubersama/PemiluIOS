@@ -53,9 +53,9 @@ extension PenpolFilterModel {
         var filterItems: [PenpolFilterModel] = []
         
         let all = FilterItem(id: "pilpres-teamall", paramKey: "filter_by", paramValue: "team_all", title: "Semua", type: .radio, isSelected: UserDefaults.isSelectedFilter(value: "pilpres-teamall"))
-        let paslonSatu = FilterItem(id: "pilpres-paslonsatu", paramKey: "filter_by", paramValue: "team_id_1", title: "Team Jokowi - Ma'ruf", type: .radio, isSelected: UserDefaults.isSelectedFilter(value: "pilpres-paslonsatu"))
-        let paslonDua = FilterItem(id: "pilpres-paslondua", paramKey: "filter_by", paramValue: "team_id_2", title: "Team Prabowo - Sandi", type: .radio, isSelected: UserDefaults.isSelectedFilter(value: "pilpres-paslondua"))
-        let sumberFilter = PenpolFilterModel(paramKey: "filter_by", title: "Sumber dari", items: [all, paslonSatu, paslonDua])
+        let paslonSatu = FilterItem(id: "pilpres-paslonsatu", paramKey: "filter_by", paramValue: "team_id_1", title: "Tim Jokowi - Ma'ruf", type: .radio, isSelected: UserDefaults.isSelectedFilter(value: "pilpres-paslonsatu"))
+        let paslonDua = FilterItem(id: "pilpres-paslondua", paramKey: "filter_by", paramValue: "team_id_2", title: "Tim Prabowo - Sandi", type: .radio, isSelected: UserDefaults.isSelectedFilter(value: "pilpres-paslondua"))
+        let sumberFilter = PenpolFilterModel(paramKey: "filter_by", title: "Sumber", items: [all, paslonSatu, paslonDua])
         filterItems.append(sumberFilter)
         return filterItems
     }
