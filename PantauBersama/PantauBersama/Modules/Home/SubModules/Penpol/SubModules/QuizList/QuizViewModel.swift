@@ -137,6 +137,32 @@ class QuizViewModel: ViewModelType {
                     .trackActivity(weakSelf.activityIndicator)
                     .trackError(weakSelf.errorTracker)
             })
+            .flatMapLatest({ [weak self](quizzes) -> Observable<[QuizModel]> in
+                guard let weakSelf = self else { return Observable.empty() }
+                if quizzes.isEmpty {
+                    weakSelf.loadQuizKindOrder += 1
+                    return weakSelf.quizItems(resetPage: true)
+                        .map { [weak self](response) -> [QuizModel] in
+                            guard let weakSelf = self else { return [] }
+                            return weakSelf.generateQuizzes(from: response)
+                    }
+                }
+                
+                return Observable.just(quizzes)
+            })
+            .flatMapLatest({ [weak self](quizzes) -> Observable<[QuizModel]> in
+                guard let weakSelf = self else { return Observable.empty() }
+                if quizzes.isEmpty {
+                    weakSelf.loadQuizKindOrder += 1
+                    return weakSelf.quizItems(resetPage: true)
+                        .map { [weak self](response) -> [QuizModel] in
+                            guard let weakSelf = self else { return [] }
+                            return weakSelf.generateQuizzes(from: response)
+                    }
+                }
+                
+                return Observable.just(quizzes)
+            })
             .bind { [weak self](loadedItem) in
                 guard let weakSelf = self else { return }
                 weakSelf.quizRelay.accept(loadedItem)
@@ -152,15 +178,33 @@ class QuizViewModel: ViewModelType {
                         return weakSelf.generateQuizzes(from: response)
                 }
             })
-            .filter({ [weak self](quizzes) -> Bool in
-                guard let weakSelf = self else { return false }
+            .flatMapLatest({ [weak self](quizzes) -> Observable<[QuizModel]> in
+                guard let weakSelf = self else { return Observable.empty() }
                 if quizzes.isEmpty {
                     weakSelf.loadQuizKindOrder += 1
-                    weakSelf.currentPage = 0
+                    return weakSelf.quizItems(resetPage: true)
+                        .map { [weak self](response) -> [QuizModel] in
+                            guard let weakSelf = self else { return [] }
+                            return weakSelf.generateQuizzes(from: response)
+                    }
                 }
                 
-                return !quizzes.isEmpty && weakSelf.loadQuizKindOrder < 3
+                return Observable.just(quizzes)
             })
+            .flatMapLatest({ [weak self](quizzes) -> Observable<[QuizModel]> in
+                guard let weakSelf = self else { return Observable.empty() }
+                if quizzes.isEmpty {
+                    weakSelf.loadQuizKindOrder += 1
+                    return weakSelf.quizItems(resetPage: true)
+                        .map { [weak self](response) -> [QuizModel] in
+                            guard let weakSelf = self else { return [] }
+                            return weakSelf.generateQuizzes(from: response)
+                    }
+                }
+                
+                return Observable.just(quizzes)
+            })
+            .filter({ !$0.isEmpty })
             .bind { [weak self](loadedItem) in
                 guard let weakSelf = self else { return }
                 var newItem = weakSelf.quizRelay.value
@@ -187,7 +231,6 @@ class QuizViewModel: ViewModelType {
     private func quizItems(resetPage: Bool = false) -> Observable<QuizzesResponse> {
         if resetPage {
             currentPage = 0
-            loadQuizKindOrder = 0
         }
         
 //        var filteredBy: QuizAPI.QuizListFilter = .finished
