@@ -13,8 +13,10 @@ import RxDataSources
 import Common
 import FBSDKLoginKit
 
-class SosmedController: UITableViewController {
+class SosmedController: UIViewController {
     
+    @IBOutlet weak var btnSubmit: Button!
+    @IBOutlet weak var tableView: UITableView!
     var viewModel: SosmedViewModel!
     private let disposeBag = DisposeBag()
     var dataSource: RxTableViewSectionedReloadDataSource<SectionOfSettingData>!
@@ -24,9 +26,7 @@ class SosmedController: UITableViewController {
         
         title = "Connect"
         let back = UIBarButtonItem(image: #imageLiteral(resourceName: "back"), style: .plain, target: nil, action: nil)
-        let done = UIBarButtonItem(image: #imageLiteral(resourceName: "baselineCheck24Px"), style: .plain, target: nil, action: nil)
         navigationItem.leftBarButtonItem = back
-        navigationItem.rightBarButtonItem = done
         
         tableView.estimatedRowHeight = UITableView.automaticDimension
         tableView.rowHeight = 44.0
@@ -45,7 +45,7 @@ class SosmedController: UITableViewController {
             .bind(to: viewModel.input.backI)
             .disposed(by: disposeBag)
         
-        done.rx.tap
+        btnSubmit.rx.tap
             .bind(to: viewModel.input.doneI)
             .disposed(by: disposeBag)
         
@@ -87,7 +87,7 @@ class SosmedController: UITableViewController {
         
         viewModel.output.itemsO
             .do(onNext: { [weak self] (_) in
-                self?.refreshControl?.endRefreshing()
+                self?.tableView.refreshControl?.endRefreshing()
             })
             .drive(tableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
@@ -137,13 +137,13 @@ class SosmedController: UITableViewController {
     
 }
 
-extension SosmedController {
+extension SosmedController: UITableViewDelegate {
     
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 48.0
     }
     
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = SectionCell()
         view.button.isHidden = true
         view.label.text = dataSource.sectionModels[section].header

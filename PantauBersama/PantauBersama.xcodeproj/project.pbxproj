@@ -209,6 +209,7 @@
 		84619D4921DC961A00EB58CF /* WebController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84619D4821DC961A00EB58CF /* WebController.swift */; };
 		84619D4B21DC9A6A00EB58CF /* WebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84619D4A21DC9A6A00EB58CF /* WebViewModel.swift */; };
 		84619D4D21DC9ABD00EB58CF /* WebCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84619D4C21DC9ABD00EB58CF /* WebCoordinator.swift */; };
+		846E8EFD21F767630036FEA2 /* SosmedController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 846E8EFC21F767630036FEA2 /* SosmedController.xib */; };
 		8475330D21F60F6000BF3F66 /* ComingsoonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8475330C21F60F6000BF3F66 /* ComingsoonViewModel.swift */; };
 		848B039921E7AA8C002CAA40 /* WKWebview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848B039821E7AA8C002CAA40 /* WKWebview.swift */; };
 		848B039C21E7AADF002CAA40 /* WKWebview.xib in Resources */ = {isa = PBXBuildFile; fileRef = 848B039B21E7AADF002CAA40 /* WKWebview.xib */; };
@@ -572,6 +573,7 @@
 		84619D4821DC961A00EB58CF /* WebController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebController.swift; sourceTree = "<group>"; };
 		84619D4A21DC9A6A00EB58CF /* WebViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewModel.swift; sourceTree = "<group>"; };
 		84619D4C21DC9ABD00EB58CF /* WebCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebCoordinator.swift; sourceTree = "<group>"; };
+		846E8EFC21F767630036FEA2 /* SosmedController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SosmedController.xib; sourceTree = "<group>"; };
 		8475330C21F60F6000BF3F66 /* ComingsoonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComingsoonViewModel.swift; sourceTree = "<group>"; };
 		848B039821E7AA8C002CAA40 /* WKWebview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKWebview.swift; sourceTree = "<group>"; };
 		848B039B21E7AADF002CAA40 /* WKWebview.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WKWebview.xib; sourceTree = "<group>"; };
@@ -1585,6 +1587,7 @@
 				8452A4CF21DE544C00196043 /* SosmedController.swift */,
 				8452A4D121DE54B800196043 /* SosmedViewModel.swift */,
 				8452A4D321DE55DE00196043 /* SosmedCoordinator.swift */,
+				846E8EFC21F767630036FEA2 /* SosmedController.xib */,
 			);
 			path = Sosmed;
 			sourceTree = "<group>";
@@ -2268,6 +2271,7 @@
 				11145F6621EB44920046F2AA /* CustomMenuCell.xib in Resources */,
 				11E107A921CD33CA00B7B074 /* CreateJanjiController.xib in Resources */,
 				845C56FD21CD14CE00EDCDFE /* HeaderProfile.xib in Resources */,
+				846E8EFD21F767630036FEA2 /* SosmedController.xib in Resources */,
 				13812C1F21CAA48700CAB327 /* PenpolController.xib in Resources */,
 				84A07F9D21D0DC4B00269C6B /* KTPController.xib in Resources */,
 				84E521C621F4AB2F00B7CCBA /* ob5_perhitungan.json in Resources */,
