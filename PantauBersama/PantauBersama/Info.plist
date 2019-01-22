@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>AppStoreId</key>
+	<string>$(APP_STORE_ID)</string>
+	<key>LicenseURL</key>
+	<string>$(LICENSE_URL)</string>
 	<key>AppStoreURL</key>
 	<string>$(APP_STORE_URL)</string>
 	<key>URL_SCHEMES</key>

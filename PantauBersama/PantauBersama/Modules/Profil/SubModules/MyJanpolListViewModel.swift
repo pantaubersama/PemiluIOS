@@ -29,7 +29,7 @@ class MyJanpolListViewModel: IJanpolListViewModel, IJanpolListViewModelInput, IJ
     var items: Driver<[ICellConfigurator]>!
     var error: Driver<Error>!
     var moreSelectedO: Driver<JanjiPolitik>!
-    var moreMenuSelectedO: Driver<Void>!
+    var moreMenuSelectedO: Driver<String>!
     var itemSelectedO: Driver<Void>!
     var shareSelectedO: Driver<Void>!
     var filterO: Driver<Void>!
@@ -96,15 +96,22 @@ class MyJanpolListViewModel: IJanpolListViewModel, IJanpolListViewModelInput, IJ
             .asDriver(onErrorJustReturn: ())
         
         moreMenuSelectedO = moreMenuSubject
-            .flatMapLatest { (type) -> Observable<Void> in
+            .flatMapLatest { (type) -> Observable<String> in
                 switch type {
                 case .bagikan(let data):
                     return navigator.shareJanji(data: data)
-                case .salin:
-//                    return navigator.shareJanji(data: "as")
-                    return Observable.empty()
+                        .map({ (_) -> String in
+                            return ""
+                        })
+                case .salin(let data):
+                    let urlSalin = "\(AppContext.instance.infoForKey("URL_API_PEMILU"))/share/janjipolitik/\(data.id)"
+                    urlSalin.copyToClipboard()
+                    return Observable.just("Tautan telah tersalin")
                 case .hapus(let id):
-                    return self.delete(id: id).mapToVoid()
+                    return self.delete(id: id)
+                        .map({ (result) -> String in
+                            return ""
+                        })
                 default:
                     return Observable.empty()
                 }

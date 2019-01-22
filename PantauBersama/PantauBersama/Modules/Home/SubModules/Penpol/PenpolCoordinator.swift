@@ -80,7 +80,7 @@ extension PenpolCoordinator: PenpolNavigator {
         return Observable.never()
     }
     
-    func shareTrend(trend: Any) -> Observable<Void> {
+    func shareTrend() -> Observable<Void> {
         // TODO: coordinate to share
         let trendCoordinator = ShareTrendCoordinator(navigationController: navigationController)
         return coordinate(to: trendCoordinator)

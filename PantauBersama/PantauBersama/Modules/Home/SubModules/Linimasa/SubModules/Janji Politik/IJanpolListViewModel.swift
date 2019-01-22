@@ -26,7 +26,7 @@ protocol IJanpolListViewModelOutput {
     var items: Driver<[ICellConfigurator]>! { get }
     var error: Driver<Error>! { get }
     var moreSelectedO: Driver<JanjiPolitik>! { get }
-    var moreMenuSelectedO: Driver<Void>! { get }
+    var moreMenuSelectedO: Driver<String>! { get }
     var itemSelectedO: Driver<Void>! { get }
     var shareSelectedO: Driver<Void>! { get }
     var filterO: Driver<Void>! { get }

@@ -16,7 +16,7 @@
                 <outlet property="note" destination="WW4-qD-nOf" id="4AJ-Ux-mIa"/>
                 <outlet property="notification" destination="qNP-6P-8Xb" id="DgB-WC-qmH"/>
                 <outlet property="profile" destination="Ljt-vi-8ru" id="dBt-G7-hTh"/>
-                <outlet property="search" destination="eQO-Po-gKA" id="C4i-gj-e9N"/>
+                <outlet property="search" destination="NIF-QG-Yj2" id="sEa-NT-naI"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -24,7 +24,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="JBb-Uh-YYS">
+                <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="JBb-Uh-YYS">
                     <rect key="frame" x="16" y="0.0" width="343" height="56"/>
                     <subviews>
                         <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="akz-fj-HK6" customClass="RoundView" customModule="Common">
@@ -36,7 +36,7 @@
                                         <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
                                 </button>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icDummyPerson" translatesAutoresizingMaskIntoConstraints="NO" id="UoW-Y2-fDX">
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icDummyPerson" translatesAutoresizingMaskIntoConstraints="NO" id="UoW-Y2-fDX">
                                     <rect key="frame" x="0.0" y="0.0" width="36" height="36"/>
                                 </imageView>
                             </subviews>
@@ -62,12 +62,52 @@
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                         </view>
-                        <searchBar contentMode="redraw" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="eQO-Po-gKA">
-                            <rect key="frame" x="36" y="0.0" width="259" height="56"/>
-                            <textInputTraits key="textInputTraits"/>
-                        </searchBar>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JEM-iP-cBO" customClass="RoundView" customModule="Common">
+                            <rect key="frame" x="47" y="10" width="226" height="36"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icSearchInactive" translatesAutoresizingMaskIntoConstraints="NO" id="t2s-gG-G6s">
+                                    <rect key="frame" x="8" y="6" width="24" height="24"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="24" id="6Md-Ru-Rhp"/>
+                                        <constraint firstAttribute="width" constant="24" id="bei-6e-xsH"/>
+                                    </constraints>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cari" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Sx-zq-bpT" customClass="Label" customModule="Common">
+                                    <rect key="frame" x="40" y="11" width="21" height="14.5"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" red="0.79608923200000004" green="0.79605895280000005" blue="0.79607945680000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <nil key="highlightedColor"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                            <real key="value" value="12"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="typeLabel" value="italic"/>
+                                    </userDefinedRuntimeAttributes>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NIF-QG-Yj2">
+                                    <rect key="frame" x="0.0" y="0.0" width="226" height="36"/>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="36" id="3hh-9a-qrp"/>
+                                <constraint firstItem="NIF-QG-Yj2" firstAttribute="leading" secondItem="JEM-iP-cBO" secondAttribute="leading" id="7Mu-X6-3Sh"/>
+                                <constraint firstItem="8Sx-zq-bpT" firstAttribute="leading" secondItem="t2s-gG-G6s" secondAttribute="trailing" constant="8" id="GjS-Kr-s4t"/>
+                                <constraint firstAttribute="bottom" secondItem="NIF-QG-Yj2" secondAttribute="bottom" id="Ia0-CR-hqG"/>
+                                <constraint firstAttribute="trailing" secondItem="NIF-QG-Yj2" secondAttribute="trailing" id="dhK-mh-3O2"/>
+                                <constraint firstItem="t2s-gG-G6s" firstAttribute="centerY" secondItem="JEM-iP-cBO" secondAttribute="centerY" id="h0i-Ge-rrt"/>
+                                <constraint firstItem="NIF-QG-Yj2" firstAttribute="top" secondItem="JEM-iP-cBO" secondAttribute="top" id="ilj-ne-ws8"/>
+                                <constraint firstItem="8Sx-zq-bpT" firstAttribute="centerY" secondItem="JEM-iP-cBO" secondAttribute="centerY" id="sIT-r4-0M4"/>
+                                <constraint firstItem="t2s-gG-G6s" firstAttribute="leading" secondItem="JEM-iP-cBO" secondAttribute="leading" constant="8" id="x9z-VE-8aT"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="8"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WW4-qD-nOf">
-                            <rect key="frame" x="295" y="16" width="24" height="24"/>
+                            <rect key="frame" x="284" y="16" width="24" height="24"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="24" id="NMv-vz-SOi"/>
                                 <constraint firstAttribute="width" constant="24" id="xMy-gY-coo"/>
@@ -100,6 +140,7 @@
     <resources>
         <image name="icDummyPerson" width="64" height="64"/>
         <image name="icNotif" width="24" height="24"/>
+        <image name="icSearchInactive" width="24" height="24"/>
         <image name="outlinePinned48Px" width="24" height="24"/>
     </resources>
 </document>

@@ -66,10 +66,7 @@ class LinimasaController: UIViewController {
     
         // MARK
         // bind to viewModel
-        navbar.search.rx.textDidBeginEditing
-            .do(onNext: { [unowned self](_) in
-                self.navbar.search.endEditing(true)
-            })
+        navbar.search.rx.tap
             .bind(to: viewModel.input.searchTrigger)
             .disposed(by: disposeBag)
         

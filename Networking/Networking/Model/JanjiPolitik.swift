@@ -15,11 +15,13 @@ public struct JanjiPolitik: Codable {
     public var body: String
     public var image: Image?
     public var createdAt: String
+    public var createdAtWord: CreatedAt
     public var creator: CreatorJanpol
     
     enum CodingKeys: String, CodingKey {
         case id, title, body, image, creator
         case createdAt = "created_at"
+        case createdAtWord = "created_at_in_word"
     }
     
 }

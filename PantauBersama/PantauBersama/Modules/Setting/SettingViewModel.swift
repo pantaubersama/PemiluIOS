@@ -217,8 +217,10 @@ final class SettingViewModel: ISettingViewModel, ISettingViewModelInput, ISettin
                     return navigator.launchWKWeb(link: AppContext.instance.infoForKey("COMMUNITY_PANTAU"))
                 case .tentang:
                     return navigator.launchAbout()
-                default:
-                    return Observable.empty()
+                case .rate:
+                    return navigator.launchRate()
+                case .share:
+                    return navigator.lauchShareApp()
                 }
         }
         

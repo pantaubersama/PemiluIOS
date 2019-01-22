@@ -127,6 +127,7 @@ extension PenpolFilterController: UITableViewDataSource {
             let cell = UITableViewCell()
             print(UserDefaults.Account.get(forKey: .clusterName) ?? "")
             cell.textLabel?.text = UserDefaults.Account.get(forKey: .clusterName) ?? "Pilih Cluster"
+            cell.textLabel?.font = UIFont(name: "Lato-Regular", size: 12)
             
             return cell
         }

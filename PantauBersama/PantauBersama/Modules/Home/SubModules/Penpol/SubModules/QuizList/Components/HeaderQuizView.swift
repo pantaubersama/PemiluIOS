@@ -49,8 +49,7 @@ class HeaderQuizView: UIView {
             .disposed(by: disposeBag)
         
         viewModel.output.totalResult
-            .drive(onNext: { (result) in
-                print(result)
+            .do(onNext: { [unowned self] (result) in
                 if result.meta.quizzes.finished >= 1 {
                     trendHeaderView.isHidden = false
                     self.frame.size.height = 327
@@ -61,7 +60,12 @@ class HeaderQuizView: UIView {
                     self.frame.size.height = 115
                 }
             })
+            .drive()
             .disposed(by: disposeBag)
+        
+        trendHeaderView.shareButton.rx.tap
+            .bind(to: viewModel.input.shareTrendTrigger)
+            .disposed(by: self.disposeBag)
     }
     
     

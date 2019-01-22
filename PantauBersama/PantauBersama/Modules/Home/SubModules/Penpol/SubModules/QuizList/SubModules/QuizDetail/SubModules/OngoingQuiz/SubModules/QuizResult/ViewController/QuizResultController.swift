@@ -54,19 +54,19 @@ class QuizResultController: UIViewController {
         viewModel.output.share
             .drive()
             .disposed(by: disposeBag)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+        
+        
         let back = UIBarButtonItem(image: #imageLiteral(resourceName: "back"), style: .plain, target: nil, action: nil)
         self.navigationItem.leftBarButtonItem = back
         self.navigationController?.navigationBar.configure(with: .transparent)
         self.navigationController?.navigationBar.tintColor = #colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1)
-        
-        // TODO: for mock only, move navigation to coordinator
         back.rx.tap
             .bind(to: viewModel.input.backTrigger)
             .disposed(by: disposeBag)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
     }
 }

@@ -34,9 +34,9 @@ class BiodataView: UIView {
     }
     
     func configure(data: User) {
-        labelLocation.text = data.informant?.address
+        labelLocation.text = data.location
         labelEducation.text = data.education
-        labelOccupation.text = data.informant?.occupation
+        labelOccupation.text = data.occupation
     }
     
 }

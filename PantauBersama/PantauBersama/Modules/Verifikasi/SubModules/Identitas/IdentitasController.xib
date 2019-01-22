@@ -117,7 +117,7 @@
                                         <constraint firstAttribute="width" constant="96" id="4g9-hX-CVA"/>
                                     </constraints>
                                 </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Kenapa akunmu perlu diverifikasi?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NXC-F8-rbz">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Kenapa akunmu perlu diverifikasi?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NXC-F8-rbz">
                                     <rect key="frame" x="3.5" y="106" width="239" height="22"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="22" id="M2f-Jv-3SS"/>
@@ -164,7 +164,7 @@ Selain itu, poin-poin interaksi akun yang telah terverifikasi akan terarsip rapi
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ClX-LX-I26">
                                     <rect key="frame" x="0.0" y="49" width="246" height="40"/>
                                     <subviews>
-                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="No. Identitas" textAlignment="center" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="Ou9-YT-sim" customClass="TextField" customModule="Common">
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nomor Induk Kependudukan" textAlignment="center" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="Ou9-YT-sim" customClass="TextField" customModule="Common">
                                             <rect key="frame" x="0.0" y="0.0" width="246" height="40"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>

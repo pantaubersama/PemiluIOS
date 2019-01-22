@@ -12,8 +12,8 @@ enum PantauBarKind: Int {
     case linimasa
     case penpol // pendidikan politik
     case wordstadium
-    case rekap
     case lapor
+    case rekap
     
     var title: String? {
         switch self {

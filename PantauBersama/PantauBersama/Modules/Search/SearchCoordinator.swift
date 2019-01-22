@@ -130,7 +130,7 @@ extension SearchCoordinator: SearchNavigator {
         return Observable.never()
     }
     
-    func shareTrend(trend: Any) -> Observable<Void> {
+    func shareTrend() -> Observable<Void> {
         return Observable.never()
     }
     

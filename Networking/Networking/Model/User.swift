@@ -20,8 +20,8 @@ public struct User: Codable {
     public var cluster: ClusterDetail?
     public var votePreference: Int?
     public var verified: Bool
-    public var facebook: Bool
-    public var twitter: Bool
+    public var facebook: Bool?
+    public var twitter: Bool?
     public var avatar: Avatar
     public var username: String?
     public var about: String?

@@ -41,7 +41,7 @@ platform :ios do
 
 
 	desc "Submit a new build to AppStore"
-	lane :relase do 
+	lane :release do 
 		produce(
 			app_identifier: "com.pantaubersama",
 			skip_itc: true,
@@ -57,6 +57,10 @@ platform :ios do
 					"com.pantaubersama" => "match AppStore com.pantaubersama"
 				}
 			}
+		)
+		upload_to_testflight(
+			username: "helmy@extrainteger.com",
+			app_identifier: "com.pantaubersama"
 		)
 
 

@@ -34,12 +34,14 @@ public struct Feeds: Codable {
     public let id: String
     public var team: Team
     public var createdAt: String
+    public var createdAtWord: CreatedAt
     public var source: Source
     public var account: Account
     
     enum CodingKeys: String, CodingKey {
         case id, team, source, account
         case createdAt = "created_at"
+        case createdAtWord = "created_at_in_word"
     }
     
 }

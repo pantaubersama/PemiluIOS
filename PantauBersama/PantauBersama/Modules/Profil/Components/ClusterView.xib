@@ -84,10 +84,18 @@
                         </button>
                     </subviews>
                 </stackView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3xS-YP-AK3">
+                    <rect key="frame" x="0.0" y="47" width="375" height="1"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="MKl-sB-89B"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="VUF-P5-MMv" firstAttribute="leading" secondItem="BH5-gd-ogq" secondAttribute="leading" priority="999" constant="16" id="0WS-rt-UCb"/>
+                <constraint firstItem="BH5-gd-ogq" firstAttribute="trailing" secondItem="3xS-YP-AK3" secondAttribute="trailing" id="0Xj-Or-wZg"/>
                 <constraint firstAttribute="bottom" secondItem="5Vs-Jt-PLF" secondAttribute="bottom" priority="999" constant="8" id="32w-xd-WGF"/>
                 <constraint firstItem="BH5-gd-ogq" firstAttribute="trailing" secondItem="5Vs-Jt-PLF" secondAttribute="trailing" priority="999" constant="16" id="HFC-v3-Bko"/>
                 <constraint firstItem="VUF-P5-MMv" firstAttribute="top" secondItem="NFo-rv-XeE" secondAttribute="top" priority="999" constant="8" id="UWg-uW-zj5"/>
@@ -95,6 +103,8 @@
                 <constraint firstItem="5Vs-Jt-PLF" firstAttribute="top" secondItem="NFo-rv-XeE" secondAttribute="top" priority="999" constant="8" id="aNg-l4-SwB"/>
                 <constraint firstItem="BH5-gd-ogq" firstAttribute="trailing" secondItem="VUF-P5-MMv" secondAttribute="trailing" priority="999" constant="16" id="cPT-a1-rJL"/>
                 <constraint firstItem="5Vs-Jt-PLF" firstAttribute="leading" secondItem="BH5-gd-ogq" secondAttribute="leading" priority="999" constant="16" id="eWC-CX-7Tf"/>
+                <constraint firstItem="3xS-YP-AK3" firstAttribute="leading" secondItem="BH5-gd-ogq" secondAttribute="leading" id="hrw-OL-Bvr"/>
+                <constraint firstAttribute="bottom" secondItem="3xS-YP-AK3" secondAttribute="bottom" id="rYE-rk-Tv4"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="BH5-gd-ogq"/>

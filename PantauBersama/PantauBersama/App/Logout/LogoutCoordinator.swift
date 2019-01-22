@@ -27,7 +27,7 @@ class LogoutCoordinator: BaseCoordinator<LogoutType> {
     
     override func start() -> Observable<CoordinationResult> {
         return Observable<LogoutType>.create({ [weak self](observer) -> Disposable in
-            let alert = UIAlertController(title: "Anda yakin ?", message: "Apakah anda yakin keluar dari aplikasi.", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Keluar Aplikasi", message: "Apakah Anda akan keluar dari aplikasi Pantau Bersama?", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Batal", style: .cancel, handler: { (_) in
                 observer.onNext(LogoutType.cancel)
                 observer.on(.completed)

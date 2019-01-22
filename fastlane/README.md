@@ -21,9 +21,9 @@ or alternatively using `brew cask install fastlane`
 fastlane ios develop
 ```
 Submit a new build staging AppStore (staging distribution)
-### ios relase
+### ios release
 ```
-fastlane ios relase
+fastlane ios release
 ```
 Submit a new build to AppStore
 

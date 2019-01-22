@@ -13,7 +13,7 @@ class Navbar: UIView {
     
     @IBOutlet weak var profile: UIButton!
     @IBOutlet weak var avatar: UIImageView!
-    @IBOutlet weak var search: UISearchBar!
+    @IBOutlet weak var search: UIButton!
     @IBOutlet weak var note: UIButton!
     @IBOutlet weak var notification: UIButton!
     
