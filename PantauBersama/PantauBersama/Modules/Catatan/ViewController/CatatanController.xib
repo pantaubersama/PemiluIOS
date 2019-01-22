@@ -21,7 +21,7 @@
                 <outlet property="labelKecenderunganmu" destination="Vko-dv-fwG" id="XtB-Zz-NkQ"/>
                 <outlet property="labelPercentage" destination="5JW-72-Ymj" id="pEK-Vh-eM6"/>
                 <outlet property="labelPreference" destination="EeV-iS-0Ec" id="mTG-iK-cNN"/>
-                <outlet property="notePreference" destination="62y-QT-9Va" id="7zJ-eq-BT0"/>
+                <outlet property="notePreference" destination="YrO-ZT-C5w" id="Chc-LG-dWG"/>
                 <outlet property="updateButton" destination="euc-Rn-MJ9" id="AAW-S2-KU1"/>
                 <outlet property="view" destination="iN0-l3-epB" id="k7F-SH-moc"/>
             </connections>
@@ -55,41 +55,18 @@
                         <constraint firstItem="R0v-rg-ZU7" firstAttribute="leading" secondItem="dCN-QD-0Dh" secondAttribute="leading" constant="13" id="dT2-NE-kmo"/>
                     </constraints>
                 </view>
-                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jQ8-us-39E">
-                    <rect key="frame" x="8" y="74" width="304" height="30"/>
-                    <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Siapakah yang saat ini paling cocok dengan pilihan kamu? " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="La4-Pn-axd" customClass="Label" customModule="Common">
-                            <rect key="frame" x="0.0" y="0.0" width="152" height="30"/>
-                            <constraints>
-                                <constraint firstAttribute="width" priority="750" constant="185" id="qGD-wf-is8"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
-                                    <real key="value" value="12"/>
-                                </userDefinedRuntimeAttribute>
-                                <userDefinedRuntimeAttribute type="string" keyPath="typeLabel" value="italic"/>
-                            </userDefinedRuntimeAttributes>
-                        </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="62y-QT-9Va" customClass="Label" customModule="Common">
-                            <rect key="frame" x="152" y="0.0" width="152" height="30"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" red="0.92693734169999997" green="0.71449714900000005" blue="0.29399454590000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                            <nil key="highlightedColor"/>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
-                                    <real key="value" value="12"/>
-                                </userDefinedRuntimeAttribute>
-                                <userDefinedRuntimeAttribute type="string" keyPath="typeLabel" value="italic"/>
-                            </userDefinedRuntimeAttributes>
-                        </label>
-                    </subviews>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="30" id="y6d-AC-1d0"/>
-                    </constraints>
-                </stackView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Siapakah yang saat ini paling cocok dengan pilihan kamu? " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="La4-Pn-axd" customClass="Label" customModule="Common">
+                    <rect key="frame" x="19" y="74" width="282" height="14.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                            <real key="value" value="12"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="string" keyPath="typeLabel" value="italic"/>
+                    </userDefinedRuntimeAttributes>
+                </label>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="7ca-AP-IUA" userLabel="BottomStack">
                     <rect key="frame" x="0.0" y="471" width="320" height="97"/>
                     <subviews>
@@ -204,7 +181,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="130" height="15"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="15" id="Bru-zy-5AV"/>
-                                                        <constraint firstAttribute="width" priority="750" constant="130" id="y24-2n-DiK"/>
+                                                        <constraint firstAttribute="width" priority="750" constant="110" id="y24-2n-DiK"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -269,7 +246,7 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dwg-xU-fvt">
                                             <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="jokowi" translatesAutoresizingMaskIntoConstraints="NO" id="01a-Df-PzR">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="paslonjokowi-compres-min" translatesAutoresizingMaskIntoConstraints="NO" id="01a-Df-PzR">
                                                     <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
                                                 </imageView>
                                             </subviews>
@@ -312,7 +289,7 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sCm-Ri-iBm">
                                             <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="prabowo-sandi" translatesAutoresizingMaskIntoConstraints="NO" id="5gn-dV-3PX">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="paslonprabowo-compres-min" translatesAutoresizingMaskIntoConstraints="NO" id="5gn-dV-3PX">
                                                     <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
                                                 </imageView>
                                             </subviews>
@@ -374,32 +351,45 @@
                         <constraint firstAttribute="height" constant="230" id="bUf-Dl-Auy"/>
                     </constraints>
                 </stackView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YrO-ZT-C5w" customClass="Label" customModule="Common">
+                    <rect key="frame" x="160" y="92.5" width="0.0" height="0.0"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.92693734169999997" green="0.71449714900000005" blue="0.29399454590000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                            <real key="value" value="12"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="string" keyPath="typeLabel" value="bold"/>
+                    </userDefinedRuntimeAttributes>
+                </label>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="jQ8-us-39E" secondAttribute="trailing" constant="8" id="1XD-0t-tFN"/>
                 <constraint firstItem="5dY-xG-eHZ" firstAttribute="top" secondItem="9lW-3r-UM6" secondAttribute="bottom" id="4I1-mT-xNs"/>
                 <constraint firstItem="dCN-QD-0Dh" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="86m-cw-crS"/>
                 <constraint firstItem="Ezb-Q5-W2V" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="-40" id="8ub-Kw-9qC"/>
-                <constraint firstItem="jQ8-us-39E" firstAttribute="top" secondItem="dCN-QD-0Dh" secondAttribute="bottom" constant="8" id="A40-qE-Leg"/>
+                <constraint firstItem="La4-Pn-axd" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Moa-82-U8r"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="7ca-AP-IUA" secondAttribute="bottom" id="Ro2-vs-MeV"/>
                 <constraint firstItem="7ca-AP-IUA" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="YK0-DD-Xzq"/>
                 <constraint firstItem="5dY-xG-eHZ" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="a24-Qf-ZlO"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="9lW-3r-UM6" secondAttribute="trailing" id="eYq-eL-dIx"/>
+                <constraint firstItem="YrO-ZT-C5w" firstAttribute="top" secondItem="La4-Pn-axd" secondAttribute="bottom" constant="4" id="gQW-0f-Mh3"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="dCN-QD-0Dh" secondAttribute="trailing" id="hfS-5W-ZX5"/>
                 <constraint firstItem="7ca-AP-IUA" firstAttribute="top" secondItem="5dY-xG-eHZ" secondAttribute="bottom" id="iQf-J2-aaZ"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="7ca-AP-IUA" secondAttribute="trailing" id="jpp-W6-bKV"/>
                 <constraint firstItem="Ezb-Q5-W2V" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="mZ4-lE-wba"/>
+                <constraint firstItem="YrO-ZT-C5w" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="mgs-dq-Hm0"/>
                 <constraint firstItem="dCN-QD-0Dh" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="mhq-0J-Kp4"/>
-                <constraint firstItem="jQ8-us-39E" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="8" id="rHx-Dy-v7n"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="5dY-xG-eHZ" secondAttribute="trailing" id="vDB-xq-jdP"/>
                 <constraint firstItem="9lW-3r-UM6" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="vVk-4P-fH6"/>
+                <constraint firstItem="La4-Pn-axd" firstAttribute="top" secondItem="dCN-QD-0Dh" secondAttribute="bottom" constant="8" id="zn8-wb-ztV"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
         </view>
     </objects>
     <resources>
-        <image name="jokowi" width="150" height="150"/>
-        <image name="prabowo-sandi" width="150" height="150"/>
+        <image name="paslonjokowi-compres-min" width="1000" height="1000"/>
+        <image name="paslonprabowo-compres-min" width="1000" height="1000"/>
     </resources>
 </document>

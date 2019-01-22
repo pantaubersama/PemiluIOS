@@ -79,7 +79,7 @@ class CatatanController: UIViewController {
                 if let avatarUrl = preference?.team.avatar {
                     self.iconPreference.af_setImage(withURL: URL(string: avatarUrl)!)
                 }
-                self.labelKecenderunganmu.text = "Total Kecenderungamu, "
+                self.labelKecenderunganmu.text = "Total Kecenderungamu,"
                 self.labelPreference.text = "\(response.meta.quizzes.finished) dari \(response.meta.quizzes.total) Kuis"
                 self.labelPercentage.text = "\(Double(preference?.percentage ?? 0.0))% (\(preference?.team.title ?? ""))"
             })
@@ -142,7 +142,7 @@ class CatatanController: UIViewController {
         viewModel.output.enableO
             .do(onNext: { [weak self] (enable) in
                 guard let `self` = self else { return }
-                self.updateButton.backgroundColor = enable ? Color.primary_red : Color.grey_one
+                self.updateButton.backgroundColor = enable ? Color.primary_red : Color.grey_two
             })
             .drive(updateButton.rx.isEnabled)
             .disposed(by: disposeBag)
