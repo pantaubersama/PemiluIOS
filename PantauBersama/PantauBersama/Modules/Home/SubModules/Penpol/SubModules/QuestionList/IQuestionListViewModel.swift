@@ -22,6 +22,7 @@ protocol IQuestionListViewModelInput {
     var unVoteI: AnyObserver<QuestionModel> { get }
     var filterI: AnyObserver<[PenpolFilterModel.FilterItem]> {get}
     var createI: AnyObserver<Void> {get}
+    var loadCreatedI: AnyObserver<Void> { get }
     var itemSelectedI: AnyObserver<IndexPath> { get }
 }
 

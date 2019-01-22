@@ -20,7 +20,7 @@ class PenpolViewModel: ViewModelType {
         let searchTrigger: AnyObserver<Void>
         let addTrigger: AnyObserver<Void>
         let filterTrigger: AnyObserver<(type: FilterType, filterTrigger: AnyObserver<[PenpolFilterModel.FilterItem]>)>
-        let refreshTrigger: AnyObserver<Void>
+        let loadCreatedTrigger: PublishSubject<Void>
         let viewWillAppearTrigger: AnyObserver<Void>
         let profileTrigger: AnyObserver<Void>
         let catatanTrigger: AnyObserver<Void>
@@ -38,7 +38,7 @@ class PenpolViewModel: ViewModelType {
     let navigator: PenpolNavigator
     private let addSubject = PublishSubject<Void>()
     private let filterSubject = PublishSubject<(type: FilterType, filterTrigger: AnyObserver<[PenpolFilterModel.FilterItem]>)>()
-    private let refreshSubject = PublishSubject<Void>()
+    private let loadCreatedSubject = PublishSubject<Void>()
     private let searchSubject = PublishSubject<Void>()
     private let viewWillAppearSubject = PublishSubject<Void>()
     private let activityIndicator = ActivityIndicator()
@@ -52,13 +52,13 @@ class PenpolViewModel: ViewModelType {
         input = Input(searchTrigger: searchSubject.asObserver(),
                       addTrigger: addSubject.asObserver(),
                       filterTrigger: filterSubject.asObserver(),
-                      refreshTrigger: refreshSubject.asObserver(),
+                      loadCreatedTrigger: loadCreatedSubject,
                       viewWillAppearTrigger: viewWillAppearSubject.asObserver(),
                       profileTrigger: profileSubject.asObserver(),
                       catatanTrigger: catatanSubject.asObserver())
         
         let add = addSubject
-            .flatMap({navigator.launchCreateAsk(loadCreatedTrigger: self.refreshSubject.asObserver())})
+            .flatMap({navigator.launchCreateAsk(loadCreatedTrigger: self.loadCreatedSubject.asObserver())})
             .asDriver(onErrorJustReturn: ())
         
         let filter = filterSubject
