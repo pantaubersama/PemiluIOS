@@ -26,6 +26,7 @@ class CatatanController: UIViewController {
     private var buttonGroup: [Button] = []
     private var containerGroup: [UIView] = []
     @IBOutlet weak var updateButton: Button!
+    @IBOutlet weak var labelKecenderunganmu: Label!
     
     private let disposeBag: DisposeBag = DisposeBag()
     
@@ -78,6 +79,7 @@ class CatatanController: UIViewController {
                 if let avatarUrl = preference?.team.avatar {
                     self.iconPreference.af_setImage(withURL: URL(string: avatarUrl)!)
                 }
+                self.labelKecenderunganmu.text = "Total Kecenderungamu, "
                 self.labelPreference.text = "\(response.meta.quizzes.finished) dari \(response.meta.quizzes.total) Kuis"
                 self.labelPercentage.text = "\(Double(preference?.percentage ?? 0.0))% (\(preference?.team.title ?? ""))"
             })

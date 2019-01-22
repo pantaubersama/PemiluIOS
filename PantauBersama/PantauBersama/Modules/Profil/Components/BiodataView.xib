@@ -36,7 +36,7 @@
                                     </constraints>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UAo-Gw-t7T" customClass="Label" customModule="Common">
-                                    <rect key="frame" x="26" y="0.0" width="317" height="17.5"/>
+                                    <rect key="frame" x="26" y="0.0" width="317" height="17"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -84,7 +84,7 @@
                                     </constraints>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rOv-FY-CXn" customClass="Label" customModule="Common">
-                                    <rect key="frame" x="26" y="0.0" width="317" height="17.5"/>
+                                    <rect key="frame" x="26" y="0.5" width="317" height="17"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -99,13 +99,23 @@
                         </stackView>
                     </subviews>
                 </stackView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QIR-Nf-ahs">
+                    <rect key="frame" x="0.0" y="85" width="375" height="1"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="2JF-Fc-UWF"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="mGk-kZ-d5l" firstAttribute="bottom" secondItem="2D0-IV-gUJ" secondAttribute="bottom" constant="8" id="4VY-xX-56B"/>
+                <constraint firstItem="mGk-kZ-d5l" firstAttribute="trailing" secondItem="QIR-Nf-ahs" secondAttribute="trailing" id="5L9-Ua-Igy"/>
                 <constraint firstItem="2D0-IV-gUJ" firstAttribute="top" secondItem="mGk-kZ-d5l" secondAttribute="top" constant="16" id="Grq-QA-anR"/>
+                <constraint firstAttribute="bottom" secondItem="QIR-Nf-ahs" secondAttribute="bottom" id="U8g-xB-TJ6"/>
                 <constraint firstAttribute="trailing" secondItem="2D0-IV-gUJ" secondAttribute="trailing" constant="16" id="oFN-Ww-yK4"/>
                 <constraint firstItem="2D0-IV-gUJ" firstAttribute="leading" secondItem="q8P-je-GDd" secondAttribute="leading" constant="16" id="ra9-0P-cIS"/>
+                <constraint firstItem="QIR-Nf-ahs" firstAttribute="leading" secondItem="mGk-kZ-d5l" secondAttribute="leading" id="u3b-qO-xHj"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="mGk-kZ-d5l"/>

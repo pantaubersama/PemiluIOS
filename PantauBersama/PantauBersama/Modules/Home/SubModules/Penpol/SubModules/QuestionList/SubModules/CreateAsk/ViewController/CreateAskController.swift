@@ -45,7 +45,8 @@ class CreateAskController: UIViewController {
         navigationItem.rightBarButtonItem = done
         navigationController?.navigationBar.configure(with: .white)
         tvQuestion.delegate = self
-        
+        tvQuestion.text = "Tulis pertanyaan terbaikmu di sini!"
+        tvQuestion.textColor = UIColor.lightGray
         // MARK
         // bind View Model
         back.rx.tap
@@ -71,7 +72,9 @@ class CreateAskController: UIViewController {
         a.drive (onNext: { [weak self]user in
             guard let weakSelf = self else { return }
             // TODO: set avatar when user have avatar property
-//            weakSelf.ivAvatar.show(fromURL: <#T##String#>)
+            if let thumbnail = user?.user.avatar.thumbnail.url {
+                self?.ivAvatar.af_setImage(withURL: URL(string: thumbnail)!)
+            }
             weakSelf.lbFullname.text = (user?.user.fullName ?? "")
         })
         .disposed(by: disposeBag)
@@ -115,5 +118,19 @@ extension CreateAskController: UITextViewDelegate {
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         let newText = (textView.text as NSString).replacingCharacters(in: range, with: text)
         return newText.count < 261
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == UIColor.lightGray {
+            textView.text = nil
+            textView.textColor = Color.primary_black
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            textView.text = "Tulis pertanyaan terbaikmu di sini!"
+            textView.textColor = UIColor.lightGray
+        }
     }
 }
