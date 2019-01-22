@@ -22,6 +22,7 @@ protocol IQuestionListViewModelInput {
     var unVoteI: AnyObserver<QuestionModel> { get }
     var filterI: AnyObserver<[PenpolFilterModel.FilterItem]> {get}
     var createI: AnyObserver<Void> {get}
+    var itemSelectedI: AnyObserver<IndexPath> { get }
 }
 
 protocol IQuestionListViewModelOutput {
@@ -37,6 +38,7 @@ protocol IQuestionListViewModelOutput {
     var deleteO: Driver<Int>! { get }
     var createO: Driver<Void>! { get }
     var showHeaderO: Driver<Bool>! { get }
+    var itemSelectedO: Driver<Void>! { get }
 }
 
 protocol IQuestionListViewModel {

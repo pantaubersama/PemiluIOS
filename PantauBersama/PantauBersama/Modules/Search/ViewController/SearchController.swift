@@ -23,7 +23,7 @@ class SearchController: UIViewController {
     var viewModel: SearchViewModel!
     private let disposeBag = DisposeBag()
     
-    lazy var quizViewModel = QuizViewModel(navigator: viewModel.navigator, showTableHeader: false)
+    lazy var quizViewModel = QuizViewModel(navigator: viewModel.navigator, searchTrigger: viewModel.searchSubject, showTableHeader: false)
     lazy var askViewModel = QuestionListViewModel(navigator: viewModel.navigator, searchTrigger: viewModel.searchSubject, showTableHeader: false)
     lazy var pilpresViewModel = PilpresViewModel(navigator: viewModel.navigator, searchTrigger: viewModel.searchSubject, showTableHeader: false)
     lazy var janjiPolitikViewModel = JanpolListViewModel(navigator: viewModel.navigator, searchTrigger: viewModel.searchSubject,    showTableHeader: false)

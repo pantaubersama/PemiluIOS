@@ -21,6 +21,10 @@ extension IQuestionListViewController {
     
     func bind(tableView: UITableView, refreshControl: UIRefreshControl, emptyView: EmptyView, with viewModel: IQuestionListViewModel) {
         
+        tableView.rx.itemSelected
+            .bind(to: viewModel.input.itemSelectedI)
+            .disposed(by: disposeBag)
+        
         refreshControl.rx.controlEvent(.valueChanged)
             .map({ "" })
             .bind(to: viewModel.input.refreshI)
@@ -139,6 +143,9 @@ extension IQuestionListViewController {
             })
             .disposed(by: disposeBag)
         
+        viewModel.output.itemSelectedO
+            .drive()
+            .disposed(by: disposeBag)
     }
     
 }

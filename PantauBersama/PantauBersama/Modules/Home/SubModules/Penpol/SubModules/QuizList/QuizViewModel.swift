@@ -68,7 +68,9 @@ class QuizViewModel: ViewModelType {
     
     private var loadQuizKindOrder = 0
     
-    init(navigator: PenpolNavigator, showTableHeader: Bool) {
+    private var searchQuery = ""
+    
+    init(navigator: PenpolNavigator, searchTrigger: PublishSubject<String>? = nil, showTableHeader: Bool) {
         self.navigator = navigator
         
         input = Input(
@@ -79,6 +81,14 @@ class QuizViewModel: ViewModelType {
             infoTrigger: infoSubject.asObserver(),
             shareTrendTrigger: shareTrendSubject.asObserver(),
             filterTrigger: filterSubject.asObserver())
+        
+        searchTrigger?.asObserver()
+            .do(onNext: { [weak self](query) in
+                self?.searchQuery = query
+            })
+            .mapToVoid()
+            .bind(to: input.loadQuizTrigger)
+            .disposed(by: disposeBag)
         
         let openQuiz = openQuizSubject
             .flatMapLatest({navigator.openQuiz(quiz: $0)})
@@ -97,10 +107,10 @@ class QuizViewModel: ViewModelType {
             .asDriver(onErrorJustReturn: ())
         
         let bannerInfo = loadQuizSubject
-            .flatMapLatest({ self.bannerInfo() })
+            .flatMapLatest({ _ in self.bannerInfo() })
             .asDriverOnErrorJustComplete()
         let totalResult = loadQuizSubject
-            .flatMapLatest({ self.totalResult() })
+            .flatMapLatest({ _ in self.totalResult() })
             .asDriverOnErrorJustComplete()
         
         let cachedFilter = PenpolFilterModel.generateQuizFilter()
@@ -127,7 +137,7 @@ class QuizViewModel: ViewModelType {
             .asDriverOnErrorJustComplete()
         
         loadQuizSubject
-            .flatMapLatest({ [weak self](_) -> Observable<[QuizModel]> in
+            .flatMapLatest({ [weak self](query) -> Observable<[QuizModel]> in
                 guard let weakSelf = self else { return Observable.empty() }
                 weakSelf.loadQuizKindOrder = 0
                 return weakSelf.quizItems(resetPage: true)
@@ -248,13 +258,13 @@ class QuizViewModel: ViewModelType {
         
         switch loadQuizKindOrder {
         case 0:
-            return NetworkService.instance.requestObject(QuizAPI.getParticipatedQuizzes(query: "", page: currentPage, perPage: 10, filterBy: .inProgress), c: QuizzesResponse.self)
+            return NetworkService.instance.requestObject(QuizAPI.getParticipatedQuizzes(query: self.searchQuery, page: currentPage, perPage: 10, filterBy: .inProgress), c: QuizzesResponse.self)
                 .asObservable()
         case 1:
-            return NetworkService.instance.requestObject(QuizAPI.getQuizzes(query: "", page: currentPage, perPage: 10), c: QuizzesResponse.self)
+            return NetworkService.instance.requestObject(QuizAPI.getQuizzes(query: self.searchQuery, page: currentPage, perPage: 10), c: QuizzesResponse.self)
                 .asObservable()
         case 2:
-            return NetworkService.instance.requestObject(QuizAPI.getParticipatedQuizzes(query: "", page: currentPage, perPage: 10, filterBy: .finished), c: QuizzesResponse.self)
+            return NetworkService.instance.requestObject(QuizAPI.getParticipatedQuizzes(query: self.searchQuery, page: currentPage, perPage: 10, filterBy: .finished), c: QuizzesResponse.self)
                 .asObservable()
         default:
             return Observable<QuizzesResponse>.empty()

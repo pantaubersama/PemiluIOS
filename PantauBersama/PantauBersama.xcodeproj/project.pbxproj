@@ -133,6 +133,10 @@
 		8409374D21D361240024A444 /* PilpresNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8409374C21D361240024A444 /* PilpresNavigator.swift */; };
 		8416657121F1CA58008A53D4 /* data_fotoktp.json in Resources */ = {isa = PBXBuildFile; fileRef = 8416657021F1CA58008A53D4 /* data_fotoktp.json */; };
 		841CDA3D21C8BC1C0015680C /* LinimasaController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 841CDA3C21C8BC1C0015680C /* LinimasaController.xib */; };
+		8423C3FA21F71711000AAA63 /* DetailAskController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8423C3F921F71711000AAA63 /* DetailAskController.xib */; };
+		8423C3FC21F718A6000AAA63 /* DetailAskController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423C3FB21F718A6000AAA63 /* DetailAskController.swift */; };
+		8423C3FF21F718E1000AAA63 /* DetailAskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423C3FE21F718E1000AAA63 /* DetailAskViewModel.swift */; };
+		8423C40121F71927000AAA63 /* DetailAskCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423C40021F71927000AAA63 /* DetailAskCoordinator.swift */; };
 		8428AAA321C7A7790008E975 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8428AAA521C7A7790008E975 /* Localizable.strings */; };
 		8428AAAA21C7AF330008E975 /* GoogleService-Info-Staging.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8428AAA921C7AF330008E975 /* GoogleService-Info-Staging.plist */; };
 		8428AAAD21C7B4B20008E975 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8428AAAC21C7B4B10008E975 /* GoogleService-Info.plist */; };
@@ -485,6 +489,10 @@
 		8409374C21D361240024A444 /* PilpresNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PilpresNavigator.swift; sourceTree = "<group>"; };
 		8416657021F1CA58008A53D4 /* data_fotoktp.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data_fotoktp.json; sourceTree = "<group>"; };
 		841CDA3C21C8BC1C0015680C /* LinimasaController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LinimasaController.xib; sourceTree = "<group>"; };
+		8423C3F921F71711000AAA63 /* DetailAskController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailAskController.xib; sourceTree = "<group>"; };
+		8423C3FB21F718A6000AAA63 /* DetailAskController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailAskController.swift; sourceTree = "<group>"; };
+		8423C3FE21F718E1000AAA63 /* DetailAskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailAskViewModel.swift; sourceTree = "<group>"; };
+		8423C40021F71927000AAA63 /* DetailAskCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailAskCoordinator.swift; sourceTree = "<group>"; };
 		8428AAA021C7A7160008E975 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		8428AAA421C7A7790008E975 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		8428AAA621C7A77C0008E975 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -1052,6 +1060,7 @@
 		13F456A021CF9AB400CE45F1 /* SubModules */ = {
 			isa = PBXGroup;
 			children = (
+				8423C3F821F716F1000AAA63 /* DetailAsk */,
 				13F4569121CF97AC00CE45F1 /* CreateAsk */,
 			);
 			path = SubModules;
@@ -1263,6 +1272,25 @@
 				8409374C21D361240024A444 /* PilpresNavigator.swift */,
 			);
 			path = Pilpres;
+			sourceTree = "<group>";
+		};
+		8423C3F821F716F1000AAA63 /* DetailAsk */ = {
+			isa = PBXGroup;
+			children = (
+				8423C3FD21F718D1000AAA63 /* ViewController */,
+				8423C3FE21F718E1000AAA63 /* DetailAskViewModel.swift */,
+				8423C40021F71927000AAA63 /* DetailAskCoordinator.swift */,
+			);
+			path = DetailAsk;
+			sourceTree = "<group>";
+		};
+		8423C3FD21F718D1000AAA63 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				8423C3F921F71711000AAA63 /* DetailAskController.xib */,
+				8423C3FB21F718A6000AAA63 /* DetailAskController.swift */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		8441DB3A21CCA69500B078DF /* Components */ = {
@@ -2207,6 +2235,7 @@
 				11702DD321CB0287001AEE3F /* QuizCell.xib in Resources */,
 				84F892A821C787D800DC1048 /* Lato-Black.ttf in Resources */,
 				84E521B821F4A4E900B7CCBA /* StartOnboardingController.xib in Resources */,
+				8423C3FA21F71711000AAA63 /* DetailAskController.xib in Resources */,
 				84F892B321C787F700DC1048 /* BwModelica-BlackCondensed.otf in Resources */,
 				84A07F8F21D0CC9400269C6B /* landing-page-backround-mobile.json in Resources */,
 				11E107AF21CD42C400B7B074 /* QuizOngoingController.xib in Resources */,
@@ -2568,6 +2597,7 @@
 				8452A4C921DE265500196043 /* BuatProfileViewModel.swift in Sources */,
 				11E107AE21CD42C400B7B074 /* QuizOngoingController.swift in Sources */,
 				84D01B9821D208DE0000492F /* SectionOfSettingData.swift in Sources */,
+				8423C3FC21F718A6000AAA63 /* DetailAskController.swift in Sources */,
 				840901C221DF3BDE001BF559 /* CatatanViewModel.swift in Sources */,
 				11E107DA21CFD99900B7B074 /* QuizResultCoordinator.swift in Sources */,
 				11E1079E21CD200500B7B074 /* PenpolViewModel.swift in Sources */,
@@ -2580,9 +2610,11 @@
 				84B6D6E421E1062500CD4BC8 /* KategoriClusterViewModel.swift in Sources */,
 				84619D4D21DC9ABD00EB58CF /* WebCoordinator.swift in Sources */,
 				11E1079121CD0FE200B7B074 /* QuizDetailController.swift in Sources */,
+				8423C40121F71927000AAA63 /* DetailAskCoordinator.swift in Sources */,
 				84FE6EC621D6361C009A0F55 /* BiodataView.swift in Sources */,
 				844C3D7021C51D3500199871 /* PantauBarKind.swift in Sources */,
 				11B1460221D749C300BB26C8 /* HeaderAskView.swift in Sources */,
+				8423C3FF21F718E1000AAA63 /* DetailAskViewModel.swift in Sources */,
 				840850BF21D256C200696CB3 /* SectionOfProfileInfoData.swift in Sources */,
 				84619D3821DA851200EB58CF /* EditViewModel.swift in Sources */,
 				8452A4D421DE55DE00196043 /* SosmedCoordinator.swift in Sources */,
