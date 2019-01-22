@@ -99,3 +99,6 @@ public struct Creator: Codable {
     }
 }
 
+public struct SingleQuestionResponse: Codable {
+    public var question: Question
+}

@@ -29,6 +29,7 @@ public enum TanyaKandidatAPI {
     case reportQuestion(id: String, className: String)
     case voteQuestion(id: String, className: String)
     case deleteVoteQuestion(id: String, className: String)
+    case getQuestionsId(id: String)
 }
 
 extension TanyaKandidatAPI: TargetType {
@@ -62,6 +63,8 @@ extension TanyaKandidatAPI: TargetType {
             return "/pendidikan_politik/v1/votes"
         case .getMyQuestions:
             return "/pendidikan_politik/v1/me/questions"
+        case .getQuestionsId(let id):
+            return "/pendidikan_politik/v1/questions/\(id)"
         }
     }
     
@@ -69,7 +72,7 @@ extension TanyaKandidatAPI: TargetType {
         switch self {
         case .deleteQuestion, .deleteVoteQuestion:
             return .delete
-        case .getQuestions, .getQuestionDetail, .getMyQuestions:
+        case .getQuestions, .getQuestionDetail, .getMyQuestions, .getQuestionsId:
             return .get
         case .createQuestion, .reportQuestion, .voteQuestion:
             return .post
@@ -113,6 +116,8 @@ extension TanyaKandidatAPI: TargetType {
                 "page": page,
                 "per_page": perpage
             ]
+        default:
+            return nil
         }
     }
     
