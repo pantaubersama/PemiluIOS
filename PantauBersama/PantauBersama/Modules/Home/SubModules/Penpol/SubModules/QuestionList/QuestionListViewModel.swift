@@ -140,7 +140,7 @@ class QuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelInput
                 orderedBy = orderByString ?? "created_at"
             }
                 
-            return self.paginateItems(nextBatchTrigger: self.nextSubject.asObservable(), filteredBy: filteredBy ?? "user_verified_all", orderedBy: orderedBy ?? "created_at", query: query)
+            return self.paginateItems(nextBatchTrigger: self.nextSubject.asObservable(), filteredBy: filteredBy ?? "user_verified_all", orderedBy: orderedBy ?? "cached_votes_up", query: query)
                 .trackError(self.errorTracker)
                 .trackActivity(self.activityIndicator)
                 .catchErrorJustReturn([])

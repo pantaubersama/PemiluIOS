@@ -157,7 +157,7 @@ class PilpresViewModel: ViewModelType {
                 return items[indexPath.row]
             }
             .flatMapLatest({ navigator.launcWebView(
-                link: "https://twitter.com/itdoesnotmatter/status/\($0.source.id)")})
+                link: "https://twitter.com/i/web/status/\($0.source.id)")})
             .asDriverOnErrorJustComplete()
         
         

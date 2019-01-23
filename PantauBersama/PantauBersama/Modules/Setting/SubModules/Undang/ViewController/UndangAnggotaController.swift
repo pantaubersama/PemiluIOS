@@ -63,7 +63,7 @@ class UndangAnggotaController: UIViewController {
         viewModel.output.switchSelected
             .drive(onNext: { [weak self] (s) in
                 guard let `self` = self else { return }
-                self.tfLink.text = "\(AppContext.instance.infoForKey("WEB_URL"))/\(s)"
+                self.tfLink.text = "\(AppContext.instance.infoForKey("URL_WEB"))/\(s)"
             })
             .disposed(by: disposeBag)
         

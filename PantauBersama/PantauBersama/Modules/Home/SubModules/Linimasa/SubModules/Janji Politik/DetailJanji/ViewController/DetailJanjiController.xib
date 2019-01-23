@@ -22,6 +22,7 @@
             <connections>
                 <outlet property="avatar" destination="l9O-VF-pi7" id="kAs-GL-Paw"/>
                 <outlet property="closeButton" destination="XLy-Xe-M8t" id="9DP-pE-7q2"/>
+                <outlet property="constraintImageHeight" destination="PrJ-Pq-nu0" id="zws-N1-ICX"/>
                 <outlet property="contentConstraintHeight" destination="D6C-Se-rUM" id="AQI-6K-dEh"/>
                 <outlet property="contentSource" destination="DIx-XA-eit" id="R1D-pR-4yo"/>
                 <outlet property="dateLabel" destination="Ohh-bs-Bry" id="2p0-PE-x9E"/>
@@ -131,7 +132,7 @@
                                     <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="12"/>
                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 </textView>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4ON-Aw-V5p">
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4ON-Aw-V5p">
                                     <rect key="frame" x="17" y="100" width="341" height="220"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="220" id="PrJ-Pq-nu0"/>

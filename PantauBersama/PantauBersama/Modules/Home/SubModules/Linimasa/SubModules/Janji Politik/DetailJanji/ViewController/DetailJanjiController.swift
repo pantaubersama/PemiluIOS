@@ -32,6 +32,7 @@ class DetailJanjiController: UIViewController {
     @IBOutlet weak var moreButton: UIButton!
     @IBOutlet weak var closeButton: ImageButton!
     
+    @IBOutlet weak var constraintImageHeight: NSLayoutConstraint!
     private let disposeBag = DisposeBag()
     var viewModel: DetailJanjiViewModel!
     
@@ -129,6 +130,7 @@ class DetailJanjiController: UIViewController {
                         let aspectRatio = image.size.width / image.size.height
                         let newHeight = self.image.frame.width / aspectRatio
                         self.image.frame.size = CGSize(width: self.image.frame.width, height: newHeight)
+                        self.constraintImageHeight.constant = newHeight
                     }
                 }
             })
