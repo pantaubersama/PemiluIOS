@@ -11,7 +11,7 @@ import RxSwift
 
 protocol ComingsoonNavigator {
     func launchSearch() -> Observable<Void>
-    func launchProfile() -> Observable<Void>
+    func launchProfile(isMyAccount: Bool, userId: String?) -> Observable<Void>
     func launchNote() -> Observable<Void>
     func launchNotif() -> Observable<Void>
     func launchWeb(link: String) -> Observable<Void>
@@ -40,10 +40,9 @@ extension ComingsoonCoordinator: ComingsoonNavigator {
         return coordinate(to: searchCoordinator)
     }
     
-    func launchProfile() -> Observable<Void> {
-//        let profileCoordinator = ProfileCoordinator(navigationController: navigationController)
-//        return coordinate(to: profileCoordinator)
-        return Observable.empty()
+    func launchProfile(isMyAccount: Bool, userId: String?) -> Observable<Void> {
+        let profileCoordinator = ProfileCoordinator(navigationController: navigationController, isMyAccount: isMyAccount, userId: userId)
+        return coordinate(to: profileCoordinator)
     }
     
     func launchNote() -> Observable<Void> {

@@ -88,7 +88,7 @@ final class ComingsoonViewModel: ViewModelType {
             .flatMapLatest({ Observable.merge(local, cloud)})
         
         let profile = profileS
-            .flatMapLatest{( navigator.launchProfile() )}
+            .flatMapLatest{( navigator.launchProfile(isMyAccount: true, userId: nil) )}
             .asDriverOnErrorJustComplete()
         
         let search = searchS

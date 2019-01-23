@@ -16,7 +16,7 @@ protocol PenpolNavigator: QuizNavigator, IQuestionNavigator {
     func launchPenpolBannerInfo(bannerInfo: BannerInfo) -> Observable<Void>
     func launchSearch() -> Observable<Void>
     func launchNote() -> Observable<Void>
-    func launchProfile() -> Observable<Void>
+    func launchProfile(isMyAccount: Bool, userId: String?) -> Observable<Void>
     func launchDetailAsk(data: String) -> Observable<Void>
 }
 
@@ -74,7 +74,7 @@ extension PenpolCoordinator: PenpolNavigator {
     
     func shareQuiz(quiz: QuizModel) -> Observable<Void> {
         // TODO: coordinate to share
-        let share = "Iseng-iseng serius main Kuis ini dulu. Kira-kira masih cocok apa ternyata malah nggak cocok, yaa 😶 \(AppContext.instance.infoForKey("URL_WEB"))/share/kui/\(quiz.id)"
+        let share = "Iseng-iseng serius main Kuis ini dulu. Kira-kira masih cocok apa ternyata malah nggak cocok, yaa 😶 \(AppContext.instance.infoForKey("URL_WEB"))/share/kuis/\(quiz.id)"
         let activityViewController = UIActivityViewController(activityItems: [share as NSString], applicationActivities: nil)
         self.navigationController.present(activityViewController, animated: true, completion: nil)
         
@@ -97,10 +97,9 @@ extension PenpolCoordinator: PenpolNavigator {
         return coordinate(to: catatanCoordinator)
     }
     
-    func launchProfile() -> Observable<Void> {
-//        let profileCoordinator = ProfileCoordinator(navigationController: navigationController)
-//        return coordinate(to: profileCoordinator)
-        return Observable.empty()
+    func launchProfile(isMyAccount: Bool, userId: String?) -> Observable<Void> {
+        let profileCoordinator = ProfileCoordinator(navigationController: navigationController, isMyAccount: isMyAccount, userId: userId)
+        return coordinate(to: profileCoordinator)
     }
     
     func launchDetailAsk(data: String) -> Observable<Void> {

@@ -70,7 +70,7 @@ class PenpolViewModel: ViewModelType {
             .asDriver(onErrorJustReturn: ())
         
         let profile = profileSubject
-            .flatMapLatest({ navigator.launchProfile() })
+            .flatMapLatest({ navigator.launchProfile(isMyAccount: true, userId: nil) })
             .asDriver(onErrorJustReturn: ())
         
         let note = catatanSubject
