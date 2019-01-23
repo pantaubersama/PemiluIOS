@@ -15,6 +15,7 @@ public struct Team: Codable {
 public struct Source: Codable {
     public let id: String
     public let text: String
+    public let media: [String]?
 }
 
 public struct Account: Codable {
