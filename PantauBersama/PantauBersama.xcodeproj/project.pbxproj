@@ -20,6 +20,11 @@
 		1143E81021E212F7003862B6 /* upvote.json in Resources */ = {isa = PBXBuildFile; fileRef = 1143E80F21E212F7003862B6 /* upvote.json */; };
 		1143E81221E23229003862B6 /* loading-pantau.json in Resources */ = {isa = PBXBuildFile; fileRef = 1143E81121E23229003862B6 /* loading-pantau.json */; };
 		1143E81621E24A6A003862B6 /* QuizQuestionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1143E81521E24A6A003862B6 /* QuizQuestionModel.swift */; };
+		1147F22B21F83C01001D0D59 /* ClusterDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1147F22921F83C01001D0D59 /* ClusterDetailController.swift */; };
+		1147F22C21F83C01001D0D59 /* ClusterDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1147F22A21F83C01001D0D59 /* ClusterDetailController.xib */; };
+		1147F22F21F83F1A001D0D59 /* ClusterDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1147F22E21F83F1A001D0D59 /* ClusterDetailViewModel.swift */; };
+		1147F23121F83F2A001D0D59 /* ClusterDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1147F23021F83F2A001D0D59 /* ClusterDetailCoordinator.swift */; };
+		1147F23321F84306001D0D59 /* ClusterSearchNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1147F23221F84306001D0D59 /* ClusterSearchNavigator.swift */; };
 		1161F9EE21DF378400C1BAD5 /* QuizModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1161F9ED21DF378400C1BAD5 /* QuizModel.swift */; };
 		1161F9F221DF3CC300C1BAD5 /* ImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1161F9F121DF3CC300C1BAD5 /* ImageModel.swift */; };
 		1161F9F421DF4B4000C1BAD5 /* QuizButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1161F9F321DF4B4000C1BAD5 /* QuizButton.swift */; };
@@ -383,6 +388,11 @@
 		1143E80F21E212F7003862B6 /* upvote.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = upvote.json; sourceTree = "<group>"; };
 		1143E81121E23229003862B6 /* loading-pantau.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "loading-pantau.json"; sourceTree = "<group>"; };
 		1143E81521E24A6A003862B6 /* QuizQuestionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizQuestionModel.swift; sourceTree = "<group>"; };
+		1147F22921F83C01001D0D59 /* ClusterDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterDetailController.swift; sourceTree = "<group>"; };
+		1147F22A21F83C01001D0D59 /* ClusterDetailController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ClusterDetailController.xib; sourceTree = "<group>"; };
+		1147F22E21F83F1A001D0D59 /* ClusterDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterDetailViewModel.swift; sourceTree = "<group>"; };
+		1147F23021F83F2A001D0D59 /* ClusterDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterDetailCoordinator.swift; sourceTree = "<group>"; };
+		1147F23221F84306001D0D59 /* ClusterSearchNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterSearchNavigator.swift; sourceTree = "<group>"; };
 		1161F9ED21DF378400C1BAD5 /* QuizModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizModel.swift; sourceTree = "<group>"; };
 		1161F9F121DF3CC300C1BAD5 /* ImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageModel.swift; sourceTree = "<group>"; };
 		1161F9F321DF4B4000C1BAD5 /* QuizButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizButton.swift; sourceTree = "<group>"; };
@@ -768,6 +778,25 @@
 				11145F6A21EB473B0046F2AA /* CustomMenuBar.xib */,
 			);
 			path = MenuBar;
+			sourceTree = "<group>";
+		};
+		1147F22821F83BCE001D0D59 /* ClusterDetail */ = {
+			isa = PBXGroup;
+			children = (
+				1147F22D21F83F03001D0D59 /* ViewController */,
+				1147F22E21F83F1A001D0D59 /* ClusterDetailViewModel.swift */,
+				1147F23021F83F2A001D0D59 /* ClusterDetailCoordinator.swift */,
+			);
+			path = ClusterDetail;
+			sourceTree = "<group>";
+		};
+		1147F22D21F83F03001D0D59 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1147F22921F83C01001D0D59 /* ClusterDetailController.swift */,
+				1147F22A21F83C01001D0D59 /* ClusterDetailController.xib */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		11702DCF21CB0241001AEE3F /* Components */ = {
@@ -1428,6 +1457,7 @@
 		844C3D6A21C5177A00199871 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				1147F22821F83BCE001D0D59 /* ClusterDetail */,
 				11145F5221EACCCC0046F2AA /* Search */,
 				840901BB21DF31AA001BF559 /* Catatan */,
 				8452A4C621DE1F4900196043 /* StartingSetting */,
@@ -1972,6 +2002,7 @@
 				84B7B8C021E487FB0099E7E3 /* ClusterSearchCell.xib */,
 				84B7B8C221E488D00099E7E3 /* ClusterSearchCell.swift */,
 				84B7B8C621E4A0A00099E7E3 /* IClusterSearchDelegate.swift */,
+				1147F23221F84306001D0D59 /* ClusterSearchNavigator.swift */,
 			);
 			path = ClusterSearch;
 			sourceTree = "<group>";
@@ -2367,6 +2398,7 @@
 				84B2669F21D4DB9A00C7B783 /* ProfileEditController.xib in Resources */,
 				84F892A721C7875200DC1048 /* BwModelica-ThinCondensed.otf in Resources */,
 				137A29F621E2303400F19072 /* coming-soon-coffee.json in Resources */,
+				1147F22C21F83C01001D0D59 /* ClusterDetailController.xib in Resources */,
 				8441DB3E21CCB80B00B078DF /* ItemRadioCell.xib in Resources */,
 				11D066A521E3850E003AC9BB /* PenpolFilterController.xib in Resources */,
 				844C3D8C21C5323E00199871 /* LinimasaCell.xib in Resources */,
@@ -2683,6 +2715,7 @@
 				84619D3821DA851200EB58CF /* EditViewModel.swift in Sources */,
 				8452A4D421DE55DE00196043 /* SosmedCoordinator.swift in Sources */,
 				11E107A821CD33CA00B7B074 /* CreateJanjiCoordinator.swift in Sources */,
+				1147F22F21F83F1A001D0D59 /* ClusterDetailViewModel.swift in Sources */,
 				11E107A721CD33CA00B7B074 /* CreateJanjiViewModel.swift in Sources */,
 				84FF8A9921F21D0000AA8CF3 /* UpdatesCoordinator.swift in Sources */,
 				842A4A0921D7EA990050AA51 /* SignatureCoordinator.swift in Sources */,
@@ -2758,6 +2791,7 @@
 				84F6981521C8FAB000890917 /* UIControl.swift in Sources */,
 				84A07FA421D0E27F00269C6B /* SignatureController.swift in Sources */,
 				84B7B8D021E5B5D40099E7E3 /* AddKategoriViewModel.swift in Sources */,
+				1147F22B21F83C01001D0D59 /* ClusterDetailController.swift in Sources */,
 				8441DB5321CCF0C200B078DF /* DetailJanjiController.swift in Sources */,
 				1385A3E721DBC32B00C2910F /* DetailJanjiViewModel.swift in Sources */,
 				842A49FD21D799760050AA51 /* SelfIdentitasViewModel.swift in Sources */,
@@ -2840,9 +2874,11 @@
 				842A49F921D789A30050AA51 /* VerifikasiStep.swift in Sources */,
 				11B145EE21D67C8200BB26C8 /* AskCellViewModel.swift in Sources */,
 				844C3D7A21C5230C00199871 /* RawRepresentable.swift in Sources */,
+				1147F23321F84306001D0D59 /* ClusterSearchNavigator.swift in Sources */,
 				840850D721D2802000696CB3 /* ProfileInfoDummyData.swift in Sources */,
 				13F4569921CF982E00CE45F1 /* QuestionNavigator.swift in Sources */,
 				84E2854721CA1E8300298E31 /* PilpresType.swift in Sources */,
+				1147F23121F83F2A001D0D59 /* ClusterDetailCoordinator.swift in Sources */,
 				844C3D8521C5252800199871 /* LinimasaCoordinator.swift in Sources */,
 				842A4A0D21D7EDC10050AA51 /* SuccessCoordinator.swift in Sources */,
 				13E9D78821E8F025006A0890 /* IJanpolListViewModel.swift in Sources */,

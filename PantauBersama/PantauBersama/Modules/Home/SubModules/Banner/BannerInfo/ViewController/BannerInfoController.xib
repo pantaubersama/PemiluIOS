@@ -36,7 +36,7 @@
                     <rect key="frame" x="0.0" y="20" width="375" height="708"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gkt-CO-MI1" userLabel="contentView">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="631"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="708"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icQuizInfoHeader" translatesAutoresizingMaskIntoConstraints="NO" id="3Wx-Ij-mta">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="218"/>
@@ -45,10 +45,10 @@
                                     </constraints>
                                 </imageView>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IH2-hi-2tv">
-                                    <rect key="frame" x="25" y="193" width="325" height="418"/>
+                                    <rect key="frame" x="25" y="193" width="325" height="495"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="wh2-Ll-Mu6">
-                                            <rect key="frame" x="10" y="15" width="305" height="403"/>
+                                            <rect key="frame" x="10" y="15" width="305" height="480"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="JANJI POLITIK" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WkC-Jk-yO4" customClass="Label" customModule="Common">
                                                     <rect key="frame" x="97" y="0.0" width="111.5" height="20.5"/>
@@ -70,7 +70,7 @@
                                                     </constraints>
                                                 </view>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G5V-dG-dZw">
-                                                    <rect key="frame" x="0.0" y="52.5" width="305" height="160.5"/>
+                                                    <rect key="frame" x="0.0" y="52.5" width="305" height="237.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="Jyq-zv-oyB"/>
                                                     </constraints>
@@ -80,13 +80,13 @@
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nF0-u9-Nl5">
-                                                    <rect key="frame" x="5" y="228" width="295" height="100"/>
+                                                    <rect key="frame" x="5" y="305" width="295" height="100"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="G0C-Ta-jfv"/>
                                                     </constraints>
                                                 </imageView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RO7-Xb-k5K">
-                                                    <rect key="frame" x="0.0" y="343" width="305" height="60"/>
+                                                    <rect key="frame" x="0.0" y="420" width="305" height="60"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Informasi lebih lengkap kunjungi:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r95-9l-Nyx" customClass="Label" customModule="Common">
                                                             <rect key="frame" x="0.0" y="0.0" width="305" height="18"/>

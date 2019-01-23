@@ -61,6 +61,12 @@ public struct ClusterDetail: Codable {
         case status
     }
 }
+
+extension ClusterDetail {
+    public var memberCountString: String {
+        return "\(self.memberCount ?? 0) anggota"
+    }
+}
 // this model jus for single
 public struct SingleCluster: Codable {
     public let cluster: ClusterDetail

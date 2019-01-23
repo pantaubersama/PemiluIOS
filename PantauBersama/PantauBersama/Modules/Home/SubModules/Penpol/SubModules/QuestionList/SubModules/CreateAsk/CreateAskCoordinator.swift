@@ -38,7 +38,7 @@ class CreateAskCoordinator: BaseCoordinator<Void>, CreateAskNavigator {
         })
         
         let createObs = createComplete.do(onNext: { [weak self](_) in
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5, execute: {
                 self?.navigationController.popViewController(animated: true)
                 self?.loadCreatedTrigger.onNext(())
             })
