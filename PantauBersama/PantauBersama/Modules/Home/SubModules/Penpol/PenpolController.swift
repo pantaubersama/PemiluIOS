@@ -21,7 +21,7 @@ class PenpolController: UIViewController {
     private let disposeBag = DisposeBag()
     
     lazy var quizViewModel = QuizViewModel(navigator: viewModel.navigator, showTableHeader: true)
-    lazy var askViewModel = QuestionListViewModel(navigator: viewModel.navigator, showTableHeader: true)
+    lazy var askViewModel = QuestionListViewModel(navigator: viewModel.navigator, loadCreatedTrigger: viewModel.input.loadCreatedTrigger, showTableHeader: true)
     
     lazy var askController = QuestionController(viewModel: askViewModel)
     lazy var quisController = QuizController(viewModel: quizViewModel)

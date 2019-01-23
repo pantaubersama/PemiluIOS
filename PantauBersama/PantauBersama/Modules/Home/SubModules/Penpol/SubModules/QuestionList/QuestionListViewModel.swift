@@ -75,12 +75,21 @@ class QuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelInput
         filterI = filterSubject.asObserver()
         createI = createSubject.asObserver()
         loadCreatedI = loadCreated.asObserver()
+        itemSelectedI = itemSelectedS.asObserver()
         
         if let externalLoadTrigger = loadCreatedTrigger {
-            loadCreatedI = externalLoadTrigger.asObserver()
+            externalLoadTrigger.flatMapLatest { [unowned self](_) -> Observable<[QuestionModel]> in
+                return self.paginateItems(nextBatchTrigger: self.nextSubject.asObservable(), filteredBy: "user_verified_all", orderedBy: "created_at", query: "")
+                    .trackError(self.errorTracker)
+                    .trackActivity(self.activityIndicator)
+                    .catchErrorJustReturn([])
+                }.filter { (questions) -> Bool in
+                    return !questions.isEmpty
+                }.bind { [weak self](loadedItem) in
+                    guard let weakSelf = self else { return }
+                    weakSelf.questionRelay.accept(loadedItem)
+                }.disposed(by: disposeBag)
         }
-        
-        itemSelectedI = itemSelectedS.asObserver()
         
         error = errorTracker.asDriver()
         
