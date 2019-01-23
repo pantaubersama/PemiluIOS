@@ -15,7 +15,6 @@ class CatatanPartyController: UIViewController {
     @IBOutlet weak var lblPreferenceParty: Label!
     @IBOutlet weak var tableView: UITableView!
     
-    var rControl : UIRefreshControl?
     var viewModel: CatatanPartyViewModel!
     private let disposeBag = DisposeBag()
     
@@ -33,7 +32,6 @@ class CatatanPartyController: UIViewController {
         tableView.tableFooterView = UIView()
         tableView.delegate = nil
         tableView.dataSource = nil
-        tableView.refreshControl = UIRefreshControl()
         
         viewModel.output.itemsO
             .drive(tableView.rx.items) { tableView, row, item in
