@@ -40,22 +40,38 @@ class ClusterView: UIView {
     
     func configure(data: User, isMyAccount: Bool) {
         
-        if data.cluster != nil {
-            viewNoCluster.isHidden = true
-            buttonReqCluster.isHidden = true
-            labelReqCluster.isHidden = true
-            nameCluster.text = data.cluster?.name
-            if let thumbnail = data.cluster?.image?.thumbnail.url {
-                iconCluster.af_setImage(withURL: URL(string: thumbnail)!)
+        if isMyAccount == true {
+            if data.cluster != nil {
+                viewNoCluster.isHidden = true
+                buttonReqCluster.isHidden = true
+                labelReqCluster.isHidden = true
+                nameCluster.text = data.cluster?.name
+                if let thumbnail = data.cluster?.image?.thumbnail.url {
+                    iconCluster.af_setImage(withURL: URL(string: thumbnail)!)
+                }
+            } else {
+                viewCluster.isHidden = true
+                iconCluster.isHidden = true
+                nameCluster.isHidden = true
+                moreCluster.isHidden = true
             }
-            
-            
         } else {
-            viewCluster.isHidden = true
-            iconCluster.isHidden = true
-            nameCluster.isHidden = true
             moreCluster.isHidden = true
-            
+            if data.cluster != nil {
+                viewNoCluster.isHidden = true
+                buttonReqCluster.isHidden = true
+                labelReqCluster.isHidden = true
+                self.nameCluster.text = data.cluster?.name
+                if let thumbnail = data.cluster?.image?.thumbnail.url {
+                    iconCluster.af_setImage(withURL: URL(string: thumbnail)!)
+                }
+            } else {
+                self.nameCluster.text = "Belum memiliki Cluster"
+                iconCluster.isHidden = true
+                viewNoCluster.isHidden = true
+                buttonReqCluster.isHidden = true
+                labelReqCluster.isHidden = true
+            }
         }
     }
     

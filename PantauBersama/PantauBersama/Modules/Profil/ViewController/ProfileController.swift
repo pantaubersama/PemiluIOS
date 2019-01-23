@@ -220,7 +220,7 @@ class ProfileController: UIViewController {
             .drive(onNext: { [weak self] (response) in
                 guard let `self` = self else { return }
                 let user = response.user
-                self.headerProfile.configure(user: user)
+                self.headerProfile.configure(user: user, isMyAccount: self.isMyAccount)
                 self.clusterView.configure(data: user, isMyAccount: self.isMyAccount)
                 self.biodataView.configure(data: user)
             })

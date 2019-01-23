@@ -35,7 +35,7 @@ class HeaderProfile: UIView {
         addSubview(view)
     }
     
-    func configure(user: User) {
+    func configure(user: User, isMyAccount: Bool) {
         if let url = user.avatar.thumbnail.url {
             avatar.af_setImage(withURL: URL(string: url)!)
         }
@@ -53,6 +53,10 @@ class HeaderProfile: UIView {
             buttonVerified.setTitleColor(Color.grey_three, for: .normal)
             buttonVerified.setImage(#imageLiteral(resourceName: "icUnverified"), for: .normal)
         }
-        buttonVerified.isEnabled = user.verified ? false : true
+        if isMyAccount == true {
+            buttonVerified.isEnabled = user.verified ? false : true
+        } else {
+            buttonVerified.isEnabled = false
+        }
     }
 }
