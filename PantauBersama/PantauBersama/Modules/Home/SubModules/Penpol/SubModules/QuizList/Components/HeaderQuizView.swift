@@ -51,6 +51,7 @@ class HeaderQuizView: UIView {
             .do(onNext: { [unowned self] (result) in
                 if result.meta.quizzes.finished >= 1 {
                     trendHeaderView.isHidden = false
+                    trendHeaderView.config(result: result, viewModel: viewModel)
                     self.heightConstraintTrend = NSLayoutConstraint(item: trendHeaderView, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: 210)
                 } else {
                     self.heightConstraintTrend = NSLayoutConstraint(item: trendHeaderView, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: 0)
