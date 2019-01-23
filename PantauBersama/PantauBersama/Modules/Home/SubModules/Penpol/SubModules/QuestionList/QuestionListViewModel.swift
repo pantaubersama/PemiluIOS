@@ -64,7 +64,7 @@ class QuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelInput
     private(set) var disposeBag = DisposeBag()
     private var searchQuery = ""
     
-    init(navigator: PenpolNavigator, searchTrigger: PublishSubject<String>? = nil, showTableHeader: Bool) {
+    init(navigator: PenpolNavigator, searchTrigger: PublishSubject<String>? = nil, loadCreatedTrigger: PublishSubject<Void>? = nil, showTableHeader: Bool) {
         refreshI = refreshSubject.asObserver()
         nextPageI = nextSubject.asObserver()
         moreI = moreSubject.asObserver()
@@ -77,15 +77,21 @@ class QuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelInput
         loadCreatedI = loadCreated.asObserver()
         itemSelectedI = itemSelectedS.asObserver()
         
-        error = errorTracker.asDriver()
-        
-        let cachedFilter = PenpolFilterModel.generateQuestionFilter()
-        cachedFilter.forEach { (filterModel) in
-            let selectedItem = filterModel.items.filter({ (filterItem) -> Bool in
-                return filterItem.isSelected
-            })
-            self.filterItems.append(contentsOf: selectedItem)
+        if let externalLoadTrigger = loadCreatedTrigger {
+            externalLoadTrigger.flatMapLatest { [unowned self](_) -> Observable<[QuestionModel]> in
+                return self.paginateItems(nextBatchTrigger: self.nextSubject.asObservable(), filteredBy: "user_verified_all", orderedBy: "created_at", query: "")
+                    .trackError(self.errorTracker)
+                    .trackActivity(self.activityIndicator)
+                    .catchErrorJustReturn([])
+                }.filter { (questions) -> Bool in
+                    return !questions.isEmpty
+                }.bind { [weak self](loadedItem) in
+                    guard let weakSelf = self else { return }
+                    weakSelf.questionRelay.accept(loadedItem)
+                }.disposed(by: disposeBag)
         }
+        
+        error = errorTracker.asDriver()
         
         searchTrigger?.asObserver()
             .do(onNext: { [weak self](query) in
@@ -94,8 +100,8 @@ class QuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelInput
             .bind(to: refreshI)
             .disposed(by: disposeBag)
         
-        loadCreated.startWith(()).flatMapLatest { [unowned self](_) -> Observable<[QuestionModel]> in
-            return self.paginateItems(nextBatchTrigger: self.nextSubject.asObservable(), filteredBy: "user_verified_all", orderedBy: "cached_votes_up", query: "")
+        loadCreated.flatMapLatest { [unowned self](_) -> Observable<[QuestionModel]> in
+            return self.paginateItems(nextBatchTrigger: self.nextSubject.asObservable(), filteredBy: "user_verified_all", orderedBy: "created_at", query: "")
                 .trackError(self.errorTracker)
                 .trackActivity(self.activityIndicator)
                 .catchErrorJustReturn([])
@@ -108,7 +114,16 @@ class QuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelInput
         
         // MARK:
         // Get question pagination
-        refreshSubject.flatMapLatest { [unowned self] (query) -> Observable<[QuestionModel]> in
+        refreshSubject.startWith("").flatMapLatest { [unowned self] (query) -> Observable<[QuestionModel]> in
+            self.filterItems.removeAll()
+            let cachedFilter = PenpolFilterModel.generateQuestionFilter()
+            cachedFilter.forEach { (filterModel) in
+                let selectedItem = filterModel.items.filter({ (filterItem) -> Bool in
+                    return filterItem.isSelected
+                })
+                self.filterItems.append(contentsOf: selectedItem)
+            }
+            
             var filteredBy = self.filterItems.filter({ $0.paramKey == "filter_by"}).first?.paramValue
             var orderedBy = self.filterItems.filter({ $0.paramKey == "order_by"}).first?.paramValue
             
