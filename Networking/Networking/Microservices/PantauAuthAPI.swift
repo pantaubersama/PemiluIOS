@@ -55,6 +55,8 @@ public enum PantauAuthAPI {
     case users(page: Int, perPage: Int, query: String, filterBy: UserListFilter)
     case firebaseKeys(deviceToken: String, type: String)
     case politicalParties(page: Int, perPage: Int)
+    case getUserSimple(id: String)
+    case getUserBadges(id: String, page: Int, perPage: Int)
 }
 
 extension PantauAuthAPI: TargetType {
@@ -126,6 +128,10 @@ extension PantauAuthAPI: TargetType {
             return "/v1/me/firebase_keys"
         case .politicalParties:
             return "/v1/political_parties"
+        case .getUserSimple(let id):
+            return "/v1/users/\(id)/simple"
+        case .getUserBadges(let (id,_,_)):
+            return "/v1/badges/user/\(id)"
         }
     }
     
@@ -213,6 +219,11 @@ extension PantauAuthAPI: TargetType {
                 "per_page": perPage,
                 "q": query,
                 "filter_by": filterBy.rawValue
+            ]
+        case .getUserBadges(let (_, page, perPage)):
+            return [
+                "page": page,
+                "per_page": perPage
             ]
         default:
             return nil

@@ -37,6 +37,7 @@ extension BadgeCell: IReusableCell {
         let isAchieved: Bool
         let viewModel: BadgeViewModel
         let idAchieved: String?
+        let isMyAccount: Bool
     }
     
     func configureCell(item: Input) {
@@ -60,6 +61,8 @@ extension BadgeCell: IReusableCell {
             .map { item.idAchieved ?? "" }
             .bind(to: item.viewModel.input.shareI)
             .disposed(by: bag)
+        
+        shareButton.isHidden = !item.isMyAccount
         
         disposeBag = bag
     }

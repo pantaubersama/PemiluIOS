@@ -26,15 +26,21 @@ protocol ProfileNavigator: BadgeNavigator,IQuestionNavigator,IJanpolNavigator {
 final class ProfileCoordinator: BaseCoordinator<Void> {
     
     var navigationController: UINavigationController!
+    private var isMyAccount: Bool
+    private var userId: String?
     
-    init(navigationController: UINavigationController) {
+    init(navigationController: UINavigationController, isMyAccount: Bool, userId: String?) {
         self.navigationController = navigationController
+        self.isMyAccount = isMyAccount
+        self.userId = userId
     }
     
     override func start() -> Observable<Void> {
         let viewController = ProfileController()
-        let viewModel = ProfileViewModel(navigator: self)
+        let viewModel = ProfileViewModel(navigator: self, isMyAccount: isMyAccount, userId: userId)
         viewController.viewModel = viewModel
+        viewController.isMyAccount = isMyAccount
+        viewController.userId = userId
         viewController.hidesBottomBarWhenPushed = true
         navigationController.pushViewController(viewController, animated: true)
         return Observable.empty()
@@ -136,84 +142,6 @@ extension ProfileCoordinator: ProfileNavigator {
         return coordinate(to: badgeCoordinator)
     }
 }
-
-//extension ProfileCoordinator: LinimasaNavigator {
-//    func launchNote() -> Observable<Void> {
-//        return Observable.never()
-//    }
-//
-//    func launchJanjiDetail(data: JanjiPolitik) -> Observable<Void> {
-//        return Observable.never()
-//    }
-//
-//    func launchBannerInfo(bannerInfo: BannerInfo) -> Observable<Void> {
-//        return Observable.never()
-//    }
-//
-//
-//    func launchProfile() -> Observable<Void> {
-//        return Observable.never()
-//    }
-//
-//    func launchNotifications() {
-//    }
-//
-//    func launchFilter() -> Observable<Void> {
-//        return Observable.never()
-//    }
-//
-//    func launchAddJanji() -> Observable<Void> {
-//        return Observable.never()
-//    }
-//
-//    func sharePilpres(data: Any) -> Observable<Void> {
-//        return Observable.never()
-//    }
-//
-//    func openTwitter(data: String) -> Observable<Void> {
-//        return Observable.never()
-//    }
-//
-//    func shareJanji(data: Any) -> Observable<Void> {
-//        return Observable.never()
-//    }
-//
-//}
-
-//extension ProfileCoordinator: PenpolNavigator {
-//    func launchFilter(filterType: FilterType, filterTrigger: AnyObserver<[PenpolFilterModel.FilterItem]>) -> Observable<Void> {
-//        return Observable.never()
-//    }
-//
-//
-//    func openQuiz(quiz: QuizModel) -> Observable<Void> {
-//        return Observable.never()
-//    }
-//
-//    func shareQuiz(quiz: Any) -> Observable<Void> {
-//        return Observable.never()
-//    }
-//
-//    func shareTrend(trend: Any) -> Observable<Void> {
-//        return Observable.never()
-//    }
-//
-//    func launchCreateAsk() -> Observable<Void> {
-//        return Observable.never()
-//    }
-//
-//    func shareQuestion(question: String) -> Observable<Void> {
-//        return Observable.never()
-//    }
-//}
-
-
-//extension  ProfileCoordinator: BadgeNavigator {
-//    func launchShare(id: String) -> Observable<Void> {
-//        let shareCoordinator = ShareBadgeCoordinator(navigationController: navigationController, id: id)
-//        return coordinate(to: shareCoordinator)
-//    }
-//}
 
 extension ProfileCoordinator {
     

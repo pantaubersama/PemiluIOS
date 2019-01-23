@@ -88,12 +88,14 @@ final class ProfileViewModel: IProfileViewModel, IProfileViewModelInput, IProfil
     private let viewModel = ClusterCellViewModel()
     private let clusterS = PublishSubject<ClusterType>()
     private let lihatBadgeS = PublishSubject<Void>()
+    private let isMyAccount: Bool
+    private let userId: String?
     
-    init(navigator: ProfileNavigator) {
+    init(navigator: ProfileNavigator, isMyAccount: Bool, userId: String?) {
         self.navigator = navigator
-//        self.navigatorLinimasa = navigator
-//        self.navigatorPenpol = navigator
         self.navigatorBadge = navigator
+        self.isMyAccount = isMyAccount
+        self.userId = userId
         
         
         let badgeViewModel = BadgeViewModel(navigator: navigatorBadge)
@@ -125,13 +127,33 @@ final class ProfileViewModel: IProfileViewModel, IProfileViewModelInput, IProfil
             .asObservable()
             .catchErrorJustComplete()
         
-        let userData = viewWillAppearS
+        let myAccountData = viewWillAppearS
             .flatMapLatest({ Observable.merge(local, cloud)})
+        
+        // MARK
+        // Observable user profile / not my account
+        let user = NetworkService.instance
+            .requestObject(PantauAuthAPI.getUserSimple(id: userId ?? "")
+                , c: BaseResponse<UserResponse>.self)
+            .map({ $0.data })
+            .do(onSuccess: { (r) in
+                
+            }, onError: { (e) in
+                print(e.localizedDescription)
+            })
+            .trackError(errorTracker)
+            .trackActivity(activityIndicator)
+            .asObservable()
+            .catchErrorJustComplete()
+    
+        let userAccountData = viewWillAppearS
+            .flatMapLatest({ user })
+        
         
         // MARK
         // Click setting with latest user data
         let setting = settingS
-            .withLatestFrom(userData)
+            .withLatestFrom(myAccountData)
             .flatMapLatest { (user) -> Observable<Void> in
                 return navigator.launchSetting(user: user.user)
             }
@@ -168,6 +190,30 @@ final class ProfileViewModel: IProfileViewModel, IProfileViewModelInput, IProfil
             .catchErrorJustComplete()
         
         // MARK
+        // Get user badges
+        let userBadge = NetworkService.instance
+            .requestObject(PantauAuthAPI.getUserBadges(id: userId ?? "", page: 1, perPage: 3), c: BaseResponse<BadgesResponse>.self)
+            .map({ $0.data })
+            .trackError(errorTracker)
+            .trackActivity(activityIndicator)
+            .asObservable()
+            .catchErrorJustComplete()
+        
+        let itemBadge = badge // for my account
+            .map{ (list) -> [SectionOfProfileData] in
+                return list.achieved.compactMap({ (achieved) -> SectionOfProfileData in
+                    return SectionOfProfileData(items: [BadgeCellConfigured(item: BadgeCell.Input(badges: achieved.badge, isAchieved: true, viewModel: badgeViewModel, idAchieved: achieved.id, isMyAccount: true))])
+                })
+        }
+        
+        let itemBadgeUser = userBadge // for my account
+            .map{ (list) -> [SectionOfProfileData] in
+                return list.achieved.compactMap({ (achieved) -> SectionOfProfileData in
+                    return SectionOfProfileData(items: [BadgeCellConfigured(item: BadgeCell.Input(badges: achieved.badge, isAchieved: true, viewModel: badgeViewModel, idAchieved: achieved.id, isMyAccount: false))])
+                })
+        }
+        
+        // MARK
         // Cluster action
         let clusterAction = clusterS
             .flatMapLatest({ (type) -> Observable<ClusterType> in
@@ -180,7 +226,7 @@ final class ProfileViewModel: IProfileViewModel, IProfileViewModelInput, IProfil
                 }
             })
             .filter({ $0 == .undang })
-            .withLatestFrom(userData)
+            .withLatestFrom(myAccountData)
             .flatMap { (user) -> Observable<Void> in
                 // TODO : Hanya moderator yang bisa mengundang clustet
                 if user.user.isModerator == true {
@@ -197,15 +243,9 @@ final class ProfileViewModel: IProfileViewModel, IProfileViewModelInput, IProfil
         settingO = setting
         verifikasiO = verifikasi
         
-        itemsBadgeO = badge
-            .map{ (list) -> [SectionOfProfileData] in
-                return list.achieved.compactMap({ (achieved) -> SectionOfProfileData in
-                    return SectionOfProfileData(items: [BadgeCellConfigured(item: BadgeCell.Input(badges: achieved.badge, isAchieved: true, viewModel: badgeViewModel, idAchieved: achieved.id))])
-                })
-            }
-            .asDriverOnErrorJustComplete()
+        itemsBadgeO = isMyAccount ? itemBadge.asDriverOnErrorJustComplete() : itemBadgeUser.asDriverOnErrorJustComplete()
     
-        userDataO = userData.asDriverOnErrorJustComplete()
+        userDataO = isMyAccount ? myAccountData.asDriverOnErrorJustComplete() : userAccountData.asDriverOnErrorJustComplete()
         errorO = errorTracker.asDriver()
         reqClusterO = reqClusterS
             .flatMapLatest({ navigator.launchReqCluster() })

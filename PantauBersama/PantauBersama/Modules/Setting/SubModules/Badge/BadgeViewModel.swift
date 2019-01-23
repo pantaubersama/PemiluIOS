@@ -83,11 +83,11 @@ class BadgeViewModel: ViewModelType {
         var items: [[ICellConfigurator]] = [[]]
         let list = response.data.badges
             .map { (badge) -> ICellConfigurator in
-                return BadgeCellConfigured.init(item: BadgeCell.Input(badges: badge, isAchieved: false, viewModel: self, idAchieved: nil))
+                return BadgeCellConfigured.init(item: BadgeCell.Input(badges: badge, isAchieved: false, viewModel: self, idAchieved: nil, isMyAccount: true))
         }
         let achieved = response.data.achieved
             .map { (badge) -> ICellConfigurator in
-                return BadgeCellConfigured.init(item: BadgeCell.Input(badges: badge.badge, isAchieved: true, viewModel: self, idAchieved: badge.id))
+                return BadgeCellConfigured.init(item: BadgeCell.Input(badges: badge.badge, isAchieved: true, viewModel: self, idAchieved: badge.id, isMyAccount: true))
         }
         items.append(achieved)
         items.append(list)
