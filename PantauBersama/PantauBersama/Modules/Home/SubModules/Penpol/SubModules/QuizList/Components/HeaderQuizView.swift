@@ -13,6 +13,7 @@ import RxCocoa
 
 class HeaderQuizView: UIView {
     private let disposeBag: DisposeBag = DisposeBag()
+    private var heightConstraintTrend: NSLayoutConstraint!
     
     func config(viewModel: QuizViewModel) {
         let bannerInfoQuizView = BannerHeaderView()
@@ -30,13 +31,11 @@ class HeaderQuizView: UIView {
             bannerInfoQuizView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             bannerInfoQuizView.topAnchor.constraint(equalTo: self.topAnchor),
             bannerInfoQuizView.bottomAnchor.constraint(equalTo: trendHeaderView.topAnchor),
-            bannerInfoQuizView.heightAnchor.constraint(equalToConstant: 115),
             
             // MARK: constraint trendHeaderView
             trendHeaderView.topAnchor.constraint(equalTo: bannerInfoQuizView.bottomAnchor),
             trendHeaderView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             trendHeaderView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            trendHeaderView.heightAnchor.constraint(equalToConstant: 212),
             trendHeaderView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
             ])
         
@@ -52,13 +51,13 @@ class HeaderQuizView: UIView {
             .do(onNext: { [unowned self] (result) in
                 if result.meta.quizzes.finished >= 1 {
                     trendHeaderView.isHidden = false
-                    self.frame.size.height = 327
-                    
                     trendHeaderView.config(result: result, viewModel: viewModel)
-                    trendHeaderView.layoutIfNeeded()
+                    self.heightConstraintTrend = NSLayoutConstraint(item: trendHeaderView, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: 210)
                 } else {
-                    self.frame.size.height = 115
+                    self.heightConstraintTrend = NSLayoutConstraint(item: trendHeaderView, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: 0)
                 }
+                NSLayoutConstraint.activate([self.heightConstraintTrend])
+                self.layoutIfNeeded()
             })
             .drive()
             .disposed(by: disposeBag)
