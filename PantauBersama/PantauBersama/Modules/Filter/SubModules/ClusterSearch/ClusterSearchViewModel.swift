@@ -46,9 +46,7 @@ final class ClusterSearchViewModel: ViewModelType {
     
     private var filterItems: [PenpolFilterModel.FilterItem] = []
     private let disposeBag = DisposeBag()
-    init(searchTrigger: PublishSubject<String>? = nil) {
-        
-        
+    init(searchTrigger: PublishSubject<String>? = nil, navigator: ClusterSearchNavigator? = nil) {
         input = Input(backI: backS.asObserver(),
                       itemSelected: itemSelectedS.asObserver(),
                       query: queryS.asObserver(),
@@ -84,7 +82,7 @@ final class ClusterSearchViewModel: ViewModelType {
                 })
         }
         
-        let itemSelected = itemSelectedS
+        var itemSelected = itemSelectedS
             .withLatestFrom(cluster) { (indexPath, items) -> Observable<Void> in
                 let items = items[indexPath.row]
                 return self.delegate.didSelectCluster(item: items, index: indexPath)
@@ -92,6 +90,18 @@ final class ClusterSearchViewModel: ViewModelType {
 //            .flatMapLatest({ self.delegate.didSelectCluster(item: $0)})
             .mapToVoid()
             .asDriverOnErrorJustComplete()
+        
+        if let searchNavigator = navigator {
+            itemSelected = itemSelectedS
+                .withLatestFrom(cluster) { (indexPath, items) -> ClusterDetail in
+                    return items[indexPath.row]
+                }
+                .do(onNext: { (clusterDetail) in
+                    print("select cluster \(clusterDetail)")
+                })
+                .flatMapLatest({ searchNavigator.lunchClusterDetail(cluster: $0) })
+                .asDriverOnErrorJustComplete()
+        }
         
         
         output = Output(items: clusterCell.asDriver(onErrorJustReturn: []),

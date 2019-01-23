@@ -28,7 +28,7 @@ class SearchController: UIViewController {
     lazy var pilpresViewModel = PilpresViewModel(navigator: viewModel.navigator, searchTrigger: viewModel.searchSubject, showTableHeader: false)
     lazy var janjiPolitikViewModel = JanpolListViewModel(navigator: viewModel.navigator, searchTrigger: viewModel.searchSubject,    showTableHeader: false)
     lazy var listUserViewModel = ListUserViewModel(searchTrigger: viewModel.searchSubject)
-    lazy var listClusterViewModel = ClusterSearchViewModel(searchTrigger: viewModel.searchSubject)
+    lazy var listClusterViewModel = ClusterSearchViewModel(searchTrigger: viewModel.searchSubject, navigator: viewModel.navigator)
     
     lazy var askController = QuestionController(viewModel: askViewModel)
     lazy var quisController = QuizController(viewModel: quizViewModel)

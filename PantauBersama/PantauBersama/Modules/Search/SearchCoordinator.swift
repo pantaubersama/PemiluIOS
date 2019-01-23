@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 import Networking
 
-protocol SearchNavigator: PenpolNavigator, LinimasaNavigator {
+protocol SearchNavigator: PenpolNavigator, LinimasaNavigator, ClusterSearchNavigator {
     func finishSearch() -> Observable<Void>
 }
 
@@ -151,4 +151,9 @@ extension SearchCoordinator: SearchNavigator {
         return coordinate(to: detailAskCoordinator)
     }
     
+    func lunchClusterDetail(cluster: ClusterDetail) -> Observable<Void> {
+        let clusterDetailCoordinator = ClusterDetailCoordinator(navigationController: self.navigationController, cluster: cluster)
+        
+        return coordinate(to: clusterDetailCoordinator)
+    }
 }

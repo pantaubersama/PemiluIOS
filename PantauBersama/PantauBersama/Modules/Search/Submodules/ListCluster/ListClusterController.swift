@@ -54,6 +54,14 @@ class ListClusterController: UITableViewController {
             .bind(to: viewModel.input.nextI)
             .disposed(by: disposeBag)
         
+        tableView.rx.itemSelected
+            .bind(to: viewModel.input.itemSelected)
+            .disposed(by: disposeBag)
+        
+        viewModel.output.selected
+            .drive()
+            .disposed(by: disposeBag)
+        
     }
 
 }
