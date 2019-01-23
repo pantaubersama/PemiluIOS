@@ -21,18 +21,21 @@ class CatatanPartyViewModel: ViewModelType {
         let itemSelectedI: AnyObserver<IndexPath>
         let nextTriggerI: AnyObserver<Void>
         let refreshI: AnyObserver<String>
+        let notPreferenceI: AnyObserver<String>
     }
     
     struct Output {
         let itemsO: Driver<[ICellConfigurator]>
         let itemSelectedO: Driver<PoliticalParty>
         let userDataO: Driver<UserResponse>
+        let notPreferenceO: Driver<String>
     }
     
     private let viewWillAppearS = PublishSubject<Void>()
     private let itemSelectedS = PublishSubject<IndexPath>()
     private let nextS = PublishSubject<Void>()
     private let refreshS = PublishSubject<String>()
+    private let notePreferenceS = PublishSubject<String>()
     
     private let errorTracker = ErrorTracker()
     private let activityIndicator = ActivityIndicator()
@@ -43,7 +46,8 @@ class CatatanPartyViewModel: ViewModelType {
             viewWillAppearI: viewWillAppearS.asObserver(),
             itemSelectedI: itemSelectedS.asObserver(),
             nextTriggerI: nextS.asObserver(),
-            refreshI: refreshS.asObserver()
+            refreshI: refreshS.asObserver(),
+            notPreferenceI: notePreferenceS.asObserver()
         )
         
         let items = refreshS.startWith("")
@@ -88,7 +92,9 @@ class CatatanPartyViewModel: ViewModelType {
         
         output = Output(
             itemsO: itemsCell.asDriver(onErrorJustReturn: []),
-            itemSelectedO: selected, userDataO: userData.asDriverOnErrorJustComplete()
+            itemSelectedO: selected,
+            userDataO: userData.asDriverOnErrorJustComplete(),
+            notPreferenceO: notePreferenceS.asDriverOnErrorJustComplete()
         )
     }
     

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NotePreferenceView" customModule="PantauBersama" customModuleProvider="target">
+            <connections>
+                <outlet property="buttonNotPreference" destination="ZxB-bm-uRV" id="VZB-cS-Dso"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="HdS-BT-xd6">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="63"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZxB-bm-uRV" customClass="Button" customModule="Common">
+                    <rect key="frame" x="5" y="5" width="365" height="53"/>
+                    <state key="normal" title="Belum Menentukan Pilihan">
+                        <color key="titleColor" red="0.48628133540000001" green="0.4862622023" blue="0.48627519609999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                            <color key="value" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                            <real key="value" value="16"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="nBb-Ar-dXq" firstAttribute="bottom" secondItem="ZxB-bm-uRV" secondAttribute="bottom" constant="5" id="EFF-y8-AVo"/>
+                <constraint firstItem="ZxB-bm-uRV" firstAttribute="top" secondItem="nBb-Ar-dXq" secondAttribute="top" constant="5" id="ZcW-mt-O2r"/>
+                <constraint firstItem="nBb-Ar-dXq" firstAttribute="trailing" secondItem="ZxB-bm-uRV" secondAttribute="trailing" constant="5" id="hKq-5e-shn"/>
+                <constraint firstItem="ZxB-bm-uRV" firstAttribute="leading" secondItem="nBb-Ar-dXq" secondAttribute="leading" constant="5" id="sAo-WJ-9qq"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="nBb-Ar-dXq"/>
+            <point key="canvasLocation" x="-6" y="0.0"/>
+        </view>
+    </objects>
+</document>

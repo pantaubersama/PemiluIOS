@@ -65,9 +65,9 @@ class CatatanController: UIViewController {
                     } else {
                         self.catatanPilpresController.view.alpha = 0.0
                         self.catatanPartyController.view.alpha = 1.0
-                        let values = self.catatanPartyViewModel.output.itemSelectedO
-                        values.do(onNext: { [weak self] (political) in
-                            self?.viewModel.input.partyPreferenceValueI.onNext((political.id))
+                        let values = self.catatanPartyViewModel.output.notPreferenceO
+                        values.do(onNext: { [weak self] (s) in
+                            self?.viewModel.input.partyPreferenceValueI.onNext((s))
                         })
                         .drive()
                         .disposed(by: self.disposeBag)
