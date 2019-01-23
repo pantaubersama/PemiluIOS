@@ -19,16 +19,10 @@ class CatatanViewModel: ViewModelType {
     struct Input {
         let backI: AnyObserver<Void>
         let viewWillAppearI: AnyObserver<Void>
-        let notePreferenceI: AnyObserver<String>
-        let notePreferenceValueI: BehaviorSubject<Int>
         let updateI: AnyObserver<Void>
     }
     
     struct Output {
-        let totalResultO: Driver<TrendResponse>
-        let userDataO: Driver<UserResponse>
-        let notePreferenceO: Driver<String>
-        let notePreferenceValueO: Driver<Int>
         let enableO: Driver<Bool>
         let updateO: Driver<Void>
         let errorTracker: Driver<Error>
@@ -50,35 +44,8 @@ class CatatanViewModel: ViewModelType {
         input = Input(
             backI: backS.asObserver(),
             viewWillAppearI: viewWillAppearS.asObserver(),
-            notePreferenceI: notePreferenceS.asObserver(),
-            notePreferenceValueI: notePreferenceValueS.asObserver(),
             updateI: updateS.asObserver()
         )
-        
-        // MARK
-        // Get Local user data
-        let local: Observable<UserResponse> = AppState.local(key: .me)
-        let cloud = NetworkService.instance
-            .requestObject(PantauAuthAPI.me,
-                           c: BaseResponse<UserResponse>.self)
-            .map({ $0.data })
-            .do(onSuccess: { (response) in
-                AppState.saveMe(response)
-            })
-            .trackError(errorTracker)
-            .trackActivity(activityIndicator)
-            .asObservable()
-            .catchErrorJustComplete()
-        
-        let userData = viewWillAppearS
-            .flatMapLatest({ Observable.merge(local, cloud) })
-        
-        let totalResult = viewWillAppearS
-            .flatMapLatest({ self.totalResult() })
-            .asDriverOnErrorJustComplete()
-        
-        let note = notePreferenceS
-            .asDriverOnErrorJustComplete()
         
         let enable = notePreferenceValueS
             .map { (i) -> Bool in
@@ -105,24 +72,8 @@ class CatatanViewModel: ViewModelType {
             .flatMapLatest({ navigator.back() })
             .asDriverOnErrorJustComplete()
         
-        output = Output(totalResultO: totalResult,
-                        userDataO: userData.asDriverOnErrorJustComplete(),
-                        notePreferenceO: note,
-                        notePreferenceValueO: notePreferenceValueS.asDriverOnErrorJustComplete(),
-                        enableO: enable,
+        output = Output(enableO: enable,
                         updateO: update,
                         errorTracker: errorTracker.asDriver())
     }
-    
-    private func totalResult() -> Observable<TrendResponse> {
-        return NetworkService.instance
-            .requestObject(QuizAPI.getTotalResult(),
-                           c: BaseResponse<TrendResponse>.self)
-            .map({ $0.data })
-            .trackError(errorTracker)
-            .trackActivity(activityIndicator)
-            .asObservable()
-            .catchErrorJustComplete()
-    }
-    
 }

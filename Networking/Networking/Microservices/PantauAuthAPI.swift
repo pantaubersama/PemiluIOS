@@ -54,6 +54,7 @@ public enum PantauAuthAPI {
     case accountDisconnect(type: String)
     case users(page: Int, perPage: Int, query: String, filterBy: UserListFilter)
     case firebaseKeys(deviceToken: String, type: String)
+    case politicalParties(page: Int, perPage: Int)
 }
 
 extension PantauAuthAPI: TargetType {
@@ -123,6 +124,8 @@ extension PantauAuthAPI: TargetType {
             return "/v1/users"
         case .firebaseKeys:
             return "/v1/me/firebase_keys"
+        case .politicalParties:
+            return "/v1/political_parties"
         }
     }
     

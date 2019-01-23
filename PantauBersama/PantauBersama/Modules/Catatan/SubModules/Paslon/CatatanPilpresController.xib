@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="BwModelicaSS01-BoldCondensed.otf">
+            <string>BwModelicaSS01-BoldCondensed</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CatatanPilpresController" customModule="PantauBersama" customModuleProvider="target">
+            <connections>
+                <outlet property="buttonNotPreference" destination="c7k-UX-wOv" id="zAO-6q-lcv"/>
+                <outlet property="buttonPaslonDua" destination="hc7-FD-S8h" id="bjr-53-RuB"/>
+                <outlet property="buttonPaslonSatu" destination="dWG-Jd-29f" id="aBW-I5-xV1"/>
+                <outlet property="containerPaslonDua" destination="CVJ-Sd-gWr" id="xib-DD-YXv"/>
+                <outlet property="containerPaslonSatu" destination="OH1-wW-Gfh" id="NDJ-As-Q05"/>
+                <outlet property="iconPreference" destination="omu-iy-RQ4" id="1IE-qZ-FMm"/>
+                <outlet property="lblKecenderungan" destination="x4s-aU-Gfa" id="iWI-iH-An7"/>
+                <outlet property="lblPercentage" destination="Qtr-qp-90e" id="1q5-Hd-0hh"/>
+                <outlet property="lblPreference" destination="slU-84-8CC" id="uie-c1-GIL"/>
+                <outlet property="lblPreferenceResult" destination="xbx-vL-Er0" id="kfK-uu-L8Y"/>
+                <outlet property="view" destination="iN0-l3-epB" id="Qwg-Di-q9p"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kM4-ee-YPK">
+                    <rect key="frame" x="0.0" y="44" width="414" height="53"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Halaman preferensi kandidat ini adalah catatan pribadi dan tidak akan ditampilkan pada profile kamu." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D2r-LE-9di" customClass="Label" customModule="Common">
+                            <rect key="frame" x="16" y="13" width="382" height="27"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" red="0.44705882349999998" green="0.44705882349999998" blue="0.44705882349999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <nil key="highlightedColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                    <real key="value" value="11"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.95687562230000001" green="0.95683962109999998" blue="0.95686405900000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="53" id="0JM-RQ-a55"/>
+                        <constraint firstAttribute="trailing" secondItem="D2r-LE-9di" secondAttribute="trailing" constant="16" id="7y8-w1-8Rs"/>
+                        <constraint firstItem="D2r-LE-9di" firstAttribute="leading" secondItem="kM4-ee-YPK" secondAttribute="leading" constant="16" id="C9o-XI-yZW"/>
+                        <constraint firstAttribute="bottom" secondItem="D2r-LE-9di" secondAttribute="bottom" constant="13" id="Iec-pQ-aK1"/>
+                        <constraint firstItem="D2r-LE-9di" firstAttribute="top" secondItem="kM4-ee-YPK" secondAttribute="top" constant="13" id="L0L-bF-lOg"/>
+                    </constraints>
+                </view>
+                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wtm-yD-xBW">
+                    <rect key="frame" x="8" y="113" width="398" height="29"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Siapakah yang saat ini paling cocok dengan pilihan kamu?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="phK-3R-has" customClass="Label" customModule="Common">
+                            <rect key="frame" x="0.0" y="0.0" width="199" height="29"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" red="0.44705882349999998" green="0.44705882349999998" blue="0.44705882349999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <nil key="highlightedColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                    <real key="value" value="12"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="string" keyPath="typeLabel" value="italic"/>
+                            </userDefinedRuntimeAttributes>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="(belum menentukan)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="slU-84-8CC" customClass="Label" customModule="Common">
+                            <rect key="frame" x="199" y="0.0" width="199" height="29"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" red="0.92693734169999997" green="0.71449714900000005" blue="0.29399454590000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <nil key="highlightedColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                    <real key="value" value="12"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </label>
+                    </subviews>
+                </stackView>
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="qs4-Df-gqp">
+                    <rect key="frame" x="48" y="350.5" width="318" height="175"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OH1-wW-Gfh">
+                            <rect key="frame" x="0.0" y="0.0" width="150" height="175"/>
+                            <subviews>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="nDA-NW-1M6">
+                                    <rect key="frame" x="0.0" y="0.0" width="150" height="175"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="paslonjokowi-compres-min" translatesAutoresizingMaskIntoConstraints="NO" id="tKA-Sm-POx">
+                                            <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="150" id="9Kx-p9-yXe"/>
+                                            </constraints>
+                                        </imageView>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dWG-Jd-29f" customClass="Button" customModule="Common">
+                                            <rect key="frame" x="0.0" y="150" width="150" height="25"/>
+                                            <state key="normal" title="Jokowi - Ma'ruf">
+                                                <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </state>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                    <real key="value" value="16"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                    <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </button>
+                                    </subviews>
+                                </stackView>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="nDA-NW-1M6" secondAttribute="bottom" id="7j7-XF-5Ry"/>
+                                <constraint firstItem="nDA-NW-1M6" firstAttribute="leading" secondItem="OH1-wW-Gfh" secondAttribute="leading" id="Bef-a8-6na"/>
+                                <constraint firstItem="nDA-NW-1M6" firstAttribute="top" secondItem="OH1-wW-Gfh" secondAttribute="top" id="GIo-Yw-Sh9"/>
+                                <constraint firstAttribute="trailing" secondItem="nDA-NW-1M6" secondAttribute="trailing" id="vG2-7A-N2p"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                    <integer key="value" value="1"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColor">
+                                    <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CVJ-Sd-gWr">
+                            <rect key="frame" x="168" y="0.0" width="150" height="175"/>
+                            <subviews>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="qFo-bQ-1v2">
+                                    <rect key="frame" x="0.0" y="0.0" width="150" height="175"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="paslonprabowo-compres-min" translatesAutoresizingMaskIntoConstraints="NO" id="Dvz-oq-4bi">
+                                            <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="150" id="puq-mX-UJb"/>
+                                            </constraints>
+                                        </imageView>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hc7-FD-S8h" customClass="Button" customModule="Common">
+                                            <rect key="frame" x="0.0" y="150" width="150" height="25"/>
+                                            <state key="normal" title="Prabowo - Sandi">
+                                                <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </state>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                    <real key="value" value="16"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                    <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </button>
+                                    </subviews>
+                                </stackView>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="qFo-bQ-1v2" firstAttribute="leading" secondItem="CVJ-Sd-gWr" secondAttribute="leading" id="FFg-ps-j4X"/>
+                                <constraint firstAttribute="trailing" secondItem="qFo-bQ-1v2" secondAttribute="trailing" id="G9X-Ro-0xZ"/>
+                                <constraint firstItem="qFo-bQ-1v2" firstAttribute="top" secondItem="CVJ-Sd-gWr" secondAttribute="top" id="Nv6-Sz-yYQ"/>
+                                <constraint firstAttribute="bottom" secondItem="qFo-bQ-1v2" secondAttribute="bottom" id="xLf-x2-drl"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                    <integer key="value" value="1"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColor">
+                                    <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="318" id="AgQ-w5-pFs"/>
+                        <constraint firstAttribute="height" constant="175" id="USJ-a1-Hft"/>
+                    </constraints>
+                </stackView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c7k-UX-wOv" customClass="Button" customModule="Common">
+                    <rect key="frame" x="48" y="539.5" width="318" height="41"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="41" id="Kdi-3o-OSX"/>
+                        <constraint firstAttribute="width" constant="318" id="yyI-jw-m5F"/>
+                    </constraints>
+                    <state key="normal" title="Belum Menentukan Pilihan">
+                        <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                            <real key="value" value="16"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                            <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="La7-kf-UmD">
+                    <rect key="frame" x="0.0" y="795" width="414" height="67"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="9Ro-mV-oJA">
+                            <rect key="frame" x="14" y="9.5" width="386" height="48"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="omu-iy-RQ4" customClass="CircularUIImageView" customModule="Common">
+                                    <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="48" id="pbM-dg-lz5"/>
+                                    </constraints>
+                                </imageView>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="kmy-Vj-Xxb">
+                                    <rect key="frame" x="63" y="0.0" width="323" height="48"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g4T-gY-cgR">
+                                            <rect key="frame" x="0.0" y="0.0" width="323" height="24"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Kecenderunganmu," textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x4s-aU-Gfa" customClass="Label" customModule="Common">
+                                                    <rect key="frame" x="0.0" y="0.0" width="135" height="24"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="135" id="oZl-7P-cLm"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.22353291510000001" green="0.22352305049999999" blue="0.2235297561" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                            <real key="value" value="12"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xbx-vL-Er0" customClass="Label" customModule="Common">
+                                                    <rect key="frame" x="135" y="0.0" width="188" height="24"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                            <real key="value" value="12"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </label>
+                                            </subviews>
+                                        </stackView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qtr-qp-90e">
+                                            <rect key="frame" x="0.0" y="24" width="323" height="24"/>
+                                            <fontDescription key="fontDescription" name="BwModelicaSS01-BoldCondensed" family="Bw Modelica SS01" pointSize="16"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </stackView>
+                            </subviews>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="48" id="1Yg-I3-jx6"/>
+                            </constraints>
+                        </stackView>
+                    </subviews>
+                    <color key="backgroundColor" red="0.97648364310000002" green="0.97644716499999995" blue="0.97647196049999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="67" id="084-7Z-4cS"/>
+                        <constraint firstItem="9Ro-mV-oJA" firstAttribute="leading" secondItem="La7-kf-UmD" secondAttribute="leading" constant="14" id="ZL3-kM-Vdn"/>
+                        <constraint firstItem="9Ro-mV-oJA" firstAttribute="centerY" secondItem="La7-kf-UmD" secondAttribute="centerY" id="d11-P4-DQ6"/>
+                        <constraint firstAttribute="trailing" secondItem="9Ro-mV-oJA" secondAttribute="trailing" constant="14" id="eHH-g4-8k9"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="Wtm-yD-xBW" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="8" id="0OR-YK-kj7"/>
+                <constraint firstItem="c7k-UX-wOv" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="0k3-s2-W9M"/>
+                <constraint firstItem="La7-kf-UmD" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="2DM-vj-4i9"/>
+                <constraint firstItem="kM4-ee-YPK" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="6vA-VO-V2C"/>
+                <constraint firstItem="kM4-ee-YPK" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="C1Z-kk-EZO"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="kM4-ee-YPK" secondAttribute="trailing" id="CKJ-sT-jYB"/>
+                <constraint firstItem="qs4-Df-gqp" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Cey-SD-pob"/>
+                <constraint firstItem="La7-kf-UmD" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="CyH-Mr-td1"/>
+                <constraint firstItem="c7k-UX-wOv" firstAttribute="top" secondItem="qs4-Df-gqp" secondAttribute="bottom" constant="14" id="Eu5-Q6-Qzi"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Wtm-yD-xBW" secondAttribute="trailing" constant="8" id="P71-S4-pF2"/>
+                <constraint firstItem="qs4-Df-gqp" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="-10" id="Qya-mK-Auf"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="La7-kf-UmD" secondAttribute="trailing" id="WjK-Wf-59i"/>
+                <constraint firstItem="Wtm-yD-xBW" firstAttribute="top" secondItem="kM4-ee-YPK" secondAttribute="bottom" constant="16" id="pFZ-8r-t9z"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="63.768115942028992" y="56.919642857142854"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="paslonjokowi-compres-min" width="1000" height="1000"/>
+        <image name="paslonprabowo-compres-min" width="1000" height="1000"/>
+    </resources>
+</document>
