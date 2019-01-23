@@ -23,7 +23,7 @@ class CreateAskController: UIViewController {
         let loadingAnimation = LOTAnimationView(name: "loading-pantau")
         loadingAnimation.translatesAutoresizingMaskIntoConstraints = false
         loadingAnimation.loopAnimation = true
-        loadingAnimation.contentMode = .center
+        loadingAnimation.contentMode = .scaleAspectFit
         
         return loadingAnimation
     }()
@@ -61,6 +61,7 @@ class CreateAskController: UIViewController {
                 self.loadingAnimation.isHidden = false
                 self.loadingAnimation.play()
             })
+            .take(1)
             .bind(to: viewModel.input.createTrigger)
             .disposed(by: disposeBag)
         
@@ -100,6 +101,13 @@ class CreateAskController: UIViewController {
                 print("this is the text \(text)")
             }
             .disposed(by: disposeBag)
+        
+        viewModel.output.enableO
+            .do(onNext: { (enable) in
+                done.tintColor = enable ? Color.primary_black : Color.grey_three
+            })
+            .drive(done.rx.isEnabled)
+            .disposed(by: disposeBag)
     }
     
     private func configureConstraint() {
@@ -107,8 +115,8 @@ class CreateAskController: UIViewController {
             // MARK: consraint loadingAnimation
             loadingAnimation.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
             loadingAnimation.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            loadingAnimation.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20),
-            loadingAnimation.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20)
+            loadingAnimation.widthAnchor.constraint(equalToConstant: 150),
+            loadingAnimation.heightAnchor.constraint(equalToConstant: 150)
             ])
     }
 

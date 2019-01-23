@@ -26,6 +26,7 @@ class CreateAskViewModel: ViewModelType {
         let createSelected: Driver<Void>
         let userData: Driver<UserResponse?>
         let loadingIndicator: Driver<Bool>
+        let enableO: Driver<Bool>
     }
     
     private let createSubject = PublishSubject<Void>()
@@ -62,10 +63,17 @@ class CreateAskViewModel: ViewModelType {
         let userData: Data? = UserDefaults.Account.get(forKey: .me)
         let userResponse = try? JSONDecoder().decode(UserResponse.self, from: userData ?? Data())
         let user = Observable.just(userResponse).asDriverOnErrorJustComplete()
+        
+        let enable = questionRelay
+            .map { (s) -> Bool in
+                return s.count > 0 && !s.containsInsensitive("Tulis pertanyaan terbaikmu di sini!")
+            }.startWith(false)
+            .asDriverOnErrorJustComplete()
 
         output = Output(createSelected: create,
                         userData: user,
-                        loadingIndicator: activityIndicator.asDriver())
+                        loadingIndicator: activityIndicator.asDriver(),
+                        enableO: enable)
     }
     
     private func createQuestion() -> Observable<QuestionModel> {

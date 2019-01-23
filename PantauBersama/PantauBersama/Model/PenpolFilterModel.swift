@@ -66,7 +66,7 @@ extension PenpolFilterModel {
         var filterItems: [PenpolFilterModel] = []
         
         // TODO: TBD The key for this item is the same with quiz filter
-        let cluster = FilterItem(id: "janji-cluster", paramKey: "cluster_id", paramValue: "", title: "Cluster", type: .text, isSelected: true)
+        let cluster = FilterItem(id: "janji-cluster", paramKey: "cluster_id", paramValue: "", title: "Cluster", type: .text, isSelected: false)
         let clusterFilter = PenpolFilterModel(paramKey: "cluster_id", title: "Cluster", items: [cluster])
         let all = FilterItem(id: "janji-all", paramKey: "filter_by", paramValue: "user_verified_all", title: "Semua", type: .radio, isSelected: UserDefaults.isSelectedFilter(value: "janji-all"))
         let notVerified = FilterItem(id: "janji-notverified", paramKey: "filter_by", paramValue: "user_verified_false", title: "Belum Verifikasi", type: .radio, isSelected: UserDefaults.isSelectedFilter(value: "janji-notverified"))

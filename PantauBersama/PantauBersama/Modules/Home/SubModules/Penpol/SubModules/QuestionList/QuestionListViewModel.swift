@@ -251,10 +251,22 @@ class QuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelInput
         
         showHeaderO = BehaviorRelay<Bool>(value: showTableHeader).asDriver()
         
-//        let userData: Data? = UserDefaults.Account.get(forKey: .me)
-//        let userResponse = try? JSONDecoder().decode(UserResponse.self, from: userData ?? Data())
+        // MARK: Fetch User cloud because for first time
+        let cloud = NetworkService.instance.requestObject(
+            PantauAuthAPI.me,
+            c: BaseResponse<UserResponse>.self)
+            .map({ $0.data })
+            .do(onSuccess: { (response) in
+                AppState.saveMe(response)
+            })
+            .trackError(errorTracker)
+            .trackActivity(activityIndicator)
+            .asObservable()
+            .catchErrorJustComplete()
         let local: Observable<UserResponse> = AppState.local(key: .me)
-        userDataO = local.asDriverOnErrorJustComplete()
+        userDataO = refreshSubject.startWith("").mapToVoid()
+            .flatMapLatest({ Observable.merge(cloud, local )})
+            .asDriverOnErrorJustComplete()
         
         voteSubject
             .flatMapLatest({ self.voteQuestion(question: $0) })
