@@ -89,6 +89,7 @@ class BadgeController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.configure(with: .white)
+        viewModel.input.refreshI.onNext(())
     }
     
 }

@@ -119,6 +119,11 @@ class BadgeViewModel: ViewModelType {
             .requestObject(PantauAuthAPI.badges(page: batch.page, perPage: batch.limit),
                            c: BaseResponse<BadgesResponse>.self)
             .map({ self.transformToPage(response: $0, batch: batch) })
+            .do(onSuccess: { (r) in
+                
+            }, onError: { (e) in
+                print(e.localizedDescription)
+            })
             .asObservable()
             .paginate(nextPageTrigger: nextBatchTrigger, hasNextPage: { (result) -> Bool in
                 return result.batch.next().hasNextPage

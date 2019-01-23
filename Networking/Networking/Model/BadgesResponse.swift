@@ -46,7 +46,7 @@ public struct Badges: Codable {
     public var description: String?
     public var image: Avatar
     public var imageGrey: AvatarGrey?
-    public var position: Int
+    public var position: Int?
     
     
     public struct Avatar: Codable {
@@ -103,6 +103,12 @@ public struct AchievedResponse: Codable {
         public let avatar: Avatar?
         public let verified: Bool
         public let about: String?
+        public let location: String?
+        public let education: String?
+        public let occupation: String?
+        public let twitter: Bool?
+        public let facebook: Bool?
+        public let cluster: Cluster?
         
         private enum CodingKeys: String, CodingKey {
             case id
@@ -111,7 +117,7 @@ public struct AchievedResponse: Codable {
             case username
             case avatar
             case verified
-            case about
+            case about, location, education, occupation, twitter, facebook, cluster
         }
         
     }
