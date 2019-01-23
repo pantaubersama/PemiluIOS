@@ -115,7 +115,7 @@ class JanpolListViewModel: IJanpolListViewModel, IJanpolListViewModelInput, IJan
                             return ""
                         })
                 case .salin(let data):
-                    let urlSalin = "\(AppContext.instance.infoForKey("URL_API_PEMILU"))/share/janjipolitik/\(data.id)"
+                    let urlSalin = "\(AppContext.instance.infoForKey("URL_WEB"))/share/janjipolitik/\(data.id)"
                     urlSalin.copyToClipboard()
                     return Observable.just("Tautan telah tersalin")
                 case .hapus(let id):

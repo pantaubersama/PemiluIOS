@@ -101,7 +101,7 @@ final class DetailAskViewModel: ViewModelType {
                 case .laporkan(let question):
                     return reportQuestion(question: question)
                 case .salin(let question):
-                    let data = "\(AppContext.instance.infoForKey("URL_API_PEMILU"))/share/tanya/\(question.id)"
+                    let data = "\(AppContext.instance.infoForKey("URL_WEB"))/share/tanya/\(question.id)"
                     data.copyToClipboard()
                     return Observable.just("Tautan telah tersalin")
                 }

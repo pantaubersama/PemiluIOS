@@ -26,7 +26,7 @@ extension IJanpolNavigator where Self: BaseCoordinator<Void> {
     }
     
     func shareJanji(data: JanjiPolitik) -> Observable<Void> {
-        let share = "Sudah tahu Janji yang ini, belum? Siap-siap catatan, ya! ✔️ \(AppContext.instance.infoForKey("URL_API_PEMILU"))/share/janjipolitik/\(data.id)"
+        let share = "Sudah tahu Janji yang ini, belum? Siap-siap catatan, ya! ✔️ \(AppContext.instance.infoForKey("URL_WEB"))/share/janjipolitik/\(data.id)"
         let activityViewController = UIActivityViewController(activityItems: [share as NSString], applicationActivities: nil)
 
         self.navigationController.present(activityViewController, animated: true, completion: nil)
