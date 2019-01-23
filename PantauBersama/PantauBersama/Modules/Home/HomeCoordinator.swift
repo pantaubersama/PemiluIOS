@@ -15,6 +15,7 @@ class HomeCoordinator: BaseCoordinator<Void> {
     
     private let window: UIWindow
     private let viewControllers: [UINavigationController]
+    var selectedIndex: Int = 1
     
     init(window: UIWindow) {
         self.window = window
@@ -35,7 +36,7 @@ class HomeCoordinator: BaseCoordinator<Void> {
         viewController.tabBar.tintColor = Color.primary_red
         viewController.tabBar.barTintColor = UIColor.white
         viewController.viewControllers = viewControllers
-        viewController.selectedIndex = 1
+        viewController.selectedIndex = self.selectedIndex
         
         let coordinates = viewControllers.enumerated()
             .map { (offset, element) -> Observable<Void> in
