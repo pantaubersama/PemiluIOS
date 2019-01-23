@@ -38,7 +38,7 @@ class ClusterView: UIView {
         addSubview(view)
     }
     
-    func configure(data: User) {
+    func configure(data: User, isMyAccount: Bool) {
         
         if data.cluster != nil {
             viewNoCluster.isHidden = true

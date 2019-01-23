@@ -88,12 +88,14 @@ final class ProfileViewModel: IProfileViewModel, IProfileViewModelInput, IProfil
     private let viewModel = ClusterCellViewModel()
     private let clusterS = PublishSubject<ClusterType>()
     private let lihatBadgeS = PublishSubject<Void>()
+    private let isMyAccount: Bool
+    private let userId: String?
     
-    init(navigator: ProfileNavigator) {
+    init(navigator: ProfileNavigator, isMyAccount: Bool, userId: String?) {
         self.navigator = navigator
-//        self.navigatorLinimasa = navigator
-//        self.navigatorPenpol = navigator
         self.navigatorBadge = navigator
+        self.isMyAccount = isMyAccount
+        self.userId = userId
         
         
         let badgeViewModel = BadgeViewModel(navigator: navigatorBadge)

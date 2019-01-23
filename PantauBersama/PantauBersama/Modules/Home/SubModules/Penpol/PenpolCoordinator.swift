@@ -98,8 +98,9 @@ extension PenpolCoordinator: PenpolNavigator {
     }
     
     func launchProfile() -> Observable<Void> {
-        let profileCoordinator = ProfileCoordinator(navigationController: navigationController)
-        return coordinate(to: profileCoordinator)
+//        let profileCoordinator = ProfileCoordinator(navigationController: navigationController)
+//        return coordinate(to: profileCoordinator)
+        return Observable.empty()
     }
     
     func launchDetailAsk(data: String) -> Observable<Void> {

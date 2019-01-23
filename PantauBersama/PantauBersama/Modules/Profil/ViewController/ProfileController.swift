@@ -33,12 +33,17 @@ class ProfileController: UIViewController {
     @IBOutlet weak var containerlihatConstant: NSLayoutConstraint!
     
     var viewModel: IProfileViewModel!
+    var isMyAccount: Bool = true // default is my account
+    var userId: String? = nil
     
     lazy var myJanpolViewModel: MyJanpolListViewModel = MyJanpolListViewModel(navigator: viewModel.navigator, showTableHeader: false)
     lazy var myQuestionViewModel: MyQuestionListViewModel = MyQuestionListViewModel(navigator: viewModel.navigator, showTableHeader: false)
     
-    private lazy var janjiController = JanjiPolitikViewController(viewModel: myJanpolViewModel)
-    private lazy var tanyaController = QuestionController(viewModel: myQuestionViewModel)
+    lazy var userJanpolViewModel: UserJanpolListViewModel = UserJanpolListViewModel(navigator: viewModel.navigator, showTableHeader: false, userId: userId ?? "")
+    lazy var userQuestionViewModel: UserQuestionListViewModel = UserQuestionListViewModel(navigator: viewModel.navigator, showTableHeader: false, userId: userId ?? "")
+    
+    private lazy var janjiController = isMyAccount ? JanjiPolitikViewController(viewModel: myJanpolViewModel) : JanjiPolitikViewController(viewModel: userJanpolViewModel)
+    private lazy var tanyaController = isMyAccount ? QuestionController(viewModel: myQuestionViewModel) : QuestionController(viewModel: userQuestionViewModel)
     private lazy var emptyController = UIViewController()
     
     private let disposeBag = DisposeBag()
@@ -56,7 +61,7 @@ class ProfileController: UIViewController {
         let back = UIBarButtonItem(image: #imageLiteral(resourceName: "back"), style: .plain, target: nil, action: nil)
         let setting = UIBarButtonItem(image: #imageLiteral(resourceName: "outlineSettings24Px"), style: .plain, target: nil, action: nil)
         
-        navigationItem.rightBarButtonItem = setting
+        navigationItem.rightBarButtonItem = isMyAccount ? setting : nil
         navigationItem.leftBarButtonItem = back
         navigationController?.navigationBar.configure(with: .white)
         
@@ -216,7 +221,7 @@ class ProfileController: UIViewController {
                 guard let `self` = self else { return }
                 let user = response.user
                 self.headerProfile.configure(user: user)
-                self.clusterView.configure(data: user)
+                self.clusterView.configure(data: user, isMyAccount: self.isMyAccount)
                 self.biodataView.configure(data: user)
             })
             .disposed(by: disposeBag)

@@ -18,6 +18,7 @@ public enum LinimasaAPI {
     case editJanjiPolitiks(title: String, image: UIImage?)
     case getMyJanjiPolitiks(page: Int, perPage: Int, query: String)
     case appVersions(type: String)
+    case getUserJanpol(id: String, page: Int, perPage: Int, query: String)
 }
 
 extension LinimasaAPI: TargetType {
@@ -51,6 +52,8 @@ extension LinimasaAPI: TargetType {
             return "/linimasa/v1/janji_politiks/me"
         case .appVersions:
             return "/dashboard/v1/app_versions/last_version"
+        case .getUserJanpol(let (id,_,_,_)):
+            return "/linimasa/v1/janji_politiks/user/\(id)"
         }
     }
     
@@ -89,6 +92,12 @@ extension LinimasaAPI: TargetType {
             return [
                 "app_type": type
             ]
+        case .getUserJanpol(let (_, page, perPage, query)):
+            return [
+                "q": query,
+                "page": page,
+                "per_page": perPage
+            ]
         default:
             return nil
         }
@@ -100,7 +109,8 @@ extension LinimasaAPI: TargetType {
              .getFeeds,
              .getJanjiPolitiks,
              .getMyJanjiPolitiks,
-             .appVersions:
+             .appVersions,
+             .getUserJanpol:
             return .get
         case .deleteJanjiPolitiks:
             return .delete

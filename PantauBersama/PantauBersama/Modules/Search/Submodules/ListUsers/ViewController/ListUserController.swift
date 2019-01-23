@@ -48,5 +48,13 @@ class ListUserController: UITableViewController {
         viewModel.output.filter
             .drive()
             .disposed(by: disposeBag)
+        
+        tableView.rx.itemSelected
+            .bind(to: viewModel.input.itemSelectedI)
+            .disposed(by: disposeBag)
+        
+        viewModel.output.itemSelectedO
+            .drive()
+            .disposed(by: disposeBag)
     }
 }

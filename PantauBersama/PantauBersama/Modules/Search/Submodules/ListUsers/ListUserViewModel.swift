@@ -14,11 +14,13 @@ import RxCocoa
 class ListUserViewModel: ViewModelType {
     struct Input {
         let filterTrigger: AnyObserver<[PenpolFilterModel.FilterItem]>
+        let itemSelectedI: AnyObserver<IndexPath>
     }
     
     struct Output {
         let searchedUser: Driver<[User]>
         let filter: Driver<Void>
+        let itemSelectedO: Driver<Void>
     }
     
     var input: Input
@@ -28,9 +30,10 @@ class ListUserViewModel: ViewModelType {
     private let disposeBag = DisposeBag()
     private var filterItems: [PenpolFilterModel.FilterItem] = []
     private let filterSubject = PublishSubject<[PenpolFilterModel.FilterItem]>()
+    private let itemSelectedS = PublishSubject<IndexPath>()
     
-    init(searchTrigger: PublishSubject<String>) {
-        input = Input(filterTrigger: filterSubject.asObserver())
+    init(searchTrigger: PublishSubject<String>, navigator: UserSearchNavigator) {
+        input = Input(filterTrigger: filterSubject.asObserver(), itemSelectedI: itemSelectedS.asObserver())
         
         let cachedFilter = PenpolFilterModel.generateUsersFilter()
         cachedFilter.forEach { (filterModel) in
@@ -60,7 +63,15 @@ class ListUserViewModel: ViewModelType {
             .mapToVoid()
             .asDriverOnErrorJustComplete()
         
-        output = Output(searchedUser: searchedUser, filter: filter)
+        let selected = itemSelectedS
+            .withLatestFrom(searchedUser) { (indexPath, items) -> User in
+                return items[indexPath.row]
+            }
+            .flatMapLatest({ navigator.launchProfileUser(isMyAccount: false, userId: $0.id )})
+            .asDriverOnErrorJustComplete()
+        
+        
+        output = Output(searchedUser: searchedUser, filter: filter, itemSelectedO: selected)
     }
     
     private func searchUser(resetPage: Bool = false, query: String) -> Observable<[User]> {

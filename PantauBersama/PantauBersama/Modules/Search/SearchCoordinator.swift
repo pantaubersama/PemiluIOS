@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 import Networking
 
-protocol SearchNavigator: PenpolNavigator, LinimasaNavigator, ClusterSearchNavigator {
+protocol SearchNavigator: PenpolNavigator, LinimasaNavigator, ClusterSearchNavigator, UserSearchNavigator {
     func finishSearch() -> Observable<Void>
 }
 
@@ -42,6 +42,15 @@ class SearchCoordinator: BaseCoordinator<Void> {
 }
 
 extension SearchCoordinator: SearchNavigator {
+    func launchProfileUser(isMyAccount: Bool, userId: String?) -> Observable<Void> {
+        let profileCoordinator = ProfileCoordinator(navigationController: navigationController, isMyAccount: isMyAccount, userId: userId)
+        return coordinate(to: profileCoordinator)
+    }
+    
+    func launchProfile(isMyAccount: Bool, userId: String?) -> Observable<Void> {
+        return Observable.empty()
+    }
+    
     
     func launchUpdates(type: TypeUpdates) -> Observable<Void> {
         let updatesView = UpdatesCoordinator(navigationController: navigationController, type: type)
