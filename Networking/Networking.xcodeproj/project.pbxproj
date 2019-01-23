@@ -50,6 +50,7 @@
 		84B2526421CBDE2600565D82 /* PantauAuthAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B2526321CBDE2600565D82 /* PantauAuthAPI.swift */; };
 		84B2526621CBFF0C00565D82 /* PantauAuthResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B2526521CBFF0C00565D82 /* PantauAuthResponse.swift */; };
 		84B2669D21D4BB1400C7B783 /* PantauRefreshResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B2669C21D4BB1400C7B783 /* PantauRefreshResponse.swift */; };
+		84B6D51121F83B5900DD742A /* PoliticalPartyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B6D51021F83B5900DD742A /* PoliticalPartyResponse.swift */; };
 		84B7B8C921E4E6730099E7E3 /* CategoriesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B7B8C821E4E6730099E7E3 /* CategoriesResponse.swift */; };
 		84D15B0C21C4E76A009DD3B3 /* Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84D15B0B21C4E76A009DD3B3 /* Common.framework */; };
 		84D831F021C4DCEC00C437B7 /* Networking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84D831E621C4DCEC00C437B7 /* Networking.framework */; };
@@ -119,6 +120,7 @@
 		84B2526321CBDE2600565D82 /* PantauAuthAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PantauAuthAPI.swift; sourceTree = "<group>"; };
 		84B2526521CBFF0C00565D82 /* PantauAuthResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PantauAuthResponse.swift; sourceTree = "<group>"; };
 		84B2669C21D4BB1400C7B783 /* PantauRefreshResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PantauRefreshResponse.swift; sourceTree = "<group>"; };
+		84B6D51021F83B5900DD742A /* PoliticalPartyResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoliticalPartyResponse.swift; sourceTree = "<group>"; };
 		84B7B8C821E4E6730099E7E3 /* CategoriesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesResponse.swift; sourceTree = "<group>"; };
 		84D15B0B21C4E76A009DD3B3 /* Common.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Common.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		84D831E621C4DCEC00C437B7 /* Networking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Networking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -243,6 +245,7 @@
 				118149DF21EC5E9300192E97 /* UsersResponse.swift */,
 				84FF8AA021F221C100AA8CF3 /* AppVersionResponse.swift */,
 				84E521C721F4C81500B7CCBA /* InfoFirebaseResponse.swift */,
+				84B6D51021F83B5900DD742A /* PoliticalPartyResponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -515,6 +518,7 @@
 				842B650C21D9385100F95C13 /* Avatar.swift in Sources */,
 				11C7BB2321DB2A97008CA49B /* String+Copy.swift in Sources */,
 				84B2523321CAC6AA00565D82 /* NetworkService.swift in Sources */,
+				84B6D51121F83B5900DD742A /* PoliticalPartyResponse.swift in Sources */,
 				13F456B521D531D300CE45F1 /* LinimasaAPI.swift in Sources */,
 				84619D3521DA21A200EB58CF /* Gender.swift in Sources */,
 				13F456BD21DB668D00CE45F1 /* JanjiPolitik.swift in Sources */,

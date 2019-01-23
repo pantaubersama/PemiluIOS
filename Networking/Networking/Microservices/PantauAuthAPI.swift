@@ -46,7 +46,7 @@ public enum PantauAuthAPI {
     case categories(q: String, page: Int, perPage: Int)
     case createCategories(t: String)
     case createCluster(name: String, id: String, desc: String, image: UIImage?)
-    case votePreference(vote: Int)
+    case votePreference(vote: Int, party: String)
     case deleteCluster
     case clusterMagicLink(id: String, enable: Bool)
     case clusterInvite(emails: String)
@@ -54,6 +54,7 @@ public enum PantauAuthAPI {
     case accountDisconnect(type: String)
     case users(page: Int, perPage: Int, query: String, filterBy: UserListFilter)
     case firebaseKeys(deviceToken: String, type: String)
+    case politicalParties(page: Int, perPage: Int)
 }
 
 extension PantauAuthAPI: TargetType {
@@ -123,6 +124,8 @@ extension PantauAuthAPI: TargetType {
             return "/v1/users"
         case .firebaseKeys:
             return "/v1/me/firebase_keys"
+        case .politicalParties:
+            return "/v1/political_parties"
         }
     }
     
@@ -294,9 +297,16 @@ extension PantauAuthAPI: TargetType {
             multipartFormData.append(buildMultipartFormData(key: "category_id", value: id))
             multipartFormData.append(buildMultipartFormData(key: "description", value: desc))
             return multipartFormData
-        case .votePreference(let vote):
+        case .votePreference(let (vote, party)):
             var multipartFormData = [MultipartFormData]()
-            multipartFormData.append(buildMultipartFormData(key: "vote_preference", value: "\(vote)"))
+            if vote == 0 {
+                multipartFormData.append(buildMultipartFormData(key: "political_party_id", value: party))
+            } else if party == "" {
+                multipartFormData.append(buildMultipartFormData(key: "vote_preference", value: "\(vote)"))
+            } else {
+                multipartFormData.append(buildMultipartFormData(key: "vote_preference", value: "\(vote)"))
+                multipartFormData.append(buildMultipartFormData(key: "political_party_id", value: party))
+            }
             return multipartFormData
         case .clusterMagicLink(let (_, enable)):
             var multipartFormData = [MultipartFormData]()

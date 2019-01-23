@@ -19,6 +19,7 @@ public struct User: Codable {
     public var isModerator: Bool?
     public var cluster: ClusterDetail?
     public var votePreference: Int?
+    public var politicalParty: PoliticalParty?
     public var verified: Bool
     public var facebook: Bool?
     public var twitter: Bool?
@@ -40,6 +41,7 @@ public struct User: Codable {
         case isModerator = "is_moderator"
         case cluster
         case votePreference = "vote_preference"
+        case politicalParty = "political_party"
         case verified
         case facebook
         case twitter
