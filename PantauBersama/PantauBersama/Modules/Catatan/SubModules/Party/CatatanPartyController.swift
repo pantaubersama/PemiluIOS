@@ -69,6 +69,21 @@ class CatatanPartyController: UIViewController {
             })
             .drive()
             .disposed(by: disposeBag)
+        
+        viewModel.output.userDataO
+            .drive(onNext: { [weak self] (response) in
+                guard let `self` = self else { return }
+                let user = response.user
+                self.lblPreferenceParty.text = user.politicalParty?.name
+                // check state number selected cell
+                // - 1 for indexes array
+                if user.politicalParty != nil {
+                    if let number = user.politicalParty?.number {
+                        self.tableView.selectRow(at: IndexPath(row: number - 1 , section: 0), animated: false, scrollPosition: .none)
+                    }
+                }
+            })
+            .disposed(by: disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {

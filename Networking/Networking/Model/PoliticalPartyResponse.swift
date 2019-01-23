@@ -25,5 +25,5 @@ public struct PoliticalParty: Codable {
     public let id: String
     public let name: String
     public let image: Avatar
-    
+    public let number: Int
 }

@@ -26,6 +26,7 @@ class CatatanPartyViewModel: ViewModelType {
     struct Output {
         let itemsO: Driver<[ICellConfigurator]>
         let itemSelectedO: Driver<PoliticalParty>
+        let userDataO: Driver<UserResponse>
     }
     
     private let viewWillAppearS = PublishSubject<Void>()
@@ -67,9 +68,27 @@ class CatatanPartyViewModel: ViewModelType {
             }
             .asDriverOnErrorJustComplete()
         
+        // MARK
+        // Get Local user data
+        let local: Observable<UserResponse> = AppState.local(key: .me)
+        let cloud = NetworkService.instance
+            .requestObject(PantauAuthAPI.me,
+                           c: BaseResponse<UserResponse>.self)
+            .map({ $0.data })
+            .do(onSuccess: { (response) in
+                AppState.saveMe(response)
+            })
+            .trackError(errorTracker)
+            .trackActivity(activityIndicator)
+            .asObservable()
+            .catchErrorJustComplete()
+        
+        let userData = viewWillAppearS
+            .flatMapLatest({ Observable.merge(local, cloud) })
+        
         output = Output(
             itemsO: itemsCell.asDriver(onErrorJustReturn: []),
-            itemSelectedO: selected
+            itemSelectedO: selected, userDataO: userData.asDriverOnErrorJustComplete()
         )
     }
     

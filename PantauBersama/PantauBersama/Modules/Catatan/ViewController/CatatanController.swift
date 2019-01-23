@@ -37,6 +37,10 @@ class CatatanController: UIViewController {
         back.rx.tap
             .bind(to: viewModel.input.backI)
             .disposed(by: disposeBag)
+        
+        btnUpdate.rx.tap
+            .bind(to: viewModel.input.updateI)
+            .disposed(by: disposeBag)
     
         add(childViewController: catatanPilpresController, context: container)
         add(childViewController: catatanPartyController, context: container)
@@ -52,18 +56,42 @@ class CatatanController: UIViewController {
                     if i == 0 {
                         self.catatanPilpresController.view.alpha = 1.0
                         self.catatanPartyController.view.alpha = 0.0
+                        let values = self.catatanPilpresController.viewModel.output.notePreferenceValueO
+                        values.do(onNext: { [weak self] (value) in
+                            self?.viewModel.input.notePreferenceValueI.onNext((value))
+                        })
+                        .drive()
+                        .disposed(by: self.disposeBag)
                     } else {
                         self.catatanPilpresController.view.alpha = 0.0
                         self.catatanPartyController.view.alpha = 1.0
+                        let values = self.catatanPartyViewModel.output.itemSelectedO
+                        values.do(onNext: { [weak self] (political) in
+                            self?.viewModel.input.partyPreferenceValueI.onNext((political.id))
+                        })
+                        .drive()
+                        .disposed(by: self.disposeBag)
                     }
                 })
             })
             .disposed(by: disposeBag)
-       
+        
+        viewModel.output.enableO
+            .do(onNext: { [weak self] (enable) in
+                guard let `self` = self else { return }
+                self.btnUpdate.backgroundColor = enable ? Color.primary_red : Color.grey_one
+            })
+            .drive(btnUpdate.rx.isEnabled)
+            .disposed(by: disposeBag)
+        
+       viewModel.output.updateO
+            .drive()
+            .disposed(by: disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        viewModel.input.viewWillAppearI.onNext(())
     }
     
 }

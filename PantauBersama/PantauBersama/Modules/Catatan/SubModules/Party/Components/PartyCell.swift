@@ -56,7 +56,7 @@ extension PartyCell: IReusableCell {
         let bag = DisposeBag()
         
         lblParty.text = item.data.name
-//        lblUrutan.text = item.data.
+        lblUrutan.text = "No urut \(item.data.number)"
         if let thumbnail = item.data.image.thumbnail.url {
             ivParty.af_setImage(withURL: URL(string: thumbnail)!)
         }
