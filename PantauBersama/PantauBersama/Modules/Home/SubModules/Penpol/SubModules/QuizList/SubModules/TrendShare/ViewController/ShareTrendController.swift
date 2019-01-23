@@ -18,7 +18,6 @@ class ShareTrendController: UIViewController {
     @IBOutlet weak var lblTeam: UILabel!
     @IBOutlet weak var share: Button!
     @IBOutlet weak var lblDesc: Label!
-    @IBOutlet weak var lblUsername: Label!
     @IBOutlet weak var lblSubDesc: Label!
     
     var viewModel: ShareTrendViewModel!
@@ -26,7 +25,6 @@ class ShareTrendController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        lblUsername.sizeToFit()
         let back = UIBarButtonItem(image: #imageLiteral(resourceName: "back"), style: .plain, target: nil, action: nil)
         navigationItem.leftBarButtonItem = back
         
@@ -46,8 +44,7 @@ class ShareTrendController: UIViewController {
                         self.ivPaslon.af_setImage(withURL: URL(string: avatarUrl)!)
                     }
                     self.lblDesc.text = "Total Kecenderunganmu \(response.meta.quizzes.finished) dari \(response.meta.quizzes.total) Quiz,"
-                    self.lblUsername.text = response.user.fullName
-                    self.lblSubDesc.text = " lebih suka jawaban dari Paslon no \(kecenderungan?.team.id ?? 0)"
+                    self.lblSubDesc.text = "\(response.user.fullName ?? "") lebih suka jawaban dari Paslon no \(kecenderungan?.team.id ?? 0)"
                     self.lblPercentage.text = "\(Double(kecenderungan?.percentage ?? 0.0))%"
                     self.lblTeam.text = "\(kecenderungan?.team.title ?? "")"
             })

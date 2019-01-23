@@ -22,7 +22,6 @@
                 <outlet property="lblPercentage" destination="b9d-v9-KRd" id="w0R-gH-p0Y"/>
                 <outlet property="lblSubDesc" destination="nIf-Sk-g3J" id="3xS-Po-4g3"/>
                 <outlet property="lblTeam" destination="GAr-V8-zG9" id="jdk-L3-Dqb"/>
-                <outlet property="lblUsername" destination="2ev-qm-c0f" id="F0r-js-u8C"/>
                 <outlet property="share" destination="dup-CH-Ziy" id="QCT-ty-lLT"/>
                 <outlet property="view" destination="iN0-l3-epB" id="Rga-iD-mlW"/>
             </connections>
@@ -97,13 +96,13 @@
                     </userDefinedRuntimeAttributes>
                 </label>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="bDD-ZV-YZg">
-                    <rect key="frame" x="95.5" y="122.5" width="129" height="31"/>
+                    <rect key="frame" x="160" y="122.5" width="0.0" height="31"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="Iw6-h8-z4d">
-                            <rect key="frame" x="0.0" y="0.0" width="129" height="31"/>
+                            <rect key="frame" x="0.0" y="0.0" width="0.0" height="31"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Ve-Zh-iJt" customClass="Label" customModule="Common">
-                                    <rect key="frame" x="50" y="0.0" width="29" height="14"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Ve-Zh-iJt" customClass="Label" customModule="Common">
+                                    <rect key="frame" x="0.0" y="0.0" width="0.0" height="14"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" red="0.48628133540000001" green="0.4862622023" blue="0.48627519609999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     <nil key="highlightedColor"/>
@@ -115,25 +114,10 @@
                                     </userDefinedRuntimeAttributes>
                                 </label>
                                 <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="IKF-DO-dDp">
-                                    <rect key="frame" x="0.0" y="17" width="129" height="14"/>
+                                    <rect key="frame" x="0.0" y="17" width="0.0" height="14"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2ev-qm-c0f" customClass="Label" customModule="Common">
-                                            <rect key="frame" x="0.0" y="0.0" width="100" height="14"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" priority="750" constant="100" id="haP-lf-Sgq"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="typeLabel" value="bold"/>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
-                                                    <real key="value" value="12"/>
-                                                </userDefinedRuntimeAttribute>
-                                            </userDefinedRuntimeAttributes>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nIf-Sk-g3J" customClass="Label" customModule="Common">
-                                            <rect key="frame" x="100" y="0.0" width="29" height="14"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nIf-Sk-g3J" customClass="Label" customModule="Common">
+                                            <rect key="frame" x="0.0" y="7" width="0.0" height="0.0"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.48628133540000001" green="0.4862622023" blue="0.48627519609999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <nil key="highlightedColor"/>
