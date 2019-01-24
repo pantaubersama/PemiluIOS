@@ -9,13 +9,14 @@
 import Moya
 import RxSwift
 import Common
+import Networking
 
 public struct NetworkService {
     
-    public static let instance = NetworkService()
-    fileprivate let provider: MoyaProvider<MultiTarget>
+    public static var instance = NetworkService()
+    var provider: MoyaProvider<MultiTarget>
     
-    private init() {
+    public init() {
         self.provider = MoyaProvider<MultiTarget>(
             plugins: [
                 RequestLoadingPlugin()
@@ -35,7 +36,7 @@ public extension NetworkService {
     
     public func requestObject<T: TargetType, C: Decodable>(_ t: T, c: C.Type) -> Single<C> {
         print("base url \(t.baseURL)\(t.path) \(t.headers)")
-        return provider.rx.request(MultiTarget(t))
+        return self.provider.rx.request(MultiTarget(t))
             .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background))
             .filterSuccessfulStatusAndRedirectCodes()
             .do(onSuccess: { (response) in
@@ -51,7 +52,7 @@ public extension NetworkService {
             })
             .retryWhen({ (e) in
                 Observable.zip(e, Observable.range(start: 1, count: 3), resultSelector: { $1 }).flatMap {
-                        i in
+                    i in
                     return self.provider.rx.request(MultiTarget(PantauAuthAPI.refresh(type: .refreshToken)))
                         .asObservable()
                         .filterSuccessfulStatusAndRedirectCodes()
@@ -68,8 +69,14 @@ public extension NetworkService {
                                         KeychainService.remove(type: NetworkKeychainKind.refreshToken)
                                         // need improve this later
                                         // todo using wkwbview or using another framework to handle auth
-                                        let url = "\(AppContext.instance.infoForKey("DOMAIN_SYMBOLIC"))/oauth/authorize?client_id=\(AppContext.instance.infoForKey("CLIENT_ID"))&response_type=code&redirect_uri=\(AppContext.instance.infoForKey("REDIRECT_URI"))&scope="
-                                        UIApplication.shared.open(URL(string: url)!, options: [:], completionHandler: nil)
+                                        var appCoordinator: AppCoordinator!
+                                        let disposeBag = DisposeBag()
+                                        var window: UIWindow?
+                                        window = UIWindow()
+                                        appCoordinator = AppCoordinator(window: window!)
+                                        appCoordinator.start()
+                                            .subscribe()
+                                            .disposed(by: disposeBag)
                                     }))
                                     alert.show()
                                 }
@@ -80,9 +87,9 @@ public extension NetworkService {
                             let t = r.accessToken
                             let rt = r.refreshToken
                             let tt = r.tokenType
-                                UserDefaults.Account.set(tt, forKey: .tokenType)
-                                KeychainService.update(type: NetworkKeychainKind.refreshToken, data: rt)
-                                KeychainService.update(type: NetworkKeychainKind.token, data: t)
+                            UserDefaults.Account.set(tt, forKey: .tokenType)
+                            KeychainService.update(type: NetworkKeychainKind.refreshToken, data: rt)
+                            KeychainService.update(type: NetworkKeychainKind.token, data: t)
                             return Single.just(r) // This function will refresh last request with new access token
                         })
                 }
@@ -93,7 +100,8 @@ public extension NetworkService {
                 switch errorResponse {
                 case .underlying(let (e, _)):
                     print(e.localizedDescription)
-                    return Single.error(NetworkError(error: e as NSError))
+//                    return Single.error(NetworkError(error: e as NSError))
+                    return Single.error(e)
                 default:
                     let body = try
                         errorResponse.response?.map(ErrorResponse.self)
@@ -105,5 +113,5 @@ public extension NetworkService {
                     }
                 }
             })
-    }    
+    }
 }

@@ -41,7 +41,6 @@
 		8482E62E21D9017700D5DC07 /* PaginatableResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8482E62D21D9017700D5DC07 /* PaginatableResponse.swift */; };
 		8482E63021D9048800D5DC07 /* Paginate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8482E62F21D9048800D5DC07 /* Paginate.swift */; };
 		84B2522B21CAB47B00565D82 /* NetworkKeychainKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B2522A21CAB47B00565D82 /* NetworkKeychainKind.swift */; };
-		84B2523321CAC6AA00565D82 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B2523221CAC6AA00565D82 /* NetworkService.swift */; };
 		84B2523521CAC71400565D82 /* RequestLoadingPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B2523421CAC71400565D82 /* RequestLoadingPlugin.swift */; };
 		84B2523721CAC7D000565D82 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B2523621CAC7D000565D82 /* NetworkError.swift */; };
 		84B2523A21CAC7FB00565D82 /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B2523921CAC7FB00565D82 /* ErrorResponse.swift */; };
@@ -111,7 +110,6 @@
 		8482E62D21D9017700D5DC07 /* PaginatableResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginatableResponse.swift; sourceTree = "<group>"; };
 		8482E62F21D9048800D5DC07 /* Paginate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Paginate.swift; sourceTree = "<group>"; };
 		84B2522A21CAB47B00565D82 /* NetworkKeychainKind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkKeychainKind.swift; sourceTree = "<group>"; };
-		84B2523221CAC6AA00565D82 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		84B2523421CAC71400565D82 /* RequestLoadingPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestLoadingPlugin.swift; sourceTree = "<group>"; };
 		84B2523621CAC7D000565D82 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		84B2523921CAC7FB00565D82 /* ErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
@@ -273,7 +271,6 @@
 		84D831E821C4DCEC00C437B7 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				84B2523221CAC6AA00565D82 /* NetworkService.swift */,
 				84B2523621CAC7D000565D82 /* NetworkError.swift */,
 				11C7BB2221DB2A97008CA49B /* String+Copy.swift */,
 				84B2523821CAC7E900565D82 /* Model */,
@@ -517,7 +514,6 @@
 				842B650E21D9505A00F95C13 /* InformantResponse.swift in Sources */,
 				842B650C21D9385100F95C13 /* Avatar.swift in Sources */,
 				11C7BB2321DB2A97008CA49B /* String+Copy.swift in Sources */,
-				84B2523321CAC6AA00565D82 /* NetworkService.swift in Sources */,
 				84B6D51121F83B5900DD742A /* PoliticalPartyResponse.swift in Sources */,
 				13F456B521D531D300CE45F1 /* LinimasaAPI.swift in Sources */,
 				84619D3521DA21A200EB58CF /* Gender.swift in Sources */,

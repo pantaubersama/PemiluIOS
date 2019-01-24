@@ -12,7 +12,7 @@ import Result
 
 public final class RequestLoadingPlugin: PluginType {
     
-    init() {}
+    public init() {}
     
     // MARK: Plugin
     /// Called by the provider as soon as the request is about to start
