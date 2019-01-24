@@ -41,6 +41,8 @@ final class UpdatesCoordinator: BaseCoordinator<Void> {
 extension UpdatesCoordinator: UpdatesNavigator {
     
     func nextTime() {
+        UserDefaults.Account.set(true, forKey: .skipVersion)
+        UserDefaults.standard.synchronize()
         navigationController.presentedViewController?.dismiss(animated: true, completion: nil)
     }
     

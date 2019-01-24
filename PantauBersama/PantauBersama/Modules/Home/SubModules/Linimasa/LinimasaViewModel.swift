@@ -103,25 +103,24 @@ final class LinimasaViewModel: ViewModelType {
         
         // TODO
         // Check for updates minor, feature and force
-        let cloudVersion = viewWillppearS
-            .flatMapLatest { (_) -> Observable<AppVersionResponse> in
-                return NetworkService
-                    .instance.requestObject(
-                        LinimasaAPI.appVersions(type: "ios"),
-                        c: BaseResponse<AppVersionResponse>.self)
-                    .map({ $0.data })
-                    .asObservable()
-        }
+        let newVersion: Observable<AppVersionResponse> = AppState.local(key: .version)
         
-        let versions = cloudVersion
+        let versions = viewWillppearS.flatMapLatest({ newVersion })
             .flatMapLatest { (version) -> Observable<Void> in
-                if version.app.forceUpdate == true {
-                    return navigator.launchUpdates(type: .major)
+                // check from condition skip
+                if UserDefaults.Account.get(forKey: .skipVersion) == true {
+                    if version.app.forceUpdate == true {
+                        return navigator.launchUpdates(type: .major)
+                    } // not checking if feature update or minor
                 } else {
-                    if let new = version.app.version {
-                        if new.compare(versionString(), options: .numeric) == .orderedDescending {
+                    if version.app.forceUpdate == true {
+                        return navigator.launchUpdates(type: .major)
+                    } else {
+                        if let new = version.app.version {
+                            if new.compare(versionString(), options: .numeric) == .orderedDescending {
                                 print("We have new ones in AppStore")
                                 return navigator.launchUpdates(type: .minor)
+                            }
                         }
                     }
                 }

@@ -15,7 +15,7 @@ public struct AppVersionResponse: Codable {
     public struct App: Codable {
         public let id: String
         public let version: String?
-        public let versionCode: String?
+        public let versionCode: Int?
         public let appType: String?
         public let forceUpdate: Bool
         

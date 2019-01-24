@@ -71,4 +71,10 @@ final class AppState {
         }
     }
     
+    class func saveVersion(_ data: AppVersionResponse) {
+        if let jsonData = try? JSONEncoder().encode(data) {
+            UserDefaults.Account.set(jsonData, forKey: .version)
+        }
+    }
+    
 }

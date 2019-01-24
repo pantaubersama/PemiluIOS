@@ -88,6 +88,8 @@ public extension UserDefaults {
             case usernameTwitter
             case usernameFacebook
             case clusterName
+            case version
+            case skipVersion
         }
     }
 }
