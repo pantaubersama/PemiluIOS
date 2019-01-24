@@ -162,6 +162,8 @@ class QuizViewModel: ViewModelType {
                     }
                     .trackActivity(weakSelf.activityIndicator)
                     .trackError(weakSelf.errorTracker)
+                    .asObservable()
+                    .catchErrorJustReturn([])
             })
             .flatMapLatest({ [weak self](quizzes) -> Observable<[QuizModel]> in
                 guard let weakSelf = self else { return Observable.empty() }
@@ -171,7 +173,11 @@ class QuizViewModel: ViewModelType {
                         .map { [weak self](response) -> [QuizModel] in
                             guard let weakSelf = self else { return [] }
                             return weakSelf.generateQuizzes(from: response)
-                    }
+                        }
+                        .trackActivity(weakSelf.activityIndicator)
+                        .trackError(weakSelf.errorTracker)
+                        .asObservable()
+                        .catchErrorJustReturn([])
                 }
                 
                 return Observable.just(quizzes)
@@ -184,7 +190,11 @@ class QuizViewModel: ViewModelType {
                         .map { [weak self](response) -> [QuizModel] in
                             guard let weakSelf = self else { return [] }
                             return weakSelf.generateQuizzes(from: response)
-                    }
+                        }
+                        .trackActivity(weakSelf.activityIndicator)
+                        .trackError(weakSelf.errorTracker)
+                        .asObservable()
+                        .catchErrorJustReturn([])
                 }
                 
                 return Observable.just(quizzes)
@@ -203,7 +213,11 @@ class QuizViewModel: ViewModelType {
                     .map { [weak self](response) -> [QuizModel] in
                         guard let weakSelf = self else { return [] }
                         return weakSelf.generateQuizzes(from: response)
-                }
+                    }
+                    .trackActivity(weakSelf.activityIndicator)
+                    .trackError(weakSelf.errorTracker)
+                    .asObservable()
+                    .catchErrorJustReturn([])
             })
             .flatMapLatest({ [weak self](quizzes) -> Observable<[QuizModel]> in
                 // not participating
@@ -214,7 +228,11 @@ class QuizViewModel: ViewModelType {
                         .map { [weak self](response) -> [QuizModel] in
                             guard let weakSelf = self else { return [] }
                             return weakSelf.generateQuizzes(from: response)
-                    }
+                        }
+                        .trackActivity(weakSelf.activityIndicator)
+                        .trackError(weakSelf.errorTracker)
+                        .asObservable()
+                        .catchErrorJustReturn([])
                 }
                 
                 return Observable.just(quizzes)
@@ -228,7 +246,11 @@ class QuizViewModel: ViewModelType {
                         .map { [weak self](response) -> [QuizModel] in
                             guard let weakSelf = self else { return [] }
                             return weakSelf.generateQuizzes(from: response)
-                    }
+                        }
+                        .trackActivity(weakSelf.activityIndicator)
+                        .trackError(weakSelf.errorTracker)
+                        .asObservable()
+                        .catchErrorJustReturn([])
                 }
                 
                 return Observable.just(quizzes)

@@ -69,14 +69,10 @@ public extension NetworkService {
                                         KeychainService.remove(type: NetworkKeychainKind.refreshToken)
                                         // need improve this later
                                         // todo using wkwbview or using another framework to handle auth
-                                        var appCoordinator: AppCoordinator!
-                                        let disposeBag = DisposeBag()
-                                        var window: UIWindow?
-                                        window = UIWindow()
-                                        appCoordinator = AppCoordinator(window: window!)
-                                        appCoordinator.start()
-                                            .subscribe()
-                                            .disposed(by: disposeBag)
+                                        
+                                        let url = "\(AppContext.instance.infoForKey("DOMAIN_SYMBOLIC"))/oauth/authorize?client_id=\(AppContext.instance.infoForKey("CLIENT_ID"))&response_type=code&redirect_uri=\(AppContext.instance.infoForKey("REDIRECT_URI"))&scope="
+                                        UIApplication.shared.open(URL(string: url)!, options: [:], completionHandler: nil)
+
                                     }))
                                     alert.show()
                                 }
