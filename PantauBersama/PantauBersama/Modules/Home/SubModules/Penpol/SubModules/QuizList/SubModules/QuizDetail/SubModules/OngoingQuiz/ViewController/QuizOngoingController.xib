@@ -55,8 +55,8 @@
                                         <userDefinedRuntimeAttribute type="string" keyPath="typeButton" value="bold"/>
                                     </userDefinedRuntimeAttributes>
                                 </button>
-                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="25w-Cc-eoB">
-                                    <rect key="frame" x="5" y="25" width="156.66666666666666" height="496"/>
+                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="25w-Cc-eoB">
+                                    <rect key="frame" x="0.0" y="25" width="166.66666666666666" height="496"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 </textView>
@@ -65,8 +65,8 @@
                             <constraints>
                                 <constraint firstItem="sbp-BE-KSU" firstAttribute="top" secondItem="25w-Cc-eoB" secondAttribute="bottom" constant="5" id="CrK-j2-oi0"/>
                                 <constraint firstAttribute="trailing" secondItem="sbp-BE-KSU" secondAttribute="trailing" id="D31-rD-dZE"/>
-                                <constraint firstItem="25w-Cc-eoB" firstAttribute="leading" secondItem="Bwv-sD-hk2" secondAttribute="leading" constant="5" id="IeY-PU-OQs"/>
-                                <constraint firstAttribute="trailing" secondItem="25w-Cc-eoB" secondAttribute="trailing" constant="5" id="W2O-1U-Lo4"/>
+                                <constraint firstItem="25w-Cc-eoB" firstAttribute="leading" secondItem="Bwv-sD-hk2" secondAttribute="leading" priority="250" id="IeY-PU-OQs"/>
+                                <constraint firstAttribute="trailing" secondItem="25w-Cc-eoB" secondAttribute="trailing" priority="250" id="W2O-1U-Lo4"/>
                                 <constraint firstItem="sbp-BE-KSU" firstAttribute="leading" secondItem="Bwv-sD-hk2" secondAttribute="leading" id="e3J-N4-Ahm"/>
                                 <constraint firstAttribute="bottom" secondItem="sbp-BE-KSU" secondAttribute="bottom" id="nZH-3X-hlA"/>
                                 <constraint firstItem="25w-Cc-eoB" firstAttribute="top" secondItem="Bwv-sD-hk2" secondAttribute="top" constant="25" id="oGd-a2-eP0"/>
@@ -91,8 +91,8 @@
                                         <userDefinedRuntimeAttribute type="string" keyPath="typeButton" value="bold"/>
                                     </userDefinedRuntimeAttributes>
                                 </button>
-                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="ZzJ-be-NeW">
-                                    <rect key="frame" x="5" y="25" width="156.33333333333334" height="496"/>
+                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZzJ-be-NeW">
+                                    <rect key="frame" x="0.0" y="25" width="166.33333333333334" height="496"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 </textView>
@@ -101,10 +101,10 @@
                             <constraints>
                                 <constraint firstItem="EBh-42-4pT" firstAttribute="leading" secondItem="lZe-5B-kck" secondAttribute="leading" id="BeH-bM-kHU"/>
                                 <constraint firstItem="ZzJ-be-NeW" firstAttribute="top" secondItem="lZe-5B-kck" secondAttribute="top" constant="25" id="Ekp-Oo-Pmm"/>
-                                <constraint firstAttribute="trailing" secondItem="ZzJ-be-NeW" secondAttribute="trailing" constant="5" id="FJ6-Eu-s0G"/>
+                                <constraint firstAttribute="trailing" secondItem="ZzJ-be-NeW" secondAttribute="trailing" priority="250" id="FJ6-Eu-s0G"/>
                                 <constraint firstItem="EBh-42-4pT" firstAttribute="top" secondItem="ZzJ-be-NeW" secondAttribute="bottom" constant="5" id="bl4-Ds-WR1"/>
                                 <constraint firstAttribute="trailing" secondItem="EBh-42-4pT" secondAttribute="trailing" id="jGp-gG-EKN"/>
-                                <constraint firstItem="ZzJ-be-NeW" firstAttribute="leading" secondItem="lZe-5B-kck" secondAttribute="leading" constant="5" id="n8x-2J-gHh"/>
+                                <constraint firstItem="ZzJ-be-NeW" firstAttribute="leading" secondItem="lZe-5B-kck" secondAttribute="leading" priority="250" id="n8x-2J-gHh"/>
                                 <constraint firstAttribute="bottom" secondItem="EBh-42-4pT" secondAttribute="bottom" id="sEg-XY-LbI"/>
                             </constraints>
                         </view>

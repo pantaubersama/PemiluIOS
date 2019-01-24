@@ -37,6 +37,7 @@
 		84B2524C21CB83C700565D82 /* AppContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B2524B21CB83C700565D82 /* AppContext.swift */; };
 		84B2669921D4AE0900C7B783 /* UIAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B2669821D4AE0900C7B783 /* UIAlertController.swift */; };
 		84B2669B21D4B19200C7B783 /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B2669A21D4B19200C7B783 /* UIApplication.swift */; };
+		84BEA55521F9998500659980 /* HTMLToString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BEA55421F9998500659980 /* HTMLToString.swift */; };
 		84D831CC21C4DCBB00C437B7 /* Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84D831C221C4DCBB00C437B7 /* Common.framework */; };
 		84D831D121C4DCBB00C437B7 /* CommonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D831D021C4DCBB00C437B7 /* CommonTests.swift */; };
 		84D831D321C4DCBB00C437B7 /* Common.h in Headers */ = {isa = PBXBuildFile; fileRef = 84D831C521C4DCBB00C437B7 /* Common.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -94,6 +95,7 @@
 		84B2524B21CB83C700565D82 /* AppContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContext.swift; sourceTree = "<group>"; };
 		84B2669821D4AE0900C7B783 /* UIAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertController.swift; sourceTree = "<group>"; };
 		84B2669A21D4B19200C7B783 /* UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
+		84BEA55421F9998500659980 /* HTMLToString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTMLToString.swift; sourceTree = "<group>"; };
 		84D831C221C4DCBB00C437B7 /* Common.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Common.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		84D831C521C4DCBB00C437B7 /* Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
 		84D831C621C4DCBB00C437B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 				11E798D721E327D5002AABDC /* StringFormatter.swift */,
 				84FC35EF21E89FC4005FB016 /* ValidEmail.swift */,
 				84FF8A9C21F21E9000AA8CF3 /* AppVersion.swift */,
+				84BEA55421F9998500659980 /* HTMLToString.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -445,6 +448,7 @@
 				84B2524C21CB83C700565D82 /* AppContext.swift in Sources */,
 				8441DB4921CCC91500B078DF /* UITextField.swift in Sources */,
 				84B2669B21D4B19200C7B783 /* UIApplication.swift in Sources */,
+				84BEA55521F9998500659980 /* HTMLToString.swift in Sources */,
 				11C7BB2721DB3C34008CA49B /* UIAlertController+Dialog.swift in Sources */,
 				8428AA8B21C7A2EC0008E975 /* UIView.swift in Sources */,
 				84619D4621DB683300EB58CF /* DateHelper.swift in Sources */,
