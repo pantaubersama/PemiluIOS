@@ -69,8 +69,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // MARK: Register Notifications
         registerForRemoteNotifications(application)
         Messaging.messaging().delegate = self
-        // MARK: Check new version
-        checkNewVersion()
         
         #if DEBUG
             let filePath = Bundle.main.path(forResource: "GoogleService-Info-Staging", ofType: "plist")!
@@ -83,7 +81,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         #endif
         
         // MARK: Check version
-        
+        UserDefaults.Account.set(false, forKey: .skipVersion)
         
         return true
     }
@@ -219,14 +217,6 @@ extension AppDelegate {
             })
             .disposed(by: disposeBag)
         }
-    
-    func checkNewVersion() {
-        NetworkService.instance.requestObject(LinimasaAPI.appVersions(type: "ios"), c: BaseResponse<AppVersionResponse>.self)
-            .subscribe(onSuccess: { (response) in
-                AppState.saveVersion(response.data)
-            })
-            .disposed(by: disposeBag)
-    }
 }
 
 // MARK: - UNUserNotification

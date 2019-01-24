@@ -55,14 +55,17 @@ extension BadgeCell: IReusableCell {
         descriptionBadges.text = item.badges.description
         nameBadges.textColor = item.isAchieved ? Color.primary_black : Color.grey_three
         descriptionBadges.textColor = item.isAchieved ? Color.primary_black : Color.grey_three
-        shareButton.isHidden = !item.isAchieved
         
         shareButton.rx.tap
             .map { item.idAchieved ?? "" }
             .bind(to: item.viewModel.input.shareI)
             .disposed(by: bag)
         
-        shareButton.isHidden = !item.isMyAccount
+        if item.isMyAccount == true {
+            shareButton.isHidden = item.isAchieved ? false : true
+        } else {
+            shareButton.isHidden = true
+        }
         
         disposeBag = bag
     }

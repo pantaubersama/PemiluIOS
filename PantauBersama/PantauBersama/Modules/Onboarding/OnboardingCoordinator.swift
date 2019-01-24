@@ -49,7 +49,6 @@ extension OnboardingCoordinator: OnboardingNavigator {
     
     func bypass() -> Observable<Void> {
         let homeCoordinator = HomeCoordinator(window: self.window)
-        homeCoordinator.selectedIndex = 0
         return coordinate(to: homeCoordinator)
     }
     

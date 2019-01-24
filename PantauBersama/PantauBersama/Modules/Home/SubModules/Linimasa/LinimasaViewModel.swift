@@ -103,22 +103,28 @@ final class LinimasaViewModel: ViewModelType {
         
         // TODO
         // Check for updates minor, feature and force
-        let newVersion: Observable<AppVersionResponse> = AppState.local(key: .version)
+        let newVersion = NetworkService.instance
+            .requestObject(LinimasaAPI.appVersions(type: "ios"),
+                           c: BaseResponse<AppVersionResponse>.self)
+            .map({ $0.data })
+            .do(onSuccess: { (response) in
+                AppState.saveVersion(response)
+            })
+            .asObservable()
+            .catchErrorJustComplete()
         
         let versions = viewWillppearS.flatMapLatest({ newVersion })
             .flatMapLatest { (version) -> Observable<Void> in
-                // check from condition skip
-                if UserDefaults.Account.get(forKey: .skipVersion) == true {
-                    if version.app.forceUpdate == true {
+                if let newVersion = version.app.version {
+                    let state = newVersion.compare(versionString(), options: .numeric) == .orderedDescending
+                    if state == true && version.app.forceUpdate == true {
                         return navigator.launchUpdates(type: .major)
-                    } // not checking if feature update or minor
-                } else {
-                    if version.app.forceUpdate == true {
-                        return navigator.launchUpdates(type: .major)
-                    } else {
-                        if let new = version.app.version {
-                            if new.compare(versionString(), options: .numeric) == .orderedDescending {
-                                print("We have new ones in AppStore")
+                    } else if state == true {
+                        // check from condition skip
+                        if let conditionSkip: Bool = UserDefaults.Account.get(forKey: .skipVersion) {
+                            if conditionSkip == true {
+                                return Observable.empty()
+                            } else {
                                 return navigator.launchUpdates(type: .minor)
                             }
                         }
