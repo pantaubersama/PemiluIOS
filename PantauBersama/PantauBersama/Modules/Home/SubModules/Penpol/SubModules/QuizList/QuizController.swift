@@ -45,6 +45,8 @@ class QuizController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        viewModel.input.loadQuizTrigger.onNext(())
+        
         tableView.delegate = nil
         tableView.dataSource = nil
         viewModel.output.quizzes

@@ -36,7 +36,7 @@
                         <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v6T-XM-tWB" customClass="RoundView" customModule="Common">
                             <rect key="frame" x="131" y="0.0" width="32" height="32"/>
                             <subviews>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icDummyPerson" translatesAutoresizingMaskIntoConstraints="NO" id="HyE-Ua-v4L">
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icDummyPerson" translatesAutoresizingMaskIntoConstraints="NO" id="HyE-Ua-v4L">
                                     <rect key="frame" x="0.0" y="0.0" width="32" height="32"/>
                                 </imageView>
                             </subviews>
@@ -185,7 +185,7 @@
     </objects>
     <resources>
         <image name="group2179" width="360" height="640"/>
-        <image name="icDummyPerson" width="64" height="64"/>
+        <image name="icDummyPerson" width="48" height="48"/>
         <image name="outlineShareWhite24Px" width="24" height="24"/>
     </resources>
 </document>
