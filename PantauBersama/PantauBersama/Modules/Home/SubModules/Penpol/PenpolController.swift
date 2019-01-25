@@ -57,7 +57,7 @@ class PenpolController: UIViewController {
         
         segmentedControl.rx.value
             .observeOn(MainScheduler.instance)
-            .subscribe(onNext : { (i) in
+            .subscribe(onNext : { [unowned self] (i) in
                 UIView.animate(withDuration: 0.3, animations: {
                     if i == 0 {
                         self.askController.view.alpha = 1.0
@@ -65,6 +65,8 @@ class PenpolController: UIViewController {
                         self.createAskButton.isHidden = false
                     }else {
                         self.quisController.view.alpha = 1.0
+                        self.quizViewModel.input.viewWillAppearTrigger.onNext(())
+                        self.quizViewModel.input.loadQuizTrigger.onNext(())
                         self.askController.view.alpha = 0.0
                         self.createAskButton.isHidden = true
                     }

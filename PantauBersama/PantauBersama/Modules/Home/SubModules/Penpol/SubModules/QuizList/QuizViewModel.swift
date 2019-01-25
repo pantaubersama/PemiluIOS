@@ -31,6 +31,7 @@ class QuizViewModel: ViewModelType {
         let infoTrigger: AnyObserver<Void>
         let shareTrendTrigger: AnyObserver<Void>
         let filterTrigger: AnyObserver<[PenpolFilterModel.FilterItem]>
+        let viewWillAppearTrigger: AnyObserver<Void>
     }
     
     struct Output {
@@ -54,6 +55,7 @@ class QuizViewModel: ViewModelType {
     private let shareTrendSubject = PublishSubject<Void>()
     private let filterSubject = PublishSubject<[PenpolFilterModel.FilterItem]>()
     private let quizRelay = BehaviorRelay<[QuizModel]>(value: [])
+    private let viewWillAppearS = PublishSubject<Void>()
     
     private let activityIndicator = ActivityIndicator()
     private let errorTracker = ErrorTracker()
@@ -89,7 +91,8 @@ class QuizViewModel: ViewModelType {
             shareTrigger: shareSubject.asObserver(),
             infoTrigger: infoSubject.asObserver(),
             shareTrendTrigger: shareTrendSubject.asObserver(),
-            filterTrigger: filterSubject.asObserver())
+            filterTrigger: filterSubject.asObserver(),
+            viewWillAppearTrigger: viewWillAppearS.asObserver())
         
         searchTrigger?.asObserver()
             .do(onNext: { [weak self](query) in
@@ -115,10 +118,10 @@ class QuizViewModel: ViewModelType {
             .flatMapLatest({navigator.shareTrend()})
             .asDriver(onErrorJustReturn: ())
         
-        let bannerInfo = loadQuizSubject
+        let bannerInfo = viewWillAppearS
             .flatMapLatest({ _ in self.bannerInfo() })
             .asDriverOnErrorJustComplete()
-        let totalResult = loadQuizSubject
+        let totalResult = Observable.combineLatest(viewWillAppearS.asObservable(), loadQuizSubject.asObservable())
             .flatMapLatest({ _ in self.totalResult() })
             .asDriverOnErrorJustComplete()
         
@@ -151,7 +154,7 @@ class QuizViewModel: ViewModelType {
             .mapToVoid()
             .asDriverOnErrorJustComplete()
         
-        loadQuizSubject
+        Observable.combineLatest(viewWillAppearS.asObservable(), loadQuizSubject.asObservable())
             .flatMapLatest({ [weak self](query) -> Observable<[QuizModel]> in
                 guard let weakSelf = self else { return Observable.empty() }
                 weakSelf.loadQuizKindOrder = 0
