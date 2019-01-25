@@ -79,21 +79,21 @@ class PenpolViewModel: ViewModelType {
         
         // MARK
         // Get local user response
-        let cloud = NetworkService.instance.requestObject(
-            PantauAuthAPI.me,
-            c: BaseResponse<UserResponse>.self)
-            .map({ $0.data })
-            .do(onSuccess: { (response) in
-                AppState.saveMe(response)
-            })
-            .trackError(errorTracker)
-            .trackActivity(activityIndicator)
-            .asObservable()
-            .catchErrorJustComplete()
+//        let cloud = NetworkService.instance.requestObject(
+//            PantauAuthAPI.me,
+//            c: BaseResponse<UserResponse>.self)
+//            .map({ $0.data })
+//            .do(onSuccess: { (response) in
+//                AppState.saveMe(response)
+//            })
+//            .trackError(errorTracker)
+//            .trackActivity(activityIndicator)
+//            .asObservable()
+//            .catchErrorJustComplete()
         
         let local: Observable<UserResponse> = AppState.local(key: .me)
         let userData = viewWillAppearSubject
-            .flatMapLatest({ Observable.merge(cloud, local) })
+            .flatMapLatest({ local })
             .asDriverOnErrorJustComplete()
         
         output = Output(searchSelected: search,

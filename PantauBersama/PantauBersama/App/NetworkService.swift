@@ -77,6 +77,7 @@ public extension NetworkService {
                                         appCoordinator.start()
                                             .subscribe()
                                             .disposed(by: disposeBag)
+
                                     }))
                                     alert.show()
                                 }
