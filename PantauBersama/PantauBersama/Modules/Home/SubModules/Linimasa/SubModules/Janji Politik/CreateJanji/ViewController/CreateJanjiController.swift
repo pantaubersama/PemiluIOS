@@ -45,6 +45,7 @@ class CreateJanjiController: UIViewController {
         let unggah = UIBarButtonItem(image: #imageLiteral(resourceName: "outlineImage24Px"), style: .plain, target: nil, action: nil)
         let doneBar = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(dismissKeyboard(sender:)))
         unggah.tintColor = Color.primary_black
+        doneBar.tintColor = Color.primary_black
         toolbar.items = [unggah, doneBar]
         contentJanji.inputAccessoryView = toolbar
         

@@ -145,6 +145,10 @@ class DetailJanjiController: UIViewController {
             
         }
         
+        if let thumb = data.creator.avatar.thumbnail.url {
+            self.avatar.af_setImage(withURL: URL(string: thumb)!)
+        }
+        
         nameLabel.text = data.creator.fullName
         motoLabel.text = data.creator.about ?? ""
         

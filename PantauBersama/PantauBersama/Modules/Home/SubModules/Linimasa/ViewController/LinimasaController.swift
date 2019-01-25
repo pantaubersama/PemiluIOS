@@ -123,7 +123,7 @@ class LinimasaController: UIViewController {
                     self.navbar.avatar.af_setImage(withURL: URL(string: thumbnail)!)
                 }
                 
-                self.isEnableCreateJanpol = user.cluster != nil
+                self.isEnableCreateJanpol = (user.cluster != nil && user.cluster?.isEligible == true)
             })
             .disposed(by: disposeBag)
         

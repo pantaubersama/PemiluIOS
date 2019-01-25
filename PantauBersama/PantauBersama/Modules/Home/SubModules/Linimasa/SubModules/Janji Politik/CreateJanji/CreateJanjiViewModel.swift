@@ -94,7 +94,7 @@ final class CreateJanjiViewModel: ICreateJanjiViewModel, ICreateJanjiViewModelIn
         
         let enablePost = Observable.combineLatest(titleS, bodyS)
             .map { (title, body) -> Bool in
-                return title.count > 0 && body.count > 0
+                return title.count > 0 && body.count > 0 && !body.containsInsensitive("Berikan deskripsi atau detil lebih lanjut terkait Janji Politik yang akan disampaikan di kolom ini.")
             }
             .startWith(false)
         
