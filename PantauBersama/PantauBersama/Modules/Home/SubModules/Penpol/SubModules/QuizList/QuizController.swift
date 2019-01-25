@@ -24,6 +24,9 @@ class QuizController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.delegate = nil
+        tableView.dataSource = nil
         tableView.registerReusableCell(QuizCell.self)
         tableView.rowHeight = 350
         tableView.separatorStyle = .none
@@ -39,6 +42,22 @@ class QuizController: UITableViewController {
         
         tableHeaderView.config(viewModel: viewModel)
         
+        viewModel.output.quizzes
+            .bind(to: tableView.rx.items) { [unowned self]tableView, row, item -> UITableViewCell in
+                // Loadmore trigger
+                if row == self.viewModel.output.quizzes.value.count - 1 {
+                    self.viewModel.input.nextPageTrigger.onNext(())
+                }
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: QuizCell.reuseIdentifier) as? QuizCell else {
+                    return UITableViewCell()
+                }
+                
+                cell.configureCell(item: QuizCell.Input(viewModel: self.viewModel, quiz: item))
+                cell.tag = row
+                
+                return cell
+            }.disposed(by: disposeBag)
+        
         bindViewModel()
     }
     
@@ -47,23 +66,6 @@ class QuizController: UITableViewController {
         
         viewModel.input.loadQuizTrigger.onNext(())
         
-        tableView.delegate = nil
-        tableView.dataSource = nil
-        viewModel.output.quizzes
-            .bind(to: tableView.rx.items) { [unowned self]tableView, row, item -> UITableViewCell in
-            // Loadmore trigger
-            if row == self.viewModel.output.quizzes.value.count - 1 {
-                self.viewModel.input.nextPageTrigger.onNext(())
-            }
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: QuizCell.reuseIdentifier) as? QuizCell else {
-                return UITableViewCell()
-            }
-            
-            cell.configureCell(item: QuizCell.Input(viewModel: self.viewModel, quiz: item))
-            cell.tag = row
-            
-            return cell
-        }.disposed(by: disposeBag)
     }
     
     private func bindViewModel() {
