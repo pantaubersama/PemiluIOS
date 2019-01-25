@@ -84,7 +84,7 @@
                                                                 <userDefinedRuntimeAttribute type="string" keyPath="typeLabel" value="bold"/>
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="group2092" translatesAutoresizingMaskIntoConstraints="NO" id="ugU-Tc-ZSr">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icDummyPerson" translatesAutoresizingMaskIntoConstraints="NO" id="ugU-Tc-ZSr">
                                                             <rect key="frame" x="163.5" y="58" width="48" height="48"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="48" id="hBg-Xj-e89"/>
@@ -320,6 +320,6 @@
         </view>
     </objects>
     <resources>
-        <image name="group2092" width="48" height="48"/>
+        <image name="icDummyPerson" width="48" height="48"/>
     </resources>
 </document>

@@ -33,7 +33,7 @@
                         <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xoi-5O-JIT" customClass="RoundView" customModule="Common">
                             <rect key="frame" x="139.5" y="0.0" width="64" height="64"/>
                             <subviews>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TdL-oU-tcH">
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icDummyPerson" translatesAutoresizingMaskIntoConstraints="NO" id="TdL-oU-tcH">
                                     <rect key="frame" x="0.0" y="0.0" width="64" height="64"/>
                                 </imageView>
                             </subviews>
@@ -98,4 +98,7 @@
             <point key="canvasLocation" x="8.8000000000000007" y="-119.64017991004499"/>
         </view>
     </objects>
+    <resources>
+        <image name="icDummyPerson" width="48" height="48"/>
+    </resources>
 </document>

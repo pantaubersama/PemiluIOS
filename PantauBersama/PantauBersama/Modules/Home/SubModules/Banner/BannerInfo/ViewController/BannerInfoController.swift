@@ -57,7 +57,7 @@ class BannerInfoController: UIViewController {
             return
         }
         
-        lblTitle.text = data.pageName.title
+        lblTitle.text = data.title // change name with API
         tvDescription.text =  data.body
         tvDescription.textContainer.lineBreakMode = .byWordWrapping
         self.container.layoutIfNeeded()

@@ -20,7 +20,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Pertanyaan pertama" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3At-xp-RoK" customClass="Label" customModule="Common">
-                        <rect key="frame" x="16" y="11" width="290" height="20.5"/>
+                        <rect key="frame" x="16" y="11" width="290" height="12"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -30,10 +30,10 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Visi untuk indonesia kedepannya?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BNj-7Y-N3S" customClass="Label" customModule="Common">
-                        <rect key="frame" x="16" y="31.5" width="290" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Visi untuk indonesia kedepannya?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BNj-7Y-N3S" customClass="Label" customModule="Common">
+                        <rect key="frame" x="16" y="23" width="290" height="14.5"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="21" id="CcZ-yn-AZE"/>
+                            <constraint firstAttribute="height" priority="250" constant="21" id="CcZ-yn-AZE"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
@@ -46,21 +46,21 @@
                         </userDefinedRuntimeAttributes>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="npS-M5-aR2">
-                        <rect key="frame" x="0.0" y="62" width="322" height="2"/>
+                        <rect key="frame" x="0.0" y="47" width="322" height="2"/>
                         <color key="backgroundColor" red="0.92931067943572998" green="0.92946994304656982" blue="0.92930072546005249" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="2" id="SmM-hQ-1bQ"/>
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rfp-qL-FzD">
-                        <rect key="frame" x="0.0" y="330" width="322" height="2"/>
+                        <rect key="frame" x="0.0" y="328.5" width="322" height="2"/>
                         <color key="backgroundColor" red="0.92931067940000001" green="0.92946994299999997" blue="0.92930072549999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="2" id="Odp-3P-vFJ"/>
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jokowi - Makruf" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YFy-3U-qfq" customClass="Label" customModule="Common">
-                        <rect key="frame" x="16" y="69.5" width="290" height="21"/>
+                        <rect key="frame" x="16" y="54.5" width="290" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="p0b-if-6I2"/>
                         </constraints>
@@ -75,7 +75,7 @@
                         </userDefinedRuntimeAttributes>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wRT-RY-fAF" customClass="Label" customModule="Common">
-                        <rect key="frame" x="16" y="96.5" width="290" height="142.5"/>
+                        <rect key="frame" x="16" y="81.5" width="290" height="72"/>
                         <constraints>
                             <constraint firstAttribute="height" relation="lessThanOrEqual" priority="250" constant="173" id="o5f-rb-KmW"/>
                         </constraints>
@@ -90,7 +90,7 @@
                         </userDefinedRuntimeAttributes>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jokowi - Makruf" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XZ0-T4-P7m" customClass="Label" customModule="Common">
-                        <rect key="frame" x="16" y="251.5" width="290" height="21"/>
+                        <rect key="frame" x="16" y="166" width="290" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="dOo-eH-3nG"/>
                         </constraints>
@@ -105,7 +105,7 @@
                         </userDefinedRuntimeAttributes>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gKQ-NB-TOV" customClass="Label" customModule="Common">
-                        <rect key="frame" x="16" y="278.5" width="290" height="46"/>
+                        <rect key="frame" x="16" y="193" width="290" height="130"/>
                         <constraints>
                             <constraint firstAttribute="height" priority="250" constant="185" id="Rj1-4u-hww"/>
                         </constraints>
@@ -120,7 +120,7 @@
                         </userDefinedRuntimeAttributes>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Jawabanmu:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8LZ-LB-TGl" customClass="Label" customModule="Common">
-                        <rect key="frame" x="16" y="343" width="101" height="20.5"/>
+                        <rect key="frame" x="16" y="341.5" width="101" height="22"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="101" id="nq0-7u-Mm7"/>
                         </constraints>
@@ -134,10 +134,10 @@
                             <userDefinedRuntimeAttribute type="string" keyPath="typeLabel" value="bold"/>
                         </userDefinedRuntimeAttributes>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Prabowo - Sandi" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nHV-pa-meL" customClass="Label" customModule="Common">
-                        <rect key="frame" x="125" y="343" width="196" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Prabowo - Sandi" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nHV-pa-meL" customClass="Label" customModule="Common">
+                        <rect key="frame" x="125" y="341.5" width="196" height="22"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="21" id="OxG-Iq-KTW"/>
+                            <constraint firstAttribute="height" priority="250" constant="21" id="OxG-Iq-KTW"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.94996398687362671" green="0.46688610315322876" blue="0.1163426861166954" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -150,7 +150,7 @@
                         </userDefinedRuntimeAttributes>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HUh-Jc-LkM">
-                        <rect key="frame" x="0.0" y="244" width="322" height="2"/>
+                        <rect key="frame" x="0.0" y="158.5" width="322" height="2"/>
                         <color key="backgroundColor" red="0.92931067940000001" green="0.92946994299999997" blue="0.92930072549999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="2" id="JzV-fa-rcA"/>
@@ -195,7 +195,7 @@
                     <constraint firstItem="rfp-qL-FzD" firstAttribute="top" secondItem="gKQ-NB-TOV" secondAttribute="bottom" constant="5.5" id="gfr-Xl-ZAm"/>
                     <constraint firstAttribute="trailing" secondItem="HUh-Jc-LkM" secondAttribute="trailing" id="hVV-QZ-CJh"/>
                     <constraint firstItem="ydS-OJ-4tf" firstAttribute="top" secondItem="8LZ-LB-TGl" secondAttribute="bottom" constant="15" id="iDu-CU-Dfr"/>
-                    <constraint firstItem="npS-M5-aR2" firstAttribute="top" secondItem="BNj-7Y-N3S" secondAttribute="bottom" constant="9.5" id="jpx-6u-Rtp"/>
+                    <constraint firstItem="npS-M5-aR2" firstAttribute="top" secondItem="BNj-7Y-N3S" secondAttribute="bottom" priority="750" constant="9.5" id="jpx-6u-Rtp"/>
                     <constraint firstItem="YFy-3U-qfq" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="m2v-Jo-m4M"/>
                     <constraint firstItem="HUh-Jc-LkM" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="maB-om-FNi"/>
                     <constraint firstItem="8LZ-LB-TGl" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="nsD-3u-oJe"/>

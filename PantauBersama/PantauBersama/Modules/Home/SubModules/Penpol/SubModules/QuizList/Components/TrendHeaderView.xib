@@ -35,7 +35,7 @@
                                         <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7bC-1s-TO8" customClass="RoundView" customModule="Common">
                                             <rect key="frame" x="70" y="0.0" width="60" height="60"/>
                                             <subviews>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" insetsLayoutMarginsFromSafeArea="NO" image="icDummyPerson" translatesAutoresizingMaskIntoConstraints="NO" id="yjj-FM-45B">
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" insetsLayoutMarginsFromSafeArea="NO" image="group2092" translatesAutoresizingMaskIntoConstraints="NO" id="yjj-FM-45B">
                                                     <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
                                                 </imageView>
                                             </subviews>
@@ -50,7 +50,7 @@
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                    <real key="value" value="32"/>
+                                                    <real key="value" value="30"/>
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </view>
@@ -139,7 +139,7 @@
         </view>
     </objects>
     <resources>
-        <image name="icDummyPerson" width="64" height="64"/>
+        <image name="group2092" width="48" height="48"/>
         <image name="icShare" width="20" height="20"/>
     </resources>
 </document>
