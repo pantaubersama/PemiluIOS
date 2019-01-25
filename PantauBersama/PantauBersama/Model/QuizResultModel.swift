@@ -34,6 +34,6 @@ extension QuizResultModel {
         let userData: Data? = UserDefaults.Account.get(forKey: .me)
         let userResponse = try? JSONDecoder().decode(UserResponse.self, from: userData ?? Data())
         
-        return "Dari hasil pilhan di Quiz minggu pertama, \n\(userResponse?.user.fullName ?? "") lebih suka jawaban dari Paslon no \(paslonNo)"
+        return "Dari hasil pilihan di Quiz minggu pertama, \n\(userResponse?.user.fullName ?? "") lebih suka jawaban dari Paslon no \(paslonNo)"
     }
 }
