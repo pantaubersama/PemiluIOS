@@ -48,6 +48,7 @@ class PilpresViewModel: ViewModelType {
     let activityIndicator = ActivityIndicator()
     let headerViewModel = BannerHeaderViewModel()
     private var filterItems: [PenpolFilterModel.FilterItem] = []
+    private var searchQuery: String?
     private let disposeBag = DisposeBag()
     
     init(navigator: LinimasaNavigator, searchTrigger: PublishSubject<String>? = nil, showTableHeader: Bool) {
@@ -90,6 +91,9 @@ class PilpresViewModel: ViewModelType {
             .asDriverOnErrorJustComplete()
         
         searchTrigger?.asObserver()
+            .do(onNext: { [unowned self](query) in
+                self.searchQuery = query
+            })
             .bind(to: input.refreshTrigger)
             .disposed(by: disposeBag)
         
@@ -97,7 +101,7 @@ class PilpresViewModel: ViewModelType {
         // Get feeds pagination
         let feedsItems = refreshSubject.startWith("")
             .flatMapLatest { [unowned self] (query) -> Observable<[Feeds]> in
-                return self.paginateItems(nextBatchTrigger: self.nextSubject.asObservable(), filter: self.filterItems.first?.paramValue ?? "team_all", query: query)
+                return self.paginateItems(nextBatchTrigger: self.nextSubject.asObservable(), filter: self.filterItems.first?.paramValue ?? "team_all", query: self.searchQuery ?? query)
                     .trackError(self.errorTracker)
                     .trackActivity(self.activityIndicator)
                     .catchErrorJustReturn([])

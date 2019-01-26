@@ -62,7 +62,7 @@ class QuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelInput
     
     private var filterItems: [PenpolFilterModel.FilterItem] = []
     private(set) var disposeBag = DisposeBag()
-    private var searchQuery = ""
+    private var searchQuery: String?
     
     init(navigator: PenpolNavigator, searchTrigger: PublishSubject<String>? = nil, loadCreatedTrigger: PublishSubject<Void>? = nil, showTableHeader: Bool) {
         refreshI = refreshSubject.asObserver()
@@ -114,7 +114,7 @@ class QuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelInput
         
         // MARK:
         // Get question pagination
-        refreshSubject.startWith("").flatMapLatest { [unowned self] (query) -> Observable<[QuestionModel]> in
+        refreshSubject.startWith(self.searchQuery ?? "").flatMapLatest { [unowned self] (query) -> Observable<[QuestionModel]> in
             self.filterItems.removeAll()
             let cachedFilter = PenpolFilterModel.generateQuestionFilter()
             cachedFilter.forEach { (filterModel) in
@@ -140,7 +140,7 @@ class QuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelInput
                 orderedBy = orderByString ?? "created_at"
             }
                 
-            return self.paginateItems(nextBatchTrigger: self.nextSubject.asObservable(), filteredBy: filteredBy ?? "user_verified_all", orderedBy: orderedBy ?? "cached_votes_up", query: query)
+            return self.paginateItems(nextBatchTrigger: self.nextSubject.asObservable(), filteredBy: filteredBy ?? "user_verified_all", orderedBy: orderedBy ?? "cached_votes_up", query: self.searchQuery ?? query)
                 .trackError(self.errorTracker)
                 .trackActivity(self.activityIndicator)
                 .catchErrorJustReturn([])
@@ -331,7 +331,7 @@ class QuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelInput
                 .paginate(nextPageTrigger: nextBatchTrigger, hasNextPage: { (result) -> Bool in
                     return result.batch.next().hasNextPage
                 }, nextPageFactory: { (result) -> Observable<Page<[QuestionModel]>> in
-                    return self.recursivelyPaginateItems(batch: result.batch.next(), nextBatchTrigger: nextBatchTrigger, filteredBy: filteredBy, orderedBy: orderedBy, query: self.searchQuery)
+                    return self.recursivelyPaginateItems(batch: result.batch.next(), nextBatchTrigger: nextBatchTrigger, filteredBy: filteredBy, orderedBy: orderedBy, query: self.searchQuery ?? query)
                 })
                 .share(replay: 1, scope: .whileConnected)
             

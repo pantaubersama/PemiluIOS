@@ -49,6 +49,7 @@ class JanpolListViewModel: IJanpolListViewModel, IJanpolListViewModelInput, IJan
     internal let headerViewModel = BannerHeaderViewModel()
     
     private var filterItems: [PenpolFilterModel.FilterItem] = []
+    private var searchQuery: String?
     private let disposeBag = DisposeBag()
     
     init(navigator: IJanpolNavigator, searchTrigger: PublishSubject<String>? = nil, showTableHeader: Bool) {
@@ -77,12 +78,12 @@ class JanpolListViewModel: IJanpolListViewModel, IJanpolListViewModelInput, IJan
                 let filter = self.filterItems.filter({ $0.paramKey == "filter_by"}).first?.paramValue
                 
                 if cid != "" {
-                    return self.paginateItems(nextBatchTrigger: self.nextSubject.asObservable(), cid: cid ?? "", filter: filter ?? "", query: query)
+                    return self.paginateItems(nextBatchTrigger: self.nextSubject.asObservable(), cid: cid ?? "", filter: filter ?? "", query: self.searchQuery ?? query)
                         .trackError(self.errorTracker)
                         .trackActivity(self.activityIndicator)
                         .catchErrorJustReturn([])
                 } else {
-                    return self.paginateItems(nextBatchTrigger: self.nextSubject.asObservable(), cid: cid ?? "", filter: filter ?? "", query: query)
+                    return self.paginateItems(nextBatchTrigger: self.nextSubject.asObservable(), cid: cid ?? "", filter: filter ?? "", query: self.searchQuery ?? query)
                         .trackError(self.errorTracker)
                         .trackActivity(self.activityIndicator)
                         .catchErrorJustReturn([])
@@ -155,6 +156,9 @@ class JanpolListViewModel: IJanpolListViewModel, IJanpolListViewModelInput, IJan
             .asDriverOnErrorJustComplete()
         
         searchTrigger?.asObserver()
+            .do(onNext: { [unowned self](query) in
+                self.searchQuery = query
+            })
             .bind(to: refreshI)
             .disposed(by: disposeBag)
         
