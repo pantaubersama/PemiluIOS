@@ -45,12 +45,12 @@
                             </constraints>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CIp-yW-SEX" customClass="Label" customModule="Common">
-                            <rect key="frame" x="46.5" y="271.5" width="282" height="34"/>
+                            <rect key="frame" x="46.5" y="272.5" width="282" height="81.5"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="282" id="rTi-Wz-Bdb"/>
                             </constraints>
                             <string key="text">Pantau terus di Web dan Sosial Media 
-Pantau Bersama untuk info tanggal updatenya</string>
+Pantau Bersama untuk info tanggal update-nya</string>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -61,7 +61,7 @@ Pantau Bersama untuk info tanggal updatenya</string>
                             </userDefinedRuntimeAttributes>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coming Soon" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8y5-9w-Y1v" customClass="Label" customModule="Common">
-                            <rect key="frame" x="140.5" y="240" width="94" height="19.5"/>
+                            <rect key="frame" x="136" y="240" width="103" height="20.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -73,7 +73,7 @@ Pantau Bersama untuk info tanggal updatenya</string>
                             </userDefinedRuntimeAttributes>
                         </label>
                         <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="bj0-Ov-eBR">
-                            <rect key="frame" x="85.5" y="329.5" width="204" height="36"/>
+                            <rect key="frame" x="85.5" y="378" width="204" height="36"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9yJ-qq-KDJ">
                                     <rect key="frame" x="0.0" y="0.0" width="36" height="36"/>

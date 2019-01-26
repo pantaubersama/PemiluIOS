@@ -25,9 +25,8 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VY7-EO-c5R">
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VY7-EO-c5R">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="255"/>
-                    <color key="backgroundColor" red="0.95000237229999995" green="0.46290111540000001" blue="0.1104531065" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="255" id="IcD-W2-CQo"/>
                     </constraints>
@@ -36,7 +35,7 @@
                     <rect key="frame" x="18" y="225" width="284" height="313"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quiz Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Qh-PC-8Fw" customClass="Label" customModule="Common">
-                            <rect key="frame" x="8" y="17" width="268" height="22"/>
+                            <rect key="frame" x="8" y="17" width="268" height="20.5"/>
                             <constraints>
                                 <constraint firstAttribute="height" priority="250" constant="22" id="0Uw-41-DZO"/>
                             </constraints>
@@ -51,7 +50,7 @@
                             </userDefinedRuntimeAttributes>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="question count" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="01h-AL-zbM" customClass="Label" customModule="Common">
-                            <rect key="frame" x="8" y="39" width="268" height="20"/>
+                            <rect key="frame" x="8" y="37.5" width="268" height="20"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="20" id="vtT-pU-2Mq"/>
                             </constraints>
@@ -65,7 +64,7 @@
                             </userDefinedRuntimeAttributes>
                         </label>
                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X7p-nH-OxB">
-                            <rect key="frame" x="8" y="96.5" width="268" height="166.5"/>
+                            <rect key="frame" x="8" y="95" width="268" height="168"/>
                             <string key="text">Pilihlah salah satu jawaban yang paling kamu sukai dari 2 pilihan yang ada. Ikuti kuis hingga selesai dan tunggu kejutan hasilnya</string>
                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>

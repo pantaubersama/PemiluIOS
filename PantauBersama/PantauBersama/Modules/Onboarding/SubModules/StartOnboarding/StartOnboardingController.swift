@@ -75,7 +75,7 @@ final class StartOnboardingController: UIViewController {
         let ob = ItemOnboardingController()
         switch item {
         case .firstItem:
-            ob.item = OnboardingiItem(title: "Voice Over Noise", description: "Linimasa konten kampanye resmi tanpa sampah Informasi.", lottieAnimationView: "ob2_linimasa")
+            ob.item = OnboardingiItem(title: "Voice Over Noise", description: "Linimasa konten kampanye resmi tanpa sampah informasi.", lottieAnimationView: "ob2_linimasa")
             return ob
         case .secondItem:
             ob.item = OnboardingiItem(title: "Understanding Over Branding", description: "Fleksibilitas uji preferensi kebijakan kandidat calon pemimpin.", lottieAnimationView: "ob3_penpol")

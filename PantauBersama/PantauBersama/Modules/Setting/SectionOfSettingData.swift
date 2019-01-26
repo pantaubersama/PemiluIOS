@@ -48,7 +48,7 @@ enum SettingData {
         case .pusatBantuan:
             return "Pusat Bantuan"
         case .pedomanKomunitas:
-            return "Pedoman Komunitas"
+            return "Panduan Komunitas"
         case .tentang:
             return "Tentang Pantau Bersama"
         case .rate:

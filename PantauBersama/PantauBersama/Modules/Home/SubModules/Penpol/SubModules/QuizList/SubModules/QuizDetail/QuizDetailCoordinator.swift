@@ -32,6 +32,7 @@ class QuizDetailCoordinator: BaseCoordinator<Void>, QuizDetailNavigator {
         viewController.viewModel = viewModel
         viewController.hidesBottomBarWhenPushed = true
         navigationController.pushViewController(viewController, animated: true)
+        navigationController.interactivePopGestureRecognizer?.delegate = nil
         
         return finish.do(onNext: { [weak self] (_) in
             self?.navigationController.popViewController(animated: true)

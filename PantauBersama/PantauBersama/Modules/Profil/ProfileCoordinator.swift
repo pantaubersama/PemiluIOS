@@ -43,6 +43,7 @@ final class ProfileCoordinator: BaseCoordinator<Void> {
         viewController.userId = userId
         viewController.hidesBottomBarWhenPushed = true
         navigationController.pushViewController(viewController, animated: true)
+        navigationController.interactivePopGestureRecognizer?.delegate = nil
         return Observable.empty()
     }
 }
