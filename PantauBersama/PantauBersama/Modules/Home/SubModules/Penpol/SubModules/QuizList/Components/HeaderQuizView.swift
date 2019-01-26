@@ -30,7 +30,7 @@ class HeaderQuizView: UIView {
             bannerInfoQuizView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             bannerInfoQuizView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             bannerInfoQuizView.topAnchor.constraint(equalTo: self.topAnchor),
-            bannerInfoQuizView.bottomAnchor.constraint(equalTo: trendHeaderView.topAnchor),
+            bannerInfoQuizView.heightAnchor.constraint(equalToConstant: 115),
             
             // MARK: constraint trendHeaderView
             trendHeaderView.topAnchor.constraint(equalTo: bannerInfoQuizView.bottomAnchor),

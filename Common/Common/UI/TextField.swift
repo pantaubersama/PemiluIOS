@@ -8,6 +8,12 @@
 
 import UIKit
 
+
+enum TextFieldType: String {
+    case bw = "BwModelicaSS01-BoldCondensed"
+    case lato = "Lato-Bold"
+}
+
 @IBDesignable
 public class TextField: UITextField {
     
@@ -43,15 +49,44 @@ public class TextField: UITextField {
         }
     }
     
+    func initFont() {
+        self.font = UIFont(name: self.fontName, size: self.fontSize)
+    }
+    
+    @IBInspectable
+    public var fontSize: CGFloat = 12 {
+        didSet {
+            initFont()
+        }
+    }
+
+    var fontName: String = "BwModelicaSS01-BoldCondensed"
+    
+    
+    @IBInspectable
+    public var typeTextField: String = "lato" {
+        didSet {
+            if let newFont: TextFieldType = TextFieldType(rawValue: self.typeTextField.lowercased()) {
+                switch newFont {
+                case .bw:
+                    self.fontName = "BwModelicaSS01-BoldCondensed"
+                case .lato:
+                    self.fontName = "Lato-Bold"
+                }
+            }
+            initFont()
+        }
+    }
+    
     func setupTextField() {
         self.borderStyle = .none
         self.setBottomBorder(color: lineColor)
         
         if let `placeholder` = placeholder {
-            self.font = UIFont(name: "BwModelicaSS01-BoldCondensed", size: 14)
+            self.font = UIFont(name: "BwModelicaSS01-BoldCondensed", size: 12)
             let attributes: [NSAttributedString.Key: Any] = [
                 NSAttributedString.Key.foregroundColor: Color.grey_two,
-                NSAttributedString.Key.font: UIFont(name: "BwModelicaSS01-BoldCondensed", size: 14) ?? UIFont.systemFont(ofSize: 14)
+                NSAttributedString.Key.font: UIFont(name: "BwModelicaSS01-BoldCondensed", size: 12) ?? UIFont.systemFont(ofSize: 14)
             ]
             self.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: attributes)
         }
