@@ -84,10 +84,8 @@ class UserQuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelI
         // MARK:
         // Get question pagination
         refreshSubject.startWith("").flatMapLatest { [unowned self] (query) -> Observable<[QuestionModel]> in
-            let filteredBy = self.filterItems.filter({ $0.paramKey == "filter_by"}).first?.paramValue
-            let orderedBy = self.filterItems.filter({ $0.paramKey == "order_by"}).first?.paramValue
             
-            return self.paginateItems(nextBatchTrigger: self.nextSubject.asObservable(), filteredBy: filteredBy ?? "user_verified_all", orderedBy: orderedBy ?? "cached_votes_up", query: query)
+            return self.paginateItems(nextBatchTrigger: self.nextSubject.asObservable(), query: query)
                 .trackError(self.errorTracker)
                 .trackActivity(self.activityIndicator)
                 .catchErrorJustReturn([])
@@ -247,7 +245,7 @@ class UserQuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelI
     
     func recursivelyPaginateItems(
         batch: Batch,
-        nextBatchTrigger: Observable<Void>, filteredBy: String, orderedBy: String, query: String) ->
+        nextBatchTrigger: Observable<Void>, query: String) ->
         Observable<Page<[QuestionModel]>> {
             return NetworkService.instance
                 .requestObject(
@@ -257,7 +255,7 @@ class UserQuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelI
                 .paginate(nextPageTrigger: nextBatchTrigger, hasNextPage: { (result) -> Bool in
                     return result.batch.next().hasNextPage
                 }, nextPageFactory: { (result) -> Observable<Page<[QuestionModel]>> in
-                    self.recursivelyPaginateItems(batch: result.batch.next(), nextBatchTrigger: nextBatchTrigger, filteredBy: filteredBy, orderedBy: orderedBy, query: query)
+                    self.recursivelyPaginateItems(batch: result.batch.next(), nextBatchTrigger: nextBatchTrigger, query: query)
                 })
                 .share(replay: 1, scope: .whileConnected)
             

@@ -79,7 +79,7 @@ class QuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelInput
         
         if let externalLoadTrigger = loadCreatedTrigger {
             externalLoadTrigger.flatMapLatest { [unowned self](_) -> Observable<[QuestionModel]> in
-                return self.paginateItems(nextBatchTrigger: self.nextSubject.asObservable(), filteredBy: "user_verified_all", orderedBy: "created_at", query: "")
+                return self.paginateItems(nextBatchTrigger: self.nextSubject.asObservable(), query: "")
                     .trackError(self.errorTracker)
                     .trackActivity(self.activityIndicator)
                     .catchErrorJustReturn([])
@@ -101,7 +101,7 @@ class QuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelInput
             .disposed(by: disposeBag)
         
         loadCreated.flatMapLatest { [unowned self](_) -> Observable<[QuestionModel]> in
-            return self.paginateItems(nextBatchTrigger: self.nextSubject.asObservable(), filteredBy: "user_verified_all", orderedBy: "created_at", query: "")
+            return self.paginateItems(nextBatchTrigger: self.nextSubject.asObservable(), query: "")
                 .trackError(self.errorTracker)
                 .trackActivity(self.activityIndicator)
                 .catchErrorJustReturn([])
@@ -123,24 +123,8 @@ class QuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelInput
                 })
                 self.filterItems.append(contentsOf: selectedItem)
             }
-            
-            var filteredBy = self.filterItems.filter({ $0.paramKey == "filter_by"}).first?.paramValue
-            var orderedBy = self.filterItems.filter({ $0.paramKey == "order_by"}).first?.paramValue
-            
-            if !self.filterItems.isEmpty {
-                let filterByString = self.filterItems.filter({ (filterItem) -> Bool in
-                    return filterItem.paramKey == "filter_by"
-                }).first?.paramValue
                 
-                let orderByString = self.filterItems.filter { (filterItem) -> Bool in
-                    return filterItem.paramKey == "order_by"
-                    }.first?.paramValue
-                
-                filteredBy = filterByString ?? "user_verified_all"
-                orderedBy = orderByString ?? "created_at"
-            }
-                
-            return self.paginateItems(nextBatchTrigger: self.nextSubject.asObservable(), filteredBy: filteredBy ?? "user_verified_all", orderedBy: orderedBy ?? "cached_votes_up", query: self.searchQuery ?? query)
+            return self.paginateItems(nextBatchTrigger: self.nextSubject.asObservable(), query: self.searchQuery ?? query)
                 .trackError(self.errorTracker)
                 .trackActivity(self.activityIndicator)
                 .catchErrorJustReturn([])
@@ -320,10 +304,24 @@ class QuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelInput
     func recursivelyPaginateItems(
         batch: Batch,
         nextBatchTrigger: Observable<Void>,
-        filteredBy: String,
-        orderedBy: String,
         query: String) ->
         Observable<Page<[QuestionModel]>> {
+            var filteredBy = self.filterItems.filter({ $0.paramKey == "filter_by"}).first?.paramValue ?? "user_verified_all"
+            var orderedBy = self.filterItems.filter({ $0.paramKey == "order_by"}).first?.paramValue ?? "cached_votes_up"
+            
+            if !self.filterItems.isEmpty {
+                let filterByString = self.filterItems.filter({ (filterItem) -> Bool in
+                    return filterItem.paramKey == "filter_by"
+                }).first?.paramValue
+                
+                let orderByString = self.filterItems.filter { (filterItem) -> Bool in
+                    return filterItem.paramKey == "order_by"
+                    }.first?.paramValue
+                
+                filteredBy = filterByString ?? "user_verified_all"
+                orderedBy = orderByString ?? "cached_votes_up"
+            }
+            
             return NetworkService.instance
                 .requestObject(TanyaKandidatAPI.getQuestions(query: query, page: batch.page, perpage: batch.limit, filteredBy: filteredBy, orderedBy: orderedBy), c: QuestionsResponse.self)
                 .map({ self.transformToPage(response: $0, batch: batch) })
@@ -331,7 +329,7 @@ class QuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelInput
                 .paginate(nextPageTrigger: nextBatchTrigger, hasNextPage: { (result) -> Bool in
                     return result.batch.next().hasNextPage
                 }, nextPageFactory: { (result) -> Observable<Page<[QuestionModel]>> in
-                    return self.recursivelyPaginateItems(batch: result.batch.next(), nextBatchTrigger: nextBatchTrigger, filteredBy: filteredBy, orderedBy: orderedBy, query: self.searchQuery ?? query)
+                    return self.recursivelyPaginateItems(batch: result.batch.next(), nextBatchTrigger: nextBatchTrigger, query: self.searchQuery ?? query)
                 })
                 .share(replay: 1, scope: .whileConnected)
             
