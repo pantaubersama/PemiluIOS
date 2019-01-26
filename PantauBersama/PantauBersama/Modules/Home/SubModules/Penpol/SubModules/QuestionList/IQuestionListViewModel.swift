@@ -51,8 +51,8 @@ protocol IQuestionListViewModel {
     var headerViewModel: BannerHeaderViewModel { get }
     
     func transformToPage(response: QuestionsResponse, batch: Batch) -> Page<[QuestionModel]>
-    func paginateItems(batch: Batch ,nextBatchTrigger: Observable<Void>, filteredBy: String, orderedBy: String, query: String) -> Observable<[QuestionModel]>
-    func recursivelyPaginateItems(batch: Batch ,nextBatchTrigger: Observable<Void>, filteredBy: String, orderedBy: String, query: String) -> Observable<Page<[QuestionModel]>>
+    func paginateItems(batch: Batch ,nextBatchTrigger: Observable<Void>, query: String) -> Observable<[QuestionModel]>
+    func recursivelyPaginateItems(batch: Batch ,nextBatchTrigger: Observable<Void>, query: String) -> Observable<Page<[QuestionModel]>>
 }
 
 extension IQuestionListViewModel {
@@ -71,8 +71,8 @@ extension IQuestionListViewModel {
     
     func paginateItems(
         batch: Batch = Batch.initial,
-        nextBatchTrigger: Observable<Void>, filteredBy: String, orderedBy: String, query: String) -> Observable<[QuestionModel]> {
-        return recursivelyPaginateItems(batch: batch, nextBatchTrigger: nextBatchTrigger, filteredBy: filteredBy, orderedBy: orderedBy, query: query)
+        nextBatchTrigger: Observable<Void>, query: String) -> Observable<[QuestionModel]> {
+        return recursivelyPaginateItems(batch: batch, nextBatchTrigger: nextBatchTrigger, query: query)
             .scan([], accumulator: { (accumulator, page) in
                 return accumulator + page.item
             })

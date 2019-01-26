@@ -82,7 +82,13 @@ class CreateAskController: UIViewController {
         
         tvQuestion.rx.text
             .orEmpty
-            .map { "\($0.count)/260" }
+            .map { [unowned self]text in
+                if self.tvQuestion.textColor == UIColor.lightGray {
+                    return "0/260"
+                }
+                
+                return "\(text.count)/260"
+            }
             .asDriverOnErrorJustComplete()
             .drive(lbQuestionLimit.rx.text)
             .disposed(by: disposeBag)
@@ -104,7 +110,7 @@ class CreateAskController: UIViewController {
         
         viewModel.output.enableO
             .do(onNext: { (enable) in
-                done.tintColor = enable ? Color.primary_black : Color.grey_three
+                done.tintColor = enable ? Color.primary_red : Color.grey_three
             })
             .drive(done.rx.isEnabled)
             .disposed(by: disposeBag)
