@@ -76,11 +76,20 @@ class JanpolListViewModel: IJanpolListViewModel, IJanpolListViewModelInput, IJan
                 let cid = self.filterItems.filter({ $0.paramKey == "cluster_id"}).first?.paramValue
                 let filter = self.filterItems.filter({ $0.paramKey == "filter_by"}).first?.paramValue
                 
-                return self.paginateItems(nextBatchTrigger: self.nextSubject.asObservable(), cid: cid ?? "", filter: filter ?? "", query: query)
-                    .trackError(self.errorTracker)
-                    .trackActivity(self.activityIndicator)
-                    .catchErrorJustReturn([])
+                if cid != "" {
+                    return self.paginateItems(nextBatchTrigger: self.nextSubject.asObservable(), cid: cid ?? "", filter: filter ?? "", query: query)
+                        .trackError(self.errorTracker)
+                        .trackActivity(self.activityIndicator)
+                        .catchErrorJustReturn([])
+                } else {
+                    return self.paginateItems(nextBatchTrigger: self.nextSubject.asObservable(), cid: cid ?? "", filter: filter ?? "", query: query)
+                        .trackError(self.errorTracker)
+                        .trackActivity(self.activityIndicator)
+                        .catchErrorJustReturn([])
+                }
             }
+            .asObservable()
+            .catchErrorJustComplete()
             .asDriver(onErrorJustReturn: [])
         
         // MARK:
