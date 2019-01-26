@@ -21,7 +21,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SSn-Cn-hNP" customClass="Label" customModule="Common">
-                    <rect key="frame" x="16" y="8" width="343" height="53"/>
+                    <rect key="frame" x="16" y="8" width="343" height="65"/>
                     <string key="text">Data Lapor digunakan sebagai salah satu syarat kontribusi melakukan laporan dugaan pelanggaran Pemilu melalui Pantau Bersama Pemilu 2019. Formulir menyesuaikan format sesuai ketentuan yang diatur Bawaslu. Data di bawah ini tidak akan ditampilkan di profil pengguna.</string>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" red="0.4392156862745098" green="0.4392156862745098" blue="0.4392156862745098" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -46,6 +46,7 @@
                 <constraint firstItem="wsw-lK-I29" firstAttribute="bottom" secondItem="6ub-Em-Keb" secondAttribute="bottom" id="Pas-rZ-xXF"/>
                 <constraint firstItem="SSn-Cn-hNP" firstAttribute="top" secondItem="wsw-lK-I29" secondAttribute="top" constant="8" id="abj-tg-cAC"/>
                 <constraint firstItem="SSn-Cn-hNP" firstAttribute="leading" secondItem="wsw-lK-I29" secondAttribute="leading" constant="16" id="djI-3S-kyV"/>
+                <constraint firstItem="SSn-Cn-hNP" firstAttribute="bottom" secondItem="6ub-Em-Keb" secondAttribute="top" constant="-8" id="ubX-Sx-XrU"/>
                 <constraint firstItem="wsw-lK-I29" firstAttribute="trailing" secondItem="6ub-Em-Keb" secondAttribute="trailing" id="wj4-RW-VOW"/>
                 <constraint firstItem="6ub-Em-Keb" firstAttribute="leading" secondItem="wsw-lK-I29" secondAttribute="leading" id="ycy-FY-2zO"/>
             </constraints>

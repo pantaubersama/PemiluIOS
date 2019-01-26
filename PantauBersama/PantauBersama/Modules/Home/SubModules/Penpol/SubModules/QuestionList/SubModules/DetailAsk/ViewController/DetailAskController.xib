@@ -171,7 +171,7 @@
                                 <constraint firstAttribute="bottom" secondItem="YsF-2F-tem" secondAttribute="bottom" id="cro-vC-aRt"/>
                             </constraints>
                         </view>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Label" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IJ7-IS-noc">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IJ7-IS-noc">
                             <rect key="frame" x="81" y="50" width="286" height="14.5"/>
                             <fontDescription key="fontDescription" name="BwModelicaSS01-BoldCondensed" family="Bw Modelica SS01" pointSize="12"/>
                             <nil key="textColor"/>
@@ -275,7 +275,7 @@
         </view>
     </objects>
     <resources>
-        <image name="icDummyPerson" width="64" height="64"/>
+        <image name="icDummyPerson" width="48" height="48"/>
         <image name="icMore" width="20" height="20"/>
         <image name="icShare" width="20" height="20"/>
         <image name="outlineClose24Px" width="36" height="36"/>
