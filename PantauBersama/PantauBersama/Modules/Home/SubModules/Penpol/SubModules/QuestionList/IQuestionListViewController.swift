@@ -31,6 +31,7 @@ extension IQuestionListViewController {
             .disposed(by: disposeBag)
         
         viewModel.output.items
+            .debounce(1)
             .do(onNext: {  (items) in
                 tableView.backgroundView = nil
                 if items.count == 0 {

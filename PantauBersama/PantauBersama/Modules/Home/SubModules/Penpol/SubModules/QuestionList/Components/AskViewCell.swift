@@ -76,21 +76,21 @@ class AskViewCell: UITableViewCell, IReusableCell  {
         
         if item.question.isLiked {
             voteAnimation.play(fromProgress: 1, toProgress: 1, withCompletion: nil)
+        } else {
+            voteAnimation.play(fromProgress: 0, toProgress: 0, withCompletion: nil)
         }
         
         voteButton.rx.tap
             .map({ item.question })
-            .bind(onNext: { (questionModel) in
+            .bind(onNext: { [unowned self](questionModel) in
                 if questionModel.isLiked {
                     self.lbVoteCount.text = "\(questionModel.likeCount - 1)"
+                    self.voteAnimation.play(fromProgress: 0, toProgress: 0, withCompletion: nil)
                     item.viewModel.input.unVoteI.onNext(questionModel)
                 } else {
                     self.lbVoteCount.text = "\(questionModel.likeCount + 1)"
-                    self.voteAnimation.play(completion: { (finished) in
-                        if finished {
-                            item.viewModel.input.voteI.onNext(questionModel)
-                        }
-                    })
+                    self.voteAnimation.play()
+                    item.viewModel.input.voteI.onNext(questionModel)
                 }
             })
             .disposed(by: disposeBag)

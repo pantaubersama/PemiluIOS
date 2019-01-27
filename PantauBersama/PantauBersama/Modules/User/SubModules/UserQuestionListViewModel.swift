@@ -86,6 +86,7 @@ class UserQuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelI
         refreshSubject.startWith("").flatMapLatest { [unowned self] (query) -> Observable<[QuestionModel]> in
             
             return self.paginateItems(nextBatchTrigger: self.nextSubject.asObservable(), query: query)
+                .map({ $0.item })
                 .trackError(self.errorTracker)
                 .trackActivity(self.activityIndicator)
                 .catchErrorJustReturn([])

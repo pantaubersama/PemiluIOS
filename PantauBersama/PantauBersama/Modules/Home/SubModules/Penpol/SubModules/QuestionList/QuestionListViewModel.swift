@@ -80,6 +80,7 @@ class QuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelInput
         if let externalLoadTrigger = loadCreatedTrigger {
             externalLoadTrigger.flatMapLatest { [unowned self](_) -> Observable<[QuestionModel]> in
                 return self.paginateItems(nextBatchTrigger: self.nextSubject.asObservable(), query: "")
+                    .map({ $0.item })
                     .trackError(self.errorTracker)
                     .trackActivity(self.activityIndicator)
                     .catchErrorJustReturn([])
@@ -102,6 +103,7 @@ class QuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelInput
         
         loadCreated.flatMapLatest { [unowned self](_) -> Observable<[QuestionModel]> in
             return self.paginateItems(nextBatchTrigger: self.nextSubject.asObservable(), query: "")
+                .map({ $0.item })
                 .trackError(self.errorTracker)
                 .trackActivity(self.activityIndicator)
                 .catchErrorJustReturn([])
@@ -114,7 +116,7 @@ class QuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelInput
         
         // MARK:
         // Get question pagination
-        refreshSubject.startWith(self.searchQuery ?? "").flatMapLatest { [unowned self] (query) -> Observable<[QuestionModel]> in
+        refreshSubject.startWith(self.searchQuery ?? "").flatMapLatest { [unowned self] (query) -> Observable<Page<[QuestionModel]>> in
             self.filterItems.removeAll()
             let cachedFilter = PenpolFilterModel.generateQuestionFilter()
             cachedFilter.forEach { (filterModel) in
@@ -127,13 +129,19 @@ class QuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelInput
             return self.paginateItems(nextBatchTrigger: self.nextSubject.asObservable(), query: self.searchQuery ?? query)
                 .trackError(self.errorTracker)
                 .trackActivity(self.activityIndicator)
-                .catchErrorJustReturn([])
+                .catchErrorJustReturn(Page<[QuestionModel]>(item: [], batch: Batch.initial))
         }
-        .filter { (questions) -> Bool in
-            return !questions.isEmpty
-        }.bind { [weak self](loadedItem) in
+        .filter { (page) -> Bool in
+            return !page.item.isEmpty
+        }.bind { [weak self](page) in
             guard let weakSelf = self else { return }
-            weakSelf.questionRelay.accept(loadedItem)
+            if page.batch.page == 1 {
+                weakSelf.questionRelay.accept(page.item)
+            } else {
+                var appendedItem = weakSelf.questionRelay.value
+                appendedItem.append(contentsOf: page.item)
+                weakSelf.questionRelay.accept(appendedItem)
+            }
         }.disposed(by: disposeBag)
         
         // MARK:
@@ -253,25 +261,28 @@ class QuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelInput
             .asDriverOnErrorJustComplete()
         
         voteSubject
-            .flatMapLatest({ self.voteQuestion(question: $0) })
-            .filter({ $0.status })
-            .bind { [weak self](result) in
-                guard let weakSelf = self else { return }
-                if !result.status { return }
-
+            .flatMapLatest({ [weak self]question -> Observable<(questionId: String, status: Bool)> in
+                guard let weakSelf = self else { return Observable.empty() }
                 var currentValue = weakSelf.questionRelay.value
                 guard let index = currentValue.index(where: { item -> Bool in
-                    return item.id == result.questionId
+                    return item.id == question.id
                 }) else {
-                    return
+                    return Observable.empty()
                 }
-
+                
                 var updateQuestion = currentValue[index]
                 updateQuestion.isLiked = true
                 updateQuestion.likeCount = updateQuestion.likeCount + 1
                 currentValue.remove(at: index)
                 currentValue.insert(updateQuestion, at: index)
                 weakSelf.questionRelay.accept(currentValue)
+                
+                return weakSelf.voteQuestion(question: question)
+            })
+            .filter({ $0.status })
+            .bind { [weak self](result) in
+                guard let weakSelf = self else { return }
+                if !result.status { return }
             }
             .disposed(by: disposeBag)
         
