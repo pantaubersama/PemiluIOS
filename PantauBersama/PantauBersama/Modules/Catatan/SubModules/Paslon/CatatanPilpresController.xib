@@ -59,33 +59,39 @@
                         <constraint firstItem="D2r-LE-9di" firstAttribute="top" secondItem="kM4-ee-YPK" secondAttribute="top" constant="13" id="L0L-bF-lOg"/>
                     </constraints>
                 </view>
-                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wtm-yD-xBW">
-                    <rect key="frame" x="8" y="113" width="398" height="29"/>
+                <stackView opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceLeftToRight" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="Wtm-yD-xBW">
+                    <rect key="frame" x="16" y="113" width="382" height="41"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Siapakah yang saat ini paling cocok dengan pilihan kamu?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="phK-3R-has" customClass="Label" customModule="Common">
-                            <rect key="frame" x="0.0" y="0.0" width="199" height="29"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pilih Note Calon Presidenmu saat ini : " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="phK-3R-has" customClass="Label" customModule="Common">
+                            <rect key="frame" x="0.0" y="0.0" width="382" height="20.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" red="0.44705882349999998" green="0.44705882349999998" blue="0.44705882349999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <nil key="highlightedColor"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
-                                    <real key="value" value="12"/>
+                                    <real key="value" value="11"/>
                                 </userDefinedRuntimeAttribute>
                                 <userDefinedRuntimeAttribute type="string" keyPath="typeLabel" value="italic"/>
                             </userDefinedRuntimeAttributes>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="(belum menentukan)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="slU-84-8CC" customClass="Label" customModule="Common">
-                            <rect key="frame" x="199" y="0.0" width="199" height="29"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="(belum menentukan)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="slU-84-8CC" customClass="Label" customModule="Common">
+                            <rect key="frame" x="0.0" y="20.5" width="382" height="20.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" red="0.92693734169999997" green="0.71449714900000005" blue="0.29399454590000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <nil key="highlightedColor"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
-                                    <real key="value" value="12"/>
+                                    <real key="value" value="11"/>
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                         </label>
                     </subviews>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="phK-3R-has" secondAttribute="trailing" id="NYd-3g-FdC"/>
+                        <constraint firstItem="phK-3R-has" firstAttribute="leading" secondItem="Wtm-yD-xBW" secondAttribute="leading" id="Y1W-7J-7k4"/>
+                        <constraint firstItem="slU-84-8CC" firstAttribute="leading" secondItem="Wtm-yD-xBW" secondAttribute="leading" id="hPs-SX-o6p"/>
+                        <constraint firstAttribute="trailing" secondItem="slU-84-8CC" secondAttribute="trailing" id="sRv-ih-hWx"/>
+                    </constraints>
                 </stackView>
                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="qs4-Df-gqp">
                     <rect key="frame" x="48" y="350.5" width="318" height="175"/>
@@ -274,7 +280,7 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="Wtm-yD-xBW" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="8" id="0OR-YK-kj7"/>
+                <constraint firstItem="Wtm-yD-xBW" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="0OR-YK-kj7"/>
                 <constraint firstItem="c7k-UX-wOv" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="0k3-s2-W9M"/>
                 <constraint firstItem="La7-kf-UmD" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="2DM-vj-4i9"/>
                 <constraint firstItem="kM4-ee-YPK" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="6vA-VO-V2C"/>
@@ -283,7 +289,7 @@
                 <constraint firstItem="qs4-Df-gqp" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Cey-SD-pob"/>
                 <constraint firstItem="La7-kf-UmD" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="CyH-Mr-td1"/>
                 <constraint firstItem="c7k-UX-wOv" firstAttribute="top" secondItem="qs4-Df-gqp" secondAttribute="bottom" constant="14" id="Eu5-Q6-Qzi"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Wtm-yD-xBW" secondAttribute="trailing" constant="8" id="P71-S4-pF2"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Wtm-yD-xBW" secondAttribute="trailing" constant="16" id="P71-S4-pF2"/>
                 <constraint firstItem="qs4-Df-gqp" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="-10" id="Qya-mK-Auf"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="La7-kf-UmD" secondAttribute="trailing" id="WjK-Wf-59i"/>
                 <constraint firstItem="Wtm-yD-xBW" firstAttribute="top" secondItem="kM4-ee-YPK" secondAttribute="bottom" constant="16" id="pFZ-8r-t9z"/>

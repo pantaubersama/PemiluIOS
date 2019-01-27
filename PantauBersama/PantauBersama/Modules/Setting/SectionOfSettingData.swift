@@ -85,6 +85,7 @@ enum SettingData {
 struct SectionOfSettingData {
     var header: String? = nil
     var items: [Item]
+    var isHide: Bool
 }
 
 extension SectionOfSettingData: SectionModelType {

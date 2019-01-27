@@ -23,7 +23,7 @@ public struct QuizResultModel {
         self.paslonNo = higherPercentagePaslon?.team.id ?? 0
         self.name = higherPercentagePaslon?.team.title ?? ""
         self.avatar = higherPercentagePaslon?.team.avatar ?? ""
-        self.percentage = "\(higherPercentagePaslon?.percentage ?? 0)%"
+        self.percentage =  String(format: "%.0f", higherPercentagePaslon?.percentage ?? 0) + "%"
     }
 }
 

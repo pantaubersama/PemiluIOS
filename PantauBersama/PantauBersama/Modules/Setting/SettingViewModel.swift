@@ -119,28 +119,31 @@ final class SettingViewModel: ISettingViewModel, ISettingViewModelInput, ISettin
                         SettingData.updateDataLapor,
                         SettingData.verifikasi,
                         SettingData.badge
-                        ]),
+                        ], isHide: false),
                     SectionOfSettingData(header: "Twitter", items: [
                         SettingData.twitter(data: user)
-                        ]),
+                        ], isHide: false),
                     SectionOfSettingData(header: "Facebook", items: [
                         SettingData.facebook(data: user)
-                        ]),
+                        ], isHide: false),
                     SectionOfSettingData(header: "Cluster", items: [
                         SettingData.cluster
-                        ]),
+                        ], isHide: data.cluster == nil),
                     SectionOfSettingData(header: "SUPPORT", items: [
                         SettingData.pusatBantuan,
                         SettingData.pedomanKomunitas,
                         SettingData.tentang,
                         SettingData.rate,
                         SettingData.share
-                        ]),
+                        ], isHide: false),
                     SectionOfSettingData(header: nil, items: [
-                        SettingData.logout ])])
+                        SettingData.logout ], isHide: false)])
             }
         
         let items = item
+            .map { (a) -> [SectionOfSettingData] in
+                return a.filter({$0.isHide == false})
+            }
             .asDriverOnErrorJustComplete()
         
         let verifikasi = NetworkService.instance.requestObject(

@@ -73,7 +73,8 @@ class CatatanPilpresController: UIViewController {
                     }
                     self.lblKecenderungan.text = "Total Kecenderungamu,"
                     self.lblPreferenceResult.text = "\(response.meta.quizzes.finished) dari \(response.meta.quizzes.total) Kuis"
-                    self.lblPercentage.text = "\(Double(preference?.percentage ?? 0.0))% (\(preference?.team.title ?? ""))"
+                    self.lblPercentage.text = String(format: "%.0f", preference?.percentage ?? 0.0) + "% (\(preference?.team.title ?? "")"
+                    
                 })
                 .disposed(by: disposeBag)
         
