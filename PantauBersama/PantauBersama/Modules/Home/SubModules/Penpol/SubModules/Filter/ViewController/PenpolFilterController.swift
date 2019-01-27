@@ -193,7 +193,12 @@ extension PenpolFilterController: UITableViewDelegate {
                 }
                 
                 if selectedItem.id == "cluster-categories" {
-                    print("push cluster category")
+                    let viewModel = KategoriClusterViewModel()
+                    let vc = ClusterCategoryFilterController()
+                    vc.viewModel = viewModel
+                    viewModel.delegate = self
+                    
+                    navigationController.pushViewController(vc, animated: true)
                 }
             }
         }
@@ -242,6 +247,19 @@ extension PenpolFilterController: IClusterSearchDelegate {
     func didSelectCluster(item: ClusterDetail, index: IndexPath) -> Observable<Void> {
         let values = item.id
         UserDefaults.Account.set(item.name ?? "", forKey: .clusterName)
+        DispatchQueue.main.async {
+            self.viewModel.input.cidTrigger.onNext((values ?? ""))
+            self.clusterId = values
+            self.tableView.reloadData()
+        }
+        return Observable.just(())
+    }
+}
+
+extension PenpolFilterController: ClusterCategoryDelegate {
+    func didSelectCategory(item: ICategories) -> Observable<Void> {
+        let values = item.id
+        UserDefaults.Account.set(item.name ?? "", forKey: .clusterCategory)
         DispatchQueue.main.async {
             self.viewModel.input.cidTrigger.onNext((values ?? ""))
             self.clusterId = values

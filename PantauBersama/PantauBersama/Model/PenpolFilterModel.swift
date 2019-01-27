@@ -78,6 +78,17 @@ extension PenpolFilterModel {
         
         return filterItems
     }
+    
+    static func generateClusterFilter() -> [PenpolFilterModel] {
+        var filterItems: [PenpolFilterModel] = []
+        
+        let category = FilterItem(id: "cluster-categories", paramKey: "filter_value", paramValue: "", title: "Kategori", type: .text, isSelected: false)
+        let categoryFilter = PenpolFilterModel(paramKey: "filter_value", title: "Kategori", items: [category])
+        
+        filterItems.append(categoryFilter)
+        
+        return filterItems
+    }
 
     static func generateQuizFilter() -> [PenpolFilterModel] {
         var filterItems: [PenpolFilterModel] = []
@@ -102,18 +113,6 @@ extension PenpolFilterModel {
         let userFilter = PenpolFilterModel(paramKey: "filter_by", title: "User", items: [all, notVerified, verified])
         
         filterItems.append(userFilter)
-        
-        return filterItems
-    }
-    
-    static func generateClusterFilter() -> [PenpolFilterModel] {
-        var filterItems: [PenpolFilterModel] = []
-        
-        // TODO: TBD The key for this item is the same with quiz filter
-        let categories = FilterItem(id: "cluster-categories", paramKey: "filter_by", paramValue: "", title: "Kategori", type: .text, isSelected: false)
-        let clusterCategories = PenpolFilterModel(paramKey: "filter_by", title: "Kategori", items: [categories])
-        
-        filterItems.append(clusterCategories)
         
         return filterItems
     }

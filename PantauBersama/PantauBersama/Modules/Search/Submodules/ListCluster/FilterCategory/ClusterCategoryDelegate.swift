@@ -8,7 +8,8 @@
 
 import Foundation
 import RxSwift
+import Networking
 
 protocol ClusterCategoryDelegate {
-    func didSelectCategory(item: ICategories, index: IndexPath) -> Observable<Void>
+    func didSelectCategory(item: ICategories) -> Observable<Void>
 }

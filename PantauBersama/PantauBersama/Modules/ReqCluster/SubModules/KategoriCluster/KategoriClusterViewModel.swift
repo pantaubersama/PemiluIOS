@@ -24,26 +24,31 @@ class KategoriClusterViewModel: ViewModelType {
         let refreshI: AnyObserver<Void>
         let viewWillAppearI: AnyObserver<String>
         let itemSelectedI: AnyObserver<IndexPath>
+        let filterSelectedI: AnyObserver<IndexPath>
     }
     
     struct Output {
         let itemsO: Driver<[String]>
         let addO: Driver<AddKategoriResult>
         let resultO: Driver<ResultCategory>
+        let filterSelectedO: Driver<Void>
     }
     
     private let backS = PublishSubject<Void>()
-    private var navigator: KategoriClusterProtocol
+    private var navigator: KategoriClusterProtocol?
     private let queryS = PublishSubject<String>()
     private let nextS = PublishSubject<Void>()
     private let addS = PublishSubject<Void>()
     private let refreshS = PublishSubject<Void>()
     private let viewWillAppearS = PublishSubject<String>()
     private let itemSelectedS = PublishSubject<IndexPath>()
+    private let filterSelectedS = PublishSubject<IndexPath>()
+    
     let errorTracker = ErrorTracker()
     let activityIndicator = ActivityIndicator()
+    var delegate: ClusterCategoryDelegate?
     
-    init(navigator: KategoriClusterProtocol) {
+    init(navigator: KategoriClusterProtocol? = nil) {
         self.navigator = navigator
         
         input = Input(backI: backS.asObserver(),
@@ -52,7 +57,8 @@ class KategoriClusterViewModel: ViewModelType {
                       addI: addS.asObserver(),
                       refreshI: refreshS.asObserver(),
                       viewWillAppearI: viewWillAppearS.asObserver(),
-                      itemSelectedI: itemSelectedS.asObserver())
+                      itemSelectedI: itemSelectedS.asObserver(),
+                      filterSelectedI: filterSelectedS.asObserver())
         
         let query = queryS
             .startWith((""))
@@ -77,7 +83,7 @@ class KategoriClusterViewModel: ViewModelType {
         }
         
         let add = addS
-            .flatMapLatest({ navigator.launchAdd() })
+            .flatMapLatest({ navigator!.launchAdd() })
             .do(onNext: { (result) in
                 switch result {
                 case .ok: print("Created Kategory ")
@@ -92,6 +98,14 @@ class KategoriClusterViewModel: ViewModelType {
             }
             .map({ ResultCategory.done(data: $0 )})
         
+        let filterSelected = filterSelectedS
+            .withLatestFrom(categories) { [unowned self](indexPath, category) -> Observable<Void>? in
+                let item = category[indexPath.row]
+                return self.delegate?.didSelectCategory(item: item)
+            }
+            .mapToVoid()
+            .asDriverOnErrorJustComplete()
+        
         let back = backS
             .map({ ResultCategory.cancel })
         
@@ -102,7 +116,8 @@ class KategoriClusterViewModel: ViewModelType {
         
         output = Output(itemsO: categoiesCell.asDriver(onErrorJustReturn: []),
                         addO: add.asDriverOnErrorJustComplete(),
-                        resultO: result)
+                        resultO: result,
+                        filterSelectedO: filterSelected)
         
     }
     

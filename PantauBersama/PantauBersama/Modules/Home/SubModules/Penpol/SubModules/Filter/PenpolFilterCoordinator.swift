@@ -69,8 +69,7 @@ class PenpolFilterCoordinator: BaseCoordinator<Void> {
         case .user:
             return PenpolFilterModel.generateUsersFilter()
         case .cluster:
-            
-            return PenpolFilterModel.generateUsersFilter()
+            return PenpolFilterModel.generateClusterFilter()
         }
     }
 }

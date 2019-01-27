@@ -10,7 +10,7 @@ import UIKit
 import RxCocoa
 import RxSwift
 
-class ClusterCategoryFilter: UITableViewController {
+class ClusterCategoryFilterController: UITableViewController {
     var viewModel: KategoriClusterViewModel!
     
     private let disposeBag = DisposeBag()
@@ -41,6 +41,16 @@ class ClusterCategoryFilter: UITableViewController {
                 }
             }
             .bind(to: viewModel.input.nextI)
+            .disposed(by: disposeBag)
+        
+        tableView.rx.itemSelected
+            .bind(to: viewModel.input.filterSelectedI)
+            .disposed(by: disposeBag)
+        
+        viewModel.output.filterSelectedO
+            .drive(onNext: { [unowned self] in
+                self.navigationController?.popViewController(animated: true)
+            })
             .disposed(by: disposeBag)
     }
 
