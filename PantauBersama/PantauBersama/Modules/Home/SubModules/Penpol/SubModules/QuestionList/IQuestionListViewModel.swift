@@ -51,7 +51,7 @@ protocol IQuestionListViewModel {
     var headerViewModel: BannerHeaderViewModel { get }
     
     func transformToPage(response: QuestionsResponse, batch: Batch) -> Page<[QuestionModel]>
-    func paginateItems(batch: Batch ,nextBatchTrigger: Observable<Void>, query: String) -> Observable<[QuestionModel]>
+    func paginateItems(batch: Batch ,nextBatchTrigger: Observable<Void>, query: String) -> Observable<Page<[QuestionModel]>>
     func recursivelyPaginateItems(batch: Batch ,nextBatchTrigger: Observable<Void>, query: String) -> Observable<Page<[QuestionModel]>>
 }
 
@@ -71,10 +71,10 @@ extension IQuestionListViewModel {
     
     func paginateItems(
         batch: Batch = Batch.initial,
-        nextBatchTrigger: Observable<Void>, query: String) -> Observable<[QuestionModel]> {
+        nextBatchTrigger: Observable<Void>, query: String) -> Observable<Page<[QuestionModel]>> {
         return recursivelyPaginateItems(batch: batch, nextBatchTrigger: nextBatchTrigger, query: query)
-            .scan([], accumulator: { (accumulator, page) in
-                return accumulator + page.item
+            .scan(Page<[QuestionModel]>(item: [], batch: Batch.initial), accumulator: { (accumulator, page) in
+                return page
             })
     }
     

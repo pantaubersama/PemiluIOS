@@ -81,10 +81,8 @@ class MyQuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelInp
         // MARK:
         // Get question pagination
         refreshSubject.startWith("").flatMapLatest { [unowned self] (query) -> Observable<[QuestionModel]> in
-            let filteredBy = self.filterItems.filter({ $0.paramKey == "filter_by"}).first?.paramValue
-            let orderedBy = self.filterItems.filter({ $0.paramKey == "order_by"}).first?.paramValue
-            
             return self.paginateItems(nextBatchTrigger: self.nextSubject.asObservable(), query: query)
+                .map({ $0.item })
                 .trackError(self.errorTracker)
                 .trackActivity(self.activityIndicator)
                 .catchErrorJustReturn([])
