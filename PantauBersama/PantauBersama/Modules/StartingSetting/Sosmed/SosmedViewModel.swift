@@ -83,10 +83,10 @@ final class SosmedViewModel: ViewModelType {
                 return Observable.just([
                     SectionOfSettingData(header: "Twitter", items: [
                         SettingData.twitter(data: user)
-                        ]),
+                        ], isHide: false),
                     SectionOfSettingData(header: "Facebook", items: [
                         SettingData.facebook(data: user)
-                        ])
+                        ], isHide: false)
                     ])
             }
         
