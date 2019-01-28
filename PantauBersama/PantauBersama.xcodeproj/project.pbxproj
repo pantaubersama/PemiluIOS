@@ -216,6 +216,11 @@
 		84619D4D21DC9ABD00EB58CF /* WebCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84619D4C21DC9ABD00EB58CF /* WebCoordinator.swift */; };
 		846E8EFD21F767630036FEA2 /* SosmedController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 846E8EFC21F767630036FEA2 /* SosmedController.xib */; };
 		8475330D21F60F6000BF3F66 /* ComingsoonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8475330C21F60F6000BF3F66 /* ComingsoonViewModel.swift */; };
+		8478B8DF21FF1B9900CE192A /* NotificationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8478B8DE21FF1B9900CE192A /* NotificationController.xib */; };
+		8478B8E121FF1C6600CE192A /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8478B8E021FF1C6600CE192A /* NotificationController.swift */; };
+		8478B8E621FF1FAA00CE192A /* InfoNotifCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8478B8E521FF1FAA00CE192A /* InfoNotifCell.xib */; };
+		8478B8E821FF210E00CE192A /* InfoNotifCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8478B8E721FF210E00CE192A /* InfoNotifCell.swift */; };
+		8478B8EA21FF315600CE192A /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8478B8E921FF315600CE192A /* Parser.swift */; };
 		848B039921E7AA8C002CAA40 /* WKWebview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848B039821E7AA8C002CAA40 /* WKWebview.swift */; };
 		848B039C21E7AADF002CAA40 /* WKWebview.xib in Resources */ = {isa = PBXBuildFile; fileRef = 848B039B21E7AADF002CAA40 /* WKWebview.xib */; };
 		848B039F21E7B538002CAA40 /* WKWebCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848B039E21E7B538002CAA40 /* WKWebCoordinator.swift */; };
@@ -599,6 +604,11 @@
 		84619D4C21DC9ABD00EB58CF /* WebCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebCoordinator.swift; sourceTree = "<group>"; };
 		846E8EFC21F767630036FEA2 /* SosmedController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SosmedController.xib; sourceTree = "<group>"; };
 		8475330C21F60F6000BF3F66 /* ComingsoonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComingsoonViewModel.swift; sourceTree = "<group>"; };
+		8478B8DE21FF1B9900CE192A /* NotificationController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationController.xib; sourceTree = "<group>"; };
+		8478B8E021FF1C6600CE192A /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		8478B8E521FF1FAA00CE192A /* InfoNotifCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoNotifCell.xib; sourceTree = "<group>"; };
+		8478B8E721FF210E00CE192A /* InfoNotifCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoNotifCell.swift; sourceTree = "<group>"; };
+		8478B8E921FF315600CE192A /* Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
 		848B039821E7AA8C002CAA40 /* WKWebview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKWebview.swift; sourceTree = "<group>"; };
 		848B039B21E7AADF002CAA40 /* WKWebview.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WKWebview.xib; sourceTree = "<group>"; };
 		848B039E21E7B538002CAA40 /* WKWebCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKWebCoordinator.swift; sourceTree = "<group>"; };
@@ -1470,6 +1480,7 @@
 		844C3D6A21C5177A00199871 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				8478B8DC21FF1B5300CE192A /* Notifications */,
 				84B6D52821F8E41900DD742A /* User */,
 				1147F22821F83BCE001D0D59 /* ClusterDetail */,
 				11145F5221EACCCC0046F2AA /* Search */,
@@ -1608,6 +1619,7 @@
 				844C3D8721C5265600199871 /* AppCoordinator.swift */,
 				84B2526721CC01F000565D82 /* AppState.swift */,
 				84BEA55221F9884900659980 /* NetworkService.swift */,
+				8478B8E921FF315600CE192A /* Parser.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -1725,6 +1737,49 @@
 				84619D4C21DC9ABD00EB58CF /* WebCoordinator.swift */,
 			);
 			path = WebController;
+			sourceTree = "<group>";
+		};
+		8478B8DC21FF1B5300CE192A /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				8478B8E221FF1CEC00CE192A /* SubModules */,
+				8478B8DD21FF1B8600CE192A /* viewController */,
+			);
+			path = Notifications;
+			sourceTree = "<group>";
+		};
+		8478B8DD21FF1B8600CE192A /* viewController */ = {
+			isa = PBXGroup;
+			children = (
+				8478B8DE21FF1B9900CE192A /* NotificationController.xib */,
+				8478B8E021FF1C6600CE192A /* NotificationController.swift */,
+			);
+			path = viewController;
+			sourceTree = "<group>";
+		};
+		8478B8E221FF1CEC00CE192A /* SubModules */ = {
+			isa = PBXGroup;
+			children = (
+				8478B8E321FF1F4200CE192A /* Info */,
+			);
+			path = SubModules;
+			sourceTree = "<group>";
+		};
+		8478B8E321FF1F4200CE192A /* Info */ = {
+			isa = PBXGroup;
+			children = (
+				8478B8E421FF1F9200CE192A /* Components */,
+			);
+			path = Info;
+			sourceTree = "<group>";
+		};
+		8478B8E421FF1F9200CE192A /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				8478B8E521FF1FAA00CE192A /* InfoNotifCell.xib */,
+				8478B8E721FF210E00CE192A /* InfoNotifCell.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		848B039A21E7AA9F002CAA40 /* WKWebview */ = {
@@ -2397,6 +2452,7 @@
 				84A07F9D21D0DC4B00269C6B /* KTPController.xib in Resources */,
 				84E521C621F4AB2F00B7CCBA /* ob5_perhitungan.json in Resources */,
 				137A29F421E2261A00F19072 /* ComingsoonController.xib in Resources */,
+				8478B8E621FF1FAA00CE192A /* InfoNotifCell.xib in Resources */,
 				84619D3C21DA88C800EB58CF /* ItemInfoCell.xib in Resources */,
 				8441DB5621CCF19C00B078DF /* DetailJanjiController.xib in Resources */,
 				13F456AF21D36A8500CE45F1 /* UndangAnggotaController.xib in Resources */,
@@ -2426,6 +2482,7 @@
 				844C3D4A21C4ED6E00199871 /* LaunchScreen.storyboard in Resources */,
 				84F892B521C7887800DC1048 /* BwModelicaSS01-BoldCondensed.otf in Resources */,
 				84B6D50721F82A0F00DD742A /* CatatanPartyController.xib in Resources */,
+				8478B8DF21FF1B9900CE192A /* NotificationController.xib in Resources */,
 				845C570021CD195600EDCDFE /* ProfileController.xib in Resources */,
 				84619D4221DA95D200EB58CF /* SectionItemCell.xib in Resources */,
 				11B3C79721D1126700EDCECB /* QuizSummaryKeyCell.xib in Resources */,
@@ -2843,12 +2900,14 @@
 				11B3C78B21D110CB00EDCECB /* QuizSummaryCoordinator.swift in Sources */,
 				1161F9F421DF4B4000C1BAD5 /* QuizButton.swift in Sources */,
 				13BF405321EBAA8F005C9A64 /* IQuestionListViewModel.swift in Sources */,
+				8478B8EA21FF315600CE192A /* Parser.swift in Sources */,
 				84B7B8BE21E47B400099E7E3 /* ClusterSearchViewModel.swift in Sources */,
 				84B6D50F21F8345900DD742A /* CatatanPartyViewModel.swift in Sources */,
 				845C570521CD1C2300EDCDFE /* HeaderProfile.swift in Sources */,
 				84B6D6E821E1E7FC00CD4BC8 /* ClusterCellViewModel.swift in Sources */,
 				84B7B8CE21E5B4CD0099E7E3 /* AddKategoriController.swift in Sources */,
 				84F1F21821EA678F004515A4 /* Facebook+Rx.swift in Sources */,
+				8478B8E821FF210E00CE192A /* InfoNotifCell.swift in Sources */,
 				844C3D8321C524F000199871 /* LinimasaController.swift in Sources */,
 				11702DD221CB0287001AEE3F /* QuizCell.swift in Sources */,
 				840850C521D25CB000696CB3 /* ProfileEditViewModel.swift in Sources */,
@@ -2906,6 +2965,7 @@
 				8409374D21D361240024A444 /* PilpresNavigator.swift in Sources */,
 				840850DF21D2843D00696CB3 /* BadgeViewModel.swift in Sources */,
 				13E9D79021E92934006A0890 /* MyJanpolListViewModel.swift in Sources */,
+				8478B8E121FF1C6600CE192A /* NotificationController.swift in Sources */,
 				84FE6EBE21D5FEA1009A0F55 /* Network+AlertController.swift in Sources */,
 				8441DB5821CCF7D900B078DF /* DetailJanjiCoordinator.swift in Sources */,
 				13F4569D21CF985800CE45F1 /* CreateAskViewModel.swift in Sources */,

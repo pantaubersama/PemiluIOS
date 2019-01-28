@@ -159,6 +159,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: Register remote notifications
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         Messaging.messaging().apnsToken = deviceToken as Data
+        // TODO: subscribe topic broadcast activity
+        Messaging.messaging().subscribe(toTopic: "broadcasts-activity")
     }
     // MARK: Remote receive notifications
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {

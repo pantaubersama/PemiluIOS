@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="128" id="5Rx-P4-EHo" customClass="InfoNotifCell" customModule="PantauBersama" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="390" height="128"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5Rx-P4-EHo" id="Dog-Js-kpn">
+                <rect key="frame" x="0.0" y="0.0" width="390" height="127.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uOv-DR-sYf">
+                        <rect key="frame" x="16" y="8" width="358" height="111.5"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconEvent" translatesAutoresizingMaskIntoConstraints="NO" id="z2k-Xp-fDe">
+                                <rect key="frame" x="0.0" y="8" width="36" height="36"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="36" id="APW-ar-OG7"/>
+                                    <constraint firstAttribute="width" constant="36" id="x0x-C7-Nu9"/>
+                                </constraints>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="6qT-KT-6P3">
+                                <rect key="frame" x="52" y="8" width="306" height="65"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rv1-YT-UdQ" customClass="Label" customModule="Common">
+                                        <rect key="frame" x="0.0" y="0.0" width="306" height="50.5"/>
+                                        <string key="text">Hari ini, Pantau Bersama sedang 
+mengadakan roadmap di Yogyakarta. 
+Ikuti ulasannya!</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                <real key="value" value="14"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3 menit lalu" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="siR-aO-3we" customClass="Label" customModule="Common">
+                                        <rect key="frame" x="0.0" y="50.5" width="306" height="14.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                <real key="value" value="12"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="6qT-KT-6P3" firstAttribute="top" secondItem="uOv-DR-sYf" secondAttribute="top" constant="8" id="AW9-Ay-EXc"/>
+                            <constraint firstItem="6qT-KT-6P3" firstAttribute="leading" secondItem="z2k-Xp-fDe" secondAttribute="trailing" constant="16" id="Ah6-W8-2AF"/>
+                            <constraint firstItem="z2k-Xp-fDe" firstAttribute="top" secondItem="uOv-DR-sYf" secondAttribute="top" constant="8" id="Ohm-tP-UbI"/>
+                            <constraint firstAttribute="trailing" secondItem="6qT-KT-6P3" secondAttribute="trailing" id="PuR-1e-fOc"/>
+                            <constraint firstItem="z2k-Xp-fDe" firstAttribute="leading" secondItem="uOv-DR-sYf" secondAttribute="leading" id="T6T-tG-3rt"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="uOv-DR-sYf" firstAttribute="leading" secondItem="Dog-Js-kpn" secondAttribute="leading" constant="16" id="J7x-Et-X7F"/>
+                    <constraint firstItem="uOv-DR-sYf" firstAttribute="top" secondItem="Dog-Js-kpn" secondAttribute="top" constant="8" id="KNr-xY-MSt"/>
+                    <constraint firstAttribute="trailing" secondItem="uOv-DR-sYf" secondAttribute="trailing" constant="16" id="POF-cG-kr0"/>
+                    <constraint firstAttribute="bottom" secondItem="uOv-DR-sYf" secondAttribute="bottom" constant="8" id="bkQ-aa-TGS"/>
+                </constraints>
+            </tableViewCellContentView>
+            <point key="canvasLocation" x="84.799999999999997" y="8.0959520239880067"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="iconEvent" width="36" height="36"/>
+    </resources>
+</document>
