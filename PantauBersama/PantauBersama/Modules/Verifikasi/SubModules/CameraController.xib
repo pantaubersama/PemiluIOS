@@ -16,9 +16,10 @@
                 <outlet property="cancelButton" destination="vUL-bn-Zhx" id="ZL7-ZO-bTp"/>
                 <outlet property="captureButton" destination="B27-YX-gEQ" id="2ed-EP-lwe"/>
                 <outlet property="done" destination="uq5-cF-1Ws" id="fV8-D4-XAn"/>
-                <outlet property="galleryButton" destination="ZTe-r1-V8n" id="yb2-1U-abR"/>
+                <outlet property="galleryButton" destination="hDR-fy-4N4" id="Eaf-rj-RcN"/>
                 <outlet property="retake" destination="VkC-sH-JHb" id="NAW-Ry-RdP"/>
                 <outlet property="stackButton" destination="RvA-Mg-C11" id="htP-tg-pnN"/>
+                <outlet property="switchCamera" destination="Dmm-8b-aNi" id="80v-6V-kS0"/>
                 <outlet property="tempImage" destination="Hon-rv-9jE" id="3jn-JG-z4Q"/>
                 <outlet property="verifyFace" destination="u46-kD-Pbf" id="hdW-wP-6g0"/>
                 <outlet property="verifyKTP" destination="wJs-fn-ibA" id="DfC-YF-HFG"/>
@@ -48,9 +49,17 @@
                         <constraint firstAttribute="width" constant="167" id="EJv-16-eZS"/>
                     </constraints>
                 </imageView>
-                <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="52" translatesAutoresizingMaskIntoConstraints="NO" id="aMb-93-nPk">
-                    <rect key="frame" x="63.5" y="579" width="248" height="72"/>
+                <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="aMb-93-nPk">
+                    <rect key="frame" x="73.5" y="579" width="228" height="72"/>
                     <subviews>
+                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dmm-8b-aNi">
+                            <rect key="frame" x="-36" y="18" width="36" height="36"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="36" id="8iw-bc-yQ8"/>
+                                <constraint firstAttribute="width" constant="36" id="ofR-2D-Vey"/>
+                            </constraints>
+                            <state key="normal" image="camera_front"/>
+                        </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vUL-bn-Zhx">
                             <rect key="frame" x="0.0" y="18" width="36" height="36"/>
                             <constraints>
@@ -60,20 +69,27 @@
                             <state key="normal" image="outlineClose24Px"/>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B27-YX-gEQ">
-                            <rect key="frame" x="88" y="0.0" width="72" height="72"/>
+                            <rect key="frame" x="52" y="0.0" width="72" height="72"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="72" id="NEG-EK-wgm"/>
                                 <constraint firstAttribute="height" constant="72" id="mEb-j9-e99"/>
                             </constraints>
                             <state key="normal" image="verifyCapture"/>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZTe-r1-V8n">
-                            <rect key="frame" x="212" y="18" width="36" height="36"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hDR-fy-4N4">
+                            <rect key="frame" x="140" y="18" width="36" height="36"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="36" id="376-nP-W6x"/>
-                                <constraint firstAttribute="width" constant="36" id="PFW-5Q-pMn"/>
+                                <constraint firstAttribute="width" constant="36" id="5gi-qz-8IR"/>
+                                <constraint firstAttribute="height" constant="36" id="Re4-CV-SX2"/>
                             </constraints>
-                            <state key="normal" image="outlineImage24Px"/>
+                            <state key="normal" image="outlineImageWhite24Px"/>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YDa-Ip-GN0">
+                            <rect key="frame" x="192" y="18" width="36" height="36"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="36" id="8Nh-c8-2Y2"/>
+                                <constraint firstAttribute="width" constant="36" id="J5A-gR-sqP"/>
+                            </constraints>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -129,8 +145,9 @@
         </view>
     </objects>
     <resources>
+        <image name="camera_front" width="48" height="48"/>
         <image name="outlineClose24Px" width="36" height="36"/>
-        <image name="outlineImage24Px" width="36" height="36"/>
+        <image name="outlineImageWhite24Px" width="36" height="36"/>
         <image name="verifyCapture" width="72" height="72"/>
         <image name="verifyFace" width="158" height="220"/>
         <image name="verifyId" width="167" height="97"/>

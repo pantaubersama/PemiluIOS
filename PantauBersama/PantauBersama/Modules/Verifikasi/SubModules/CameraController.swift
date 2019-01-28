@@ -8,7 +8,7 @@
 
 import UIKit
 import AVFoundation
-
+import Common
 
 public protocol ICameraController {
     func didFinishWith(image: UIImage)
@@ -25,6 +25,7 @@ public class CameraController: UIViewController {
     @IBOutlet weak var tempImage: UIImageView!
     @IBOutlet weak var verifyFace: UIImageView!
     @IBOutlet weak var verifyKTP: UIImageView!
+    @IBOutlet weak var switchCamera: UIButton!
     
     @IBOutlet weak var galleryButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
@@ -44,6 +45,8 @@ public class CameraController: UIViewController {
         return alert
     }()
     
+    private var usingCameraFront: Bool = false
+    
     public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         tempImage.isHidden = true
@@ -53,9 +56,11 @@ public class CameraController: UIViewController {
         case .selfKtp:
             verifyFace.isHidden = false
             verifyKTP.isHidden = false
+            switchCamera.isHidden = false
         default:
             verifyFace.isHidden = true
             verifyKTP.isHidden = true
+            switchCamera.isHidden = false
         }
         
     }
@@ -69,6 +74,7 @@ public class CameraController: UIViewController {
         retake.addTarget(self, action: #selector(handleRetake(sender:)), for: .touchUpInside)
         done.addTarget(self, action: #selector(handleDone(sender:)), for: .touchUpInside)
         galleryButton.addTarget(self, action: #selector(handleGallery(sender:)), for: .touchUpInside)
+        switchCamera.addTarget(self, action: #selector(handleSwitchCamera(sender:)), for: .touchUpInside)
     }
     
     @objc private func handleDismiss(sender: UIButton) {
@@ -96,13 +102,28 @@ public class CameraController: UIViewController {
         self.present(controller, animated: true, completion: nil)
     }
     
+    @objc private func handleSwitchCamera(sender: UIButton) {
+        usingCameraFront = !usingCameraFront
+        initializeCamera()
+    }
+    
+    func getCameraFront() -> AVCaptureDevice? {
+        let videoDevices = AVCaptureDevice.DiscoverySession(deviceTypes: [AVCaptureDevice.DeviceType.builtInWideAngleCamera], mediaType: AVMediaType.video, position: .front)
+        return videoDevices.devices.first
+    }
+    
+    func getCameraBack() -> AVCaptureDevice? {
+        return AVCaptureDevice.DiscoverySession(deviceTypes: [AVCaptureDevice.DeviceType.builtInWideAngleCamera], mediaType: AVMediaType.video, position: .back).devices.first
+    }
+    
     private func initializeCamera() {
         captureSession = AVCaptureSession()
-        captureSession?.sessionPreset = AVCaptureSession.Preset.hd1920x1080
-        let backCamera = AVCaptureDevice.default(for: AVMediaType.video)
+        captureSession?.sessionPreset = usingCameraFront ? AVCaptureSession.Preset.hd1280x720 : AVCaptureSession.Preset.hd1920x1080
+        
+        let camera = usingCameraFront ? getCameraFront() : getCameraBack()
         
         do {
-            let input = try AVCaptureDeviceInput(device: backCamera!)
+            let input = try AVCaptureDeviceInput(device: camera!)
             captureSession?.addInput(input)
             photoOutput = AVCapturePhotoOutput()
             if (captureSession?.canAddOutput(photoOutput!) != nil) {captureSession?.addOutput(photoOutput!)
