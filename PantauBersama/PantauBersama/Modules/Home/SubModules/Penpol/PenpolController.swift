@@ -105,6 +105,14 @@ class PenpolController: UIViewController {
             .drive()
             .disposed(by: disposeBag)
         
+        let left = UISwipeGestureRecognizer(target: self, action: #selector(swipeLeft))
+        left.direction = .left
+        self.view.addGestureRecognizer(left)
+        
+        let right = UISwipeGestureRecognizer(target: self, action: #selector(swipeRight))
+        right.direction = .right
+        self.view.addGestureRecognizer(right)
+        
     }
 
 
@@ -116,5 +124,14 @@ class PenpolController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = false
+    }
+    
+    @objc func swipeLeft() {
+        self.segmentedControl.swipeLeft()
+        
+    }
+    
+    @objc func swipeRight() {
+        self.segmentedControl.swipeRight()
     }
 }

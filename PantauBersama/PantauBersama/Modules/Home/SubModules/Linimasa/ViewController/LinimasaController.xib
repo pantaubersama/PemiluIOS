@@ -16,7 +16,7 @@
                 <outlet property="container" destination="PT8-f3-VT0" id="3Nq-Xc-xiE"/>
                 <outlet property="filter" destination="t1X-nF-WRf" id="EKo-Vk-Lx1"/>
                 <outlet property="navbar" destination="0u4-6H-At0" id="LgV-Ug-TFW"/>
-                <outlet property="segementedControl" destination="jsX-sx-32M" id="FyS-67-n2f"/>
+                <outlet property="segmentedControl" destination="jsX-sx-32M" id="gYp-UK-8cT"/>
                 <outlet property="view" destination="iN0-l3-epB" id="f0V-WH-Ksr"/>
             </connections>
         </placeholder>

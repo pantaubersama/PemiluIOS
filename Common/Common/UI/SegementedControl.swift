@@ -96,14 +96,29 @@ public class SegementedControl: UIControl {
         for (index, button) in buttons.enumerated() {
             button.setTitleColor(textColor, for: .normal)
             if button == sender {
-                let position = frame.width / CGFloat(buttons.count) * CGFloat(index)
-                UIView.animate(withDuration: 0.3, animations: {
-                    self.selector.frame.origin.x = position
-                })
-                selectedSegmentIndex = index
-                button.setTitleColor(selectedTextColor, for: .normal)
+                setAction(index: index)
             }
         }
         sendActions(for: .valueChanged)
+    }
+    
+    public func swipeLeft() {
+        let index = min(buttons.count - 1, self.selectedSegmentIndex + 1)
+        setAction(index: index)
+    }
+    
+    public func swipeRight() {
+        let index = max(0, self.selectedSegmentIndex - 1)
+        setAction(index: index)
+    }
+    
+    private func setAction(index: Int){
+        let position = frame.width / CGFloat(buttons.count) * CGFloat(index)
+        UIView.animate(withDuration: 0.3, animations: {
+            self.selector.frame.origin.x = position
+        })
+        selectedSegmentIndex = index
+        buttons[index].setTitleColor(selectedTextColor, for: .normal)
+        self.sendActions(for: .valueChanged)
     }
 }

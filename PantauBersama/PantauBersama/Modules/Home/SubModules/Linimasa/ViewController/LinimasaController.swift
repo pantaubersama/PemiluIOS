@@ -16,7 +16,7 @@ class LinimasaController: UIViewController {
     
     @IBOutlet weak var filter: UIButton!
     @IBOutlet weak var addJanji: UIButton!
-    @IBOutlet weak var segementedControl: SegementedControl!
+    @IBOutlet weak var segmentedControl: SegementedControl!
     @IBOutlet weak var container: UIView!
     @IBOutlet weak var navbar: Navbar!
     var viewModel: LinimasaViewModel!
@@ -47,7 +47,7 @@ class LinimasaController: UIViewController {
         // MARK
         // segmented control value
         // assign extension Reactive UIControl
-        segementedControl.rx.value
+        segmentedControl.rx.value
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [unowned self] i in
                 UIView.animate(withDuration: 0.3, animations: {
@@ -131,6 +131,14 @@ class LinimasaController: UIViewController {
             .drive()
             .disposed(by: disposeBag)
         
+        let left = UISwipeGestureRecognizer(target: self, action: #selector(swipeLeft))
+        left.direction = .left
+        self.view.addGestureRecognizer(left)
+        
+        let right = UISwipeGestureRecognizer(target: self, action: #selector(swipeRight))
+        right.direction = .right
+        self.view.addGestureRecognizer(right)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -146,4 +154,12 @@ class LinimasaController: UIViewController {
         navigationController?.navigationBar.isHidden = false
     }
     
+    @objc func swipeLeft() {
+        self.segmentedControl.swipeLeft()
+
+    }
+
+    @objc func swipeRight() {
+        self.segmentedControl.swipeRight()
+    }
 }
