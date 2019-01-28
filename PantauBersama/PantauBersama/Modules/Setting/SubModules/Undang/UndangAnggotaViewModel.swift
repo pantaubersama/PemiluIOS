@@ -86,11 +86,17 @@ class UndangAnggotaViewModel: ViewModelType {
             }.flatMapLatest({ navigator.success() })
             .catchErrorJustComplete()
         
-        
-        let enable = emailSubject
-            .map({ (email) -> Bool in
-                return email.isValidEmail()
-                || email.contains(",") // regex multiple emails, need improve later
+        let dataObservable = Observable.just(data)
+        let enable = Observable.combineLatest(dataObservable, emailSubject)
+            .map({ (data, email) -> Bool in
+                if let isModerator = data.isModerator, let isAdmin = data.isAdmin {
+                    if isModerator == true || isAdmin == true {
+                        return email.isValidEmail() || email.contains(",")
+                    } else {
+                        return false
+                    }
+                }
+                return false
             })
             .startWith(false)
             .asDriverOnErrorJustComplete()

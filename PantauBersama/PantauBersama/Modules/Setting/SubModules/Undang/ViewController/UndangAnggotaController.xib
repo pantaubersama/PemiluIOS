@@ -30,7 +30,7 @@
                     <rect key="frame" x="16" y="40" width="288" height="120"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bagikan Undangan Lewat Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gyv-Cx-IvR" customClass="Label" customModule="Common">
-                            <rect key="frame" x="0.0" y="0.0" width="223.5" height="28"/>
+                            <rect key="frame" x="0.0" y="0.0" width="239" height="28"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -83,10 +83,10 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FJ1-iG-wdC">
                     <rect key="frame" x="0.0" y="184" width="320" height="52"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="txm-H4-Jjq" customClass="Label" customModule="Common">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="txm-H4-Jjq" customClass="Label" customModule="Common">
                             <rect key="frame" x="8" y="4" width="304" height="44"/>
                             <string key="text">Link di bawah ini dapat digunakan untuk menambah anggota secara otomatis apabila di-klik oleh penerima.
-Kamu bisa non-aktifkan link undangan sewaktu-waktu.</string>
+Moderator bisa non-aktifkan link undangan sewaktu-waktu.</string>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" red="0.48628133540000001" green="0.4862622023" blue="0.48627519609999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <nil key="highlightedColor"/>
@@ -110,7 +110,7 @@ Kamu bisa non-aktifkan link undangan sewaktu-waktu.</string>
                     <rect key="frame" x="16" y="252" width="288" height="120"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bagikan Undangan Lewat Link" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fla-1K-LCm" customClass="Label" customModule="Common">
-                            <rect key="frame" x="0.0" y="0.0" width="214.5" height="27"/>
+                            <rect key="frame" x="0.0" y="0.0" width="229.5" height="27"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -173,14 +173,14 @@ Kamu bisa non-aktifkan link undangan sewaktu-waktu.</string>
                             </userDefinedRuntimeAttributes>
                         </view>
                         <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="pGp-bs-0uG">
-                            <rect key="frame" x="0.0" y="89" width="184.5" height="31"/>
+                            <rect key="frame" x="0.0" y="89" width="269.5" height="31"/>
                             <subviews>
                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="a5O-jU-w8k">
                                     <rect key="frame" x="0.0" y="0.0" width="51" height="31"/>
                                     <color key="onTintColor" red="0.68041622639999999" green="0.1499232352" blue="0.14898997550000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </switch>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Non-aktifkan link undangan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wMa-xk-5ee" customClass="Label" customModule="Common">
-                                    <rect key="frame" x="59" y="0.0" width="125.5" height="31"/>
+                                    <rect key="frame" x="59" y="0.0" width="210.5" height="31"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" red="0.56471371650000002" green="0.56469172239999998" blue="0.56470668319999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     <nil key="highlightedColor"/>

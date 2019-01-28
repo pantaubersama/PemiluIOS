@@ -76,12 +76,24 @@ class UndangAnggotaController: UIViewController {
         viewModel.output.userData
             .drive(onNext: { [weak self] (response) in
                 guard let `self` = self else { return }
-                if let state = response.cluster?.isLinkActive {
+                if let state = response.cluster?.isLinkActive,
+                    let isAdmin = response.isAdmin,
+                    let isModerator = response.isModerator,
+                    let magicLink = response.cluster?.magicLink {
                     self.switchButton.isOn = state
                     self.lblState.text = state ? "Link aktif" : "Link tidak aktif"
                     self.containerLink.backgroundColor = state ? Color.primary_white : Color.grey_three
                     self.tfLink.backgroundColor = state ? Color.primary_white : Color.grey_three
-                    self.tfLink.isEnabled = state
+                    if isAdmin == true || isModerator == true {
+                        self.tfLink.isEnabled = state
+                        self.switchButton.isEnabled = true
+                        self.tfLink.placeholder = state ? "Magic link cluster Anda aktif" : "Masukan tautan disini"
+                    } else {
+                        self.tfLink.isEnabled = state
+                        self.switchButton.isEnabled = false
+                        self.tfLink.placeholder = state ? "Masukan tautan disini" : "Magic link cluster Anda tidak aktif"
+                        self.tfLink.text = state ? "\(AppContext.instance.infoForKey("URL_WEB"))/\(magicLink)" : nil
+                    }
                 }
             })
             .disposed(by: disposeBag)

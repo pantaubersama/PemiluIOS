@@ -228,12 +228,9 @@ final class ProfileViewModel: IProfileViewModel, IProfileViewModelInput, IProfil
             .filter({ $0 == .undang })
             .withLatestFrom(myAccountData)
             .flatMap { (user) -> Observable<Void> in
-                // TODO : Hanya moderator yang bisa mengundang clustet
-                if user.user.isModerator == true {
-                    return navigator.launchUndangAnggota(data: user.user)
-                } else {
-                    return navigator.lauchAlertCluster()
-                }
+                // TODO : Semua bisa masuk ke undang cluster, tapi jika anggota
+                // tidak bisa melakukan aksi apa2
+                return navigator.launchUndangAnggota(data: user.user)
             }
             .mapToVoid()
         
