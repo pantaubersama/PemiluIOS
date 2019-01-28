@@ -15,6 +15,7 @@ class ListClusterController: UITableViewController {
     var viewModel: ClusterSearchViewModel!
     
     private let disposeBag = DisposeBag()
+    internal lazy var rControl = UIRefreshControl()
     
     convenience init(viewModel: ClusterSearchViewModel) {
         self.init()
@@ -31,8 +32,12 @@ class ListClusterController: UITableViewController {
         tableView.separatorColor = UIColor.groupTableViewBackground
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         tableView.registerReusableCell(ClusterSearchCell.self)
+        tableView.refreshControl = rControl
         
         viewModel.output.items
+            .do(onNext: { [unowned self](items) in
+                self.rControl.endRefreshing()
+            })
             .drive(tableView.rx.items) { tableView, row, item in
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: item.reuseIdentifier) else { return UITableViewCell() }
                 cell.tag = row
@@ -60,6 +65,18 @@ class ListClusterController: UITableViewController {
         
         viewModel.output.selected
             .drive()
+            .disposed(by: disposeBag)
+        
+        rControl.rx.controlEvent(.valueChanged)
+            .map({ "" })
+            .bind(to: viewModel.input.refreshI)
+            .disposed(by: disposeBag)
+        
+        viewModel.output.filter
+            .drive(onNext: { [weak self] (_) in
+                // set to top of table view after set filter
+                self?.refreshControl?.sendActions(for: .valueChanged)
+            })
             .disposed(by: disposeBag)
         
     }

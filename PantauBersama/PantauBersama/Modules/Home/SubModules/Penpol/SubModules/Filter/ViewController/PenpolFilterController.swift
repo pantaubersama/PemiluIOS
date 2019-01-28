@@ -19,6 +19,8 @@ class PenpolFilterController: UIViewController {
     var reloadTable: Bool = false
     private let disposeBag = DisposeBag()
     private var selectedFilter: [PenpolFilterModel.FilterItem] = []
+    private lazy var selectedCategory: [String: String] = UserDefaults.getCategoryFilter() ?? [:]
+    private lazy var selectedCluster: [String: String] = UserDefaults.getClusterFilter() ?? [:]
     private var clusterId: String? = nil
     private var nameCluster: String? = "Pilih Cluster"
     
@@ -37,6 +39,21 @@ class PenpolFilterController: UIViewController {
                 filterItems.forEach({ (filterItem) in
                     UserDefaults.setSelectedFilter(value: filterItem.id, isSelected: true)
                 })
+                
+                
+                let clusterCache = [
+                    "name": self.selectedCluster["name"] ?? "",
+                    "id": self.selectedCluster["id"] ?? ""
+                ]
+                UserDefaults.setClusterFilter(userInfo: clusterCache)
+                
+                
+                let categoryCache = [
+                    "name": self.selectedCategory["name"] ?? "",
+                    "id": self.selectedCategory["id"] ?? ""
+                ]
+                UserDefaults.setCategoryFilter(userInfo: categoryCache)
+                
             })
             .bind(to: viewModel.input.filterTrigger)
             .disposed(by: disposeBag)
@@ -78,6 +95,10 @@ class PenpolFilterController: UIViewController {
                 if let index = self.selectedFilter.index(where: { $0.paramKey == "cluster_id" }) {
                     self.selectedFilter[index].paramValue = s
                 }
+                
+                if let index = self.selectedFilter.lastIndex(where: { $0.paramKey == "filter_value" }) {
+                    self.selectedFilter[index].paramValue = s
+                }
             }).disposed(by: disposeBag)
         
         self.navigationItem.leftBarButtonItem = back
@@ -98,7 +119,9 @@ class PenpolFilterController: UIViewController {
                 }
             })
         }
-        UserDefaults.Account.reset(forKey: .clusterName)
+        
+        UserDefaults.resetClusterFilter()
+        UserDefaults.resetCategoryFilter()
     }
 }
 
@@ -123,11 +146,23 @@ extension PenpolFilterController: UITableViewDataSource {
             return cell
         case .text:
             // TODO: when user start to text item
-            // will launch cluster search controller
+            // will launch list item depends on id
+            
             let cell = UITableViewCell()
-            print(UserDefaults.Account.get(forKey: .clusterName) ?? "")
-            cell.textLabel?.text = UserDefaults.Account.get(forKey: .clusterName) ?? "Pilih Cluster"
-            cell.textLabel?.font = UIFont(name: "Lato-Regular", size: 12)
+            
+            if item.id == "janji-cluster" {
+                let cluster = UserDefaults.getClusterFilter()
+                let clusterName = cluster?["name"]
+                
+                cell.textLabel?.text = clusterName ?? self.selectedCluster["name"] ?? "Pilih Cluster"
+                cell.textLabel?.font = UIFont(name: "Lato-Regular", size: 12)
+            } else if item.id == "cluster-categories" {
+                let category = UserDefaults.getCategoryFilter()
+                let categoryName = category?["name"]
+                
+                cell.textLabel?.text = categoryName ?? self.selectedCategory["name"] ?? "Pilih Kategori"
+                cell.textLabel?.font = UIFont(name: "Lato-Regular", size: 12)
+            }
             
             return cell
         }
@@ -186,7 +221,7 @@ extension PenpolFilterController: UITableViewDelegate {
         if selectedItem.type == FilterViewType.text {
             if let navigationController = self.navigationController {
                 if selectedItem.id == "janji-cluster" {
-                    let viewModel = ClusterSearchViewModel()
+                    let viewModel = ClusterSearchViewModel(clearFilter: true)
                     viewModel.delegate = self
                     let vc = ClusterSearchController(viewModel: viewModel)
                     navigationController.pushViewController(vc, animated: true)
@@ -245,8 +280,12 @@ extension PenpolFilterController: UITableViewDelegate {
 
 extension PenpolFilterController: IClusterSearchDelegate {
     func didSelectCluster(item: ClusterDetail, index: IndexPath) -> Observable<Void> {
+        self.selectedCluster = [
+            "id": item.id ?? "",
+            "name": item.name ?? ""
+        ]
+        
         let values = item.id
-        UserDefaults.Account.set(item.name ?? "", forKey: .clusterName)
         DispatchQueue.main.async {
             self.viewModel.input.cidTrigger.onNext((values ?? ""))
             self.clusterId = values
@@ -258,8 +297,12 @@ extension PenpolFilterController: IClusterSearchDelegate {
 
 extension PenpolFilterController: ClusterCategoryDelegate {
     func didSelectCategory(item: ICategories) -> Observable<Void> {
+        self.selectedCategory = [
+            "id": item.id ?? "",
+            "name": item.name ?? ""
+        ]
+        
         let values = item.id
-        UserDefaults.Account.set(item.name ?? "", forKey: .clusterCategory)
         DispatchQueue.main.async {
             self.viewModel.input.cidTrigger.onNext((values ?? ""))
             self.clusterId = values

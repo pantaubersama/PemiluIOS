@@ -25,6 +25,7 @@ final class ClusterSearchViewModel: ViewModelType {
     struct Input {
         let backI: AnyObserver<Void>
         let itemSelected: AnyObserver<IndexPath>
+        let refreshI: AnyObserver<String>
         let query: AnyObserver<String>
         let nextI: AnyObserver<Void>
         let filterI: AnyObserver<[PenpolFilterModel.FilterItem]>
@@ -33,42 +34,57 @@ final class ClusterSearchViewModel: ViewModelType {
     struct Output {
         let items: Driver<[ICellConfigurator]>
         let selected: Driver<Void>
+        let filter: Driver<Void>
     }
     
     private let backS = PublishSubject<Void>()
     private let itemSelectedS = PublishSubject<IndexPath>()
-    private let queryS = PublishSubject<String>()
+    private var queryS = PublishSubject<String>()
     private let nextS = PublishSubject<Void>()
     private let filterS = PublishSubject<[PenpolFilterModel.FilterItem]>()
+    private let refreshS = PublishSubject<String>()
+    
+    private var searchQuery: String?
     let errorTracker = ErrorTracker()
     let activityIndicator = ActivityIndicator()
     var delegate: IClusterSearchDelegate!
     
     private var filterItems: [PenpolFilterModel.FilterItem] = []
     private let disposeBag = DisposeBag()
-    init(searchTrigger: PublishSubject<String>? = nil, navigator: ClusterSearchNavigator? = nil) {
+    init(searchTrigger: PublishSubject<String>? = nil, navigator: ClusterSearchNavigator? = nil, clearFilter: Bool = false) {
         input = Input(backI: backS.asObserver(),
                       itemSelected: itemSelectedS.asObserver(),
+                      refreshI: refreshS.asObserver(),
                       query: queryS.asObserver(),
                       nextI: nextS.asObserver(),
                       filterI: filterS.asObserver())
         
-        let cachedFilter = PenpolFilterModel.generateQuestionFilter()
-        cachedFilter.forEach { (filterModel) in
-            let selectedItem = filterModel.items.filter({ (filterItem) -> Bool in
-                return filterItem.isSelected
-            })
-            self.filterItems.append(contentsOf: selectedItem)
+        if !clearFilter {
+            let cachedFilter = PenpolFilterModel.generateClusterFilter()
+            cachedFilter.forEach { (filterModel) in
+                let selectedItem = filterModel.items.filter({ (filterItem) -> Bool in
+                    return filterItem.isSelected || filterItem.type == .text
+                })
+                self.filterItems.append(contentsOf: selectedItem)
+            }
         }
         
-        searchTrigger?.asObserver()
-            .bind(to: input.query)
+        
+        if let externalQuery = searchTrigger {
+            self.queryS = externalQuery
+        }
+        
+        queryS.asObserver()
+            .do(onNext: { [unowned self](query) in
+                self.searchQuery = query
+            })
+            .bind(to: refreshS)
             .disposed(by: disposeBag)
         
-        let cluster = queryS.startWith((""))
+        let cluster = refreshS.startWith("")
             .flatMapLatest { [weak self] (s) -> Observable<[ClusterDetail]> in
                 guard let `self` = self else { return Observable.empty() }
-                return self.paginateItems(nextBatchTrigger: self.nextS.asObservable(), q: s)
+                return self.paginateItems(nextBatchTrigger: self.nextS.asObservable(), q: self.searchQuery ?? s)
                     .trackError(self.errorTracker)
                     .trackActivity(self.activityIndicator)
                     .catchErrorJustReturn([])
@@ -103,9 +119,24 @@ final class ClusterSearchViewModel: ViewModelType {
                 .asDriverOnErrorJustComplete()
         }
         
+        let filterO = filterS
+            .do(onNext: { [weak self] (filterItems) in
+                guard let `self` = self else { return  }
+                print("Filter \(filterItems)")
+                
+                let filter = filterItems.filter({ (filterItem) -> Bool in
+                    return filterItem.id.contains("cluster-categories")
+                })
+                
+                self.filterItems = filter
+            })
+            .mapToVoid()
+            .asDriverOnErrorJustComplete()
+        
         
         output = Output(items: clusterCell.asDriver(onErrorJustReturn: []),
-                        selected: itemSelected)
+                        selected: itemSelected,
+                        filter: filterO)
         
     }
     
@@ -122,8 +153,10 @@ final class ClusterSearchViewModel: ViewModelType {
         batch: Batch,
         nextBatchTrigger: Observable<Void>, q: String) ->
         Observable<Page<[ClusterDetail]>> {
+            let categoryId = self.filterItems.filter({ $0.paramKey == "filter_value"}).first?.paramValue ?? ""
+            
             return NetworkService.instance
-                .requestObject(PantauAuthAPI.clusters(q: q, page: batch.page, perPage: batch.limit),
+                .requestObject(PantauAuthAPI.clusters(q: q, page: batch.page, perPage: batch.limit, filterValue: categoryId),
                                c: BaseResponse<Clusters>.self)
                 .map({ self.transformToPage(response: $0, batch: batch) })
                 .asObservable()

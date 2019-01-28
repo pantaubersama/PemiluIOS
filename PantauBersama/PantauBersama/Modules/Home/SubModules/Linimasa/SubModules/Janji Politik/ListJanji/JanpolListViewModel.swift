@@ -66,7 +66,7 @@ class JanpolListViewModel: IJanpolListViewModel, IJanpolListViewModelInput, IJan
         let cachedFilter = PenpolFilterModel.generateJanjiFilter()
         cachedFilter.forEach { (filterModel) in
             let selectedItem = filterModel.items.filter({ (filterItem) -> Bool in
-                return filterItem.isSelected
+                return filterItem.isSelected || filterItem.type == .text
             })
             self.filterItems.append(contentsOf: selectedItem)
         }
