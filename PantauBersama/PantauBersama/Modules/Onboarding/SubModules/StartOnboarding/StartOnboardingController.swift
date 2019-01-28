@@ -151,7 +151,7 @@ extension StartOnboardingController: UIPageViewControllerDataSource, UIPageViewC
                 currentIndex = pIndex
             }
             pageControl.currentPage = currentIndex
-            self.btnNext.setTitle("NEXT", for: .normal)
+            self.btnNext.setTitle("LANJUT", for: .normal)
             if currentIndex == 4 {
                 self.btnNext.setTitle("SELESAI", for: .normal)
             }
