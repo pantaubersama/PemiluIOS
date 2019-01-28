@@ -53,6 +53,20 @@ class CreateJanjiController: UIViewController {
             .setDelegate(self)
             .disposed(by: disposeBag)
         
+        titleJanji.rx.text
+            .orEmpty
+            .map { [unowned self] text in
+                if self.titleJanji.textColor == UIColor.lightGray {
+                    return "0/160"
+                }
+                return "\(text.count)/160"
+            }
+            .asDriverOnErrorJustComplete()
+            .drive(textCount.rx.text)
+            .disposed(by: disposeBag)
+        
+        titleJanji.delegate = self
+        
         // MARK
         // Setup Editor
         // need editor custom
@@ -65,6 +79,7 @@ class CreateJanjiController: UIViewController {
             .disposed(by: disposeBag)
         
         done.rx.tap
+            .debounce(0.5, scheduler: MainScheduler.instance)
             .bind(to: viewModel.input.doneI)
             .disposed(by: disposeBag)
         
@@ -99,6 +114,9 @@ class CreateJanjiController: UIViewController {
             .disposed(by: disposeBag)
         
         viewModel.output.enableO
+            .do(onNext: { (value) in
+                done.tintColor = value ? Color.primary_red : Color.grey_three
+            })
             .drive(done.rx.isEnabled)
             .disposed(by: disposeBag)
         
@@ -146,13 +164,6 @@ extension CreateJanjiController: UITextViewDelegate {
         }
     }
     
-    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        let newLength =  textView.text.count + text.count - range.length
-        
-        textCount.text =  String(newLength) + "/160"
-
-        return newLength < 160
-    }
     
     func textViewDidChange(_ textView: UITextView) {
         let size = CGSize(width: textView.frame.width, height: .infinity)
@@ -167,6 +178,15 @@ extension CreateJanjiController: UITextViewDelegate {
             contentHeightConstraint.constant = 100
             textView.isScrollEnabled = false
         }
+    }
+}
+
+
+extension CreateJanjiController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard let text = textField.text else { return true }
+        let count = text.count + string.count - range.length
+        return count <= 160
     }
 }
 

@@ -116,7 +116,7 @@
                                         <constraint firstAttribute="trailing" secondItem="DoL-vf-KU7" secondAttribute="trailing" constant="20" id="zWp-UJ-hof"/>
                                     </constraints>
                                 </view>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tTf-km-3j5">
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tTf-km-3j5" userLabel="titleView">
                                     <rect key="frame" x="20" y="139" width="335" height="40"/>
                                     <subviews>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Judul Janji Politik" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OVn-bl-S9r" customClass="TextField" customModule="Common">
@@ -126,10 +126,13 @@
                                             <textInputTraits key="textInputTraits"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="color" keyPath="lineColor">
-                                                    <color key="value" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="value" red="0.98792153599999999" green="0.92529982330000005" blue="0.93725663420000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 </userDefinedRuntimeAttribute>
                                                 <userDefinedRuntimeAttribute type="color" keyPath="activeLineColor">
                                                     <color key="value" red="0.98792153599999999" green="0.92529982330000005" blue="0.93725663420000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                    <real key="value" value="14"/>
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </textField>
@@ -143,10 +146,10 @@
                                         <constraint firstAttribute="bottom" secondItem="OVn-bl-S9r" secondAttribute="bottom" id="gLG-O5-SpN"/>
                                     </constraints>
                                 </view>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AcX-uT-Y1K">
-                                    <rect key="frame" x="20" y="179" width="335" height="100"/>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AcX-uT-Y1K" userLabel="viewContent">
+                                    <rect key="frame" x="20" y="195" width="335" height="100"/>
                                     <subviews>
-                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="fCc-b7-q5R">
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="fCc-b7-q5R">
                                             <rect key="frame" x="0.0" y="0.0" width="335" height="100"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
@@ -165,19 +168,18 @@
                                     </constraints>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0/160" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kAJ-9f-csg" customClass="Label" customModule="Common">
-                                    <rect key="frame" x="322.5" y="284" width="32.5" height="14.5"/>
+                                    <rect key="frame" x="328" y="179" width="27" height="12"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <nil key="textColor"/>
+                                    <color key="textColor" red="0.79608923200000004" green="0.79605895280000005" blue="0.79607945680000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     <nil key="highlightedColor"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
-                                            <real key="value" value="12"/>
+                                            <real key="value" value="10"/>
                                         </userDefinedRuntimeAttribute>
-                                        <userDefinedRuntimeAttribute type="string" keyPath="typeLabel" value="Medium"/>
                                     </userDefinedRuntimeAttributes>
                                 </label>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AmO-lY-vpc">
-                                    <rect key="frame" x="20" y="284" width="80" height="80"/>
+                                    <rect key="frame" x="20" y="300" width="80" height="80"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="80" id="CMC-nO-ePw"/>
                                         <constraint firstAttribute="width" constant="80" id="EGh-3b-4lz"/>
@@ -198,8 +200,8 @@
                                 <constraint firstItem="9Gx-wA-ZrS" firstAttribute="top" secondItem="tVR-Tg-HAt" secondAttribute="top" id="W4j-05-snb"/>
                                 <constraint firstAttribute="trailing" secondItem="9Gx-wA-ZrS" secondAttribute="trailing" id="Z2Y-Zh-yHo"/>
                                 <constraint firstItem="kAJ-9f-csg" firstAttribute="trailing" secondItem="AcX-uT-Y1K" secondAttribute="trailing" id="cU5-zA-xWc"/>
-                                <constraint firstItem="AcX-uT-Y1K" firstAttribute="top" secondItem="tTf-km-3j5" secondAttribute="bottom" id="dQl-fG-WQN"/>
-                                <constraint firstItem="kAJ-9f-csg" firstAttribute="top" secondItem="AcX-uT-Y1K" secondAttribute="bottom" constant="5" id="kvZ-FR-DIG"/>
+                                <constraint firstItem="AcX-uT-Y1K" firstAttribute="top" secondItem="tTf-km-3j5" secondAttribute="bottom" constant="16" id="dQl-fG-WQN"/>
+                                <constraint firstItem="kAJ-9f-csg" firstAttribute="bottom" secondItem="tTf-km-3j5" secondAttribute="bottom" constant="12" id="kvZ-FR-DIG"/>
                                 <constraint firstItem="9Gx-wA-ZrS" firstAttribute="leading" secondItem="tVR-Tg-HAt" secondAttribute="leading" id="uRM-RQ-MlS"/>
                                 <constraint firstItem="AmO-lY-vpc" firstAttribute="top" secondItem="AcX-uT-Y1K" secondAttribute="bottom" constant="5" id="xs9-fA-eZ1"/>
                             </constraints>
@@ -227,6 +229,6 @@
         </view>
     </objects>
     <resources>
-        <image name="icDummyPerson" width="64" height="64"/>
+        <image name="icDummyPerson" width="48" height="48"/>
     </resources>
 </document>

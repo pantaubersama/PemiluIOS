@@ -116,6 +116,7 @@ final class CreateJanjiViewModel: ICreateJanjiViewModel, ICreateJanjiViewModelIn
             })
             .mapToVoid()
         
+        
         let actionSeleced = Observable
             .merge([
                 backS,
