@@ -40,7 +40,7 @@ final class ShareTrendCoordinator: BaseCoordinator<Void> {
 
 extension ShareTrendCoordinator: ShareTrendNavigator {
     func shareTrendResult(data: TrendResponse) -> Observable<Void> {
-        let share = "Hmm.. Ternyataa 👀\(AppContext.instance.infoForKey("URL_WEB"))/share/badge/\(data.user.id)"
+        let share = "Hmm.. Ternyata begini kecenderunganku 👀\(AppContext.instance.infoForKey("URL_WEB"))/share/badge/\(data.user.id)"
         let activityViewController = UIActivityViewController(activityItems: [share as NSString], applicationActivities: nil)
         self.navigationController.present(activityViewController, animated: true, completion: nil)
         return Observable.never()

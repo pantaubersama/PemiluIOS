@@ -72,7 +72,7 @@ class CatatanPilpresController: UIViewController {
                         self.iconPreference.af_setImage(withURL: URL(string: avatarUrl)!)
                     }
                     self.lblKecenderungan.text = "Total Kecenderungamu,"
-                    self.lblPreferenceResult.text = "\(response.meta.quizzes.finished) dari \(response.meta.quizzes.total) Kuis"
+                    self.lblPreferenceResult.text = "\(response.meta.quizzes.finished) dari \(response.meta.quizzes.total) Quiz"
                     self.lblPercentage.text = String(format: "%.0f", preference?.percentage ?? 0.0) + "% (\(preference?.team.title ?? "")"
                     
                 })
