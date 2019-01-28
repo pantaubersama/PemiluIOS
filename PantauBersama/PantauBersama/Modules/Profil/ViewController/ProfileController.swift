@@ -35,6 +35,7 @@ class ProfileController: UIViewController {
     var viewModel: IProfileViewModel!
     var isMyAccount: Bool = true // default is my account
     var userId: String? = nil
+    private var isExpanded: Bool = false
     
     lazy var myJanpolViewModel: MyJanpolListViewModel = MyJanpolListViewModel(navigator: viewModel.navigator, showTableHeader: false)
     lazy var myQuestionViewModel: MyQuestionListViewModel = MyQuestionListViewModel(navigator: viewModel.navigator, showTableHeader: false)
@@ -90,39 +91,28 @@ class ProfileController: UIViewController {
         
         // MARK
         // Section Selected
-        clusterButton.rx.tap.scan(true) { lastState, newValue in
+        clusterButton.rx.tap.scan(self.isExpanded) { lastState, newValue in
             return !lastState
             }.subscribe(onNext: { [weak self] (value) in
                 guard let `self` = self else { return }
-                UIView.performWithoutAnimation {
-                    self.heightClusterConstant.constant = value ? 50.0 : 0.0
-                    self.clusterView.isHidden = !value
-                }
+                self.setView(view: self.clusterView, hidden: value)
             })
             .disposed(by: disposeBag)
         
-        badgeButton.rx.tap.scan(true) { lastState, newValue in
+        badgeButton.rx.tap.scan(self.isExpanded) { lastState, newValue in
             return !lastState
             }.subscribe(onNext: { [weak self] (value) in
                 guard let `self` = self else { return }
-                UIView.performWithoutAnimation {
-                    self.heightTableBadgeConstant.constant = value ? 160.0 : 0.0
-                    self.tableViewBadge.isHidden = !value
-                    self.containerlihatConstant.constant = value ? 30.0 : 0.0
-                    self.containerLihat.isHidden = !value
-                    self.lihatBadge.isHidden = false
-                }
+                self.setView(view: self.tableViewBadge, hidden: value)
+                self.setView(view: self.containerLihat, hidden: value)
             })
             .disposed(by: disposeBag)
         
-        biodataButton.rx.tap.scan(true) { lastState, newValue in
+        biodataButton.rx.tap.scan(self.isExpanded) { lastState, newValue in
             return !lastState
             }.subscribe(onNext: { [weak self] (value) in
                 guard let `self` = self else { return }
-                UIView.performWithoutAnimation {
-                    self.heightBiodataConstant.constant = value ? 86.0 : 0.0
-                    self.biodataView.isHidden = !value
-                }
+                self.setView(view: self.biodataView, hidden: value)
             })
             .disposed(by: disposeBag)
         
@@ -161,15 +151,11 @@ class ProfileController: UIViewController {
 
                         if (position.y >= halfHeaderViewHeight)
                             && tableView!.contentSize.height < minimumTableViewContentSizeHeight {
-                            self.heightClusterConstant.constant = 0.0
-                            self.heightBiodataConstant.constant = 0.0
-                            self.heightTableBadgeConstant.constant = 0.0
-                            self.lihatBadge.isHidden = true
                             tableView!.contentSize = CGSize(width: tableView!.contentSize.width,
                                                             height: minimumTableViewContentSizeHeight + 2)
                         }
                     }
-
+                
             })
             .disposed(by: disposeBag)
         
@@ -290,5 +276,15 @@ class ProfileController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewModel.input.viewWillAppearI.onNext(())
+    }
+}
+
+
+extension ProfileController {
+    func setView(view: UIView, hidden: Bool) {
+        UIView.transition(with: view, duration: 0.4, options: .transitionCrossDissolve, animations: {
+            view.isHidden = hidden
+            self.isExpanded = true
+        })
     }
 }
