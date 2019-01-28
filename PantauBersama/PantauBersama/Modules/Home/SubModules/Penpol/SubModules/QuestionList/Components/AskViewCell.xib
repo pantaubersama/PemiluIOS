@@ -138,10 +138,10 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Axi-i4-D7b">
-                        <rect key="frame" x="72" y="11.5" width="170" height="28"/>
+                        <rect key="frame" x="72" y="11.5" width="173" height="28"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="MWQ-A9-Ubk">
-                                <rect key="frame" x="0.0" y="0.0" width="170" height="28"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="MWQ-A9-Ubk">
+                                <rect key="frame" x="0.0" y="0.0" width="173" height="28"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o5a-ue-j1v" customClass="RoundView" customModule="Common">
                                         <rect key="frame" x="0.0" y="0.0" width="28" height="28"/>
@@ -165,7 +165,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="P26-B2-TId">
-                                        <rect key="frame" x="30" y="2" width="140" height="24"/>
+                                        <rect key="frame" x="33" y="2" width="140" height="24"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ariel Tatum Similikiti " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EG8-aL-cfG" customClass="Label" customModule="Common">
                                                 <rect key="frame" x="0.0" y="0.0" width="140" height="12"/>
