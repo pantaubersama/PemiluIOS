@@ -66,7 +66,7 @@ class ProfileController: UIViewController {
         
         navigationItem.rightBarButtonItem = isMyAccount ? setting : nil
         navigationItem.leftBarButtonItem = back
-        navigationController?.navigationBar.configure(with: .white)
+     
         
         // MARK
         // segmented control value
@@ -285,6 +285,7 @@ class ProfileController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewModel.input.viewWillAppearI.onNext(())
+        navigationController?.navigationBar.configure(with: .white)
     }
 }
 
