@@ -12,6 +12,7 @@ import Common
 protocol DetailAskNavigaor {
     var finish: Observable<Void>! { get set }
     func shareQuestion(question: String) -> Observable<Void>
+    func launchProfileUser(isMyAccount: Bool, userId: String?) -> Observable<Void>
 }
 
 final class DetailAskCoordinator: BaseCoordinator<Void> {
@@ -47,5 +48,10 @@ extension DetailAskCoordinator: DetailAskNavigaor {
         self.navigationController.present(activityViewController, animated: true, completion: nil)
         
         return Observable.never()
+    }
+    
+    func launchProfileUser(isMyAccount: Bool, userId: String?) -> Observable<Void> {
+        let profileCoordinator = ProfileCoordinator(navigationController: navigationController, isMyAccount: isMyAccount, userId: userId)
+        return coordinate(to: profileCoordinator)
     }
 }

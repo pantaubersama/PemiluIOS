@@ -14,6 +14,7 @@ import Common
 protocol DetailJanjiNavigator {
     func shareJanji(data: JanjiPolitik) -> Observable<Void>
     func close()
+    func launchProfileUser(isMyAccount: Bool, userId: String?) -> Observable<Void>
 }
 
 class DetailJanjiCoordinator: BaseCoordinator<Void> {
@@ -56,5 +57,9 @@ extension DetailJanjiCoordinator: DetailJanjiNavigator {
         return Observable.never()
     }
     
+    func launchProfileUser(isMyAccount: Bool, userId: String?) -> Observable<Void> {
+        let profileCoordinator = ProfileCoordinator(navigationController: navigationController, isMyAccount: isMyAccount, userId: userId)
+        return coordinate(to: profileCoordinator)
+    }
 
 }

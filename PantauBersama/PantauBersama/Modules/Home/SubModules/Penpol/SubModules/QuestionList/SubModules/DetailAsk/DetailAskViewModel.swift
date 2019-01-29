@@ -26,6 +26,7 @@ final class DetailAskViewModel: ViewModelType {
         let unvoteI: AnyObserver<Question?>
         let viewWillAppearI: AnyObserver<Void>
         let voteTriggerI: AnyObserver<Void>
+        let profileTrigger: AnyObserver<UITapGestureRecognizer>
     }
     
     struct Output {
@@ -36,6 +37,7 @@ final class DetailAskViewModel: ViewModelType {
         let deleteO: Driver<Int>
         let voteO: Driver<(Bool)>
         let unvoteO: Driver<Bool>
+        let profileO: Driver<Void>
     }
     
     private let backS = PublishSubject<Void>()
@@ -47,6 +49,7 @@ final class DetailAskViewModel: ViewModelType {
     private let deleteS = PublishSubject<Int>()
     private let viewWillAppearS = PublishSubject<Void>()
     private let voteTriggerS = PublishSubject<Void>()
+    private let profileS = PublishSubject<UITapGestureRecognizer>()
     
     private let data: String
     private var navigator: DetailAskNavigaor
@@ -67,7 +70,8 @@ final class DetailAskViewModel: ViewModelType {
             voteI: voteS.asObserver(),
             unvoteI: unvoteS.asObserver(),
             viewWillAppearI: viewWillAppearS.asObserver(),
-            voteTriggerI: voteTriggerS.asObserver()
+            voteTriggerI: voteTriggerS.asObserver(),
+            profileTrigger: profileS.asObserver()
         )
         
         // MARK
@@ -119,6 +123,20 @@ final class DetailAskViewModel: ViewModelType {
             .flatMapLatest({ deleteVoteQuestion(question: $0) })
             .asDriverOnErrorJustComplete()
         
+        let profile = profileS
+            .withLatestFrom(dataQuestion)
+            .flatMapLatest({ (question) -> Observable<Void> in
+                if let myId = AppState.local()?.user.id {
+                    if myId == question.user.id {
+                        return navigator.launchProfileUser(isMyAccount: true, userId: nil)
+                    } else {
+                        return navigator.launchProfileUser(isMyAccount: false, userId: question.user.id)
+                    }
+                }
+                return Observable.empty()
+            })
+            .asDriverOnErrorJustComplete()
+        
         output = Output(
             itemsO: dataQuestion.asDriverOnErrorJustComplete(),
             moreO: moreS.asDriverOnErrorJustComplete(),
@@ -126,7 +144,8 @@ final class DetailAskViewModel: ViewModelType {
             shareO: share,
             deleteO: deleteS.asDriverOnErrorJustComplete(),
             voteO: vote,
-            unvoteO: unvote
+            unvoteO: unvote,
+            profileO: profile
         )
         
         

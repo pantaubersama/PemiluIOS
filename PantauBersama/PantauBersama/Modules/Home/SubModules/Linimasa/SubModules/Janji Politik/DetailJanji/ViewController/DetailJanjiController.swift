@@ -36,6 +36,8 @@ class DetailJanjiController: UIViewController {
     private let disposeBag = DisposeBag()
     var viewModel: DetailJanjiViewModel!
     
+    let tap: UITapGestureRecognizer = UITapGestureRecognizer()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -59,6 +61,13 @@ class DetailJanjiController: UIViewController {
         
         viewModel.output.shareSelected
             .drive()
+            .disposed(by: disposeBag)
+        
+        avatar.isUserInteractionEnabled = true
+        avatar.addGestureRecognizer(tap)
+        
+        tap.rx.event
+            .bind(to: viewModel.input.profileTrigger)
             .disposed(by: disposeBag)
         
         viewModel.output.moreSelected
@@ -106,6 +115,10 @@ class DetailJanjiController: UIViewController {
             .drive(onNext: { (message) in
                 UIAlertController.showAlert(withTitle: "", andMessage: message)
             })
+            .disposed(by: disposeBag)
+        
+        viewModel.output.profileSelected
+            .drive()
             .disposed(by: disposeBag)
         
         // MARK
