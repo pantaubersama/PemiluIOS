@@ -22,7 +22,7 @@ class PenpolFilterController: UIViewController {
     private lazy var selectedCategory: [String: String]? = UserDefaults.getCategoryFilter()
     private lazy var selectedCluster: [String: String]? = UserDefaults.getClusterFilter()
     private var clusterId: String? = nil
-    private var nameCluster: String? = "Pilih Cluster"
+    private var isResetted = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,6 +47,8 @@ class PenpolFilterController: UIViewController {
                     ]
                     
                     UserDefaults.setClusterFilter(userInfo: clusterCache)
+                } else {
+                    UserDefaults.resetClusterFilter()
                 }
                 
                 
@@ -56,6 +58,8 @@ class PenpolFilterController: UIViewController {
                         "id": selectedCategory["id"] ?? ""
                     ]
                     UserDefaults.setCategoryFilter(userInfo: categoryCache)
+                } else {
+                    UserDefaults.resetCategoryFilter()
                 }
                 
             })
@@ -111,6 +115,7 @@ class PenpolFilterController: UIViewController {
     }
     
     private func reset(clearSelectedTextFilter: Bool = false) {
+        isResetted = true
         UserDefaults.resetClusterFilter()
         UserDefaults.resetCategoryFilter()
         
@@ -122,16 +127,18 @@ class PenpolFilterController: UIViewController {
         self.selectedFilter.forEach({ (filterItem) in
             UserDefaults.setSelectedFilter(value: filterItem.id, isSelected: false)
         })
-        self.selectedFilter.removeAll()
-        self.nameCluster = "Pilih Cluster"
         
-        if let selectedRow = self.tableView.indexPathsForSelectedRows {
-            selectedRow.forEach({ (indexPath) in
-                DispatchQueue.main.async {
+        self.selectedFilter.removeAll()
+        
+        // TODO: replace this with any other better logic (quick solution only)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.0, execute: {
+            if let selectedRow = self.tableView.indexPathsForSelectedRows {
+                selectedRow.forEach({ (indexPath) in
                     self.tableView.deselectRow(at: indexPath, animated: true)
-                }
-            })
-        }
+                    
+                })
+            }
+        })
     }
 }
 
@@ -143,10 +150,10 @@ extension PenpolFilterController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let item = viewModel.output.filterItems[indexPath.section].items[indexPath.row]
         
-        if item.isSelected {
+        if item.isSelected && !isResetted {
             tableView.selectRow(at: indexPath, animated: false, scrollPosition: UITableView.ScrollPosition.none)
             selectedFilter.append(item)
-        } else if item.type == .text {
+        } else if item.type == .text && (self.selectedCluster != nil || self.selectedCategory != nil) {
             selectedFilter.append(item)
         }
         

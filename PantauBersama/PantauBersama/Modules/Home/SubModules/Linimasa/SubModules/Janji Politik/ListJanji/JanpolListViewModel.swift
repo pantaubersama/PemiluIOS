@@ -148,9 +148,9 @@ class JanpolListViewModel: IJanpolListViewModel, IJanpolListViewModelInput, IJan
                     return filterItem.id.contains("janji")
                 })
                 
-                if !filter.isEmpty {
-                    self.filterItems = filterItems
-                }
+                
+                self.filterItems = filter
+                
             })
             .mapToVoid()
             .asDriverOnErrorJustComplete()
