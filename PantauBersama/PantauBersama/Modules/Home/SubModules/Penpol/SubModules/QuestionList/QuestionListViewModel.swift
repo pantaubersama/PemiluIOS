@@ -101,6 +101,14 @@ class QuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelInput
             .bind(to: refreshI)
             .disposed(by: disposeBag)
         
+        let cachedFilter = PenpolFilterModel.generateQuestionFilter()
+        cachedFilter.forEach { (filterModel) in
+            let selectedItem = filterModel.items.filter({ (filterItem) -> Bool in
+                return filterItem.isSelected
+            })
+            self.filterItems.append(contentsOf: selectedItem)
+        }
+        
         loadCreated.flatMapLatest { [unowned self](_) -> Observable<[QuestionModel]> in
             return self.paginateItems(nextBatchTrigger: self.nextSubject.asObservable(), query: "")
                 .map({ $0.item })

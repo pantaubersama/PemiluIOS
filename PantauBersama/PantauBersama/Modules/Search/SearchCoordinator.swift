@@ -123,10 +123,11 @@ extension SearchCoordinator: SearchNavigator {
     
     func launchFilter(filterType: FilterType, filterTrigger: AnyObserver<[PenpolFilterModel.FilterItem]>) -> Observable<Void> {
         if filterCoordinator == nil {
-            filterCoordinator = PenpolFilterCoordinator(navigationController: self.navigationController, filterType: filterType, filterTrigger: filterTrigger)
+            filterCoordinator = PenpolFilterCoordinator(navigationController: self.navigationController)
         }
         
         filterCoordinator.filterType = filterType
+        filterCoordinator.filterTrigger = filterTrigger
         
         return coordinate(to: filterCoordinator)
     }

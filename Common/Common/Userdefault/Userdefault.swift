@@ -88,6 +88,7 @@ public extension UserDefaults {
             case usernameTwitter
             case usernameFacebook
             case clusterName
+            case clusterCategory
             case version
             case skipVersion
         }
@@ -103,6 +104,32 @@ public extension UserDefaults {
             userDefault.removeObject(forKey: value)
         }
     }
+    
+    public static func setClusterFilter(userInfo: [String: String]) {
+        UserDefaults.standard.set(userInfo, forKey: "cluster_filter")
+    }
+    
+    public static func getClusterFilter() -> [String: String]? {
+        return UserDefaults.standard.dictionary(forKey: "cluster_filter") as? [String : String]
+    }
+    
+    public static func resetClusterFilter() {
+        UserDefaults.standard.removeObject(forKey: "cluster_filter")
+    }
+    
+    public static func setCategoryFilter(userInfo: [String: String]) {
+        UserDefaults.standard.set(userInfo, forKey: "category_filter")
+    }
+    
+    public static func getCategoryFilter() -> [String: String]? {
+        return UserDefaults.standard.dictionary(forKey: "category_filter") as? [String : String]
+    }
+    
+    public static func resetCategoryFilter() {
+        UserDefaults.standard.removeObject(forKey: "category_filter")
+    }
+    
+    
     
     public static func isSelectedFilter(value: String) -> Bool {
         return UserDefaults.standard.bool(forKey: value)

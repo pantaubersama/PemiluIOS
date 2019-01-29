@@ -63,10 +63,12 @@ extension LinimasaCoordinator: LinimasaNavigator {
     
     func launchFilter(filterType: FilterType, filterTrigger: AnyObserver<[PenpolFilterModel.FilterItem]>) -> Observable<Void> {
         if filterCoordinator == nil {
-            filterCoordinator = PenpolFilterCoordinator(navigationController: navigationController, filterType: filterType, filterTrigger: filterTrigger)
+            filterCoordinator = PenpolFilterCoordinator(navigationController: navigationController)
         }
         
         filterCoordinator.filterType = filterType
+        filterCoordinator.filterTrigger = filterTrigger
+        
         return coordinate(to: filterCoordinator)
     }
     

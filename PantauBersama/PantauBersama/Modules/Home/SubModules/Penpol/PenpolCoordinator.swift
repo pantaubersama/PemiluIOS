@@ -50,10 +50,11 @@ extension PenpolCoordinator: PenpolNavigator {
 //        return coordinate(to: filterCoordinator)
         
         if filterCoordinator == nil {
-            filterCoordinator = PenpolFilterCoordinator(navigationController: self.navigationController, filterType: filterType, filterTrigger: filterTrigger)
+            filterCoordinator = PenpolFilterCoordinator(navigationController: self.navigationController)
         }
         
         filterCoordinator.filterType = filterType
+        filterCoordinator.filterTrigger = filterTrigger
         
         return coordinate(to: filterCoordinator)
     }

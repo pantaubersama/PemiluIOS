@@ -36,6 +36,8 @@
 		118149EF21EC718800192E97 /* ListUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118149ED21EC718800192E97 /* ListUserCell.swift */; };
 		118149F021EC718800192E97 /* ListUserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 118149EE21EC718800192E97 /* ListUserCell.xib */; };
 		1183F0E021D53A9100435D31 /* QuestionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1183F0DF21D53A9100435D31 /* QuestionModel.swift */; };
+		1184752021FDDE2600D44FA5 /* ClusterCategoryFilterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1184751F21FDDE2600D44FA5 /* ClusterCategoryFilterController.swift */; };
+		1184752221FDEAC300D44FA5 /* ClusterCategoryDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1184752121FDEAC300D44FA5 /* ClusterCategoryDelegate.swift */; };
 		1197010C21F3632D005548AC /* ListClusterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1197010B21F3632D005548AC /* ListClusterController.swift */; };
 		11B145EE21D67C8200BB26C8 /* AskCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B145ED21D67C8200BB26C8 /* AskCellViewModel.swift */; };
 		11B145F821D72D9B00BB26C8 /* CreateAskHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B145F721D72D9B00BB26C8 /* CreateAskHeaderView.swift */; };
@@ -415,6 +417,8 @@
 		118149ED21EC718800192E97 /* ListUserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListUserCell.swift; sourceTree = "<group>"; };
 		118149EE21EC718800192E97 /* ListUserCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListUserCell.xib; sourceTree = "<group>"; };
 		1183F0DF21D53A9100435D31 /* QuestionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionModel.swift; sourceTree = "<group>"; };
+		1184751F21FDDE2600D44FA5 /* ClusterCategoryFilterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterCategoryFilterController.swift; sourceTree = "<group>"; };
+		1184752121FDEAC300D44FA5 /* ClusterCategoryDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterCategoryDelegate.swift; sourceTree = "<group>"; };
 		1197010B21F3632D005548AC /* ListClusterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListClusterController.swift; sourceTree = "<group>"; };
 		11B145ED21D67C8200BB26C8 /* AskCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AskCellViewModel.swift; sourceTree = "<group>"; };
 		11B145F721D72D9B00BB26C8 /* CreateAskHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAskHeaderView.swift; sourceTree = "<group>"; };
@@ -871,9 +875,19 @@
 			path = Component;
 			sourceTree = "<group>";
 		};
+		1184751E21FDDE0500D44FA5 /* FilterCategory */ = {
+			isa = PBXGroup;
+			children = (
+				1184751F21FDDE2600D44FA5 /* ClusterCategoryFilterController.swift */,
+				1184752121FDEAC300D44FA5 /* ClusterCategoryDelegate.swift */,
+			);
+			path = FilterCategory;
+			sourceTree = "<group>";
+		};
 		1197010D21F36346005548AC /* ListCluster */ = {
 			isa = PBXGroup;
 			children = (
+				1184751E21FDDE0500D44FA5 /* FilterCategory */,
 				1197010B21F3632D005548AC /* ListClusterController.swift */,
 			);
 			path = ListCluster;
@@ -2777,6 +2791,7 @@
 				13812C1E21CAA48700CAB327 /* PenpolController.swift in Sources */,
 				11B145F821D72D9B00BB26C8 /* CreateAskHeaderView.swift in Sources */,
 				844C3D7621C51EAF00199871 /* BaseCoordinator.swift in Sources */,
+				1184752021FDDE2600D44FA5 /* ClusterCategoryFilterController.swift in Sources */,
 				11E1079A21CD14A400B7B074 /* QuizViewModel.swift in Sources */,
 				84FF8A9621F21A8300AA8CF3 /* UpdatesView.swift in Sources */,
 				13812C2B21CAA71F00CAB327 /* PenpolCoordinator.swift in Sources */,
@@ -2964,6 +2979,7 @@
 				840850D221D2632500696CB3 /* ProfileEditCoordinator.swift in Sources */,
 				8409374D21D361240024A444 /* PilpresNavigator.swift in Sources */,
 				840850DF21D2843D00696CB3 /* BadgeViewModel.swift in Sources */,
+				1184752221FDEAC300D44FA5 /* ClusterCategoryDelegate.swift in Sources */,
 				13E9D79021E92934006A0890 /* MyJanpolListViewModel.swift in Sources */,
 				8478B8E121FF1C6600CE192A /* NotificationController.swift in Sources */,
 				84FE6EBE21D5FEA1009A0F55 /* Network+AlertController.swift in Sources */,
