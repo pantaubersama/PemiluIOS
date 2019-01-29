@@ -79,6 +79,8 @@ class QuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelInput
         
         if let externalLoadTrigger = loadCreatedTrigger {
             externalLoadTrigger.flatMapLatest { [unowned self](_) -> Observable<[QuestionModel]> in
+                self.filterItems.removeAll()
+                self.filterItems.append(PenpolFilterModel.generateLatestItemQuestion())
                 return self.paginateItems(nextBatchTrigger: self.nextSubject.asObservable(), query: "")
                     .map({ $0.item })
                     .trackError(self.errorTracker)
@@ -110,6 +112,8 @@ class QuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelInput
         }
         
         loadCreated.flatMapLatest { [unowned self](_) -> Observable<[QuestionModel]> in
+            self.filterItems.removeAll()
+            self.filterItems.append(PenpolFilterModel.generateLatestItemQuestion())
             return self.paginateItems(nextBatchTrigger: self.nextSubject.asObservable(), query: "")
                 .map({ $0.item })
                 .trackError(self.errorTracker)

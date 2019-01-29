@@ -48,6 +48,11 @@ extension PenpolFilterModel {
         return filterItems
     }
     
+    static func generateLatestItemQuestion() -> FilterItem {
+        let newest = FilterItem(id: "question-newest", paramKey: "order_by", paramValue: "created_at", title: "Paling Baru", type: .radio, isSelected: UserDefaults.isSelectedFilter(value: "question-newest"))
+        return newest
+    }
+    
 
     static func generatePilpresFilter() -> [PenpolFilterModel] {
         var filterItems: [PenpolFilterModel] = []
