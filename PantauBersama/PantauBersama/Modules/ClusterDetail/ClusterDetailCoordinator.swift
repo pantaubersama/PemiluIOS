@@ -29,14 +29,15 @@ class ClusterDetailCoordinator: BaseCoordinator<Void> {
         let viewController = ClusterDetailController()
         viewController.viewModel = viewModel
         
-        navigationController.present(viewController, animated: true, completion: nil)
+//        navigationController.present(viewController, animated: true, completion: nil)
+        navigationController.pushViewController(viewController, animated: true)
         return Observable.never()
     }
 }
 
 extension ClusterDetailCoordinator: ClusterDetailNavigator {
     func finish() -> Observable<Void> {
-        self.navigationController.dismiss(animated: true, completion: nil)
+        self.navigationController.popViewController(animated: true)
         return Observable.never()
     }
 }

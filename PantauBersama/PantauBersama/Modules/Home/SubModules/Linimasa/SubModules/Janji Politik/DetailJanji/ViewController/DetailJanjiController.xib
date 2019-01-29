@@ -23,6 +23,7 @@
                 <outlet property="avatar" destination="l9O-VF-pi7" id="kAs-GL-Paw"/>
                 <outlet property="closeButton" destination="XLy-Xe-M8t" id="9DP-pE-7q2"/>
                 <outlet property="constraintImageHeight" destination="PrJ-Pq-nu0" id="zws-N1-ICX"/>
+                <outlet property="containerCluster" destination="vmX-vl-K6n" id="GLV-Ph-zWy"/>
                 <outlet property="contentConstraintHeight" destination="D6C-Se-rUM" id="AQI-6K-dEh"/>
                 <outlet property="contentSource" destination="DIx-XA-eit" id="R1D-pR-4yo"/>
                 <outlet property="dateLabel" destination="Ohh-bs-Bry" id="2p0-PE-x9E"/>
@@ -177,7 +178,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ali Mustafa" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hdu-aj-fsR" customClass="Label" customModule="Common">
-                                                            <rect key="frame" x="156.5" y="32" width="62" height="21"/>
+                                                            <rect key="frame" x="145" y="32" width="85" height="21"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="21" id="xL1-sM-USS"/>
                                                             </constraints>
@@ -192,7 +193,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Berjuang bersama untuk Indonesia" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sGu-SZ-mOL" customClass="Label" customModule="Common">
-                                                            <rect key="frame" x="104.5" y="53" width="166.5" height="20"/>
+                                                            <rect key="frame" x="55.5" y="53" width="264.5" height="20"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="20" id="qM1-lC-YYp"/>
                                                             </constraints>
@@ -206,7 +207,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Posted 8 days ago" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ohh-bs-Bry" customClass="Label" customModule="Common">
-                                                            <rect key="frame" x="148.5" y="73" width="78" height="14"/>
+                                                            <rect key="frame" x="117" y="73" width="141.5" height="14"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="14" id="t3u-sO-ydU"/>
                                                             </constraints>
