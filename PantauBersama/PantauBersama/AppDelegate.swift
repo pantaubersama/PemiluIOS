@@ -66,9 +66,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         // MARK: Configuration Crashlytics
         Fabric.with([Crashlytics.self])
-        // MARK: Register Notifications
-        registerForRemoteNotifications(application)
-        Messaging.messaging().delegate = self
         
         #if DEBUG
             let filePath = Bundle.main.path(forResource: "GoogleService-Info-Staging", ofType: "plist")!
@@ -79,6 +76,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let options = FirebaseOptions(contentsOfFile: filePath)
             FirebaseApp.configure(options: options!)
         #endif
+        // MARK: Register Notifications
+        registerForRemoteNotifications(application)
+        Messaging.messaging().delegate = self
         
         // MARK: Check version
         UserDefaults.Account.set(false, forKey: .skipVersion)
@@ -166,9 +166,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
         Messaging.messaging().appDidReceiveMessage(userInfo)
         if UIApplication.shared.applicationState == .active {
-//            Parser.parse(userInfo: userInfo, active: true)
+            Parser.parse(userInfo: userInfo, active: true)
         } else {
-//            Parser.parse(userInfo: userInfo, active: false)
+            Parser.parse(userInfo: userInfo, active: false)
         }
     }
 }
@@ -254,18 +254,14 @@ extension AppDelegate: MessagingDelegate {
                 print("Error fetching remote instange ID: \(error)")
             } else if let result = result {
                 print("Remote instance ID token: \(result.token)")
-                let user: Observable<UserResponse> = AppState.local(key: .userData)
-                user.flatMap({ (_) in
-                    return NetworkService.instance
-                        .requestObject(PantauAuthAPI
-                            .firebaseKeys(deviceToken: result.token,
-                                          type: "ios"),
-                                    c: BaseResponse<InfoFirebaseResponse>.self)
-                })
-                    .subscribe(onNext: { (response) in
+                NetworkService.instance
+                    .requestObject(PantauAuthAPI.firebaseKeys(deviceToken: result.token,
+                                                              type: "ios"),
+                                   c: BaseResponse<InfoFirebaseResponse>.self)
+                    .subscribe(onSuccess: { (response) in
                         print("Success:", response.data)
                     }, onError: { (error) in
-                        print("Error:", error.localizedDescription)
+                        print("Error", error.localizedDescription)
                     })
                     .disposed(by: self.disposeBag)
             }

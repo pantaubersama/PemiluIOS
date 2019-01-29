@@ -49,7 +49,7 @@ final class Parser {
     }
     
     
-    class func parser(userInfo: [AnyHashable: Any], active: BooleanLiteralType) {
+    class func parse(userInfo: [AnyHashable: Any], active: BooleanLiteralType) {
         print("User info: \(userInfo)")
 //        guard let notifType = userInfo["notif_type"] as? String,
 //        let _notifType = NotifType(rawValue: notifType),
