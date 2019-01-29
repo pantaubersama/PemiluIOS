@@ -36,6 +36,7 @@
 		842A49FB21D78B6A0050AA51 /* VerificationsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842A49FA21D78B6A0050AA51 /* VerificationsResponse.swift */; };
 		842B650C21D9385100F95C13 /* Avatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842B650B21D9385100F95C13 /* Avatar.swift */; };
 		842B650E21D9505A00F95C13 /* InformantResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842B650D21D9505A00F95C13 /* InformantResponse.swift */; };
+		84307F4922005786006DE04B /* FirebaseBroadcastResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84307F4822005786006DE04B /* FirebaseBroadcastResponse.swift */; };
 		84619D3521DA21A200EB58CF /* Gender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84619D3421DA21A200EB58CF /* Gender.swift */; };
 		8482E62A21D8E5AB00D5DC07 /* BadgesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8482E62921D8E5AB00D5DC07 /* BadgesResponse.swift */; };
 		8482E62E21D9017700D5DC07 /* PaginatableResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8482E62D21D9017700D5DC07 /* PaginatableResponse.swift */; };
@@ -105,6 +106,7 @@
 		842A49FA21D78B6A0050AA51 /* VerificationsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationsResponse.swift; sourceTree = "<group>"; };
 		842B650B21D9385100F95C13 /* Avatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Avatar.swift; sourceTree = "<group>"; };
 		842B650D21D9505A00F95C13 /* InformantResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformantResponse.swift; sourceTree = "<group>"; };
+		84307F4822005786006DE04B /* FirebaseBroadcastResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseBroadcastResponse.swift; sourceTree = "<group>"; };
 		84619D3421DA21A200EB58CF /* Gender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gender.swift; sourceTree = "<group>"; };
 		8482E62921D8E5AB00D5DC07 /* BadgesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgesResponse.swift; sourceTree = "<group>"; };
 		8482E62D21D9017700D5DC07 /* PaginatableResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginatableResponse.swift; sourceTree = "<group>"; };
@@ -182,6 +184,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		84307F4722005770006DE04B /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				84307F4822005786006DE04B /* FirebaseBroadcastResponse.swift */,
+			);
+			path = Notifications;
+			sourceTree = "<group>";
+		};
 		84B2522921CAB45C00565D82 /* NetworkKeychain */ = {
 			isa = PBXGroup;
 			children = (
@@ -205,6 +215,7 @@
 		84B2523821CAC7E900565D82 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				84307F4722005770006DE04B /* Notifications */,
 				84B2523921CAC7FB00565D82 /* ErrorResponse.swift */,
 				84B2526121CBD99900565D82 /* IdentitasResponses.swift */,
 				84B2526521CBFF0C00565D82 /* PantauAuthResponse.swift */,
@@ -518,6 +529,7 @@
 				13F456B521D531D300CE45F1 /* LinimasaAPI.swift in Sources */,
 				84619D3521DA21A200EB58CF /* Gender.swift in Sources */,
 				13F456BD21DB668D00CE45F1 /* JanjiPolitik.swift in Sources */,
+				84307F4922005786006DE04B /* FirebaseBroadcastResponse.swift in Sources */,
 				84F1F21521E9CD81004515A4 /* AccountResponse.swift in Sources */,
 				84B2669D21D4BB1400C7B783 /* PantauRefreshResponse.swift in Sources */,
 				84FE6EB821D5F374009A0F55 /* BaseResponse.swift in Sources */,

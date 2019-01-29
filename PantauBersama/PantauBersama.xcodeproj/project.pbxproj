@@ -165,6 +165,7 @@
 		84307F442200352B006DE04B /* ob1_wordstadium.json in Resources */ = {isa = PBXBuildFile; fileRef = 84307F3F2200352B006DE04B /* ob1_wordstadium.json */; };
 		84307F452200352B006DE04B /* ob5_perhitungan.json in Resources */ = {isa = PBXBuildFile; fileRef = 84307F402200352B006DE04B /* ob5_perhitungan.json */; };
 		84307F462200352B006DE04B /* ob3_penpol.json in Resources */ = {isa = PBXBuildFile; fileRef = 84307F412200352B006DE04B /* ob3_penpol.json */; };
+		84307F4D22006857006DE04B /* ParserCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84307F4C22006857006DE04B /* ParserCoordinator.swift */; };
 		8441DB3C21CCA6C500B078DF /* ItemRadioCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441DB3B21CCA6C500B078DF /* ItemRadioCell.swift */; };
 		8441DB3E21CCB80B00B078DF /* ItemRadioCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8441DB3D21CCB80B00B078DF /* ItemRadioCell.xib */; };
 		8441DB4121CCBECF00B078DF /* FilterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441DB4021CCBECF00B078DF /* FilterModel.swift */; };
@@ -550,6 +551,7 @@
 		84307F3F2200352B006DE04B /* ob1_wordstadium.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ob1_wordstadium.json; sourceTree = "<group>"; };
 		84307F402200352B006DE04B /* ob5_perhitungan.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ob5_perhitungan.json; sourceTree = "<group>"; };
 		84307F412200352B006DE04B /* ob3_penpol.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ob3_penpol.json; sourceTree = "<group>"; };
+		84307F4C22006857006DE04B /* ParserCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParserCoordinator.swift; sourceTree = "<group>"; };
 		8441DB3B21CCA6C500B078DF /* ItemRadioCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemRadioCell.swift; sourceTree = "<group>"; };
 		8441DB3D21CCB80B00B078DF /* ItemRadioCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ItemRadioCell.xib; sourceTree = "<group>"; };
 		8441DB4021CCBECF00B078DF /* FilterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterModel.swift; sourceTree = "<group>"; };
@@ -1634,6 +1636,7 @@
 				84B2526721CC01F000565D82 /* AppState.swift */,
 				84BEA55221F9884900659980 /* NetworkService.swift */,
 				8478B8E921FF315600CE192A /* Parser.swift */,
+				84307F4C22006857006DE04B /* ParserCoordinator.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -2953,6 +2956,7 @@
 				118149EF21EC718800192E97 /* ListUserCell.swift in Sources */,
 				84A07FB621D0ED8100269C6B /* SuccessController.swift in Sources */,
 				845C570721CD1D8F00EDCDFE /* ProfileCoordinator.swift in Sources */,
+				84307F4D22006857006DE04B /* ParserCoordinator.swift in Sources */,
 				842A4A0F21D7EE5F0050AA51 /* SuccessViewModel.swift in Sources */,
 				84B7B8D221E5B9640099E7E3 /* AddKategoriCoordinator.swift in Sources */,
 				84E6934021D2946C00EA5464 /* HeaderEditProfile.swift in Sources */,
@@ -3180,7 +3184,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CODE_SIGN_ENTITLEMENTS = PantauBersama/PantauBersama.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = XLK9742Z44;
 				INFOPLIST_FILE = PantauBersama/Info.plist;
@@ -3190,7 +3194,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.pantaubersama.staging;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.pantaubersama.staging";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development com.pantaubersama.staging";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
