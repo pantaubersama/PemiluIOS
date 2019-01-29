@@ -29,14 +29,14 @@ class ParserCoordinator: BaseCoordinator<Void> {
     override func start() -> Observable<CoordinationResult> {
         switch (eventType, notifType) {
         case (.activity, .broadcasts):
-            if let link = link {
-                if link.isValidURL == true {
-                    let wkwebCoordinator = WKWebCoordinator(navigationController: navigationController, url: link)
-                    return coordinate(to: wkwebCoordinator)
-                } else {
-                    print("INVALID LINK")
-                }
-            }
+//            if let link = link {
+//                if link.isValidURL == true {
+//                    let wkwebCoordinator = WKWebCoordinator(navigationController: navigationController, url: link)
+//                    return coordinate(to: wkwebCoordinator)
+//                } else {
+//                    print("INVALID LINK")
+//                }
+//            }
             return Observable.empty()
         default:
             return Observable.empty()
