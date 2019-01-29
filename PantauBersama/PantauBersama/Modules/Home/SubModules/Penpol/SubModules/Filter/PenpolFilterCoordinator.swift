@@ -22,7 +22,7 @@ public enum FilterType {
 
 class PenpolFilterCoordinator: BaseCoordinator<Void> {
     let navigationController: UINavigationController
-    var filterType: FilterType {
+    var filterType: FilterType! {
         didSet {
             if oldValue != filterType {
                 reloadFilterTable = true
@@ -31,13 +31,11 @@ class PenpolFilterCoordinator: BaseCoordinator<Void> {
             }
         }
     }
-    let filterTrigger: AnyObserver<[PenpolFilterModel.FilterItem]>
+    var filterTrigger: AnyObserver<[PenpolFilterModel.FilterItem]>!
     private var reloadFilterTable: Bool = false
     
-    init(navigationController: UINavigationController, filterType: FilterType, filterTrigger: AnyObserver<[PenpolFilterModel.FilterItem]>) {
+    init(navigationController: UINavigationController) {
         self.navigationController = navigationController
-        self.filterType = filterType
-        self.filterTrigger = filterTrigger
     }
     
     override func start() -> Observable<Void> {
@@ -58,18 +56,20 @@ class PenpolFilterCoordinator: BaseCoordinator<Void> {
     
     private func generateFilterItems() -> [PenpolFilterModel] {
         switch filterType {
-        case .question:
+        case .question?:
             return PenpolFilterModel.generateQuestionFilter()
-        case .quiz:
+        case .quiz?:
             return PenpolFilterModel.generateQuizFilter()
-        case .pilpres:
+        case .pilpres?:
             return PenpolFilterModel.generatePilpresFilter()
-        case .janji:
+        case .janji?:
             return PenpolFilterModel.generateJanjiFilter()
-        case .user:
+        case .user?:
             return PenpolFilterModel.generateUsersFilter()
-        case .cluster:
+        case .cluster?:
             return PenpolFilterModel.generateClusterFilter()
+        default:
+            return []
         }
     }
 }

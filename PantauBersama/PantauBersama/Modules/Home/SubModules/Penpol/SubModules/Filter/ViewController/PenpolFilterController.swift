@@ -19,8 +19,8 @@ class PenpolFilterController: UIViewController {
     var reloadTable: Bool = false
     private let disposeBag = DisposeBag()
     private var selectedFilter: [PenpolFilterModel.FilterItem] = []
-    private lazy var selectedCategory: [String: String] = UserDefaults.getCategoryFilter() ?? [:]
-    private lazy var selectedCluster: [String: String] = UserDefaults.getClusterFilter() ?? [:]
+    private lazy var selectedCategory: [String: String]? = UserDefaults.getCategoryFilter()
+    private lazy var selectedCluster: [String: String]? = UserDefaults.getClusterFilter()
     private var clusterId: String? = nil
     private var nameCluster: String? = "Pilih Cluster"
     
@@ -40,19 +40,23 @@ class PenpolFilterController: UIViewController {
                     UserDefaults.setSelectedFilter(value: filterItem.id, isSelected: true)
                 })
                 
+                if let selectedCluster = self.selectedCluster {
+                    let clusterCache = [
+                        "name": selectedCluster["name"] ?? "",
+                        "id": selectedCluster["id"] ?? ""
+                    ]
+                    
+                    UserDefaults.setClusterFilter(userInfo: clusterCache)
+                }
                 
-                let clusterCache = [
-                    "name": self.selectedCluster["name"] ?? "",
-                    "id": self.selectedCluster["id"] ?? ""
-                ]
-                UserDefaults.setClusterFilter(userInfo: clusterCache)
                 
-                
-                let categoryCache = [
-                    "name": self.selectedCategory["name"] ?? "",
-                    "id": self.selectedCategory["id"] ?? ""
-                ]
-                UserDefaults.setCategoryFilter(userInfo: categoryCache)
+                if let selectedCategory = self.selectedCategory {
+                    let categoryCache = [
+                        "name": selectedCategory["name"] ?? "",
+                        "id": selectedCategory["id"] ?? ""
+                    ]
+                    UserDefaults.setCategoryFilter(userInfo: categoryCache)
+                }
                 
             })
             .bind(to: viewModel.input.filterTrigger)
@@ -85,7 +89,7 @@ class PenpolFilterController: UIViewController {
         
         reset.rx.tap
             .bind { [unowned self](_) in
-                self.reset()
+                self.reset(clearSelectedTextFilter: true)
             }
             .disposed(by: disposeBag)
         
@@ -106,12 +110,21 @@ class PenpolFilterController: UIViewController {
         self.navigationController?.navigationBar.configure(with: .white)
     }
     
-    private func reset() {
+    private func reset(clearSelectedTextFilter: Bool = false) {
+        UserDefaults.resetClusterFilter()
+        UserDefaults.resetCategoryFilter()
+        
+        if clearSelectedTextFilter {
+            self.selectedCluster = nil
+            self.selectedCategory = nil
+            self.tableView.reloadData()
+        }
         self.selectedFilter.forEach({ (filterItem) in
             UserDefaults.setSelectedFilter(value: filterItem.id, isSelected: false)
         })
         self.selectedFilter.removeAll()
         self.nameCluster = "Pilih Cluster"
+        
         if let selectedRow = self.tableView.indexPathsForSelectedRows {
             selectedRow.forEach({ (indexPath) in
                 DispatchQueue.main.async {
@@ -119,9 +132,6 @@ class PenpolFilterController: UIViewController {
                 }
             })
         }
-        
-        UserDefaults.resetClusterFilter()
-        UserDefaults.resetCategoryFilter()
     }
 }
 
@@ -135,6 +145,8 @@ extension PenpolFilterController: UITableViewDataSource {
         
         if item.isSelected {
             tableView.selectRow(at: indexPath, animated: false, scrollPosition: UITableView.ScrollPosition.none)
+            selectedFilter.append(item)
+        } else if item.type == .text {
             selectedFilter.append(item)
         }
         
@@ -151,16 +163,16 @@ extension PenpolFilterController: UITableViewDataSource {
             let cell = UITableViewCell()
             
             if item.id == "janji-cluster" {
-                let cluster = UserDefaults.getClusterFilter()
-                let clusterName = cluster?["name"]
+                let cachedClusterName = UserDefaults.getClusterFilter()?["name"]
+                let selectedClusterName = self.selectedCluster?["name"]
                 
-                cell.textLabel?.text = clusterName ?? self.selectedCluster["name"] ?? "Pilih Cluster"
+                cell.textLabel?.text = cachedClusterName ?? selectedClusterName ?? "Pilih Cluster"
                 cell.textLabel?.font = UIFont(name: "Lato-Regular", size: 12)
             } else if item.id == "cluster-categories" {
-                let category = UserDefaults.getCategoryFilter()
-                let categoryName = category?["name"]
+                let cachedCategoryName = UserDefaults.getCategoryFilter()?["name"]
+                let selectedCategoryName = self.selectedCategory?["name"]
                 
-                cell.textLabel?.text = categoryName ?? self.selectedCategory["name"] ?? "Pilih Kategori"
+                cell.textLabel?.text = cachedCategoryName ?? selectedCategoryName ?? "Pilih Kategori"
                 cell.textLabel?.font = UIFont(name: "Lato-Regular", size: 12)
             }
             
@@ -291,6 +303,7 @@ extension PenpolFilterController: IClusterSearchDelegate {
             self.clusterId = values
             self.tableView.reloadData()
         }
+        UserDefaults.resetClusterFilter()
         return Observable.just(())
     }
 }
@@ -308,6 +321,7 @@ extension PenpolFilterController: ClusterCategoryDelegate {
             self.clusterId = values
             self.tableView.reloadData()
         }
+        UserDefaults.resetCategoryFilter()
         return Observable.just(())
     }
 }
