@@ -25,7 +25,7 @@ struct PenpolFilterModel {
         var paramValue: String
         let title: String
         let type: FilterViewType
-        let isSelected: Bool
+        var isSelected: Bool
     }
 }
 

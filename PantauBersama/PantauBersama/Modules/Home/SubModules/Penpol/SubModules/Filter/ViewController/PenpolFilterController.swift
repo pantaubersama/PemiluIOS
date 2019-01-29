@@ -22,7 +22,6 @@ class PenpolFilterController: UIViewController {
     private lazy var selectedCategory: [String: String]? = UserDefaults.getCategoryFilter()
     private lazy var selectedCluster: [String: String]? = UserDefaults.getClusterFilter()
     private var clusterId: String? = nil
-    private var nameCluster: String? = "Pilih Cluster"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,6 +46,8 @@ class PenpolFilterController: UIViewController {
                     ]
                     
                     UserDefaults.setClusterFilter(userInfo: clusterCache)
+                } else {
+                    UserDefaults.resetClusterFilter()
                 }
                 
                 
@@ -56,6 +57,8 @@ class PenpolFilterController: UIViewController {
                         "id": selectedCategory["id"] ?? ""
                     ]
                     UserDefaults.setCategoryFilter(userInfo: categoryCache)
+                } else {
+                    UserDefaults.resetCategoryFilter()
                 }
                 
             })
@@ -122,14 +125,14 @@ class PenpolFilterController: UIViewController {
         self.selectedFilter.forEach({ (filterItem) in
             UserDefaults.setSelectedFilter(value: filterItem.id, isSelected: false)
         })
+        
         self.selectedFilter.removeAll()
-        self.nameCluster = "Pilih Cluster"
         
         if let selectedRow = self.tableView.indexPathsForSelectedRows {
             selectedRow.forEach({ (indexPath) in
-                DispatchQueue.main.async {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
                     self.tableView.deselectRow(at: indexPath, animated: true)
-                }
+                })
             })
         }
     }
@@ -146,7 +149,7 @@ extension PenpolFilterController: UITableViewDataSource {
         if item.isSelected {
             tableView.selectRow(at: indexPath, animated: false, scrollPosition: UITableView.ScrollPosition.none)
             selectedFilter.append(item)
-        } else if item.type == .text {
+        } else if item.type == .text && (self.selectedCluster != nil || self.selectedCategory != nil) {
             selectedFilter.append(item)
         }
         
