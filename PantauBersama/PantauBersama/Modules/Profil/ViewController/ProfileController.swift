@@ -11,6 +11,7 @@ import RxCocoa
 import RxSwift
 import Common
 import RxDataSources
+import Networking
 
 class ProfileController: UIViewController {
     
@@ -36,6 +37,7 @@ class ProfileController: UIViewController {
     var isMyAccount: Bool = true // default is my account
     var userId: String? = nil
     private var isExpanded: Bool = false
+    private var userResponse: User!
     
     lazy var myJanpolViewModel: MyJanpolListViewModel = MyJanpolListViewModel(navigator: viewModel.navigator, showTableHeader: false)
     lazy var myQuestionViewModel: MyQuestionListViewModel = MyQuestionListViewModel(navigator: viewModel.navigator, showTableHeader: false)
@@ -206,6 +208,7 @@ class ProfileController: UIViewController {
             .drive(onNext: { [weak self] (response) in
                 guard let `self` = self else { return }
                 let user = response.user
+                self.userResponse = user
                 self.headerProfile.configure(user: user, isMyAccount: self.isMyAccount)
                 self.clusterView.configure(data: user, isMyAccount: self.isMyAccount)
                 self.biodataView.configure(data: user)
@@ -229,11 +232,16 @@ class ProfileController: UIViewController {
             .disposed(by: disposeBag)
         
         clusterView.moreCluster.rx.tap
-            .flatMapLatest { (_) -> Observable<ClusterType> in
+            .map({ self.userResponse })
+            .flatMapLatest { (user) -> Observable<ClusterType> in
                 return Observable<ClusterType>.create { [weak self] (observer) -> Disposable in
                     let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+                    let lihat = UIAlertAction(title: "Lihat Cluster", style: .default, handler: { (_) in
+                        observer.onNext(.lihat(data: user))
+                        observer.on(.completed)
+                    })
                     let undang = UIAlertAction(title: "Undang Anggota", style: .default, handler: { (_) in
-                        observer.onNext(.undang)
+                        observer.onNext(.undang(data: user))
                         observer.on(.completed)
                     })
                     let leave = UIAlertAction(title: "Tinggalkan Cluster", style: .default, handler: { (_) in
@@ -243,6 +251,7 @@ class ProfileController: UIViewController {
                     let cancel = UIAlertAction(title: "Batal", style: .cancel, handler: { (_) in
                         observer.on(.completed)
                     })
+                    alert.addAction(lihat)
                     alert.addAction(undang)
                     alert.addAction(leave)
                     alert.addAction(cancel)
