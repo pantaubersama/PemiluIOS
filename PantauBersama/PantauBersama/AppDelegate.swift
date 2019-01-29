@@ -67,6 +67,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // MARK: Configuration Crashlytics
         Fabric.with([Crashlytics.self])
         
+        UIApplication.shared.registerForRemoteNotifications()
+        
         #if DEBUG
             let filePath = Bundle.main.path(forResource: "GoogleService-Info-Staging", ofType: "plist")!
             let options = FirebaseOptions(contentsOfFile: filePath)
@@ -77,8 +79,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             FirebaseApp.configure(options: options!)
         #endif
         // MARK: Register Notifications
-        registerForRemoteNotifications(application)
-        Messaging.messaging().delegate = self
+        configureRemoteNotifications(application: application)
         
         // MARK: Check version
         UserDefaults.Account.set(false, forKey: .skipVersion)
@@ -223,22 +224,29 @@ extension AppDelegate {
 
 // MARK: - UNUserNotification
 extension AppDelegate: UNUserNotificationCenterDelegate {
-    fileprivate func registerForRemoteNotifications(_ application: UIApplication) {
-        if #available(iOS 10.0, *) {
-            // For iOS 10 display notification (sent via APNS)
-            UNUserNotificationCenter.current().delegate = self
-            
-            let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
-            UNUserNotificationCenter.current().requestAuthorization(
-                options: authOptions,
-                completionHandler: {_, _ in })
-        } else {
-            let settings: UIUserNotificationSettings =
-                UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
-            application.registerUserNotificationSettings(settings)
-        }
-        
-        application.registerForRemoteNotifications()
+//    fileprivate func registerForRemoteNotifications(_ application: UIApplication) {
+//        if #available(iOS 10.0, *) {
+//            // For iOS 10 display notification (sent via APNS)
+//            UNUserNotificationCenter.current().delegate = self
+//
+//            let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+//            UNUserNotificationCenter.current().requestAuthorization(
+//                options: authOptions,
+//                completionHandler: {_, _ in })
+//        } else {
+//            let settings: UIUserNotificationSettings =
+//                UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+//            application.registerUserNotificationSettings(settings)
+//        }
+//
+//        application.registerForRemoteNotifications()
+//
+//        Messaging.messaging().delegate = self
+//    }
+    // This method will be called when app received push notifications in foreground
+    @available(iOS 10.0, *)
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void)
+    { completionHandler([UNNotificationPresentationOptions.alert,UNNotificationPresentationOptions.sound,UNNotificationPresentationOptions.badge])
     }
 }
 
@@ -268,5 +276,43 @@ extension AppDelegate: MessagingDelegate {
         }
     }
     
+    func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
+        print("received remote notification")
+    }
     
+}
+
+
+extension AppDelegate {
+    
+    func configureRemoteNotifications(application: UIApplication) {
+        if #available(iOS 10.0, *) {
+            // For iOS 10 display notification (sent via APNS)
+            UNUserNotificationCenter.current().delegate = self
+            
+            let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+            UNUserNotificationCenter.current().requestAuthorization(
+                options: authOptions,
+                completionHandler: {_, _ in })
+        } else {
+            let settings: UIUserNotificationSettings =
+                UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+            application.registerUserNotificationSettings(settings)
+        }
+        
+        application.registerForRemoteNotifications()
+        
+        Messaging.messaging().delegate = self
+        
+        let token = Messaging.messaging().fcmToken
+        print("FCM token: \(token ?? "")")
+        
+        
+        //Added Code to display notification when app is in Foreground
+        if #available(iOS 10.0, *) {
+            UNUserNotificationCenter.current().delegate = self
+        } else {
+            // Fallback on earlier versions
+        }
+    }
 }
