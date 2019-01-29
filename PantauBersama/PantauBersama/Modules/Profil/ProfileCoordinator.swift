@@ -20,6 +20,7 @@ protocol ProfileNavigator: BadgeNavigator,IQuestionNavigator,IJanpolNavigator {
     func launchAlertExitCluster() -> Observable<Void>
     func lauchAlertCluster() -> Observable<Void>
     func launchBadge() -> Observable<Void>
+    func launchClusterDetail(cluster: ClusterDetail) -> Observable<Void>
 }
 
 
@@ -141,6 +142,11 @@ extension ProfileCoordinator: ProfileNavigator {
     func launchBadge() -> Observable<Void> {
         let badgeCoordinator = BadgeCoordinator(navigationController: navigationController)
         return coordinate(to: badgeCoordinator)
+    }
+    
+    func launchClusterDetail(cluster: ClusterDetail) -> Observable<Void> {
+        let clusterDetailCoordinator = ClusterDetailCoordinator(navigationController: navigationController, cluster: cluster)
+        return coordinate(to: clusterDetailCoordinator)
     }
 }
 

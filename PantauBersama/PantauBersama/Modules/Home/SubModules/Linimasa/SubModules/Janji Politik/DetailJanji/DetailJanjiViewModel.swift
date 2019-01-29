@@ -21,6 +21,8 @@ class DetailJanjiViewModel: ViewModelType {
         let moreMenuTrigger: AnyObserver<JanjiType>
         let shareTrigger: AnyObserver<Void>
         let closeTrigger: AnyObserver<Void>
+        let profileTrigger: AnyObserver<UITapGestureRecognizer>
+        let clusterTrigger: AnyObserver<UITapGestureRecognizer>
     }
     
     struct Output {
@@ -29,12 +31,16 @@ class DetailJanjiViewModel: ViewModelType {
         let moreMenuSelected: Driver<String>
         let detailJanji: Driver<JanjiPolitik>
         let closeSelected: Driver<Void>
+        let profileSelected: Driver<Void>
+        let clusterSelected: Driver<Void>
     }
     
     private let moreSubject = PublishSubject<Void>()
     private let moreMenuSubject = PublishSubject<JanjiType>()
     private let shareSubject = PublishSubject<Void>()
     private let closeSubject = PublishSubject<Void>()
+    private let profileSubject = PublishSubject<UITapGestureRecognizer>()
+    private let clusterSubject = PublishSubject<UITapGestureRecognizer>()
     
     private let navigator: DetailJanjiNavigator
     let errorTracker = ErrorTracker()
@@ -48,7 +54,9 @@ class DetailJanjiViewModel: ViewModelType {
             moreTrigger: moreSubject.asObserver(),
             moreMenuTrigger: moreMenuSubject.asObserver(),
             shareTrigger: shareSubject.asObserver(),
-            closeTrigger: closeSubject.asObserver())
+            closeTrigger: closeSubject.asObserver(),
+            profileTrigger: profileSubject.asObserver(),
+            clusterTrigger: clusterSubject.asObserver())
         
         let moreSelected = moreSubject
             .flatMapLatest({ _ in Observable.of(data) })
@@ -87,12 +95,39 @@ class DetailJanjiViewModel: ViewModelType {
         
         let closeSelected = closeSubject.asDriverOnErrorJustComplete()
         
+        let profile = profileSubject
+            .withLatestFrom(Observable.just(data))
+            .flatMapLatest { (janji) -> Observable<Void> in
+                if let myId = AppState.local()?.user.id {
+                    if myId == janji.creator.id {
+                        return navigator.launchProfileUser(isMyAccount: true, userId: nil)
+                    } else {
+                        return navigator.launchProfileUser(isMyAccount: false, userId: janji.creator.id)
+                    }
+                }
+                return Observable.empty()
+            }
+            .asDriverOnErrorJustComplete()
+        
+        let cluster = clusterSubject
+            .withLatestFrom(Observable.just(data))
+            .flatMapLatest { (janpol) -> Observable<Void> in
+                if let cluster = janpol.creator.cluster {
+                    return navigator.launchClusterDetail(cluster: cluster)
+                }
+                return Observable.empty()
+            }
+            .asDriverOnErrorJustComplete()
+            
+        
         output = Output(
             shareSelected: shareJanji,
             moreSelected: moreSelected,
             moreMenuSelected: moreMenuSelected,
             detailJanji: Driver.of(data),
-            closeSelected: closeSelected)
+            closeSelected: closeSelected,
+            profileSelected: profile,
+            clusterSelected: cluster)
         
     }
     

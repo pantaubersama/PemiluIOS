@@ -21,6 +21,7 @@ class DetailJanjiController: UIViewController {
     @IBOutlet weak var jumlahAnggota: Label!
     @IBOutlet weak var contentSource: UITextView!
     @IBOutlet weak var image: UIImageView!
+    @IBOutlet weak var containerCluster: UIView!
     
     @IBOutlet weak var contentConstraintHeight: NSLayoutConstraint!
     @IBOutlet weak var avatar: UIImageView!
@@ -35,6 +36,9 @@ class DetailJanjiController: UIViewController {
     @IBOutlet weak var constraintImageHeight: NSLayoutConstraint!
     private let disposeBag = DisposeBag()
     var viewModel: DetailJanjiViewModel!
+    
+    let tapProfile: UITapGestureRecognizer = UITapGestureRecognizer()
+    let tapCluster: UITapGestureRecognizer = UITapGestureRecognizer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,6 +63,20 @@ class DetailJanjiController: UIViewController {
         
         viewModel.output.shareSelected
             .drive()
+            .disposed(by: disposeBag)
+        
+        avatar.isUserInteractionEnabled = true
+        containerCluster.isUserInteractionEnabled = true
+        
+        avatar.addGestureRecognizer(tapProfile)
+        containerCluster.addGestureRecognizer(tapCluster)
+        
+        tapProfile.rx.event
+            .bind(to: viewModel.input.profileTrigger)
+            .disposed(by: disposeBag)
+        
+        tapCluster.rx.event
+            .bind(to: viewModel.input.clusterTrigger)
             .disposed(by: disposeBag)
         
         viewModel.output.moreSelected
@@ -106,6 +124,14 @@ class DetailJanjiController: UIViewController {
             .drive(onNext: { (message) in
                 UIAlertController.showAlert(withTitle: "", andMessage: message)
             })
+            .disposed(by: disposeBag)
+        
+        viewModel.output.profileSelected
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.clusterSelected
+            .drive()
             .disposed(by: disposeBag)
         
         // MARK

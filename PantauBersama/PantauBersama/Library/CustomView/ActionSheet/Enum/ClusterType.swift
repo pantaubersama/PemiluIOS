@@ -7,9 +7,12 @@
 //
 
 import Foundation
+import Networking
 
-enum ClusterType: Int {
-    case undang
+enum ClusterType {
+    case `default`
+    case lihat(data: User?)
+    case undang(data: User?)
     case leave
 }
 

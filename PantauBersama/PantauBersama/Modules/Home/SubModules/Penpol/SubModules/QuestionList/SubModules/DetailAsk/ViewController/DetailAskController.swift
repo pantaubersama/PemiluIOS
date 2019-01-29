@@ -41,6 +41,9 @@ class DetailAskController: UIViewController {
         return voteAnimation
     }()
     
+    
+    let tap: UITapGestureRecognizer = UITapGestureRecognizer()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureLottie()
@@ -57,6 +60,12 @@ class DetailAskController: UIViewController {
         btnShare.rx.tap
             .map({ self.data })
             .bind(to: viewModel.input.shareI)
+            .disposed(by: disposeBag)
+        
+        avatar.addGestureRecognizer(tap)
+        avatar.isUserInteractionEnabled = true
+        tap.rx.event
+            .bind(to: viewModel.input.profileTrigger)
             .disposed(by: disposeBag)
         
         btnVote.rx.tap
@@ -164,6 +173,10 @@ class DetailAskController: UIViewController {
             .disposed(by: disposeBag)
         
         viewModel.output.shareO
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.profileO
             .drive()
             .disposed(by: disposeBag)
     }

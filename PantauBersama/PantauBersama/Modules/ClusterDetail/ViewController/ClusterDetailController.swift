@@ -46,5 +46,16 @@ class ClusterDetailController: UIViewController {
             .drive()
             .disposed(by: disposeBag)
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.configure(with: .transparent)
+        navigationController?.navigationBar.isHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)        
+        navigationController?.navigationBar.isHidden = false
+    }
 
 }

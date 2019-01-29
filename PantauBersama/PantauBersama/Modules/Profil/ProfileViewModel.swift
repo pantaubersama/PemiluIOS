@@ -218,21 +218,24 @@ final class ProfileViewModel: IProfileViewModel, IProfileViewModelInput, IProfil
         let clusterAction = clusterS
             .flatMapLatest({ (type) -> Observable<ClusterType> in
                 switch type {
+                case .lihat(let user):
+                    if let data = user?.cluster {
+                     return navigator.launchClusterDetail(cluster: data)
+                        .map({ ClusterType.lihat(data: user) })
+                    }
                 case .leave:
                     return navigator.launchAlertExitCluster()
                         .map({ ClusterType.leave })
-                case .undang:
-                    return Observable.just(ClusterType.undang)
+                case .undang(let user):
+                    if let user = user {
+                        return navigator.launchUndangAnggota(data: user)
+                            .map({ ClusterType.undang(data: user) })
+                    }
+                default:
+                    return Observable.just(ClusterType.default)
                 }
-            })
-            .filter({ $0 == .undang })
-            .withLatestFrom(myAccountData)
-            .flatMap { (user) -> Observable<Void> in
-                // TODO : Semua bisa masuk ke undang cluster, tapi jika anggota
-                // tidak bisa melakukan aksi apa2
-                return navigator.launchUndangAnggota(data: user.user)
-            }
-            .mapToVoid()
+                return Observable.just(ClusterType.default)
+            }).mapToVoid()
         
         
         // MARK
