@@ -35,6 +35,7 @@ public struct QuestionModel {
                                              medium: ImageModel.ImageSize(url: question.user.avatar.medium.url ?? ""),
                                              mediumSquare: ImageModel.ImageSize(url: question.user.avatar.mediumSquare.url ?? "")),
                          verified: question.user.verified,
+                         cluster: question.user.cluster,
                          about: question.user.about ?? "")
         self.isLiked = question.isLiked
         self.isReported = question.isReported
@@ -49,7 +50,8 @@ public struct QuestionModel {
         let id, email, fullName: String
         let username: String
         let avatar: ImageModel
-        let verified: Bool
+        let verified: Bool?
+        let cluster: ClusterDetail?
         let about: String
     }
 }

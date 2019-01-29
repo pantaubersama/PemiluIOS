@@ -34,6 +34,7 @@ public struct CreatorJanpol: Codable {
     public var about: String?
     public var avatar: Avatar
     public var cluster: ClusterDetail?
+    public var verified: Bool?
     
     private enum CodingKeys: String, CodingKey {
         case id
@@ -42,5 +43,6 @@ public struct CreatorJanpol: Codable {
         case about
         case avatar
         case cluster
+        case verified
     }
 }

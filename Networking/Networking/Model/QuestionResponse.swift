@@ -73,13 +73,14 @@ public struct Creator: Codable {
     public let id, email, fullName: String
     public let username: String?
     public let avatar: Avatar
-    public let verified: Bool
+    public let cluster: ClusterDetail?
+    public let verified: Bool?
     public let about: String?
     
     enum CodingKeys: String, CodingKey {
         case id, email
         case fullName = "full_name"
-        case username, avatar, verified, about
+        case username, avatar, verified, about, cluster
     }
     
     public struct Avatar: Codable {
