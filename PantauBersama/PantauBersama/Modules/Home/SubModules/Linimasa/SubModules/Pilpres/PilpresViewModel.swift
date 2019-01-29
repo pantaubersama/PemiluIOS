@@ -83,9 +83,7 @@ class PilpresViewModel: ViewModelType {
                     return filterItem.id.contains("pilpres")
                 })
                 
-                if !filter.isEmpty {
-                    self.filterItems = filterItems
-                }
+                self.filterItems = filter
             })
             .mapToVoid()
             .asDriverOnErrorJustComplete()

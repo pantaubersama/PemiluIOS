@@ -68,6 +68,8 @@ class QuizViewModel: ViewModelType {
                 return filterItem.paramKey == "filter_by"
             }).first?.paramValue {
                 self.filterOrder = QuizAPI.QuizListFilter(rawValue: filterByString) ?? .all
+            } else {
+                filterOrder = .all
             }
         }
     }
@@ -147,9 +149,7 @@ class QuizViewModel: ViewModelType {
                     return filterItem.id.contains("quiz")
                 })
                 
-                if !filter.isEmpty {
-                    weakSelf.filterItems = filterItems
-                }
+                weakSelf.filterItems = filter
             })
             .mapToVoid()
             .asDriverOnErrorJustComplete()
