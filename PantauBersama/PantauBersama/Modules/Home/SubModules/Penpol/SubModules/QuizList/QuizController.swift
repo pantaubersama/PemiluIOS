@@ -89,22 +89,19 @@ class QuizController: UITableViewController {
             .drive()
             .disposed(by: disposeBag)
         
+        viewModel.output.totalResult
+            .drive(onNext: { [unowned self] (result) in
+                if result.meta.quizzes.finished >= 1{
+                    self.tableHeaderView.trendHeaderView.isHidden = false
+                    self.tableHeaderView.trendHeaderView.config(result: result, viewModel: self.viewModel)
+                    self.tableHeaderView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 115 + 212)
+                } else {
+                    self.tableHeaderView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 115)
+                }
+
+            })
+            .disposed(by: disposeBag)
     }
     
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        if let headerView = tableView.tableHeaderView {
-            
-            let height = headerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
-            var headerFrame = headerView.frame
-            
-            //Comparison necessary to avoid infinite loop
-            if height != headerFrame.size.height {
-                headerFrame.size.height = height
-                headerView.frame = headerFrame
-                tableView.tableHeaderView = headerView
-            }
-        }
-    }
 }
+

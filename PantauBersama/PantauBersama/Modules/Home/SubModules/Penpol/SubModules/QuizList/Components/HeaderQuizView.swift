@@ -13,17 +13,17 @@ import RxCocoa
 
 class HeaderQuizView: UIView {
     private let disposeBag: DisposeBag = DisposeBag()
-    private var heightConstraintTrend: NSLayoutConstraint!
+    let trendHeaderView = TrendHeaderView()
     
     func config(viewModel: QuizViewModel) {
         let bannerInfoQuizView = BannerHeaderView()
-        bannerInfoQuizView.translatesAutoresizingMaskIntoConstraints = false
-        
-        let trendHeaderView = TrendHeaderView()
         trendHeaderView.translatesAutoresizingMaskIntoConstraints = false
         
         addSubview(bannerInfoQuizView)
         addSubview(trendHeaderView)
+        
+        print("HAhahaha banner: \(bannerInfoQuizView.frame.height)")
+        print("HAhahaha trend: \(trendHeaderView.frame.height)")
         
         NSLayoutConstraint.activate([
             // MARK: constraint bannerInfoAskView
@@ -31,12 +31,14 @@ class HeaderQuizView: UIView {
             bannerInfoQuizView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             bannerInfoQuizView.topAnchor.constraint(equalTo: self.topAnchor),
             bannerInfoQuizView.bottomAnchor.constraint(equalTo: trendHeaderView.topAnchor),
+            bannerInfoQuizView.heightAnchor.constraint(equalToConstant: 115),
             
             // MARK: constraint trendHeaderView
             trendHeaderView.topAnchor.constraint(equalTo: bannerInfoQuizView.bottomAnchor),
             trendHeaderView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             trendHeaderView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            trendHeaderView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+            trendHeaderView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            trendHeaderView.heightAnchor.constraint(equalToConstant: 0)
             ])
         
         trendHeaderView.isHidden = true
@@ -45,21 +47,6 @@ class HeaderQuizView: UIView {
             .drive(onNext: { (banner) in
                 bannerInfoQuizView.config(banner: banner, viewModel: viewModel.headerViewModel)
             })
-            .disposed(by: disposeBag)
-        
-        viewModel.output.totalResult
-            .do(onNext: { [unowned self] (result) in
-                if result.meta.quizzes.finished >= 1 {
-                    trendHeaderView.isHidden = false
-                    trendHeaderView.config(result: result, viewModel: viewModel)
-                    self.heightConstraintTrend = NSLayoutConstraint(item: trendHeaderView, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: 210)
-                } else {
-                    self.heightConstraintTrend = NSLayoutConstraint(item: trendHeaderView, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: 0)
-                }
-                NSLayoutConstraint.activate([self.heightConstraintTrend])
-                self.layoutIfNeeded()
-            })
-            .drive()
             .disposed(by: disposeBag)
         
         trendHeaderView.shareButton.rx.tap
