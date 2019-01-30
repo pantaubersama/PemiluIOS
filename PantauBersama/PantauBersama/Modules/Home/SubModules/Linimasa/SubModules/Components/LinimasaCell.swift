@@ -23,6 +23,11 @@ class LinimasaCell: UITableViewCell  {
     @IBOutlet weak var thumbnail: UIImageView!
     @IBOutlet weak var more: UIButton!
     @IBOutlet weak var username: Label!
+    @IBOutlet weak var contentImageOne: UIImageView!
+    @IBOutlet weak var contentImageTwo: UIImageView!
+    @IBOutlet weak var containerMedia: RoundView!
+    @IBOutlet weak var constraintMedia: NSLayoutConstraint!
+    
     
     private(set) var disposeBag = DisposeBag()
     
@@ -68,7 +73,22 @@ extension LinimasaCell: IReusableCell {
         if let thumbnailUrl = data.team.avatar {
             thumbnail.af_setImage(withURL: URL(string: thumbnailUrl)!)
         }
-
+        
+        if let mediaCount = data.source.media?.count {
+            if mediaCount > 1 {
+                if let sourceContentOne = data.source.media?[0], let sourceContentTwo = data.source.media?[1] {
+                    contentImageOne.af_setImage(withURL: URL(string: sourceContentOne)!)
+                    contentImageTwo.af_setImage(withURL: URL(string: sourceContentTwo)!)
+                    constraintMedia.constant = 140.0
+                }
+            } else if mediaCount == 1, let sourceContentOne = data.source.media?[0] {
+                contentImageTwo.isHidden = true
+                contentImageOne.af_setImage(withURL: URL(string: sourceContentOne)!)
+                constraintMedia.constant = 140.0
+            }
+        } else {
+            constraintMedia.constant = 0.0
+        }
     }
     
 }
