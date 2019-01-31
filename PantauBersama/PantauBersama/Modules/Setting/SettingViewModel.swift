@@ -177,15 +177,7 @@ final class SettingViewModel: ISettingViewModel, ISettingViewModelInput, ISettin
                 case .updateDataLapor:
                     return navigator.launchProfileEdit(data: data, type: ProfileHeaderItem.editDataLapor)
                 case .cluster:
-                    // MARK
-                    // If user data cluster == nil return alert
-                    if data.cluster == nil {
-                        return navigator.launchAlertUndang()
-                    } else if data.isModerator == true {
-                        return navigator.launchUndang(data: data)
-                    } else {
-                        return navigator.launchAlertCluster()
-                    }
+                      return navigator.launchUndang(data: data)
                 case .twitter(let user):
                     if user.twitter == true {
                         return navigator.launchTwitterAlert()
