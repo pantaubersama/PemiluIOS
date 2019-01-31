@@ -61,7 +61,7 @@ class QuizOngoingController: UIViewController {
                 
                 self.btnBChoice.rx
                     .tap
-                    .map({ question.answers[0].content })
+                    .map({ question.answers[1].content })
                     .bind(to: self.viewModel.input.answerBTrigger)
                     .disposed(by: self.disposeBag)
             }).disposed(by: disposeBag)
