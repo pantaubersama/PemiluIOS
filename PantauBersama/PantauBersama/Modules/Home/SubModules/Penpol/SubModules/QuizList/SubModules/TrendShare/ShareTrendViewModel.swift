@@ -18,7 +18,7 @@ class ShareTrendViewModel: ViewModelType {
     struct Input {
         let backI: AnyObserver<Void>
         let viewWillAppearI: AnyObserver<Void>
-        let shareI: AnyObserver<Void>
+        let shareI: AnyObserver<UIImage?>
     }
     
     struct Output {
@@ -31,7 +31,7 @@ class ShareTrendViewModel: ViewModelType {
     private let activityIndicator = ActivityIndicator()
     private let errorTracker = ErrorTracker()
     private let viewWillAppearS = PublishSubject<Void>()
-    private let shareS = PublishSubject<Void>()
+    private let shareS = PublishSubject<UIImage?>()
     
     init(navigator: ShareTrendNavigator) {
         self.navigator = navigator
@@ -53,10 +53,13 @@ class ShareTrendViewModel: ViewModelType {
         let trendData = viewWillAppearS
             .flatMapLatest({ data })
         
-        let share = shareS
-            .withLatestFrom(data)
-            .flatMapLatest { (trend) -> Observable<Void> in
-                return navigator.shareTrendResult(data: trend)
+        let share = Observable.combineLatest(shareS, data.asObservable())
+            .flatMapLatest { (image,trend) -> Observable<Void> in
+                if let image = image {
+                    return navigator.shareTrendResult(image: image ,data: trend)
+                } else {
+                    return Observable.empty()
+                }
             }
         
         output = Output(dataO: trendData.asDriverOnErrorJustComplete(),

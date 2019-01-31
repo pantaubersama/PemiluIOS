@@ -84,7 +84,7 @@
                     </userDefinedRuntimeAttributes>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RESULT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2bO-y5-abV" customClass="Label" customModule="Common">
-                    <rect key="frame" x="121.5" y="80" width="77.5" height="26.5"/>
+                    <rect key="frame" x="129.5" y="80" width="61.5" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" red="0.68041622639999999" green="0.1499232352" blue="0.14898997550000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <nil key="highlightedColor"/>
@@ -96,7 +96,7 @@
                     </userDefinedRuntimeAttributes>
                 </label>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="bDD-ZV-YZg">
-                    <rect key="frame" x="160" y="122.5" width="0.0" height="31"/>
+                    <rect key="frame" x="160" y="116.5" width="0.0" height="31"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="Iw6-h8-z4d">
                             <rect key="frame" x="0.0" y="0.0" width="0.0" height="31"/>
