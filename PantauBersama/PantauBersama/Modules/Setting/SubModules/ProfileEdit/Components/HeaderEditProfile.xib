@@ -27,6 +27,13 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="172"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="guo-si-9I3">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="5"/>
+                    <color key="backgroundColor" red="0.92549019610000005" green="0.92549019610000005" blue="0.92549019610000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="5" id="8xF-JX-xaQ"/>
+                    </constraints>
+                </view>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="EFl-DV-11P">
                     <rect key="frame" x="16" y="16" width="343" height="107"/>
                     <subviews>
@@ -84,6 +91,8 @@
             <constraints>
                 <constraint firstItem="gq7-Ti-wXh" firstAttribute="top" secondItem="ZX2-a8-79m" secondAttribute="bottom" id="152-rw-rvE"/>
                 <constraint firstItem="hOm-Xu-A2E" firstAttribute="trailing" secondItem="gq7-Ti-wXh" secondAttribute="trailing" id="4Cr-24-PeC"/>
+                <constraint firstItem="hOm-Xu-A2E" firstAttribute="trailing" secondItem="guo-si-9I3" secondAttribute="trailing" id="7BO-Xm-dzO"/>
+                <constraint firstItem="guo-si-9I3" firstAttribute="leading" secondItem="hOm-Xu-A2E" secondAttribute="leading" id="Acl-BT-0Ji"/>
                 <constraint firstItem="ZX2-a8-79m" firstAttribute="top" secondItem="EFl-DV-11P" secondAttribute="bottom" id="Di1-pv-2YA"/>
                 <constraint firstItem="EFl-DV-11P" firstAttribute="leading" secondItem="hOm-Xu-A2E" secondAttribute="leading" constant="16" id="EuT-7M-UoN"/>
                 <constraint firstItem="ZX2-a8-79m" firstAttribute="leading" secondItem="hOm-Xu-A2E" secondAttribute="leading" id="Jb1-Px-m4E"/>
@@ -92,6 +101,7 @@
                 <constraint firstItem="EFl-DV-11P" firstAttribute="top" secondItem="WCx-fC-W0B" secondAttribute="top" constant="16" id="lks-nW-BrF"/>
                 <constraint firstItem="gq7-Ti-wXh" firstAttribute="leading" secondItem="hOm-Xu-A2E" secondAttribute="leading" id="oXo-7m-FXd"/>
                 <constraint firstItem="hOm-Xu-A2E" firstAttribute="trailing" secondItem="ZX2-a8-79m" secondAttribute="trailing" id="sgb-7T-5RQ"/>
+                <constraint firstItem="guo-si-9I3" firstAttribute="top" secondItem="hOm-Xu-A2E" secondAttribute="top" id="vG8-yd-Gsl"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="hOm-Xu-A2E"/>
