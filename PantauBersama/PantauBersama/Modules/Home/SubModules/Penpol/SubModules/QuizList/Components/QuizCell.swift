@@ -31,7 +31,7 @@ class QuizCell: UITableViewCell, IReusableCell {
     }
     
     func configureCell(item: Input) {
-        ivQuiz.show(fromURL: item.quiz.image.thumbnail.url)
+        ivQuiz.show(fromURL: item.quiz.image.medium.url)
         lbTitle.text = item.quiz.title
         lbTotalQuestion.text = item.quiz.subtitle
         
