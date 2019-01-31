@@ -237,22 +237,14 @@ extension AppDelegate: MessagingDelegate {
         
         // TODO: If necessary send token to application server.
         // Note: This callback is fired at each app startup and whenever a new token is generated.
-        InstanceID.instanceID().instanceID { [weak self] (result, error) in
-            guard let `self` = self else { return }
+        InstanceID.instanceID().instanceID { (result, error) in
+//            guard let `self` = self else { return }
             if let error = error {
                 print("Error fetching remote instange ID: \(error)")
             } else if let result = result {
                 print("Remote instance ID token: \(result.token)")
-                NetworkService.instance
-                    .requestObject(PantauAuthAPI.firebaseKeys(deviceToken: result.token,
-                                                              type: "ios"),
-                                   c: BaseResponse<InfoFirebaseResponse>.self)
-                    .subscribe(onSuccess: { (response) in
-                        print("Success:", response.data)
-                    }, onError: { (error) in
-                        print("Error", error.localizedDescription)
-                    })
-                    .disposed(by: self.disposeBag)
+                UserDefaults.Account.reset(forKey: .instanceId)
+                UserDefaults.Account.set(result.token, forKey: .instanceId)
             }
         }
     }
@@ -285,9 +277,11 @@ extension AppDelegate {
         
         Messaging.messaging().delegate = self
         
-        let token = Messaging.messaging().fcmToken
-        print("FCM token: \(token ?? "")")
-        
+        if let token = Messaging.messaging().fcmToken {
+            print("FCM token: \(token)")
+            UserDefaults.Account.reset(forKey: .instanceId)
+            UserDefaults.Account.set(token, forKey: .instanceId)
+        }
         
         //Added Code to display notification when app is in Foreground
         if #available(iOS 10.0, *) {

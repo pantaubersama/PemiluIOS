@@ -90,6 +90,7 @@ final class WebViewModel: ViewModelType {
     }
     
     private func callBackPantau(provider: String, user: Observable<UserResponse>) -> Driver<Void> {
+        let instanceId: String? = UserDefaults.Account.get(forKey: .instanceId)
         return NetworkService.instance
             .requestObject(PantauAuthAPI.callback(code: "",
                                                   provider: provider),
@@ -101,6 +102,18 @@ final class WebViewModel: ViewModelType {
             })
             .asObservable()
             .mapToVoid()
+            .flatMapLatest({ (_) -> Observable<Void> in
+                return NetworkService.instance
+                    .requestObject(PantauAuthAPI.firebaseKeys(deviceToken: instanceId ?? "", type: "ios"), c: BaseResponse<InfoFirebaseResponse>.self)
+                    .map({ $0.data })
+                    .do(onSuccess: { (response) in
+                        print("Firebase Key: \(response.firebaseKey)")
+                    }, onError: { (error) in
+                        print(error.localizedDescription)
+                    })
+                    .asObservable()
+                    .mapToVoid()
+            })
             .flatMapLatest({ self.navigator.launchCoordinator(user: user)})
             .asDriverOnErrorJustComplete()
     }
