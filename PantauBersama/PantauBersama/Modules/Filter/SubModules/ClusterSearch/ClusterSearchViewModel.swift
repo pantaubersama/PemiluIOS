@@ -96,7 +96,14 @@ final class ClusterSearchViewModel: ViewModelType {
                 return list.map({ (cluster) -> ICellConfigurator in
                     return ClusterSearchCellConfigured(item: ClusterSearchCell.Input(data: cluster))
                 })
-        }
+        }.asDriver(onErrorJustReturn: [])
+        
+        let clusterEligibleCell = cluster
+            .map { (list) -> [ICellConfigurator] in
+                return list.filter({ $0.isEligible == true }).map({ (cluster) -> ICellConfigurator in
+                    return ClusterSearchCellConfigured(item: ClusterSearchCell.Input(data: cluster))
+                })
+            }.asDriver(onErrorJustReturn: [])
         
         var itemSelected = itemSelectedS
             .withLatestFrom(cluster) { (indexPath, items) -> Observable<Void> in
@@ -134,7 +141,7 @@ final class ClusterSearchViewModel: ViewModelType {
             .asDriverOnErrorJustComplete()
         
         
-        output = Output(items: clusterCell.asDriver(onErrorJustReturn: []),
+        output = Output(items: (navigator != nil) ? clusterCell : clusterEligibleCell,
                         selected: itemSelected,
                         filter: filterO)
         
