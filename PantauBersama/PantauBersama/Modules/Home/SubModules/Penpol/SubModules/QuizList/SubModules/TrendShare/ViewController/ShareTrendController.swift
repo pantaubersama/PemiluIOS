@@ -45,7 +45,8 @@ class ShareTrendController: UIViewController {
                     }
                     self.lblDesc.text = "Total Kecenderunganmu \(response.meta.quizzes.finished) dari \(response.meta.quizzes.total) Quiz,"
                     self.lblSubDesc.text = "\(response.user.fullName ?? "") lebih suka jawaban dari Paslon no \(kecenderungan?.team.id ?? 0)"
-                    self.lblPercentage.text = "\(Double(kecenderungan?.percentage ?? 0.0))%"
+                    let percentage = String(format: "%.0f", kecenderungan?.percentage ?? 0.0) + "%"
+                    self.lblPercentage.text = percentage
                     self.lblTeam.text = "\(kecenderungan?.team.title ?? "")"
             })
             .disposed(by: disposeBag)
