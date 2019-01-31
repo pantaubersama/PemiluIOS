@@ -9,8 +9,8 @@
 import Foundation
 
 public enum Gender: String, Codable {
-    case female = "perempuan"
-    case male = "laki_laki"
+    case female = "Perempuan"
+    case male = "Laki-laki"
     case unknown
     
     public var title: String? {
@@ -18,7 +18,7 @@ public enum Gender: String, Codable {
         case .female:
             return "Perempuan"
         case .male:
-            return "Laki Laki"
+            return "Laki-laki"
         default:
             return nil
         }
@@ -29,7 +29,7 @@ public enum Gender: String, Codable {
         switch title {
         case "Perempuan":
             return .female
-        case "Laki Laki":
+        case "Laki-laki":
             return .male
         default:
             return .unknown
@@ -41,7 +41,7 @@ public enum Gender: String, Codable {
         switch title {
         case "Perempuan":
             return 0
-        case "Laki Laki":
+        case "Laki-laki":
             return 1
         default:
             return 2

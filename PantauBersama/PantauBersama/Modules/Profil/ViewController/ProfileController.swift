@@ -287,6 +287,11 @@ class ProfileController: UIViewController {
         viewModel.input.viewWillAppearI.onNext(())
         navigationController?.navigationBar.configure(with: .white)
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.navigationBar.configure(with: .white)
+    }
 }
 
 
