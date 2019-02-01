@@ -37,6 +37,7 @@
 		842B650C21D9385100F95C13 /* Avatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842B650B21D9385100F95C13 /* Avatar.swift */; };
 		842B650E21D9505A00F95C13 /* InformantResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842B650D21D9505A00F95C13 /* InformantResponse.swift */; };
 		84307F4922005786006DE04B /* FirebaseBroadcastResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84307F4822005786006DE04B /* FirebaseBroadcastResponse.swift */; };
+		8451E05522043A9D00F03E96 /* PayloadResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8451E05422043A9D00F03E96 /* PayloadResponse.swift */; };
 		84619D3521DA21A200EB58CF /* Gender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84619D3421DA21A200EB58CF /* Gender.swift */; };
 		8482E62A21D8E5AB00D5DC07 /* BadgesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8482E62921D8E5AB00D5DC07 /* BadgesResponse.swift */; };
 		8482E62E21D9017700D5DC07 /* PaginatableResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8482E62D21D9017700D5DC07 /* PaginatableResponse.swift */; };
@@ -107,6 +108,7 @@
 		842B650B21D9385100F95C13 /* Avatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Avatar.swift; sourceTree = "<group>"; };
 		842B650D21D9505A00F95C13 /* InformantResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformantResponse.swift; sourceTree = "<group>"; };
 		84307F4822005786006DE04B /* FirebaseBroadcastResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseBroadcastResponse.swift; sourceTree = "<group>"; };
+		8451E05422043A9D00F03E96 /* PayloadResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayloadResponse.swift; sourceTree = "<group>"; };
 		84619D3421DA21A200EB58CF /* Gender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gender.swift; sourceTree = "<group>"; };
 		8482E62921D8E5AB00D5DC07 /* BadgesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgesResponse.swift; sourceTree = "<group>"; };
 		8482E62D21D9017700D5DC07 /* PaginatableResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginatableResponse.swift; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 			isa = PBXGroup;
 			children = (
 				84307F4822005786006DE04B /* FirebaseBroadcastResponse.swift */,
+				8451E05422043A9D00F03E96 /* PayloadResponse.swift */,
 			);
 			path = Notifications;
 			sourceTree = "<group>";
@@ -515,6 +518,7 @@
 				11E798D421E2F4FA002AABDC /* QuizSummaryResponse.swift in Sources */,
 				13D9483A21DDD56D00722EB1 /* InfoResponse.swift in Sources */,
 				1311A96F21DD3011001B053B /* UserPantau.swift in Sources */,
+				8451E05522043A9D00F03E96 /* PayloadResponse.swift in Sources */,
 				1143E81821E25D1B003862B6 /* QuizAnswerResponse.swift in Sources */,
 				13F456B721DA7BD000CE45F1 /* Feeds.swift in Sources */,
 				1143E80821DEC75D003862B6 /* QuizAPI.swift in Sources */,

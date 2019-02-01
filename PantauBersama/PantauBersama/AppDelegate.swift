@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     private var appCoordinator: AppCoordinator!
     private let disposeBag = DisposeBag()
-
+    private var notifType: NotifType!
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
         let schemeTwitter = TWTRTwitter.sharedInstance().application(app, open: url, options: options)
@@ -161,16 +161,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         Messaging.messaging().apnsToken = deviceToken as Data
         // TODO: subscribe topic broadcast activity
-        Messaging.messaging().subscribe(toTopic: "broadcasts-activity")
+        Messaging.messaging().subscribe(toTopic: "ios-broadcasts-activity")
     }
     // MARK: Remote receive notifications
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
         Messaging.messaging().appDidReceiveMessage(userInfo)
-        if UIApplication.shared.applicationState == .active {
-            Parser.parse(userInfo: userInfo, active: true)
-        } else {
-            Parser.parse(userInfo: userInfo, active: false)
-        }
+       
     }
 }
 
@@ -226,8 +222,18 @@ extension AppDelegate {
 extension AppDelegate: UNUserNotificationCenterDelegate {
     // This method will be called when app received push notifications in foreground
     @available(iOS 10.0, *)
-    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void)
-    { completionHandler([UNNotificationPresentationOptions.alert,UNNotificationPresentationOptions.sound,UNNotificationPresentationOptions.badge])
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([UNNotificationPresentationOptions.alert,UNNotificationPresentationOptions.sound,UNNotificationPresentationOptions.badge])
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        print("Notification taped")
+        if UIApplication.shared.applicationState == .active {
+            Parser.parse(userInfo: response.notification.request.content.userInfo, active: true)
+        } else {
+            Parser.parse(userInfo: response.notification.request.content.userInfo, active: false)
+        }
+        completionHandler()
     }
 }
 
@@ -237,14 +243,25 @@ extension AppDelegate: MessagingDelegate {
         
         // TODO: If necessary send token to application server.
         // Note: This callback is fired at each app startup and whenever a new token is generated.
-        InstanceID.instanceID().instanceID { (result, error) in
-//            guard let `self` = self else { return }
+        InstanceID.instanceID().instanceID { [weak self] (result, error) in
+            guard let `self` = self else { return }
             if let error = error {
                 print("Error fetching remote instange ID: \(error)")
             } else if let result = result {
                 print("Remote instance ID token: \(result.token)")
                 UserDefaults.Account.reset(forKey: .instanceId)
                 UserDefaults.Account.set(result.token, forKey: .instanceId)
+                let token = KeychainService.load(type: NetworkKeychainKind.token)
+                if token != nil {
+                    NetworkService.instance
+                        .requestObject(PantauAuthAPI.firebaseKeys(deviceToken: result.token, type: "ios"), c: BaseResponse<InfoFirebaseResponse>.self)
+                        .subscribe(onSuccess: { (response) in
+                            print("Firebase Key: \(response.data.firebaseKey)")
+                        }, onError: { (error) in
+                            print(error.localizedDescription)
+                        })
+                        .disposed(by: self.disposeBag)
+                }
             }
         }
     }
