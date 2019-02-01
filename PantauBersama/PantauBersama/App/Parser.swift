@@ -25,6 +25,8 @@ enum NotifType: String {
 enum EventType: String {
     // broadcast
     case activity
+    case info
+    case event
     // janpol / pilpres report
     case report
     // profile
@@ -52,39 +54,41 @@ final class Parser {
     
     class func parse(userInfo: [AnyHashable: Any], active: Bool) {
         print("User info: \(userInfo)")
-        guard let notifType = userInfo["notif_type"] as? String,
-        let _notifType = NotifType(rawValue: notifType),
-        let eventType = userInfo["event_type"] as? String,
-        let _eventType = EventType(rawValue: eventType),
-        let payload = userInfo["payload"] as? String,
+        guard let payload = userInfo["payload"] as? String,
         let data = payload.data(using: .utf8) else { return }
         
-        handle(event: _eventType, notif: _notifType, active: active, data: data)
+        handle(active: active, data: data)
     }
     
-    private class func handle(event: EventType, notif: NotifType, active: Bool, data: Data) {
-    
-        switch (event, notif, active) {
-        case (.activity, .broadcasts, _):
-            do {
-                let json = try JSONDecoder().decode(FirebaseBroadcastResponse.self, from: data)
-                
-                if let link = json.broadcast.link {
-                    if let currentNavigation = UIApplication.topViewController()?.navigationController {
-                        var parserCoordinator: ParserCoordinator!
-                        let disposeBag = DisposeBag()
-                        parserCoordinator = ParserCoordinator(navigationController: currentNavigation, eventType: event, notifType: notif, link: link)
-                        parserCoordinator.start()
-                            .subscribe()
-                            .disposed(by: disposeBag)
+    private class func handle(active: Bool, data: Data) {
+        do {
+            let responsePayload = try JSONDecoder().decode(PayloadResponse.self, from: data)
+            if let notifType = NotifType(rawValue: responsePayload.notifType) {
+                switch notifType {
+                case .broadcasts:
+                    print("Notifikasi Broadcast")
+                    do {
+                        let respondBroadcast = try JSONDecoder().decode(FirebaseBroadcastResponse.self, from: data)
+                        if let currentNavigation = UIApplication.topViewController()?.navigationController {
+                            var parserCoordinator: ParserCoordinator!
+                            let disposeBag = DisposeBag()
+                            parserCoordinator = ParserCoordinator(navigationController: currentNavigation, notifType: NotifType.broadcasts, link: respondBroadcast.broadcast.link)
+                            parserCoordinator.start()
+                                .subscribe()
+                                .disposed(by: disposeBag)
+                            
+                        }
+                        
+                    } catch let error {
+                        print(error.localizedDescription)
                     }
+                default:
+                    break
                 }
-                
-            } catch let error {
-                print(error.localizedDescription)
             }
-        default:
-            break
+            
+        } catch let error {
+            print(error.localizedDescription)
         }
     }
 }
