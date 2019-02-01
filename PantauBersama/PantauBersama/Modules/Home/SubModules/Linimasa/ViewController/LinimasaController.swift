@@ -70,6 +70,10 @@ class LinimasaController: UIViewController {
             .bind(to: viewModel.input.searchTrigger)
             .disposed(by: disposeBag)
         
+        navbar.notification.rx.tap
+            .bind(to: viewModel.input.notificationTrigger)
+            .disposed(by: disposeBag)
+        
         filter.rx.tap
             .map { [unowned self] (_) -> (type: FilterType, filterTrigger: AnyObserver<[PenpolFilterModel.FilterItem]>) in
                 return self.pilpresController.view.alpha == 1.0 ?
@@ -128,6 +132,10 @@ class LinimasaController: UIViewController {
             .disposed(by: disposeBag)
         
         viewModel.output.updatesO
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.notificationSelected
             .drive()
             .disposed(by: disposeBag)
         

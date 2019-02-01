@@ -17,7 +17,7 @@ enum TypeUpdates {
 
 protocol LinimasaNavigator: PilpresNavigator, IJanpolNavigator {
     func launchProfile(isMyAccount: Bool, userId: String?) -> Observable<Void>
-    func launchNotifications()
+    func launchNotifications() -> Observable<Void>
     func launchAddJanji() -> Observable<Void>
     func launchBannerInfo(bannerInfo: BannerInfo) -> Observable<Void>
     func launchNote() -> Observable<Void>
@@ -83,8 +83,9 @@ extension LinimasaCoordinator: LinimasaNavigator {
         return coordinate(to: profileCoordinator)
     }
     
-    func launchNotifications() {
-        
+    func launchNotifications() -> Observable<Void> {
+        let notificationCoordinator = NotificationCoordinator(navigationController: navigationController)
+        return coordinate(to: notificationCoordinator)
     }
     
     func launchNote() -> Observable<Void> {

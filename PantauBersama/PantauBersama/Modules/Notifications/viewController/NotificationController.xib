@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NotificationController" customModule="PantauBersama" customModuleProvider="target">
             <connections>
+                <outlet property="context" destination="SHs-Fp-dJy" id="yOQ-WQ-JUn"/>
                 <outlet property="segmentedControl" destination="auG-nf-pLS" id="Qkg-G4-MAx"/>
                 <outlet property="view" destination="LZV-js-Ifc" id="QiK-jk-lsF"/>
             </connections>

@@ -14,6 +14,7 @@
             <connections>
                 <outlet property="avatar" destination="UoW-Y2-fDX" id="uJi-L3-RxN"/>
                 <outlet property="note" destination="WW4-qD-nOf" id="4AJ-Ux-mIa"/>
+                <outlet property="notification" destination="Dtj-Ob-Hyx" id="KJI-q8-46a"/>
                 <outlet property="profile" destination="Ljt-vi-8ru" id="dBt-G7-hTh"/>
                 <outlet property="search" destination="NIF-QG-Yj2" id="sEa-NT-naI"/>
             </connections>
@@ -62,7 +63,7 @@
                             </userDefinedRuntimeAttributes>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JEM-iP-cBO" customClass="RoundView" customModule="Common">
-                            <rect key="frame" x="47" y="10" width="261" height="36"/>
+                            <rect key="frame" x="47" y="10" width="226" height="36"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icSearchInactive" translatesAutoresizingMaskIntoConstraints="NO" id="t2s-gG-G6s">
                                     <rect key="frame" x="8" y="6" width="24" height="24"/>
@@ -84,7 +85,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NIF-QG-Yj2">
-                                    <rect key="frame" x="0.0" y="0.0" width="261" height="36"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="226" height="36"/>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -106,12 +107,20 @@
                             </userDefinedRuntimeAttributes>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WW4-qD-nOf">
-                            <rect key="frame" x="319" y="16" width="24" height="24"/>
+                            <rect key="frame" x="284" y="16" width="24" height="24"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="24" id="NMv-vz-SOi"/>
                                 <constraint firstAttribute="width" constant="24" id="xMy-gY-coo"/>
                             </constraints>
                             <state key="normal" image="iconKotakKpu"/>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dtj-Ob-Hyx">
+                            <rect key="frame" x="319" y="16" width="24" height="24"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="24" id="3EA-la-zK6"/>
+                                <constraint firstAttribute="height" constant="24" id="ao6-c6-5hG"/>
+                            </constraints>
+                            <state key="normal" image="icNotif"/>
                         </button>
                     </subviews>
                 </stackView>
@@ -130,6 +139,7 @@
     </objects>
     <resources>
         <image name="icDummyPerson" width="48" height="48"/>
+        <image name="icNotif" width="24" height="24"/>
         <image name="icSearchInactive" width="24" height="24"/>
         <image name="iconKotakKpu" width="24" height="24"/>
     </resources>

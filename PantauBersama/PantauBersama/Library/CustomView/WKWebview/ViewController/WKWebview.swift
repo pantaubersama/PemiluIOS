@@ -102,7 +102,7 @@ class WKWebviewCustom: UIViewController, WKNavigationDelegate, WKUIDelegate {
         
         // MARK
         // TODO: For change password handler
-            if navigationAction.request.url?.absoluteString == "\(AppContext.instance.infoForKey("DOMAIN_SYMBOLIC"))/" {
+            if navigationAction.request.url?.absoluteString == "\(AppContext.instance.infoForKey("DOMAIN_SYMBOLIC"))/home" {
                 decisionHandler(.cancel)
                 let alert = UIAlertController(title: "Sukses", message: "Berhasil update sandi", preferredStyle: .alert)
                 let ok = UIAlertAction(title: "OK", style: .default) { [weak self] (_) in

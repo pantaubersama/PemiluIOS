@@ -38,6 +38,8 @@
 		842B650E21D9505A00F95C13 /* InformantResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842B650D21D9505A00F95C13 /* InformantResponse.swift */; };
 		84307F4922005786006DE04B /* FirebaseBroadcastResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84307F4822005786006DE04B /* FirebaseBroadcastResponse.swift */; };
 		8451E05522043A9D00F03E96 /* PayloadResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8451E05422043A9D00F03E96 /* PayloadResponse.swift */; };
+		8451E0602204672700F03E96 /* NotificationAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8451E05F2204672700F03E96 /* NotificationAPI.swift */; };
+		8451E06222046AB600F03E96 /* RecordNotificationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8451E06122046AB600F03E96 /* RecordNotificationResponse.swift */; };
 		84619D3521DA21A200EB58CF /* Gender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84619D3421DA21A200EB58CF /* Gender.swift */; };
 		8482E62A21D8E5AB00D5DC07 /* BadgesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8482E62921D8E5AB00D5DC07 /* BadgesResponse.swift */; };
 		8482E62E21D9017700D5DC07 /* PaginatableResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8482E62D21D9017700D5DC07 /* PaginatableResponse.swift */; };
@@ -109,6 +111,8 @@
 		842B650D21D9505A00F95C13 /* InformantResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformantResponse.swift; sourceTree = "<group>"; };
 		84307F4822005786006DE04B /* FirebaseBroadcastResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseBroadcastResponse.swift; sourceTree = "<group>"; };
 		8451E05422043A9D00F03E96 /* PayloadResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayloadResponse.swift; sourceTree = "<group>"; };
+		8451E05F2204672700F03E96 /* NotificationAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationAPI.swift; sourceTree = "<group>"; };
+		8451E06122046AB600F03E96 /* RecordNotificationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordNotificationResponse.swift; sourceTree = "<group>"; };
 		84619D3421DA21A200EB58CF /* Gender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gender.swift; sourceTree = "<group>"; };
 		8482E62921D8E5AB00D5DC07 /* BadgesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgesResponse.swift; sourceTree = "<group>"; };
 		8482E62D21D9017700D5DC07 /* PaginatableResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginatableResponse.swift; sourceTree = "<group>"; };
@@ -191,6 +195,7 @@
 			children = (
 				84307F4822005786006DE04B /* FirebaseBroadcastResponse.swift */,
 				8451E05422043A9D00F03E96 /* PayloadResponse.swift */,
+				8451E06122046AB600F03E96 /* RecordNotificationResponse.swift */,
 			);
 			path = Notifications;
 			sourceTree = "<group>";
@@ -211,6 +216,7 @@
 				1183F0DB21D4FC4800435D31 /* TanyaKandidatAPI.swift */,
 				13F456B421D531D300CE45F1 /* LinimasaAPI.swift */,
 				1143E80721DEC75D003862B6 /* QuizAPI.swift */,
+				8451E05F2204672700F03E96 /* NotificationAPI.swift */,
 			);
 			path = Microservices;
 			sourceTree = "<group>";
@@ -507,7 +513,9 @@
 				1183F0DE21D535C600435D31 /* QuestionResponse.swift in Sources */,
 				13F456C521DB7EF900CE45F1 /* Image.swift in Sources */,
 				1143E81421E24946003862B6 /* QuizQuestionsResponse.swift in Sources */,
+				8451E0602204672700F03E96 /* NotificationAPI.swift in Sources */,
 				11D0669D21E26A07003AC9BB /* QuizResultResponse.swift in Sources */,
+				8451E06222046AB600F03E96 /* RecordNotificationResponse.swift in Sources */,
 				11C7BB2521DB36D5008CA49B /* QuestionOptionResponse.swift in Sources */,
 				8482E63021D9048800D5DC07 /* Paginate.swift in Sources */,
 				84FC35EE21E89BE4005FB016 /* ClusterResponse.swift in Sources */,

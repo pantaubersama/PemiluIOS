@@ -25,6 +25,7 @@ final class LinimasaViewModel: ViewModelType {
         let profileTrigger: AnyObserver<Void>
         let viewWillAppearTrigger: AnyObserver<Void>
         let catatanTrigger: AnyObserver<Void>
+        let notificationTrigger: AnyObserver<Void>
     }
     
     struct Output {
@@ -35,6 +36,7 @@ final class LinimasaViewModel: ViewModelType {
         let userO: Driver<UserResponse>
         let catatanSelected: Driver<Void>
         let updatesO: Driver<Void>
+        let notificationSelected: Driver<Void>
     }
     
     let navigator: LinimasaNavigator
@@ -47,6 +49,7 @@ final class LinimasaViewModel: ViewModelType {
     private let catatanS = PublishSubject<Void>()
     private let activityIndicator = ActivityIndicator()
     private let errorTracker = ErrorTracker()
+    private let notificationS = PublishSubject<Void>()
     
     init(navigator: LinimasaNavigator) {
         self.navigator = navigator
@@ -59,7 +62,8 @@ final class LinimasaViewModel: ViewModelType {
             refreshTrigger: refreshSubject.asObserver(),
             profileTrigger: profileSubject.asObserver(),
             viewWillAppearTrigger: viewWillppearS.asObserver(),
-            catatanTrigger: catatanS.asObserver()
+            catatanTrigger: catatanS.asObserver(),
+            notificationTrigger: notificationS.asObserver()
         )
         
         let filter = filterSubject
@@ -133,13 +137,19 @@ final class LinimasaViewModel: ViewModelType {
                 return Observable.empty()
             }
         
+        let notification = notificationS
+            .flatMapLatest({ navigator.launchNotifications() })
+            .asDriverOnErrorJustComplete()
+        
         output = Output(searchSelected: search,
                         filterSelected: filter,
                         addSelected: add,
                         profileSelected: profile,
                         userO: userData,
                         catatanSelected: note,
-                        updatesO: versions.asDriverOnErrorJustComplete())
+                        updatesO: versions.asDriverOnErrorJustComplete(),
+                        notificationSelected: notification
+        )
     }
     
 }

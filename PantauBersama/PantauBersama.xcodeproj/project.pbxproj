@@ -194,6 +194,10 @@
 		844C3D8C21C5323E00199871 /* LinimasaCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 844C3D8B21C5323E00199871 /* LinimasaCell.xib */; };
 		8451E05122035F9200F03E96 /* TrendImageShare.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8451E05022035F9200F03E96 /* TrendImageShare.xib */; };
 		8451E0532203651700F03E96 /* TrendImageShare.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8451E0522203651700F03E96 /* TrendImageShare.swift */; };
+		8451E05822045A1A00F03E96 /* InfoNotifController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8451E05722045A1A00F03E96 /* InfoNotifController.swift */; };
+		8451E05A22045AEC00F03E96 /* InfoNotifViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8451E05922045AEC00F03E96 /* InfoNotifViewModel.swift */; };
+		8451E05C22045BD400F03E96 /* NotificationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8451E05B22045BD300F03E96 /* NotificationCoordinator.swift */; };
+		8451E05E22045C6B00F03E96 /* NotificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8451E05D22045C6B00F03E96 /* NotificationViewModel.swift */; };
 		8452A4C321DE1EF400196043 /* BuatProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8452A4C221DE1EF400196043 /* BuatProfileController.swift */; };
 		8452A4C521DE1F4300196043 /* BuatProfileController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8452A4C421DE1F4300196043 /* BuatProfileController.xib */; };
 		8452A4C921DE265500196043 /* BuatProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8452A4C821DE265500196043 /* BuatProfileViewModel.swift */; };
@@ -587,6 +591,10 @@
 		844C3D8B21C5323E00199871 /* LinimasaCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LinimasaCell.xib; sourceTree = "<group>"; };
 		8451E05022035F9200F03E96 /* TrendImageShare.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrendImageShare.xib; sourceTree = "<group>"; };
 		8451E0522203651700F03E96 /* TrendImageShare.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendImageShare.swift; sourceTree = "<group>"; };
+		8451E05722045A1A00F03E96 /* InfoNotifController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoNotifController.swift; sourceTree = "<group>"; };
+		8451E05922045AEC00F03E96 /* InfoNotifViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoNotifViewModel.swift; sourceTree = "<group>"; };
+		8451E05B22045BD300F03E96 /* NotificationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCoordinator.swift; sourceTree = "<group>"; };
+		8451E05D22045C6B00F03E96 /* NotificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewModel.swift; sourceTree = "<group>"; };
 		8452A4C221DE1EF400196043 /* BuatProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuatProfileController.swift; sourceTree = "<group>"; };
 		8452A4C421DE1F4300196043 /* BuatProfileController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BuatProfileController.xib; sourceTree = "<group>"; };
 		8452A4C821DE265500196043 /* BuatProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuatProfileViewModel.swift; sourceTree = "<group>"; };
@@ -1665,6 +1673,14 @@
 			path = TrendImageShare;
 			sourceTree = "<group>";
 		};
+		8451E056220459C500F03E96 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				8451E05722045A1A00F03E96 /* InfoNotifController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		8452A4C621DE1F4900196043 /* StartingSetting */ = {
 			isa = PBXGroup;
 			children = (
@@ -1774,6 +1790,8 @@
 			children = (
 				8478B8E221FF1CEC00CE192A /* SubModules */,
 				8478B8DD21FF1B8600CE192A /* viewController */,
+				8451E05B22045BD300F03E96 /* NotificationCoordinator.swift */,
+				8451E05D22045C6B00F03E96 /* NotificationViewModel.swift */,
 			);
 			path = Notifications;
 			sourceTree = "<group>";
@@ -1798,7 +1816,9 @@
 		8478B8E321FF1F4200CE192A /* Info */ = {
 			isa = PBXGroup;
 			children = (
+				8451E056220459C500F03E96 /* ViewController */,
 				8478B8E421FF1F9200CE192A /* Components */,
+				8451E05922045AEC00F03E96 /* InfoNotifViewModel.swift */,
 			);
 			path = Info;
 			sourceTree = "<group>";
@@ -2871,6 +2891,7 @@
 				13812C3921CC182500CAB327 /* AskViewCell.swift in Sources */,
 				137A29F821E2327D00F19072 /* ComingsoonCoordinator.swift in Sources */,
 				84B2526821CC01F000565D82 /* AppState.swift in Sources */,
+				8451E05A22045AEC00F03E96 /* InfoNotifViewModel.swift in Sources */,
 				84E521BC21F4A81700B7CCBA /* ItemOnboardingController.swift in Sources */,
 				84CA10C521EF12800025CF10 /* AboutViewModel.swift in Sources */,
 				84B4DED821D375C600F60258 /* JanjiPolitikNavigator.swift in Sources */,
@@ -2932,6 +2953,7 @@
 				84E2855921CA777D00298E31 /* Observable.swift in Sources */,
 				13BF405B21EC7B6B005C9A64 /* MyQuestionListViewModel.swift in Sources */,
 				8441DB5A21CD087000B078DF /* JanjiType.swift in Sources */,
+				8451E05E22045C6B00F03E96 /* NotificationViewModel.swift in Sources */,
 				844C3D3D21C4ED6D00199871 /* AppDelegate.swift in Sources */,
 				11B3C78B21D110CB00EDCECB /* QuizSummaryCoordinator.swift in Sources */,
 				1161F9F421DF4B4000C1BAD5 /* QuizButton.swift in Sources */,
@@ -3021,9 +3043,11 @@
 				84B6D52D21F8E80A00DD742A /* UserQuestionListViewModel.swift in Sources */,
 				13E9D78821E8F025006A0890 /* IJanpolListViewModel.swift in Sources */,
 				84B6D52F21F8F00E00DD742A /* UserSearchNavigator.swift in Sources */,
+				8451E05822045A1A00F03E96 /* InfoNotifController.swift in Sources */,
 				13BF405521EBADBF005C9A64 /* QuestionListViewModel.swift in Sources */,
 				13F456D621DBA2F600CE45F1 /* BannerHeaderViewModel.swift in Sources */,
 				840850E121D2844700696CB3 /* BadgeCoordinator.swift in Sources */,
+				8451E05C22045BD400F03E96 /* NotificationCoordinator.swift in Sources */,
 				11D066A421E3850E003AC9BB /* PenpolFilterController.swift in Sources */,
 				8409374B21D360D10024A444 /* PilpresViewModel.swift in Sources */,
 				840850D521D2741700696CB3 /* LogoutCoordinator.swift in Sources */,
