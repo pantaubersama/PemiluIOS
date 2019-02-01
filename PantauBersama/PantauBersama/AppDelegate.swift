@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     private var appCoordinator: AppCoordinator!
     private let disposeBag = DisposeBag()
-
+    private var notifType: NotifType!
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
         let schemeTwitter = TWTRTwitter.sharedInstance().application(app, open: url, options: options)
@@ -166,11 +166,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: Remote receive notifications
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
         Messaging.messaging().appDidReceiveMessage(userInfo)
-        if UIApplication.shared.applicationState == .active {
-            Parser.parse(userInfo: userInfo, active: true)
-        } else {
-            Parser.parse(userInfo: userInfo, active: false)
-        }
+       
     }
 }
 
@@ -227,12 +223,16 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     // This method will be called when app received push notifications in foreground
     @available(iOS 10.0, *)
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        print("Notification Identifier: \(notification.request.identifier)")
-        print("Notification Request: \(notification.request.content)")
         completionHandler([UNNotificationPresentationOptions.alert,UNNotificationPresentationOptions.sound,UNNotificationPresentationOptions.badge])
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        print("Notification taped")
+        if UIApplication.shared.applicationState == .active {
+            Parser.parse(userInfo: response.notification.request.content.userInfo, active: true)
+        } else {
+            Parser.parse(userInfo: response.notification.request.content.userInfo, active: false)
+        }
         completionHandler()
     }
 }
