@@ -17,6 +17,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TrendImageShare" customModule="PantauBersama" customModuleProvider="target">
             <connections>
+                <outlet property="background" destination="b7p-0r-1tK" id="KBr-rH-pPW"/>
                 <outlet property="ivPaslon" destination="MhA-GC-WgC" id="XEg-jZ-Q9I"/>
                 <outlet property="lblPaslon" destination="HKj-cq-FrI" id="qIi-y7-scz"/>
                 <outlet property="lblPercentage" destination="MTU-Hr-8Rf" id="trr-A2-D8E"/>

@@ -37,6 +37,7 @@ class ShareTrendController: UIViewController {
         navigationItem.leftBarButtonItem = back
         
         imageScreeenShoot = TrendImageShare()
+        imageScreeenShoot.configureBackground(type: .trend)
         
         share.rx.tap
             .debounce(1.0, scheduler: MainScheduler.instance)

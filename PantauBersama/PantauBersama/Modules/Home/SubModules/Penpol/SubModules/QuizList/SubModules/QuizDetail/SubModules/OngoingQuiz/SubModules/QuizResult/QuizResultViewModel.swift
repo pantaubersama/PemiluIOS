@@ -19,7 +19,7 @@ class QuizResultViewModel: ViewModelType {
     struct Input {
         let backTrigger: AnyObserver<Void>
         let openSummaryTrigger: AnyObserver<Void>
-        let shareTrigger: AnyObserver<Void>
+        let shareTrigger: AnyObserver<UIImage?>
     }
     
     struct Output {
@@ -31,7 +31,7 @@ class QuizResultViewModel: ViewModelType {
     
     private let backSubject = PublishSubject<Void>()
     private let openSummarySubject = PublishSubject<Void>()
-    private let shareSubject = PublishSubject<Void>()
+    private let shareSubject = PublishSubject<UIImage?>()
     
     var navigator: QuizResultNavigator
     var quiz: QuizModel
@@ -56,9 +56,15 @@ class QuizResultViewModel: ViewModelType {
             .flatMapLatest({ navigator.openSummary(quizModel: $0) })
             .asDriverOnErrorJustComplete()
         
-        let share = shareSubject
-            .map({ self.quiz })
-            .flatMapLatest({ navigator.shareQuizResult(quizModel: $0 )})
+        let quizObservable = Observable.just(quiz).asObservable()
+        let share = Observable.combineLatest(shareSubject, quizObservable)
+            .flatMapLatest({ (image, quiz) -> Observable<Void> in
+                if let image = image {
+                    return navigator.shareQuizResult(quizModel: quiz, image: image)
+                } else {
+                    return Observable.empty()
+                }
+            })
             .asDriverOnErrorJustComplete()
         
         output = Output(back: back,

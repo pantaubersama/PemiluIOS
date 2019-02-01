@@ -14,6 +14,8 @@ public struct QuizResultModel {
     public let name: String
     public let percentage: String
     public let avatar: String
+    public let nameQuiz: String
+    public let userName: String
     
     init(result: QuizResultResponse.DataClass) {
         let higherPercentagePaslon = result.teams.sorted { (t1, t2) -> Bool in
@@ -24,16 +26,13 @@ public struct QuizResultModel {
         self.name = higherPercentagePaslon?.team.title ?? ""
         self.avatar = higherPercentagePaslon?.team.avatar ?? ""
         self.percentage =  String(format: "%.0f", higherPercentagePaslon?.percentage ?? 0) + "%"
+        self.nameQuiz = result.quiz.title ?? ""
+        self.userName = result.user?.fullName ?? ""
     }
 }
 
 extension QuizResultModel {
     var resultSummary: String {
-        // MARK
-        // Get user data from userDefaults
-        let userData: Data? = UserDefaults.Account.get(forKey: .me)
-        let userResponse = try? JSONDecoder().decode(UserResponse.self, from: userData ?? Data())
-        
-        return "Dari hasil pilihan di Quiz minggu pertama, \n\(userResponse?.user.fullName ?? "") lebih suka jawaban dari Paslon no \(paslonNo)"
+        return "Dari hasil pilihan di Quiz \(self.nameQuiz), \n\(self.userName) lebih suka jawaban dari Paslon no \(paslonNo)"
     }
 }

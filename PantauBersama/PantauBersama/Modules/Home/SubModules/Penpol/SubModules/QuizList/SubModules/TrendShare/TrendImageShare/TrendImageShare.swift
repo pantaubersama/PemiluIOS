@@ -10,6 +10,11 @@ import UIKit
 import Networking
 import Common
 
+enum ImageShareType {
+    case trend
+    case quiz
+}
+
 class TrendImageShare: UIView {
     
     @IBOutlet weak var lblResultSummary: Label!
@@ -17,7 +22,8 @@ class TrendImageShare: UIView {
     @IBOutlet weak var ivPaslon: UIImageView!
     @IBOutlet weak var lblPercentage: UILabel!
     @IBOutlet weak var lblPaslon: UILabel!
-   
+    @IBOutlet weak var background: UIImageView!
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
@@ -47,4 +53,22 @@ class TrendImageShare: UIView {
         self.lblPercentage.text = percentage
         self.lblPaslon.text = "\(kecenderungan?.team.title ?? "")"
     }
+    
+    func configureResult(data: QuizResultModel) {
+        self.ivPaslon.show(fromURL: data.avatar)
+        self.lblPaslon.text = data.name
+        self.lblPercentage.text = data.percentage
+        self.lblResultSummary.text = "Dari hasil pilihan di Quiz \(data.nameQuiz),"
+        self.lblResultKecenderungan.text = "\(data.userName) lebih suka jawaban dari Paslin no \(data.paslonNo)"
+    }
+    
+    func configureBackground(type: ImageShareType) {
+        switch type {
+        case .trend:
+            self.background.image = #imageLiteral(resourceName: "trendBackground")
+        case .quiz:
+            self.background.image = #imageLiteral(resourceName: "quizResultUngu")
+        }
+    }
+    
 }

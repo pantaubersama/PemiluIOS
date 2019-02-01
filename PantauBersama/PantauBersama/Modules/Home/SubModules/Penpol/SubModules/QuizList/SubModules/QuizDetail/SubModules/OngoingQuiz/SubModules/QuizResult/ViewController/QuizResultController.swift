@@ -24,8 +24,17 @@ class QuizResultController: UIViewController {
     
     private(set) var disposeBag = DisposeBag()
     
+    private var imageScreeenShoot: TrendImageShare = {
+        let image = TrendImageShare()
+        return image
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        imageScreeenShoot = TrendImageShare()
+        imageScreeenShoot.configureBackground(type: .quiz)
+        
         viewModel.output.result
             .drive(onNext: { [weak self](result) in
                 guard let weakSelf = self else { return }
@@ -33,6 +42,7 @@ class QuizResultController: UIViewController {
                 weakSelf.lbPercent.text = result.percentage
                 weakSelf.lbResult.text = result.resultSummary
                 weakSelf.ivPaslon.show(fromURL: result.avatar)
+                weakSelf.imageScreeenShoot.configureResult(data: result)
             }).disposed(by: disposeBag)
         
         viewModel.output.openSummary
@@ -48,6 +58,8 @@ class QuizResultController: UIViewController {
             .disposed(by: disposeBag)
         
         btnShare.rx.tap
+            .debounce(1.0, scheduler: MainScheduler.instance)
+            .map({ self.takeScreenshot() })
             .bind(to: viewModel.input.shareTrigger)
             .disposed(by: disposeBag)
         
@@ -69,4 +81,23 @@ class QuizResultController: UIViewController {
         super.viewWillAppear(animated)
         
     }
+}
+
+extension QuizResultController {
+    
+    /// Takes the screenshot of the screen and returns the corresponding image
+    /// - Returns: (Optional)image captured as a screenshot
+    open func takeScreenshot() -> UIImage? {
+        var screenshotImage :UIImage?
+        let layer = self.imageScreeenShoot.layer
+        let scale = UIScreen.main.scale
+        let size = CGSize(width: 360, height: 640)
+        UIGraphicsBeginImageContextWithOptions(size, false, scale);
+        guard let context = UIGraphicsGetCurrentContext() else {return nil}
+        layer.render(in:context)
+        screenshotImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return screenshotImage
+    }
+    
 }
