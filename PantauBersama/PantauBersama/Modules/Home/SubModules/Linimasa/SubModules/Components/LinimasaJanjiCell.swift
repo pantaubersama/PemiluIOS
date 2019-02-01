@@ -25,6 +25,7 @@ class LinimasaJanjiCell: UITableViewCell {
     @IBOutlet weak var moreBtn: UIButton!
     @IBOutlet weak var clusterName: Label!
     @IBOutlet weak var imagejJanpol: UIImageView!
+    @IBOutlet weak var consImageWidth: NSLayoutConstraint!
     
     
     private(set) var disposeBag: DisposeBag = DisposeBag()
@@ -80,10 +81,12 @@ extension LinimasaJanjiCell: IReusableCell {
         
         if let url = data.image?.large?.url {
             imagejJanpol.isHidden = false
+            consImageWidth.constant = 80.0
             imagejJanpol.show(fromURL: url)
             
         } else {
             imagejJanpol.isHidden = true
+            consImageWidth.constant = 0.0
         }
         
     }

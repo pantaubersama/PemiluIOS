@@ -54,7 +54,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Anik Kemala," textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uez-rD-hVX" customClass="Label" customModule="Common">
-                                                <rect key="frame" x="29" y="0.0" width="98.5" height="24"/>
+                                                <rect key="frame" x="29" y="0.0" width="71" height="24"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" priority="750" constant="1" id="CFx-7l-DLU"/>
                                                 </constraints>
@@ -69,7 +69,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gAl-96-UBg" customClass="Label" customModule="Common">
-                                                <rect key="frame" x="132.5" y="0.0" width="186" height="24"/>
+                                                <rect key="frame" x="105" y="0.0" width="242" height="24"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -80,7 +80,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" 8 days ago" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ASA-U6-GH9" customClass="Label" customModule="Common">
-                                                <rect key="frame" x="323.5" y="0.0" width="88.5" height="24"/>
+                                                <rect key="frame" x="352" y="0.0" width="60" height="24"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" priority="750" constant="60" id="joB-EK-kcO"/>
                                                 </constraints>
@@ -127,7 +127,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="327" height="173.5"/>
                                         <subviews>
                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cne-q9-qzT" customClass="Label" customModule="Common">
-                                                <rect key="frame" x="0.0" y="0.0" width="327" height="122"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="327" height="86.5"/>
                                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
@@ -154,13 +154,13 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="80" id="0lT-vx-Ghb"/>
+                                                    <constraint firstAttribute="width" constant="80" id="m8r-cR-bN3"/>
                                                 </constraints>
                                             </imageView>
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="5o6-Ax-H04" firstAttribute="leading" secondItem="2AH-Kx-B7g" secondAttribute="leading" id="Hta-0K-5Mi"/>
                                             <constraint firstItem="5o6-Ax-H04" firstAttribute="top" secondItem="2AH-Kx-B7g" secondAttribute="top" id="IeR-Qk-Wih"/>
-                                            <constraint firstAttribute="width" constant="80" id="SYe-nr-tI5"/>
                                             <constraint firstAttribute="trailing" secondItem="5o6-Ax-H04" secondAttribute="trailing" id="z4s-ft-Gmr"/>
                                         </constraints>
                                     </view>
@@ -213,6 +213,7 @@
             <connections>
                 <outlet property="avatar" destination="hVb-Fv-xxE" id="9VU-Uh-3W3"/>
                 <outlet property="clusterName" destination="gAl-96-UBg" id="t2F-8a-NtI"/>
+                <outlet property="consImageWidth" destination="m8r-cR-bN3" id="Pub-VH-LNz"/>
                 <outlet property="content" destination="cne-q9-qzT" id="OI2-a8-vps"/>
                 <outlet property="dateCreate" destination="ASA-U6-GH9" id="16u-U0-AH0"/>
                 <outlet property="fullname" destination="uez-rD-hVX" id="Tb8-JX-wlI"/>
