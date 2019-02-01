@@ -19,7 +19,7 @@ class JanpolListViewModel: IJanpolListViewModel, IJanpolListViewModelInput, IJan
     var refreshI: AnyObserver<String>
     var nextPageI: AnyObserver<Void>
     var shareJanjiI: AnyObserver<JanjiPolitik>
-    var moreI: AnyObserver<JanjiPolitik>
+    var moreI: AnyObserver<Int>
     var moreMenuI: AnyObserver<JanjiType>
     var itemSelectedI: AnyObserver<IndexPath>
     var filterI: AnyObserver<[PenpolFilterModel.FilterItem]>
@@ -40,7 +40,7 @@ class JanpolListViewModel: IJanpolListViewModel, IJanpolListViewModelInput, IJan
     var userO: Driver<UserResponse>!
     
     private let refreshSubject = PublishSubject<String>()
-    private let moreSubject = PublishSubject<JanjiPolitik>()
+    private let moreSubject = PublishSubject<Int>()
     private let moreMenuSubject = PublishSubject<JanjiType>()
     private let shareSubject = PublishSubject<JanjiPolitik>()
     private let nextSubject = PublishSubject<Void>()
@@ -80,7 +80,7 @@ class JanpolListViewModel: IJanpolListViewModel, IJanpolListViewModelInput, IJan
         }
         
         
-        let janpolItems = refreshSubject
+        var janpolItems = refreshSubject
             .flatMapLatest { [unowned self] (query) -> Observable<[JanjiPolitik]> in
                 let cid = self.filterItems.filter({ $0.paramKey == "cluster_id"}).first?.paramValue
                 let filter = self.filterItems.filter({ $0.paramKey == "filter_by"}).first?.paramValue
@@ -117,8 +117,15 @@ class JanpolListViewModel: IJanpolListViewModel, IJanpolListViewModelInput, IJan
             .flatMapLatest({ navigator.launchJanjiDetail(data: $0) })
             .asDriverOnErrorJustComplete()
         
+//        moreSelectedO = moreSubject
+//            .asObserver().asDriverOnErrorJustComplete()
+        
         moreSelectedO = moreSubject
-            .asObserver().asDriverOnErrorJustComplete()
+            .asObservable()
+            .withLatestFrom(janpolItems) { (row, janpols) in
+                return janpols[row]
+            }
+            .asDriverOnErrorJustComplete()
         
         shareSelectedO = shareSubject
             .flatMapLatest({ navigator.shareJanji(data: $0) })
@@ -138,9 +145,42 @@ class JanpolListViewModel: IJanpolListViewModel, IJanpolListViewModelInput, IJan
                     return Observable.just("Tautan telah tersalin")
                 case .hapus(let id):
                     return self.delete(id: id)
-                        .map({ (_) -> String in
-                            return ""
+                        .do(onNext: { (result) in
+                            let currentItems = janpolItems.map{(items) -> [JanjiPolitik] in
+                                var currentValue = items
+                                guard let index = currentValue.index(where: { item -> Bool in
+                                    return item.id == id
+                                }) else {
+                                    return []
+                                }
+                                currentValue.remove(at: index)
+                                return currentValue
+                            }
+    
+                            janpolItems = currentItems.asObservable().asDriver(onErrorJustReturn: [])
+                            return
                         })
+                        .map({ (result) -> String in
+                            return result.data.message
+                        })
+//                        .map({ (result) -> String in
+//
+//                            let currentItems = janpolItems.map{(items) -> [JanjiPolitik] in
+//                                var currentValue = items
+//
+//                                guard let index = currentValue.index(where: { item -> Bool in
+//                                    return item.id == id
+//                                }) else {
+//                                    return []
+//                                }
+//                                currentValue.remove(at: index)
+//                                return currentValue
+//                            }
+//
+//                            janpolItems = currentItems.asObservable().asDriver(onErrorJustReturn: [])
+//
+//                            return ""
+//                        })
                 default:
                     return Observable.empty()
                 }

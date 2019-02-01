@@ -57,7 +57,7 @@ extension LinimasaJanjiCell: IReusableCell {
             .disposed(by: bag)
         
         moreBtn.rx.tap
-            .map({ janpol })
+            .map({ self.tag })
             .bind(to: item.viewModel.input.moreI)
             .disposed(by: bag)
         
