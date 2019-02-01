@@ -143,9 +143,7 @@ class QuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelInput
                 .trackActivity(self.activityIndicator)
                 .catchErrorJustReturn(Page<[QuestionModel]>(item: [], batch: Batch.initial))
         }
-        .filter { (page) -> Bool in
-            return !page.item.isEmpty
-        }.bind { [weak self](page) in
+        .bind { [weak self](page) in
             guard let weakSelf = self else { return }
             if page.batch.page == 1 {
                 weakSelf.questionRelay.accept(page.item)

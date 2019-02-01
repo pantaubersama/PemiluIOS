@@ -154,7 +154,7 @@ class QuizViewModel: ViewModelType {
             .mapToVoid()
             .asDriverOnErrorJustComplete()
         
-        Observable.combineLatest(viewWillAppearS.asObservable(), loadQuizSubject.asObservable())
+        Observable.merge(viewWillAppearS.asObservable(), loadQuizSubject.asObservable())
             .flatMapLatest({ [weak self](query) -> Observable<[QuizModel]> in
                 guard let weakSelf = self else { return Observable.empty() }
                 weakSelf.loadQuizKindOrder = 0
