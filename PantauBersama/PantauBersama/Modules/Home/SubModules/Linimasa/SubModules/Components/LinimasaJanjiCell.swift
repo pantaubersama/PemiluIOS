@@ -78,14 +78,10 @@ extension LinimasaJanjiCell: IReusableCell {
             self.avatar.af_setImage(withURL: URL(string: avatarUrl)!)
         }
         
-        //image property
-//        imagejJanpol.autoresizingMask = [.flexibleWidth, .flexibleHeight, .flexibleBottomMargin, .flexibleRightMargin, .flexibleLeftMargin, .flexibleTopMargin]
-//        imagejJanpol.contentMode = .scaleAspectFill
-//        imagejJanpol.clipsToBounds = true
-        
         if let url = data.image?.large?.url {
-            imagejJanpol.af_setImage(withURL: URL(string: url)!)
             imagejJanpol.isHidden = false
+            imagejJanpol.show(fromURL: url)
+            
         } else {
             imagejJanpol.isHidden = true
         }
@@ -94,6 +90,5 @@ extension LinimasaJanjiCell: IReusableCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-//        content.sizeToFit()
     }
 }
