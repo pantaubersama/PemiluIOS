@@ -21,9 +21,23 @@ class QuizOngoingController: UIViewController {
     
     private(set) var disposeBag = DisposeBag()
     var viewModel: QuizOngoingViewModel!
+    private var answerA: String!
+    private var answerB: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        btnAChoice.rx
+            .tap
+            .map({ self.answerA })
+            .bind(to: self.viewModel.input.answerATrigger)
+            .disposed(by: self.disposeBag)
+        
+        btnBChoice.rx
+            .tap
+            .map({ self.answerB })
+            .bind(to: self.viewModel.input.answerBTrigger)
+            .disposed(by: self.disposeBag)
         
         viewModel.input
             .loadQuestionTrigger
@@ -52,18 +66,9 @@ class QuizOngoingController: UIViewController {
             .drive(onNext: { [unowned self]question in
                 self.lbQuestion.text = question.content
                 self.tvAChoice.setAttributedHtmlText(question.answers[0].content)
+                self.answerA = question.answers[0].content
                 self.tvBChoice.setAttributedHtmlText(question.answers[1].content)
-                self.btnAChoice.rx
-                    .tap
-                    .map({ question.answers[0].content })
-                    .bind(to: self.viewModel.input.answerATrigger)
-                    .disposed(by: self.disposeBag)
-                
-                self.btnBChoice.rx
-                    .tap
-                    .map({ question.answers[1].content })
-                    .bind(to: self.viewModel.input.answerBTrigger)
-                    .disposed(by: self.disposeBag)
+                self.answerB = question.answers[1].content
             }).disposed(by: disposeBag)
         
     }
