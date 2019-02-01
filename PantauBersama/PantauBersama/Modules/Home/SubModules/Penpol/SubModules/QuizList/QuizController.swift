@@ -14,6 +14,7 @@ import AlamofireImage
 
 class QuizController: UITableViewController {
     private let disposeBag: DisposeBag = DisposeBag()
+    private lazy var emptyView = EmptyView()
     private var viewModel: QuizViewModel!
     lazy var tableHeaderView = HeaderQuizView()
     
@@ -43,6 +44,15 @@ class QuizController: UITableViewController {
         tableHeaderView.config(viewModel: viewModel)
         
         viewModel.output.quizzes
+            .do(onNext: {  [unowned self](items) in
+                self.tableView.backgroundView = nil
+                if items.count == 0 {
+                    self.emptyView.frame = self.tableView.bounds
+                    self.tableView.backgroundView = self.emptyView
+                } else {
+                    self.tableView.backgroundView = nil
+                }
+            })
             .bind(to: tableView.rx.items) { [unowned self]tableView, row, item -> UITableViewCell in
                 // Loadmore trigger
                 if row == self.viewModel.output.quizzes.value.count - 1 {

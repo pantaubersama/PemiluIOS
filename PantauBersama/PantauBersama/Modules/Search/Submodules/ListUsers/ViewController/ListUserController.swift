@@ -14,6 +14,7 @@ import RxCocoa
 class ListUserController: UITableViewController {
     private let disposeBag = DisposeBag()
     private var viewModel: ListUserViewModel!
+    private lazy var emptyView = EmptyView()
     
     convenience init(viewModel: ListUserViewModel) {
         self.init()
@@ -33,6 +34,15 @@ class ListUserController: UITableViewController {
         tableView.delegate = nil
         tableView.dataSource = nil
         viewModel.output.searchedUser
+            .do(onNext: { [unowned self](items) in
+                self.tableView.backgroundView = nil
+                if items.count == 0 {
+                    self.emptyView.frame = self.tableView.bounds
+                    self.tableView.backgroundView = self.emptyView
+                } else {
+                    self.tableView.backgroundView = nil
+                }
+            })
             .drive(tableView.rx.items) { tableView, row, item -> UITableViewCell in
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: ListUserCell.reuseIdentifier) as? ListUserCell else {
                     return UITableViewCell()

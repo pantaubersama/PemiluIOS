@@ -14,6 +14,8 @@ class ListClusterController: UITableViewController {
 
     var viewModel: ClusterSearchViewModel!
     
+    private lazy var emptyView = EmptyView()
+    
     private let disposeBag = DisposeBag()
     internal lazy var rControl = UIRefreshControl()
     
@@ -36,6 +38,13 @@ class ListClusterController: UITableViewController {
         
         viewModel.output.items
             .do(onNext: { [unowned self](items) in
+                self.tableView.backgroundView = nil
+                if items.count == 0 {
+                    self.emptyView.frame = self.tableView.bounds
+                    self.tableView.backgroundView = self.emptyView
+                } else {
+                    self.tableView.backgroundView = nil
+                }
                 self.rControl.endRefreshing()
             })
             .drive(tableView.rx.items) { tableView, row, item in
