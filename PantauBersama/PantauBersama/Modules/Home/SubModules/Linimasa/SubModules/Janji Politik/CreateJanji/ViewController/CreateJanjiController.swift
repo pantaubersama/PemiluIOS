@@ -120,9 +120,6 @@ class CreateJanjiController: UIViewController {
             .drive(done.rx.isEnabled)
             .disposed(by: disposeBag)
         
-        viewModel.output.actionO
-            .drive()
-            .disposed(by: disposeBag)
         
         viewModel.output.errorO
             .drive(onNext: { [weak self] (error) in

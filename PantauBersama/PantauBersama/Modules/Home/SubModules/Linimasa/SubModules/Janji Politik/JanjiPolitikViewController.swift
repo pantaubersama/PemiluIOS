@@ -13,10 +13,12 @@ import Common
 import Networking
 
 class JanjiPolitikViewController: UITableViewController,IJanpolViewController {
-    
+
     private var headerView: BannerHeaderView!
     internal let disposeBag = DisposeBag()
     private var emptyView = EmptyView()
+    private var createBtn = UIButton()
+    private var createIsHidden = true
     
     var viewModel: IJanpolListViewModel!
     internal lazy var rControl = UIRefreshControl()
@@ -40,7 +42,13 @@ class JanjiPolitikViewController: UITableViewController,IJanpolViewController {
         tableView.tableFooterView = UIView()
         tableView.refreshControl = rControl
         
+        self.buttonProperties()
+        
         bind(tableView: tableView, refreshControl: rControl, emptyView: emptyView, with: viewModel)
+        
+        createBtn.rx.tap
+            .bind(to: viewModel.input.createI)
+            .disposed(by: disposeBag)
         
         viewModel.output.showHeaderO
             .drive(onNext: { [unowned self](isHeaderShown) in
@@ -49,15 +57,57 @@ class JanjiPolitikViewController: UITableViewController,IJanpolViewController {
                     self.tableView.tableHeaderView = self.headerView
                     self.bind(headerView: self.headerView, with: self.viewModel)
                 }
+                self.createIsHidden = isHeaderShown
             }).disposed(by: disposeBag)
         
         viewModel.input.refreshI.onNext("")
         
+        viewModel.output.createO
+            .drive(onNext: { (response) in
+                print("Create Janpol: \(response)")
+                self.viewModel.input.refreshI.onNext("")
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.output.userO
+            .drive(onNext: { [weak self] (response) in
+                guard let `self` = self else { return }
+                let user = response.user
+                self.createBtn.isHidden = !(user.cluster != nil && user.cluster?.isEligible == true && self.createIsHidden == true)
+            })
+            .disposed(by: disposeBag)
+
+        
+    }
+    
+    private func buttonProperties() {
+        let image = UIImage(named: "icCreate") as UIImage?
+        createBtn = UIButton.init(type: .custom)
+        createBtn.setImage(image, for: .normal)
+        createBtn.frame.size = CGSize(width: 60, height: 60)
+        createBtn.isHidden = createIsHidden
+
+        self.view.addSubview(createBtn)
+        
+        //set constrains
+        createBtn.translatesAutoresizingMaskIntoConstraints = false
+    
+        if #available(iOS 11.0, *) {
+            createBtn.rightAnchor.constraint(equalTo: tableView.safeAreaLayoutGuide.rightAnchor, constant: -20).isActive = true
+            createBtn.bottomAnchor.constraint(equalTo: tableView.safeAreaLayoutGuide.bottomAnchor, constant: -20).isActive = true
+        } else {
+            createBtn.rightAnchor.constraint(equalTo: tableView.layoutMarginsGuide.rightAnchor, constant: -20).isActive = true
+            createBtn.bottomAnchor.constraint(equalTo: tableView.layoutMarginsGuide.bottomAnchor, constant: -20).isActive = true
+        }
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        viewModel.input.viewWillAppearI.onNext(())
 
     }
+    
 }
 

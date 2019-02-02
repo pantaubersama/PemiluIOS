@@ -13,6 +13,7 @@ import Networking
 import Common
 
 protocol IJanpolListViewModelInput {
+    var createI: AnyObserver<Void> { get }
     var refreshI: AnyObserver<String> { get }
     var nextPageI: AnyObserver<Void> { get }
     var shareJanjiI: AnyObserver<JanjiPolitik> { get }
@@ -20,6 +21,7 @@ protocol IJanpolListViewModelInput {
     var moreMenuI: AnyObserver<JanjiType> { get }
     var itemSelectedI: AnyObserver<IndexPath> { get }
     var filterI: AnyObserver<[PenpolFilterModel.FilterItem]> {get}
+    var viewWillAppearI: AnyObserver<Void> {get}
 }
 
 protocol IJanpolListViewModelOutput {
@@ -33,6 +35,8 @@ protocol IJanpolListViewModelOutput {
     var bannerO: Driver<BannerInfo>! { get }
     var bannerSelectedO: Driver<Void>! { get }
     var showHeaderO: Driver<Bool>! { get }
+    var createO: Driver<CreateJanjiPolitikResponse>! { get }
+    var userO: Driver<UserResponse>! { get }
 }
 
 protocol IJanpolListViewModel {

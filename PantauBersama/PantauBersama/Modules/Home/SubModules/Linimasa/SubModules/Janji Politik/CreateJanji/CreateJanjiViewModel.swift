@@ -11,6 +11,11 @@ import RxCocoa
 import Networking
 import Common
 
+enum SelectionResult {
+    case cancel
+    case result(CreateJanjiPolitikResponse)
+}
+
 protocol ICreateJanjiViewModelInput {
     var backI: AnyObserver<Void> { get }
     var doneI: AnyObserver<Void> { get }
@@ -24,7 +29,7 @@ protocol ICreateJanjiViewModelOutput {
     var userDataO: Driver<UserResponse>! { get }
     var enableO: Driver<Bool>! { get }
     var errorO: Driver<Error>! { get }
-    var actionO: Driver<Void>! { get }
+    var actionO: Driver<SelectionResult>! { get }
 }
 
 protocol ICreateJanjiViewModel {
@@ -49,7 +54,7 @@ final class CreateJanjiViewModel: ICreateJanjiViewModel, ICreateJanjiViewModelIn
     var userDataO: Driver<UserResponse>!
     var enableO: Driver<Bool>!
     var errorO: Driver<Error>!
-    var actionO: Driver<Void>!
+    var actionO: Driver<SelectionResult>!
     
     // Subject
     private let backS = PublishSubject<Void>()
@@ -100,7 +105,7 @@ final class CreateJanjiViewModel: ICreateJanjiViewModel, ICreateJanjiViewModelIn
         
         let done = doneS
             .withLatestFrom(Observable.combineLatest(titleS, bodyS, imageS.startWith(nil)))
-            .flatMapLatest({(title, body, image) -> Observable<BaseResponse<CreateJanjiPolitikResponse>> in
+            .flatMapLatest({(title, body, image) in
                 return NetworkService.instance.requestObject(
                     LinimasaAPI.createJanjiPolitiks(
                         title: title,
@@ -111,23 +116,22 @@ final class CreateJanjiViewModel: ICreateJanjiViewModel, ICreateJanjiViewModelIn
                     .trackActivity(activityIndicator)
                     .catchErrorJustComplete()
             })
-            .do(onNext: { (response) in
-                print(response)
-            })
-            .mapToVoid()
+            .map { (response) in
+                SelectionResult.result(response.data)
+            }
         
+     
+        let dismisSelected = backS
+            .map({ SelectionResult.cancel })
         
-        let actionSeleced = Observable
-            .merge([
-                backS,
-                done
-                ])
+        let actionSelected = Observable.merge(dismisSelected, done)
             .take(1)
+            .asDriverOnErrorJustComplete()
         
         userDataO = userData.asDriverOnErrorJustComplete()
         errorO = errorTracker.asDriver()
         enableO = enablePost.asDriverOnErrorJustComplete()
-        actionO = actionSeleced.asDriverOnErrorJustComplete()
+        actionO = actionSelected
     }
     
 }

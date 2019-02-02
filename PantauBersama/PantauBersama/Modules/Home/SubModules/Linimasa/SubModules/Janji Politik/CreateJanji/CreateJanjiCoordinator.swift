@@ -9,10 +9,9 @@
 import RxSwift
 import RxCocoa
 
-class CreateJanjCoordinator: BaseCoordinator<Void> {
+class CreateJanjiCoordinator: BaseCoordinator<SelectionResult> {
     
     private var navigationController: UINavigationController!
-    var finish: Observable<Void>!
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
@@ -32,3 +31,4 @@ class CreateJanjCoordinator: BaseCoordinator<Void> {
             .asObservable()
     }
 }
+

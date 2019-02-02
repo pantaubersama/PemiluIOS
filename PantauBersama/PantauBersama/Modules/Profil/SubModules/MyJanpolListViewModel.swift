@@ -13,8 +13,6 @@ import Networking
 
 class MyJanpolListViewModel: IJanpolListViewModel, IJanpolListViewModelInput, IJanpolListViewModelOutput {
     
-    
-    
     var input: IJanpolListViewModelInput { return self }
     var output: IJanpolListViewModelOutput { return self }
     
@@ -25,6 +23,8 @@ class MyJanpolListViewModel: IJanpolListViewModel, IJanpolListViewModelInput, IJ
     var moreMenuI: AnyObserver<JanjiType>
     var itemSelectedI: AnyObserver<IndexPath>
     var filterI: AnyObserver<[PenpolFilterModel.FilterItem]>
+    var createI: AnyObserver<Void>
+    var viewWillAppearI: AnyObserver<Void>
     
     var items: Driver<[ICellConfigurator]>!
     var error: Driver<Error>!
@@ -36,6 +36,8 @@ class MyJanpolListViewModel: IJanpolListViewModel, IJanpolListViewModelInput, IJ
     var bannerO: Driver<BannerInfo>!
     var bannerSelectedO: Driver<Void>!
     var showHeaderO: Driver<Bool>!
+    var createO: Driver<CreateJanjiPolitikResponse>!
+    var userO: Driver<UserResponse>!
     
     private let refreshSubject = PublishSubject<String>()
     private let moreSubject = PublishSubject<JanjiPolitik>()
@@ -44,6 +46,8 @@ class MyJanpolListViewModel: IJanpolListViewModel, IJanpolListViewModelInput, IJ
     private let nextSubject = PublishSubject<Void>()
     private let itemSelectedSubject = PublishSubject<IndexPath>()
     private let filterSubject = PublishSubject<[PenpolFilterModel.FilterItem]>()
+    private let createSubject = PublishSubject<Void>()
+    private let viewWillppearSubject = PublishSubject<Void>()
     
     internal let errorTracker = ErrorTracker()
     internal let activityIndicator = ActivityIndicator()
@@ -59,6 +63,8 @@ class MyJanpolListViewModel: IJanpolListViewModel, IJanpolListViewModelInput, IJ
         shareJanjiI = shareSubject.asObserver()
         itemSelectedI = itemSelectedSubject.asObserver()
         filterI = filterSubject.asObserver()
+        createI = createSubject.asObserver()
+        viewWillAppearI = viewWillppearSubject.asObserver()
         
         error = errorTracker.asDriver()
         
@@ -144,6 +150,9 @@ class MyJanpolListViewModel: IJanpolListViewModel, IJanpolListViewModelInput, IJ
                 return navigator.launchJanpolBannerInfo(bannerInfo: banner)
             })
             .asDriverOnErrorJustComplete()
+        
+        createO = Driver.empty()
+        userO = Driver.empty()
         
         showHeaderO = BehaviorRelay<Bool>(value: showTableHeader).asDriver()
         
