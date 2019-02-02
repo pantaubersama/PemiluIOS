@@ -13,7 +13,6 @@ import Networking
 
 class JanpolListViewModel: IJanpolListViewModel, IJanpolListViewModelInput, IJanpolListViewModelOutput {
     
-    
     var input: IJanpolListViewModelInput { return self }
     var output: IJanpolListViewModelOutput { return self }
     
@@ -24,6 +23,8 @@ class JanpolListViewModel: IJanpolListViewModel, IJanpolListViewModelInput, IJan
     var moreMenuI: AnyObserver<JanjiType>
     var itemSelectedI: AnyObserver<IndexPath>
     var filterI: AnyObserver<[PenpolFilterModel.FilterItem]>
+    var createI: AnyObserver<Void>
+    var viewWillAppearI: AnyObserver<Void>
     
     var items: Driver<[ICellConfigurator]>!
     var error: Driver<Error>!
@@ -35,6 +36,8 @@ class JanpolListViewModel: IJanpolListViewModel, IJanpolListViewModelInput, IJan
     var bannerO: Driver<BannerInfo>!
     var bannerSelectedO: Driver<Void>!
     var showHeaderO: Driver<Bool>!
+    var createO: Driver<CreateJanjiPolitikResponse>!
+    var userO: Driver<UserResponse>!
     
     private let refreshSubject = PublishSubject<String>()
     private let moreSubject = PublishSubject<JanjiPolitik>()
@@ -43,6 +46,8 @@ class JanpolListViewModel: IJanpolListViewModel, IJanpolListViewModelInput, IJan
     private let nextSubject = PublishSubject<Void>()
     private let itemSelectedSubject = PublishSubject<IndexPath>()
     private let filterSubject = PublishSubject<[PenpolFilterModel.FilterItem]>()
+    private let createSubject = PublishSubject<Void>()
+    private let viewWillppearSubject = PublishSubject<Void>()
     
     internal let errorTracker = ErrorTracker()
     internal let activityIndicator = ActivityIndicator()
@@ -60,8 +65,11 @@ class JanpolListViewModel: IJanpolListViewModel, IJanpolListViewModelInput, IJan
         shareJanjiI = shareSubject.asObserver()
         itemSelectedI = itemSelectedSubject.asObserver()
         filterI = filterSubject.asObserver()
+        createI = createSubject.asObserver()
+        viewWillAppearI = viewWillppearSubject.asObserver()
         
         error = errorTracker.asDriver()
+    
         
         let cachedFilter = PenpolFilterModel.generateJanjiFilter()
         cachedFilter.forEach { (filterModel) in
@@ -174,6 +182,24 @@ class JanpolListViewModel: IJanpolListViewModel, IJanpolListViewModelInput, IJan
             .asDriverOnErrorJustComplete()
         
         showHeaderO = BehaviorRelay<Bool>(value: showTableHeader).asDriver()
+        
+        createO = createSubject
+            .flatMapLatest({ navigator.launchAddJanji() })
+            .flatMapLatest { (type) -> Driver<CreateJanjiPolitikResponse> in
+                switch type {
+                case .cancel:
+                    return Driver.empty()
+                case .result(let result):
+                    return Driver.just(result)
+                }
+            }.asDriverOnErrorJustComplete()
+        
+        //get local user
+        let local: Observable<UserResponse> = AppState.local(key: .me)
+        userO = viewWillppearSubject
+            .flatMapLatest({ local })
+            .asDriverOnErrorJustComplete()
+
         
     }
     

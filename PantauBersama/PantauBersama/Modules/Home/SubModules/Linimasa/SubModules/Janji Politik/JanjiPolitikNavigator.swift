@@ -17,6 +17,7 @@ protocol IJanpolNavigator: class {
     func shareJanji(data: JanjiPolitik) -> Observable<Void>
     func launchJanjiDetail(data: JanjiPolitik) -> Observable<Void>
     func launchJanpolBannerInfo(bannerInfo: BannerInfo) -> Observable<Void>
+    func launchAddJanji() -> Observable<SelectionResult>
 }
 
 extension IJanpolNavigator where Self: BaseCoordinator<Void> {
@@ -37,5 +38,10 @@ extension IJanpolNavigator where Self: BaseCoordinator<Void> {
     func launchJanpolBannerInfo(bannerInfo: BannerInfo) -> Observable<Void> {
         let bannerInfoCoordinator = BannerInfoCoordinator(navigationController: self.navigationController, bannerInfo: bannerInfo)
         return coordinate(to: bannerInfoCoordinator)
+    }
+    
+    func launchAddJanji() -> Observable<SelectionResult> {
+        let janjiCoordinator = CreateJanjiCoordinator(navigationController: navigationController)
+        return coordinate(to: janjiCoordinator)
     }
 }

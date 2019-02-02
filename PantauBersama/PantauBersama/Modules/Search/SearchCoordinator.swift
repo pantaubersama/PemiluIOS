@@ -74,7 +74,7 @@ extension SearchCoordinator: SearchNavigator {
         return Observable.never()
     }
     
-    func launchAddJanji() -> Observable<Void> {
+    func launchAddJanji() -> Observable<SelectionResult> {
         return Observable.never()
     }
     

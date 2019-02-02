@@ -19,7 +19,6 @@ final class LinimasaViewModel: ViewModelType {
     
     struct Input {
         let searchTrigger: AnyObserver<Void>
-        let addTrigger: AnyObserver<Void>
         let filterTrigger: AnyObserver<(type: FilterType, filterTrigger: AnyObserver<[PenpolFilterModel.FilterItem]>)>
         let refreshTrigger: AnyObserver<Void>
         let profileTrigger: AnyObserver<Void>
@@ -31,7 +30,6 @@ final class LinimasaViewModel: ViewModelType {
     struct Output {
         let searchSelected: Driver<Void>
         let filterSelected: Driver<Void>
-        let addSelected: Driver<Void>
         let profileSelected: Driver<Void>
         let userO: Driver<UserResponse>
         let catatanSelected: Driver<Void>
@@ -40,7 +38,6 @@ final class LinimasaViewModel: ViewModelType {
     }
     
     let navigator: LinimasaNavigator
-    private let addSubject = PublishSubject<Void>()
     private let filterSubject = PublishSubject<(type: FilterType, filterTrigger: AnyObserver<[PenpolFilterModel.FilterItem]>)>()
     private let refreshSubject = PublishSubject<Void>()
     private let profileSubject = PublishSubject<Void>()
@@ -57,7 +54,6 @@ final class LinimasaViewModel: ViewModelType {
         
         input = Input(
             searchTrigger: searchSubject.asObserver(),
-            addTrigger: addSubject.asObserver(),
             filterTrigger: filterSubject.asObserver(),
             refreshTrigger: refreshSubject.asObserver(),
             profileTrigger: profileSubject.asObserver(),
@@ -68,10 +64,6 @@ final class LinimasaViewModel: ViewModelType {
         
         let filter = filterSubject
             .flatMap({ navigator.launchFilter(filterType: $0.type, filterTrigger: $0.filterTrigger)})
-            .asDriver(onErrorJustReturn: ())
-        
-        let add = addSubject
-            .flatMapLatest({ navigator.launchAddJanji() })
             .asDriver(onErrorJustReturn: ())
         
         let profile = profileSubject
@@ -143,7 +135,6 @@ final class LinimasaViewModel: ViewModelType {
         
         output = Output(searchSelected: search,
                         filterSelected: filter,
-                        addSelected: add,
                         profileSelected: profile,
                         userO: userData,
                         catatanSelected: note,
