@@ -52,6 +52,8 @@ class MyJanpolListViewModel: IJanpolListViewModel, IJanpolListViewModelInput, IJ
     internal let errorTracker = ErrorTracker()
     internal let activityIndicator = ActivityIndicator()
     internal let headerViewModel = BannerHeaderViewModel()
+    private let janpolItems = BehaviorRelay<[JanjiPolitik]>(value: [])
+    private(set) var disposeBag = DisposeBag()
     
     private var filterItems: [PenpolFilterModel.FilterItem] = []
     
@@ -68,19 +70,20 @@ class MyJanpolListViewModel: IJanpolListViewModel, IJanpolListViewModelInput, IJ
         
         error = errorTracker.asDriver()
         
-        let janpolItems = refreshSubject
-            .flatMapLatest { [unowned self] (query) -> Observable<[JanjiPolitik]> in
-                
-                return self.paginateItems(nextBatchTrigger: self.nextSubject.asObservable(), cid: "", filter: "", query: query)
-                    .trackError(self.errorTracker)
-                    .trackActivity(self.activityIndicator)
-                    .catchErrorJustReturn([])
+        refreshSubject.flatMapLatest { [unowned self] (query) -> Observable<[JanjiPolitik]> in
+            return self.paginateItems(nextBatchTrigger: self.nextSubject.asObservable(), cid: "", filter: "", query: query)
+                .trackError(self.errorTracker)
+                .trackActivity(self.activityIndicator)
+                .catchErrorJustReturn([])
             }
-            .asDriver(onErrorJustReturn: [])
+            .bind { [weak self](items) in
+                guard let weakSelf = self else { return }
+                weakSelf.janpolItems.accept(items)
+            }.disposed(by: disposeBag)
         
         // MARK:
         // Map feeds response to cell list
-        items = janpolItems
+        items = janpolItems.asDriver(onErrorJustReturn: [])
             .map { (list) -> [ICellConfigurator] in
                 return list.map({ janpol -> ICellConfigurator in
                     return LinimasaJanjiCellConfigured(item: LinimasaJanjiCell.Input(viewModel: self, janpol: janpol))
@@ -93,9 +96,6 @@ class MyJanpolListViewModel: IJanpolListViewModel, IJanpolListViewModelInput, IJ
             }
             .flatMapLatest({ navigator.launchJanjiDetail(data: $0) })
             .asDriverOnErrorJustComplete()
-        
-//        moreSelectedO = moreSubject
-//            .asObserver().asDriverOnErrorJustComplete()
         
         moreSelectedO = moreSubject
             .asObservable()
@@ -122,8 +122,20 @@ class MyJanpolListViewModel: IJanpolListViewModel, IJanpolListViewModelInput, IJ
                     return Observable.just("Tautan telah tersalin")
                 case .hapus(let id):
                     return self.delete(id: id)
+                        .do(onNext: { (result) in
+                            var currentItems = self.janpolItems.value
+                            guard let index = currentItems.index(where: { item -> Bool in
+                                return item.id == id
+                            }) else {
+                                return
+                            }
+                            
+                            currentItems.remove(at: index)
+                            self.janpolItems.accept(currentItems)
+                            return
+                        })
                         .map({ (result) -> String in
-                            return ""
+                            return result.data.message
                         })
                 default:
                     return Observable.empty()

@@ -97,9 +97,6 @@ class UserJanpolListViewModel: IJanpolListViewModel, IJanpolListViewModelInput, 
             .flatMapLatest({ navigator.launchJanjiDetail(data: $0) })
             .asDriverOnErrorJustComplete()
         
-//        moreSelectedO = moreSubject
-//            .asObserver().asDriverOnErrorJustComplete()
-        
         moreSelectedO = moreSubject
             .asObservable()
             .withLatestFrom(janpolItems) { (row, janpols) in
