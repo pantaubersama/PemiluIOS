@@ -37,6 +37,7 @@ class QuizController: UITableViewController {
             .drive(onNext: { [unowned self]isHeaderShown in
                 if isHeaderShown {
                     self.tableView.tableHeaderView = self.tableHeaderView
+                    self.tableHeaderView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 115)
                 }
             })
             .disposed(by: disposeBag)
@@ -105,8 +106,6 @@ class QuizController: UITableViewController {
                     self.tableHeaderView.trendHeaderView.isHidden = false
                     self.tableHeaderView.trendHeaderView.config(result: result, viewModel: self.viewModel)
                     self.tableHeaderView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 115 + 212)
-                } else {
-                    self.tableHeaderView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 115)
                 }
 
             })
