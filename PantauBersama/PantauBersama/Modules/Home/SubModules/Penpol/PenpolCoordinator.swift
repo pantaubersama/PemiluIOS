@@ -61,6 +61,28 @@ extension PenpolCoordinator: PenpolNavigator {
     }
     
     func openQuiz(quiz: QuizModel) -> Observable<Void> {
+        if !PantauAuthAPI.isLoggedIn {
+            let alert = UIAlertController(title: "Perhatian", message: "Sesi Anda telah berakhir, silahkan login terlebih dahulu", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Login", style: .destructive, handler: { (_) in
+                KeychainService.remove(type: NetworkKeychainKind.token)
+                KeychainService.remove(type: NetworkKeychainKind.refreshToken)
+                // need improve this later
+                // todo using wkwbview or using another framework to handle auth
+                var appCoordinator: AppCoordinator!
+                let disposeBag = DisposeBag()
+                var window: UIWindow?
+                window = UIWindow()
+                appCoordinator = AppCoordinator(window: window!)
+                appCoordinator.start()
+                    .subscribe()
+                    .disposed(by: disposeBag)
+                
+            }))
+            alert.show()
+            
+            return Observable.never()
+        }
+        
         switch quiz.participationStatus {
         case .inProgress:
             let coordinator = QuizOngoingCoordinator(navigationController: self.navigationController, quiz: quiz)

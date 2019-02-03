@@ -8,6 +8,7 @@
 
 import RxSwift
 import Common
+import Networking
 
 protocol DetailAskNavigaor {
     var finish: Observable<Void>! { get set }

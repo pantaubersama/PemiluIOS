@@ -58,6 +58,7 @@ public extension NetworkService {
                         .filterSuccessfulStatusAndRedirectCodes()
                         .map(PantauRefreshResponse.self)
                         .catchError({ (e) in
+                            print("baseUrl error login \(t.baseURL)\(t.path) \(t.headers)")
                             print("error \(e.localizedDescription)")
                             if case MoyaError.statusCode(let response) = e {
                                 print("Status response: ... \(response.statusCode)")
