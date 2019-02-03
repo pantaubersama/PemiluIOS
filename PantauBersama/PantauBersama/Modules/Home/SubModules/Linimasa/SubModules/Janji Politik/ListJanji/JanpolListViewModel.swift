@@ -19,7 +19,7 @@ class JanpolListViewModel: IJanpolListViewModel, IJanpolListViewModelInput, IJan
     var refreshI: AnyObserver<String>
     var nextPageI: AnyObserver<Void>
     var shareJanjiI: AnyObserver<JanjiPolitik>
-    var moreI: AnyObserver<JanjiPolitik>
+    var moreI: AnyObserver<Int>
     var moreMenuI: AnyObserver<JanjiType>
     var itemSelectedI: AnyObserver<IndexPath>
     var filterI: AnyObserver<[PenpolFilterModel.FilterItem]>
@@ -40,7 +40,7 @@ class JanpolListViewModel: IJanpolListViewModel, IJanpolListViewModelInput, IJan
     var userO: Driver<UserResponse>!
     
     private let refreshSubject = PublishSubject<String>()
-    private let moreSubject = PublishSubject<JanjiPolitik>()
+    private let moreSubject = PublishSubject<Int>()
     private let moreMenuSubject = PublishSubject<JanjiType>()
     private let shareSubject = PublishSubject<JanjiPolitik>()
     private let nextSubject = PublishSubject<Void>()
@@ -55,7 +55,8 @@ class JanpolListViewModel: IJanpolListViewModel, IJanpolListViewModelInput, IJan
     
     private var filterItems: [PenpolFilterModel.FilterItem] = []
     private var searchQuery: String?
-    private let disposeBag = DisposeBag()
+    private let janpolItems = BehaviorRelay<[JanjiPolitik]>(value: [])
+    private(set) var disposeBag = DisposeBag()
     
     init(navigator: IJanpolNavigator, searchTrigger: PublishSubject<String>? = nil, showTableHeader: Bool) {
         refreshI = refreshSubject.asObserver()
@@ -79,9 +80,7 @@ class JanpolListViewModel: IJanpolListViewModel, IJanpolListViewModelInput, IJan
             self.filterItems.append(contentsOf: selectedItem)
         }
         
-        
-        let janpolItems = refreshSubject
-            .flatMapLatest { [unowned self] (query) -> Observable<[JanjiPolitik]> in
+        refreshSubject.flatMapLatest { [unowned self] (query) -> Observable<[JanjiPolitik]> in
                 let cid = self.filterItems.filter({ $0.paramKey == "cluster_id"}).first?.paramValue
                 let filter = self.filterItems.filter({ $0.paramKey == "filter_by"}).first?.paramValue
                 
@@ -97,18 +96,20 @@ class JanpolListViewModel: IJanpolListViewModel, IJanpolListViewModelInput, IJan
                         .catchErrorJustReturn([])
                 }
             }
-            .asObservable()
-            .catchErrorJustComplete()
-            .asDriver(onErrorJustReturn: [])
+            .bind { [weak self](items) in
+                guard let weakSelf = self else { return }
+                weakSelf.janpolItems.accept(items)
+            }.disposed(by: disposeBag)
         
         // MARK:
         // Map feeds response to cell list
-        items = janpolItems
+        items = janpolItems.asDriver(onErrorJustReturn: [])
             .map { (list) -> [ICellConfigurator] in
-                return list.map({ janpol -> ICellConfigurator in
+                return list.map({ (janpol) -> ICellConfigurator in
                     return LinimasaJanjiCellConfigured(item: LinimasaJanjiCell.Input(viewModel: self, janpol: janpol))
                 })
         }
+        
         
         itemSelectedO = itemSelectedSubject
             .withLatestFrom(janpolItems) { (indexPath, items) -> JanjiPolitik in
@@ -116,9 +117,14 @@ class JanpolListViewModel: IJanpolListViewModel, IJanpolListViewModelInput, IJan
             }
             .flatMapLatest({ navigator.launchJanjiDetail(data: $0) })
             .asDriverOnErrorJustComplete()
+    
         
         moreSelectedO = moreSubject
-            .asObserver().asDriverOnErrorJustComplete()
+            .asObservable()
+            .withLatestFrom(janpolItems) { (row, janpols) in
+                return janpols[row]
+            }
+            .asDriverOnErrorJustComplete()
         
         shareSelectedO = shareSubject
             .flatMapLatest({ navigator.shareJanji(data: $0) })
@@ -138,8 +144,20 @@ class JanpolListViewModel: IJanpolListViewModel, IJanpolListViewModelInput, IJan
                     return Observable.just("Tautan telah tersalin")
                 case .hapus(let id):
                     return self.delete(id: id)
-                        .map({ (_) -> String in
-                            return ""
+                        .do(onNext: { (result) in
+                            var currentItems = self.janpolItems.value
+                            guard let index = currentItems.index(where: { item -> Bool in
+                                return item.id == id
+                            }) else {
+                                return
+                            }
+                            
+                            currentItems.remove(at: index)
+                            self.janpolItems.accept(currentItems)
+                            return
+                        })
+                        .map({ (result) -> String in
+                            return result.data.message
                         })
                 default:
                     return Observable.empty()

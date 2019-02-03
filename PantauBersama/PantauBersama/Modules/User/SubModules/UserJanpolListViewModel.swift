@@ -19,7 +19,7 @@ class UserJanpolListViewModel: IJanpolListViewModel, IJanpolListViewModelInput, 
     var refreshI: AnyObserver<String>
     var nextPageI: AnyObserver<Void>
     var shareJanjiI: AnyObserver<JanjiPolitik>
-    var moreI: AnyObserver<JanjiPolitik>
+    var moreI: AnyObserver<Int>
     var moreMenuI: AnyObserver<JanjiType>
     var itemSelectedI: AnyObserver<IndexPath>
     var filterI: AnyObserver<[PenpolFilterModel.FilterItem]>
@@ -40,7 +40,7 @@ class UserJanpolListViewModel: IJanpolListViewModel, IJanpolListViewModelInput, 
     var userO: Driver<UserResponse>!
     
     private let refreshSubject = PublishSubject<String>()
-    private let moreSubject = PublishSubject<JanjiPolitik>()
+    private let moreSubject = PublishSubject<Int>()
     private let moreMenuSubject = PublishSubject<JanjiType>()
     private let shareSubject = PublishSubject<JanjiPolitik>()
     private let nextSubject = PublishSubject<Void>()
@@ -98,7 +98,11 @@ class UserJanpolListViewModel: IJanpolListViewModel, IJanpolListViewModelInput, 
             .asDriverOnErrorJustComplete()
         
         moreSelectedO = moreSubject
-            .asObserver().asDriverOnErrorJustComplete()
+            .asObservable()
+            .withLatestFrom(janpolItems) { (row, janpols) in
+                return janpols[row]
+            }
+            .asDriverOnErrorJustComplete()
         
         shareSelectedO = shareSubject
             .flatMapLatest({ navigator.shareJanji(data: $0) })
