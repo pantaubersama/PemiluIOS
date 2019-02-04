@@ -11,6 +11,11 @@ import RxSwift
 import RxCocoa
 import Networking
 
+enum DetailJanpolResult {
+    case cancel
+    case result(String)
+}
+
 class DetailJanjiViewModel: ViewModelType {
     
     var input: Input
@@ -21,6 +26,7 @@ class DetailJanjiViewModel: ViewModelType {
         let moreMenuTrigger: AnyObserver<JanjiType>
         let shareTrigger: AnyObserver<Void>
         let closeTrigger: AnyObserver<Void>
+        let deleteTrigger: AnyObserver<String>
         let profileTrigger: AnyObserver<UITapGestureRecognizer>
         let clusterTrigger: AnyObserver<UITapGestureRecognizer>
     }
@@ -30,7 +36,7 @@ class DetailJanjiViewModel: ViewModelType {
         let moreSelected: Driver<JanjiPolitik>
         let moreMenuSelected: Driver<String>
         let detailJanji: Driver<JanjiPolitik>
-        let closeSelected: Driver<Void>
+        let closeSelected: Driver<DetailJanpolResult>
         let profileSelected: Driver<Void>
         let clusterSelected: Driver<Void>
     }
@@ -39,6 +45,7 @@ class DetailJanjiViewModel: ViewModelType {
     private let moreMenuSubject = PublishSubject<JanjiType>()
     private let shareSubject = PublishSubject<Void>()
     private let closeSubject = PublishSubject<Void>()
+    private let deleteSubject = PublishSubject<String>()
     private let profileSubject = PublishSubject<UITapGestureRecognizer>()
     private let clusterSubject = PublishSubject<UITapGestureRecognizer>()
     
@@ -55,6 +62,7 @@ class DetailJanjiViewModel: ViewModelType {
             moreMenuTrigger: moreMenuSubject.asObserver(),
             shareTrigger: shareSubject.asObserver(),
             closeTrigger: closeSubject.asObserver(),
+            deleteTrigger: deleteSubject.asObserver(),
             profileTrigger: profileSubject.asObserver(),
             clusterTrigger: clusterSubject.asObserver())
         
@@ -82,7 +90,7 @@ class DetailJanjiViewModel: ViewModelType {
                     return self.delete(id: id)
                         .do(onNext: { (response) in
                             print("delete response: \(response)")
-                            navigator.close()
+                            self.deleteSubject.onNext(id)
                         })
                         .map({ (_) -> String in
                             return ""
@@ -93,7 +101,14 @@ class DetailJanjiViewModel: ViewModelType {
             }
             .asDriverOnErrorJustComplete()
         
-        let closeSelected = closeSubject.asDriverOnErrorJustComplete()
+        let backSelected = closeSubject.map({ DetailJanpolResult.cancel })
+        let deleteSelected = deleteSubject
+            .map{ (result) in DetailJanpolResult.result(result) }
+        
+        let closeSelected = Observable.merge(backSelected, deleteSelected)
+            .take(1)
+            .asDriverOnErrorJustComplete()
+        
         
         let profile = profileSubject
             .withLatestFrom(Observable.just(data))

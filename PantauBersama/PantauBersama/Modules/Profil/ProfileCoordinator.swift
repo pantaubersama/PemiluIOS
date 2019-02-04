@@ -50,7 +50,7 @@ final class ProfileCoordinator: BaseCoordinator<Void> {
 }
 
 extension ProfileCoordinator: ProfileNavigator {
-    func launchJanjiDetail(data: JanjiPolitik) -> Observable<Void> {
+    func launchJanjiDetail(data: JanjiPolitik) -> Observable<DetailJanpolResult> {
         let janjiDetailCoordinator = DetailJanjiCoordinator(navigationController: navigationController, data: data)
         return coordinate(to: janjiDetailCoordinator)
     }

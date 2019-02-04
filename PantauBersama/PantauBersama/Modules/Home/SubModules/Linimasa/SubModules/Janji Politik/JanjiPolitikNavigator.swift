@@ -15,13 +15,13 @@ protocol IJanpolNavigator: class {
     var navigationController: UINavigationController! { get }
     
     func shareJanji(data: JanjiPolitik) -> Observable<Void>
-    func launchJanjiDetail(data: JanjiPolitik) -> Observable<Void>
+    func launchJanjiDetail(data: JanjiPolitik) -> Observable<DetailJanpolResult>
     func launchJanpolBannerInfo(bannerInfo: BannerInfo) -> Observable<Void>
     func launchAddJanji() -> Observable<SelectionResult>
 }
 
 extension IJanpolNavigator where Self: BaseCoordinator<Void> {
-    func launchJanjiDetail(data: JanjiPolitik) -> Observable<Void> {
+    func launchJanjiDetail(data: JanjiPolitik) -> Observable<DetailJanpolResult> {
         let janjiDetailCoordinator = DetailJanjiCoordinator(navigationController: navigationController, data: data)
         return coordinate(to: janjiDetailCoordinator)
     }
