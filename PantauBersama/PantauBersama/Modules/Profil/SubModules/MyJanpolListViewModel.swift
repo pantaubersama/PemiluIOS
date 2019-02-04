@@ -95,7 +95,23 @@ class MyJanpolListViewModel: IJanpolListViewModel, IJanpolListViewModelInput, IJ
                 return items[indexPath.row]
             }
             .flatMapLatest({ navigator.launchJanjiDetail(data: $0) })
-            .asDriverOnErrorJustComplete()
+            .flatMapLatest { (type) -> Driver<Void> in
+                switch type {
+                case .cancel:
+                    return Driver.empty()
+                case .result(let id):
+                    var currentItems = self.janpolItems.value
+                    guard let index = currentItems.index(where: { item -> Bool in
+                        return item.id == id
+                    }) else {
+                        return Driver.empty()
+                    }
+                    
+                    currentItems.remove(at: index)
+                    self.janpolItems.accept(currentItems)
+                    return Driver.empty()
+                }
+            }.asDriverOnErrorJustComplete()
         
         moreSelectedO = moreSubject
             .asObservable()

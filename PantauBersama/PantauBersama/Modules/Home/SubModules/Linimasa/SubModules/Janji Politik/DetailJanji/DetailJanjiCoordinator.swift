@@ -18,7 +18,7 @@ protocol DetailJanjiNavigator {
     func launchClusterDetail(cluster: ClusterDetail) -> Observable<Void>
 }
 
-class DetailJanjiCoordinator: BaseCoordinator<Void> {
+class DetailJanjiCoordinator: BaseCoordinator<DetailJanpolResult> {
     
     private let navigationController: UINavigationController!
     private let data: JanjiPolitik
@@ -28,7 +28,7 @@ class DetailJanjiCoordinator: BaseCoordinator<Void> {
         self.data = data
     }
     
-    override func start() -> Observable<Void> {
+    override func start() -> Observable<CoordinationResult> {
         let viewController = DetailJanjiController()
         let viewModel = DetailJanjiViewModel(navigator: self, data: data)
         viewController.viewModel = viewModel

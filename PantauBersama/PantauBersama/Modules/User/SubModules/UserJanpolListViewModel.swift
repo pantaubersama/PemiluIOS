@@ -95,6 +95,7 @@ class UserJanpolListViewModel: IJanpolListViewModel, IJanpolListViewModelInput, 
                 return items[indexPath.row]
             }
             .flatMapLatest({ navigator.launchJanjiDetail(data: $0) })
+            .mapToVoid()
             .asDriverOnErrorJustComplete()
         
         moreSelectedO = moreSubject
