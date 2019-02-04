@@ -43,8 +43,9 @@ class BannerHeaderView: UIView {
         body.text = banner.body
         if let readmore = UIFont(name: "Lato-Bold", size: 12) {
             DispatchQueue.main.async { [weak self] in
-                // Danger, check character more than 7 count if not app will crash
-                if banner.body.count > 7 {
+                // Danger, check character more than 8 count if not app will crash
+                // read more count == 9
+                if banner.body.count > 9 {
                     self?.body.addTrailing(with: "...", moreText: "Read more", moreTextFont: readmore, moreTextColor: Color.primary_black)
                 }
             }
