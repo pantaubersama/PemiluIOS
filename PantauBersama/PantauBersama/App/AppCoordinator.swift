@@ -29,6 +29,7 @@ class AppCoordinator: BaseCoordinator<Void> {
         } else {
             KeychainService.remove(type: NetworkKeychainKind.token)
             KeychainService.remove(type: NetworkKeychainKind.refreshToken)
+            UserDefaults.Account.reset()
             let onBoardingCoordinator = OnboardingCoordinator(window: self.window)
             return coordinate(to: onBoardingCoordinator)
         }

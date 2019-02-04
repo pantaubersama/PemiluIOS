@@ -19,26 +19,25 @@ final class LinimasaViewModel: ViewModelType {
     
     struct Input {
         let searchTrigger: AnyObserver<Void>
-        let addTrigger: AnyObserver<Void>
         let filterTrigger: AnyObserver<(type: FilterType, filterTrigger: AnyObserver<[PenpolFilterModel.FilterItem]>)>
         let refreshTrigger: AnyObserver<Void>
         let profileTrigger: AnyObserver<Void>
         let viewWillAppearTrigger: AnyObserver<Void>
         let catatanTrigger: AnyObserver<Void>
+        let notificationTrigger: AnyObserver<Void>
     }
     
     struct Output {
         let searchSelected: Driver<Void>
         let filterSelected: Driver<Void>
-        let addSelected: Driver<Void>
         let profileSelected: Driver<Void>
         let userO: Driver<UserResponse>
         let catatanSelected: Driver<Void>
         let updatesO: Driver<Void>
+        let notificationSelected: Driver<Void>
     }
     
     let navigator: LinimasaNavigator
-    private let addSubject = PublishSubject<Void>()
     private let filterSubject = PublishSubject<(type: FilterType, filterTrigger: AnyObserver<[PenpolFilterModel.FilterItem]>)>()
     private let refreshSubject = PublishSubject<Void>()
     private let profileSubject = PublishSubject<Void>()
@@ -47,6 +46,7 @@ final class LinimasaViewModel: ViewModelType {
     private let catatanS = PublishSubject<Void>()
     private let activityIndicator = ActivityIndicator()
     private let errorTracker = ErrorTracker()
+    private let notificationS = PublishSubject<Void>()
     
     init(navigator: LinimasaNavigator) {
         self.navigator = navigator
@@ -54,20 +54,16 @@ final class LinimasaViewModel: ViewModelType {
         
         input = Input(
             searchTrigger: searchSubject.asObserver(),
-            addTrigger: addSubject.asObserver(),
             filterTrigger: filterSubject.asObserver(),
             refreshTrigger: refreshSubject.asObserver(),
             profileTrigger: profileSubject.asObserver(),
             viewWillAppearTrigger: viewWillppearS.asObserver(),
-            catatanTrigger: catatanS.asObserver()
+            catatanTrigger: catatanS.asObserver(),
+            notificationTrigger: notificationS.asObserver()
         )
         
         let filter = filterSubject
             .flatMap({ navigator.launchFilter(filterType: $0.type, filterTrigger: $0.filterTrigger)})
-            .asDriver(onErrorJustReturn: ())
-        
-        let add = addSubject
-            .flatMapLatest({ navigator.launchAddJanji() })
             .asDriver(onErrorJustReturn: ())
         
         let profile = profileSubject
@@ -133,13 +129,18 @@ final class LinimasaViewModel: ViewModelType {
                 return Observable.empty()
             }
         
+        let notification = notificationS
+            .flatMapLatest({ navigator.launchNotifications() })
+            .asDriverOnErrorJustComplete()
+        
         output = Output(searchSelected: search,
                         filterSelected: filter,
-                        addSelected: add,
                         profileSelected: profile,
                         userO: userData,
                         catatanSelected: note,
-                        updatesO: versions.asDriverOnErrorJustComplete())
+                        updatesO: versions.asDriverOnErrorJustComplete(),
+                        notificationSelected: notification
+        )
     }
     
 }

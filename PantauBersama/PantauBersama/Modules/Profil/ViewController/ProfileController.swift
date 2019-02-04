@@ -32,12 +32,14 @@ class ProfileController: UIViewController {
     @IBOutlet weak var lihatBadge: Button!
     @IBOutlet weak var containerLihat: UIView!
     @IBOutlet weak var containerlihatConstant: NSLayoutConstraint!
+    @IBOutlet weak var heightScrollViewConstant: NSLayoutConstraint!
     
     var viewModel: IProfileViewModel!
     var isMyAccount: Bool = true // default is my account
     var userId: String? = nil
     private var isExpanded: Bool = false
     private var userResponse: User!
+    
     
     lazy var myJanpolViewModel: MyJanpolListViewModel = MyJanpolListViewModel(navigator: viewModel.navigator, showTableHeader: false)
     lazy var myQuestionViewModel: MyQuestionListViewModel = MyQuestionListViewModel(navigator: viewModel.navigator, showTableHeader: false)
@@ -72,20 +74,16 @@ class ProfileController: UIViewController {
         // segmented control value
         segmentedControl.rx.value
             .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [unowned self] i in
+            .subscribe(onNext: { [unowned self] (i) in
                 UIView.animate(withDuration: 0.3, animations: {
                     if i == 0 {
                         self.janjiController.view.alpha = 1.0
                         self.tanyaController.view.alpha = 0.0
                         self.emptyController.view.alpha = 0.0
-                    } else if i == 1{
+                    } else if i == 1 {
                         self.janjiController.view.alpha = 0.0
                         self.tanyaController.view.alpha = 1.0
                         self.emptyController.view.alpha = 0.0
-                    } else {
-                        self.janjiController.view.alpha = 0.0
-                        self.tanyaController.view.alpha = 0.0
-                        self.emptyController.view.alpha = 1.0
                     }
                 })
             })
@@ -98,6 +96,8 @@ class ProfileController: UIViewController {
             }.subscribe(onNext: { [weak self] (value) in
                 guard let `self` = self else { return }
                 self.setView(view: self.clusterView, hidden: value)
+                self.heightScrollViewConstant.constant = value ? self.heightScrollViewConstant.constant - self.heightClusterConstant.constant :
+                self.heightScrollViewConstant.constant + self.heightClusterConstant.constant
             })
             .disposed(by: disposeBag)
         
@@ -107,6 +107,8 @@ class ProfileController: UIViewController {
                 guard let `self` = self else { return }
                 self.setView(view: self.tableViewBadge, hidden: value)
                 self.setView(view: self.containerLihat, hidden: value)
+                self.heightScrollViewConstant.constant = value ? self.heightScrollViewConstant.constant - self.heightTableBadgeConstant.constant - 30.0 :
+                self.heightScrollViewConstant.constant + self.heightTableBadgeConstant.constant + 30.0
             })
             .disposed(by: disposeBag)
         
@@ -115,53 +117,15 @@ class ProfileController: UIViewController {
             }.subscribe(onNext: { [weak self] (value) in
                 guard let `self` = self else { return }
                 self.setView(view: self.biodataView, hidden: value)
+                self.heightScrollViewConstant.constant = value ? self.heightScrollViewConstant.constant - self.heightBiodataConstant.constant :
+                self.heightScrollViewConstant.constant + self.heightBiodataConstant.constant
             })
             .disposed(by: disposeBag)
         
         lihatBadge.rx.tap
             .bind(to: viewModel.input.lihatBadgeI)
             .disposed(by: disposeBag)
-        
-        // MARK
-        // Handle scrollview
-        Driver.merge([
-                self.janjiController.tableView.rx.contentOffset.asDriver(),
-                self.tanyaController.tableView.rx.contentOffset.asDriver()
-            ])
-            .drive(onNext: { [weak self] (position) in
-                guard let `self` = self else { return }
-                // need adjustment when user scroll tableview
-                let headerViewHeight: CGFloat = 430 // calculate each subview from top to segmented
-                let halfHeaderViewHeight = headerViewHeight / 2
 
-                UIView.animate(withDuration: 0.3, animations: {
-                    if position.y >= 0 && position.y <= halfHeaderViewHeight {
-                        self.scrollView.contentOffset.y = position.y
-                    } else  if position.y > halfHeaderViewHeight {
-                        self.scrollView.contentOffset.y = headerViewHeight
-                    } else {
-                        self.scrollView.contentOffset.y = 0
-                    }
-                })
-
-                let tableViews = [
-                    self.janjiController.tableView,
-                    self.tanyaController.tableView
-                    ]
-                tableViews.forEach{ (tableView) in
-                        let minimumTableViewContentSizeHeight = halfHeaderViewHeight + tableView!.frame.height
-
-                        if (position.y >= halfHeaderViewHeight)
-                            && tableView!.contentSize.height < minimumTableViewContentSizeHeight {
-                            tableView!.contentSize = CGSize(width: tableView!.contentSize.width,
-                                                            height: minimumTableViewContentSizeHeight + 2)
-                        }
-                    }
-                
-            })
-            .disposed(by: disposeBag)
-        
-        
         // MARK: - TableViews
         // Register TableViews
         tableViewBadge.dataSource = nil
@@ -287,12 +251,18 @@ class ProfileController: UIViewController {
         viewModel.input.viewWillAppearI.onNext(())
         navigationController?.navigationBar.configure(with: .white)
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.navigationBar.configure(with: .white)
+    }
 }
 
 
 extension ProfileController {
     func setView(view: UIView, hidden: Bool) {
-        UIView.transition(with: view, duration: 0.4, options: .transitionCrossDissolve, animations: {
+        UIView.transition(with: view, duration: 0.4, options: .transitionCrossDissolve, animations: { [weak self] in
+            guard let `self` = self else { return }
             view.isHidden = hidden
             self.isExpanded = true
         })

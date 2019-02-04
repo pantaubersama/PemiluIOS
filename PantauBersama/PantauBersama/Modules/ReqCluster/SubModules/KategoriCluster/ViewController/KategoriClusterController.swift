@@ -130,4 +130,9 @@ class KategoriClusterController: UIViewController {
         viewModel.input.viewWillAppearI.onNext((""))
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.navigationBar.configure(with: .white)
+    }
+    
 }

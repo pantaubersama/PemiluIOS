@@ -14,6 +14,7 @@ import AlamofireImage
 
 class QuizController: UITableViewController {
     private let disposeBag: DisposeBag = DisposeBag()
+    private lazy var emptyView = EmptyView()
     private var viewModel: QuizViewModel!
     lazy var tableHeaderView = HeaderQuizView()
     
@@ -36,6 +37,7 @@ class QuizController: UITableViewController {
             .drive(onNext: { [unowned self]isHeaderShown in
                 if isHeaderShown {
                     self.tableView.tableHeaderView = self.tableHeaderView
+                    self.tableHeaderView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 115)
                 }
             })
             .disposed(by: disposeBag)
@@ -43,6 +45,15 @@ class QuizController: UITableViewController {
         tableHeaderView.config(viewModel: viewModel)
         
         viewModel.output.quizzes
+            .do(onNext: {  [unowned self](items) in
+                self.tableView.backgroundView = nil
+                if items.count == 0 {
+                    self.emptyView.frame = self.tableView.bounds
+                    self.tableView.backgroundView = self.emptyView
+                } else {
+                    self.tableView.backgroundView = nil
+                }
+            })
             .bind(to: tableView.rx.items) { [unowned self]tableView, row, item -> UITableViewCell in
                 // Loadmore trigger
                 if row == self.viewModel.output.quizzes.value.count - 1 {
@@ -89,22 +100,17 @@ class QuizController: UITableViewController {
             .drive()
             .disposed(by: disposeBag)
         
+        viewModel.output.totalResult
+            .drive(onNext: { [unowned self] (result) in
+                if result.meta.quizzes.finished >= 1{
+                    self.tableHeaderView.trendHeaderView.isHidden = false
+                    self.tableHeaderView.trendHeaderView.config(result: result, viewModel: self.viewModel)
+                    self.tableHeaderView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 115 + 212)
+                }
+
+            })
+            .disposed(by: disposeBag)
     }
     
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        if let headerView = tableView.tableHeaderView {
-            
-            let height = headerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
-            var headerFrame = headerView.frame
-            
-            //Comparison necessary to avoid infinite loop
-            if height != headerFrame.size.height {
-                headerFrame.size.height = height
-                headerView.frame = headerFrame
-                tableView.tableHeaderView = headerView
-            }
-        }
-    }
 }
+

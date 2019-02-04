@@ -27,19 +27,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     private var appCoordinator: AppCoordinator!
     private let disposeBag = DisposeBag()
-
+    private var notifType: NotifType!
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
         let schemeTwitter = TWTRTwitter.sharedInstance().application(app, open: url, options: options)
         let schemeFacebook = FBSDKApplicationDelegate.sharedInstance().application(app, open: url, options: options)
-        // MARK
-        // Handler from URL Schemes
-        // Get code from oauth identitas, then parse into callback
-        // Need improve this strategy later...
-        // refresh token etc in Network Services., using granType
-        if let code = url.getQueryString(parameter: "code") {
-            loginSymbolic(code: code)
-        }
+        // MARK: Handle Symbolic URL to Open App
+        // From invitation cluster or magic link
+        print("URL: \(url.absoluteString)")
+//        if let code = url.getQueryString(parameter: "code") {
+//            loginSymbolic(code: code)
+//        }
         return schemeTwitter || schemeFacebook
     }
     
@@ -160,17 +158,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: Register remote notifications
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         Messaging.messaging().apnsToken = deviceToken as Data
-        // TODO: subscribe topic broadcast activity
-        Messaging.messaging().subscribe(toTopic: "broadcasts-activity")
+        // TODO: subscribe topic broadcast activity and all notifications topics
+        Messaging.messaging().subscribe(toTopic: "ios-broadcasts-activity")
+        Messaging.messaging().subscribe(toTopic: "ios-janji_politik-report")
+        Messaging.messaging().subscribe(toTopic: "ios-feed-report")
+        Messaging.messaging().subscribe(toTopic: "ios-quiz-created_quiz")
     }
     // MARK: Remote receive notifications
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
         Messaging.messaging().appDidReceiveMessage(userInfo)
-        if UIApplication.shared.applicationState == .active {
-            Parser.parse(userInfo: userInfo, active: true)
-        } else {
-            Parser.parse(userInfo: userInfo, active: false)
-        }
+       
     }
 }
 
@@ -190,44 +187,24 @@ extension AppDelegate {
             .start(withConsumerKey: AppContext.instance.infoForKey("KEY_TWITTER"),
                    consumerSecret: AppContext.instance.infoForKey("SECRET_TWITTER"))
     }
-    
-    func loginSymbolic(code: String) {
-        NetworkService.instance.requestObject(
-            IdentitasAPI.loginIdentitas(code: code,
-                                        grantType: "authorization_code",
-                                        clientId: AppContext.instance.infoForKey("CLIENT_ID"),
-                                        clientSecret: AppContext.instance.infoForKey("CLIENT_SECRET"),
-                                        redirectURI: AppContext.instance.infoForKey("REDIRECT_URI")),
-            c: IdentitasResponses.self)
-            .subscribe(onSuccess: { (response) in
-                // MARK
-                // Exchange token identitas to get token pantau
-                // Save this token
-                NetworkService.instance.requestObject(
-                    PantauAuthAPI.callback(code: "",
-                                           provider: response.accessToken),
-                    c: PantauAuthResponse.self)
-                    .subscribe(onSuccess: { (response) in
-                        KeychainService.remove(type: NetworkKeychainKind.token)
-                        KeychainService.remove(type: NetworkKeychainKind.refreshToken)
-                        AppState.save(response)
-                        self.appCoordinator = AppCoordinator(window: self.window!)
-                        self.appCoordinator.start()
-                            .subscribe()
-                            .disposed(by: self.disposeBag)
-                    })
-                    .disposed(by: self.disposeBag)
-            })
-            .disposed(by: disposeBag)
-        }
 }
 
 // MARK: - UNUserNotification
 extension AppDelegate: UNUserNotificationCenterDelegate {
     // This method will be called when app received push notifications in foreground
     @available(iOS 10.0, *)
-    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void)
-    { completionHandler([UNNotificationPresentationOptions.alert,UNNotificationPresentationOptions.sound,UNNotificationPresentationOptions.badge])
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([UNNotificationPresentationOptions.alert,UNNotificationPresentationOptions.sound,UNNotificationPresentationOptions.badge])
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        print("Notification taped")
+        if UIApplication.shared.applicationState == .active {
+            Parser.parse(userInfo: response.notification.request.content.userInfo, active: true)
+        } else {
+            Parser.parse(userInfo: response.notification.request.content.userInfo, active: false)
+        }
+        completionHandler()
     }
 }
 
@@ -243,16 +220,19 @@ extension AppDelegate: MessagingDelegate {
                 print("Error fetching remote instange ID: \(error)")
             } else if let result = result {
                 print("Remote instance ID token: \(result.token)")
-                NetworkService.instance
-                    .requestObject(PantauAuthAPI.firebaseKeys(deviceToken: result.token,
-                                                              type: "ios"),
-                                   c: BaseResponse<InfoFirebaseResponse>.self)
-                    .subscribe(onSuccess: { (response) in
-                        print("Success:", response.data)
-                    }, onError: { (error) in
-                        print("Error", error.localizedDescription)
-                    })
-                    .disposed(by: self.disposeBag)
+                UserDefaults.Account.reset(forKey: .instanceId)
+                UserDefaults.Account.set(result.token, forKey: .instanceId)
+                let token = KeychainService.load(type: NetworkKeychainKind.token)
+                if token != nil {
+                    NetworkService.instance
+                        .requestObject(PantauAuthAPI.firebaseKeys(deviceToken: result.token, type: "ios"), c: BaseResponse<InfoFirebaseResponse>.self)
+                        .subscribe(onSuccess: { (response) in
+                            print("Firebase Key: \(response.data.firebaseKey)")
+                        }, onError: { (error) in
+                            print(error.localizedDescription)
+                        })
+                        .disposed(by: self.disposeBag)
+                }
             }
         }
     }
@@ -285,9 +265,11 @@ extension AppDelegate {
         
         Messaging.messaging().delegate = self
         
-        let token = Messaging.messaging().fcmToken
-        print("FCM token: \(token ?? "")")
-        
+        if let token = Messaging.messaging().fcmToken {
+            print("FCM token: \(token)")
+            UserDefaults.Account.reset(forKey: .instanceId)
+            UserDefaults.Account.set(token, forKey: .instanceId)
+        }
         
         //Added Code to display notification when app is in Foreground
         if #available(iOS 10.0, *) {

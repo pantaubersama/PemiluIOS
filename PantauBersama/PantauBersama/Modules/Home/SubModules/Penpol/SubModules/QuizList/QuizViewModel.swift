@@ -79,6 +79,7 @@ class QuizViewModel: ViewModelType {
     
     let headerViewModel = BannerHeaderViewModel()
     
+    // load order 0 = in progress, 1 = not participated, 2 = finished
     private var loadQuizKindOrder = 0
     
     private var searchQuery = ""
@@ -154,8 +155,12 @@ class QuizViewModel: ViewModelType {
             .mapToVoid()
             .asDriverOnErrorJustComplete()
         
-        Observable.combineLatest(viewWillAppearS.asObservable(), loadQuizSubject.asObservable())
+        Observable.merge(viewWillAppearS.asObservable(), loadQuizSubject.asObservable())
             .flatMapLatest({ [weak self](query) -> Observable<[QuizModel]> in
+                if !PantauAuthAPI.isLoggedIn {
+                    return Observable.just([])
+                }
+                
                 guard let weakSelf = self else { return Observable.empty() }
                 weakSelf.loadQuizKindOrder = 0
                 return weakSelf.quizItems(resetPage: true)
@@ -210,6 +215,10 @@ class QuizViewModel: ViewModelType {
         
         nextPageSubject
             .flatMapLatest({ [weak self](_) -> Observable<[QuizModel]> in
+                if !PantauAuthAPI.isLoggedIn {
+                    return Observable.empty()
+                }
+                
                 // in progress
                 guard let weakSelf = self else { return Observable.empty() }
                 return weakSelf.quizItems()
@@ -330,6 +339,10 @@ class QuizViewModel: ViewModelType {
     }
     
     private func totalResult() -> Observable<TrendResponse> {
+        if !PantauAuthAPI.isLoggedIn {
+            return Observable.empty()
+        }
+        
         return NetworkService.instance
             .requestObject(
                 QuizAPI.getTotalResult(),

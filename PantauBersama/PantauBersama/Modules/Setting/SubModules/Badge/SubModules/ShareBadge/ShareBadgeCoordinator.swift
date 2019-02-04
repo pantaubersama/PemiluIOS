@@ -39,7 +39,7 @@ final class ShareBadgeCoordinator: BaseCoordinator<Void> {
 
 extension ShareBadgeCoordinator: ShareBadgeNavigator {
     func shareBadge(id: String) -> Observable<Void> {
-        let askString = "Yeay! I got the badge 🤘 \(AppContext.instance.infoForKey("URL_WEB"))/share/badge/\(id)"
+        let askString = "Yeay! I got the badge 🤘 #PantauBersama \(AppContext.instance.infoForKey("URL_WEB"))/share/badge/\(id)"
         let activityViewController = UIActivityViewController(activityItems: [askString as NSString], applicationActivities: nil)
         self.navigationController.present(activityViewController, animated: true, completion: nil)
         return Observable.never()

@@ -30,7 +30,7 @@ class TrendHeaderView: UIView {
     }
     
     override init(frame: CGRect) {
-        let frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 210)
+        let frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 212)
         super.init(frame: frame)
         
         setup()

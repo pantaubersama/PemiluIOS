@@ -29,10 +29,10 @@
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="6qT-KT-6P3">
-                                <rect key="frame" x="52" y="8" width="306" height="65"/>
+                                <rect key="frame" x="52" y="8" width="306" height="81.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rv1-YT-UdQ" customClass="Label" customModule="Common">
-                                        <rect key="frame" x="0.0" y="0.0" width="306" height="50.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="306" height="61"/>
                                         <string key="text">Hari ini, Pantau Bersama sedang 
 mengadakan roadmap di Yogyakarta. 
 Ikuti ulasannya!</string>
@@ -46,7 +46,7 @@ Ikuti ulasannya!</string>
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3 menit lalu" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="siR-aO-3we" customClass="Label" customModule="Common">
-                                        <rect key="frame" x="0.0" y="50.5" width="306" height="14.5"/>
+                                        <rect key="frame" x="0.0" y="61" width="306" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
@@ -76,6 +76,10 @@ Ikuti ulasannya!</string>
                     <constraint firstAttribute="bottom" secondItem="uOv-DR-sYf" secondAttribute="bottom" constant="8" id="bkQ-aa-TGS"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="content" destination="rv1-YT-UdQ" id="f1h-Ok-pjr"/>
+                <outlet property="timestamp" destination="siR-aO-3we" id="Xd7-vg-z7k"/>
+            </connections>
             <point key="canvasLocation" x="84.799999999999997" y="8.0959520239880067"/>
         </tableViewCell>
     </objects>

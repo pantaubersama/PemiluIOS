@@ -29,14 +29,21 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8l2-Tv-HvY" userLabel="dividerTop">
+                    <rect key="frame" x="0.0" y="64" width="375" height="5"/>
+                    <color key="backgroundColor" red="0.92550259830000003" green="0.92546778919999995" blue="0.92549145219999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="5" id="t5o-ox-o5p"/>
+                    </constraints>
+                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JIl-20-3R0">
-                    <rect key="frame" x="0.0" y="20" width="375" height="73.5"/>
+                    <rect key="frame" x="0.0" y="69" width="375" height="73.5"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Qg-E2-y23" customClass="Label" customModule="Common">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Qg-E2-y23" customClass="Label" customModule="Common">
                             <rect key="frame" x="20" y="15" width="335" height="43.5"/>
                             <string key="text">Berikan pertanyaan singkat untuk kandidat Calon Presiden dan Calon Wakil Presiden 2019-2024. Gunakan bahasa yang baik dan jelas, yaa!</string>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" red="0.30980855229999998" green="0.30979558829999998" blue="0.30980432029999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <color key="textColor" red="0.4392156862745098" green="0.4392156862745098" blue="0.4392156862745098" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <nil key="highlightedColor"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
@@ -54,7 +61,7 @@
                     </constraints>
                 </view>
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L7F-5l-fl3" customClass="RoundView" customModule="Common">
-                    <rect key="frame" x="20" y="123.5" width="22" height="22"/>
+                    <rect key="frame" x="20" y="172.5" width="22" height="22"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icDummyPerson" translatesAutoresizingMaskIntoConstraints="NO" id="ynz-q0-pCE">
                             <rect key="frame" x="0.0" y="0.0" width="22" height="22"/>
@@ -76,8 +83,8 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Budi Santoso" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dzZ-vg-bbg" customClass="Label" customModule="Common">
-                    <rect key="frame" x="47" y="123.5" width="64.5" height="22"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dzZ-vg-bbg" customClass="Label" customModule="Common">
+                    <rect key="frame" x="47" y="172.5" width="0.0" height="22"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -89,7 +96,7 @@
                     </userDefinedRuntimeAttributes>
                 </label>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="fUV-ow-i2d">
-                    <rect key="frame" x="20" y="160.5" width="335" height="128"/>
+                    <rect key="frame" x="20" y="209.5" width="335" height="128"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="128" id="qOH-g8-Tl7"/>
@@ -99,7 +106,7 @@
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0/260" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B7p-Tr-KGo" customClass="Label" customModule="Common">
-                    <rect key="frame" x="328" y="298.5" width="27" height="12"/>
+                    <rect key="frame" x="328" y="347.5" width="27" height="12"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" red="0.48621892929999999" green="0.48630648850000002" blue="0.48621344570000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
@@ -115,21 +122,25 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="JIl-20-3R0" secondAttribute="trailing" id="4ur-w4-gFt"/>
                 <constraint firstItem="dzZ-vg-bbg" firstAttribute="top" secondItem="L7F-5l-fl3" secondAttribute="top" id="626-VN-vdf"/>
                 <constraint firstItem="B7p-Tr-KGo" firstAttribute="top" secondItem="fUV-ow-i2d" secondAttribute="bottom" constant="10" id="7tI-Nf-QGz"/>
-                <constraint firstItem="JIl-20-3R0" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="8lK-gY-4jG"/>
+                <constraint firstItem="JIl-20-3R0" firstAttribute="top" secondItem="8l2-Tv-HvY" secondAttribute="bottom" id="8lK-gY-4jG"/>
                 <constraint firstItem="fUV-ow-i2d" firstAttribute="top" secondItem="L7F-5l-fl3" secondAttribute="bottom" constant="15" id="Dhf-ZP-pA2"/>
+                <constraint firstItem="8l2-Tv-HvY" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="GM1-MN-K0V"/>
                 <constraint firstItem="dzZ-vg-bbg" firstAttribute="leading" secondItem="L7F-5l-fl3" secondAttribute="trailing" constant="5" id="M6j-uE-igW"/>
+                <constraint firstItem="8l2-Tv-HvY" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="M8N-98-IGi"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="fUV-ow-i2d" secondAttribute="trailing" constant="20" id="ZOw-ha-f3t"/>
                 <constraint firstItem="dzZ-vg-bbg" firstAttribute="centerY" secondItem="L7F-5l-fl3" secondAttribute="centerY" id="aF6-Vw-q7J"/>
                 <constraint firstItem="JIl-20-3R0" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="oV0-73-i8w"/>
+                <constraint firstItem="8l2-Tv-HvY" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="wR4-SV-8FZ"/>
                 <constraint firstItem="L7F-5l-fl3" firstAttribute="top" secondItem="JIl-20-3R0" secondAttribute="bottom" constant="30" id="xNA-Sm-oOV"/>
                 <constraint firstItem="L7F-5l-fl3" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="yNi-od-0jh"/>
                 <constraint firstItem="fUV-ow-i2d" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="zEC-Qc-LX3"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="B7p-Tr-KGo" secondAttribute="trailing" constant="20" id="zJT-gB-rBO"/>
             </constraints>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
         </view>
     </objects>
     <resources>
-        <image name="icDummyPerson" width="64" height="64"/>
+        <image name="icDummyPerson" width="48" height="48"/>
     </resources>
 </document>

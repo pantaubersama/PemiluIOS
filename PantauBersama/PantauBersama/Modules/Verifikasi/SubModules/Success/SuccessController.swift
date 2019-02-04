@@ -25,7 +25,6 @@ class SuccessController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationController?.navigationBar.configure(with: .transparent)
         
         // MARK:- Lottie
         successAnimation = LOTAnimationView(name: "validation-success")
@@ -45,6 +44,11 @@ class SuccessController: UIViewController {
         viewModel.output.finishO
             .drive()
             .disposed(by: disposeBag)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.configure(with: .transparent)
     }
     
     

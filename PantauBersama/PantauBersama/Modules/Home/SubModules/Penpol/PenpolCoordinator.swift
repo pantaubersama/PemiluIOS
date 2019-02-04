@@ -18,6 +18,7 @@ protocol PenpolNavigator: QuizNavigator, IQuestionNavigator {
     func launchNote() -> Observable<Void>
     func launchProfile(isMyAccount: Bool, userId: String?) -> Observable<Void>
     func launchDetailAsk(data: String) -> Observable<Void>
+    func launchNotifications() -> Observable<Void>
 }
 
 class PenpolCoordinator: BaseCoordinator<Void> {
@@ -60,6 +61,28 @@ extension PenpolCoordinator: PenpolNavigator {
     }
     
     func openQuiz(quiz: QuizModel) -> Observable<Void> {
+        if !PantauAuthAPI.isLoggedIn {
+            let alert = UIAlertController(title: "Perhatian", message: "Sesi Anda telah berakhir, silahkan login terlebih dahulu", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Login", style: .destructive, handler: { (_) in
+                KeychainService.remove(type: NetworkKeychainKind.token)
+                KeychainService.remove(type: NetworkKeychainKind.refreshToken)
+                // need improve this later
+                // todo using wkwbview or using another framework to handle auth
+                var appCoordinator: AppCoordinator!
+                let disposeBag = DisposeBag()
+                var window: UIWindow?
+                window = UIWindow()
+                appCoordinator = AppCoordinator(window: window!)
+                appCoordinator.start()
+                    .subscribe()
+                    .disposed(by: disposeBag)
+                
+            }))
+            alert.show()
+            
+            return Observable.never()
+        }
+        
         switch quiz.participationStatus {
         case .inProgress:
             let coordinator = QuizOngoingCoordinator(navigationController: self.navigationController, quiz: quiz)
@@ -75,7 +98,7 @@ extension PenpolCoordinator: PenpolNavigator {
     
     func shareQuiz(quiz: QuizModel) -> Observable<Void> {
         // TODO: coordinate to share
-        let share = "Iseng-iseng serius main Quiz ini dulu. Kira-kira masih cocok apa ternyata malah nggak cocok, yaa 😶 \(AppContext.instance.infoForKey("URL_WEB"))/share/kuis/\(quiz.id)"
+        let share = "Iseng-iseng serius main Quiz ini dulu. Kira-kira masih cocok apa ternyata malah nggak cocok, yaa 😶 #PantauBersama \(AppContext.instance.infoForKey("URL_WEB"))/share/kuis/\(quiz.id)"
         let activityViewController = UIActivityViewController(activityItems: [share as NSString], applicationActivities: nil)
         self.navigationController.present(activityViewController, animated: true, completion: nil)
         
@@ -106,5 +129,10 @@ extension PenpolCoordinator: PenpolNavigator {
     func launchDetailAsk(data: String) -> Observable<Void> {
         let detailAskCoordinator = DetailAskCoordinator(navigationController: navigationController, data: data)
         return coordinate(to: detailAskCoordinator)
+    }
+    
+    func launchNotifications() -> Observable<Void> {
+        let notificationCoordinator = NotificationCoordinator(navigationController: navigationController)
+        return coordinate(to: notificationCoordinator)
     }
 }

@@ -47,6 +47,7 @@ extension IJanpolViewController {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: item.reuseIdentifier) else {
                     return UITableViewCell()
                 }
+                cell.tag = row
                 item.configure(cell: cell)
                 return cell
             }
@@ -76,7 +77,7 @@ extension IJanpolViewController {
             .asObservable()
             .flatMapLatest({ [weak self] (janpol) -> Observable<JanjiType> in
                 return Observable.create({ (observer) -> Disposable in
-                    let myId = AppState.local()?.user.id
+                    let my = AppState.local()?.user
                     
                     let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
                     let hapus = UIAlertAction(title: "Hapus", style: .default, handler: { (_) in
@@ -97,7 +98,7 @@ extension IJanpolViewController {
 //                    })
                     let cancel = UIAlertAction(title: "Batal", style: .cancel, handler: nil)
                     
-                    if janpol.creator.id == myId {
+                    if janpol.creator.cluster?.id == my?.cluster?.id && janpol.creator.id == my?.id && my?.cluster?.isEligible == true {
                         alert.addAction(hapus)
                     }
                     

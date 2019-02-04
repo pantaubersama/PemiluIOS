@@ -36,9 +36,9 @@ class QuizSummaryKeyCell: UITableViewCell, IReusableCell {
         lbQuestionNo.text = "Pertanyaan " + item.order.stringOrder
         lbQuestion.text = item.question.content
         lbPaslonA.text = item.question.answers[0].team.title
-        lbPaslonAAnswer.text = item.question.answers[0].content
+        lbPaslonAAnswer.setHTML(html: item.question.answers[0].content)
         lbPaslonB.text = item.question.answers[1].team.title
-        lbPaslonBAnswer.text = item.question.answers[1].content
+        lbPaslonBAnswer.setHTML(html: item.question.answers[1].content)
         lbMyAnswer.text = item.question.answered.team.title
     }
     

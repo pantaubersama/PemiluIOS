@@ -32,6 +32,10 @@ class PenpolController: UIViewController {
         add(childViewController: askController, context: containerView)
         add(childViewController: quisController, context: containerView)
         
+        navbar.notification.rx.tap
+            .bind(to: viewModel.input.notifTrigger)
+            .disposed(by: disposeBag)
+        
         navbar.profile.rx.tap
             .bind(to: viewModel.input.profileTrigger)
             .disposed(by: disposeBag)
@@ -102,6 +106,10 @@ class PenpolController: UIViewController {
             .disposed(by: disposeBag)
         
         viewModel.output.catatanSelected
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.notifSelected
             .drive()
             .disposed(by: disposeBag)
         

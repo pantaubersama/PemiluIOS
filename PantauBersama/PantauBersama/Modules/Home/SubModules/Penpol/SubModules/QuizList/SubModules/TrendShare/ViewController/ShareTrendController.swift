@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import Common
+import Networking
 
 class ShareTrendController: UIViewController {
     
@@ -20,6 +21,13 @@ class ShareTrendController: UIViewController {
     @IBOutlet weak var lblDesc: Label!
     @IBOutlet weak var lblSubDesc: Label!
     
+    private var imageScreeenShoot: TrendImageShare = {
+        let image = TrendImageShare()
+        return image
+    }()
+    
+    private var trendResponse: TrendResponse!
+    
     var viewModel: ShareTrendViewModel!
     private let disposeBag: DisposeBag = DisposeBag()
     
@@ -28,7 +36,12 @@ class ShareTrendController: UIViewController {
         let back = UIBarButtonItem(image: #imageLiteral(resourceName: "back"), style: .plain, target: nil, action: nil)
         navigationItem.leftBarButtonItem = back
         
+        imageScreeenShoot = TrendImageShare()
+        imageScreeenShoot.configureBackground(type: .trend)
+        
         share.rx.tap
+            .debounce(1.0, scheduler: MainScheduler.instance)
+            .map({ self.takeScreenshot() })
             .bind(to: viewModel.input.shareI)
             .disposed(by: disposeBag)
         
@@ -45,8 +58,11 @@ class ShareTrendController: UIViewController {
                     }
                     self.lblDesc.text = "Total Kecenderunganmu \(response.meta.quizzes.finished) dari \(response.meta.quizzes.total) Quiz,"
                     self.lblSubDesc.text = "\(response.user.fullName ?? "") lebih suka jawaban dari Paslon no \(kecenderungan?.team.id ?? 0)"
-                    self.lblPercentage.text = "\(Double(kecenderungan?.percentage ?? 0.0))%"
+                    let percentage = String(format: "%.0f", kecenderungan?.percentage ?? 0.0) + "%"
+                    self.lblPercentage.text = percentage
                     self.lblTeam.text = "\(kecenderungan?.team.title ?? "")"
+                
+                    self.imageScreeenShoot.configure(data: response)
             })
             .disposed(by: disposeBag)
         
@@ -62,4 +78,23 @@ class ShareTrendController: UIViewController {
         viewModel.input.viewWillAppearI.onNext(())
     }
     
+}
+
+extension ShareTrendController {
+    
+    
+    /// Takes the screenshot of the screen and returns the corresponding image
+    /// - Returns: (Optional)image captured as a screenshot
+    open func takeScreenshot() -> UIImage? {
+        var screenshotImage :UIImage?
+        let layer = self.imageScreeenShoot.layer
+        let scale = UIScreen.main.scale
+        let size = CGSize(width: 360, height: 640)
+        UIGraphicsBeginImageContextWithOptions(size, false, scale);
+        guard let context = UIGraphicsGetCurrentContext() else {return nil}
+        layer.render(in:context)
+        screenshotImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return screenshotImage
+    }
 }

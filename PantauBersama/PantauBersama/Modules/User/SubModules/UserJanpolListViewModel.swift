@@ -19,10 +19,12 @@ class UserJanpolListViewModel: IJanpolListViewModel, IJanpolListViewModelInput, 
     var refreshI: AnyObserver<String>
     var nextPageI: AnyObserver<Void>
     var shareJanjiI: AnyObserver<JanjiPolitik>
-    var moreI: AnyObserver<JanjiPolitik>
+    var moreI: AnyObserver<Int>
     var moreMenuI: AnyObserver<JanjiType>
     var itemSelectedI: AnyObserver<IndexPath>
     var filterI: AnyObserver<[PenpolFilterModel.FilterItem]>
+    var createI: AnyObserver<Void>
+    var viewWillAppearI: AnyObserver<Void>
     
     var items: Driver<[ICellConfigurator]>!
     var error: Driver<Error>!
@@ -34,14 +36,18 @@ class UserJanpolListViewModel: IJanpolListViewModel, IJanpolListViewModelInput, 
     var bannerO: Driver<BannerInfo>!
     var bannerSelectedO: Driver<Void>!
     var showHeaderO: Driver<Bool>!
+    var createO: Driver<CreateJanjiPolitikResponse>!
+    var userO: Driver<UserResponse>!
     
     private let refreshSubject = PublishSubject<String>()
-    private let moreSubject = PublishSubject<JanjiPolitik>()
+    private let moreSubject = PublishSubject<Int>()
     private let moreMenuSubject = PublishSubject<JanjiType>()
     private let shareSubject = PublishSubject<JanjiPolitik>()
     private let nextSubject = PublishSubject<Void>()
     private let itemSelectedSubject = PublishSubject<IndexPath>()
     private let filterSubject = PublishSubject<[PenpolFilterModel.FilterItem]>()
+    private let createSubject = PublishSubject<Void>()
+    private let viewWillppearSubject = PublishSubject<Void>()
     
     internal let errorTracker = ErrorTracker()
     internal let activityIndicator = ActivityIndicator()
@@ -60,6 +66,8 @@ class UserJanpolListViewModel: IJanpolListViewModel, IJanpolListViewModelInput, 
         shareJanjiI = shareSubject.asObserver()
         itemSelectedI = itemSelectedSubject.asObserver()
         filterI = filterSubject.asObserver()
+        createI = createSubject.asObserver()
+        viewWillAppearI = viewWillppearSubject.asObserver()
         
         error = errorTracker.asDriver()
         
@@ -90,7 +98,11 @@ class UserJanpolListViewModel: IJanpolListViewModel, IJanpolListViewModelInput, 
             .asDriverOnErrorJustComplete()
         
         moreSelectedO = moreSubject
-            .asObserver().asDriverOnErrorJustComplete()
+            .asObservable()
+            .withLatestFrom(janpolItems) { (row, janpols) in
+                return janpols[row]
+            }
+            .asDriverOnErrorJustComplete()
         
         shareSelectedO = shareSubject
             .flatMapLatest({ navigator.shareJanji(data: $0) })
@@ -148,6 +160,9 @@ class UserJanpolListViewModel: IJanpolListViewModel, IJanpolListViewModelInput, 
             .asDriverOnErrorJustComplete()
         
         showHeaderO = BehaviorRelay<Bool>(value: showTableHeader).asDriver()
+        
+        createO = Driver.empty()
+        userO = Driver.empty()
     }
     
     func recursivelyPaginateItems(

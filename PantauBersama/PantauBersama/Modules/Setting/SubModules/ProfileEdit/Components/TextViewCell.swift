@@ -25,7 +25,7 @@ class TextViewCell: UITableViewCell {
         return datePicker
     }()
     
-    var disposeBag: DisposeBag = DisposeBag()
+    var disposeBag: DisposeBag?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -35,7 +35,7 @@ class TextViewCell: UITableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         
-        disposeBag = DisposeBag()
+        disposeBag = nil
     }
     
 }

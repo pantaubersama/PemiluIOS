@@ -14,6 +14,7 @@
             <connections>
                 <outlet property="avatar" destination="UoW-Y2-fDX" id="uJi-L3-RxN"/>
                 <outlet property="note" destination="WW4-qD-nOf" id="4AJ-Ux-mIa"/>
+                <outlet property="notification" destination="Dtj-Ob-Hyx" id="KJI-q8-46a"/>
                 <outlet property="profile" destination="Ljt-vi-8ru" id="dBt-G7-hTh"/>
                 <outlet property="search" destination="NIF-QG-Yj2" id="sEa-NT-naI"/>
             </connections>
@@ -113,6 +114,14 @@
                             </constraints>
                             <state key="normal" image="iconKotakKpu"/>
                         </button>
+                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dtj-Ob-Hyx">
+                            <rect key="frame" x="343" y="16" width="24" height="24"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="24" id="3EA-la-zK6"/>
+                                <constraint firstAttribute="height" constant="24" id="ao6-c6-5hG"/>
+                            </constraints>
+                            <state key="normal" image="icNotif"/>
+                        </button>
                     </subviews>
                 </stackView>
             </subviews>
@@ -130,6 +139,7 @@
     </objects>
     <resources>
         <image name="icDummyPerson" width="48" height="48"/>
+        <image name="icNotif" width="24" height="24"/>
         <image name="icSearchInactive" width="24" height="24"/>
         <image name="iconKotakKpu" width="24" height="24"/>
     </resources>

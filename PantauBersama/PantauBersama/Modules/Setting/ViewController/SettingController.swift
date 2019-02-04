@@ -13,6 +13,7 @@ import RxDataSources
 import TwitterKit
 import FBSDKLoginKit
 import Networking
+import Common
 
 class SettingController: UITableViewController {
     
@@ -160,7 +161,7 @@ extension SettingController {
     
     override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let view = UIView()
-        view.backgroundColor = UIColor.groupTableViewBackground
+        view.backgroundColor = Color.RGBColor(red: 236, green: 236, blue: 236)
         return view
     }
 }

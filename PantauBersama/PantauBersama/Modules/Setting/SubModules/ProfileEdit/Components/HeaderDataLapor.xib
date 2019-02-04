@@ -20,11 +20,18 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="129"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SSn-Cn-hNP" customClass="Label" customModule="Common">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0R3-4E-wwk">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="5"/>
+                    <color key="backgroundColor" red="0.92549019610000005" green="0.92549019610000005" blue="0.92549019610000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="5" id="Y33-0x-xsU"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SSn-Cn-hNP" customClass="Label" customModule="Common">
                     <rect key="frame" x="16" y="8" width="343" height="65"/>
                     <string key="text">Data Lapor digunakan sebagai salah satu syarat kontribusi melakukan laporan dugaan pelanggaran Pemilu melalui Pantau Bersama Pemilu 2019. Formulir menyesuaikan format sesuai ketentuan yang diatur Bawaslu. Data di bawah ini tidak akan ditampilkan di profil pengguna.</string>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" red="0.4392156862745098" green="0.4392156862745098" blue="0.4392156862745098" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <color key="textColor" red="0.43921568630000002" green="0.43921568630000002" blue="0.43921568630000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <nil key="highlightedColor"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
@@ -40,12 +47,15 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
             <constraints>
+                <constraint firstItem="0R3-4E-wwk" firstAttribute="leading" secondItem="wsw-lK-I29" secondAttribute="leading" id="Cmi-GH-ojv"/>
                 <constraint firstItem="wsw-lK-I29" firstAttribute="trailing" secondItem="SSn-Cn-hNP" secondAttribute="trailing" constant="16" id="E3V-xk-hmo"/>
                 <constraint firstItem="wsw-lK-I29" firstAttribute="bottom" secondItem="6ub-Em-Keb" secondAttribute="bottom" id="Pas-rZ-xXF"/>
                 <constraint firstItem="SSn-Cn-hNP" firstAttribute="top" secondItem="wsw-lK-I29" secondAttribute="top" constant="8" id="abj-tg-cAC"/>
+                <constraint firstItem="0R3-4E-wwk" firstAttribute="top" secondItem="wsw-lK-I29" secondAttribute="top" id="cti-cY-sZx"/>
                 <constraint firstItem="SSn-Cn-hNP" firstAttribute="leading" secondItem="wsw-lK-I29" secondAttribute="leading" constant="16" id="djI-3S-kyV"/>
+                <constraint firstItem="wsw-lK-I29" firstAttribute="trailing" secondItem="0R3-4E-wwk" secondAttribute="trailing" id="inQ-he-oFt"/>
                 <constraint firstItem="SSn-Cn-hNP" firstAttribute="bottom" secondItem="6ub-Em-Keb" secondAttribute="top" constant="-8" id="ubX-Sx-XrU"/>
                 <constraint firstItem="wsw-lK-I29" firstAttribute="trailing" secondItem="6ub-Em-Keb" secondAttribute="trailing" id="wj4-RW-VOW"/>
                 <constraint firstItem="6ub-Em-Keb" firstAttribute="leading" secondItem="wsw-lK-I29" secondAttribute="leading" id="ycy-FY-2zO"/>

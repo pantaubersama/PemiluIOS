@@ -70,6 +70,12 @@ extension PantauAuthAPI: TargetType {
         ]
     }
     
+    public static var isLoggedIn: Bool {
+        let token = KeychainService.load(type: NetworkKeychainKind.token) ?? ""
+        
+        return !token.isEmpty
+    }
+    
     public var baseURL: URL {
         return URL(string: AppContext.instance.infoForKey("URL_API_AUTH"))!
     }

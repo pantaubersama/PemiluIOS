@@ -91,6 +91,7 @@ public extension UserDefaults {
             case clusterCategory
             case version
             case skipVersion
+            case instanceId
         }
     }
 }

@@ -21,8 +21,8 @@ class CatatanPilpresController: UIViewController {
     
     @IBOutlet weak var iconPreference: CircularUIImageView!
     @IBOutlet weak var lblKecenderungan: Label!
-    @IBOutlet weak var lblPreferenceResult: Label!
     @IBOutlet weak var lblPercentage: UILabel!
+    @IBOutlet weak var lblUser: Label!
     
     private var buttonGroup: [UIButton] = []
     private var containerGroup: [UIView] = []
@@ -71,9 +71,9 @@ class CatatanPilpresController: UIViewController {
                     if let avatarUrl = preference?.team.avatar {
                         self.iconPreference.af_setImage(withURL: URL(string: avatarUrl)!)
                     }
-                    self.lblKecenderungan.text = "Total Kecenderungamu,"
-                    self.lblPreferenceResult.text = "\(response.meta.quizzes.finished) dari \(response.meta.quizzes.total) Quiz"
-                    self.lblPercentage.text = String(format: "%.0f", preference?.percentage ?? 0.0) + "% (\(preference?.team.title ?? "")"
+                    self.lblKecenderungan.text = "Total Kecenderungan\(response.meta.quizzes.finished) dari \(response.meta.quizzes.total) Quiz"
+                    self.lblUser.text = "\(response.user.fullName ?? "") lebih suka jawaban dari Paslon no \(preference?.team.id ?? 0)"
+                    self.lblPercentage.text = String(format: "%.0f", preference?.percentage ?? 0.0) + "% \(preference?.team.title ?? "")"
                     
                 })
                 .disposed(by: disposeBag)

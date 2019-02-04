@@ -81,6 +81,7 @@ final class EditViewModel: ViewModelType {
                         let (offset, text) = arg
                         switch item.items[offset].fieldType {
                         case .gender:
+                            print("GENDER: \(text ?? "")")
                             return old[item.items[offset].parameter] =
                              Gender.index(title: text)
                         default:

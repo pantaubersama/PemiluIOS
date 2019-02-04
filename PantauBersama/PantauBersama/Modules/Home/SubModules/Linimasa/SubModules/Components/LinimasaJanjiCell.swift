@@ -25,6 +25,7 @@ class LinimasaJanjiCell: UITableViewCell {
     @IBOutlet weak var moreBtn: UIButton!
     @IBOutlet weak var clusterName: Label!
     @IBOutlet weak var imagejJanpol: UIImageView!
+    @IBOutlet weak var consImageWidth: NSLayoutConstraint!
     
     
     private(set) var disposeBag: DisposeBag = DisposeBag()
@@ -56,7 +57,7 @@ extension LinimasaJanjiCell: IReusableCell {
             .disposed(by: bag)
         
         moreBtn.rx.tap
-            .map({ janpol })
+            .map({ self.tag })
             .bind(to: item.viewModel.input.moreI)
             .disposed(by: bag)
         
@@ -78,22 +79,19 @@ extension LinimasaJanjiCell: IReusableCell {
             self.avatar.af_setImage(withURL: URL(string: avatarUrl)!)
         }
         
-        //image property
-//        imagejJanpol.autoresizingMask = [.flexibleWidth, .flexibleHeight, .flexibleBottomMargin, .flexibleRightMargin, .flexibleLeftMargin, .flexibleTopMargin]
-//        imagejJanpol.contentMode = .scaleAspectFill
-//        imagejJanpol.clipsToBounds = true
-        
         if let url = data.image?.large?.url {
-            imagejJanpol.af_setImage(withURL: URL(string: url)!)
             imagejJanpol.isHidden = false
+            consImageWidth.constant = 80.0
+            imagejJanpol.show(fromURL: url)
+            
         } else {
             imagejJanpol.isHidden = true
+            consImageWidth.constant = 0.0
         }
         
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
-//        content.sizeToFit()
     }
 }

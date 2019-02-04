@@ -12,7 +12,7 @@ import Common
 
 protocol ShareTrendNavigator {
     var finish: Observable<Void>! { get set }
-    func shareTrendResult(data: TrendResponse) -> Observable<Void>
+    func shareTrendResult(image: UIImage,data: TrendResponse) -> Observable<Void>
 }
 
 final class ShareTrendCoordinator: BaseCoordinator<Void> {
@@ -39,9 +39,13 @@ final class ShareTrendCoordinator: BaseCoordinator<Void> {
 
 
 extension ShareTrendCoordinator: ShareTrendNavigator {
-    func shareTrendResult(data: TrendResponse) -> Observable<Void> {
-        let share = "Hmm.. Ternyata begini kecenderunganku 👀\(AppContext.instance.infoForKey("URL_WEB"))/share/badge/\(data.user.id)"
-        let activityViewController = UIActivityViewController(activityItems: [share as NSString], applicationActivities: nil)
+    func shareTrendResult(image: UIImage, data: TrendResponse) -> Observable<Void> {
+        let share = "Hmm.. Ternyata begini kecenderunganku 👀 #PantauBersama \(AppContext.instance.infoForKey("URL_WEB"))/share/badge/\(data.user.id)"
+//        var objectToShare = [AnyObject]()
+//        objectToShare.append(image)
+//        objectToShare.append(share as AnyObject)
+        let activityViewController = UIActivityViewController(activityItems: [image, share as NSString], applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = self.navigationController.view
         self.navigationController.present(activityViewController, animated: true, completion: nil)
         return Observable.never()
     }

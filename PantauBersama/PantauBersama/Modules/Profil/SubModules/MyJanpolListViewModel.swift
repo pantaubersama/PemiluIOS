@@ -13,18 +13,18 @@ import Networking
 
 class MyJanpolListViewModel: IJanpolListViewModel, IJanpolListViewModelInput, IJanpolListViewModelOutput {
     
-    
-    
     var input: IJanpolListViewModelInput { return self }
     var output: IJanpolListViewModelOutput { return self }
     
     var refreshI: AnyObserver<String>
     var nextPageI: AnyObserver<Void>
     var shareJanjiI: AnyObserver<JanjiPolitik>
-    var moreI: AnyObserver<JanjiPolitik>
+    var moreI: AnyObserver<Int>
     var moreMenuI: AnyObserver<JanjiType>
     var itemSelectedI: AnyObserver<IndexPath>
     var filterI: AnyObserver<[PenpolFilterModel.FilterItem]>
+    var createI: AnyObserver<Void>
+    var viewWillAppearI: AnyObserver<Void>
     
     var items: Driver<[ICellConfigurator]>!
     var error: Driver<Error>!
@@ -36,18 +36,24 @@ class MyJanpolListViewModel: IJanpolListViewModel, IJanpolListViewModelInput, IJ
     var bannerO: Driver<BannerInfo>!
     var bannerSelectedO: Driver<Void>!
     var showHeaderO: Driver<Bool>!
+    var createO: Driver<CreateJanjiPolitikResponse>!
+    var userO: Driver<UserResponse>!
     
     private let refreshSubject = PublishSubject<String>()
-    private let moreSubject = PublishSubject<JanjiPolitik>()
+    private let moreSubject = PublishSubject<Int>()
     private let moreMenuSubject = PublishSubject<JanjiType>()
     private let shareSubject = PublishSubject<JanjiPolitik>()
     private let nextSubject = PublishSubject<Void>()
     private let itemSelectedSubject = PublishSubject<IndexPath>()
     private let filterSubject = PublishSubject<[PenpolFilterModel.FilterItem]>()
+    private let createSubject = PublishSubject<Void>()
+    private let viewWillppearSubject = PublishSubject<Void>()
     
     internal let errorTracker = ErrorTracker()
     internal let activityIndicator = ActivityIndicator()
     internal let headerViewModel = BannerHeaderViewModel()
+    private let janpolItems = BehaviorRelay<[JanjiPolitik]>(value: [])
+    private(set) var disposeBag = DisposeBag()
     
     private var filterItems: [PenpolFilterModel.FilterItem] = []
     
@@ -59,22 +65,25 @@ class MyJanpolListViewModel: IJanpolListViewModel, IJanpolListViewModelInput, IJ
         shareJanjiI = shareSubject.asObserver()
         itemSelectedI = itemSelectedSubject.asObserver()
         filterI = filterSubject.asObserver()
+        createI = createSubject.asObserver()
+        viewWillAppearI = viewWillppearSubject.asObserver()
         
         error = errorTracker.asDriver()
         
-        let janpolItems = refreshSubject
-            .flatMapLatest { [unowned self] (query) -> Observable<[JanjiPolitik]> in
-                
-                return self.paginateItems(nextBatchTrigger: self.nextSubject.asObservable(), cid: "", filter: "", query: query)
-                    .trackError(self.errorTracker)
-                    .trackActivity(self.activityIndicator)
-                    .catchErrorJustReturn([])
+        refreshSubject.flatMapLatest { [unowned self] (query) -> Observable<[JanjiPolitik]> in
+            return self.paginateItems(nextBatchTrigger: self.nextSubject.asObservable(), cid: "", filter: "", query: query)
+                .trackError(self.errorTracker)
+                .trackActivity(self.activityIndicator)
+                .catchErrorJustReturn([])
             }
-            .asDriver(onErrorJustReturn: [])
+            .bind { [weak self](items) in
+                guard let weakSelf = self else { return }
+                weakSelf.janpolItems.accept(items)
+            }.disposed(by: disposeBag)
         
         // MARK:
         // Map feeds response to cell list
-        items = janpolItems
+        items = janpolItems.asDriver(onErrorJustReturn: [])
             .map { (list) -> [ICellConfigurator] in
                 return list.map({ janpol -> ICellConfigurator in
                     return LinimasaJanjiCellConfigured(item: LinimasaJanjiCell.Input(viewModel: self, janpol: janpol))
@@ -89,7 +98,11 @@ class MyJanpolListViewModel: IJanpolListViewModel, IJanpolListViewModelInput, IJ
             .asDriverOnErrorJustComplete()
         
         moreSelectedO = moreSubject
-            .asObserver().asDriverOnErrorJustComplete()
+            .asObservable()
+            .withLatestFrom(janpolItems) { (row, janpols) in
+                return janpols[row]
+            }
+            .asDriverOnErrorJustComplete()
         
         shareSelectedO = shareSubject
             .flatMapLatest({ navigator.shareJanji(data: $0) })
@@ -109,8 +122,20 @@ class MyJanpolListViewModel: IJanpolListViewModel, IJanpolListViewModelInput, IJ
                     return Observable.just("Tautan telah tersalin")
                 case .hapus(let id):
                     return self.delete(id: id)
+                        .do(onNext: { (result) in
+                            var currentItems = self.janpolItems.value
+                            guard let index = currentItems.index(where: { item -> Bool in
+                                return item.id == id
+                            }) else {
+                                return
+                            }
+                            
+                            currentItems.remove(at: index)
+                            self.janpolItems.accept(currentItems)
+                            return
+                        })
                         .map({ (result) -> String in
-                            return ""
+                            return result.data.message
                         })
                 default:
                     return Observable.empty()
@@ -144,6 +169,9 @@ class MyJanpolListViewModel: IJanpolListViewModel, IJanpolListViewModelInput, IJ
                 return navigator.launchJanpolBannerInfo(bannerInfo: banner)
             })
             .asDriverOnErrorJustComplete()
+        
+        createO = Driver.empty()
+        userO = Driver.empty()
         
         showHeaderO = BehaviorRelay<Bool>(value: showTableHeader).asDriver()
         

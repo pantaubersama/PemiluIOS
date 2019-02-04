@@ -15,7 +15,6 @@ import AlamofireImage
 class LinimasaController: UIViewController {
     
     @IBOutlet weak var filter: UIButton!
-    @IBOutlet weak var addJanji: UIButton!
     @IBOutlet weak var segmentedControl: SegementedControl!
     @IBOutlet weak var container: UIView!
     @IBOutlet weak var navbar: Navbar!
@@ -36,8 +35,6 @@ class LinimasaController: UIViewController {
     
     private let disposeBag = DisposeBag()
     
-    private var isEnableCreateJanpol = false
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -54,11 +51,9 @@ class LinimasaController: UIViewController {
                     if i == 0 {
                         self.pilpresController.view.alpha = 1.0
                         self.janjiController.view.alpha = 0.0
-                        self.addJanji.isHidden = true
                     } else {
                         self.pilpresController.view.alpha = 0.0
                         self.janjiController.view.alpha = 1.0
-                        self.addJanji.isHidden = !self.isEnableCreateJanpol
                     }
                 })
             })
@@ -70,6 +65,10 @@ class LinimasaController: UIViewController {
             .bind(to: viewModel.input.searchTrigger)
             .disposed(by: disposeBag)
         
+        navbar.notification.rx.tap
+            .bind(to: viewModel.input.notificationTrigger)
+            .disposed(by: disposeBag)
+        
         filter.rx.tap
             .map { [unowned self] (_) -> (type: FilterType, filterTrigger: AnyObserver<[PenpolFilterModel.FilterItem]>) in
                 return self.pilpresController.view.alpha == 1.0 ?
@@ -77,10 +76,6 @@ class LinimasaController: UIViewController {
                     (type: .janji, filterTrigger: self.janjiViewModel.filterI)
             }
             .bind(to: viewModel.input.filterTrigger)
-            .disposed(by: disposeBag)
-        
-        addJanji.rx.tap
-            .bind(to: viewModel.input.addTrigger)
             .disposed(by: disposeBag)
     
         navbar.profile.rx.tap
@@ -92,10 +87,6 @@ class LinimasaController: UIViewController {
             .disposed(by: disposeBag)
         
         viewModel.output.filterSelected
-            .drive()
-            .disposed(by: disposeBag)
-        
-        viewModel.output.addSelected
             .drive()
             .disposed(by: disposeBag)
         
@@ -122,12 +113,14 @@ class LinimasaController: UIViewController {
                 if let thumbnail = user.avatar.thumbnail.url {
                     self.navbar.avatar.af_setImage(withURL: URL(string: thumbnail)!)
                 }
-                
-                self.isEnableCreateJanpol = (user.cluster != nil && user.cluster?.isEligible == true)
             })
             .disposed(by: disposeBag)
         
         viewModel.output.updatesO
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.notificationSelected
             .drive()
             .disposed(by: disposeBag)
         

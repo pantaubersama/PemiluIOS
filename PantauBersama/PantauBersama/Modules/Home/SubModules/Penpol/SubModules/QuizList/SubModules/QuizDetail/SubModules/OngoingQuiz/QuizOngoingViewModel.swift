@@ -91,7 +91,22 @@ class QuizOngoingViewModel: ViewModelType {
             .flatMap({ navigator.openQuizResult(finishQuiz: $0) })
             .asDriverOnErrorJustComplete()
         
-        let answerB = answerBSubject.flatMap({ _ in answerQuestion() })
+        let answerB = answerBSubject
+            .map({ [weak self](answerContent) -> String in
+                guard let weakSelf = self else { return "" }
+                do {
+                    let index = try questionIndex.value()
+                    let answerId = weakSelf.questionRelay.value[index].answers.filter({ (answer) -> Bool in
+                        return answer.content == answerContent
+                    }).first?.id
+                    
+                    return answerId ?? ""
+                } catch let error {
+                    print("error mapping answerA \(error.localizedDescription)")
+                    return ""
+                }
+            })
+            .flatMap({ _ in answerQuestion() })
             .flatMap({ navigator.openQuizResult(finishQuiz: $0) })
             .asDriverOnErrorJustComplete()
         

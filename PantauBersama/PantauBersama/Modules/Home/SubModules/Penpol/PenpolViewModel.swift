@@ -24,6 +24,7 @@ class PenpolViewModel: ViewModelType {
         let viewWillAppearTrigger: AnyObserver<Void>
         let profileTrigger: AnyObserver<Void>
         let catatanTrigger: AnyObserver<Void>
+        let notifTrigger: AnyObserver<Void>
     }
     
     struct Output {
@@ -33,6 +34,7 @@ class PenpolViewModel: ViewModelType {
         let userO: Driver<UserResponse>
         let profileSelected: Driver<Void>
         let catatanSelected: Driver<Void>
+        let notifSelected: Driver<Void>
     }
     
     let navigator: PenpolNavigator
@@ -45,6 +47,7 @@ class PenpolViewModel: ViewModelType {
     private let errorTracker = ErrorTracker()
     private let profileSubject = PublishSubject<Void>()
     private let catatanSubject = PublishSubject<Void>()
+    private let notifSubject = PublishSubject<Void>()
     
     init(navigator: PenpolNavigator) {
         self.navigator = navigator
@@ -55,7 +58,8 @@ class PenpolViewModel: ViewModelType {
                       loadCreatedTrigger: loadCreatedSubject,
                       viewWillAppearTrigger: viewWillAppearSubject.asObserver(),
                       profileTrigger: profileSubject.asObserver(),
-                      catatanTrigger: catatanSubject.asObserver())
+                      catatanTrigger: catatanSubject.asObserver(),
+                      notifTrigger: notifSubject.asObserver())
         
         let add = addSubject
             .flatMap({navigator.launchCreateAsk(loadCreatedTrigger: self.loadCreatedSubject.asObserver())})
@@ -96,11 +100,16 @@ class PenpolViewModel: ViewModelType {
             .flatMapLatest({ local })
             .asDriverOnErrorJustComplete()
         
+        let notif = notifSubject
+            .flatMapLatest({ navigator.launchNotifications() })
+            .asDriverOnErrorJustComplete()
+        
         output = Output(searchSelected: search,
                         filterSelected: filter,
                         addSelected: add,
                         userO: userData,
                         profileSelected: profile,
-                        catatanSelected: note)
+                        catatanSelected: note,
+                        notifSelected: notif)
     }
 }

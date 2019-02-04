@@ -26,11 +26,18 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0PK-Ts-BXS" userLabel="DividerTop">
+                    <rect key="frame" x="0.0" y="64" width="320" height="5"/>
+                    <color key="backgroundColor" red="0.92549019610000005" green="0.92549019610000005" blue="0.92549019610000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="5" id="aaj-rw-Fw1"/>
+                    </constraints>
+                </view>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ZF4-PP-RPK">
-                    <rect key="frame" x="16" y="40" width="288" height="120"/>
+                    <rect key="frame" x="16" y="84" width="288" height="120"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bagikan Undangan Lewat Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gyv-Cx-IvR" customClass="Label" customModule="Common">
-                            <rect key="frame" x="0.0" y="0.0" width="239" height="28"/>
+                            <rect key="frame" x="0.0" y="0.0" width="223.5" height="28"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -74,16 +81,16 @@
                     </constraints>
                 </stackView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DZh-ai-oAL">
-                    <rect key="frame" x="0.0" y="180" width="320" height="4"/>
+                    <rect key="frame" x="0.0" y="224" width="320" height="4"/>
                     <color key="backgroundColor" red="0.92549019607843142" green="0.92546778919999995" blue="0.92549145219999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="4" id="2jK-ZX-0kW"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FJ1-iG-wdC">
-                    <rect key="frame" x="0.0" y="184" width="320" height="52"/>
+                    <rect key="frame" x="0.0" y="228" width="320" height="52"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="txm-H4-Jjq" customClass="Label" customModule="Common">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="txm-H4-Jjq" customClass="Label" customModule="Common">
                             <rect key="frame" x="8" y="4" width="304" height="44"/>
                             <string key="text">Link di bawah ini dapat digunakan untuk menambah anggota secara otomatis apabila di-klik oleh penerima.
 Moderator bisa non-aktifkan link undangan sewaktu-waktu.</string>
@@ -107,10 +114,10 @@ Moderator bisa non-aktifkan link undangan sewaktu-waktu.</string>
                     </constraints>
                 </view>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="S4u-Ml-CGA">
-                    <rect key="frame" x="16" y="252" width="288" height="120"/>
+                    <rect key="frame" x="16" y="296" width="288" height="120"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bagikan Undangan Lewat Link" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fla-1K-LCm" customClass="Label" customModule="Common">
-                            <rect key="frame" x="0.0" y="0.0" width="229.5" height="27"/>
+                            <rect key="frame" x="0.0" y="0.0" width="214.5" height="27"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -173,14 +180,14 @@ Moderator bisa non-aktifkan link undangan sewaktu-waktu.</string>
                             </userDefinedRuntimeAttributes>
                         </view>
                         <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="pGp-bs-0uG">
-                            <rect key="frame" x="0.0" y="89" width="269.5" height="31"/>
+                            <rect key="frame" x="0.0" y="89" width="184.5" height="31"/>
                             <subviews>
                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="a5O-jU-w8k">
                                     <rect key="frame" x="0.0" y="0.0" width="51" height="31"/>
                                     <color key="onTintColor" red="0.68041622639999999" green="0.1499232352" blue="0.14898997550000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </switch>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Non-aktifkan link undangan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wMa-xk-5ee" customClass="Label" customModule="Common">
-                                    <rect key="frame" x="59" y="0.0" width="210.5" height="31"/>
+                                    <rect key="frame" x="59" y="0.0" width="125.5" height="31"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" red="0.56471371650000002" green="0.56469172239999998" blue="0.56470668319999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     <nil key="highlightedColor"/>
@@ -211,11 +218,15 @@ Moderator bisa non-aktifkan link undangan sewaktu-waktu.</string>
                 <constraint firstItem="FJ1-iG-wdC" firstAttribute="top" secondItem="DZh-ai-oAL" secondAttribute="bottom" id="AN5-4f-YFp"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="DZh-ai-oAL" secondAttribute="trailing" id="OAI-or-zSL"/>
                 <constraint firstItem="DZh-ai-oAL" firstAttribute="top" secondItem="ZF4-PP-RPK" secondAttribute="bottom" constant="20" id="bvA-py-7XD"/>
+                <constraint firstItem="0PK-Ts-BXS" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="fDc-SI-P6J"/>
                 <constraint firstItem="DZh-ai-oAL" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="fXa-sM-SzW"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="0PK-Ts-BXS" secondAttribute="trailing" id="jS7-9T-vDr"/>
+                <constraint firstItem="0PK-Ts-BXS" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="lp6-bJ-CfV"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="S4u-Ml-CGA" secondAttribute="trailing" constant="16" id="rf7-OD-yWT"/>
                 <constraint firstItem="S4u-Ml-CGA" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="tke-Xo-VK2"/>
                 <constraint firstItem="S4u-Ml-CGA" firstAttribute="top" secondItem="FJ1-iG-wdC" secondAttribute="bottom" constant="16" id="yRZ-e2-5sL"/>
             </constraints>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="52.5" y="48.591549295774648"/>
         </view>

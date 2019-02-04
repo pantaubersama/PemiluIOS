@@ -2,38 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>URL_WEB</key>
-	<string>$(URL_WEB)</string>
+	<key>URL_API_NOTIFICATION</key>
+	<string>$(URL_API_NOTIFICATION)</string>
 	<key>AppStoreId</key>
 	<string>$(APP_STORE_ID)</string>
-	<key>LicenseURL</key>
-	<string>$(LICENSE_URL)</string>
 	<key>AppStoreURL</key>
 	<string>$(APP_STORE_URL)</string>
-	<key>URL_SCHEMES</key>
-	<string>$(URL_SCHEMES)</string>
-	<key>COMMUNITY_PANTAU</key>
-	<string>$(COMMUNITY_PANTAU)</string>
-	<key>FAQ_PANTAU</key>
-	<string>$(FAQ_PANTAU)</string>
-	<key>FacebookAppID</key>
-	<string>$(FACEBOOK_ID)</string>
-	<key>FacebookDisplayName</key>
-	<string>$(FACEBOOK_DISPLAY_NAME)</string>
-	<key>FACEBOOK_DISPLAY_NAME</key>
-	<string>$(FACEBOOK_DISPLAY_NAME)</string>
-	<key>FACEBOOK_ID</key>
-	<string>$(FACEBOOK_ID)</string>
-	<key>FACEBOOK_SCHEME</key>
-	<string>$(FACEBOOK_SCHEME)</string>
-	<key>SECRET_TWITTER</key>
-	<string>$(SECRET_TWITTER)</string>
-	<key>KEY_TWITTER</key>
-	<string>$(KEY_TWITTER)</string>
-	<key>TWITTER_SCHEME</key>
-	<string>$(TWITTER_SCHEME)</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Pantau Bersama memerlukan akses pustaka foto untuk melakukan proses input verifikasi serta mengganti profile gambar</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
@@ -77,16 +51,6 @@
 			</array>
 		</dict>
 	</array>
-	<key>LSApplicationQueriesSchemes</key>
-	<array>
-		<string></string>
-		<string>twitter</string>
-		<string>twitterauth</string>
-		<string>fbauth2</string>
-		<string>fbapi</string>
-		<string>fb-messenger-share-api</string>
-		<string>fbshareextension</string>
-	</array>
 	<key>CFBundleVersion</key>
 	<string>$(APP_BUILD_VERSION)</string>
 	<key>CLIENT_ID</key>
@@ -97,8 +61,18 @@
 	<string>$(CLIENT_SECRET)</string>
 	<key>CLIENT_SECRET_AUTH</key>
 	<string>$(CLIENT_SECRET_AUTH)</string>
+	<key>COMMUNITY_PANTAU</key>
+	<string>$(COMMUNITY_PANTAU)</string>
 	<key>DOMAIN_SYMBOLIC</key>
 	<string>$(DOMAIN_SYMBOLIC)</string>
+	<key>FACEBOOK_DISPLAY_NAME</key>
+	<string>$(FACEBOOK_DISPLAY_NAME)</string>
+	<key>FACEBOOK_ID</key>
+	<string>$(FACEBOOK_ID)</string>
+	<key>FACEBOOK_SCHEME</key>
+	<string>$(FACEBOOK_SCHEME)</string>
+	<key>FAQ_PANTAU</key>
+	<string>$(FAQ_PANTAU)</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
@@ -113,8 +87,26 @@
 			</dict>
 		</array>
 	</dict>
+	<key>FacebookAppID</key>
+	<string>$(FACEBOOK_ID)</string>
+	<key>FacebookDisplayName</key>
+	<string>$(FACEBOOK_DISPLAY_NAME)</string>
+	<key>KEY_TWITTER</key>
+	<string>$(KEY_TWITTER)</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string></string>
+		<string>twitter</string>
+		<string>twitterauth</string>
+		<string>fbauth2</string>
+		<string>fbapi</string>
+		<string>fb-messenger-share-api</string>
+		<string>fbshareextension</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>LicenseURL</key>
+	<string>$(LICENSE_URL)</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
@@ -132,8 +124,14 @@
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>Pantau Bersama memerlukan akses camera untuk melakukan proses input verifikasi</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Pantau Bersama memerlukan akses pustaka foto untuk melakukan proses input verifikasi serta mengganti profile gambar</string>
 	<key>REDIRECT_URI</key>
 	<string>$(REDIRECT_URI)</string>
+	<key>SECRET_TWITTER</key>
+	<string>$(SECRET_TWITTER)</string>
+	<key>TWITTER_SCHEME</key>
+	<string>$(TWITTER_SCHEME)</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Lato-Black.ttf</string>
@@ -149,6 +147,11 @@
 		<string>BwModelicaSS01-BoldCondensed.otf</string>
 		<string>BwModelica-BlackCondensed.otf</string>
 		<string>BwModelica-ThinCondensed.otf</string>
+	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+		<string>remote-notification</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
@@ -175,5 +178,9 @@
 	<string>$(URL_API_IDENTITAS)</string>
 	<key>URL_API_PEMILU</key>
 	<string>$(URL_API_PEMILU)</string>
+	<key>URL_SCHEMES</key>
+	<string>$(URL_SCHEMES)</string>
+	<key>URL_WEB</key>
+	<string>$(URL_WEB)</string>
 </dict>
 </plist>
