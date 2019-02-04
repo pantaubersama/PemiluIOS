@@ -116,7 +116,6 @@ final class SettingViewModel: ISettingViewModel, ISettingViewModelInput, ISettin
                     SectionOfSettingData(header: nil, items: [
                         SettingData.updateProfile,
                         SettingData.updatePassword,
-                        SettingData.updateDataLapor,
                         SettingData.verifikasi,
                         SettingData.badge
                         ], isHide: false),
