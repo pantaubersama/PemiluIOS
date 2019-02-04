@@ -138,7 +138,6 @@
 		840901C421DF3BEC001BF559 /* CatatanCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840901C321DF3BEC001BF559 /* CatatanCoordinator.swift */; };
 		8409374B21D360D10024A444 /* PilpresViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8409374A21D360D10024A444 /* PilpresViewModel.swift */; };
 		8409374D21D361240024A444 /* PilpresNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8409374C21D361240024A444 /* PilpresNavigator.swift */; };
-		8416657121F1CA58008A53D4 /* data_fotoktp.json in Resources */ = {isa = PBXBuildFile; fileRef = 8416657021F1CA58008A53D4 /* data_fotoktp.json */; };
 		841CDA3D21C8BC1C0015680C /* LinimasaController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 841CDA3C21C8BC1C0015680C /* LinimasaController.xib */; };
 		8423C3FA21F71711000AAA63 /* DetailAskController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8423C3F921F71711000AAA63 /* DetailAskController.xib */; };
 		8423C3FC21F718A6000AAA63 /* DetailAskController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423C3FB21F718A6000AAA63 /* DetailAskController.swift */; };
@@ -198,6 +197,10 @@
 		8451E05A22045AEC00F03E96 /* InfoNotifViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8451E05922045AEC00F03E96 /* InfoNotifViewModel.swift */; };
 		8451E05C22045BD400F03E96 /* NotificationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8451E05B22045BD300F03E96 /* NotificationCoordinator.swift */; };
 		8451E05E22045C6B00F03E96 /* NotificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8451E05D22045C6B00F03E96 /* NotificationViewModel.swift */; };
+		8451E0642207F6E500F03E96 /* data_fotoktp.json in Resources */ = {isa = PBXBuildFile; fileRef = 8451E0632207F6E500F03E96 /* data_fotoktp.json */; };
+		8451E0662207F71800F03E96 /* selfie-id-card.json in Resources */ = {isa = PBXBuildFile; fileRef = 8451E0652207F71800F03E96 /* selfie-id-card.json */; };
+		8451E0682207F74400F03E96 /* upload-ttd.json in Resources */ = {isa = PBXBuildFile; fileRef = 8451E0672207F74400F03E96 /* upload-ttd.json */; };
+		8451E06A2207F76E00F03E96 /* validation-success.json in Resources */ = {isa = PBXBuildFile; fileRef = 8451E0692207F76E00F03E96 /* validation-success.json */; };
 		8452A4C321DE1EF400196043 /* BuatProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8452A4C221DE1EF400196043 /* BuatProfileController.swift */; };
 		8452A4C521DE1F4300196043 /* BuatProfileController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8452A4C421DE1F4300196043 /* BuatProfileController.xib */; };
 		8452A4C921DE265500196043 /* BuatProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8452A4C821DE265500196043 /* BuatProfileViewModel.swift */; };
@@ -250,9 +253,6 @@
 		84A07FA221D0DFF600269C6B /* SignatureController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84A07FA121D0DFF600269C6B /* SignatureController.xib */; };
 		84A07FA421D0E27F00269C6B /* SignatureController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A07FA321D0E27F00269C6B /* SignatureController.swift */; };
 		84A07FA721D0E2E900269C6B /* SelfIdentitasController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84A07FA621D0E2E900269C6B /* SelfIdentitasController.xib */; };
-		84A07FAC21D0E4FD00269C6B /* selfie-id-card.json in Resources */ = {isa = PBXBuildFile; fileRef = 84A07FA821D0E4FD00269C6B /* selfie-id-card.json */; };
-		84A07FAD21D0E4FD00269C6B /* upload-ttd.json in Resources */ = {isa = PBXBuildFile; fileRef = 84A07FA921D0E4FD00269C6B /* upload-ttd.json */; };
-		84A07FAE21D0E4FD00269C6B /* validation-success.json in Resources */ = {isa = PBXBuildFile; fileRef = 84A07FAA21D0E4FD00269C6B /* validation-success.json */; };
 		84A07FB121D0E7B000269C6B /* SelfIdentitasController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A07FB021D0E7B000269C6B /* SelfIdentitasController.swift */; };
 		84A07FB421D0ECC100269C6B /* SuccessController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84A07FB321D0ECC100269C6B /* SuccessController.xib */; };
 		84A07FB621D0ED8100269C6B /* SuccessController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A07FB521D0ED8100269C6B /* SuccessController.swift */; };
@@ -528,7 +528,6 @@
 		840901C321DF3BEC001BF559 /* CatatanCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatatanCoordinator.swift; sourceTree = "<group>"; };
 		8409374A21D360D10024A444 /* PilpresViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PilpresViewModel.swift; sourceTree = "<group>"; };
 		8409374C21D361240024A444 /* PilpresNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PilpresNavigator.swift; sourceTree = "<group>"; };
-		8416657021F1CA58008A53D4 /* data_fotoktp.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data_fotoktp.json; sourceTree = "<group>"; };
 		841CDA3C21C8BC1C0015680C /* LinimasaController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LinimasaController.xib; sourceTree = "<group>"; };
 		8423C3F921F71711000AAA63 /* DetailAskController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailAskController.xib; sourceTree = "<group>"; };
 		8423C3FB21F718A6000AAA63 /* DetailAskController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailAskController.swift; sourceTree = "<group>"; };
@@ -595,6 +594,10 @@
 		8451E05922045AEC00F03E96 /* InfoNotifViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoNotifViewModel.swift; sourceTree = "<group>"; };
 		8451E05B22045BD300F03E96 /* NotificationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCoordinator.swift; sourceTree = "<group>"; };
 		8451E05D22045C6B00F03E96 /* NotificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewModel.swift; sourceTree = "<group>"; };
+		8451E0632207F6E500F03E96 /* data_fotoktp.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data_fotoktp.json; sourceTree = "<group>"; };
+		8451E0652207F71800F03E96 /* selfie-id-card.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "selfie-id-card.json"; sourceTree = "<group>"; };
+		8451E0672207F74400F03E96 /* upload-ttd.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "upload-ttd.json"; sourceTree = "<group>"; };
+		8451E0692207F76E00F03E96 /* validation-success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "validation-success.json"; sourceTree = "<group>"; };
 		8452A4C221DE1EF400196043 /* BuatProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuatProfileController.swift; sourceTree = "<group>"; };
 		8452A4C421DE1F4300196043 /* BuatProfileController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BuatProfileController.xib; sourceTree = "<group>"; };
 		8452A4C821DE265500196043 /* BuatProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuatProfileViewModel.swift; sourceTree = "<group>"; };
@@ -647,9 +650,6 @@
 		84A07FA121D0DFF600269C6B /* SignatureController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignatureController.xib; sourceTree = "<group>"; };
 		84A07FA321D0E27F00269C6B /* SignatureController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignatureController.swift; sourceTree = "<group>"; };
 		84A07FA621D0E2E900269C6B /* SelfIdentitasController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelfIdentitasController.xib; sourceTree = "<group>"; };
-		84A07FA821D0E4FD00269C6B /* selfie-id-card.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "selfie-id-card.json"; sourceTree = "<group>"; };
-		84A07FA921D0E4FD00269C6B /* upload-ttd.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "upload-ttd.json"; sourceTree = "<group>"; };
-		84A07FAA21D0E4FD00269C6B /* validation-success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "validation-success.json"; sourceTree = "<group>"; };
 		84A07FB021D0E7B000269C6B /* SelfIdentitasController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfIdentitasController.swift; sourceTree = "<group>"; };
 		84A07FB321D0ECC100269C6B /* SuccessController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SuccessController.xib; sourceTree = "<group>"; };
 		84A07FB521D0ED8100269C6B /* SuccessController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessController.swift; sourceTree = "<group>"; };
@@ -1875,19 +1875,19 @@
 		84A07F8D21D0CC8600269C6B /* Lottie */ = {
 			isa = PBXGroup;
 			children = (
+				8451E0692207F76E00F03E96 /* validation-success.json */,
+				8451E0672207F74400F03E96 /* upload-ttd.json */,
+				8451E0652207F71800F03E96 /* selfie-id-card.json */,
+				8451E0632207F6E500F03E96 /* data_fotoktp.json */,
 				84307F3F2200352B006DE04B /* ob1_wordstadium.json */,
 				84307F3D2200352B006DE04B /* ob2_linimasa.json */,
 				84307F412200352B006DE04B /* ob3_penpol.json */,
 				84307F3E2200352B006DE04B /* ob4_lapor.json */,
 				84307F402200352B006DE04B /* ob5_perhitungan.json */,
-				8416657021F1CA58008A53D4 /* data_fotoktp.json */,
 				84B7B8B421E445D00099E7E3 /* empty-status.json */,
 				1143E81121E23229003862B6 /* loading-pantau.json */,
 				1143E80F21E212F7003862B6 /* upvote.json */,
 				137A29F521E2303400F19072 /* coming-soon-coffee.json */,
-				84A07FA821D0E4FD00269C6B /* selfie-id-card.json */,
-				84A07FA921D0E4FD00269C6B /* upload-ttd.json */,
-				84A07FAA21D0E4FD00269C6B /* validation-success.json */,
 				84A07F8E21D0CC9400269C6B /* landing-page-backround-mobile.json */,
 			);
 			path = Lottie;
@@ -2458,7 +2458,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8428AAA321C7A7790008E975 /* Localizable.strings in Resources */,
-				8416657121F1CA58008A53D4 /* data_fotoktp.json in Resources */,
 				13F4569521CF97DA00CE45F1 /* CreateAskController.xib in Resources */,
 				840850DD21D2832200696CB3 /* BadgeController.xib in Resources */,
 				84CA10BF21EF0DE80025CF10 /* AboutController.xib in Resources */,
@@ -2473,9 +2472,9 @@
 				11E107AF21CD42C400B7B074 /* QuizOngoingController.xib in Resources */,
 				84F892A921C787D800DC1048 /* Lato-BlackItalic.ttf in Resources */,
 				8428AAAA21C7AF330008E975 /* GoogleService-Info-Staging.plist in Resources */,
-				84A07FAC21D0E4FD00269C6B /* selfie-id-card.json in Resources */,
 				11D066B121E399C1003AC9BB /* FilterRadioCell.xib in Resources */,
 				11E1079221CD0FE200B7B074 /* QuizDetailController.xib in Resources */,
+				8451E0682207F74400F03E96 /* upload-ttd.json in Resources */,
 				84B2521E21CAB1BE00565D82 /* OnboardingViewController.xib in Resources */,
 				84A07F9721D0D4EA00269C6B /* IdentitasController.xib in Resources */,
 				845C570D21CE0C8100EDCDFE /* ClusterCell.xib in Resources */,
@@ -2488,7 +2487,6 @@
 				84E521AC21F3957F00B7CCBA /* ShareTrendController.xib in Resources */,
 				8451E05122035F9200F03E96 /* TrendImageShare.xib in Resources */,
 				137A29EE21E11E8F00F19072 /* TrendHeaderView.xib in Resources */,
-				84A07FAD21D0E4FD00269C6B /* upload-ttd.json in Resources */,
 				84B6D6F121E24CAA00CD4BC8 /* ShareBadgeController.xib in Resources */,
 				84E2854D21CA4BC800298E31 /* FilterViewController.xib in Resources */,
 				84307F422200352B006DE04B /* ob2_linimasa.json in Resources */,
@@ -2509,18 +2507,19 @@
 				8478B8E621FF1FAA00CE192A /* InfoNotifCell.xib in Resources */,
 				84619D3C21DA88C800EB58CF /* ItemInfoCell.xib in Resources */,
 				8441DB5621CCF19C00B078DF /* DetailJanjiController.xib in Resources */,
+				8451E0642207F6E500F03E96 /* data_fotoktp.json in Resources */,
 				13F456AF21D36A8500CE45F1 /* UndangAnggotaController.xib in Resources */,
 				84F892AC21C787D800DC1048 /* Lato-Hairline.ttf in Resources */,
 				84F892AD21C787D800DC1048 /* Lato-HairlineItalic.ttf in Resources */,
 				11145F5F21EAF2730046F2AA /* SearchNavbar.xib in Resources */,
 				84F892AE21C787D800DC1048 /* Lato-Italic.ttf in Resources */,
+				8451E06A2207F76E00F03E96 /* validation-success.json in Resources */,
 				8452A4C521DE1F4300196043 /* BuatProfileController.xib in Resources */,
 				84B6D51421F8407800DD742A /* PartyCell.xib in Resources */,
 				84B6D51821F87B5A00DD742A /* NotePreferenceView.xib in Resources */,
 				84F892AF21C787D800DC1048 /* Lato-Light.ttf in Resources */,
 				8428AAAD21C7B4B20008E975 /* GoogleService-Info.plist in Resources */,
 				84B6D50321F81D9D00DD742A /* CatatanPilpresController.xib in Resources */,
-				84A07FAE21D0E4FD00269C6B /* validation-success.json in Resources */,
 				840901BE21DF31CD001BF559 /* CatatanController.xib in Resources */,
 				84F892B021C787D800DC1048 /* Lato-LightItalic.ttf in Resources */,
 				118149F021EC718800192E97 /* ListUserCell.xib in Resources */,
@@ -2562,6 +2561,7 @@
 				11145F6B21EB473B0046F2AA /* CustomMenuBar.xib in Resources */,
 				844C3D4721C4ED6E00199871 /* Assets.xcassets in Resources */,
 				11B3C79321D1110700EDCECB /* QuizSummaryController.xib in Resources */,
+				8451E0662207F71800F03E96 /* selfie-id-card.json in Resources */,
 				840850CC21D2607000696CB3 /* DateViewCell.xib in Resources */,
 				84B7B8C121E487FB0099E7E3 /* ClusterSearchCell.xib in Resources */,
 				84A07FA221D0DFF600269C6B /* SignatureController.xib in Resources */,

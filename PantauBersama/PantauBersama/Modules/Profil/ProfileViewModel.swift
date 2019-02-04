@@ -22,16 +22,16 @@ protocol IProfileViewModelInput {
 }
 
 protocol IProfileViewModelOutput {
-    var backO: Driver<Void> { get }
+    var backO: Driver<Void>! { get }
     var settingO: Driver<Void>! { get }
     var verifikasiO: Driver<Void>! { get }
     var itemsBadgeO: Driver<[SectionOfProfileData]>! { get }
     var userDataO: Driver<UserResponse>! { get }
     var errorO: Driver<Error>! { get }
-    var reqClusterO: Driver<Void> { get }
-    var clusterActionO: Driver<Void> { get }
-    var shareBadgeO: Driver<Void> { get }
-    var lihatBadgeO: Driver<Void> { get }
+    var reqClusterO: Driver<Void>! { get }
+    var clusterActionO: Driver<Void>! { get }
+    var shareBadgeO: Driver<Void>! { get }
+    var lihatBadgeO: Driver<Void>! { get }
 }
 
 protocol IProfileViewModel {
@@ -71,11 +71,11 @@ final class ProfileViewModel: IProfileViewModel, IProfileViewModelInput, IProfil
     var itemsBadgeO: Driver<[SectionOfProfileData]>!
     var userDataO: Driver<UserResponse>!
     var errorO: Driver<Error>!
-    var reqClusterO: Driver<Void>
-    var clusterActionO: Driver<Void>
-    var backO: Driver<Void>
-    var shareBadgeO: Driver<Void>
-    var lihatBadgeO: Driver<Void>
+    var reqClusterO: Driver<Void>!
+    var clusterActionO: Driver<Void>!
+    var backO: Driver<Void>!
+    var shareBadgeO: Driver<Void>!
+    var lihatBadgeO: Driver<Void>!
     
     
     private let backS = PublishSubject<Void>()
@@ -112,7 +112,7 @@ final class ProfileViewModel: IProfileViewModel, IProfileViewModelInput, IProfil
         
         // MARK
         // Get user data from cloud and Local
-        let local: Observable<UserResponse> = AppState.local(key: .me)
+//        let local: Observable<UserResponse> = AppState.local(key: .me)
         let cloud = NetworkService.instance.requestObject(
             PantauAuthAPI.me,
             c: BaseResponse<UserResponse>.self)
@@ -128,7 +128,7 @@ final class ProfileViewModel: IProfileViewModel, IProfileViewModelInput, IProfil
             .catchErrorJustComplete()
         
         let myAccountData = viewWillAppearS
-            .flatMapLatest({ Observable.merge(local, cloud)})
+            .flatMapLatest({ cloud })
         
         // MARK
         // Observable user profile / not my account
@@ -225,6 +225,9 @@ final class ProfileViewModel: IProfileViewModel, IProfileViewModelInput, IProfil
                     }
                 case .leave:
                     return navigator.launchAlertExitCluster()
+                        .do(onNext: { [unowned self] (_) in
+                            self.viewWillAppearS.onNext(())
+                        })
                         .map({ ClusterType.leave })
                 case .undang(let user):
                     if let user = user {
