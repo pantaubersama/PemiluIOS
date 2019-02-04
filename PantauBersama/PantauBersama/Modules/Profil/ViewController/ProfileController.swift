@@ -261,7 +261,8 @@ class ProfileController: UIViewController {
 
 extension ProfileController {
     func setView(view: UIView, hidden: Bool) {
-        UIView.transition(with: view, duration: 0.4, options: .transitionCrossDissolve, animations: {
+        UIView.transition(with: view, duration: 0.4, options: .transitionCrossDissolve, animations: { [weak self] in
+            guard let `self` = self else { return }
             view.isHidden = hidden
             self.isExpanded = true
         })
