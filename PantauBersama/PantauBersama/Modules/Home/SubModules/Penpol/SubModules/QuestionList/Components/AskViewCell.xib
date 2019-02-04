@@ -184,7 +184,6 @@
                                                     <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
                                                         <real key="value" value="9"/>
                                                     </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="typeLabel" value="Lato-Regular"/>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                         </subviews>
@@ -221,7 +220,6 @@
                             <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
                                 <real key="value" value="9"/>
                             </userDefinedRuntimeAttribute>
-                            <userDefinedRuntimeAttribute type="string" keyPath="typeLabel" value="Lato-Regular"/>
                         </userDefinedRuntimeAttributes>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9es-Vo-59M" userLabel="divider">
