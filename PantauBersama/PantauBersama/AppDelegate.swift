@@ -32,14 +32,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
         let schemeTwitter = TWTRTwitter.sharedInstance().application(app, open: url, options: options)
         let schemeFacebook = FBSDKApplicationDelegate.sharedInstance().application(app, open: url, options: options)
-        // MARK
-        // Handler from URL Schemes
-        // Get code from oauth identitas, then parse into callback
-        // Need improve this strategy later...
-        // refresh token etc in Network Services., using granType
-        if let code = url.getQueryString(parameter: "code") {
-            loginSymbolic(code: code)
-        }
+        // MARK: Handle Symbolic URL to Open App
+        // From invitation cluster or magic link
+        print("URL: \(url.absoluteString)")
+//        if let code = url.getQueryString(parameter: "code") {
+//            loginSymbolic(code: code)
+//        }
         return schemeTwitter || schemeFacebook
     }
     
@@ -160,8 +158,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: Register remote notifications
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         Messaging.messaging().apnsToken = deviceToken as Data
-        // TODO: subscribe topic broadcast activity
+        // TODO: subscribe topic broadcast activity and all notifications topics
         Messaging.messaging().subscribe(toTopic: "ios-broadcasts-activity")
+        Messaging.messaging().subscribe(toTopic: "ios-janji_politik-report")
+        Messaging.messaging().subscribe(toTopic: "ios-feed-report")
+        Messaging.messaging().subscribe(toTopic: "ios-quiz-created_quiz")
     }
     // MARK: Remote receive notifications
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
@@ -186,36 +187,6 @@ extension AppDelegate {
             .start(withConsumerKey: AppContext.instance.infoForKey("KEY_TWITTER"),
                    consumerSecret: AppContext.instance.infoForKey("SECRET_TWITTER"))
     }
-    
-    func loginSymbolic(code: String) {
-        NetworkService.instance.requestObject(
-            IdentitasAPI.loginIdentitas(code: code,
-                                        grantType: "authorization_code",
-                                        clientId: AppContext.instance.infoForKey("CLIENT_ID"),
-                                        clientSecret: AppContext.instance.infoForKey("CLIENT_SECRET"),
-                                        redirectURI: AppContext.instance.infoForKey("REDIRECT_URI")),
-            c: IdentitasResponses.self)
-            .subscribe(onSuccess: { (response) in
-                // MARK
-                // Exchange token identitas to get token pantau
-                // Save this token
-                NetworkService.instance.requestObject(
-                    PantauAuthAPI.callback(code: "",
-                                           provider: response.accessToken),
-                    c: PantauAuthResponse.self)
-                    .subscribe(onSuccess: { (response) in
-                        KeychainService.remove(type: NetworkKeychainKind.token)
-                        KeychainService.remove(type: NetworkKeychainKind.refreshToken)
-                        AppState.save(response)
-                        self.appCoordinator = AppCoordinator(window: self.window!)
-                        self.appCoordinator.start()
-                            .subscribe()
-                            .disposed(by: self.disposeBag)
-                    })
-                    .disposed(by: self.disposeBag)
-            })
-            .disposed(by: disposeBag)
-        }
 }
 
 // MARK: - UNUserNotification
