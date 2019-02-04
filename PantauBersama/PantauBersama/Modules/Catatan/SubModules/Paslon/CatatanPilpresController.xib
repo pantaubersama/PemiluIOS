@@ -26,7 +26,7 @@
                 <outlet property="lblKecenderungan" destination="x4s-aU-Gfa" id="iWI-iH-An7"/>
                 <outlet property="lblPercentage" destination="Qtr-qp-90e" id="1q5-Hd-0hh"/>
                 <outlet property="lblPreference" destination="slU-84-8CC" id="uie-c1-GIL"/>
-                <outlet property="lblPreferenceResult" destination="xbx-vL-Er0" id="kfK-uu-L8Y"/>
+                <outlet property="lblUser" destination="PMT-nM-jTj" id="8Tn-ko-MIl"/>
                 <outlet property="view" destination="iN0-l3-epB" id="Qwg-Di-q9p"/>
             </connections>
         </placeholder>
@@ -60,10 +60,10 @@
                     </constraints>
                 </view>
                 <stackView opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceLeftToRight" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="Wtm-yD-xBW">
-                    <rect key="frame" x="16" y="113" width="382" height="41"/>
+                    <rect key="frame" x="16" y="113" width="382" height="27"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pilih Note Calon Presidenmu saat ini : " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="phK-3R-has" customClass="Label" customModule="Common">
-                            <rect key="frame" x="0.0" y="0.0" width="382" height="20.5"/>
+                            <rect key="frame" x="0.0" y="0.0" width="382" height="13.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" red="0.44705882349999998" green="0.44705882349999998" blue="0.44705882349999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <nil key="highlightedColor"/>
@@ -75,7 +75,7 @@
                             </userDefinedRuntimeAttributes>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="(belum menentukan)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="slU-84-8CC" customClass="Label" customModule="Common">
-                            <rect key="frame" x="0.0" y="20.5" width="382" height="20.5"/>
+                            <rect key="frame" x="0.0" y="13.5" width="382" height="13.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" red="0.92693734169999997" green="0.71449714900000005" blue="0.29399454590000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <nil key="highlightedColor"/>
@@ -226,13 +226,10 @@
                                     <rect key="frame" x="63" y="0.0" width="323" height="48"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g4T-gY-cgR">
-                                            <rect key="frame" x="0.0" y="0.0" width="323" height="24"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="323" height="16"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Kecenderunganmu," textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x4s-aU-Gfa" customClass="Label" customModule="Common">
-                                                    <rect key="frame" x="0.0" y="0.0" width="135" height="24"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="135" id="oZl-7P-cLm"/>
-                                                    </constraints>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x4s-aU-Gfa" customClass="Label" customModule="Common">
+                                                    <rect key="frame" x="0.0" y="0.0" width="323" height="16"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.22353291510000001" green="0.22352305049999999" blue="0.2235297561" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <nil key="highlightedColor"/>
@@ -242,22 +239,22 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xbx-vL-Er0" customClass="Label" customModule="Common">
-                                                    <rect key="frame" x="135" y="0.0" width="188" height="24"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
-                                                            <real key="value" value="12"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                    </userDefinedRuntimeAttributes>
-                                                </label>
                                             </subviews>
                                         </stackView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qtr-qp-90e">
-                                            <rect key="frame" x="0.0" y="24" width="323" height="24"/>
-                                            <fontDescription key="fontDescription" name="BwModelicaSS01-BoldCondensed" family="Bw Modelica SS01" pointSize="16"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PMT-nM-jTj" customClass="Label" customModule="Common">
+                                            <rect key="frame" x="0.0" y="16" width="323" height="16"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.22353291510000001" green="0.22352305049999999" blue="0.2235297561" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                    <real key="value" value="10"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qtr-qp-90e">
+                                            <rect key="frame" x="0.0" y="32" width="323" height="16"/>
+                                            <fontDescription key="fontDescription" name="BwModelicaSS01-BoldCondensed" family="Bw Modelica SS01" pointSize="13"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>

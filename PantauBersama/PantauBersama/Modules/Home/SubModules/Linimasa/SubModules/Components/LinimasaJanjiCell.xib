@@ -54,9 +54,9 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Anik Kemala," textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uez-rD-hVX" customClass="Label" customModule="Common">
-                                                <rect key="frame" x="29" y="0.0" width="71" height="24"/>
+                                                <rect key="frame" x="29" y="0.0" width="150" height="24"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" priority="750" constant="1" id="CFx-7l-DLU"/>
+                                                    <constraint firstAttribute="width" priority="250" constant="150" id="CFx-7l-DLU"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
@@ -69,7 +69,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gAl-96-UBg" customClass="Label" customModule="Common">
-                                                <rect key="frame" x="105" y="0.0" width="242" height="24"/>
+                                                <rect key="frame" x="184" y="0.0" width="163" height="24"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
