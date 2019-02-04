@@ -157,7 +157,7 @@
                                                         <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NpM-QJ-Tpk" customClass="RoundView" customModule="Common">
                                                             <rect key="frame" x="171.5" y="0.0" width="32" height="32"/>
                                                             <subviews>
-                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icDummyPerson" translatesAutoresizingMaskIntoConstraints="NO" id="l9O-VF-pi7">
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icDummyPerson" translatesAutoresizingMaskIntoConstraints="NO" id="l9O-VF-pi7">
                                                                     <rect key="frame" x="0.0" y="0.0" width="32" height="32"/>
                                                                 </imageView>
                                                             </subviews>

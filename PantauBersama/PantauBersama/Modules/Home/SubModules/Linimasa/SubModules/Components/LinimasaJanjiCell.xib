@@ -35,7 +35,7 @@
                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IhI-Ua-Ln5" customClass="RoundView" customModule="Common">
                                                 <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
                                                 <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icDummyPerson" translatesAutoresizingMaskIntoConstraints="NO" id="hVb-Fv-xxE">
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icDummyPerson" translatesAutoresizingMaskIntoConstraints="NO" id="hVb-Fv-xxE">
                                                         <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
                                                     </imageView>
                                                 </subviews>
