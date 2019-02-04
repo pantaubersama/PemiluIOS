@@ -113,12 +113,6 @@
                                 <fontDescription key="fontDescription" name="BwModelicaSS01-BoldCondensed" family="Bw Modelica SS01" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
-                                        <real key="value" value="13"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="typeLabel" value="Bold"/>
-                                </userDefinedRuntimeAttributes>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="hJg-nK-NJt">
                                 <rect key="frame" x="0.0" y="84" width="412" height="173.5"/>
