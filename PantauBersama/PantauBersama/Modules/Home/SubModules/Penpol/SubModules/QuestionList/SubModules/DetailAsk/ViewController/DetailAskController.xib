@@ -112,7 +112,7 @@
                                 <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="YsF-2F-tem">
                                     <rect key="frame" x="0.0" y="14" width="294" height="28"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icDummyPerson" translatesAutoresizingMaskIntoConstraints="NO" id="wMC-qK-ezZ" customClass="CircularUIImageView" customModule="Common">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icDummyPerson" translatesAutoresizingMaskIntoConstraints="NO" id="wMC-qK-ezZ" customClass="CircularUIImageView" customModule="Common">
                                             <rect key="frame" x="0.0" y="0.0" width="28" height="28"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="28" id="Fts-3N-rvm"/>
@@ -181,10 +181,10 @@
                             <rect key="frame" x="81" y="58" width="286" height="34"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="BZc-aU-dGg">
-                                    <rect key="frame" x="234" y="0.0" width="52" height="34"/>
+                                    <rect key="frame" x="214" y="0.0" width="72" height="34"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V5J-BW-vSj" customClass="ImageButton" customModule="Common">
-                                            <rect key="frame" x="0.0" y="0.0" width="20" height="34"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="30" height="34"/>
                                             <color key="tintColor" red="0.44705882349999998" green="0.44705882349999998" blue="0.44705882349999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="image" keyPath="imageIcon" value="icShare"/>
@@ -197,7 +197,7 @@
                                             </userDefinedRuntimeAttributes>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jma-kh-JIn" customClass="ImageButton" customModule="Common">
-                                            <rect key="frame" x="32" y="0.0" width="20" height="34"/>
+                                            <rect key="frame" x="42" y="0.0" width="30" height="34"/>
                                             <color key="tintColor" red="0.44705882349999998" green="0.44705882349999998" blue="0.44705882349999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="image" keyPath="imageIcon" value="icMore"/>
