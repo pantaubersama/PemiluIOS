@@ -18,7 +18,7 @@ protocol IQuestionNavigator: class {
     func launchCreateAsk(loadCreatedTrigger: AnyObserver<Void>) -> Observable<Void>
     func shareQuestion(question: String) -> Observable<Void>
     func launchQuestionBannerInfo(bannerInfo: BannerInfo) -> Observable<Void>
-    func launchDetailAsk(data: String) -> Observable<Void>
+    func launchDetailAsk(data: String) -> Observable<DetailAskResult>
 }
 
 extension IQuestionNavigator where Self: BaseCoordinator<Void> {
@@ -42,7 +42,7 @@ extension IQuestionNavigator where Self: BaseCoordinator<Void> {
         return coordinate(to: bannerInfoCoordinator)
     }
     
-    func launchDetailAsk(data: String) -> Observable<Void> {
+    func launchDetailAsk(data: String) -> Observable<DetailAskResult> {
         let detailAskCoordinator = DetailAskCoordinator(navigationController: navigationController, data: data)
         return coordinate(to: detailAskCoordinator)
     }

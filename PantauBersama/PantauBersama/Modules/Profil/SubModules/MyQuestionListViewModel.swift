@@ -111,6 +111,34 @@ class MyQuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelInp
                 return items[indexPath.row]
             }
             .flatMapLatest({ navigator.launchDetailAsk(data: $0.id) })
+            .flatMapLatest({ (type) -> Driver<Void> in
+                switch type {
+                case .cancel:
+                    return Driver.empty()
+                case .vote(let question):
+                    var currentItems = self.questionRelay.value
+                    guard let index = currentItems.index(where: { item -> Bool in
+                        return item.id == question?.id
+                    }) else {
+                        return Driver.empty()
+                    }
+                    var updateQuestion = currentItems[index]
+                    if question?.isLiked == false {
+                        updateQuestion.isLiked = true
+                        updateQuestion.likeCount = updateQuestion.likeCount + 1
+                        currentItems.remove(at: index)
+                        currentItems.insert(updateQuestion, at: index)
+                        self.questionRelay.accept(currentItems)
+                    } else {
+                        updateQuestion.isLiked = false
+                        updateQuestion.likeCount = updateQuestion.likeCount - 1
+                        currentItems.remove(at: index)
+                        currentItems.insert(updateQuestion, at: index)
+                        self.questionRelay.accept(currentItems)
+                    }
+                    return Driver.empty()
+                }
+            }).mapToVoid()
             .asDriverOnErrorJustComplete()
         
         moreSelectedO = moreSubject

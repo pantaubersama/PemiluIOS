@@ -156,7 +156,7 @@ extension SearchCoordinator: SearchNavigator {
         return Observable.never()
     }
 
-    func launchDetailAsk(data: String) -> Observable<Void> {
+    func launchDetailAsk(data: String) -> Observable<DetailAskResult> {
         let detailAskCoordinator = DetailAskCoordinator(navigationController: navigationController, data: data)
         return coordinate(to: detailAskCoordinator)
     }

@@ -16,7 +16,7 @@ protocol DetailAskNavigaor {
     func launchProfileUser(isMyAccount: Bool, userId: String?) -> Observable<Void>
 }
 
-final class DetailAskCoordinator: BaseCoordinator<Void> {
+final class DetailAskCoordinator: BaseCoordinator<DetailAskResult> {
     
     private let navigationController: UINavigationController
     var finish: Observable<Void>!
@@ -27,15 +27,18 @@ final class DetailAskCoordinator: BaseCoordinator<Void> {
         self.data = data
     }
     
-    override func start() -> Observable<Void> {
+    override func start() -> Observable<CoordinationResult> {
         let viewController = DetailAskController()
         let viewModel = DetailAskViewModel(navigator: self, data: data)
         viewController.viewModel = viewModel
         viewController.hidesBottomBarWhenPushed = true
         navigationController.pushViewController(viewController, animated: true)
-        return finish.do(onNext: { [weak self] (_) in
-            self?.navigationController.popViewController(animated: true)
-        })
+        return viewModel.output.backO
+            .asObservable()
+            .take(1)
+            .do(onNext: { [weak self] (_) in
+                self?.navigationController.popViewController(animated: true)
+            })
     }
     
 }

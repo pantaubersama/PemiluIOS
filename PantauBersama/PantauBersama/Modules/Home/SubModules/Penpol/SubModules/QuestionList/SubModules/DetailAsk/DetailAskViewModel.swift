@@ -11,6 +11,11 @@ import RxCocoa
 import Networking
 import Common
 
+enum DetailAskResult {
+    case cancel
+    case vote(Question?)
+}
+
 final class DetailAskViewModel: ViewModelType {
     
     let input: Input
@@ -38,6 +43,7 @@ final class DetailAskViewModel: ViewModelType {
         let voteO: Driver<(Bool)>
         let unvoteO: Driver<Bool>
         let profileO: Driver<Void>
+        let backO: Driver<DetailAskResult>
     }
     
     private let backS = PublishSubject<Void>()
@@ -137,6 +143,14 @@ final class DetailAskViewModel: ViewModelType {
             })
             .asDriverOnErrorJustComplete()
         
+        let back = backS.map({ DetailAskResult.cancel })
+        let voteSelected = Observable.merge(voteS, unvoteS)
+            .map({ (result) in DetailAskResult.vote(result)})
+        
+        let backSelected = Observable.merge(back, voteSelected)
+            .take(1)
+            .asDriverOnErrorJustComplete()
+        
         output = Output(
             itemsO: dataQuestion.asDriverOnErrorJustComplete(),
             moreO: moreS.asDriverOnErrorJustComplete(),
@@ -145,7 +159,8 @@ final class DetailAskViewModel: ViewModelType {
             deleteO: deleteS.asDriverOnErrorJustComplete(),
             voteO: vote,
             unvoteO: unvote,
-            profileO: profile
+            profileO: profile,
+            backO: backSelected
         )
         
         
