@@ -63,7 +63,7 @@ class UndangAnggotaController: UIViewController {
         viewModel.output.switchSelected
             .drive(onNext: { [weak self] (s) in
                 guard let `self` = self else { return }
-                self.tfLink.text = "\(AppContext.instance.infoForKey("URL_WEB"))/\(s)"
+                self.tfLink.text = "\(AppContext.instance.infoForKey("URL_WEB"))/cluster?=\(s)"
             })
             .disposed(by: disposeBag)
         
@@ -92,7 +92,7 @@ class UndangAnggotaController: UIViewController {
                         self.tfLink.isEnabled = state
                         self.switchButton.isEnabled = false
                         self.tfLink.placeholder = state ? "Masukan tautan disini" : "Magic link cluster Anda tidak aktif"
-                        self.tfLink.text = state ? "\(AppContext.instance.infoForKey("URL_WEB"))/\(magicLink)" : nil
+                        self.tfLink.text = state ? "\(AppContext.instance.infoForKey("URL_WEB"))/cluster?=\(magicLink)" : nil
                     }
                 }
             })
