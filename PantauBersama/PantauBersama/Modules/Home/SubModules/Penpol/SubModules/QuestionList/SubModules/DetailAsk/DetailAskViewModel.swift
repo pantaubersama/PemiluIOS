@@ -11,6 +11,10 @@ import RxCocoa
 import Networking
 import Common
 
+enum DetailAskResult {
+    case done(data: Question, change: Int)
+}
+
 final class DetailAskViewModel: ViewModelType {
     
     let input: Input
@@ -38,6 +42,7 @@ final class DetailAskViewModel: ViewModelType {
         let voteO: Driver<(Bool)>
         let unvoteO: Driver<Bool>
         let profileO: Driver<Void>
+        let backO: Driver<DetailAskResult>
     }
     
     private let backS = PublishSubject<Void>()
@@ -115,12 +120,19 @@ final class DetailAskViewModel: ViewModelType {
             .flatMapLatest({ navigator.shareQuestion(question: $0.id) })
             .asDriverOnErrorJustComplete()
         
+        var change: Int = 0 // for not upvote and unvote
         let vote = voteS
             .flatMapLatest({ voteQuestion(question: $0) })
+            .do(onNext: { (_) in
+                change = 1
+            })
             .asDriverOnErrorJustComplete()
         
         let unvote = unvoteS
             .flatMapLatest({ deleteVoteQuestion(question: $0) })
+            .do(onNext: { (_) in
+                change = 2
+            })
             .asDriverOnErrorJustComplete()
         
         let profile = profileS
@@ -137,6 +149,15 @@ final class DetailAskViewModel: ViewModelType {
             })
             .asDriverOnErrorJustComplete()
         
+        
+        let back = backS
+            .withLatestFrom(dataQuestion)
+            .map({ (result) in DetailAskResult.done(data: result, change: change) })
+        
+        let backSelected = back
+            .take(1)
+            .asDriverOnErrorJustComplete()
+        
         output = Output(
             itemsO: dataQuestion.asDriverOnErrorJustComplete(),
             moreO: moreS.asDriverOnErrorJustComplete(),
@@ -145,7 +166,8 @@ final class DetailAskViewModel: ViewModelType {
             deleteO: deleteS.asDriverOnErrorJustComplete(),
             voteO: vote,
             unvoteO: unvote,
-            profileO: profile
+            profileO: profile,
+            backO: backSelected
         )
         
         

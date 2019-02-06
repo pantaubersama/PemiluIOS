@@ -65,7 +65,10 @@ class JanjiPolitikViewController: UITableViewController,IJanpolViewController {
         viewModel.output.createO
             .drive(onNext: { (response) in
                 print("Create Janpol: \(response)")
-                self.viewModel.input.refreshI.onNext("")
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5, execute: {
+                    self.viewModel.input.refreshI.onNext("")
+                })
+                
             })
             .disposed(by: disposeBag)
         
