@@ -113,28 +113,30 @@ class MyQuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelInp
             .flatMapLatest({ navigator.launchDetailAsk(data: $0.id) })
             .flatMapLatest({ (type) -> Driver<Void> in
                 switch type {
-                case .cancel:
-                    return Driver.empty()
-                case .vote(let question):
+                case .done(let data, let change):
                     var currentItems = self.questionRelay.value
                     guard let index = currentItems.index(where: { item -> Bool in
-                        return item.id == question?.id
+                        return item.id == data.id
                     }) else {
                         return Driver.empty()
                     }
                     var updateQuestion = currentItems[index]
-                    if question?.isLiked == false {
+                    switch change {
+                    case 1:
+                        // upvote
                         updateQuestion.isLiked = true
                         updateQuestion.likeCount = updateQuestion.likeCount + 1
                         currentItems.remove(at: index)
                         currentItems.insert(updateQuestion, at: index)
                         self.questionRelay.accept(currentItems)
-                    } else {
+                    case 2:
+                        // unvote
                         updateQuestion.isLiked = false
                         updateQuestion.likeCount = updateQuestion.likeCount - 1
                         currentItems.remove(at: index)
                         currentItems.insert(updateQuestion, at: index)
                         self.questionRelay.accept(currentItems)
+                    default: break
                     }
                     return Driver.empty()
                 }

@@ -36,7 +36,8 @@ final class DetailAskCoordinator: BaseCoordinator<DetailAskResult> {
         return viewModel.output.backO
             .asObservable()
             .take(1)
-            .do(onNext: { [weak self] (_) in
+            .do(onNext: { [weak self] (type) in
+                print("Type coordination:\(type)")
                 self?.navigationController.popViewController(animated: true)
             })
     }
