@@ -68,7 +68,7 @@
                                 <rect key="frame" x="0.0" y="16" width="314" height="20"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Adriana C. Ocampo Uria @Toranta . 5 des" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rkp-BQ-KHE" customClass="Label" customModule="Common">
-                                        <rect key="frame" x="0.0" y="0.0" width="217.5" height="20"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="246" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="width" priority="750" constant="1" id="ROo-Ks-2hA"/>
                                         </constraints>
@@ -83,7 +83,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U4w-gB-wD6" customClass="Label" customModule="Common">
-                                        <rect key="frame" x="220.5" y="0.0" width="70.5" height="20"/>
+                                        <rect key="frame" x="249" y="0.0" width="42" height="20"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.48628133540000001" green="0.4862622023" blue="0.48627519609999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
@@ -106,14 +106,14 @@
                                     <constraint firstAttribute="height" constant="20" id="ziA-QQ-Gnm"/>
                                 </constraints>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yTc-rH-RRB" customClass="Label" customModule="Common">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yTc-rH-RRB" customClass="Label" customModule="Common">
                                 <rect key="frame" x="0.0" y="41" width="314" height="67.5"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" priority="750" constant="60" id="atX-wT-skV"/>
+                                    <constraint firstAttribute="height" priority="250" constant="60" id="atX-wT-skV"/>
                                 </constraints>
                                 <string key="text">#SahabatBawaslu, Sentra  Gakkumdu berkomitmen untuk tidak memunculkan sikap ego sektoral antar personil, baik dari pihak Bawaslu,  Kepolisian,  maupun Kejaksaan dalam menegakkan hukum Pemilu dalam Rapat Koordinasi Nasional Sentra Gakkumdu,  di Jakarta, Rabu,  (5/12/2018).</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="textColor" red="0.22353291510000001" green="0.22352305049999999" blue="0.2235297561" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
@@ -206,6 +206,7 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="avatar" destination="vpl-MM-rZo" id="sPK-ok-fkH"/>
+                <outlet property="bottomConstraint" destination="cUb-ZB-zU7" id="kyr-cR-cUg"/>
                 <outlet property="constraintMedia" destination="Ea0-FC-7MQ" id="ZhB-pT-x2D"/>
                 <outlet property="containerMedia" destination="k6M-0U-D2T" id="Rm3-to-wrC"/>
                 <outlet property="content" destination="yTc-rH-RRB" id="5pp-pg-1pa"/>

@@ -27,6 +27,7 @@ class LinimasaCell: UITableViewCell  {
     @IBOutlet weak var contentImageTwo: UIImageView!
     @IBOutlet weak var containerMedia: RoundView!
     @IBOutlet weak var constraintMedia: NSLayoutConstraint!
+    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
     
     private(set) var disposeBag = DisposeBag()
