@@ -48,13 +48,12 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OgS-If-HKZ">
                     <rect key="frame" x="0.0" y="124" width="375" height="35"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dhC-JR-KDF" customClass="Button" customModule="Common">
-                            <rect key="frame" x="281" y="5.5" width="59" height="24"/>
+                        <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dhC-JR-KDF" customClass="Button" customModule="Common">
+                            <rect key="frame" x="247" y="0.0" width="120" height="35"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="24" id="kyG-Or-XkB"/>
+                                <constraint firstAttribute="width" constant="120" id="rOX-2L-xS6"/>
                             </constraints>
                             <color key="tintColor" red="0.43529412150000002" green="0.4431372583" blue="0.47450980539999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <inset key="imageEdgeInsets" minX="85" minY="0.0" maxX="0.0" maxY="0.0"/>
                             <state key="normal" title="Filter" image="icFilterGrey">
                                 <color key="titleColor" red="0.43529412150000002" green="0.4431372583" blue="0.47450980539999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
@@ -65,9 +64,11 @@
                             </userDefinedRuntimeAttributes>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    <color key="backgroundColor" red="0.95686274509803915" green="0.95686274509803915" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="trailing" secondItem="dhC-JR-KDF" secondAttribute="trailing" constant="35" id="5uE-FN-Kt0"/>
+                        <constraint firstAttribute="trailing" secondItem="dhC-JR-KDF" secondAttribute="trailing" constant="8" id="5uE-FN-Kt0"/>
+                        <constraint firstItem="dhC-JR-KDF" firstAttribute="top" secondItem="OgS-If-HKZ" secondAttribute="top" id="GNQ-If-Q1K"/>
+                        <constraint firstAttribute="bottom" secondItem="dhC-JR-KDF" secondAttribute="bottom" id="aCQ-OL-GP5"/>
                         <constraint firstAttribute="height" constant="35" id="uPy-dN-Z3B"/>
                         <constraint firstItem="dhC-JR-KDF" firstAttribute="centerY" secondItem="OgS-If-HKZ" secondAttribute="centerY" id="v2Q-Oh-Zks"/>
                     </constraints>
@@ -106,7 +107,7 @@
                             </state>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    <color key="backgroundColor" red="0.95686274509803915" green="0.95686274509803915" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="yNn-Et-0Be" secondAttribute="trailing" constant="8" id="AP7-oy-Z0B"/>
                         <constraint firstItem="5P5-VT-BU0" firstAttribute="leading" secondItem="93S-sh-dgx" secondAttribute="leading" constant="8" id="AXS-TB-71Q"/>
@@ -119,7 +120,7 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="0.74182659390000005" green="0.033272977920000002" blue="0.1091294661" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="93S-sh-dgx" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="11i-ro-rXi"/>
                 <constraint firstItem="93S-sh-dgx" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="2QL-Hj-eYh"/>
