@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>DOMAIN_SYMBOLIC_REDIRECT</key>
+	<string>$(DOMAIN_SYMBOLIC_REDIRECT)</string>
 	<key>URL_API_NOTIFICATION</key>
 	<string>$(URL_API_NOTIFICATION)</string>
 	<key>AppStoreId</key>

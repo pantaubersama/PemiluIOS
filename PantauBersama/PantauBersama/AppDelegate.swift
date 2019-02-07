@@ -32,12 +32,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
         let schemeTwitter = TWTRTwitter.sharedInstance().application(app, open: url, options: options)
         let schemeFacebook = FBSDKApplicationDelegate.sharedInstance().application(app, open: url, options: options)
-        // MARK: Handle Symbolic URL to Open App
-        // From invitation cluster or magic link
-        print("URL: \(url.absoluteString)")
-//        if let code = url.getQueryString(parameter: "code") {
-//            loginSymbolic(code: code)
-//        }
         return schemeTwitter || schemeFacebook
     }
     
@@ -278,4 +272,20 @@ extension AppDelegate {
             // Fallback on earlier versions
         }
     }
+}
+
+// MARK
+// Handler data from Associated Apple Domains
+extension AppDelegate {
+    
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+        print("Continue User Activity called: ")
+        if userActivity.activityType == NSUserActivityTypeBrowsingWeb {
+            let url = userActivity.webpageURL!
+            print(url.absoluteString)
+            //handle url and open whatever page you want to open.
+        }
+        return true
+    }
+    
 }
