@@ -52,6 +52,8 @@ class UserJanpolListViewModel: IJanpolListViewModel, IJanpolListViewModelInput, 
     internal let errorTracker = ErrorTracker()
     internal let activityIndicator = ActivityIndicator()
     internal let headerViewModel = BannerHeaderViewModel()
+    private let janpolItems = BehaviorRelay<[JanjiPolitik]>(value: [])
+    private(set) var disposeBag = DisposeBag()
     
     private var filterItems: [PenpolFilterModel.FilterItem] = []
     private let userId: String
@@ -71,19 +73,20 @@ class UserJanpolListViewModel: IJanpolListViewModel, IJanpolListViewModelInput, 
         
         error = errorTracker.asDriver()
         
-        let janpolItems = refreshSubject
-            .flatMapLatest { [unowned self] (query) -> Observable<[JanjiPolitik]> in
-                
-                return self.paginateItems(nextBatchTrigger: self.nextSubject.asObservable(), cid: "", filter: "", query: query)
-                    .trackError(self.errorTracker)
-                    .trackActivity(self.activityIndicator)
-                    .catchErrorJustReturn([])
+        refreshSubject.flatMapLatest { [unowned self] (query) -> Observable<[JanjiPolitik]> in
+            return self.paginateItems(nextBatchTrigger: self.nextSubject.asObservable(), cid: "", filter: "", query: query)
+                .trackError(self.errorTracker)
+                .trackActivity(self.activityIndicator)
+                .catchErrorJustReturn([])
             }
-            .asDriver(onErrorJustReturn: [])
+            .bind { [weak self](items) in
+                guard let weakSelf = self else { return }
+                weakSelf.janpolItems.accept(items)
+            }.disposed(by: disposeBag)
         
         // MARK:
         // Map feeds response to cell list
-        items = janpolItems
+        items = janpolItems.asDriver(onErrorJustReturn: [])
             .map { (list) -> [ICellConfigurator] in
                 return list.map({ janpol -> ICellConfigurator in
                     return LinimasaJanjiCellConfigured(item: LinimasaJanjiCell.Input(viewModel: self, janpol: janpol))
@@ -173,7 +176,7 @@ class UserJanpolListViewModel: IJanpolListViewModel, IJanpolListViewModelInput, 
         filter: String,
         query: String) -> Observable<Page<[JanjiPolitik]>> {
         return NetworkService.instance
-            .requestObject(LinimasaAPI.getUserJanpol(id: userId, page: batch.page, perPage: batch.page, query: query),
+            .requestObject(LinimasaAPI.getUserJanpol(id: userId, page: batch.page, perPage: batch.limit, query: query),
                            c: BaseResponse<JanjiPolitikResponse>.self)
             .map({ self.transformToPage(response: $0, batch: batch) })
             .asObservable()
