@@ -179,6 +179,8 @@ class DetailAskController: UIViewController {
         viewModel.output.profileO
             .drive()
             .disposed(by: disposeBag)
+        
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = false
     }
     
     private func configureLottie() {
@@ -200,6 +202,7 @@ class DetailAskController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.navigationBar.isHidden = false
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = true
     }
     
 }

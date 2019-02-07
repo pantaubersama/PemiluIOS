@@ -35,6 +35,7 @@ class PenpolCoordinator: BaseCoordinator<Void> {
         let viewModel = PenpolViewModel(navigator: self)
         viewController.viewModel = viewModel
         navigationController.setViewControllers([viewController], animated: true)
+        navigationController.interactivePopGestureRecognizer?.delegate = nil
         return Observable.never()
     }
 }
