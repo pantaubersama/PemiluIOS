@@ -13,9 +13,9 @@ import UIKit
 enum PageViews: Int {
     case firstItem
     case secondItem
-    case thirdItem
-    case fourthItem
-    case fiveItem
+//    case thirdItem
+//    case fourthItem
+//    case fiveItem
 }
 
 final class StartOnboardingController: UIViewController {
@@ -35,9 +35,9 @@ final class StartOnboardingController: UIViewController {
         return [
             self.getOnboardingItemVC(item: .firstItem),
             self.getOnboardingItemVC(item: .secondItem),
-            self.getOnboardingItemVC(item: .thirdItem),
-            self.getOnboardingItemVC(item: .fourthItem),
-            self.getOnboardingItemVC(item: .fiveItem)
+//            self.getOnboardingItemVC(item: .thirdItem),
+//            self.getOnboardingItemVC(item: .fourthItem),
+//            self.getOnboardingItemVC(item: .fiveItem)
         ]
     }()
     
@@ -80,15 +80,15 @@ final class StartOnboardingController: UIViewController {
         case .secondItem:
             ob.item = OnboardingiItem(title: "Understanding Over Branding", description: "Fleksibilitas uji preferensi kebijakan kandidat calon pemimpin.", lottieAnimationView: "ob3_penpol")
             return ob
-        case .thirdItem:
-            ob.item = OnboardingiItem(title: "Chivalry Over Bigotry", description: "Ruang adu argumentasi sehat dan berkualitas.", lottieAnimationView: "ob1_wordstadium")
-            return ob
-        case .fourthItem:
-            ob.item = OnboardingiItem(title: "Inspector Over Spectator", description: "Kemudahan pelaporan dugaan pelanggaran Pemilu 2019.", lottieAnimationView: "ob4_lapor")
-            return ob
-        case .fiveItem:
-            ob.item = OnboardingiItem(title: "Festivity Over Apathy", description: "Rekapitulasi partisipatif real-time dan transparan.", lottieAnimationView: "ob5_perhitungan")
-            return ob
+//        case .thirdItem:
+//            ob.item = OnboardingiItem(title: "Chivalry Over Bigotry", description: "Ruang adu argumentasi sehat dan berkualitas.", lottieAnimationView: "ob1_wordstadium")
+//            return ob
+//        case .fourthItem:
+//            ob.item = OnboardingiItem(title: "Inspector Over Spectator", description: "Kemudahan pelaporan dugaan pelanggaran Pemilu 2019.", lottieAnimationView: "ob4_lapor")
+//            return ob
+//        case .fiveItem:
+//            ob.item = OnboardingiItem(title: "Festivity Over Apathy", description: "Rekapitulasi partisipatif real-time dan transparan.", lottieAnimationView: "ob5_perhitungan")
+//            return ob
         }
     }
     
@@ -100,11 +100,17 @@ final class StartOnboardingController: UIViewController {
         if orderedViewController.count > pageControl.currentPage {
             self.pageContrainer.goToNextPage()
             pageControl.currentPage += 1
-            if pageControl.currentPage == 4 {
+            if pageControl.currentPage == 1 {
                 self.btnNext.setTitle("SELESAI", for: .normal)
-                // TODO: Go to app Coordinator
-                self.handleAppCoordinator()
+                self.btnNext.addTarget(self, action: #selector(handleSelesai(sender:)), for: .touchUpInside)
             }
+        }
+    }
+    
+    @objc private func handleSelesai(sender: UIButton) {
+        // TODO: Go to app Coordinator
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [unowned self] in
+            self.handleAppCoordinator()
         }
     }
     
@@ -152,7 +158,7 @@ extension StartOnboardingController: UIPageViewControllerDataSource, UIPageViewC
             }
             pageControl.currentPage = currentIndex
             self.btnNext.setTitle("LANJUT", for: .normal)
-            if currentIndex == 4 {
+            if currentIndex == 1 {
                 self.btnNext.setTitle("SELESAI", for: .normal)
             }
         }
