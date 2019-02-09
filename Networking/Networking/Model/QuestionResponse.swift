@@ -43,11 +43,11 @@ public struct QuestionsResponse: Codable {
 public struct Question: Codable {
     public let id, body: String
     public let createdAt: String
-    public let createdAtInWord: CreatedAt
-    public let likeCount: Int
-    public let user: Creator
-    public let isLiked: Bool
-    public let isReported: Bool
+    public let createdAtInWord: CreatedAt?
+    public let likeCount: Int?
+    public let user: Creator?
+    public let isLiked: Bool?
+    public let isReported: Bool?
     
     enum CodingKeys: String, CodingKey {
         case id, body
