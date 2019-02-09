@@ -49,6 +49,9 @@ class DetailAskController: UIViewController {
         configureLottie()
         
         buttonClose.rx.tap
+            .do(onNext: { [unowned self](_) in
+                self.navigationController?.popViewController(animated: true)
+            })
             .bind(to: viewModel.input.backI)
             .disposed(by: disposeBag)
         
@@ -72,18 +75,18 @@ class DetailAskController: UIViewController {
             .map({ self.data })
             .bind(onNext: { [weak self] (question) in
                 guard let question = question else { return }
-                if question.isLiked {
+                if question.isLiked ?? false {
                     self?.voteAnimation.play(fromProgress: 1, toProgress: 0, withCompletion: { (finished) in
                         if finished {
                             self?.viewModel.input.unvoteI.onNext((question))
-                            self?.lblVote.text = "\(question.likeCount - 1)"
+                            self?.lblVote.text = "\((question.likeCount ?? 0) - 1)"
                         }
                     })
                 } else {
                     self?.voteAnimation.play(completion: { (finished) in
                         if finished {
                             self?.viewModel.input.voteI.onNext((question))
-                            self?.lblVote.text = "\(question.likeCount + 1)"
+                            self?.lblVote.text = "\((question.likeCount ?? 0) + 1)"
                         }
                     })
                 }
@@ -107,16 +110,16 @@ class DetailAskController: UIViewController {
         
         viewModel.output.itemsO
             .do(onNext: { [unowned self] (question) in
-                if let thumbnail = question.user.avatar.thumbnail.url {
+                if let thumbnail = question.user?.avatar.thumbnail.url {
                     self.avatar.af_setImage(withURL: URL(string: thumbnail)!)
                 }
-                self.lblTime.text = question.createdAtInWord.id
-                self.lblName.text = question.user.fullName
-                self.lblStatus.text = question.user.about
+                self.lblTime.text = question.createdAtInWord?.id
+                self.lblName.text = question.user?.fullName
+                self.lblStatus.text = question.user?.about
                 self.lblContent.text = question.body
-                self.lblVote.text = "\(question.likeCount)"
+                self.lblVote.text = "\(question.likeCount ?? 0)"
                 self.data = question
-                if question.isLiked {
+                if question.isLiked ?? false {
                     self.voteAnimation.play(fromProgress: 1, toProgress: 1, withCompletion: nil)
                 }
             })
@@ -148,7 +151,7 @@ class DetailAskController: UIViewController {
                     })
                     let cancel = UIAlertAction(title: "Batal", style: .cancel, handler: nil)
                     
-                    if myId == question.user.id {
+                    if myId == question.user?.id {
                         alert.addAction(hapus)
                     }
                     

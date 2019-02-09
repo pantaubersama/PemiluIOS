@@ -21,24 +21,24 @@ public struct QuestionModel {
     init(question: Question) {
         self.id = question.id
         self.body = question.body
-        self.createdAt = CreatedAt(iso8601: question.createdAtInWord.iso8601,
-                                 en: question.createdAtInWord.en,
-                                 id: question.createdAtInWord.id)
-        self.likeCount = question.likeCount
-        self.user = Creator(id: question.user.id,
-                         email: question.user.email,
-                         fullName: question.user.fullName,
-                         username: question.user.username ?? "",
-                         avatar: ImageModel(url: question.user.avatar.url ?? "",
-                                             thumbnail: ImageModel.ImageSize(url: question.user.avatar.thumbnail.url ?? ""),
-                                             thumbnailSquare: ImageModel.ImageSize(url: question.user.avatar.thumbnailSquare.url ?? ""),
-                                             medium: ImageModel.ImageSize(url: question.user.avatar.medium.url ?? ""),
-                                             mediumSquare: ImageModel.ImageSize(url: question.user.avatar.mediumSquare.url ?? "")),
-                         verified: question.user.verified,
-                         cluster: question.user.cluster,
-                         about: question.user.about ?? "")
-        self.isLiked = question.isLiked
-        self.isReported = question.isReported
+        self.createdAt = CreatedAt(iso8601: question.createdAtInWord?.iso8601 ?? "",
+                                   en: question.createdAtInWord?.en ?? "",
+                                   id: question.createdAtInWord?.id ?? "")
+        self.likeCount = question.likeCount ?? 0
+        self.user = Creator(id: question.user?.id ?? "",
+                            email: question.user?.email ?? "",
+                            fullName: question.user?.fullName ?? "",
+                            username: question.user?.username ?? "",
+                            avatar: ImageModel(url: question.user?.avatar.url ?? "",
+                                               thumbnail: ImageModel.ImageSize(url: question.user?.avatar.thumbnail.url ?? ""),
+                                               thumbnailSquare: ImageModel.ImageSize(url: question.user?.avatar.thumbnailSquare.url ?? ""),
+                                               medium: ImageModel.ImageSize(url: question.user?.avatar.medium.url ?? ""),
+                                               mediumSquare: ImageModel.ImageSize(url: question.user?.avatar.mediumSquare.url ?? "")),
+                            verified: question.user?.verified,
+                            cluster: question.user?.cluster,
+                            about: question.user?.about ?? "")
+        self.isLiked = question.isLiked ?? false
+        self.isReported = question.isReported ?? false
         
     }
     

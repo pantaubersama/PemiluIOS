@@ -139,10 +139,10 @@ final class DetailAskViewModel: ViewModelType {
             .withLatestFrom(dataQuestion)
             .flatMapLatest({ (question) -> Observable<Void> in
                 if let myId = AppState.local()?.user.id {
-                    if myId == question.user.id {
+                    if myId == question.user?.id {
                         return navigator.launchProfileUser(isMyAccount: true, userId: nil)
                     } else {
-                        return navigator.launchProfileUser(isMyAccount: false, userId: question.user.id)
+                        return navigator.launchProfileUser(isMyAccount: false, userId: question.user?.id)
                     }
                 }
                 return Observable.empty()
