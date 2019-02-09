@@ -152,9 +152,6 @@ final class DetailAskViewModel: ViewModelType {
         
         let back = backS
             .withLatestFrom(dataQuestion)
-            .do(onNext: { (question) in
-                print("BACK")
-            })
             .map({ (result) in DetailAskResult.done(data: result, change: change) })
         
         let backSelected = back
