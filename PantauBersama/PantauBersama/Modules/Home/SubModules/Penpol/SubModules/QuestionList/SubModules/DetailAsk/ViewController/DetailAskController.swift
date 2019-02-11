@@ -25,7 +25,7 @@ class DetailAskController: UIViewController {
     @IBOutlet weak var lblContent: UILabel!
     @IBOutlet weak var btnShare: ImageButton!
     @IBOutlet weak var btnMore: ImageButton!
-    
+    @IBOutlet weak var containerUser: UIView!
     var viewModel: DetailAskViewModel!
     private var data: Question!
     private let disposeBag: DisposeBag = DisposeBag()
@@ -66,12 +66,8 @@ class DetailAskController: UIViewController {
             .bind(to: viewModel.input.shareI)
             .disposed(by: disposeBag)
         
-        avatar.addGestureRecognizer(tap)
-        avatar.isUserInteractionEnabled = true
-        lblName.addGestureRecognizer(tap)
-        lblName.isUserInteractionEnabled = true
-        lblStatus.addGestureRecognizer(tap)
-        lblStatus.isUserInteractionEnabled = true
+        containerUser.addGestureRecognizer(tap)
+        containerUser.isUserInteractionEnabled = true
         tap.rx.event
             .bind(to: viewModel.input.profileTrigger)
             .disposed(by: disposeBag)
