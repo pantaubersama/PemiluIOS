@@ -15,10 +15,12 @@ class HomeCoordinator: BaseCoordinator<Void> {
     
     private let window: UIWindow
     private let viewControllers: [UINavigationController]
+    private var isNewQuiz = false
     var selectedIndex: Int = 1
     
-    init(window: UIWindow) {
+    init(window: UIWindow, isNewQuiz: Bool = false) {
         self.window = window
+        self.isNewQuiz = isNewQuiz
         self.viewControllers = PantauBarKind.items
             .map { (t) -> UINavigationController in
                 let n = UINavigationController()
@@ -45,7 +47,7 @@ class HomeCoordinator: BaseCoordinator<Void> {
                     case .linimasa:
                         return coordinate(to: LinimasaCoordinator(navigationController: element))
                     case .penpol:
-                        return coordinate(to: PenpolCoordinator(navigationController: element))
+                        return coordinate(to: PenpolCoordinator(navigationController: element, isNewQuiz: isNewQuiz))
 //                    default:
 //                        return coordinate(to: ComingsoonCoordinator(navigationController: element))
                 }

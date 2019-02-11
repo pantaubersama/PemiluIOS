@@ -61,6 +61,10 @@ class QuizDetailController: UIViewController {
             })
             .disposed(by: disposeBag)
         
+        viewModel.output.back
+            .drive()
+            .disposed(by: disposeBag)
+        
         
     }
 
