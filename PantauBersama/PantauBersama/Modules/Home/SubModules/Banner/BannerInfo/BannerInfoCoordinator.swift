@@ -25,7 +25,8 @@ class BannerInfoCoordinator: BaseCoordinator<Void> {
         let viewModel = BannerInfoViewModel(bannerInfo: bannerInfo)
         viewController.viewModel = viewModel
         
-        navigationController.present(viewController, animated: true, completion: nil)
+        let presentedNavController = UINavigationController(rootViewController: viewController)
+        navigationController.present(presentedNavController, animated: true, completion: nil)
         
         return viewModel.output.finish.do(onNext: { [weak self](_) in
             self?.navigationController.dismiss(animated: true, completion: nil)

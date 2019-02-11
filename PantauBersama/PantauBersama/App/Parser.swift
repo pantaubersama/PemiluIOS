@@ -20,6 +20,7 @@ enum NotifType: String {
     case profile
     case question
     case quiz
+    case badge
 }
 
 enum EventType: String {
@@ -95,7 +96,23 @@ final class Parser {
                                 .disposed(by: disposeBag)
                             
                         }
-                        print(responseQuestionNotif)
+                    } catch let error {
+                        print(error.localizedDescription)
+                    }
+                case .badge:
+                    do {
+                        print("Notifikasi badge")
+                        let responseBadgeNotif = try JSONDecoder().decode(FirebaseBadgeNotifResponse.self, from: data)
+                        if let currentNavigation = UIApplication.topViewController()?.navigationController {
+                            let shareBadgeCoordinator = ShareBadgeCoordinator(navigationController: currentNavigation, id: responseBadgeNotif.badge.id)
+                            let disposeBag = DisposeBag()
+                            
+                            shareBadgeCoordinator.start()
+                                .subscribe()
+                                .disposed(by: disposeBag)
+                            
+                        }
+                        print(responseBadgeNotif)
                     } catch let error {
                         print(error.localizedDescription)
                     }

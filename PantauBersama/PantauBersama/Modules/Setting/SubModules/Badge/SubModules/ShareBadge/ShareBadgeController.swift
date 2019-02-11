@@ -35,6 +35,10 @@ class ShareBadgeController: UIViewController {
             .disposed(by: disposeBag)
         
         back.rx.tap
+            // TODO: fix this temporary fix later
+            .do(onNext: { [unowned self](_) in
+                self.navigationController?.popViewController(animated: true)
+            })
             .bind(to: viewModel.input.backI)
             .disposed(by: disposeBag)
         
