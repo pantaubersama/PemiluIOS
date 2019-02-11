@@ -11,7 +11,7 @@ import UIKit
 enum PantauBarKind: Int {
     case linimasa
     case penpol // pendidikan politik
-//    case wordstadium
+    case wordstadium
 //    case lapor
 //    case rekap
     
@@ -21,8 +21,8 @@ enum PantauBarKind: Int {
             return "Menyerap"
         case .penpol:
             return "Menggali"
-//        case .wordstadium:
-//            return "Menguji"
+        case .wordstadium:
+            return "Menguji"
 //        case .lapor:
 //            return "Menjaga"
 //        case .rekap:
@@ -36,8 +36,8 @@ enum PantauBarKind: Int {
             return #imageLiteral(resourceName: "icLinimasaInactive")
         case .penpol:
             return #imageLiteral(resourceName: "icPendidikanPolitikInactive")
-//        case .wordstadium:
-//            return #imageLiteral(resourceName: "icWordstadiumInactive")
+        case .wordstadium:
+            return #imageLiteral(resourceName: "icWordstadiumInactive")
 //        case .lapor:
 //            return #imageLiteral(resourceName: "icLaporInactive")
 //        case .rekap:
@@ -51,8 +51,8 @@ enum PantauBarKind: Int {
             return #imageLiteral(resourceName: "icLinimasaActive")
         case .penpol:
             return #imageLiteral(resourceName: "icPendidikanPolitikActive")
-//        case .wordstadium:
-//            return #imageLiteral(resourceName: "icWordstadiumActive")
+        case .wordstadium:
+            return #imageLiteral(resourceName: "icWordstadiumActive")
 //        case .lapor:
 //            return #imageLiteral(resourceName: "icLaporActive")
 //        case .rekap:

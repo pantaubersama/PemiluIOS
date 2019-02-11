@@ -96,6 +96,12 @@
 		13BF405321EBAA8F005C9A64 /* IQuestionListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BF405221EBAA8F005C9A64 /* IQuestionListViewModel.swift */; };
 		13BF405521EBADBF005C9A64 /* QuestionListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BF405421EBADBF005C9A64 /* QuestionListViewModel.swift */; };
 		13BF405B21EC7B6B005C9A64 /* MyQuestionListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BF405A21EC7B6B005C9A64 /* MyQuestionListViewModel.swift */; };
+		13E170BF221184B70018EDB4 /* WordstadiumController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E170BD221184B70018EDB4 /* WordstadiumController.swift */; };
+		13E170C0221184B70018EDB4 /* WordstadiumController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13E170BE221184B70018EDB4 /* WordstadiumController.xib */; };
+		13E170C2221184DF0018EDB4 /* WordstadiumViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E170C1221184DF0018EDB4 /* WordstadiumViewModel.swift */; };
+		13E170C4221184EC0018EDB4 /* WordstadiumCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E170C3221184EC0018EDB4 /* WordstadiumCoordinator.swift */; };
+		13E170C6221197B30018EDB4 /* PersonalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E170C5221197B30018EDB4 /* PersonalViewController.swift */; };
+		13E170C8221197E90018EDB4 /* PublicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E170C7221197E90018EDB4 /* PublicViewController.swift */; };
 		13E9D78821E8F025006A0890 /* IJanpolListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E9D78721E8F025006A0890 /* IJanpolListViewModel.swift */; };
 		13E9D78B21E8FCF6006A0890 /* IJanpolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E9D78A21E8FCF5006A0890 /* IJanpolViewController.swift */; };
 		13E9D78E21E9171E006A0890 /* JanpolListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E9D78D21E9171E006A0890 /* JanpolListViewModel.swift */; };
@@ -483,6 +489,12 @@
 		13BF405221EBAA8F005C9A64 /* IQuestionListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IQuestionListViewModel.swift; sourceTree = "<group>"; };
 		13BF405421EBADBF005C9A64 /* QuestionListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionListViewModel.swift; sourceTree = "<group>"; };
 		13BF405A21EC7B6B005C9A64 /* MyQuestionListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQuestionListViewModel.swift; sourceTree = "<group>"; };
+		13E170BD221184B70018EDB4 /* WordstadiumController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordstadiumController.swift; sourceTree = "<group>"; };
+		13E170BE221184B70018EDB4 /* WordstadiumController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WordstadiumController.xib; sourceTree = "<group>"; };
+		13E170C1221184DF0018EDB4 /* WordstadiumViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordstadiumViewModel.swift; sourceTree = "<group>"; };
+		13E170C3221184EC0018EDB4 /* WordstadiumCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordstadiumCoordinator.swift; sourceTree = "<group>"; };
+		13E170C5221197B30018EDB4 /* PersonalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalViewController.swift; sourceTree = "<group>"; };
+		13E170C7221197E90018EDB4 /* PublicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicViewController.swift; sourceTree = "<group>"; };
 		13E9D78721E8F025006A0890 /* IJanpolListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IJanpolListViewModel.swift; sourceTree = "<group>"; };
 		13E9D78A21E8FCF5006A0890 /* IJanpolViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IJanpolViewController.swift; sourceTree = "<group>"; };
 		13E9D78D21E9171E006A0890 /* JanpolListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JanpolListViewModel.swift; sourceTree = "<group>"; };
@@ -1137,6 +1149,40 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		13E170B9221184130018EDB4 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				13E170BD221184B70018EDB4 /* WordstadiumController.swift */,
+				13E170BE221184B70018EDB4 /* WordstadiumController.xib */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		13E170BA221184200018EDB4 /* SubModules */ = {
+			isa = PBXGroup;
+			children = (
+				13E170BC2211845C0018EDB4 /* Personal */,
+				13E170BB2211844D0018EDB4 /* Public */,
+			);
+			path = SubModules;
+			sourceTree = "<group>";
+		};
+		13E170BB2211844D0018EDB4 /* Public */ = {
+			isa = PBXGroup;
+			children = (
+				13E170C7221197E90018EDB4 /* PublicViewController.swift */,
+			);
+			path = Public;
+			sourceTree = "<group>";
+		};
+		13E170BC2211845C0018EDB4 /* Personal */ = {
+			isa = PBXGroup;
+			children = (
+				13E170C5221197B30018EDB4 /* PersonalViewController.swift */,
+			);
+			path = Personal;
+			sourceTree = "<group>";
+		};
 		13E9D78C21E916B4006A0890 /* ListJanji */ = {
 			isa = PBXGroup;
 			children = (
@@ -1613,6 +1659,10 @@
 		844C3D7E21C5249300199871 /* Wordstadium */ = {
 			isa = PBXGroup;
 			children = (
+				13E170BA221184200018EDB4 /* SubModules */,
+				13E170B9221184130018EDB4 /* ViewController */,
+				13E170C1221184DF0018EDB4 /* WordstadiumViewModel.swift */,
+				13E170C3221184EC0018EDB4 /* WordstadiumCoordinator.swift */,
 			);
 			path = Wordstadium;
 			sourceTree = "<group>";
@@ -2474,6 +2524,7 @@
 				8428AAAA21C7AF330008E975 /* GoogleService-Info-Staging.plist in Resources */,
 				11D066B121E399C1003AC9BB /* FilterRadioCell.xib in Resources */,
 				11E1079221CD0FE200B7B074 /* QuizDetailController.xib in Resources */,
+				13E170C0221184B70018EDB4 /* WordstadiumController.xib in Resources */,
 				8451E0682207F74400F03E96 /* upload-ttd.json in Resources */,
 				84B2521E21CAB1BE00565D82 /* OnboardingViewController.xib in Resources */,
 				84A07F9721D0D4EA00269C6B /* IdentitasController.xib in Resources */,
@@ -2915,6 +2966,7 @@
 				11E107AA21CD33CA00B7B074 /* CreateJanjiController.swift in Sources */,
 				845C570F21CE0DA400EDCDFE /* ClusterCell.swift in Sources */,
 				845C570B21CD3E9700EDCDFE /* SectionCell.swift in Sources */,
+				13E170C4221184EC0018EDB4 /* WordstadiumCoordinator.swift in Sources */,
 				84E2854421CA195C00298E31 /* CustomActionSheet.swift in Sources */,
 				84619D3A21DA85D200EB58CF /* EditCoordinator.swift in Sources */,
 				844C3D6D21C51CE900199871 /* HomeController.swift in Sources */,
@@ -2951,6 +3003,8 @@
 				84A07FB821D0F0DD00269C6B /* IdentitasCoordinator.swift in Sources */,
 				11E107B721CD450B00B7B074 /* QuizOngoingViewModel.swift in Sources */,
 				84E2855921CA777D00298E31 /* Observable.swift in Sources */,
+				13E170C8221197E90018EDB4 /* PublicViewController.swift in Sources */,
+				13E170C6221197B30018EDB4 /* PersonalViewController.swift in Sources */,
 				13BF405B21EC7B6B005C9A64 /* MyQuestionListViewModel.swift in Sources */,
 				8441DB5A21CD087000B078DF /* JanjiType.swift in Sources */,
 				8451E05E22045C6B00F03E96 /* NotificationViewModel.swift in Sources */,
@@ -2966,6 +3020,7 @@
 				84B7B8CE21E5B4CD0099E7E3 /* AddKategoriController.swift in Sources */,
 				84F1F21821EA678F004515A4 /* Facebook+Rx.swift in Sources */,
 				8478B8E821FF210E00CE192A /* InfoNotifCell.swift in Sources */,
+				13E170BF221184B70018EDB4 /* WordstadiumController.swift in Sources */,
 				844C3D8321C524F000199871 /* LinimasaController.swift in Sources */,
 				11702DD221CB0287001AEE3F /* QuizCell.swift in Sources */,
 				840850C521D25CB000696CB3 /* ProfileEditViewModel.swift in Sources */,
@@ -3030,6 +3085,7 @@
 				84FE6EBE21D5FEA1009A0F55 /* Network+AlertController.swift in Sources */,
 				8441DB5821CCF7D900B078DF /* DetailJanjiCoordinator.swift in Sources */,
 				13F4569D21CF985800CE45F1 /* CreateAskViewModel.swift in Sources */,
+				13E170C2221184DF0018EDB4 /* WordstadiumViewModel.swift in Sources */,
 				842A49F921D789A30050AA51 /* VerifikasiStep.swift in Sources */,
 				11B145EE21D67C8200BB26C8 /* AskCellViewModel.swift in Sources */,
 				844C3D7A21C5230C00199871 /* RawRepresentable.swift in Sources */,
