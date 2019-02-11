@@ -19,14 +19,16 @@ protocol BadgeNavigator {
 final class BadgeCoordinator: BaseCoordinator<Void> {
     
     private let navigationController: UINavigationController!
+    private var userId: String? = nil
     
-    init(navigationController: UINavigationController) {
+    init(navigationController: UINavigationController, userId: String) {
         self.navigationController = navigationController
+        self.userId = userId
     }
     
     override func start() -> Observable<CoordinationResult> {
         let viewController = BadgeController()
-        let viewModel = BadgeViewModel(navigator: self)
+        let viewModel = BadgeViewModel(navigator: self, userId: userId)
         viewController.viewModel = viewModel
         navigationController.pushViewController(viewController, animated: true)
         return Observable.empty()

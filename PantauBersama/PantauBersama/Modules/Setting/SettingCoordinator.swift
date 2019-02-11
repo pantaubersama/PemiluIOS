@@ -26,7 +26,7 @@ protocol SettingNavigator {
     var finish: Observable<Void>! { get set }
     func launchProfileEdit(data: User, type: ProfileHeaderItem) -> Observable<Void>
     func launchSignOut(data: User) -> Observable<Void>
-    func launchBadge() -> Observable<Void>
+    func launchBadge(userId: String?) -> Observable<Void>
     func launchVerifikasi(user: VerificationsResponse.U) -> Observable<Void>
     func launchUndang(data: User) -> Observable<Void>
     func launchAlertUndang() -> Observable<Void>
@@ -91,8 +91,8 @@ extension SettingCoordinator: SettingNavigator {
         return Observable.empty()
     }
     
-    func launchBadge() -> Observable<Void> {
-        let badgeCoordinator = BadgeCoordinator(navigationController: navigationController)
+    func launchBadge(userId: String?) -> Observable<Void> {
+        let badgeCoordinator = BadgeCoordinator(navigationController: navigationController, userId: userId ?? "")
         return coordinate(to: badgeCoordinator)
     }
     

@@ -22,6 +22,7 @@
                 <outlet property="btnShare" destination="V5J-BW-vSj" id="MTQ-ym-gAQ"/>
                 <outlet property="btnVote" destination="QjC-wU-Ibn" id="oB2-De-CH2"/>
                 <outlet property="buttonClose" destination="SG0-Ym-beN" id="6uc-xn-8Kx"/>
+                <outlet property="containerUser" destination="jCy-Xd-2PS" id="mme-Xz-pJd"/>
                 <outlet property="lblContent" destination="IJ7-IS-noc" id="T8G-dj-v8Q"/>
                 <outlet property="lblName" destination="pah-PX-6sg" id="fLw-nI-R0a"/>
                 <outlet property="lblStatus" destination="wdb-ei-twA" id="yfJ-36-QXF"/>
