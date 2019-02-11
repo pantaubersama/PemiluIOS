@@ -28,6 +28,7 @@ class PenpolController: UIViewController {
  
     override func viewDidLoad() {
         super.viewDidLoad()
+        navbar.backgroundColor = Color.primary_red
 
         add(childViewController: askController, context: containerView)
         add(childViewController: quisController, context: containerView)

@@ -46,6 +46,8 @@ class HomeCoordinator: BaseCoordinator<Void> {
                         return coordinate(to: LinimasaCoordinator(navigationController: element))
                     case .penpol:
                         return coordinate(to: PenpolCoordinator(navigationController: element))
+                    case .wordstadium:
+                        return coordinate(to: WordstadiumCoordinator(navigationController: element))
 //                    default:
 //                        return coordinate(to: ComingsoonCoordinator(navigationController: element))
                 }

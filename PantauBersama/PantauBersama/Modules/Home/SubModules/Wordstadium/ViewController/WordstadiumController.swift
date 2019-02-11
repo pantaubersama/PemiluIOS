@@ -1,9 +1,9 @@
 //
-//  LinimasaController.swift
+//  WordstadiumController.swift
 //  PantauBersama
 //
-//  Created by Hanif Sugiyanto on 15/12/18.
-//  Copyright © 2018 PantauBersama. All rights reserved.
+//  Created by wisnu bhakti on 11/02/19.
+//  Copyright © 2019 PantauBersama. All rights reserved.
 //
 
 import UIKit
@@ -12,35 +12,25 @@ import RxCocoa
 import Common
 import AlamofireImage
 
-class LinimasaController: UIViewController {
-    
-    @IBOutlet weak var filter: UIButton!
+class WordstadiumController: UIViewController {
+
+    @IBOutlet weak var navbar: Navbar!
     @IBOutlet weak var segmentedControl: SegementedControl!
     @IBOutlet weak var container: UIView!
-    @IBOutlet weak var navbar: Navbar!
-    var viewModel: LinimasaViewModel!
     
-    lazy var pilpresViewModel = PilpresViewModel(navigator: viewModel.navigator, showTableHeader: true)
-    lazy var janjiViewModel = JanpolListViewModel(navigator: viewModel.navigator, showTableHeader: true)
-    
-    private lazy var pilpresController = PilpresViewController(viewModel: pilpresViewModel)
-    private lazy var janjiController = JanjiPolitikViewController(viewModel: janjiViewModel)
-    
-    private lazy var searchBar: UISearchBar = {
-       let search = UISearchBar()
-        search.searchBarStyle = .minimal
-        search.sizeToFit()
-        return search
-    }()
-    
+    var viewModel: WordstadiumViewModel!
     private let disposeBag = DisposeBag()
+    
+    
+    private lazy var personalController = PersonalViewController()
+    private lazy var publicController = PublicViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navbar.backgroundColor = Color.primary_red
+        navbar.backgroundColor = Color.secondary_orange
         
-        add(childViewController: pilpresController, context: container)
-        add(childViewController: janjiController, context: container)
+        add(childViewController: personalController, context: container)
+        add(childViewController: publicController, context: container)
         
         // MARK
         // segmented control value
@@ -50,16 +40,17 @@ class LinimasaController: UIViewController {
             .subscribe(onNext: { [unowned self] i in
                 UIView.animate(withDuration: 0.3, animations: {
                     if i == 0 {
-                        self.pilpresController.view.alpha = 1.0
-                        self.janjiController.view.alpha = 0.0
+                        self.personalController.view.alpha = 1.0
+                        self.publicController.view.alpha = 0.0
                     } else {
-                        self.pilpresController.view.alpha = 0.0
-                        self.janjiController.view.alpha = 1.0
+                        self.personalController.view.alpha = 0.0
+                        self.publicController.view.alpha = 1.0
                     }
                 })
             })
             .disposed(by: disposeBag)
-    
+        
+        
         // MARK
         // bind to viewModel
         navbar.search.rx.tap
@@ -70,15 +61,6 @@ class LinimasaController: UIViewController {
             .bind(to: viewModel.input.notificationTrigger)
             .disposed(by: disposeBag)
         
-        filter.rx.tap
-            .map { [unowned self] (_) -> (type: FilterType, filterTrigger: AnyObserver<[PenpolFilterModel.FilterItem]>) in
-                return self.pilpresController.view.alpha == 1.0 ?
-                    (type: .pilpres, filterTrigger: self.pilpresViewModel.input.filterTrigger) :
-                    (type: .janji, filterTrigger: self.janjiViewModel.filterI)
-            }
-            .bind(to: viewModel.input.filterTrigger)
-            .disposed(by: disposeBag)
-    
         navbar.profile.rx.tap
             .bind(to: viewModel.input.profileTrigger)
             .disposed(by: disposeBag)
@@ -87,19 +69,11 @@ class LinimasaController: UIViewController {
             .bind(to: viewModel.input.catatanTrigger)
             .disposed(by: disposeBag)
         
-        viewModel.output.filterSelected
-            .drive()
-            .disposed(by: disposeBag)
-        
         viewModel.output.profileSelected
             .drive()
             .disposed(by: disposeBag)
         
         viewModel.output.catatanSelected
-            .drive()
-            .disposed(by: disposeBag)
-        
-        viewModel.output.filterSelected
             .drive()
             .disposed(by: disposeBag)
         
@@ -117,13 +91,10 @@ class LinimasaController: UIViewController {
             })
             .disposed(by: disposeBag)
         
-        viewModel.output.updatesO
-            .drive()
-            .disposed(by: disposeBag)
-        
         viewModel.output.notificationSelected
             .drive()
             .disposed(by: disposeBag)
+        
         
         let left = UISwipeGestureRecognizer(target: self, action: #selector(swipeLeft))
         left.direction = .left
@@ -132,7 +103,6 @@ class LinimasaController: UIViewController {
         let right = UISwipeGestureRecognizer(target: self, action: #selector(swipeRight))
         right.direction = .right
         self.view.addGestureRecognizer(right)
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -141,7 +111,7 @@ class LinimasaController: UIViewController {
         navigationController?.navigationBar.isHidden = true
         viewModel.input.viewWillAppearTrigger.onNext(())
     }
-    
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
@@ -150,9 +120,9 @@ class LinimasaController: UIViewController {
     
     @objc func swipeLeft() {
         self.segmentedControl.swipeLeft()
-
+        
     }
-
+    
     @objc func swipeRight() {
         self.segmentedControl.swipeRight()
     }
