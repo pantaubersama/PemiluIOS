@@ -25,6 +25,7 @@ final class ShareBadgeViewModel: ViewModelType {
     struct Output {
         let dataO: Driver<AchievedSingleResponse>
         let shareO: Driver<Void>
+        let backO: Driver<Void>
     }
     
     private var navigator: ShareBadgeNavigator
@@ -36,7 +37,6 @@ final class ShareBadgeViewModel: ViewModelType {
     
     init(navigator: ShareBadgeNavigator, id: String) {
         self.navigator = navigator
-        self.navigator.finish = backS
         
         input = Input(backI: backS.asObserver(),
                       viewWillAppearI: viewWillAppearS.asObserver(),
@@ -59,9 +59,16 @@ final class ShareBadgeViewModel: ViewModelType {
         let share = shareS
             .flatMapLatest({ navigator.shareBadge(id: id) })
         
+        let back = backS
+            .do(onNext: { (_) in
+                return navigator.back()
+            })
+            .asDriverOnErrorJustComplete()
+        
         
         output = Output(dataO: badgeData.asDriverOnErrorJustComplete(),
-                        shareO: share.asDriverOnErrorJustComplete())
+                        shareO: share.asDriverOnErrorJustComplete(),
+                        backO: back)
         
     }
     

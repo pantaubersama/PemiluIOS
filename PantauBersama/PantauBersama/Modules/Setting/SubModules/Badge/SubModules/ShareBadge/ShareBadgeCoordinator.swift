@@ -10,14 +10,13 @@ import RxSwift
 import Common
 
 protocol ShareBadgeNavigator {
-    var finish: Observable<Void>! { get set }
+    func back()
     func shareBadge(id: String) -> Observable<Void>
 }
 
 final class ShareBadgeCoordinator: BaseCoordinator<Void> {
     
     private let navigationController: UINavigationController!
-    var finish: Observable<Void>!
     var id: String
     
     init(navigationController: UINavigationController, id: String) {
@@ -31,14 +30,16 @@ final class ShareBadgeCoordinator: BaseCoordinator<Void> {
         viewController.viewModel = viewModel
         viewController.hidesBottomBarWhenPushed = true
         navigationController.pushViewController(viewController, animated: true)
-        return finish.do(onNext: { [weak self] (_) in
-            self?.navigationController.popViewController(animated: true)
-        })
+        return Observable.empty()
     }
     
 }
 
 extension ShareBadgeCoordinator: ShareBadgeNavigator {
+    func back() {
+        navigationController.popViewController(animated: true)
+    }
+    
     func shareBadge(id: String) -> Observable<Void> {
         let askString = "Yeay! I got the badge 🤘 #PantauBersama \(AppContext.instance.infoForKey("URL_WEB"))/share/badge/\(id)"
         let activityViewController = UIActivityViewController(activityItems: [askString as NSString], applicationActivities: nil)
