@@ -109,9 +109,7 @@ final class StartOnboardingController: UIViewController {
     
     @objc private func handleSelesai(sender: UIButton) {
         // TODO: Go to app Coordinator
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [unowned self] in
-            self.handleAppCoordinator()
-        }
+        self.handleAppCoordinator()
     }
     
     private func handleAppCoordinator() {

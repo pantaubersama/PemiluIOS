@@ -6,8 +6,8 @@
 	<string>development</string>
 	<key>com.apple.developer.associated-domains</key>
 	<array>
-		<string>applinks:identitas.extrainteger</string>
-		<string>applinks:app.symbolic</string>
+		<string>applinks:identitas.extrainteger.com</string>
+		<string>applinks:app.symbolic.id</string>
 	</array>
 </dict>
 </plist>
