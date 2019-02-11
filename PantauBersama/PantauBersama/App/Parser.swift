@@ -104,7 +104,7 @@ final class Parser {
                         print("Notifikasi badge")
                         let responseBadgeNotif = try JSONDecoder().decode(FirebaseBadgeNotifResponse.self, from: data)
                         if let currentNavigation = UIApplication.topViewController()?.navigationController {
-                            let shareBadgeCoordinator = ShareBadgeCoordinator(navigationController: currentNavigation, id: responseBadgeNotif.badge.id)
+                            let shareBadgeCoordinator = ShareBadgeCoordinator(navigationController: currentNavigation, id: responseBadgeNotif.achievedBadge.badge.id)
                             let disposeBag = DisposeBag()
                             
                             shareBadgeCoordinator.start()
@@ -116,6 +116,18 @@ final class Parser {
                     } catch let error {
                         print(error.localizedDescription)
                     }
+                case .quiz:
+                    print("Notifikasi Quiz")
+                    if let appWindow = UIApplication.shared.keyWindow {
+                        let homeCoordinator = HomeCoordinator(window: appWindow, isNewQuiz: true)
+                        
+                        let disposeBag = DisposeBag()
+                        
+                        homeCoordinator.start()
+                            .subscribe()
+                            .disposed(by: disposeBag)
+                    }
+                    
                 default:
                     break
                 }

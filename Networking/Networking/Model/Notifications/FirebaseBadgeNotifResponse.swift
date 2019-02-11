@@ -10,10 +10,21 @@ import Foundation
 
 public struct FirebaseBadgeNotifResponse: Codable {
     public var notification: Notif
-    public var badge: NotifBadge
+    public var achievedBadge: AchievedBadge
     
     private enum CodingKeys: String, CodingKey {
-        case notification, badge
+        case notification
+        case achievedBadge = "achieved_badge"
+    }
+    
+    public struct AchievedBadge: Codable {
+        public var achievedId: String
+        public var badge: NotifBadge
+        
+        private enum CodingKeys: String, CodingKey {
+            case badge
+            case achievedId = "achieved_id"
+        }
     }
     
     // TODO: Minta backend utk menyamakan format image size
