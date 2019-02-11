@@ -18,6 +18,7 @@ class PenpolController: UIViewController {
     @IBOutlet weak var navbar: Navbar!
     
     var viewModel: PenpolViewModel!
+    var isNewQuiz: Bool = false
     private let disposeBag = DisposeBag()
     
     lazy var quizViewModel = QuizViewModel(navigator: viewModel.navigator, showTableHeader: true)
@@ -77,6 +78,11 @@ class PenpolController: UIViewController {
                 })
             })
             .disposed(by: disposeBag)
+        
+        // ketika ada quiz baru, pindah tab ke kata kandidat
+        if isNewQuiz {
+            segmentedControl.swipeLeft()
+        }
         
         
         viewModel.output.addSelected

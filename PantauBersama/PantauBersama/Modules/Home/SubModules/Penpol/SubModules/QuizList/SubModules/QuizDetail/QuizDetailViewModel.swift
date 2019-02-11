@@ -37,7 +37,6 @@ class QuizDetailViewModel: ViewModelType {
     init(navigator: QuizDetailNavigator, quizModel: QuizModel) {
         self.navigator = navigator
         self.quizModel = quizModel
-        self.navigator.finish = backS
         
         input = Input(startTrigger: startSubject.asObserver(),
                       backTrigger: backS.asObserver())
@@ -46,7 +45,9 @@ class QuizDetailViewModel: ViewModelType {
             .flatMap({navigator.startQuiz()})
             .asDriver(onErrorJustReturn: ())
         
-        let back = backS.asDriverOnErrorJustComplete()
+        let back = backS
+            .flatMap({navigator.finish()})
+            .asDriverOnErrorJustComplete()
         
         let quiz = Observable.just(quizModel)
             .asDriverOnErrorJustComplete()

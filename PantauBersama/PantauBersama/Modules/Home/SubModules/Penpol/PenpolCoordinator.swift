@@ -25,14 +25,17 @@ class PenpolCoordinator: BaseCoordinator<Void> {
     
     internal let navigationController: UINavigationController!
     private var filterCoordinator: PenpolFilterCoordinator!
+    private var isNewQuiz: Bool = false
     
-    init(navigationController: UINavigationController) {
+    init(navigationController: UINavigationController, isNewQuiz: Bool = false) {
         self.navigationController = navigationController
+        self.isNewQuiz = isNewQuiz
     }
     
     override func start() -> Observable<CoordinationResult> {
         let viewController = PenpolController()
         let viewModel = PenpolViewModel(navigator: self)
+        viewController.isNewQuiz = self.isNewQuiz
         viewController.viewModel = viewModel
         navigationController.setViewControllers([viewController], animated: true)
         navigationController.interactivePopGestureRecognizer?.delegate = nil

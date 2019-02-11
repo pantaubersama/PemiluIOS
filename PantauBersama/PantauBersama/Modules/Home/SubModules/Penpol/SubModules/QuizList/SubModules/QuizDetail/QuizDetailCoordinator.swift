@@ -11,12 +11,10 @@ import RxCocoa
 
 protocol QuizDetailNavigator {
     func startQuiz() -> Observable<Void>
-    var finish: Observable<Void>! { get set }
+    func finish() -> Observable<Void>
 }
 
 class QuizDetailCoordinator: BaseCoordinator<Void>, QuizDetailNavigator {
-    var finish: Observable<Void>!
-    
     private let navigationController: UINavigationController
     private let quiz: QuizModel
     
@@ -34,13 +32,17 @@ class QuizDetailCoordinator: BaseCoordinator<Void>, QuizDetailNavigator {
         navigationController.pushViewController(viewController, animated: true)
         navigationController.interactivePopGestureRecognizer?.delegate = nil
         
-        return finish.do(onNext: { [weak self] (_) in
-            self?.navigationController.popViewController(animated: true)
-        })
+        return Observable.never()
     }
     
     func startQuiz() -> Observable<Void> {
         let quizOngoingCoordinator = QuizOngoingCoordinator(navigationController: self.navigationController, quiz: quiz)
         return coordinate(to: quizOngoingCoordinator)
+    }
+    
+    func finish() -> Observable<Void> {
+        self.navigationController.popViewController(animated: true)
+        
+        return Observable.never()
     }
 }
