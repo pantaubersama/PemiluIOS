@@ -57,7 +57,7 @@ class TrendHeaderView: UIView {
         if let avatarUrl = kecenderungan?.team.avatar {
             ivPaslon.af_setImage(withURL: URL(string: avatarUrl)!)
         }
-        lbKecenderungan.text = "Total Kecenderunganmu , \(result.meta.quizzes.finished) dari \(result.meta.quizzes.total) Quiz"
+        lbKecenderungan.text = "Total Kecenderunganmu, \(result.meta.quizzes.finished) dari \(result.meta.quizzes.total) Quiz"
         lbTotal.text =  String(format: "%.0f", kecenderungan?.percentage ?? 0.0) + "% (\(kecenderungan?.team.title ?? ""))"
     }
 
