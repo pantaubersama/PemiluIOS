@@ -6,7 +6,8 @@
 	<string>development</string>
 	<key>com.apple.developer.associated-domains</key>
 	<array>
-		<string>applinks:$(DOMAIN_SYMBOLIC)</string>
+		<string>applinks:identitas.extrainteger</string>
+		<string>applinks:app.symbolic</string>
 	</array>
 </dict>
 </plist>
