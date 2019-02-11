@@ -40,7 +40,7 @@ class BadgeViewModel: ViewModelType {
     let errorTracker = ErrorTracker()
     let activityIndicator = ActivityIndicator()
     
-    init(navigator: BadgeNavigator) {
+    init(navigator: BadgeNavigator, userId: String?) {
         self.navigator = navigator
         
         input = Input(refreshI: refreshS.asObserver(),
@@ -48,7 +48,7 @@ class BadgeViewModel: ViewModelType {
                       nextTrigger: nextS.asObserver(),
                       shareI: shareS.asObserver()
         )
-        
+        let myId = AppState.local()?.user.id
         // MARK
         // Get All Badges, paginate
         let items = refreshS.startWith(())
@@ -59,6 +59,16 @@ class BadgeViewModel: ViewModelType {
             .catchErrorJustReturn([])
         }
         .asDriver(onErrorJustReturn: [])
+        // MARK
+        // Get All Badge User
+        let itemsUser = refreshS.startWith(())
+            .flatMapLatest { [unowned self] (_) -> Observable<[ICellConfigurator]> in
+                return self.paginateItemsUser(nextBatchTrigger: self.nextS.asObservable(), userId: userId ?? "")
+                    .trackError(self.errorTracker)
+                    .trackActivity(self.activityIndicator)
+                    .catchErrorJustReturn([])
+            }
+            .asDriver(onErrorJustReturn: [])
         
         let share = shareS
             .flatMapLatest({ navigator.launchShare(id: $0) })
@@ -69,9 +79,15 @@ class BadgeViewModel: ViewModelType {
                 navigator.back()
             })
             .asDriverOnErrorJustComplete()
-
         
-        output = Output(badgeItems: items,
+        var state: Bool = false
+        if userId != myId {
+            state = false
+        } else {
+            state = true
+        }
+
+        output = Output(badgeItems: state ? items : itemsUser,
                         error: errorTracker.asDriver(),
                         loading: activityIndicator.asDriver(),
                         shareO: share,
@@ -79,15 +95,15 @@ class BadgeViewModel: ViewModelType {
     }
     
     
-    private func transformToPage(response: BaseResponse<BadgesResponse>, batch: Batch) -> Page<[ICellConfigurator]> {
+    private func transformToPage(response: BaseResponse<BadgesResponse>, batch: Batch, isMyAccount: Bool) -> Page<[ICellConfigurator]> {
         var items: [[ICellConfigurator]] = [[]]
         let list = response.data.badges
             .map { (badge) -> ICellConfigurator in
-                return BadgeCellConfigured.init(item: BadgeCell.Input(badges: badge, isAchieved: false, viewModel: self, idAchieved: nil, isMyAccount: true))
+                return BadgeCellConfigured.init(item: BadgeCell.Input(badges: badge, isAchieved: false, viewModel: self, idAchieved: nil, isMyAccount: isMyAccount))
         }
         let achieved = response.data.achieved
             .map { (badge) -> ICellConfigurator in
-                return BadgeCellConfigured.init(item: BadgeCell.Input(badges: badge.badge, isAchieved: true, viewModel: self, idAchieved: badge.id, isMyAccount: true))
+                return BadgeCellConfigured.init(item: BadgeCell.Input(badges: badge.badge, isAchieved: true, viewModel: self, idAchieved: badge.id, isMyAccount: isMyAccount))
         }
         items.append(achieved)
         items.append(list)
@@ -118,7 +134,7 @@ class BadgeViewModel: ViewModelType {
         return NetworkService.instance
             .requestObject(PantauAuthAPI.badges(page: batch.page, perPage: batch.limit),
                            c: BaseResponse<BadgesResponse>.self)
-            .map({ self.transformToPage(response: $0, batch: batch) })
+            .map({ self.transformToPage(response: $0, batch: batch, isMyAccount: true) })
             .do(onSuccess: { (r) in
                 
             }, onError: { (e) in
@@ -134,6 +150,36 @@ class BadgeViewModel: ViewModelType {
             
     }
     
+    private func paginateItemsUser(
+        batch: Batch = Batch.initial,
+        nextBatchTrigger: Observable<Void>, userId: String) -> Observable<[ICellConfigurator]> {
+        return recursivelyPaginateItemsUser(batch: batch, nextBatchTrigger: nextBatchTrigger, userId: userId)
+            .scan([], accumulator: { (accumulator, page) in
+                return accumulator + page.item
+            })
+    }
     
+    private func recursivelyPaginateItemsUser(
+        batch: Batch,
+        nextBatchTrigger: Observable<Void>, userId: String) ->
+        Observable<Page<[ICellConfigurator]>> {
+            return NetworkService.instance
+                .requestObject(PantauAuthAPI.getUserBadges(id: userId, page: batch.page, perPage: batch.limit),
+                               c: BaseResponse<BadgesResponse>.self)
+                .map({ self.transformToPage(response: $0, batch: batch, isMyAccount: false) })
+                .do(onSuccess: { (r) in
+                    
+                }, onError: { (e) in
+                    print(e.localizedDescription)
+                })
+                .asObservable()
+                .paginate(nextPageTrigger: nextBatchTrigger, hasNextPage: { (result) -> Bool in
+                    return result.batch.next().hasNextPage
+                }, nextPageFactory: { (result) -> Observable<Page<[ICellConfigurator]>> in
+                    self.recursivelyPaginateItemsUser(batch: result.batch.next(), nextBatchTrigger: nextBatchTrigger, userId: userId)
+                })
+                .share(replay: 1, scope: .whileConnected)
+            
+    }
     
 }

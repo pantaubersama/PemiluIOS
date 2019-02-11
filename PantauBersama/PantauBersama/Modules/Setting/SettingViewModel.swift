@@ -162,7 +162,7 @@ final class SettingViewModel: ISettingViewModel, ISettingViewModelInput, ISettin
                 case .logout:
                     return navigator.launchSignOut(data: data)
                 case .badge:
-                    return navigator.launchBadge()
+                    return navigator.launchBadge(userId: data.id)
                 case .verifikasi:
                     // MARK
                     // Fetch verifications data

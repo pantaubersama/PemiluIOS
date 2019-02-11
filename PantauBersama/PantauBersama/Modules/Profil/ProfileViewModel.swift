@@ -98,7 +98,7 @@ final class ProfileViewModel: IProfileViewModel, IProfileViewModelInput, IProfil
         self.userId = userId
         
         
-        let badgeViewModel = BadgeViewModel(navigator: navigatorBadge)
+        let badgeViewModel = BadgeViewModel(navigator: navigatorBadge, userId: userId)
         
         // MARK
         // Input
@@ -206,7 +206,7 @@ final class ProfileViewModel: IProfileViewModel, IProfileViewModelInput, IProfil
                 })
         }
         
-        let itemBadgeUser = userBadge // for my account
+        let itemBadgeUser = userBadge // for user account
             .map{ (list) -> [SectionOfProfileData] in
                 return list.achieved.compactMap({ (achieved) -> SectionOfProfileData in
                     return SectionOfProfileData(items: [BadgeCellConfigured(item: BadgeCell.Input(badges: achieved.badge, isAchieved: true, viewModel: badgeViewModel, idAchieved: achieved.id, isMyAccount: false))])
@@ -258,8 +258,11 @@ final class ProfileViewModel: IProfileViewModel, IProfileViewModelInput, IProfil
             navigator.back()
             }).asDriverOnErrorJustComplete()
         shareBadgeO = badgeViewModel.output.shareO
+        
         lihatBadgeO = lihatBadgeS
-            .flatMapLatest({ navigator.launchBadge() })
+            .flatMapLatest({ (_) -> Observable<Void> in
+                return isMyAccount ? navigator.launchBadge(userId: AppState.local()?.user.id) : navigator.launchBadge(userId: userId)
+            })
             .asDriverOnErrorJustComplete()
     }
     
