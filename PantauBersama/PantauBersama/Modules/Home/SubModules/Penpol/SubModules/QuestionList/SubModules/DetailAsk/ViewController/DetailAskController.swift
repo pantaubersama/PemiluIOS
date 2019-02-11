@@ -49,6 +49,7 @@ class DetailAskController: UIViewController {
         configureLottie()
         
         buttonClose.rx.tap
+            // TODO: fix this temporary fix
             .do(onNext: { [unowned self](_) in
                 self.navigationController?.popViewController(animated: true)
             })

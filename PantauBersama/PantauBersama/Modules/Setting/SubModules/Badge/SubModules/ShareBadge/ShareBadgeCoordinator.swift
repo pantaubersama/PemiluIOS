@@ -29,6 +29,7 @@ final class ShareBadgeCoordinator: BaseCoordinator<Void> {
         let viewController = ShareBadgeController()
         let viewModel = ShareBadgeViewModel(navigator: self, id: id)
         viewController.viewModel = viewModel
+        viewController.hidesBottomBarWhenPushed = true
         navigationController.pushViewController(viewController, animated: true)
         return finish.do(onNext: { [weak self] (_) in
             self?.navigationController.popViewController(animated: true)
