@@ -52,7 +52,6 @@ class ProfileController: UIViewController {
     private lazy var emptyController = UIViewController()
     
     private let disposeBag = DisposeBag()
-    private var dataSourceBadge: RxTableViewSectionedReloadDataSource<SectionOfProfileData>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -132,17 +131,8 @@ class ProfileController: UIViewController {
         tableViewBadge.delegate = nil
         tableViewBadge.registerReusableCell(BadgeCell.self)
         tableViewBadge.tableFooterView = UIView()
-        tableViewBadge.rowHeight = 50.0
-        tableViewBadge.contentInset = UIEdgeInsets(top: 5, left: 0, bottom: 5, right: 0)
-        
-        dataSourceBadge = RxTableViewSectionedReloadDataSource<SectionOfProfileData>(configureCell: {
-            (dataSource, tableView, indexPath, item) in
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: item.reuseIdentifier) else {
-                return UITableViewCell()
-            }
-            item.configure(cell: cell)
-            return cell
-        })
+        tableViewBadge.rowHeight = 53.0
+        tableViewBadge.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 5, right: 0)
         
         back.rx.tap
             .bind(to: viewModel.input.backI)
@@ -165,7 +155,11 @@ class ProfileController: UIViewController {
             .disposed(by: disposeBag)
         
         viewModel.output.itemsBadgeO
-            .drive(tableViewBadge.rx.items(dataSource: dataSourceBadge))
+            .drive(tableViewBadge.rx.items) { (tableView, index, item) -> UITableViewCell in
+                let cell: BadgeCell = tableView.dequeueReusableCell()
+                item.configure(cell: cell)
+                return cell
+            }
             .disposed(by: disposeBag)
         
         viewModel.output.userDataO

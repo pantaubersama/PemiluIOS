@@ -68,6 +68,10 @@ class DetailAskController: UIViewController {
         
         avatar.addGestureRecognizer(tap)
         avatar.isUserInteractionEnabled = true
+        lblName.addGestureRecognizer(tap)
+        lblName.isUserInteractionEnabled = true
+        lblStatus.addGestureRecognizer(tap)
+        lblStatus.isUserInteractionEnabled = true
         tap.rx.event
             .bind(to: viewModel.input.profileTrigger)
             .disposed(by: disposeBag)

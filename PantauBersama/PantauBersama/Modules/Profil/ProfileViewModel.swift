@@ -25,7 +25,7 @@ protocol IProfileViewModelOutput {
     var backO: Driver<Void>! { get }
     var settingO: Driver<Void>! { get }
     var verifikasiO: Driver<Void>! { get }
-    var itemsBadgeO: Driver<[SectionOfProfileData]>! { get }
+    var itemsBadgeO: Driver<[ICellConfigurator]>! { get }
     var userDataO: Driver<UserResponse>! { get }
     var errorO: Driver<Error>! { get }
     var reqClusterO: Driver<Void>! { get }
@@ -68,7 +68,7 @@ final class ProfileViewModel: IProfileViewModel, IProfileViewModelInput, IProfil
     // Output
     var settingO: Driver<Void>!
     var verifikasiO: Driver<Void>!
-    var itemsBadgeO: Driver<[SectionOfProfileData]>!
+    var itemsBadgeO: Driver<[ICellConfigurator]>!
     var userDataO: Driver<UserResponse>!
     var errorO: Driver<Error>!
     var reqClusterO: Driver<Void>!
@@ -199,18 +199,30 @@ final class ProfileViewModel: IProfileViewModel, IProfileViewModelInput, IProfil
             .asObservable()
             .catchErrorJustComplete()
         
-        let itemBadge = badge // for my account
-            .map{ (list) -> [SectionOfProfileData] in
-                return list.achieved.compactMap({ (achieved) -> SectionOfProfileData in
-                    return SectionOfProfileData(items: [BadgeCellConfigured(item: BadgeCell.Input(badges: achieved.badge, isAchieved: true, viewModel: badgeViewModel, idAchieved: achieved.id, isMyAccount: true))])
-                })
+        let itemBadge = badge.map { (badges) -> [ICellConfigurator] in
+            var items: [[ICellConfigurator]] = [[]]
+            let list = badges.badges.map({ (badge) -> ICellConfigurator in
+                return BadgeCellConfigured.init(item: BadgeCell.Input(badges: badge, isAchieved: false, viewModel: badgeViewModel, idAchieved: nil, isMyAccount: true))
+            })
+            let achieved = badges.achieved.compactMap({ (achieved) -> ICellConfigurator in
+                return BadgeCellConfigured.init(item: BadgeCell.Input(badges: achieved.badge, isAchieved: true, viewModel: badgeViewModel, idAchieved: achieved.id, isMyAccount: true))
+            })
+            items.append(achieved)
+            items.append(list)
+            return items.flatMap({ $0 })
         }
         
-        let itemBadgeUser = userBadge // for user account
-            .map{ (list) -> [SectionOfProfileData] in
-                return list.achieved.compactMap({ (achieved) -> SectionOfProfileData in
-                    return SectionOfProfileData(items: [BadgeCellConfigured(item: BadgeCell.Input(badges: achieved.badge, isAchieved: true, viewModel: badgeViewModel, idAchieved: achieved.id, isMyAccount: false))])
-                })
+        let itemBadgeUser = userBadge.map { (userBadge) -> [ICellConfigurator] in
+            var items: [[ICellConfigurator]] = [[]]
+            let list = userBadge.badges.map({ (badge) -> ICellConfigurator in
+                return BadgeCellConfigured.init(item: BadgeCell.Input(badges: badge, isAchieved: false, viewModel: badgeViewModel, idAchieved: nil, isMyAccount: false))
+            })
+            let achieved = userBadge.achieved.compactMap({ (achieved) -> ICellConfigurator in
+                return BadgeCellConfigured.init(item: BadgeCell.Input(badges: achieved.badge, isAchieved: true, viewModel: badgeViewModel, idAchieved: achieved.id, isMyAccount: false))
+            })
+            items.append(achieved)
+            items.append(list)
+            return items.flatMap({ $0 })
         }
         
         // MARK
