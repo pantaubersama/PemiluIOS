@@ -22,11 +22,15 @@ class OpenChallengeViewModel: ViewModelType {
         let pernyataanI: AnyObserver<Bool>
         let dateTimeI: AnyObserver<Bool>
         let saldoI: AnyObserver<Bool>
+        let kajianButtonI: AnyObserver<Void>
+        let hintKajianI: AnyObserver<Void>
     }
     
     struct Output {
         let itemsO: Driver<[SectionOfTantanganData]>
         let meO: Driver<User>
+        let kajianSelected: Driver<BidangKajianResult>
+        let hintKajianO: Driver<Void>
     }
     
     private let backS = PublishSubject<Void>()
@@ -35,6 +39,8 @@ class OpenChallengeViewModel: ViewModelType {
     private let pernyataanS = PublishSubject<Bool>()
     private let dateTimeS = PublishSubject<Bool>()
     private let saldoS = PublishSubject<Bool>()
+    private let kajianButtonS = PublishSubject<Void>()
+    private let hintKajianS = PublishSubject<Void>()
     private let errorTracker = ErrorTracker()
     private let activityIndicator = ActivityIndicator()
     private var navigator: OpenChallengeNavigator
@@ -48,16 +54,18 @@ class OpenChallengeViewModel: ViewModelType {
                       kajianI: kajianS.asObserver(),
                       pernyataanI: pernyataanS.asObserver(),
                       dateTimeI: dateTimeS.asObserver(),
-                      saldoI: saldoS.asObserver())
+                      saldoI: saldoS.asObserver(),
+                      kajianButtonI: kajianButtonS.asObserver(),
+                      hintKajianI: hintKajianS.asObserver())
         
         
-        let item = Observable.merge(kajianS, pernyataanS, dateTimeS, saldoS)
-            .flatMapLatest { (value) -> Observable<[SectionOfTantanganData]> in
+        let item = Observable.combineLatest(kajianS, pernyataanS, dateTimeS, saldoS)
+            .flatMapLatest { (valueKajian, valuePernyataan, valueData, valueSaldo) -> Observable<[SectionOfTantanganData]> in
                 return Observable.just([
-                    SectionOfTantanganData(items: [TantanganData.bidangKajian], isHide: value, isActive: value),
-                    SectionOfTantanganData(items: [TantanganData.pernyataan], isHide: value, isActive: value),
-                    SectionOfTantanganData(items: [TantanganData.dateTime], isHide: value, isActive: value),
-                    SectionOfTantanganData(items: [TantanganData.saldoTime], isHide: value, isActive: value),
+                    SectionOfTantanganData(items: [TantanganData.bidangKajian], isHide: valueKajian, isActive: valueKajian),
+                    SectionOfTantanganData(items: [TantanganData.pernyataan], isHide: valuePernyataan, isActive: valuePernyataan),
+                    SectionOfTantanganData(items: [TantanganData.dateTime], isHide: valueData, isActive: valueData),
+                    SectionOfTantanganData(items: [TantanganData.saldoTime], isHide: valueSaldo, isActive: valueSaldo),
                     ])
         }
         
@@ -79,9 +87,18 @@ class OpenChallengeViewModel: ViewModelType {
                     .catchErrorJustComplete()
             }
         
+        let kajian = kajianButtonS
+            .flatMapLatest({ navigator.launchBidangKajian() })
+            .asDriverOnErrorJustComplete()
+        
+        let hintKajian = hintKajianS
+            .flatMapLatest({ navigator.launchHint(type: .kajian )})
+            .asDriverOnErrorJustComplete()
         
         output = Output(itemsO: items,
-                        meO: me.asDriverOnErrorJustComplete())
+                        meO: me.asDriverOnErrorJustComplete(),
+                        kajianSelected: kajian,
+                        hintKajianO: hintKajian)
     }
     
 }

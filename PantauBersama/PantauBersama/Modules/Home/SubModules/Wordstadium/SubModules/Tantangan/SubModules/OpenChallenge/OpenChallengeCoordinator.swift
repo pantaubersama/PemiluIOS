@@ -10,9 +10,11 @@ import RxSwift
 
 protocol OpenChallengeNavigator {
     var finish: Observable<Void>! { get set }
+    func launchBidangKajian() -> Observable<BidangKajianResult>
+    func launchHint(type: HintType) -> Observable<Void>
 }
 
-final class OpenChallengeCoordinator: BaseCoordinator<Void>, OpenChallengeNavigator {
+final class OpenChallengeCoordinator: BaseCoordinator<Void> {
     
     private let navigationController: UINavigationController
     var finish: Observable<Void>!
@@ -32,4 +34,16 @@ final class OpenChallengeCoordinator: BaseCoordinator<Void>, OpenChallengeNaviga
         })
     }
     
+}
+
+extension OpenChallengeCoordinator: OpenChallengeNavigator {
+    func launchBidangKajian() -> Observable<BidangKajianResult> {
+        let bidangKajian = BidangKajianCoordinator(navigationController: navigationController)
+        return coordinate(to: bidangKajian)
+    }
+    
+    func launchHint(type: HintType) -> Observable<Void> {
+        let hintTantanganCoordinator = HintTantanganCoordinaot(navigationController: navigationController, type: type)
+        return coordinate(to: hintTantanganCoordinator)
+    }
 }

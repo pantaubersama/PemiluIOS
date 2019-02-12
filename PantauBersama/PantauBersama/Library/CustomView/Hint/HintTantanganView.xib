@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="BwModelicaSS01-BoldCondensed.otf">
+            <string>BwModelicaSS01-BoldCondensed</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HintTantanganView" customModule="PantauBersama" customModuleProvider="target">
+            <connections>
+                <outlet property="btnClose" destination="qOJ-WR-dyj" id="6zM-8Y-OCw"/>
+                <outlet property="view" destination="t8f-ok-6IF" id="dAp-RO-CGv"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="t8f-ok-6IF">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Xr-qa-K1v" customClass="RoundView" customModule="Common">
+                    <rect key="frame" x="21" y="76" width="333" height="535"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LJ7-Cq-Mv8">
+                            <rect key="frame" x="105" y="24" width="123" height="123"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="123" id="8cd-gv-QiN"/>
+                                <constraint firstAttribute="height" constant="123" id="h2b-gm-8N1"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BIDANG KAJIIAN" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O5K-NG-Ka9">
+                            <rect key="frame" x="93.5" y="157" width="146" height="22"/>
+                            <fontDescription key="fontDescription" name="BwModelicaSS01-BoldCondensed" family="Bw Modelica SS01" pointSize="18"/>
+                            <color key="textColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <nil key="highlightedColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="typeLabel" value="bold"/>
+                            </userDefinedRuntimeAttributes>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yh2-M7-Rro" customClass="Label" customModule="Common">
+                            <rect key="frame" x="44" y="194" width="245" height="304.5"/>
+                            <string key="text">Bidang Kajian menunjukkan topik yang sedang dibahas dalam perdebatan. Misalnya Ekonomi, Sosial, Budaya, Agama, Tata Negara, dan lain sebagainya.  Bidang Kajian memudahkan kamu untuk mencari tema apa yang ingin dijelajahi. Semakin baik kualitas bahasan seseorang pada sebuah Bidang Kajian, semakin tinggi pula kredibilitasnya pada topik tersebut. Ayo tunjukkan reputasimu yang sesungguhnya!</string>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" red="0.48627450979999998" green="0.48627450979999998" blue="0.48627450979999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <nil key="highlightedColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                    <real key="value" value="12"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qOJ-WR-dyj" customClass="Button" customModule="Common">
+                            <rect key="frame" x="0.0" y="487" width="333" height="48"/>
+                            <color key="backgroundColor" red="0.95686274509803915" green="0.95686274509803915" blue="0.95686274509803915" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="48" id="EH1-EP-il2"/>
+                            </constraints>
+                            <state key="normal" title="GOT IT">
+                                <color key="titleColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                    <real key="value" value="14"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="yh2-M7-Rro" firstAttribute="leading" secondItem="8Xr-qa-K1v" secondAttribute="leading" constant="44" id="5Gw-Hg-WLJ"/>
+                        <constraint firstItem="O5K-NG-Ka9" firstAttribute="top" secondItem="LJ7-Cq-Mv8" secondAttribute="bottom" constant="10" id="8LN-Rg-a2M"/>
+                        <constraint firstItem="LJ7-Cq-Mv8" firstAttribute="centerX" secondItem="8Xr-qa-K1v" secondAttribute="centerX" id="CV6-7r-eYO"/>
+                        <constraint firstItem="yh2-M7-Rro" firstAttribute="top" secondItem="O5K-NG-Ka9" secondAttribute="bottom" constant="15" id="Hcb-w9-fhW"/>
+                        <constraint firstItem="O5K-NG-Ka9" firstAttribute="centerX" secondItem="8Xr-qa-K1v" secondAttribute="centerX" id="IQH-nd-KHq"/>
+                        <constraint firstAttribute="trailing" secondItem="yh2-M7-Rro" secondAttribute="trailing" constant="44" id="TXB-63-raR"/>
+                        <constraint firstAttribute="trailing" secondItem="qOJ-WR-dyj" secondAttribute="trailing" id="Z1f-ia-MW0"/>
+                        <constraint firstAttribute="bottom" secondItem="qOJ-WR-dyj" secondAttribute="bottom" id="g7L-OJ-iPZ"/>
+                        <constraint firstItem="qOJ-WR-dyj" firstAttribute="leading" secondItem="8Xr-qa-K1v" secondAttribute="leading" id="l9T-hr-zNg"/>
+                        <constraint firstItem="LJ7-Cq-Mv8" firstAttribute="top" secondItem="8Xr-qa-K1v" secondAttribute="top" constant="24" id="sP2-rv-hF4"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="16"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="0.066666666666666666" green="0.066666666666666666" blue="0.066666666666666666" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="displayP3"/>
+            <constraints>
+                <constraint firstItem="8Xr-qa-K1v" firstAttribute="leading" secondItem="aVg-Ia-3mc" secondAttribute="leading" constant="21" id="OYs-OA-LTi"/>
+                <constraint firstItem="aVg-Ia-3mc" firstAttribute="bottom" secondItem="8Xr-qa-K1v" secondAttribute="bottom" constant="56" id="jO8-IJ-0aS"/>
+                <constraint firstItem="aVg-Ia-3mc" firstAttribute="trailing" secondItem="8Xr-qa-K1v" secondAttribute="trailing" constant="21" id="mh5-PA-OsS"/>
+                <constraint firstItem="8Xr-qa-K1v" firstAttribute="top" secondItem="aVg-Ia-3mc" secondAttribute="top" constant="56" id="u8f-Da-bLF"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="aVg-Ia-3mc"/>
+            <point key="canvasLocation" x="-271" y="200"/>
+        </view>
+    </objects>
+</document>

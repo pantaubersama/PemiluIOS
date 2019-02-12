@@ -17,8 +17,8 @@ class BidangKajianCell: UITableViewCell {
     @IBOutlet weak var lineStatus: UIView!
     @IBOutlet weak var status: UIImageView!
     @IBOutlet weak var tagKajian: Label!
-    @IBOutlet weak var btnKajian: Label!
     @IBOutlet weak var hintKajian: UIButton!
+    @IBOutlet weak var btnKajian: UIButton!
     
     var disposeBag: DisposeBag!
     
@@ -31,5 +31,23 @@ class BidangKajianCell: UITableViewCell {
 }
 
 extension BidangKajianCell: IReusableCell {
+    
+    struct Input {
+        let viewModel: OpenChallengeViewModel
+    }
+    
+    func configureCell(item: Input) {
+        let bag = DisposeBag()
+        
+        btnKajian.rx.tap
+            .bind(to: item.viewModel.input.kajianButtonI)
+            .disposed(by: bag)
+        
+        hintKajian.rx.tap
+            .bind(to: item.viewModel.input.hintKajianI)
+            .disposed(by: bag)
+        
+        disposeBag = bag
+    }
     
 }

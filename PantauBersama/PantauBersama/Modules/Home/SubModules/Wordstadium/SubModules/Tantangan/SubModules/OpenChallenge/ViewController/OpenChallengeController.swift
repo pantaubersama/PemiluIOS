@@ -45,6 +45,7 @@ class OpenChallengeController: UIViewController {
             switch indexPath.section {
             case 0:
                 let cell = tableView.dequeueReusableCell(indexPath: indexPath) as BidangKajianCell
+                cell.configureCell(item: BidangKajianCell.Input(viewModel: self.viewModel))
                 return cell
             case 1:
                 let cell = tableView.dequeueReusableCell(indexPath: indexPath) as PernyataanCell
@@ -71,6 +72,14 @@ class OpenChallengeController: UIViewController {
         back.rx.tap
             .bind(to: viewModel.input.backI)
             .disposed(by: disposeBag)
+        
+        viewModel.output.kajianSelected
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.hintKajianO
+            .drive()
+            .disposed(by: disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -78,6 +87,9 @@ class OpenChallengeController: UIViewController {
         navigationController?.navigationBar.configure(with: .white)
         
         viewModel.input.kajianI.onNext(false)
+        viewModel.input.pernyataanI.onNext(true)
+        viewModel.input.dateTimeI.onNext(true)
+        viewModel.input.saldoI.onNext(true)
     }
     
 }
