@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="BwModelicaSS01-BoldCondensed.otf">
+            <string>BwModelicaSS01-BoldCondensed</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HeaderTantanganView" customModule="PantauBersama" customModuleProvider="target">
+            <connections>
+                <outlet property="avatar" destination="NOe-jq-9hg" id="oHE-gR-m4x"/>
+                <outlet property="lblFullName" destination="dOB-Et-QMP" id="w43-sW-mSB"/>
+                <outlet property="lblType" destination="AGP-QU-y7v" id="PHW-H3-RCZ"/>
+                <outlet property="lblUsername" destination="ykQ-zi-CSt" id="Z4g-Od-0DG"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="pv2-hi-5RD">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="123"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bannerChallengeVsBig" translatesAutoresizingMaskIntoConstraints="NO" id="2qr-TS-i1n">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="123"/>
+                </imageView>
+                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hw0-Ta-sSQ" customClass="RoundView" customModule="Common">
+                    <rect key="frame" x="16" y="24" width="40" height="40"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icDummyPerson" translatesAutoresizingMaskIntoConstraints="NO" id="NOe-jq-9hg">
+                            <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="NOe-jq-9hg" firstAttribute="leading" secondItem="hw0-Ta-sSQ" secondAttribute="leading" id="JkH-W2-PwI"/>
+                        <constraint firstItem="NOe-jq-9hg" firstAttribute="top" secondItem="hw0-Ta-sSQ" secondAttribute="top" id="R4p-gD-7Kk"/>
+                        <constraint firstAttribute="width" constant="40" id="Vgy-NA-xdt"/>
+                        <constraint firstAttribute="trailing" secondItem="NOe-jq-9hg" secondAttribute="trailing" id="Vzd-oK-sni"/>
+                        <constraint firstAttribute="height" constant="40" id="cmF-0x-rUL"/>
+                        <constraint firstAttribute="bottom" secondItem="NOe-jq-9hg" secondAttribute="bottom" id="oJW-Hv-4ZN"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="20"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                            <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="l91-28-x9h">
+                    <rect key="frame" x="64" y="29" width="120" height="30"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dOB-Et-QMP">
+                            <rect key="frame" x="0.0" y="0.0" width="120" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="fC8-PV-3dp"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="BwModelicaSS01-BoldCondensed" family="Bw Modelica SS01" pointSize="14"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ykQ-zi-CSt" customClass="Label" customModule="Common">
+                            <rect key="frame" x="0.0" y="21" width="120" height="9"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="typeLabel" value="bold"/>
+                                <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                    <real key="value" value="11"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </label>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="0ur-Jn-D5a"/>
+                        <constraint firstAttribute="width" constant="120" id="Yoc-cQ-PKX"/>
+                    </constraints>
+                </stackView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OPEN CHALLENGE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AGP-QU-y7v">
+                    <rect key="frame" x="125" y="82" width="125" height="17"/>
+                    <fontDescription key="fontDescription" name="BwModelicaSS01-BoldCondensed" family="Bw Modelica SS01" pointSize="14"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="2qr-TS-i1n" firstAttribute="top" secondItem="yHb-AT-XUO" secondAttribute="top" id="4z2-zo-QXJ"/>
+                <constraint firstItem="l91-28-x9h" firstAttribute="leading" secondItem="hw0-Ta-sSQ" secondAttribute="trailing" constant="8" id="7h5-Zd-wmi"/>
+                <constraint firstItem="hw0-Ta-sSQ" firstAttribute="leading" secondItem="yHb-AT-XUO" secondAttribute="leading" constant="16" id="FFP-8S-stQ"/>
+                <constraint firstItem="yHb-AT-XUO" firstAttribute="bottom" secondItem="AGP-QU-y7v" secondAttribute="bottom" constant="24" id="Ff7-Yb-6bA"/>
+                <constraint firstItem="AGP-QU-y7v" firstAttribute="centerX" secondItem="pv2-hi-5RD" secondAttribute="centerX" id="LbV-Vs-CVN"/>
+                <constraint firstItem="2qr-TS-i1n" firstAttribute="leading" secondItem="yHb-AT-XUO" secondAttribute="leading" id="O3u-3q-Evy"/>
+                <constraint firstItem="l91-28-x9h" firstAttribute="top" secondItem="yHb-AT-XUO" secondAttribute="top" constant="29" id="Qpi-FR-r01"/>
+                <constraint firstItem="yHb-AT-XUO" firstAttribute="trailing" secondItem="2qr-TS-i1n" secondAttribute="trailing" id="fMq-nZ-58g"/>
+                <constraint firstItem="hw0-Ta-sSQ" firstAttribute="top" secondItem="pv2-hi-5RD" secondAttribute="top" constant="24" id="gSB-ne-mYT"/>
+                <constraint firstAttribute="bottom" secondItem="2qr-TS-i1n" secondAttribute="bottom" id="kwd-Bk-Jzz"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="yHb-AT-XUO"/>
+            <point key="canvasLocation" x="24.800000000000001" y="-29.23538230884558"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="bannerChallengeVsBig" width="360" height="123"/>
+        <image name="icDummyPerson" width="48" height="48"/>
+    </resources>
+</document>

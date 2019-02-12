@@ -1,5 +1,5 @@
 //
-//  CreateTantanganCoordinator.swift
+//  OpenChallengeCoordinator.swift
 //  PantauBersama
 //
 //  Created by Hanif Sugiyanto on 12/02/19.
@@ -8,13 +8,11 @@
 
 import RxSwift
 
-protocol CreateTantanganNavigator {
-    func launchOpen() -> Observable<Void>
-    func launchDirect() -> Observable<Void>
+protocol OpenChallengeNavigator {
     var finish: Observable<Void>! { get set }
 }
 
-final class CreateTantanganCoordinator: BaseCoordinator<Void> {
+final class OpenChallengeCoordinator: BaseCoordinator<Void>, OpenChallengeNavigator {
     
     private let navigationController: UINavigationController
     var finish: Observable<Void>!
@@ -24,8 +22,8 @@ final class CreateTantanganCoordinator: BaseCoordinator<Void> {
     }
     
     override func start() -> Observable<CoordinationResult> {
-        let viewModel = CreateTantanganViewModel(navigator: self)
-        let viewController = CreateTantanganController()
+        let viewModel = OpenChallengeViewModel(navigator: self)
+        let viewController = OpenChallengeController()
         viewController.viewModel = viewModel
         viewController.hidesBottomBarWhenPushed = true
         navigationController.pushViewController(viewController, animated: true)
@@ -33,18 +31,5 @@ final class CreateTantanganCoordinator: BaseCoordinator<Void> {
             self?.navigationController.popViewController(animated: true)
         })
     }
-    
-}
-
-extension CreateTantanganCoordinator: CreateTantanganNavigator {
-    func launchOpen() -> Observable<Void> {
-        let openCoordinator = OpenChallengeCoordinator(navigationController: navigationController)
-        return coordinate(to: openCoordinator)
-    }
-    
-    func launchDirect() -> Observable<Void> {
-        return Observable.empty()
-    }
-    
     
 }

@@ -27,6 +27,14 @@ class CreateTantanganController: UIViewController {
         back.rx.tap
             .bind(to: viewModel.input.backTriggger)
             .disposed(by: disposeBag)
+        
+        btnOpenChallenge.rx.tap
+            .bind(to: viewModel.input.openTrigger)
+            .disposed(by: disposeBag)
+        
+        viewModel.output.openSelected
+            .drive()
+            .disposed(by: disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {

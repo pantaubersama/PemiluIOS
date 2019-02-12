@@ -34,9 +34,6 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yb0-3q-Rrj" customClass="RoundView" customModule="Common">
                             <rect key="frame" x="0.0" y="0.0" width="343" height="141"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="35F-5z-7Xf">
-                                    <rect key="frame" x="0.0" y="0.0" width="343" height="141"/>
-                                </button>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="outlineChallenge24PxYellow" translatesAutoresizingMaskIntoConstraints="NO" id="9zl-qP-2lm">
                                     <rect key="frame" x="16" y="16" width="24" height="24"/>
                                     <constraints>
@@ -76,6 +73,9 @@
                                         </label>
                                     </subviews>
                                 </stackView>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="35F-5z-7Xf">
+                                    <rect key="frame" x="0.0" y="0.0" width="343" height="141"/>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" red="0.97648364310000002" green="0.97644716499999995" blue="0.97647196049999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <constraints>
@@ -100,9 +100,6 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ezX-lp-LZ5" customClass="RoundView" customModule="Common">
                             <rect key="frame" x="0.0" y="157" width="343" height="144"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IcF-uV-Kiz">
-                                    <rect key="frame" x="0.0" y="0.0" width="343" height="144"/>
-                                </button>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icTwitterBlue" translatesAutoresizingMaskIntoConstraints="NO" id="yY4-hb-sRC">
                                     <rect key="frame" x="16" y="16" width="24" height="24"/>
                                     <constraints>
@@ -142,6 +139,9 @@
                                         </label>
                                     </subviews>
                                 </stackView>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IcF-uV-Kiz">
+                                    <rect key="frame" x="0.0" y="0.0" width="343" height="144"/>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" red="0.97648364310000002" green="0.97644716499999995" blue="0.97647196049999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <constraints>
