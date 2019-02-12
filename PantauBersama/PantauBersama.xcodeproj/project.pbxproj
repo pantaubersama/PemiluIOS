@@ -380,6 +380,14 @@
 		84FA42582212B873008215C4 /* TantanganCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84FA42572212B873008215C4 /* TantanganCell.xib */; };
 		84FA425A2212BB4B008215C4 /* TantanganCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FA42592212BB4B008215C4 /* TantanganCell.swift */; };
 		84FA425C2212C474008215C4 /* OpenChallengeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FA425B2212C474008215C4 /* OpenChallengeCoordinator.swift */; };
+		84FA42642212E919008215C4 /* BidangKajianCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84FA42632212E919008215C4 /* BidangKajianCell.xib */; };
+		84FA42662212EABA008215C4 /* BidangKajianCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FA42652212EABA008215C4 /* BidangKajianCell.swift */; };
+		84FA42682212EED0008215C4 /* PernyataanCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84FA42672212EED0008215C4 /* PernyataanCell.xib */; };
+		84FA426A2212F0F5008215C4 /* PernyataanCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FA42692212F0F5008215C4 /* PernyataanCell.swift */; };
+		84FA426C2212F460008215C4 /* DateTimeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84FA426B2212F460008215C4 /* DateTimeCell.xib */; };
+		84FA426E2212F778008215C4 /* DateTimeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FA426D2212F778008215C4 /* DateTimeCell.swift */; };
+		84FA42702212F902008215C4 /* SaldoTimeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84FA426F2212F902008215C4 /* SaldoTimeCell.xib */; };
+		84FA42722212FBBE008215C4 /* SaldoTimeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FA42712212FBBE008215C4 /* SaldoTimeCell.swift */; };
 		84FE6EBA21D5FC9B009A0F55 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FE6EB921D5FC9B009A0F55 /* ActivityIndicator.swift */; };
 		84FE6EBC21D5FCB9009A0F55 /* ErrorTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FE6EBB21D5FCB9009A0F55 /* ErrorTracker.swift */; };
 		84FE6EBE21D5FEA1009A0F55 /* Network+AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FE6EBD21D5FEA1009A0F55 /* Network+AlertController.swift */; };
@@ -801,6 +809,14 @@
 		84FA42572212B873008215C4 /* TantanganCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TantanganCell.xib; sourceTree = "<group>"; };
 		84FA42592212BB4B008215C4 /* TantanganCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TantanganCell.swift; sourceTree = "<group>"; };
 		84FA425B2212C474008215C4 /* OpenChallengeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenChallengeCoordinator.swift; sourceTree = "<group>"; };
+		84FA42632212E919008215C4 /* BidangKajianCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BidangKajianCell.xib; sourceTree = "<group>"; };
+		84FA42652212EABA008215C4 /* BidangKajianCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BidangKajianCell.swift; sourceTree = "<group>"; };
+		84FA42672212EED0008215C4 /* PernyataanCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PernyataanCell.xib; sourceTree = "<group>"; };
+		84FA42692212F0F5008215C4 /* PernyataanCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PernyataanCell.swift; sourceTree = "<group>"; };
+		84FA426B2212F460008215C4 /* DateTimeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DateTimeCell.xib; sourceTree = "<group>"; };
+		84FA426D2212F778008215C4 /* DateTimeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeCell.swift; sourceTree = "<group>"; };
+		84FA426F2212F902008215C4 /* SaldoTimeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SaldoTimeCell.xib; sourceTree = "<group>"; };
+		84FA42712212FBBE008215C4 /* SaldoTimeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaldoTimeCell.swift; sourceTree = "<group>"; };
 		84FE6EB921D5FC9B009A0F55 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		84FE6EBB21D5FCB9009A0F55 /* ErrorTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorTracker.swift; sourceTree = "<group>"; };
 		84FE6EBD21D5FEA1009A0F55 /* Network+AlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Network+AlertController.swift"; sourceTree = "<group>"; };
@@ -2490,6 +2506,14 @@
 				84FA424F2212B1C9008215C4 /* HeaderTantanganView.swift */,
 				84FA42572212B873008215C4 /* TantanganCell.xib */,
 				84FA42592212BB4B008215C4 /* TantanganCell.swift */,
+				84FA42632212E919008215C4 /* BidangKajianCell.xib */,
+				84FA42652212EABA008215C4 /* BidangKajianCell.swift */,
+				84FA42672212EED0008215C4 /* PernyataanCell.xib */,
+				84FA42692212F0F5008215C4 /* PernyataanCell.swift */,
+				84FA426B2212F460008215C4 /* DateTimeCell.xib */,
+				84FA426D2212F778008215C4 /* DateTimeCell.swift */,
+				84FA426F2212F902008215C4 /* SaldoTimeCell.xib */,
+				84FA42712212FBBE008215C4 /* SaldoTimeCell.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -2664,6 +2688,7 @@
 				84307F462200352B006DE04B /* ob3_penpol.json in Resources */,
 				84A07F9D21D0DC4B00269C6B /* KTPController.xib in Resources */,
 				137A29F421E2261A00F19072 /* ComingsoonController.xib in Resources */,
+				84FA42682212EED0008215C4 /* PernyataanCell.xib in Resources */,
 				8478B8E621FF1FAA00CE192A /* InfoNotifCell.xib in Resources */,
 				84619D3C21DA88C800EB58CF /* ItemInfoCell.xib in Resources */,
 				8441DB5621CCF19C00B078DF /* DetailJanjiController.xib in Resources */,
@@ -2689,6 +2714,7 @@
 				84307F442200352B006DE04B /* ob1_wordstadium.json in Resources */,
 				845C571721CE1B5900EDCDFE /* BadgeCell.xib in Resources */,
 				841CDA3D21C8BC1C0015680C /* LinimasaController.xib in Resources */,
+				84FA426C2212F460008215C4 /* DateTimeCell.xib in Resources */,
 				84A07FA721D0E2E900269C6B /* SelfIdentitasController.xib in Resources */,
 				84E6933E21D2936E00EA5464 /* HeaderEditProfile.xib in Resources */,
 				84B7B8B321E4454B0099E7E3 /* EmptyView.xib in Resources */,
@@ -2708,6 +2734,7 @@
 				84B2669F21D4DB9A00C7B783 /* ProfileEditController.xib in Resources */,
 				84F892A721C7875200DC1048 /* BwModelica-ThinCondensed.otf in Resources */,
 				137A29F621E2303400F19072 /* coming-soon-coffee.json in Resources */,
+				84FA42642212E919008215C4 /* BidangKajianCell.xib in Resources */,
 				1147F22C21F83C01001D0D59 /* ClusterDetailController.xib in Resources */,
 				8441DB3E21CCB80B00B078DF /* ItemRadioCell.xib in Resources */,
 				11D066A521E3850E003AC9BB /* PenpolFilterController.xib in Resources */,
@@ -2719,6 +2746,7 @@
 				844C2BA521CC0F2500BC439A /* BannerHeaderView.xib in Resources */,
 				84FE6EC421D634CD009A0F55 /* BiodataView.xib in Resources */,
 				84B6D6EA21E223AA00CD4BC8 /* ClusterView.xib in Resources */,
+				84FA42702212F902008215C4 /* SaldoTimeCell.xib in Resources */,
 				845C571321CE10C900EDCDFE /* IconTableCell.xib in Resources */,
 				11145F5621EACCEC0046F2AA /* SearchController.xib in Resources */,
 				11145F6B21EB473B0046F2AA /* CustomMenuBar.xib in Resources */,
@@ -3088,6 +3116,7 @@
 				13E170C4221184EC0018EDB4 /* WordstadiumCoordinator.swift in Sources */,
 				84E2854421CA195C00298E31 /* CustomActionSheet.swift in Sources */,
 				84619D3A21DA85D200EB58CF /* EditCoordinator.swift in Sources */,
+				84FA42722212FBBE008215C4 /* SaldoTimeCell.swift in Sources */,
 				844C3D6D21C51CE900199871 /* HomeController.swift in Sources */,
 				84B6D6EE21E2451600CD4BC8 /* ClusterType.swift in Sources */,
 				84E6934621D296BB00EA5464 /* SectionOfProfileEditData.swift in Sources */,
@@ -3158,12 +3187,14 @@
 				84F6980921C8D28B00890917 /* PilpresViewController.swift in Sources */,
 				1197010C21F3632D005548AC /* ListClusterController.swift in Sources */,
 				84D7A77821CE8CFF009502AF /* ProfileViewModel.swift in Sources */,
+				84FA426E2212F778008215C4 /* DateTimeCell.swift in Sources */,
 				84FA42342212886A008215C4 /* TooltipView.swift in Sources */,
 				8452A4C321DE1EF400196043 /* BuatProfileController.swift in Sources */,
 				84A07F9A21D0DBE200269C6B /* IdentitasController.swift in Sources */,
 				11D066A821E38610003AC9BB /* PenpolFilterCoordinator.swift in Sources */,
 				84D01B9D21D20CA20000492F /* SettingCell.swift in Sources */,
 				84B6D50521F829D100DD742A /* CatatanPilpresController.swift in Sources */,
+				84FA42662212EABA008215C4 /* BidangKajianCell.swift in Sources */,
 				844C3D7821C51EFD00199871 /* HomeCoordinator.swift in Sources */,
 				845C571921CE1C9900EDCDFE /* BadgeCell.swift in Sources */,
 				84B6D6E621E1069E00CD4BC8 /* KategoriClusterCoordinator.swift in Sources */,
@@ -3205,6 +3236,7 @@
 				13E9D79021E92934006A0890 /* MyJanpolListViewModel.swift in Sources */,
 				8478B8E121FF1C6600CE192A /* NotificationController.swift in Sources */,
 				84FE6EBE21D5FEA1009A0F55 /* Network+AlertController.swift in Sources */,
+				84FA426A2212F0F5008215C4 /* PernyataanCell.swift in Sources */,
 				8441DB5821CCF7D900B078DF /* DetailJanjiCoordinator.swift in Sources */,
 				13F4569D21CF985800CE45F1 /* CreateAskViewModel.swift in Sources */,
 				13E170C2221184DF0018EDB4 /* WordstadiumViewModel.swift in Sources */,

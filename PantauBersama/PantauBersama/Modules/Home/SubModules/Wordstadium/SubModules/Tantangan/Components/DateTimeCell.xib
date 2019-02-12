@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="BwModelicaSS01-BoldCondensed.otf">
+            <string>BwModelicaSS01-BoldCondensed</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="152" id="71B-5l-O3o" customClass="DateTimeCell" customModule="PantauBersama" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="376" height="152"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="71B-5l-O3o" id="7Ue-PS-XPC">
+                <rect key="frame" x="0.0" y="0.0" width="376" height="151.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkUnactive" translatesAutoresizingMaskIntoConstraints="NO" id="AeF-Yj-cTs">
+                        <rect key="frame" x="16" y="0.0" width="24" height="24"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="24" id="3DF-m9-PCd"/>
+                            <constraint firstAttribute="width" constant="24" id="bHT-Xl-xTS"/>
+                        </constraints>
+                    </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BGY-qz-OOI">
+                        <rect key="frame" x="27.5" y="24" width="1" height="127.5"/>
+                        <color key="backgroundColor" red="0.79608923200000004" green="0.79605895280000005" blue="0.79607945680000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="1" id="lCZ-NL-xhH"/>
+                        </constraints>
+                    </view>
+                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NZp-Yv-TIU">
+                        <rect key="frame" x="56" y="0.0" width="286" height="17"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date &amp; Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RUy-tk-dsF" customClass="Label" customModule="Common">
+                                <rect key="frame" x="0.0" y="0.0" width="270" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                        <real key="value" value="14"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fec-UM-GSm">
+                                <rect key="frame" x="270" y="-5" width="16" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="16" id="Eon-g4-RIb"/>
+                                    <constraint firstAttribute="height" constant="16" id="RuG-RE-Le5"/>
+                                </constraints>
+                                <state key="normal" image="outlineHint16Px"/>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="17" id="Rke-Yu-7hg"/>
+                        </constraints>
+                    </stackView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tentukan waktu dan tanggal debat yang kamu inginkan. Jangan sampai salah momen, lho! :|" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4lE-Kb-G5T" customClass="Label" customModule="Common">
+                        <rect key="frame" x="56.5" y="21" width="285.5" height="26.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.48628133540000001" green="0.4862622023" blue="0.48627519609999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                <real key="value" value="11"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="soP-Nl-fMi">
+                        <rect key="frame" x="56.5" y="55.5" width="301.5" height="40"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icDate" translatesAutoresizingMaskIntoConstraints="NO" id="MZt-O7-dbR">
+                                <rect key="frame" x="8" y="8" width="24" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="MWr-kM-PkX"/>
+                                    <constraint firstAttribute="width" constant="24" id="tHP-hy-d6q"/>
+                                </constraints>
+                            </imageView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Pilih Tanggal" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1Og-GB-dtB">
+                                <rect key="frame" x="48" y="8" width="245.5" height="24"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="BwModelicaSS01-BoldCondensed" family="Bw Modelica SS01" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" red="0.97648364310000002" green="0.97644716499999995" blue="0.97647196049999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="1Og-GB-dtB" secondAttribute="trailing" constant="8" id="Di0-GZ-dVv"/>
+                            <constraint firstItem="MZt-O7-dbR" firstAttribute="leading" secondItem="soP-Nl-fMi" secondAttribute="leading" constant="8" id="OHI-EW-OBt"/>
+                            <constraint firstAttribute="bottom" secondItem="1Og-GB-dtB" secondAttribute="bottom" constant="8" id="SiN-PF-jDh"/>
+                            <constraint firstItem="1Og-GB-dtB" firstAttribute="top" secondItem="soP-Nl-fMi" secondAttribute="top" constant="8" id="WlK-WT-kYB"/>
+                            <constraint firstItem="1Og-GB-dtB" firstAttribute="leading" secondItem="MZt-O7-dbR" secondAttribute="trailing" constant="16" id="Z9L-S1-KPU"/>
+                            <constraint firstAttribute="height" constant="40" id="ZEd-17-gvd"/>
+                            <constraint firstItem="MZt-O7-dbR" firstAttribute="centerY" secondItem="soP-Nl-fMi" secondAttribute="centerY" id="gHH-mi-kpm"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IOm-9h-baA">
+                        <rect key="frame" x="56.5" y="103.5" width="301.5" height="40"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icClock" translatesAutoresizingMaskIntoConstraints="NO" id="wcO-uG-hvy">
+                                <rect key="frame" x="8" y="8" width="24" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="24" id="MO8-Wl-BBM"/>
+                                    <constraint firstAttribute="height" constant="24" id="twn-RN-eWp"/>
+                                </constraints>
+                            </imageView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Pilih jam" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WCJ-ix-FTv">
+                                <rect key="frame" x="48" y="8" width="245.5" height="24"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="BwModelicaSS01-BoldCondensed" family="Bw Modelica SS01" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" red="0.97648364310000002" green="0.97644716499999995" blue="0.97647196049999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="55J-S4-APu"/>
+                            <constraint firstItem="WCJ-ix-FTv" firstAttribute="top" secondItem="IOm-9h-baA" secondAttribute="top" constant="8" id="Fbj-w3-MTF"/>
+                            <constraint firstItem="wcO-uG-hvy" firstAttribute="leading" secondItem="IOm-9h-baA" secondAttribute="leading" constant="8" id="Q5l-rx-dm6"/>
+                            <constraint firstItem="WCJ-ix-FTv" firstAttribute="leading" secondItem="wcO-uG-hvy" secondAttribute="trailing" constant="16" id="k8I-ah-1Yl"/>
+                            <constraint firstAttribute="trailing" secondItem="WCJ-ix-FTv" secondAttribute="trailing" constant="8" id="sKz-l7-JPr"/>
+                            <constraint firstAttribute="bottom" secondItem="WCJ-ix-FTv" secondAttribute="bottom" constant="8" id="uy2-iA-xKA"/>
+                            <constraint firstItem="wcO-uG-hvy" firstAttribute="centerY" secondItem="IOm-9h-baA" secondAttribute="centerY" id="x6p-fz-kX1"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="soP-Nl-fMi" secondAttribute="trailing" constant="18" id="7m5-qM-9xK"/>
+                    <constraint firstItem="AeF-Yj-cTs" firstAttribute="top" secondItem="7Ue-PS-XPC" secondAttribute="top" id="DXr-6x-PGN"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="NZp-Yv-TIU" secondAttribute="trailing" constant="18" id="FCU-vh-64t"/>
+                    <constraint firstItem="NZp-Yv-TIU" firstAttribute="top" secondItem="7Ue-PS-XPC" secondAttribute="firstBaseline" id="L91-NT-dml"/>
+                    <constraint firstItem="IOm-9h-baA" firstAttribute="top" secondItem="soP-Nl-fMi" secondAttribute="bottom" constant="8" id="UJj-9X-EXe"/>
+                    <constraint firstItem="soP-Nl-fMi" firstAttribute="leading" secondItem="BGY-qz-OOI" secondAttribute="trailing" constant="28" id="WKE-HG-b2r"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="4lE-Kb-G5T" secondAttribute="trailing" constant="18" id="XUK-TT-Ktt"/>
+                    <constraint firstItem="4lE-Kb-G5T" firstAttribute="leading" secondItem="BGY-qz-OOI" secondAttribute="trailing" constant="28" id="a3L-kB-7bk"/>
+                    <constraint firstItem="BGY-qz-OOI" firstAttribute="centerX" secondItem="AeF-Yj-cTs" secondAttribute="centerX" id="aFO-Wi-0bO"/>
+                    <constraint firstItem="4lE-Kb-G5T" firstAttribute="top" secondItem="NZp-Yv-TIU" secondAttribute="bottom" constant="4" id="bdI-4f-4KB"/>
+                    <constraint firstItem="BGY-qz-OOI" firstAttribute="top" secondItem="AeF-Yj-cTs" secondAttribute="bottom" id="dvE-jj-Nx4"/>
+                    <constraint firstAttribute="bottom" secondItem="BGY-qz-OOI" secondAttribute="bottom" id="ecC-LJ-NwU"/>
+                    <constraint firstItem="IOm-9h-baA" firstAttribute="leading" secondItem="BGY-qz-OOI" secondAttribute="trailing" constant="28" id="f3Q-7x-c3z"/>
+                    <constraint firstAttribute="trailing" secondItem="IOm-9h-baA" secondAttribute="trailing" constant="18" id="faA-iS-Y2c"/>
+                    <constraint firstItem="NZp-Yv-TIU" firstAttribute="leading" secondItem="AeF-Yj-cTs" secondAttribute="trailing" constant="16" id="gwQ-jU-0YY"/>
+                    <constraint firstItem="soP-Nl-fMi" firstAttribute="top" secondItem="4lE-Kb-G5T" secondAttribute="bottom" constant="8" id="mdU-PE-DrP"/>
+                    <constraint firstItem="AeF-Yj-cTs" firstAttribute="leading" secondItem="7Ue-PS-XPC" secondAttribute="leading" constant="16" id="paH-Jt-5HZ"/>
+                </constraints>
+            </tableViewCellContentView>
+            <point key="canvasLocation" x="78.400000000000006" y="241.97901049475263"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="checkUnactive" width="24" height="24"/>
+        <image name="icClock" width="24" height="24"/>
+        <image name="icDate" width="24" height="24"/>
+        <image name="outlineHint16Px" width="16" height="16"/>
+    </resources>
+</document>

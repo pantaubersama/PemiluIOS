@@ -23,7 +23,7 @@ class HeaderTantanganView: UIView {
     @IBOutlet weak var lblType: UILabel!
     
     override init(frame: CGRect) {
-        let frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 123.0)
+        let frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 139.0)
         super.init(frame: frame)
         setup()
     }

@@ -33,17 +33,36 @@ class OpenChallengeController: UIViewController {
         tableView.delegate = nil
         tableView.dataSource = nil
         tableView.registerReusableCell(TantanganCell.self)
+        tableView.registerReusableCell(BidangKajianCell.self)
+        tableView.registerReusableCell(PernyataanCell.self)
+        tableView.registerReusableCell(DateTimeCell.self)
+        tableView.registerReusableCell(SaldoTimeCell.self)
         tableView.tableHeaderView = HeaderTantanganView()
-        tableView.separatorInset = UIEdgeInsets(top: 16, left: 0, bottom: 16, right: 0)
+        tableView.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         
         
         dataSource = RxTableViewSectionedReloadDataSource<SectionOfTantanganData>(configureCell: { (dataSource, tableView, indexPath, item) -> UITableViewCell in
-            let cell = tableView.dequeueReusableCell(indexPath: indexPath) as TantanganCell
-            cell.configureCell(item: TantanganCell.Input(data: item, active: dataSource.sectionModels.first?.isActive ?? false))
-            
-            return cell
+            switch indexPath.section {
+            case 0:
+                let cell = tableView.dequeueReusableCell(indexPath: indexPath) as BidangKajianCell
+                return cell
+            case 1:
+                let cell = tableView.dequeueReusableCell(indexPath: indexPath) as PernyataanCell
+                return cell
+            case 2:
+                let cell = tableView.dequeueReusableCell(indexPath: indexPath) as DateTimeCell
+                return cell
+            case 3:
+                let cell = tableView.dequeueReusableCell(indexPath: indexPath) as SaldoTimeCell
+                return cell
+            default:
+                let cell = UITableViewCell()
+                return cell
+            }
         })
         
+        tableView.rx.setDelegate(self)
+            .disposed(by: disposeBag)
     
         viewModel.output.itemsO
             .drive(tableView.rx.items(dataSource: dataSource))
@@ -59,6 +78,25 @@ class OpenChallengeController: UIViewController {
         navigationController?.navigationBar.configure(with: .white)
         
         viewModel.input.kajianI.onNext(false)
+    }
+    
+}
+
+extension OpenChallengeController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        switch indexPath.section {
+        case 0:
+            return 90.0
+        case 1:
+            return 219.0
+        case 2:
+            return 151.0
+        case 3:
+            return 140.0
+        default:
+            return 77.0
+        }
     }
     
 }

@@ -25,11 +25,11 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="pv2-hi-5RD">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="123"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="135"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bannerChallengeVsBig" translatesAutoresizingMaskIntoConstraints="NO" id="2qr-TS-i1n">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="123"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="119"/>
                 </imageView>
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hw0-Ta-sSQ" customClass="RoundView" customModule="Common">
                     <rect key="frame" x="16" y="24" width="40" height="40"/>
@@ -87,7 +87,7 @@
                     </constraints>
                 </stackView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OPEN CHALLENGE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AGP-QU-y7v">
-                    <rect key="frame" x="125" y="82" width="125" height="17"/>
+                    <rect key="frame" x="125" y="94" width="125" height="17"/>
                     <fontDescription key="fontDescription" name="BwModelicaSS01-BoldCondensed" family="Bw Modelica SS01" pointSize="14"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
@@ -104,11 +104,11 @@
                 <constraint firstItem="l91-28-x9h" firstAttribute="top" secondItem="yHb-AT-XUO" secondAttribute="top" constant="29" id="Qpi-FR-r01"/>
                 <constraint firstItem="yHb-AT-XUO" firstAttribute="trailing" secondItem="2qr-TS-i1n" secondAttribute="trailing" id="fMq-nZ-58g"/>
                 <constraint firstItem="hw0-Ta-sSQ" firstAttribute="top" secondItem="pv2-hi-5RD" secondAttribute="top" constant="24" id="gSB-ne-mYT"/>
-                <constraint firstAttribute="bottom" secondItem="2qr-TS-i1n" secondAttribute="bottom" id="kwd-Bk-Jzz"/>
+                <constraint firstAttribute="bottom" secondItem="2qr-TS-i1n" secondAttribute="bottom" constant="16" id="kwd-Bk-Jzz"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="yHb-AT-XUO"/>
-            <point key="canvasLocation" x="24.800000000000001" y="-29.23538230884558"/>
+            <point key="canvasLocation" x="24.800000000000001" y="-23.838080959520241"/>
         </view>
     </objects>
     <resources>
