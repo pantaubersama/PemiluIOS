@@ -7,17 +7,53 @@
 //
 
 import UIKit
+import RxCocoa
+import RxSwift
 
 class PublicViewController: UITableViewController {
 
+    private let disposeBag = DisposeBag()
+    private var headerView: BannerHeaderView!
+    private var emptyView = EmptyView()
+    private var viewModel: PublicViewModel!
+    
+    var rControl : UIRefreshControl?
+    
+    convenience init(viewModel: PublicViewModel) {
+        self.init()
+        self.viewModel = viewModel
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+//        tableView.registerReusableCell(LinimasaCell.self)
+        tableView.delegate = nil
+        tableView.dataSource = nil
+        tableView.estimatedRowHeight = 44.0
+        tableView.separatorStyle = .none
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        tableView.tableFooterView = UIView()
+        tableView.refreshControl = UIRefreshControl()
+        
+        viewModel.output.showHeader
+            .drive(onNext: { [unowned self](isHeaderShown) in
+                if isHeaderShown {
+                    self.headerView = BannerHeaderView()
+                    self.tableView.tableHeaderView = self.headerView
+                    
+                    self.viewModel.output.bannerInfo
+                        .drive(onNext: { (banner) in
+                            self.headerView.config(banner: banner, viewModel: self.viewModel.headerViewModel)
+                        })
+                        .disposed(by: self.disposeBag)
+                }
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.output.infoSelected
+            .drive()
+            .disposed(by: disposeBag)
     }
 
     // MARK: - Table view data source
@@ -32,59 +68,6 @@ class PublicViewController: UITableViewController {
         return 0
     }
 
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
-    }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+    
 
 }

@@ -102,6 +102,8 @@
 		13E170C4221184EC0018EDB4 /* WordstadiumCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E170C3221184EC0018EDB4 /* WordstadiumCoordinator.swift */; };
 		13E170C6221197B30018EDB4 /* PersonalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E170C5221197B30018EDB4 /* PersonalViewController.swift */; };
 		13E170C8221197E90018EDB4 /* PublicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E170C7221197E90018EDB4 /* PublicViewController.swift */; };
+		13E170CA2211E2980018EDB4 /* PublicViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E170C92211E2980018EDB4 /* PublicViewModel.swift */; };
+		13E170CC2211E2AE0018EDB4 /* PublicNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E170CB2211E2AE0018EDB4 /* PublicNavigator.swift */; };
 		13E9D78821E8F025006A0890 /* IJanpolListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E9D78721E8F025006A0890 /* IJanpolListViewModel.swift */; };
 		13E9D78B21E8FCF6006A0890 /* IJanpolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E9D78A21E8FCF5006A0890 /* IJanpolViewController.swift */; };
 		13E9D78E21E9171E006A0890 /* JanpolListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E9D78D21E9171E006A0890 /* JanpolListViewModel.swift */; };
@@ -499,6 +501,8 @@
 		13E170C3221184EC0018EDB4 /* WordstadiumCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordstadiumCoordinator.swift; sourceTree = "<group>"; };
 		13E170C5221197B30018EDB4 /* PersonalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalViewController.swift; sourceTree = "<group>"; };
 		13E170C7221197E90018EDB4 /* PublicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicViewController.swift; sourceTree = "<group>"; };
+		13E170C92211E2980018EDB4 /* PublicViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicViewModel.swift; sourceTree = "<group>"; };
+		13E170CB2211E2AE0018EDB4 /* PublicNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicNavigator.swift; sourceTree = "<group>"; };
 		13E9D78721E8F025006A0890 /* IJanpolListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IJanpolListViewModel.swift; sourceTree = "<group>"; };
 		13E9D78A21E8FCF5006A0890 /* IJanpolViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IJanpolViewController.swift; sourceTree = "<group>"; };
 		13E9D78D21E9171E006A0890 /* JanpolListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JanpolListViewModel.swift; sourceTree = "<group>"; };
@@ -1179,6 +1183,8 @@
 			isa = PBXGroup;
 			children = (
 				13E170C7221197E90018EDB4 /* PublicViewController.swift */,
+				13E170C92211E2980018EDB4 /* PublicViewModel.swift */,
+				13E170CB2211E2AE0018EDB4 /* PublicNavigator.swift */,
 			);
 			path = Public;
 			sourceTree = "<group>";
@@ -2895,6 +2901,7 @@
 				84A07FBC21D129FC00269C6B /* GroupProfileInfoData.swift in Sources */,
 				84B7B8BC21E47A8F0099E7E3 /* ClusterSearchController.swift in Sources */,
 				137A29F321E2261A00F19072 /* ComingsoonController.swift in Sources */,
+				13E170CC2211E2AE0018EDB4 /* PublicNavigator.swift in Sources */,
 				11702DD521CB08DE001AEE3F /* QuizController.swift in Sources */,
 				11145F5D21EAF2670046F2AA /* SearchNavbar.swift in Sources */,
 				13F456A921D2A68300CE45F1 /* QuestionType.swift in Sources */,
@@ -3113,6 +3120,7 @@
 				11B145EE21D67C8200BB26C8 /* AskCellViewModel.swift in Sources */,
 				844C3D7A21C5230C00199871 /* RawRepresentable.swift in Sources */,
 				1147F23321F84306001D0D59 /* ClusterSearchNavigator.swift in Sources */,
+				13E170CA2211E2980018EDB4 /* PublicViewModel.swift in Sources */,
 				840850D721D2802000696CB3 /* ProfileInfoDummyData.swift in Sources */,
 				13F4569921CF982E00CE45F1 /* QuestionNavigator.swift in Sources */,
 				84E2854721CA1E8300298E31 /* PilpresType.swift in Sources */,
