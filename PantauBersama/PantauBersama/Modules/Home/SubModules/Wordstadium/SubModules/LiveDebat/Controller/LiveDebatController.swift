@@ -13,6 +13,8 @@ import RxCocoa
 
 class LiveDebatController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var tableViewDebat: UITableView!
+    
     private lazy var titleView = Button()
     
     
@@ -22,6 +24,11 @@ class LiveDebatController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //for dummy ui
+        tableViewDebat.dataSource = self
+        tableViewDebat.tableFooterView = UIView()
+        tableViewDebat.isScrollEnabled = false
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -80,16 +87,33 @@ class LiveDebatController: UIViewController {
     
     private func configureCollapseNavbar(y: CGFloat, collaspingY: CGFloat) {
         if y > collaspingY && self.navigationController?.navigationBar.barTintColor != Color.secondary_orange { // collapsed
+            self.tableViewDebat.isScrollEnabled = true
             UIView.animate(withDuration: 0.3, animations: {
                 self.navigationController?.navigationBar.barTintColor = Color.secondary_orange
                 self.navigationController?.navigationBar.backgroundColor = Color.secondary_orange
             })
             self.titleView.isHidden = false
         } else if y < collaspingY && self.navigationController?.navigationBar.barTintColor != UIColor.clear { // expanded
+            self.tableViewDebat.isScrollEnabled = false
             UIView.animate(withDuration: 0.5, animations: {
                 self.navigationController?.navigationBar.configure(with: .transparent)
             })
             self.titleView.isHidden = true
         }
     }
+}
+
+extension LiveDebatController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 20
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell()
+        cell.textLabel?.text = "hahahahahahaha"
+        
+        return cell
+    }
+    
+    
 }

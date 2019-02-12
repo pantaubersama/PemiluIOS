@@ -13,6 +13,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LiveDebatController" customModule="PantauBersama" customModuleProvider="target">
             <connections>
                 <outlet property="scrollView" destination="YMc-k0-wfR" id="e7R-PB-n77"/>
+                <outlet property="tableViewDebat" destination="TPX-JG-RIR" id="p1R-s4-MRW"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -21,7 +22,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YMc-k0-wfR">
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YMc-k0-wfR">
                     <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1MC-zf-Ckx">
@@ -59,7 +60,7 @@
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Giliran Raja menulis argumen …" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="biJ-P7-fep" customClass="Label" customModule="Common">
-                                            <rect key="frame" x="40" y="10" width="129" height="12"/>
+                                            <rect key="frame" x="40" y="11" width="124" height="10"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="8"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -169,7 +170,7 @@ pertumbuhan mencapai 5,27%.
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IGg-ye-7O3" customClass="Button" customModule="Common">
-                            <rect key="frame" x="311.5" y="65" width="37" height="26"/>
+                            <rect key="frame" x="311.5" y="65" width="37" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="37" id="f8r-8X-DJc"/>
                             </constraints>
@@ -197,7 +198,7 @@ pertumbuhan mencapai 5,27%.
                             </userDefinedRuntimeAttributes>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GaY-h9-I1k" customClass="Button" customModule="Common">
-                            <rect key="frame" x="230.5" y="63" width="51" height="30"/>
+                            <rect key="frame" x="230.5" y="65" width="51" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="H2w-xZ-GVX"/>
                                 <constraint firstAttribute="width" constant="51" id="hUm-yq-b0R"/>
