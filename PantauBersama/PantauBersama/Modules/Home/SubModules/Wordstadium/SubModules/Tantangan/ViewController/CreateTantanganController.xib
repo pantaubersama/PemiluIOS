@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CreateTantanganController" customModule="PantauBersama" customModuleProvider="target">
+            <connections>
+                <outlet property="btnDirectChallenge" destination="IcF-uV-Kiz" id="5cI-W7-bdC"/>
+                <outlet property="btnOpenChallenge" destination="35F-5z-7Xf" id="PYJ-Zo-1n5"/>
+                <outlet property="view" destination="iN0-l3-epB" id="Kbn-JO-4H3"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="createTantanganHeader" translatesAutoresizingMaskIntoConstraints="NO" id="Wwc-Cy-QvF">
+                    <rect key="frame" x="0.0" y="64" width="375" height="180"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="180" id="bLp-Wr-uky"/>
+                    </constraints>
+                </imageView>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="6jN-bt-HEL">
+                    <rect key="frame" x="16" y="244" width="343" height="301"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yb0-3q-Rrj" customClass="RoundView" customModule="Common">
+                            <rect key="frame" x="0.0" y="0.0" width="343" height="141"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="35F-5z-7Xf">
+                                    <rect key="frame" x="0.0" y="0.0" width="343" height="141"/>
+                                </button>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="outlineChallenge24PxYellow" translatesAutoresizingMaskIntoConstraints="NO" id="9zl-qP-2lm">
+                                    <rect key="frame" x="16" y="16" width="24" height="24"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="24" id="QkB-7w-QEh"/>
+                                        <constraint firstAttribute="width" constant="24" id="Yel-us-Xqh"/>
+                                    </constraints>
+                                </imageView>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="3cT-Xl-z7c">
+                                    <rect key="frame" x="56" y="16" width="271" height="109"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Open Challenge" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BUo-Sg-Jit" customClass="Label" customModule="Common">
+                                            <rect key="frame" x="0.0" y="0.0" width="271" height="22"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="22" id="G7l-Wg-IPv"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="typeLabel" value="black"/>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                    <real key="value" value="18"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iqL-4f-RAM" customClass="Label" customModule="Common">
+                                            <rect key="frame" x="0.0" y="22" width="271" height="87"/>
+                                            <string key="text">Setelah menyiapkan bahan debat terkait bidang kajian tertentu; Kamu akan mengundang lawan untuk diajak berdebat satu lawan satu. Jangan lupa promosikan Open Challenge-mu, yaa! Supaya semakin banyak yang memantau~</string>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                    <real key="value" value="11"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </label>
+                                    </subviews>
+                                </stackView>
+                            </subviews>
+                            <color key="backgroundColor" red="0.97648364310000002" green="0.97644716499999995" blue="0.97647196049999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="3cT-Xl-z7c" secondAttribute="bottom" constant="16" id="0Vr-OT-RrF"/>
+                                <constraint firstItem="35F-5z-7Xf" firstAttribute="leading" secondItem="yb0-3q-Rrj" secondAttribute="leading" id="1e1-eR-v96"/>
+                                <constraint firstItem="3cT-Xl-z7c" firstAttribute="leading" secondItem="9zl-qP-2lm" secondAttribute="trailing" constant="16" id="5T6-yy-Tmz"/>
+                                <constraint firstAttribute="bottom" secondItem="35F-5z-7Xf" secondAttribute="bottom" id="En2-y7-v9n"/>
+                                <constraint firstItem="9zl-qP-2lm" firstAttribute="top" secondItem="yb0-3q-Rrj" secondAttribute="top" constant="16" id="H5V-ho-in5"/>
+                                <constraint firstAttribute="trailing" secondItem="35F-5z-7Xf" secondAttribute="trailing" id="QbY-22-wKn"/>
+                                <constraint firstItem="3cT-Xl-z7c" firstAttribute="top" secondItem="yb0-3q-Rrj" secondAttribute="top" constant="16" id="QzK-ek-DJ5"/>
+                                <constraint firstAttribute="trailing" secondItem="3cT-Xl-z7c" secondAttribute="trailing" constant="16" id="TSf-w1-mQQ"/>
+                                <constraint firstItem="9zl-qP-2lm" firstAttribute="leading" secondItem="yb0-3q-Rrj" secondAttribute="leading" constant="16" id="bAM-1w-OvX"/>
+                                <constraint firstAttribute="height" constant="141" id="bLf-qC-tff"/>
+                                <constraint firstItem="35F-5z-7Xf" firstAttribute="top" secondItem="yb0-3q-Rrj" secondAttribute="top" id="ySv-wg-ON0"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="8"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ezX-lp-LZ5" customClass="RoundView" customModule="Common">
+                            <rect key="frame" x="0.0" y="157" width="343" height="144"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IcF-uV-Kiz">
+                                    <rect key="frame" x="0.0" y="0.0" width="343" height="144"/>
+                                </button>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icTwitterBlue" translatesAutoresizingMaskIntoConstraints="NO" id="yY4-hb-sRC">
+                                    <rect key="frame" x="16" y="16" width="24" height="24"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="24" id="JqS-oN-gVb"/>
+                                        <constraint firstAttribute="height" constant="24" id="bgc-fQ-xSq"/>
+                                    </constraints>
+                                </imageView>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="BYl-0P-hZn">
+                                    <rect key="frame" x="56" y="16" width="271" height="112"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Direct Challenge" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BZN-fl-1Ls" customClass="Label" customModule="Common">
+                                            <rect key="frame" x="0.0" y="0.0" width="271" height="22"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="22" id="Z01-7J-CqV"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="typeLabel" value="black"/>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                    <real key="value" value="18"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LPa-jk-gV9" customClass="Label" customModule="Common">
+                                            <rect key="frame" x="0.0" y="22" width="271" height="90"/>
+                                            <string key="text">Dari sini, kamu bisa mengundang langsung lawan debatmu yang sudah punya Symbolic ID atau mention akun Twitter-nya. Jangan lupa menyiapkan bidang kajian dan bahasan debat terbaikmu!</string>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.12941176470588234" green="0.12941176470588234" blue="0.12941176470588234" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                    <real key="value" value="11"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </label>
+                                    </subviews>
+                                </stackView>
+                            </subviews>
+                            <color key="backgroundColor" red="0.97648364310000002" green="0.97644716499999995" blue="0.97647196049999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <constraints>
+                                <constraint firstItem="IcF-uV-Kiz" firstAttribute="leading" secondItem="ezX-lp-LZ5" secondAttribute="leading" id="0kV-9W-qYD"/>
+                                <constraint firstItem="yY4-hb-sRC" firstAttribute="leading" secondItem="ezX-lp-LZ5" secondAttribute="leading" constant="16" id="3IQ-Jq-oWe"/>
+                                <constraint firstItem="IcF-uV-Kiz" firstAttribute="top" secondItem="ezX-lp-LZ5" secondAttribute="top" id="GLL-42-ySg"/>
+                                <constraint firstItem="BYl-0P-hZn" firstAttribute="top" secondItem="ezX-lp-LZ5" secondAttribute="top" constant="16" id="SlE-Q7-jrX"/>
+                                <constraint firstItem="BYl-0P-hZn" firstAttribute="leading" secondItem="yY4-hb-sRC" secondAttribute="trailing" constant="16" id="W4e-3x-vph"/>
+                                <constraint firstAttribute="trailing" secondItem="BYl-0P-hZn" secondAttribute="trailing" constant="16" id="hDt-08-sf4"/>
+                                <constraint firstAttribute="bottom" secondItem="IcF-uV-Kiz" secondAttribute="bottom" id="jXD-Or-FbY"/>
+                                <constraint firstAttribute="bottom" secondItem="BYl-0P-hZn" secondAttribute="bottom" constant="16" id="mK0-Zx-o2y"/>
+                                <constraint firstItem="yY4-hb-sRC" firstAttribute="top" secondItem="ezX-lp-LZ5" secondAttribute="top" constant="16" id="rCm-zf-l3q"/>
+                                <constraint firstAttribute="trailing" secondItem="IcF-uV-Kiz" secondAttribute="trailing" id="vb5-U4-zOC"/>
+                                <constraint firstAttribute="height" constant="144" id="ztN-H7-mD3"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="8"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="Wwc-Cy-QvF" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="YPX-db-bua"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="6jN-bt-HEL" secondAttribute="trailing" constant="16" id="ZeA-mg-qYH"/>
+                <constraint firstItem="6jN-bt-HEL" firstAttribute="top" secondItem="Wwc-Cy-QvF" secondAttribute="bottom" id="g8m-NV-WHK"/>
+                <constraint firstItem="Wwc-Cy-QvF" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="gTA-yn-iYL"/>
+                <constraint firstItem="6jN-bt-HEL" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="lZP-4G-eYd"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Wwc-Cy-QvF" secondAttribute="trailing" id="urE-zq-KWP"/>
+            </constraints>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="createTantanganHeader" width="360" height="180"/>
+        <image name="icTwitterBlue" width="24" height="24"/>
+        <image name="outlineChallenge24PxYellow" width="24" height="24"/>
+    </resources>
+</document>
