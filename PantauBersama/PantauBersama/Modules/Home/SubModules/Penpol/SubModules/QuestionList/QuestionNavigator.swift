@@ -24,8 +24,13 @@ protocol IQuestionNavigator: class {
 extension IQuestionNavigator where Self: BaseCoordinator<Void> {
     
     func launchCreateAsk(loadCreatedTrigger: AnyObserver<Void>) -> Observable<Void> {
-        let createAskCoordinator = CreateAskCoordinator(navigationController: self.navigationController, loadCreatedTrigger: loadCreatedTrigger)
-        return coordinate(to: createAskCoordinator)
+        // TODO: for testing only
+//        let createAskCoordinator = CreateAskCoordinator(navigationController: self.navigationController, loadCreatedTrigger: loadCreatedTrigger)
+//        return coordinate(to: createAskCoordinator)
+        
+        let liveDebatCoordinator = LiveDebatCoordinator(navigationController: navigationController)
+        
+        return coordinate(to: liveDebatCoordinator)
     }
     
     func shareQuestion(question: String) -> Observable<Void> {
