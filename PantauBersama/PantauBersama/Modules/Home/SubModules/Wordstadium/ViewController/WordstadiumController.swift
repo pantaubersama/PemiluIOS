@@ -17,6 +17,8 @@ class WordstadiumController: UIViewController {
     @IBOutlet weak var navbar: Navbar!
     @IBOutlet weak var segmentedControl: SegementedControl!
     @IBOutlet weak var container: UIView!
+    @IBOutlet weak var tooltipButton: UIButton!
+    @IBOutlet weak var containerTooltip: RoundView!
     
     var viewModel: WordstadiumViewModel!
     private let disposeBag = DisposeBag()
@@ -40,11 +42,14 @@ class WordstadiumController: UIViewController {
             .subscribe(onNext: { [unowned self] i in
                 UIView.animate(withDuration: 0.3, animations: {
                     if i == 0 {
-                        self.personalController.view.alpha = 1.0
-                        self.publicController.view.alpha = 0.0
-                    } else {
                         self.personalController.view.alpha = 0.0
                         self.publicController.view.alpha = 1.0
+                        self.containerTooltip.alpha = 0.0
+                    } else {
+                        self.personalController.view.alpha = 1.0
+                        self.publicController.view.alpha = 0.0
+                        self.containerTooltip.alpha = 1.0
+                        self.containerTooltip.isHidden = false
                     }
                 })
             })
@@ -67,6 +72,11 @@ class WordstadiumController: UIViewController {
         
         navbar.note.rx.tap
             .bind(to: viewModel.input.catatanTrigger)
+            .disposed(by: disposeBag)
+        
+        
+        tooltipButton.rx.tap
+            .bind(to: viewModel.input.tooltipTriigger)
             .disposed(by: disposeBag)
         
         viewModel.output.profileSelected
@@ -92,6 +102,10 @@ class WordstadiumController: UIViewController {
             .disposed(by: disposeBag)
         
         viewModel.output.notificationSelected
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.tooltipSelected
             .drive()
             .disposed(by: disposeBag)
         
