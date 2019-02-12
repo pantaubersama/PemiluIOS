@@ -16,7 +16,7 @@ class HintTantanganView: UIViewController {
     var viewModel: HintTantanganViewModel!
     @IBOutlet weak var btnClose: Button!
     
-    private let disposeBag: DisposeBag! = nil
+    private let disposeBag: DisposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()

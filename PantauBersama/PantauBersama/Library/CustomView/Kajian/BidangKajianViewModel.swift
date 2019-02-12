@@ -22,18 +22,18 @@ final class BidangKajianViewModel: ViewModelType {
     var output: Output!
     
     struct Input {
-        let cancelI: AnyObserver<UITapGestureRecognizer>
+        let cancelI: AnyObserver<Void>
         let itemSelectedI: AnyObserver<IndexPath>
         let queryI: AnyObserver<String>
     }
     
     struct Output {
-//        let itemsO: Driver<[String]>
+        let itemsO: Driver<[String]>
         let actionSelected: Driver<BidangKajianResult>
     }
     
     private var navigator: BidangKajianNavigator
-    private let cancelS = PublishSubject<UITapGestureRecognizer>()
+    private let cancelS = PublishSubject<Void>()
     private let itemSelectedS = PublishSubject<IndexPath>()
     private let queryS = PublishSubject<String>()
     
@@ -48,10 +48,29 @@ final class BidangKajianViewModel: ViewModelType {
             .startWith("")
         
         
-        let action = cancelS
-            .map({ _ in BidangKajianResult.cancel })
         
-        output = Output(actionSelected: action.asDriverOnErrorJustComplete())
+        let item = Driver.just([
+            "Mas Iden",
+            "IIT"
+            ])
+        
+        let itemSelected = itemSelectedS
+            .withLatestFrom(item) { (indexPath, kajian) in
+                return kajian[indexPath.row]
+            }
+            .map({ BidangKajianResult.ok(id: $0) })
+        
+    
+        let cancel = cancelS
+            .map({ BidangKajianResult.cancel })
+        
+        
+        let action = Observable.merge(itemSelected, cancel)
+            .take(1)
+            .asDriverOnErrorJustComplete()
+        
+        
+        output = Output(itemsO: item, actionSelected: action)
     }
     
 }
