@@ -27,9 +27,9 @@ class PersonalViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        //        tableView.registerReusableCell(LinimasaCell.self)
-        tableView.delegate = nil
-        tableView.dataSource = nil
+        tableView.registerReusableCell(WordstadiumViewCell.self)
+//        tableView.delegate = nil
+//        tableView.dataSource = nil
         tableView.estimatedRowHeight = 44.0
         tableView.separatorStyle = .none
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
@@ -61,13 +61,20 @@ class PersonalViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return 1
     }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(indexPath: indexPath) as WordstadiumViewCell
+        cell.collectionView.reloadData()
+        return cell
+    }
+ 
 
 
 }

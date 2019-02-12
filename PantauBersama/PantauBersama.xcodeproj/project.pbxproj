@@ -77,6 +77,11 @@
 		11E107DC21CFD99900B7B074 /* QuizResultController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11E107D821CFD99900B7B074 /* QuizResultController.xib */; };
 		11E107DD21CFD99900B7B074 /* QuizResultController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E107D921CFD99900B7B074 /* QuizResultController.swift */; };
 		11E798D621E2FBAC002AABDC /* QuizSummaryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E798D521E2FBAC002AABDC /* QuizSummaryModel.swift */; };
+		1320595B2213483E00BE9456 /* WordstadiumItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1320595A2213483E00BE9456 /* WordstadiumItemView.xib */; };
+		1320595E221359C200BE9456 /* WordstadiumCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1320595C221359C200BE9456 /* WordstadiumCollectionCell.swift */; };
+		1320595F221359C200BE9456 /* WordstadiumCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1320595D221359C200BE9456 /* WordstadiumCollectionCell.xib */; };
+		1320596222135B1500BE9456 /* WordstadiumViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1320596022135B1500BE9456 /* WordstadiumViewCell.swift */; };
+		1320596322135B1500BE9456 /* WordstadiumViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1320596122135B1500BE9456 /* WordstadiumViewCell.xib */; };
 		137A29E821E11D0400F19072 /* HeaderQuizView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 137A29E721E11D0400F19072 /* HeaderQuizView.swift */; };
 		137A29EC21E11E7E00F19072 /* TrendHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 137A29EB21E11E7E00F19072 /* TrendHeaderView.swift */; };
 		137A29EE21E11E8F00F19072 /* TrendHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 137A29ED21E11E8F00F19072 /* TrendHeaderView.xib */; };
@@ -106,6 +111,8 @@
 		13E170CC2211E2AE0018EDB4 /* PublicNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E170CB2211E2AE0018EDB4 /* PublicNavigator.swift */; };
 		13E170CE221305AE0018EDB4 /* PersonalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E170CD221305AE0018EDB4 /* PersonalViewModel.swift */; };
 		13E170D0221305BE0018EDB4 /* PersonalNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E170CF221305BE0018EDB4 /* PersonalNavigator.swift */; };
+		13E170D4221311A70018EDB4 /* WordstadiumItemViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E170D2221311A70018EDB4 /* WordstadiumItemViewCell.swift */; };
+		13E170D5221311A70018EDB4 /* WordstadiumItemViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13E170D3221311A70018EDB4 /* WordstadiumItemViewCell.xib */; };
 		13E9D78821E8F025006A0890 /* IJanpolListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E9D78721E8F025006A0890 /* IJanpolListViewModel.swift */; };
 		13E9D78B21E8FCF6006A0890 /* IJanpolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E9D78A21E8FCF5006A0890 /* IJanpolViewController.swift */; };
 		13E9D78E21E9171E006A0890 /* JanpolListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E9D78D21E9171E006A0890 /* JanpolListViewModel.swift */; };
@@ -479,6 +486,11 @@
 		11E107D821CFD99900B7B074 /* QuizResultController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuizResultController.xib; sourceTree = "<group>"; };
 		11E107D921CFD99900B7B074 /* QuizResultController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizResultController.swift; sourceTree = "<group>"; };
 		11E798D521E2FBAC002AABDC /* QuizSummaryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSummaryModel.swift; sourceTree = "<group>"; };
+		1320595A2213483E00BE9456 /* WordstadiumItemView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WordstadiumItemView.xib; sourceTree = "<group>"; };
+		1320595C221359C200BE9456 /* WordstadiumCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordstadiumCollectionCell.swift; sourceTree = "<group>"; };
+		1320595D221359C200BE9456 /* WordstadiumCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WordstadiumCollectionCell.xib; sourceTree = "<group>"; };
+		1320596022135B1500BE9456 /* WordstadiumViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordstadiumViewCell.swift; sourceTree = "<group>"; };
+		1320596122135B1500BE9456 /* WordstadiumViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WordstadiumViewCell.xib; sourceTree = "<group>"; };
 		137A29E721E11D0400F19072 /* HeaderQuizView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderQuizView.swift; sourceTree = "<group>"; };
 		137A29EB21E11E7E00F19072 /* TrendHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendHeaderView.swift; sourceTree = "<group>"; };
 		137A29ED21E11E8F00F19072 /* TrendHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrendHeaderView.xib; sourceTree = "<group>"; };
@@ -507,6 +519,8 @@
 		13E170CB2211E2AE0018EDB4 /* PublicNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicNavigator.swift; sourceTree = "<group>"; };
 		13E170CD221305AE0018EDB4 /* PersonalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalViewModel.swift; sourceTree = "<group>"; };
 		13E170CF221305BE0018EDB4 /* PersonalNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalNavigator.swift; sourceTree = "<group>"; };
+		13E170D2221311A70018EDB4 /* WordstadiumItemViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordstadiumItemViewCell.swift; sourceTree = "<group>"; };
+		13E170D3221311A70018EDB4 /* WordstadiumItemViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WordstadiumItemViewCell.xib; sourceTree = "<group>"; };
 		13E9D78721E8F025006A0890 /* IJanpolListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IJanpolListViewModel.swift; sourceTree = "<group>"; };
 		13E9D78A21E8FCF5006A0890 /* IJanpolViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IJanpolViewController.swift; sourceTree = "<group>"; };
 		13E9D78D21E9171E006A0890 /* JanpolListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JanpolListViewModel.swift; sourceTree = "<group>"; };
@@ -1177,6 +1191,7 @@
 		13E170BA221184200018EDB4 /* SubModules */ = {
 			isa = PBXGroup;
 			children = (
+				13E170D12213102C0018EDB4 /* Components */,
 				13E170BC2211845C0018EDB4 /* Personal */,
 				13E170BB2211844D0018EDB4 /* Public */,
 			);
@@ -1201,6 +1216,20 @@
 				13E170CF221305BE0018EDB4 /* PersonalNavigator.swift */,
 			);
 			path = Personal;
+			sourceTree = "<group>";
+		};
+		13E170D12213102C0018EDB4 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				13E170D2221311A70018EDB4 /* WordstadiumItemViewCell.swift */,
+				13E170D3221311A70018EDB4 /* WordstadiumItemViewCell.xib */,
+				1320595A2213483E00BE9456 /* WordstadiumItemView.xib */,
+				1320595C221359C200BE9456 /* WordstadiumCollectionCell.swift */,
+				1320595D221359C200BE9456 /* WordstadiumCollectionCell.xib */,
+				1320596022135B1500BE9456 /* WordstadiumViewCell.swift */,
+				1320596122135B1500BE9456 /* WordstadiumViewCell.xib */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		13E9D78C21E916B4006A0890 /* ListJanji */ = {
@@ -2544,6 +2573,7 @@
 				840850DD21D2832200696CB3 /* BadgeController.xib in Resources */,
 				84CA10BF21EF0DE80025CF10 /* AboutController.xib in Resources */,
 				842A4A0321D7C6810050AA51 /* CameraController.xib in Resources */,
+				1320595F221359C200BE9456 /* WordstadiumCollectionCell.xib in Resources */,
 				84B7B8B521E445D00099E7E3 /* empty-status.json in Resources */,
 				11702DD321CB0287001AEE3F /* QuizCell.xib in Resources */,
 				84F892A821C787D800DC1048 /* Lato-Black.ttf in Resources */,
@@ -2559,6 +2589,7 @@
 				13E170C0221184B70018EDB4 /* WordstadiumController.xib in Resources */,
 				8451E0682207F74400F03E96 /* upload-ttd.json in Resources */,
 				84B2521E21CAB1BE00565D82 /* OnboardingViewController.xib in Resources */,
+				13E170D5221311A70018EDB4 /* WordstadiumItemViewCell.xib in Resources */,
 				84A07F9721D0D4EA00269C6B /* IdentitasController.xib in Resources */,
 				845C570D21CE0C8100EDCDFE /* ClusterCell.xib in Resources */,
 				84A07FB421D0ECC100269C6B /* SuccessController.xib in Resources */,
@@ -2583,6 +2614,7 @@
 				11E107A921CD33CA00B7B074 /* CreateJanjiController.xib in Resources */,
 				845C56FD21CD14CE00EDCDFE /* HeaderProfile.xib in Resources */,
 				846E8EFD21F767630036FEA2 /* SosmedController.xib in Resources */,
+				1320595B2213483E00BE9456 /* WordstadiumItemView.xib in Resources */,
 				13812C1F21CAA48700CAB327 /* PenpolController.xib in Resources */,
 				84307F462200352B006DE04B /* ob3_penpol.json in Resources */,
 				84A07F9D21D0DC4B00269C6B /* KTPController.xib in Resources */,
@@ -2602,6 +2634,7 @@
 				84B6D51421F8407800DD742A /* PartyCell.xib in Resources */,
 				84B6D51821F87B5A00DD742A /* NotePreferenceView.xib in Resources */,
 				84F892AF21C787D800DC1048 /* Lato-Light.ttf in Resources */,
+				1320596322135B1500BE9456 /* WordstadiumViewCell.xib in Resources */,
 				8428AAAD21C7B4B20008E975 /* GoogleService-Info.plist in Resources */,
 				84B6D50321F81D9D00DD742A /* CatatanPilpresController.xib in Resources */,
 				840901BE21DF31CD001BF559 /* CatatanController.xib in Resources */,
@@ -2929,6 +2962,7 @@
 				84D01B9821D208DE0000492F /* SectionOfSettingData.swift in Sources */,
 				8423C3FC21F718A6000AAA63 /* DetailAskController.swift in Sources */,
 				840901C221DF3BDE001BF559 /* CatatanViewModel.swift in Sources */,
+				1320596222135B1500BE9456 /* WordstadiumViewCell.swift in Sources */,
 				11E107DA21CFD99900B7B074 /* QuizResultCoordinator.swift in Sources */,
 				11E1079E21CD200500B7B074 /* PenpolViewModel.swift in Sources */,
 				84B6D6F621E30F8B00CD4BC8 /* ShareBadgeViewModel.swift in Sources */,
@@ -3078,6 +3112,7 @@
 				8452A4C321DE1EF400196043 /* BuatProfileController.swift in Sources */,
 				84A07F9A21D0DBE200269C6B /* IdentitasController.swift in Sources */,
 				11D066A821E38610003AC9BB /* PenpolFilterCoordinator.swift in Sources */,
+				13E170D4221311A70018EDB4 /* WordstadiumItemViewCell.swift in Sources */,
 				84D01B9D21D20CA20000492F /* SettingCell.swift in Sources */,
 				84B6D50521F829D100DD742A /* CatatanPilpresController.swift in Sources */,
 				844C3D7821C51EFD00199871 /* HomeCoordinator.swift in Sources */,
@@ -3146,6 +3181,7 @@
 				11D066A421E3850E003AC9BB /* PenpolFilterController.swift in Sources */,
 				84FA423622128A57008215C4 /* TooltipViewModel.swift in Sources */,
 				8409374B21D360D10024A444 /* PilpresViewModel.swift in Sources */,
+				1320595E221359C200BE9456 /* WordstadiumCollectionCell.swift in Sources */,
 				840850D521D2741700696CB3 /* LogoutCoordinator.swift in Sources */,
 				842A4A0721D7E4740050AA51 /* KTPViewModel.swift in Sources */,
 				84A07FC621D14F3800269C6B /* ReqClusterCoordinator.swift in Sources */,
