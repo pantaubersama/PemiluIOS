@@ -61,7 +61,9 @@ class BannerHeaderView: UIView {
             ivInfoBackground.image = UIImage(named: "icHeaderPilpres")
         case .debat:
             ivInfoBackground.image = UIImage(named: "icHeaderPilpres")
-        case .unknown:
+        case .tantangan:
+            ivInfoBackground.image = UIImage(named: "icHeaderPilpres")
+        default:
             return
         }
         

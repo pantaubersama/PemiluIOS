@@ -55,7 +55,9 @@ class BannerInfoController: UIViewController {
             imgHeader.image = UIImage(named: "icPilpresInfoHeader")
         case .debat:
             imgHeader.image = UIImage(named: "icPilpresInfoHeader")
-        case .unknown:
+        case .tantangan:
+            imgHeader.image = UIImage(named: "icPilpresInfoHeader")
+        default:
             return
         }
         

@@ -104,6 +104,8 @@
 		13E170C8221197E90018EDB4 /* PublicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E170C7221197E90018EDB4 /* PublicViewController.swift */; };
 		13E170CA2211E2980018EDB4 /* PublicViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E170C92211E2980018EDB4 /* PublicViewModel.swift */; };
 		13E170CC2211E2AE0018EDB4 /* PublicNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E170CB2211E2AE0018EDB4 /* PublicNavigator.swift */; };
+		13E170CE221305AE0018EDB4 /* PersonalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E170CD221305AE0018EDB4 /* PersonalViewModel.swift */; };
+		13E170D0221305BE0018EDB4 /* PersonalNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E170CF221305BE0018EDB4 /* PersonalNavigator.swift */; };
 		13E9D78821E8F025006A0890 /* IJanpolListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E9D78721E8F025006A0890 /* IJanpolListViewModel.swift */; };
 		13E9D78B21E8FCF6006A0890 /* IJanpolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E9D78A21E8FCF5006A0890 /* IJanpolViewController.swift */; };
 		13E9D78E21E9171E006A0890 /* JanpolListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E9D78D21E9171E006A0890 /* JanpolListViewModel.swift */; };
@@ -503,6 +505,8 @@
 		13E170C7221197E90018EDB4 /* PublicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicViewController.swift; sourceTree = "<group>"; };
 		13E170C92211E2980018EDB4 /* PublicViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicViewModel.swift; sourceTree = "<group>"; };
 		13E170CB2211E2AE0018EDB4 /* PublicNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicNavigator.swift; sourceTree = "<group>"; };
+		13E170CD221305AE0018EDB4 /* PersonalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalViewModel.swift; sourceTree = "<group>"; };
+		13E170CF221305BE0018EDB4 /* PersonalNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalNavigator.swift; sourceTree = "<group>"; };
 		13E9D78721E8F025006A0890 /* IJanpolListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IJanpolListViewModel.swift; sourceTree = "<group>"; };
 		13E9D78A21E8FCF5006A0890 /* IJanpolViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IJanpolViewController.swift; sourceTree = "<group>"; };
 		13E9D78D21E9171E006A0890 /* JanpolListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JanpolListViewModel.swift; sourceTree = "<group>"; };
@@ -1193,6 +1197,8 @@
 			isa = PBXGroup;
 			children = (
 				13E170C5221197B30018EDB4 /* PersonalViewController.swift */,
+				13E170CD221305AE0018EDB4 /* PersonalViewModel.swift */,
+				13E170CF221305BE0018EDB4 /* PersonalNavigator.swift */,
 			);
 			path = Personal;
 			sourceTree = "<group>";
@@ -3001,6 +3007,7 @@
 				844C3D6D21C51CE900199871 /* HomeController.swift in Sources */,
 				84B6D6EE21E2451600CD4BC8 /* ClusterType.swift in Sources */,
 				84E6934621D296BB00EA5464 /* SectionOfProfileEditData.swift in Sources */,
+				13E170CE221305AE0018EDB4 /* PersonalViewModel.swift in Sources */,
 				84E521B221F398E900B7CCBA /* ShareTrendCoordinator.swift in Sources */,
 				84F6980B21C8D2B100890917 /* JanjiPolitikViewController.swift in Sources */,
 				84B6D6F821E30FE400CD4BC8 /* ShareBadgeCoordinator.swift in Sources */,
@@ -3031,6 +3038,7 @@
 				84B2521B21CAA71200565D82 /* ViewModelType.swift in Sources */,
 				84A07FB821D0F0DD00269C6B /* IdentitasCoordinator.swift in Sources */,
 				11E107B721CD450B00B7B074 /* QuizOngoingViewModel.swift in Sources */,
+				13E170D0221305BE0018EDB4 /* PersonalNavigator.swift in Sources */,
 				84E2855921CA777D00298E31 /* Observable.swift in Sources */,
 				13E170C8221197E90018EDB4 /* PublicViewController.swift in Sources */,
 				13E170C6221197B30018EDB4 /* PersonalViewController.swift in Sources */,
