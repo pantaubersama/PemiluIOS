@@ -23,6 +23,7 @@ final class WordstadiumViewModel: ViewModelType {
         let catatanTrigger: AnyObserver<Void>
         let notificationTrigger: AnyObserver<Void>
         let viewWillAppearTrigger: AnyObserver<Void>
+        let tooltipTriigger: AnyObserver<Void>
     }
     
     struct Output {
@@ -31,6 +32,7 @@ final class WordstadiumViewModel: ViewModelType {
         let catatanSelected: Driver<Void>
         let notificationSelected: Driver<Void>
         let userO: Driver<UserResponse>
+        let tooltipSelected: Driver<TooltipResult>
     }
     
     let navigator: WordstadiumNavigator
@@ -39,6 +41,7 @@ final class WordstadiumViewModel: ViewModelType {
     private let catatanS = PublishSubject<Void>()
     private let notificationS = PublishSubject<Void>()
     private let viewWillppearS = PublishSubject<Void>()
+    private let tooltipS = PublishSubject<Void>()
     
     init(navigator: WordstadiumNavigator) {
         self.navigator = navigator
@@ -48,7 +51,8 @@ final class WordstadiumViewModel: ViewModelType {
             profileTrigger: profileSubject.asObserver(),
             catatanTrigger: catatanS.asObserver(),
             notificationTrigger: notificationS.asObserver(),
-            viewWillAppearTrigger: viewWillppearS.asObserver()
+            viewWillAppearTrigger: viewWillppearS.asObserver(),
+            tooltipTriigger: tooltipS.asObserver()
         )
     
         
@@ -73,11 +77,16 @@ final class WordstadiumViewModel: ViewModelType {
             .flatMapLatest({ local })
             .asDriverOnErrorJustComplete()
         
+        let tooltip = tooltipS
+            .flatMapLatest({ navigator.launchTooltip() })
+            .asDriverOnErrorJustComplete()
+        
         output = Output(searchSelected: search,
                         profileSelected: profile,
                         catatanSelected: note,
                         notificationSelected: notification,
-                        userO: userData
+                        userO: userData,
+                        tooltipSelected: tooltip
         )
     }
     

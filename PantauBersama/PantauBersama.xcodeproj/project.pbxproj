@@ -363,6 +363,10 @@
 		84F892B121C787D800DC1048 /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84F8929C21C785D300DC1048 /* Lato-Regular.ttf */; };
 		84F892B321C787F700DC1048 /* BwModelica-BlackCondensed.otf in Resources */ = {isa = PBXBuildFile; fileRef = 84F892B221C787F700DC1048 /* BwModelica-BlackCondensed.otf */; };
 		84F892B521C7887800DC1048 /* BwModelicaSS01-BoldCondensed.otf in Resources */ = {isa = PBXBuildFile; fileRef = 84F892B421C7887800DC1048 /* BwModelicaSS01-BoldCondensed.otf */; };
+		84FA42322211E278008215C4 /* TooltipView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84FA42312211E278008215C4 /* TooltipView.xib */; };
+		84FA42342212886A008215C4 /* TooltipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FA42332212886A008215C4 /* TooltipView.swift */; };
+		84FA423622128A57008215C4 /* TooltipViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FA423522128A57008215C4 /* TooltipViewModel.swift */; };
+		84FA423822128B23008215C4 /* TooltipCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FA423722128B23008215C4 /* TooltipCoordinator.swift */; };
 		84FE6EBA21D5FC9B009A0F55 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FE6EB921D5FC9B009A0F55 /* ActivityIndicator.swift */; };
 		84FE6EBC21D5FCB9009A0F55 /* ErrorTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FE6EBB21D5FCB9009A0F55 /* ErrorTracker.swift */; };
 		84FE6EBE21D5FEA1009A0F55 /* Network+AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FE6EBD21D5FEA1009A0F55 /* Network+AlertController.swift */; };
@@ -767,6 +771,10 @@
 		84F892A621C7875200DC1048 /* BwModelica-ThinCondensed.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BwModelica-ThinCondensed.otf"; sourceTree = "<group>"; };
 		84F892B221C787F700DC1048 /* BwModelica-BlackCondensed.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BwModelica-BlackCondensed.otf"; sourceTree = "<group>"; };
 		84F892B421C7887800DC1048 /* BwModelicaSS01-BoldCondensed.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BwModelicaSS01-BoldCondensed.otf"; sourceTree = "<group>"; };
+		84FA42312211E278008215C4 /* TooltipView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TooltipView.xib; sourceTree = "<group>"; };
+		84FA42332212886A008215C4 /* TooltipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TooltipView.swift; sourceTree = "<group>"; };
+		84FA423522128A57008215C4 /* TooltipViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TooltipViewModel.swift; sourceTree = "<group>"; };
+		84FA423722128B23008215C4 /* TooltipCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TooltipCoordinator.swift; sourceTree = "<group>"; };
 		84FE6EB921D5FC9B009A0F55 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		84FE6EBB21D5FCB9009A0F55 /* ErrorTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorTracker.swift; sourceTree = "<group>"; };
 		84FE6EBD21D5FEA1009A0F55 /* Network+AlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Network+AlertController.swift"; sourceTree = "<group>"; };
@@ -2230,6 +2238,7 @@
 		84E2854121CA189B00298E31 /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
+				84FA42302211E259008215C4 /* Tooltip */,
 				84FF8A9221F217FB00AA8CF3 /* Updates */,
 				84CA10BD21EF0DCF0025CF10 /* About */,
 				11145F6721EB471C0046F2AA /* MenuBar */,
@@ -2385,6 +2394,17 @@
 				84F892B421C7887800DC1048 /* BwModelicaSS01-BoldCondensed.otf */,
 			);
 			path = BWModelica;
+			sourceTree = "<group>";
+		};
+		84FA42302211E259008215C4 /* Tooltip */ = {
+			isa = PBXGroup;
+			children = (
+				84FA42312211E278008215C4 /* TooltipView.xib */,
+				84FA42332212886A008215C4 /* TooltipView.swift */,
+				84FA423522128A57008215C4 /* TooltipViewModel.swift */,
+				84FA423722128B23008215C4 /* TooltipCoordinator.swift */,
+			);
+			path = Tooltip;
 			sourceTree = "<group>";
 		};
 		84FF8A9221F217FB00AA8CF3 /* Updates */ = {
@@ -2561,6 +2581,7 @@
 				8451E0642207F6E500F03E96 /* data_fotoktp.json in Resources */,
 				13F456AF21D36A8500CE45F1 /* UndangAnggotaController.xib in Resources */,
 				84F892AC21C787D800DC1048 /* Lato-Hairline.ttf in Resources */,
+				84FA42322211E278008215C4 /* TooltipView.xib in Resources */,
 				84F892AD21C787D800DC1048 /* Lato-HairlineItalic.ttf in Resources */,
 				11145F5F21EAF2730046F2AA /* SearchNavbar.xib in Resources */,
 				84F892AE21C787D800DC1048 /* Lato-Italic.ttf in Resources */,
@@ -2920,6 +2941,7 @@
 				84FF8A9921F21D0000AA8CF3 /* UpdatesCoordinator.swift in Sources */,
 				842A4A0921D7EA990050AA51 /* SignatureCoordinator.swift in Sources */,
 				8452A4D221DE54B800196043 /* SosmedViewModel.swift in Sources */,
+				84FA423822128B23008215C4 /* TooltipCoordinator.swift in Sources */,
 				845C570221CD1AEB00EDCDFE /* ProfileController.swift in Sources */,
 				84CA10C121EF107E0025CF10 /* AboutController.swift in Sources */,
 				11D0669F21E26A57003AC9BB /* QuizResultModel.swift in Sources */,
@@ -3037,6 +3059,7 @@
 				84F6980921C8D28B00890917 /* PilpresViewController.swift in Sources */,
 				1197010C21F3632D005548AC /* ListClusterController.swift in Sources */,
 				84D7A77821CE8CFF009502AF /* ProfileViewModel.swift in Sources */,
+				84FA42342212886A008215C4 /* TooltipView.swift in Sources */,
 				8452A4C321DE1EF400196043 /* BuatProfileController.swift in Sources */,
 				84A07F9A21D0DBE200269C6B /* IdentitasController.swift in Sources */,
 				11D066A821E38610003AC9BB /* PenpolFilterCoordinator.swift in Sources */,
@@ -3105,6 +3128,7 @@
 				840850E121D2844700696CB3 /* BadgeCoordinator.swift in Sources */,
 				8451E05C22045BD400F03E96 /* NotificationCoordinator.swift in Sources */,
 				11D066A421E3850E003AC9BB /* PenpolFilterController.swift in Sources */,
+				84FA423622128A57008215C4 /* TooltipViewModel.swift in Sources */,
 				8409374B21D360D10024A444 /* PilpresViewModel.swift in Sources */,
 				840850D521D2741700696CB3 /* LogoutCoordinator.swift in Sources */,
 				842A4A0721D7E4740050AA51 /* KTPViewModel.swift in Sources */,
