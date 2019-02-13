@@ -38,7 +38,7 @@ class LiveDebatController: UIViewController {
         
         // for dummy ui
         tableViewDebat.dataSource = self
-        tableViewDebat.tableFooterView = UIView()
+        tableViewDebat.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 70))
         tableViewDebat.isScrollEnabled = false
         tableViewDebat.estimatedRowHeight = 44.0
         tableViewDebat.rowHeight = UITableView.automaticDimension
@@ -121,7 +121,7 @@ class LiveDebatController: UIViewController {
                 if self.btnScroll.tag == 1 {
                     self.btnScroll.tag = 0
                     self.collapseHeader()
-                    self.tableViewDebat.scrollToRow(at: IndexPath(row: 19, section: 0), at: .bottom, animated: true)
+                    self.tableViewDebat.scrollToRow(at: IndexPath(row: 19, section: 0), at: .top, animated: true)
                 } else {
                     self.btnScroll.tag = 1
                     self.tableViewDebat.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
