@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1108871822126FEA0041B821 /* LiveDebatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1108871622126FEA0041B821 /* LiveDebatController.swift */; };
+		1108871922126FEA0041B821 /* LiveDebatController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1108871722126FEA0041B821 /* LiveDebatController.xib */; };
+		1108871C221271CD0041B821 /* LiveDebatCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1108871B221271CD0041B821 /* LiveDebatCoordinator.swift */; };
+		1108871E221271DC0041B821 /* LiveDebatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1108871D221271DC0041B821 /* LiveDebatViewModel.swift */; };
 		11145F5521EACCEC0046F2AA /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11145F5321EACCEC0046F2AA /* SearchController.swift */; };
 		11145F5621EACCEC0046F2AA /* SearchController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11145F5421EACCEC0046F2AA /* SearchController.xib */; };
 		11145F5921EAD31A0046F2AA /* SearchCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11145F5821EAD31A0046F2AA /* SearchCoordinator.swift */; };
@@ -405,6 +409,10 @@
 
 /* Begin PBXFileReference section */
 		04A224A86FBFD6EFE137644F /* Pods-PantauBersama.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PantauBersama.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-PantauBersama/Pods-PantauBersama.debug.xcconfig"; sourceTree = "<group>"; };
+		1108871622126FEA0041B821 /* LiveDebatController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveDebatController.swift; sourceTree = "<group>"; };
+		1108871722126FEA0041B821 /* LiveDebatController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LiveDebatController.xib; sourceTree = "<group>"; };
+		1108871B221271CD0041B821 /* LiveDebatCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveDebatCoordinator.swift; sourceTree = "<group>"; };
+		1108871D221271DC0041B821 /* LiveDebatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveDebatViewModel.swift; sourceTree = "<group>"; };
 		11145F5321EACCEC0046F2AA /* SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
 		11145F5421EACCEC0046F2AA /* SearchController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchController.xib; sourceTree = "<group>"; };
 		11145F5821EAD31A0046F2AA /* SearchCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCoordinator.swift; sourceTree = "<group>"; };
@@ -809,6 +817,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1108871522126FC60041B821 /* LiveDebat */ = {
+			isa = PBXGroup;
+			children = (
+				1108871A221271B50041B821 /* Controller */,
+				1108871B221271CD0041B821 /* LiveDebatCoordinator.swift */,
+				1108871D221271DC0041B821 /* LiveDebatViewModel.swift */,
+			);
+			path = LiveDebat;
+			sourceTree = "<group>";
+		};
+		1108871A221271B50041B821 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1108871622126FEA0041B821 /* LiveDebatController.swift */,
+				1108871722126FEA0041B821 /* LiveDebatController.xib */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		11145F5221EACCCC0046F2AA /* Search */ = {
 			isa = PBXGroup;
 			children = (
@@ -1169,6 +1196,7 @@
 		13E170BA221184200018EDB4 /* SubModules */ = {
 			isa = PBXGroup;
 			children = (
+				1108871522126FC60041B821 /* LiveDebat */,
 				13E170BC2211845C0018EDB4 /* Personal */,
 				13E170BB2211844D0018EDB4 /* Public */,
 			);
@@ -2588,6 +2616,7 @@
 				8451E06A2207F76E00F03E96 /* validation-success.json in Resources */,
 				8452A4C521DE1F4300196043 /* BuatProfileController.xib in Resources */,
 				84B6D51421F8407800DD742A /* PartyCell.xib in Resources */,
+				1108871922126FEA0041B821 /* LiveDebatController.xib in Resources */,
 				84B6D51821F87B5A00DD742A /* NotePreferenceView.xib in Resources */,
 				84F892AF21C787D800DC1048 /* Lato-Light.ttf in Resources */,
 				8428AAAD21C7B4B20008E975 /* GoogleService-Info.plist in Resources */,
@@ -2962,6 +2991,7 @@
 				11D066B021E399C1003AC9BB /* FilterRadioCell.swift in Sources */,
 				84A07FB121D0E7B000269C6B /* SelfIdentitasController.swift in Sources */,
 				13812C3921CC182500CAB327 /* AskViewCell.swift in Sources */,
+				1108871822126FEA0041B821 /* LiveDebatController.swift in Sources */,
 				137A29F821E2327D00F19072 /* ComingsoonCoordinator.swift in Sources */,
 				84B2526821CC01F000565D82 /* AppState.swift in Sources */,
 				8451E05A22045AEC00F03E96 /* InfoNotifViewModel.swift in Sources */,
@@ -3120,11 +3150,13 @@
 				844C3D8521C5252800199871 /* LinimasaCoordinator.swift in Sources */,
 				842A4A0D21D7EDC10050AA51 /* SuccessCoordinator.swift in Sources */,
 				84B6D52D21F8E80A00DD742A /* UserQuestionListViewModel.swift in Sources */,
+				1108871E221271DC0041B821 /* LiveDebatViewModel.swift in Sources */,
 				13E9D78821E8F025006A0890 /* IJanpolListViewModel.swift in Sources */,
 				84B6D52F21F8F00E00DD742A /* UserSearchNavigator.swift in Sources */,
 				8451E05822045A1A00F03E96 /* InfoNotifController.swift in Sources */,
 				13BF405521EBADBF005C9A64 /* QuestionListViewModel.swift in Sources */,
 				13F456D621DBA2F600CE45F1 /* BannerHeaderViewModel.swift in Sources */,
+				1108871C221271CD0041B821 /* LiveDebatCoordinator.swift in Sources */,
 				840850E121D2844700696CB3 /* BadgeCoordinator.swift in Sources */,
 				8451E05C22045BD400F03E96 /* NotificationCoordinator.swift in Sources */,
 				11D066A421E3850E003AC9BB /* PenpolFilterController.swift in Sources */,

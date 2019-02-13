@@ -40,6 +40,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow()
         // IQKeyboardManager
         IQKeyboardManager.shared.enable = true
+        IQKeyboardManager.shared.enabledTouchResignedClasses = [LiveDebatController.self]
+        IQKeyboardManager.shared.disabledToolbarClasses = [LiveDebatController.self]
+        IQKeyboardManager.shared.disabledDistanceHandlingClasses = [LiveDebatController.self]
         
         let defaults = UserDefaults.standard
         if defaults.object(forKey: "isFirstTime") == nil {
