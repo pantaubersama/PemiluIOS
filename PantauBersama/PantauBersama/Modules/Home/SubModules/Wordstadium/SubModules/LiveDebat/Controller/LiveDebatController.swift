@@ -10,10 +10,14 @@ import UIKit
 import Common
 import RxSwift
 import RxCocoa
+import IQKeyboardManagerSwift
 
 class LiveDebatController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var tableViewDebat: UITableView!
+    @IBOutlet weak var tvInputDebat: UITextView!
+    @IBOutlet weak var imageVs: UIImageView!
+    @IBOutlet weak var constraintInputViewBottom: NSLayoutConstraint!
     
     private lazy var titleView = Button()
     
@@ -24,6 +28,9 @@ class LiveDebatController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        tvInputDebat.text = "Tulis argumen kamu disini"
+        tvInputDebat.textColor = .lightGray
+        tvInputDebat.delegate = self
         
         //for dummy ui
         tableViewDebat.dataSource = self
@@ -33,20 +40,55 @@ class LiveDebatController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        subscribeForKeyboardEvent()
         configureNavbar()
         configureTitleView()
         
         scrollView.rx.contentOffset
             .distinctUntilChanged()
             .subscribe(onNext: { [unowned self](point) in
-                self.configureCollapseNavbar(y: point.y, collaspingY: 135.0)
+                self.configureCollapseNavbar(y: point.y, collaspingY: 40.0)
         }).disposed(by: disposeBag)
         
         
         viewModel.output.back
             .drive()
             .disposed(by: disposeBag)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        unsubscribeForKeyboardEvent()
+    }
+    
+    private func subscribeForKeyboardEvent() {
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillAppear), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillDisappear), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    private func unsubscribeForKeyboardEvent() {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc func keyboardWillAppear(notification: NSNotification) {
+        let info = notification.userInfo!
+        let keyboardFrame: CGRect = (info[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        
+        UIView.animate(withDuration: 0.4) { [unowned self] in
+            self.constraintInputViewBottom.constant += keyboardFrame.height
+            self.view.layoutIfNeeded()
+        }
+        
+        
+        collapseHeader()
+    }
+    
+    @objc func keyboardWillDisappear() {
+        UIView.animate(withDuration: 0.1) { [unowned self] in
+            self.constraintInputViewBottom.constant = 0
+            self.view.layoutIfNeeded()
+        }
     }
     
     private func configureNavbar() {
@@ -91,15 +133,26 @@ class LiveDebatController: UIViewController {
             UIView.animate(withDuration: 0.3, animations: {
                 self.navigationController?.navigationBar.barTintColor = Color.secondary_orange
                 self.navigationController?.navigationBar.backgroundColor = Color.secondary_orange
+                self.imageVs.alpha = 0.0
             })
+            
             self.titleView.isHidden = false
         } else if y < collaspingY && self.navigationController?.navigationBar.barTintColor != UIColor.clear { // expanded
-            self.tableViewDebat.isScrollEnabled = false
             UIView.animate(withDuration: 0.5, animations: {
                 self.navigationController?.navigationBar.configure(with: .transparent)
+                self.imageVs.alpha = 1.0
             })
+            
             self.titleView.isHidden = true
         }
+        
+        // enable tableView scroll when header fully collapsed
+        self.tableViewDebat.isScrollEnabled = y > 130.0
+    }
+    
+    private func collapseHeader() {
+        let bottomOffset = CGPoint(x: 0, y: scrollView.contentSize.height - scrollView.bounds.size.height)
+        scrollView.setContentOffset(bottomOffset, animated: true)
     }
 }
 
@@ -116,4 +169,20 @@ extension LiveDebatController: UITableViewDataSource {
     }
     
     
+}
+
+extension LiveDebatController: UITextViewDelegate {
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == .lightGray {
+            textView.text = nil
+            textView.textColor = Color.primary_black
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            textView.text = "Tulis argumen kamu disini"
+            textView.textColor = .lightGray
+        }
+    }
 }
