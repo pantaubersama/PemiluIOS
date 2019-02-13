@@ -13,6 +13,7 @@ import RxCocoa
 import IQKeyboardManagerSwift
 
 class LiveDebatController: UIViewController {
+    @IBOutlet weak var btnScroll: Button!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var tableViewDebat: UITableView!
     @IBOutlet weak var tvInputDebat: UITextView!
@@ -20,7 +21,7 @@ class LiveDebatController: UIViewController {
     @IBOutlet weak var constraintInputViewBottom: NSLayoutConstraint!
     
     private lazy var titleView = Button()
-    
+    private var isKeyboardAppear = false
     
     var viewModel: LiveDebatViewModel!
     
@@ -28,14 +29,44 @@ class LiveDebatController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        tvInputDebat.text = "Tulis argumen kamu disini"
-        tvInputDebat.textColor = .lightGray
-        tvInputDebat.delegate = self
         
-        //for dummy ui
+        // config input behavior
+        configureInputView()
+        
+        // config button scroll behavior
+        configureScrollButton()
+        
+        // for dummy ui
         tableViewDebat.dataSource = self
         tableViewDebat.tableFooterView = UIView()
         tableViewDebat.isScrollEnabled = false
+        tableViewDebat.estimatedRowHeight = 44.0
+        tableViewDebat.rowHeight = UITableView.automaticDimension
+        tableViewDebat.registerReusableCell(ArgumentLeftCell.self)
+        tableViewDebat.registerReusableCell(ArgumentRightCell.self)
+        
+        // configure scrolling behavior for header to response
+        scrollView.rx.contentOffset
+            .distinctUntilChanged()
+            .subscribe(onNext: { [unowned self](point) in
+                self.configureCollapseNavbar(y: point.y, collaspingY: 40.0)
+            }).disposed(by: disposeBag)
+        
+        // listen whether the last cell displayed or not
+        // if yes, then rotate the btnScroll and set tag to 1 (0 = scroll to bottom, 1 = scroll to top)
+        tableViewDebat.rx.willDisplayCell
+            .map({ $0.indexPath })
+            .map({ $0.row == 19 })
+            .bind { [unowned self](isOnBottom) in
+                self.btnScroll.tag = isOnBottom ? 0 : 1
+                self.btnScroll.rotate(degree: isOnBottom ? 180 : 0)
+            }
+            .disposed(by: disposeBag)
+        
+        
+        viewModel.output.back
+            .drive()
+            .disposed(by: disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -43,17 +74,6 @@ class LiveDebatController: UIViewController {
         subscribeForKeyboardEvent()
         configureNavbar()
         configureTitleView()
-        
-        scrollView.rx.contentOffset
-            .distinctUntilChanged()
-            .subscribe(onNext: { [unowned self](point) in
-                self.configureCollapseNavbar(y: point.y, collaspingY: 40.0)
-        }).disposed(by: disposeBag)
-        
-        
-        viewModel.output.back
-            .drive()
-            .disposed(by: disposeBag)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -72,23 +92,55 @@ class LiveDebatController: UIViewController {
     }
     
     @objc func keyboardWillAppear(notification: NSNotification) {
+        isKeyboardAppear = true
         let info = notification.userInfo!
         let keyboardFrame: CGRect = (info[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         
+        // move input view above the keyboard and collapse the header
         UIView.animate(withDuration: 0.4) { [unowned self] in
             self.constraintInputViewBottom.constant += keyboardFrame.height
             self.view.layoutIfNeeded()
         }
-        
-        
         collapseHeader()
     }
     
     @objc func keyboardWillDisappear() {
+        isKeyboardAppear = false
+        // bring input view down
         UIView.animate(withDuration: 0.1) { [unowned self] in
             self.constraintInputViewBottom.constant = 0
             self.view.layoutIfNeeded()
         }
+    }
+    
+    private func configureScrollButton() {
+        self.btnScroll.tag = 1
+        btnScroll.rx.tap
+            .bind(onNext: { [unowned self] in
+                // tag 0 = scroll to top, tag 1 = scroll to bottom
+                if self.btnScroll.tag == 1 {
+                    self.btnScroll.tag = 0
+                    self.collapseHeader()
+                    self.tableViewDebat.scrollToRow(at: IndexPath(row: 19, section: 0), at: .bottom, animated: true)
+                } else {
+                    self.btnScroll.tag = 1
+                    self.tableViewDebat.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+                    
+                    if !self.isKeyboardAppear {
+                        self.expandHeader()
+                    }
+                }
+                
+                
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    private func configureInputView() {
+        // setup placeholder
+        tvInputDebat.text = "Tulis argumen kamu disini"
+        tvInputDebat.textColor = .lightGray
+        tvInputDebat.delegate = self
     }
     
     private func configureNavbar() {
@@ -106,6 +158,7 @@ class LiveDebatController: UIViewController {
     }
     
     private func configureTitleView() {
+        // titleView used Button for compatibility with icon
         titleView.isHidden = true
         titleView.translatesAutoresizingMaskIntoConstraints = false
         titleView.typeButton = "bold"
@@ -128,6 +181,8 @@ class LiveDebatController: UIViewController {
     }
     
     private func configureCollapseNavbar(y: CGFloat, collaspingY: CGFloat) {
+        // listen for scrollView y position,
+        
         if y > collaspingY && self.navigationController?.navigationBar.barTintColor != Color.secondary_orange { // collapsed
             self.tableViewDebat.isScrollEnabled = true
             UIView.animate(withDuration: 0.3, animations: {
@@ -151,7 +206,14 @@ class LiveDebatController: UIViewController {
     }
     
     private func collapseHeader() {
+        // scroll top bottom will collapse the header
         let bottomOffset = CGPoint(x: 0, y: scrollView.contentSize.height - scrollView.bounds.size.height)
+        scrollView.setContentOffset(bottomOffset, animated: true)
+    }
+    
+    private func expandHeader() {
+        // scroll to top will expand the header
+        let bottomOffset = CGPoint(x: 0, y: -44)
         scrollView.setContentOffset(bottomOffset, animated: true)
     }
 }
@@ -161,11 +223,18 @@ extension LiveDebatController: UITableViewDataSource {
         return 20
     }
     
+    // TODO: replace with real data
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        cell.textLabel?.text = "hahahahahahaha"
-        
-        return cell
+        if indexPath.row % 2 == 0 {
+            let cell = tableView.dequeueReusableCell() as ArgumentLeftCell
+            cell.lbArgument.text = "apaaaaa ?"
+            
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell() as ArgumentRightCell
+            
+            return cell
+        }
     }
     
     
@@ -173,6 +242,7 @@ extension LiveDebatController: UITableViewDataSource {
 
 extension LiveDebatController: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
+        // lightGray color indicate that the contents is a placeholder, then we need to make it nil
         if textView.textColor == .lightGray {
             textView.text = nil
             textView.textColor = Color.primary_black
@@ -180,6 +250,7 @@ extension LiveDebatController: UITextViewDelegate {
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
+        // if user stop editing and the text is empty, then we set the placeholder
         if textView.text.isEmpty {
             textView.text = "Tulis argumen kamu disini"
             textView.textColor = .lightGray

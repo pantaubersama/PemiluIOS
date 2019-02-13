@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LiveDebatController" customModule="PantauBersama" customModuleProvider="target">
             <connections>
+                <outlet property="btnScroll" destination="3eg-Yu-MUf" id="pF0-Cn-4Y3"/>
                 <outlet property="constraintInputViewBottom" destination="EJp-rI-BaU" id="7yi-Gc-wtx"/>
                 <outlet property="imageVs" destination="33X-Ei-0bQ" id="21A-ZC-wZa"/>
                 <outlet property="scrollView" destination="YMc-k0-wfR" id="e7R-PB-n77"/>
@@ -288,7 +289,7 @@ pertumbuhan mencapai 5,27%.
                                         <constraint firstAttribute="trailing" secondItem="BJe-Pt-uIS" secondAttribute="trailing" constant="5" id="jql-uW-zO6"/>
                                     </constraints>
                                 </view>
-                                <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" bouncesZoom="NO" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="TPX-JG-RIR">
+                                <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" bouncesZoom="NO" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="TPX-JG-RIR">
                                     <rect key="frame" x="0.0" y="271" width="375" height="468"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </tableView>
@@ -338,6 +339,24 @@ pertumbuhan mencapai 5,27%.
                         <constraint firstAttribute="height" constant="40" id="OYc-9q-zOU"/>
                     </constraints>
                 </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3eg-Yu-MUf" customClass="Button" customModule="Common">
+                    <rect key="frame" x="319" y="506" width="40" height="40"/>
+                    <color key="backgroundColor" red="0.90587383509999997" green="0.90587657690000001" blue="0.9058826566" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="40" id="f3F-fb-QUv"/>
+                        <constraint firstAttribute="height" constant="40" id="jOO-8j-yLL"/>
+                    </constraints>
+                    <color key="tintColor" red="0.4392112494" green="0.43921267990000001" blue="0.43921583889999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <size key="titleShadowOffset" width="5" height="-10"/>
+                    <state key="normal" image="icScrollToBottom">
+                        <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="20"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wky-jX-31t">
                     <rect key="frame" x="0.0" y="562" width="375" height="105"/>
                     <subviews>
@@ -423,7 +442,9 @@ pertumbuhan mencapai 5,27%.
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="YMc-k0-wfR" secondAttribute="bottom" id="aoh-Mc-jxy"/>
                 <constraint firstItem="fxQ-oQ-LIR" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="bFh-j9-om1"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="fxQ-oQ-LIR" secondAttribute="trailing" id="byy-Ew-1Ry"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="3eg-Yu-MUf" secondAttribute="trailing" constant="16" id="eXF-R4-K90"/>
                 <constraint firstItem="33X-Ei-0bQ" firstAttribute="top" secondItem="fxQ-oQ-LIR" secondAttribute="bottom" constant="-1" id="hbU-C0-rvi"/>
+                <constraint firstItem="wky-jX-31t" firstAttribute="top" secondItem="3eg-Yu-MUf" secondAttribute="bottom" constant="16" id="jUv-Cc-Var"/>
                 <constraint firstItem="wky-jX-31t" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="rJg-fc-Lye"/>
                 <constraint firstItem="fxQ-oQ-LIR" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="rZD-tu-2d9"/>
             </constraints>
@@ -437,6 +458,7 @@ pertumbuhan mencapai 5,27%.
         <image name="icDummyPerson" width="48" height="48"/>
         <image name="icExpandMore" width="24" height="24"/>
         <image name="icSaldoWhite24" width="24" height="24"/>
+        <image name="icScrollToBottom" width="24" height="24"/>
         <image name="icStatusWordstadium16" width="16" height="16"/>
         <image name="outlineLiveRed24Px" width="24" height="24"/>
         <image name="vsBannerWhite" width="40" height="40"/>
