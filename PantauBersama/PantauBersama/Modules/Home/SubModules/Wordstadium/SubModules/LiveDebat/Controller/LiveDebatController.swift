@@ -40,6 +40,10 @@ class LiveDebatController: UIViewController {
         tableViewDebat.dataSource = self
         tableViewDebat.tableFooterView = UIView()
         tableViewDebat.isScrollEnabled = false
+        tableViewDebat.estimatedRowHeight = 44.0
+        tableViewDebat.rowHeight = UITableView.automaticDimension
+        tableViewDebat.registerReusableCell(ArgumentLeftCell.self)
+        tableViewDebat.registerReusableCell(ArgumentRightCell.self)
         
         // configure scrolling behavior for header to response
         scrollView.rx.contentOffset
@@ -219,11 +223,18 @@ extension LiveDebatController: UITableViewDataSource {
         return 20
     }
     
+    // TODO: replace with real data
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        cell.textLabel?.text = "hahahahahahaha"
-        
-        return cell
+        if indexPath.row % 2 == 0 {
+            let cell = tableView.dequeueReusableCell() as ArgumentLeftCell
+            cell.lbArgument.text = "apaaaaa ?"
+            
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell() as ArgumentRightCell
+            
+            return cell
+        }
     }
     
     

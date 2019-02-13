@@ -108,4 +108,13 @@ class PublicViewController: UITableViewController {
         
     }
 
+    // TODO: for testing purpose
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let navigationController = self.navigationController else { return }
+        let liveDebatCoordinator = LiveDebatCoordinator(navigationController: navigationController)
+        liveDebatCoordinator
+            .start()
+            .subscribe()
+            .disposed(by: disposeBag)
+    }
 }
