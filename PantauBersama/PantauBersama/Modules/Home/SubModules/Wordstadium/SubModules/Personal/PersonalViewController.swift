@@ -28,6 +28,9 @@ class PersonalViewController: UITableViewController {
         super.viewDidLoad()
 
         tableView.registerReusableCell(WordstadiumViewCell.self)
+        tableView.registerReusableCell(SectionViewCell.self)
+        tableView.registerReusableCell(SeeMoreCell.self)
+        tableView.registerReusableCell(WordstadiumItemViewCell.self)
 //        tableView.delegate = nil
 //        tableView.dataSource = nil
         tableView.estimatedRowHeight = 44.0
@@ -59,20 +62,51 @@ class PersonalViewController: UITableViewController {
 
     // MARK: - Table view data source
 
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return section == 0 ? 0:50.0
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return section == 0 ? 0:20.0
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if section >= 1 {
+            let section = tableView.dequeueReusableCell() as SectionViewCell
+            return section
+        } else { return nil}
+        
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        if section >= 1 {
+            let footer = tableView.dequeueReusableCell() as SeeMoreCell
+            return footer
+        } else { return nil}
+        
+    }
+    
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return 4
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 1
+        return section == 0 ? 1:3
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(indexPath: indexPath) as WordstadiumViewCell
-        cell.collectionView.reloadData()
-        return cell
+        if indexPath.section == 0 {
+            let cell = tableView.dequeueReusableCell(indexPath: indexPath) as WordstadiumViewCell
+            cell.collectionView.reloadData()
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(indexPath: indexPath) as WordstadiumItemViewCell
+            return cell
+        }
+        
     }
  
 

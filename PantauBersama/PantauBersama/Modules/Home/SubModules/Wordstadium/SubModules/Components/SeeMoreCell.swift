@@ -1,15 +1,15 @@
 //
-//  WordstadiumItemViewCell.swift
+//  SeeMoreCell.swift
 //  PantauBersama
 //
-//  Created by wisnu bhakti on 12/02/19.
+//  Created by wisnu bhakti on 13/02/19.
 //  Copyright © 2019 PantauBersama. All rights reserved.
 //
 
 import UIKit
 import Common
 
-class WordstadiumItemViewCell: UITableViewCell {
+class SeeMoreCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,6 +24,6 @@ class WordstadiumItemViewCell: UITableViewCell {
     
 }
 
-extension WordstadiumItemViewCell: IReusableCell {
+extension SeeMoreCell: IReusableCell {
     
 }

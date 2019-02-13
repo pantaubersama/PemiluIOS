@@ -77,7 +77,6 @@
 		11E107DC21CFD99900B7B074 /* QuizResultController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11E107D821CFD99900B7B074 /* QuizResultController.xib */; };
 		11E107DD21CFD99900B7B074 /* QuizResultController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E107D921CFD99900B7B074 /* QuizResultController.swift */; };
 		11E798D621E2FBAC002AABDC /* QuizSummaryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E798D521E2FBAC002AABDC /* QuizSummaryModel.swift */; };
-		1320595B2213483E00BE9456 /* WordstadiumItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1320595A2213483E00BE9456 /* WordstadiumItemView.xib */; };
 		1320595E221359C200BE9456 /* WordstadiumCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1320595C221359C200BE9456 /* WordstadiumCollectionCell.swift */; };
 		1320595F221359C200BE9456 /* WordstadiumCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1320595D221359C200BE9456 /* WordstadiumCollectionCell.xib */; };
 		1320596222135B1500BE9456 /* WordstadiumViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1320596022135B1500BE9456 /* WordstadiumViewCell.swift */; };
@@ -101,6 +100,10 @@
 		13BF405321EBAA8F005C9A64 /* IQuestionListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BF405221EBAA8F005C9A64 /* IQuestionListViewModel.swift */; };
 		13BF405521EBADBF005C9A64 /* QuestionListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BF405421EBADBF005C9A64 /* QuestionListViewModel.swift */; };
 		13BF405B21EC7B6B005C9A64 /* MyQuestionListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BF405A21EC7B6B005C9A64 /* MyQuestionListViewModel.swift */; };
+		13E139512213FEF000286EDE /* SeeMoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E1394F2213FEF000286EDE /* SeeMoreCell.swift */; };
+		13E139522213FEF000286EDE /* SeeMoreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13E139502213FEF000286EDE /* SeeMoreCell.xib */; };
+		13E139552213FF1B00286EDE /* SectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E139532213FF1B00286EDE /* SectionViewCell.swift */; };
+		13E139562213FF1B00286EDE /* SectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13E139542213FF1B00286EDE /* SectionViewCell.xib */; };
 		13E170BF221184B70018EDB4 /* WordstadiumController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E170BD221184B70018EDB4 /* WordstadiumController.swift */; };
 		13E170C0221184B70018EDB4 /* WordstadiumController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13E170BE221184B70018EDB4 /* WordstadiumController.xib */; };
 		13E170C2221184DF0018EDB4 /* WordstadiumViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E170C1221184DF0018EDB4 /* WordstadiumViewModel.swift */; };
@@ -486,7 +489,6 @@
 		11E107D821CFD99900B7B074 /* QuizResultController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuizResultController.xib; sourceTree = "<group>"; };
 		11E107D921CFD99900B7B074 /* QuizResultController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizResultController.swift; sourceTree = "<group>"; };
 		11E798D521E2FBAC002AABDC /* QuizSummaryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSummaryModel.swift; sourceTree = "<group>"; };
-		1320595A2213483E00BE9456 /* WordstadiumItemView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WordstadiumItemView.xib; sourceTree = "<group>"; };
 		1320595C221359C200BE9456 /* WordstadiumCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordstadiumCollectionCell.swift; sourceTree = "<group>"; };
 		1320595D221359C200BE9456 /* WordstadiumCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WordstadiumCollectionCell.xib; sourceTree = "<group>"; };
 		1320596022135B1500BE9456 /* WordstadiumViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordstadiumViewCell.swift; sourceTree = "<group>"; };
@@ -509,6 +511,10 @@
 		13BF405221EBAA8F005C9A64 /* IQuestionListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IQuestionListViewModel.swift; sourceTree = "<group>"; };
 		13BF405421EBADBF005C9A64 /* QuestionListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionListViewModel.swift; sourceTree = "<group>"; };
 		13BF405A21EC7B6B005C9A64 /* MyQuestionListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQuestionListViewModel.swift; sourceTree = "<group>"; };
+		13E1394F2213FEF000286EDE /* SeeMoreCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeMoreCell.swift; sourceTree = "<group>"; };
+		13E139502213FEF000286EDE /* SeeMoreCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SeeMoreCell.xib; sourceTree = "<group>"; };
+		13E139532213FF1B00286EDE /* SectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionViewCell.swift; sourceTree = "<group>"; };
+		13E139542213FF1B00286EDE /* SectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SectionViewCell.xib; sourceTree = "<group>"; };
 		13E170BD221184B70018EDB4 /* WordstadiumController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordstadiumController.swift; sourceTree = "<group>"; };
 		13E170BE221184B70018EDB4 /* WordstadiumController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WordstadiumController.xib; sourceTree = "<group>"; };
 		13E170C1221184DF0018EDB4 /* WordstadiumViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordstadiumViewModel.swift; sourceTree = "<group>"; };
@@ -1223,11 +1229,14 @@
 			children = (
 				13E170D2221311A70018EDB4 /* WordstadiumItemViewCell.swift */,
 				13E170D3221311A70018EDB4 /* WordstadiumItemViewCell.xib */,
-				1320595A2213483E00BE9456 /* WordstadiumItemView.xib */,
 				1320595C221359C200BE9456 /* WordstadiumCollectionCell.swift */,
 				1320595D221359C200BE9456 /* WordstadiumCollectionCell.xib */,
 				1320596022135B1500BE9456 /* WordstadiumViewCell.swift */,
 				1320596122135B1500BE9456 /* WordstadiumViewCell.xib */,
+				13E1394F2213FEF000286EDE /* SeeMoreCell.swift */,
+				13E139502213FEF000286EDE /* SeeMoreCell.xib */,
+				13E139532213FF1B00286EDE /* SectionViewCell.swift */,
+				13E139542213FF1B00286EDE /* SectionViewCell.xib */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -2586,6 +2595,7 @@
 				8428AAAA21C7AF330008E975 /* GoogleService-Info-Staging.plist in Resources */,
 				11D066B121E399C1003AC9BB /* FilterRadioCell.xib in Resources */,
 				11E1079221CD0FE200B7B074 /* QuizDetailController.xib in Resources */,
+				13E139522213FEF000286EDE /* SeeMoreCell.xib in Resources */,
 				13E170C0221184B70018EDB4 /* WordstadiumController.xib in Resources */,
 				8451E0682207F74400F03E96 /* upload-ttd.json in Resources */,
 				84B2521E21CAB1BE00565D82 /* OnboardingViewController.xib in Resources */,
@@ -2614,10 +2624,10 @@
 				11E107A921CD33CA00B7B074 /* CreateJanjiController.xib in Resources */,
 				845C56FD21CD14CE00EDCDFE /* HeaderProfile.xib in Resources */,
 				846E8EFD21F767630036FEA2 /* SosmedController.xib in Resources */,
-				1320595B2213483E00BE9456 /* WordstadiumItemView.xib in Resources */,
 				13812C1F21CAA48700CAB327 /* PenpolController.xib in Resources */,
 				84307F462200352B006DE04B /* ob3_penpol.json in Resources */,
 				84A07F9D21D0DC4B00269C6B /* KTPController.xib in Resources */,
+				13E139562213FF1B00286EDE /* SectionViewCell.xib in Resources */,
 				137A29F421E2261A00F19072 /* ComingsoonController.xib in Resources */,
 				8478B8E621FF1FAA00CE192A /* InfoNotifCell.xib in Resources */,
 				84619D3C21DA88C800EB58CF /* ItemInfoCell.xib in Resources */,
@@ -3153,6 +3163,7 @@
 				8409374D21D361240024A444 /* PilpresNavigator.swift in Sources */,
 				840850DF21D2843D00696CB3 /* BadgeViewModel.swift in Sources */,
 				1184752221FDEAC300D44FA5 /* ClusterCategoryDelegate.swift in Sources */,
+				13E139512213FEF000286EDE /* SeeMoreCell.swift in Sources */,
 				13E9D79021E92934006A0890 /* MyJanpolListViewModel.swift in Sources */,
 				8478B8E121FF1C6600CE192A /* NotificationController.swift in Sources */,
 				84FE6EBE21D5FEA1009A0F55 /* Network+AlertController.swift in Sources */,
@@ -3161,6 +3172,7 @@
 				13E170C2221184DF0018EDB4 /* WordstadiumViewModel.swift in Sources */,
 				842A49F921D789A30050AA51 /* VerifikasiStep.swift in Sources */,
 				11B145EE21D67C8200BB26C8 /* AskCellViewModel.swift in Sources */,
+				13E139552213FF1B00286EDE /* SectionViewCell.swift in Sources */,
 				844C3D7A21C5230C00199871 /* RawRepresentable.swift in Sources */,
 				1147F23321F84306001D0D59 /* ClusterSearchNavigator.swift in Sources */,
 				13E170CA2211E2980018EDB4 /* PublicViewModel.swift in Sources */,
