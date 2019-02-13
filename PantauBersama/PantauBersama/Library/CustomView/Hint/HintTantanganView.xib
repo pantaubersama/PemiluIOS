@@ -18,6 +18,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HintTantanganView" customModule="PantauBersama" customModuleProvider="target">
             <connections>
                 <outlet property="btnClose" destination="qOJ-WR-dyj" id="6zM-8Y-OCw"/>
+                <outlet property="lblContent" destination="yh2-M7-Rro" id="o91-ct-Im8"/>
+                <outlet property="lblTitle" destination="O5K-NG-Ka9" id="VZx-8L-OWc"/>
                 <outlet property="view" destination="t8f-ok-6IF" id="dAp-RO-CGv"/>
             </connections>
         </placeholder>
@@ -29,7 +31,7 @@
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Xr-qa-K1v" customClass="RoundView" customModule="Common">
                     <rect key="frame" x="21" y="76" width="333" height="535"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LJ7-Cq-Mv8">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hintImage" translatesAutoresizingMaskIntoConstraints="NO" id="LJ7-Cq-Mv8">
                             <rect key="frame" x="105" y="24" width="123" height="123"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="123" id="8cd-gv-QiN"/>
@@ -104,4 +106,7 @@
             <point key="canvasLocation" x="-271" y="200"/>
         </view>
     </objects>
+    <resources>
+        <image name="hintImage" width="120" height="123"/>
+    </resources>
 </document>

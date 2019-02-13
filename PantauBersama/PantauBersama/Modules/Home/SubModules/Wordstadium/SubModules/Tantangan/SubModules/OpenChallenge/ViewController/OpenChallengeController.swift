@@ -17,6 +17,10 @@ class OpenChallengeController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var btnNext: ImageButton!
     private let disposeBag = DisposeBag()
+    private var statusKajian: Bool = false
+    private var nameKajian: String? = nil
+    private var statusPernyataan: Bool = false
+    private var contentPernyataan: String? = nil
     
     var dataSource: RxTableViewSectionedReloadDataSource<SectionOfTantanganData>!
     
@@ -45,10 +49,11 @@ class OpenChallengeController: UIViewController {
             switch indexPath.section {
             case 0:
                 let cell = tableView.dequeueReusableCell(indexPath: indexPath) as BidangKajianCell
-                cell.configureCell(item: BidangKajianCell.Input(viewModel: self.viewModel))
+                cell.configureCell(item: BidangKajianCell.Input(viewModel: self.viewModel, status: self.statusKajian, nameKajian: self.nameKajian))
                 return cell
             case 1:
                 let cell = tableView.dequeueReusableCell(indexPath: indexPath) as PernyataanCell
+                cell.configureCell(item: PernyataanCell.Input(viewModel: self.viewModel, status: self.statusPernyataan, content: self.contentPernyataan))
                 return cell
             case 2:
                 let cell = tableView.dequeueReusableCell(indexPath: indexPath) as DateTimeCell
@@ -74,10 +79,46 @@ class OpenChallengeController: UIViewController {
             .disposed(by: disposeBag)
         
         viewModel.output.kajianSelected
+            .do(onNext: { [unowned self] (result) in
+                switch result {
+                case .ok(let id):
+                    print("ID: \(id)")
+                    self.viewModel.input.kajianI.onNext(false)
+                    self.viewModel.input.pernyataanI.onNext(false)
+                    self.viewModel.input.dateTimeI.onNext(true)
+                    self.viewModel.input.saldoI.onNext(true)
+                    self.statusKajian = true
+                    self.nameKajian = id
+                case .cancel:
+                    break
+                }
+            })
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.enablePernyataanO
+            .do(onNext: { [unowned self] (enable) in
+                self.statusPernyataan = enable
+            })
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.statusPernyataanO
+            .do(onNext: { [unowned self] (s) in
+                self.viewModel.input.kajianI.onNext(false)
+                self.viewModel.input.pernyataanI.onNext(false)
+                self.viewModel.input.dateTimeI.onNext(false)
+                self.viewModel.input.saldoI.onNext(true)
+                self.contentPernyataan = s
+            })
             .drive()
             .disposed(by: disposeBag)
         
         viewModel.output.hintKajianO
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.hintPernyataanO
             .drive()
             .disposed(by: disposeBag)
     }

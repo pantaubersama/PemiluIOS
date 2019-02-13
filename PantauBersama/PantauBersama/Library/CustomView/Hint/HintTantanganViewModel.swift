@@ -20,19 +20,19 @@ final class HintTantanganViewModel: ViewModelType {
     }
     
     struct Output {
-        
+        let hintO: Driver<HintType>
     }
     
     private var navigator: HintTantantanganNavigator
     private let closeS = PublishSubject<Void>()
     
-    init(navigator: HintTantantanganNavigator) {
+    init(navigator: HintTantantanganNavigator, type: HintType) {
         self.navigator = navigator
         self.navigator.finish = closeS
         
         input = Input(closeI: closeS.asObserver())
         
-        output = Output()
+        output = Output(hintO: Driver.just(type))
     }
     
 }

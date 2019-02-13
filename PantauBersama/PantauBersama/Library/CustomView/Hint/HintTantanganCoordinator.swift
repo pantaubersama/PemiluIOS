@@ -31,7 +31,7 @@ final class HintTantanganCoordinaot: BaseCoordinator<Void>, HintTantantanganNavi
     }
     
     override func start() -> Observable<CoordinationResult> {
-        let viewModel = HintTantanganViewModel(navigator: self)
+        let viewModel = HintTantanganViewModel(navigator: self, type: type)
         let viewController = HintTantanganView()
         viewController.viewModel = viewModel
         viewController.providesPresentationContextTransitionStyle = true

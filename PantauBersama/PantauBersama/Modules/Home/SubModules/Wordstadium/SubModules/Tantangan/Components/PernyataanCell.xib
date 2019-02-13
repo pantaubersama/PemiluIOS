@@ -82,23 +82,12 @@
                             <constraint firstAttribute="height" constant="1" id="yee-dX-7Ff"/>
                         </constraints>
                     </view>
-                    <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="rLa-22-OYl">
-                        <rect key="frame" x="56.5" y="60.5" width="291.5" height="50"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="50" id="efl-A3-JRH"/>
-                        </constraints>
-                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                        <fontDescription key="fontDescription" name="BwModelicaSS01-BoldCondensed" family="Bw Modelica SS01" pointSize="14"/>
-                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                    </textView>
                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="bqi-t7-YuY">
                         <rect key="frame" x="56.5" y="60.5" width="291.5" height="90"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="90" id="4dw-G7-Zgf"/>
                         </constraints>
-                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                         <color key="textColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <fontDescription key="fontDescription" name="BwModelicaSS01-BoldCondensed" family="Bw Modelica SS01" pointSize="14"/>
                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -122,14 +111,10 @@
                     </button>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailingMargin" secondItem="rLa-22-OYl" secondAttribute="trailing" constant="18" id="2Zq-zC-q7Z"/>
                     <constraint firstAttribute="trailingMargin" secondItem="bqi-t7-YuY" secondAttribute="trailing" constant="18" id="6fO-Hb-bID"/>
                     <constraint firstItem="btC-Ov-veo" firstAttribute="top" secondItem="32h-J7-IUe" secondAttribute="top" id="7ro-zi-WhE"/>
                     <constraint firstAttribute="bottom" secondItem="btC-Ov-veo" secondAttribute="bottom" id="7xp-bT-92b"/>
-                    <constraint firstItem="rLa-22-OYl" firstAttribute="top" secondItem="e1K-yj-237" secondAttribute="bottom" priority="750" constant="8" id="96I-vo-ZG3"/>
                     <constraint firstItem="Y7C-mO-jKW" firstAttribute="top" secondItem="32h-J7-IUe" secondAttribute="top" id="9FE-cQ-tVt"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="rLa-22-OYl" secondAttribute="bottom" priority="250" constant="4" id="9a0-1R-SOa"/>
-                    <constraint firstItem="rLa-22-OYl" firstAttribute="leading" secondItem="btC-Ov-veo" secondAttribute="trailing" constant="28" id="Aty-6n-Lzl"/>
                     <constraint firstAttribute="trailingMargin" secondItem="e1K-yj-237" secondAttribute="trailing" constant="18" id="Bho-QI-Sbe"/>
                     <constraint firstItem="syK-Ig-W3w" firstAttribute="top" secondItem="32h-J7-IUe" secondAttribute="top" id="Clb-EZ-M5u"/>
                     <constraint firstItem="wFZ-PS-Get" firstAttribute="top" secondItem="bqi-t7-YuY" secondAttribute="bottom" constant="4" id="FI3-Xw-aba"/>
@@ -150,6 +135,13 @@
                     <constraint firstItem="Y7C-mO-jKW" firstAttribute="leading" secondItem="32h-J7-IUe" secondAttribute="leading" constant="16" id="xcL-j8-EuI"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="btnHint" destination="0v9-HO-QMg" id="5bP-cB-dXs"/>
+                <outlet property="lblCounter" destination="wFZ-PS-Get" id="sCe-fB-1AM"/>
+                <outlet property="lineStatus" destination="btC-Ov-veo" id="87o-Ic-zNg"/>
+                <outlet property="status" destination="Y7C-mO-jKW" id="KPG-jO-4oF"/>
+                <outlet property="tvPernyataan" destination="bqi-t7-YuY" id="VBm-zz-toZ"/>
+            </connections>
             <point key="canvasLocation" x="54.399999999999999" y="189.3553223388306"/>
         </tableViewCell>
     </objects>
