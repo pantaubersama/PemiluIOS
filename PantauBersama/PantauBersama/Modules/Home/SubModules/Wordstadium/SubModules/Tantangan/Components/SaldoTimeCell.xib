@@ -31,10 +31,10 @@
                         </constraints>
                     </imageView>
                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="WAI-nL-7Os">
-                        <rect key="frame" x="56" y="0.0" width="285" height="17"/>
+                        <rect key="frame" x="56" y="0.0" width="303" height="17"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Saldo Waktu" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LPc-nU-izk" customClass="Label" customModule="Common">
-                                <rect key="frame" x="0.0" y="0.0" width="269" height="17"/>
+                                <rect key="frame" x="0.0" y="0.0" width="287" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
@@ -45,7 +45,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kmK-rS-6ZY">
-                                <rect key="frame" x="269" y="0.5" width="16" height="16"/>
+                                <rect key="frame" x="287" y="0.5" width="16" height="16"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="16" id="2Qm-6k-KqQ"/>
                                     <constraint firstAttribute="height" constant="16" id="2hx-Ku-bro"/>
@@ -132,9 +132,14 @@
                     <constraint firstAttribute="trailing" secondItem="2a6-M8-7lg" secondAttribute="trailing" constant="18" id="j2f-Rb-FgP"/>
                     <constraint firstItem="WAI-nL-7Os" firstAttribute="leading" secondItem="0Ux-Tu-qjP" secondAttribute="trailing" constant="16" id="jUx-7e-XKZ"/>
                     <constraint firstItem="2a6-M8-7lg" firstAttribute="top" secondItem="0mt-bR-lPW" secondAttribute="bottom" constant="8" id="kVc-f2-Eha"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="WAI-nL-7Os" secondAttribute="trailing" constant="18" id="svq-oV-6SH"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="WAI-nL-7Os" secondAttribute="trailing" id="svq-oV-6SH"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="btnHint" destination="kmK-rS-6ZY" id="MOf-7C-Rr6"/>
+                <outlet property="status" destination="0Ux-Tu-qjP" id="wPe-61-Qg8"/>
+                <outlet property="tvSaldo" destination="heo-pb-oPu" id="WKO-be-GpP"/>
+            </connections>
             <point key="canvasLocation" x="69.599999999999994" y="177.66116941529236"/>
         </tableViewCell>
     </objects>

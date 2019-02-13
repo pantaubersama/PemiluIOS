@@ -21,6 +21,11 @@ class OpenChallengeController: UIViewController {
     private var nameKajian: String? = nil
     private var statusPernyataan: Bool = false
     private var contentPernyataan: String? = nil
+    private var statusDateTime: Bool = false
+    private var date: String? = nil
+    private var time: String? = nil
+    private var statusSaldo: Bool = false
+    private var saldo: String? = nil
     
     var dataSource: RxTableViewSectionedReloadDataSource<SectionOfTantanganData>!
     
@@ -57,9 +62,11 @@ class OpenChallengeController: UIViewController {
                 return cell
             case 2:
                 let cell = tableView.dequeueReusableCell(indexPath: indexPath) as DateTimeCell
+                cell.configureCell(item: DateTimeCell.Input(viewModel: self.viewModel, status: self.statusDateTime, date: self.date, time: self.time))
                 return cell
             case 3:
                 let cell = tableView.dequeueReusableCell(indexPath: indexPath) as SaldoTimeCell
+                cell.configureCell(item: SaldoTimeCell.Input(viewModel: self.viewModel, status: self.statusSaldo, saldo: self.saldo))
                 return cell
             default:
                 let cell = UITableViewCell()
@@ -114,11 +121,55 @@ class OpenChallengeController: UIViewController {
             .drive()
             .disposed(by: disposeBag)
         
+        viewModel.output.statusDateO
+            .do(onNext: { [unowned self] (s) in
+                self.viewModel.input.kajianI.onNext(false)
+                self.viewModel.input.pernyataanI.onNext(false)
+                self.viewModel.input.dateTimeI.onNext(false)
+                self.viewModel.input.saldoI.onNext(false)
+                self.statusDateTime = false
+                self.date = s
+            })
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.statusTimeO
+            .do(onNext: { [unowned self] (s) in
+                self.viewModel.input.kajianI.onNext(false)
+                self.viewModel.input.pernyataanI.onNext(false)
+                self.viewModel.input.dateTimeI.onNext(false)
+                self.viewModel.input.saldoI.onNext(false)
+                self.statusDateTime = true
+                self.time = s
+            })
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.saldoTimeO
+            .do(onNext: { [unowned self] (s) in
+                self.viewModel.input.kajianI.onNext(false)
+                self.viewModel.input.pernyataanI.onNext(false)
+                self.viewModel.input.dateTimeI.onNext(false)
+                self.viewModel.input.saldoI.onNext(false)
+                self.statusSaldo = true
+                self.saldo = s
+            })
+            .drive()
+            .disposed(by: disposeBag)
+        
         viewModel.output.hintKajianO
             .drive()
             .disposed(by: disposeBag)
         
         viewModel.output.hintPernyataanO
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.hintDateTimeO
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.hintSaldoO
             .drive()
             .disposed(by: disposeBag)
     }

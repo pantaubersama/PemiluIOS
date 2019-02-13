@@ -38,10 +38,10 @@
                         </constraints>
                     </view>
                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NZp-Yv-TIU">
-                        <rect key="frame" x="56" y="0.0" width="286" height="17"/>
+                        <rect key="frame" x="56" y="0.0" width="304" height="17"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date &amp; Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RUy-tk-dsF" customClass="Label" customModule="Common">
-                                <rect key="frame" x="0.0" y="0.0" width="270" height="17"/>
+                                <rect key="frame" x="0.0" y="0.0" width="288" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
@@ -52,7 +52,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fec-UM-GSm">
-                                <rect key="frame" x="270" y="-5" width="16" height="22"/>
+                                <rect key="frame" x="288" y="-5" width="16" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="16" id="Eon-g4-RIb"/>
                                     <constraint firstAttribute="height" constant="16" id="RuG-RE-Le5"/>
@@ -135,7 +135,7 @@
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="soP-Nl-fMi" secondAttribute="trailing" constant="18" id="7m5-qM-9xK"/>
                     <constraint firstItem="AeF-Yj-cTs" firstAttribute="top" secondItem="7Ue-PS-XPC" secondAttribute="top" id="DXr-6x-PGN"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="NZp-Yv-TIU" secondAttribute="trailing" constant="18" id="FCU-vh-64t"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="NZp-Yv-TIU" secondAttribute="trailing" id="FCU-vh-64t"/>
                     <constraint firstItem="NZp-Yv-TIU" firstAttribute="top" secondItem="7Ue-PS-XPC" secondAttribute="firstBaseline" id="L91-NT-dml"/>
                     <constraint firstItem="IOm-9h-baA" firstAttribute="top" secondItem="soP-Nl-fMi" secondAttribute="bottom" constant="8" id="UJj-9X-EXe"/>
                     <constraint firstItem="soP-Nl-fMi" firstAttribute="leading" secondItem="BGY-qz-OOI" secondAttribute="trailing" constant="28" id="WKE-HG-b2r"/>
@@ -152,6 +152,13 @@
                     <constraint firstItem="AeF-Yj-cTs" firstAttribute="leading" secondItem="7Ue-PS-XPC" secondAttribute="leading" constant="16" id="paH-Jt-5HZ"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="btnHint" destination="fec-UM-GSm" id="08j-S5-TWe"/>
+                <outlet property="lineStatus" destination="BGY-qz-OOI" id="Dzk-Yd-m5w"/>
+                <outlet property="status" destination="AeF-Yj-cTs" id="dWN-fJ-Zbq"/>
+                <outlet property="tvDate" destination="1Og-GB-dtB" id="aEx-FY-1Jt"/>
+                <outlet property="tvJam" destination="WCJ-ix-FTv" id="xUB-na-ftS"/>
+            </connections>
             <point key="canvasLocation" x="78.400000000000006" y="241.97901049475263"/>
         </tableViewCell>
     </objects>
