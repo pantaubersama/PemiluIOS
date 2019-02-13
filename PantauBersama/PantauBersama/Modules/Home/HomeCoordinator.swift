@@ -50,6 +50,8 @@ class HomeCoordinator: BaseCoordinator<Void> {
                         return coordinate(to: PenpolCoordinator(navigationController: element, isNewQuiz: isNewQuiz))
                     case .wordstadium:
                         return coordinate(to: WordstadiumCoordinator(navigationController: element))
+                    case .rekap:
+                        return coordinate(to: RekapCoordinator(navigationController: element))
 //                    default:
 //                        return coordinate(to: ComingsoonCoordinator(navigationController: element))
                 }

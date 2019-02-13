@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04E506FC2214674700B342E7 /* RekapCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E506FB2214674700B342E7 /* RekapCoordinator.swift */; };
+		04E50704221467E900B342E7 /* RekapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E50702221467E900B342E7 /* RekapController.swift */; };
+		04E50705221467E900B342E7 /* RekapController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04E50703221467E900B342E7 /* RekapController.xib */; };
+		04E507082214684000B342E7 /* RekapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E507072214684000B342E7 /* RekapViewModel.swift */; };
 		1108871822126FEA0041B821 /* LiveDebatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1108871622126FEA0041B821 /* LiveDebatController.swift */; };
 		1108871922126FEA0041B821 /* LiveDebatController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1108871722126FEA0041B821 /* LiveDebatController.xib */; };
 		1108871C221271CD0041B821 /* LiveDebatCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1108871B221271CD0041B821 /* LiveDebatCoordinator.swift */; };
@@ -427,6 +431,10 @@
 
 /* Begin PBXFileReference section */
 		04A224A86FBFD6EFE137644F /* Pods-PantauBersama.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PantauBersama.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-PantauBersama/Pods-PantauBersama.debug.xcconfig"; sourceTree = "<group>"; };
+		04E506FB2214674700B342E7 /* RekapCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RekapCoordinator.swift; sourceTree = "<group>"; };
+		04E50702221467E900B342E7 /* RekapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RekapController.swift; sourceTree = "<group>"; };
+		04E50703221467E900B342E7 /* RekapController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RekapController.xib; sourceTree = "<group>"; };
+		04E507072214684000B342E7 /* RekapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RekapViewModel.swift; sourceTree = "<group>"; };
 		1108871622126FEA0041B821 /* LiveDebatController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveDebatController.swift; sourceTree = "<group>"; };
 		1108871722126FEA0041B821 /* LiveDebatController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LiveDebatController.xib; sourceTree = "<group>"; };
 		1108871B221271CD0041B821 /* LiveDebatCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveDebatCoordinator.swift; sourceTree = "<group>"; };
@@ -853,6 +861,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04E506FA2214670F00B342E7 /* Rekap */ = {
+			isa = PBXGroup;
+			children = (
+				04E50706221467F000B342E7 /* SubModules */,
+				04E506FD2214679E00B342E7 /* ViewController */,
+				04E506FB2214674700B342E7 /* RekapCoordinator.swift */,
+				04E507072214684000B342E7 /* RekapViewModel.swift */,
+			);
+			path = Rekap;
+			sourceTree = "<group>";
+		};
+		04E506FD2214679E00B342E7 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				04E50702221467E900B342E7 /* RekapController.swift */,
+				04E50703221467E900B342E7 /* RekapController.xib */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		04E50706221467F000B342E7 /* SubModules */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SubModules;
+			sourceTree = "<group>";
+		};
 		1108871522126FC60041B821 /* LiveDebat */ = {
 			isa = PBXGroup;
 			children = (
@@ -1728,6 +1763,7 @@
 		844C3D7B21C5246600199871 /* SubModules */ = {
 			isa = PBXGroup;
 			children = (
+				04E506FA2214670F00B342E7 /* Rekap */,
 				137A29EF21E225DF00F19072 /* Comingsoon */,
 				13F456D721DBACF400CE45F1 /* Banner */,
 				844C3D8021C524AE00199871 /* Vote */,
@@ -2707,6 +2743,7 @@
 				84E6933E21D2936E00EA5464 /* HeaderEditProfile.xib in Resources */,
 				84B7B8B321E4454B0099E7E3 /* EmptyView.xib in Resources */,
 				84F892B121C787D800DC1048 /* Lato-Regular.ttf in Resources */,
+				04E50705221467E900B342E7 /* RekapController.xib in Resources */,
 				13812C3A21CC182500CAB327 /* AskViewCell.xib in Resources */,
 				84F6981721C9364700890917 /* LinimasaJanjiCell.xib in Resources */,
 				84307F452200352B006DE04B /* ob5_perhitungan.json in Resources */,
@@ -3055,6 +3092,7 @@
 				845C570221CD1AEB00EDCDFE /* ProfileController.swift in Sources */,
 				84CA10C121EF107E0025CF10 /* AboutController.swift in Sources */,
 				11D0669F21E26A57003AC9BB /* QuizResultModel.swift in Sources */,
+				04E506FC2214674700B342E7 /* RekapCoordinator.swift in Sources */,
 				84A07FC221D14D4F00269C6B /* ReqClusterController.swift in Sources */,
 				11B3C79621D1126700EDCECB /* QuizSummaryKeyCell.swift in Sources */,
 				11D066AC21E38850003AC9BB /* PenpolFilterModel.swift in Sources */,
@@ -3074,6 +3112,7 @@
 				13812C3921CC182500CAB327 /* AskViewCell.swift in Sources */,
 				1108871822126FEA0041B821 /* LiveDebatController.swift in Sources */,
 				137A29F821E2327D00F19072 /* ComingsoonCoordinator.swift in Sources */,
+				04E50704221467E900B342E7 /* RekapController.swift in Sources */,
 				84B2526821CC01F000565D82 /* AppState.swift in Sources */,
 				8451E05A22045AEC00F03E96 /* InfoNotifViewModel.swift in Sources */,
 				84E521BC21F4A81700B7CCBA /* ItemOnboardingController.swift in Sources */,
@@ -3215,6 +3254,7 @@
 				84B7B8C721E4A0A00099E7E3 /* IClusterSearchDelegate.swift in Sources */,
 				840850D221D2632500696CB3 /* ProfileEditCoordinator.swift in Sources */,
 				8409374D21D361240024A444 /* PilpresNavigator.swift in Sources */,
+				04E507082214684000B342E7 /* RekapViewModel.swift in Sources */,
 				840850DF21D2843D00696CB3 /* BadgeViewModel.swift in Sources */,
 				1184752221FDEAC300D44FA5 /* ClusterCategoryDelegate.swift in Sources */,
 				13E139512213FEF000286EDE /* SeeMoreCell.swift in Sources */,
