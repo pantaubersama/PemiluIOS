@@ -66,7 +66,9 @@ extension TooltipCoordinator: TooltipNavigator {
     }
     
     func launchTantangan() -> Observable<Void> {
-        return Observable.empty()
+        self.navigationController.dismiss(animated: true, completion: nil)
+        let createTantanganCoordinator = CreateTantanganCoordinator(navigationController: navigationController)
+        return coordinate(to: createTantanganCoordinator)
     }
     
     func back() -> Observable<Void> {

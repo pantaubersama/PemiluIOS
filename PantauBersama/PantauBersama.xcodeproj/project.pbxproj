@@ -344,6 +344,16 @@
 		84B7B8CE21E5B4CD0099E7E3 /* AddKategoriController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B7B8CD21E5B4CD0099E7E3 /* AddKategoriController.swift */; };
 		84B7B8D021E5B5D40099E7E3 /* AddKategoriViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B7B8CF21E5B5D40099E7E3 /* AddKategoriViewModel.swift */; };
 		84B7B8D221E5B9640099E7E3 /* AddKategoriCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B7B8D121E5B9640099E7E3 /* AddKategoriCoordinator.swift */; };
+		84B8C1AF221537FA004BC1FE /* LinkPreviewView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84B8C1AE221537FA004BC1FE /* LinkPreviewView.xib */; };
+		84B8C1B122153AA4004BC1FE /* LinkPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B8C1B022153AA4004BC1FE /* LinkPreviewView.swift */; };
+		84B8C1B32215471E004BC1FE /* LawanDebatCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84B8C1B22215471E004BC1FE /* LawanDebatCell.xib */; };
+		84B8C1B522154D4E004BC1FE /* LawanDebatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B8C1B422154D4E004BC1FE /* LawanDebatCell.swift */; };
+		84B8C1B822156B35004BC1FE /* ChallengeDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84B8C1B722156B35004BC1FE /* ChallengeDetailView.xib */; };
+		84B8C1BB221570AE004BC1FE /* LawanDebatView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84B8C1BA221570AE004BC1FE /* LawanDebatView.xib */; };
+		84B8C1BD22157288004BC1FE /* LawanDebatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B8C1BC22157288004BC1FE /* LawanDebatView.swift */; };
+		84B8C1BF22157347004BC1FE /* ChallengeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B8C1BE22157347004BC1FE /* ChallengeDetailView.swift */; };
+		84B8C1C222157584004BC1FE /* FooterProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84B8C1C122157584004BC1FE /* FooterProfileView.xib */; };
+		84B8C1C422157686004BC1FE /* FooterProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B8C1C322157686004BC1FE /* FooterProfileView.swift */; };
 		84BEA55321F9884900659980 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BEA55221F9884900659980 /* NetworkService.swift */; };
 		84CA10BF21EF0DE80025CF10 /* AboutController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84CA10BE21EF0DE80025CF10 /* AboutController.xib */; };
 		84CA10C121EF107E0025CF10 /* AboutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CA10C021EF107E0025CF10 /* AboutController.swift */; };
@@ -397,6 +407,35 @@
 		84FA42342212886A008215C4 /* TooltipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FA42332212886A008215C4 /* TooltipView.swift */; };
 		84FA423622128A57008215C4 /* TooltipViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FA423522128A57008215C4 /* TooltipViewModel.swift */; };
 		84FA423822128B23008215C4 /* TooltipCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FA423722128B23008215C4 /* TooltipCoordinator.swift */; };
+		84FA423C2212A17D008215C4 /* CreateTantanganController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FA423B2212A17D008215C4 /* CreateTantanganController.swift */; };
+		84FA423E2212A1C7008215C4 /* CreateTantanganController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84FA423D2212A1C7008215C4 /* CreateTantanganController.xib */; };
+		84FA42402212A595008215C4 /* CreateTantanganViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FA423F2212A595008215C4 /* CreateTantanganViewModel.swift */; };
+		84FA42422212A615008215C4 /* CreateTantanganCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FA42412212A615008215C4 /* CreateTantanganCoordinator.swift */; };
+		84FA42472212AACA008215C4 /* TantanganChallengeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84FA42462212AACA008215C4 /* TantanganChallengeController.xib */; };
+		84FA42492212AC63008215C4 /* TantanganChallengeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FA42482212AC63008215C4 /* TantanganChallengeController.swift */; };
+		84FA424B2212ACF6008215C4 /* TantanganChallengeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FA424A2212ACF6008215C4 /* TantanganChallengeViewModel.swift */; };
+		84FA424E2212AFAC008215C4 /* HeaderTantanganView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84FA424D2212AFAC008215C4 /* HeaderTantanganView.xib */; };
+		84FA42502212B1C9008215C4 /* HeaderTantanganView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FA424F2212B1C9008215C4 /* HeaderTantanganView.swift */; };
+		84FA42542212B499008215C4 /* SectionOfTantanganData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FA42532212B499008215C4 /* SectionOfTantanganData.swift */; };
+		84FA42582212B873008215C4 /* TantanganCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84FA42572212B873008215C4 /* TantanganCell.xib */; };
+		84FA425A2212BB4B008215C4 /* TantanganCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FA42592212BB4B008215C4 /* TantanganCell.swift */; };
+		84FA425C2212C474008215C4 /* TantanganChallengeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FA425B2212C474008215C4 /* TantanganChallengeCoordinator.swift */; };
+		84FA42642212E919008215C4 /* BidangKajianCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84FA42632212E919008215C4 /* BidangKajianCell.xib */; };
+		84FA42662212EABA008215C4 /* BidangKajianCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FA42652212EABA008215C4 /* BidangKajianCell.swift */; };
+		84FA42682212EED0008215C4 /* PernyataanCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84FA42672212EED0008215C4 /* PernyataanCell.xib */; };
+		84FA426A2212F0F5008215C4 /* PernyataanCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FA42692212F0F5008215C4 /* PernyataanCell.swift */; };
+		84FA426C2212F460008215C4 /* DateTimeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84FA426B2212F460008215C4 /* DateTimeCell.xib */; };
+		84FA426E2212F778008215C4 /* DateTimeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FA426D2212F778008215C4 /* DateTimeCell.swift */; };
+		84FA42702212F902008215C4 /* SaldoTimeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84FA426F2212F902008215C4 /* SaldoTimeCell.xib */; };
+		84FA42722212FBBE008215C4 /* SaldoTimeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FA42712212FBBE008215C4 /* SaldoTimeCell.swift */; };
+		84FA42742212FF66008215C4 /* HintTantanganView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84FA42732212FF66008215C4 /* HintTantanganView.xib */; };
+		84FA42772213015B008215C4 /* HintTantanganView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FA42762213015B008215C4 /* HintTantanganView.swift */; };
+		84FA4279221301F0008215C4 /* HintTantanganViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FA4278221301F0008215C4 /* HintTantanganViewModel.swift */; };
+		84FA427B22130237008215C4 /* HintTantanganCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FA427A22130237008215C4 /* HintTantanganCoordinator.swift */; };
+		84FA427E2213062A008215C4 /* BidangKajianController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84FA427D2213062A008215C4 /* BidangKajianController.xib */; };
+		84FA4280221306EA008215C4 /* BidangKajianController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FA427F221306EA008215C4 /* BidangKajianController.swift */; };
+		84FA428222130728008215C4 /* BidangKajianViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FA428122130728008215C4 /* BidangKajianViewModel.swift */; };
+		84FA4284221307BF008215C4 /* BidangKajianCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FA4283221307BF008215C4 /* BidangKajianCoordinator.swift */; };
 		84FE6EBA21D5FC9B009A0F55 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FE6EB921D5FC9B009A0F55 /* ActivityIndicator.swift */; };
 		84FE6EBC21D5FCB9009A0F55 /* ErrorTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FE6EBB21D5FCB9009A0F55 /* ErrorTracker.swift */; };
 		84FE6EBE21D5FEA1009A0F55 /* Network+AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FE6EBD21D5FEA1009A0F55 /* Network+AlertController.swift */; };
@@ -782,6 +821,16 @@
 		84B7B8CD21E5B4CD0099E7E3 /* AddKategoriController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddKategoriController.swift; sourceTree = "<group>"; };
 		84B7B8CF21E5B5D40099E7E3 /* AddKategoriViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddKategoriViewModel.swift; sourceTree = "<group>"; };
 		84B7B8D121E5B9640099E7E3 /* AddKategoriCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddKategoriCoordinator.swift; sourceTree = "<group>"; };
+		84B8C1AE221537FA004BC1FE /* LinkPreviewView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LinkPreviewView.xib; sourceTree = "<group>"; };
+		84B8C1B022153AA4004BC1FE /* LinkPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkPreviewView.swift; sourceTree = "<group>"; };
+		84B8C1B22215471E004BC1FE /* LawanDebatCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LawanDebatCell.xib; sourceTree = "<group>"; };
+		84B8C1B422154D4E004BC1FE /* LawanDebatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LawanDebatCell.swift; sourceTree = "<group>"; };
+		84B8C1B722156B35004BC1FE /* ChallengeDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChallengeDetailView.xib; sourceTree = "<group>"; };
+		84B8C1BA221570AE004BC1FE /* LawanDebatView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LawanDebatView.xib; sourceTree = "<group>"; };
+		84B8C1BC22157288004BC1FE /* LawanDebatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LawanDebatView.swift; sourceTree = "<group>"; };
+		84B8C1BE22157347004BC1FE /* ChallengeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeDetailView.swift; sourceTree = "<group>"; };
+		84B8C1C122157584004BC1FE /* FooterProfileView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FooterProfileView.xib; sourceTree = "<group>"; };
+		84B8C1C322157686004BC1FE /* FooterProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterProfileView.swift; sourceTree = "<group>"; };
 		84BEA55221F9884900659980 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		84CA10BE21EF0DE80025CF10 /* AboutController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AboutController.xib; sourceTree = "<group>"; };
 		84CA10C021EF107E0025CF10 /* AboutController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutController.swift; sourceTree = "<group>"; };
@@ -835,6 +884,35 @@
 		84FA42332212886A008215C4 /* TooltipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TooltipView.swift; sourceTree = "<group>"; };
 		84FA423522128A57008215C4 /* TooltipViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TooltipViewModel.swift; sourceTree = "<group>"; };
 		84FA423722128B23008215C4 /* TooltipCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TooltipCoordinator.swift; sourceTree = "<group>"; };
+		84FA423B2212A17D008215C4 /* CreateTantanganController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTantanganController.swift; sourceTree = "<group>"; };
+		84FA423D2212A1C7008215C4 /* CreateTantanganController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateTantanganController.xib; sourceTree = "<group>"; };
+		84FA423F2212A595008215C4 /* CreateTantanganViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTantanganViewModel.swift; sourceTree = "<group>"; };
+		84FA42412212A615008215C4 /* CreateTantanganCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTantanganCoordinator.swift; sourceTree = "<group>"; };
+		84FA42462212AACA008215C4 /* TantanganChallengeController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TantanganChallengeController.xib; sourceTree = "<group>"; };
+		84FA42482212AC63008215C4 /* TantanganChallengeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TantanganChallengeController.swift; sourceTree = "<group>"; };
+		84FA424A2212ACF6008215C4 /* TantanganChallengeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TantanganChallengeViewModel.swift; sourceTree = "<group>"; };
+		84FA424D2212AFAC008215C4 /* HeaderTantanganView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderTantanganView.xib; sourceTree = "<group>"; };
+		84FA424F2212B1C9008215C4 /* HeaderTantanganView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderTantanganView.swift; sourceTree = "<group>"; };
+		84FA42532212B499008215C4 /* SectionOfTantanganData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionOfTantanganData.swift; sourceTree = "<group>"; };
+		84FA42572212B873008215C4 /* TantanganCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TantanganCell.xib; sourceTree = "<group>"; };
+		84FA42592212BB4B008215C4 /* TantanganCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TantanganCell.swift; sourceTree = "<group>"; };
+		84FA425B2212C474008215C4 /* TantanganChallengeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TantanganChallengeCoordinator.swift; sourceTree = "<group>"; };
+		84FA42632212E919008215C4 /* BidangKajianCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BidangKajianCell.xib; sourceTree = "<group>"; };
+		84FA42652212EABA008215C4 /* BidangKajianCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BidangKajianCell.swift; sourceTree = "<group>"; };
+		84FA42672212EED0008215C4 /* PernyataanCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PernyataanCell.xib; sourceTree = "<group>"; };
+		84FA42692212F0F5008215C4 /* PernyataanCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PernyataanCell.swift; sourceTree = "<group>"; };
+		84FA426B2212F460008215C4 /* DateTimeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DateTimeCell.xib; sourceTree = "<group>"; };
+		84FA426D2212F778008215C4 /* DateTimeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeCell.swift; sourceTree = "<group>"; };
+		84FA426F2212F902008215C4 /* SaldoTimeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SaldoTimeCell.xib; sourceTree = "<group>"; };
+		84FA42712212FBBE008215C4 /* SaldoTimeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaldoTimeCell.swift; sourceTree = "<group>"; };
+		84FA42732212FF66008215C4 /* HintTantanganView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HintTantanganView.xib; sourceTree = "<group>"; };
+		84FA42762213015B008215C4 /* HintTantanganView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HintTantanganView.swift; sourceTree = "<group>"; };
+		84FA4278221301F0008215C4 /* HintTantanganViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HintTantanganViewModel.swift; sourceTree = "<group>"; };
+		84FA427A22130237008215C4 /* HintTantanganCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HintTantanganCoordinator.swift; sourceTree = "<group>"; };
+		84FA427D2213062A008215C4 /* BidangKajianController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BidangKajianController.xib; sourceTree = "<group>"; };
+		84FA427F221306EA008215C4 /* BidangKajianController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BidangKajianController.swift; sourceTree = "<group>"; };
+		84FA428122130728008215C4 /* BidangKajianViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BidangKajianViewModel.swift; sourceTree = "<group>"; };
+		84FA4283221307BF008215C4 /* BidangKajianCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BidangKajianCoordinator.swift; sourceTree = "<group>"; };
 		84FE6EB921D5FC9B009A0F55 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		84FE6EBB21D5FCB9009A0F55 /* ErrorTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorTracker.swift; sourceTree = "<group>"; };
 		84FE6EBD21D5FEA1009A0F55 /* Network+AlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Network+AlertController.swift"; sourceTree = "<group>"; };
@@ -1307,6 +1385,7 @@
 		13E170BA221184200018EDB4 /* SubModules */ = {
 			isa = PBXGroup;
 			children = (
+				84FA42392212A121008215C4 /* Tantangan */,
 				13E170D12213102C0018EDB4 /* Components */,
 				1108871522126FC60041B821 /* LiveDebat */,
 				13E170BC2211845C0018EDB4 /* Personal */,
@@ -2377,6 +2456,42 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		84B8C1AD221537E3004BC1FE /* LinkPreview */ = {
+			isa = PBXGroup;
+			children = (
+				84B8C1AE221537FA004BC1FE /* LinkPreviewView.xib */,
+				84B8C1B022153AA4004BC1FE /* LinkPreviewView.swift */,
+			);
+			path = LinkPreview;
+			sourceTree = "<group>";
+		};
+		84B8C1B622156B1C004BC1FE /* ChallengeDetailView */ = {
+			isa = PBXGroup;
+			children = (
+				84B8C1B722156B35004BC1FE /* ChallengeDetailView.xib */,
+				84B8C1BE22157347004BC1FE /* ChallengeDetailView.swift */,
+			);
+			path = ChallengeDetailView;
+			sourceTree = "<group>";
+		};
+		84B8C1B922157099004BC1FE /* LawanDebatView */ = {
+			isa = PBXGroup;
+			children = (
+				84B8C1BA221570AE004BC1FE /* LawanDebatView.xib */,
+				84B8C1BC22157288004BC1FE /* LawanDebatView.swift */,
+			);
+			path = LawanDebatView;
+			sourceTree = "<group>";
+		};
+		84B8C1C022157562004BC1FE /* FooterProfileView */ = {
+			isa = PBXGroup;
+			children = (
+				84B8C1C122157584004BC1FE /* FooterProfileView.xib */,
+				84B8C1C322157686004BC1FE /* FooterProfileView.swift */,
+			);
+			path = FooterProfileView;
+			sourceTree = "<group>";
+		};
 		84CA10BD21EF0DCF0025CF10 /* About */ = {
 			isa = PBXGroup;
 			children = (
@@ -2400,6 +2515,12 @@
 		84E2854121CA189B00298E31 /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
+				84B8C1C022157562004BC1FE /* FooterProfileView */,
+				84B8C1B922157099004BC1FE /* LawanDebatView */,
+				84B8C1B622156B1C004BC1FE /* ChallengeDetailView */,
+				84B8C1AD221537E3004BC1FE /* LinkPreview */,
+				84FA427C22130619008215C4 /* Kajian */,
+				84FA427522130144008215C4 /* Hint */,
 				84FA42302211E259008215C4 /* Tooltip */,
 				84FF8A9221F217FB00AA8CF3 /* Updates */,
 				84CA10BD21EF0DCF0025CF10 /* About */,
@@ -2569,6 +2690,98 @@
 			path = Tooltip;
 			sourceTree = "<group>";
 		};
+		84FA42392212A121008215C4 /* Tantangan */ = {
+			isa = PBXGroup;
+			children = (
+				84FA424C2212AF95008215C4 /* Components */,
+				84FA42432212AA9C008215C4 /* SubModules */,
+				84FA423A2212A12B008215C4 /* ViewController */,
+				84FA423F2212A595008215C4 /* CreateTantanganViewModel.swift */,
+				84FA42412212A615008215C4 /* CreateTantanganCoordinator.swift */,
+				84FA42532212B499008215C4 /* SectionOfTantanganData.swift */,
+			);
+			path = Tantangan;
+			sourceTree = "<group>";
+		};
+		84FA423A2212A12B008215C4 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				84FA423B2212A17D008215C4 /* CreateTantanganController.swift */,
+				84FA423D2212A1C7008215C4 /* CreateTantanganController.xib */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		84FA42432212AA9C008215C4 /* SubModules */ = {
+			isa = PBXGroup;
+			children = (
+				84FA42442212AAAA008215C4 /* TantanganChallenge */,
+			);
+			path = SubModules;
+			sourceTree = "<group>";
+		};
+		84FA42442212AAAA008215C4 /* TantanganChallenge */ = {
+			isa = PBXGroup;
+			children = (
+				84FA42452212AAB8008215C4 /* ViewController */,
+				84FA424A2212ACF6008215C4 /* TantanganChallengeViewModel.swift */,
+				84FA425B2212C474008215C4 /* TantanganChallengeCoordinator.swift */,
+			);
+			path = TantanganChallenge;
+			sourceTree = "<group>";
+		};
+		84FA42452212AAB8008215C4 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				84FA42462212AACA008215C4 /* TantanganChallengeController.xib */,
+				84FA42482212AC63008215C4 /* TantanganChallengeController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		84FA424C2212AF95008215C4 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				84FA424D2212AFAC008215C4 /* HeaderTantanganView.xib */,
+				84FA424F2212B1C9008215C4 /* HeaderTantanganView.swift */,
+				84FA42572212B873008215C4 /* TantanganCell.xib */,
+				84FA42592212BB4B008215C4 /* TantanganCell.swift */,
+				84FA42632212E919008215C4 /* BidangKajianCell.xib */,
+				84FA42652212EABA008215C4 /* BidangKajianCell.swift */,
+				84FA42672212EED0008215C4 /* PernyataanCell.xib */,
+				84FA42692212F0F5008215C4 /* PernyataanCell.swift */,
+				84FA426B2212F460008215C4 /* DateTimeCell.xib */,
+				84FA426D2212F778008215C4 /* DateTimeCell.swift */,
+				84FA426F2212F902008215C4 /* SaldoTimeCell.xib */,
+				84FA42712212FBBE008215C4 /* SaldoTimeCell.swift */,
+				84B8C1B22215471E004BC1FE /* LawanDebatCell.xib */,
+				84B8C1B422154D4E004BC1FE /* LawanDebatCell.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		84FA427522130144008215C4 /* Hint */ = {
+			isa = PBXGroup;
+			children = (
+				84FA42732212FF66008215C4 /* HintTantanganView.xib */,
+				84FA42762213015B008215C4 /* HintTantanganView.swift */,
+				84FA4278221301F0008215C4 /* HintTantanganViewModel.swift */,
+				84FA427A22130237008215C4 /* HintTantanganCoordinator.swift */,
+			);
+			path = Hint;
+			sourceTree = "<group>";
+		};
+		84FA427C22130619008215C4 /* Kajian */ = {
+			isa = PBXGroup;
+			children = (
+				84FA427D2213062A008215C4 /* BidangKajianController.xib */,
+				84FA427F221306EA008215C4 /* BidangKajianController.swift */,
+				84FA428122130728008215C4 /* BidangKajianViewModel.swift */,
+				84FA4283221307BF008215C4 /* BidangKajianCoordinator.swift */,
+			);
+			path = Kajian;
+			sourceTree = "<group>";
+		};
 		84FF8A9221F217FB00AA8CF3 /* Updates */ = {
 			isa = PBXGroup;
 			children = (
@@ -2690,12 +2903,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				8428AAA321C7A7790008E975 /* Localizable.strings in Resources */,
+				84FA42472212AACA008215C4 /* TantanganChallengeController.xib in Resources */,
+				84B8C1B32215471E004BC1FE /* LawanDebatCell.xib in Resources */,
 				13F4569521CF97DA00CE45F1 /* CreateAskController.xib in Resources */,
 				1149EB6F22140E800050F366 /* ArgumentRightCell.xib in Resources */,
 				04E507172214E62500B342E7 /* MerayakanController.xib in Resources */,
 				840850DD21D2832200696CB3 /* BadgeController.xib in Resources */,
 				84CA10BF21EF0DE80025CF10 /* AboutController.xib in Resources */,
 				842A4A0321D7C6810050AA51 /* CameraController.xib in Resources */,
+				84B8C1C222157584004BC1FE /* FooterProfileView.xib in Resources */,
+				84FA427E2213062A008215C4 /* BidangKajianController.xib in Resources */,
 				1320595F221359C200BE9456 /* WordstadiumCollectionCell.xib in Resources */,
 				84B7B8B521E445D00099E7E3 /* empty-status.json in Resources */,
 				11702DD321CB0287001AEE3F /* QuizCell.xib in Resources */,
@@ -2721,7 +2938,9 @@
 				84B6D6E221E1028700CD4BC8 /* KategoriClusterController.xib in Resources */,
 				84F892AA21C787D800DC1048 /* Lato-Bold.ttf in Resources */,
 				13F456D421DB897500CE45F1 /* BannerInfoController.xib in Resources */,
+				84FA423E2212A1C7008215C4 /* CreateTantanganController.xib in Resources */,
 				840901B821DF1CBB001BF559 /* Navbar.xib in Resources */,
+				84B8C1AF221537FA004BC1FE /* LinkPreviewView.xib in Resources */,
 				84E521AC21F3957F00B7CCBA /* ShareTrendController.xib in Resources */,
 				8451E05122035F9200F03E96 /* TrendImageShare.xib in Resources */,
 				137A29EE21E11E8F00F19072 /* TrendHeaderView.xib in Resources */,
@@ -2743,11 +2962,14 @@
 				84A07F9D21D0DC4B00269C6B /* KTPController.xib in Resources */,
 				13E139562213FF1B00286EDE /* SectionViewCell.xib in Resources */,
 				137A29F421E2261A00F19072 /* ComingsoonController.xib in Resources */,
+				84FA42682212EED0008215C4 /* PernyataanCell.xib in Resources */,
 				8478B8E621FF1FAA00CE192A /* InfoNotifCell.xib in Resources */,
 				84619D3C21DA88C800EB58CF /* ItemInfoCell.xib in Resources */,
 				8441DB5621CCF19C00B078DF /* DetailJanjiController.xib in Resources */,
 				8451E0642207F6E500F03E96 /* data_fotoktp.json in Resources */,
+				84B8C1B822156B35004BC1FE /* ChallengeDetailView.xib in Resources */,
 				13F456AF21D36A8500CE45F1 /* UndangAnggotaController.xib in Resources */,
+				84FA424E2212AFAC008215C4 /* HeaderTantanganView.xib in Resources */,
 				84F892AC21C787D800DC1048 /* Lato-Hairline.ttf in Resources */,
 				84FA42322211E278008215C4 /* TooltipView.xib in Resources */,
 				84F892AD21C787D800DC1048 /* Lato-HairlineItalic.ttf in Resources */,
@@ -2764,10 +2986,12 @@
 				84B6D50321F81D9D00DD742A /* CatatanPilpresController.xib in Resources */,
 				840901BE21DF31CD001BF559 /* CatatanController.xib in Resources */,
 				84F892B021C787D800DC1048 /* Lato-LightItalic.ttf in Resources */,
+				84FA42582212B873008215C4 /* TantanganCell.xib in Resources */,
 				118149F021EC718800192E97 /* ListUserCell.xib in Resources */,
 				84307F442200352B006DE04B /* ob1_wordstadium.json in Resources */,
 				845C571721CE1B5900EDCDFE /* BadgeCell.xib in Resources */,
 				841CDA3D21C8BC1C0015680C /* LinimasaController.xib in Resources */,
+				84FA426C2212F460008215C4 /* DateTimeCell.xib in Resources */,
 				84A07FA721D0E2E900269C6B /* SelfIdentitasController.xib in Resources */,
 				84E6933E21D2936E00EA5464 /* HeaderEditProfile.xib in Resources */,
 				84B7B8B321E4454B0099E7E3 /* EmptyView.xib in Resources */,
@@ -2784,10 +3008,12 @@
 				845C570021CD195600EDCDFE /* ProfileController.xib in Resources */,
 				84619D4221DA95D200EB58CF /* SectionItemCell.xib in Resources */,
 				11B3C79721D1126700EDCECB /* QuizSummaryKeyCell.xib in Resources */,
+				84B8C1BB221570AE004BC1FE /* LawanDebatView.xib in Resources */,
 				84D01B9B21D20C480000492F /* SettingCell.xib in Resources */,
 				84B2669F21D4DB9A00C7B783 /* ProfileEditController.xib in Resources */,
 				84F892A721C7875200DC1048 /* BwModelica-ThinCondensed.otf in Resources */,
 				137A29F621E2303400F19072 /* coming-soon-coffee.json in Resources */,
+				84FA42642212E919008215C4 /* BidangKajianCell.xib in Resources */,
 				1147F22C21F83C01001D0D59 /* ClusterDetailController.xib in Resources */,
 				8441DB3E21CCB80B00B078DF /* ItemRadioCell.xib in Resources */,
 				11D066A521E3850E003AC9BB /* PenpolFilterController.xib in Resources */,
@@ -2799,6 +3025,7 @@
 				844C2BA521CC0F2500BC439A /* BannerHeaderView.xib in Resources */,
 				84FE6EC421D634CD009A0F55 /* BiodataView.xib in Resources */,
 				84B6D6EA21E223AA00CD4BC8 /* ClusterView.xib in Resources */,
+				84FA42702212F902008215C4 /* SaldoTimeCell.xib in Resources */,
 				845C571321CE10C900EDCDFE /* IconTableCell.xib in Resources */,
 				11145F5621EACCEC0046F2AA /* SearchController.xib in Resources */,
 				11145F6B21EB473B0046F2AA /* CustomMenuBar.xib in Resources */,
@@ -2807,6 +3034,7 @@
 				8451E0662207F71800F03E96 /* selfie-id-card.json in Resources */,
 				840850CC21D2607000696CB3 /* DateViewCell.xib in Resources */,
 				84B7B8C121E487FB0099E7E3 /* ClusterSearchCell.xib in Resources */,
+				84FA42742212FF66008215C4 /* HintTantanganView.xib in Resources */,
 				84A07FA221D0DFF600269C6B /* SignatureController.xib in Resources */,
 				1149EB6B22140E670050F366 /* ArgumentLeftCell.xib in Resources */,
 				845C570921CD3D5700EDCDFE /* SectionCell.xib in Resources */,
@@ -2851,6 +3079,7 @@
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${PODS_ROOT}/TwitterCore/iOS/TwitterCore.framework",
 				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework",
+				"${BUILT_PRODUCTS_DIR}/URLEmbeddedView/URLEmbeddedView.framework",
 				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -2876,6 +3105,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwitterCore.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwitterKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/URLEmbeddedView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lottie.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -3017,6 +3247,7 @@
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${PODS_ROOT}/TwitterCore/iOS/TwitterCore.framework",
 				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework",
+				"${BUILT_PRODUCTS_DIR}/URLEmbeddedView/URLEmbeddedView.framework",
 				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -3042,6 +3273,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwitterCore.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwitterKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/URLEmbeddedView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lottie.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -3065,11 +3297,14 @@
 				849CABCE21CE8AC300912F8E /* SettingViewModel.swift in Sources */,
 				845C571521CE122B00EDCDFE /* IconTableCell.swift in Sources */,
 				84A07FBC21D129FC00269C6B /* GroupProfileInfoData.swift in Sources */,
+				84FA42402212A595008215C4 /* CreateTantanganViewModel.swift in Sources */,
 				84B7B8BC21E47A8F0099E7E3 /* ClusterSearchController.swift in Sources */,
 				137A29F321E2261A00F19072 /* ComingsoonController.swift in Sources */,
 				13E170CC2211E2AE0018EDB4 /* PublicNavigator.swift in Sources */,
 				11702DD521CB08DE001AEE3F /* QuizController.swift in Sources */,
 				11145F5D21EAF2670046F2AA /* SearchNavbar.swift in Sources */,
+				84FA4284221307BF008215C4 /* BidangKajianCoordinator.swift in Sources */,
+				84FA423C2212A17D008215C4 /* CreateTantanganController.swift in Sources */,
 				13F456A921D2A68300CE45F1 /* QuestionType.swift in Sources */,
 				84B7B8C321E488D00099E7E3 /* ClusterSearchCell.swift in Sources */,
 				84F1F21321E910DE004515A4 /* Twitter+Rx.swift in Sources */,
@@ -3080,8 +3315,10 @@
 				1184752021FDDE2600D44FA5 /* ClusterCategoryFilterController.swift in Sources */,
 				11E1079A21CD14A400B7B074 /* QuizViewModel.swift in Sources */,
 				84FF8A9621F21A8300AA8CF3 /* UpdatesView.swift in Sources */,
+				84FA424B2212ACF6008215C4 /* TantanganChallengeViewModel.swift in Sources */,
 				13812C2B21CAA71F00CAB327 /* PenpolCoordinator.swift in Sources */,
 				11E1079421CD101900B7B074 /* QuizDetailCoordinator.swift in Sources */,
+				84FA428222130728008215C4 /* BidangKajianViewModel.swift in Sources */,
 				842A4A0B21D7EAA60050AA51 /* SignatureViewModel.swift in Sources */,
 				8452A4C921DE265500196043 /* BuatProfileViewModel.swift in Sources */,
 				11E107AE21CD42C400B7B074 /* QuizOngoingController.swift in Sources */,
@@ -3089,12 +3326,14 @@
 				84D01B9821D208DE0000492F /* SectionOfSettingData.swift in Sources */,
 				8423C3FC21F718A6000AAA63 /* DetailAskController.swift in Sources */,
 				840901C221DF3BDE001BF559 /* CatatanViewModel.swift in Sources */,
+				84FA425C2212C474008215C4 /* TantanganChallengeCoordinator.swift in Sources */,
 				1320596222135B1500BE9456 /* WordstadiumViewCell.swift in Sources */,
 				11E107DA21CFD99900B7B074 /* QuizResultCoordinator.swift in Sources */,
 				11E1079E21CD200500B7B074 /* PenpolViewModel.swift in Sources */,
 				84B6D6F621E30F8B00CD4BC8 /* ShareBadgeViewModel.swift in Sources */,
 				840850CE21D2611D00696CB3 /* DateViewCell.swift in Sources */,
 				11B3C79221D1110700EDCECB /* QuizSummaryController.swift in Sources */,
+				84FA42422212A615008215C4 /* CreateTantanganCoordinator.swift in Sources */,
 				84FE6EBC21D5FCB9009A0F55 /* ErrorTracker.swift in Sources */,
 				848B039F21E7B538002CAA40 /* WKWebCoordinator.swift in Sources */,
 				840901C021DF3BC7001BF559 /* CatatanController.swift in Sources */,
@@ -3113,6 +3352,7 @@
 				1149EB6E22140E800050F366 /* ArgumentRightCell.swift in Sources */,
 				11E107A821CD33CA00B7B074 /* CreateJanjiCoordinator.swift in Sources */,
 				1147F22F21F83F1A001D0D59 /* ClusterDetailViewModel.swift in Sources */,
+				84B8C1B122153AA4004BC1FE /* LinkPreviewView.swift in Sources */,
 				11E107A721CD33CA00B7B074 /* CreateJanjiViewModel.swift in Sources */,
 				84FF8A9921F21D0000AA8CF3 /* UpdatesCoordinator.swift in Sources */,
 				842A4A0921D7EA990050AA51 /* SignatureCoordinator.swift in Sources */,
@@ -3132,6 +3372,7 @@
 				844C3D8821C5265600199871 /* AppCoordinator.swift in Sources */,
 				8441DB4121CCBECF00B078DF /* FilterModel.swift in Sources */,
 				84619D4021DA959400EB58CF /* SectionItemCell.swift in Sources */,
+				84FA42492212AC63008215C4 /* TantanganChallengeController.swift in Sources */,
 				8441DB3C21CCA6C500B078DF /* ItemRadioCell.swift in Sources */,
 				11145F6521EB44920046F2AA /* CustomMenuCell.swift in Sources */,
 				84A07F9F21D0DFA200269C6B /* KTPController.swift in Sources */,
@@ -3158,6 +3399,7 @@
 				84E521B021F398B600B7CCBA /* ShareTrendViewModel.swift in Sources */,
 				11B3C78D21D110DA00EDCECB /* QuizSummaryViewModel.swift in Sources */,
 				840850C321D25C7D00696CB3 /* ProfileEditController.swift in Sources */,
+				84FA4279221301F0008215C4 /* HintTantanganViewModel.swift in Sources */,
 				11145F5921EAD31A0046F2AA /* SearchCoordinator.swift in Sources */,
 				118149E721EC625200192E97 /* ListUserViewModel.swift in Sources */,
 				84619D4921DC961A00EB58CF /* WebController.swift in Sources */,
@@ -3170,6 +3412,7 @@
 				13E170C4221184EC0018EDB4 /* WordstadiumCoordinator.swift in Sources */,
 				84E2854421CA195C00298E31 /* CustomActionSheet.swift in Sources */,
 				84619D3A21DA85D200EB58CF /* EditCoordinator.swift in Sources */,
+				84FA42722212FBBE008215C4 /* SaldoTimeCell.swift in Sources */,
 				844C3D6D21C51CE900199871 /* HomeController.swift in Sources */,
 				84B6D6EE21E2451600CD4BC8 /* ClusterType.swift in Sources */,
 				84E6934621D296BB00EA5464 /* SectionOfProfileEditData.swift in Sources */,
@@ -3203,6 +3446,7 @@
 				11E107DD21CFD99900B7B074 /* QuizResultController.swift in Sources */,
 				84B2521B21CAA71200565D82 /* ViewModelType.swift in Sources */,
 				84A07FB821D0F0DD00269C6B /* IdentitasCoordinator.swift in Sources */,
+				84FA42542212B499008215C4 /* SectionOfTantanganData.swift in Sources */,
 				11E107B721CD450B00B7B074 /* QuizOngoingViewModel.swift in Sources */,
 				13E170D0221305BE0018EDB4 /* PersonalNavigator.swift in Sources */,
 				04E5071B2214E65100B342E7 /* MerayakanViewModel.swift in Sources */,
@@ -3213,6 +3457,7 @@
 				8441DB5A21CD087000B078DF /* JanjiType.swift in Sources */,
 				8451E05E22045C6B00F03E96 /* NotificationViewModel.swift in Sources */,
 				844C3D3D21C4ED6D00199871 /* AppDelegate.swift in Sources */,
+				84B8C1BF22157347004BC1FE /* ChallengeDetailView.swift in Sources */,
 				11B3C78B21D110CB00EDCECB /* QuizSummaryCoordinator.swift in Sources */,
 				1161F9F421DF4B4000C1BAD5 /* QuizButton.swift in Sources */,
 				13BF405321EBAA8F005C9A64 /* IQuestionListViewModel.swift in Sources */,
@@ -3225,6 +3470,7 @@
 				84F1F21821EA678F004515A4 /* Facebook+Rx.swift in Sources */,
 				8478B8E821FF210E00CE192A /* InfoNotifCell.swift in Sources */,
 				13E170BF221184B70018EDB4 /* WordstadiumController.swift in Sources */,
+				84FA42502212B1C9008215C4 /* HeaderTantanganView.swift in Sources */,
 				844C3D8321C524F000199871 /* LinimasaController.swift in Sources */,
 				11702DD221CB0287001AEE3F /* QuizCell.swift in Sources */,
 				840850C521D25CB000696CB3 /* ProfileEditViewModel.swift in Sources */,
@@ -3241,6 +3487,7 @@
 				84F6980921C8D28B00890917 /* PilpresViewController.swift in Sources */,
 				1197010C21F3632D005548AC /* ListClusterController.swift in Sources */,
 				84D7A77821CE8CFF009502AF /* ProfileViewModel.swift in Sources */,
+				84FA426E2212F778008215C4 /* DateTimeCell.swift in Sources */,
 				84FA42342212886A008215C4 /* TooltipView.swift in Sources */,
 				8452A4C321DE1EF400196043 /* BuatProfileController.swift in Sources */,
 				84A07F9A21D0DBE200269C6B /* IdentitasController.swift in Sources */,
@@ -3248,6 +3495,7 @@
 				13E170D4221311A70018EDB4 /* WordstadiumItemViewCell.swift in Sources */,
 				84D01B9D21D20CA20000492F /* SettingCell.swift in Sources */,
 				84B6D50521F829D100DD742A /* CatatanPilpresController.swift in Sources */,
+				84FA42662212EABA008215C4 /* BidangKajianCell.swift in Sources */,
 				844C3D7821C51EFD00199871 /* HomeCoordinator.swift in Sources */,
 				845C571921CE1C9900EDCDFE /* BadgeCell.swift in Sources */,
 				84B6D6E621E1069E00CD4BC8 /* KategoriClusterCoordinator.swift in Sources */,
@@ -3259,19 +3507,24 @@
 				84A07FB621D0ED8100269C6B /* SuccessController.swift in Sources */,
 				845C570721CD1D8F00EDCDFE /* ProfileCoordinator.swift in Sources */,
 				84307F4D22006857006DE04B /* ParserCoordinator.swift in Sources */,
+				84B8C1C422157686004BC1FE /* FooterProfileView.swift in Sources */,
 				842A4A0F21D7EE5F0050AA51 /* SuccessViewModel.swift in Sources */,
 				84B7B8D221E5B9640099E7E3 /* AddKategoriCoordinator.swift in Sources */,
 				84E6934021D2946C00EA5464 /* HeaderEditProfile.swift in Sources */,
 				13F456AE21D36A8500CE45F1 /* UndangAnggotaController.swift in Sources */,
+				84B8C1B522154D4E004BC1FE /* LawanDebatCell.swift in Sources */,
 				84E521AE21F3986D00B7CCBA /* ShareTrendController.swift in Sources */,
 				1161F9EE21DF378400C1BAD5 /* QuizModel.swift in Sources */,
 				11145F5B21EAD3240046F2AA /* SearchViewModel.swift in Sources */,
 				84B2523021CAB61300565D82 /* OnboardingViewModel.swift in Sources */,
 				13F456C921DB88B000CE45F1 /* BannerInfoCoordinator.swift in Sources */,
+				84FA42772213015B008215C4 /* HintTantanganView.swift in Sources */,
 				84B2522E21CAB53C00565D82 /* OnboardingCoordinator.swift in Sources */,
 				1161F9F221DF3CC300C1BAD5 /* ImageModel.swift in Sources */,
 				840850DB21D282B100696CB3 /* BadgeController.swift in Sources */,
+				84FA427B22130237008215C4 /* HintTantanganCoordinator.swift in Sources */,
 				137A29EC21E11E7E00F19072 /* TrendHeaderView.swift in Sources */,
+				84FA4280221306EA008215C4 /* BidangKajianController.swift in Sources */,
 				11145F5521EACCEC0046F2AA /* SearchController.swift in Sources */,
 				84B2522021CAB2B900565D82 /* OnboardingViewController.swift in Sources */,
 				84B6D51A21F87DEF00DD742A /* NotePreferenceView.swift in Sources */,
@@ -3291,6 +3544,7 @@
 				13E9D79021E92934006A0890 /* MyJanpolListViewModel.swift in Sources */,
 				8478B8E121FF1C6600CE192A /* NotificationController.swift in Sources */,
 				84FE6EBE21D5FEA1009A0F55 /* Network+AlertController.swift in Sources */,
+				84FA426A2212F0F5008215C4 /* PernyataanCell.swift in Sources */,
 				8441DB5821CCF7D900B078DF /* DetailJanjiCoordinator.swift in Sources */,
 				13F4569D21CF985800CE45F1 /* CreateAskViewModel.swift in Sources */,
 				13E170C2221184DF0018EDB4 /* WordstadiumViewModel.swift in Sources */,
@@ -3314,7 +3568,9 @@
 				84B6D52F21F8F00E00DD742A /* UserSearchNavigator.swift in Sources */,
 				8451E05822045A1A00F03E96 /* InfoNotifController.swift in Sources */,
 				13BF405521EBADBF005C9A64 /* QuestionListViewModel.swift in Sources */,
+				84B8C1BD22157288004BC1FE /* LawanDebatView.swift in Sources */,
 				13F456D621DBA2F600CE45F1 /* BannerHeaderViewModel.swift in Sources */,
+				84FA425A2212BB4B008215C4 /* TantanganCell.swift in Sources */,
 				1108871C221271CD0041B821 /* LiveDebatCoordinator.swift in Sources */,
 				840850E121D2844700696CB3 /* BadgeCoordinator.swift in Sources */,
 				8451E05C22045BD400F03E96 /* NotificationCoordinator.swift in Sources */,
