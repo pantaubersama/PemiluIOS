@@ -26,6 +26,9 @@ class RekapController: UIViewController {
         return search
     }()
     
+    lazy var pilpresViewModel = PilpresViewModel(navigator: viewModel.navigator, showTableHeader: true)
+    lazy var janjiViewModel = JanpolListViewModel(navigator: viewModel.navigator, showTableHeader: true)
+    
     private let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
