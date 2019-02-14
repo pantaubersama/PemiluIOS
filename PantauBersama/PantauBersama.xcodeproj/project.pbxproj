@@ -346,6 +346,11 @@
 		84B8C1BF22157347004BC1FE /* ChallengeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B8C1BE22157347004BC1FE /* ChallengeDetailView.swift */; };
 		84B8C1C222157584004BC1FE /* FooterProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84B8C1C122157584004BC1FE /* FooterProfileView.xib */; };
 		84B8C1C422157686004BC1FE /* FooterProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B8C1C322157686004BC1FE /* FooterProfileView.swift */; };
+		84B8C1C822157A27004BC1FE /* PublishChallengeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84B8C1C722157A27004BC1FE /* PublishChallengeController.xib */; };
+		84B8C1CB22157B4A004BC1FE /* PromoteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84B8C1CA22157B4A004BC1FE /* PromoteView.xib */; };
+		84B8C1CE22157D59004BC1FE /* BwModelica-LightCondensed.otf in Resources */ = {isa = PBXBuildFile; fileRef = 84B8C1CC22157D59004BC1FE /* BwModelica-LightCondensed.otf */; };
+		84B8C1CF22157D59004BC1FE /* BwModelica-ExtraBoldCondensed.otf in Resources */ = {isa = PBXBuildFile; fileRef = 84B8C1CD22157D59004BC1FE /* BwModelica-ExtraBoldCondensed.otf */; };
+		84B8C1D12215823F004BC1FE /* PromoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B8C1D02215823F004BC1FE /* PromoteView.swift */; };
 		84BEA55321F9884900659980 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BEA55221F9884900659980 /* NetworkService.swift */; };
 		84CA10BF21EF0DE80025CF10 /* AboutController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84CA10BE21EF0DE80025CF10 /* AboutController.xib */; };
 		84CA10C121EF107E0025CF10 /* AboutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CA10C021EF107E0025CF10 /* AboutController.swift */; };
@@ -374,6 +379,9 @@
 		84E6933E21D2936E00EA5464 /* HeaderEditProfile.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84E6933D21D2936E00EA5464 /* HeaderEditProfile.xib */; };
 		84E6934021D2946C00EA5464 /* HeaderEditProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E6933F21D2946C00EA5464 /* HeaderEditProfile.swift */; };
 		84E6934621D296BB00EA5464 /* SectionOfProfileEditData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E6934521D296BB00EA5464 /* SectionOfProfileEditData.swift */; };
+		84EC7D132215859F00CDFD4D /* PublishChallengeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EC7D122215859F00CDFD4D /* PublishChallengeController.swift */; };
+		84EC7D152215864A00CDFD4D /* PublishChallengeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EC7D142215864A00CDFD4D /* PublishChallengeViewModel.swift */; };
+		84EC7D17221586D100CDFD4D /* PublishChallengeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EC7D16221586D100CDFD4D /* PublishChallengeCoordinator.swift */; };
 		84F1F21321E910DE004515A4 /* Twitter+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F1F21221E910DE004515A4 /* Twitter+Rx.swift */; };
 		84F1F21821EA678F004515A4 /* Facebook+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F1F21721EA678F004515A4 /* Facebook+Rx.swift */; };
 		84F6980921C8D28B00890917 /* PilpresViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F6980821C8D28A00890917 /* PilpresViewController.swift */; };
@@ -815,6 +823,11 @@
 		84B8C1BE22157347004BC1FE /* ChallengeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeDetailView.swift; sourceTree = "<group>"; };
 		84B8C1C122157584004BC1FE /* FooterProfileView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FooterProfileView.xib; sourceTree = "<group>"; };
 		84B8C1C322157686004BC1FE /* FooterProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterProfileView.swift; sourceTree = "<group>"; };
+		84B8C1C722157A27004BC1FE /* PublishChallengeController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PublishChallengeController.xib; sourceTree = "<group>"; };
+		84B8C1CA22157B4A004BC1FE /* PromoteView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PromoteView.xib; sourceTree = "<group>"; };
+		84B8C1CC22157D59004BC1FE /* BwModelica-LightCondensed.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BwModelica-LightCondensed.otf"; sourceTree = "<group>"; };
+		84B8C1CD22157D59004BC1FE /* BwModelica-ExtraBoldCondensed.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BwModelica-ExtraBoldCondensed.otf"; sourceTree = "<group>"; };
+		84B8C1D02215823F004BC1FE /* PromoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromoteView.swift; sourceTree = "<group>"; };
 		84BEA55221F9884900659980 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		84CA10BE21EF0DE80025CF10 /* AboutController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AboutController.xib; sourceTree = "<group>"; };
 		84CA10C021EF107E0025CF10 /* AboutController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutController.swift; sourceTree = "<group>"; };
@@ -843,6 +856,9 @@
 		84E6933D21D2936E00EA5464 /* HeaderEditProfile.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderEditProfile.xib; sourceTree = "<group>"; };
 		84E6933F21D2946C00EA5464 /* HeaderEditProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderEditProfile.swift; sourceTree = "<group>"; };
 		84E6934521D296BB00EA5464 /* SectionOfProfileEditData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionOfProfileEditData.swift; sourceTree = "<group>"; };
+		84EC7D122215859F00CDFD4D /* PublishChallengeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishChallengeController.swift; sourceTree = "<group>"; };
+		84EC7D142215864A00CDFD4D /* PublishChallengeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishChallengeViewModel.swift; sourceTree = "<group>"; };
+		84EC7D16221586D100CDFD4D /* PublishChallengeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishChallengeCoordinator.swift; sourceTree = "<group>"; };
 		84F1F21221E910DE004515A4 /* Twitter+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Twitter+Rx.swift"; sourceTree = "<group>"; };
 		84F1F21721EA678F004515A4 /* Facebook+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Facebook+Rx.swift"; sourceTree = "<group>"; };
 		84F6980821C8D28A00890917 /* PilpresViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PilpresViewController.swift; sourceTree = "<group>"; };
@@ -2428,6 +2444,34 @@
 			path = FooterProfileView;
 			sourceTree = "<group>";
 		};
+		84B8C1C5221579F3004BC1FE /* PublishChallenge */ = {
+			isa = PBXGroup;
+			children = (
+				84B8C1C622157A00004BC1FE /* ViewController */,
+				84EC7D142215864A00CDFD4D /* PublishChallengeViewModel.swift */,
+				84EC7D16221586D100CDFD4D /* PublishChallengeCoordinator.swift */,
+			);
+			path = PublishChallenge;
+			sourceTree = "<group>";
+		};
+		84B8C1C622157A00004BC1FE /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				84B8C1C722157A27004BC1FE /* PublishChallengeController.xib */,
+				84EC7D122215859F00CDFD4D /* PublishChallengeController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		84B8C1C922157B3C004BC1FE /* PromoteView */ = {
+			isa = PBXGroup;
+			children = (
+				84B8C1CA22157B4A004BC1FE /* PromoteView.xib */,
+				84B8C1D02215823F004BC1FE /* PromoteView.swift */,
+			);
+			path = PromoteView;
+			sourceTree = "<group>";
+		};
 		84CA10BD21EF0DCF0025CF10 /* About */ = {
 			isa = PBXGroup;
 			children = (
@@ -2451,6 +2495,7 @@
 		84E2854121CA189B00298E31 /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
+				84B8C1C922157B3C004BC1FE /* PromoteView */,
 				84B8C1C022157562004BC1FE /* FooterProfileView */,
 				84B8C1B922157099004BC1FE /* LawanDebatView */,
 				84B8C1B622156B1C004BC1FE /* ChallengeDetailView */,
@@ -2608,6 +2653,8 @@
 		84F892A421C7868700DC1048 /* BWModelica */ = {
 			isa = PBXGroup;
 			children = (
+				84B8C1CD22157D59004BC1FE /* BwModelica-ExtraBoldCondensed.otf */,
+				84B8C1CC22157D59004BC1FE /* BwModelica-LightCondensed.otf */,
 				84F892A621C7875200DC1048 /* BwModelica-ThinCondensed.otf */,
 				84F892B221C787F700DC1048 /* BwModelica-BlackCondensed.otf */,
 				84F892B421C7887800DC1048 /* BwModelicaSS01-BoldCondensed.otf */,
@@ -2651,6 +2698,7 @@
 		84FA42432212AA9C008215C4 /* SubModules */ = {
 			isa = PBXGroup;
 			children = (
+				84B8C1C5221579F3004BC1FE /* PublishChallenge */,
 				84FA42442212AAAA008215C4 /* TantanganChallenge */,
 			);
 			path = SubModules;
@@ -2843,6 +2891,7 @@
 				84B8C1B32215471E004BC1FE /* LawanDebatCell.xib in Resources */,
 				13F4569521CF97DA00CE45F1 /* CreateAskController.xib in Resources */,
 				1149EB6F22140E800050F366 /* ArgumentRightCell.xib in Resources */,
+				84B8C1C822157A27004BC1FE /* PublishChallengeController.xib in Resources */,
 				840850DD21D2832200696CB3 /* BadgeController.xib in Resources */,
 				84CA10BF21EF0DE80025CF10 /* AboutController.xib in Resources */,
 				842A4A0321D7C6810050AA51 /* CameraController.xib in Resources */,
@@ -2853,6 +2902,7 @@
 				11702DD321CB0287001AEE3F /* QuizCell.xib in Resources */,
 				84F892A821C787D800DC1048 /* Lato-Black.ttf in Resources */,
 				84E521B821F4A4E900B7CCBA /* StartOnboardingController.xib in Resources */,
+				84B8C1CB22157B4A004BC1FE /* PromoteView.xib in Resources */,
 				8423C3FA21F71711000AAA63 /* DetailAskController.xib in Resources */,
 				84F892B321C787F700DC1048 /* BwModelica-BlackCondensed.otf in Resources */,
 				84A07F8F21D0CC9400269C6B /* landing-page-backround-mobile.json in Resources */,
@@ -2973,6 +3023,8 @@
 				1149EB6B22140E670050F366 /* ArgumentLeftCell.xib in Resources */,
 				845C570921CD3D5700EDCDFE /* SectionCell.xib in Resources */,
 				11B145FC21D72FFA00BB26C8 /* CreateAskHeaderView.xib in Resources */,
+				84B8C1CF22157D59004BC1FE /* BwModelica-ExtraBoldCondensed.otf in Resources */,
+				84B8C1CE22157D59004BC1FE /* BwModelica-LightCondensed.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3237,6 +3289,7 @@
 				13E170CC2211E2AE0018EDB4 /* PublicNavigator.swift in Sources */,
 				11702DD521CB08DE001AEE3F /* QuizController.swift in Sources */,
 				11145F5D21EAF2670046F2AA /* SearchNavbar.swift in Sources */,
+				84EC7D17221586D100CDFD4D /* PublishChallengeCoordinator.swift in Sources */,
 				84FA4284221307BF008215C4 /* BidangKajianCoordinator.swift in Sources */,
 				84FA423C2212A17D008215C4 /* CreateTantanganController.swift in Sources */,
 				13F456A921D2A68300CE45F1 /* QuestionType.swift in Sources */,
@@ -3291,6 +3344,7 @@
 				84FF8A9921F21D0000AA8CF3 /* UpdatesCoordinator.swift in Sources */,
 				842A4A0921D7EA990050AA51 /* SignatureCoordinator.swift in Sources */,
 				8452A4D221DE54B800196043 /* SosmedViewModel.swift in Sources */,
+				84EC7D132215859F00CDFD4D /* PublishChallengeController.swift in Sources */,
 				84FA423822128B23008215C4 /* TooltipCoordinator.swift in Sources */,
 				845C570221CD1AEB00EDCDFE /* ProfileController.swift in Sources */,
 				84CA10C121EF107E0025CF10 /* AboutController.swift in Sources */,
@@ -3490,6 +3544,7 @@
 				1147F23121F83F2A001D0D59 /* ClusterDetailCoordinator.swift in Sources */,
 				844C3D8521C5252800199871 /* LinimasaCoordinator.swift in Sources */,
 				842A4A0D21D7EDC10050AA51 /* SuccessCoordinator.swift in Sources */,
+				84B8C1D12215823F004BC1FE /* PromoteView.swift in Sources */,
 				84B6D52D21F8E80A00DD742A /* UserQuestionListViewModel.swift in Sources */,
 				1108871E221271DC0041B821 /* LiveDebatViewModel.swift in Sources */,
 				13E9D78821E8F025006A0890 /* IJanpolListViewModel.swift in Sources */,
@@ -3501,6 +3556,7 @@
 				84FA425A2212BB4B008215C4 /* TantanganCell.swift in Sources */,
 				1108871C221271CD0041B821 /* LiveDebatCoordinator.swift in Sources */,
 				840850E121D2844700696CB3 /* BadgeCoordinator.swift in Sources */,
+				84EC7D152215864A00CDFD4D /* PublishChallengeViewModel.swift in Sources */,
 				8451E05C22045BD400F03E96 /* NotificationCoordinator.swift in Sources */,
 				11D066A421E3850E003AC9BB /* PenpolFilterController.swift in Sources */,
 				84FA423622128A57008215C4 /* TooltipViewModel.swift in Sources */,

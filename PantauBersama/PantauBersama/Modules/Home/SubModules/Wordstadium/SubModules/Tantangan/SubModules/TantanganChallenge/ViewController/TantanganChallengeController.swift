@@ -119,6 +119,10 @@ class TantanganChallengeController: UIViewController {
             .bind(to: viewModel.input.backI)
             .disposed(by: disposeBag)
         
+        btnNext.rx.tap
+            .bind(to: viewModel.input.btnNextI)
+            .disposed(by: disposeBag)
+        
         viewModel.output.kajianSelected
             .do(onNext: { [unowned self] (result) in
                 switch result {
@@ -248,6 +252,10 @@ class TantanganChallengeController: UIViewController {
                 self.tantanganType ? self.headerView.configure(data: user, type: .direct)
                     : self.headerView.configure(data: user, type: .open)
             })
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.btnNextO
             .drive()
             .disposed(by: disposeBag)
     }

@@ -1,5 +1,5 @@
 //
-//  FooterProfileView.swift
+//  PromoteView.swift
 //  PantauBersama
 //
 //  Created by Hanif Sugiyanto on 14/02/19.
@@ -7,17 +7,12 @@
 //
 
 import UIKit
-import Common
+
+// actual height 389
 
 @IBDesignable
-class FooterProfileView: UIView {
+class PromoteView: UIView {
     
-    @IBOutlet weak var ivAvatar: CircularUIImageView!
-    @IBOutlet weak var lblName: Label!
-    @IBOutlet weak var lblStatus: Label!
-    
-    
-    // Height 200.0
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
@@ -34,6 +29,6 @@ class FooterProfileView: UIView {
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         addSubview(view)
     }
-
+    
     
 }

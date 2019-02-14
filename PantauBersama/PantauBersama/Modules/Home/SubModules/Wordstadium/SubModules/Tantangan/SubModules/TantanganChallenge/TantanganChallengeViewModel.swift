@@ -35,6 +35,7 @@ class TantanganChallengeViewModel: ViewModelType {
         let pernyataanLinkI: AnyObserver<Void>
         let hintDebatI: AnyObserver<Void>
         let lawanDebatI: AnyObserver<Bool>
+        let btnNextI: AnyObserver<Void>
     }
     
     struct Output {
@@ -53,6 +54,7 @@ class TantanganChallengeViewModel: ViewModelType {
         let enableNextO: Driver<Bool>
         let pernyataanLink: Driver<PernyataanLinkResult>
         let hintDebatO: Driver<Void>
+        let btnNextO: Driver<Void>
     }
     
     private let backS = PublishSubject<Void>()
@@ -74,6 +76,7 @@ class TantanganChallengeViewModel: ViewModelType {
     private let pernyataanLinkS = PublishSubject<Void>()
     private let hintDebatS = PublishSubject<Void>()
     private let lawanDebatS = PublishSubject<Bool>()
+    private let btnNextS = PublishSubject<Void>()
     
     private let errorTracker = ErrorTracker()
     private let activityIndicator = ActivityIndicator()
@@ -103,7 +106,8 @@ class TantanganChallengeViewModel: ViewModelType {
                       hintSaldoI: hintSaldoS.asObserver(),
                       pernyataanLinkI: pernyataanLinkS.asObserver(),
                       hintDebatI: hintDebatS.asObserver(),
-                      lawanDebatI: lawanDebatS.asObserver())
+                      lawanDebatI: lawanDebatS.asObserver(),
+                      btnNextI: btnNextS.asObserver())
         
         
         let itemOpen = Observable.combineLatest(kajianS, pernyataanS, dateTimeS, saldoS)
@@ -191,6 +195,10 @@ class TantanganChallengeViewModel: ViewModelType {
             .flatMapLatest({ navigator.launchPernyataanLink() })
             .asDriverOnErrorJustComplete()
         
+        let nextPublish = btnNextS
+            .flatMapLatest({ navigator.launchPublish(type: type) })
+            .asDriverOnErrorJustComplete()
+        
         output = Output(itemsO: type ? itemsDirect : itemsOpen,
                         meO: me.asDriverOnErrorJustComplete(),
                         kajianSelected: kajian,
@@ -205,7 +213,8 @@ class TantanganChallengeViewModel: ViewModelType {
                         hintSaldoO: hintSaldo,
                         enableNextO: enable,
                         pernyataanLink: pernyataanLink,
-                        hintDebatO: hintDebat)
+                        hintDebatO: hintDebat,
+                        btnNextO: nextPublish)
     }
     
 }
