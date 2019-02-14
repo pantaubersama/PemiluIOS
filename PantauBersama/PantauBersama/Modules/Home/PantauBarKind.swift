@@ -13,7 +13,7 @@ enum PantauBarKind: Int {
     case penpol // pendidikan politik
     case wordstadium
 //    case lapor
-    case rekap
+    case merayakan
     
     var title: String? {
         switch self {
@@ -25,7 +25,7 @@ enum PantauBarKind: Int {
             return "Menguji"
 //        case .lapor:
 //            return "Menjaga"
-        case .rekap:
+        case .merayakan:
             return "Merayakan"
         }
     }
@@ -40,7 +40,7 @@ enum PantauBarKind: Int {
             return #imageLiteral(resourceName: "icWordstadiumInactive")
 //        case .lapor:
 //            return #imageLiteral(resourceName: "icLaporInactive")
-        case .rekap:
+        case .merayakan:
             return #imageLiteral(resourceName: "icHitungSuaraInactive")
         }
     }
@@ -55,7 +55,7 @@ enum PantauBarKind: Int {
             return #imageLiteral(resourceName: "icWordstadiumActive")
 //        case .lapor:
 //            return #imageLiteral(resourceName: "icLaporActive")
-        case .rekap:
+        case .merayakan:
             return #imageLiteral(resourceName: "icHitungSuaraActive")
         }
     }

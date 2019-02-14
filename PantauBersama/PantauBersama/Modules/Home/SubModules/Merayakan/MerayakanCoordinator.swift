@@ -11,11 +11,11 @@ import RxSwift
 import Networking
 
 
-protocol RekapNavigator {
+protocol MerayakanNavigator {
     func launchBannerInfo(bannerInfo: BannerInfo) -> Observable<Void>
 }
 
-class RekapCoordinator: BaseCoordinator<Void> {
+class MerayakanCoordinator: BaseCoordinator<Void> {
     var navigationController: UINavigationController!
     private var filterCoordinator: PenpolFilterCoordinator!
     
@@ -24,12 +24,17 @@ class RekapCoordinator: BaseCoordinator<Void> {
     }
     
     override func start() -> Observable<CoordinationResult> {
-        let viewController = RekapController()
-//        let viewModel = RekapViewModel(navigator: self)
-//        viewController.viewModel = viewModel
+        let viewController = MerayakanController()
+        let viewModel = MerayakanViewModel(navigator: self)
+        viewController.viewModel = viewModel
         navigationController.setViewControllers([viewController], animated: true)
         return Observable.never()
     }
 }
 
-
+extension MerayakanCoordinator : MerayakanNavigator {
+    func launchBannerInfo(bannerInfo: BannerInfo) -> Observable<Void> {
+        let bannerInfoCoordinator = BannerInfoCoordinator(navigationController: self.navigationController, bannerInfo: bannerInfo)
+        return coordinate(to: bannerInfoCoordinator)
+    }
+}
