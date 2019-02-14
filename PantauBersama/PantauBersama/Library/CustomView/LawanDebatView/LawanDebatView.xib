@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LawanDebatView" customModule="PantauBersama" customModuleProvider="target">
+            <connections>
+                <outlet property="ivAvatar" destination="n0H-hd-EoA" id="Pmy-Ex-tmM"/>
+                <outlet property="ivStatus" destination="P1n-qe-IuH" id="Ewq-G8-bZ7"/>
+                <outlet property="lblFullname" destination="nO1-EL-xep" id="2aj-Io-btv"/>
+                <outlet property="lblUsername" destination="XsA-hR-ouU" id="HXj-hL-3fy"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="JWN-UL-im7">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Ill-JL-fsM">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lawan Debat" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2xU-1S-UFi" customClass="Label" customModule="Common">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="25"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <nil key="highlightedColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                    <real key="value" value="14"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="If1-qR-5V7">
+                            <rect key="frame" x="0.0" y="25" width="375" height="25"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icDummyPerson" translatesAutoresizingMaskIntoConstraints="NO" id="n0H-hd-EoA" customClass="CircularUIImageView" customModule="Common">
+                                    <rect key="frame" x="4" y="0.5" width="24" height="24"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="24" id="Ugc-C0-M5Y"/>
+                                        <constraint firstAttribute="width" constant="24" id="c26-di-Pgm"/>
+                                    </constraints>
+                                </imageView>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icSymbolic" translatesAutoresizingMaskIntoConstraints="NO" id="P1n-qe-IuH">
+                                    <rect key="frame" x="4.5" y="15.5" width="13" height="13"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="13" id="QZb-Ld-iMJ"/>
+                                        <constraint firstAttribute="width" constant="13" id="cYe-KP-aD4"/>
+                                    </constraints>
+                                </imageView>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="EnY-U2-zGl">
+                                    <rect key="frame" x="36" y="2" width="331" height="21"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nO1-EL-xep" customClass="Label" customModule="Common">
+                                            <rect key="frame" x="0.0" y="0.0" width="331" height="10.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                    <real key="value" value="11"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="typeLabel" value="bold"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XsA-hR-ouU" customClass="Label" customModule="Common">
+                                            <rect key="frame" x="0.0" y="10.5" width="331" height="10.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.48627450979999998" green="0.48627450979999998" blue="0.48627450979999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                    <real key="value" value="8"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </label>
+                                    </subviews>
+                                </stackView>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="EnY-U2-zGl" secondAttribute="trailing" constant="8" id="Cej-oy-afk"/>
+                                <constraint firstItem="P1n-qe-IuH" firstAttribute="centerX" secondItem="n0H-hd-EoA" secondAttribute="centerX" constant="-5" id="EtS-E6-osK"/>
+                                <constraint firstItem="EnY-U2-zGl" firstAttribute="top" secondItem="If1-qR-5V7" secondAttribute="top" constant="2" id="UKI-Gs-Rzy"/>
+                                <constraint firstItem="EnY-U2-zGl" firstAttribute="leading" secondItem="n0H-hd-EoA" secondAttribute="trailing" constant="8" id="Vqt-GR-ewL"/>
+                                <constraint firstItem="P1n-qe-IuH" firstAttribute="bottom" secondItem="n0H-hd-EoA" secondAttribute="bottom" constant="4" id="WEK-Xp-npb"/>
+                                <constraint firstAttribute="bottom" secondItem="EnY-U2-zGl" secondAttribute="bottom" constant="2" id="ayO-YJ-5tw"/>
+                                <constraint firstItem="n0H-hd-EoA" firstAttribute="centerY" secondItem="If1-qR-5V7" secondAttribute="centerY" id="eV6-ae-8wl"/>
+                                <constraint firstAttribute="height" constant="25" id="qZW-ND-1eZ"/>
+                                <constraint firstItem="n0H-hd-EoA" firstAttribute="leading" secondItem="If1-qR-5V7" secondAttribute="leading" constant="4" id="tpe-qv-902"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="4Ps-9F-hJD"/>
+                    </constraints>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="Ill-JL-fsM" firstAttribute="leading" secondItem="Bu8-fN-XbZ" secondAttribute="leading" id="LAa-tG-wc6"/>
+                <constraint firstItem="Ill-JL-fsM" firstAttribute="top" secondItem="JWN-UL-im7" secondAttribute="top" id="MGW-Fl-3eO"/>
+                <constraint firstItem="Bu8-fN-XbZ" firstAttribute="trailing" secondItem="Ill-JL-fsM" secondAttribute="trailing" id="qjk-Z6-qMi"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="Bu8-fN-XbZ"/>
+            <point key="canvasLocation" x="138.40000000000001" y="-119.64017991004499"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="icDummyPerson" width="48" height="48"/>
+        <image name="icSymbolic" width="13.5" height="13.5"/>
+    </resources>
+</document>
