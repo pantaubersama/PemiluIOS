@@ -137,8 +137,11 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="btnHint" destination="0v9-HO-QMg" id="5bP-cB-dXs"/>
+                <outlet property="btnLink" destination="Rw4-4S-8Pa" id="eXo-tC-bJK"/>
+                <outlet property="contraintLinkPreview" destination="yee-dX-7Ff" id="bBd-yL-H8X"/>
                 <outlet property="lblCounter" destination="wFZ-PS-Get" id="sCe-fB-1AM"/>
                 <outlet property="lineStatus" destination="btC-Ov-veo" id="87o-Ic-zNg"/>
+                <outlet property="linkPreview" destination="e1K-yj-237" id="ECA-sv-VVi"/>
                 <outlet property="status" destination="Y7C-mO-jKW" id="KPG-jO-4oF"/>
                 <outlet property="tvPernyataan" destination="bqi-t7-YuY" id="VBm-zz-toZ"/>
             </connections>

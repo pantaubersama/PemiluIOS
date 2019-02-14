@@ -11,6 +11,13 @@ import RxSwift
 import RxCocoa
 import Common
 
+
+enum PernyataanLinkResult {
+    case cancel
+    case ok(String)
+}
+
+
 class PernyataanCell: UITableViewCell {
     
     @IBOutlet weak var lineStatus: UIView!
@@ -18,6 +25,9 @@ class PernyataanCell: UITableViewCell {
     @IBOutlet weak var lblCounter: Label!
     @IBOutlet weak var tvPernyataan: UITextView!
     @IBOutlet weak var btnHint: UIButton!
+    @IBOutlet weak var btnLink: Button!
+    @IBOutlet weak var linkPreview: UIView!
+    @IBOutlet weak var contraintLinkPreview: NSLayoutConstraint!
     private var disposeBag: DisposeBag!
     
     override func prepareForReuse() {
@@ -34,6 +44,7 @@ extension PernyataanCell: IReusableCell {
         let viewModel: OpenChallengeViewModel
         let status: Bool
         let content: String?
+        let link: String?
     }
     
     func configureCell(item: Input) {
@@ -49,6 +60,12 @@ extension PernyataanCell: IReusableCell {
         } else {
             tvPernyataan.text = item.content
             tvPernyataan.textColor = Color.primary_black
+        }
+        
+        if item.link == nil {
+            btnLink.setTitle("Sertakan link disini", for: .normal)
+        } else {
+            btnLink.setTitle(item.link, for: .normal)
         }
         
         tvPernyataan.rx.text
@@ -75,6 +92,10 @@ extension PernyataanCell: IReusableCell {
         tvPernyataan.rx.didEndEditing
             .map({ self.tvPernyataan.text })
             .bind(to: item.viewModel.input.statusPernyataan)
+            .disposed(by: bag)
+        
+        btnLink.rx.tap
+            .bind(to: item.viewModel.input.pernyataanLinkI)
             .disposed(by: bag)
         
         disposeBag = bag

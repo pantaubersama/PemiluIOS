@@ -12,6 +12,7 @@ protocol OpenChallengeNavigator {
     var finish: Observable<Void>! { get set }
     func launchBidangKajian() -> Observable<BidangKajianResult>
     func launchHint(type: HintType) -> Observable<Void>
+    func launchPernyataanLink() -> Observable<PernyataanLinkResult>
 }
 
 final class OpenChallengeCoordinator: BaseCoordinator<Void> {
@@ -45,5 +46,27 @@ extension OpenChallengeCoordinator: OpenChallengeNavigator {
     func launchHint(type: HintType) -> Observable<Void> {
         let hintTantanganCoordinator = HintTantanganCoordinaot(navigationController: navigationController, type: type)
         return coordinate(to: hintTantanganCoordinator)
+    }
+    
+    func launchPernyataanLink() -> Observable<PernyataanLinkResult> {
+        return Observable<PernyataanLinkResult>.create({ [weak self] (observer) -> Disposable in
+            let alert = UIAlertController(title: "Input Link", message: "Sertakan tautan/link ke pernyataan kamu", preferredStyle: .alert)
+            alert.addTextField(configurationHandler: { (textfield) in
+                textfield.placeholder = "Tempelkan di sini..."
+            })
+            alert.addAction(UIAlertAction(title: "Batal", style: .cancel, handler: { (_) in
+                observer.onNext(PernyataanLinkResult.cancel)
+                observer.on(.completed)
+            }))
+            alert.addAction(UIAlertAction(title: "Ya", style: .default, handler: { (_) in
+                let textField = alert.textFields![0] // force because its exist
+                observer.onNext(PernyataanLinkResult.ok(textField.text ?? ""))
+                observer.on(.completed)
+            }))
+            DispatchQueue.main.async(execute: {
+                self?.navigationController.present(alert, animated: true, completion: nil)
+            })
+            return Disposables.create()
+        })
     }
 }

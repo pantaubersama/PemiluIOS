@@ -26,6 +26,7 @@ class OpenChallengeController: UIViewController {
     private var time: String? = nil
     private var statusSaldo: Bool = false
     private var saldo: String? = nil
+    private var link: String? = nil
     
     var dataSource: RxTableViewSectionedReloadDataSource<SectionOfTantanganData>!
     
@@ -58,7 +59,7 @@ class OpenChallengeController: UIViewController {
                 return cell
             case 1:
                 let cell = tableView.dequeueReusableCell(indexPath: indexPath) as PernyataanCell
-                cell.configureCell(item: PernyataanCell.Input(viewModel: self.viewModel, status: self.statusPernyataan, content: self.contentPernyataan))
+                cell.configureCell(item: PernyataanCell.Input(viewModel: self.viewModel, status: self.statusPernyataan, content: self.contentPernyataan, link: self.link))
                 return cell
             case 2:
                 let cell = tableView.dequeueReusableCell(indexPath: indexPath) as DateTimeCell
@@ -112,11 +113,19 @@ class OpenChallengeController: UIViewController {
         
         viewModel.output.statusPernyataanO
             .do(onNext: { [unowned self] (s) in
-                self.viewModel.input.kajianI.onNext(false)
-                self.viewModel.input.pernyataanI.onNext(false)
-                self.viewModel.input.dateTimeI.onNext(false)
-                self.viewModel.input.saldoI.onNext(true)
-                self.contentPernyataan = s
+                if s.containsInsensitive("Tulis pernyataanmu di sini...") {
+                    self.contentPernyataan = nil
+                    self.viewModel.input.kajianI.onNext(false)
+                    self.viewModel.input.pernyataanI.onNext(false)
+                    self.viewModel.input.dateTimeI.onNext(true)
+                    self.viewModel.input.saldoI.onNext(true)
+                } else {
+                    self.contentPernyataan = s
+                    self.viewModel.input.kajianI.onNext(false)
+                    self.viewModel.input.pernyataanI.onNext(false)
+                    self.viewModel.input.dateTimeI.onNext(false)
+                    self.viewModel.input.saldoI.onNext(true)
+                }
             })
             .drive()
             .disposed(by: disposeBag)
@@ -171,6 +180,30 @@ class OpenChallengeController: UIViewController {
         
         viewModel.output.hintSaldoO
             .drive()
+            .disposed(by: disposeBag)
+        
+        
+        viewModel.output.pernyataanLink
+            .do(onNext: { (result) in
+                switch result {
+                case .cancel: break
+                case .ok(let url):
+                    self.viewModel.input.kajianI.onNext(false)
+                    self.viewModel.input.pernyataanI.onNext(false)
+                    self.viewModel.input.dateTimeI.onNext(false)
+                    self.viewModel.input.saldoI.onNext(true)
+                    self.statusPernyataan = true
+                    self.link = url
+                }
+            })
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.enableNextO
+            .do(onNext: { [unowned self] (enable) in
+                self.btnNext.backgroundColor = enable ? #colorLiteral(red: 1, green: 0.5569574237, blue: 0, alpha: 1) : #colorLiteral(red: 0.9253990054, green: 0.9255540371, blue: 0.925378561, alpha: 1)
+            })
+            .drive(btnNext.rx.isEnabled)
             .disposed(by: disposeBag)
     }
     

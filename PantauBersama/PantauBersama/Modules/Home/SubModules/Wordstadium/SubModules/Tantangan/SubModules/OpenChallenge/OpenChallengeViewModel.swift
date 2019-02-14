@@ -24,7 +24,6 @@ class OpenChallengeViewModel: ViewModelType {
         let saldoI: AnyObserver<Bool>
         let kajianButtonI: AnyObserver<Void>
         let hintKajianI: AnyObserver<Void>
-        let statusKajian: BehaviorSubject<Bool>
         let pernyataanTextInput: BehaviorRelay<String>
         let hintPernyataanI: AnyObserver<Void>
         let statusPernyataan: AnyObserver<String>
@@ -33,6 +32,7 @@ class OpenChallengeViewModel: ViewModelType {
         let datePickerI: AnyObserver<String>
         let saldoTimeI: AnyObserver<String>
         let hintSaldoI: AnyObserver<Void>
+        let pernyataanLinkI: AnyObserver<Void>
     }
     
     struct Output {
@@ -48,6 +48,8 @@ class OpenChallengeViewModel: ViewModelType {
         let statusDateO: Driver<String>
         let saldoTimeO: Driver<String>
         let hintSaldoO: Driver<Void>
+        let enableNextO: Driver<Bool>
+        let pernyataanLink: Driver<PernyataanLinkResult>
     }
     
     private let backS = PublishSubject<Void>()
@@ -58,7 +60,6 @@ class OpenChallengeViewModel: ViewModelType {
     private let saldoS = PublishSubject<Bool>()
     private let kajianButtonS = PublishSubject<Void>()
     private let hintKajianS = PublishSubject<Void>()
-    private let statusKajianS = BehaviorSubject<Bool>(value: false)
     private let pernyataanTextS = BehaviorRelay<String>(value: "")
     private let hintPernyataanS = PublishSubject<Void>()
     private let statusPernyataanS = PublishSubject<String>()
@@ -67,6 +68,7 @@ class OpenChallengeViewModel: ViewModelType {
     private let datePickerS = PublishSubject<String>()
     private let saldoTimeS = PublishSubject<String>()
     private let hintSaldoS = PublishSubject<Void>()
+    private let pernyataanLinkS = PublishSubject<Void>()
     
     private let errorTracker = ErrorTracker()
     private let activityIndicator = ActivityIndicator()
@@ -84,7 +86,6 @@ class OpenChallengeViewModel: ViewModelType {
                       saldoI: saldoS.asObserver(),
                       kajianButtonI: kajianButtonS.asObserver(),
                       hintKajianI: hintKajianS.asObserver(),
-                      statusKajian: statusKajianS.asObserver(),
                       pernyataanTextInput: pernyataanTextS,
                       hintPernyataanI: hintPernyataanS.asObserver(),
                       statusPernyataan: statusPernyataanS.asObserver(),
@@ -92,7 +93,8 @@ class OpenChallengeViewModel: ViewModelType {
                       statusTimeI: statusTimeS.asObserver(),
                       datePickerI: datePickerS.asObserver(),
                       saldoTimeI: saldoTimeS.asObserver(),
-                      hintSaldoI: hintSaldoS.asObserver())
+                      hintSaldoI: hintSaldoS.asObserver(),
+                      pernyataanLinkI: pernyataanLinkS.asObserver())
         
         
         let item = Observable.combineLatest(kajianS, pernyataanS, dateTimeS, saldoS)
@@ -149,6 +151,15 @@ class OpenChallengeViewModel: ViewModelType {
             }.startWith(false)
             .asDriverOnErrorJustComplete()
         
+        let enable = saldoTimeS
+            .map({ _ in true })
+            .startWith(false)
+            .asDriverOnErrorJustComplete()
+        
+        let pernyataanLink = pernyataanLinkS
+            .flatMapLatest({ navigator.launchPernyataanLink() })
+            .asDriverOnErrorJustComplete()
+        
         output = Output(itemsO: items,
                         meO: me.asDriverOnErrorJustComplete(),
                         kajianSelected: kajian,
@@ -160,7 +171,9 @@ class OpenChallengeViewModel: ViewModelType {
                         statusTimeO: statusTimeS.asDriverOnErrorJustComplete(),
                         statusDateO: datePickerS.asDriverOnErrorJustComplete(),
                         saldoTimeO: saldoTimeS.asDriverOnErrorJustComplete(),
-                        hintSaldoO: hintSaldo)
+                        hintSaldoO: hintSaldo,
+                        enableNextO: enable,
+                        pernyataanLink: pernyataanLink)
     }
     
 }
