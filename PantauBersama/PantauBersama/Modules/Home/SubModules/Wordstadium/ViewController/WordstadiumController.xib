@@ -58,7 +58,7 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kAJ-am-kxq" userLabel="Container">
-                    <rect key="frame" x="0.0" y="132" width="375" height="535"/>
+                    <rect key="frame" x="0.0" y="124" width="375" height="543"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JgF-wF-dqo" customClass="Navbar" customModule="PantauBersama" customModuleProvider="target">
@@ -92,12 +92,12 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="JgF-wF-dqo" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="0Xs-Q5-6vX"/>
+                <constraint firstItem="kAJ-am-kxq" firstAttribute="top" secondItem="Xzk-SY-GlG" secondAttribute="bottom" id="2vz-Lg-urQ"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="yuB-p2-0eT" secondAttribute="trailing" constant="16" id="5LV-Pn-lQA"/>
                 <constraint firstItem="kAJ-am-kxq" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="N5M-R0-1Jy"/>
                 <constraint firstItem="Xzk-SY-GlG" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="NYk-bR-JIT"/>
                 <constraint firstAttribute="trailing" secondItem="JgF-wF-dqo" secondAttribute="trailing" id="OlQ-m0-NpZ"/>
                 <constraint firstItem="Xzk-SY-GlG" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="QYk-5p-4iw"/>
-                <constraint firstItem="kAJ-am-kxq" firstAttribute="top" secondItem="Xzk-SY-GlG" secondAttribute="bottom" constant="8" symbolic="YES" id="Trn-hf-Ldx"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="yuB-p2-0eT" secondAttribute="bottom" constant="10.5" id="V0x-3K-z02"/>
                 <constraint firstAttribute="trailing" secondItem="kAJ-am-kxq" secondAttribute="trailing" id="XQx-7K-Fkm"/>
                 <constraint firstItem="JgF-wF-dqo" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="lwf-Ei-BST"/>
