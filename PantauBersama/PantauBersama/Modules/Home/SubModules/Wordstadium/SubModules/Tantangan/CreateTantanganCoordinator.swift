@@ -38,12 +38,13 @@ final class CreateTantanganCoordinator: BaseCoordinator<Void> {
 
 extension CreateTantanganCoordinator: CreateTantanganNavigator {
     func launchOpen() -> Observable<Void> {
-        let openCoordinator = OpenChallengeCoordinator(navigationController: navigationController)
+        let openCoordinator = TantanganChallengeCoordinator(navigationController: navigationController, type: false)
         return coordinate(to: openCoordinator)
     }
     
     func launchDirect() -> Observable<Void> {
-        return Observable.empty()
+        let openCoordinator = TantanganChallengeCoordinator(navigationController: navigationController, type: true)
+        return coordinate(to: openCoordinator)
     }
     
     

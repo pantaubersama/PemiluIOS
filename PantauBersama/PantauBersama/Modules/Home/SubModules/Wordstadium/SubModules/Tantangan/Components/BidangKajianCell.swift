@@ -33,7 +33,7 @@ class BidangKajianCell: UITableViewCell {
 extension BidangKajianCell: IReusableCell {
     
     struct Input {
-        let viewModel: OpenChallengeViewModel
+        let viewModel: TantanganChallengeViewModel
         let status: Bool
         let nameKajian: String?
     }

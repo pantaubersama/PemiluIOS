@@ -1,5 +1,5 @@
 //
-//  OpenChallengeViewModel.swift
+//  TantanganChallengeViewModel.swift
 //  PantauBersama
 //
 //  Created by Hanif Sugiyanto on 12/02/19.
@@ -10,14 +10,14 @@ import RxSwift
 import RxCocoa
 import Networking
 
-class OpenChallengeViewModel: ViewModelType {
+class TantanganChallengeViewModel: ViewModelType {
     
     var input: Input
     var output: Output!
     
     struct Input {
         let backI: AnyObserver<Void>
-        let refreshI: AnyObserver<Void>
+        let refreshI: AnyObserver<String>
         let kajianI: AnyObserver<Bool>
         let pernyataanI: AnyObserver<Bool>
         let dateTimeI: AnyObserver<Bool>
@@ -33,6 +33,8 @@ class OpenChallengeViewModel: ViewModelType {
         let saldoTimeI: AnyObserver<String>
         let hintSaldoI: AnyObserver<Void>
         let pernyataanLinkI: AnyObserver<Void>
+        let hintDebatI: AnyObserver<Void>
+        let lawanDebatI: AnyObserver<Bool>
     }
     
     struct Output {
@@ -50,10 +52,11 @@ class OpenChallengeViewModel: ViewModelType {
         let hintSaldoO: Driver<Void>
         let enableNextO: Driver<Bool>
         let pernyataanLink: Driver<PernyataanLinkResult>
+        let hintDebatO: Driver<Void>
     }
     
     private let backS = PublishSubject<Void>()
-    private let refreshS = PublishSubject<Void>()
+    private let refreshS = PublishSubject<String>()
     private let kajianS = PublishSubject<Bool>()
     private let pernyataanS = PublishSubject<Bool>()
     private let dateTimeS = PublishSubject<Bool>()
@@ -69,14 +72,18 @@ class OpenChallengeViewModel: ViewModelType {
     private let saldoTimeS = PublishSubject<String>()
     private let hintSaldoS = PublishSubject<Void>()
     private let pernyataanLinkS = PublishSubject<Void>()
+    private let hintDebatS = PublishSubject<Void>()
+    private let lawanDebatS = PublishSubject<Bool>()
     
     private let errorTracker = ErrorTracker()
     private let activityIndicator = ActivityIndicator()
-    private var navigator: OpenChallengeNavigator
+    private var navigator: TantanganChallengeNavigator
+    private var type: Bool
     
-    init(navigator: OpenChallengeNavigator) {
+    init(navigator: TantanganChallengeNavigator, type: Bool) {
         self.navigator = navigator
         self.navigator.finish = backS
+        self.type = type
         
         input = Input(backI: backS.asObserver(),
                       refreshI: refreshS.asObserver(),
@@ -94,10 +101,12 @@ class OpenChallengeViewModel: ViewModelType {
                       datePickerI: datePickerS.asObserver(),
                       saldoTimeI: saldoTimeS.asObserver(),
                       hintSaldoI: hintSaldoS.asObserver(),
-                      pernyataanLinkI: pernyataanLinkS.asObserver())
+                      pernyataanLinkI: pernyataanLinkS.asObserver(),
+                      hintDebatI: hintDebatS.asObserver(),
+                      lawanDebatI: lawanDebatS.asObserver())
         
         
-        let item = Observable.combineLatest(kajianS, pernyataanS, dateTimeS, saldoS)
+        let itemOpen = Observable.combineLatest(kajianS, pernyataanS, dateTimeS, saldoS)
             .flatMapLatest { (valueKajian, valuePernyataan, valueData, valueSaldo) -> Observable<[SectionOfTantanganData]> in
                 return Observable.just([
                     SectionOfTantanganData(items: [TantanganData.bidangKajian], isHide: valueKajian, isActive: valueKajian),
@@ -107,13 +116,31 @@ class OpenChallengeViewModel: ViewModelType {
                     ])
         }
         
-        let items = item
+        let itemDirect = Observable.combineLatest(kajianS, pernyataanS, lawanDebatS, dateTimeS, saldoS)
+            .flatMapLatest { (valueKajian, valuePernyataan, valuedDebat, valueData, valueSaldo) -> Observable<[SectionOfTantanganData]> in
+                return Observable.just([
+                    SectionOfTantanganData(items: [TantanganData.bidangKajian], isHide: valueKajian, isActive: valueKajian),
+                    SectionOfTantanganData(items: [TantanganData.pernyataan], isHide: valuePernyataan, isActive: valuePernyataan),
+                    SectionOfTantanganData(items: [TantanganData.lawanDebat], isHide: valuedDebat, isActive: valuedDebat),
+                    SectionOfTantanganData(items: [TantanganData.dateTime], isHide: valueData, isActive: valueData),
+                    SectionOfTantanganData(items: [TantanganData.saldoTime], isHide: valueSaldo, isActive: valueSaldo),
+                    ])
+        }
+        
+        let itemsOpen = itemOpen
             .map { (a) -> [SectionOfTantanganData] in
                 return a.filter({ $0.isHide == false })
             }
             .asDriverOnErrorJustComplete()
         
-        let me = refreshS
+        let itemsDirect = itemDirect
+            .map { (a) -> [SectionOfTantanganData] in
+                return a.filter({ $0.isHide == false })
+            }
+            .asDriverOnErrorJustComplete()
+        
+        
+        let me = refreshS.startWith("")
             .flatMapLatest { [unowned self] (_) -> Observable<User> in
                 return NetworkService.instance
                     .requestObject(PantauAuthAPI.me,
@@ -145,6 +172,10 @@ class OpenChallengeViewModel: ViewModelType {
             .flatMapLatest({ navigator.launchHint(type: .saldoWaktu) })
             .asDriverOnErrorJustComplete()
         
+        let hintDebat = hintDebatS
+            .flatMapLatest({ navigator.launchHint(type: .lawanDebat )})
+            .asDriverOnErrorJustComplete()
+        
         let enablePernyataan = pernyataanTextS
             .map { (s) -> Bool in
                 return s.count > 0 && !s.containsInsensitive("Tulis pernyataanmu di sini...")
@@ -160,7 +191,7 @@ class OpenChallengeViewModel: ViewModelType {
             .flatMapLatest({ navigator.launchPernyataanLink() })
             .asDriverOnErrorJustComplete()
         
-        output = Output(itemsO: items,
+        output = Output(itemsO: type ? itemsDirect : itemsOpen,
                         meO: me.asDriverOnErrorJustComplete(),
                         kajianSelected: kajian,
                         hintKajianO: hintKajian,
@@ -173,7 +204,8 @@ class OpenChallengeViewModel: ViewModelType {
                         saldoTimeO: saldoTimeS.asDriverOnErrorJustComplete(),
                         hintSaldoO: hintSaldo,
                         enableNextO: enable,
-                        pernyataanLink: pernyataanLink)
+                        pernyataanLink: pernyataanLink,
+                        hintDebatO: hintDebat)
     }
     
 }

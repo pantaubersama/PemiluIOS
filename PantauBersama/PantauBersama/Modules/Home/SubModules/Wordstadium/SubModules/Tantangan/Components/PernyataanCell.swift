@@ -50,7 +50,7 @@ class PernyataanCell: UITableViewCell {
 extension PernyataanCell: IReusableCell {
     
     struct Input {
-        let viewModel: OpenChallengeViewModel
+        let viewModel: TantanganChallengeViewModel
         let status: Bool
         let content: String?
         let link: String?

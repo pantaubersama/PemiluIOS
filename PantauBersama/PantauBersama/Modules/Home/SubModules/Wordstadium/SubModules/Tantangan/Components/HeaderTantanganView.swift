@@ -10,9 +10,10 @@ import UIKit
 import Networking
 import Common
 
-enum HeaderTantanganType {
+enum HeaderTantanganType: Int {
     case open
     case direct
+    case `default`
 }
 
 class HeaderTantanganView: UIView {
@@ -43,9 +44,21 @@ class HeaderTantanganView: UIView {
     func configure(data: User, type: HeaderTantanganType) {
         switch type {
         case .open:
+            if let avatar = data.avatar.mediumSquare.url {
+                self.avatar.af_setImage(withURL: URL(string: avatar)!)
+            }
+            lblFullName.text = data.fullName
+            lblUsername.text = "@\(data.username ?? "")"
             lblType.text = "OPEN CHALLENGE"
         case .direct:
             lblType.text = "DIRECT CHALLENGE"
+            if let avatar = data.avatar.mediumSquare.url {
+                self.avatar.af_setImage(withURL: URL(string: avatar)!)
+            }
+            lblFullName.text = data.fullName
+            lblUsername.text = "@\(data.username ?? "")"
+        case .default:
+            break
         }
     }
     

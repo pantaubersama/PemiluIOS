@@ -77,7 +77,7 @@ class SaldoTimeCell: UITableViewCell {
 extension SaldoTimeCell: IReusableCell {
     
     struct Input {
-        let viewModel: OpenChallengeViewModel
+        let viewModel: TantanganChallengeViewModel
         let status: Bool
         let saldo: String?
     }

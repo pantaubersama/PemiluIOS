@@ -1,5 +1,5 @@
 //
-//  OpenChallengeCoordinator.swift
+//  TantanganChallengeCoordinator.swift
 //  PantauBersama
 //
 //  Created by Hanif Sugiyanto on 12/02/19.
@@ -8,25 +8,28 @@
 
 import RxSwift
 
-protocol OpenChallengeNavigator {
+protocol TantanganChallengeNavigator {
     var finish: Observable<Void>! { get set }
     func launchBidangKajian() -> Observable<BidangKajianResult>
     func launchHint(type: HintType) -> Observable<Void>
     func launchPernyataanLink() -> Observable<PernyataanLinkResult>
 }
 
-final class OpenChallengeCoordinator: BaseCoordinator<Void> {
+final class TantanganChallengeCoordinator: BaseCoordinator<Void> {
     
     private let navigationController: UINavigationController
     var finish: Observable<Void>!
+    private var type: Bool
     
-    init(navigationController: UINavigationController) {
+    init(navigationController: UINavigationController, type: Bool) {
         self.navigationController = navigationController
+        self.type = type
     }
     
     override func start() -> Observable<CoordinationResult> {
-        let viewModel = OpenChallengeViewModel(navigator: self)
-        let viewController = OpenChallengeController()
+        let viewModel = TantanganChallengeViewModel(navigator: self, type: type)
+        let viewController = TantanganChallengeController()
+        viewController.tantanganType = type
         viewController.viewModel = viewModel
         viewController.hidesBottomBarWhenPushed = true
         navigationController.pushViewController(viewController, animated: true)
@@ -37,7 +40,7 @@ final class OpenChallengeCoordinator: BaseCoordinator<Void> {
     
 }
 
-extension OpenChallengeCoordinator: OpenChallengeNavigator {
+extension TantanganChallengeCoordinator: TantanganChallengeNavigator {
     func launchBidangKajian() -> Observable<BidangKajianResult> {
         let bidangKajian = BidangKajianCoordinator(navigationController: navigationController)
         return coordinate(to: bidangKajian)

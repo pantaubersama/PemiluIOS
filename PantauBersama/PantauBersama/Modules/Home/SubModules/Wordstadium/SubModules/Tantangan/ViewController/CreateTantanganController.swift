@@ -35,6 +35,14 @@ class CreateTantanganController: UIViewController {
         viewModel.output.openSelected
             .drive()
             .disposed(by: disposeBag)
+        
+        btnDirectChallenge.rx.tap
+            .bind(to: viewModel.input.directTrigger)
+            .disposed(by: disposeBag)
+        
+        viewModel.output.directSelected
+            .drive()
+            .disposed(by: disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {

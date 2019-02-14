@@ -47,7 +47,7 @@ class DateTimeCell: UITableViewCell {
 extension DateTimeCell: IReusableCell {
     
     struct Input {
-        let viewModel: OpenChallengeViewModel
+        let viewModel: TantanganChallengeViewModel
         let status: Bool
         let date: String?
         let time: String?
