@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="BwModelicaSS01-BoldCondensed.otf">
+            <string>BwModelicaSS01-BoldCondensed</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="219" id="row-Y0-aH6" customClass="PernyataanCell" customModule="PantauBersama" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="382" height="219"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="row-Y0-aH6" id="32h-J7-IUe">
+                <rect key="frame" x="0.0" y="0.0" width="382" height="218.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="btC-Ov-veo">
+                        <rect key="frame" x="27.5" y="0.0" width="1" height="218.5"/>
+                        <color key="backgroundColor" red="0.79608923200000004" green="0.79605895280000005" blue="0.79607945680000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="1" id="TsV-3p-Ue8"/>
+                        </constraints>
+                    </view>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkUnactive" translatesAutoresizingMaskIntoConstraints="NO" id="Y7C-mO-jKW">
+                        <rect key="frame" x="16" y="0.0" width="24" height="24"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="24" id="5XH-4M-wlp"/>
+                            <constraint firstAttribute="width" constant="24" id="fah-y6-ZOc"/>
+                        </constraints>
+                    </imageView>
+                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="syK-Ig-W3w">
+                        <rect key="frame" x="56" y="0.0" width="308" height="17"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pernyataan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vdi-Km-H6z" customClass="Label" customModule="Common">
+                                <rect key="frame" x="0.0" y="0.0" width="292" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                        <real key="value" value="14"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0v9-HO-QMg">
+                                <rect key="frame" x="292" y="-5" width="16" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="16" id="RQc-zy-wOG"/>
+                                    <constraint firstAttribute="height" constant="16" id="pfR-zp-grP"/>
+                                </constraints>
+                                <state key="normal" image="outlineHint16Px"/>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="17" id="Vq1-po-ZKS"/>
+                        </constraints>
+                    </stackView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tulis pernyataan yang sesuai dengan Bidang Kajian. Kamu juga bisa menyertakan tautan/link di sini." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QRo-uD-iXJ" customClass="Label" customModule="Common">
+                        <rect key="frame" x="56.5" y="21" width="291.5" height="26.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.48628133540000001" green="0.4862622023" blue="0.48627519609999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                <real key="value" value="11"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e1K-yj-237" userLabel="linkPreview" customClass="LinkPreviewView" customModule="PantauBersama" customModuleProvider="target">
+                        <rect key="frame" x="56.5" y="51.5" width="291.5" height="0.0"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" priority="999" id="yee-dX-7Ff"/>
+                        </constraints>
+                    </view>
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="bqi-t7-YuY">
+                        <rect key="frame" x="56.5" y="59.5" width="291.5" height="90"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="90" id="4dw-G7-Zgf"/>
+                        </constraints>
+                        <color key="textColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <fontDescription key="fontDescription" name="BwModelicaSS01-BoldCondensed" family="Bw Modelica SS01" pointSize="14"/>
+                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    </textView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0/160" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wFZ-PS-Get" customClass="Label" customModule="Common">
+                        <rect key="frame" x="323.5" y="153.5" width="24.5" height="11"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.48628133540000001" green="0.4862622023" blue="0.48627519609999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                <real key="value" value="9"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceLeftToRight" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rw4-4S-8Pa" customClass="Button" customModule="Common">
+                        <rect key="frame" x="56.5" y="172.5" width="291.5" height="24"/>
+                        <state key="normal" title="Sertakan link disini..." image="outlineLink24Px">
+                            <color key="titleColor" red="0.95686274510000002" green="0.58039215690000001" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        </state>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailingMargin" secondItem="bqi-t7-YuY" secondAttribute="trailing" constant="18" id="6fO-Hb-bID"/>
+                    <constraint firstItem="btC-Ov-veo" firstAttribute="top" secondItem="32h-J7-IUe" secondAttribute="top" id="7ro-zi-WhE"/>
+                    <constraint firstAttribute="bottom" secondItem="btC-Ov-veo" secondAttribute="bottom" id="7xp-bT-92b"/>
+                    <constraint firstItem="Y7C-mO-jKW" firstAttribute="top" secondItem="32h-J7-IUe" secondAttribute="top" id="9FE-cQ-tVt"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="e1K-yj-237" secondAttribute="trailing" constant="18" id="Bho-QI-Sbe"/>
+                    <constraint firstItem="syK-Ig-W3w" firstAttribute="top" secondItem="32h-J7-IUe" secondAttribute="top" id="Clb-EZ-M5u"/>
+                    <constraint firstItem="wFZ-PS-Get" firstAttribute="top" secondItem="bqi-t7-YuY" secondAttribute="bottom" constant="4" id="FI3-Xw-aba"/>
+                    <constraint firstItem="bqi-t7-YuY" firstAttribute="top" secondItem="e1K-yj-237" secondAttribute="bottom" priority="750" constant="8" id="LAF-3E-PJc"/>
+                    <constraint firstItem="QRo-uD-iXJ" firstAttribute="leading" secondItem="btC-Ov-veo" secondAttribute="trailing" constant="28" id="UIT-kj-IK5"/>
+                    <constraint firstItem="btC-Ov-veo" firstAttribute="centerX" secondItem="Y7C-mO-jKW" secondAttribute="centerX" id="cPs-Au-ZUv"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="QRo-uD-iXJ" secondAttribute="trailing" constant="18" id="dj3-dA-Elg"/>
+                    <constraint firstItem="syK-Ig-W3w" firstAttribute="leading" secondItem="Y7C-mO-jKW" secondAttribute="trailing" constant="16" id="dmY-Ce-zjY"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="Rw4-4S-8Pa" secondAttribute="trailing" constant="18" id="erW-Kb-qhV"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="wFZ-PS-Get" secondAttribute="trailing" constant="18" id="iaT-0S-tfz"/>
+                    <constraint firstItem="QRo-uD-iXJ" firstAttribute="top" secondItem="syK-Ig-W3w" secondAttribute="bottom" constant="4" id="iki-dL-BAu"/>
+                    <constraint firstItem="bqi-t7-YuY" firstAttribute="leading" secondItem="btC-Ov-veo" secondAttribute="trailing" constant="28" id="kM1-2W-Wz0"/>
+                    <constraint firstItem="e1K-yj-237" firstAttribute="leading" secondItem="btC-Ov-veo" secondAttribute="trailing" constant="28" id="nP3-x5-TUB"/>
+                    <constraint firstItem="Rw4-4S-8Pa" firstAttribute="top" secondItem="wFZ-PS-Get" secondAttribute="bottom" constant="8" id="qFE-xl-uoh"/>
+                    <constraint firstItem="Rw4-4S-8Pa" firstAttribute="leading" secondItem="btC-Ov-veo" secondAttribute="trailing" constant="28" id="quV-fe-Zid"/>
+                    <constraint firstItem="e1K-yj-237" firstAttribute="top" secondItem="QRo-uD-iXJ" secondAttribute="bottom" constant="4" id="sbn-ac-Bcb"/>
+                    <constraint firstAttribute="trailing" secondItem="syK-Ig-W3w" secondAttribute="trailing" constant="18" id="tHp-zv-qvN"/>
+                    <constraint firstItem="Y7C-mO-jKW" firstAttribute="leading" secondItem="32h-J7-IUe" secondAttribute="leading" constant="16" id="xcL-j8-EuI"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="btnHint" destination="0v9-HO-QMg" id="5bP-cB-dXs"/>
+                <outlet property="btnLink" destination="Rw4-4S-8Pa" id="eXo-tC-bJK"/>
+                <outlet property="contraintLinkPreview" destination="yee-dX-7Ff" id="bBd-yL-H8X"/>
+                <outlet property="lblCounter" destination="wFZ-PS-Get" id="sCe-fB-1AM"/>
+                <outlet property="lineStatus" destination="btC-Ov-veo" id="87o-Ic-zNg"/>
+                <outlet property="linkPreviewView" destination="e1K-yj-237" id="Zyr-Qc-2ms"/>
+                <outlet property="status" destination="Y7C-mO-jKW" id="KPG-jO-4oF"/>
+                <outlet property="tvPernyataan" destination="bqi-t7-YuY" id="VBm-zz-toZ"/>
+            </connections>
+            <point key="canvasLocation" x="54.399999999999999" y="189.3553223388306"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="checkUnactive" width="24" height="24"/>
+        <image name="outlineHint16Px" width="16" height="16"/>
+        <image name="outlineLink24Px" width="24" height="24"/>
+    </resources>
+</document>

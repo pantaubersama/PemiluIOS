@@ -99,6 +99,7 @@ PODS:
   - TwitterCore (3.2.0)
   - TwitterKit (3.4.2):
     - TwitterCore (>= 3.2.0)
+  - URLEmbeddedView (0.17.1)
 
 DEPENDENCIES:
   - AlamofireImage
@@ -115,6 +116,7 @@ DEPENDENCIES:
   - RxDataSources (~> 3.1.0)
   - RxSwift (= 4.4.0)
   - TwitterKit
+  - URLEmbeddedView
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -147,6 +149,7 @@ SPEC REPOS:
     - RxSwift
     - TwitterCore
     - TwitterKit
+    - URLEmbeddedView
 
 SPEC CHECKSUMS:
   Alamofire: 3ec537f71edc9804815215393ae2b1a8ea33a844
@@ -178,7 +181,8 @@ SPEC CHECKSUMS:
   RxSwift: 5976ecd04fc2fefd648827c23de5e11157faa973
   TwitterCore: 8cbc9ad34d91c63a0035ea05bfbfc0d7ca72a28c
   TwitterKit: 5e4f41d70b9abdb41df5467f52d7aa2c0fd26ebb
+  URLEmbeddedView: 08237f670e68c9ba7ae98f7de9e3e48ae2492126
 
-PODFILE CHECKSUM: 99b7420f2887cdac00f0ef82c2c1561cbb87b27b
+PODFILE CHECKSUM: 11b9b31fac7329243903854b22527c1d1f8d2573
 
 COCOAPODS: 1.5.3
