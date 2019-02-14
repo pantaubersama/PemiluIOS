@@ -16,6 +16,8 @@ class PublishChallengeController: UIViewController {
     @IBOutlet weak var promoteView: PromoteView!
     @IBOutlet weak var challengeDetail: ChallengeDetailView!
     @IBOutlet weak var footerProfileView: FooterProfileView!
+    @IBOutlet weak var constraintPromote: NSLayoutConstraint!
+    @IBOutlet weak var constraintChallenge: NSLayoutConstraint!
     
     var viewModel: PublishChallengeViewModel!
     private let disposeBag: DisposeBag = DisposeBag()
@@ -26,7 +28,10 @@ class PublishChallengeController: UIViewController {
         
         let back = UIBarButtonItem(image: #imageLiteral(resourceName: "back"), style: .plain, target: nil, action: nil)
         navigationItem.leftBarButtonItem = back
-        title  = "Promote Your Challenge"
+        title  = tantanganType ? "Preview" : "Promote Your Challenge"
+        
+        
+        self.promoteView.configure(type: tantanganType)
         
         back.rx.tap
             .bind(to: viewModel.input.backI)
@@ -34,4 +39,13 @@ class PublishChallengeController: UIViewController {
     }
     
     
+}
+
+extension PublishChallengeController {
+    func setView(view: UIView, hidden: Bool) {
+        UIView.transition(with: view, duration: 0.4, options: .transitionCrossDissolve, animations: {
+            view.isHidden = hidden
+        })
+    }
+
 }

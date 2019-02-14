@@ -130,6 +130,7 @@ class TantanganChallengeController: UIViewController {
                     print("ID: \(id)")
                     self.viewModel.input.kajianI.onNext(false)
                     self.viewModel.input.pernyataanI.onNext(false)
+                    self.viewModel.input.lawanDebatI.onNext(true)
                     self.viewModel.input.dateTimeI.onNext(true)
                     self.viewModel.input.saldoI.onNext(true)
                     self.statusKajian = true
@@ -154,12 +155,14 @@ class TantanganChallengeController: UIViewController {
                     self.contentPernyataan = nil
                     self.viewModel.input.kajianI.onNext(false)
                     self.viewModel.input.pernyataanI.onNext(false)
+                    self.viewModel.input.lawanDebatI.onNext(true)
                     self.viewModel.input.dateTimeI.onNext(true)
                     self.viewModel.input.saldoI.onNext(true)
                 } else {
                     self.contentPernyataan = s
                     self.viewModel.input.kajianI.onNext(false)
                     self.viewModel.input.pernyataanI.onNext(false)
+                    self.viewModel.input.lawanDebatI.onNext(false)
                     self.viewModel.input.dateTimeI.onNext(false)
                     self.viewModel.input.saldoI.onNext(true)
                 }
@@ -171,6 +174,7 @@ class TantanganChallengeController: UIViewController {
             .do(onNext: { [unowned self] (s) in
                 self.viewModel.input.kajianI.onNext(false)
                 self.viewModel.input.pernyataanI.onNext(false)
+                self.viewModel.input.lawanDebatI.onNext(false)
                 self.viewModel.input.dateTimeI.onNext(false)
                 self.viewModel.input.saldoI.onNext(false)
                 self.statusDateTime = false
@@ -183,6 +187,7 @@ class TantanganChallengeController: UIViewController {
             .do(onNext: { [unowned self] (s) in
                 self.viewModel.input.kajianI.onNext(false)
                 self.viewModel.input.pernyataanI.onNext(false)
+                self.viewModel.input.lawanDebatI.onNext(false)
                 self.viewModel.input.dateTimeI.onNext(false)
                 self.viewModel.input.saldoI.onNext(false)
                 self.statusDateTime = true
@@ -195,6 +200,7 @@ class TantanganChallengeController: UIViewController {
             .do(onNext: { [unowned self] (s) in
                 self.viewModel.input.kajianI.onNext(false)
                 self.viewModel.input.pernyataanI.onNext(false)
+                self.viewModel.input.lawanDebatI.onNext(false)
                 self.viewModel.input.dateTimeI.onNext(false)
                 self.viewModel.input.saldoI.onNext(false)
                 self.statusSaldo = true
@@ -231,6 +237,7 @@ class TantanganChallengeController: UIViewController {
                 case .ok(let url):
                     self.viewModel.input.kajianI.onNext(false)
                     self.viewModel.input.pernyataanI.onNext(false)
+                    self.viewModel.input.lawanDebatI.onNext(false)
                     self.viewModel.input.dateTimeI.onNext(false)
                     self.viewModel.input.saldoI.onNext(true)
                     self.statusPernyataan = true

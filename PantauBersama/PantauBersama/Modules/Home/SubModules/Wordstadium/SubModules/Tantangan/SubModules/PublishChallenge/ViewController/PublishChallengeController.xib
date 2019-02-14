@@ -13,6 +13,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PublishChallengeController" customModule="PantauBersama" customModuleProvider="target">
             <connections>
                 <outlet property="challengeDetail" destination="Qb5-pk-xRI" id="QFx-gq-cBE"/>
+                <outlet property="constraintChallenge" destination="qGv-yc-k2H" id="Wb5-Vd-DSI"/>
+                <outlet property="constraintPromote" destination="sgM-Db-E3T" id="dSA-SU-HtS"/>
                 <outlet property="footerProfileView" destination="rvY-Gw-D40" id="y8v-B4-kca"/>
                 <outlet property="promoteView" destination="WgW-4q-67S" id="Vfz-ch-4N4"/>
                 <outlet property="scrollView" destination="QnX-l8-uN0" id="oSv-f4-kTb"/>
