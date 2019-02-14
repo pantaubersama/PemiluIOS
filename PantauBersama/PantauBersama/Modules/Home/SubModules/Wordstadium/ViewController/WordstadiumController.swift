@@ -24,15 +24,18 @@ class WordstadiumController: UIViewController {
     private let disposeBag = DisposeBag()
     
     
-    private lazy var personalController = PersonalViewController()
-    private lazy var publicController = PublicViewController()
+    private lazy var publicViewModel = PublicViewModel(navigator: viewModel.navigator, showTableHeader: true)
+    private lazy var personalViewModel = PersonalViewModel(navigator: viewModel.navigator, showTableHeader: true)
+    
+    private lazy var personalController = PersonalViewController(viewModel: personalViewModel)
+    private lazy var publicController = PublicViewController(viewModel: publicViewModel)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navbar.backgroundColor = Color.secondary_orange
         
-        add(childViewController: personalController, context: container)
         add(childViewController: publicController, context: container)
+        add(childViewController: personalController, context: container)
         
         // MARK
         // segmented control value

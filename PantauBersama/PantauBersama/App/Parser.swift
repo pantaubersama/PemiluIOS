@@ -94,7 +94,6 @@ final class Parser {
                             detailAskCoordinator.start()
                                 .subscribe()
                                 .disposed(by: disposeBag)
-                            
                         }
                     } catch let error {
                         print(error.localizedDescription)

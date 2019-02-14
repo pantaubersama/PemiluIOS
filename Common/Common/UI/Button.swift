@@ -92,4 +92,13 @@ open class Button: UIButton {
             }
         }
     }
+    
+    public func rotate(degree: Double) {
+        let pi = degree * (Double.pi / 180)
+        let rotateTransform = CGAffineTransform(rotationAngle: CGFloat(pi))
+        
+        UIView.animate(withDuration: 0.2) {
+            self.transform = rotateTransform
+        }
+    }
 }

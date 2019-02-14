@@ -19,6 +19,7 @@ extension UINavigationBar {
         case `default`
         case kuis
         case pantau
+        case wordstadium
         
         var color: UIColor {
             switch self {
@@ -28,6 +29,8 @@ extension UINavigationBar {
                 return Color.primary_red
             case .pantau:
                 return Color.primary_red
+            case .wordstadium:
+                return Color.secondary_orange
             }
         }
     }
