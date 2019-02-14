@@ -53,6 +53,10 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="titleIv" destination="i08-cn-TWU" id="5WP-iV-0NV"/>
+                <outlet property="titleLbl" destination="Ohm-y1-Ut1" id="SMU-PZ-z8n"/>
+            </connections>
         </tableViewCell>
     </objects>
     <resources>

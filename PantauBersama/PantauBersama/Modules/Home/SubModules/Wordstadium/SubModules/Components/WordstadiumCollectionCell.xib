@@ -28,6 +28,9 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ULV-oX-aBA">
                                         <rect key="frame" x="0.0" y="0.0" width="280" height="64"/>
                                         <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bgWordstadiumLive" translatesAutoresizingMaskIntoConstraints="NO" id="S0V-36-1mK">
+                                                <rect key="frame" x="0.0" y="0.0" width="280" height="64"/>
+                                            </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="COMING SOON" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xfM-hl-bLj">
                                                 <rect key="frame" x="94.5" y="25" width="91" height="14.5"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
@@ -43,13 +46,17 @@
                                                 <state key="normal" image="icMore"/>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.1137254902" green="0.56078431370000004" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
+                                            <constraint firstItem="S0V-36-1mK" firstAttribute="top" secondItem="ULV-oX-aBA" secondAttribute="top" id="1qw-6b-Jcv"/>
                                             <constraint firstAttribute="trailing" secondItem="4fL-F9-ktM" secondAttribute="trailing" constant="8" id="86K-lR-doU"/>
+                                            <constraint firstItem="S0V-36-1mK" firstAttribute="leading" secondItem="ULV-oX-aBA" secondAttribute="leading" id="Gzg-pY-Ktr"/>
+                                            <constraint firstAttribute="trailing" secondItem="S0V-36-1mK" secondAttribute="trailing" id="RYb-jr-OzB"/>
                                             <constraint firstAttribute="height" constant="64" id="SBe-gX-o0z"/>
                                             <constraint firstItem="xfM-hl-bLj" firstAttribute="centerY" secondItem="ULV-oX-aBA" secondAttribute="centerY" id="WW4-KJ-lse"/>
                                             <constraint firstItem="4fL-F9-ktM" firstAttribute="top" secondItem="ULV-oX-aBA" secondAttribute="top" constant="8" id="dbA-p3-Mb5"/>
                                             <constraint firstItem="xfM-hl-bLj" firstAttribute="centerX" secondItem="ULV-oX-aBA" secondAttribute="centerX" id="ecg-JL-rG5"/>
+                                            <constraint firstAttribute="bottom" secondItem="S0V-36-1mK" secondAttribute="bottom" id="vXi-eS-8fi"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F2G-ZX-385">
@@ -238,10 +245,14 @@ mengalami pertumbuhan mencapai 5,27%.
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="280" height="180"/>
+            <connections>
+                <outlet property="backgroundItem" destination="S0V-36-1mK" id="uet-Pp-CEE"/>
+            </connections>
             <point key="canvasLocation" x="-8" y="165.51724137931035"/>
         </collectionViewCell>
     </objects>
     <resources>
+        <image name="bgWordstadiumLive" width="280" height="64"/>
         <image name="icDummyPerson" width="48" height="48"/>
         <image name="icMore" width="20" height="20"/>
         <image name="icVs" width="24" height="24"/>
