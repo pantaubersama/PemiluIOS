@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="BwModelicaSS01-BoldCondensed.otf">
+            <string>BwModelicaSS01-BoldCondensed</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="137" id="j1S-X5-Qhd" customClass="SaldoTimeCell" customModule="PantauBersama" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="137"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="j1S-X5-Qhd" id="Zzv-bX-avr">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="136.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkUnactive" translatesAutoresizingMaskIntoConstraints="NO" id="0Ux-Tu-qjP">
+                        <rect key="frame" x="16" y="0.0" width="24" height="24"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="24" id="NtW-pA-rfB"/>
+                            <constraint firstAttribute="height" constant="24" id="gG9-VV-OGu"/>
+                        </constraints>
+                    </imageView>
+                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="WAI-nL-7Os">
+                        <rect key="frame" x="56" y="0.0" width="303" height="17"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Saldo Waktu" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LPc-nU-izk" customClass="Label" customModule="Common">
+                                <rect key="frame" x="0.0" y="0.0" width="287" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                        <real key="value" value="14"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kmK-rS-6ZY">
+                                <rect key="frame" x="287" y="0.5" width="16" height="16"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="16" id="2Qm-6k-KqQ"/>
+                                    <constraint firstAttribute="height" constant="16" id="2hx-Ku-bro"/>
+                                </constraints>
+                                <state key="normal" image="outlineHint16Px"/>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="17" id="ceX-6G-8Mk"/>
+                        </constraints>
+                    </stackView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tentukan durasi atau Saldo Waktu debat untuk kamu dan lawan debatmu. Masing-masing akan mendapat bagian yang sama rata." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0mt-bR-lPW" customClass="Label" customModule="Common">
+                        <rect key="frame" x="56" y="21" width="285" height="40"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.48628133540000001" green="0.4862622023" blue="0.48627519609999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                <real key="value" value="11"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2a6-M8-7lg">
+                        <rect key="frame" x="56" y="69" width="301" height="40"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="saldo" translatesAutoresizingMaskIntoConstraints="NO" id="vzw-zN-YkE">
+                                <rect key="frame" x="8" y="8" width="24" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="DW1-Qv-Ldb"/>
+                                    <constraint firstAttribute="width" constant="24" id="VM0-a8-WGI"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="menit" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8B1-DQ-GRd" customClass="Label" customModule="Common">
+                                <rect key="frame" x="265" y="13.5" width="28" height="13.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.48628133540000001" green="0.4862622023" blue="0.48627519609999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                        <real key="value" value="11"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Pilih saldo waktu" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="heo-pb-oPu">
+                                <rect key="frame" x="48" y="8" width="209" height="24"/>
+                                <color key="textColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <fontDescription key="fontDescription" name="BwModelicaSS01-BoldCondensed" family="Bw Modelica SS01" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="lineColor">
+                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="activeLineColor">
+                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                        <real key="value" value="14"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" red="0.97648364310000002" green="0.97644716499999995" blue="0.97647196049999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="heo-pb-oPu" secondAttribute="bottom" constant="8" id="73b-Gd-iwi"/>
+                            <constraint firstItem="heo-pb-oPu" firstAttribute="top" secondItem="2a6-M8-7lg" secondAttribute="top" constant="8" id="Db7-3c-RPT"/>
+                            <constraint firstAttribute="height" constant="40" id="HZ7-V8-xce"/>
+                            <constraint firstItem="vzw-zN-YkE" firstAttribute="centerY" secondItem="2a6-M8-7lg" secondAttribute="centerY" id="ap7-Tb-4Uj"/>
+                            <constraint firstItem="8B1-DQ-GRd" firstAttribute="centerY" secondItem="2a6-M8-7lg" secondAttribute="centerY" id="bIy-sR-HVZ"/>
+                            <constraint firstAttribute="trailing" secondItem="8B1-DQ-GRd" secondAttribute="trailing" constant="8" id="iSS-OG-Sff"/>
+                            <constraint firstItem="8B1-DQ-GRd" firstAttribute="leading" secondItem="heo-pb-oPu" secondAttribute="trailing" constant="8" id="q9N-TP-Tu5"/>
+                            <constraint firstItem="heo-pb-oPu" firstAttribute="leading" secondItem="vzw-zN-YkE" secondAttribute="trailing" constant="16" id="qpD-nS-noM"/>
+                            <constraint firstItem="vzw-zN-YkE" firstAttribute="leading" secondItem="2a6-M8-7lg" secondAttribute="leading" constant="8" id="qzC-Ul-ooR"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="0mt-bR-lPW" firstAttribute="top" secondItem="WAI-nL-7Os" secondAttribute="bottom" constant="4" id="2hx-64-8Ie"/>
+                    <constraint firstItem="2a6-M8-7lg" firstAttribute="leading" secondItem="0Ux-Tu-qjP" secondAttribute="trailing" constant="16" id="LJT-1z-rp6"/>
+                    <constraint firstItem="0Ux-Tu-qjP" firstAttribute="top" secondItem="Zzv-bX-avr" secondAttribute="top" id="Li5-gS-YSD"/>
+                    <constraint firstItem="WAI-nL-7Os" firstAttribute="top" secondItem="Zzv-bX-avr" secondAttribute="firstBaseline" id="MUh-Vl-Bva"/>
+                    <constraint firstItem="0Ux-Tu-qjP" firstAttribute="leading" secondItem="Zzv-bX-avr" secondAttribute="leading" constant="16" id="O6k-4x-fXg"/>
+                    <constraint firstItem="0mt-bR-lPW" firstAttribute="leading" secondItem="0Ux-Tu-qjP" secondAttribute="trailing" constant="16" id="T8k-iV-BqW"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="0mt-bR-lPW" secondAttribute="trailing" constant="18" id="efw-zr-fD8"/>
+                    <constraint firstAttribute="trailing" secondItem="2a6-M8-7lg" secondAttribute="trailing" constant="18" id="j2f-Rb-FgP"/>
+                    <constraint firstItem="WAI-nL-7Os" firstAttribute="leading" secondItem="0Ux-Tu-qjP" secondAttribute="trailing" constant="16" id="jUx-7e-XKZ"/>
+                    <constraint firstItem="2a6-M8-7lg" firstAttribute="top" secondItem="0mt-bR-lPW" secondAttribute="bottom" constant="8" id="kVc-f2-Eha"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="WAI-nL-7Os" secondAttribute="trailing" id="svq-oV-6SH"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="btnHint" destination="kmK-rS-6ZY" id="MOf-7C-Rr6"/>
+                <outlet property="status" destination="0Ux-Tu-qjP" id="wPe-61-Qg8"/>
+                <outlet property="tvSaldo" destination="heo-pb-oPu" id="WKO-be-GpP"/>
+            </connections>
+            <point key="canvasLocation" x="69.599999999999994" y="177.66116941529236"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="checkUnactive" width="24" height="24"/>
+        <image name="outlineHint16Px" width="16" height="16"/>
+        <image name="saldo" width="24" height="24"/>
+    </resources>
+</document>
