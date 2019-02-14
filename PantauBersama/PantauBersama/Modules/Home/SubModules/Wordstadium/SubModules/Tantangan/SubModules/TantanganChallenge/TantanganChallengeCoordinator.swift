@@ -13,6 +13,7 @@ protocol TantanganChallengeNavigator {
     func launchBidangKajian() -> Observable<BidangKajianResult>
     func launchHint(type: HintType) -> Observable<Void>
     func launchPernyataanLink() -> Observable<PernyataanLinkResult>
+    func launchPublish(type: Bool) -> Observable<Void>
 }
 
 final class TantanganChallengeCoordinator: BaseCoordinator<Void> {
@@ -71,5 +72,10 @@ extension TantanganChallengeCoordinator: TantanganChallengeNavigator {
             })
             return Disposables.create()
         })
+    }
+    
+    func launchPublish(type: Bool) -> Observable<Void> {
+        let publishCoordinator = PublishChallengeCoordinator(navigationController: navigationController, type: type)
+        return coordinate(to: publishCoordinator)
     }
 }

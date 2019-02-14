@@ -9,6 +9,7 @@
 import UIKit
 import Common
 
+@IBDesignable
 class ChallengeDetailView: UIView {
     
     override init(frame: CGRect) {
