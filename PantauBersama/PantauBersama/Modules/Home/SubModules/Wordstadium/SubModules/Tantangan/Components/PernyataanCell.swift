@@ -140,10 +140,11 @@ extension PernyataanCell: IReusableCell {
             .disposed(by: bag)
         
         btnLink.rx.tap
-            .do(onNext: { (_) in
+            .do(onNext: { [unowned self] (_) in
                 OGImageProvider.shared.clearMemoryCache()
                 OGImageProvider.shared.clearAllCache()
                 OGDataProvider.shared.deleteOGData(urlString: item.link ?? "")
+                self.linkPreviewView.ivAvatarLink.image = nil
             })
             .bind(to: item.viewModel.input.pernyataanLinkI)
             .disposed(by: bag)
