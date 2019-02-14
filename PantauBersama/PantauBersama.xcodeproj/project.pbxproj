@@ -344,6 +344,8 @@
 		84B8C1BB221570AE004BC1FE /* LawanDebatView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84B8C1BA221570AE004BC1FE /* LawanDebatView.xib */; };
 		84B8C1BD22157288004BC1FE /* LawanDebatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B8C1BC22157288004BC1FE /* LawanDebatView.swift */; };
 		84B8C1BF22157347004BC1FE /* ChallengeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B8C1BE22157347004BC1FE /* ChallengeDetailView.swift */; };
+		84B8C1C222157584004BC1FE /* FooterProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84B8C1C122157584004BC1FE /* FooterProfileView.xib */; };
+		84B8C1C422157686004BC1FE /* FooterProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B8C1C322157686004BC1FE /* FooterProfileView.swift */; };
 		84BEA55321F9884900659980 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BEA55221F9884900659980 /* NetworkService.swift */; };
 		84CA10BF21EF0DE80025CF10 /* AboutController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84CA10BE21EF0DE80025CF10 /* AboutController.xib */; };
 		84CA10C121EF107E0025CF10 /* AboutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CA10C021EF107E0025CF10 /* AboutController.swift */; };
@@ -811,6 +813,8 @@
 		84B8C1BA221570AE004BC1FE /* LawanDebatView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LawanDebatView.xib; sourceTree = "<group>"; };
 		84B8C1BC22157288004BC1FE /* LawanDebatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LawanDebatView.swift; sourceTree = "<group>"; };
 		84B8C1BE22157347004BC1FE /* ChallengeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeDetailView.swift; sourceTree = "<group>"; };
+		84B8C1C122157584004BC1FE /* FooterProfileView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FooterProfileView.xib; sourceTree = "<group>"; };
+		84B8C1C322157686004BC1FE /* FooterProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterProfileView.swift; sourceTree = "<group>"; };
 		84BEA55221F9884900659980 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		84CA10BE21EF0DE80025CF10 /* AboutController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AboutController.xib; sourceTree = "<group>"; };
 		84CA10C021EF107E0025CF10 /* AboutController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutController.swift; sourceTree = "<group>"; };
@@ -2415,6 +2419,15 @@
 			path = LawanDebatView;
 			sourceTree = "<group>";
 		};
+		84B8C1C022157562004BC1FE /* FooterProfileView */ = {
+			isa = PBXGroup;
+			children = (
+				84B8C1C122157584004BC1FE /* FooterProfileView.xib */,
+				84B8C1C322157686004BC1FE /* FooterProfileView.swift */,
+			);
+			path = FooterProfileView;
+			sourceTree = "<group>";
+		};
 		84CA10BD21EF0DCF0025CF10 /* About */ = {
 			isa = PBXGroup;
 			children = (
@@ -2438,6 +2451,7 @@
 		84E2854121CA189B00298E31 /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
+				84B8C1C022157562004BC1FE /* FooterProfileView */,
 				84B8C1B922157099004BC1FE /* LawanDebatView */,
 				84B8C1B622156B1C004BC1FE /* ChallengeDetailView */,
 				84B8C1AD221537E3004BC1FE /* LinkPreview */,
@@ -2832,6 +2846,7 @@
 				840850DD21D2832200696CB3 /* BadgeController.xib in Resources */,
 				84CA10BF21EF0DE80025CF10 /* AboutController.xib in Resources */,
 				842A4A0321D7C6810050AA51 /* CameraController.xib in Resources */,
+				84B8C1C222157584004BC1FE /* FooterProfileView.xib in Resources */,
 				84FA427E2213062A008215C4 /* BidangKajianController.xib in Resources */,
 				1320595F221359C200BE9456 /* WordstadiumCollectionCell.xib in Resources */,
 				84B7B8B521E445D00099E7E3 /* empty-status.json in Resources */,
@@ -3423,6 +3438,7 @@
 				84A07FB621D0ED8100269C6B /* SuccessController.swift in Sources */,
 				845C570721CD1D8F00EDCDFE /* ProfileCoordinator.swift in Sources */,
 				84307F4D22006857006DE04B /* ParserCoordinator.swift in Sources */,
+				84B8C1C422157686004BC1FE /* FooterProfileView.swift in Sources */,
 				842A4A0F21D7EE5F0050AA51 /* SuccessViewModel.swift in Sources */,
 				84B7B8D221E5B9640099E7E3 /* AddKategoriCoordinator.swift in Sources */,
 				84E6934021D2946C00EA5464 /* HeaderEditProfile.swift in Sources */,
