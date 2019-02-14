@@ -12,7 +12,7 @@ import RxCocoa
 import Networking
 import Common
 
-final class RekapViewModel: ViewModelType {
+final class MerayakanViewModel: ViewModelType {
     
     var input: Input
     var output: Output
@@ -27,7 +27,7 @@ final class RekapViewModel: ViewModelType {
     
     let navigator: MerayakanNavigator
     
-    init(navigator: MerayakanNavigator, searchTrigger: PublishSubject<String>? = nil, showTableHeader: Bool) {
+    init(navigator: MerayakanNavigator) {
         self.navigator = navigator
     
         input = Input(
