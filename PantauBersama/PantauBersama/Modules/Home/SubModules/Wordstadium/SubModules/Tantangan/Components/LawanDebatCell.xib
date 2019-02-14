@@ -38,10 +38,10 @@
                         </constraints>
                     </view>
                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="0O3-zS-XYU">
-                        <rect key="frame" x="56" y="0.0" width="285" height="17"/>
+                        <rect key="frame" x="56" y="0.0" width="303" height="17"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lawan Debat" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gTj-qg-TWx" customClass="Label" customModule="Common">
-                                <rect key="frame" x="0.0" y="0.0" width="269" height="17"/>
+                                <rect key="frame" x="0.0" y="0.0" width="287" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.12941176470588234" green="0.12941176470588234" blue="0.12941176470588234" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
@@ -52,7 +52,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LWt-P6-lnO">
-                                <rect key="frame" x="269" y="0.5" width="16" height="16"/>
+                                <rect key="frame" x="287" y="0.5" width="16" height="16"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="16" id="3ze-3m-Nco"/>
                                     <constraint firstAttribute="height" constant="16" id="ldE-yK-SSq"/>
@@ -285,7 +285,7 @@
                     <constraint firstAttribute="trailingMargin" secondItem="dod-rB-R6W" secondAttribute="trailing" constant="16" id="EZ8-sf-aVY"/>
                     <constraint firstAttribute="trailingMargin" secondItem="cLE-Nc-vlp" secondAttribute="trailing" constant="16" id="Nbb-c3-A8M"/>
                     <constraint firstItem="MEe-1r-f3d" firstAttribute="top" secondItem="YyB-Bb-Jv7" secondAttribute="top" id="SPa-VC-ZOo"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="0O3-zS-XYU" secondAttribute="trailing" constant="18" id="WnZ-sI-wVc"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="0O3-zS-XYU" secondAttribute="trailing" id="WnZ-sI-wVc"/>
                     <constraint firstItem="diA-96-mQU" firstAttribute="centerX" secondItem="MEe-1r-f3d" secondAttribute="centerX" id="XYR-6p-Tm0"/>
                     <constraint firstItem="0O3-zS-XYU" firstAttribute="top" secondItem="YyB-Bb-Jv7" secondAttribute="firstBaseline" id="ZMc-aM-uFt"/>
                     <constraint firstItem="cLE-Nc-vlp" firstAttribute="leading" secondItem="diA-96-mQU" secondAttribute="trailing" constant="28" id="ctK-j5-1iE"/>
