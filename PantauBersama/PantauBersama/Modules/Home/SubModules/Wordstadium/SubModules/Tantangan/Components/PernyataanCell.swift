@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import Common
-
+import URLEmbeddedView
 
 enum PernyataanLinkResult {
     case cancel
@@ -26,13 +26,22 @@ class PernyataanCell: UITableViewCell {
     @IBOutlet weak var tvPernyataan: UITextView!
     @IBOutlet weak var btnHint: UIButton!
     @IBOutlet weak var btnLink: Button!
-    @IBOutlet weak var linkPreview: UIView!
+    @IBOutlet weak var linkPreviewView: LinkPreviewView!
+    
     @IBOutlet weak var contraintLinkPreview: NSLayoutConstraint!
     private var disposeBag: DisposeBag!
     
+    let linkPreview = URLEmbeddedView()
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+     
+    }
+    
     override func prepareForReuse() {
         super.prepareForReuse()
-        
+        linkPreview.prepareViewsForReuse()
         disposeBag = nil
     }
     
@@ -64,9 +73,45 @@ extension PernyataanCell: IReusableCell {
         
         if item.link == nil {
             btnLink.setTitle("Sertakan link disini", for: .normal)
+            btnLink.isHidden = false
         } else {
             btnLink.setTitle(item.link, for: .normal)
+            btnLink.isHidden = true
+            if let linkString = item.link {
+                OGDataProvider.shared.fetchOGData(urlString: linkString, completion: { [unowned self] (data, error) in
+                    if let _ = error {
+                        return
+                    }
+                    DispatchQueue.main.async(execute: {
+                        self.linkPreviewView.lblLink.text = data.sourceUrl?.absoluteString
+                        self.linkPreviewView.lblContent.text = data.siteName
+                        self.linkPreviewView.lblDescContent.text = data.pageDescription
+                        if let avatar = data.imageUrl?.absoluteString {
+                            self.linkPreviewView.ivAvatarLink.af_setImage(withURL: URL(string: avatar)!)
+                        }
+                    })
+                })
+            }
+            UIView.transition(with: self.linkPreviewView, duration: 0.4, options: .transitionCrossDissolve, animations: { [weak self] in
+                guard let `self` = self else { return }
+                self.linkPreviewView.isHidden = false
+                self.contraintLinkPreview.constant = 75.0
+            })
         }
+        
+        linkPreviewView.btnCloseLink.rx.tap
+            .do(onNext: { [unowned self] (_) in
+                self.btnLink.isHidden = false
+                self.btnLink.setTitle("Sertakan link disini", for: .normal)
+                UIView.transition(with: self.linkPreviewView, duration: 0.4, options: .transitionCrossDissolve, animations: { [weak self] in
+                    guard let `self` = self else { return }
+                    self.linkPreviewView.isHidden = true
+                    self.contraintLinkPreview.constant = 0.0
+                })
+            })
+            .asDriverOnErrorJustComplete()
+            .drive()
+            .disposed(by: bag)
         
         tvPernyataan.rx.text
             .orEmpty
@@ -95,6 +140,11 @@ extension PernyataanCell: IReusableCell {
             .disposed(by: bag)
         
         btnLink.rx.tap
+            .do(onNext: { (_) in
+                OGImageProvider.shared.clearMemoryCache()
+                OGImageProvider.shared.clearAllCache()
+                OGDataProvider.shared.deleteOGData(urlString: item.link ?? "")
+            })
             .bind(to: item.viewModel.input.pernyataanLinkI)
             .disposed(by: bag)
         

@@ -75,15 +75,15 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </label>
-                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e1K-yj-237" userLabel="linkPreview">
-                        <rect key="frame" x="56.5" y="51.5" width="291.5" height="1"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e1K-yj-237" userLabel="linkPreview" customClass="LinkPreviewView" customModule="PantauBersama" customModuleProvider="target">
+                        <rect key="frame" x="56.5" y="51.5" width="291.5" height="0.0"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="1" id="yee-dX-7Ff"/>
+                            <constraint firstAttribute="height" priority="999" id="yee-dX-7Ff"/>
                         </constraints>
                     </view>
                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="bqi-t7-YuY">
-                        <rect key="frame" x="56.5" y="60.5" width="291.5" height="90"/>
+                        <rect key="frame" x="56.5" y="59.5" width="291.5" height="90"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="90" id="4dw-G7-Zgf"/>
@@ -93,7 +93,7 @@
                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                     </textView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0/160" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wFZ-PS-Get" customClass="Label" customModule="Common">
-                        <rect key="frame" x="323.5" y="154.5" width="24.5" height="11"/>
+                        <rect key="frame" x="323.5" y="153.5" width="24.5" height="11"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.48628133540000001" green="0.4862622023" blue="0.48627519609999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <nil key="highlightedColor"/>
@@ -104,7 +104,7 @@
                         </userDefinedRuntimeAttributes>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceLeftToRight" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rw4-4S-8Pa" customClass="Button" customModule="Common">
-                        <rect key="frame" x="56.5" y="173.5" width="291.5" height="24"/>
+                        <rect key="frame" x="56.5" y="172.5" width="291.5" height="24"/>
                         <state key="normal" title="Sertakan link disini..." image="outlineLink24Px">
                             <color key="titleColor" red="0.95686274510000002" green="0.58039215690000001" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         </state>
@@ -118,7 +118,7 @@
                     <constraint firstAttribute="trailingMargin" secondItem="e1K-yj-237" secondAttribute="trailing" constant="18" id="Bho-QI-Sbe"/>
                     <constraint firstItem="syK-Ig-W3w" firstAttribute="top" secondItem="32h-J7-IUe" secondAttribute="top" id="Clb-EZ-M5u"/>
                     <constraint firstItem="wFZ-PS-Get" firstAttribute="top" secondItem="bqi-t7-YuY" secondAttribute="bottom" constant="4" id="FI3-Xw-aba"/>
-                    <constraint firstItem="bqi-t7-YuY" firstAttribute="top" secondItem="e1K-yj-237" secondAttribute="bottom" constant="8" id="LAF-3E-PJc"/>
+                    <constraint firstItem="bqi-t7-YuY" firstAttribute="top" secondItem="e1K-yj-237" secondAttribute="bottom" priority="750" constant="8" id="LAF-3E-PJc"/>
                     <constraint firstItem="QRo-uD-iXJ" firstAttribute="leading" secondItem="btC-Ov-veo" secondAttribute="trailing" constant="28" id="UIT-kj-IK5"/>
                     <constraint firstItem="btC-Ov-veo" firstAttribute="centerX" secondItem="Y7C-mO-jKW" secondAttribute="centerX" id="cPs-Au-ZUv"/>
                     <constraint firstAttribute="trailingMargin" secondItem="QRo-uD-iXJ" secondAttribute="trailing" constant="18" id="dj3-dA-Elg"/>
@@ -141,7 +141,7 @@
                 <outlet property="contraintLinkPreview" destination="yee-dX-7Ff" id="bBd-yL-H8X"/>
                 <outlet property="lblCounter" destination="wFZ-PS-Get" id="sCe-fB-1AM"/>
                 <outlet property="lineStatus" destination="btC-Ov-veo" id="87o-Ic-zNg"/>
-                <outlet property="linkPreview" destination="e1K-yj-237" id="ECA-sv-VVi"/>
+                <outlet property="linkPreviewView" destination="e1K-yj-237" id="Zyr-Qc-2ms"/>
                 <outlet property="status" destination="Y7C-mO-jKW" id="KPG-jO-4oF"/>
                 <outlet property="tvPernyataan" destination="bqi-t7-YuY" id="VBm-zz-toZ"/>
             </connections>

@@ -226,7 +226,11 @@ extension OpenChallengeController: UITableViewDelegate {
         case 0:
             return 90.0
         case 1:
-            return 219.0
+            if link != nil {
+                return 219.0 + 75.0
+            } else {
+                return 219.0
+            }
         case 2:
             return 151.0
         case 3:
