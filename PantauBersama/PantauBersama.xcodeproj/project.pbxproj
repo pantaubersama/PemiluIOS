@@ -281,6 +281,12 @@
 		848B03A121E7B5DE002CAA40 /* WKWebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848B03A021E7B5DE002CAA40 /* WKWebViewModel.swift */; };
 		8493BF732216789600685BEC /* SuccessPromoteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8493BF722216789600685BEC /* SuccessPromoteView.xib */; };
 		8493BF752216797B00685BEC /* SucceessPromoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8493BF742216797B00685BEC /* SucceessPromoteView.swift */; };
+		8493BF7B2216848B00685BEC /* ChallengeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8493BF7A2216848B00685BEC /* ChallengeController.xib */; };
+		8493BF7E2216893100685BEC /* ChallengeButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8493BF7D2216893100685BEC /* ChallengeButtonView.xib */; };
+		8493BF8022168A9B00685BEC /* ChallengeButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8493BF7F22168A9B00685BEC /* ChallengeButtonView.swift */; };
+		8493BF822216912E00685BEC /* ChallengeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8493BF812216912E00685BEC /* ChallengeController.swift */; };
+		8493BF842216919800685BEC /* ChallengeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8493BF832216919800685BEC /* ChallengeViewModel.swift */; };
+		8493BF86221691A200685BEC /* ChallengeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8493BF85221691A200685BEC /* ChallengeCoordinator.swift */; };
 		849CABCA21CE89DD00912F8E /* SettingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849CABC921CE89DD00912F8E /* SettingController.swift */; };
 		849CABCC21CE8A5100912F8E /* SettingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849CABCB21CE8A5100912F8E /* SettingCoordinator.swift */; };
 		849CABCE21CE8AC300912F8E /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849CABCD21CE8AC300912F8E /* SettingViewModel.swift */; };
@@ -768,6 +774,12 @@
 		848B03A021E7B5DE002CAA40 /* WKWebViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKWebViewModel.swift; sourceTree = "<group>"; };
 		8493BF722216789600685BEC /* SuccessPromoteView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SuccessPromoteView.xib; sourceTree = "<group>"; };
 		8493BF742216797B00685BEC /* SucceessPromoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SucceessPromoteView.swift; sourceTree = "<group>"; };
+		8493BF7A2216848B00685BEC /* ChallengeController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChallengeController.xib; sourceTree = "<group>"; };
+		8493BF7D2216893100685BEC /* ChallengeButtonView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChallengeButtonView.xib; sourceTree = "<group>"; };
+		8493BF7F22168A9B00685BEC /* ChallengeButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeButtonView.swift; sourceTree = "<group>"; };
+		8493BF812216912E00685BEC /* ChallengeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeController.swift; sourceTree = "<group>"; };
+		8493BF832216919800685BEC /* ChallengeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeViewModel.swift; sourceTree = "<group>"; };
+		8493BF85221691A200685BEC /* ChallengeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeCoordinator.swift; sourceTree = "<group>"; };
 		849CABC921CE89DD00912F8E /* SettingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingController.swift; sourceTree = "<group>"; };
 		849CABCB21CE8A5100912F8E /* SettingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCoordinator.swift; sourceTree = "<group>"; };
 		849CABCD21CE8AC300912F8E /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
@@ -1794,6 +1806,7 @@
 		844C3D6A21C5177A00199871 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				8493BF7622167E2400685BEC /* Challenge */,
 				8478B8DC21FF1B5300CE192A /* Notifications */,
 				84B6D52821F8E41900DD742A /* User */,
 				1147F22821F83BCE001D0D59 /* ClusterDetail */,
@@ -2148,6 +2161,35 @@
 				8493BF742216797B00685BEC /* SucceessPromoteView.swift */,
 			);
 			path = SuccesPromote;
+			sourceTree = "<group>";
+		};
+		8493BF7622167E2400685BEC /* Challenge */ = {
+			isa = PBXGroup;
+			children = (
+				8493BF7C2216891900685BEC /* Components */,
+				8493BF792216847B00685BEC /* ViewController */,
+				8493BF832216919800685BEC /* ChallengeViewModel.swift */,
+				8493BF85221691A200685BEC /* ChallengeCoordinator.swift */,
+			);
+			path = Challenge;
+			sourceTree = "<group>";
+		};
+		8493BF792216847B00685BEC /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				8493BF7A2216848B00685BEC /* ChallengeController.xib */,
+				8493BF812216912E00685BEC /* ChallengeController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		8493BF7C2216891900685BEC /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				8493BF7D2216893100685BEC /* ChallengeButtonView.xib */,
+				8493BF7F22168A9B00685BEC /* ChallengeButtonView.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		849CABC521CE897E00912F8E /* Setting */ = {
@@ -2999,6 +3041,7 @@
 				13E139562213FF1B00286EDE /* SectionViewCell.xib in Resources */,
 				137A29F421E2261A00F19072 /* ComingsoonController.xib in Resources */,
 				84FA42682212EED0008215C4 /* PernyataanCell.xib in Resources */,
+				8493BF7B2216848B00685BEC /* ChallengeController.xib in Resources */,
 				8478B8E621FF1FAA00CE192A /* InfoNotifCell.xib in Resources */,
 				84619D3C21DA88C800EB58CF /* ItemInfoCell.xib in Resources */,
 				8441DB5621CCF19C00B078DF /* DetailJanjiController.xib in Resources */,
@@ -3030,6 +3073,7 @@
 				84FA426C2212F460008215C4 /* DateTimeCell.xib in Resources */,
 				84A07FA721D0E2E900269C6B /* SelfIdentitasController.xib in Resources */,
 				84E6933E21D2936E00EA5464 /* HeaderEditProfile.xib in Resources */,
+				8493BF7E2216893100685BEC /* ChallengeButtonView.xib in Resources */,
 				84B7B8B321E4454B0099E7E3 /* EmptyView.xib in Resources */,
 				84F892B121C787D800DC1048 /* Lato-Regular.ttf in Resources */,
 				13812C3A21CC182500CAB327 /* AskViewCell.xib in Resources */,
@@ -3367,6 +3411,7 @@
 				84BEA55321F9884900659980 /* NetworkService.swift in Sources */,
 				84D01B9821D208DE0000492F /* SectionOfSettingData.swift in Sources */,
 				8423C3FC21F718A6000AAA63 /* DetailAskController.swift in Sources */,
+				8493BF8022168A9B00685BEC /* ChallengeButtonView.swift in Sources */,
 				840901C221DF3BDE001BF559 /* CatatanViewModel.swift in Sources */,
 				84FA425C2212C474008215C4 /* TantanganChallengeCoordinator.swift in Sources */,
 				1320596222135B1500BE9456 /* WordstadiumViewCell.swift in Sources */,
@@ -3489,10 +3534,12 @@
 				84FE6EBA21D5FC9B009A0F55 /* ActivityIndicator.swift in Sources */,
 				11E107DD21CFD99900B7B074 /* QuizResultController.swift in Sources */,
 				84B2521B21CAA71200565D82 /* ViewModelType.swift in Sources */,
+				8493BF822216912E00685BEC /* ChallengeController.swift in Sources */,
 				84A07FB821D0F0DD00269C6B /* IdentitasCoordinator.swift in Sources */,
 				84FA42542212B499008215C4 /* SectionOfTantanganData.swift in Sources */,
 				11E107B721CD450B00B7B074 /* QuizOngoingViewModel.swift in Sources */,
 				13E170D0221305BE0018EDB4 /* PersonalNavigator.swift in Sources */,
+				8493BF842216919800685BEC /* ChallengeViewModel.swift in Sources */,
 				84E2855921CA777D00298E31 /* Observable.swift in Sources */,
 				13E170C8221197E90018EDB4 /* PublicViewController.swift in Sources */,
 				13E170C6221197B30018EDB4 /* PersonalViewController.swift in Sources */,
@@ -3544,6 +3591,7 @@
 				845C571921CE1C9900EDCDFE /* BadgeCell.swift in Sources */,
 				84B6D6E621E1069E00CD4BC8 /* KategoriClusterCoordinator.swift in Sources */,
 				84619D4421DA9A9D00EB58CF /* EditController.swift in Sources */,
+				8493BF86221691A200685BEC /* ChallengeCoordinator.swift in Sources */,
 				84B6D6EC21E2248300CD4BC8 /* ClusterView.swift in Sources */,
 				84B6D6E021E1024900CD4BC8 /* KategoriClusterController.swift in Sources */,
 				842A4A0521D7E46B0050AA51 /* KTPCoordinator.swift in Sources */,

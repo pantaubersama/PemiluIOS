@@ -135,11 +135,22 @@ class PublicViewController: UITableViewController {
 
     // TODO: for testing purpose
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let navigationController = self.navigationController else { return }
-        let liveDebatCoordinator = LiveDebatCoordinator(navigationController: navigationController)
-        liveDebatCoordinator
-            .start()
-            .subscribe()
-            .disposed(by: disposeBag)
+        let wordstadium = dataSource.sectionModels[indexPath.section]
+        
+        if wordstadium.itemType == .challenge {
+            guard let navigationController = self.navigationController else { return }
+            let challengeCoordinator = ChallengeCoordinator(navigationController: navigationController)
+            challengeCoordinator
+                .start()
+                .subscribe()
+                .disposed(by: disposeBag)
+        } else {
+            guard let navigationController = self.navigationController else { return }
+            let liveDebatCoordinator = LiveDebatCoordinator(navigationController: navigationController)
+            liveDebatCoordinator
+                .start()
+                .subscribe()
+                .disposed(by: disposeBag)
+        }
     }
 }
