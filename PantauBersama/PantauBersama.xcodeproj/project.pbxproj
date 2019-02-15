@@ -287,6 +287,8 @@
 		8493BF822216912E00685BEC /* ChallengeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8493BF812216912E00685BEC /* ChallengeController.swift */; };
 		8493BF842216919800685BEC /* ChallengeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8493BF832216919800685BEC /* ChallengeViewModel.swift */; };
 		8493BF86221691A200685BEC /* ChallengeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8493BF85221691A200685BEC /* ChallengeCoordinator.swift */; };
+		8493BF88221699E700685BEC /* UserChallengeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8493BF87221699E700685BEC /* UserChallengeCell.xib */; };
+		8493BF8A22169B7700685BEC /* UserChallengeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8493BF8922169B7700685BEC /* UserChallengeCell.swift */; };
 		849CABCA21CE89DD00912F8E /* SettingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849CABC921CE89DD00912F8E /* SettingController.swift */; };
 		849CABCC21CE8A5100912F8E /* SettingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849CABCB21CE8A5100912F8E /* SettingCoordinator.swift */; };
 		849CABCE21CE8AC300912F8E /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849CABCD21CE8AC300912F8E /* SettingViewModel.swift */; };
@@ -780,6 +782,8 @@
 		8493BF812216912E00685BEC /* ChallengeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeController.swift; sourceTree = "<group>"; };
 		8493BF832216919800685BEC /* ChallengeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeViewModel.swift; sourceTree = "<group>"; };
 		8493BF85221691A200685BEC /* ChallengeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeCoordinator.swift; sourceTree = "<group>"; };
+		8493BF87221699E700685BEC /* UserChallengeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserChallengeCell.xib; sourceTree = "<group>"; };
+		8493BF8922169B7700685BEC /* UserChallengeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserChallengeCell.swift; sourceTree = "<group>"; };
 		849CABC921CE89DD00912F8E /* SettingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingController.swift; sourceTree = "<group>"; };
 		849CABCB21CE8A5100912F8E /* SettingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCoordinator.swift; sourceTree = "<group>"; };
 		849CABCD21CE8AC300912F8E /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
@@ -2188,6 +2192,8 @@
 			children = (
 				8493BF7D2216893100685BEC /* ChallengeButtonView.xib */,
 				8493BF7F22168A9B00685BEC /* ChallengeButtonView.swift */,
+				8493BF87221699E700685BEC /* UserChallengeCell.xib */,
+				8493BF8922169B7700685BEC /* UserChallengeCell.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -3070,6 +3076,7 @@
 				84307F442200352B006DE04B /* ob1_wordstadium.json in Resources */,
 				845C571721CE1B5900EDCDFE /* BadgeCell.xib in Resources */,
 				841CDA3D21C8BC1C0015680C /* LinimasaController.xib in Resources */,
+				8493BF88221699E700685BEC /* UserChallengeCell.xib in Resources */,
 				84FA426C2212F460008215C4 /* DateTimeCell.xib in Resources */,
 				84A07FA721D0E2E900269C6B /* SelfIdentitasController.xib in Resources */,
 				84E6933E21D2936E00EA5464 /* HeaderEditProfile.xib in Resources */,
@@ -3441,6 +3448,7 @@
 				1149EB6E22140E800050F366 /* ArgumentRightCell.swift in Sources */,
 				11E107A821CD33CA00B7B074 /* CreateJanjiCoordinator.swift in Sources */,
 				1147F22F21F83F1A001D0D59 /* ClusterDetailViewModel.swift in Sources */,
+				8493BF8A22169B7700685BEC /* UserChallengeCell.swift in Sources */,
 				84B8C1B122153AA4004BC1FE /* LinkPreviewView.swift in Sources */,
 				11E107A721CD33CA00B7B074 /* CreateJanjiViewModel.swift in Sources */,
 				84FF8A9921F21D0000AA8CF3 /* UpdatesCoordinator.swift in Sources */,
