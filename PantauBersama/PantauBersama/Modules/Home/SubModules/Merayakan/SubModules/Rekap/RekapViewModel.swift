@@ -15,10 +15,17 @@ import Common
 final class RekapViewModel: ViewModelType {
     
     var input: Input
-    var output: Output
+    var output: Output!
 
+    let errorTracker = ErrorTracker()
+    let activityIndicator = ActivityIndicator()
+    let headerViewModel = BannerHeaderViewModel()
+    
     private let refreshSubject = PublishSubject<String>()
     private let nextSubject = PublishSubject<Void>()
+    private var filterItems: [PenpolFilterModel.FilterItem] = []
+    private var searchQuery: String?
+    private let disposeBag = DisposeBag()
     
     struct Input {
         let refreshTrigger: AnyObserver<String>
@@ -26,7 +33,6 @@ final class RekapViewModel: ViewModelType {
     
     struct Output {
         let feedsCells: Driver<[ICellConfigurator]>
-//        let moreSelected: Driver<Feeds>
     }
     
     let navigator: MerayakanNavigator
@@ -37,6 +43,13 @@ final class RekapViewModel: ViewModelType {
         input = Input(
             refreshTrigger: refreshSubject.asObserver()
         )
+        
+        searchTrigger?.asObserver()
+            .do(onNext: { [unowned self](query) in
+                self.searchQuery = query
+            })
+            .bind(to: input.refreshTrigger)
+            .disposed(by: disposeBag)
         
         let feedsItems = refreshSubject.startWith("")
             .flatMapLatest { [unowned self] (query) -> Observable<[Feeds]> in
@@ -50,9 +63,10 @@ final class RekapViewModel: ViewModelType {
         let feedsCells = feedsItems
             .map { (list) -> [ICellConfigurator] in
                 return list.map({ (feeds) -> ICellConfigurator in
-                    return LinimasaCellConfigured(item: LinimasaCell.Input(viewModel: self, feeds: feeds))
+                    return RekapCellConfigured(item: RekapViewCell.Input(viewModel: self, feeds: feeds))
                 })
         }
+        
         output = Output(
             feedsCells: feedsCells
         )

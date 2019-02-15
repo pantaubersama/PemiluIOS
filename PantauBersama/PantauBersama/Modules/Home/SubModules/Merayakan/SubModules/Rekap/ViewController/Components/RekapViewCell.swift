@@ -12,6 +12,8 @@ import RxSwift
 import RxCocoa
 import Networking
 
+typealias RekapCellConfigured = CellConfigurator<RekapViewCell, RekapViewCell.Input>
+
 class RekapViewCell: UITableViewCell {
 
     private(set) var disposeBag = DisposeBag()
@@ -32,4 +34,24 @@ class RekapViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+}
+
+extension RekapViewCell: IReusableCell {
+    struct Input {
+        let viewModel: RekapViewModel
+        let feeds: Feeds
+    }
+
+    func configureCell(item: Input) {
+        let feeds = item.feeds
+        let bag = DisposeBag()
+        
+        configure(data: feeds)
+        
+        disposeBag = bag
+    }
+    
+    func configure(data: Feeds) {
+        
+    }
 }
