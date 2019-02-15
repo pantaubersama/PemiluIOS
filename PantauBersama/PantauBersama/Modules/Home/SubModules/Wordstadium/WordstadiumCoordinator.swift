@@ -17,6 +17,7 @@ protocol WordstadiumNavigator {
     func launchNote() -> Observable<Void>
     func launchSearch() -> Observable<Void>
     func launchTooltip() -> Observable<TooltipResult>
+    func launchWordstadiumList() -> Observable<Void>
 }
 
 class WordstadiumCoordinator: BaseCoordinator<Void> {
@@ -37,6 +38,7 @@ class WordstadiumCoordinator: BaseCoordinator<Void> {
 }
 
 extension WordstadiumCoordinator: WordstadiumNavigator {
+    
     func launchProfile(isMyAccount: Bool, userId: String?) -> Observable<Void> {
         let profileCoordinator = ProfileCoordinator(navigationController: navigationController, isMyAccount: isMyAccount, userId: userId)
         return coordinate(to: profileCoordinator)
@@ -65,5 +67,10 @@ extension WordstadiumCoordinator: WordstadiumNavigator {
     func launchTooltip() -> Observable<TooltipResult> {
         let tooltipCoordinator = TooltipCoordinator(navigationController: navigationController)
         return coordinate(to: tooltipCoordinator)
+    }
+    
+    func launchWordstadiumList() -> Observable<Void> {
+        let listCoordinator = WordstadiumListCoordinator(navigationController: navigationController)
+        return coordinate(to: listCoordinator)
     }
 }

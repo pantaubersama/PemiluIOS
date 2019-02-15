@@ -95,6 +95,12 @@
 		1320595F221359C200BE9456 /* WordstadiumCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1320595D221359C200BE9456 /* WordstadiumCollectionCell.xib */; };
 		1320596222135B1500BE9456 /* WordstadiumViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1320596022135B1500BE9456 /* WordstadiumViewCell.swift */; };
 		1320596322135B1500BE9456 /* WordstadiumViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1320596122135B1500BE9456 /* WordstadiumViewCell.xib */; };
+		132EE0352216A39500F0429E /* WordstadiumListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132EE0342216A39500F0429E /* WordstadiumListViewController.swift */; };
+		132EE0372216A3CC00F0429E /* WordstadiumListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132EE0362216A3CC00F0429E /* WordstadiumListViewModel.swift */; };
+		132EE0392216A44E00F0429E /* WordstadiumListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132EE0382216A44E00F0429E /* WordstadiumListCoordinator.swift */; };
+		137369442217175300B698BA /* WordstadiumListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 137369432217175300B698BA /* WordstadiumListHeaderView.swift */; };
+		137369462217176100B698BA /* WordstadiumListHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 137369452217176100B698BA /* WordstadiumListHeaderView.xib */; };
+		137369482217230700B698BA /* SeeMoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 137369472217230700B698BA /* SeeMoreViewModel.swift */; };
 		137A29E821E11D0400F19072 /* HeaderQuizView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 137A29E721E11D0400F19072 /* HeaderQuizView.swift */; };
 		137A29EC21E11E7E00F19072 /* TrendHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 137A29EB21E11E7E00F19072 /* TrendHeaderView.swift */; };
 		137A29EE21E11E8F00F19072 /* TrendHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 137A29ED21E11E8F00F19072 /* TrendHeaderView.xib */; };
@@ -585,6 +591,12 @@
 		1320595D221359C200BE9456 /* WordstadiumCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WordstadiumCollectionCell.xib; sourceTree = "<group>"; };
 		1320596022135B1500BE9456 /* WordstadiumViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordstadiumViewCell.swift; sourceTree = "<group>"; };
 		1320596122135B1500BE9456 /* WordstadiumViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WordstadiumViewCell.xib; sourceTree = "<group>"; };
+		132EE0342216A39500F0429E /* WordstadiumListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordstadiumListViewController.swift; sourceTree = "<group>"; };
+		132EE0362216A3CC00F0429E /* WordstadiumListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordstadiumListViewModel.swift; sourceTree = "<group>"; };
+		132EE0382216A44E00F0429E /* WordstadiumListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordstadiumListCoordinator.swift; sourceTree = "<group>"; };
+		137369432217175300B698BA /* WordstadiumListHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordstadiumListHeaderView.swift; sourceTree = "<group>"; };
+		137369452217176100B698BA /* WordstadiumListHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WordstadiumListHeaderView.xib; sourceTree = "<group>"; };
+		137369472217230700B698BA /* SeeMoreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeMoreViewModel.swift; sourceTree = "<group>"; };
 		137A29E721E11D0400F19072 /* HeaderQuizView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderQuizView.swift; sourceTree = "<group>"; };
 		137A29EB21E11E7E00F19072 /* TrendHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendHeaderView.swift; sourceTree = "<group>"; };
 		137A29ED21E11E8F00F19072 /* TrendHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrendHeaderView.xib; sourceTree = "<group>"; };
@@ -1317,6 +1329,26 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		132EE0322216A33600F0429E /* WordstadiumList */ = {
+			isa = PBXGroup;
+			children = (
+				13736942221715C000B698BA /* Components */,
+				132EE0342216A39500F0429E /* WordstadiumListViewController.swift */,
+				132EE0362216A3CC00F0429E /* WordstadiumListViewModel.swift */,
+				132EE0382216A44E00F0429E /* WordstadiumListCoordinator.swift */,
+			);
+			path = WordstadiumList;
+			sourceTree = "<group>";
+		};
+		13736942221715C000B698BA /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				137369432217175300B698BA /* WordstadiumListHeaderView.swift */,
+				137369452217176100B698BA /* WordstadiumListHeaderView.xib */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		137A29EF21E225DF00F19072 /* Comingsoon */ = {
 			isa = PBXGroup;
 			children = (
@@ -1397,6 +1429,7 @@
 		13E170BA221184200018EDB4 /* SubModules */ = {
 			isa = PBXGroup;
 			children = (
+				132EE0322216A33600F0429E /* WordstadiumList */,
 				84FA42392212A121008215C4 /* Tantangan */,
 				13E170D12213102C0018EDB4 /* Components */,
 				1108871522126FC60041B821 /* LiveDebat */,
@@ -1438,6 +1471,7 @@
 				1320596122135B1500BE9456 /* WordstadiumViewCell.xib */,
 				13E1394F2213FEF000286EDE /* SeeMoreCell.swift */,
 				13E139502213FEF000286EDE /* SeeMoreCell.xib */,
+				137369472217230700B698BA /* SeeMoreViewModel.swift */,
 				13E139532213FF1B00286EDE /* SectionViewCell.swift */,
 				13E139542213FF1B00286EDE /* SectionViewCell.xib */,
 				13E139572215548500286EDE /* SectionViewCell2.swift */,
@@ -3048,6 +3082,7 @@
 				84A07FB421D0ECC100269C6B /* SuccessController.xib in Resources */,
 				84A07FC021D1465C00269C6B /* ReqClusterController.xib in Resources */,
 				84B6D6E221E1028700CD4BC8 /* KategoriClusterController.xib in Resources */,
+				137369462217176100B698BA /* WordstadiumListHeaderView.xib in Resources */,
 				84F892AA21C787D800DC1048 /* Lato-Bold.ttf in Resources */,
 				13F456D421DB897500CE45F1 /* BannerInfoController.xib in Resources */,
 				84FA423E2212A1C7008215C4 /* CreateTantanganController.xib in Resources */,
@@ -3525,6 +3560,7 @@
 				84E521B021F398B600B7CCBA /* ShareTrendViewModel.swift in Sources */,
 				11B3C78D21D110DA00EDCECB /* QuizSummaryViewModel.swift in Sources */,
 				840850C321D25C7D00696CB3 /* ProfileEditController.swift in Sources */,
+				132EE0352216A39500F0429E /* WordstadiumListViewController.swift in Sources */,
 				84FA4279221301F0008215C4 /* HintTantanganViewModel.swift in Sources */,
 				11145F5921EAD31A0046F2AA /* SearchCoordinator.swift in Sources */,
 				118149E721EC625200192E97 /* ListUserViewModel.swift in Sources */,
@@ -3567,6 +3603,7 @@
 				84B7B8D021E5B5D40099E7E3 /* AddKategoriViewModel.swift in Sources */,
 				1147F22B21F83C01001D0D59 /* ClusterDetailController.swift in Sources */,
 				8441DB5321CCF0C200B078DF /* DetailJanjiController.swift in Sources */,
+				132EE0392216A44E00F0429E /* WordstadiumListCoordinator.swift in Sources */,
 				1385A3E721DBC32B00C2910F /* DetailJanjiViewModel.swift in Sources */,
 				842A49FD21D799760050AA51 /* SelfIdentitasViewModel.swift in Sources */,
 				8493BF9422169F8D00685BEC /* PopupChallengeCoordinator.swift in Sources */,
@@ -3622,6 +3659,7 @@
 				8452A4C321DE1EF400196043 /* BuatProfileController.swift in Sources */,
 				84A07F9A21D0DBE200269C6B /* IdentitasController.swift in Sources */,
 				11D066A821E38610003AC9BB /* PenpolFilterCoordinator.swift in Sources */,
+				132EE0372216A3CC00F0429E /* WordstadiumListViewModel.swift in Sources */,
 				13E170D4221311A70018EDB4 /* WordstadiumItemViewCell.swift in Sources */,
 				84D01B9D21D20CA20000492F /* SettingCell.swift in Sources */,
 				84B6D50521F829D100DD742A /* CatatanPilpresController.swift in Sources */,
@@ -3674,6 +3712,7 @@
 				13E139512213FEF000286EDE /* SeeMoreCell.swift in Sources */,
 				13E9D79021E92934006A0890 /* MyJanpolListViewModel.swift in Sources */,
 				8478B8E121FF1C6600CE192A /* NotificationController.swift in Sources */,
+				137369482217230700B698BA /* SeeMoreViewModel.swift in Sources */,
 				84FE6EBE21D5FEA1009A0F55 /* Network+AlertController.swift in Sources */,
 				84FA426A2212F0F5008215C4 /* PernyataanCell.swift in Sources */,
 				8441DB5821CCF7D900B078DF /* DetailJanjiCoordinator.swift in Sources */,
@@ -3698,6 +3737,7 @@
 				13E9D78821E8F025006A0890 /* IJanpolListViewModel.swift in Sources */,
 				84B6D52F21F8F00E00DD742A /* UserSearchNavigator.swift in Sources */,
 				8451E05822045A1A00F03E96 /* InfoNotifController.swift in Sources */,
+				137369442217175300B698BA /* WordstadiumListHeaderView.swift in Sources */,
 				13BF405521EBADBF005C9A64 /* QuestionListViewModel.swift in Sources */,
 				84B8C1BD22157288004BC1FE /* LawanDebatView.swift in Sources */,
 				13F456D621DBA2F600CE45F1 /* BannerHeaderViewModel.swift in Sources */,
