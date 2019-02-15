@@ -7,9 +7,20 @@
 //
 
 import UIKit
+import Common
+import RxSwift
+import RxCocoa
+import Networking
 
 class RekapViewCell: UITableViewCell {
 
+    private(set) var disposeBag = DisposeBag()
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        disposeBag = DisposeBag()
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
