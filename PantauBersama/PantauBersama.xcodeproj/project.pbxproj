@@ -279,6 +279,8 @@
 		848B039C21E7AADF002CAA40 /* WKWebview.xib in Resources */ = {isa = PBXBuildFile; fileRef = 848B039B21E7AADF002CAA40 /* WKWebview.xib */; };
 		848B039F21E7B538002CAA40 /* WKWebCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848B039E21E7B538002CAA40 /* WKWebCoordinator.swift */; };
 		848B03A121E7B5DE002CAA40 /* WKWebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848B03A021E7B5DE002CAA40 /* WKWebViewModel.swift */; };
+		8493BF732216789600685BEC /* SuccessPromoteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8493BF722216789600685BEC /* SuccessPromoteView.xib */; };
+		8493BF752216797B00685BEC /* SucceessPromoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8493BF742216797B00685BEC /* SucceessPromoteView.swift */; };
 		849CABCA21CE89DD00912F8E /* SettingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849CABC921CE89DD00912F8E /* SettingController.swift */; };
 		849CABCC21CE8A5100912F8E /* SettingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849CABCB21CE8A5100912F8E /* SettingCoordinator.swift */; };
 		849CABCE21CE8AC300912F8E /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849CABCD21CE8AC300912F8E /* SettingViewModel.swift */; };
@@ -764,6 +766,8 @@
 		848B039B21E7AADF002CAA40 /* WKWebview.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WKWebview.xib; sourceTree = "<group>"; };
 		848B039E21E7B538002CAA40 /* WKWebCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKWebCoordinator.swift; sourceTree = "<group>"; };
 		848B03A021E7B5DE002CAA40 /* WKWebViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKWebViewModel.swift; sourceTree = "<group>"; };
+		8493BF722216789600685BEC /* SuccessPromoteView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SuccessPromoteView.xib; sourceTree = "<group>"; };
+		8493BF742216797B00685BEC /* SucceessPromoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SucceessPromoteView.swift; sourceTree = "<group>"; };
 		849CABC921CE89DD00912F8E /* SettingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingController.swift; sourceTree = "<group>"; };
 		849CABCB21CE8A5100912F8E /* SettingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCoordinator.swift; sourceTree = "<group>"; };
 		849CABCD21CE8AC300912F8E /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
@@ -2137,6 +2141,15 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
+		8493BF712216785800685BEC /* SuccesPromote */ = {
+			isa = PBXGroup;
+			children = (
+				8493BF722216789600685BEC /* SuccessPromoteView.xib */,
+				8493BF742216797B00685BEC /* SucceessPromoteView.swift */,
+			);
+			path = SuccesPromote;
+			sourceTree = "<group>";
+		};
 		849CABC521CE897E00912F8E /* Setting */ = {
 			isa = PBXGroup;
 			children = (
@@ -2530,6 +2543,7 @@
 		84E2854121CA189B00298E31 /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
+				8493BF712216785800685BEC /* SuccesPromote */,
 				84B8C1C922157B3C004BC1FE /* PromoteView */,
 				84B8C1C022157562004BC1FE /* FooterProfileView */,
 				84B8C1B922157099004BC1FE /* LawanDebatView */,
@@ -2954,6 +2968,7 @@
 				13E170D5221311A70018EDB4 /* WordstadiumItemViewCell.xib in Resources */,
 				84A07F9721D0D4EA00269C6B /* IdentitasController.xib in Resources */,
 				845C570D21CE0C8100EDCDFE /* ClusterCell.xib in Resources */,
+				8493BF732216789600685BEC /* SuccessPromoteView.xib in Resources */,
 				84A07FB421D0ECC100269C6B /* SuccessController.xib in Resources */,
 				84A07FC021D1465C00269C6B /* ReqClusterController.xib in Resources */,
 				84B6D6E221E1028700CD4BC8 /* KategoriClusterController.xib in Resources */,
@@ -3377,6 +3392,7 @@
 				840850BF21D256C200696CB3 /* SectionOfProfileInfoData.swift in Sources */,
 				84619D3821DA851200EB58CF /* EditViewModel.swift in Sources */,
 				8452A4D421DE55DE00196043 /* SosmedCoordinator.swift in Sources */,
+				8493BF752216797B00685BEC /* SucceessPromoteView.swift in Sources */,
 				1149EB6E22140E800050F366 /* ArgumentRightCell.swift in Sources */,
 				11E107A821CD33CA00B7B074 /* CreateJanjiCoordinator.swift in Sources */,
 				1147F22F21F83F1A001D0D59 /* ClusterDetailViewModel.swift in Sources */,
