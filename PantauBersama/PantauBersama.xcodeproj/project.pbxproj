@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		043EE16A2215BE9D008C59CD /* RekapViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043EE1682215BE9D008C59CD /* RekapViewCell.swift */; };
+		043EE16B2215BE9D008C59CD /* RekapViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 043EE1692215BE9D008C59CD /* RekapViewCell.xib */; };
 		04E5070F2214E5E900B342E7 /* RekapCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E5070A2214E5E900B342E7 /* RekapCoordinator.swift */; };
 		04E507102214E5E900B342E7 /* RekapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E5070C2214E5E900B342E7 /* RekapController.swift */; };
 		04E507112214E5E900B342E7 /* RekapController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04E5070D2214E5E900B342E7 /* RekapController.xib */; };
@@ -473,6 +475,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		043EE1682215BE9D008C59CD /* RekapViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RekapViewCell.swift; sourceTree = "<group>"; };
+		043EE1692215BE9D008C59CD /* RekapViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RekapViewCell.xib; sourceTree = "<group>"; };
 		04A224A86FBFD6EFE137644F /* Pods-PantauBersama.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PantauBersama.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-PantauBersama/Pods-PantauBersama.debug.xcconfig"; sourceTree = "<group>"; };
 		04E5070A2214E5E900B342E7 /* RekapCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RekapCoordinator.swift; sourceTree = "<group>"; };
 		04E5070C2214E5E900B342E7 /* RekapController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RekapController.swift; sourceTree = "<group>"; };
@@ -947,6 +951,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		043EE1672215BE1C008C59CD /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				043EE1682215BE9D008C59CD /* RekapViewCell.swift */,
+				043EE1692215BE9D008C59CD /* RekapViewCell.xib */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		04E506FA2214670F00B342E7 /* Merayakan */ = {
 			isa = PBXGroup;
 			children = (
@@ -979,6 +992,7 @@
 		04E5070B2214E5E900B342E7 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				043EE1672215BE1C008C59CD /* Components */,
 				04E5070C2214E5E900B342E7 /* RekapController.swift */,
 				04E5070D2214E5E900B342E7 /* RekapController.xib */,
 			);
@@ -2952,6 +2966,7 @@
 				84307F432200352B006DE04B /* ob4_lapor.json in Resources */,
 				84E521BA21F4A70E00B7CCBA /* ItemOnboardingController.xib in Resources */,
 				84B7B8CC21E5B24B0099E7E3 /* AddKategoriController.xib in Resources */,
+				043EE16B2215BE9D008C59CD /* RekapViewCell.xib in Resources */,
 				84F892AB21C787D800DC1048 /* Lato-BoldItalic.ttf in Resources */,
 				11145F6621EB44920046F2AA /* CustomMenuCell.xib in Resources */,
 				11E107A921CD33CA00B7B074 /* CreateJanjiController.xib in Resources */,
@@ -3349,6 +3364,7 @@
 				840850BF21D256C200696CB3 /* SectionOfProfileInfoData.swift in Sources */,
 				84619D3821DA851200EB58CF /* EditViewModel.swift in Sources */,
 				8452A4D421DE55DE00196043 /* SosmedCoordinator.swift in Sources */,
+				043EE16A2215BE9D008C59CD /* RekapViewCell.swift in Sources */,
 				1149EB6E22140E800050F366 /* ArgumentRightCell.swift in Sources */,
 				11E107A821CD33CA00B7B074 /* CreateJanjiCoordinator.swift in Sources */,
 				1147F22F21F83F1A001D0D59 /* ClusterDetailViewModel.swift in Sources */,

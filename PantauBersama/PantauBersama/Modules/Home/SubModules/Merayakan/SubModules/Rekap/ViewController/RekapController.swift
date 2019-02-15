@@ -13,8 +13,11 @@ import Common
 import AlamofireImage
 
 class RekapController: UIViewController {
+    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var navbar: Navbar!
-    var viewModel: RekapViewModel!
+    private var headerView: BannerHeaderView!
+    private var emptyView = EmptyView()
+    private var viewModel: RekapViewModel!
     
     private let disposeBag = DisposeBag()
     

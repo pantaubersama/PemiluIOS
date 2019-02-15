@@ -22,7 +22,7 @@ class MerayakanController: UIViewController {
     lazy var rekapViewModel = RekapViewModel(navigator: viewModel.navigator, showTableHeader: true)
     private lazy var rekapController = RekapController(viewModel: rekapViewModel)
 
-    
+    private let disposeBag = DisposeBag()
     private lazy var searchBar: UISearchBar = {
         let search = UISearchBar()
         search.searchBarStyle = .minimal
@@ -35,6 +35,26 @@ class MerayakanController: UIViewController {
         
         navbar.backgroundColor = Color.primary_red
 
+        add(childViewController: rekapController, context: container)
+        add(childViewController: rekapController, context: container)
+        
+        // MARK
+        // segmented control value
+        // assign extension Reactive UIControl
+        segmentedControl.rx.value
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [unowned self] i in
+                UIView.animate(withDuration: 0.3, animations: {
+                    if i == 0 {
+                        self.rekapController.view.alpha = 1.0
+                        self.rekapController.view.alpha = 0.0
+                    } else {
+                        self.rekapController.view.alpha = 0.0
+                        self.rekapController.view.alpha = 1.0
+                    }
+                })
+            })
+            .disposed(by: disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
