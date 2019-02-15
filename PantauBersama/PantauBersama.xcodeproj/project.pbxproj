@@ -289,6 +289,10 @@
 		8493BF86221691A200685BEC /* ChallengeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8493BF85221691A200685BEC /* ChallengeCoordinator.swift */; };
 		8493BF88221699E700685BEC /* UserChallengeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8493BF87221699E700685BEC /* UserChallengeCell.xib */; };
 		8493BF8A22169B7700685BEC /* UserChallengeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8493BF8922169B7700685BEC /* UserChallengeCell.swift */; };
+		8493BF8E22169CF400685BEC /* PopupChallengeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8493BF8D22169CF400685BEC /* PopupChallengeController.xib */; };
+		8493BF9022169F1800685BEC /* PopupChallengeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8493BF8F22169F1800685BEC /* PopupChallengeController.swift */; };
+		8493BF9222169F4D00685BEC /* PopupChallengeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8493BF9122169F4D00685BEC /* PopupChallengeViewModel.swift */; };
+		8493BF9422169F8D00685BEC /* PopupChallengeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8493BF9322169F8D00685BEC /* PopupChallengeCoordinator.swift */; };
 		849CABCA21CE89DD00912F8E /* SettingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849CABC921CE89DD00912F8E /* SettingController.swift */; };
 		849CABCC21CE8A5100912F8E /* SettingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849CABCB21CE8A5100912F8E /* SettingCoordinator.swift */; };
 		849CABCE21CE8AC300912F8E /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849CABCD21CE8AC300912F8E /* SettingViewModel.swift */; };
@@ -784,6 +788,10 @@
 		8493BF85221691A200685BEC /* ChallengeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeCoordinator.swift; sourceTree = "<group>"; };
 		8493BF87221699E700685BEC /* UserChallengeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserChallengeCell.xib; sourceTree = "<group>"; };
 		8493BF8922169B7700685BEC /* UserChallengeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserChallengeCell.swift; sourceTree = "<group>"; };
+		8493BF8D22169CF400685BEC /* PopupChallengeController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopupChallengeController.xib; sourceTree = "<group>"; };
+		8493BF8F22169F1800685BEC /* PopupChallengeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupChallengeController.swift; sourceTree = "<group>"; };
+		8493BF9122169F4D00685BEC /* PopupChallengeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupChallengeViewModel.swift; sourceTree = "<group>"; };
+		8493BF9322169F8D00685BEC /* PopupChallengeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupChallengeCoordinator.swift; sourceTree = "<group>"; };
 		849CABC921CE89DD00912F8E /* SettingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingController.swift; sourceTree = "<group>"; };
 		849CABCB21CE8A5100912F8E /* SettingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCoordinator.swift; sourceTree = "<group>"; };
 		849CABCD21CE8AC300912F8E /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
@@ -2170,6 +2178,7 @@
 		8493BF7622167E2400685BEC /* Challenge */ = {
 			isa = PBXGroup;
 			children = (
+				8493BF8B22169CB700685BEC /* SubModules */,
 				8493BF7C2216891900685BEC /* Components */,
 				8493BF792216847B00685BEC /* ViewController */,
 				8493BF832216919800685BEC /* ChallengeViewModel.swift */,
@@ -2196,6 +2205,25 @@
 				8493BF8922169B7700685BEC /* UserChallengeCell.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		8493BF8B22169CB700685BEC /* SubModules */ = {
+			isa = PBXGroup;
+			children = (
+				8493BF8C22169CDC00685BEC /* PopupChallenge */,
+				8493BF9122169F4D00685BEC /* PopupChallengeViewModel.swift */,
+			);
+			path = SubModules;
+			sourceTree = "<group>";
+		};
+		8493BF8C22169CDC00685BEC /* PopupChallenge */ = {
+			isa = PBXGroup;
+			children = (
+				8493BF8D22169CF400685BEC /* PopupChallengeController.xib */,
+				8493BF8F22169F1800685BEC /* PopupChallengeController.swift */,
+				8493BF9322169F8D00685BEC /* PopupChallengeCoordinator.swift */,
+			);
+			path = PopupChallenge;
 			sourceTree = "<group>";
 		};
 		849CABC521CE897E00912F8E /* Setting */ = {
@@ -3075,6 +3103,7 @@
 				118149F021EC718800192E97 /* ListUserCell.xib in Resources */,
 				84307F442200352B006DE04B /* ob1_wordstadium.json in Resources */,
 				845C571721CE1B5900EDCDFE /* BadgeCell.xib in Resources */,
+				8493BF8E22169CF400685BEC /* PopupChallengeController.xib in Resources */,
 				841CDA3D21C8BC1C0015680C /* LinimasaController.xib in Resources */,
 				8493BF88221699E700685BEC /* UserChallengeCell.xib in Resources */,
 				84FA426C2212F460008215C4 /* DateTimeCell.xib in Resources */,
@@ -3473,6 +3502,7 @@
 				8441DB3C21CCA6C500B078DF /* ItemRadioCell.swift in Sources */,
 				11145F6521EB44920046F2AA /* CustomMenuCell.swift in Sources */,
 				84A07F9F21D0DFA200269C6B /* KTPController.swift in Sources */,
+				8493BF9222169F4D00685BEC /* PopupChallengeViewModel.swift in Sources */,
 				842A4A0121D7C5160050AA51 /* CameraController.swift in Sources */,
 				11D066B021E399C1003AC9BB /* FilterRadioCell.swift in Sources */,
 				84A07FB121D0E7B000269C6B /* SelfIdentitasController.swift in Sources */,
@@ -3539,6 +3569,7 @@
 				8441DB5321CCF0C200B078DF /* DetailJanjiController.swift in Sources */,
 				1385A3E721DBC32B00C2910F /* DetailJanjiViewModel.swift in Sources */,
 				842A49FD21D799760050AA51 /* SelfIdentitasViewModel.swift in Sources */,
+				8493BF9422169F8D00685BEC /* PopupChallengeCoordinator.swift in Sources */,
 				84FE6EBA21D5FC9B009A0F55 /* ActivityIndicator.swift in Sources */,
 				11E107DD21CFD99900B7B074 /* QuizResultController.swift in Sources */,
 				84B2521B21CAA71200565D82 /* ViewModelType.swift in Sources */,
@@ -3617,6 +3648,7 @@
 				1161F9EE21DF378400C1BAD5 /* QuizModel.swift in Sources */,
 				11145F5B21EAD3240046F2AA /* SearchViewModel.swift in Sources */,
 				84B2523021CAB61300565D82 /* OnboardingViewModel.swift in Sources */,
+				8493BF9022169F1800685BEC /* PopupChallengeController.swift in Sources */,
 				13F456C921DB88B000CE45F1 /* BannerInfoCoordinator.swift in Sources */,
 				84FA42772213015B008215C4 /* HintTantanganView.swift in Sources */,
 				84B2522E21CAB53C00565D82 /* OnboardingCoordinator.swift in Sources */,
