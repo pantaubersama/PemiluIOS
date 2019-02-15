@@ -32,9 +32,29 @@ class ChallengeController: UIViewController {
     @IBOutlet weak var btnBack: ImageButton!
     
     var viewModel: ChallengeViewModel!
+    private let disposeBag: DisposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        btnBack.rx.tap
+            .bind(to: viewModel.input.backI)
+            .disposed(by: disposeBag)
+        
+        
+        viewModel.output.backO
+            .drive()
+            .disposed(by: disposeBag)
     }
     
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.navigationBar.isHidden = false
+    }
 }
