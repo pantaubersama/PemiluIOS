@@ -12,8 +12,8 @@ import Networking
 
 
 protocol MerayakanNavigator: RekapNavigator {
-    func launchBannerInfo(bannerInfo: BannerInfo) -> Observable<Void>
-    func launchDetail() -> Observable<Void>
+    func launchSearch() -> Observable<Void>
+    func launchNotifications() -> Observable<Void>
 }
 
 class MerayakanCoordinator: BaseCoordinator<Void> {
@@ -34,9 +34,19 @@ class MerayakanCoordinator: BaseCoordinator<Void> {
 }
 
 extension MerayakanCoordinator : MerayakanNavigator {
-    func launchDetail() -> Observable<Void> {
-        let bannerInfoCoordinator = DetailCoordinator(navigationController: self.navigationController, bannerInfo: bannerInfo)
-        return coordinate(to: bannerInfoCoordinator)
+    func launchSearch() -> Observable<Void> {
+        let notificationCoordinator = NotificationCoordinator(navigationController: navigationController)
+        return coordinate(to: notificationCoordinator)
+    }
+    
+    func launchKecamatan() -> Observable<Void> {
+        let notificationCoordinator = NotificationCoordinator(navigationController: navigationController)
+        return coordinate(to: notificationCoordinator)
+    }
+    
+    func launchTps() -> Observable<Void> {
+        let notificationCoordinator = NotificationCoordinator(navigationController: navigationController)
+        return coordinate(to: notificationCoordinator)
     }
     
     func launchBannerInfo(bannerInfo: BannerInfo) -> Observable<Void> {
@@ -44,5 +54,8 @@ extension MerayakanCoordinator : MerayakanNavigator {
         return coordinate(to: bannerInfoCoordinator)
     }
     
-    
+    func launchNotifications() -> Observable<Void> {
+        let notificationCoordinator = NotificationCoordinator(navigationController: navigationController)
+        return coordinate(to: notificationCoordinator)
+    }
 }

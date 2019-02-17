@@ -22,7 +22,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CLv-9f-E13">
                         <rect key="frame" x="10" y="8" width="300" height="177.5"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="edB-GO-3VO" userLabel="Cluster">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="edB-GO-3VO" userLabel="TPS">
                                 <rect key="frame" x="0.0" y="41" width="300" height="34"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Anik Kemala," textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c0q-uS-j19" userLabel="Name">
@@ -197,6 +197,12 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="regionTopConstraint" destination="dMS-9p-jPt" id="Q5N-qw-vLX"/>
+                <outlet property="regionView" destination="me6-Lx-dTx" id="S8A-uR-xaG"/>
+                <outlet property="tpsTopConstraint" destination="999-nq-qQ7" id="HJ8-zx-j5d"/>
+                <outlet property="tpsView" destination="edB-GO-3VO" id="Y6a-yV-cjr"/>
+            </connections>
             <point key="canvasLocation" x="137.59999999999999" y="220.3898050974513"/>
         </tableViewCell>
     </objects>

@@ -12,28 +12,34 @@ import RxCocoa
 import Common
 import AlamofireImage
 
+
+enum RekapType {
+    case kota
+    case kecamatan
+    case tps
+}
+
 class RekapController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     private var emptyView = EmptyView()
-    private var viewModel: RekapViewModel!
+    var viewModel: RekapViewModel!
     
     private let disposeBag = DisposeBag()
     
-    convenience init(viewModel: RekapViewModel) {
+    private var pageType : RekapType!
+    
+    convenience init(viewModel: RekapViewModel, pageType type: RekapType = .kota) {
         self.init()
-        self.viewModel = viewModel
+        self.viewModel  = viewModel
+        self.pageType   = type
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel.input.loadDataTrigger.onNext(())
+        // viewModel.input.loadDataTrigger.onNext(())
         
-//        let button = UIButton()
-//        button.rx.tap
-//            .bind(to: viewModel.input.loadDataTrigger)
-//            .disposed(by: disposeBag)
-        tableView.estimatedRowHeight = 160.0
+        tableView.estimatedRowHeight = 150.0
         tableView.separatorStyle = .none
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         tableView.tableFooterView = UIView()
@@ -41,44 +47,49 @@ class RekapController: UIViewController {
         
         tableView.registerReusableCell(RekapViewCell.self)
         
-        tableView.delegate = nil
-        tableView.dataSource = nil
-        viewModel.output.items.drive(tableView.rx.items) { table, row, item -> UITableViewCell in
-            let cell = table.dequeueReusableCell() as RekapViewCell
-            
-            return cell
-        }
-        .disposed(by: disposeBag)
+        tableView.delegate = self
+        tableView.dataSource = self
+//        viewModel.output.items.drive(tableView.rx.items) { table, row, item -> UITableViewCell in
+//            let cell = table.dequeueReusableCell() as RekapViewCell
+//
+//            return cell
+//        }
+//        .disposed(by: disposeBag)
         
-        let a = tableView.rx.itemSelected
-        a.bind { [unowned self](indexPath) in
-            self.viewModel.input.launchDetailTrigger.onNext(())
-        }
-        .disposed(by: disposeBag)
+//        let a = tableView.rx.itemSelected
+//        a.bind { [unowned self](indexPath) in
+//            self.viewModel.input.kecamatanTrigger.onNext(())
+//        }
+//        .disposed(by: disposeBag)
         
-        viewModel.output.launchDetail.drive().disposed(by: disposeBag)
+//        viewModel.output.kecamatanO.drive().disposed(by: disposeBag)
     }
     
 }
 
-//extension RekapController : UITableViewDataSource {
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return 3
-//    }
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell() as RekapViewCell
-//
-//        return cell
-//    }
-//}
-//
-//extension RekapController : UITableViewDelegate {
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        //
-//    }
-//
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return 160.0
-//    }
-//}
+extension RekapController : UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 3
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell() as RekapViewCell
+        cell.configure(data: "", type: self.pageType)
+        return cell
+    }
+}
+
+extension RekapController : UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let navigationController = self.navigationController else { return }
+        let rekapCoordinator    = RekapCoordinator(navigationController: navigationController)
+        rekapCoordinator
+        .start()
+        .subscribe()
+        .disposed(by: disposeBag)
+    }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 150.0
+    }
+}

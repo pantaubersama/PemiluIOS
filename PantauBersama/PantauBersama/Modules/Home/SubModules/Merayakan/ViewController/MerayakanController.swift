@@ -19,9 +19,10 @@ class MerayakanController: UIViewController {
     @IBOutlet weak var navbar: Navbar!
     var viewModel: MerayakanViewModel!
     
-    lazy var rekapViewModel = RekapViewModel(navigator: viewModel.navigator, showTableHeader: true)
-    private lazy var rekapController = RekapController(viewModel: rekapViewModel)
-
+    lazy var rekapViewModel = RekapViewModel(navigator: viewModel.navigator)
+    private lazy var rekapController = RekapController(viewModel: rekapViewModel, pageType: .kota)
+    private lazy var perhitunganController = RekapController(viewModel: rekapViewModel, pageType: .tps)
+    
     private let disposeBag = DisposeBag()
     private lazy var searchBar: UISearchBar = {
         let search = UISearchBar()
@@ -35,7 +36,7 @@ class MerayakanController: UIViewController {
         
         navbar.backgroundColor = Color.primary_red
 
-        add(childViewController: rekapController, context: container)
+        add(childViewController: perhitunganController, context: container)
         add(childViewController: rekapController, context: container)
         
         // MARK
@@ -46,10 +47,10 @@ class MerayakanController: UIViewController {
             .subscribe(onNext: { [unowned self] i in
                 UIView.animate(withDuration: 0.3, animations: {
                     if i == 0 {
-                        self.rekapController.view.alpha = 1.0
+                        self.perhitunganController.view.alpha = 1.0
                         self.rekapController.view.alpha = 0.0
                     } else {
-                        self.rekapController.view.alpha = 0.0
+                        self.perhitunganController.view.alpha = 0.0
                         self.rekapController.view.alpha = 1.0
                     }
                 })

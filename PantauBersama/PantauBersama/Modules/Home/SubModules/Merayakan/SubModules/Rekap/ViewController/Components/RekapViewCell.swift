@@ -12,8 +12,13 @@ import RxSwift
 import RxCocoa
 import Networking
 
-class RekapViewCell: UITableViewCell, IReusableCell {
+class RekapViewCell: UITableViewCell {
 
+    @IBOutlet weak var regionView: UIView!
+    @IBOutlet weak var tpsView: UIView!
+    @IBOutlet weak var regionTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var tpsTopConstraint: NSLayoutConstraint!
+    
     private(set) var disposeBag = DisposeBag()
     
     override func prepareForReuse() {
@@ -32,4 +37,22 @@ class RekapViewCell: UITableViewCell, IReusableCell {
         // Configure the view for the selected state
     }
     
+}
+
+extension RekapViewCell : IReusableCell {
+    
+    // Setup UI
+    func configure(data: String, type: RekapType) {
+        switch type {
+        case .tps:
+//            self.regionTopConstraint.constant =
+            self.regionView.isHidden    = true
+            self.regionTopConstraint.constant  = -(self.regionView.frame.height)
+            self.tpsView.isHidden       = false
+        default:
+            self.tpsView.isHidden       = true
+            self.tpsTopConstraint.constant  = -(self.tpsView.frame.height)
+            self.regionView.isHidden    = false
+        }
+    }
 }

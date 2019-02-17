@@ -21,37 +21,36 @@ final class RekapViewModel: ViewModelType {
     struct Input {
         let refreshTrigger: AnyObserver<String>
         let loadDataTrigger: AnyObserver<Void>
-        let launchDetailTrigger: AnyObserver<Void>
+        let kecamatanTrigger: AnyObserver<Void>
     }
     
     struct Output {
         // let feedsCells: Driver<[ICellConfigurator]>
         let items: Driver<[String]>
-        let launchDetail: Driver<Void>
+        let kecamatanO: Driver<Void>
     }
     
-    let navigator: MerayakanNavigator
+    let navigator: RekapNavigator
     
     let errorTracker = ErrorTracker()
     let activityIndicator = ActivityIndicator()
     let headerViewModel = BannerHeaderViewModel()
     
-    private let refreshSubject = PublishSubject<String>()
-    private let nextSubject = PublishSubject<Void>()
-    private let loadDataSubject = PublishSubject<Void>()
-    private let launcDetailTrigger = PublishSubject<Void>()
+    private let refreshSubject      = PublishSubject<String>()
+    private let loadDataSubject     = PublishSubject<Void>()
+    private let kecamatanSubject    = PublishSubject<Void>()
     private var filterItems: [PenpolFilterModel.FilterItem] = []
     private var searchQuery: String?
     private let disposeBag = DisposeBag()
     
     
-    init(navigator: MerayakanNavigator, searchTrigger: PublishSubject<String>? = nil, showTableHeader: Bool) {
+    init(navigator: RekapNavigator) {
         self.navigator = navigator
     
         input = Input(
             refreshTrigger: refreshSubject.asObserver(),
             loadDataTrigger: loadDataSubject.asObserver(),
-            launchDetailTrigger: launcDetailTrigger.asObserver()
+            kecamatanTrigger: kecamatanSubject.asObserver()
         )
         
         let items = loadDataSubject
@@ -63,40 +62,14 @@ final class RekapViewModel: ViewModelType {
             }
             .asDriver(onErrorJustReturn: [])
         
-        let launcDetail = launcDetailTrigger
-            .flatMap({ _ in navigator.launchDetail() })
-            .asDriverOnErrorJustComplete()
-        
-        
-        searchTrigger?.asObserver()
-            .do(onNext: { [unowned self](query) in
-                self.searchQuery = query
-            })
-            .bind(to: input.refreshTrigger)
-            .disposed(by: disposeBag)
-        
-        let feedsItems = refreshSubject.startWith("")
-            .flatMapLatest { [unowned self] (query) -> Observable<[Feeds]> in
-                return self.paginateItems(nextBatchTrigger: self.nextSubject.asObservable(), filter: self.filterItems.first?.paramValue ?? "team_all", query: self.searchQuery ?? query)
-                    .trackError(self.errorTracker)
-                    .trackActivity(self.activityIndicator)
-                    .catchErrorJustReturn([])
-            }
-            .asDriver(onErrorJustReturn: [])
-        
-//        let feedsCells = feedsItems
-//            .map { (list) -> [ICellConfigurator] in
-//                return list.map({ (feeds) -> ICellConfigurator in
-//                    return RekapCellConfigured(item: RekapViewCell.Input(viewModel: self, feeds: feeds))
-//                })
-//        }
-        
-        
+        let kecamatan = kecamatanSubject
+        .flatMapLatest({ navigator.launchKecamatan() })
+        .asDriverOnErrorJustComplete()
         
         output = Output(
             // feedsCells: feedsCells
-            items: items
-            
+            items: items,
+            kecamatanO: kecamatan
         )
     }
     
