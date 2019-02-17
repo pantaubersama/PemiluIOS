@@ -21,7 +21,7 @@ public struct FirebaseBroadcastResponse: Codable {
 }
 
 public struct Broadcast: Codable {
-    public let id: String
+    public let id: String?
     public let title: String?
     public let description: String?
     public let eventType: String?
