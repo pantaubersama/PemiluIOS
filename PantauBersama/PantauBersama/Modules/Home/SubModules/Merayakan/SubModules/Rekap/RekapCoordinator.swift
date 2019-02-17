@@ -12,7 +12,8 @@ import Networking
 
 
 protocol RekapNavigator {
-    func launchBannerInfo(bannerInfo: BannerInfo) -> Observable<Void>
+//    func launchBannerInfo(bannerInfo: BannerInfo) -> Observable<Void>
+    func launchDetail() -> Observable<Void>
 }
 
 class RekapCoordinator: BaseCoordinator<Void> {

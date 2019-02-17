@@ -16,33 +16,57 @@ final class RekapViewModel: ViewModelType {
     
     var input: Input
     var output: Output!
-
+    
+    
+    struct Input {
+        let refreshTrigger: AnyObserver<String>
+        let loadDataTrigger: AnyObserver<Void>
+        let launchDetailTrigger: AnyObserver<Void>
+    }
+    
+    struct Output {
+        // let feedsCells: Driver<[ICellConfigurator]>
+        let items: Driver<[String]>
+        let launchDetail: Driver<Void>
+    }
+    
+    let navigator: MerayakanNavigator
+    
     let errorTracker = ErrorTracker()
     let activityIndicator = ActivityIndicator()
     let headerViewModel = BannerHeaderViewModel()
     
     private let refreshSubject = PublishSubject<String>()
     private let nextSubject = PublishSubject<Void>()
+    private let loadDataSubject = PublishSubject<Void>()
+    private let launcDetailTrigger = PublishSubject<Void>()
     private var filterItems: [PenpolFilterModel.FilterItem] = []
     private var searchQuery: String?
     private let disposeBag = DisposeBag()
     
-    struct Input {
-        let refreshTrigger: AnyObserver<String>
-    }
-    
-    struct Output {
-        let feedsCells: Driver<[ICellConfigurator]>
-    }
-    
-    let navigator: MerayakanNavigator
     
     init(navigator: MerayakanNavigator, searchTrigger: PublishSubject<String>? = nil, showTableHeader: Bool) {
         self.navigator = navigator
     
         input = Input(
-            refreshTrigger: refreshSubject.asObserver()
+            refreshTrigger: refreshSubject.asObserver(),
+            loadDataTrigger: loadDataSubject.asObserver(),
+            launchDetailTrigger: launcDetailTrigger.asObserver()
         )
+        
+        let items = loadDataSubject
+            .do(onNext: { (_) in
+                print("clicked")
+            })
+            .map { (_) -> [String] in
+                return ["a", "b", "c"]
+            }
+            .asDriver(onErrorJustReturn: [])
+        
+        let launcDetail = launcDetailTrigger
+            .flatMap({ _ in navigator.launchDetail() })
+            .asDriverOnErrorJustComplete()
+        
         
         searchTrigger?.asObserver()
             .do(onNext: { [unowned self](query) in
@@ -60,15 +84,19 @@ final class RekapViewModel: ViewModelType {
             }
             .asDriver(onErrorJustReturn: [])
         
-        let feedsCells = feedsItems
-            .map { (list) -> [ICellConfigurator] in
-                return list.map({ (feeds) -> ICellConfigurator in
-                    return RekapCellConfigured(item: RekapViewCell.Input(viewModel: self, feeds: feeds))
-                })
-        }
+//        let feedsCells = feedsItems
+//            .map { (list) -> [ICellConfigurator] in
+//                return list.map({ (feeds) -> ICellConfigurator in
+//                    return RekapCellConfigured(item: RekapViewCell.Input(viewModel: self, feeds: feeds))
+//                })
+//        }
+        
+        
         
         output = Output(
-            feedsCells: feedsCells
+            // feedsCells: feedsCells
+            items: items
+            
         )
     }
     

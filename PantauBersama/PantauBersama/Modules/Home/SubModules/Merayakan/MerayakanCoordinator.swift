@@ -11,8 +11,9 @@ import RxSwift
 import Networking
 
 
-protocol MerayakanNavigator {
+protocol MerayakanNavigator: RekapNavigator {
     func launchBannerInfo(bannerInfo: BannerInfo) -> Observable<Void>
+    func launchDetail() -> Observable<Void>
 }
 
 class MerayakanCoordinator: BaseCoordinator<Void> {
@@ -33,8 +34,15 @@ class MerayakanCoordinator: BaseCoordinator<Void> {
 }
 
 extension MerayakanCoordinator : MerayakanNavigator {
+    func launchDetail() -> Observable<Void> {
+        let bannerInfoCoordinator = DetailCoordinator(navigationController: self.navigationController, bannerInfo: bannerInfo)
+        return coordinate(to: bannerInfoCoordinator)
+    }
+    
     func launchBannerInfo(bannerInfo: BannerInfo) -> Observable<Void> {
         let bannerInfoCoordinator = BannerInfoCoordinator(navigationController: self.navigationController, bannerInfo: bannerInfo)
         return coordinate(to: bannerInfoCoordinator)
     }
+    
+    
 }

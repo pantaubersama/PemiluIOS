@@ -9,9 +9,9 @@
 /* Begin PBXBuildFile section */
 		043EE16A2215BE9D008C59CD /* RekapViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043EE1682215BE9D008C59CD /* RekapViewCell.swift */; };
 		043EE16B2215BE9D008C59CD /* RekapViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 043EE1692215BE9D008C59CD /* RekapViewCell.xib */; };
+		043EE17422180F76008C59CD /* RekapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043EE17222180F76008C59CD /* RekapController.swift */; };
+		043EE17522180F76008C59CD /* RekapController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 043EE17322180F76008C59CD /* RekapController.xib */; };
 		04E5070F2214E5E900B342E7 /* RekapCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E5070A2214E5E900B342E7 /* RekapCoordinator.swift */; };
-		04E507102214E5E900B342E7 /* RekapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E5070C2214E5E900B342E7 /* RekapController.swift */; };
-		04E507112214E5E900B342E7 /* RekapController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04E5070D2214E5E900B342E7 /* RekapController.xib */; };
 		04E507122214E5E900B342E7 /* RekapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E5070E2214E5E900B342E7 /* RekapViewModel.swift */; };
 		04E507162214E62500B342E7 /* MerayakanController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E507142214E62500B342E7 /* MerayakanController.swift */; };
 		04E507172214E62500B342E7 /* MerayakanController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04E507152214E62500B342E7 /* MerayakanController.xib */; };
@@ -477,10 +477,10 @@
 /* Begin PBXFileReference section */
 		043EE1682215BE9D008C59CD /* RekapViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RekapViewCell.swift; sourceTree = "<group>"; };
 		043EE1692215BE9D008C59CD /* RekapViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RekapViewCell.xib; sourceTree = "<group>"; };
+		043EE17222180F76008C59CD /* RekapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RekapController.swift; sourceTree = "<group>"; };
+		043EE17322180F76008C59CD /* RekapController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RekapController.xib; sourceTree = "<group>"; };
 		04A224A86FBFD6EFE137644F /* Pods-PantauBersama.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PantauBersama.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-PantauBersama/Pods-PantauBersama.debug.xcconfig"; sourceTree = "<group>"; };
 		04E5070A2214E5E900B342E7 /* RekapCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RekapCoordinator.swift; sourceTree = "<group>"; };
-		04E5070C2214E5E900B342E7 /* RekapController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RekapController.swift; sourceTree = "<group>"; };
-		04E5070D2214E5E900B342E7 /* RekapController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RekapController.xib; sourceTree = "<group>"; };
 		04E5070E2214E5E900B342E7 /* RekapViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RekapViewModel.swift; sourceTree = "<group>"; };
 		04E507142214E62500B342E7 /* MerayakanController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerayakanController.swift; sourceTree = "<group>"; };
 		04E507152214E62500B342E7 /* MerayakanController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MerayakanController.xib; sourceTree = "<group>"; };
@@ -993,8 +993,8 @@
 			isa = PBXGroup;
 			children = (
 				043EE1672215BE1C008C59CD /* Components */,
-				04E5070C2214E5E900B342E7 /* RekapController.swift */,
-				04E5070D2214E5E900B342E7 /* RekapController.xib */,
+				043EE17222180F76008C59CD /* RekapController.swift */,
+				043EE17322180F76008C59CD /* RekapController.xib */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -2957,6 +2957,7 @@
 				84B8C1AF221537FA004BC1FE /* LinkPreviewView.xib in Resources */,
 				84E521AC21F3957F00B7CCBA /* ShareTrendController.xib in Resources */,
 				8451E05122035F9200F03E96 /* TrendImageShare.xib in Resources */,
+				043EE17522180F76008C59CD /* RekapController.xib in Resources */,
 				137A29EE21E11E8F00F19072 /* TrendHeaderView.xib in Resources */,
 				84B6D6F121E24CAA00CD4BC8 /* ShareBadgeController.xib in Resources */,
 				84E2854D21CA4BC800298E31 /* FilterViewController.xib in Resources */,
@@ -3011,7 +3012,6 @@
 				84E6933E21D2936E00EA5464 /* HeaderEditProfile.xib in Resources */,
 				84B7B8B321E4454B0099E7E3 /* EmptyView.xib in Resources */,
 				84F892B121C787D800DC1048 /* Lato-Regular.ttf in Resources */,
-				04E507112214E5E900B342E7 /* RekapController.xib in Resources */,
 				13812C3A21CC182500CAB327 /* AskViewCell.xib in Resources */,
 				84F6981721C9364700890917 /* LinimasaJanjiCell.xib in Resources */,
 				84307F452200352B006DE04B /* ob5_perhitungan.json in Resources */,
@@ -3358,6 +3358,7 @@
 				8423C40121F71927000AAA63 /* DetailAskCoordinator.swift in Sources */,
 				1149EB6A22140E670050F366 /* ArgumentLeftCell.swift in Sources */,
 				84FE6EC621D6361C009A0F55 /* BiodataView.swift in Sources */,
+				043EE17422180F76008C59CD /* RekapController.swift in Sources */,
 				844C3D7021C51D3500199871 /* PantauBarKind.swift in Sources */,
 				11B1460221D749C300BB26C8 /* HeaderAskView.swift in Sources */,
 				8423C3FF21F718E1000AAA63 /* DetailAskViewModel.swift in Sources */,
@@ -3398,7 +3399,6 @@
 				13812C3921CC182500CAB327 /* AskViewCell.swift in Sources */,
 				1108871822126FEA0041B821 /* LiveDebatController.swift in Sources */,
 				137A29F821E2327D00F19072 /* ComingsoonCoordinator.swift in Sources */,
-				04E507102214E5E900B342E7 /* RekapController.swift in Sources */,
 				84B2526821CC01F000565D82 /* AppState.swift in Sources */,
 				8451E05A22045AEC00F03E96 /* InfoNotifViewModel.swift in Sources */,
 				84E521BC21F4A81700B7CCBA /* ItemOnboardingController.swift in Sources */,
