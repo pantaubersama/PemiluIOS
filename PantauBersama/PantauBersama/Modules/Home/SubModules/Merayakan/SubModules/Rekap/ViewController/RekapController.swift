@@ -46,6 +46,7 @@ class RekapController: UIViewController {
         tableView.refreshControl = UIRefreshControl()
         
         tableView.registerReusableCell(RekapViewCell.self)
+        tableView.registerReusableCell(SuaraCapresViewCell.self)
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -69,13 +70,25 @@ class RekapController: UIViewController {
 
 extension RekapController : UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        if section == 1 {
+            return 3
+        }else { return 1 }
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell() as RekapViewCell
-        cell.configure(data: "", type: self.pageType)
-        return cell
+        if indexPath.section == 0 {
+            let cell = tableView.dequeueReusableCell() as SuaraCapresViewCell
+            cell.configureCell(item: (Any).self)
+            return cell
+        }else {
+            let cell = tableView.dequeueReusableCell() as RekapViewCell
+            cell.configure(data: "", type: self.pageType)
+            return cell
+        }
     }
 }
 
@@ -90,6 +103,8 @@ extension RekapController : UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 150.0
+        if indexPath.section == 0 {
+            return 400
+        }else { return 150.0 }
     }
 }

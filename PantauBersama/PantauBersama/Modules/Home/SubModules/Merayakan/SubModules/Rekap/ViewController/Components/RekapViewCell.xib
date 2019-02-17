@@ -97,14 +97,14 @@
                                                     <constraint firstAttribute="width" constant="14" id="lwV-bp-dMK"/>
                                                 </constraints>
                                             </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jokowi -Makruf" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v80-AU-sm7">
-                                                <rect key="frame" x="20" y="0.0" width="88" height="14"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jokowi -Ma'ruf" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v80-AU-sm7">
+                                                <rect key="frame" x="20" y="0.0" width="84.5" height="14"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="50%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4D9-Kh-ute">
-                                                <rect key="frame" x="114" y="0.0" width="32" height="14"/>
+                                                <rect key="frame" x="110.5" y="0.0" width="35.5" height="14"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
                                                 <color key="textColor" red="0.7180375457" green="0.035278342660000003" blue="0.1065222546" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -198,10 +198,20 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="imageViewAvatar" destination="fPL-e7-03M" id="LhY-s9-PuG"/>
+                <outlet property="labelParticipantName" destination="c0q-uS-j19" id="9h3-bD-4s5"/>
+                <outlet property="labelPersentase1" destination="4D9-Kh-ute" id="3F3-ef-EMF"/>
+                <outlet property="labelPersentase2" destination="v2B-gA-9K1" id="6IP-Pk-LcU"/>
+                <outlet property="labelRegion" destination="2Gi-Yp-5TI" id="bim-sf-4Fq"/>
+                <outlet property="labelSuaraTidakSah" destination="mQe-ej-0i2" id="QcI-z9-p2v"/>
+                <outlet property="labelTotalSuara" destination="3fh-2E-cyM" id="LcH-lj-ASr"/>
+                <outlet property="labelTps" destination="6le-4h-2Sy" id="kAV-xV-1bS"/>
                 <outlet property="regionTopConstraint" destination="dMS-9p-jPt" id="Q5N-qw-vLX"/>
                 <outlet property="regionView" destination="me6-Lx-dTx" id="S8A-uR-xaG"/>
                 <outlet property="tpsTopConstraint" destination="999-nq-qQ7" id="HJ8-zx-j5d"/>
                 <outlet property="tpsView" destination="edB-GO-3VO" id="Y6a-yV-cjr"/>
+                <outlet property="viewBullet1" destination="muy-GQ-x71" id="yov-76-yaw"/>
+                <outlet property="viewBullet2" destination="cCQ-8b-h1g" id="Kyw-Co-BCf"/>
             </connections>
             <point key="canvasLocation" x="137.59999999999999" y="220.3898050974513"/>
         </tableViewCell>

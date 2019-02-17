@@ -11,6 +11,8 @@
 		043EE16B2215BE9D008C59CD /* RekapViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 043EE1692215BE9D008C59CD /* RekapViewCell.xib */; };
 		043EE17422180F76008C59CD /* RekapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043EE17222180F76008C59CD /* RekapController.swift */; };
 		043EE17522180F76008C59CD /* RekapController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 043EE17322180F76008C59CD /* RekapController.xib */; };
+		043EE178221953C3008C59CD /* SuaraCapresViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043EE176221953C3008C59CD /* SuaraCapresViewCell.swift */; };
+		043EE179221953C3008C59CD /* SuaraCapresViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 043EE177221953C3008C59CD /* SuaraCapresViewCell.xib */; };
 		04E5070F2214E5E900B342E7 /* RekapCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E5070A2214E5E900B342E7 /* RekapCoordinator.swift */; };
 		04E507122214E5E900B342E7 /* RekapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E5070E2214E5E900B342E7 /* RekapViewModel.swift */; };
 		04E507162214E62500B342E7 /* MerayakanController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E507142214E62500B342E7 /* MerayakanController.swift */; };
@@ -479,6 +481,8 @@
 		043EE1692215BE9D008C59CD /* RekapViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RekapViewCell.xib; sourceTree = "<group>"; };
 		043EE17222180F76008C59CD /* RekapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RekapController.swift; sourceTree = "<group>"; };
 		043EE17322180F76008C59CD /* RekapController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RekapController.xib; sourceTree = "<group>"; };
+		043EE176221953C3008C59CD /* SuaraCapresViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuaraCapresViewCell.swift; sourceTree = "<group>"; };
+		043EE177221953C3008C59CD /* SuaraCapresViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SuaraCapresViewCell.xib; sourceTree = "<group>"; };
 		04A224A86FBFD6EFE137644F /* Pods-PantauBersama.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PantauBersama.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-PantauBersama/Pods-PantauBersama.debug.xcconfig"; sourceTree = "<group>"; };
 		04E5070A2214E5E900B342E7 /* RekapCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RekapCoordinator.swift; sourceTree = "<group>"; };
 		04E5070E2214E5E900B342E7 /* RekapViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RekapViewModel.swift; sourceTree = "<group>"; };
@@ -956,6 +960,8 @@
 			children = (
 				043EE1682215BE9D008C59CD /* RekapViewCell.swift */,
 				043EE1692215BE9D008C59CD /* RekapViewCell.xib */,
+				043EE176221953C3008C59CD /* SuaraCapresViewCell.swift */,
+				043EE177221953C3008C59CD /* SuaraCapresViewCell.xib */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -2983,6 +2989,7 @@
 				84619D3C21DA88C800EB58CF /* ItemInfoCell.xib in Resources */,
 				8441DB5621CCF19C00B078DF /* DetailJanjiController.xib in Resources */,
 				8451E0642207F6E500F03E96 /* data_fotoktp.json in Resources */,
+				043EE179221953C3008C59CD /* SuaraCapresViewCell.xib in Resources */,
 				84B8C1B822156B35004BC1FE /* ChallengeDetailView.xib in Resources */,
 				13F456AF21D36A8500CE45F1 /* UndangAnggotaController.xib in Resources */,
 				84FA424E2212AFAC008215C4 /* HeaderTantanganView.xib in Resources */,
@@ -3312,6 +3319,7 @@
 				849CABCE21CE8AC300912F8E /* SettingViewModel.swift in Sources */,
 				845C571521CE122B00EDCDFE /* IconTableCell.swift in Sources */,
 				84A07FBC21D129FC00269C6B /* GroupProfileInfoData.swift in Sources */,
+				043EE178221953C3008C59CD /* SuaraCapresViewCell.swift in Sources */,
 				84FA42402212A595008215C4 /* CreateTantanganViewModel.swift in Sources */,
 				84B7B8BC21E47A8F0099E7E3 /* ClusterSearchController.swift in Sources */,
 				137A29F321E2261A00F19072 /* ComingsoonController.swift in Sources */,

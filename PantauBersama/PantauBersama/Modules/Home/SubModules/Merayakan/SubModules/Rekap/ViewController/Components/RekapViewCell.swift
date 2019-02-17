@@ -19,6 +19,24 @@ class RekapViewCell: UITableViewCell {
     @IBOutlet weak var regionTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var tpsTopConstraint: NSLayoutConstraint!
     
+    
+    
+    // TPS
+    @IBOutlet weak var imageViewAvatar: UIImageView!
+    @IBOutlet weak var labelTps: UILabel!
+    @IBOutlet weak var labelParticipantName: UILabel!
+    
+    // Region
+    @IBOutlet weak var labelRegion: UILabel!
+    
+    // Suara
+    @IBOutlet weak var viewBullet1: UIView!
+    @IBOutlet weak var labelPersentase1: UILabel!
+    @IBOutlet weak var labelPersentase2: UILabel!
+    @IBOutlet weak var viewBullet2: UIView!
+    @IBOutlet weak var labelSuaraTidakSah: UILabel!
+    @IBOutlet weak var labelTotalSuara: UILabel!
+    
     private(set) var disposeBag = DisposeBag()
     
     override func prepareForReuse() {
