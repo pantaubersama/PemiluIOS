@@ -9,17 +9,16 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import Common
 
 class NotificationController: UIViewController {
     
     @IBOutlet weak var segmentedControl: UISegmentedControl!
-    @IBOutlet weak var context: UIView!
+    @IBOutlet weak var tableView: UITableView!
     
     var viewModel: NotificationViewModel!
+    private let rControl = UIRefreshControl()
     
-    lazy var infoNotifViewModel: InfoNotifViewModel = InfoNotifViewModel(navigator: viewModel.navigator)
-    
-    private lazy var infoNotifController = InfoNotifController(viewModel: infoNotifViewModel)
     
     private let disposeBag = DisposeBag()
     
@@ -30,19 +29,37 @@ class NotificationController: UIViewController {
         let back = UIBarButtonItem(image: #imageLiteral(resourceName: "back"), style: .plain, target: nil, action: nil)
         navigationItem.leftBarButtonItem = back
         
-        add(childViewController: infoNotifController, context: context)
+        tableView.rowHeight = 130
+        tableView.estimatedRowHeight = UITableView.automaticDimension
+        tableView.registerReusableCell(InfoNotifCell.self)
+        tableView.delegate = nil
+        tableView.dataSource = nil
+        tableView.separatorColor = Color.RGBColor(red: 250, green: 250, blue: 250)
+        tableView.refreshControl = rControl
         
+        rControl.rx.controlEvent(.valueChanged)
+            .bind(to: viewModel.input.refreshI)
+            .disposed(by: disposeBag)
+        
+        
+        viewModel.output.items
+            .do(onNext: { [unowned self] (_) in
+                self.rControl.endRefreshing()
+            })
+            .drive(tableView.rx.items) { tableView, row, item in
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: item.reuseIdentifier) else {
+                    return UITableViewCell()
+                }
+                cell.tag = row
+                item.configure(cell: cell)
+                return cell
+            }
+            .disposed(by: disposeBag)
         
         segmentedControl.rx.value
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [unowned self] (i) in
-                UIView.animate(withDuration: 0.3, animations: {
-                    if i == 0 {
-                        self.infoNotifController.view.alpha = 1.0
-                    } else {
-                        self.infoNotifController.view.alpha = 1.0
-                    }
-                })
+               
             })
             .disposed(by: disposeBag)
         

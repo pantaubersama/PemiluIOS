@@ -12,8 +12,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NotificationController" customModule="PantauBersama" customModuleProvider="target">
             <connections>
-                <outlet property="context" destination="SHs-Fp-dJy" id="yOQ-WQ-JUn"/>
                 <outlet property="segmentedControl" destination="auG-nf-pLS" id="Qkg-G4-MAx"/>
+                <outlet property="tableView" destination="IzE-F9-O0A" id="BtE-DT-PDu"/>
                 <outlet property="view" destination="LZV-js-Ifc" id="QiK-jk-lsF"/>
             </connections>
         </placeholder>
@@ -29,7 +29,8 @@
                             <rect key="frame" x="16" y="14" width="343" height="29"/>
                             <segments>
                                 <segment title="Semua Notifikasi"/>
-                                <segment title="Info dan Event"/>
+                                <segment title="Wordstadium"/>
+                                <segment title="Event"/>
                             </segments>
                             <color key="tintColor" red="0.43921568630000002" green="0.43921568630000002" blue="0.43921568630000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         </segmentedControl>
@@ -42,19 +43,19 @@
                         <constraint firstAttribute="height" constant="56" id="sQ8-7w-swr"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SHs-Fp-dJy">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="IzE-F9-O0A">
                     <rect key="frame" x="0.0" y="120" width="375" height="547"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                </view>
+                </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="AE1-li-KHW" firstAttribute="trailing" secondItem="SHs-Fp-dJy" secondAttribute="trailing" id="AYy-7w-aub"/>
-                <constraint firstItem="AE1-li-KHW" firstAttribute="bottom" secondItem="SHs-Fp-dJy" secondAttribute="bottom" id="CDu-N9-dBY"/>
+                <constraint firstItem="AE1-li-KHW" firstAttribute="bottom" secondItem="IzE-F9-O0A" secondAttribute="bottom" id="Buh-Xy-WW0"/>
+                <constraint firstItem="IzE-F9-O0A" firstAttribute="top" secondItem="ENA-xL-cL0" secondAttribute="bottom" id="ECM-rw-FUA"/>
                 <constraint firstItem="ENA-xL-cL0" firstAttribute="leading" secondItem="AE1-li-KHW" secondAttribute="leading" id="Kjv-5T-PFx"/>
                 <constraint firstItem="AE1-li-KHW" firstAttribute="trailing" secondItem="ENA-xL-cL0" secondAttribute="trailing" id="Pqk-HL-4SO"/>
-                <constraint firstItem="SHs-Fp-dJy" firstAttribute="leading" secondItem="AE1-li-KHW" secondAttribute="leading" id="j7b-II-QM6"/>
-                <constraint firstItem="SHs-Fp-dJy" firstAttribute="top" secondItem="ENA-xL-cL0" secondAttribute="bottom" id="r2t-9p-ads"/>
+                <constraint firstItem="IzE-F9-O0A" firstAttribute="leading" secondItem="AE1-li-KHW" secondAttribute="leading" id="cpT-qI-5xt"/>
+                <constraint firstItem="AE1-li-KHW" firstAttribute="trailing" secondItem="IzE-F9-O0A" secondAttribute="trailing" id="r2T-bx-HFr"/>
                 <constraint firstItem="ENA-xL-cL0" firstAttribute="top" secondItem="AE1-li-KHW" secondAttribute="top" id="xIy-2O-4Oa"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>

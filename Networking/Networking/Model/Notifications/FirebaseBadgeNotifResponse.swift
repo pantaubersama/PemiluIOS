@@ -17,21 +17,27 @@ public struct FirebaseBadgeNotifResponse: Codable {
         case achievedBadge = "achieved_badge"
     }
     
-    public struct AchievedBadge: Codable {
-        public var achievedId: String
-        public var badge: NotifBadge
-        
-        private enum CodingKeys: String, CodingKey {
-            case badge
-            case achievedId = "achieved_id"
-        }
-    }
+}
+
+public struct AchievedBadge: Codable {
+    public var achievedId: String
+    public var badge: NotifBadge
     
-    // TODO: Minta backend utk menyamakan format image size
-    // biar bisa pakai 1 model struct aja
-    // yang lain {thumbnail: { url: "http://image"}
-    // yang ini {thumbnail: "http://image"}
-    public struct NotifBadge: Codable {
-        public var id: String
+    private enum CodingKeys: String, CodingKey {
+        case badge
+        case achievedId = "achieved_id"
+    }
+}
+
+// TODO: Minta backend utk menyamakan format image size
+// biar bisa pakai 1 model struct aja
+// yang lain {thumbnail: { url: "http://image"}
+// yang ini {thumbnail: "http://image"}
+
+public struct NotifBadge: Codable {
+    public var id: String
+    
+    private enum CodingKeys: String, CodingKey {
+        case id
     }
 }

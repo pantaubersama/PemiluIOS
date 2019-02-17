@@ -279,8 +279,6 @@
 		844C3D8C21C5323E00199871 /* LinimasaCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 844C3D8B21C5323E00199871 /* LinimasaCell.xib */; };
 		8451E05122035F9200F03E96 /* TrendImageShare.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8451E05022035F9200F03E96 /* TrendImageShare.xib */; };
 		8451E0532203651700F03E96 /* TrendImageShare.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8451E0522203651700F03E96 /* TrendImageShare.swift */; };
-		8451E05822045A1A00F03E96 /* InfoNotifController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8451E05722045A1A00F03E96 /* InfoNotifController.swift */; };
-		8451E05A22045AEC00F03E96 /* InfoNotifViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8451E05922045AEC00F03E96 /* InfoNotifViewModel.swift */; };
 		8451E05C22045BD400F03E96 /* NotificationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8451E05B22045BD300F03E96 /* NotificationCoordinator.swift */; };
 		8451E05E22045C6B00F03E96 /* NotificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8451E05D22045C6B00F03E96 /* NotificationViewModel.swift */; };
 		8451E0642207F6E500F03E96 /* data_fotoktp.json in Resources */ = {isa = PBXBuildFile; fileRef = 8451E0632207F6E500F03E96 /* data_fotoktp.json */; };
@@ -840,8 +838,6 @@
 		844C3D8B21C5323E00199871 /* LinimasaCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LinimasaCell.xib; sourceTree = "<group>"; };
 		8451E05022035F9200F03E96 /* TrendImageShare.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrendImageShare.xib; sourceTree = "<group>"; };
 		8451E0522203651700F03E96 /* TrendImageShare.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendImageShare.swift; sourceTree = "<group>"; };
-		8451E05722045A1A00F03E96 /* InfoNotifController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoNotifController.swift; sourceTree = "<group>"; };
-		8451E05922045AEC00F03E96 /* InfoNotifViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoNotifViewModel.swift; sourceTree = "<group>"; };
 		8451E05B22045BD300F03E96 /* NotificationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCoordinator.swift; sourceTree = "<group>"; };
 		8451E05D22045C6B00F03E96 /* NotificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewModel.swift; sourceTree = "<group>"; };
 		8451E0632207F6E500F03E96 /* data_fotoktp.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data_fotoktp.json; sourceTree = "<group>"; };
@@ -2347,14 +2343,6 @@
 			path = TrendImageShare;
 			sourceTree = "<group>";
 		};
-		8451E056220459C500F03E96 /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				8451E05722045A1A00F03E96 /* InfoNotifController.swift */,
-			);
-			path = ViewController;
-			sourceTree = "<group>";
-		};
 		8452A4C621DE1F4900196043 /* StartingSetting */ = {
 			isa = PBXGroup;
 			children = (
@@ -2462,7 +2450,7 @@
 		8478B8DC21FF1B5300CE192A /* Notifications */ = {
 			isa = PBXGroup;
 			children = (
-				8478B8E221FF1CEC00CE192A /* SubModules */,
+				8478B8E421FF1F9200CE192A /* Components */,
 				8478B8DD21FF1B8600CE192A /* viewController */,
 				8451E05B22045BD300F03E96 /* NotificationCoordinator.swift */,
 				8451E05D22045C6B00F03E96 /* NotificationViewModel.swift */,
@@ -2477,24 +2465,6 @@
 				8478B8E021FF1C6600CE192A /* NotificationController.swift */,
 			);
 			path = viewController;
-			sourceTree = "<group>";
-		};
-		8478B8E221FF1CEC00CE192A /* SubModules */ = {
-			isa = PBXGroup;
-			children = (
-				8478B8E321FF1F4200CE192A /* Info */,
-			);
-			path = SubModules;
-			sourceTree = "<group>";
-		};
-		8478B8E321FF1F4200CE192A /* Info */ = {
-			isa = PBXGroup;
-			children = (
-				8451E056220459C500F03E96 /* ViewController */,
-				8478B8E421FF1F9200CE192A /* Components */,
-				8451E05922045AEC00F03E96 /* InfoNotifViewModel.swift */,
-			);
-			path = Info;
 			sourceTree = "<group>";
 		};
 		8478B8E421FF1F9200CE192A /* Components */ = {
@@ -3940,7 +3910,6 @@
 				043EE194221A36C2008C59CD /* RekapViewModel.swift in Sources */,
 				11DA97122222CD7B00A51E76 /* PerhitunganNavigator.swift in Sources */,
 				84B2526821CC01F000565D82 /* AppState.swift in Sources */,
-				8451E05A22045AEC00F03E96 /* InfoNotifViewModel.swift in Sources */,
 				84E521BC21F4A81700B7CCBA /* ItemOnboardingController.swift in Sources */,
 				84CA10C521EF12800025CF10 /* AboutViewModel.swift in Sources */,
 				84B4DED821D375C600F60258 /* JanjiPolitikNavigator.swift in Sources */,
