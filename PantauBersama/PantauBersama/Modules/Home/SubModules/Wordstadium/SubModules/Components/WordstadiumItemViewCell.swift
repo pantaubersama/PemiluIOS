@@ -13,6 +13,7 @@ class WordstadiumItemViewCell: UITableViewCell {
 
     @IBOutlet weak var backgroundItem: UIImageView!
     @IBOutlet weak var footerContainerView: UIView!
+    @IBOutlet weak var titleLbl: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -37,16 +38,22 @@ extension WordstadiumItemViewCell: IReusableCell {
         var footerView: UIView!
         
         switch item.type {
-        case .comingsoon:
+        case .comingsoon,.privateComingsoon:
             backgroundItem.image = UIImage(named: "bgWordstadiumComingsoon")
             footerView = TimeView()
-        case .done:
+            titleLbl.text = "Coming Soon"
+        case .done,.privateDone:
             backgroundItem.image = UIImage(named: "bgWordstadiumDone")
             footerView = ClapView()
-        case .challenge:
+            titleLbl.text = "Done"
+        case .challenge,.inProgress,.privateChallenge:
             backgroundItem.image = UIImage(named: "bgWordstadiumChallange")
             footerView = DescriptionView()
-        default: break
+            titleLbl.text = "Open Challenge"
+        case .live:
+            backgroundItem.image = UIImage(named: "bgWordstadiumLive")
+            titleLbl.text = "Live Now"
+            footerView = TimeView()
             
         }
         

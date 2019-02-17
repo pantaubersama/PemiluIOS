@@ -30,5 +30,9 @@ class WordstadiumListHeaderView: UIView {
             [.flexibleWidth, .flexibleHeight]
         addSubview(view)
     }
+    
+    func config(description: String){
+        descriptionLbl.text = description
+    }
 
 }

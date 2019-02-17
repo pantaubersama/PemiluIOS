@@ -139,6 +139,7 @@
 		13E170D0221305BE0018EDB4 /* PersonalNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E170CF221305BE0018EDB4 /* PersonalNavigator.swift */; };
 		13E170D4221311A70018EDB4 /* WordstadiumItemViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E170D2221311A70018EDB4 /* WordstadiumItemViewCell.swift */; };
 		13E170D5221311A70018EDB4 /* WordstadiumItemViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13E170D3221311A70018EDB4 /* WordstadiumItemViewCell.xib */; };
+		13E479CC221988C9000DA64F /* WordstadiumCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E479CB221988C9000DA64F /* WordstadiumCellViewModel.swift */; };
 		13E9D78821E8F025006A0890 /* IJanpolListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E9D78721E8F025006A0890 /* IJanpolListViewModel.swift */; };
 		13E9D78B21E8FCF6006A0890 /* IJanpolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E9D78A21E8FCF5006A0890 /* IJanpolViewController.swift */; };
 		13E9D78E21E9171E006A0890 /* JanpolListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E9D78D21E9171E006A0890 /* JanpolListViewModel.swift */; };
@@ -634,6 +635,7 @@
 		13E170CF221305BE0018EDB4 /* PersonalNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalNavigator.swift; sourceTree = "<group>"; };
 		13E170D2221311A70018EDB4 /* WordstadiumItemViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordstadiumItemViewCell.swift; sourceTree = "<group>"; };
 		13E170D3221311A70018EDB4 /* WordstadiumItemViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WordstadiumItemViewCell.xib; sourceTree = "<group>"; };
+		13E479CB221988C9000DA64F /* WordstadiumCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordstadiumCellViewModel.swift; sourceTree = "<group>"; };
 		13E9D78721E8F025006A0890 /* IJanpolListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IJanpolListViewModel.swift; sourceTree = "<group>"; };
 		13E9D78A21E8FCF5006A0890 /* IJanpolViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IJanpolViewController.swift; sourceTree = "<group>"; };
 		13E9D78D21E9171E006A0890 /* JanpolListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JanpolListViewModel.swift; sourceTree = "<group>"; };
@@ -1469,6 +1471,7 @@
 				1320595D221359C200BE9456 /* WordstadiumCollectionCell.xib */,
 				1320596022135B1500BE9456 /* WordstadiumViewCell.swift */,
 				1320596122135B1500BE9456 /* WordstadiumViewCell.xib */,
+				13E479CB221988C9000DA64F /* WordstadiumCellViewModel.swift */,
 				13E1394F2213FEF000286EDE /* SeeMoreCell.swift */,
 				13E139502213FEF000286EDE /* SeeMoreCell.xib */,
 				137369472217230700B698BA /* SeeMoreViewModel.swift */,
@@ -3727,6 +3730,7 @@
 				13E170CA2211E2980018EDB4 /* PublicViewModel.swift in Sources */,
 				840850D721D2802000696CB3 /* ProfileInfoDummyData.swift in Sources */,
 				13F4569921CF982E00CE45F1 /* QuestionNavigator.swift in Sources */,
+				13E479CC221988C9000DA64F /* WordstadiumCellViewModel.swift in Sources */,
 				84E2854721CA1E8300298E31 /* PilpresType.swift in Sources */,
 				1147F23121F83F2A001D0D59 /* ClusterDetailCoordinator.swift in Sources */,
 				844C3D8521C5252800199871 /* LinimasaCoordinator.swift in Sources */,

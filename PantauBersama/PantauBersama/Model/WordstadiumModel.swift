@@ -11,9 +11,13 @@ import Networking
 
 enum ItemType {
     case live
+    case inProgress
     case comingsoon
     case done
     case challenge
+    case privateComingsoon
+    case privateDone
+    case privateChallenge
 }
 
 struct Wordstadium {

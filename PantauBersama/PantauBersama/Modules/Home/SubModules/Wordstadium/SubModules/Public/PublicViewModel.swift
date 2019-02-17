@@ -34,6 +34,7 @@ class PublicViewModel: ViewModelType {
     let activityIndicator = ActivityIndicator()
     let headerViewModel = BannerHeaderViewModel()
     let seeMoreViewModel = SeeMoreViewModel()
+    let collectionViewModel = WordstadiumCellViewModel()
 
     init(navigator: WordstadiumNavigator, showTableHeader: Bool) {
         self.navigator = navigator
@@ -58,7 +59,14 @@ class PublicViewModel: ViewModelType {
         let seeMoreSelected = seeMoreViewModel.output.moreSelected
             .asObservable()
             .flatMapLatest({ (wordstadium) -> Observable<Void> in
-                return navigator.launchWordstadiumList()
+                return navigator.launchWordstadiumList(wordstadium: wordstadium)
+            })
+            .asDriverOnErrorJustComplete()
+        
+        let seeMoreColSelected = collectionViewModel.output.moreSelected
+            .asObservable()
+            .flatMapLatest({ (wordstadium) -> Observable<Void> in
+                return navigator.launchWordstadiumList(wordstadium: wordstadium)
             })
             .asDriverOnErrorJustComplete()
         
@@ -66,7 +74,7 @@ class PublicViewModel: ViewModelType {
             .flatMapLatest({ _ in self.generateWordstadium() })
             .asDriverOnErrorJustComplete()
         
-        let itemSelected = Driver.merge(infoSelected,seeMoreSelected)
+        let itemSelected = Driver.merge(infoSelected,seeMoreSelected,seeMoreColSelected)
         
         output = Output(bannerInfo: bannerInfo,
                         itemSelected: itemSelected,

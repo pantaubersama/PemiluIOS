@@ -17,14 +17,16 @@ protocol WordstadiumListNavigator {
 final class WordstadiumListCoordinator: BaseCoordinator<Void> {
     
     private let navigationController: UINavigationController
+    private let wordstadium: SectionWordstadium
     var finish: Observable<Void>!
     
-    init(navigationController: UINavigationController) {
+    init(navigationController: UINavigationController, wordstadium: SectionWordstadium) {
         self.navigationController = navigationController
+        self.wordstadium = wordstadium
     }
     
     override func start() -> Observable<Void> {
-        let viewModel = WordstadiumListViewModel(navigator: self)
+        let viewModel = WordstadiumListViewModel(navigator: self, wordstadium: self.wordstadium)
         let viewController = WordstadiumListViewController()
         viewController.viewModel = viewModel
         viewController.hidesBottomBarWhenPushed = true

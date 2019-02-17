@@ -82,6 +82,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="collectionView" destination="ZWQ-IM-t1S" id="U8w-nN-cLF"/>
+                <outlet property="seeMoreBtn" destination="pje-wS-jxW" id="61d-Cw-bLO"/>
                 <outlet property="titleIv" destination="8KK-41-A3y" id="TwC-b4-nu7"/>
                 <outlet property="titleLbl" destination="jwT-Yt-Zn4" id="G7z-UJ-z9x"/>
             </connections>
