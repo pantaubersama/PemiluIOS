@@ -22,9 +22,10 @@ class SuaraCapresViewCell: UITableViewCell {
     @IBOutlet weak var imageViewCapres1: UIImageView!
     @IBOutlet weak var imageViewCapres2: UIImageView!
     
-    @IBOutlet weak var ratioProgressCapres1: NSLayoutConstraint!
-    @IBOutlet weak var ratioProgressCapres2: NSLayoutConstraint!
-    
+    @IBOutlet weak var viewProgress: UIStackView!
+    @IBOutlet weak var viewProgress0: UIView!
+    @IBOutlet weak var progress1Width: NSLayoutConstraint!
+    @IBOutlet weak var progress2Width: NSLayoutConstraint!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -42,15 +43,23 @@ extension SuaraCapresViewCell : IReusableCell {
     
     
     func configureCell(item: Any) {
+        let capres1 : CGFloat = CGFloat(Int.random(in: 0...45))
+        let capres2 : CGFloat = CGFloat(Int.random(in: 0...55))
         self.labelNoteParticipant.text  = "User telah berpartisipasi dalam\nGotong - Royong perhitungan Pantau Bersama"
+        self.labelPresentase1.text = "\(capres1)"
+        self.labelPresentase2.text = "\(capres2)"
         
-        
+        setProgress(capres1: capres1/100, capres2: capres2/100)
     }
     
-    private func setProgress(capres1: Double, capres2: Double) {
+    private func setProgress(capres1: CGFloat, capres2: CGFloat) {
         // check total capres 1 dan 2 tidak boleh lebih dari 100%
-        
-        self.ratioProgressCapres1 = setMultiplier(constraint: self.ratioProgressCapres1, multiplier: 0.47)
+        if 1 < (capres1 + capres1) { return }
+        let width   = self.viewProgress.frame.width
+        // set width progress 1
+        self.progress1Width.constant = width * capres1
+        // set width progress 2
+        self.progress2Width.constant = width * capres2
     }
     
     private func setMultiplier(constraint: NSLayoutConstraint, multiplier: CGFloat) -> NSLayoutConstraint {

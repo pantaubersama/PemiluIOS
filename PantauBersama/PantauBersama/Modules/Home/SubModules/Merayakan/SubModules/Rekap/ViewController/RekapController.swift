@@ -95,11 +95,13 @@ extension RekapController : UITableViewDataSource {
 extension RekapController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let navigationController = self.navigationController else { return }
-        let rekapCoordinator    = RekapCoordinator(navigationController: navigationController)
-        rekapCoordinator
-        .start()
-        .subscribe()
-        .disposed(by: disposeBag)
+        if indexPath.section == 1 {
+            let rekapCoordinator    = RekapCoordinator(navigationController: navigationController)
+            rekapCoordinator
+            .start()
+            .subscribe()
+            .disposed(by: disposeBag)
+        }
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
