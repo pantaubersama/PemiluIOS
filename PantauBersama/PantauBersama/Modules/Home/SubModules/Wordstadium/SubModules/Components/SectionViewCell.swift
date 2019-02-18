@@ -10,7 +10,9 @@ import UIKit
 import Common
 
 class SectionViewCell: UITableViewCell {
-
+    @IBOutlet weak var titleLbl: UILabel!
+    @IBOutlet weak var titleIv: UIImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -26,4 +28,21 @@ class SectionViewCell: UITableViewCell {
 
 extension SectionViewCell: IReusableCell {
     
+    struct Input {
+        let title : String
+        let type : ItemType
+    }
+    
+    func configureCell(item: Input) {
+        titleLbl.text = item.title
+        
+        switch item.type {
+        case .done:
+            titleIv.image = UIImage(named: "icDebatDone")
+        case .challenge:
+            titleIv.image = UIImage(named: "icChallenge")
+        default: break
+            
+        }
+    }
 }

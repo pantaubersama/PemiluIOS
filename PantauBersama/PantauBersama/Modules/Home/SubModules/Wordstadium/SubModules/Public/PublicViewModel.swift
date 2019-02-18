@@ -24,6 +24,7 @@ class PublicViewModel: ViewModelType {
         let bannerInfo: Driver<BannerInfo>
         let infoSelected: Driver<Void>
         let showHeader: Driver<Bool>
+        let items: Driver<[SectionWordstadium]>
     }
     
     private let refreshSubject = PublishSubject<String>()
@@ -53,9 +54,15 @@ class PublicViewModel: ViewModelType {
         
         let showTableHeader = BehaviorRelay<Bool>(value: showTableHeader).asDriver()
         
+        
+        let showItems = refreshSubject.startWith("")
+            .flatMapLatest({ _ in self.generateWordstadium() })
+            .asDriverOnErrorJustComplete()
+        
         output = Output(bannerInfo: bannerInfo,
                         infoSelected: infoSelected,
-                        showHeader: showTableHeader)
+                        showHeader: showTableHeader,
+                        items: showItems)
         
     }
     
@@ -68,6 +75,40 @@ class PublicViewModel: ViewModelType {
             .map{ ($0.data.bannerInfo) }
             .asObservable()
             .catchErrorJustComplete()
+    }
+    
+    private func generateWordstadium() ->  Observable<[SectionWordstadium]> {
+        var items : [SectionWordstadium] = []
+        let live = SectionWordstadium(title: "",
+                                       descriptiom: "",
+                                       itemType: .live,
+                                       items: [Wordstadium(title: "")],
+                                       itemsLive: [Wordstadium(title: ""),Wordstadium(title: ""),Wordstadium(title: ""),Wordstadium(title: ""),Wordstadium(title: "")])
+        
+        let debat = SectionWordstadium(title: "LINIMASA DEBAT",
+                                       descriptiom: "Daftar challenge dan debat yang akan atau sudah berlangsung ditampilkan semua di sini.",
+                                       itemType: .comingsoon,
+                                       items: [Wordstadium(title: ""),Wordstadium(title: ""),Wordstadium(title: "")],
+                                       itemsLive: [])
+        
+        let done = SectionWordstadium(title: "Debat: Done",
+                                       descriptiom: "",
+                                       itemType: .done,
+                                       items: [Wordstadium(title: ""),Wordstadium(title: ""),Wordstadium(title: "")],
+                                       itemsLive: [])
+        
+        let chalenge = SectionWordstadium(title: "Challenge",
+                                       descriptiom: "",
+                                       itemType: .challenge,
+                                       items: [Wordstadium(title: ""),Wordstadium(title: ""),Wordstadium(title: "")],
+                                       itemsLive: [])
+    
+        items.append(live)
+        items.append(debat)
+        items.append(done)
+        items.append(chalenge)
+        
+        return Observable.just(items)
     }
     
 }

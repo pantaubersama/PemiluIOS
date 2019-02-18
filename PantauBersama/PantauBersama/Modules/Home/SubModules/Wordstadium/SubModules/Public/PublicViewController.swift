@@ -9,6 +9,7 @@
 import UIKit
 import RxCocoa
 import RxSwift
+import RxDataSources
 
 class PublicViewController: UITableViewController {
 
@@ -19,6 +20,8 @@ class PublicViewController: UITableViewController {
     
     var rControl : UIRefreshControl?
     
+    var dataSource: RxTableViewSectionedReloadDataSource<SectionWordstadium>!
+    
     convenience init(viewModel: PublicViewModel) {
         self.init()
         self.viewModel = viewModel
@@ -26,18 +29,23 @@ class PublicViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         tableView.registerReusableCell(WordstadiumViewCell.self)
         tableView.registerReusableCell(SectionViewCell.self)
+        tableView.registerReusableCell(SectionViewCell2.self)
         tableView.registerReusableCell(SeeMoreCell.self)
         tableView.registerReusableCell(WordstadiumItemViewCell.self)
-//        tableView.delegate = nil
-//        tableView.dataSource = nil
+        tableView.delegate = nil
+        tableView.dataSource = nil
         tableView.estimatedRowHeight = 44.0
         tableView.separatorStyle = .none
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         tableView.tableFooterView = UIView()
         tableView.refreshControl = UIRefreshControl()
+        
+        tableView.rx
+            .setDelegate(self)
+            .disposed(by: disposeBag)
         
         viewModel.output.showHeader
             .drive(onNext: { [unowned self](isHeaderShown) in
@@ -57,64 +65,92 @@ class PublicViewController: UITableViewController {
         viewModel.output.infoSelected
             .drive()
             .disposed(by: disposeBag)
+        
+        dataSource = RxTableViewSectionedReloadDataSource<SectionWordstadium>(
+            configureCell: { (dataSource, tableView, indexPath, item) in
+                let wordstadium = dataSource.sectionModels[indexPath.section]
+                
+                if wordstadium.itemType == .live {
+                    let cell = tableView.dequeueReusableCell(indexPath: indexPath) as WordstadiumViewCell
+                    cell.configureCell(item: WordstadiumViewCell.Input(type: ItemCollectionType.live, wordstadium: wordstadium.itemsLive))
+                    cell.collectionView.reloadData()
+                    return cell
+                } else {
+                    let cell = tableView.dequeueReusableCell(indexPath: indexPath) as WordstadiumItemViewCell
+                    cell.configureCell(item: WordstadiumItemViewCell.Input(type: dataSource.sectionModels[indexPath.section].itemType))
+                    return cell
+                }
+        })
+        
+        viewModel.output.items
+            .drive(tableView.rx.items(dataSource: dataSource))
+            .disposed(by: disposeBag)
     }
 
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return section == 0 ? 0:50.0
+        let wordstadium = dataSource.sectionModels[section]
+        
+        if wordstadium.itemType == .live {
+            return 0
+        } else {
+            return wordstadium.descriptiom.count == 0 ? 50:95
+        }
     }
     
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return section == 0 ? 0:20.0
+        let wordstadium = dataSource.sectionModels[section]
+        
+        return wordstadium.itemType == .live ? 0:30.0
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if section >= 1 {
-            let section = tableView.dequeueReusableCell() as SectionViewCell
-            return section
-        } else { return nil}
+        let wordstadium = dataSource.sectionModels[section]
         
+        if wordstadium.itemType == .live {
+            return nil
+        } else {
+            if wordstadium.descriptiom.count == 0 {
+                let item = tableView.dequeueReusableCell() as SectionViewCell
+                item.configureCell(item:
+                    SectionViewCell.Input(title: wordstadium.title,
+                                          type: wordstadium.itemType))
+                return item
+            } else {
+                let item = tableView.dequeueReusableCell() as SectionViewCell2
+                item.configureCell(item:
+                    SectionViewCell2.Input(title: wordstadium.title,
+                                           desc: wordstadium.descriptiom))
+                return item
+            }
+        }
     }
     
     override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        if section >= 1 {
-            let footer = tableView.dequeueReusableCell() as SeeMoreCell
-            return footer
-        } else { return nil}
+        let wordstadium = dataSource.sectionModels[section]
         
-    }
-    
-    
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 4
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return section == 0 ? 1:3
-    }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == 0 {
-            let cell = tableView.dequeueReusableCell(indexPath: indexPath) as WordstadiumViewCell
-            cell.collectionView.reloadData()
-            return cell
-        } else {
-            let cell = tableView.dequeueReusableCell(indexPath: indexPath) as WordstadiumItemViewCell
-            return cell
-        }
-        
+        return wordstadium.itemType == .live ? nil : tableView.dequeueReusableCell() as SeeMoreCell
     }
 
     // TODO: for testing purpose
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let navigationController = self.navigationController else { return }
-        let liveDebatCoordinator = LiveDebatCoordinator(navigationController: navigationController)
-        liveDebatCoordinator
-            .start()
-            .subscribe()
-            .disposed(by: disposeBag)
+        let wordstadium = dataSource.sectionModels[indexPath.section]
+        
+        if wordstadium.itemType == .challenge {
+            guard let navigationController = self.navigationController else { return }
+            let challengeCoordinator = ChallengeCoordinator(navigationController: navigationController)
+            challengeCoordinator
+                .start()
+                .subscribe()
+                .disposed(by: disposeBag)
+        } else {
+            guard let navigationController = self.navigationController else { return }
+            let liveDebatCoordinator = LiveDebatCoordinator(navigationController: navigationController)
+            liveDebatCoordinator
+                .start()
+                .subscribe()
+                .disposed(by: disposeBag)
+        }
     }
 }

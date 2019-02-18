@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="dB5-zX-IRg">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="QNH-TB-pZg">
+                    <rect key="frame" x="0.0" y="0.0" width="359" height="56"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceLeftToRight" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o7J-pm-qy6" customClass="Button" customModule="Common">
+                            <rect key="frame" x="0.0" y="16" width="319" height="24"/>
+                            <state key="normal" title="BAGIKAN" image="outlineShare24Px">
+                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="typeButton" value="bold"/>
+                                <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                    <real key="value" value="12"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zxZ-AF-JDE">
+                            <rect key="frame" x="335" y="16" width="24" height="24"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="24" id="Mi8-CL-qlj"/>
+                                <constraint firstAttribute="height" constant="24" id="e6w-eu-dGZ"/>
+                            </constraints>
+                            <state key="normal" image="baselineMoreHoriz24Px"/>
+                        </button>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="QNH-TB-pZg" firstAttribute="leading" secondItem="XNo-Xh-kFH" secondAttribute="leading" id="OKo-qF-vpK"/>
+                <constraint firstItem="XNo-Xh-kFH" firstAttribute="trailing" secondItem="QNH-TB-pZg" secondAttribute="trailing" constant="16" id="Q3e-28-YVL"/>
+                <constraint firstAttribute="bottom" secondItem="QNH-TB-pZg" secondAttribute="bottom" id="uCG-Q3-wAm"/>
+                <constraint firstItem="QNH-TB-pZg" firstAttribute="top" secondItem="dB5-zX-IRg" secondAttribute="top" id="vSi-og-Lnh"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="XNo-Xh-kFH"/>
+            <point key="canvasLocation" x="101.59999999999999" y="-155.62218890554723"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="baselineMoreHoriz24Px" width="24" height="24"/>
+        <image name="outlineShare24Px" width="24" height="24"/>
+    </resources>
+</document>

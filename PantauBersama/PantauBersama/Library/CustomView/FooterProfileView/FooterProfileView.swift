@@ -9,6 +9,7 @@
 import UIKit
 import Common
 
+@IBDesignable
 class FooterProfileView: UIView {
     
     @IBOutlet weak var ivAvatar: CircularUIImageView!

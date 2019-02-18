@@ -16,6 +16,7 @@ enum HeaderTantanganType: Int {
     case `default`
 }
 
+@IBDesignable
 class HeaderTantanganView: UIView {
     
     @IBOutlet weak var avatar: UIImageView!
