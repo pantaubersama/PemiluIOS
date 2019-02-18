@@ -73,8 +73,10 @@ class HeaderTantanganView: UIView {
         switch type {
         case .soon:
             self.backgroundChallenge.image = #imageLiteral(resourceName: "bgWordstadiumComingsoon")
+            self.containerOpponent.isHidden = false
         case .done:
             self.backgroundChallenge.image = #imageLiteral(resourceName: "headerOnGoing")
+            self.containerOpponent.isHidden = false
         case .challenge:
             self.backgroundChallenge.image = #imageLiteral(resourceName: "group1279")
         default:

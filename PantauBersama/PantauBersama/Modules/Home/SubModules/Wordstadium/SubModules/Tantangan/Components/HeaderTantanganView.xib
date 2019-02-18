@@ -106,7 +106,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="piR-Bl-PSU" customClass="RoundView" customModule="Common">
-                    <rect key="frame" x="319" y="29" width="40" height="40"/>
+                    <rect key="frame" x="319" y="24" width="40" height="40"/>
                     <subviews>
                         <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8iv-Kz-vDK">
                             <rect key="frame" x="15.5" y="10" width="9.5" height="20.5"/>
@@ -185,7 +185,7 @@
                 <constraint firstItem="l91-28-x9h" firstAttribute="top" secondItem="yHb-AT-XUO" secondAttribute="top" constant="29" id="Qpi-FR-r01"/>
                 <constraint firstItem="yHb-AT-XUO" firstAttribute="trailing" secondItem="2qr-TS-i1n" secondAttribute="trailing" id="fMq-nZ-58g"/>
                 <constraint firstItem="hw0-Ta-sSQ" firstAttribute="top" secondItem="pv2-hi-5RD" secondAttribute="top" constant="24" id="gSB-ne-mYT"/>
-                <constraint firstItem="piR-Bl-PSU" firstAttribute="top" secondItem="pv2-hi-5RD" secondAttribute="top" constant="29" id="hMG-ET-jS5"/>
+                <constraint firstItem="piR-Bl-PSU" firstAttribute="top" secondItem="pv2-hi-5RD" secondAttribute="top" constant="24" id="hMG-ET-jS5"/>
                 <constraint firstAttribute="bottom" secondItem="2qr-TS-i1n" secondAttribute="bottom" constant="16" id="kwd-Bk-Jzz"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
