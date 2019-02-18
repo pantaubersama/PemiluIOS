@@ -14,10 +14,12 @@ import RxCocoa
 class LiveDebatViewModel: ViewModelType {
     struct Input {
         let backTrigger: AnyObserver<Void>
+        let launchDetailTrigger: AnyObserver<Void>
     }
     
     struct Output {
         let back: Driver<Void>
+        let launchDetail: Driver<Void>
     }
     
     var input: Input
@@ -25,15 +27,22 @@ class LiveDebatViewModel: ViewModelType {
     var navigator: LiveDebatNavigator
     
     private let backS = PublishSubject<Void>()
+    private let detailS = PublishSubject<Void>()
     
     init(navigator: LiveDebatNavigator) {
         self.navigator = navigator
         
-        input = Input(backTrigger: backS.asObserver())
+        input = Input(
+            backTrigger: backS.asObserver(),
+            launchDetailTrigger: detailS.asObserver()
+        )
         
         let back = backS.flatMap({navigator.back()})
             .asDriverOnErrorJustComplete()
         
-        output = Output(back: back)
+        let detail = detailS.flatMap({navigator.launchDetail()})
+            .asDriverOnErrorJustComplete()
+        
+        output = Output(back: back, launchDetail: detail)
     }
 }
