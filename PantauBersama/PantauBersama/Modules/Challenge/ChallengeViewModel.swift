@@ -10,6 +10,13 @@ import RxSwift
 import RxCocoa
 import Networking
 
+enum ChallengeType {
+    case soon
+    case done
+    case challenge
+    case `default`
+}
+
 class ChallengeViewModel: ViewModelType {
     
     var input: Input
@@ -25,10 +32,13 @@ class ChallengeViewModel: ViewModelType {
     }
     
     private var navigator: ChallengeNavigator
+    private var type: ChallengeType = .default
+    
     private let backS = PublishSubject<Void>()
     
-    init(navigator: ChallengeNavigator) {
+    init(navigator: ChallengeNavigator, type: ChallengeType) {
         self.navigator = navigator
+        self.type = type
         
         input = Input(backI: backS.asObserver())
         

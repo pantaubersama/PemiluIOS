@@ -23,6 +23,7 @@ class HeaderTantanganView: UIView {
     @IBOutlet weak var lblFullName: UILabel!
     @IBOutlet weak var lblUsername: Label!
     @IBOutlet weak var lblType: UILabel!
+    @IBOutlet weak var backgroundChallenge: UIImageView!
     
     override init(frame: CGRect) {
         let frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 139.0)
@@ -59,6 +60,19 @@ class HeaderTantanganView: UIView {
             lblFullName.text = data.fullName
             lblUsername.text = "@\(data.username ?? "")"
         case .default:
+            break
+        }
+    }
+    
+    func configureType(type: ChallengeType) {
+        switch type {
+        case .soon:
+            self.backgroundChallenge.image = #imageLiteral(resourceName: "bgWordstadiumComingsoon")
+        case .done:
+            self.backgroundChallenge.image = #imageLiteral(resourceName: "headerOnGoing")
+        case .challenge:
+            self.backgroundChallenge.image = #imageLiteral(resourceName: "group1279")
+        default:
             break
         }
     }

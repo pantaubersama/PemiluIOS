@@ -18,6 +18,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HeaderTantanganView" customModule="PantauBersama" customModuleProvider="target">
             <connections>
                 <outlet property="avatar" destination="NOe-jq-9hg" id="oHE-gR-m4x"/>
+                <outlet property="backgroundChallenge" destination="2qr-TS-i1n" id="kAd-2J-T0d"/>
                 <outlet property="lblFullName" destination="dOB-Et-QMP" id="w43-sW-mSB"/>
                 <outlet property="lblType" destination="AGP-QU-y7v" id="PHW-H3-RCZ"/>
                 <outlet property="lblUsername" destination="ykQ-zi-CSt" id="Z4g-Od-0DG"/>
@@ -28,8 +29,15 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="135"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bannerChallengeVsBig" translatesAutoresizingMaskIntoConstraints="NO" id="2qr-TS-i1n">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="group1279" translatesAutoresizingMaskIntoConstraints="NO" id="2qr-TS-i1n">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="119"/>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="vsBannerWhite" translatesAutoresizingMaskIntoConstraints="NO" id="CJI-KG-qEm">
+                    <rect key="frame" x="167.5" y="-1" width="40" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="40" id="1td-mB-JeA"/>
+                        <constraint firstAttribute="height" constant="40" id="Ewh-l3-WLj"/>
+                    </constraints>
                 </imageView>
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hw0-Ta-sSQ" customClass="RoundView" customModule="Common">
                     <rect key="frame" x="16" y="24" width="40" height="40"/>
@@ -159,12 +167,14 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="piR-Bl-PSU" firstAttribute="trailing" secondItem="yHb-AT-XUO" secondAttribute="trailing" constant="-16" id="07F-YF-YyH"/>
+                <constraint firstItem="CJI-KG-qEm" firstAttribute="centerX" secondItem="pv2-hi-5RD" secondAttribute="centerX" id="0TO-54-hxv"/>
                 <constraint firstItem="2qr-TS-i1n" firstAttribute="top" secondItem="yHb-AT-XUO" secondAttribute="top" id="4z2-zo-QXJ"/>
                 <constraint firstItem="piR-Bl-PSU" firstAttribute="leading" secondItem="LrR-kh-0RT" secondAttribute="trailing" constant="8" id="7aU-am-DkH"/>
                 <constraint firstItem="l91-28-x9h" firstAttribute="leading" secondItem="hw0-Ta-sSQ" secondAttribute="trailing" constant="8" id="7h5-Zd-wmi"/>
                 <constraint firstItem="LrR-kh-0RT" firstAttribute="top" secondItem="yHb-AT-XUO" secondAttribute="top" constant="29" id="CPf-gK-Mds"/>
                 <constraint firstItem="hw0-Ta-sSQ" firstAttribute="leading" secondItem="yHb-AT-XUO" secondAttribute="leading" constant="16" id="FFP-8S-stQ"/>
                 <constraint firstItem="yHb-AT-XUO" firstAttribute="bottom" secondItem="AGP-QU-y7v" secondAttribute="bottom" constant="24" id="Ff7-Yb-6bA"/>
+                <constraint firstItem="CJI-KG-qEm" firstAttribute="top" secondItem="pv2-hi-5RD" secondAttribute="top" constant="-1" id="FfO-Bf-lLh"/>
                 <constraint firstItem="AGP-QU-y7v" firstAttribute="centerX" secondItem="pv2-hi-5RD" secondAttribute="centerX" id="LbV-Vs-CVN"/>
                 <constraint firstItem="2qr-TS-i1n" firstAttribute="leading" secondItem="yHb-AT-XUO" secondAttribute="leading" id="O3u-3q-Evy"/>
                 <constraint firstItem="l91-28-x9h" firstAttribute="top" secondItem="yHb-AT-XUO" secondAttribute="top" constant="29" id="Qpi-FR-r01"/>
@@ -179,7 +189,8 @@
         </view>
     </objects>
     <resources>
-        <image name="bannerChallengeVsBig" width="360" height="123"/>
+        <image name="group1279" width="360" height="203"/>
         <image name="icDummyPerson" width="48" height="48"/>
+        <image name="vsBannerWhite" width="40" height="40"/>
     </resources>
 </document>

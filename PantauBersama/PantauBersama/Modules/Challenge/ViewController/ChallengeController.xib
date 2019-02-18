@@ -26,7 +26,7 @@
                 <outlet property="challengeButton" destination="sWL-RW-ACb" id="Mfm-lf-Kti"/>
                 <outlet property="containerAcceptChallenge" destination="G1a-WF-ONP" id="DYE-Va-LqS"/>
                 <outlet property="containerContent" destination="HvS-Ts-HiO" id="XO7-Fy-bKk"/>
-                <outlet property="containerHeader" destination="GRf-ew-0W3" id="2eN-ri-ggF"/>
+                <outlet property="containerHeader" destination="80S-6j-cmu" id="1Jj-rC-cIt"/>
                 <outlet property="containerTerima" destination="XSq-7V-hDM" id="sDg-Ya-8nL"/>
                 <outlet property="containerTolak" destination="0TF-Z9-Bzo" id="PdP-sl-tZ5"/>
                 <outlet property="headerTantanganView" destination="e0h-uJ-tUr" id="QXm-ye-h4f"/>
