@@ -13,6 +13,8 @@
 		043EE17522180F76008C59CD /* RekapController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 043EE17322180F76008C59CD /* RekapController.xib */; };
 		043EE178221953C3008C59CD /* SuaraCapresViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043EE176221953C3008C59CD /* SuaraCapresViewCell.swift */; };
 		043EE179221953C3008C59CD /* SuaraCapresViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 043EE177221953C3008C59CD /* SuaraCapresViewCell.xib */; };
+		043EE17B22199F80008C59CD /* RekapFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043EE17A22199F80008C59CD /* RekapFooterView.swift */; };
+		043EE17D22199F90008C59CD /* RekapFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 043EE17C22199F90008C59CD /* RekapFooterView.xib */; };
 		04E5070F2214E5E900B342E7 /* RekapCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E5070A2214E5E900B342E7 /* RekapCoordinator.swift */; };
 		04E507122214E5E900B342E7 /* RekapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E5070E2214E5E900B342E7 /* RekapViewModel.swift */; };
 		04E507162214E62500B342E7 /* MerayakanController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E507142214E62500B342E7 /* MerayakanController.swift */; };
@@ -483,6 +485,8 @@
 		043EE17322180F76008C59CD /* RekapController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RekapController.xib; sourceTree = "<group>"; };
 		043EE176221953C3008C59CD /* SuaraCapresViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuaraCapresViewCell.swift; sourceTree = "<group>"; };
 		043EE177221953C3008C59CD /* SuaraCapresViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SuaraCapresViewCell.xib; sourceTree = "<group>"; };
+		043EE17A22199F80008C59CD /* RekapFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RekapFooterView.swift; sourceTree = "<group>"; };
+		043EE17C22199F90008C59CD /* RekapFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RekapFooterView.xib; sourceTree = "<group>"; };
 		04A224A86FBFD6EFE137644F /* Pods-PantauBersama.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PantauBersama.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-PantauBersama/Pods-PantauBersama.debug.xcconfig"; sourceTree = "<group>"; };
 		04E5070A2214E5E900B342E7 /* RekapCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RekapCoordinator.swift; sourceTree = "<group>"; };
 		04E5070E2214E5E900B342E7 /* RekapViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RekapViewModel.swift; sourceTree = "<group>"; };
@@ -962,6 +966,8 @@
 				043EE1692215BE9D008C59CD /* RekapViewCell.xib */,
 				043EE176221953C3008C59CD /* SuaraCapresViewCell.swift */,
 				043EE177221953C3008C59CD /* SuaraCapresViewCell.xib */,
+				043EE17A22199F80008C59CD /* RekapFooterView.swift */,
+				043EE17C22199F90008C59CD /* RekapFooterView.xib */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -3043,6 +3049,7 @@
 				848B039C21E7AADF002CAA40 /* WKWebview.xib in Resources */,
 				1143E81021E212F7003862B6 /* upvote.json in Resources */,
 				842A49F521D7749D0050AA51 /* HeaderDataLapor.xib in Resources */,
+				043EE17D22199F90008C59CD /* RekapFooterView.xib in Resources */,
 				840850C821D25D5800696CB3 /* TextViewCell.xib in Resources */,
 				844C2BA521CC0F2500BC439A /* BannerHeaderView.xib in Resources */,
 				84FE6EC421D634CD009A0F55 /* BiodataView.xib in Resources */,
@@ -3518,6 +3525,7 @@
 				11D066A821E38610003AC9BB /* PenpolFilterCoordinator.swift in Sources */,
 				13E170D4221311A70018EDB4 /* WordstadiumItemViewCell.swift in Sources */,
 				84D01B9D21D20CA20000492F /* SettingCell.swift in Sources */,
+				043EE17B22199F80008C59CD /* RekapFooterView.swift in Sources */,
 				84B6D50521F829D100DD742A /* CatatanPilpresController.swift in Sources */,
 				84FA42662212EABA008215C4 /* BidangKajianCell.swift in Sources */,
 				844C3D7821C51EFD00199871 /* HomeCoordinator.swift in Sources */,

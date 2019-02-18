@@ -24,6 +24,8 @@ class SuaraCapresViewCell: UITableViewCell {
     
     @IBOutlet weak var viewProgress: UIStackView!
     @IBOutlet weak var viewProgress0: UIView!
+    @IBOutlet weak var viewProgress1: UIView!
+    @IBOutlet weak var viewProgress2: UIView!
     @IBOutlet weak var progress1Width: NSLayoutConstraint!
     @IBOutlet weak var progress2Width: NSLayoutConstraint!
     override func awakeFromNib() {
@@ -56,10 +58,14 @@ extension SuaraCapresViewCell : IReusableCell {
         // check total capres 1 dan 2 tidak boleh lebih dari 100%
         if 1 < (capres1 + capres1) { return }
         let width   = self.viewProgress.frame.width
+        
         // set width progress 1
         self.progress1Width.constant = width * capres1
         // set width progress 2
         self.progress2Width.constant = width * capres2
+        UIView.animate(withDuration: 0.5, delay: 0.5, options: [], animations: {
+            self.viewProgress.layoutIfNeeded()
+        }, completion: nil)
     }
     
     private func setMultiplier(constraint: NSLayoutConstraint, multiplier: CGFloat) -> NSLayoutConstraint {

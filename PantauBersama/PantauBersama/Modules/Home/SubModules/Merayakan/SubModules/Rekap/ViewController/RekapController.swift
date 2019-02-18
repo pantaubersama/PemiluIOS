@@ -24,6 +24,7 @@ class RekapController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     private var emptyView = EmptyView()
     var viewModel: RekapViewModel!
+    private var headerView: BannerHeaderView!
     
     private let disposeBag = DisposeBag()
     
@@ -47,6 +48,13 @@ class RekapController: UIViewController {
         
         tableView.registerReusableCell(RekapViewCell.self)
         tableView.registerReusableCell(SuaraCapresViewCell.self)
+        
+        // table view header
+        self.headerView                 = BannerHeaderView()
+        self.tableView.tableHeaderView  = headerView
+        
+        let footer                      = RekapFooterView()
+        self.tableView.tableFooterView  = footer
         
         tableView.delegate = self
         tableView.dataSource = self

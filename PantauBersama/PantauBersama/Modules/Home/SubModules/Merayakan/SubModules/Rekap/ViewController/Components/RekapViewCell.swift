@@ -14,6 +14,7 @@ import Networking
 
 class RekapViewCell: UITableViewCell {
 
+    @IBOutlet weak var container: UIView!
     @IBOutlet weak var regionView: UIView!
     @IBOutlet weak var tpsView: UIView!
     @IBOutlet weak var regionTopConstraint: NSLayoutConstraint!
@@ -59,8 +60,16 @@ class RekapViewCell: UITableViewCell {
 
 extension RekapViewCell : IReusableCell {
     
-    // Setup UI
+    // Setup UI and data
     func configure(data: String, type: RekapType) {
+        self.container.layer.masksToBounds  = true
+        self.container.layer.borderWidth    = 1
+        self.container.layer.borderColor    = #colorLiteral(red: 0.9293106794, green: 0.929469943, blue: 0.9293007255, alpha: 1)
+        self.container.layer.cornerRadius   = 5
+        
+        self.viewBullet1.layer.cornerRadius = self.viewBullet1.frame.width/2
+        self.viewBullet2.layer.cornerRadius = self.viewBullet2.frame.width/2
+        
         switch type {
         case .tps:
 //            self.regionTopConstraint.constant =
