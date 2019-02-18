@@ -7,3 +7,9 @@
 //
 
 import Foundation
+import RxSwift
+import RxCocoa
+
+protocol PublicNavigator {
+    func launchLiveChallenge(wordstadium: Wordstadium) -> Observable<Void>
+}

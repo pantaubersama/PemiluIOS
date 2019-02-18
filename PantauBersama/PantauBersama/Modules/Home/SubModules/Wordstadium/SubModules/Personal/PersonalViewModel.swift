@@ -74,7 +74,14 @@ class PersonalViewModel: ViewModelType {
             })
             .asDriverOnErrorJustComplete()
         
-        let itemSelected = Driver.merge(infoSelected,seeMoreSelected,seeMoreColSelected)
+        let itemColSelected = collectionViewModel.output.itemSelected
+            .asObservable()
+            .flatMapLatest({ (wordstadium) -> Observable<Void> in
+                return navigator.launchChallenge(wordstadium: wordstadium)
+            })
+            .asDriverOnErrorJustComplete()
+        
+        let itemSelected = Driver.merge(infoSelected,seeMoreSelected,seeMoreColSelected,itemColSelected)
         
         output = Output(bannerInfo: bannerInfo,
                         itemSelected: itemSelected,

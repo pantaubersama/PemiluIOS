@@ -70,11 +70,18 @@ class PublicViewModel: ViewModelType {
             })
             .asDriverOnErrorJustComplete()
         
+        let itemColSelected = collectionViewModel.output.itemSelected
+            .asObservable()
+            .flatMapLatest({ (wordstadium) -> Observable<Void> in
+                return navigator.launchLiveChallenge(wordstadium: wordstadium)
+            })
+            .asDriverOnErrorJustComplete()
+        
         let showItems = refreshSubject.startWith("")
             .flatMapLatest({ _ in self.generateWordstadium() })
             .asDriverOnErrorJustComplete()
         
-        let itemSelected = Driver.merge(infoSelected,seeMoreSelected,seeMoreColSelected)
+        let itemSelected = Driver.merge(infoSelected,seeMoreSelected,seeMoreColSelected,itemColSelected)
         
         output = Output(bannerInfo: bannerInfo,
                         itemSelected: itemSelected,

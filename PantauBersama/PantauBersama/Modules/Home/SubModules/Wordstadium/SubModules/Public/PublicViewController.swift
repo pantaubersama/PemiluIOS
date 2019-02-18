@@ -72,7 +72,7 @@ class PublicViewController: UITableViewController {
                 
                 if wordstadium.itemType == .live {
                     let cell = tableView.dequeueReusableCell(indexPath: indexPath) as WordstadiumViewCell
-                    cell.configureCell(item: WordstadiumViewCell.Input(type: wordstadium.itemType, wordstadium: wordstadium, viewModel: self.viewModel.collectionViewModel))
+                    cell.configureCell(item: WordstadiumViewCell.Input(wordstadium: wordstadium, viewModel: self.viewModel.collectionViewModel))
                     cell.collectionView.reloadData()
                     return cell
                 } else {
