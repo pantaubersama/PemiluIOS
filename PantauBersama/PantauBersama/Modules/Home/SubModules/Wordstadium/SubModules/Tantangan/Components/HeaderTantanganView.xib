@@ -18,10 +18,15 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HeaderTantanganView" customModule="PantauBersama" customModuleProvider="target">
             <connections>
                 <outlet property="avatar" destination="NOe-jq-9hg" id="oHE-gR-m4x"/>
+                <outlet property="avatarOpponent" destination="y7N-pr-tDg" id="rZw-zI-TNG"/>
                 <outlet property="backgroundChallenge" destination="2qr-TS-i1n" id="kAd-2J-T0d"/>
+                <outlet property="containerOpponent" destination="piR-Bl-PSU" id="NQk-IR-9ob"/>
+                <outlet property="lblCountOpponent" destination="8iv-Kz-vDK" id="mg5-QK-L50"/>
                 <outlet property="lblFullName" destination="dOB-Et-QMP" id="w43-sW-mSB"/>
+                <outlet property="lblNameOpponent" destination="4dH-3I-Azr" id="YUg-fI-RbR"/>
                 <outlet property="lblType" destination="AGP-QU-y7v" id="PHW-H3-RCZ"/>
                 <outlet property="lblUsername" destination="ykQ-zi-CSt" id="Z4g-Od-0DG"/>
+                <outlet property="lblUsernameOpponent" destination="HsT-89-7yA" id="AvW-7E-SFr"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>

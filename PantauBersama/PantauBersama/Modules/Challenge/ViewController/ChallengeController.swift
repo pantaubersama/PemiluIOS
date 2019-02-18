@@ -26,8 +26,10 @@ class ChallengeController: UIViewController {
     @IBOutlet weak var containerAcceptChallenge: UIView!
     @IBOutlet weak var containerTerima: RoundView!
     @IBOutlet weak var btnTerima: Button!
+    @IBOutlet weak var btnImageTerima: UIImageView!
     @IBOutlet weak var containerTolak: RoundView!
     @IBOutlet weak var btnTolak: Button!
+    @IBOutlet weak var containerDebatDone: UIView!
     
     @IBOutlet weak var btnBack: ImageButton!
     
@@ -81,6 +83,11 @@ extension ChallengeController {
             self.containerHeader.backgroundColor = #colorLiteral(red: 0.3294117647, green: 0.2549019608, blue: 0.6, alpha: 1)
             self.lblHeader.text = "DONE"
             self.imageContent.image = #imageLiteral(resourceName: "doneMask")
+            self.containerDebatDone.isHidden = false
+            self.btnTerima.backgroundColor = #colorLiteral(red: 1, green: 0.5569574237, blue: 0, alpha: 1)
+            self.btnImageTerima.image = #imageLiteral(resourceName: "outlineDebateDone24PxWhite")
+            self.btnTerima.setTitle("LIHAT DEBAT", for: UIControlState())
+            self.containerAcceptChallenge.isHidden = false
         case .soon:
             self.titleContent.text = "Siap-siap!"
             self.subtitleContent.text = "Debat akan berlangsung \(2) hari lagi!"
