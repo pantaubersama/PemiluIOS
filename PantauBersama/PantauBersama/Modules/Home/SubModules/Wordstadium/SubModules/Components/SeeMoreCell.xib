@@ -19,20 +19,26 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="See more &gt;&gt;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IjP-7D-gbt">
-                        <rect key="frame" x="127.5" y="16" width="65" height="12"/>
-                        <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
-                        <color key="textColor" red="0.96470588239999999" green="0.70588235290000001" blue="0.1647058824" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mge-vG-7EI">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <state key="normal" title=" See more &gt;&gt;">
+                            <color key="titleColor" red="0.96470588239999999" green="0.70588235290000001" blue="0.1647058824" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        </state>
+                    </button>
                 </subviews>
                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
-                    <constraint firstItem="IjP-7D-gbt" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="2aw-5u-mko"/>
-                    <constraint firstItem="IjP-7D-gbt" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="fay-Bz-BNy"/>
+                    <constraint firstItem="Mge-vG-7EI" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="L0g-fb-3vH"/>
+                    <constraint firstItem="Mge-vG-7EI" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Lcw-Mg-1eN"/>
+                    <constraint firstAttribute="bottom" secondItem="Mge-vG-7EI" secondAttribute="bottom" id="bUu-WV-tzo"/>
+                    <constraint firstAttribute="trailing" secondItem="Mge-vG-7EI" secondAttribute="trailing" id="qlj-tG-YzU"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="seeMoreBtn" destination="Mge-vG-7EI" id="U0Z-xZ-f4S"/>
+            </connections>
         </tableViewCell>
     </objects>
 </document>

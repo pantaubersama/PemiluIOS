@@ -62,7 +62,7 @@ class PersonalViewController: UITableViewController {
             })
             .disposed(by: disposeBag)
         
-        viewModel.output.infoSelected
+        viewModel.output.itemSelected
             .drive()
             .disposed(by: disposeBag)
         
@@ -70,9 +70,9 @@ class PersonalViewController: UITableViewController {
             configureCell: { (dataSource, tableView, indexPath, item) in
                 let wordstadium = dataSource.sectionModels[indexPath.section]
                 
-                if wordstadium.itemType == .live {
+                if wordstadium.itemType == .inProgress {
                     let cell = tableView.dequeueReusableCell(indexPath: indexPath) as WordstadiumViewCell
-                    cell.configureCell(item: WordstadiumViewCell.Input(type: ItemCollectionType.challenge, wordstadium: wordstadium.itemsLive))
+                    cell.configureCell(item: WordstadiumViewCell.Input(type: wordstadium.itemType, wordstadium: wordstadium, viewModel: self.viewModel.collectionViewModel))
                     cell.collectionView.reloadData()
                     return cell
                 } else {
@@ -93,7 +93,7 @@ class PersonalViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         let wordstadium = dataSource.sectionModels[section]
         
-        if wordstadium.itemType == .live {
+        if wordstadium.itemType == .inProgress {
             return 0
         } else {
             return wordstadium.descriptiom.count == 0 ? 50:95
@@ -103,13 +103,13 @@ class PersonalViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         let wordstadium = dataSource.sectionModels[section]
         
-        return wordstadium.itemType == .live ? 0:30.0
+        return wordstadium.itemType == .inProgress ? 0:30.0
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let wordstadium = dataSource.sectionModels[section]
         
-        if wordstadium.itemType == .live {
+        if wordstadium.itemType == .inProgress {
             return nil
         } else {
             if wordstadium.descriptiom.count == 0 {
@@ -131,7 +131,15 @@ class PersonalViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let wordstadium = dataSource.sectionModels[section]
         
-        return wordstadium.itemType == .live ? nil : tableView.dequeueReusableCell() as SeeMoreCell
+        if wordstadium.itemType == .inProgress {
+            return nil
+        } else {
+            let item = tableView.dequeueReusableCell() as SeeMoreCell
+            item.configureCell(item:
+                SeeMoreCell.Input(wordstadium: wordstadium,
+                                  viewModel: self.viewModel.seeMoreViewModel))
+            return item
+        }
     }
  
 

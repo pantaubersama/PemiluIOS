@@ -62,7 +62,7 @@ class PublicViewController: UITableViewController {
             })
             .disposed(by: disposeBag)
         
-        viewModel.output.infoSelected
+        viewModel.output.itemSelected
             .drive()
             .disposed(by: disposeBag)
         
@@ -72,7 +72,7 @@ class PublicViewController: UITableViewController {
                 
                 if wordstadium.itemType == .live {
                     let cell = tableView.dequeueReusableCell(indexPath: indexPath) as WordstadiumViewCell
-                    cell.configureCell(item: WordstadiumViewCell.Input(type: ItemCollectionType.live, wordstadium: wordstadium.itemsLive))
+                    cell.configureCell(item: WordstadiumViewCell.Input(type: wordstadium.itemType, wordstadium: wordstadium, viewModel: self.viewModel.collectionViewModel))
                     cell.collectionView.reloadData()
                     return cell
                 } else {
@@ -130,8 +130,18 @@ class PublicViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let wordstadium = dataSource.sectionModels[section]
         
-        return wordstadium.itemType == .live ? nil : tableView.dequeueReusableCell() as SeeMoreCell
+        if wordstadium.itemType == .live {
+            return nil
+        } else {
+            let item = tableView.dequeueReusableCell() as SeeMoreCell
+            item.configureCell(item:
+                SeeMoreCell.Input(wordstadium: wordstadium,
+                                  viewModel: self.viewModel.seeMoreViewModel))
+            return item
+        }
+        
     }
+    
 
     // TODO: for testing purpose
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
