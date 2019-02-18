@@ -88,6 +88,7 @@ extension ChallengeController {
             self.btnImageTerima.image = #imageLiteral(resourceName: "outlineDebateDone24PxWhite")
             self.btnTerima.setTitle("LIHAT DEBAT", for: UIControlState())
             self.containerAcceptChallenge.isHidden = false
+            self.challengeButton.configure(type: .done)
         case .soon:
             self.titleContent.text = "Siap-siap!"
             self.subtitleContent.text = "Debat akan berlangsung \(2) hari lagi!"
