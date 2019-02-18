@@ -7,6 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		043EE192221A36C2008C59CD /* MerayakanCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043EE17F221A36C2008C59CD /* MerayakanCoordinator.swift */; };
+		043EE193221A36C2008C59CD /* RekapCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043EE182221A36C2008C59CD /* RekapCoordinator.swift */; };
+		043EE194221A36C2008C59CD /* RekapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043EE183221A36C2008C59CD /* RekapViewModel.swift */; };
+		043EE195221A36C2008C59CD /* RekapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043EE185221A36C2008C59CD /* RekapController.swift */; };
+		043EE196221A36C2008C59CD /* RekapController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 043EE186221A36C2008C59CD /* RekapController.xib */; };
+		043EE197221A36C2008C59CD /* SuaraCapresViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043EE188221A36C2008C59CD /* SuaraCapresViewCell.swift */; };
+		043EE198221A36C2008C59CD /* RekapViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043EE189221A36C2008C59CD /* RekapViewCell.swift */; };
+		043EE199221A36C2008C59CD /* RekapFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043EE18A221A36C2008C59CD /* RekapFooterView.swift */; };
+		043EE19A221A36C2008C59CD /* RekapFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 043EE18B221A36C2008C59CD /* RekapFooterView.xib */; };
+		043EE19B221A36C2008C59CD /* SuaraCapresViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 043EE18C221A36C2008C59CD /* SuaraCapresViewCell.xib */; };
+		043EE19C221A36C2008C59CD /* RekapViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 043EE18D221A36C2008C59CD /* RekapViewCell.xib */; };
+		043EE19D221A36C2008C59CD /* MerayakanController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 043EE18F221A36C2008C59CD /* MerayakanController.xib */; };
+		043EE19E221A36C2008C59CD /* MerayakanController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043EE190221A36C2008C59CD /* MerayakanController.swift */; };
+		043EE19F221A36C2008C59CD /* MerayakanViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043EE191221A36C2008C59CD /* MerayakanViewModel.swift */; };
 		1108871822126FEA0041B821 /* LiveDebatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1108871622126FEA0041B821 /* LiveDebatController.swift */; };
 		1108871922126FEA0041B821 /* LiveDebatController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1108871722126FEA0041B821 /* LiveDebatController.xib */; };
 		1108871C221271CD0041B821 /* LiveDebatCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1108871B221271CD0041B821 /* LiveDebatCoordinator.swift */; };
@@ -503,6 +517,20 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		043EE17F221A36C2008C59CD /* MerayakanCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MerayakanCoordinator.swift; sourceTree = "<group>"; };
+		043EE182221A36C2008C59CD /* RekapCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RekapCoordinator.swift; sourceTree = "<group>"; };
+		043EE183221A36C2008C59CD /* RekapViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RekapViewModel.swift; sourceTree = "<group>"; };
+		043EE185221A36C2008C59CD /* RekapController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RekapController.swift; sourceTree = "<group>"; };
+		043EE186221A36C2008C59CD /* RekapController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RekapController.xib; sourceTree = "<group>"; };
+		043EE188221A36C2008C59CD /* SuaraCapresViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuaraCapresViewCell.swift; sourceTree = "<group>"; };
+		043EE189221A36C2008C59CD /* RekapViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RekapViewCell.swift; sourceTree = "<group>"; };
+		043EE18A221A36C2008C59CD /* RekapFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RekapFooterView.swift; sourceTree = "<group>"; };
+		043EE18B221A36C2008C59CD /* RekapFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RekapFooterView.xib; sourceTree = "<group>"; };
+		043EE18C221A36C2008C59CD /* SuaraCapresViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SuaraCapresViewCell.xib; sourceTree = "<group>"; };
+		043EE18D221A36C2008C59CD /* RekapViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RekapViewCell.xib; sourceTree = "<group>"; };
+		043EE18F221A36C2008C59CD /* MerayakanController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MerayakanController.xib; sourceTree = "<group>"; };
+		043EE190221A36C2008C59CD /* MerayakanController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MerayakanController.swift; sourceTree = "<group>"; };
+		043EE191221A36C2008C59CD /* MerayakanViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MerayakanViewModel.swift; sourceTree = "<group>"; };
 		04A224A86FBFD6EFE137644F /* Pods-PantauBersama.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PantauBersama.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-PantauBersama/Pods-PantauBersama.debug.xcconfig"; sourceTree = "<group>"; };
 		1108871622126FEA0041B821 /* LiveDebatController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveDebatController.swift; sourceTree = "<group>"; };
 		1108871722126FEA0041B821 /* LiveDebatController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LiveDebatController.xib; sourceTree = "<group>"; };
@@ -1007,6 +1035,67 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		043EE17E221A36C2008C59CD /* Merayakan */ = {
+			isa = PBXGroup;
+			children = (
+				043EE17F221A36C2008C59CD /* MerayakanCoordinator.swift */,
+				043EE180221A36C2008C59CD /* SubModules */,
+				043EE18E221A36C2008C59CD /* ViewController */,
+				043EE191221A36C2008C59CD /* MerayakanViewModel.swift */,
+			);
+			path = Merayakan;
+			sourceTree = "<group>";
+		};
+		043EE180221A36C2008C59CD /* SubModules */ = {
+			isa = PBXGroup;
+			children = (
+				043EE181221A36C2008C59CD /* Rekap */,
+			);
+			path = SubModules;
+			sourceTree = "<group>";
+		};
+		043EE181221A36C2008C59CD /* Rekap */ = {
+			isa = PBXGroup;
+			children = (
+				043EE182221A36C2008C59CD /* RekapCoordinator.swift */,
+				043EE183221A36C2008C59CD /* RekapViewModel.swift */,
+				043EE184221A36C2008C59CD /* ViewController */,
+			);
+			path = Rekap;
+			sourceTree = "<group>";
+		};
+		043EE184221A36C2008C59CD /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				043EE185221A36C2008C59CD /* RekapController.swift */,
+				043EE186221A36C2008C59CD /* RekapController.xib */,
+				043EE187221A36C2008C59CD /* Components */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		043EE187221A36C2008C59CD /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				043EE188221A36C2008C59CD /* SuaraCapresViewCell.swift */,
+				043EE189221A36C2008C59CD /* RekapViewCell.swift */,
+				043EE18A221A36C2008C59CD /* RekapFooterView.swift */,
+				043EE18B221A36C2008C59CD /* RekapFooterView.xib */,
+				043EE18C221A36C2008C59CD /* SuaraCapresViewCell.xib */,
+				043EE18D221A36C2008C59CD /* RekapViewCell.xib */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		043EE18E221A36C2008C59CD /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				043EE18F221A36C2008C59CD /* MerayakanController.xib */,
+				043EE190221A36C2008C59CD /* MerayakanController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		1108871522126FC60041B821 /* LiveDebat */ = {
 			isa = PBXGroup;
 			children = (
@@ -1924,6 +2013,7 @@
 		844C3D7B21C5246600199871 /* SubModules */ = {
 			isa = PBXGroup;
 			children = (
+				043EE17E221A36C2008C59CD /* Merayakan */,
 				137A29EF21E225DF00F19072 /* Comingsoon */,
 				13F456D721DBACF400CE45F1 /* Banner */,
 				844C3D8021C524AE00199871 /* Vote */,
@@ -3079,6 +3169,8 @@
 				8451E0682207F74400F03E96 /* upload-ttd.json in Resources */,
 				84B2521E21CAB1BE00565D82 /* OnboardingViewController.xib in Resources */,
 				13E170D5221311A70018EDB4 /* WordstadiumItemViewCell.xib in Resources */,
+				043EE19A221A36C2008C59CD /* RekapFooterView.xib in Resources */,
+				043EE19C221A36C2008C59CD /* RekapViewCell.xib in Resources */,
 				84A07F9721D0D4EA00269C6B /* IdentitasController.xib in Resources */,
 				845C570D21CE0C8100EDCDFE /* ClusterCell.xib in Resources */,
 				8493BF732216789600685BEC /* SuccessPromoteView.xib in Resources */,
@@ -3126,6 +3218,7 @@
 				84F892AD21C787D800DC1048 /* Lato-HairlineItalic.ttf in Resources */,
 				11145F5F21EAF2730046F2AA /* SearchNavbar.xib in Resources */,
 				84F892AE21C787D800DC1048 /* Lato-Italic.ttf in Resources */,
+				043EE19D221A36C2008C59CD /* MerayakanController.xib in Resources */,
 				8451E06A2207F76E00F03E96 /* validation-success.json in Resources */,
 				8452A4C521DE1F4300196043 /* BuatProfileController.xib in Resources */,
 				84B6D51421F8407800DD742A /* PartyCell.xib in Resources */,
@@ -3189,7 +3282,9 @@
 				8451E0662207F71800F03E96 /* selfie-id-card.json in Resources */,
 				840850CC21D2607000696CB3 /* DateViewCell.xib in Resources */,
 				84B7B8C121E487FB0099E7E3 /* ClusterSearchCell.xib in Resources */,
+				043EE19B221A36C2008C59CD /* SuaraCapresViewCell.xib in Resources */,
 				84FA42742212FF66008215C4 /* HintTantanganView.xib in Resources */,
+				043EE196221A36C2008C59CD /* RekapController.xib in Resources */,
 				131DBDB82215AFCC005203FF /* DescriptionView.xib in Resources */,
 				84A07FA221D0DFF600269C6B /* SignatureController.xib in Resources */,
 				1149EB6B22140E670050F366 /* ArgumentLeftCell.xib in Resources */,
@@ -3512,6 +3607,7 @@
 				84619D3821DA851200EB58CF /* EditViewModel.swift in Sources */,
 				8452A4D421DE55DE00196043 /* SosmedCoordinator.swift in Sources */,
 				8493BF752216797B00685BEC /* SucceessPromoteView.swift in Sources */,
+				043EE197221A36C2008C59CD /* SuaraCapresViewCell.swift in Sources */,
 				1149EB6E22140E800050F366 /* ArgumentRightCell.swift in Sources */,
 				11E107A821CD33CA00B7B074 /* CreateJanjiCoordinator.swift in Sources */,
 				1147F22F21F83F1A001D0D59 /* ClusterDetailViewModel.swift in Sources */,
@@ -3529,6 +3625,7 @@
 				84A07FC221D14D4F00269C6B /* ReqClusterController.swift in Sources */,
 				11B3C79621D1126700EDCECB /* QuizSummaryKeyCell.swift in Sources */,
 				11D066AC21E38850003AC9BB /* PenpolFilterModel.swift in Sources */,
+				043EE199221A36C2008C59CD /* RekapFooterView.swift in Sources */,
 				11145F6921EB47310046F2AA /* CustomMenuBar.swift in Sources */,
 				8452A4CB21DE271B00196043 /* BuatProfileCoordinator.swift in Sources */,
 				13F4569F21CF986600CE45F1 /* CreateAskCoordinator.swift in Sources */,
@@ -3547,6 +3644,7 @@
 				13812C3921CC182500CAB327 /* AskViewCell.swift in Sources */,
 				1108871822126FEA0041B821 /* LiveDebatController.swift in Sources */,
 				137A29F821E2327D00F19072 /* ComingsoonCoordinator.swift in Sources */,
+				043EE194221A36C2008C59CD /* RekapViewModel.swift in Sources */,
 				84B2526821CC01F000565D82 /* AppState.swift in Sources */,
 				8451E05A22045AEC00F03E96 /* InfoNotifViewModel.swift in Sources */,
 				84E521BC21F4A81700B7CCBA /* ItemOnboardingController.swift in Sources */,
@@ -3556,6 +3654,7 @@
 				13E9D78B21E8FCF6006A0890 /* IJanpolViewController.swift in Sources */,
 				842A49FF21D79AA70050AA51 /* SelfIdentitasCoordinator.swift in Sources */,
 				840901C421DF3BEC001BF559 /* CatatanCoordinator.swift in Sources */,
+				043EE195221A36C2008C59CD /* RekapController.swift in Sources */,
 				840850CA21D25EB600696CB3 /* TextViewCell.swift in Sources */,
 				11E1079621CD126900B7B074 /* QuizDetailViewModel.swift in Sources */,
 				84F6981121C8E21B00890917 /* LinimasaCell.swift in Sources */,
@@ -3568,6 +3667,7 @@
 				11145F5921EAD31A0046F2AA /* SearchCoordinator.swift in Sources */,
 				118149E721EC625200192E97 /* ListUserViewModel.swift in Sources */,
 				84619D4921DC961A00EB58CF /* WebController.swift in Sources */,
+				043EE19F221A36C2008C59CD /* MerayakanViewModel.swift in Sources */,
 				11E107DB21CFD99900B7B074 /* QuizResultViewModel.swift in Sources */,
 				8452A4D021DE544C00196043 /* SosmedController.swift in Sources */,
 				118149E521EC622900192E97 /* ListUserController.swift in Sources */,
@@ -3578,6 +3678,7 @@
 				84E2854421CA195C00298E31 /* CustomActionSheet.swift in Sources */,
 				84619D3A21DA85D200EB58CF /* EditCoordinator.swift in Sources */,
 				84FA42722212FBBE008215C4 /* SaldoTimeCell.swift in Sources */,
+				043EE198221A36C2008C59CD /* RekapViewCell.swift in Sources */,
 				844C3D6D21C51CE900199871 /* HomeController.swift in Sources */,
 				84B6D6EE21E2451600CD4BC8 /* ClusterType.swift in Sources */,
 				84E6934621D296BB00EA5464 /* SectionOfProfileEditData.swift in Sources */,
@@ -3629,6 +3730,7 @@
 				84B8C1BF22157347004BC1FE /* ChallengeDetailView.swift in Sources */,
 				11B3C78B21D110CB00EDCECB /* QuizSummaryCoordinator.swift in Sources */,
 				131DBDB02215AF69005203FF /* TimeView.swift in Sources */,
+				043EE193221A36C2008C59CD /* RekapCoordinator.swift in Sources */,
 				1161F9F421DF4B4000C1BAD5 /* QuizButton.swift in Sources */,
 				13BF405321EBAA8F005C9A64 /* IQuestionListViewModel.swift in Sources */,
 				8478B8EA21FF315600CE192A /* Parser.swift in Sources */,
@@ -3637,6 +3739,7 @@
 				845C570521CD1C2300EDCDFE /* HeaderProfile.swift in Sources */,
 				84B6D6E821E1E7FC00CD4BC8 /* ClusterCellViewModel.swift in Sources */,
 				84B7B8CE21E5B4CD0099E7E3 /* AddKategoriController.swift in Sources */,
+				043EE19E221A36C2008C59CD /* MerayakanController.swift in Sources */,
 				84F1F21821EA678F004515A4 /* Facebook+Rx.swift in Sources */,
 				8478B8E821FF210E00CE192A /* InfoNotifCell.swift in Sources */,
 				13E170BF221184B70018EDB4 /* WordstadiumController.swift in Sources */,
@@ -3717,6 +3820,7 @@
 				8478B8E121FF1C6600CE192A /* NotificationController.swift in Sources */,
 				137369482217230700B698BA /* SeeMoreViewModel.swift in Sources */,
 				84FE6EBE21D5FEA1009A0F55 /* Network+AlertController.swift in Sources */,
+				043EE192221A36C2008C59CD /* MerayakanCoordinator.swift in Sources */,
 				84FA426A2212F0F5008215C4 /* PernyataanCell.swift in Sources */,
 				8441DB5821CCF7D900B078DF /* DetailJanjiCoordinator.swift in Sources */,
 				13F4569D21CF985800CE45F1 /* CreateAskViewModel.swift in Sources */,

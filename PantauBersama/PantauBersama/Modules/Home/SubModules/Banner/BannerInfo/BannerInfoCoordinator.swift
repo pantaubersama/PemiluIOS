@@ -20,6 +20,7 @@ class BannerInfoCoordinator: BaseCoordinator<Void> {
         self.navigationController = navigationController
         self.bannerInfo = bannerInfo
     }
+    
     override func start() -> Observable<Void> {
         let viewController = BannerInfoController()
         let viewModel = BannerInfoViewModel(bannerInfo: bannerInfo)
