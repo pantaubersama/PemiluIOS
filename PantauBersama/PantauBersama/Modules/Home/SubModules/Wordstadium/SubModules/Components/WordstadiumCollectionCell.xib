@@ -247,6 +247,7 @@ mengalami pertumbuhan mencapai 5,27%.
             <size key="customSize" width="280" height="180"/>
             <connections>
                 <outlet property="backgroundItem" destination="S0V-36-1mK" id="uet-Pp-CEE"/>
+                <outlet property="titleLbl" destination="xfM-hl-bLj" id="VUN-Xk-rHX"/>
             </connections>
             <point key="canvasLocation" x="-8" y="165.51724137931035"/>
         </collectionViewCell>

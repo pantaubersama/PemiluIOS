@@ -9,15 +9,11 @@
 import UIKit
 import Common
 
-
-enum ItemCollectionType {
-    case live
-    case challenge
-}
-
 class WordstadiumCollectionCell: UICollectionViewCell {
 
     @IBOutlet weak var backgroundItem: UIImageView!
+    @IBOutlet weak var titleLbl: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -28,15 +24,18 @@ class WordstadiumCollectionCell: UICollectionViewCell {
 extension WordstadiumCollectionCell: IReusableCell {
     
     struct Input {
-        let type : ItemCollectionType
+        let type : ItemType
     }
     
     func configureCell(item: Input) {
         switch item.type {
         case .live:
             backgroundItem.image = UIImage(named: "bgWordstadiumLive")
-        case .challenge:
+            titleLbl.text = "Live Now"
+        case .inProgress:
             backgroundItem.image = UIImage(named: "bgWordstadiumChallange")
+            titleLbl.text = "Open Challenge"
+        default: break
         }
     }
 }

@@ -22,7 +22,7 @@ class PersonalViewModel: ViewModelType {
     
     struct Output {
         let bannerInfo: Driver<BannerInfo>
-        let infoSelected: Driver<Void>
+        let itemSelected: Driver<Void>
         let showHeader: Driver<Bool>
         let items: Driver<[SectionWordstadium]>
     }
@@ -33,6 +33,8 @@ class PersonalViewModel: ViewModelType {
     let errorTracker = ErrorTracker()
     let activityIndicator = ActivityIndicator()
     let headerViewModel = BannerHeaderViewModel()
+    let seeMoreViewModel = SeeMoreViewModel()
+    let collectionViewModel = WordstadiumCellViewModel()
     
     init(navigator: WordstadiumNavigator, showTableHeader: Bool) {
         self.navigator = navigator
@@ -58,8 +60,24 @@ class PersonalViewModel: ViewModelType {
             .flatMapLatest({ _ in self.generateWordstadium() })
             .asDriverOnErrorJustComplete()
         
+        let seeMoreSelected = seeMoreViewModel.output.moreSelected
+            .asObservable()
+            .flatMapLatest({ (wordstadium) -> Observable<Void> in
+                return navigator.launchWordstadiumList(wordstadium: wordstadium)
+            })
+            .asDriverOnErrorJustComplete()
+        
+        let seeMoreColSelected = collectionViewModel.output.moreSelected
+            .asObservable()
+            .flatMapLatest({ (wordstadium) -> Observable<Void> in
+                return navigator.launchWordstadiumList(wordstadium: wordstadium)
+            })
+            .asDriverOnErrorJustComplete()
+        
+        let itemSelected = Driver.merge(infoSelected,seeMoreSelected,seeMoreColSelected)
+        
         output = Output(bannerInfo: bannerInfo,
-                        infoSelected: infoSelected,
+                        itemSelected: itemSelected,
                         showHeader: showTableHeader,
                         items: showItems)
         
@@ -80,7 +98,7 @@ class PersonalViewModel: ViewModelType {
         var items : [SectionWordstadium] = []
         let live = SectionWordstadium(title: "",
                                       descriptiom: "",
-                                      itemType: .live,
+                                      itemType: .inProgress,
                                       items: [Wordstadium(title: "")],
                                       itemsLive: [Wordstadium(title: ""),Wordstadium(title: ""),Wordstadium(title: "")])
         

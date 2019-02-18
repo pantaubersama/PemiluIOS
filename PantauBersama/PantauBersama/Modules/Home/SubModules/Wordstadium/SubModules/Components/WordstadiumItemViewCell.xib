@@ -303,6 +303,7 @@ pertumbuhan mencapai 5,27%.
             <connections>
                 <outlet property="backgroundItem" destination="24g-Zx-MS5" id="JUE-AZ-A6h"/>
                 <outlet property="footerContainerView" destination="51F-cU-N5I" id="q0o-0e-uOX"/>
+                <outlet property="titleLbl" destination="KYI-Ns-qvX" id="8uJ-Es-wdu"/>
             </connections>
             <point key="canvasLocation" x="136" y="192.05397301349328"/>
         </tableViewCell>
