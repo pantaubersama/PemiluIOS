@@ -11,6 +11,8 @@ import UIKit
 @IBDesignable
 class ChallengeButtonView: UIView {
     
+    @IBOutlet weak var containerLike: UIView!
+    
     override init(frame: CGRect) {
         let frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 56.0)
         super.init(frame: frame)
@@ -29,5 +31,13 @@ class ChallengeButtonView: UIView {
         addSubview(view)
     }
 
+    func configure(type: ChallengeType) {
+        switch type {
+        case .done:
+            containerLike.isHidden = false
+        default:
+            break
+        }
+    }
     
 }

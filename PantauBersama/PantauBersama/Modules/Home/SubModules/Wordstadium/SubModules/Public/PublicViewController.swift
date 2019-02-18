@@ -145,16 +145,38 @@ class PublicViewController: UITableViewController {
 
     // TODO: for testing purpose
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let wordstadium = dataSource.sectionModels[indexPath.section]
+        let wordstadium = dataSource.sectionModels[indexPath.section].itemType
         
-        if wordstadium.itemType == .challenge {
+        switch wordstadium {
+        case .live:
             guard let navigationController = self.navigationController else { return }
-            let challengeCoordinator = ChallengeCoordinator(navigationController: navigationController)
+            let liveDebatCoordinator = LiveDebatCoordinator(navigationController: navigationController)
+            liveDebatCoordinator
+                .start()
+                .subscribe()
+                .disposed(by: disposeBag)
+        case .challenge:
+            guard let navigationController = self.navigationController else { return }
+            let challengeCoordinator = ChallengeCoordinator(navigationController: navigationController, type: .challenge)
             challengeCoordinator
                 .start()
                 .subscribe()
                 .disposed(by: disposeBag)
-        } else {
+        case .comingsoon:
+            guard let navigationController = self.navigationController else { return }
+            let challengeCoordinator = ChallengeCoordinator(navigationController: navigationController, type: .soon)
+            challengeCoordinator
+                .start()
+                .subscribe()
+                .disposed(by: disposeBag)
+        case .done:
+            guard let navigationController = self.navigationController else { return }
+            let challengeCoordinator = ChallengeCoordinator(navigationController: navigationController, type: .done)
+            challengeCoordinator
+                .start()
+                .subscribe()
+                .disposed(by: disposeBag)
+        default:
             guard let navigationController = self.navigationController else { return }
             let liveDebatCoordinator = LiveDebatCoordinator(navigationController: navigationController)
             liveDebatCoordinator
