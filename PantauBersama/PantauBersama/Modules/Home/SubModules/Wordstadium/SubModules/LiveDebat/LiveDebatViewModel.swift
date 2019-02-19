@@ -17,6 +17,8 @@ class LiveDebatViewModel: ViewModelType {
         let launchDetailTrigger: AnyObserver<Void>
         let showCommentTrigger: AnyObserver<Void>
         let viewTypeTrigger: AnyObserver<DebatViewType>
+        let showMenuTrigger: AnyObserver<Void>
+        let selectMenuTrigger: AnyObserver<String>
     }
     
     struct Output {
@@ -24,6 +26,8 @@ class LiveDebatViewModel: ViewModelType {
         let launchDetail: Driver<Void>
         let showComment: Driver<Void>
         let viewType: Driver<DebatViewType>
+        let menu: Driver<Void>
+        let menuSelected: Driver<String>
     }
     
     var input: Input
@@ -34,6 +38,8 @@ class LiveDebatViewModel: ViewModelType {
     private let detailS = PublishSubject<Void>()
     private let commentS = PublishSubject<Void>()
     private let viewTypeS = PublishSubject<DebatViewType>()
+    private let menuS = PublishSubject<Void>()
+    private let selectMenuS = PublishSubject<String>()
     
     init(navigator: LiveDebatNavigator, viewType: DebatViewType) {
         self.navigator = navigator
@@ -42,7 +48,9 @@ class LiveDebatViewModel: ViewModelType {
             backTrigger: backS.asObserver(),
             launchDetailTrigger: detailS.asObserver(),
             showCommentTrigger: commentS.asObserver(),
-            viewTypeTrigger: viewTypeS.asObserver()
+            viewTypeTrigger: viewTypeS.asObserver(),
+            showMenuTrigger: menuS.asObserver(),
+            selectMenuTrigger: selectMenuS.asObserver()
         )
         
         let back = backS.flatMap({navigator.back()})
@@ -57,10 +65,17 @@ class LiveDebatViewModel: ViewModelType {
         let viewType = viewTypeS.startWith(viewType)
             .asDriverOnErrorJustComplete()
         
+        
+        let menu = menuS.asDriverOnErrorJustComplete()
+        
+        let selectMenu = selectMenuS.asDriverOnErrorJustComplete()
+            
         output = Output(
             back: back,
             launchDetail: detail,
             showComment: comment,
-            viewType: viewType)
+            viewType: viewType,
+            menu: menu,
+            menuSelected: selectMenu)
     }
 }

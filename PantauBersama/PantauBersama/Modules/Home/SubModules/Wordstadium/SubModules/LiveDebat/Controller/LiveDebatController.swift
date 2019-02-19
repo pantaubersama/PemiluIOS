@@ -101,6 +101,34 @@ class LiveDebatController: UIViewController {
         viewModel.output.showComment
             .drive()
             .disposed(by: disposeBag)
+        
+        viewModel.output.menu
+            .asObservable()
+            .flatMapLatest({ [unowned self]_ -> Observable<String> in
+                return Observable.create({ (observer) -> Disposable in
+                    let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+                    let salinTautan = UIAlertAction(title: "Salin Tautan", style: .default, handler: { (_) in
+                        observer.onNext("salin")
+                        observer.on(.completed)
+                    })
+                    let bagikan = UIAlertAction(title: "Bagikan", style: .default, handler: { (_) in
+                        observer.onNext("bagigan")
+                        observer.on(.completed)
+                    })
+                    
+                    let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+                    
+                    alert.addAction(salinTautan)
+                    alert.addAction(bagikan)
+                    alert.addAction(cancel)
+                    DispatchQueue.main.async {
+                        self.navigationController?.present(alert, animated: true, completion: nil)
+                    }
+                    return Disposables.create()
+                })
+            })
+            .bind(to: viewModel.input.selectMenuTrigger)
+            .disposed(by: disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -280,6 +308,10 @@ class LiveDebatController: UIViewController {
         self.navigationItem.rightBarButtonItem = more
         
         self.navigationController?.navigationBar.configure(with: .transparent)
+        
+        more.rx.tap
+            .bind(to: viewModel.input.showMenuTrigger)
+            .disposed(by: disposeBag)
         
         back.rx.tap
             .bind(to: viewModel.input.backTrigger)
