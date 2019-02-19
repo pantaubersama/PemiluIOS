@@ -64,6 +64,9 @@ class PromoteView: UIView {
                 if let username: String? = UserDefaults.Account.get(forKey: .usernameTwitter) {
                     contentTwitter.text = "Tweet tantangan kamu sekarang. Undang temanmu untuk berdebat di sini.\n\n\(username ?? "")"
                 }
+                if let usernameFacebook: String? = UserDefaults.Account.get(forKey: .usernameFacebook) {
+                    self.contentFacebook.text = "Post tantangan debatmu melalui Facebook. Undang temanmu untuk berdebat di sini.\n\n\(usernameFacebook ?? "")"
+                }
             }            
         }
     }

@@ -10,6 +10,7 @@ import RxSwift
 import RxCocoa
 import Networking
 import TwitterKit
+import FBSDKLoginKit
 
 class PublishChallengeViewModel: ViewModelType {
     
@@ -22,6 +23,8 @@ class PublishChallengeViewModel: ViewModelType {
         let facebookI: AnyObserver<Bool>
         let twitterLoginI: AnyObserver<Void>
         let refreshI: AnyObserver<Void>
+        let facebookLoginI: AnyObserver<String>
+        let facebookGraphI: AnyObserver<Void>
     }
     
     struct Output {
@@ -29,6 +32,8 @@ class PublishChallengeViewModel: ViewModelType {
         let twitterO: Driver<Bool>
         let facebookO: Driver<Bool>
         let twitterLoginO: Driver<Void>
+        let facebookLoginO: Driver<Void>
+        let facebookGraphO: Driver<MeFacebookResponse>
     }
     
     private let backS = PublishSubject<Void>()
@@ -36,6 +41,8 @@ class PublishChallengeViewModel: ViewModelType {
     private let facebookS = PublishSubject<Bool>()
     private let twitterLoginS = PublishSubject<Void>()
     private let refreshS = PublishSubject<Void>()
+    private let facebookLoginS = PublishSubject<String>()
+    private let facebookGraphS = PublishSubject<Void>()
     
     private let errorTracker = ErrorTracker()
     private let activityIndicator = ActivityIndicator()
@@ -51,7 +58,9 @@ class PublishChallengeViewModel: ViewModelType {
                       twitterI: twitterS.asObserver(),
                       facebookI: facebookS.asObserver(),
                       twitterLoginI: twitterLoginS.asObserver(),
-                      refreshI: refreshS.asObserver())
+                      refreshI: refreshS.asObserver(),
+                      facebookLoginI: facebookLoginS.asObserver(),
+                      facebookGraphI: facebookGraphS.asObserver())
         
         
         var stateTwitter: Bool = false
@@ -75,6 +84,24 @@ class PublishChallengeViewModel: ViewModelType {
                     })
             }.asDriverOnErrorJustComplete()
         
+        let facebook = facebookLoginS
+            .flatMapLatest { (result) -> Observable<Void> in
+                return NetworkService.instance
+                    .requestObject(PantauAuthAPI.accountsConnect(type: "facebook", oauthToken: result, oauthSecret: ""), c: BaseResponse<AccountResponse>.self)
+                    .trackError(self.errorTracker)
+                    .trackActivity(self.activityIndicator)
+                    .catchErrorJustComplete()
+                    .mapToVoid()
+        }.asDriverOnErrorJustComplete()
+        
+        let facebookMe = facebookGraphS
+            .flatMapLatest { (_) -> Observable<MeFacebookResponse> in
+                if let request = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "name, email, gender, birthday, photos"]) {
+                    return request.fetchMeFacebook()
+                }
+                return Observable<MeFacebookResponse>.empty()
+        }.asDriverOnErrorJustComplete()
+        
         let user = refreshS
             .flatMapLatest { (_) -> Observable<User> in
                 return NetworkService.instance
@@ -93,7 +120,9 @@ class PublishChallengeViewModel: ViewModelType {
         output = Output(meO: user,
                         twitterO: twitterS.asDriverOnErrorJustComplete(),
                         facebookO: facebookS.asDriverOnErrorJustComplete(),
-                        twitterLoginO: twitter)
+                        twitterLoginO: twitter,
+                        facebookLoginO: facebook,
+                        facebookGraphO: facebookMe)
         
     }
     

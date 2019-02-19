@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import TwitterKit
+import FBSDKLoginKit
 
 class PublishChallengeController: UIViewController {
     
@@ -97,18 +98,58 @@ class PublishChallengeController: UIViewController {
         viewModel.output.facebookO
             .do(onNext: { [unowned self] (value) in
                 print("Value facebook: \(value)")
+                switch value {
+                case true:
+                    if self.facebookState == true {
+                        if let username: String? = UserDefaults.Account.get(forKey: .usernameFacebook) {
+                            self.promoteView.contentFacebook.text = "Post tantangan debatmu melalui Facebook. Undang temanmu untuk berdebat di sini.\n\n\(username ?? "")"
+                        }
+                    } else {
+                        // TODO: Login Facebook
+                        let manager: FBSDKLoginManager = FBSDKLoginManager()
+                        manager.logIn(withReadPermissions: ["public_profile", "email"], from: self, handler: { [weak self] (result, error) in
+                            if error != nil {
+                                
+                            }
+                            guard let result = result else { return }
+                            if result.isCancelled == true {
+                                
+                            } else {
+                                guard let token = result.token.tokenString else { return }
+                                self?.viewModel.input.facebookLoginI.onNext(token)
+                                self?.viewModel.input.facebookGraphI.onNext(())
+                            }
+                        })
+                    }
+                case false:
+                    self.promoteView.contentFacebook.text = "Post tantangan debatmu melalui Facebook. Undang temanmu untuk berdebat di sini."
+                }
             })
             .drive()
             .disposed(by: disposeBag)
         
         viewModel.output.twitterLoginO
             .do(onNext: { [unowned self] (_) in
-//                self.twitterState = value
                 self.viewModel.input.refreshI.onNext(())
             })
             .drive()
             .disposed(by: disposeBag)
         
+        viewModel.output.facebookLoginO
+            .do(onNext: { [unowned self] (_) in
+                self.viewModel.input.refreshI.onNext(())
+            })
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.facebookGraphO
+            .do(onNext: { (n,_,_,_,_) in
+                if let username = n {
+                    UserDefaults.Account.set("Connected as \(username)", forKey: .usernameFacebook)
+                }
+            })
+            .drive()
+            .disposed(by: disposeBag)
         
         viewModel.input.refreshI.onNext(())
     }
