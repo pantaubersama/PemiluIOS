@@ -8,6 +8,7 @@
 
 import UIKit
 import Common
+import Networking
 
 // actual height 389
 
@@ -22,7 +23,6 @@ class PromoteView: UIView {
     @IBOutlet weak var contentTwitter: Label!
     @IBOutlet weak var switchFacebook: UISwitch!
     @IBOutlet weak var contentFacebook: Label!
-    @IBOutlet weak var heightStackConstant: NSLayoutConstraint!
     @IBOutlet weak var contraintTopStack: NSLayoutConstraint!
     
     override init(frame: CGRect) {
@@ -42,14 +42,29 @@ class PromoteView: UIView {
         addSubview(view)
     }
     
-    func configure(type: Bool) {
+    func configure(type: Bool, data: User) {
         switch type {
-        case true:
+        case true: // for direct challenge
+            self.containerFacebook.isHidden = true
             self.lblTitle.text = "Tantangan debat kamu,"
             self.lblSubtitle.text = "sudah siap tayang! \n\nHubungkan dengan\nakun Twitter-mu"
-            self.heightStackConstant.constant = 68.5
-        default:
+            if let statusTwitter = data.twitter {
+                switchTwitter.isOn = statusTwitter
+                // Read from UserDefaults
+                if let username: String? = UserDefaults.Account.get(forKey: .usernameTwitter) {
+                    contentTwitter.text = "Ayo undang langsung teman Twittermu untuk berdebat!\n\n\(username ?? "")"
+                }
+            }
+        default: // for open challenge
             self.containerFacebook.isHidden = false
+            if let statusTwitter = data.twitter, let statusFacebook = data.facebook {
+                switchTwitter.isOn = statusTwitter
+                switchFacebook.isOn = statusFacebook
+                // Read from UserDefaults
+                if let username: String? = UserDefaults.Account.get(forKey: .usernameTwitter) {
+                    contentTwitter.text = "Tweet tantangan kamu sekarang. Undang temanmu untuk berdebat di sini.\n\n\(username ?? "")"
+                }
+            }            
         }
     }
     

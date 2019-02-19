@@ -7,13 +7,14 @@
 //
 
 import RxSwift
+import Networking
 
 protocol TantanganChallengeNavigator {
     var finish: Observable<Void>! { get set }
     func launchBidangKajian() -> Observable<BidangKajianResult>
     func launchHint(type: HintType) -> Observable<Void>
     func launchPernyataanLink() -> Observable<PernyataanLinkResult>
-    func launchPublish(type: Bool) -> Observable<Void>
+    func launchPublish(type: Bool, user: User) -> Observable<Void>
 }
 
 final class TantanganChallengeCoordinator: BaseCoordinator<Void> {
@@ -74,8 +75,8 @@ extension TantanganChallengeCoordinator: TantanganChallengeNavigator {
         })
     }
     
-    func launchPublish(type: Bool) -> Observable<Void> {
-        let publishCoordinator = PublishChallengeCoordinator(navigationController: navigationController, type: type)
+    func launchPublish(type: Bool, user: User) -> Observable<Void> {
+        let publishCoordinator = PublishChallengeCoordinator(navigationController: navigationController, type: type, user: user)
         return coordinate(to: publishCoordinator)
     }
 }
