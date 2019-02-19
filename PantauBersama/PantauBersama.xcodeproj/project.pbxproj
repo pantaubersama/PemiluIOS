@@ -55,6 +55,8 @@
 		1149EB89221BA9520050F366 /* DebatCommentController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1149EB87221BA9520050F366 /* DebatCommentController.xib */; };
 		1149EB8C221BA9770050F366 /* DebatCommentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1149EB8B221BA9770050F366 /* DebatCommentViewModel.swift */; };
 		1149EB8E221BA9850050F366 /* DebatCommentCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1149EB8D221BA9850050F366 /* DebatCommentCoordinator.swift */; };
+		1149EB92221BD0110050F366 /* DebatCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1149EB90221BD0110050F366 /* DebatCommentCell.swift */; };
+		1149EB93221BD0110050F366 /* DebatCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1149EB91221BD0110050F366 /* DebatCommentCell.xib */; };
 		1161F9EE21DF378400C1BAD5 /* QuizModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1161F9ED21DF378400C1BAD5 /* QuizModel.swift */; };
 		1161F9F221DF3CC300C1BAD5 /* ImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1161F9F121DF3CC300C1BAD5 /* ImageModel.swift */; };
 		1161F9F421DF4B4000C1BAD5 /* QuizButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1161F9F321DF4B4000C1BAD5 /* QuizButton.swift */; };
@@ -574,6 +576,8 @@
 		1149EB87221BA9520050F366 /* DebatCommentController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DebatCommentController.xib; sourceTree = "<group>"; };
 		1149EB8B221BA9770050F366 /* DebatCommentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebatCommentViewModel.swift; sourceTree = "<group>"; };
 		1149EB8D221BA9850050F366 /* DebatCommentCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebatCommentCoordinator.swift; sourceTree = "<group>"; };
+		1149EB90221BD0110050F366 /* DebatCommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebatCommentCell.swift; sourceTree = "<group>"; };
+		1149EB91221BD0110050F366 /* DebatCommentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DebatCommentCell.xib; sourceTree = "<group>"; };
 		1161F9ED21DF378400C1BAD5 /* QuizModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizModel.swift; sourceTree = "<group>"; };
 		1161F9F121DF3CC300C1BAD5 /* ImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageModel.swift; sourceTree = "<group>"; };
 		1161F9F321DF4B4000C1BAD5 /* QuizButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizButton.swift; sourceTree = "<group>"; };
@@ -1225,6 +1229,7 @@
 		1149EB83221BA9240050F366 /* DebatComment */ = {
 			isa = PBXGroup;
 			children = (
+				1149EB8F221BCFE70050F366 /* Components */,
 				1149EB84221BA92E0050F366 /* Controller */,
 				1149EB8B221BA9770050F366 /* DebatCommentViewModel.swift */,
 				1149EB8D221BA9850050F366 /* DebatCommentCoordinator.swift */,
@@ -1239,6 +1244,15 @@
 				1149EB87221BA9520050F366 /* DebatCommentController.xib */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		1149EB8F221BCFE70050F366 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				1149EB90221BD0110050F366 /* DebatCommentCell.swift */,
+				1149EB91221BD0110050F366 /* DebatCommentCell.xib */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		11702DCF21CB0241001AEE3F /* Components */ = {
@@ -3357,6 +3371,7 @@
 				845C570921CD3D5700EDCDFE /* SectionCell.xib in Resources */,
 				11B145FC21D72FFA00BB26C8 /* CreateAskHeaderView.xib in Resources */,
 				84B8C1CF22157D59004BC1FE /* BwModelica-ExtraBoldCondensed.otf in Resources */,
+				1149EB93221BD0110050F366 /* DebatCommentCell.xib in Resources */,
 				84B8C1CE22157D59004BC1FE /* BwModelica-LightCondensed.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3754,6 +3769,7 @@
 				13E170CE221305AE0018EDB4 /* PersonalViewModel.swift in Sources */,
 				84E521B221F398E900B7CCBA /* ShareTrendCoordinator.swift in Sources */,
 				84F6980B21C8D2B100890917 /* JanjiPolitikViewController.swift in Sources */,
+				1149EB92221BD0110050F366 /* DebatCommentCell.swift in Sources */,
 				84B6D6F821E30FE400CD4BC8 /* ShareBadgeCoordinator.swift in Sources */,
 				13BF405121EBAA1E005C9A64 /* IQuestionListViewController.swift in Sources */,
 				13F4569421CF97DA00CE45F1 /* CreateAskController.swift in Sources */,

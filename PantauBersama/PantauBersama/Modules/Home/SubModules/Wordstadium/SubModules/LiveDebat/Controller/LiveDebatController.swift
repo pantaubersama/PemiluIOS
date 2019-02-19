@@ -14,6 +14,7 @@ import IQKeyboardManagerSwift
 
 class LiveDebatController: UIViewController {
     
+    // UI view variable
     @IBOutlet weak var btnCommentShow: UIButton!
     @IBOutlet weak var btnScroll: Button!
     @IBOutlet weak var scrollView: UIScrollView!
@@ -21,18 +22,19 @@ class LiveDebatController: UIViewController {
     @IBOutlet weak var tvInputDebat: UITextView!
     @IBOutlet weak var imageVs: UIImageView!
     @IBOutlet weak var viewInputContainer: UIView!
+    @IBOutlet weak var viewComentarContainer: UIView!
     @IBOutlet weak var btnDetailDebat: Button!
+    @IBOutlet weak var constraintTableViewBottom: NSLayoutConstraint!
     @IBOutlet weak var constraintInputViewBottom: NSLayoutConstraint!
-    @IBOutlet weak var constraintCommentView: NSLayoutConstraint!
     @IBOutlet weak var constraintInputViewHeight: NSLayoutConstraint!
-    
-    
     private lazy var titleView = Button()
+    
+    // ui flag variable
     private var isKeyboardAppear = false
     private var isCommentAppear = false
     
-    var viewModel: LiveDebatViewModel!
     
+    var viewModel: LiveDebatViewModel!
     private lazy var disposeBag = DisposeBag()
     
     override func viewDidLoad() {
@@ -71,14 +73,17 @@ class LiveDebatController: UIViewController {
             }
             .disposed(by: disposeBag)
         
+        // open debat detail when tapped
         btnDetailDebat.rx.tap
             .bind(to: viewModel.input.launchDetailTrigger)
             .disposed(by: disposeBag)
         
+        // open debat comment when tapped
         btnCommentShow.rx.tap
             .bind(to: viewModel.input.showCommentTrigger)
             .disposed(by: disposeBag)
         
+        // drive
         viewModel.output.back
             .drive()
             .disposed(by: disposeBag)
@@ -91,7 +96,12 @@ class LiveDebatController: UIViewController {
             .drive()
             .disposed(by: disposeBag)
         
-        
+        let a = viewModel.output.viewType
+        a.drive(onNext: { [weak self](viewType) in
+            guard let weakSelf = self else { return }
+            weakSelf.configureViewType(viewType: viewType)
+        })
+        .disposed(by: disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -106,16 +116,7 @@ class LiveDebatController: UIViewController {
         unsubscribeForKeyboardEvent()
     }
     
-    private func subscribeForKeyboardEvent() {
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillAppear), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillDisappear), name: UIResponder.keyboardWillHideNotification, object: nil)
-    }
-    
-    private func unsubscribeForKeyboardEvent() {
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
-    }
-    
+    //MARK: selector
     @objc func keyboardWillAppear(notification: NSNotification) {
         isKeyboardAppear = true
         let info = notification.userInfo!
@@ -135,6 +136,39 @@ class LiveDebatController: UIViewController {
         UIView.animate(withDuration: 0.1) { [unowned self] in
             self.constraintInputViewBottom.constant = 0
             self.view.layoutIfNeeded()
+        }
+    }
+    
+    //MARK: private func
+    private func subscribeForKeyboardEvent() {
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillAppear), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillDisappear), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    private func unsubscribeForKeyboardEvent() {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    private func configureViewType(viewType: DebatViewType) {
+        switch viewType {
+        case .watch:
+            viewComentarContainer.isHidden = false
+            viewInputContainer.isHidden = true
+            constraintTableViewBottom.constant = 0
+            break
+        case .myTurn:
+            viewComentarContainer.isHidden = true
+            viewInputContainer.isHidden = false
+            constraintTableViewBottom.constant = 105
+            break
+        case .theirTurn:
+            viewComentarContainer.isHidden = false
+            viewInputContainer.isHidden = true
+            constraintTableViewBottom.constant = 0
+            break
+        case .done:
+            break
         }
     }
     

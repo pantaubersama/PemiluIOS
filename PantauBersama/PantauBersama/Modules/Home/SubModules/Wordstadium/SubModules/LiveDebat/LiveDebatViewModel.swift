@@ -16,29 +16,33 @@ class LiveDebatViewModel: ViewModelType {
         let backTrigger: AnyObserver<Void>
         let launchDetailTrigger: AnyObserver<Void>
         let showCommentTrigger: AnyObserver<Void>
+        let viewTypeTrigger: AnyObserver<DebatViewType>
     }
     
     struct Output {
         let back: Driver<Void>
         let launchDetail: Driver<Void>
         let showComment: Driver<Void>
+        let viewType: Driver<DebatViewType>
     }
     
     var input: Input
     var output: Output
-    var navigator: LiveDebatNavigator
+    private let navigator: LiveDebatNavigator
     
     private let backS = PublishSubject<Void>()
     private let detailS = PublishSubject<Void>()
     private let commentS = PublishSubject<Void>()
+    private let viewTypeS = PublishSubject<DebatViewType>()
     
-    init(navigator: LiveDebatNavigator) {
+    init(navigator: LiveDebatNavigator, viewType: DebatViewType) {
         self.navigator = navigator
         
         input = Input(
             backTrigger: backS.asObserver(),
             launchDetailTrigger: detailS.asObserver(),
-            showCommentTrigger: commentS.asObserver()
+            showCommentTrigger: commentS.asObserver(),
+            viewTypeTrigger: viewTypeS.asObserver()
         )
         
         let back = backS.flatMap({navigator.back()})
@@ -50,9 +54,13 @@ class LiveDebatViewModel: ViewModelType {
         let comment = commentS.flatMap({navigator.showComment()})
             .asDriverOnErrorJustComplete()
         
+        let viewType = viewTypeS.startWith(viewType)
+            .asDriverOnErrorJustComplete()
+        
         output = Output(
             back: back,
             launchDetail: detail,
-            showComment: comment)
+            showComment: comment,
+            viewType: viewType)
     }
 }

@@ -14,6 +14,7 @@
             <connections>
                 <outlet property="btnClose" destination="ua8-D7-sPS" id="YRl-Ca-8eP"/>
                 <outlet property="staticNavigationBar" destination="dlJ-QZ-Sg7" id="yqN-Eu-lPB"/>
+                <outlet property="tableView" destination="Gvx-jE-hRX" id="CRj-5W-Wob"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -27,9 +28,29 @@
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d8w-i4-U0k" customClass="RoundView" customModule="Common">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="34.5"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Komentar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fz3-5a-AhF" customClass="Label" customModule="Common">
+                                    <rect key="frame" x="16" y="9" width="74" height="17"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="17" id="CCv-um-DJP"/>
+                                        <constraint firstAttribute="width" constant="74" id="V6V-m8-FaE"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                            <real key="value" value="14"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="typeLabel" value="bold"/>
+                                    </userDefinedRuntimeAttributes>
+                                </label>
+                            </subviews>
                             <color key="backgroundColor" red="0.95685380697250366" green="0.95685666799545288" blue="0.95686310529708862" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="34.5" id="CU7-U4-oR9"/>
+                                <constraint firstItem="fz3-5a-AhF" firstAttribute="leading" secondItem="d8w-i4-U0k" secondAttribute="leading" constant="16" id="PwB-Dl-gTt"/>
+                                <constraint firstItem="fz3-5a-AhF" firstAttribute="centerY" secondItem="d8w-i4-U0k" secondAttribute="centerY" id="unI-Yr-Ud4"/>
                             </constraints>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="number" keyPath="topRadius">
@@ -37,10 +58,18 @@
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                         </view>
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Gvx-jE-hRX">
+                            <rect key="frame" x="0.0" y="34.5" width="375" height="568.5"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </tableView>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
+                        <constraint firstItem="Gvx-jE-hRX" firstAttribute="leading" secondItem="9sB-Lx-fHi" secondAttribute="leading" id="Wco-J8-Koi"/>
                         <constraint firstAttribute="trailing" secondItem="d8w-i4-U0k" secondAttribute="trailing" id="YST-TO-tAr"/>
+                        <constraint firstAttribute="trailing" secondItem="Gvx-jE-hRX" secondAttribute="trailing" id="aU6-cM-QG5"/>
+                        <constraint firstAttribute="bottom" secondItem="Gvx-jE-hRX" secondAttribute="bottom" id="e4k-1J-A5j"/>
+                        <constraint firstItem="Gvx-jE-hRX" firstAttribute="top" secondItem="d8w-i4-U0k" secondAttribute="bottom" id="gst-dR-czY"/>
                         <constraint firstItem="d8w-i4-U0k" firstAttribute="top" secondItem="9sB-Lx-fHi" secondAttribute="top" id="jFo-QK-vBv"/>
                         <constraint firstItem="d8w-i4-U0k" firstAttribute="leading" secondItem="9sB-Lx-fHi" secondAttribute="leading" id="jxg-wX-yf4"/>
                     </constraints>
