@@ -118,7 +118,7 @@ class WordstadiumListViewController: UITableViewController {
                 .disposed(by: disposeBag)
         case .live:
             guard let navigationController = self.navigationController else { return }
-            let liveDebatCoordinator = LiveDebatCoordinator(navigationController: navigationController)
+            let liveDebatCoordinator = LiveDebatCoordinator(navigationController: navigationController, viewType: .watch)
             liveDebatCoordinator
                 .start()
                 .subscribe()

@@ -80,7 +80,7 @@ extension WordstadiumCoordinator: WordstadiumNavigator {
     }
     
     func launchLiveChallenge(wordstadium: Wordstadium) -> Observable<Void> {
-        let liveDebatCoordinator = LiveDebatCoordinator(navigationController: navigationController)
+        let liveDebatCoordinator = LiveDebatCoordinator(navigationController: navigationController, viewType: .watch)
         return coordinate(to: liveDebatCoordinator)
     }
 }

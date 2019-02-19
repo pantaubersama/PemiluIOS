@@ -150,7 +150,7 @@ class PublicViewController: UITableViewController {
         switch wordstadium {
         case .live:
             guard let navigationController = self.navigationController else { return }
-            let liveDebatCoordinator = LiveDebatCoordinator(navigationController: navigationController)
+            let liveDebatCoordinator = LiveDebatCoordinator(navigationController: navigationController, viewType: .myTurn)
             liveDebatCoordinator
                 .start()
                 .subscribe()
@@ -178,7 +178,7 @@ class PublicViewController: UITableViewController {
                 .disposed(by: disposeBag)
         default:
             guard let navigationController = self.navigationController else { return }
-            let liveDebatCoordinator = LiveDebatCoordinator(navigationController: navigationController)
+            let liveDebatCoordinator = LiveDebatCoordinator(navigationController: navigationController, viewType: .myTurn)
             liveDebatCoordinator
                 .start()
                 .subscribe()

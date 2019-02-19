@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="123" id="KGk-i7-Jjw" customClass="DebatCommentCell" customModule="PantauBersama" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="123"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="122.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icDummyPerson" translatesAutoresizingMaskIntoConstraints="NO" id="yl7-P7-C0Z" customClass="CircularUIImageView" customModule="Common">
+                        <rect key="frame" x="16" y="16" width="24" height="24"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="24" id="36o-Gc-hfz"/>
+                            <constraint firstAttribute="height" constant="24" id="lFu-xJ-AkI"/>
+                        </constraints>
+                    </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4cw-10-tM9" customClass="RoundView" customModule="Common">
+                        <rect key="frame" x="32" y="32" width="8" height="8"/>
+                        <color key="backgroundColor" red="0.74833399060000005" green="0.23216915129999999" blue="0.22348570819999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="8" id="GMj-cB-rnp"/>
+                            <constraint firstAttribute="height" constant="8" id="dOn-FW-FCF"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="4"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Netizen Pertama" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9X4-OK-U3Y" customClass="Label" customModule="Common">
+                        <rect key="frame" x="56" y="16" width="248" height="13"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                <real key="value" value="11"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="string" keyPath="typeLabel" value="bold"/>
+                        </userDefinedRuntimeAttributes>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WKp-LO-Yhm" customClass="Label" customModule="Common">
+                        <rect key="frame" x="56" y="29" width="248" height="49.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                <real key="value" value="11"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5 menit yang lalu" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ad6-yT-axP" customClass="Label" customModule="Common">
+                        <rect key="frame" x="230.5" y="85.5" width="73.5" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="bDg-VQ-Z9b"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.59215116499999998" green="0.59215301279999999" blue="0.59215712549999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                <real key="value" value="10"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailingMargin" secondItem="9X4-OK-U3Y" secondAttribute="trailing" id="D3i-zl-RPg"/>
+                    <constraint firstItem="WKp-LO-Yhm" firstAttribute="top" secondItem="9X4-OK-U3Y" secondAttribute="bottom" id="HD4-jA-e0X"/>
+                    <constraint firstItem="4cw-10-tM9" firstAttribute="trailing" secondItem="yl7-P7-C0Z" secondAttribute="trailing" id="MqO-9L-ZID"/>
+                    <constraint firstItem="yl7-P7-C0Z" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="NsY-TO-lGc"/>
+                    <constraint firstItem="yl7-P7-C0Z" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="Qg0-qU-M46"/>
+                    <constraint firstItem="9X4-OK-U3Y" firstAttribute="top" secondItem="yl7-P7-C0Z" secondAttribute="top" id="Uyh-wi-5a5"/>
+                    <constraint firstItem="9X4-OK-U3Y" firstAttribute="leading" secondItem="yl7-P7-C0Z" secondAttribute="trailing" constant="16" id="XE8-Re-lfX"/>
+                    <constraint firstItem="ad6-yT-axP" firstAttribute="trailing" secondItem="9X4-OK-U3Y" secondAttribute="trailing" id="feX-Ti-VWC"/>
+                    <constraint firstItem="WKp-LO-Yhm" firstAttribute="trailing" secondItem="9X4-OK-U3Y" secondAttribute="trailing" id="fva-P5-6yg"/>
+                    <constraint firstItem="4cw-10-tM9" firstAttribute="bottom" secondItem="yl7-P7-C0Z" secondAttribute="bottom" id="gGc-bh-Srg"/>
+                    <constraint firstAttribute="bottom" secondItem="ad6-yT-axP" secondAttribute="bottom" constant="16" id="gKh-Gp-PpJ"/>
+                    <constraint firstItem="WKp-LO-Yhm" firstAttribute="leading" secondItem="9X4-OK-U3Y" secondAttribute="leading" id="j7F-2V-m8F"/>
+                    <constraint firstItem="ad6-yT-axP" firstAttribute="top" secondItem="WKp-LO-Yhm" secondAttribute="bottom" constant="7" id="yZ6-l1-O5q"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="ivAvatar" destination="yl7-P7-C0Z" id="iJN-xv-ilk"/>
+                <outlet property="lbContent" destination="WKp-LO-Yhm" id="rtN-J6-htP"/>
+                <outlet property="lbCreatedAt" destination="ad6-yT-axP" id="tp0-me-P8P"/>
+                <outlet property="lbName" destination="9X4-OK-U3Y" id="Yeh-dY-rgn"/>
+                <outlet property="viewRedDot" destination="4cw-10-tM9" id="1Sb-Ts-605"/>
+            </connections>
+            <point key="canvasLocation" x="52.799999999999997" y="126.38680659670166"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="icDummyPerson" width="48" height="48"/>
+    </resources>
+</document>
