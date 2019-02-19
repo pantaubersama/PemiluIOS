@@ -15,11 +15,17 @@ import IQKeyboardManagerSwift
 class LiveDebatController: UIViewController {
     
     // UI view variable
+    @IBOutlet weak var headerTitle: Button!
+    @IBOutlet weak var btnSendComment: ImageButton!
+    @IBOutlet weak var viewClapContainer: UIView!
+    @IBOutlet weak var ivHeaderBackground: UIImageView!
+    @IBOutlet weak var viewTimeContainer: UIStackView!
     @IBOutlet weak var btnCommentShow: UIButton!
     @IBOutlet weak var btnScroll: Button!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var tableViewDebat: UITableView!
     @IBOutlet weak var tvInputDebat: UITextView!
+    @IBOutlet weak var tvInputComment: UITextView!
     @IBOutlet weak var imageVs: UIImageView!
     @IBOutlet weak var viewInputContainer: UIView!
     @IBOutlet weak var viewComentarContainer: UIView!
@@ -95,13 +101,6 @@ class LiveDebatController: UIViewController {
         viewModel.output.showComment
             .drive()
             .disposed(by: disposeBag)
-        
-        let a = viewModel.output.viewType
-        a.drive(onNext: { [weak self](viewType) in
-            guard let weakSelf = self else { return }
-            weakSelf.configureViewType(viewType: viewType)
-        })
-        .disposed(by: disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -109,6 +108,13 @@ class LiveDebatController: UIViewController {
         subscribeForKeyboardEvent()
         configureNavbar()
         configureTitleView()
+        
+        viewModel.output.viewType
+        .drive(onNext: { [weak self](viewType) in
+            guard let weakSelf = self else { return }
+            weakSelf.configureViewType(viewType: viewType)
+        })
+            .disposed(by: disposeBag)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -156,18 +162,44 @@ class LiveDebatController: UIViewController {
             viewComentarContainer.isHidden = false
             viewInputContainer.isHidden = true
             constraintTableViewBottom.constant = 0
+            viewTimeContainer.isHidden = true
+            constraintInputViewHeight.constant = 50
+            headerTitle.setTitle("LIVE NOW", for: .normal)
+            headerTitle.setImage(#imageLiteral(resourceName: "outlineLiveRed24Px"), for: .normal)
+            titleView.setTitle("LIVE NOW", for: .normal)
+            titleView.setImage(#imageLiteral(resourceName: "outlineLiveRed24Px"), for: .normal)
             break
         case .myTurn:
             viewComentarContainer.isHidden = true
             viewInputContainer.isHidden = false
             constraintTableViewBottom.constant = 105
+            viewTimeContainer.isHidden = false
+            constraintInputViewHeight.constant = 105
+            headerTitle.setTitle("LIVE NOW", for: .normal)
+            headerTitle.setImage(#imageLiteral(resourceName: "outlineLiveRed24Px"), for: .normal)
+            titleView.setTitle("LIVE NOW", for: .normal)
+            titleView.setImage(#imageLiteral(resourceName: "outlineLiveRed24Px"), for: .normal)
             break
         case .theirTurn:
             viewComentarContainer.isHidden = false
             viewInputContainer.isHidden = true
             constraintTableViewBottom.constant = 0
+            viewTimeContainer.isHidden = false
+            constraintInputViewHeight.constant = 50
+            headerTitle.setTitle("LIVE NOW", for: .normal)
+            headerTitle.setImage(#imageLiteral(resourceName: "outlineLiveRed24Px"), for: .normal)
+            titleView.setTitle("LIVE NOW", for: .normal)
+            titleView.setImage(#imageLiteral(resourceName: "outlineLiveRed24Px"), for: .normal)
             break
         case .done:
+            ivHeaderBackground.image = #imageLiteral(resourceName: "bgWordstadiumDone")
+            viewTimeContainer.isHidden = true
+            viewClapContainer.isHidden = false
+            constraintInputViewHeight.constant = 50
+            headerTitle.setTitle("Result", for: .normal)
+            headerTitle.setImage(UIImage(), for: .normal)
+            titleView.setImage(UIImage(), for: .normal)
+            titleView.setTitle("Result", for: .normal)
             break
         }
     }
@@ -199,7 +231,45 @@ class LiveDebatController: UIViewController {
         // setup placeholder
         tvInputDebat.text = "Tulis argumen kamu disini"
         tvInputDebat.textColor = .lightGray
-        tvInputDebat.delegate = self
+        
+        tvInputDebat.rx.didBeginEditing.bind { [unowned self]in
+            if self.tvInputDebat.textColor == .lightGray {
+                self.tvInputDebat.text = nil
+                self.tvInputDebat.textColor = Color.primary_black
+            }
+            }
+            .disposed(by: disposeBag)
+        
+        tvInputDebat.rx.didEndEditing.bind { [unowned self]in
+            if self.tvInputDebat.text.isEmpty {
+                self.tvInputDebat.text = "Tulis Komentar"
+                self.tvInputDebat.textColor = .lightGray
+            }
+            }
+            .disposed(by: disposeBag)
+        
+        tvInputComment.text = "Tulis Komentar"
+        tvInputComment.textColor = .lightGray
+        
+        tvInputComment.rx.didBeginEditing.bind { [unowned self]in
+            self.btnSendComment.isHidden = false
+            if self.tvInputComment.textColor == .lightGray {
+                self.tvInputComment.text = nil
+                self.tvInputComment.textColor = Color.primary_black
+            }
+        }
+        .disposed(by: disposeBag)
+        
+        tvInputComment.rx.didEndEditing.bind { [unowned self]in
+            self.btnSendComment.isHidden = true
+            if self.tvInputComment.text.isEmpty {
+                self.tvInputComment.text = "Tulis Komentar"
+                self.tvInputComment.textColor = .lightGray
+            }
+        }
+        .disposed(by: disposeBag)
+        
+        
     }
     
     private func configureNavbar() {
@@ -222,8 +292,6 @@ class LiveDebatController: UIViewController {
         titleView.translatesAutoresizingMaskIntoConstraints = false
         titleView.typeButton = "bold"
         titleView.fontSize = 14
-        titleView.setTitle("LIVE NOW", for: .normal)
-        titleView.setImage(#imageLiteral(resourceName: "outlineLiveRed24Px"), for: .normal)
         titleView.imageEdgeInsets = UIEdgeInsets(top: 0, left: -10, bottom: 0, right: 0)
         titleView.isUserInteractionEnabled = false
         
@@ -297,22 +365,4 @@ extension LiveDebatController: UITableViewDataSource {
     }
     
     
-}
-
-extension LiveDebatController: UITextViewDelegate {
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        // lightGray color indicate that the contents is a placeholder, then we need to make it nil
-        if textView.textColor == .lightGray {
-            textView.text = nil
-            textView.textColor = Color.primary_black
-        }
-    }
-    
-    func textViewDidEndEditing(_ textView: UITextView) {
-        // if user stop editing and the text is empty, then we set the placeholder
-        if textView.text.isEmpty {
-            textView.text = "Tulis argumen kamu disini"
-            textView.textColor = .lightGray
-        }
-    }
 }

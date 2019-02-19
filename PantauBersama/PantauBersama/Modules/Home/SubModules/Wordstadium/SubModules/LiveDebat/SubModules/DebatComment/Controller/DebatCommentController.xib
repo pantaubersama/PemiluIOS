@@ -26,6 +26,100 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9sB-Lx-fHi" customClass="RoundView" customModule="Common">
                     <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                     <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tFF-dX-ShS">
+                            <rect key="frame" x="0.0" y="555" width="375" height="48"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OwN-eu-spD">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="2"/>
+                                    <color key="backgroundColor" red="0.97646147009999995" green="0.97646445039999996" blue="0.97647088770000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="2" id="8AZ-VE-uan"/>
+                                    </constraints>
+                                </view>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icDummyPerson" translatesAutoresizingMaskIntoConstraints="NO" id="3eh-7U-zd8">
+                                    <rect key="frame" x="16" y="12" width="24" height="24"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="24" id="Ayj-uL-Jas"/>
+                                        <constraint firstAttribute="width" constant="24" id="fs4-Y8-XsK"/>
+                                    </constraints>
+                                </imageView>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oqr-7T-buz" customClass="RoundView" customModule="Common">
+                                    <rect key="frame" x="32" y="28" width="8" height="8"/>
+                                    <color key="backgroundColor" red="0.74833399060000005" green="0.23216915129999999" blue="0.22348570819999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="8" id="3it-TT-nt0"/>
+                                        <constraint firstAttribute="height" constant="8" id="tKV-hj-U2t"/>
+                                    </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                            <real key="value" value="4"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </view>
+                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Tulis Komentar" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="bZm-Bt-KHC">
+                                    <rect key="frame" x="56" y="7" width="283" height="24"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="24" id="Ofu-zX-SPb"/>
+                                    </constraints>
+                                    <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                </textView>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zp3-nC-gvx" customClass="ImageButton" customModule="Common">
+                                    <rect key="frame" x="343" y="16" width="16" height="16"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="16" id="VWd-Wm-Wa3"/>
+                                        <constraint firstAttribute="width" constant="16" id="Z1W-0G-mbz"/>
+                                    </constraints>
+                                    <state key="normal" title="Button"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="image" keyPath="imageIcon" value="expandMore"/>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="imageTintColor">
+                                            <color key="value" red="0.4392112494" green="0.43921267990000001" blue="0.43921583889999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="imagePressedTintColor">
+                                            <color key="value" red="0.74833399060000005" green="0.23216915129999999" blue="0.22348570819999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </button>
+                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o8A-T4-kZr" customClass="ImageButton" customModule="Common">
+                                    <rect key="frame" x="325" y="9" width="46" height="30"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="30" id="RnC-Gg-f5h"/>
+                                        <constraint firstAttribute="width" constant="46" id="j7e-Br-JYH"/>
+                                    </constraints>
+                                    <state key="normal">
+                                        <color key="titleColor" red="0.62683063750000001" green="0.046659030019999999" blue="0.11002182219999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="image" keyPath="imageIcon" value="icUpVoteActive"/>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="imageTintColor">
+                                            <color key="value" red="0.74182659390000005" green="0.033272977920000002" blue="0.1091294661" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="OwN-eu-spD" firstAttribute="leading" secondItem="tFF-dX-ShS" secondAttribute="leading" id="3Ef-zx-ahN"/>
+                                <constraint firstItem="Oqr-7T-buz" firstAttribute="bottom" secondItem="3eh-7U-zd8" secondAttribute="bottom" id="5qU-DV-JXP"/>
+                                <constraint firstItem="OwN-eu-spD" firstAttribute="top" secondItem="tFF-dX-ShS" secondAttribute="top" id="7WI-qx-7Mo"/>
+                                <constraint firstAttribute="trailing" secondItem="OwN-eu-spD" secondAttribute="trailing" id="9cR-LA-pEk"/>
+                                <constraint firstItem="o8A-T4-kZr" firstAttribute="centerY" secondItem="tFF-dX-ShS" secondAttribute="centerY" id="C3n-iF-PcP"/>
+                                <constraint firstItem="3eh-7U-zd8" firstAttribute="leading" secondItem="tFF-dX-ShS" secondAttribute="leading" constant="16" id="IgC-BW-mjJ"/>
+                                <constraint firstAttribute="trailing" secondItem="o8A-T4-kZr" secondAttribute="trailing" constant="4" id="JT3-en-Aau"/>
+                                <constraint firstItem="bZm-Bt-KHC" firstAttribute="top" secondItem="OwN-eu-spD" secondAttribute="bottom" constant="5" id="Jev-2N-DUa"/>
+                                <constraint firstItem="Oqr-7T-buz" firstAttribute="trailing" secondItem="3eh-7U-zd8" secondAttribute="trailing" id="Ke3-Zt-Y6K"/>
+                                <constraint firstItem="zp3-nC-gvx" firstAttribute="centerY" secondItem="tFF-dX-ShS" secondAttribute="centerY" id="Xup-a1-eH8"/>
+                                <constraint firstItem="zp3-nC-gvx" firstAttribute="leading" secondItem="bZm-Bt-KHC" secondAttribute="trailing" constant="4" id="exw-cR-bt6"/>
+                                <constraint firstItem="bZm-Bt-KHC" firstAttribute="leading" secondItem="3eh-7U-zd8" secondAttribute="trailing" constant="16" id="fUY-Oa-BJI"/>
+                                <constraint firstAttribute="height" constant="48" id="i0c-nO-qcX"/>
+                                <constraint firstItem="3eh-7U-zd8" firstAttribute="centerY" secondItem="tFF-dX-ShS" secondAttribute="centerY" id="nY8-Gp-1tT"/>
+                                <constraint firstAttribute="trailing" secondItem="zp3-nC-gvx" secondAttribute="trailing" constant="16" id="ojV-UB-1TM"/>
+                            </constraints>
+                        </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d8w-i4-U0k" customClass="RoundView" customModule="Common">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="34.5"/>
                             <subviews>
@@ -59,19 +153,22 @@
                             </userDefinedRuntimeAttributes>
                         </view>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Gvx-jE-hRX">
-                            <rect key="frame" x="0.0" y="34.5" width="375" height="568.5"/>
+                            <rect key="frame" x="0.0" y="34.5" width="375" height="520.5"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </tableView>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
+                        <constraint firstAttribute="trailing" secondItem="tFF-dX-ShS" secondAttribute="trailing" id="Nwu-yf-oDn"/>
+                        <constraint firstItem="tFF-dX-ShS" firstAttribute="leading" secondItem="9sB-Lx-fHi" secondAttribute="leading" id="Vdk-Tt-BmD"/>
                         <constraint firstItem="Gvx-jE-hRX" firstAttribute="leading" secondItem="9sB-Lx-fHi" secondAttribute="leading" id="Wco-J8-Koi"/>
                         <constraint firstAttribute="trailing" secondItem="d8w-i4-U0k" secondAttribute="trailing" id="YST-TO-tAr"/>
                         <constraint firstAttribute="trailing" secondItem="Gvx-jE-hRX" secondAttribute="trailing" id="aU6-cM-QG5"/>
-                        <constraint firstAttribute="bottom" secondItem="Gvx-jE-hRX" secondAttribute="bottom" id="e4k-1J-A5j"/>
                         <constraint firstItem="Gvx-jE-hRX" firstAttribute="top" secondItem="d8w-i4-U0k" secondAttribute="bottom" id="gst-dR-czY"/>
                         <constraint firstItem="d8w-i4-U0k" firstAttribute="top" secondItem="9sB-Lx-fHi" secondAttribute="top" id="jFo-QK-vBv"/>
                         <constraint firstItem="d8w-i4-U0k" firstAttribute="leading" secondItem="9sB-Lx-fHi" secondAttribute="leading" id="jxg-wX-yf4"/>
+                        <constraint firstItem="tFF-dX-ShS" firstAttribute="top" secondItem="Gvx-jE-hRX" secondAttribute="bottom" id="qsv-yw-xBk"/>
+                        <constraint firstAttribute="bottom" secondItem="tFF-dX-ShS" secondAttribute="bottom" id="tuZ-nc-kNa"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="topRadius">
@@ -111,6 +208,9 @@
         </view>
     </objects>
     <resources>
+        <image name="expandMore" width="16" height="16"/>
+        <image name="icDummyPerson" width="48" height="48"/>
         <image name="icOutlineDelete24Px" width="24" height="24"/>
+        <image name="icUpVoteActive" width="36" height="36"/>
     </resources>
 </document>

@@ -19,9 +19,8 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="183.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8W5-vx-3fa" customClass="Label" customModule="Common">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8W5-vx-3fa" customClass="Label" customModule="Common">
                         <rect key="frame" x="26" y="32" width="198" height="66"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <string key="text">Mau nambahin, jumlah baliho juga melanggar ketentuan di pertigaan Ahmad Yani sudah saya lampiran bukti foto serta tambahan lokasi baliho dimana saja pemasangan baliho.</string>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
@@ -129,12 +128,16 @@
                     </label>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="8W5-vx-3fa" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="21" id="3uN-j4-AGR"/>
+                    <constraint firstItem="jEH-eg-Evz" firstAttribute="top" secondItem="8W5-vx-3fa" secondAttribute="bottom" constant="4" id="5Ue-18-ptj"/>
                     <constraint firstItem="jEH-eg-Evz" firstAttribute="trailing" secondItem="kI1-Np-mqu" secondAttribute="trailing" id="6Bh-h7-2Wu"/>
                     <constraint firstItem="lgx-0E-7CF" firstAttribute="top" secondItem="kI1-Np-mqu" secondAttribute="bottom" constant="4" id="8p1-aw-rrg"/>
                     <constraint firstAttribute="trailing" secondItem="lgx-0E-7CF" secondAttribute="trailing" constant="96" id="AKU-M2-eDF"/>
                     <constraint firstItem="dF8-RI-oIU" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="Bbz-RN-i3d"/>
                     <constraint firstItem="kI1-Np-mqu" firstAttribute="top" secondItem="dF8-RI-oIU" secondAttribute="bottom" constant="19" id="EfB-sy-9H3"/>
                     <constraint firstItem="kI1-Np-mqu" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="Jih-C1-uoH"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="8W5-vx-3fa" secondAttribute="trailing" constant="80" id="MNU-8b-ZWM"/>
+                    <constraint firstItem="8W5-vx-3fa" firstAttribute="leading" secondItem="dF8-RI-oIU" secondAttribute="trailing" constant="6" id="W43-NO-ch3"/>
                     <constraint firstAttribute="bottom" secondItem="lgx-0E-7CF" secondAttribute="bottom" constant="5" id="W8X-Zo-kto"/>
                     <constraint firstAttribute="trailingMargin" secondItem="kI1-Np-mqu" secondAttribute="trailing" constant="80" id="gPj-uN-UcF"/>
                     <constraint firstItem="kI1-Np-mqu" firstAttribute="top" secondItem="jEH-eg-Evz" secondAttribute="bottom" constant="5" id="kGh-vH-UgN"/>
