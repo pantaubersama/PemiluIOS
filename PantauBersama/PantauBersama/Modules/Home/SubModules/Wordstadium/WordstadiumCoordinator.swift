@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import Networking
 
-protocol WordstadiumNavigator {
+protocol WordstadiumNavigator: PersonalNavigator,PublicNavigator {
     func launchProfile(isMyAccount: Bool, userId: String?) -> Observable<Void>
     func launchNotifications() -> Observable<Void>
     func launchBannerInfo(bannerInfo: BannerInfo) -> Observable<Void>
@@ -72,5 +72,15 @@ extension WordstadiumCoordinator: WordstadiumNavigator {
     func launchWordstadiumList(wordstadium: SectionWordstadium) -> Observable<Void> {
         let listCoordinator = WordstadiumListCoordinator(navigationController: navigationController, wordstadium: wordstadium)
         return coordinate(to: listCoordinator)
+    }
+    
+    func launchChallenge(wordstadium: Wordstadium) -> Observable<Void> {
+        let challengeCoordinator = ChallengeCoordinator(navigationController: navigationController, type: .challenge)
+        return coordinate(to: challengeCoordinator)
+    }
+    
+    func launchLiveChallenge(wordstadium: Wordstadium) -> Observable<Void> {
+        let liveDebatCoordinator = LiveDebatCoordinator(navigationController: navigationController)
+        return coordinate(to: liveDebatCoordinator)
     }
 }

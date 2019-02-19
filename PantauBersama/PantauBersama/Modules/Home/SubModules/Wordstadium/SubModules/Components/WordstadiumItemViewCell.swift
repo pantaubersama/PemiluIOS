@@ -14,6 +14,12 @@ class WordstadiumItemViewCell: UITableViewCell {
     @IBOutlet weak var backgroundItem: UIImageView!
     @IBOutlet weak var footerContainerView: UIView!
     @IBOutlet weak var titleLbl: UILabel!
+    @IBOutlet weak var vsImage: UIImageView!
+    @IBOutlet weak var leftPersonView: RoundView!
+    @IBOutlet weak var leftUsername: UILabel!
+    @IBOutlet weak var rightPersonView: RoundView!
+    @IBOutlet weak var rightUsername: UILabel!
+    @IBOutlet weak var rightStatus: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -32,6 +38,7 @@ extension WordstadiumItemViewCell: IReusableCell {
     
     struct Input {
         let type : ItemType
+        let wordstadium: Wordstadium
     }
     
     func configureCell(item: Input) {
@@ -48,8 +55,38 @@ extension WordstadiumItemViewCell: IReusableCell {
             titleLbl.text = "Done"
         case .challenge,.inProgress,.privateChallenge:
             backgroundItem.image = UIImage(named: "bgWordstadiumChallange")
-            footerView = DescriptionView()
-            titleLbl.text = "Open Challenge"
+            let descView = DescriptionView()
+            descView.config(type: item.wordstadium.type)
+            footerView = descView
+            
+            switch item.wordstadium.type {
+            case .challengeOpen:
+                titleLbl.text = "Open Challenge"
+                vsImage.isHidden = false
+                rightPersonView.isHidden = false
+                rightUsername.isHidden = false
+                rightStatus.text = "?"
+            case .challengeDirect:
+                titleLbl.text = "Direct Challenge"
+                vsImage.isHidden = false
+                rightPersonView.isHidden = false
+                rightUsername.isHidden = false
+                rightStatus.text = "?"
+            case .challengeDenied:
+                titleLbl.text = "Denied"
+                vsImage.isHidden = true
+                rightPersonView.isHidden = true
+                rightUsername.isHidden = true
+                rightStatus.text = ""
+            case .challengeExpired:
+                titleLbl.text = "Expired"
+                vsImage.isHidden = true
+                rightPersonView.isHidden = true
+                rightUsername.isHidden = true
+                rightStatus.text = ""
+            default: break
+            }
+            
         case .live:
             backgroundItem.image = UIImage(named: "bgWordstadiumLive")
             titleLbl.text = "Live Now"

@@ -96,6 +96,16 @@ extension ChallengeController {
             self.containerHeader.backgroundColor = #colorLiteral(red: 0, green: 0.6352775693, blue: 0.9890542626, alpha: 1)
             self.lblHeader.text = "COMING SOON"
             self.imageContent.image = #imageLiteral(resourceName: "comingSoonMask")
+        case .challengeExpired:
+            self.titleContent.text = "Tantangan tidak valid,"
+            self.subtitleContent.text = "Tantangan Melebihi Batas Waktu"
+            self.containerHeader.backgroundColor = #colorLiteral(red: 1, green: 0.4935973287, blue: 0.3663615584, alpha: 1)
+            self.lblHeader.text = "OPEN CHALLENGE"
+        case .challengeDenied:
+            self.titleContent.text = "Tantangan ditolak,"
+            self.subtitleContent.text = "Lawan debat tidak menerima tantangan ini"
+            self.containerHeader.backgroundColor = #colorLiteral(red: 1, green: 0.4935973287, blue: 0.3663615584, alpha: 1)
+            self.lblHeader.text = "OPEN CHALLENGE"
         default:
             break
         }

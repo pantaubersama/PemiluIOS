@@ -22,9 +22,11 @@ enum ItemType {
 
 struct Wordstadium {
     let title: String
+    let type: ChallengeType
     
-    init(title: String) {
+    init(title: String, type: ChallengeType) {
         self.title = title
+        self.type = type
     }
 }
 

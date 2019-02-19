@@ -72,12 +72,12 @@ class PersonalViewController: UITableViewController {
                 
                 if wordstadium.itemType == .inProgress {
                     let cell = tableView.dequeueReusableCell(indexPath: indexPath) as WordstadiumViewCell
-                    cell.configureCell(item: WordstadiumViewCell.Input(type: wordstadium.itemType, wordstadium: wordstadium, viewModel: self.viewModel.collectionViewModel))
+                    cell.configureCell(item: WordstadiumViewCell.Input(wordstadium: wordstadium, viewModel: self.viewModel.collectionViewModel))
                     cell.collectionView.reloadData()
                     return cell
                 } else {
                     let cell = tableView.dequeueReusableCell(indexPath: indexPath) as WordstadiumItemViewCell
-                    cell.configureCell(item: WordstadiumItemViewCell.Input(type: dataSource.sectionModels[indexPath.section].itemType))
+                    cell.configureCell(item: WordstadiumItemViewCell.Input(type: wordstadium.itemType, wordstadium: wordstadium.items[indexPath.row]))
                     return cell
                 }
         })
@@ -142,6 +142,35 @@ class PersonalViewController: UITableViewController {
         }
     }
  
+    // TODO: for testing purpose
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let wordstadium = dataSource.sectionModels[indexPath.section].itemType
+        
+        switch wordstadium {
+        case .privateChallenge:
+            guard let navigationController = self.navigationController else { return }
+            let challengeCoordinator = ChallengeCoordinator(navigationController: navigationController, type: .challenge)
+            challengeCoordinator
+                .start()
+                .subscribe()
+                .disposed(by: disposeBag)
+        case .privateComingsoon:
+            guard let navigationController = self.navigationController else { return }
+            let challengeCoordinator = ChallengeCoordinator(navigationController: navigationController, type: .soon)
+            challengeCoordinator
+                .start()
+                .subscribe()
+                .disposed(by: disposeBag)
+        case .privateDone:
+            guard let navigationController = self.navigationController else { return }
+            let challengeCoordinator = ChallengeCoordinator(navigationController: navigationController, type: .done)
+            challengeCoordinator
+                .start()
+                .subscribe()
+                .disposed(by: disposeBag)
+        default: break
+        }
+    }
 
 
 }
