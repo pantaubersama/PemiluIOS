@@ -35,7 +35,7 @@ class LiveDebatCoordinator: BaseCoordinator<Void> {
     
     override func start() -> Observable<Void> {
         let viewController = LiveDebatController()
-        let viewModel = LiveDebatViewModel(navigator: self, viewType: .watch)
+        let viewModel = LiveDebatViewModel(navigator: self, viewType: self.viewType)
         viewController.hidesBottomBarWhenPushed = true
         viewController.viewModel = viewModel
         
