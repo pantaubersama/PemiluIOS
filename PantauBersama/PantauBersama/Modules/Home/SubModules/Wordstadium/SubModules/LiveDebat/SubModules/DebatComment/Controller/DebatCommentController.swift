@@ -9,11 +9,14 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import Common
 
 class DebatCommentController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var staticNavigationBar: UINavigationBar!
     @IBOutlet weak var btnClose: UIBarButtonItem!
+    @IBOutlet weak var tvComment: UITextView!
+    @IBOutlet weak var btnSend: ImageButton!
     var viewModel: DebatCommentViewModel!
     
     private let disposeBag = DisposeBag()
@@ -21,6 +24,7 @@ class DebatCommentController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configureInputView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -43,6 +47,27 @@ class DebatCommentController: UIViewController {
         tableView.estimatedRowHeight = 44.0
         tableView.rowHeight = UITableView.automaticDimension
         tableView.registerReusableCell(DebatCommentCell.self)
+    }
+    
+    private func configureInputView() {
+        tvComment.text = "Tulis Komentar"
+        tvComment.textColor = .lightGray
+        
+        tvComment.rx.didBeginEditing.bind { [unowned self]in
+            if self.tvComment.textColor == .lightGray {
+                self.tvComment.text = nil
+                self.tvComment.textColor = Color.primary_black
+            }
+            }
+            .disposed(by: disposeBag)
+        
+        tvComment.rx.didEndEditing.bind { [unowned self]in
+            if self.tvComment.text.isEmpty {
+                self.tvComment.text = "Tulis Komentar"
+                self.tvComment.textColor = .lightGray
+            }
+            }
+            .disposed(by: disposeBag)
     }
 }
 

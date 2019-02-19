@@ -13,8 +13,10 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DebatCommentController" customModule="PantauBersama" customModuleProvider="target">
             <connections>
                 <outlet property="btnClose" destination="ua8-D7-sPS" id="YRl-Ca-8eP"/>
+                <outlet property="btnSend" destination="o8A-T4-kZr" id="6Dr-5F-eS7"/>
                 <outlet property="staticNavigationBar" destination="dlJ-QZ-Sg7" id="yqN-Eu-lPB"/>
                 <outlet property="tableView" destination="Gvx-jE-hRX" id="CRj-5W-Wob"/>
+                <outlet property="tvComment" destination="bZm-Bt-KHC" id="nHn-kZ-qdX"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
