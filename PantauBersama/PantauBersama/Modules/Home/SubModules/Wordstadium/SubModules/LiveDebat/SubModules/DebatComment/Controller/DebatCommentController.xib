@@ -57,7 +57,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </view>
                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Tulis Komentar" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="bZm-Bt-KHC">
-                                    <rect key="frame" x="56" y="7" width="283" height="24"/>
+                                    <rect key="frame" x="56" y="7" width="261" height="24"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="24" id="Ofu-zX-SPb"/>
@@ -66,24 +66,7 @@
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 </textView>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zp3-nC-gvx" customClass="ImageButton" customModule="Common">
-                                    <rect key="frame" x="343" y="16" width="16" height="16"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="16" id="VWd-Wm-Wa3"/>
-                                        <constraint firstAttribute="width" constant="16" id="Z1W-0G-mbz"/>
-                                    </constraints>
-                                    <state key="normal" title="Button"/>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="image" keyPath="imageIcon" value="expandMore"/>
-                                        <userDefinedRuntimeAttribute type="color" keyPath="imageTintColor">
-                                            <color key="value" red="0.4392112494" green="0.43921267990000001" blue="0.43921583889999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        </userDefinedRuntimeAttribute>
-                                        <userDefinedRuntimeAttribute type="color" keyPath="imagePressedTintColor">
-                                            <color key="value" red="0.74833399060000005" green="0.23216915129999999" blue="0.22348570819999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        </userDefinedRuntimeAttribute>
-                                    </userDefinedRuntimeAttributes>
-                                </button>
-                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o8A-T4-kZr" customClass="ImageButton" customModule="Common">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o8A-T4-kZr" customClass="ImageButton" customModule="Common">
                                     <rect key="frame" x="325" y="9" width="46" height="30"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
@@ -112,12 +95,10 @@
                                 <constraint firstAttribute="trailing" secondItem="o8A-T4-kZr" secondAttribute="trailing" constant="4" id="JT3-en-Aau"/>
                                 <constraint firstItem="bZm-Bt-KHC" firstAttribute="top" secondItem="OwN-eu-spD" secondAttribute="bottom" constant="5" id="Jev-2N-DUa"/>
                                 <constraint firstItem="Oqr-7T-buz" firstAttribute="trailing" secondItem="3eh-7U-zd8" secondAttribute="trailing" id="Ke3-Zt-Y6K"/>
-                                <constraint firstItem="zp3-nC-gvx" firstAttribute="centerY" secondItem="tFF-dX-ShS" secondAttribute="centerY" id="Xup-a1-eH8"/>
-                                <constraint firstItem="zp3-nC-gvx" firstAttribute="leading" secondItem="bZm-Bt-KHC" secondAttribute="trailing" constant="4" id="exw-cR-bt6"/>
                                 <constraint firstItem="bZm-Bt-KHC" firstAttribute="leading" secondItem="3eh-7U-zd8" secondAttribute="trailing" constant="16" id="fUY-Oa-BJI"/>
                                 <constraint firstAttribute="height" constant="48" id="i0c-nO-qcX"/>
                                 <constraint firstItem="3eh-7U-zd8" firstAttribute="centerY" secondItem="tFF-dX-ShS" secondAttribute="centerY" id="nY8-Gp-1tT"/>
-                                <constraint firstAttribute="trailing" secondItem="zp3-nC-gvx" secondAttribute="trailing" constant="16" id="ojV-UB-1TM"/>
+                                <constraint firstItem="o8A-T4-kZr" firstAttribute="leading" secondItem="bZm-Bt-KHC" secondAttribute="trailing" constant="8" id="w4n-u1-s3j"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d8w-i4-U0k" customClass="RoundView" customModule="Common">
@@ -208,7 +189,6 @@
         </view>
     </objects>
     <resources>
-        <image name="expandMore" width="16" height="16"/>
         <image name="icDummyPerson" width="48" height="48"/>
         <image name="icOutlineDelete24Px" width="24" height="24"/>
         <image name="icUpVoteActive" width="36" height="36"/>
