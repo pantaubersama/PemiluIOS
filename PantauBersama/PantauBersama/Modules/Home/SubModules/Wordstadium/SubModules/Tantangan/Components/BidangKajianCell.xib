@@ -79,13 +79,13 @@
                         </userDefinedRuntimeAttributes>
                     </label>
                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Myl-pR-GHO" customClass="UIPaddedLabel" customModule="Common">
-                        <rect key="frame" x="56.5" y="62.5" width="26.5" height="14.5"/>
-                        <fontDescription key="fontDescription" name="Lato-Italic" family="Lato" pointSize="12"/>
-                        <nil key="textColor"/>
+                        <rect key="frame" x="56.5" y="52.5" width="20" height="11"/>
+                        <fontDescription key="fontDescription" name="Lato-Italic" family="Lato" pointSize="9"/>
+                        <color key="textColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <nil key="highlightedColor"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="topInset">
-                                <real key="value" value="4"/>
+                                <real key="value" value="2"/>
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="number" keyPath="bottomInset">
                                 <real key="value" value="4"/>
@@ -96,10 +96,13 @@
                             <userDefinedRuntimeAttribute type="number" keyPath="rightInset">
                                 <real key="value" value="4"/>
                             </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="4"/>
+                            </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qsl-VV-wIv">
-                        <rect key="frame" x="56.5" y="56.5" width="297.5" height="29"/>
+                        <rect key="frame" x="56.5" y="52.5" width="297.5" height="29"/>
                         <fontDescription key="fontDescription" name="BwModelicaSS01-BoldCondensed" family="Bw Modelica SS01" pointSize="14"/>
                         <state key="normal" title="Pilih Bidang Kajian">
                             <color key="titleColor" red="0.48628133540000001" green="0.4862622023" blue="0.48627519609999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -107,13 +110,13 @@
                     </button>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="Qsl-VV-wIv" firstAttribute="top" secondItem="DIs-o0-IFR" secondAttribute="bottom" constant="8" id="FSR-rE-zZe"/>
+                    <constraint firstItem="Qsl-VV-wIv" firstAttribute="top" secondItem="DIs-o0-IFR" secondAttribute="bottom" constant="4" id="FSR-rE-zZe"/>
                     <constraint firstItem="e8O-3Q-lJ2" firstAttribute="top" secondItem="IQN-D5-4rG" secondAttribute="top" id="GPZ-bo-h1q"/>
                     <constraint firstAttribute="trailingMargin" secondItem="Qsl-VV-wIv" secondAttribute="trailing" constant="18" id="GyU-Ou-sxP"/>
                     <constraint firstItem="Tdf-5l-JEi" firstAttribute="centerX" secondItem="e8O-3Q-lJ2" secondAttribute="centerX" id="H7t-rI-uUT"/>
                     <constraint firstItem="Tdf-5l-JEi" firstAttribute="top" secondItem="e8O-3Q-lJ2" secondAttribute="bottom" id="IBG-ZT-a0d"/>
                     <constraint firstItem="wWW-ux-oe3" firstAttribute="top" secondItem="IQN-D5-4rG" secondAttribute="top" id="JTu-Bm-YfB"/>
-                    <constraint firstItem="Myl-pR-GHO" firstAttribute="top" secondItem="DIs-o0-IFR" secondAttribute="bottom" constant="14" id="O3J-Gg-xXg"/>
+                    <constraint firstItem="Myl-pR-GHO" firstAttribute="top" secondItem="DIs-o0-IFR" secondAttribute="bottom" constant="4" id="O3J-Gg-xXg"/>
                     <constraint firstItem="DIs-o0-IFR" firstAttribute="top" secondItem="wWW-ux-oe3" secondAttribute="bottom" constant="5" id="S4G-yD-3db"/>
                     <constraint firstItem="Qsl-VV-wIv" firstAttribute="leading" secondItem="Tdf-5l-JEi" secondAttribute="trailing" constant="28" id="SbP-nN-7jl"/>
                     <constraint firstAttribute="trailing" secondItem="wWW-ux-oe3" secondAttribute="trailing" constant="18" id="TZI-Qc-egH"/>
