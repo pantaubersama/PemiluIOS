@@ -14,6 +14,7 @@ import RxCocoa
 public protocol LiveDebatNavigator {
     func back() -> Observable<Void>
     func launchDetail() -> Observable<Void>
+    func showComment() -> Observable<Void>
 }
 
 class LiveDebatCoordinator: BaseCoordinator<Void> {
@@ -43,5 +44,10 @@ extension LiveDebatCoordinator: LiveDebatNavigator {
     func launchDetail() -> Observable<Void> {
         let debatDetailCoordinator = DebatDetailCoordinator(navigationController: self.navigationController)
         return coordinate(to: debatDetailCoordinator)
+    }
+    
+    func showComment() -> Observable<Void> {
+        let debatCommentCoordinator = DebatCommentCoordinator(navigationController: self.navigationController)
+        return coordinate(to: debatCommentCoordinator)
     }
 }

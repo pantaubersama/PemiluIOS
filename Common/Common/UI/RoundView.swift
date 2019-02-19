@@ -53,6 +53,14 @@ public class RoundView: UIView {
     }
     
     @IBInspectable
+    public var topRadius: CGFloat = 0.0 {
+        didSet {
+            initLayout()
+            self.roundCorners([.topRight, .topLeft], radius: topRadius)
+        }
+    }
+    
+    @IBInspectable
     public var borderColor: UIColor = UIColor.clear {
         didSet {
             initLayout()

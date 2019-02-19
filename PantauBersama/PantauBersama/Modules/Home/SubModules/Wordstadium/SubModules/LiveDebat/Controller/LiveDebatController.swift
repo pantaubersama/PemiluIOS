@@ -14,7 +14,6 @@ import IQKeyboardManagerSwift
 
 class LiveDebatController: UIViewController {
     
-    @IBOutlet weak var viewCommentContainer: RoundView!
     @IBOutlet weak var btnCommentShow: UIButton!
     @IBOutlet weak var btnScroll: Button!
     @IBOutlet weak var scrollView: UIScrollView!
@@ -38,23 +37,6 @@ class LiveDebatController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        constraintInputViewHeight.constant = 0
-        let dragGesture = UIPanGestureRecognizer(target: self, action: nil)
-        viewCommentContainer.addGestureRecognizer(dragGesture)
-        dragGesture.rx.event.bind { [unowned self](panGesture) in
-            let screenHeight = UIScreen.main.bounds.height
-            let transY = (panGesture.location(in: self.view).y - screenHeight)
-            
-            self.constraintCommentView.constant = transY
-            
-            if dragGesture.state == UIGestureRecognizer.State.ended {
-                UIView.animate(withDuration: 0.5, animations: {
-                    self.openOrCloseComment(translationY: transY)
-                })
-            }
-            self.view.layoutIfNeeded()
-            }
-            .disposed(by: disposeBag)
         
         // config input behavior
         configureInputView()
@@ -93,11 +75,19 @@ class LiveDebatController: UIViewController {
             .bind(to: viewModel.input.launchDetailTrigger)
             .disposed(by: disposeBag)
         
+        btnCommentShow.rx.tap
+            .bind(to: viewModel.input.showCommentTrigger)
+            .disposed(by: disposeBag)
+        
         viewModel.output.back
             .drive()
             .disposed(by: disposeBag)
         
         viewModel.output.launchDetail
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.showComment
             .drive()
             .disposed(by: disposeBag)
         
@@ -124,28 +114,6 @@ class LiveDebatController: UIViewController {
     private func unsubscribeForKeyboardEvent() {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
-    }
-    
-    private func openOrCloseComment(translationY: CGFloat) {
-        let screenHeight = UIScreen.main.bounds.height
-        let height = screenHeight - 117
-        print("nav height \(height)")
-        if self.isCommentAppear {
-            if abs(translationY) > (screenHeight/4) {
-                self.constraintCommentView.constant = -35
-            } else {
-                self.constraintCommentView.constant = -height
-            }
-        } else {
-            if abs(translationY) > (screenHeight/4) {
-                self.constraintCommentView.constant = -height
-            } else {
-                self.constraintCommentView.constant = -35
-            }
-        }
-        
-        self.isCommentAppear = !self.isCommentAppear
-        self.view.layoutIfNeeded()
     }
     
     @objc func keyboardWillAppear(notification: NSNotification) {

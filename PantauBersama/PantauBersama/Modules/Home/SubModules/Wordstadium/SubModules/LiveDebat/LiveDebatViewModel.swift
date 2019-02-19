@@ -15,11 +15,13 @@ class LiveDebatViewModel: ViewModelType {
     struct Input {
         let backTrigger: AnyObserver<Void>
         let launchDetailTrigger: AnyObserver<Void>
+        let showCommentTrigger: AnyObserver<Void>
     }
     
     struct Output {
         let back: Driver<Void>
         let launchDetail: Driver<Void>
+        let showComment: Driver<Void>
     }
     
     var input: Input
@@ -28,13 +30,15 @@ class LiveDebatViewModel: ViewModelType {
     
     private let backS = PublishSubject<Void>()
     private let detailS = PublishSubject<Void>()
+    private let commentS = PublishSubject<Void>()
     
     init(navigator: LiveDebatNavigator) {
         self.navigator = navigator
         
         input = Input(
             backTrigger: backS.asObserver(),
-            launchDetailTrigger: detailS.asObserver()
+            launchDetailTrigger: detailS.asObserver(),
+            showCommentTrigger: commentS.asObserver()
         )
         
         let back = backS.flatMap({navigator.back()})
@@ -43,6 +47,12 @@ class LiveDebatViewModel: ViewModelType {
         let detail = detailS.flatMap({navigator.launchDetail()})
             .asDriverOnErrorJustComplete()
         
-        output = Output(back: back, launchDetail: detail)
+        let comment = commentS.flatMap({navigator.showComment()})
+            .asDriverOnErrorJustComplete()
+        
+        output = Output(
+            back: back,
+            launchDetail: detail,
+            showComment: comment)
     }
 }

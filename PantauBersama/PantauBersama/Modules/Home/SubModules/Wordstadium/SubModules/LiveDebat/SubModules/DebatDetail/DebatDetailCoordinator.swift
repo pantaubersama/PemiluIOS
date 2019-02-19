@@ -27,6 +27,8 @@ class DebatDetailCoordinator: BaseCoordinator<Void> {
         let viewModel = DebatDetailViewModel(navigator: self)
         viewController.viewModel = viewModel
         
+        viewController.modalPresentationStyle = .overCurrentContext
+        viewController.modalTransitionStyle = .crossDissolve
         navigationController.present(viewController, animated: true, completion: nil)
         return Observable.never()
     }
