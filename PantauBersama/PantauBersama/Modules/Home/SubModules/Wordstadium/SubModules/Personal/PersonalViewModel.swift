@@ -106,25 +106,25 @@ class PersonalViewModel: ViewModelType {
         let live = SectionWordstadium(title: "",
                                       descriptiom: "",
                                       itemType: .inProgress,
-                                      items: [Wordstadium(title: "")],
-                                      itemsLive: [Wordstadium(title: ""),Wordstadium(title: ""),Wordstadium(title: "")])
+                                      items: [Wordstadium(title: "", type: .default)],
+                                      itemsLive: [Wordstadium(title: "", type: .challenge),Wordstadium(title: "", type: .challenge),Wordstadium(title: "", type: .challenge)])
         
         let debat = SectionWordstadium(title: "MY WORDSTADIUM",
                                        descriptiom: "Daftar tantangan dan debat yang akan atau sudah kamu ikuti ditampilkan semua di sini.",
                                        itemType: .comingsoon,
-                                       items: [Wordstadium(title: ""),Wordstadium(title: ""),Wordstadium(title: "")],
+                                       items: [Wordstadium(title: "", type: .challenge),Wordstadium(title: "", type: .challenge),Wordstadium(title: "", type: .challenge)],
                                        itemsLive: [])
         
         let done = SectionWordstadium(title: "My Debat: Done",
                                       descriptiom: "",
                                       itemType: .done,
-                                      items: [Wordstadium(title: ""),Wordstadium(title: ""),Wordstadium(title: "")],
+                                      items: [Wordstadium(title: "", type: .challenge),Wordstadium(title: "", type: .challenge),Wordstadium(title: "", type: .challenge)],
                                       itemsLive: [])
         
         let chalenge = SectionWordstadium(title: "My Challenge",
                                           descriptiom: "",
                                           itemType: .challenge,
-                                          items: [Wordstadium(title: ""),Wordstadium(title: ""),Wordstadium(title: "")],
+                                          items: [Wordstadium(title: "", type: .challenge),Wordstadium(title: "", type: .challenge),Wordstadium(title: "", type: .challenge)],
                                           itemsLive: [])
         
         items.append(live)

@@ -15,6 +15,10 @@ enum ChallengeType {
     case done
     case challenge
     case `default`
+    case challengeOpen
+    case challengeDirect
+    case challengeDenied
+    case challengeExpired
 }
 
 class ChallengeViewModel: ViewModelType {

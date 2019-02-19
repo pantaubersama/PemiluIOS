@@ -106,25 +106,25 @@ class PublicViewModel: ViewModelType {
         let live = SectionWordstadium(title: "",
                                        descriptiom: "",
                                        itemType: .live,
-                                       items: [Wordstadium(title: "")],
-                                       itemsLive: [Wordstadium(title: ""),Wordstadium(title: ""),Wordstadium(title: ""),Wordstadium(title: ""),Wordstadium(title: "")])
+                                       items: [Wordstadium(title: "", type: .default)],
+                                       itemsLive: [Wordstadium(title: "", type: .challenge),Wordstadium(title: "", type: .challenge),Wordstadium(title: "", type: .challenge),Wordstadium(title: "", type: .challenge),Wordstadium(title: "", type: .challenge)])
         
         let debat = SectionWordstadium(title: "LINIMASA DEBAT",
                                        descriptiom: "Daftar challenge dan debat yang akan atau sudah berlangsung ditampilkan semua di sini.",
                                        itemType: .comingsoon,
-                                       items: [Wordstadium(title: ""),Wordstadium(title: ""),Wordstadium(title: "")],
+                                       items: [Wordstadium(title: "", type: .challenge),Wordstadium(title: "", type: .challenge),Wordstadium(title: "", type: .challenge)],
                                        itemsLive: [])
         
         let done = SectionWordstadium(title: "Debat: Done",
                                        descriptiom: "",
                                        itemType: .done,
-                                       items: [Wordstadium(title: ""),Wordstadium(title: ""),Wordstadium(title: "")],
+                                       items: [Wordstadium(title: "", type: .challenge),Wordstadium(title: "", type: .challenge),Wordstadium(title: "", type: .challenge)],
                                        itemsLive: [])
         
         let chalenge = SectionWordstadium(title: "Challenge",
                                        descriptiom: "",
                                        itemType: .challenge,
-                                       items: [Wordstadium(title: ""),Wordstadium(title: ""),Wordstadium(title: "")],
+                                       items: [Wordstadium(title: "", type: .challenge),Wordstadium(title: "", type: .challenge),Wordstadium(title: "", type: .challenge)],
                                        itemsLive: [])
     
         items.append(live)

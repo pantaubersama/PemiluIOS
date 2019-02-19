@@ -51,7 +51,7 @@ class WordstadiumListViewController: UITableViewController {
                 let wordstadium = dataSource.sectionModels[indexPath.section]
                 
                 let cell = tableView.dequeueReusableCell(indexPath: indexPath) as WordstadiumItemViewCell
-                cell.configureCell(item: WordstadiumItemViewCell.Input(type: wordstadium.itemType))
+                cell.configureCell(item: WordstadiumItemViewCell.Input(type: wordstadium.itemType, wordstadium: wordstadium.items[indexPath.row]))
                 return cell
         })
         
@@ -90,4 +90,40 @@ class WordstadiumListViewController: UITableViewController {
 
     }
 
+    // TODO: for testing purpose
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let wordstadium = dataSource.sectionModels[indexPath.section]
+        
+        switch wordstadium.itemType {
+        case .privateChallenge, .challenge, .inProgress:
+            guard let navigationController = self.navigationController else { return }
+            let challengeCoordinator = ChallengeCoordinator(navigationController: navigationController, type: wordstadium.items[indexPath.row].type)
+            challengeCoordinator
+                .start()
+                .subscribe()
+                .disposed(by: disposeBag)
+        case .privateComingsoon, .comingsoon:
+            guard let navigationController = self.navigationController else { return }
+            let challengeCoordinator = ChallengeCoordinator(navigationController: navigationController, type: .soon)
+            challengeCoordinator
+                .start()
+                .subscribe()
+                .disposed(by: disposeBag)
+        case .privateDone, .done:
+            guard let navigationController = self.navigationController else { return }
+            let challengeCoordinator = ChallengeCoordinator(navigationController: navigationController, type: .done)
+            challengeCoordinator
+                .start()
+                .subscribe()
+                .disposed(by: disposeBag)
+        case .live:
+            guard let navigationController = self.navigationController else { return }
+            let liveDebatCoordinator = LiveDebatCoordinator(navigationController: navigationController)
+            liveDebatCoordinator
+                .start()
+                .subscribe()
+                .disposed(by: disposeBag)
+        }
+    }
+    
 }

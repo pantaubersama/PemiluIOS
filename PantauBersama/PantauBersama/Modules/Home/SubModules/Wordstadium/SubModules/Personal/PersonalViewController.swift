@@ -77,7 +77,7 @@ class PersonalViewController: UITableViewController {
                     return cell
                 } else {
                     let cell = tableView.dequeueReusableCell(indexPath: indexPath) as WordstadiumItemViewCell
-                    cell.configureCell(item: WordstadiumItemViewCell.Input(type: dataSource.sectionModels[indexPath.section].itemType))
+                    cell.configureCell(item: WordstadiumItemViewCell.Input(type: wordstadium.itemType, wordstadium: wordstadium.items[indexPath.row]))
                     return cell
                 }
         })

@@ -143,13 +143,21 @@
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icDummyPerson" translatesAutoresizingMaskIntoConstraints="NO" id="5PA-Vq-EK3">
                                                 <rect key="frame" x="0.0" y="0.0" width="36" height="36"/>
                                             </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fgw-ih-mwm">
+                                                <rect key="frame" x="13.5" y="7.5" width="9.5" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="5PA-Vq-EK3" secondAttribute="bottom" id="4Op-gq-7gT"/>
+                                            <constraint firstItem="fgw-ih-mwm" firstAttribute="centerX" secondItem="74M-LM-Mlf" secondAttribute="centerX" id="Fzo-vE-KgD"/>
                                             <constraint firstItem="5PA-Vq-EK3" firstAttribute="top" secondItem="74M-LM-Mlf" secondAttribute="top" id="V52-ay-5UD"/>
                                             <constraint firstItem="5PA-Vq-EK3" firstAttribute="leading" secondItem="74M-LM-Mlf" secondAttribute="leading" id="WyN-Qk-iaS"/>
                                             <constraint firstAttribute="trailing" secondItem="5PA-Vq-EK3" secondAttribute="trailing" id="djU-aa-Eev"/>
+                                            <constraint firstItem="fgw-ih-mwm" firstAttribute="centerY" secondItem="74M-LM-Mlf" secondAttribute="centerY" id="eTZ-8S-Ug4"/>
                                             <constraint firstAttribute="width" constant="36" id="smP-fW-LEw"/>
                                             <constraint firstAttribute="height" constant="36" id="uxE-wf-JyO"/>
                                         </constraints>
@@ -303,7 +311,13 @@ pertumbuhan mencapai 5,27%.
             <connections>
                 <outlet property="backgroundItem" destination="24g-Zx-MS5" id="JUE-AZ-A6h"/>
                 <outlet property="footerContainerView" destination="51F-cU-N5I" id="q0o-0e-uOX"/>
+                <outlet property="leftPersonView" destination="L6a-lo-xOn" id="Stc-eA-paS"/>
+                <outlet property="leftUsername" destination="9fB-FD-TPl" id="wSi-Ny-2wb"/>
+                <outlet property="rightPersonView" destination="74M-LM-Mlf" id="h94-rD-NtD"/>
+                <outlet property="rightStatus" destination="fgw-ih-mwm" id="OGt-c2-W3k"/>
+                <outlet property="rightUsername" destination="3lI-eU-nyU" id="oXB-2r-CYm"/>
                 <outlet property="titleLbl" destination="KYI-Ns-qvX" id="8uJ-Es-wdu"/>
+                <outlet property="vsImage" destination="fls-zk-Df3" id="34A-dY-kP3"/>
             </connections>
             <point key="canvasLocation" x="136" y="192.05397301349328"/>
         </tableViewCell>

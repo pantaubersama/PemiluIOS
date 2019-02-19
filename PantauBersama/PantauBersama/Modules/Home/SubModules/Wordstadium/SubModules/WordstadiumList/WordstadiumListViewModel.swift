@@ -48,7 +48,7 @@ class WordstadiumListViewModel: ViewModelType {
         let wordstadium = SectionWordstadium(title: "MY WORDSTADIUM",
                                        descriptiom: "Daftar tantangan dan debat yang akan atau sudah kamu ikuti ditampilkan semua di sini.",
                                        itemType: type,
-                                       items: [Wordstadium(title: ""),Wordstadium(title: ""),Wordstadium(title: ""),Wordstadium(title: ""),Wordstadium(title: ""),Wordstadium(title: ""),Wordstadium(title: ""),Wordstadium(title: ""),Wordstadium(title: ""),Wordstadium(title: ""),Wordstadium(title: ""),Wordstadium(title: "")],
+                                       items: [Wordstadium(title: "", type: .challenge),Wordstadium(title: "", type: .challenge),Wordstadium(title: "", type: .challengeOpen),Wordstadium(title: "", type: .challenge),Wordstadium(title: "", type: .challengeDirect),Wordstadium(title: "", type: .challenge),Wordstadium(title: "", type: .challengeDenied),Wordstadium(title: "", type: .challenge),Wordstadium(title: "", type: .challengeExpired),Wordstadium(title: "", type: .challenge),Wordstadium(title: "", type: .challenge),Wordstadium(title: "", type: .challenge)],
                                        itemsLive: [])
     
         items.append(wordstadium)
