@@ -52,13 +52,26 @@ class TrendHeaderView: UIView {
     }
     
     func config(result: TrendResponse, viewModel: QuizViewModel) {
+        // TODO
+        // This trend must randomize if two result have same value in format %.0f
         let kecenderungan = result.teams.max { $0.percentage?.isLess(than: $1.percentage ?? 0.0) ?? false }
-
-        if let avatarUrl = kecenderungan?.team.avatar {
-            ivPaslon.af_setImage(withURL: URL(string: avatarUrl)!)
-        }
         lbKecenderungan.text = "Total Kecenderunganmu, \(result.meta.quizzes.finished) dari \(result.meta.quizzes.total) Quiz"
-        lbTotal.text =  String(format: "%.0f", kecenderungan?.percentage ?? 0.0) + "% (\(kecenderungan?.team.title ?? ""))"
+        
+        let trendHalf = String(format: "%.0f", kecenderungan?.percentage ?? 0.0)
+        if trendHalf == "50" { // this will check first, and random will play
+            print("trend half accepted!, original: \(kecenderungan?.percentage ?? 0.0)")
+            let kecenderunganHalf = result.teams.randomElement()
+            if let avatarUrl = kecenderunganHalf?.team.avatar {
+                ivPaslon.af_setImage(withURL: URL(string: avatarUrl)!)
+            }
+            lbTotal.text =  String(format: "%.0f", kecenderunganHalf?.percentage ?? 0.0) + "% (\(kecenderunganHalf?.team.title ?? ""))"
+        } else {
+            if let avatarUrl = kecenderungan?.team.avatar {
+                ivPaslon.af_setImage(withURL: URL(string: avatarUrl)!)
+            }
+            lbTotal.text =  String(format: "%.0f", kecenderungan?.percentage ?? 0.0) + "% (\(kecenderungan?.team.title ?? ""))"
+        }
+
     }
 
 }
