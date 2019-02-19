@@ -47,7 +47,7 @@ class QuizResultCoordinator: BaseCoordinator<Void> {
 
 extension QuizResultCoordinator: QuizResultNavigator {
     func shareQuizResult(quizModel: QuizModel, image: UIImage) -> Observable<Void> {
-        let askString = "Kamu sudah ikut? Aku sudah dapat hasilnya 😎 #PantauBersama \(AppContext.instance.infoForKey("URL_WEB"))/share/badge/\(quizModel.id)"
+        let askString = "Kamu sudah ikut? Aku sudah dapat hasilnya 😎 #PantauBersama \(AppContext.instance.infoForKey("URL_WEB_SHARE"))/share/badge/\(quizModel.id)"
         let activityViewController = UIActivityViewController(activityItems: [askString as NSString, image as UIImage], applicationActivities: nil)
         self.navigationController.present(activityViewController, animated: true, completion: nil)
         return Observable.never()

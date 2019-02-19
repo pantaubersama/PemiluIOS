@@ -40,7 +40,7 @@ final class ShareTrendCoordinator: BaseCoordinator<Void> {
 
 extension ShareTrendCoordinator: ShareTrendNavigator {
     func shareTrendResult(image: UIImage, data: TrendResponse) -> Observable<Void> {
-        let share = "Hmm.. Ternyata begini kecenderunganku 👀 #PantauBersama \(AppContext.instance.infoForKey("URL_WEB"))/share/badge/\(data.user.id)"
+        let share = "Hmm.. Ternyata begini kecenderunganku 👀 #PantauBersama \(AppContext.instance.infoForKey("URL_WEB_SHARE"))/share/badge/\(data.user.id)"
 //        var objectToShare = [AnyObject]()
 //        objectToShare.append(image)
 //        objectToShare.append(share as AnyObject)
