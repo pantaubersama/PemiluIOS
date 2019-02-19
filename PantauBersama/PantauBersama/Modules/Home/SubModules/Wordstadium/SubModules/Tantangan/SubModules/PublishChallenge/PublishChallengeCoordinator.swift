@@ -7,6 +7,7 @@
 //
 
 import RxSwift
+import Networking
 
 protocol PublishChallengeNavigator {
     var finish: Observable<Void>! { get set }

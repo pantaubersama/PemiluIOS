@@ -265,11 +265,7 @@ class TantanganChallengeController: UIViewController {
         viewModel.output.btnNextO
             .drive()
             .disposed(by: disposeBag)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.navigationBar.configure(with: .white)
+        
         switch tantanganType {
         case false:
             viewModel.input.kajianI.onNext(false)
@@ -283,6 +279,11 @@ class TantanganChallengeController: UIViewController {
             viewModel.input.dateTimeI.onNext(true)
             viewModel.input.saldoI.onNext(true)
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.configure(with: .white)
     }
     
 }
