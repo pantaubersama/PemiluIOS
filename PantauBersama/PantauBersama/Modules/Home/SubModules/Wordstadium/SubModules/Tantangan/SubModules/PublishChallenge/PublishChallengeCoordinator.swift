@@ -18,16 +18,14 @@ final class PublishChallengeCoordinator: BaseCoordinator<Void> {
     private let navigationController: UINavigationController
     var finish: Observable<Void>!
     var type: Bool
-    var user: User
     
-    init(navigationController: UINavigationController, type: Bool, user: User) {
+    init(navigationController: UINavigationController, type: Bool) {
         self.navigationController = navigationController
         self.type = type
-        self.user = user
     }
     
     override func start() -> Observable<Void> {
-        let viewModel = PublishChallengeViewModel(navigator: self, type: type, user: user)
+        let viewModel = PublishChallengeViewModel(navigator: self, type: type)
         let viewController = PublishChallengeController()
         viewController.tantanganType = type
         viewController.viewModel = viewModel

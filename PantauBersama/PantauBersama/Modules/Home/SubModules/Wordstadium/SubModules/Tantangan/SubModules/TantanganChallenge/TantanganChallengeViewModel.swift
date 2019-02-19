@@ -196,8 +196,7 @@ class TantanganChallengeViewModel: ViewModelType {
             .asDriverOnErrorJustComplete()
         
         let nextPublish = btnNextS
-            .withLatestFrom(me)
-            .flatMapLatest({ navigator.launchPublish(type: type, user: $0) })
+            .flatMapLatest({ navigator.launchPublish(type: type ) })
             .asDriverOnErrorJustComplete()
         
         output = Output(itemsO: type ? itemsDirect : itemsOpen,

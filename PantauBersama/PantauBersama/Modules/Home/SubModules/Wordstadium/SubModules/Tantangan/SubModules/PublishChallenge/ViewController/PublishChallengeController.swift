@@ -103,13 +103,20 @@ class PublishChallengeController: UIViewController {
         
         viewModel.output.twitterLoginO
             .do(onNext: { [unowned self] (_) in
-                self.viewModel.input.twitterI.onNext(true)
+//                self.twitterState = value
+                self.viewModel.input.refreshI.onNext(())
             })
             .drive()
             .disposed(by: disposeBag)
         
+        
+        viewModel.input.refreshI.onNext(())
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+    }
     
 }
 
