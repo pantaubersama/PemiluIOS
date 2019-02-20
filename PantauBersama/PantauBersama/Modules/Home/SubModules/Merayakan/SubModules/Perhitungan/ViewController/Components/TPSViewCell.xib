@@ -26,7 +26,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="330" height="40"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TPS 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Nf-A9-aFa">
-                                        <rect key="frame" x="8" y="11.5" width="274" height="17"/>
+                                        <rect key="frame" x="8" y="11.5" width="38" height="17"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                                         <color key="textColor" red="0.74182659387588501" green="0.033272977918386459" blue="0.10912946611642838" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -37,13 +37,38 @@
                                             <constraint firstAttribute="width" constant="40" id="hCJ-s5-Luz"/>
                                         </constraints>
                                     </imageView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vxV-w3-HOb" customClass="RoundView" customModule="Common">
+                                        <rect key="frame" x="56" y="7.5" width="58.5" height="25"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Terkirim" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JQN-bf-DCz" userLabel="Terkirim">
+                                                <rect key="frame" x="5" y="2" width="48.5" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.031372549020000001" green="0.74117647060000003" blue="0.6588235294" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="JQN-bf-DCz" secondAttribute="bottom" constant="2" id="Iub-ag-E36"/>
+                                            <constraint firstItem="JQN-bf-DCz" firstAttribute="top" secondItem="vxV-w3-HOb" secondAttribute="top" constant="2" id="UrE-NZ-XDS"/>
+                                            <constraint firstItem="JQN-bf-DCz" firstAttribute="leading" secondItem="vxV-w3-HOb" secondAttribute="leading" constant="5" id="gih-6q-pvK"/>
+                                            <constraint firstAttribute="trailing" secondItem="JQN-bf-DCz" secondAttribute="trailing" constant="5" id="nez-cZ-Syd"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <integer key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
                                 </subviews>
-                                <color key="backgroundColor" red="0.97636479139999999" green="0.97653168440000004" blue="0.9763541818" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="6Nf-A9-aFa" firstAttribute="leading" secondItem="7RR-1l-kLO" secondAttribute="leading" constant="8" id="67z-yf-qBF"/>
+                                    <constraint firstItem="vxV-w3-HOb" firstAttribute="leading" secondItem="6Nf-A9-aFa" secondAttribute="trailing" constant="10" id="Lni-RI-Vf4"/>
                                     <constraint firstAttribute="trailing" secondItem="VCH-HV-qYu" secondAttribute="trailing" id="Pvv-xm-kre"/>
-                                    <constraint firstItem="VCH-HV-qYu" firstAttribute="leading" secondItem="6Nf-A9-aFa" secondAttribute="trailing" constant="8" id="Vck-2H-uh9"/>
+                                    <constraint firstItem="vxV-w3-HOb" firstAttribute="top" secondItem="6Nf-A9-aFa" secondAttribute="top" constant="-4" id="YTb-Q9-f6s"/>
                                     <constraint firstAttribute="bottom" secondItem="VCH-HV-qYu" secondAttribute="bottom" constant="8" id="aEj-NZ-YY4"/>
+                                    <constraint firstItem="vxV-w3-HOb" firstAttribute="bottom" secondItem="6Nf-A9-aFa" secondAttribute="bottom" constant="4" id="bQU-IE-uQl"/>
                                     <constraint firstItem="6Nf-A9-aFa" firstAttribute="centerY" secondItem="VCH-HV-qYu" secondAttribute="centerY" id="g5O-eg-A6m"/>
                                     <constraint firstItem="VCH-HV-qYu" firstAttribute="top" secondItem="7RR-1l-kLO" secondAttribute="top" constant="8" id="gt3-IV-KaD"/>
                                 </constraints>
@@ -157,7 +182,7 @@
                 <outlet property="container" destination="fyT-Ps-jWg" id="LKm-eZ-4yf"/>
                 <outlet property="regionView" destination="7RR-1l-kLO" id="17U-08-aJG"/>
             </connections>
-            <point key="canvasLocation" x="110" y="228"/>
+            <point key="canvasLocation" x="108.8" y="227.13643178410797"/>
         </tableViewCell>
     </objects>
     <resources>
