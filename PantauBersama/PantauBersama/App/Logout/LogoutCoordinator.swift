@@ -10,6 +10,7 @@ import Foundation
 import RxSwift
 import Common
 import Networking
+import FirebaseMessaging
 
 enum LogoutType {
     case cancel
@@ -46,6 +47,7 @@ class LogoutCoordinator: BaseCoordinator<LogoutType> {
             .flatMap({ [weak self] (_) -> Observable<LogoutType> in
                 // TODO: Reset All Account Sosmed and User Defaults Account
                 // If user have logged in sosmed must reset
+                // destroy token from FCM
                 guard let `self` = self else { return Observable.empty() }
                 if self.data.twitter == true && self.data.facebook == true {
                     return self.logoutSosmed()
@@ -54,11 +56,15 @@ class LogoutCoordinator: BaseCoordinator<LogoutType> {
                 } else if self.data.twitter == true {
                     return self.logoutTwitter()
                 } else {
-                    // just account
-                    UserDefaults.Account.reset()
-                    KeychainService.remove(type: NetworkKeychainKind.token)
-                    KeychainService.remove(type: NetworkKeychainKind.refreshToken)
-                    return Observable.just(LogoutType.logout)
+                    return self.destroyToken()
+                        .do(onNext: { (_) in
+                            // just account after destroy FCM
+                            UserDefaults.Account.reset()
+                            KeychainService.remove(type: NetworkKeychainKind.token)
+                            KeychainService.remove(type: NetworkKeychainKind.refreshToken)
+                        })
+                        .map({ LogoutType.logout })
+                        .asObservable()
                 }
             })
     }
@@ -81,7 +87,7 @@ class LogoutCoordinator: BaseCoordinator<LogoutType> {
             .catchErrorJustComplete()
             .mapToVoid()
         return Observable.merge(facebook,
-                                twitter)
+                                twitter, destroyToken())
             .do(onNext: { () in
                 // TODO: Remove all account 
                 UserDefaults.Account.reset()
@@ -101,7 +107,7 @@ class LogoutCoordinator: BaseCoordinator<LogoutType> {
             .asObservable()
             .catchErrorJustComplete()
             .mapToVoid()
-        return facebook
+        return Observable.merge(facebook, destroyToken())
             .do(onNext: { () in
                 // TODO: Remove all account
                 UserDefaults.Account.reset()
@@ -121,7 +127,7 @@ class LogoutCoordinator: BaseCoordinator<LogoutType> {
             .asObservable()
             .catchErrorJustComplete()
             .mapToVoid()
-        return twitter
+        return Observable.merge(twitter, destroyToken())
             .do(onNext: { () in
                 // TODO: Remove all account
                 UserDefaults.Account.reset()
@@ -130,6 +136,15 @@ class LogoutCoordinator: BaseCoordinator<LogoutType> {
             })
             .map({ LogoutType.logout })
             .asObservable()
+    }
+    
+    private func destroyToken() -> Observable<Void> {
+        return NetworkService.instance
+            .requestObject(PantauAuthAPI.firebaseKeys(deviceToken: "", type: "ios"),
+                           c: BaseResponse<InfoFirebaseResponse>.self)
+            .asObservable()
+            .catchErrorJustComplete()
+            .mapToVoid()
     }
 
 }

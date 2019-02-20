@@ -48,7 +48,7 @@ extension DetailAskCoordinator: DetailAskNavigaor {
     
     func shareQuestion(question: String) -> Observable<Void> {
         // TODO: coordinate to share
-        let askString = "Kamu setuju pertanyaan ini? Upvote dulu, dong ⬆️ #PantauBersama \(AppContext.instance.infoForKey("URL_WEB"))/share/tanya/\(question)"
+        let askString = "Kamu setuju pertanyaan ini? Upvote dulu, dong ⬆️ #PantauBersama \(AppContext.instance.infoForKey("URL_WEB_SHARE"))/share/tanya/\(question)"
         let activityViewController = UIActivityViewController(activityItems: [askString as NSString], applicationActivities: nil)
         self.navigationController.present(activityViewController, animated: true, completion: nil)
         

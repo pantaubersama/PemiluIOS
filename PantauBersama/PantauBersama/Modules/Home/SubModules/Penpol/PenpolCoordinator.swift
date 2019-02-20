@@ -10,6 +10,7 @@ import Foundation
 import RxSwift
 import Common
 import Networking
+import FBSDKCoreKit
 
 protocol PenpolNavigator: QuizNavigator, IQuestionNavigator {
     func launchFilter(filterType: FilterType, filterTrigger: AnyObserver<[PenpolFilterModel.FilterItem]>) -> Observable<Void>
@@ -33,6 +34,7 @@ class PenpolCoordinator: BaseCoordinator<Void> {
     }
     
     override func start() -> Observable<CoordinationResult> {
+        FBSDKAppEvents.logEvent("Pendidikan Politik")
         let viewController = PenpolController()
         let viewModel = PenpolViewModel(navigator: self)
         viewController.isNewQuiz = self.isNewQuiz
@@ -102,7 +104,7 @@ extension PenpolCoordinator: PenpolNavigator {
     
     func shareQuiz(quiz: QuizModel) -> Observable<Void> {
         // TODO: coordinate to share
-        let share = "Iseng-iseng serius main Quiz ini dulu. Kira-kira masih cocok apa ternyata malah nggak cocok, yaa 😶 #PantauBersama \(AppContext.instance.infoForKey("URL_WEB"))/share/kuis/\(quiz.id)"
+        let share = "Iseng-iseng serius main Quiz ini dulu. Kira-kira masih cocok apa ternyata malah nggak cocok, yaa 😶 #PantauBersama \(AppContext.instance.infoForKey("URL_WEB_SHARE"))/share/kuis/\(quiz.id)"
         let activityViewController = UIActivityViewController(activityItems: [share as NSString], applicationActivities: nil)
         self.navigationController.present(activityViewController, animated: true, completion: nil)
         

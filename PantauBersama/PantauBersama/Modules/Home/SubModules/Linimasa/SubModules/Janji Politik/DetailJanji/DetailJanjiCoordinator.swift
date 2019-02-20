@@ -10,6 +10,7 @@ import RxSwift
 import RxCocoa
 import Networking
 import Common
+import FBSDKCoreKit
 
 protocol DetailJanjiNavigator {
     func shareJanji(data: JanjiPolitik) -> Observable<Void>
@@ -29,6 +30,7 @@ class DetailJanjiCoordinator: BaseCoordinator<DetailJanpolResult> {
     }
     
     override func start() -> Observable<CoordinationResult> {
+        FBSDKAppEvents.logEvent("Detail Janji", parameters: ["content_id": data.id])
         let viewController = DetailJanjiController()
         let viewModel = DetailJanjiViewModel(navigator: self, data: data)
         viewController.viewModel = viewModel
@@ -51,7 +53,7 @@ extension DetailJanjiCoordinator: DetailJanjiNavigator {
     }
     
     func shareJanji(data: JanjiPolitik) -> Observable<Void> {
-        let share = "Sudah tahu Janji yang ini, belum? Siap-siap catatan, ya! ✔️ #PantauBersama \(AppContext.instance.infoForKey("URL_WEB"))/share/janjipolitik/\(data.id)"
+        let share = "Sudah tahu Janji yang ini, belum? Siap-siap catatan, ya! ✔️ #PantauBersama \(AppContext.instance.infoForKey("URL_WEB_SHARE"))/share/janjipolitik/\(data.id)"
         let activityViewController = UIActivityViewController(activityItems: [share as NSString], applicationActivities: nil)
         self.navigationController.present(activityViewController, animated: true, completion: nil)
         
