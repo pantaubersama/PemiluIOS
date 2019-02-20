@@ -10,6 +10,7 @@ import RxSwift
 import RxCocoa
 import Networking
 import Common
+import FBSDKCoreKit
 
 protocol DetailJanjiNavigator {
     func shareJanji(data: JanjiPolitik) -> Observable<Void>
@@ -29,6 +30,7 @@ class DetailJanjiCoordinator: BaseCoordinator<DetailJanpolResult> {
     }
     
     override func start() -> Observable<CoordinationResult> {
+        FBSDKAppEvents.logEvent("Detail Janji", parameters: ["content_id": data.id])
         let viewController = DetailJanjiController()
         let viewModel = DetailJanjiViewModel(navigator: self, data: data)
         viewController.viewModel = viewModel

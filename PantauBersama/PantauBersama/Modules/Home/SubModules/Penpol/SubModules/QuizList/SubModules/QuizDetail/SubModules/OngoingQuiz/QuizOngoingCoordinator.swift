@@ -9,6 +9,7 @@
 import Foundation
 import Common
 import RxSwift
+import FBSDKCoreKit
 
 protocol QuizOngoingNavigator { 
     func openQuizResult(finishQuiz: Bool) -> Observable<Void>
@@ -25,6 +26,7 @@ class QuizOngoingCoordinator: BaseCoordinator<Void>, QuizOngoingNavigator {
     }
     
     override func start() -> Observable<Void> {
+        FBSDKAppEvents.logEvent("Quiz", parameters: ["content_id": quiz.id])
         let viewController = QuizOngoingController()
         let viewModel = QuizOngoingViewModel(navigator: self, quiz: quiz)
         viewController.viewModel = viewModel

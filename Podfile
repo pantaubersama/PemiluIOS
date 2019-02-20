@@ -32,6 +32,7 @@ def application_pods
     pod 'FBSDKLoginKit'
     pod 'lottie-ios'
     pod 'Firebase/Messaging'
+    pod 'FacebookSDK'
 end
 
 

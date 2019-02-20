@@ -8,6 +8,7 @@
 
 import RxSwift
 import RxCocoa
+import FBSDKCoreKit
 
 protocol QuizDetailNavigator {
     func startQuiz() -> Observable<Void>
@@ -25,6 +26,7 @@ class QuizDetailCoordinator: BaseCoordinator<Void>, QuizDetailNavigator {
     }
     
     override func start() -> Observable<CoordinationResult> {
+        FBSDKAppEvents.logEvent("Quiz Detail", parameters: ["content_id": quiz.id])
         let viewController = QuizDetailController()
         let viewModel = QuizDetailViewModel(navigator: self, quizModel: quiz)
         viewController.viewModel = viewModel

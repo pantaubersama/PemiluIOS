@@ -12,9 +12,22 @@ PODS:
     - Fabric (~> 1.9.0)
   - Differentiator (3.1.0)
   - Fabric (1.9.0)
+  - FacebookSDK (4.38.0):
+    - Bolts (~> 1.9)
+    - FacebookSDK/CoreKit (= 4.38.0)
+    - FacebookSDK/MarketingKit (= 4.38.0)
+  - FacebookSDK/CoreKit (4.38.0):
+    - Bolts (~> 1.9)
+    - FBSDKCoreKit
+  - FacebookSDK/MarketingKit (4.38.0):
+    - Bolts (~> 1.9)
+    - FacebookSDK/CoreKit
+    - FBSDKMarketingKit
   - FBSDKCoreKit (4.39.1):
     - Bolts (~> 1.9)
   - FBSDKLoginKit (4.39.1):
+    - FBSDKCoreKit
+  - FBSDKMarketingKit (4.38.0):
     - FBSDKCoreKit
   - Firebase/Core (5.14.0):
     - Firebase/CoreOnly
@@ -104,6 +117,7 @@ DEPENDENCIES:
   - AlamofireImage
   - Crashlytics
   - Fabric
+  - FacebookSDK
   - FBSDKLoginKit
   - Firebase/Core
   - Firebase/Messaging
@@ -124,8 +138,10 @@ SPEC REPOS:
     - Crashlytics
     - Differentiator
     - Fabric
+    - FacebookSDK
     - FBSDKCoreKit
     - FBSDKLoginKit
+    - FBSDKMarketingKit
     - Firebase
     - FirebaseAnalytics
     - FirebaseAnalyticsInterop
@@ -155,8 +171,10 @@ SPEC CHECKSUMS:
   Crashlytics: 07fb167b1694128c1c9a5a5cc319b0e9c3ca0933
   Differentiator: be49ca3408f0ecfc761e4c7763d20c62be01b9ad
   Fabric: f988e33c97f08930a413e08123064d2e5f68d655
+  FacebookSDK: 73f54b8b94e09b05647cdef0af147f470cd3edc6
   FBSDKCoreKit: f442aa96179cc9b382bb4abeb7e340a47cca8f91
   FBSDKLoginKit: c3079d9a4db27c492287b1eed7a4272b28cf8a59
+  FBSDKMarketingKit: e609f39d74ab273cf52e2f8b7e8829ed412b2827
   Firebase: 963d5685fae888a56d6d4d9cfce6b9c976958798
   FirebaseAnalytics: c06f9d70577d79074214700a71fd5d39de5550fb
   FirebaseAnalyticsInterop: e5f21be9af6548372e2f0815834ff909bff395a2
@@ -179,6 +197,6 @@ SPEC CHECKSUMS:
   TwitterCore: 8cbc9ad34d91c63a0035ea05bfbfc0d7ca72a28c
   TwitterKit: 5e4f41d70b9abdb41df5467f52d7aa2c0fd26ebb
 
-PODFILE CHECKSUM: 99b7420f2887cdac00f0ef82c2c1561cbb87b27b
+PODFILE CHECKSUM: 2fe1d2d51845d263c092b67c2bcd02a45c9cfb68
 
 COCOAPODS: 1.5.3

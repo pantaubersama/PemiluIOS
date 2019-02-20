@@ -10,6 +10,7 @@ import Foundation
 import RxSwift
 import Common
 import Networking
+import FBSDKCoreKit
 
 protocol PenpolNavigator: QuizNavigator, IQuestionNavigator {
     func launchFilter(filterType: FilterType, filterTrigger: AnyObserver<[PenpolFilterModel.FilterItem]>) -> Observable<Void>
@@ -33,6 +34,7 @@ class PenpolCoordinator: BaseCoordinator<Void> {
     }
     
     override func start() -> Observable<CoordinationResult> {
+        FBSDKAppEvents.logEvent("Pendidikan Politik")
         let viewController = PenpolController()
         let viewModel = PenpolViewModel(navigator: self)
         viewController.isNewQuiz = self.isNewQuiz
