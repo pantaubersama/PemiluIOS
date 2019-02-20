@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DebatDetailController" customModule="PantauBersama" customModuleProvider="target">
+            <connections>
+                <outlet property="btnClose" destination="CQI-7P-vYz" id="hyP-As-OSv"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="viewChallengeDetail" destination="kek-5J-ZKZ" id="rxo-3I-fgI"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XcL-An-EdR" customClass="RoundView" customModule="Common">
+                    <rect key="frame" x="16" y="77" width="343" height="533"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CQI-7P-vYz" customClass="ImageButton" customModule="Common">
+                            <rect key="frame" x="289" y="4" width="50" height="50"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50" id="r3T-bo-wSP"/>
+                                <constraint firstAttribute="width" constant="50" id="zQH-Iy-s6N"/>
+                            </constraints>
+                            <inset key="imageEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="20"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="image" keyPath="imageIcon" value="icDelete"/>
+                                <userDefinedRuntimeAttribute type="color" keyPath="imageTintColor">
+                                    <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="imagePressedTintColor">
+                                    <color key="value" red="0.84628635640000005" green="0.26369145510000003" blue="0.25092932579999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </button>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kek-5J-ZKZ" customClass="ChallengeDetailView" customModule="PantauBersama" customModuleProvider="target">
+                            <rect key="frame" x="8" y="37" width="327" height="488"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="kek-5J-ZKZ" secondAttribute="bottom" constant="8" id="57R-Rq-7he"/>
+                        <constraint firstItem="kek-5J-ZKZ" firstAttribute="leading" secondItem="XcL-An-EdR" secondAttribute="leading" constant="8" id="IYi-xA-i0j"/>
+                        <constraint firstAttribute="trailing" secondItem="kek-5J-ZKZ" secondAttribute="trailing" constant="8" id="iOB-JS-qmd"/>
+                        <constraint firstItem="CQI-7P-vYz" firstAttribute="top" secondItem="XcL-An-EdR" secondAttribute="top" constant="4" id="lde-vF-Udg"/>
+                        <constraint firstAttribute="trailing" secondItem="CQI-7P-vYz" secondAttribute="trailing" constant="4" id="ocv-bc-7rE"/>
+                        <constraint firstItem="kek-5J-ZKZ" firstAttribute="top" secondItem="XcL-An-EdR" secondAttribute="top" constant="37" id="v8Y-8Y-bbd"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="8"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.39882262323943662" colorSpace="custom" customColorSpace="displayP3"/>
+            <constraints>
+                <constraint firstItem="XcL-An-EdR" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="BMl-ls-4RK"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="XcL-An-EdR" secondAttribute="bottom" constant="57" id="PhP-kw-tut"/>
+                <constraint firstItem="XcL-An-EdR" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="57" id="eZM-un-JFb"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="XcL-An-EdR" secondAttribute="trailing" constant="16" id="j7b-kq-3f7"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="125.59999999999999" y="79.610194902548727"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="icDelete" width="24" height="24"/>
+    </resources>
+</document>

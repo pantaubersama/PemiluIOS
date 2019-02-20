@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="BwModelicaSS01-BoldCondensed.otf">
+            <string>BwModelicaSS01-BoldCondensed</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qkf-dk-Wna" customClass="RoundView" customModule="Common">
+                    <rect key="frame" x="21" y="198.5" width="333" height="270"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="successMask00063" translatesAutoresizingMaskIntoConstraints="NO" id="6UH-s7-JmJ">
+                            <rect key="frame" x="116.5" y="36" width="100" height="100"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="100" id="L43-tq-bAW"/>
+                                <constraint firstAttribute="height" constant="100" id="gEa-WK-KZe"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Berhasil!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zaO-fy-yBP">
+                            <rect key="frame" x="134.5" y="158" width="64.5" height="19.5"/>
+                            <fontDescription key="fontDescription" name="BwModelicaSS01-BoldCondensed" family="Bw Modelica SS01" pointSize="16"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tantangan berhasil ditayangkan di Wordstadium dan dibagikan melalui media sosial kamu!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cIS-Iq-86X" customClass="Label" customModule="Common">
+                            <rect key="frame" x="23" y="187.5" width="287" height="61"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" red="0.36078431372549019" green="0.36470588235294116" blue="0.38431372549019605" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                    <real key="value" value="12"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="cIS-Iq-86X" firstAttribute="top" secondItem="zaO-fy-yBP" secondAttribute="bottom" constant="10" id="F9D-Ou-wwg"/>
+                        <constraint firstItem="zaO-fy-yBP" firstAttribute="centerX" secondItem="qkf-dk-Wna" secondAttribute="centerX" id="bfF-iL-iNU"/>
+                        <constraint firstItem="6UH-s7-JmJ" firstAttribute="top" secondItem="qkf-dk-Wna" secondAttribute="top" constant="36" id="jMx-kW-DSY"/>
+                        <constraint firstItem="zaO-fy-yBP" firstAttribute="top" secondItem="6UH-s7-JmJ" secondAttribute="bottom" constant="22" id="mqG-iw-Fiv"/>
+                        <constraint firstAttribute="height" constant="270" id="rk5-Lg-Lpf"/>
+                        <constraint firstItem="6UH-s7-JmJ" firstAttribute="centerX" secondItem="qkf-dk-Wna" secondAttribute="centerX" id="tfk-h2-cdd"/>
+                        <constraint firstItem="cIS-Iq-86X" firstAttribute="leading" secondItem="qkf-dk-Wna" secondAttribute="leading" constant="23" id="u4H-JT-CiQ"/>
+                        <constraint firstAttribute="trailing" secondItem="cIS-Iq-86X" secondAttribute="trailing" constant="23" id="umw-wA-J4O"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="15"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="0.066666666666666666" green="0.066666666666666666" blue="0.066666666666666666" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="qkf-dk-Wna" secondAttribute="trailing" constant="21" id="UoA-Yq-rz7"/>
+                <constraint firstItem="qkf-dk-Wna" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="bVd-nQ-ctd"/>
+                <constraint firstItem="qkf-dk-Wna" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="21" id="r0U-8A-Ij1"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="successMask00063" width="100" height="100"/>
+    </resources>
+</document>

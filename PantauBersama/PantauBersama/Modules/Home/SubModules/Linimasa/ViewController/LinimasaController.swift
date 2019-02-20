@@ -37,6 +37,7 @@ class LinimasaController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navbar.backgroundColor = Color.primary_red
         
         add(childViewController: pilpresController, context: container)
         add(childViewController: janjiController, context: container)

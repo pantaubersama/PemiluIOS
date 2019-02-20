@@ -125,7 +125,6 @@
                     </subviews>
                 </stackView>
             </subviews>
-            <color key="backgroundColor" red="0.68041622639999999" green="0.1499232352" blue="0.14898997550000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
             <constraints>
                 <constraint firstItem="JBb-Uh-YYS" firstAttribute="leading" secondItem="Y7J-Zn-6vO" secondAttribute="leading" constant="16" id="3xc-PD-sBm"/>
                 <constraint firstAttribute="bottom" secondItem="JBb-Uh-YYS" secondAttribute="bottom" id="IvE-rR-aqS"/>
