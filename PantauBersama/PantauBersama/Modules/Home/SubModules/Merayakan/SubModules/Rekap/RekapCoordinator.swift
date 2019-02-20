@@ -10,7 +10,6 @@ import UIKit
 import RxSwift
 import Networking
 
-
 protocol RekapNavigator {
     func launchBannerInfo(bannerInfo: BannerInfo) -> Observable<Void>
     func launchKecamatan() -> Observable<Void>

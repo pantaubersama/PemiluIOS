@@ -21,6 +21,12 @@
 		043EE19D221A36C2008C59CD /* MerayakanController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 043EE18F221A36C2008C59CD /* MerayakanController.xib */; };
 		043EE19E221A36C2008C59CD /* MerayakanController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043EE190221A36C2008C59CD /* MerayakanController.swift */; };
 		043EE19F221A36C2008C59CD /* MerayakanViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043EE191221A36C2008C59CD /* MerayakanViewModel.swift */; };
+		043EE1A4221CC910008C59CD /* PerhitunganCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043EE1A3221CC910008C59CD /* PerhitunganCoordinator.swift */; };
+		043EE1A6221CC940008C59CD /* PerhitunganViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043EE1A5221CC940008C59CD /* PerhitunganViewModel.swift */; };
+		043EE1AF221CC99F008C59CD /* TPSViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043EE1AD221CC99F008C59CD /* TPSViewCell.swift */; };
+		043EE1B0221CC99F008C59CD /* TPSViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 043EE1AE221CC99F008C59CD /* TPSViewCell.xib */; };
+		043EE1B3221CCD7C008C59CD /* PerhitunganController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043EE1B1221CCD7C008C59CD /* PerhitunganController.swift */; };
+		043EE1B4221CCD7C008C59CD /* PerhitunganController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 043EE1B2221CCD7C008C59CD /* PerhitunganController.xib */; };
 		1108871822126FEA0041B821 /* LiveDebatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1108871622126FEA0041B821 /* LiveDebatController.swift */; };
 		1108871922126FEA0041B821 /* LiveDebatController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1108871722126FEA0041B821 /* LiveDebatController.xib */; };
 		1108871C221271CD0041B821 /* LiveDebatCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1108871B221271CD0041B821 /* LiveDebatCoordinator.swift */; };
@@ -524,6 +530,12 @@
 		043EE18F221A36C2008C59CD /* MerayakanController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MerayakanController.xib; sourceTree = "<group>"; };
 		043EE190221A36C2008C59CD /* MerayakanController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MerayakanController.swift; sourceTree = "<group>"; };
 		043EE191221A36C2008C59CD /* MerayakanViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MerayakanViewModel.swift; sourceTree = "<group>"; };
+		043EE1A3221CC910008C59CD /* PerhitunganCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerhitunganCoordinator.swift; sourceTree = "<group>"; };
+		043EE1A5221CC940008C59CD /* PerhitunganViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerhitunganViewModel.swift; sourceTree = "<group>"; };
+		043EE1AD221CC99F008C59CD /* TPSViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TPSViewCell.swift; sourceTree = "<group>"; };
+		043EE1AE221CC99F008C59CD /* TPSViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TPSViewCell.xib; sourceTree = "<group>"; };
+		043EE1B1221CCD7C008C59CD /* PerhitunganController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerhitunganController.swift; sourceTree = "<group>"; };
+		043EE1B2221CCD7C008C59CD /* PerhitunganController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PerhitunganController.xib; sourceTree = "<group>"; };
 		04A224A86FBFD6EFE137644F /* Pods-PantauBersama.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PantauBersama.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-PantauBersama/Pods-PantauBersama.debug.xcconfig"; sourceTree = "<group>"; };
 		1108871622126FEA0041B821 /* LiveDebatController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveDebatController.swift; sourceTree = "<group>"; };
 		1108871722126FEA0041B821 /* LiveDebatController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LiveDebatController.xib; sourceTree = "<group>"; };
@@ -1024,10 +1036,10 @@
 		043EE17E221A36C2008C59CD /* Merayakan */ = {
 			isa = PBXGroup;
 			children = (
-				043EE17F221A36C2008C59CD /* MerayakanCoordinator.swift */,
 				043EE180221A36C2008C59CD /* SubModules */,
 				043EE18E221A36C2008C59CD /* ViewController */,
 				043EE191221A36C2008C59CD /* MerayakanViewModel.swift */,
+				043EE17F221A36C2008C59CD /* MerayakanCoordinator.swift */,
 			);
 			path = Merayakan;
 			sourceTree = "<group>";
@@ -1035,6 +1047,7 @@
 		043EE180221A36C2008C59CD /* SubModules */ = {
 			isa = PBXGroup;
 			children = (
+				043EE1A0221A38AC008C59CD /* Perhitungan */,
 				043EE181221A36C2008C59CD /* Rekap */,
 			);
 			path = SubModules;
@@ -1080,6 +1093,35 @@
 				043EE190221A36C2008C59CD /* MerayakanController.swift */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		043EE1A0221A38AC008C59CD /* Perhitungan */ = {
+			isa = PBXGroup;
+			children = (
+				043EE1A7221CC94A008C59CD /* ViewController */,
+				043EE1A3221CC910008C59CD /* PerhitunganCoordinator.swift */,
+				043EE1A5221CC940008C59CD /* PerhitunganViewModel.swift */,
+			);
+			path = Perhitungan;
+			sourceTree = "<group>";
+		};
+		043EE1A7221CC94A008C59CD /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				043EE1AC221CC974008C59CD /* Components */,
+				043EE1B1221CCD7C008C59CD /* PerhitunganController.swift */,
+				043EE1B2221CCD7C008C59CD /* PerhitunganController.xib */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		043EE1AC221CC974008C59CD /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				043EE1AD221CC99F008C59CD /* TPSViewCell.swift */,
+				043EE1AE221CC99F008C59CD /* TPSViewCell.xib */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		1108871522126FC60041B821 /* LiveDebat */ = {
@@ -3125,6 +3167,7 @@
 				11E107AF21CD42C400B7B074 /* QuizOngoingController.xib in Resources */,
 				84F892A921C787D800DC1048 /* Lato-BlackItalic.ttf in Resources */,
 				8428AAAA21C7AF330008E975 /* GoogleService-Info-Staging.plist in Resources */,
+				043EE1B4221CCD7C008C59CD /* PerhitunganController.xib in Resources */,
 				11D066B121E399C1003AC9BB /* FilterRadioCell.xib in Resources */,
 				11E1079221CD0FE200B7B074 /* QuizDetailController.xib in Resources */,
 				13E139522213FEF000286EDE /* SeeMoreCell.xib in Resources */,
@@ -3222,6 +3265,7 @@
 				84B2669F21D4DB9A00C7B783 /* ProfileEditController.xib in Resources */,
 				84F892A721C7875200DC1048 /* BwModelica-ThinCondensed.otf in Resources */,
 				137A29F621E2303400F19072 /* coming-soon-coffee.json in Resources */,
+				043EE1B0221CC99F008C59CD /* TPSViewCell.xib in Resources */,
 				84FA42642212E919008215C4 /* BidangKajianCell.xib in Resources */,
 				1147F22C21F83C01001D0D59 /* ClusterDetailController.xib in Resources */,
 				8441DB3E21CCB80B00B078DF /* ItemRadioCell.xib in Resources */,
@@ -3535,6 +3579,7 @@
 				84FA424B2212ACF6008215C4 /* TantanganChallengeViewModel.swift in Sources */,
 				13812C2B21CAA71F00CAB327 /* PenpolCoordinator.swift in Sources */,
 				11E1079421CD101900B7B074 /* QuizDetailCoordinator.swift in Sources */,
+				043EE1B3221CCD7C008C59CD /* PerhitunganController.swift in Sources */,
 				84FA428222130728008215C4 /* BidangKajianViewModel.swift in Sources */,
 				842A4A0B21D7EAA60050AA51 /* SignatureViewModel.swift in Sources */,
 				8452A4C921DE265500196043 /* BuatProfileViewModel.swift in Sources */,
@@ -3560,6 +3605,7 @@
 				84619D4D21DC9ABD00EB58CF /* WebCoordinator.swift in Sources */,
 				11E1079121CD0FE200B7B074 /* QuizDetailController.swift in Sources */,
 				8423C40121F71927000AAA63 /* DetailAskCoordinator.swift in Sources */,
+				043EE1A4221CC910008C59CD /* PerhitunganCoordinator.swift in Sources */,
 				1149EB6A22140E670050F366 /* ArgumentLeftCell.swift in Sources */,
 				84FE6EC621D6361C009A0F55 /* BiodataView.swift in Sources */,
 				844C3D7021C51D3500199871 /* PantauBarKind.swift in Sources */,
@@ -3589,6 +3635,7 @@
 				11D066AC21E38850003AC9BB /* PenpolFilterModel.swift in Sources */,
 				043EE199221A36C2008C59CD /* RekapFooterView.swift in Sources */,
 				11145F6921EB47310046F2AA /* CustomMenuBar.swift in Sources */,
+				043EE1A6221CC940008C59CD /* PerhitunganViewModel.swift in Sources */,
 				8452A4CB21DE271B00196043 /* BuatProfileCoordinator.swift in Sources */,
 				13F4569F21CF986600CE45F1 /* CreateAskCoordinator.swift in Sources */,
 				840901BA21DF1DE6001BF559 /* Navbar.swift in Sources */,
@@ -3692,6 +3739,7 @@
 				131DBDB02215AF69005203FF /* TimeView.swift in Sources */,
 				043EE193221A36C2008C59CD /* RekapCoordinator.swift in Sources */,
 				1161F9F421DF4B4000C1BAD5 /* QuizButton.swift in Sources */,
+				043EE1AF221CC99F008C59CD /* TPSViewCell.swift in Sources */,
 				13BF405321EBAA8F005C9A64 /* IQuestionListViewModel.swift in Sources */,
 				8478B8EA21FF315600CE192A /* Parser.swift in Sources */,
 				84B7B8BE21E47B400099E7E3 /* ClusterSearchViewModel.swift in Sources */,

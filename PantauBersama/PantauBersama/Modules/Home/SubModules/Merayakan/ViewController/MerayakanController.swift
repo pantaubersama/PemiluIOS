@@ -19,9 +19,10 @@ class MerayakanController: UIViewController {
     @IBOutlet weak var navbar: Navbar!
     var viewModel: MerayakanViewModel!
     
-    lazy var rekapViewModel = RekapViewModel(navigator: viewModel.navigator)
-    private lazy var rekapController = RekapController(viewModel: rekapViewModel, pageType: .kota)
-    private lazy var perhitunganController = RekapController(viewModel: rekapViewModel, pageType: .tps)
+    lazy var rekapViewModel                 = RekapViewModel(navigator: viewModel.navigator)
+    lazy var perhitunganViewModel           = PerhitunganViewModel(navigator: viewModel.navigator)
+    private lazy var rekapController        = RekapController(viewModel: rekapViewModel, pageType: .kota)
+    private lazy var perhitunganController  = PerhitunganController(viewModel: perhitunganViewModel)
     
     private let disposeBag = DisposeBag()
     private lazy var searchBar: UISearchBar = {
