@@ -44,8 +44,15 @@ class ChallengeController: UIViewController {
             .bind(to: viewModel.input.backI)
             .disposed(by: disposeBag)
         
+        btnTerima.rx.tap
+            .bind(to: viewModel.input.actionButtonI)
+            .disposed(by: disposeBag)
         
         viewModel.output.backO
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.actionO
             .drive()
             .disposed(by: disposeBag)
         
