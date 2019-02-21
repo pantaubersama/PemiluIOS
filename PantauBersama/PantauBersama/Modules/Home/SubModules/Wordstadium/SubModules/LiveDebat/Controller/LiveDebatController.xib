@@ -225,87 +225,6 @@
                                         <constraint firstAttribute="height" constant="24" id="qdu-fF-yYr"/>
                                     </constraints>
                                 </stackView>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ksG-ti-S3t">
-                                    <rect key="frame" x="0.0" y="239" width="320" height="32"/>
-                                    <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icStatusWordstadium16" translatesAutoresizingMaskIntoConstraints="NO" id="6Iu-vZ-wq8">
-                                            <rect key="frame" x="16" y="8" width="16" height="16"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="16" id="cw6-2F-G3a"/>
-                                                <constraint firstAttribute="width" constant="16" id="oxJ-hY-4ka"/>
-                                            </constraints>
-                                        </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Giliran Raja menulis argumen …" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="biJ-P7-fep" customClass="Label" customModule="Common">
-                                            <rect key="frame" x="40" y="10" width="129" height="12"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="8"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
-                                                    <real key="value" value="10"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="typeLabel" value="italic"/>
-                                            </userDefinedRuntimeAttributes>
-                                        </label>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CF3-Yc-HKG" customClass="Button" customModule="Common">
-                                            <rect key="frame" x="182" y="4" width="126" height="24"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="24" id="Yzv-eM-hrn"/>
-                                                <constraint firstAttribute="width" constant="126" id="iOK-AV-R05"/>
-                                            </constraints>
-                                            <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                            <inset key="imageEdgeInsets" minX="110" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                            <state key="normal" title="Detail Debat" image="icExpandMore"/>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
-                                                    <real key="value" value="10"/>
-                                                </userDefinedRuntimeAttribute>
-                                            </userDefinedRuntimeAttributes>
-                                        </button>
-                                    </subviews>
-                                    <color key="backgroundColor" red="0.97253984212875366" green="0.97254282236099243" blue="0.97254937887191772" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                    <constraints>
-                                        <constraint firstItem="CF3-Yc-HKG" firstAttribute="centerY" secondItem="ksG-ti-S3t" secondAttribute="centerY" id="6nO-KW-II6"/>
-                                        <constraint firstItem="6Iu-vZ-wq8" firstAttribute="leading" secondItem="ksG-ti-S3t" secondAttribute="leading" constant="16" id="8AN-Tu-iZO"/>
-                                        <constraint firstAttribute="height" constant="32" id="JAl-OQ-ojx"/>
-                                        <constraint firstItem="biJ-P7-fep" firstAttribute="centerY" secondItem="ksG-ti-S3t" secondAttribute="centerY" id="W6i-Au-PSW"/>
-                                        <constraint firstItem="6Iu-vZ-wq8" firstAttribute="centerY" secondItem="ksG-ti-S3t" secondAttribute="centerY" id="XcJ-4I-c3d"/>
-                                        <constraint firstAttribute="trailing" secondItem="CF3-Yc-HKG" secondAttribute="trailing" constant="12" id="dkY-WU-Fkg"/>
-                                        <constraint firstItem="biJ-P7-fep" firstAttribute="leading" secondItem="6Iu-vZ-wq8" secondAttribute="trailing" constant="8" id="y8T-w3-cNV"/>
-                                    </constraints>
-                                </view>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6dX-Om-CfG">
-                                    <rect key="frame" x="0.0" y="179" width="320" height="60"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BJe-Pt-uIS" customClass="Label" customModule="Common">
-                                            <rect key="frame" x="5" y="2" width="310" height="56"/>
-                                            <string key="text">2018 pertumbuhan ekonomi Indonesia mengalami 
-pertumbuhan mencapai 5,27%. 
-2 periode yuk, biar 10,54%.</string>
-                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                            <color key="textColor" red="0.956853807" green="0.95685666800000002" blue="0.95686310529999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                            <nil key="highlightedColor"/>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
-                                                    <real key="value" value="11"/>
-                                                </userDefinedRuntimeAttribute>
-                                            </userDefinedRuntimeAttributes>
-                                        </label>
-                                    </subviews>
-                                    <color key="backgroundColor" red="0.46744436025619507" green="0.36039096117019653" blue="0.72944831848144531" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                    <constraints>
-                                        <constraint firstItem="BJe-Pt-uIS" firstAttribute="leading" secondItem="6dX-Om-CfG" secondAttribute="leading" constant="5" id="0Zn-HY-YQ5"/>
-                                        <constraint firstAttribute="bottom" secondItem="BJe-Pt-uIS" secondAttribute="bottom" constant="2" id="3rs-WG-HRX"/>
-                                        <constraint firstItem="BJe-Pt-uIS" firstAttribute="top" secondItem="6dX-Om-CfG" secondAttribute="top" constant="2" id="HSE-uh-YCt"/>
-                                        <constraint firstAttribute="height" constant="60" id="TYc-c3-QVs"/>
-                                        <constraint firstAttribute="trailing" secondItem="BJe-Pt-uIS" secondAttribute="trailing" constant="5" id="jql-uW-zO6"/>
-                                    </constraints>
-                                </view>
-                                <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" bouncesZoom="NO" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="TPX-JG-RIR">
-                                    <rect key="frame" x="0.0" y="271" width="320" height="369"/>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </tableView>
                                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wH6-fs-UIC">
                                     <rect key="frame" x="0.0" y="127" width="320" height="24"/>
                                     <subviews>
@@ -399,6 +318,87 @@ pertumbuhan mencapai 5,27%.
                                         <constraint firstAttribute="height" constant="24" id="xQA-8L-I6o"/>
                                     </constraints>
                                 </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ksG-ti-S3t">
+                                    <rect key="frame" x="0.0" y="239" width="320" height="32"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icStatusWordstadium16" translatesAutoresizingMaskIntoConstraints="NO" id="6Iu-vZ-wq8">
+                                            <rect key="frame" x="16" y="8" width="16" height="16"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="16" id="cw6-2F-G3a"/>
+                                                <constraint firstAttribute="width" constant="16" id="oxJ-hY-4ka"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Giliran Raja menulis argumen …" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="biJ-P7-fep" customClass="Label" customModule="Common">
+                                            <rect key="frame" x="40" y="10" width="129" height="12"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="8"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                    <real key="value" value="10"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="typeLabel" value="italic"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CF3-Yc-HKG" customClass="Button" customModule="Common">
+                                            <rect key="frame" x="182" y="4" width="126" height="24"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="24" id="Yzv-eM-hrn"/>
+                                                <constraint firstAttribute="width" constant="126" id="iOK-AV-R05"/>
+                                            </constraints>
+                                            <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                            <inset key="imageEdgeInsets" minX="110" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                            <state key="normal" title="Detail Debat" image="icExpandMore"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                    <real key="value" value="10"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </button>
+                                    </subviews>
+                                    <color key="backgroundColor" red="0.97253984212875366" green="0.97254282236099243" blue="0.97254937887191772" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <constraints>
+                                        <constraint firstItem="CF3-Yc-HKG" firstAttribute="centerY" secondItem="ksG-ti-S3t" secondAttribute="centerY" id="6nO-KW-II6"/>
+                                        <constraint firstItem="6Iu-vZ-wq8" firstAttribute="leading" secondItem="ksG-ti-S3t" secondAttribute="leading" constant="16" id="8AN-Tu-iZO"/>
+                                        <constraint firstAttribute="height" constant="32" id="JAl-OQ-ojx"/>
+                                        <constraint firstItem="biJ-P7-fep" firstAttribute="centerY" secondItem="ksG-ti-S3t" secondAttribute="centerY" id="W6i-Au-PSW"/>
+                                        <constraint firstItem="6Iu-vZ-wq8" firstAttribute="centerY" secondItem="ksG-ti-S3t" secondAttribute="centerY" id="XcJ-4I-c3d"/>
+                                        <constraint firstAttribute="trailing" secondItem="CF3-Yc-HKG" secondAttribute="trailing" constant="12" id="dkY-WU-Fkg"/>
+                                        <constraint firstItem="biJ-P7-fep" firstAttribute="leading" secondItem="6Iu-vZ-wq8" secondAttribute="trailing" constant="8" id="y8T-w3-cNV"/>
+                                    </constraints>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6dX-Om-CfG">
+                                    <rect key="frame" x="0.0" y="179" width="320" height="60"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BJe-Pt-uIS" customClass="Label" customModule="Common">
+                                            <rect key="frame" x="5" y="2" width="310" height="56"/>
+                                            <string key="text">2018 pertumbuhan ekonomi Indonesia mengalami 
+pertumbuhan mencapai 5,27%. 
+2 periode yuk, biar 10,54%.</string>
+                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            <color key="textColor" red="0.956853807" green="0.95685666800000002" blue="0.95686310529999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                    <real key="value" value="11"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" red="0.46744436025619507" green="0.36039096117019653" blue="0.72944831848144531" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <constraints>
+                                        <constraint firstItem="BJe-Pt-uIS" firstAttribute="leading" secondItem="6dX-Om-CfG" secondAttribute="leading" constant="5" id="0Zn-HY-YQ5"/>
+                                        <constraint firstAttribute="bottom" secondItem="BJe-Pt-uIS" secondAttribute="bottom" constant="2" id="3rs-WG-HRX"/>
+                                        <constraint firstItem="BJe-Pt-uIS" firstAttribute="top" secondItem="6dX-Om-CfG" secondAttribute="top" constant="2" id="HSE-uh-YCt"/>
+                                        <constraint firstAttribute="height" constant="60" id="TYc-c3-QVs"/>
+                                        <constraint firstAttribute="trailing" secondItem="BJe-Pt-uIS" secondAttribute="trailing" constant="5" id="jql-uW-zO6"/>
+                                    </constraints>
+                                </view>
+                                <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" bouncesZoom="NO" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="TPX-JG-RIR">
+                                    <rect key="frame" x="0.0" y="271" width="320" height="369"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </tableView>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>

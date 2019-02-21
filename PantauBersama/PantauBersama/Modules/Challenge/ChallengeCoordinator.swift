@@ -10,6 +10,7 @@ import RxSwift
 
 protocol ChallengeNavigator {
     func back() -> Observable<Void>
+    func openLiveDebatDone() -> Observable<Void>
 }
 
 final class ChallengeCoordinator: BaseCoordinator<Void> {
@@ -41,4 +42,8 @@ extension ChallengeCoordinator: ChallengeNavigator {
         return Observable.empty()
     }
     
+    func openLiveDebatDone() -> Observable<Void> {
+        let liveDebatDoneCoordinator = LiveDebatCoordinator(navigationController: self.navigationController, viewType: .done)
+        return coordinate(to: liveDebatDoneCoordinator)
+    }
 }
