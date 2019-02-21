@@ -20,7 +20,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8W5-vx-3fa" customClass="Label" customModule="Common">
-                        <rect key="frame" x="26" y="32" width="198" height="66"/>
+                        <rect key="frame" x="26" y="32" width="198" height="58"/>
                         <string key="text">Mau nambahin, jumlah baliho juga melanggar ketentuan di pertigaan Ahmad Yani sudah saya lampiran bukti foto serta tambahan lokasi baliho dimana saja pemasangan baliho.</string>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
@@ -32,17 +32,17 @@
                         </userDefinedRuntimeAttributes>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dF8-RI-oIU" customClass="RoundView" customModule="Common">
-                        <rect key="frame" x="16" y="32" width="4" height="66"/>
+                        <rect key="frame" x="16" y="32" width="4" height="58"/>
                         <color key="backgroundColor" red="0.33450809121131897" green="0.73017066717147827" blue="0.65882200002670288" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="4" id="Tg8-GP-nTD"/>
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kI1-Np-mqu">
-                        <rect key="frame" x="16" y="117" width="208" height="32"/>
+                        <rect key="frame" x="16" y="109" width="208" height="40"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Estimasi baca 5 menit" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Gg-OQ-caH" customClass="Label" customModule="Common">
-                                <rect key="frame" x="8" y="11" width="139" height="10"/>
+                                <rect key="frame" x="8" y="20" width="137" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="10" id="ONu-Kb-yQt"/>
                                 </constraints>
@@ -55,21 +55,8 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iUs-QT-Oeu" customClass="ImageButton" customModule="Common">
-                                <rect key="frame" x="155" y="4" width="24" height="24"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="24" id="Mun-Jn-PLj"/>
-                                    <constraint firstAttribute="width" constant="24" id="m4O-wP-JC9"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="image" keyPath="imageIcon" value="icAppreciateDefault"/>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="imageTintColor">
-                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2000" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BYM-DQ-FyI" customClass="Label" customModule="Common">
-                                <rect key="frame" x="183" y="5.5" width="25" height="21"/>
+                                <rect key="frame" x="183" y="14.5" width="25" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="lil-Uh-2y8"/>
                                     <constraint firstAttribute="width" constant="25" id="sMr-e8-9iL"/>
@@ -83,17 +70,34 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zRz-iU-eHH">
+                                <rect key="frame" x="151" y="8" width="24" height="24"/>
+                                <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="24" id="7co-dQ-DYW"/>
+                                    <constraint firstAttribute="height" constant="24" id="g3Y-fV-ACW"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VTP-zM-YkB" customClass="ImageButton" customModule="Common">
+                                <rect key="frame" x="151" y="8" width="24" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="24" id="ALs-CJ-XXJ"/>
+                                    <constraint firstAttribute="height" constant="24" id="dwC-C7-eMh"/>
+                                </constraints>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.97646147012710571" green="0.97646445035934448" blue="0.97647088766098022" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstItem="iUs-QT-Oeu" firstAttribute="leading" secondItem="2Gg-OQ-caH" secondAttribute="trailing" constant="8" id="B5E-UJ-mRu"/>
+                            <constraint firstItem="VTP-zM-YkB" firstAttribute="centerY" secondItem="zRz-iU-eHH" secondAttribute="centerY" id="EgP-Bt-6Al"/>
                             <constraint firstAttribute="trailing" secondItem="BYM-DQ-FyI" secondAttribute="trailing" id="FEM-Cw-kLB"/>
-                            <constraint firstAttribute="height" constant="32" id="JTA-zy-iqp"/>
+                            <constraint firstItem="BYM-DQ-FyI" firstAttribute="leading" secondItem="zRz-iU-eHH" secondAttribute="trailing" constant="8" id="FzC-9h-Pg5"/>
+                            <constraint firstItem="zRz-iU-eHH" firstAttribute="centerY" secondItem="kI1-Np-mqu" secondAttribute="centerY" id="GtI-Ad-kyY"/>
+                            <constraint firstAttribute="height" constant="40" id="JTA-zy-iqp"/>
                             <constraint firstItem="2Gg-OQ-caH" firstAttribute="leading" secondItem="kI1-Np-mqu" secondAttribute="leading" constant="8" id="O51-Xr-RyI"/>
-                            <constraint firstItem="BYM-DQ-FyI" firstAttribute="centerY" secondItem="kI1-Np-mqu" secondAttribute="centerY" id="d5w-2S-F8R"/>
-                            <constraint firstItem="BYM-DQ-FyI" firstAttribute="leading" secondItem="iUs-QT-Oeu" secondAttribute="trailing" constant="4" id="iVW-ce-12c"/>
-                            <constraint firstItem="2Gg-OQ-caH" firstAttribute="centerY" secondItem="kI1-Np-mqu" secondAttribute="centerY" id="shQ-ol-cEJ"/>
-                            <constraint firstItem="iUs-QT-Oeu" firstAttribute="centerY" secondItem="kI1-Np-mqu" secondAttribute="centerY" id="wLF-SL-VK5"/>
+                            <constraint firstItem="VTP-zM-YkB" firstAttribute="centerX" secondItem="zRz-iU-eHH" secondAttribute="centerX" id="Vbs-hu-woj"/>
+                            <constraint firstItem="BYM-DQ-FyI" firstAttribute="centerY" secondItem="kI1-Np-mqu" secondAttribute="centerY" constant="5" id="d5w-2S-F8R"/>
+                            <constraint firstItem="zRz-iU-eHH" firstAttribute="leading" secondItem="2Gg-OQ-caH" secondAttribute="trailing" constant="6" id="olk-SQ-hWJ"/>
+                            <constraint firstItem="2Gg-OQ-caH" firstAttribute="centerY" secondItem="kI1-Np-mqu" secondAttribute="centerY" constant="5" id="shQ-ol-cEJ"/>
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="you clapped to this argument" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lgx-0E-7CF" customClass="Label" customModule="Common">
@@ -112,7 +116,7 @@
                         </userDefinedRuntimeAttributes>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="40 menit yang lalu" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jEH-eg-Evz" customClass="Label" customModule="Common">
-                        <rect key="frame" x="123" y="102" width="101" height="10"/>
+                        <rect key="frame" x="123" y="94" width="101" height="10"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="10" id="Lyt-2B-cPL"/>
                             <constraint firstAttribute="width" constant="101" id="NXx-HN-43R"/>
@@ -146,17 +150,15 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="btnClap" destination="iUs-QT-Oeu" id="iFv-tz-DgK"/>
+                <outlet property="btnClap" destination="VTP-zM-YkB" id="VI6-40-AhI"/>
                 <outlet property="lbArgument" destination="8W5-vx-3fa" id="GxO-e4-lVO"/>
                 <outlet property="lbClapCount" destination="BYM-DQ-FyI" id="iDy-F1-lxD"/>
                 <outlet property="lbClapStatus" destination="lgx-0E-7CF" id="Jfe-V1-5Nx"/>
                 <outlet property="lbCraetedAt" destination="jEH-eg-Evz" id="nwm-Ue-eKi"/>
                 <outlet property="lbReadEstimation" destination="2Gg-OQ-caH" id="3yT-wD-xiF"/>
+                <outlet property="viewClapLottie" destination="zRz-iU-eHH" id="caa-BM-7UB"/>
             </connections>
             <point key="canvasLocation" x="137.59999999999999" y="131.33433283358323"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="icAppreciateDefault" width="24" height="24"/>
-    </resources>
 </document>

@@ -20,17 +20,17 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dF8-RI-oIU" customClass="RoundView" customModule="Common">
-                        <rect key="frame" x="284" y="32" width="4" height="71.5"/>
+                        <rect key="frame" x="284" y="32" width="4" height="63.5"/>
                         <color key="backgroundColor" red="0.8462863564491272" green="0.26369145512580872" blue="0.2509293258190155" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="4" id="ejF-cf-rvc"/>
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kI1-Np-mqu">
-                        <rect key="frame" x="96" y="121.5" width="192" height="32"/>
+                        <rect key="frame" x="96" y="113.5" width="192" height="40"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Estimasi baca 5 menit" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Gg-OQ-caH" customClass="Label" customModule="Common">
-                                <rect key="frame" x="8" y="11" width="126" height="10"/>
+                                <rect key="frame" x="8" y="20" width="124" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="10" id="Ldc-x2-kpJ"/>
                                 </constraints>
@@ -43,21 +43,28 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0rE-ve-fZC">
+                                <rect key="frame" x="140" y="8" width="24" height="24"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="Ke1-Ui-ZzS"/>
+                                    <constraint firstAttribute="width" constant="24" id="NEf-TC-pmN"/>
+                                </constraints>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iUs-QT-Oeu" customClass="ImageButton" customModule="Common">
-                                <rect key="frame" x="142" y="4" width="24" height="24"/>
+                                <rect key="frame" x="140" y="8" width="24" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="24" id="W4Q-Y7-TcQ"/>
                                     <constraint firstAttribute="height" constant="24" id="t1J-wT-Zze"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="image" keyPath="imageIcon" value="icAppreciateDefault"/>
                                     <userDefinedRuntimeAttribute type="color" keyPath="imageTintColor">
                                         <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2000" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BYM-DQ-FyI" customClass="Label" customModule="Common">
-                                <rect key="frame" x="170" y="5.5" width="22" height="21"/>
+                                <rect key="frame" x="170" y="14.5" width="22" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="DUC-1k-0qI"/>
                                     <constraint firstAttribute="width" constant="22" id="zYU-HC-SDO"/>
@@ -77,11 +84,13 @@
                             <constraint firstItem="iUs-QT-Oeu" firstAttribute="leading" secondItem="2Gg-OQ-caH" secondAttribute="trailing" constant="8" id="1Nc-Ii-jKh"/>
                             <constraint firstAttribute="trailing" secondItem="BYM-DQ-FyI" secondAttribute="trailing" id="6fJ-th-lfS"/>
                             <constraint firstItem="2Gg-OQ-caH" firstAttribute="leading" secondItem="kI1-Np-mqu" secondAttribute="leading" constant="8" id="A41-yO-7xC"/>
-                            <constraint firstItem="BYM-DQ-FyI" firstAttribute="centerY" secondItem="kI1-Np-mqu" secondAttribute="centerY" id="Rf6-f0-ynv"/>
-                            <constraint firstAttribute="height" constant="32" id="W3L-3r-X6W"/>
+                            <constraint firstItem="BYM-DQ-FyI" firstAttribute="centerY" secondItem="kI1-Np-mqu" secondAttribute="centerY" constant="5" id="Rf6-f0-ynv"/>
+                            <constraint firstAttribute="height" constant="40" id="W3L-3r-X6W"/>
                             <constraint firstItem="iUs-QT-Oeu" firstAttribute="centerY" secondItem="kI1-Np-mqu" secondAttribute="centerY" id="Z05-5z-5Il"/>
-                            <constraint firstItem="BYM-DQ-FyI" firstAttribute="leading" secondItem="iUs-QT-Oeu" secondAttribute="trailing" constant="4" id="b3j-s0-m4k"/>
-                            <constraint firstItem="2Gg-OQ-caH" firstAttribute="centerY" secondItem="kI1-Np-mqu" secondAttribute="centerY" id="ysT-rY-zQd"/>
+                            <constraint firstItem="BYM-DQ-FyI" firstAttribute="leading" secondItem="iUs-QT-Oeu" secondAttribute="trailing" constant="6" id="b3j-s0-m4k"/>
+                            <constraint firstItem="0rE-ve-fZC" firstAttribute="centerY" secondItem="iUs-QT-Oeu" secondAttribute="centerY" id="etm-wo-qA0"/>
+                            <constraint firstItem="0rE-ve-fZC" firstAttribute="centerX" secondItem="iUs-QT-Oeu" secondAttribute="centerX" id="ifB-dJ-u6n"/>
+                            <constraint firstItem="2Gg-OQ-caH" firstAttribute="centerY" secondItem="kI1-Np-mqu" secondAttribute="centerY" constant="5" id="ysT-rY-zQd"/>
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="you clapped to this argument" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lgx-0E-7CF" customClass="Label" customModule="Common">
@@ -100,7 +109,7 @@
                         </userDefinedRuntimeAttributes>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="40 menit yang lalu" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jEH-eg-Evz" customClass="Label" customModule="Common">
-                        <rect key="frame" x="177" y="107.5" width="101" height="10"/>
+                        <rect key="frame" x="177" y="99.5" width="101" height="10"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="10" id="Zyd-gE-ZPm"/>
                             <constraint firstAttribute="width" constant="101" id="tNr-NT-o6j"/>
@@ -115,7 +124,7 @@
                         </userDefinedRuntimeAttributes>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8W5-vx-3fa" customClass="Label" customModule="Common">
-                        <rect key="frame" x="96" y="32" width="180" height="71.5"/>
+                        <rect key="frame" x="96" y="32" width="180" height="63.5"/>
                         <string key="text">Mau nambahin, jumlah baliho juga melanggar ketentuan di pertigaan Ahmad Yani sudah saya lampiran bukti foto serta tambahan lokasi baliho dimana saja pemasangan baliho.</string>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
@@ -152,11 +161,9 @@
                 <outlet property="lbClapStatus" destination="lgx-0E-7CF" id="cJJ-WI-vXL"/>
                 <outlet property="lbCreatedAt" destination="jEH-eg-Evz" id="qEC-hr-LZ4"/>
                 <outlet property="lbReadEstimation" destination="2Gg-OQ-caH" id="UeT-QV-796"/>
+                <outlet property="viewClapLottie" destination="0rE-ve-fZC" id="wQu-Q3-Rip"/>
             </connections>
             <point key="canvasLocation" x="137.59999999999999" y="131.33433283358323"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="icAppreciateDefault" width="24" height="24"/>
-    </resources>
 </document>
