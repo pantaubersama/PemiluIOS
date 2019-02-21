@@ -346,6 +346,8 @@
 		84A07FC221D14D4F00269C6B /* ReqClusterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A07FC121D14D4F00269C6B /* ReqClusterController.swift */; };
 		84A07FC421D14E8000269C6B /* ReqClusterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A07FC321D14E8000269C6B /* ReqClusterViewModel.swift */; };
 		84A07FC621D14F3800269C6B /* ReqClusterCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A07FC521D14F3800269C6B /* ReqClusterCoordinator.swift */; };
+		84AEFA75221E738400F3DC92 /* RefuseChallengeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84AEFA74221E738400F3DC92 /* RefuseChallengeView.xib */; };
+		84AEFA77221E74BC00F3DC92 /* RefuseChallengeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AEFA76221E74BC00F3DC92 /* RefuseChallengeView.swift */; };
 		84B2521B21CAA71200565D82 /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B2521A21CAA71200565D82 /* ViewModelType.swift */; };
 		84B2521E21CAB1BE00565D82 /* OnboardingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84B2521D21CAB1BE00565D82 /* OnboardingViewController.xib */; };
 		84B2522021CAB2B900565D82 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B2521F21CAB2B900565D82 /* OnboardingViewController.swift */; };
@@ -877,6 +879,8 @@
 		84A07FC121D14D4F00269C6B /* ReqClusterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReqClusterController.swift; sourceTree = "<group>"; };
 		84A07FC321D14E8000269C6B /* ReqClusterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReqClusterViewModel.swift; sourceTree = "<group>"; };
 		84A07FC521D14F3800269C6B /* ReqClusterCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReqClusterCoordinator.swift; sourceTree = "<group>"; };
+		84AEFA74221E738400F3DC92 /* RefuseChallengeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RefuseChallengeView.xib; sourceTree = "<group>"; };
+		84AEFA76221E74BC00F3DC92 /* RefuseChallengeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefuseChallengeView.swift; sourceTree = "<group>"; };
 		84B2521A21CAA71200565D82 /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
 		84B2521D21CAB1BE00565D82 /* OnboardingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnboardingViewController.xib; sourceTree = "<group>"; };
 		84B2521F21CAB2B900565D82 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
@@ -2574,6 +2578,15 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
+		84AEFA73221E736600F3DC92 /* RefuseView */ = {
+			isa = PBXGroup;
+			children = (
+				84AEFA74221E738400F3DC92 /* RefuseChallengeView.xib */,
+				84AEFA76221E74BC00F3DC92 /* RefuseChallengeView.swift */,
+			);
+			path = RefuseView;
+			sourceTree = "<group>";
+		};
 		84B2521C21CAB18F00565D82 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
@@ -2827,6 +2840,7 @@
 		84E2854121CA189B00298E31 /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
+				84AEFA73221E736600F3DC92 /* RefuseView */,
 				8493BF712216785800685BEC /* SuccesPromote */,
 				84B8C1C922157B3C004BC1FE /* PromoteView */,
 				84B8C1C022157562004BC1FE /* FooterProfileView */,
@@ -3267,6 +3281,7 @@
 				84B8C1AF221537FA004BC1FE /* LinkPreviewView.xib in Resources */,
 				84E521AC21F3957F00B7CCBA /* ShareTrendController.xib in Resources */,
 				8451E05122035F9200F03E96 /* TrendImageShare.xib in Resources */,
+				84AEFA75221E738400F3DC92 /* RefuseChallengeView.xib in Resources */,
 				137A29EE21E11E8F00F19072 /* TrendHeaderView.xib in Resources */,
 				84B6D6F121E24CAA00CD4BC8 /* ShareBadgeController.xib in Resources */,
 				84E2854D21CA4BC800298E31 /* FilterViewController.xib in Resources */,
@@ -3645,6 +3660,7 @@
 				84FA4284221307BF008215C4 /* BidangKajianCoordinator.swift in Sources */,
 				84FA423C2212A17D008215C4 /* CreateTantanganController.swift in Sources */,
 				13F456A921D2A68300CE45F1 /* QuestionType.swift in Sources */,
+				84AEFA77221E74BC00F3DC92 /* RefuseChallengeView.swift in Sources */,
 				84B7B8C321E488D00099E7E3 /* ClusterSearchCell.swift in Sources */,
 				84F1F21321E910DE004515A4 /* Twitter+Rx.swift in Sources */,
 				13F456B121D36D7800CE45F1 /* UndangAnggotaViewModel.swift in Sources */,
