@@ -148,6 +148,7 @@ class LiveDebatController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         unsubscribeForKeyboardEvent()
+        titleView.removeFromSuperview()
     }
     
     //MARK: selector
