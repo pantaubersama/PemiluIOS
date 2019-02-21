@@ -10,6 +10,12 @@ import RxSwift
 import RxCocoa
 import Networking
 
+enum PopupChallengeType {
+    case refuse
+    case accept
+    case `default`
+}
+
 class PopupChallengeViewModel: ViewModelType {
     
     var input: Input

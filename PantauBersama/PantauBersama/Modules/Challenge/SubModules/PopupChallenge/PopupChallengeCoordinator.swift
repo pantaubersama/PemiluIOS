@@ -21,15 +21,18 @@ final class PopupChallengeCoordinator: BaseCoordinator<PopupChallengeResult> {
     
     private let navigationController: UINavigationController
     private let viewController: PopoupChallengeController
+    var type: PopupChallengeType = .default
     
-    init(navigationController: UINavigationController) {
+    init(navigationController: UINavigationController, type: PopupChallengeType) {
         self.navigationController = navigationController
         self.viewController = PopoupChallengeController()
+        self.type = type
     }
     
     override func start() -> Observable<CoordinationResult> {
         let viewModel = PopupChallengeViewModel(navigator: self)
         let viewController = PopoupChallengeController()
+        viewController.type = type
         viewController.viewModel = viewModel
         viewController.providesPresentationContextTransitionStyle = true
         viewController.definesPresentationContext = true
