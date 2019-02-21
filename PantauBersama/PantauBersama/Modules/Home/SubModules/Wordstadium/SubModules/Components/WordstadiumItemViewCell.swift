@@ -20,6 +20,7 @@ class WordstadiumItemViewCell: UITableViewCell {
     @IBOutlet weak var rightPersonView: RoundView!
     @IBOutlet weak var rightUsername: UILabel!
     @IBOutlet weak var rightStatus: UILabel!
+    @IBOutlet weak var moreMenuBtn: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()

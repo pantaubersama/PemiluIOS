@@ -20,6 +20,7 @@ class WordstadiumViewCell: UITableViewCell{
     @IBOutlet weak var seeMoreBtn: UIButton!
     
     private var wordstadium: SectionWordstadium!
+    private var viewModel: ILiniWordstadiumViewModel!
     
     private var disposeBag : DisposeBag?
     
@@ -52,11 +53,12 @@ extension WordstadiumViewCell: IReusableCell,UICollectionViewDelegate,UICollecti
     
     struct Input {
         let wordstadium: SectionWordstadium
-        let viewModel : WordstadiumCellViewModel
+        let viewModel : ILiniWordstadiumViewModel
     }
     
     func configureCell(item: Input) {
         self.wordstadium = item.wordstadium
+        self.viewModel = item.viewModel
         
         switch item.wordstadium.itemType {
         case .live:
@@ -72,14 +74,14 @@ extension WordstadiumViewCell: IReusableCell,UICollectionViewDelegate,UICollecti
         
         seeMoreBtn.rx.tap
             .map({ item.wordstadium })
-            .bind(to: item.viewModel.input.moreSelected)
+            .bind(to: item.viewModel.input.seeMoreI)
             .disposed(by: bag)
-        
+
         self.collectionView.rx.itemSelected
             .map{(indexPath) in
                 return self.wordstadium.itemsLive[indexPath.row]
             }
-            .bind(to: item.viewModel.input.itemSelected)
+            .bind(to: item.viewModel.input.itemSelectedI)
             .disposed(by: bag)
         
         disposeBag = bag
@@ -93,6 +95,10 @@ extension WordstadiumViewCell: IReusableCell,UICollectionViewDelegate,UICollecti
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let collection = collectionView.dequeueReusableCell(indexPath: indexPath) as WordstadiumCollectionCell
         collection.configureCell(item: WordstadiumCollectionCell.Input(type: self.wordstadium.itemType))
+        collection.moreMenuBtn.rx.tap
+            .map({ self.wordstadium.itemsLive[indexPath.row] })
+            .bind(to: self.viewModel.input.moreI)
+            .disposed(by: self.disposeBag!)
         return collection
     }
     

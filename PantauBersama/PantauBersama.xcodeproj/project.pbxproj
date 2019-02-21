@@ -110,6 +110,7 @@
 		11E107DC21CFD99900B7B074 /* QuizResultController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11E107D821CFD99900B7B074 /* QuizResultController.xib */; };
 		11E107DD21CFD99900B7B074 /* QuizResultController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E107D921CFD99900B7B074 /* QuizResultController.swift */; };
 		11E798D621E2FBAC002AABDC /* QuizSummaryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E798D521E2FBAC002AABDC /* QuizSummaryModel.swift */; };
+		131AEBE1221F332900B299F6 /* WordstadiumType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 131AEBE0221F332900B299F6 /* WordstadiumType.swift */; };
 		131DBDAE2215AF48005203FF /* ClapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 131DBDAD2215AF48005203FF /* ClapView.swift */; };
 		131DBDB02215AF69005203FF /* TimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 131DBDAF2215AF69005203FF /* TimeView.swift */; };
 		131DBDB22215AF78005203FF /* DescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 131DBDB12215AF78005203FF /* DescriptionView.swift */; };
@@ -125,7 +126,6 @@
 		132EE0392216A44E00F0429E /* WordstadiumListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132EE0382216A44E00F0429E /* WordstadiumListCoordinator.swift */; };
 		137369442217175300B698BA /* WordstadiumListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 137369432217175300B698BA /* WordstadiumListHeaderView.swift */; };
 		137369462217176100B698BA /* WordstadiumListHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 137369452217176100B698BA /* WordstadiumListHeaderView.xib */; };
-		137369482217230700B698BA /* SeeMoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 137369472217230700B698BA /* SeeMoreViewModel.swift */; };
 		137A29E821E11D0400F19072 /* HeaderQuizView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 137A29E721E11D0400F19072 /* HeaderQuizView.swift */; };
 		137A29EC21E11E7E00F19072 /* TrendHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 137A29EB21E11E7E00F19072 /* TrendHeaderView.swift */; };
 		137A29EE21E11E8F00F19072 /* TrendHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 137A29ED21E11E8F00F19072 /* TrendHeaderView.xib */; };
@@ -156,15 +156,13 @@
 		13E170C0221184B70018EDB4 /* WordstadiumController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13E170BE221184B70018EDB4 /* WordstadiumController.xib */; };
 		13E170C2221184DF0018EDB4 /* WordstadiumViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E170C1221184DF0018EDB4 /* WordstadiumViewModel.swift */; };
 		13E170C4221184EC0018EDB4 /* WordstadiumCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E170C3221184EC0018EDB4 /* WordstadiumCoordinator.swift */; };
-		13E170C6221197B30018EDB4 /* PersonalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E170C5221197B30018EDB4 /* PersonalViewController.swift */; };
-		13E170C8221197E90018EDB4 /* PublicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E170C7221197E90018EDB4 /* PublicViewController.swift */; };
-		13E170CA2211E2980018EDB4 /* PublicViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E170C92211E2980018EDB4 /* PublicViewModel.swift */; };
-		13E170CC2211E2AE0018EDB4 /* PublicNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E170CB2211E2AE0018EDB4 /* PublicNavigator.swift */; };
-		13E170CE221305AE0018EDB4 /* PersonalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E170CD221305AE0018EDB4 /* PersonalViewModel.swift */; };
-		13E170D0221305BE0018EDB4 /* PersonalNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E170CF221305BE0018EDB4 /* PersonalNavigator.swift */; };
 		13E170D4221311A70018EDB4 /* WordstadiumItemViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E170D2221311A70018EDB4 /* WordstadiumItemViewCell.swift */; };
 		13E170D5221311A70018EDB4 /* WordstadiumItemViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13E170D3221311A70018EDB4 /* WordstadiumItemViewCell.xib */; };
-		13E479CC221988C9000DA64F /* WordstadiumCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E479CB221988C9000DA64F /* WordstadiumCellViewModel.swift */; };
+		13E6FEC7221F13A7008CA788 /* ILiniWordstadiumViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E6FEC6221F13A7008CA788 /* ILiniWordstadiumViewModel.swift */; };
+		13E6FEC9221F13C0008CA788 /* ILiniWordstadiumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E6FEC8221F13C0008CA788 /* ILiniWordstadiumViewController.swift */; };
+		13E6FECB221F2109008CA788 /* LiniWordstadiumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E6FECA221F2109008CA788 /* LiniWordstadiumViewController.swift */; };
+		13E6FECD221F24C9008CA788 /* LiniPublicViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E6FECC221F24C9008CA788 /* LiniPublicViewModel.swift */; };
+		13E6FED0221F27AE008CA788 /* LiniPersonalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E6FECF221F27AE008CA788 /* LiniPersonalViewModel.swift */; };
 		13E9D78821E8F025006A0890 /* IJanpolListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E9D78721E8F025006A0890 /* IJanpolListViewModel.swift */; };
 		13E9D78B21E8FCF6006A0890 /* IJanpolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E9D78A21E8FCF5006A0890 /* IJanpolViewController.swift */; };
 		13E9D78E21E9171E006A0890 /* JanpolListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E9D78D21E9171E006A0890 /* JanpolListViewModel.swift */; };
@@ -634,6 +632,7 @@
 		11E107D821CFD99900B7B074 /* QuizResultController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuizResultController.xib; sourceTree = "<group>"; };
 		11E107D921CFD99900B7B074 /* QuizResultController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizResultController.swift; sourceTree = "<group>"; };
 		11E798D521E2FBAC002AABDC /* QuizSummaryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSummaryModel.swift; sourceTree = "<group>"; };
+		131AEBE0221F332900B299F6 /* WordstadiumType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordstadiumType.swift; sourceTree = "<group>"; };
 		131DBDAD2215AF48005203FF /* ClapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClapView.swift; sourceTree = "<group>"; };
 		131DBDAF2215AF69005203FF /* TimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeView.swift; sourceTree = "<group>"; };
 		131DBDB12215AF78005203FF /* DescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionView.swift; sourceTree = "<group>"; };
@@ -649,7 +648,6 @@
 		132EE0382216A44E00F0429E /* WordstadiumListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordstadiumListCoordinator.swift; sourceTree = "<group>"; };
 		137369432217175300B698BA /* WordstadiumListHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordstadiumListHeaderView.swift; sourceTree = "<group>"; };
 		137369452217176100B698BA /* WordstadiumListHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WordstadiumListHeaderView.xib; sourceTree = "<group>"; };
-		137369472217230700B698BA /* SeeMoreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeMoreViewModel.swift; sourceTree = "<group>"; };
 		137A29E721E11D0400F19072 /* HeaderQuizView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderQuizView.swift; sourceTree = "<group>"; };
 		137A29EB21E11E7E00F19072 /* TrendHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendHeaderView.swift; sourceTree = "<group>"; };
 		137A29ED21E11E8F00F19072 /* TrendHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrendHeaderView.xib; sourceTree = "<group>"; };
@@ -679,15 +677,13 @@
 		13E170BE221184B70018EDB4 /* WordstadiumController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WordstadiumController.xib; sourceTree = "<group>"; };
 		13E170C1221184DF0018EDB4 /* WordstadiumViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordstadiumViewModel.swift; sourceTree = "<group>"; };
 		13E170C3221184EC0018EDB4 /* WordstadiumCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordstadiumCoordinator.swift; sourceTree = "<group>"; };
-		13E170C5221197B30018EDB4 /* PersonalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalViewController.swift; sourceTree = "<group>"; };
-		13E170C7221197E90018EDB4 /* PublicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicViewController.swift; sourceTree = "<group>"; };
-		13E170C92211E2980018EDB4 /* PublicViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicViewModel.swift; sourceTree = "<group>"; };
-		13E170CB2211E2AE0018EDB4 /* PublicNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicNavigator.swift; sourceTree = "<group>"; };
-		13E170CD221305AE0018EDB4 /* PersonalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalViewModel.swift; sourceTree = "<group>"; };
-		13E170CF221305BE0018EDB4 /* PersonalNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalNavigator.swift; sourceTree = "<group>"; };
 		13E170D2221311A70018EDB4 /* WordstadiumItemViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordstadiumItemViewCell.swift; sourceTree = "<group>"; };
 		13E170D3221311A70018EDB4 /* WordstadiumItemViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WordstadiumItemViewCell.xib; sourceTree = "<group>"; };
-		13E479CB221988C9000DA64F /* WordstadiumCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordstadiumCellViewModel.swift; sourceTree = "<group>"; };
+		13E6FEC6221F13A7008CA788 /* ILiniWordstadiumViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ILiniWordstadiumViewModel.swift; sourceTree = "<group>"; };
+		13E6FEC8221F13C0008CA788 /* ILiniWordstadiumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ILiniWordstadiumViewController.swift; sourceTree = "<group>"; };
+		13E6FECA221F2109008CA788 /* LiniWordstadiumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiniWordstadiumViewController.swift; sourceTree = "<group>"; };
+		13E6FECC221F24C9008CA788 /* LiniPublicViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiniPublicViewModel.swift; sourceTree = "<group>"; };
+		13E6FECF221F27AE008CA788 /* LiniPersonalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiniPersonalViewModel.swift; sourceTree = "<group>"; };
 		13E9D78721E8F025006A0890 /* IJanpolListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IJanpolListViewModel.swift; sourceTree = "<group>"; };
 		13E9D78A21E8FCF5006A0890 /* IJanpolViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IJanpolViewController.swift; sourceTree = "<group>"; };
 		13E9D78D21E9171E006A0890 /* JanpolListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JanpolListViewModel.swift; sourceTree = "<group>"; };
@@ -1604,34 +1600,13 @@
 		13E170BA221184200018EDB4 /* SubModules */ = {
 			isa = PBXGroup;
 			children = (
+				13E6FECE221F2778008CA788 /* LiniWordstadium */,
 				132EE0322216A33600F0429E /* WordstadiumList */,
 				84FA42392212A121008215C4 /* Tantangan */,
 				13E170D12213102C0018EDB4 /* Components */,
 				1108871522126FC60041B821 /* LiveDebat */,
-				13E170BC2211845C0018EDB4 /* Personal */,
-				13E170BB2211844D0018EDB4 /* Public */,
 			);
 			path = SubModules;
-			sourceTree = "<group>";
-		};
-		13E170BB2211844D0018EDB4 /* Public */ = {
-			isa = PBXGroup;
-			children = (
-				13E170C7221197E90018EDB4 /* PublicViewController.swift */,
-				13E170C92211E2980018EDB4 /* PublicViewModel.swift */,
-				13E170CB2211E2AE0018EDB4 /* PublicNavigator.swift */,
-			);
-			path = Public;
-			sourceTree = "<group>";
-		};
-		13E170BC2211845C0018EDB4 /* Personal */ = {
-			isa = PBXGroup;
-			children = (
-				13E170C5221197B30018EDB4 /* PersonalViewController.swift */,
-				13E170CD221305AE0018EDB4 /* PersonalViewModel.swift */,
-				13E170CF221305BE0018EDB4 /* PersonalNavigator.swift */,
-			);
-			path = Personal;
 			sourceTree = "<group>";
 		};
 		13E170D12213102C0018EDB4 /* Components */ = {
@@ -1644,16 +1619,26 @@
 				1320595D221359C200BE9456 /* WordstadiumCollectionCell.xib */,
 				1320596022135B1500BE9456 /* WordstadiumViewCell.swift */,
 				1320596122135B1500BE9456 /* WordstadiumViewCell.xib */,
-				13E479CB221988C9000DA64F /* WordstadiumCellViewModel.swift */,
 				13E1394F2213FEF000286EDE /* SeeMoreCell.swift */,
 				13E139502213FEF000286EDE /* SeeMoreCell.xib */,
-				137369472217230700B698BA /* SeeMoreViewModel.swift */,
 				13E139532213FF1B00286EDE /* SectionViewCell.swift */,
 				13E139542213FF1B00286EDE /* SectionViewCell.xib */,
 				13E139572215548500286EDE /* SectionViewCell2.swift */,
 				13E139582215548500286EDE /* SectionViewCell2.xib */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		13E6FECE221F2778008CA788 /* LiniWordstadium */ = {
+			isa = PBXGroup;
+			children = (
+				13E6FECC221F24C9008CA788 /* LiniPublicViewModel.swift */,
+				13E6FECF221F27AE008CA788 /* LiniPersonalViewModel.swift */,
+				13E6FEC6221F13A7008CA788 /* ILiniWordstadiumViewModel.swift */,
+				13E6FEC8221F13C0008CA788 /* ILiniWordstadiumViewController.swift */,
+				13E6FECA221F2109008CA788 /* LiniWordstadiumViewController.swift */,
+			);
+			path = LiniWordstadium;
 			sourceTree = "<group>";
 		};
 		13E9D78C21E916B4006A0890 /* ListJanji */ = {
@@ -2877,6 +2862,7 @@
 				8441DB5921CD087000B078DF /* JanjiType.swift */,
 				13F456A821D2A68300CE45F1 /* QuestionType.swift */,
 				84B6D6ED21E2451600CD4BC8 /* ClusterType.swift */,
+				131AEBE0221F332900B299F6 /* WordstadiumType.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -3653,7 +3639,6 @@
 				84FA42402212A595008215C4 /* CreateTantanganViewModel.swift in Sources */,
 				84B7B8BC21E47A8F0099E7E3 /* ClusterSearchController.swift in Sources */,
 				137A29F321E2261A00F19072 /* ComingsoonController.swift in Sources */,
-				13E170CC2211E2AE0018EDB4 /* PublicNavigator.swift in Sources */,
 				11702DD521CB08DE001AEE3F /* QuizController.swift in Sources */,
 				11145F5D21EAF2670046F2AA /* SearchNavbar.swift in Sources */,
 				84EC7D17221586D100CDFD4D /* PublishChallengeCoordinator.swift in Sources */,
@@ -3705,6 +3690,7 @@
 				844C3D7021C51D3500199871 /* PantauBarKind.swift in Sources */,
 				11B1460221D749C300BB26C8 /* HeaderAskView.swift in Sources */,
 				8423C3FF21F718E1000AAA63 /* DetailAskViewModel.swift in Sources */,
+				13E6FECB221F2109008CA788 /* LiniWordstadiumViewController.swift in Sources */,
 				840850BF21D256C200696CB3 /* SectionOfProfileInfoData.swift in Sources */,
 				84619D3821DA851200EB58CF /* EditViewModel.swift in Sources */,
 				8452A4D421DE55DE00196043 /* SosmedCoordinator.swift in Sources */,
@@ -3781,12 +3767,12 @@
 				84E2854421CA195C00298E31 /* CustomActionSheet.swift in Sources */,
 				84619D3A21DA85D200EB58CF /* EditCoordinator.swift in Sources */,
 				84FA42722212FBBE008215C4 /* SaldoTimeCell.swift in Sources */,
+				13E6FEC7221F13A7008CA788 /* ILiniWordstadiumViewModel.swift in Sources */,
 				1149EB8C221BA9770050F366 /* DebatCommentViewModel.swift in Sources */,
 				043EE198221A36C2008C59CD /* RekapViewCell.swift in Sources */,
 				844C3D6D21C51CE900199871 /* HomeController.swift in Sources */,
 				84B6D6EE21E2451600CD4BC8 /* ClusterType.swift in Sources */,
 				84E6934621D296BB00EA5464 /* SectionOfProfileEditData.swift in Sources */,
-				13E170CE221305AE0018EDB4 /* PersonalViewModel.swift in Sources */,
 				84E521B221F398E900B7CCBA /* ShareTrendCoordinator.swift in Sources */,
 				84F6980B21C8D2B100890917 /* JanjiPolitikViewController.swift in Sources */,
 				1149EB92221BD0110050F366 /* DebatCommentCell.swift in Sources */,
@@ -3825,11 +3811,8 @@
 				84A07FB821D0F0DD00269C6B /* IdentitasCoordinator.swift in Sources */,
 				84FA42542212B499008215C4 /* SectionOfTantanganData.swift in Sources */,
 				11E107B721CD450B00B7B074 /* QuizOngoingViewModel.swift in Sources */,
-				13E170D0221305BE0018EDB4 /* PersonalNavigator.swift in Sources */,
 				8493BF842216919800685BEC /* ChallengeViewModel.swift in Sources */,
 				84E2855921CA777D00298E31 /* Observable.swift in Sources */,
-				13E170C8221197E90018EDB4 /* PublicViewController.swift in Sources */,
-				13E170C6221197B30018EDB4 /* PersonalViewController.swift in Sources */,
 				13BF405B21EC7B6B005C9A64 /* MyQuestionListViewModel.swift in Sources */,
 				8441DB5A21CD087000B078DF /* JanjiType.swift in Sources */,
 				8451E05E22045C6B00F03E96 /* NotificationViewModel.swift in Sources */,
@@ -3839,6 +3822,7 @@
 				131DBDB02215AF69005203FF /* TimeView.swift in Sources */,
 				043EE193221A36C2008C59CD /* RekapCoordinator.swift in Sources */,
 				1161F9F421DF4B4000C1BAD5 /* QuizButton.swift in Sources */,
+				13E6FECD221F24C9008CA788 /* LiniPublicViewModel.swift in Sources */,
 				13BF405321EBAA8F005C9A64 /* IQuestionListViewModel.swift in Sources */,
 				8478B8EA21FF315600CE192A /* Parser.swift in Sources */,
 				84B7B8BE21E47B400099E7E3 /* ClusterSearchViewModel.swift in Sources */,
@@ -3870,6 +3854,7 @@
 				84FA426E2212F778008215C4 /* DateTimeCell.swift in Sources */,
 				84FA42342212886A008215C4 /* TooltipView.swift in Sources */,
 				8452A4C321DE1EF400196043 /* BuatProfileController.swift in Sources */,
+				13E6FED0221F27AE008CA788 /* LiniPersonalViewModel.swift in Sources */,
 				84A07F9A21D0DBE200269C6B /* IdentitasController.swift in Sources */,
 				11D066A821E38610003AC9BB /* PenpolFilterCoordinator.swift in Sources */,
 				132EE0372216A3CC00F0429E /* WordstadiumListViewModel.swift in Sources */,
@@ -3923,9 +3908,9 @@
 				840850DF21D2843D00696CB3 /* BadgeViewModel.swift in Sources */,
 				1184752221FDEAC300D44FA5 /* ClusterCategoryDelegate.swift in Sources */,
 				13E139512213FEF000286EDE /* SeeMoreCell.swift in Sources */,
+				13E6FEC9221F13C0008CA788 /* ILiniWordstadiumViewController.swift in Sources */,
 				13E9D79021E92934006A0890 /* MyJanpolListViewModel.swift in Sources */,
 				8478B8E121FF1C6600CE192A /* NotificationController.swift in Sources */,
-				137369482217230700B698BA /* SeeMoreViewModel.swift in Sources */,
 				84FE6EBE21D5FEA1009A0F55 /* Network+AlertController.swift in Sources */,
 				043EE192221A36C2008C59CD /* MerayakanCoordinator.swift in Sources */,
 				84FA426A2212F0F5008215C4 /* PernyataanCell.swift in Sources */,
@@ -3938,14 +3923,13 @@
 				844C3D7A21C5230C00199871 /* RawRepresentable.swift in Sources */,
 				1147F23321F84306001D0D59 /* ClusterSearchNavigator.swift in Sources */,
 				131DBDAE2215AF48005203FF /* ClapView.swift in Sources */,
-				13E170CA2211E2980018EDB4 /* PublicViewModel.swift in Sources */,
 				840850D721D2802000696CB3 /* ProfileInfoDummyData.swift in Sources */,
 				13F4569921CF982E00CE45F1 /* QuestionNavigator.swift in Sources */,
-				13E479CC221988C9000DA64F /* WordstadiumCellViewModel.swift in Sources */,
 				84E2854721CA1E8300298E31 /* PilpresType.swift in Sources */,
 				1147F23121F83F2A001D0D59 /* ClusterDetailCoordinator.swift in Sources */,
 				844C3D8521C5252800199871 /* LinimasaCoordinator.swift in Sources */,
 				842A4A0D21D7EDC10050AA51 /* SuccessCoordinator.swift in Sources */,
+				131AEBE1221F332900B299F6 /* WordstadiumType.swift in Sources */,
 				84B8C1D12215823F004BC1FE /* PromoteView.swift in Sources */,
 				84B6D52D21F8E80A00DD742A /* UserQuestionListViewModel.swift in Sources */,
 				1108871E221271DC0041B821 /* LiveDebatViewModel.swift in Sources */,

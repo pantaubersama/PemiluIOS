@@ -313,6 +313,7 @@ pertumbuhan mencapai 5,27%.
                 <outlet property="footerContainerView" destination="51F-cU-N5I" id="q0o-0e-uOX"/>
                 <outlet property="leftPersonView" destination="L6a-lo-xOn" id="Stc-eA-paS"/>
                 <outlet property="leftUsername" destination="9fB-FD-TPl" id="wSi-Ny-2wb"/>
+                <outlet property="moreMenuBtn" destination="717-yp-yEQ" id="Edb-Or-MTh"/>
                 <outlet property="rightPersonView" destination="74M-LM-Mlf" id="h94-rD-NtD"/>
                 <outlet property="rightStatus" destination="fgw-ih-mwm" id="OGt-c2-W3k"/>
                 <outlet property="rightUsername" destination="3lI-eU-nyU" id="oXB-2r-CYm"/>

@@ -1,8 +1,8 @@
 //
-//  PersonalViewModel.swift
+//  LiniPersonalViewModel.swift
 //  PantauBersama
 //
-//  Created by wisnu bhakti on 12/02/19.
+//  Created by wisnu bhakti on 22/02/19.
 //  Copyright © 2019 PantauBersama. All rights reserved.
 //
 
@@ -11,41 +11,45 @@ import RxSwift
 import RxCocoa
 import Networking
 
-class PersonalViewModel: ViewModelType {
+class LiniPersonalViewModel: ILiniWordstadiumViewModel, ILiniWordstadiumViewModelInput, ILiniWordstadiumViewModelOutput {
+    var input: ILiniWordstadiumViewModelInput { return self }
+    var output: ILiniWordstadiumViewModelOutput { return self }
     
-    var input: Input
-    var output: Output!
+    var refreshI: AnyObserver<String>
+    var moreI: AnyObserver<Wordstadium>
+    var moreMenuI: AnyObserver<WordstadiumType>
+    var seeMoreI: AnyObserver<SectionWordstadium>
+    var itemSelectedI: AnyObserver<Wordstadium>
     
-    struct Input {
-        let refreshTrigger: AnyObserver<String>
-    }
-    
-    struct Output {
-        let bannerInfo: Driver<BannerInfo>
-        let itemSelected: Driver<Void>
-        let showHeader: Driver<Bool>
-        let items: Driver<[SectionWordstadium]>
-    }
+    var bannerO: Driver<BannerInfo>!
+    var itemSelectedO: Driver<Void>!
+    var showHeaderO: Driver<Bool>!
+    var itemsO: Driver<[SectionWordstadium]>!
+    var moreSelectedO: Driver<Wordstadium>!
+    var moreMenuSelectedO: Driver<String>!
     
     private let refreshSubject = PublishSubject<String>()
+    private let moreSubject = PublishSubject<Wordstadium>()
+    private let moreMenuSubject = PublishSubject<WordstadiumType>()
+    private let seeMoreSubject = PublishSubject<SectionWordstadium>()
+    private let itemSelectedSubject = PublishSubject<Wordstadium>()
     
-    private let navigator: WordstadiumNavigator
-    let errorTracker = ErrorTracker()
-    let activityIndicator = ActivityIndicator()
-    let headerViewModel = BannerHeaderViewModel()
-    let seeMoreViewModel = SeeMoreViewModel()
-    let collectionViewModel = WordstadiumCellViewModel()
+    internal let errorTracker = ErrorTracker()
+    internal let activityIndicator = ActivityIndicator()
+    internal let headerViewModel = BannerHeaderViewModel()
     
     init(navigator: WordstadiumNavigator, showTableHeader: Bool) {
-        self.navigator = navigator
+        refreshI = refreshSubject.asObserver()
+        moreI = moreSubject.asObserver()
+        moreMenuI = moreMenuSubject.asObserver()
+        seeMoreI = seeMoreSubject.asObserver()
+        itemSelectedI = itemSelectedSubject.asObserver()
         
-        input = Input(
-            refreshTrigger: refreshSubject.asObserver())
-        
-        
-        let bannerInfo = refreshSubject.startWith("")
+        bannerO = refreshSubject.startWith("")
             .flatMapLatest({ _ in self.bannerInfo() })
             .asDriverOnErrorJustComplete()
+        
+        showHeaderO = BehaviorRelay<Bool>(value: showTableHeader).asDriver()
         
         let infoSelected = headerViewModel.output.itemSelected
             .asObservable()
@@ -54,39 +58,42 @@ class PersonalViewModel: ViewModelType {
             })
             .asDriverOnErrorJustComplete()
         
-        let showTableHeader = BehaviorRelay<Bool>(value: showTableHeader).asDriver()
+        let seeMoreSelected = seeMoreSubject
+            .asObservable()
+            .flatMapLatest({ (wordstadium) -> Observable<Void> in
+                return navigator.launchWordstadiumList(wordstadium: wordstadium)
+            })
+            .asDriverOnErrorJustComplete()
         
-        let showItems = refreshSubject.startWith("")
+        let itemSelected = itemSelectedSubject
+            .asObservable()
+            .flatMapLatest({ (wordstadium) -> Observable<Void> in
+                return navigator.launchLiveChallenge(wordstadium: wordstadium)
+            })
+            .asDriverOnErrorJustComplete()
+        
+        itemSelectedO = Driver.merge(infoSelected,seeMoreSelected,itemSelected)
+        
+        itemsO = refreshSubject.startWith("")
             .flatMapLatest({ _ in self.generateWordstadium() })
             .asDriverOnErrorJustComplete()
         
-        let seeMoreSelected = seeMoreViewModel.output.moreSelected
+        moreSelectedO = moreSubject
             .asObservable()
-            .flatMapLatest({ (wordstadium) -> Observable<Void> in
-                return navigator.launchWordstadiumList(wordstadium: wordstadium)
-            })
             .asDriverOnErrorJustComplete()
         
-        let seeMoreColSelected = collectionViewModel.output.moreSelected
-            .asObservable()
-            .flatMapLatest({ (wordstadium) -> Observable<Void> in
-                return navigator.launchWordstadiumList(wordstadium: wordstadium)
-            })
+        moreMenuSelectedO = moreMenuSubject
+            .flatMapLatest { (type) -> Observable<String> in
+                switch type {
+                case .bagikan(let data):
+                    return Observable.just("Tautan telah dibagikan")
+                case .salin(let data):
+                    return Observable.just("Tautan telah tersalin")
+                default:
+                    return Observable.empty()
+                }
+            }
             .asDriverOnErrorJustComplete()
-        
-        let itemColSelected = collectionViewModel.output.itemSelected
-            .asObservable()
-            .flatMapLatest({ (wordstadium) -> Observable<Void> in
-                return navigator.launchChallenge(wordstadium: wordstadium)
-            })
-            .asDriverOnErrorJustComplete()
-        
-        let itemSelected = Driver.merge(infoSelected,seeMoreSelected,seeMoreColSelected,itemColSelected)
-        
-        output = Output(bannerInfo: bannerInfo,
-                        itemSelected: itemSelected,
-                        showHeader: showTableHeader,
-                        items: showItems)
         
     }
     
@@ -134,4 +141,5 @@ class PersonalViewModel: ViewModelType {
         
         return Observable.just(items)
     }
+    
 }
