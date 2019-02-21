@@ -295,7 +295,7 @@ extension TantanganChallengeController: UITableViewDelegate {
         case false:
             switch indexPath.section {
             case 0:
-                return 90.0
+                return 110.0
             case 1:
                 if link != nil {
                     return 219.0 + 75.0
@@ -303,7 +303,7 @@ extension TantanganChallengeController: UITableViewDelegate {
                     return 219.0
                 }
             case 2:
-                return 151.0
+                return 175.0
             case 3:
                 return 140.0
             default:
@@ -312,7 +312,7 @@ extension TantanganChallengeController: UITableViewDelegate {
         case true:
             switch indexPath.section {
             case 0:
-                return 90.0
+                return 110.0
             case 1:
                 if link != nil {
                     return 219.0 + 75.0
@@ -322,7 +322,7 @@ extension TantanganChallengeController: UITableViewDelegate {
             case 2:
                 return 181.0
             case 3:
-                return 151.0
+                return 175.0
             case 4:
                 return 140.0
             default:

@@ -18,6 +18,7 @@ class DateTimeCell: UITableViewCell {
     @IBOutlet weak var btnHint: UIButton!
     @IBOutlet weak var tvJam: UITextField!
     @IBOutlet weak var tvDate: UITextField!
+    @IBOutlet weak var statusBottom: UIImageView!
     
     private var dateText: String?
     private var timeText: String?
@@ -58,6 +59,7 @@ extension DateTimeCell: IReusableCell {
         
         lineStatus.backgroundColor = item.status ? #colorLiteral(red: 1, green: 0.5569574237, blue: 0, alpha: 1) : #colorLiteral(red: 0.7960169315, green: 0.7961130738, blue: 0.7959839106, alpha: 1)
         status.image = item.status ? #imageLiteral(resourceName: "checkDone") : #imageLiteral(resourceName: "checkUnactive")
+        statusBottom.image = item.status ? nil : #imageLiteral(resourceName: "checkInactive")
         
         if item.date == nil {
             tvDate.text = "Pilih Tanggal"

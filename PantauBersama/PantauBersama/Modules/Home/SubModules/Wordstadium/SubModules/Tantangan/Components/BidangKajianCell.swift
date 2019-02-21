@@ -19,6 +19,7 @@ class BidangKajianCell: UITableViewCell {
     @IBOutlet weak var hintKajian: UIButton!
     @IBOutlet weak var btnKajian: UIButton!
     @IBOutlet weak var tagKajian: UIPaddedLabel!
+    @IBOutlet weak var statusBottom: UIImageView!
     
     var disposeBag: DisposeBag!
     
@@ -43,6 +44,7 @@ extension BidangKajianCell: IReusableCell {
         
         lineStatus.backgroundColor = item.status ? #colorLiteral(red: 1, green: 0.5569574237, blue: 0, alpha: 1) : #colorLiteral(red: 0.7960169315, green: 0.7961130738, blue: 0.7959839106, alpha: 1)
         status.image = item.status ? #imageLiteral(resourceName: "checkDone") : #imageLiteral(resourceName: "checkUnactive")
+        statusBottom.image = item.status ? nil : #imageLiteral(resourceName: "checkInactive")
         
         if item.status == true {
             tagKajian.isHidden = false

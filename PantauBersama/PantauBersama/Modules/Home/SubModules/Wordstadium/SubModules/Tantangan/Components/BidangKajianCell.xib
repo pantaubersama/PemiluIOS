@@ -68,7 +68,7 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pilih Bidang Kajian yang sesuai dengan materi debat kamu. Misal: Ekonomi, Agama, Politik, dan sebagainya." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DIs-o0-IFR" customClass="Label" customModule="Common">
-                        <rect key="frame" x="56.5" y="22" width="297.5" height="61"/>
+                        <rect key="frame" x="56.5" y="22" width="297.5" height="26.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.48628133540000001" green="0.4862622023" blue="0.48627519609999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <nil key="highlightedColor"/>
@@ -79,7 +79,7 @@
                         </userDefinedRuntimeAttributes>
                     </label>
                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Myl-pR-GHO" customClass="UIPaddedLabel" customModule="Common">
-                        <rect key="frame" x="56.5" y="87" width="22.5" height="10.5"/>
+                        <rect key="frame" x="56.5" y="60.5" width="20" height="11"/>
                         <fontDescription key="fontDescription" name="Lato-Italic" family="Lato" pointSize="9"/>
                         <color key="textColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <nil key="highlightedColor"/>
@@ -102,28 +102,35 @@
                         </userDefinedRuntimeAttributes>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qsl-VV-wIv">
-                        <rect key="frame" x="56.5" y="87" width="297.5" height="29"/>
+                        <rect key="frame" x="56.5" y="52.5" width="297.5" height="29"/>
                         <fontDescription key="fontDescription" name="BwModelicaSS01-BoldCondensed" family="Bw Modelica SS01" pointSize="14"/>
                         <state key="normal" title="Pilih Bidang Kajian">
                             <color key="titleColor" red="0.48628133540000001" green="0.4862622023" blue="0.48627519609999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         </state>
                     </button>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkInactive" translatesAutoresizingMaskIntoConstraints="NO" id="JCg-x8-tu1">
+                        <rect key="frame" x="16" y="85.5" width="24" height="24"/>
+                    </imageView>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="JCg-x8-tu1" firstAttribute="height" secondItem="e8O-3Q-lJ2" secondAttribute="height" id="692-2f-Mpf"/>
                     <constraint firstItem="Qsl-VV-wIv" firstAttribute="top" secondItem="DIs-o0-IFR" secondAttribute="bottom" constant="4" id="FSR-rE-zZe"/>
                     <constraint firstItem="e8O-3Q-lJ2" firstAttribute="top" secondItem="IQN-D5-4rG" secondAttribute="top" id="GPZ-bo-h1q"/>
                     <constraint firstAttribute="trailingMargin" secondItem="Qsl-VV-wIv" secondAttribute="trailing" constant="18" id="GyU-Ou-sxP"/>
                     <constraint firstItem="Tdf-5l-JEi" firstAttribute="centerX" secondItem="e8O-3Q-lJ2" secondAttribute="centerX" id="H7t-rI-uUT"/>
                     <constraint firstItem="Tdf-5l-JEi" firstAttribute="top" secondItem="e8O-3Q-lJ2" secondAttribute="bottom" id="IBG-ZT-a0d"/>
                     <constraint firstItem="wWW-ux-oe3" firstAttribute="top" secondItem="IQN-D5-4rG" secondAttribute="top" id="JTu-Bm-YfB"/>
-                    <constraint firstItem="Myl-pR-GHO" firstAttribute="top" secondItem="DIs-o0-IFR" secondAttribute="bottom" constant="4" id="O3J-Gg-xXg"/>
+                    <constraint firstItem="Myl-pR-GHO" firstAttribute="top" secondItem="DIs-o0-IFR" secondAttribute="bottom" constant="12" id="O3J-Gg-xXg"/>
+                    <constraint firstItem="JCg-x8-tu1" firstAttribute="width" secondItem="e8O-3Q-lJ2" secondAttribute="width" id="PIW-vN-hCb"/>
                     <constraint firstItem="DIs-o0-IFR" firstAttribute="top" secondItem="wWW-ux-oe3" secondAttribute="bottom" constant="5" id="S4G-yD-3db"/>
                     <constraint firstItem="Qsl-VV-wIv" firstAttribute="leading" secondItem="Tdf-5l-JEi" secondAttribute="trailing" constant="28" id="SbP-nN-7jl"/>
+                    <constraint firstAttribute="bottom" secondItem="JCg-x8-tu1" secondAttribute="bottom" id="T6h-CX-vnf"/>
                     <constraint firstAttribute="trailing" secondItem="wWW-ux-oe3" secondAttribute="trailing" constant="18" id="TZI-Qc-egH"/>
                     <constraint firstItem="wWW-ux-oe3" firstAttribute="leading" secondItem="e8O-3Q-lJ2" secondAttribute="trailing" constant="16" id="dZz-6X-UjR"/>
                     <constraint firstItem="e8O-3Q-lJ2" firstAttribute="leading" secondItem="IQN-D5-4rG" secondAttribute="leading" constant="16" id="lan-Ka-SgJ"/>
                     <constraint firstAttribute="bottom" secondItem="Tdf-5l-JEi" secondAttribute="bottom" id="swV-Tk-eQk"/>
                     <constraint firstAttribute="trailingMargin" secondItem="DIs-o0-IFR" secondAttribute="trailing" constant="18" id="tpv-I0-BEh"/>
+                    <constraint firstItem="JCg-x8-tu1" firstAttribute="centerX" secondItem="Tdf-5l-JEi" secondAttribute="centerX" id="v6Y-YE-z15"/>
                     <constraint firstItem="DIs-o0-IFR" firstAttribute="leading" secondItem="Tdf-5l-JEi" secondAttribute="trailing" constant="28" id="wCz-Qz-iLz"/>
                     <constraint firstItem="Myl-pR-GHO" firstAttribute="leading" secondItem="Tdf-5l-JEi" secondAttribute="trailing" constant="28" id="waj-4w-GZv"/>
                 </constraints>
@@ -133,12 +140,14 @@
                 <outlet property="hintKajian" destination="mX1-vy-xOM" id="Kkb-Xd-ORl"/>
                 <outlet property="lineStatus" destination="Tdf-5l-JEi" id="UWZ-Zc-stn"/>
                 <outlet property="status" destination="e8O-3Q-lJ2" id="Pa9-ht-kc4"/>
+                <outlet property="statusBottom" destination="JCg-x8-tu1" id="xDj-ad-rZm"/>
                 <outlet property="tagKajian" destination="Myl-pR-GHO" id="3Ag-O8-YI9"/>
             </connections>
             <point key="canvasLocation" x="195.19999999999999" y="130.43478260869566"/>
         </tableViewCell>
     </objects>
     <resources>
+        <image name="checkInactive" width="24" height="24"/>
         <image name="checkUnactive" width="24" height="24"/>
         <image name="outlineHint16Px" width="16" height="16"/>
     </resources>

@@ -16,11 +16,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="152" id="71B-5l-O3o" customClass="DateTimeCell" customModule="PantauBersama" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="376" height="152"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="175" id="71B-5l-O3o" customClass="DateTimeCell" customModule="PantauBersama" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="376" height="175"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="71B-5l-O3o" id="7Ue-PS-XPC">
-                <rect key="frame" x="0.0" y="0.0" width="376" height="151.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="376" height="174.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkUnactive" translatesAutoresizingMaskIntoConstraints="NO" id="AeF-Yj-cTs">
@@ -31,7 +31,7 @@
                         </constraints>
                     </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BGY-qz-OOI">
-                        <rect key="frame" x="27.5" y="24" width="1" height="127.5"/>
+                        <rect key="frame" x="27.5" y="24" width="1" height="150.5"/>
                         <color key="backgroundColor" red="0.79608923200000004" green="0.79605895280000005" blue="0.79607945680000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="1" id="lCZ-NL-xhH"/>
@@ -131,12 +131,17 @@
                             <constraint firstItem="wcO-uG-hvy" firstAttribute="centerY" secondItem="IOm-9h-baA" secondAttribute="centerY" id="x6p-fz-kX1"/>
                         </constraints>
                     </view>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkInactive" translatesAutoresizingMaskIntoConstraints="NO" id="jIo-ux-49l" userLabel="statusBottom">
+                        <rect key="frame" x="16" y="150.5" width="24" height="24"/>
+                    </imageView>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="jIo-ux-49l" firstAttribute="height" secondItem="AeF-Yj-cTs" secondAttribute="height" id="6uD-nZ-HpD"/>
                     <constraint firstAttribute="trailing" secondItem="soP-Nl-fMi" secondAttribute="trailing" constant="18" id="7m5-qM-9xK"/>
                     <constraint firstItem="AeF-Yj-cTs" firstAttribute="top" secondItem="7Ue-PS-XPC" secondAttribute="top" id="DXr-6x-PGN"/>
                     <constraint firstAttribute="trailingMargin" secondItem="NZp-Yv-TIU" secondAttribute="trailing" id="FCU-vh-64t"/>
                     <constraint firstItem="NZp-Yv-TIU" firstAttribute="top" secondItem="7Ue-PS-XPC" secondAttribute="firstBaseline" id="L91-NT-dml"/>
+                    <constraint firstAttribute="baseline" secondItem="jIo-ux-49l" secondAttribute="bottom" id="N0f-qM-ZuK"/>
                     <constraint firstItem="IOm-9h-baA" firstAttribute="top" secondItem="soP-Nl-fMi" secondAttribute="bottom" constant="8" id="UJj-9X-EXe"/>
                     <constraint firstItem="soP-Nl-fMi" firstAttribute="leading" secondItem="BGY-qz-OOI" secondAttribute="trailing" constant="28" id="WKE-HG-b2r"/>
                     <constraint firstAttribute="trailingMargin" secondItem="4lE-Kb-G5T" secondAttribute="trailing" constant="18" id="XUK-TT-Ktt"/>
@@ -148,7 +153,9 @@
                     <constraint firstItem="IOm-9h-baA" firstAttribute="leading" secondItem="BGY-qz-OOI" secondAttribute="trailing" constant="28" id="f3Q-7x-c3z"/>
                     <constraint firstAttribute="trailing" secondItem="IOm-9h-baA" secondAttribute="trailing" constant="18" id="faA-iS-Y2c"/>
                     <constraint firstItem="NZp-Yv-TIU" firstAttribute="leading" secondItem="AeF-Yj-cTs" secondAttribute="trailing" constant="16" id="gwQ-jU-0YY"/>
+                    <constraint firstItem="jIo-ux-49l" firstAttribute="width" secondItem="AeF-Yj-cTs" secondAttribute="width" id="l0g-wS-stu"/>
                     <constraint firstItem="soP-Nl-fMi" firstAttribute="top" secondItem="4lE-Kb-G5T" secondAttribute="bottom" constant="8" id="mdU-PE-DrP"/>
+                    <constraint firstItem="jIo-ux-49l" firstAttribute="centerX" secondItem="BGY-qz-OOI" secondAttribute="centerX" id="o6V-de-wa2"/>
                     <constraint firstItem="AeF-Yj-cTs" firstAttribute="leading" secondItem="7Ue-PS-XPC" secondAttribute="leading" constant="16" id="paH-Jt-5HZ"/>
                 </constraints>
             </tableViewCellContentView>
@@ -156,13 +163,15 @@
                 <outlet property="btnHint" destination="fec-UM-GSm" id="08j-S5-TWe"/>
                 <outlet property="lineStatus" destination="BGY-qz-OOI" id="Dzk-Yd-m5w"/>
                 <outlet property="status" destination="AeF-Yj-cTs" id="dWN-fJ-Zbq"/>
+                <outlet property="statusBottom" destination="jIo-ux-49l" id="ZPa-bl-8ih"/>
                 <outlet property="tvDate" destination="1Og-GB-dtB" id="aEx-FY-1Jt"/>
                 <outlet property="tvJam" destination="WCJ-ix-FTv" id="xUB-na-ftS"/>
             </connections>
-            <point key="canvasLocation" x="78.400000000000006" y="241.97901049475263"/>
+            <point key="canvasLocation" x="78.400000000000006" y="252.32383808095955"/>
         </tableViewCell>
     </objects>
     <resources>
+        <image name="checkInactive" width="24" height="24"/>
         <image name="checkUnactive" width="24" height="24"/>
         <image name="icClock" width="24" height="24"/>
         <image name="icDate" width="24" height="24"/>
