@@ -39,12 +39,12 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YMc-k0-wfR">
-                    <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                    <rect key="frame" x="0.0" y="-24" width="320" height="592"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1MC-zf-Ckx">
                             <rect key="frame" x="0.0" y="-44" width="320" height="745"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bannerLvieNowPost" translatesAutoresizingMaskIntoConstraints="NO" id="GRu-Jj-Bn6">
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bannerLvieNowPost" translatesAutoresizingMaskIntoConstraints="NO" id="GRu-Jj-Bn6">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="179"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="179" id="P0g-QS-JfB"/>
@@ -66,7 +66,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </button>
                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="cgc-Wz-6A0">
-                                    <rect key="frame" x="0.0" y="44" width="320" height="83"/>
+                                    <rect key="frame" x="0.0" y="68" width="320" height="83"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BcJ-y0-iSX">
                                             <rect key="frame" x="0.0" y="0.0" width="160" height="83"/>
@@ -176,7 +176,7 @@
                                     </constraints>
                                 </stackView>
                                 <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="91S-cf-uoe">
-                                    <rect key="frame" x="110" y="127" width="100" height="24"/>
+                                    <rect key="frame" x="110" y="151" width="100" height="24"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icSaldoWhite24" translatesAutoresizingMaskIntoConstraints="NO" id="cES-Tf-I9Q">
                                             <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
@@ -226,7 +226,7 @@
                                     </constraints>
                                 </stackView>
                                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wH6-fs-UIC">
-                                    <rect key="frame" x="0.0" y="127" width="320" height="24"/>
+                                    <rect key="frame" x="0.0" y="151" width="320" height="24"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="z8X-a5-58U">
                                             <rect key="frame" x="16" y="0.0" width="91" height="24"/>
@@ -238,7 +238,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="50" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zp7-Ki-E3y" customClass="Label" customModule="Common">
-                                                    <rect key="frame" x="24" y="0.0" width="20.5" height="24"/>
+                                                    <rect key="frame" x="24" y="0.0" width="22.5" height="24"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.92538958790000003" green="0.92554813619999998" blue="0.92537957429999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -250,7 +250,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" total" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aHM-dw-t1n" customClass="Label" customModule="Common">
-                                                    <rect key="frame" x="44.5" y="0.0" width="46.5" height="24"/>
+                                                    <rect key="frame" x="46.5" y="0.0" width="44.5" height="24"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.92538958790000003" green="0.92554813619999998" blue="0.92537957429999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -271,7 +271,7 @@
                                             <rect key="frame" x="231.5" y="0.0" width="72.5" height="24"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="70" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HVW-6v-P8V" customClass="Label" customModule="Common">
-                                                    <rect key="frame" x="0.0" y="0.0" width="16.5" height="24"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="17" height="24"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.92538958790000003" green="0.92554813619999998" blue="0.92537957429999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -283,7 +283,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" total" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r3P-UE-tUA" customClass="Label" customModule="Common">
-                                                    <rect key="frame" x="16.5" y="0.0" width="32" height="24"/>
+                                                    <rect key="frame" x="17" y="0.0" width="31.5" height="24"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.92538958790000003" green="0.92554813619999998" blue="0.92537957429999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -329,7 +329,7 @@
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Giliran Raja menulis argumen …" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="biJ-P7-fep" customClass="Label" customModule="Common">
-                                            <rect key="frame" x="40" y="10" width="129" height="12"/>
+                                            <rect key="frame" x="40" y="11" width="124" height="10"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="8"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -479,7 +479,7 @@ pertumbuhan mencapai 5,27%.
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IGg-ye-7O3" customClass="Button" customModule="Common">
-                            <rect key="frame" x="256.5" y="65" width="37" height="26"/>
+                            <rect key="frame" x="256.5" y="65" width="37" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="37" id="f8r-8X-DJc"/>
                             </constraints>
@@ -507,7 +507,7 @@ pertumbuhan mencapai 5,27%.
                             </userDefinedRuntimeAttributes>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GaY-h9-I1k" customClass="Button" customModule="Common">
-                            <rect key="frame" x="175.5" y="63" width="51" height="30"/>
+                            <rect key="frame" x="175.5" y="65" width="51" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="H2w-xZ-GVX"/>
                                 <constraint firstAttribute="width" constant="51" id="hUm-yq-b0R"/>
@@ -640,7 +640,6 @@ pertumbuhan mencapai 5,27%.
                 <constraint firstItem="1MC-zf-Ckx" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" constant="177" id="I8g-06-ZRY"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="wky-jX-31t" secondAttribute="trailing" id="JLV-ad-VOt"/>
                 <constraint firstItem="YMc-k0-wfR" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Khk-ot-Iey"/>
-                <constraint firstItem="YMc-k0-wfR" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="MZ0-qR-1MR"/>
                 <constraint firstItem="PEs-pO-nfS" firstAttribute="bottom" secondItem="wky-jX-31t" secondAttribute="bottom" id="SWZ-It-bDt"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="YMc-k0-wfR" secondAttribute="trailing" id="aWK-oM-rxa"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="YMc-k0-wfR" secondAttribute="bottom" id="aoh-Mc-jxy"/>
@@ -653,6 +652,7 @@ pertumbuhan mencapai 5,27%.
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="PEs-pO-nfS" secondAttribute="trailing" id="qC0-sl-jK4"/>
                 <constraint firstItem="wky-jX-31t" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="rJg-fc-Lye"/>
                 <constraint firstItem="fxQ-oQ-LIR" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="rZD-tu-2d9"/>
+                <constraint firstItem="YMc-k0-wfR" firstAttribute="top" secondItem="fxQ-oQ-LIR" secondAttribute="bottom" constant="-45" id="xm7-h8-YFi"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>

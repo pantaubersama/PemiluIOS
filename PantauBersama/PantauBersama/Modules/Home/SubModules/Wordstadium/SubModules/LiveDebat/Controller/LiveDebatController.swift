@@ -46,6 +46,7 @@ class LiveDebatController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationController?.navigationBar.isHidden = true
         // config input behavior
         configureInputView()
         
