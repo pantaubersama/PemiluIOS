@@ -18,21 +18,28 @@ class DebatCommentViewModel: ViewModelType {
     
     struct Output {
         let back: Driver<Void>
+        let viewType: Driver<DebatViewType>
     }
     
     var input: Input
     var output: Output
     
+    private let viewType: DebatViewType
     private let navigator: DebatCommentNavigator
     private let backS = PublishSubject<Void>()
-    init(navigator: DebatCommentNavigator) {
+    init(navigator: DebatCommentNavigator, viewType: DebatViewType) {
         self.navigator = navigator
+        self.viewType = viewType
         
         input = Input(backTrigger: backS.asObserver())
         
         let back = backS.flatMap({navigator.dismiss()})
             .asDriverOnErrorJustComplete()
-        
-        output = Output(back: back)
+        let viewTypeO = Observable.just(viewType)
+            .asDriverOnErrorJustComplete()
+            
+        output = Output(
+            back: back,
+            viewType: viewTypeO)
     }
 }

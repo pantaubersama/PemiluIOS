@@ -12,6 +12,7 @@ import RxCocoa
 import Common
 
 class DebatCommentController: UIViewController {
+    @IBOutlet weak var viewInputContainer: UIView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var staticNavigationBar: UINavigationBar!
     @IBOutlet weak var btnClose: UIBarButtonItem!
@@ -43,13 +44,26 @@ class DebatCommentController: UIViewController {
         
         // for dummy ui
         tableView.dataSource = self
-        tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 70))
+        tableView.tableFooterView = UIView()
         tableView.estimatedRowHeight = 44.0
         tableView.rowHeight = UITableView.automaticDimension
         tableView.registerReusableCell(DebatCommentCell.self)
     }
     
     private func configureInputView() {
+        viewModel.output.viewType
+            .drive(onNext: { [unowned self]viewType in
+                switch viewType {
+                case .done, .theirTurn:
+                    self.viewInputContainer.isHidden = true
+                    break
+                default:
+                    self.viewInputContainer.isHidden = false
+                    break
+                }
+            })
+            .disposed(by: disposeBag)
+        
         tvComment.text = "Tulis Komentar"
         tvComment.textColor = .lightGray
         

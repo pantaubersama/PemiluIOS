@@ -15,6 +15,7 @@ import IQKeyboardManagerSwift
 class LiveDebatController: UIViewController {
     
     // UI view variable
+    @IBOutlet weak var latestCommentView: UIStackView!
     @IBOutlet weak var bottomMargin: NSLayoutConstraint!
     @IBOutlet weak var headerTitle: Button!
     @IBOutlet weak var btnSendComment: ImageButton!
@@ -191,33 +192,36 @@ class LiveDebatController: UIViewController {
     private func configureViewType(viewType: DebatViewType) {
         switch viewType {
         case .watch:
+            latestCommentView.isHidden = true
             viewComentarContainer.isHidden = false
             viewInputContainer.isHidden = true
             constraintTableViewBottom.constant = 0
             viewTimeContainer.isHidden = true
-//            constraintInputViewHeight.constant = 50
+            constraintInputViewHeight.constant = 50
             headerTitle.setTitle("LIVE NOW", for: .normal)
             headerTitle.setImage(#imageLiteral(resourceName: "outlineLiveRed24Px"), for: .normal)
             titleView.setTitle("LIVE NOW", for: .normal)
             titleView.setImage(#imageLiteral(resourceName: "outlineLiveRed24Px"), for: .normal)
             break
         case .myTurn:
+            latestCommentView.isHidden = true
             viewComentarContainer.isHidden = true
             viewInputContainer.isHidden = false
             constraintTableViewBottom.constant = 105
             viewTimeContainer.isHidden = false
-//            constraintInputViewHeight.constant = 105
+            constraintInputViewHeight.constant = 105
             headerTitle.setTitle("LIVE NOW", for: .normal)
             headerTitle.setImage(#imageLiteral(resourceName: "outlineLiveRed24Px"), for: .normal)
             titleView.setTitle("LIVE NOW", for: .normal)
             titleView.setImage(#imageLiteral(resourceName: "outlineLiveRed24Px"), for: .normal)
             break
         case .theirTurn:
+            latestCommentView.isHidden = false
             viewComentarContainer.isHidden = false
             viewInputContainer.isHidden = true
             constraintTableViewBottom.constant = 0
             viewTimeContainer.isHidden = false
-//            constraintInputViewHeight.constant = 50
+            constraintInputViewHeight.constant = 50
             headerTitle.setTitle("LIVE NOW", for: .normal)
             headerTitle.setImage(#imageLiteral(resourceName: "outlineLiveRed24Px"), for: .normal)
             titleView.setTitle("LIVE NOW", for: .normal)
@@ -225,9 +229,10 @@ class LiveDebatController: UIViewController {
             break
         case .done:
             ivHeaderBackground.image = #imageLiteral(resourceName: "bgWordstadiumDone")
+            latestCommentView.isHidden = false
             viewTimeContainer.isHidden = true
             viewClapContainer.isHidden = false
-//            constraintInputViewHeight.constant = 50
+            constraintInputViewHeight.constant = 50
             headerTitle.setTitle("Result", for: .normal)
             headerTitle.setImage(UIImage(), for: .normal)
             titleView.setImage(UIImage(), for: .normal)

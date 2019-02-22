@@ -17,14 +17,16 @@ protocol DebatCommentNavigator {
 
 class DebatCommentCoordinator: BaseCoordinator<Void> {
     private let navigationController: UINavigationController
+    private let viewType: DebatViewType
     
-    init(navigationController: UINavigationController) {
+    init(navigationController: UINavigationController, viewType: DebatViewType) {
         self.navigationController = navigationController
+        self.viewType = viewType
     }
     
     override func start() -> Observable<Void> {
         let viewController = DebatCommentController()
-        let viewModel = DebatCommentViewModel(navigator: self)
+        let viewModel = DebatCommentViewModel(navigator: self, viewType: viewType)
         viewController.viewModel = viewModel
         viewController.modalPresentationStyle = .overCurrentContext
         
