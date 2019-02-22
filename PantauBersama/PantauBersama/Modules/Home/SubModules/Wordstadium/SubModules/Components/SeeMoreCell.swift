@@ -27,7 +27,7 @@ class SeeMoreCell: UITableViewCell {
 extension SeeMoreCell: IReusableCell {
     struct Input {
         let wordstadium: SectionWordstadium
-        let viewModel: SeeMoreViewModel
+        let viewModel: ILiniWordstadiumViewModel
     }
     
     func configureCell(item: Input) {
@@ -35,7 +35,7 @@ extension SeeMoreCell: IReusableCell {
         
         seeMoreBtn.rx.tap
             .map({ item.wordstadium })
-            .bind(to: item.viewModel.input.moreSelected)
+            .bind(to: item.viewModel.input.seeMoreI)
             .disposed(by: bag)
         
         disposeBag = bag

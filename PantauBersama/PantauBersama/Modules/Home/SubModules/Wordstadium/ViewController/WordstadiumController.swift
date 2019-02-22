@@ -24,11 +24,11 @@ class WordstadiumController: UIViewController {
     private let disposeBag = DisposeBag()
     
     
-    private lazy var publicViewModel = PublicViewModel(navigator: viewModel.navigator, showTableHeader: true)
-    private lazy var personalViewModel = PersonalViewModel(navigator: viewModel.navigator, showTableHeader: true)
+    private lazy var publicViewModel = LiniPublicViewModel(navigator: viewModel.navigator, showTableHeader: true)
+    private lazy var personalViewModel = LiniPersonalViewModel(navigator: viewModel.navigator, showTableHeader: true)
     
-    private lazy var personalController = PersonalViewController(viewModel: personalViewModel)
-    private lazy var publicController = PublicViewController(viewModel: publicViewModel)
+    private lazy var personalController = LiniWordstadiumViewController(viewModel: personalViewModel)
+    private lazy var publicController = LiniWordstadiumViewController(viewModel: publicViewModel)
     
     override func viewDidLoad() {
         super.viewDidLoad()

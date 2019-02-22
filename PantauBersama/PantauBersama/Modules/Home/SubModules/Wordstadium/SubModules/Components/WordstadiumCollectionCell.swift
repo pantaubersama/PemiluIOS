@@ -13,6 +13,7 @@ class WordstadiumCollectionCell: UICollectionViewCell {
 
     @IBOutlet weak var backgroundItem: UIImageView!
     @IBOutlet weak var titleLbl: UILabel!
+    @IBOutlet weak var moreMenuBtn: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
