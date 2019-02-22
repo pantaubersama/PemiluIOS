@@ -68,7 +68,7 @@
                         <constraint firstAttribute="height" constant="56" id="jbA-kr-NCr"/>
                     </constraints>
                 </view>
-                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yuB-p2-0eT" customClass="RoundView" customModule="Common">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yuB-p2-0eT" customClass="RoundView" customModule="Common">
                     <rect key="frame" x="303" y="600.5" width="56" height="56"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ACl-Mc-YaH">

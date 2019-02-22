@@ -47,12 +47,9 @@ class WordstadiumController: UIViewController {
                     if i == 0 {
                         self.personalController.view.alpha = 0.0
                         self.publicController.view.alpha = 1.0
-                        self.containerTooltip.alpha = 0.0
                     } else {
                         self.personalController.view.alpha = 1.0
                         self.publicController.view.alpha = 0.0
-                        self.containerTooltip.alpha = 1.0
-                        self.containerTooltip.isHidden = false
                     }
                 })
             })
