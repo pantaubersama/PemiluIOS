@@ -176,7 +176,7 @@ class TantanganChallengeController: UIViewController {
                 self.viewModel.input.pernyataanI.onNext(false)
                 self.viewModel.input.lawanDebatI.onNext(false)
                 self.viewModel.input.dateTimeI.onNext(false)
-                self.viewModel.input.saldoI.onNext(false)
+                self.viewModel.input.saldoI.onNext(true)
                 self.statusDateTime = false
                 self.date = s
             })
