@@ -56,7 +56,7 @@ extension LiveDebatCoordinator: LiveDebatNavigator {
     }
     
     func showComment() -> Observable<Void> {
-        let debatCommentCoordinator = DebatCommentCoordinator(navigationController: self.navigationController)
+        let debatCommentCoordinator = DebatCommentCoordinator(navigationController: self.navigationController, viewType: viewType)
         return coordinate(to: debatCommentCoordinator)
     }
 }
