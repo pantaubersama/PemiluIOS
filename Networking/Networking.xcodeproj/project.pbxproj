@@ -47,6 +47,7 @@
 		8482E62A21D8E5AB00D5DC07 /* BadgesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8482E62921D8E5AB00D5DC07 /* BadgesResponse.swift */; };
 		8482E62E21D9017700D5DC07 /* PaginatableResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8482E62D21D9017700D5DC07 /* PaginatableResponse.swift */; };
 		8482E63021D9048800D5DC07 /* Paginate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8482E62F21D9048800D5DC07 /* Paginate.swift */; };
+		84AEFA79221FFE5300F3DC92 /* WordstadiumAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AEFA78221FFE5300F3DC92 /* WordstadiumAPI.swift */; };
 		84B2522B21CAB47B00565D82 /* NetworkKeychainKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B2522A21CAB47B00565D82 /* NetworkKeychainKind.swift */; };
 		84B2523521CAC71400565D82 /* RequestLoadingPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B2523421CAC71400565D82 /* RequestLoadingPlugin.swift */; };
 		84B2523721CAC7D000565D82 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B2523621CAC7D000565D82 /* NetworkError.swift */; };
@@ -123,6 +124,7 @@
 		8482E62921D8E5AB00D5DC07 /* BadgesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgesResponse.swift; sourceTree = "<group>"; };
 		8482E62D21D9017700D5DC07 /* PaginatableResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginatableResponse.swift; sourceTree = "<group>"; };
 		8482E62F21D9048800D5DC07 /* Paginate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Paginate.swift; sourceTree = "<group>"; };
+		84AEFA78221FFE5300F3DC92 /* WordstadiumAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordstadiumAPI.swift; sourceTree = "<group>"; };
 		84B2522A21CAB47B00565D82 /* NetworkKeychainKind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkKeychainKind.swift; sourceTree = "<group>"; };
 		84B2523421CAC71400565D82 /* RequestLoadingPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestLoadingPlugin.swift; sourceTree = "<group>"; };
 		84B2523621CAC7D000565D82 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
@@ -226,6 +228,7 @@
 				13F456B421D531D300CE45F1 /* LinimasaAPI.swift */,
 				1143E80721DEC75D003862B6 /* QuizAPI.swift */,
 				8451E05F2204672700F03E96 /* NotificationAPI.swift */,
+				84AEFA78221FFE5300F3DC92 /* WordstadiumAPI.swift */,
 			);
 			path = Microservices;
 			sourceTree = "<group>";
@@ -519,6 +522,7 @@
 			files = (
 				11B145EC21D66A8400BB26C8 /* Batch.swift in Sources */,
 				84E521C821F4C81500B7CCBA /* InfoFirebaseResponse.swift in Sources */,
+				84AEFA79221FFE5300F3DC92 /* WordstadiumAPI.swift in Sources */,
 				1183F0DE21D535C600435D31 /* QuestionResponse.swift in Sources */,
 				13F456C521DB7EF900CE45F1 /* Image.swift in Sources */,
 				1143E81421E24946003862B6 /* QuizQuestionsResponse.swift in Sources */,
