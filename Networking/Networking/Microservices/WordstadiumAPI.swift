@@ -10,7 +10,7 @@ import Moya
 import Common
 
 public enum WordstadiumAPI {
-    
+    case createChallengeOpen(statement: String, source: String, timeAt: String, timeLimit: Int, topic: String)
     
     
 }
@@ -32,6 +32,8 @@ extension WordstadiumAPI: TargetType {
     
     public var path: String {
         switch self {
+        case .createChallengeOpen:
+            return "/word_stadium/v1/challenges/open"
         default:
             break
         }
@@ -39,6 +41,8 @@ extension WordstadiumAPI: TargetType {
     
     public var method: Moya.Method {
         switch self {
+        case .createChallengeOpen:
+            return .post
         default:
             return .get
         }
@@ -62,6 +66,8 @@ extension WordstadiumAPI: TargetType {
     
     public var task: Task {
         switch self {
+        case .createChallengeOpen:
+            return .uploadMultipart(self.multipartBody ?? [])
         default:
              return .requestParameters(parameters: parameters ?? [:], encoding: parameterEncoding)
         }
@@ -80,6 +86,14 @@ extension WordstadiumAPI: TargetType {
     
     public var multipartBody: [MultipartFormData]? {
         switch self {
+        case .createChallengeOpen(let (statement, source, timeAt, timeLimit, topic)):
+            var multipartFormData = [MultipartFormData]()
+            multipartFormData.append(buildMultipartFormData(key: "statement", value: statement))
+            multipartFormData.append(buildMultipartFormData(key: "statement_source", value: source))
+            multipartFormData.append(buildMultipartFormData(key: "show_time_at", value: timeAt))
+            multipartFormData.append(buildMultipartFormData(key: "time_limit", value: "\(timeLimit)"))
+            multipartFormData.append(buildMultipartFormData(key: "topic_list", value: topic))
+            return multipartFormData
         default:
             return nil
         }

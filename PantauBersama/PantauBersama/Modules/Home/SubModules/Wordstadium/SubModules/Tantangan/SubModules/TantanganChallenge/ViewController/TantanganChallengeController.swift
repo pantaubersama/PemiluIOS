@@ -126,15 +126,15 @@ class TantanganChallengeController: UIViewController {
         viewModel.output.kajianSelected
             .do(onNext: { [unowned self] (result) in
                 switch result {
-                case .ok(let id):
-                    print("ID: \(id)")
+                case .ok(let name):
+                    self.viewModel.input.nameKajianI.onNext(name)
                     self.viewModel.input.kajianI.onNext(false)
                     self.viewModel.input.pernyataanI.onNext(false)
                     self.viewModel.input.lawanDebatI.onNext(true)
                     self.viewModel.input.dateTimeI.onNext(true)
                     self.viewModel.input.saldoI.onNext(true)
                     self.statusKajian = true
-                    self.nameKajian = id
+                    self.nameKajian = name
                 case .cancel:
                     break
                 }
@@ -242,6 +242,7 @@ class TantanganChallengeController: UIViewController {
                     self.viewModel.input.saldoI.onNext(true)
                     self.statusPernyataan = true
                     self.link = url
+                    self.viewModel.input.sourceLinkI.onNext(url)
                 }
             })
             .drive()

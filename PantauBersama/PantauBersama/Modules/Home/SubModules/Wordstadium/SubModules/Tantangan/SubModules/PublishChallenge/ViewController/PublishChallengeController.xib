@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PublishChallengeController" customModule="PantauBersama" customModuleProvider="target">
             <connections>
+                <outlet property="btnPublish" destination="BF2-Fe-hgc" id="7w5-Et-e2V"/>
                 <outlet property="challengeDetail" destination="Qb5-pk-xRI" id="QFx-gq-cBE"/>
                 <outlet property="constraintChallenge" destination="qGv-yc-k2H" id="Wb5-Vd-DSI"/>
                 <outlet property="constraintPromote" destination="sgM-Db-E3T" id="dSA-SU-HtS"/>
