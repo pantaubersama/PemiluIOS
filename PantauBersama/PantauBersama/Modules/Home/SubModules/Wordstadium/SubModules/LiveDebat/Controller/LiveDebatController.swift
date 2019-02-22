@@ -232,6 +232,7 @@ class LiveDebatController: UIViewController {
             latestCommentView.isHidden = false
             viewTimeContainer.isHidden = true
             viewClapContainer.isHidden = false
+            constraintTableViewBottom.constant = 0
             constraintInputViewHeight.constant = 50
             headerTitle.setTitle("Result", for: .normal)
             headerTitle.setImage(UIImage(), for: .normal)
