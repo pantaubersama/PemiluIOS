@@ -33,6 +33,7 @@ class TantanganChallengeViewModel: ViewModelType {
         let saldoTimeI: AnyObserver<String>
         let hintSaldoI: AnyObserver<Void>
         let pernyataanLinkI: AnyObserver<Void>
+        let pernyataanLinkCancelI: AnyObserver<Void>
         let hintDebatI: AnyObserver<Void>
         let lawanDebatI: AnyObserver<Bool>
         let btnNextI: AnyObserver<Void>
@@ -53,6 +54,7 @@ class TantanganChallengeViewModel: ViewModelType {
         let hintSaldoO: Driver<Void>
         let enableNextO: Driver<Bool>
         let pernyataanLink: Driver<PernyataanLinkResult>
+        let cancelLinkO: Driver<Void>
         let hintDebatO: Driver<Void>
         let btnNextO: Driver<Void>
     }
@@ -74,6 +76,7 @@ class TantanganChallengeViewModel: ViewModelType {
     private let saldoTimeS = PublishSubject<String>()
     private let hintSaldoS = PublishSubject<Void>()
     private let pernyataanLinkS = PublishSubject<Void>()
+    private let pernyataanLinkCancelS = PublishSubject<Void>()
     private let hintDebatS = PublishSubject<Void>()
     private let lawanDebatS = PublishSubject<Bool>()
     private let btnNextS = PublishSubject<Void>()
@@ -105,6 +108,7 @@ class TantanganChallengeViewModel: ViewModelType {
                       saldoTimeI: saldoTimeS.asObserver(),
                       hintSaldoI: hintSaldoS.asObserver(),
                       pernyataanLinkI: pernyataanLinkS.asObserver(),
+                      pernyataanLinkCancelI: pernyataanLinkCancelS.asObserver(),
                       hintDebatI: hintDebatS.asObserver(),
                       lawanDebatI: lawanDebatS.asObserver(),
                       btnNextI: btnNextS.asObserver())
@@ -213,6 +217,7 @@ class TantanganChallengeViewModel: ViewModelType {
                         hintSaldoO: hintSaldo,
                         enableNextO: enable,
                         pernyataanLink: pernyataanLink,
+                        cancelLinkO: pernyataanLinkCancelS.asDriverOnErrorJustComplete(),
                         hintDebatO: hintDebat,
                         btnNextO: nextPublish)
     }

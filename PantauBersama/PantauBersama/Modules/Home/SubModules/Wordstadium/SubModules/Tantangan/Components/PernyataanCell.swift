@@ -111,8 +111,7 @@ extension PernyataanCell: IReusableCell {
                     self.contraintLinkPreview.constant = 0.0
                 })
             })
-            .asDriverOnErrorJustComplete()
-            .drive()
+            .bind(to: item.viewModel.input.pernyataanLinkCancelI)
             .disposed(by: bag)
         
         tvPernyataan.rx.text

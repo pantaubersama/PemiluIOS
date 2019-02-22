@@ -247,6 +247,28 @@ class TantanganChallengeController: UIViewController {
             .drive()
             .disposed(by: disposeBag)
         
+        viewModel.output.cancelLinkO
+            .do(onNext: { [unowned self] (_) in
+                if self.contentPernyataan != nil {
+                    self.viewModel.input.kajianI.onNext(false)
+                    self.viewModel.input.pernyataanI.onNext(false)
+                    self.viewModel.input.lawanDebatI.onNext(false)
+                    self.viewModel.input.dateTimeI.onNext(false)
+                    self.viewModel.input.saldoI.onNext(true)
+                    self.statusPernyataan = true
+                } else {
+                    self.viewModel.input.kajianI.onNext(false)
+                    self.viewModel.input.pernyataanI.onNext(false)
+                    self.viewModel.input.lawanDebatI.onNext(true)
+                    self.viewModel.input.dateTimeI.onNext(true)
+                    self.viewModel.input.saldoI.onNext(true)
+                    self.statusPernyataan = false
+                }
+                self.link = nil
+            })
+            .drive()
+            .disposed(by: disposeBag)
+        
         viewModel.output.enableNextO
             .do(onNext: { [unowned self] (enable) in
                 self.btnNext.backgroundColor = enable ? #colorLiteral(red: 1, green: 0.5569574237, blue: 0, alpha: 1) : #colorLiteral(red: 0.9253990054, green: 0.9255540371, blue: 0.925378561, alpha: 1)
@@ -298,7 +320,7 @@ extension TantanganChallengeController: UITableViewDelegate {
                 return 110.0
             case 1:
                 if link != nil {
-                    return 219.0 + 75.0
+                    return 219.0 + 75.0 - 24.0
                 } else {
                     return 219.0
                 }
