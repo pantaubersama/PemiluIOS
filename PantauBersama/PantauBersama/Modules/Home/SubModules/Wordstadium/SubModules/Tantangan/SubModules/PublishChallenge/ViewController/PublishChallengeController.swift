@@ -41,6 +41,10 @@ class PublishChallengeController: UIViewController {
             .bind(to: viewModel.input.backI)
             .disposed(by: disposeBag)
         
+        btnPublish.rx.tap
+            .bind(to: viewModel.input.publishI)
+            .disposed(by: disposeBag)
+        
         promoteView.switchTwitter.rx.value
             .bind(to: viewModel.input.twitterI)
             .disposed(by: disposeBag)
@@ -160,6 +164,10 @@ class PublishChallengeController: UIViewController {
                   self.btnPublish.backgroundColor = enable ? #colorLiteral(red: 1, green: 0.5569574237, blue: 0, alpha: 1) : #colorLiteral(red: 0.9253990054, green: 0.9255540371, blue: 0.925378561, alpha: 1)
             })
             .drive(btnPublish.rx.isEnabled)
+            .disposed(by: disposeBag)
+        
+        viewModel.output.publishO
+            .drive()
             .disposed(by: disposeBag)
     }
     

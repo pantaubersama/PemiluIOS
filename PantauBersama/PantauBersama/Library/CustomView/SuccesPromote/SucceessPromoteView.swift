@@ -8,23 +8,16 @@
 
 import UIKit
 
-class SucceessPromoteView: UIView {
+class SucceessPromoteView: UIViewController {
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setup()
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.dismiss(animated: true, completion: {
+                self.navigationController?.popToRootViewController(animated: true)
+            })
+        }
+        
     }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        setup()
-    }
-    
-    private func setup() {
-        let view = loadNib()
-        view.frame = bounds
-        view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        addSubview(view)
-    }
-    
 }

@@ -108,12 +108,18 @@ class PublishChallengeViewModel: ViewModelType {
                 return Observable<MeFacebookResponse>.empty()
         }.asDriverOnErrorJustComplete()
         
+        var stateTwitter: Bool = false
         let user = refreshS
             .flatMapLatest { (_) -> Observable<User> in
                 return NetworkService.instance
                     .requestObject(PantauAuthAPI.me,
                                    c: BaseResponse<UserResponse>.self)
                     .map({ $0.data.user })
+                    .do(onSuccess: { (user) in
+                        if let twitterValue = user.twitter {
+                            stateTwitter = twitterValue
+                        }
+                    })
                     .trackError(self.errorTracker)
                     .trackActivity(self.activityIndicator)
                     .asObservable()
@@ -121,8 +127,7 @@ class PublishChallengeViewModel: ViewModelType {
             }
             .asDriverOnErrorJustComplete()
         
-        let enable = twitterS
-            .startWith(false)
+        let enable = Observable.merge(Observable.just(stateTwitter), twitterS)
             .asDriverOnErrorJustComplete()
         
         let publishOpen = publishS
@@ -134,7 +139,12 @@ class PublishChallengeViewModel: ViewModelType {
                                              timeAt: model.timeAt ?? "",
                                              timeLimit: Int(model.limitAt ?? "") ?? 0,
                                              topic: model.tag ?? "")
-                        , c: BaseResponse<TagKajianResponse>.self)
+                        , c: BaseResponse<CreateChallengeResponse>.self)
+                    .do(onSuccess: { (response) in
+                        print("Response create: \(response)")
+                    }, onError: { (e) in
+                        print(e.localizedDescription)
+                    })
                     .asObservable()
                     .mapToVoid()
         }.asDriverOnErrorJustComplete()

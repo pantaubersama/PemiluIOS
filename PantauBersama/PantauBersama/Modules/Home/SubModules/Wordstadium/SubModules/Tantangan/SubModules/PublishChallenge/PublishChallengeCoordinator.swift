@@ -11,6 +11,7 @@ import Networking
 
 protocol PublishChallengeNavigator {
     var finish: Observable<Void>! { get set }
+    func showSuccess()
 }
 
 final class PublishChallengeCoordinator: BaseCoordinator<Void> {
@@ -41,5 +42,12 @@ final class PublishChallengeCoordinator: BaseCoordinator<Void> {
 }
 
 extension PublishChallengeCoordinator: PublishChallengeNavigator {
-    
+    func showSuccess() {
+        let viewController = SucceessPromoteView()
+        viewController.providesPresentationContextTransitionStyle = true
+        viewController.definesPresentationContext = true
+        viewController.modalPresentationStyle = UIModalPresentationStyle.overFullScreen
+        viewController.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+        navigationController.present(viewController, animated: true, completion: nil)
+    }
 }

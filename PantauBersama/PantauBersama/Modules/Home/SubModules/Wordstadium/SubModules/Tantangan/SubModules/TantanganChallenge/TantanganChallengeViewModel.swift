@@ -207,7 +207,7 @@ class TantanganChallengeViewModel: ViewModelType {
         
         let challengeOpenModel = Observable.combineLatest(nameKajianS.asObservable(),
                                                           pernyataanTextS.asObservable(),
-                                                          sourceLinkS.asObservable(),
+                                                          sourceLinkS.asObservable().startWith(""),
                                                           datePickerS.asObservable(),
                                                           statusTimeS.asObservable(),
                                                           saldoTimeS.asObservable())
