@@ -19,7 +19,7 @@ class WordstadiumViewCell: UITableViewCell{
     @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var seeMoreBtn: UIButton!
     
-    private var wordstadium: SectionWordstadium!
+    private var wordstadium: SectionChallenge!
     private var viewModel: ILiniWordstadiumViewModel!
     
     private var disposeBag : DisposeBag?
@@ -52,7 +52,7 @@ extension WordstadiumViewCell: IReusableCell,UICollectionViewDelegate,UICollecti
     
     
     struct Input {
-        let wordstadium: SectionWordstadium
+        let wordstadium: SectionChallenge
         let viewModel : ILiniWordstadiumViewModel
     }
     

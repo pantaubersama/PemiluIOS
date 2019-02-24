@@ -46,12 +46,34 @@ struct SectionWordstadium {
     }
 }
 
-
 extension SectionWordstadium: SectionModelType {
     typealias Item = Wordstadium
-
+    
     init(original: SectionWordstadium, items: [Wordstadium]) {
         self = original
         self.items = items
     }
 }
+
+struct SectionChallenge {
+    let itemType: ItemType
+    var items: [Challenge]
+    var itemsLive: [Challenge]
+    
+    init(itemType: ItemType,items: [Challenge], itemsLive: [Challenge]) {
+        self.itemType = itemType
+        self.items = items
+        self.itemsLive = itemsLive
+    }
+}
+
+extension SectionChallenge: SectionModelType {
+    typealias Item = Challenge
+    
+    init(original: SectionChallenge, items: [Challenge]) {
+        self = original
+        self.items = items
+    }
+}
+
+

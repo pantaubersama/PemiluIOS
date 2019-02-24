@@ -18,8 +18,8 @@ class LiniWordstadiumViewController: UITableViewController, ILiniWordstadiumView
     internal let disposeBag = DisposeBag()
     
     private var headerView: BannerHeaderView!
-    private var rControl : UIRefreshControl?
-    private var dataSource: RxTableViewSectionedReloadDataSource<SectionWordstadium>!
+    internal lazy var rControl = UIRefreshControl()
+    private var dataSource: RxTableViewSectionedReloadDataSource<SectionChallenge>!
     
     convenience init(viewModel: ILiniWordstadiumViewModel) {
         self.init()
@@ -35,15 +35,22 @@ class LiniWordstadiumViewController: UITableViewController, ILiniWordstadiumView
         tableView.separatorStyle = .none
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         tableView.tableFooterView = UIView()
-        tableView.refreshControl = UIRefreshControl()
+
+        if #available(iOS 10.0, *) {
+            tableView.refreshControl = rControl
+        } else {
+            tableView.addSubview(rControl)
+        }
         
         registerCells(with: tableView)
         
-        bind(tableView: tableView, with: viewModel)
+        bind(tableView: tableView, refreshControl: rControl, with: viewModel)
         
         tableView.rx
             .setDelegate(self)
             .disposed(by: disposeBag)
+        
+        viewModel.input.refreshI.onNext(())
         
         viewModel.output.showHeaderO
             .drive(onNext: { [unowned self](isHeaderShown) in
@@ -60,7 +67,7 @@ class LiniWordstadiumViewController: UITableViewController, ILiniWordstadiumView
             })
             .disposed(by: disposeBag)
         
-        dataSource = RxTableViewSectionedReloadDataSource<SectionWordstadium>(
+        dataSource = RxTableViewSectionedReloadDataSource<SectionChallenge>(
             configureCell: { (dataSource, tableView, indexPath, item) in
                 let wordstadium = dataSource.sectionModels[indexPath.section]
                 
@@ -88,6 +95,12 @@ class LiniWordstadiumViewController: UITableViewController, ILiniWordstadiumView
         
         viewModel.output.itemSelectedO
             .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.items
+            .drive(onNext: { [unowned self](item) in
+                print("ahhahaha \(item)")
+            })
             .disposed(by: disposeBag)
         
     }

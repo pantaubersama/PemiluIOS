@@ -15,7 +15,7 @@ class LiniPersonalViewModel: ILiniWordstadiumViewModel, ILiniWordstadiumViewMode
     var input: ILiniWordstadiumViewModelInput { return self }
     var output: ILiniWordstadiumViewModelOutput { return self }
     
-    var refreshI: AnyObserver<String>
+    var refreshI: AnyObserver<Void>
     var moreI: AnyObserver<Wordstadium>
     var moreMenuI: AnyObserver<WordstadiumType>
     var seeMoreI: AnyObserver<SectionWordstadium>
@@ -24,11 +24,14 @@ class LiniPersonalViewModel: ILiniWordstadiumViewModel, ILiniWordstadiumViewMode
     var bannerO: Driver<BannerInfo>!
     var itemSelectedO: Driver<Void>!
     var showHeaderO: Driver<Bool>!
-    var itemsO: Driver<[SectionWordstadium]>!
+    var itemsO: Driver<[SectionChallenge]>!
     var moreSelectedO: Driver<Wordstadium>!
     var moreMenuSelectedO: Driver<String>!
+    var isLoading: Driver<Bool>!
+    var error: Driver<Error>!
+    var items: Driver<[Challenge]>!
     
-    private let refreshSubject = PublishSubject<String>()
+    private let refreshSubject = PublishSubject<Void>()
     private let moreSubject = PublishSubject<Wordstadium>()
     private let moreMenuSubject = PublishSubject<WordstadiumType>()
     private let seeMoreSubject = PublishSubject<SectionWordstadium>()
@@ -38,6 +41,8 @@ class LiniPersonalViewModel: ILiniWordstadiumViewModel, ILiniWordstadiumViewMode
     internal let activityIndicator = ActivityIndicator()
     internal let headerViewModel = BannerHeaderViewModel()
     
+    private let challengeItems = BehaviorRelay<[Challenge]>(value: [])
+    
     init(navigator: WordstadiumNavigator, showTableHeader: Bool) {
         refreshI = refreshSubject.asObserver()
         moreI = moreSubject.asObserver()
@@ -45,7 +50,10 @@ class LiniPersonalViewModel: ILiniWordstadiumViewModel, ILiniWordstadiumViewMode
         seeMoreI = seeMoreSubject.asObserver()
         itemSelectedI = itemSelectedSubject.asObserver()
         
-        bannerO = refreshSubject.startWith("")
+        error = errorTracker.asDriver()
+        isLoading = activityIndicator.asDriver()
+        
+        bannerO = refreshSubject.startWith(())
             .flatMapLatest({ _ in self.bannerInfo() })
             .asDriverOnErrorJustComplete()
         
@@ -74,9 +82,44 @@ class LiniPersonalViewModel: ILiniWordstadiumViewModel, ILiniWordstadiumViewMode
         
         itemSelectedO = Driver.merge(infoSelected,seeMoreSelected,itemSelected)
         
-        itemsO = refreshSubject.startWith("")
-            .flatMapLatest({ _ in self.generateWordstadium() })
-            .asDriverOnErrorJustComplete()
+//        itemsO = refreshSubject.startWith(())
+//            .flatMapLatest({ _ in self.generateWordstadium() })
+//            .asDriverOnErrorJustComplete()
+        
+        let liveItems = refreshSubject
+            .startWith(())
+            .flatMapLatest({ [weak self] (_) -> Observable<[Challenge]> in
+                guard let `self` = self else { return Observable<[Challenge]>.just([]) }
+                return self.getChallenge(progress: .liveNow)
+            }).asDriver(onErrorJustReturn: [])
+        
+        let comingSoonItems = refreshSubject
+            .startWith(())
+            .flatMapLatest({ [weak self] (_) -> Observable<[Challenge]> in
+                guard let `self` = self else { return Observable<[Challenge]>.just([]) }
+                return self.getChallenge(progress: .comingSoon)
+            }).asDriver(onErrorJustReturn: [])
+        
+        let doneItems = refreshSubject
+            .startWith(())
+            .flatMapLatest({ [weak self] (_) -> Observable<[Challenge]> in
+                guard let `self` = self else { return Observable<[Challenge]>.just([]) }
+                return self.getChallenge(progress: .done)
+            }).asDriver(onErrorJustReturn: [])
+        
+        let onGoingItems = refreshSubject
+            .startWith(())
+            .flatMapLatest({ [weak self] (_) -> Observable<[Challenge]> in
+                guard let `self` = self else { return Observable<[Challenge]>.just([]) }
+                return self.getChallenge(progress: .ongoing)
+            }).asDriver(onErrorJustReturn: [])
+        
+        itemsO = Driver.empty()
+        
+//        items = Driver.combineLatest(liveItems,comingSoonItems,doneItems,onGoingItems)
+//            .map({ (live,comingsoon,done,ongoing) -> [Challenge] in
+//                return live + comingsoon + done + ongoing
+//            })
         
         moreSelectedO = moreSubject
             .asObservable()
@@ -141,5 +184,25 @@ class LiniPersonalViewModel: ILiniWordstadiumViewModel, ILiniWordstadiumViewMode
         
         return Observable.just(items)
     }
+    
+    func getChallenge(progress: ProgressType) -> Observable<[Challenge]>{
+        return NetworkService.instance
+            .requestObject(WordstadiumAPI.getPublicChallenges(type: progress),
+                           c: BaseResponse<GetChallengeResponse>.self)
+            .map{( $0.data.challenges )}
+            .trackError(errorTracker)
+            .trackActivity(activityIndicator)
+            .asObservable()
+    }
+    
+//    func recursivelyPaginateItems(batch: BatchChallenge, progress: ProgressType) -> Observable<ChallengePage<[Challenge]>> {
+//        return NetworkService.instance
+//            .requestObject(WordstadiumAPI.getPersonalChallenges(type: progress),
+//                           c: BaseResponse<GetChallengeResponse>.self)
+//            .map{( self.transformToPage(response: $0, batch: batch) )}
+//            .asObservable()
+//
+//    }
+    
     
 }

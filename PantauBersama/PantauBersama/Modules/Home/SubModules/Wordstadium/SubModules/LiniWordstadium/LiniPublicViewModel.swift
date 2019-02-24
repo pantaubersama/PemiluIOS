@@ -12,10 +12,11 @@ import RxCocoa
 import Networking
 
 class LiniPublicViewModel: ILiniWordstadiumViewModel, ILiniWordstadiumViewModelInput, ILiniWordstadiumViewModelOutput {
+
     var input: ILiniWordstadiumViewModelInput { return self }
     var output: ILiniWordstadiumViewModelOutput { return self }
     
-    var refreshI: AnyObserver<String>
+    var refreshI: AnyObserver<Void>
     var moreI: AnyObserver<Wordstadium>
     var moreMenuI: AnyObserver<WordstadiumType>
     var seeMoreI: AnyObserver<SectionWordstadium>
@@ -24,11 +25,14 @@ class LiniPublicViewModel: ILiniWordstadiumViewModel, ILiniWordstadiumViewModelI
     var bannerO: Driver<BannerInfo>!
     var itemSelectedO: Driver<Void>!
     var showHeaderO: Driver<Bool>!
-    var itemsO: Driver<[SectionWordstadium]>!
+    var itemsO: Driver<[SectionChallenge]>!
     var moreSelectedO: Driver<Wordstadium>!
     var moreMenuSelectedO: Driver<String>!
+    var isLoading: Driver<Bool>!
+    var error: Driver<Error>!
+    var items: Driver<[Challenge]>!
     
-    private let refreshSubject = PublishSubject<String>()
+    private let refreshSubject = PublishSubject<Void>()
     private let moreSubject = PublishSubject<Wordstadium>()
     private let moreMenuSubject = PublishSubject<WordstadiumType>()
     private let seeMoreSubject = PublishSubject<SectionWordstadium>()
@@ -38,6 +42,9 @@ class LiniPublicViewModel: ILiniWordstadiumViewModel, ILiniWordstadiumViewModelI
     internal let activityIndicator = ActivityIndicator()
     internal let headerViewModel = BannerHeaderViewModel()
     
+    private let publicItems = BehaviorRelay<[Challenge]>(value: [])
+    private(set) var disposeBag = DisposeBag()
+    
     init(navigator: WordstadiumNavigator, showTableHeader: Bool) {
         refreshI = refreshSubject.asObserver()
         moreI = moreSubject.asObserver()
@@ -45,7 +52,10 @@ class LiniPublicViewModel: ILiniWordstadiumViewModel, ILiniWordstadiumViewModelI
         seeMoreI = seeMoreSubject.asObserver()
         itemSelectedI = itemSelectedSubject.asObserver()
         
-        bannerO = refreshSubject.startWith("")
+        error = errorTracker.asDriver()
+        isLoading = activityIndicator.asDriver()
+        
+        bannerO = refreshSubject.startWith(())
             .flatMapLatest({ _ in self.bannerInfo() })
             .asDriverOnErrorJustComplete()
         
@@ -74,9 +84,39 @@ class LiniPublicViewModel: ILiniWordstadiumViewModel, ILiniWordstadiumViewModelI
         
         itemSelectedO = Driver.merge(infoSelected,seeMoreSelected,itemSelected)
         
-        itemsO = refreshSubject.startWith("")
-            .flatMapLatest({ _ in self.generateWordstadium() })
-            .asDriverOnErrorJustComplete()
+//        itemsO = refreshSubject.startWith(())
+//            .flatMapLatest({ _ in self.generateWordstadium() })
+//            .asDriverOnErrorJustComplete()
+        
+        let liveItems = refreshSubject
+            .flatMapLatest({ [weak self] (_) -> Observable<[SectionChallenge]> in
+                guard let `self` = self else { return Observable<[SectionChallenge]>.just([]) }
+                return self.getChallenge(progress: .liveNow)
+            }).asDriver(onErrorJustReturn: [])
+        
+        let comingSoonItems = refreshSubject
+            .flatMapLatest({ [weak self] (_) -> Observable<[SectionChallenge]> in
+                guard let `self` = self else { return Observable<[SectionChallenge]>.just([]) }
+                return self.getChallenge(progress: .comingSoon)
+            }).asDriver(onErrorJustReturn: [])
+        
+        let doneItems = refreshSubject
+            .flatMapLatest({ [weak self] (_) -> Observable<[SectionChallenge]> in
+                guard let `self` = self else { return Observable<[SectionChallenge]>.just([]) }
+                return self.getChallenge(progress: .done)
+            }).asDriver(onErrorJustReturn: [])
+        
+        let onGoingItems = refreshSubject
+            .flatMapLatest({ [weak self] (_) -> Observable<[SectionChallenge]> in
+                guard let `self` = self else { return Observable<[SectionChallenge]>.just([]) }
+                return self.getChallenge(progress: .ongoing)
+            }).asDriver(onErrorJustReturn: [])
+
+        
+        itemsO = Driver.combineLatest(liveItems,comingSoonItems,doneItems,onGoingItems)
+            .map({ (live,comingsoon,done,ongoing) -> [SectionChallenge] in
+                return live + comingsoon + done + ongoing
+            })
         
         moreSelectedO = moreSubject
             .asObservable()
@@ -140,6 +180,16 @@ class LiniPublicViewModel: ILiniWordstadiumViewModel, ILiniWordstadiumViewModelI
         items.append(chalenge)
         
         return Observable.just(items)
+    }
+    
+    func getChallenge(progress: ProgressType) -> Observable<[SectionChallenge]>{
+        return NetworkService.instance
+            .requestObject(WordstadiumAPI.getPublicChallenges(type: progress),
+                           c: BaseResponse<GetChallengeResponse>.self)
+            .map{( self.transformToSection(challenge: $0.data.challenges, progress: progress))}
+            .trackError(errorTracker)
+            .trackActivity(activityIndicator)
+            .asObservable()
     }
     
 }

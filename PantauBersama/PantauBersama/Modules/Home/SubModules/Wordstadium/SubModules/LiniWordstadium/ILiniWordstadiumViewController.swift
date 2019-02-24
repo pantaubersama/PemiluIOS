@@ -18,7 +18,7 @@ protocol ILiniWordstadiumViewController where Self: UIViewController {
     
     func registerCells(with tableView: UITableView)
     func bind(headerView: BannerHeaderView, with viewModel: ILiniWordstadiumViewModel)
-    func bind(tableView: UITableView, with viewModel: ILiniWordstadiumViewModel)
+    func bind(tableView: UITableView, refreshControl: UIRefreshControl, with viewModel: ILiniWordstadiumViewModel)
 }
 
 extension ILiniWordstadiumViewController {
@@ -30,7 +30,7 @@ extension ILiniWordstadiumViewController {
         tableView.registerReusableCell(WordstadiumItemViewCell.self)
     }
     
-    func bind(tableView: UITableView, with viewModel: ILiniWordstadiumViewModel){
+    func bind(tableView: UITableView, refreshControl: UIRefreshControl, with viewModel: ILiniWordstadiumViewModel){
         
         viewModel.output.moreSelectedO
             .asObservable()
@@ -64,6 +64,26 @@ extension ILiniWordstadiumViewController {
             .filter { !$0.isEmpty }
             .drive(onNext: { (message) in
                 UIAlertController.showAlert(withTitle: "", andMessage: message)
+            })
+            .disposed(by: disposeBag)
+        
+        refreshControl.rx.controlEvent(.valueChanged)
+            .bind(to: viewModel.input.refreshI)
+            .disposed(by: disposeBag)
+        
+        viewModel.output.isLoading
+            .drive(onNext: { (isLoading) in
+                if !isLoading {
+                    refreshControl.endRefreshing()
+                }
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.output.error
+            .drive(onNext: { [weak self] (error) in
+                guard let `self` = self else { return }
+                guard let alert = UIAlertController.alert(with: error) else { return }
+                self.navigationController?.present(alert, animated: true, completion: nil)
             })
             .disposed(by: disposeBag)
     }
