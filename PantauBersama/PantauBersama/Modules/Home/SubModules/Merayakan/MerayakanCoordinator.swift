@@ -11,7 +11,7 @@ import RxSwift
 import Networking
 
 
-protocol MerayakanNavigator: RekapNavigator {
+protocol MerayakanNavigator: RekapNavigator, PerhitunganNavigator {
     func launchSearch() -> Observable<Void>
     func launchNotifications() -> Observable<Void>
 }

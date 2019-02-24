@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		043EE192221A36C2008C59CD /* MerayakanCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043EE17F221A36C2008C59CD /* MerayakanCoordinator.swift */; };
-		043EE193221A36C2008C59CD /* RekapCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043EE182221A36C2008C59CD /* RekapCoordinator.swift */; };
 		043EE194221A36C2008C59CD /* RekapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043EE183221A36C2008C59CD /* RekapViewModel.swift */; };
 		043EE195221A36C2008C59CD /* RekapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043EE185221A36C2008C59CD /* RekapController.swift */; };
 		043EE196221A36C2008C59CD /* RekapController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 043EE186221A36C2008C59CD /* RekapController.xib */; };
@@ -90,10 +89,12 @@
 		11D066AC21E38850003AC9BB /* PenpolFilterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D066AB21E38850003AC9BB /* PenpolFilterModel.swift */; };
 		11D066B021E399C1003AC9BB /* FilterRadioCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D066AE21E399C1003AC9BB /* FilterRadioCell.swift */; };
 		11D066B121E399C1003AC9BB /* FilterRadioCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11D066AF21E399C1003AC9BB /* FilterRadioCell.xib */; };
-		11DA97042222AFBF00A51E76 /* PerhitunganController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DA97022222AFBF00A51E76 /* PerhitunganController.swift */; };
-		11DA97052222AFBF00A51E76 /* PerhitunganController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11DA97032222AFBF00A51E76 /* PerhitunganController.xib */; };
 		11DA97072222B04D00A51E76 /* PerhitunganViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DA97062222B04D00A51E76 /* PerhitunganViewModel.swift */; };
-		11DA97092222B05900A51E76 /* PerhitunganCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DA97082222B05900A51E76 /* PerhitunganCoordinator.swift */; };
+		11DA970B2222C29A00A51E76 /* PerhitunganController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DA970A2222C29A00A51E76 /* PerhitunganController.swift */; };
+		11DA970F2222C2C200A51E76 /* PerhitunganCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DA970D2222C2C200A51E76 /* PerhitunganCell.swift */; };
+		11DA97102222C2C200A51E76 /* PerhitunganCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11DA970E2222C2C200A51E76 /* PerhitunganCell.xib */; };
+		11DA97122222CD7B00A51E76 /* PerhitunganNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DA97112222CD7B00A51E76 /* PerhitunganNavigator.swift */; };
+		11DA97142222CE9200A51E76 /* RekapNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DA97132222CE9200A51E76 /* RekapNavigator.swift */; };
 		11E1079121CD0FE200B7B074 /* QuizDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E1078F21CD0FE200B7B074 /* QuizDetailController.swift */; };
 		11E1079221CD0FE200B7B074 /* QuizDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11E1079021CD0FE200B7B074 /* QuizDetailController.xib */; };
 		11E1079421CD101900B7B074 /* QuizDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E1079321CD101900B7B074 /* QuizDetailCoordinator.swift */; };
@@ -534,7 +535,6 @@
 
 /* Begin PBXFileReference section */
 		043EE17F221A36C2008C59CD /* MerayakanCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MerayakanCoordinator.swift; sourceTree = "<group>"; };
-		043EE182221A36C2008C59CD /* RekapCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RekapCoordinator.swift; sourceTree = "<group>"; };
 		043EE183221A36C2008C59CD /* RekapViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RekapViewModel.swift; sourceTree = "<group>"; };
 		043EE185221A36C2008C59CD /* RekapController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RekapController.swift; sourceTree = "<group>"; };
 		043EE186221A36C2008C59CD /* RekapController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RekapController.xib; sourceTree = "<group>"; };
@@ -617,10 +617,12 @@
 		11D066AB21E38850003AC9BB /* PenpolFilterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PenpolFilterModel.swift; sourceTree = "<group>"; };
 		11D066AE21E399C1003AC9BB /* FilterRadioCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterRadioCell.swift; sourceTree = "<group>"; };
 		11D066AF21E399C1003AC9BB /* FilterRadioCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterRadioCell.xib; sourceTree = "<group>"; };
-		11DA97022222AFBF00A51E76 /* PerhitunganController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerhitunganController.swift; sourceTree = "<group>"; };
-		11DA97032222AFBF00A51E76 /* PerhitunganController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PerhitunganController.xib; sourceTree = "<group>"; };
 		11DA97062222B04D00A51E76 /* PerhitunganViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerhitunganViewModel.swift; sourceTree = "<group>"; };
-		11DA97082222B05900A51E76 /* PerhitunganCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerhitunganCoordinator.swift; sourceTree = "<group>"; };
+		11DA970A2222C29A00A51E76 /* PerhitunganController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerhitunganController.swift; sourceTree = "<group>"; };
+		11DA970D2222C2C200A51E76 /* PerhitunganCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerhitunganCell.swift; sourceTree = "<group>"; };
+		11DA970E2222C2C200A51E76 /* PerhitunganCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PerhitunganCell.xib; sourceTree = "<group>"; };
+		11DA97112222CD7B00A51E76 /* PerhitunganNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerhitunganNavigator.swift; sourceTree = "<group>"; };
+		11DA97132222CE9200A51E76 /* RekapNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RekapNavigator.swift; sourceTree = "<group>"; };
 		11E1078F21CD0FE200B7B074 /* QuizDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizDetailController.swift; sourceTree = "<group>"; };
 		11E1079021CD0FE200B7B074 /* QuizDetailController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuizDetailController.xib; sourceTree = "<group>"; };
 		11E1079321CD101900B7B074 /* QuizDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizDetailCoordinator.swift; sourceTree = "<group>"; };
@@ -1070,9 +1072,9 @@
 		043EE17E221A36C2008C59CD /* Merayakan */ = {
 			isa = PBXGroup;
 			children = (
-				043EE17F221A36C2008C59CD /* MerayakanCoordinator.swift */,
 				043EE180221A36C2008C59CD /* SubModules */,
 				043EE18E221A36C2008C59CD /* ViewController */,
+				043EE17F221A36C2008C59CD /* MerayakanCoordinator.swift */,
 				043EE191221A36C2008C59CD /* MerayakanViewModel.swift */,
 			);
 			path = Merayakan;
@@ -1090,8 +1092,8 @@
 		043EE181221A36C2008C59CD /* Rekap */ = {
 			isa = PBXGroup;
 			children = (
-				043EE182221A36C2008C59CD /* RekapCoordinator.swift */,
 				043EE183221A36C2008C59CD /* RekapViewModel.swift */,
+				11DA97132222CE9200A51E76 /* RekapNavigator.swift */,
 				043EE184221A36C2008C59CD /* ViewController */,
 			);
 			path = Rekap;
@@ -1397,9 +1399,10 @@
 		11DA97002222AF9500A51E76 /* Perhitungan */ = {
 			isa = PBXGroup;
 			children = (
+				11DA970C2222C2A500A51E76 /* Components */,
 				11DA97012222AFA100A51E76 /* ViewController */,
 				11DA97062222B04D00A51E76 /* PerhitunganViewModel.swift */,
-				11DA97082222B05900A51E76 /* PerhitunganCoordinator.swift */,
+				11DA97112222CD7B00A51E76 /* PerhitunganNavigator.swift */,
 			);
 			path = Perhitungan;
 			sourceTree = "<group>";
@@ -1407,10 +1410,18 @@
 		11DA97012222AFA100A51E76 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				11DA97022222AFBF00A51E76 /* PerhitunganController.swift */,
-				11DA97032222AFBF00A51E76 /* PerhitunganController.xib */,
+				11DA970A2222C29A00A51E76 /* PerhitunganController.swift */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		11DA970C2222C2A500A51E76 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				11DA970D2222C2C200A51E76 /* PerhitunganCell.swift */,
+				11DA970E2222C2C200A51E76 /* PerhitunganCell.xib */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		11E1078D21CD0DE100B7B074 /* QuizDetail */ = {
@@ -3269,7 +3280,6 @@
 				84E521B821F4A4E900B7CCBA /* StartOnboardingController.xib in Resources */,
 				84B8C1CB22157B4A004BC1FE /* PromoteView.xib in Resources */,
 				8423C3FA21F71711000AAA63 /* DetailAskController.xib in Resources */,
-				11DA97052222AFBF00A51E76 /* PerhitunganController.xib in Resources */,
 				84F892B321C787F700DC1048 /* BwModelica-BlackCondensed.otf in Resources */,
 				84A07F8F21D0CC9400269C6B /* landing-page-backround-mobile.json in Resources */,
 				131DBDB42215AF87005203FF /* ClapView.xib in Resources */,
@@ -3356,6 +3366,7 @@
 				8493BF88221699E700685BEC /* UserChallengeCell.xib in Resources */,
 				84FA426C2212F460008215C4 /* DateTimeCell.xib in Resources */,
 				84A07FA721D0E2E900269C6B /* SelfIdentitasController.xib in Resources */,
+				11DA97102222C2C200A51E76 /* PerhitunganCell.xib in Resources */,
 				84E6933E21D2936E00EA5464 /* HeaderEditProfile.xib in Resources */,
 				8493BF7E2216893100685BEC /* ChallengeButtonView.xib in Resources */,
 				84B7B8B321E4454B0099E7E3 /* EmptyView.xib in Resources */,
@@ -3733,6 +3744,7 @@
 				1147F22F21F83F1A001D0D59 /* ClusterDetailViewModel.swift in Sources */,
 				8493BF8A22169B7700685BEC /* UserChallengeCell.swift in Sources */,
 				84B8C1B122153AA4004BC1FE /* LinkPreviewView.swift in Sources */,
+				11DA97142222CE9200A51E76 /* RekapNavigator.swift in Sources */,
 				11E107A721CD33CA00B7B074 /* CreateJanjiViewModel.swift in Sources */,
 				84FF8A9921F21D0000AA8CF3 /* UpdatesCoordinator.swift in Sources */,
 				842A4A0921D7EA990050AA51 /* SignatureCoordinator.swift in Sources */,
@@ -3766,6 +3778,7 @@
 				1108871822126FEA0041B821 /* LiveDebatController.swift in Sources */,
 				137A29F821E2327D00F19072 /* ComingsoonCoordinator.swift in Sources */,
 				043EE194221A36C2008C59CD /* RekapViewModel.swift in Sources */,
+				11DA97122222CD7B00A51E76 /* PerhitunganNavigator.swift in Sources */,
 				84B2526821CC01F000565D82 /* AppState.swift in Sources */,
 				8451E05A22045AEC00F03E96 /* InfoNotifViewModel.swift in Sources */,
 				84E521BC21F4A81700B7CCBA /* ItemOnboardingController.swift in Sources */,
@@ -3782,7 +3795,6 @@
 				842A49F721D775420050AA51 /* HeaderDataLapor.swift in Sources */,
 				84E521B021F398B600B7CCBA /* ShareTrendViewModel.swift in Sources */,
 				11B3C78D21D110DA00EDCECB /* QuizSummaryViewModel.swift in Sources */,
-				11DA97042222AFBF00A51E76 /* PerhitunganController.swift in Sources */,
 				840850C321D25C7D00696CB3 /* ProfileEditController.swift in Sources */,
 				132EE0352216A39500F0429E /* WordstadiumListViewController.swift in Sources */,
 				1149EB7F221A9DDC0050F366 /* DebatDetailCoordinator.swift in Sources */,
@@ -3854,7 +3866,6 @@
 				84B8C1BF22157347004BC1FE /* ChallengeDetailView.swift in Sources */,
 				11B3C78B21D110CB00EDCECB /* QuizSummaryCoordinator.swift in Sources */,
 				131DBDB02215AF69005203FF /* TimeView.swift in Sources */,
-				043EE193221A36C2008C59CD /* RekapCoordinator.swift in Sources */,
 				1161F9F421DF4B4000C1BAD5 /* QuizButton.swift in Sources */,
 				13E6FECD221F24C9008CA788 /* LiniPublicViewModel.swift in Sources */,
 				13BF405321EBAA8F005C9A64 /* IQuestionListViewModel.swift in Sources */,
@@ -3923,7 +3934,6 @@
 				13F456C921DB88B000CE45F1 /* BannerInfoCoordinator.swift in Sources */,
 				84FA42772213015B008215C4 /* HintTantanganView.swift in Sources */,
 				84B2522E21CAB53C00565D82 /* OnboardingCoordinator.swift in Sources */,
-				11DA97092222B05900A51E76 /* PerhitunganCoordinator.swift in Sources */,
 				1161F9F221DF3CC300C1BAD5 /* ImageModel.swift in Sources */,
 				840850DB21D282B100696CB3 /* BadgeController.swift in Sources */,
 				84FA427B22130237008215C4 /* HintTantanganCoordinator.swift in Sources */,
@@ -3939,6 +3949,7 @@
 				11E107B521CD44FD00B7B074 /* QuizOngoingCoordinator.swift in Sources */,
 				84B6D51621F842EB00DD742A /* PartyCell.swift in Sources */,
 				84B7B8C721E4A0A00099E7E3 /* IClusterSearchDelegate.swift in Sources */,
+				11DA970B2222C29A00A51E76 /* PerhitunganController.swift in Sources */,
 				840850D221D2632500696CB3 /* ProfileEditCoordinator.swift in Sources */,
 				8409374D21D361240024A444 /* PilpresNavigator.swift in Sources */,
 				840850DF21D2843D00696CB3 /* BadgeViewModel.swift in Sources */,
@@ -3958,6 +3969,7 @@
 				13E139552213FF1B00286EDE /* SectionViewCell.swift in Sources */,
 				844C3D7A21C5230C00199871 /* RawRepresentable.swift in Sources */,
 				1147F23321F84306001D0D59 /* ClusterSearchNavigator.swift in Sources */,
+				11DA970F2222C2C200A51E76 /* PerhitunganCell.swift in Sources */,
 				131DBDAE2215AF48005203FF /* ClapView.swift in Sources */,
 				840850D721D2802000696CB3 /* ProfileInfoDummyData.swift in Sources */,
 				13F4569921CF982E00CE45F1 /* QuestionNavigator.swift in Sources */,
