@@ -19,6 +19,7 @@ class TantanganChallengeViewModel: ViewModelType {
         let backI: AnyObserver<Void>
         let refreshI: AnyObserver<String>
         let kajianI: AnyObserver<Bool>
+        let nameKajianI: AnyObserver<String>
         let pernyataanI: AnyObserver<Bool>
         let dateTimeI: AnyObserver<Bool>
         let saldoI: AnyObserver<Bool>
@@ -33,6 +34,7 @@ class TantanganChallengeViewModel: ViewModelType {
         let saldoTimeI: AnyObserver<String>
         let hintSaldoI: AnyObserver<Void>
         let pernyataanLinkI: AnyObserver<Void>
+        let sourceLinkI: AnyObserver<String>
         let pernyataanLinkCancelI: AnyObserver<Void>
         let hintDebatI: AnyObserver<Void>
         let lawanDebatI: AnyObserver<Bool>
@@ -62,6 +64,7 @@ class TantanganChallengeViewModel: ViewModelType {
     private let backS = PublishSubject<Void>()
     private let refreshS = PublishSubject<String>()
     private let kajianS = PublishSubject<Bool>()
+    private let nameKajianS = PublishSubject<String>()
     private let pernyataanS = PublishSubject<Bool>()
     private let dateTimeS = PublishSubject<Bool>()
     private let saldoS = PublishSubject<Bool>()
@@ -76,6 +79,7 @@ class TantanganChallengeViewModel: ViewModelType {
     private let saldoTimeS = PublishSubject<String>()
     private let hintSaldoS = PublishSubject<Void>()
     private let pernyataanLinkS = PublishSubject<Void>()
+    private let sourceLinkS = PublishSubject<String>()
     private let pernyataanLinkCancelS = PublishSubject<Void>()
     private let hintDebatS = PublishSubject<Void>()
     private let lawanDebatS = PublishSubject<Bool>()
@@ -94,6 +98,7 @@ class TantanganChallengeViewModel: ViewModelType {
         input = Input(backI: backS.asObserver(),
                       refreshI: refreshS.asObserver(),
                       kajianI: kajianS.asObserver(),
+                      nameKajianI: nameKajianS.asObserver(),
                       pernyataanI: pernyataanS.asObserver(),
                       dateTimeI: dateTimeS.asObserver(),
                       saldoI: saldoS.asObserver(),
@@ -108,6 +113,7 @@ class TantanganChallengeViewModel: ViewModelType {
                       saldoTimeI: saldoTimeS.asObserver(),
                       hintSaldoI: hintSaldoS.asObserver(),
                       pernyataanLinkI: pernyataanLinkS.asObserver(),
+                      sourceLinkI: sourceLinkS.asObserver(),
                       pernyataanLinkCancelI: pernyataanLinkCancelS.asObserver(),
                       hintDebatI: hintDebatS.asObserver(),
                       lawanDebatI: lawanDebatS.asObserver(),
@@ -199,9 +205,52 @@ class TantanganChallengeViewModel: ViewModelType {
             .flatMapLatest({ navigator.launchPernyataanLink() })
             .asDriverOnErrorJustComplete()
         
-        let nextPublish = btnNextS
-            .flatMapLatest({ navigator.launchPublish(type: type ) })
-            .asDriverOnErrorJustComplete()
+        let challengeOpenModel = Observable.combineLatest(nameKajianS.asObservable(),
+                                                          pernyataanTextS.asObservable(),
+                                                          sourceLinkS.asObservable().startWith(""),
+                                                          datePickerS.asObservable(),
+                                                          statusTimeS.asObservable(),
+                                                          saldoTimeS.asObservable())
+            .flatMapLatest { (arg) -> Observable<ChallengeModel> in
+                let (tag, pernyataan, link, date, timeAt, saldo) = arg
+                return Observable.just(ChallengeModel(tag: tag,
+                                      statement: pernyataan,
+                                      source: link,
+                                      timeAt: "\(date)-\(timeAt)",
+                                      limitAt: saldo,
+                                      userId: nil,
+                                      screenName: nil))
+        }
+
+        let nextPublishOpen = btnNextS
+            .withLatestFrom(challengeOpenModel)
+            .flatMapLatest { (model) -> Observable<Void> in
+                return navigator.launchPublish(type: type, model: model)
+        }.asDriverOnErrorJustComplete()
+        
+        let directModel = Observable.combineLatest(nameKajianS.asObservable(),
+                                                   pernyataanTextS.asObservable(),
+                                                   sourceLinkS.asObservable(),
+                                                   datePickerS.asObservable(),
+                                                   statusTimeS.asObservable(),
+                                                   saldoTimeS.asObservable())
+            .flatMapLatest { (arg) -> Observable<ChallengeModel> in
+                let (tag, pernyataan, link, date, timeAt, saldo) = arg
+                return Observable.just(ChallengeModel(tag: tag,
+                                                      statement: pernyataan,
+                                                      source: link,
+                                                      timeAt: "\(date)-\(timeAt)",
+                                                      limitAt: saldo,
+                                                      userId: "",
+                                                      screenName: ""))
+        }
+        
+        let nextPublishDirect = btnNextS
+            .withLatestFrom(directModel)
+            .flatMapLatest { (model) -> Observable<Void> in
+                return navigator.launchPublish(type: type, model: model)
+        }.asDriverOnErrorJustComplete()
+        
         
         output = Output(itemsO: type ? itemsDirect : itemsOpen,
                         meO: me.asDriverOnErrorJustComplete(),
@@ -219,7 +268,7 @@ class TantanganChallengeViewModel: ViewModelType {
                         pernyataanLink: pernyataanLink,
                         cancelLinkO: pernyataanLinkCancelS.asDriverOnErrorJustComplete(),
                         hintDebatO: hintDebat,
-                        btnNextO: nextPublish)
+                        btnNextO: type ? nextPublishDirect : nextPublishOpen)
     }
     
 }

@@ -11,6 +11,7 @@ import RxSwift
 import RxCocoa
 import TwitterKit
 import FBSDKLoginKit
+import Common
 
 class PublishChallengeController: UIViewController {
     
@@ -21,6 +22,7 @@ class PublishChallengeController: UIViewController {
     @IBOutlet weak var constraintPromote: NSLayoutConstraint!
     @IBOutlet weak var constraintChallenge: NSLayoutConstraint!
     @IBOutlet weak var headerTantanganView: HeaderTantanganView!
+    @IBOutlet weak var btnPublish: Button!
     
     var viewModel: PublishChallengeViewModel!
     private let disposeBag: DisposeBag = DisposeBag()
@@ -37,6 +39,10 @@ class PublishChallengeController: UIViewController {
         
         back.rx.tap
             .bind(to: viewModel.input.backI)
+            .disposed(by: disposeBag)
+        
+        btnPublish.rx.tap
+            .bind(to: viewModel.input.publishI)
             .disposed(by: disposeBag)
         
         promoteView.switchTwitter.rx.value
@@ -152,6 +158,17 @@ class PublishChallengeController: UIViewController {
             .disposed(by: disposeBag)
         
         viewModel.input.refreshI.onNext(())
+        
+        viewModel.output.enableO
+            .do(onNext: { [unowned self] (enable) in
+                  self.btnPublish.backgroundColor = enable ? #colorLiteral(red: 1, green: 0.5569574237, blue: 0, alpha: 1) : #colorLiteral(red: 0.9253990054, green: 0.9255540371, blue: 0.925378561, alpha: 1)
+            })
+            .drive(btnPublish.rx.isEnabled)
+            .disposed(by: disposeBag)
+        
+        viewModel.output.publishO
+            .drive()
+            .disposed(by: disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {

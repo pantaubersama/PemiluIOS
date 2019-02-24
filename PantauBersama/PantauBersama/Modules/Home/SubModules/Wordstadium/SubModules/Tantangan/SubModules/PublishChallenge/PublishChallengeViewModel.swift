@@ -25,6 +25,7 @@ class PublishChallengeViewModel: ViewModelType {
         let refreshI: AnyObserver<Void>
         let facebookLoginI: AnyObserver<String>
         let facebookGraphI: AnyObserver<Void>
+        let publishI: AnyObserver<Void>
     }
     
     struct Output {
@@ -34,6 +35,8 @@ class PublishChallengeViewModel: ViewModelType {
         let twitterLoginO: Driver<Void>
         let facebookLoginO: Driver<Void>
         let facebookGraphO: Driver<MeFacebookResponse>
+        let enableO: Driver<Bool>
+        let publishO: Driver<Void>
     }
     
     private let backS = PublishSubject<Void>()
@@ -43,16 +46,19 @@ class PublishChallengeViewModel: ViewModelType {
     private let refreshS = PublishSubject<Void>()
     private let facebookLoginS = PublishSubject<String>()
     private let facebookGraphS = PublishSubject<Void>()
+    private let publishS = PublishSubject<Void>()
     
     private let errorTracker = ErrorTracker()
     private let activityIndicator = ActivityIndicator()
     private var navigator: PublishChallengeNavigator
     private var type: Bool
+    private var model: ChallengeModel
     
-    init(navigator: PublishChallengeNavigator, type: Bool) {
+    init(navigator: PublishChallengeNavigator, type: Bool, model: ChallengeModel) {
         self.navigator = navigator
         self.navigator.finish = backS
         self.type = type
+        self.model = model
         
         input = Input(backI: backS.asObserver(),
                       twitterI: twitterS.asObserver(),
@@ -60,10 +66,10 @@ class PublishChallengeViewModel: ViewModelType {
                       twitterLoginI: twitterLoginS.asObserver(),
                       refreshI: refreshS.asObserver(),
                       facebookLoginI: facebookLoginS.asObserver(),
-                      facebookGraphI: facebookGraphS.asObserver())
+                      facebookGraphI: facebookGraphS.asObserver(),
+                      publishI: publishS.asObserver())
         
         
-        var stateTwitter: Bool = false
         let twitter = twitterLoginS
             .flatMapLatest { (_) -> Observable<Void> in
                 return TWTRTwitter.sharedInstance().loginTwitter()
@@ -102,18 +108,46 @@ class PublishChallengeViewModel: ViewModelType {
                 return Observable<MeFacebookResponse>.empty()
         }.asDriverOnErrorJustComplete()
         
+        var stateTwitter: Bool = false
         let user = refreshS
             .flatMapLatest { (_) -> Observable<User> in
                 return NetworkService.instance
                     .requestObject(PantauAuthAPI.me,
                                    c: BaseResponse<UserResponse>.self)
                     .map({ $0.data.user })
+                    .do(onSuccess: { (user) in
+                        if let twitterValue = user.twitter {
+                            stateTwitter = twitterValue
+                        }
+                    })
                     .trackError(self.errorTracker)
                     .trackActivity(self.activityIndicator)
                     .asObservable()
                     .catchErrorJustComplete()
             }
             .asDriverOnErrorJustComplete()
+        
+        let enable = Observable.merge(Observable.just(stateTwitter), twitterS)
+            .asDriverOnErrorJustComplete()
+        
+        let publishOpen = publishS
+            .flatMapLatest { (_) -> Observable<Void> in
+                return NetworkService.instance
+                    .requestObject(WordstadiumAPI
+                        .createChallengeOpen(statement: model.statement ?? "",
+                                             source: model.source ?? "",
+                                             timeAt: model.timeAt ?? "",
+                                             timeLimit: Int(model.limitAt ?? "") ?? 0,
+                                             topic: model.tag ?? "")
+                        , c: BaseResponse<CreateChallengeResponse>.self)
+                    .do(onSuccess: { (response) in
+                        print("Response create: \(response)")
+                    }, onError: { (e) in
+                        print(e.localizedDescription)
+                    })
+                    .asObservable()
+                    .mapToVoid()
+        }.asDriverOnErrorJustComplete()
         
         
         
@@ -122,7 +156,9 @@ class PublishChallengeViewModel: ViewModelType {
                         facebookO: facebookS.asDriverOnErrorJustComplete(),
                         twitterLoginO: twitter,
                         facebookLoginO: facebook,
-                        facebookGraphO: facebookMe)
+                        facebookGraphO: facebookMe,
+                        enableO: enable,
+                        publishO: publishOpen)
         
     }
     

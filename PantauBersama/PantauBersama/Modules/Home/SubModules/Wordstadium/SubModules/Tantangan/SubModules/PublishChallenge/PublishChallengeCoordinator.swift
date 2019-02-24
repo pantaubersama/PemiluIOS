@@ -11,6 +11,7 @@ import Networking
 
 protocol PublishChallengeNavigator {
     var finish: Observable<Void>! { get set }
+    func showSuccess()
 }
 
 final class PublishChallengeCoordinator: BaseCoordinator<Void> {
@@ -18,14 +19,16 @@ final class PublishChallengeCoordinator: BaseCoordinator<Void> {
     private let navigationController: UINavigationController
     var finish: Observable<Void>!
     var type: Bool
+    var challengeModel: ChallengeModel
     
-    init(navigationController: UINavigationController, type: Bool) {
+    init(navigationController: UINavigationController, type: Bool, model: ChallengeModel) {
         self.navigationController = navigationController
         self.type = type
+        self.challengeModel = model
     }
     
     override func start() -> Observable<Void> {
-        let viewModel = PublishChallengeViewModel(navigator: self, type: type)
+        let viewModel = PublishChallengeViewModel(navigator: self, type: type, model: challengeModel)
         let viewController = PublishChallengeController()
         viewController.tantanganType = type
         viewController.viewModel = viewModel
@@ -39,5 +42,12 @@ final class PublishChallengeCoordinator: BaseCoordinator<Void> {
 }
 
 extension PublishChallengeCoordinator: PublishChallengeNavigator {
-    
+    func showSuccess() {
+        let viewController = SucceessPromoteView()
+        viewController.providesPresentationContextTransitionStyle = true
+        viewController.definesPresentationContext = true
+        viewController.modalPresentationStyle = UIModalPresentationStyle.overFullScreen
+        viewController.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+        navigationController.present(viewController, animated: true, completion: nil)
+    }
 }
