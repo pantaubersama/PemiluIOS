@@ -302,6 +302,17 @@ class TantanganChallengeController: UIViewController {
             viewModel.input.dateTimeI.onNext(true)
             viewModel.input.saldoI.onNext(true)
         }
+        
+        viewModel.output.symbolicButtonO
+            .do(onNext: { (result) in
+                switch result {
+                case .cancel: break
+                case .oke(let data):
+                    print("data \(data)")
+                }
+            })
+            .drive()
+            .disposed(by: disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {

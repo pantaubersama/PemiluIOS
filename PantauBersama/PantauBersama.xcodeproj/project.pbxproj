@@ -355,6 +355,10 @@
 		84A945B02223C8E500944C6B /* SuccessPromoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A945AF2223C8E500944C6B /* SuccessPromoteViewModel.swift */; };
 		84A945B32223FC7100944C6B /* SuccessPromoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A945B12223FC7100944C6B /* SuccessPromoteView.swift */; };
 		84A945B42223FC7100944C6B /* SuccessPromoteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84A945B22223FC7100944C6B /* SuccessPromoteView.xib */; };
+		84A945BB22240A8F00944C6B /* SearchUserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A945B922240A8F00944C6B /* SearchUserController.swift */; };
+		84A945BC22240A8F00944C6B /* SearchUserController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84A945BA22240A8F00944C6B /* SearchUserController.xib */; };
+		84A945BE22240D2E00944C6B /* SearchUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A945BD22240D2E00944C6B /* SearchUserViewModel.swift */; };
+		84A945C022240D6600944C6B /* SearchUserCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A945BF22240D6600944C6B /* SearchUserCoordinator.swift */; };
 		84AEFA75221E738400F3DC92 /* RefuseChallengeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84AEFA74221E738400F3DC92 /* RefuseChallengeView.xib */; };
 		84AEFA77221E74BC00F3DC92 /* RefuseChallengeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AEFA76221E74BC00F3DC92 /* RefuseChallengeView.swift */; };
 		84AEFA8022200B8B00F3DC92 /* ChallengeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AEFA7F22200B8B00F3DC92 /* ChallengeModel.swift */; };
@@ -898,6 +902,10 @@
 		84A945AF2223C8E500944C6B /* SuccessPromoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessPromoteViewModel.swift; sourceTree = "<group>"; };
 		84A945B12223FC7100944C6B /* SuccessPromoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessPromoteView.swift; sourceTree = "<group>"; };
 		84A945B22223FC7100944C6B /* SuccessPromoteView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SuccessPromoteView.xib; sourceTree = "<group>"; };
+		84A945B922240A8F00944C6B /* SearchUserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUserController.swift; sourceTree = "<group>"; };
+		84A945BA22240A8F00944C6B /* SearchUserController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchUserController.xib; sourceTree = "<group>"; };
+		84A945BD22240D2E00944C6B /* SearchUserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUserViewModel.swift; sourceTree = "<group>"; };
+		84A945BF22240D6600944C6B /* SearchUserCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUserCoordinator.swift; sourceTree = "<group>"; };
 		84AEFA74221E738400F3DC92 /* RefuseChallengeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RefuseChallengeView.xib; sourceTree = "<group>"; };
 		84AEFA76221E74BC00F3DC92 /* RefuseChallengeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefuseChallengeView.swift; sourceTree = "<group>"; };
 		84AEFA7F22200B8B00F3DC92 /* ChallengeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeModel.swift; sourceTree = "<group>"; };
@@ -2646,6 +2654,17 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
+		84A945B822240A5300944C6B /* SearchUser */ = {
+			isa = PBXGroup;
+			children = (
+				84A945B922240A8F00944C6B /* SearchUserController.swift */,
+				84A945BA22240A8F00944C6B /* SearchUserController.xib */,
+				84A945BD22240D2E00944C6B /* SearchUserViewModel.swift */,
+				84A945BF22240D6600944C6B /* SearchUserCoordinator.swift */,
+			);
+			path = SearchUser;
+			sourceTree = "<group>";
+		};
 		84AEFA73221E736600F3DC92 /* RefuseView */ = {
 			isa = PBXGroup;
 			children = (
@@ -2908,6 +2927,7 @@
 		84E2854121CA189B00298E31 /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
+				84A945B822240A5300944C6B /* SearchUser */,
 				84AEFA73221E736600F3DC92 /* RefuseView */,
 				8493BF712216785800685BEC /* SuccesPromote */,
 				84B8C1C922157B3C004BC1FE /* PromoteView */,
@@ -3313,6 +3333,7 @@
 				84CA10BF21EF0DE80025CF10 /* AboutController.xib in Resources */,
 				842A4A0321D7C6810050AA51 /* CameraController.xib in Resources */,
 				84B8C1C222157584004BC1FE /* FooterProfileView.xib in Resources */,
+				84A945BC22240A8F00944C6B /* SearchUserController.xib in Resources */,
 				84FA427E2213062A008215C4 /* BidangKajianController.xib in Resources */,
 				1320595F221359C200BE9456 /* WordstadiumCollectionCell.xib in Resources */,
 				84B7B8B521E445D00099E7E3 /* empty-status.json in Resources */,
@@ -4049,10 +4070,12 @@
 				84B8C1BD22157288004BC1FE /* LawanDebatView.swift in Sources */,
 				13F456D621DBA2F600CE45F1 /* BannerHeaderViewModel.swift in Sources */,
 				1149EB81221A9DE90050F366 /* DebatDetailViewModel.swift in Sources */,
+				84A945C022240D6600944C6B /* SearchUserCoordinator.swift in Sources */,
 				84FA425A2212BB4B008215C4 /* TantanganCell.swift in Sources */,
 				1108871C221271CD0041B821 /* LiveDebatCoordinator.swift in Sources */,
 				840850E121D2844700696CB3 /* BadgeCoordinator.swift in Sources */,
 				84EC7D152215864A00CDFD4D /* PublishChallengeViewModel.swift in Sources */,
+				84A945BB22240A8F00944C6B /* SearchUserController.swift in Sources */,
 				8451E05C22045BD400F03E96 /* NotificationCoordinator.swift in Sources */,
 				11D066A421E3850E003AC9BB /* PenpolFilterController.swift in Sources */,
 				84FA423622128A57008215C4 /* TooltipViewModel.swift in Sources */,
@@ -4061,6 +4084,7 @@
 				840850D521D2741700696CB3 /* LogoutCoordinator.swift in Sources */,
 				842A4A0721D7E4740050AA51 /* KTPViewModel.swift in Sources */,
 				84A07FC621D14F3800269C6B /* ReqClusterCoordinator.swift in Sources */,
+				84A945BE22240D2E00944C6B /* SearchUserViewModel.swift in Sources */,
 				84E2855321CA524200298E31 /* FilterCoordinator.swift in Sources */,
 				84FF8A9F21F21F3A00AA8CF3 /* UpdatesViewModel.swift in Sources */,
 				848B03A121E7B5DE002CAA40 /* WKWebViewModel.swift in Sources */,

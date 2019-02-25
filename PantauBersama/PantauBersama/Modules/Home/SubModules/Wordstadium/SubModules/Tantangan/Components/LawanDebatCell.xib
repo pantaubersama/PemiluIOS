@@ -119,7 +119,7 @@
                                                 <rect key="frame" x="40" y="7" width="198.5" height="26"/>
                                                 <subviews>
                                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RQe-gp-RO7" customClass="Label" customModule="Common">
-                                                        <rect key="frame" x="0.0" y="26" width="42" height="13"/>
+                                                        <rect key="frame" x="0.0" y="26" width="27" height="13"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="13" id="Ava-Vf-c9f"/>
                                                         </constraints>
@@ -134,7 +134,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
                                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A9k-H2-bZL" customClass="Label" customModule="Common">
-                                                        <rect key="frame" x="0.0" y="26" width="42" height="0.0"/>
+                                                        <rect key="frame" x="0.0" y="26" width="27" height="0.0"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" red="0.45882352941176469" green="0.45882352941176469" blue="0.45882352941176469" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <nil key="highlightedColor"/>
@@ -216,7 +216,7 @@
                                                 <rect key="frame" x="40" y="7" width="198.5" height="26"/>
                                                 <subviews>
                                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jg3-aX-tSA" customClass="Label" customModule="Common">
-                                                        <rect key="frame" x="0.0" y="26" width="42" height="13"/>
+                                                        <rect key="frame" x="0.0" y="26" width="27" height="13"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="13" id="Nt4-or-Fte"/>
                                                         </constraints>
@@ -231,7 +231,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
                                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iVE-8Y-pPT" customClass="Label" customModule="Common">
-                                                        <rect key="frame" x="0.0" y="26" width="42" height="0.0"/>
+                                                        <rect key="frame" x="0.0" y="26" width="27" height="0.0"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" red="0.78040271999999999" green="0.78037315610000002" blue="0.78039318319999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <nil key="highlightedColor"/>

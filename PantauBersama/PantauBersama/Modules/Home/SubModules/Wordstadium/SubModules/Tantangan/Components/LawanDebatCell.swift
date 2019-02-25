@@ -89,6 +89,14 @@ extension LawanDebatCell: IReusableCell {
     func configure(item: Input) {
         let bag = DisposeBag()
         
+        btnSymbolic.rx.tap
+            .do(onNext: { [weak self] (_) in
+                self?.radioButton.select()
+                self?.radioButtonTwitter.deselect()
+            })
+            .bind(to: item.viewModel.input.symbolicButtonI)
+            .disposed(by: bag)
+        
         btnHint.rx.tap
             .bind(to: item.viewModel.input.hintDebatI)
             .disposed(by: bag)
