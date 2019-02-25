@@ -19,7 +19,7 @@ class WordstadiumViewCell: UITableViewCell{
     @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var seeMoreBtn: UIButton!
     
-    private var wordstadium: SectionChallenge!
+    private var wordstadium: SectionWordstadium!
     private var viewModel: ILiniWordstadiumViewModel!
     
     private var disposeBag : DisposeBag?
@@ -52,7 +52,7 @@ extension WordstadiumViewCell: IReusableCell,UICollectionViewDelegate,UICollecti
     
     
     struct Input {
-        let wordstadium: SectionChallenge
+        let wordstadium: SectionWordstadium
         let viewModel : ILiniWordstadiumViewModel
     }
     
@@ -60,14 +60,13 @@ extension WordstadiumViewCell: IReusableCell,UICollectionViewDelegate,UICollecti
         self.wordstadium = item.wordstadium
         self.viewModel = item.viewModel
         
-        switch item.wordstadium.itemType {
-        case .live:
-            self.titleLbl.text = "Live Now"
+        self.titleLbl.text = item.wordstadium.title
+        
+        switch item.wordstadium.type {
+        case .public:
             self.titleIv.image = UIImage(named: "icWordLive")
-        case .inProgress:
-            self.titleLbl.text = "Challenge in Progress"
+        case .personal:
             self.titleIv.image = UIImage(named: "icWordChallange")
-        default: break
         }
         
         let bag = DisposeBag()
@@ -94,7 +93,7 @@ extension WordstadiumViewCell: IReusableCell,UICollectionViewDelegate,UICollecti
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let collection = collectionView.dequeueReusableCell(indexPath: indexPath) as WordstadiumCollectionCell
-        collection.configureCell(item: WordstadiumCollectionCell.Input(type: self.wordstadium.itemType))
+        collection.configureCell(item: WordstadiumCollectionCell.Input(type: self.wordstadium.type))
         collection.moreMenuBtn.rx.tap
             .map({ self.wordstadium.itemsLive[indexPath.row] })
             .bind(to: self.viewModel.input.moreI)

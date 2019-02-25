@@ -35,23 +35,23 @@ class WordstadiumListViewModel: ViewModelType {
         input = Input(backTriggger: backSubject.asObserver(),
                       refreshTrigger: refreshSubject.asObserver())
         
-        let showItems = refreshSubject.startWith("")
-            .flatMapLatest({ _ in self.generateListWordstadium(type: wordstadium.itemType) })
-            .asDriverOnErrorJustComplete()
+//        let showItems = refreshSubject.startWith("")
+//            .flatMapLatest({ _ in self.generateListWordstadium(type: wordstadium.itemType) })
+//            .asDriverOnErrorJustComplete()
         
-        output = Output(items: showItems)
+        output = Output(items: Driver.empty())
     }
     
     
-    private func generateListWordstadium(type: ItemType) ->  Observable<[SectionWordstadium]> {
-        var items : [SectionWordstadium] = []
-        let wordstadium = SectionWordstadium(title: "MY WORDSTADIUM",
-                                       descriptiom: "Daftar tantangan dan debat yang akan atau sudah kamu ikuti ditampilkan semua di sini.",
-                                       itemType: type,
-                                       items: [Wordstadium(title: "", type: .challenge),Wordstadium(title: "", type: .challenge),Wordstadium(title: "", type: .challengeOpen),Wordstadium(title: "", type: .challenge),Wordstadium(title: "", type: .challengeDirect),Wordstadium(title: "", type: .challenge),Wordstadium(title: "", type: .challengeDenied),Wordstadium(title: "", type: .challenge),Wordstadium(title: "", type: .challengeExpired),Wordstadium(title: "", type: .challenge),Wordstadium(title: "", type: .challenge),Wordstadium(title: "", type: .challenge)],
-                                       itemsLive: [])
-    
-        items.append(wordstadium)
-        return Observable.just(items)
-    }
+//    private func generateListWordstadium(type: ItemType) ->  Observable<[SectionWordstadium]> {
+//        var items : [SectionWordstadium] = []
+//        let wordstadium = SectionWordstadium(title: "MY WORDSTADIUM",
+//                                       descriptiom: "Daftar tantangan dan debat yang akan atau sudah kamu ikuti ditampilkan semua di sini.",
+//                                       itemType: type,
+//                                       items: [Wordstadium(title: "", type: .challenge),Wordstadium(title: "", type: .challenge),Wordstadium(title: "", type: .challengeOpen),Wordstadium(title: "", type: .challenge),Wordstadium(title: "", type: .challengeDirect),Wordstadium(title: "", type: .challenge),Wordstadium(title: "", type: .challengeDenied),Wordstadium(title: "", type: .challenge),Wordstadium(title: "", type: .challengeExpired),Wordstadium(title: "", type: .challenge),Wordstadium(title: "", type: .challenge),Wordstadium(title: "", type: .challenge)],
+//                                       itemsLive: [])
+//
+//        items.append(wordstadium)
+//        return Observable.just(items)
+//    }
 }

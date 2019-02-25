@@ -7,11 +7,12 @@
 //
 
 import UIKit
+import Networking
 
 enum WordstadiumType {
     
-    case salin(data: Wordstadium)
-    case bagikan(data: Wordstadium)
+    case salin(data: Challenge)
+    case bagikan(data: Challenge)
     
     var image: UIImage? {
         switch self {

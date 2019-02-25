@@ -8,6 +8,7 @@
 
 import UIKit
 import Common
+import Networking
 
 class WordstadiumItemViewCell: UITableViewCell {
 
@@ -21,6 +22,7 @@ class WordstadiumItemViewCell: UITableViewCell {
     @IBOutlet weak var rightUsername: UILabel!
     @IBOutlet weak var rightStatus: UILabel!
     @IBOutlet weak var moreMenuBtn: UIButton!
+    @IBOutlet weak var statementLbl: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -38,60 +40,69 @@ class WordstadiumItemViewCell: UITableViewCell {
 extension WordstadiumItemViewCell: IReusableCell {
     
     struct Input {
-        let type : ItemType
-        let wordstadium: Wordstadium
+        let type: LiniType
+        let itemType : ProgressType
+        let wordstadium: Challenge
     }
     
     func configureCell(item: Input) {
         var footerView: UIView!
         
-        switch item.type {
-        case .comingsoon,.privateComingsoon:
+        statementLbl.text = item.wordstadium.statement
+    
+        
+        switch item.itemType {
+        case .comingSoon:
             backgroundItem.image = UIImage(named: "bgWordstadiumComingsoon")
             footerView = TimeView()
             titleLbl.text = "Coming Soon"
-        case .done,.privateDone:
+        case .done:
             backgroundItem.image = UIImage(named: "bgWordstadiumDone")
             footerView = ClapView()
             titleLbl.text = "Done"
-        case .challenge,.inProgress,.privateChallenge:
+        case .ongoing:
             backgroundItem.image = UIImage(named: "bgWordstadiumChallange")
             let descView = DescriptionView()
-            descView.config(type: item.wordstadium.type)
+//            descView.config(type: item.wordstadium.type)
             footerView = descView
             
-            switch item.wordstadium.type {
-            case .challengeOpen:
-                titleLbl.text = "Open Challenge"
-                vsImage.isHidden = false
-                rightPersonView.isHidden = false
-                rightUsername.isHidden = false
-                rightStatus.text = "?"
-            case .challengeDirect:
-                titleLbl.text = "Direct Challenge"
-                vsImage.isHidden = false
-                rightPersonView.isHidden = false
-                rightUsername.isHidden = false
-                rightStatus.text = "?"
-            case .challengeDenied:
-                titleLbl.text = "Denied"
-                vsImage.isHidden = true
-                rightPersonView.isHidden = true
-                rightUsername.isHidden = true
-                rightStatus.text = ""
-            case .challengeExpired:
-                titleLbl.text = "Expired"
-                vsImage.isHidden = true
-                rightPersonView.isHidden = true
-                rightUsername.isHidden = true
-                rightStatus.text = ""
-            default: break
-            }
+//            switch item.wordstadium.type {
+//            case .challengeOpen:
+//                titleLbl.text = "Open Challenge"
+//                vsImage.isHidden = false
+//                rightPersonView.isHidden = false
+//                rightUsername.isHidden = false
+//                rightStatus.text = "?"
+//            case .challengeDirect:
+//                titleLbl.text = "Direct Challenge"
+//                vsImage.isHidden = false
+//                rightPersonView.isHidden = false
+//                rightUsername.isHidden = false
+//                rightStatus.text = "?"
+//            case .challengeDenied:
+//                titleLbl.text = "Denied"
+//                vsImage.isHidden = true
+//                rightPersonView.isHidden = true
+//                rightUsername.isHidden = true
+//                rightStatus.text = ""
+//            case .challengeExpired:
+//                titleLbl.text = "Expired"
+//                vsImage.isHidden = true
+//                rightPersonView.isHidden = true
+//                rightUsername.isHidden = true
+//                rightStatus.text = ""
+//            default: break
+//            }
             
-        case .live:
-            backgroundItem.image = UIImage(named: "bgWordstadiumLive")
-            titleLbl.text = "Live Now"
-            footerView = TimeView()
+        case .liveNow:
+            if item.type == .public {
+                backgroundItem.image = UIImage(named: "bgWordstadiumLive")
+                titleLbl.text = "Live Now"
+                footerView = TimeView()
+            } else {
+                backgroundItem.image = UIImage(named: "bgWordstadiumChallange")
+                titleLbl.text = "Open Challenge"
+            }
             
         }
         

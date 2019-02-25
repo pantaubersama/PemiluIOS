@@ -17,32 +17,31 @@ class LiniPublicViewModel: ILiniWordstadiumViewModel, ILiniWordstadiumViewModelI
     var output: ILiniWordstadiumViewModelOutput { return self }
     
     var refreshI: AnyObserver<Void>
-    var moreI: AnyObserver<Wordstadium>
+    var moreI: AnyObserver<Challenge>
     var moreMenuI: AnyObserver<WordstadiumType>
     var seeMoreI: AnyObserver<SectionWordstadium>
-    var itemSelectedI: AnyObserver<Wordstadium>
+    var itemSelectedI: AnyObserver<Challenge>
     
     var bannerO: Driver<BannerInfo>!
     var itemSelectedO: Driver<Void>!
     var showHeaderO: Driver<Bool>!
-    var itemsO: Driver<[SectionChallenge]>!
-    var moreSelectedO: Driver<Wordstadium>!
+    var itemsO: Driver<[SectionWordstadium]>!
+    var moreSelectedO: Driver<Challenge>!
     var moreMenuSelectedO: Driver<String>!
     var isLoading: Driver<Bool>!
     var error: Driver<Error>!
-    var items: Driver<[Challenge]>!
     
     private let refreshSubject = PublishSubject<Void>()
-    private let moreSubject = PublishSubject<Wordstadium>()
+    private let moreSubject = PublishSubject<Challenge>()
     private let moreMenuSubject = PublishSubject<WordstadiumType>()
     private let seeMoreSubject = PublishSubject<SectionWordstadium>()
-    private let itemSelectedSubject = PublishSubject<Wordstadium>()
+    private let itemSelectedSubject = PublishSubject<Challenge>()
     
     internal let errorTracker = ErrorTracker()
     internal let activityIndicator = ActivityIndicator()
     internal let headerViewModel = BannerHeaderViewModel()
     
-    private let publicItems = BehaviorRelay<[Challenge]>(value: [])
+    private let publicItems = BehaviorRelay<[SectionWordstadium]>(value: [])
     private(set) var disposeBag = DisposeBag()
     
     init(navigator: WordstadiumNavigator, showTableHeader: Bool) {
@@ -84,39 +83,61 @@ class LiniPublicViewModel: ILiniWordstadiumViewModel, ILiniWordstadiumViewModelI
         
         itemSelectedO = Driver.merge(infoSelected,seeMoreSelected,itemSelected)
         
-//        itemsO = refreshSubject.startWith(())
-//            .flatMapLatest({ _ in self.generateWordstadium() })
-//            .asDriverOnErrorJustComplete()
-        
-        let liveItems = refreshSubject
-            .flatMapLatest({ [weak self] (_) -> Observable<[SectionChallenge]> in
-                guard let `self` = self else { return Observable<[SectionChallenge]>.just([]) }
+        // MARK:
+        // Get challenge list
+        refreshSubject.startWith(())
+            .flatMapLatest({ [weak self] (_) -> Observable<[Challenge]> in
+                guard let `self` = self else { return Observable<[Challenge]>.just([]) }
                 return self.getChallenge(progress: .liveNow)
-            }).asDriver(onErrorJustReturn: [])
-        
-        let comingSoonItems = refreshSubject
-            .flatMapLatest({ [weak self] (_) -> Observable<[SectionChallenge]> in
-                guard let `self` = self else { return Observable<[SectionChallenge]>.just([]) }
-                return self.getChallenge(progress: .comingSoon)
-            }).asDriver(onErrorJustReturn: [])
-        
-        let doneItems = refreshSubject
-            .flatMapLatest({ [weak self] (_) -> Observable<[SectionChallenge]> in
-                guard let `self` = self else { return Observable<[SectionChallenge]>.just([]) }
-                return self.getChallenge(progress: .done)
-            }).asDriver(onErrorJustReturn: [])
-        
-        let onGoingItems = refreshSubject
-            .flatMapLatest({ [weak self] (_) -> Observable<[SectionChallenge]> in
-                guard let `self` = self else { return Observable<[SectionChallenge]>.just([]) }
-                return self.getChallenge(progress: .ongoing)
-            }).asDriver(onErrorJustReturn: [])
-
-        
-        itemsO = Driver.combineLatest(liveItems,comingSoonItems,doneItems,onGoingItems)
-            .map({ (live,comingsoon,done,ongoing) -> [SectionChallenge] in
-                return live + comingsoon + done + ongoing
             })
+            .bind { [weak self](items) in
+                guard let weakSelf = self else { return }
+                if items.count > 0 {
+                    let currentItems = weakSelf.publicItems.value + weakSelf.transformToSection(challenge: items, progress: .liveNow, type: .public)
+                    weakSelf.publicItems.accept(currentItems)
+                }
+            }.disposed(by: disposeBag)
+        
+        refreshSubject.startWith(())
+            .flatMapLatest({ [weak self] (_) -> Observable<[Challenge]> in
+                guard let `self` = self else { return Observable<[Challenge]>.just([]) }
+                return self.getChallenge(progress: .comingSoon)
+            })
+            .bind { [weak self](items) in
+                guard let weakSelf = self else { return }
+                if items.count > 0 {
+                    let currentItems = weakSelf.publicItems.value + weakSelf.transformToSection(challenge: items, progress: .comingSoon, type: .public)
+                    weakSelf.publicItems.accept(currentItems)
+                }
+            }.disposed(by: disposeBag)
+        
+        refreshSubject.startWith(())
+            .flatMapLatest({ [weak self] (_) -> Observable<[Challenge]> in
+                guard let `self` = self else { return Observable<[Challenge]>.just([]) }
+                return self.getChallenge(progress: .done)
+            })
+            .bind { [weak self](items) in
+                guard let weakSelf = self else { return }
+                if items.count > 0 {
+                    let currentItems = weakSelf.publicItems.value + weakSelf.transformToSection(challenge: items, progress: .done, type: .public)
+                    weakSelf.publicItems.accept(currentItems)
+                }
+            }.disposed(by: disposeBag)
+        
+        refreshSubject.startWith(())
+            .flatMapLatest({ [weak self] (_) -> Observable<[Challenge]> in
+                guard let `self` = self else { return Observable<[Challenge]>.just([]) }
+                return self.getChallenge(progress: .ongoing)
+            })
+            .bind { [weak self](items) in
+                guard let weakSelf = self else { return }
+                if items.count > 0 {
+                    let currentItems = weakSelf.publicItems.value + weakSelf.transformToSection(challenge: items, progress: .ongoing, type: .public)
+                    weakSelf.publicItems.accept(currentItems)
+                }
+            }.disposed(by: disposeBag)
+        
+        itemsO = publicItems.asDriver(onErrorJustReturn: [])
         
         moreSelectedO = moreSubject
             .asObservable()
@@ -125,12 +146,10 @@ class LiniPublicViewModel: ILiniWordstadiumViewModel, ILiniWordstadiumViewModelI
         moreMenuSelectedO = moreMenuSubject
             .flatMapLatest { (type) -> Observable<String> in
                 switch type {
-                case .bagikan(let data):
+                case .bagikan:
                     return Observable.just("Tautan telah dibagikan")
-                case .salin(let data):
+                case .salin:
                     return Observable.just("Tautan telah tersalin")
-                default:
-                    return Observable.empty()
                 }
             }
             .asDriverOnErrorJustComplete()
@@ -148,45 +167,11 @@ class LiniPublicViewModel: ILiniWordstadiumViewModel, ILiniWordstadiumViewModelI
             .catchErrorJustComplete()
     }
     
-    private func generateWordstadium() ->  Observable<[SectionWordstadium]> {
-        var items : [SectionWordstadium] = []
-        let live = SectionWordstadium(title: "",
-                                      descriptiom: "",
-                                      itemType: .live,
-                                      items: [Wordstadium(title: "", type: .default)],
-                                      itemsLive: [Wordstadium(title: "", type: .challenge),Wordstadium(title: "", type: .challenge),Wordstadium(title: "", type: .challenge),Wordstadium(title: "", type: .challenge),Wordstadium(title: "", type: .challenge)])
-        
-        let debat = SectionWordstadium(title: "LINIMASA DEBAT",
-                                       descriptiom: "Daftar challenge dan debat yang akan atau sudah berlangsung ditampilkan semua di sini.",
-                                       itemType: .comingsoon,
-                                       items: [Wordstadium(title: "", type: .challenge),Wordstadium(title: "", type: .challenge),Wordstadium(title: "", type: .challenge)],
-                                       itemsLive: [])
-        
-        let done = SectionWordstadium(title: "Debat: Done",
-                                      descriptiom: "",
-                                      itemType: .done,
-                                      items: [Wordstadium(title: "", type: .challenge),Wordstadium(title: "", type: .challenge),Wordstadium(title: "", type: .challenge)],
-                                      itemsLive: [])
-        
-        let chalenge = SectionWordstadium(title: "Challenge",
-                                          descriptiom: "",
-                                          itemType: .challenge,
-                                          items: [Wordstadium(title: "", type: .challenge),Wordstadium(title: "", type: .challenge),Wordstadium(title: "", type: .challenge)],
-                                          itemsLive: [])
-        
-        items.append(live)
-        items.append(debat)
-        items.append(done)
-        items.append(chalenge)
-        
-        return Observable.just(items)
-    }
-    
-    func getChallenge(progress: ProgressType) -> Observable<[SectionChallenge]>{
+    func getChallenge(progress: ProgressType) -> Observable<[Challenge]>{
         return NetworkService.instance
             .requestObject(WordstadiumAPI.getPublicChallenges(type: progress),
                            c: BaseResponse<GetChallengeResponse>.self)
-            .map{( self.transformToSection(challenge: $0.data.challenges, progress: progress))}
+            .map{( $0.data.challenges )}
             .trackError(errorTracker)
             .trackActivity(activityIndicator)
             .asObservable()

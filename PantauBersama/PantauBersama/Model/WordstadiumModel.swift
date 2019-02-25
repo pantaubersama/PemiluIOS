@@ -9,37 +9,23 @@ import Foundation
 import RxDataSources
 import Networking
 
-enum ItemType {
-    case live
-    case inProgress
-    case comingsoon
-    case done
-    case challenge
-    case privateComingsoon
-    case privateDone
-    case privateChallenge
-}
-
-struct Wordstadium {
-    let title: String
-    let type: ChallengeType
-    
-    init(title: String, type: ChallengeType) {
-        self.title = title
-        self.type = type
-    }
+enum LiniType {
+    case `public`
+    case personal
 }
 
 struct SectionWordstadium {
     let title: String
     let descriptiom: String
-    let itemType: ItemType
-    var items: [Wordstadium]
-    var itemsLive: [Wordstadium]
+    let type: LiniType
+    let itemType: ProgressType
+    var items: [Challenge]
+    var itemsLive: [Challenge]
     
-    init(title: String,descriptiom: String,itemType: ItemType,items: [Wordstadium], itemsLive: [Wordstadium]) {
+    init(title: String,descriptiom: String,type: LiniType,itemType: ProgressType,items: [Challenge], itemsLive: [Challenge]) {
         self.title = title
         self.descriptiom = descriptiom
+        self.type = type
         self.itemType = itemType
         self.items = items
         self.itemsLive = itemsLive
@@ -47,30 +33,9 @@ struct SectionWordstadium {
 }
 
 extension SectionWordstadium: SectionModelType {
-    typealias Item = Wordstadium
-    
-    init(original: SectionWordstadium, items: [Wordstadium]) {
-        self = original
-        self.items = items
-    }
-}
-
-struct SectionChallenge {
-    let itemType: ItemType
-    var items: [Challenge]
-    var itemsLive: [Challenge]
-    
-    init(itemType: ItemType,items: [Challenge], itemsLive: [Challenge]) {
-        self.itemType = itemType
-        self.items = items
-        self.itemsLive = itemsLive
-    }
-}
-
-extension SectionChallenge: SectionModelType {
     typealias Item = Challenge
     
-    init(original: SectionChallenge, items: [Challenge]) {
+    init(original: SectionWordstadium, items: [Challenge]) {
         self = original
         self.items = items
     }

@@ -51,80 +51,81 @@ class WordstadiumListViewController: UITableViewController {
                 let wordstadium = dataSource.sectionModels[indexPath.section]
                 
                 let cell = tableView.dequeueReusableCell(indexPath: indexPath) as WordstadiumItemViewCell
-                cell.configureCell(item: WordstadiumItemViewCell.Input(type: wordstadium.itemType, wordstadium: wordstadium.items[indexPath.row]))
+                cell.configureCell(item: WordstadiumItemViewCell.Input(type: wordstadium.type ,itemType: wordstadium.itemType, wordstadium: wordstadium.items[indexPath.row]))
                 return cell
         })
         
-        viewModel.output.items
-            .do(onNext: { (items) in
-                switch items[0].itemType {
-                case .comingsoon:
-                    self.title = "Debat: Coming Soon"
-                    self.tableHeaderView.config(description: "Jangan lewatkan daftar debat yang akan segera berlangsung. Catat jadwalnya, yaa.")
-                case .done:
-                    self.title = "Debat: Done"
-                    self.tableHeaderView.config(description: "Berikan komentar dan appresiasi pada debat-debat yang sudah selesai. Daftarnya ada di bawah ini:")
-                case .challenge:
-                    self.title = "Challenge"
-                    self.tableHeaderView.config(description: "Daftar Open Challenge yang bisa diikuti. Pilih debat mana yang kamu ingin ambil tantangannya. Be truthful and gentle! ;)")
-                case .privateComingsoon:
-                    self.title = "My Debat: Coming Soon"
-                    self.tableHeaderView.config(description: "Jangan lewatkan daftar debat yang akan segera berlangsung. Catat jadwalnya, yaa.")
-                case .privateDone:
-                    self.title = "My Debat: Done"
-                    self.tableHeaderView.config(description: "Berikan komentar dan appresiasi pada debat-debat yang sudah selesai. Daftarnya ada di bawah ini:")
-                case .privateChallenge:
-                    self.title = "My Challenge"
-                    self.tableHeaderView.config(description: "Daftar tantangan yang kamu buat, yang kamu ikuti dan tantangan dari orang lain buat kamu ditampilkan semua di sini.")
-                case .inProgress:
-                    self.title = "Challenge in Progress"
-                    self.tableHeaderView.config(description: "Daftar tantangan yang perlu respon dan perlu konfirmasi ditampilkan semua disini. Jangan sampai terlewatkan, yaa.")
-                case .live:
-                    self.title = "LIVE NOW"
-                    self.tableHeaderView.config(description: "Ini daftar debat yang sedang berlangsung. Yuk, pantau bersama!")
-                }
-            })
-            .drive(tableView.rx.items(dataSource: dataSource))
-            .disposed(by: disposeBag)
+//        viewModel.output.items
+//            .do(onNext: { (items) in
+//                switch items[0].itemType {
+//                case .comingsoon:
+//                    self.title = "Debat: Coming Soon"
+//                    self.tableHeaderView.config(description: "Jangan lewatkan daftar debat yang akan segera berlangsung. Catat jadwalnya, yaa.")
+//                case .done:
+//                    self.title = "Debat: Done"
+//                    self.tableHeaderView.config(description: "Berikan komentar dan appresiasi pada debat-debat yang sudah selesai. Daftarnya ada di bawah ini:")
+//                case .challenge:
+//                    self.title = "Challenge"
+//                    self.tableHeaderView.config(description: "Daftar Open Challenge yang bisa diikuti. Pilih debat mana yang kamu ingin ambil tantangannya. Be truthful and gentle! ;)")
+//                case .privateComingsoon:
+//                    self.title = "My Debat: Coming Soon"
+//                    self.tableHeaderView.config(description: "Jangan lewatkan daftar debat yang akan segera berlangsung. Catat jadwalnya, yaa.")
+//                case .privateDone:
+//                    self.title = "My Debat: Done"
+//                    self.tableHeaderView.config(description: "Berikan komentar dan appresiasi pada debat-debat yang sudah selesai. Daftarnya ada di bawah ini:")
+//                case .privateChallenge:
+//                    self.title = "My Challenge"
+//                    self.tableHeaderView.config(description: "Daftar tantangan yang kamu buat, yang kamu ikuti dan tantangan dari orang lain buat kamu ditampilkan semua di sini.")
+//                case .inProgress:
+//                    self.title = "Challenge in Progress"
+//                    self.tableHeaderView.config(description: "Daftar tantangan yang perlu respon dan perlu konfirmasi ditampilkan semua disini. Jangan sampai terlewatkan, yaa.")
+//                case .live:
+//                    self.title = "LIVE NOW"
+//                    self.tableHeaderView.config(description: "Ini daftar debat yang sedang berlangsung. Yuk, pantau bersama!")
+//                }
+//            })
+//            .drive(tableView.rx.items(dataSource: dataSource))
+//            .disposed(by: disposeBag)
 
 
     }
 
     // TODO: for testing purpose
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let wordstadium = dataSource.sectionModels[indexPath.section]
-        
-        switch wordstadium.itemType {
-        case .privateChallenge, .challenge, .inProgress:
-            guard let navigationController = self.navigationController else { return }
-            let challengeCoordinator = ChallengeCoordinator(navigationController: navigationController, type: wordstadium.items[indexPath.row].type)
-            challengeCoordinator
-                .start()
-                .subscribe()
-                .disposed(by: disposeBag)
-        case .privateComingsoon, .comingsoon:
-            guard let navigationController = self.navigationController else { return }
-            let challengeCoordinator = ChallengeCoordinator(navigationController: navigationController, type: .soon)
-            challengeCoordinator
-                .start()
-                .subscribe()
-                .disposed(by: disposeBag)
-        case .privateDone, .done:
-            guard let navigationController = self.navigationController else { return }
-            let challengeCoordinator = ChallengeCoordinator(navigationController: navigationController, type: .done)
-            challengeCoordinator
-                .start()
-                .subscribe()
-                .disposed(by: disposeBag)
-        case .live:
-            guard let navigationController = self.navigationController else { return }
-            let liveDebatCoordinator = LiveDebatCoordinator(navigationController: navigationController, viewType: .watch)
-            liveDebatCoordinator
-                .start()
-                .subscribe()
-                .disposed(by: disposeBag)
-        }
-    }
+//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        let wordstadium = dataSource.sectionModels[indexPath.section]
+//        
+//        switch wordstadium.itemType {
+//        case .privateChallenge, .challenge, .inProgress:
+//            guard let navigationController = self.navigationController else { return }
+////            let challengeCoordinator = ChallengeCoordinator(navigationController: navigationController, type: wordstadium.items[indexPath.row].type)
+//            let challengeCoordinator = ChallengeCoordinator(navigationController: navigationController, type: .challenge)
+//            challengeCoordinator
+//                .start()
+//                .subscribe()
+//                .disposed(by: disposeBag)
+//        case .privateComingsoon, .comingsoon:
+//            guard let navigationController = self.navigationController else { return }
+//            let challengeCoordinator = ChallengeCoordinator(navigationController: navigationController, type: .soon)
+//            challengeCoordinator
+//                .start()
+//                .subscribe()
+//                .disposed(by: disposeBag)
+//        case .privateDone, .done:
+//            guard let navigationController = self.navigationController else { return }
+//            let challengeCoordinator = ChallengeCoordinator(navigationController: navigationController, type: .done)
+//            challengeCoordinator
+//                .start()
+//                .subscribe()
+//                .disposed(by: disposeBag)
+//        case .live:
+//            guard let navigationController = self.navigationController else { return }
+//            let liveDebatCoordinator = LiveDebatCoordinator(navigationController: navigationController, viewType: .watch)
+//            liveDebatCoordinator
+//                .start()
+//                .subscribe()
+//                .disposed(by: disposeBag)
+//        }
+//    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
