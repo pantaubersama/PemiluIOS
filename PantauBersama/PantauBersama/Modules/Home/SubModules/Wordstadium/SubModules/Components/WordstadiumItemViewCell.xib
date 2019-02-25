@@ -118,7 +118,7 @@
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L6a-lo-xOn" customClass="RoundView" customModule="Common">
                                         <rect key="frame" x="8" y="15" width="36" height="36"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icDummyPerson" translatesAutoresizingMaskIntoConstraints="NO" id="O83-Ca-liW">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icDummyPerson" translatesAutoresizingMaskIntoConstraints="NO" id="O83-Ca-liW">
                                                 <rect key="frame" x="0.0" y="0.0" width="36" height="36"/>
                                             </imageView>
                                         </subviews>
@@ -140,7 +140,7 @@
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="74M-LM-Mlf" customClass="RoundView" customModule="Common">
                                         <rect key="frame" x="99" y="15" width="36" height="36"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icDummyPerson" translatesAutoresizingMaskIntoConstraints="NO" id="5PA-Vq-EK3">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icDummyPerson" translatesAutoresizingMaskIntoConstraints="NO" id="5PA-Vq-EK3">
                                                 <rect key="frame" x="0.0" y="0.0" width="36" height="36"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fgw-ih-mwm">
@@ -311,9 +311,11 @@ pertumbuhan mencapai 5,27%.
             <connections>
                 <outlet property="backgroundItem" destination="24g-Zx-MS5" id="JUE-AZ-A6h"/>
                 <outlet property="footerContainerView" destination="51F-cU-N5I" id="q0o-0e-uOX"/>
+                <outlet property="leftPersonIv" destination="O83-Ca-liW" id="IhQ-Z5-PVu"/>
                 <outlet property="leftPersonView" destination="L6a-lo-xOn" id="Stc-eA-paS"/>
                 <outlet property="leftUsername" destination="9fB-FD-TPl" id="wSi-Ny-2wb"/>
                 <outlet property="moreMenuBtn" destination="717-yp-yEQ" id="Edb-Or-MTh"/>
+                <outlet property="rightPersonIv" destination="5PA-Vq-EK3" id="AkU-OB-lwN"/>
                 <outlet property="rightPersonView" destination="74M-LM-Mlf" id="h94-rD-NtD"/>
                 <outlet property="rightStatus" destination="fgw-ih-mwm" id="OGt-c2-W3k"/>
                 <outlet property="rightUsername" destination="3lI-eU-nyU" id="oXB-2r-CYm"/>

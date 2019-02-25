@@ -88,7 +88,7 @@ class LiniPublicViewModel: ILiniWordstadiumViewModel, ILiniWordstadiumViewModelI
         refreshSubject.startWith(())
             .flatMapLatest({ [weak self] (_) -> Observable<[Challenge]> in
                 guard let `self` = self else { return Observable<[Challenge]>.just([]) }
-                return self.getChallenge(progress: .liveNow)
+                return self.getChallenge(progress: .liveNow, type: .public)
             })
             .bind { [weak self](items) in
                 guard let weakSelf = self else { return }
@@ -101,7 +101,7 @@ class LiniPublicViewModel: ILiniWordstadiumViewModel, ILiniWordstadiumViewModelI
         refreshSubject.startWith(())
             .flatMapLatest({ [weak self] (_) -> Observable<[Challenge]> in
                 guard let `self` = self else { return Observable<[Challenge]>.just([]) }
-                return self.getChallenge(progress: .comingSoon)
+                return self.getChallenge(progress: .comingSoon, type: .public)
             })
             .bind { [weak self](items) in
                 guard let weakSelf = self else { return }
@@ -114,7 +114,7 @@ class LiniPublicViewModel: ILiniWordstadiumViewModel, ILiniWordstadiumViewModelI
         refreshSubject.startWith(())
             .flatMapLatest({ [weak self] (_) -> Observable<[Challenge]> in
                 guard let `self` = self else { return Observable<[Challenge]>.just([]) }
-                return self.getChallenge(progress: .done)
+                return self.getChallenge(progress: .done, type: .public)
             })
             .bind { [weak self](items) in
                 guard let weakSelf = self else { return }
@@ -127,7 +127,7 @@ class LiniPublicViewModel: ILiniWordstadiumViewModel, ILiniWordstadiumViewModelI
         refreshSubject.startWith(())
             .flatMapLatest({ [weak self] (_) -> Observable<[Challenge]> in
                 guard let `self` = self else { return Observable<[Challenge]>.just([]) }
-                return self.getChallenge(progress: .ongoing)
+                return self.getChallenge(progress: .ongoing, type: .public)
             })
             .bind { [weak self](items) in
                 guard let weakSelf = self else { return }
@@ -165,16 +165,6 @@ class LiniPublicViewModel: ILiniWordstadiumViewModel, ILiniWordstadiumViewModelI
             .map{ ($0.data.bannerInfo) }
             .asObservable()
             .catchErrorJustComplete()
-    }
-    
-    func getChallenge(progress: ProgressType) -> Observable<[Challenge]>{
-        return NetworkService.instance
-            .requestObject(WordstadiumAPI.getPublicChallenges(type: progress),
-                           c: BaseResponse<GetChallengeResponse>.self)
-            .map{( $0.data.challenges )}
-            .trackError(errorTracker)
-            .trackActivity(activityIndicator)
-            .asObservable()
     }
     
 }

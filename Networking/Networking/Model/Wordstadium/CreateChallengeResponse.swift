@@ -14,16 +14,16 @@ public struct CreateChallengeResponse: Codable {
 
 public struct Challenge: Codable {
     public let id: String
-    public let type: String
+    public let type: ChallengeType
     public let source: String?
     public let statement: String?
     public let showTimeAt: String?
     public let timeLimit: Int?
-    public let progress: String?
-    public let condition: String?
+    public let progress: ChallengeProgress?
+    public let condition: ChallengeCondition?
     public let topic: [String]?
     public let createdAt: String?
-    public let audiences: [Audiences]?
+    public let audiences: [Audiences]
     
     private enum CodingKeys: String, CodingKey {
         case id, type, statement, progress, condition, audiences
@@ -38,7 +38,7 @@ public struct Challenge: Codable {
 
 public struct Audiences: Codable {
     public let id: String
-    public let role: String?
+    public let role: AudienceRole
     public let userId: String?
     public let email: String?
     public let fullName: String?
@@ -51,4 +51,9 @@ public struct Audiences: Codable {
         case userId = "user_id"
         case fullName = "full_name"
     }
+}
+
+public enum AudienceRole: String, Codable {
+    case challenger = "challenger"
+    case opponentCandidate = "opponent_candidate"
 }

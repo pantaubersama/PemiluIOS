@@ -17,7 +17,7 @@ class WordstadiumListViewController: UITableViewController {
     private let disposeBag: DisposeBag = DisposeBag()
     lazy var tableHeaderView = WordstadiumListHeaderView()
     
-    var rControl : UIRefreshControl?
+    internal lazy var rControl = UIRefreshControl()
     
     var dataSource: RxTableViewSectionedReloadDataSource<SectionWordstadium>!
     
@@ -35,8 +35,13 @@ class WordstadiumListViewController: UITableViewController {
         tableView.separatorStyle = .none
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         tableView.tableFooterView = UIView()
-        tableView.refreshControl = UIRefreshControl()
         tableView.tableHeaderView = tableHeaderView
+        
+        if #available(iOS 10.0, *) {
+            tableView.refreshControl = rControl
+        } else {
+            tableView.addSubview(rControl)
+        }
         
         back.rx.tap
             .bind(to: viewModel.input.backTriggger)
@@ -55,39 +60,34 @@ class WordstadiumListViewController: UITableViewController {
                 return cell
         })
         
-//        viewModel.output.items
-//            .do(onNext: { (items) in
-//                switch items[0].itemType {
-//                case .comingsoon:
-//                    self.title = "Debat: Coming Soon"
-//                    self.tableHeaderView.config(description: "Jangan lewatkan daftar debat yang akan segera berlangsung. Catat jadwalnya, yaa.")
-//                case .done:
-//                    self.title = "Debat: Done"
-//                    self.tableHeaderView.config(description: "Berikan komentar dan appresiasi pada debat-debat yang sudah selesai. Daftarnya ada di bawah ini:")
-//                case .challenge:
-//                    self.title = "Challenge"
-//                    self.tableHeaderView.config(description: "Daftar Open Challenge yang bisa diikuti. Pilih debat mana yang kamu ingin ambil tantangannya. Be truthful and gentle! ;)")
-//                case .privateComingsoon:
-//                    self.title = "My Debat: Coming Soon"
-//                    self.tableHeaderView.config(description: "Jangan lewatkan daftar debat yang akan segera berlangsung. Catat jadwalnya, yaa.")
-//                case .privateDone:
-//                    self.title = "My Debat: Done"
-//                    self.tableHeaderView.config(description: "Berikan komentar dan appresiasi pada debat-debat yang sudah selesai. Daftarnya ada di bawah ini:")
-//                case .privateChallenge:
-//                    self.title = "My Challenge"
-//                    self.tableHeaderView.config(description: "Daftar tantangan yang kamu buat, yang kamu ikuti dan tantangan dari orang lain buat kamu ditampilkan semua di sini.")
-//                case .inProgress:
-//                    self.title = "Challenge in Progress"
-//                    self.tableHeaderView.config(description: "Daftar tantangan yang perlu respon dan perlu konfirmasi ditampilkan semua disini. Jangan sampai terlewatkan, yaa.")
-//                case .live:
-//                    self.title = "LIVE NOW"
-//                    self.tableHeaderView.config(description: "Ini daftar debat yang sedang berlangsung. Yuk, pantau bersama!")
-//                }
-//            })
-//            .drive(tableView.rx.items(dataSource: dataSource))
-//            .disposed(by: disposeBag)
-
-
+        viewModel.output.items
+            .do(onNext: { (items) in
+                let section = items[0]
+                self.title = section.title
+                self.tableHeaderView.config(description: section.descriptiom)
+            })
+            .drive(tableView.rx.items(dataSource: dataSource))
+            .disposed(by: disposeBag)
+        
+        rControl.rx.controlEvent(.valueChanged)
+            .bind(to: viewModel.input.refreshTrigger)
+            .disposed(by: disposeBag)
+        
+        viewModel.output.isLoading
+            .drive(onNext: { (isLoading) in
+                if !isLoading {
+                    self.rControl.endRefreshing()
+                }
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.output.error
+            .drive(onNext: { [weak self] (error) in
+                guard let `self` = self else { return }
+                guard let alert = UIAlertController.alert(with: error) else { return }
+                self.navigationController?.present(alert, animated: true, completion: nil)
+            })
+            .disposed(by: disposeBag)
     }
 
     // TODO: for testing purpose

@@ -45,11 +45,21 @@ protocol ILiniWordstadiumViewModel {
 
 extension ILiniWordstadiumViewModel {
     
+    func getChallenge(progress: ProgressType, type: LiniType) -> Observable<[Challenge]>{
+        return NetworkService.instance
+            .requestObject(WordstadiumAPI.getChallenges(progress: progress, type: type),
+                           c: BaseResponse<GetChallengeResponse>.self)
+            .map{( $0.data.challenges )}
+            .trackError(errorTracker)
+            .trackActivity(activityIndicator)
+            .asObservable()
+    }
+    
     func transformToSection(challenge: [Challenge],progress: ProgressType, type: LiniType) -> [SectionWordstadium] {
         var item:[Challenge] = []
         var itemLive:[Challenge] = []
         var title: String = ""
-        var descriptiom: String = ""
+        var description: String = ""
         
         switch progress {
         case .liveNow:
@@ -63,10 +73,10 @@ extension ILiniWordstadiumViewModel {
             item = challenge
             if type == .public {
                 title = "LINIMASA DEBAT"
-                descriptiom = "Daftar challenge dan debat yang akan atau sudah berlangsung ditampilkan semua di sini."
+                description = "Daftar challenge dan debat yang akan atau sudah berlangsung ditampilkan semua di sini."
             } else {
                 title = "MY WORDSTADIUM"
-                descriptiom = "Daftar tantangan dan debat yang akan atau sudah kamu ikuti ditampilkan semua di sini."
+                description = "Daftar tantangan dan debat yang akan atau sudah kamu ikuti ditampilkan semua di sini."
             }
         case .done:
             item = challenge
@@ -86,7 +96,7 @@ extension ILiniWordstadiumViewModel {
         }
         
         
-        return [SectionWordstadium(title: title, descriptiom: descriptiom,type: type, itemType: progress, items: item, itemsLive: itemLive )]
+        return [SectionWordstadium(title: title, descriptiom: description,type: type, itemType: progress, items: item, itemsLive: itemLive )]
     }
 
 }

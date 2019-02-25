@@ -11,8 +11,7 @@ import Common
 
 public enum WordstadiumAPI {
     case createChallengeOpen(statement: String, source: String, timeAt: String, timeLimit: Int, topic: String)
-    case getPersonalChallenges(type: ProgressType)
-    case getPublicChallenges(type: ProgressType)
+    case getChallenges(progress: ProgressType, type: LiniType)
     
     
 }
@@ -36,10 +35,8 @@ extension WordstadiumAPI: TargetType {
         switch self {
         case .createChallengeOpen:
             return "/word_stadium/v1/challenges/open"
-        case .getPersonalChallenges:
-            return "/word_stadium/v1/challenges/me"
-        case .getPublicChallenges:
-            return "/word_stadium/v1/challenges/all"
+        case .getChallenges(let (_,type)):
+            return "/word_stadium/v1/challenges/\(type.url)"
         }
     }
     
@@ -54,14 +51,9 @@ extension WordstadiumAPI: TargetType {
     
     public var parameters: [String: Any]? {
         switch self {
-        case .getPublicChallenges(let type):
-            print(type.text)
+        case .getChallenges(let (progress,_)):
             return [
-                "progress": type.text
-            ]
-        case .getPersonalChallenges(let type):
-            return [
-                "progress": type.text
+                "progress": progress.text
             ]
         default:
             return nil

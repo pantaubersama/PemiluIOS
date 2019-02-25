@@ -50,8 +50,6 @@ class LiniWordstadiumViewController: UITableViewController, ILiniWordstadiumView
             .setDelegate(self)
             .disposed(by: disposeBag)
         
-        viewModel.input.refreshI.onNext(())
-        
         viewModel.output.showHeaderO
             .drive(onNext: { [unowned self](isHeaderShown) in
                 if isHeaderShown {

@@ -9,11 +9,6 @@ import Foundation
 import RxDataSources
 import Networking
 
-enum LiniType {
-    case `public`
-    case personal
-}
-
 struct SectionWordstadium {
     let title: String
     let descriptiom: String
