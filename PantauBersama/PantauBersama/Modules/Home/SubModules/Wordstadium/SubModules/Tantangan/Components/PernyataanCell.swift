@@ -74,6 +74,7 @@ extension PernyataanCell: IReusableCell {
         }
         
         if item.link == nil {
+            item.viewModel.input.sourceLinkI.onNext((""))
             btnLink.setTitle("Sertakan link disini", for: .normal)
             btnLink.isHidden = false
         } else {
