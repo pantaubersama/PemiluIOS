@@ -8,18 +8,25 @@
 
 import RxSwift
 
+
+protocol SuccessPromoteNavigator {
+    func dismiss() -> Observable<Void>
+}
+
 final class SuccessPromoteCoordinator: BaseCoordinator<Void> {
     
     private let navigationController: UINavigationController
-    private let viewController: SucceessPromoteView
+    private let viewController: SuccessPromoteView
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
-        self.viewController = SucceessPromoteView()
+        self.viewController = SuccessPromoteView()
     }
     
     override func start() -> Observable<Void> {
-        let viewController = SucceessPromoteView()
+        let viewModel = SuccessPromoteViewModel(navigator: self)
+        let viewController = SuccessPromoteView()
+        viewController.viewModel = viewModel
         viewController.providesPresentationContextTransitionStyle = true
         viewController.definesPresentationContext = true
         viewController.modalPresentationStyle = UIModalPresentationStyle.overFullScreen
@@ -28,4 +35,13 @@ final class SuccessPromoteCoordinator: BaseCoordinator<Void> {
         return Observable.empty()
     }
     
+}
+
+extension SuccessPromoteCoordinator: SuccessPromoteNavigator {
+    func dismiss() -> Observable<Void> {
+        self.navigationController.dismiss(animated: true) { [weak self] in
+            self?.navigationController.popToRootViewController(animated: true)
+        }
+        return Observable.empty()
+    }
 }

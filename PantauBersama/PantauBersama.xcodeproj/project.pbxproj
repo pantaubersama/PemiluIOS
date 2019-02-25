@@ -314,8 +314,6 @@
 		848B039C21E7AADF002CAA40 /* WKWebview.xib in Resources */ = {isa = PBXBuildFile; fileRef = 848B039B21E7AADF002CAA40 /* WKWebview.xib */; };
 		848B039F21E7B538002CAA40 /* WKWebCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848B039E21E7B538002CAA40 /* WKWebCoordinator.swift */; };
 		848B03A121E7B5DE002CAA40 /* WKWebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848B03A021E7B5DE002CAA40 /* WKWebViewModel.swift */; };
-		8493BF732216789600685BEC /* SuccessPromoteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8493BF722216789600685BEC /* SuccessPromoteView.xib */; };
-		8493BF752216797B00685BEC /* SucceessPromoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8493BF742216797B00685BEC /* SucceessPromoteView.swift */; };
 		8493BF7B2216848B00685BEC /* ChallengeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8493BF7A2216848B00685BEC /* ChallengeController.xib */; };
 		8493BF7E2216893100685BEC /* ChallengeButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8493BF7D2216893100685BEC /* ChallengeButtonView.xib */; };
 		8493BF8022168A9B00685BEC /* ChallengeButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8493BF7F22168A9B00685BEC /* ChallengeButtonView.swift */; };
@@ -350,6 +348,9 @@
 		84A07FC421D14E8000269C6B /* ReqClusterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A07FC321D14E8000269C6B /* ReqClusterViewModel.swift */; };
 		84A07FC621D14F3800269C6B /* ReqClusterCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A07FC521D14F3800269C6B /* ReqClusterCoordinator.swift */; };
 		84A945AE2223C55200944C6B /* SuccessPromoteCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A945AD2223C55200944C6B /* SuccessPromoteCoordinator.swift */; };
+		84A945B02223C8E500944C6B /* SuccessPromoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A945AF2223C8E500944C6B /* SuccessPromoteViewModel.swift */; };
+		84A945B32223FC7100944C6B /* SuccessPromoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A945B12223FC7100944C6B /* SuccessPromoteView.swift */; };
+		84A945B42223FC7100944C6B /* SuccessPromoteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84A945B22223FC7100944C6B /* SuccessPromoteView.xib */; };
 		84AEFA75221E738400F3DC92 /* RefuseChallengeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84AEFA74221E738400F3DC92 /* RefuseChallengeView.xib */; };
 		84AEFA77221E74BC00F3DC92 /* RefuseChallengeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AEFA76221E74BC00F3DC92 /* RefuseChallengeView.swift */; };
 		84AEFA8022200B8B00F3DC92 /* ChallengeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AEFA7F22200B8B00F3DC92 /* ChallengeModel.swift */; };
@@ -852,8 +853,6 @@
 		848B039B21E7AADF002CAA40 /* WKWebview.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WKWebview.xib; sourceTree = "<group>"; };
 		848B039E21E7B538002CAA40 /* WKWebCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKWebCoordinator.swift; sourceTree = "<group>"; };
 		848B03A021E7B5DE002CAA40 /* WKWebViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKWebViewModel.swift; sourceTree = "<group>"; };
-		8493BF722216789600685BEC /* SuccessPromoteView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SuccessPromoteView.xib; sourceTree = "<group>"; };
-		8493BF742216797B00685BEC /* SucceessPromoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SucceessPromoteView.swift; sourceTree = "<group>"; };
 		8493BF7A2216848B00685BEC /* ChallengeController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChallengeController.xib; sourceTree = "<group>"; };
 		8493BF7D2216893100685BEC /* ChallengeButtonView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChallengeButtonView.xib; sourceTree = "<group>"; };
 		8493BF7F22168A9B00685BEC /* ChallengeButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeButtonView.swift; sourceTree = "<group>"; };
@@ -888,6 +887,9 @@
 		84A07FC321D14E8000269C6B /* ReqClusterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReqClusterViewModel.swift; sourceTree = "<group>"; };
 		84A07FC521D14F3800269C6B /* ReqClusterCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReqClusterCoordinator.swift; sourceTree = "<group>"; };
 		84A945AD2223C55200944C6B /* SuccessPromoteCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessPromoteCoordinator.swift; sourceTree = "<group>"; };
+		84A945AF2223C8E500944C6B /* SuccessPromoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessPromoteViewModel.swift; sourceTree = "<group>"; };
+		84A945B12223FC7100944C6B /* SuccessPromoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessPromoteView.swift; sourceTree = "<group>"; };
+		84A945B22223FC7100944C6B /* SuccessPromoteView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SuccessPromoteView.xib; sourceTree = "<group>"; };
 		84AEFA74221E738400F3DC92 /* RefuseChallengeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RefuseChallengeView.xib; sourceTree = "<group>"; };
 		84AEFA76221E74BC00F3DC92 /* RefuseChallengeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefuseChallengeView.swift; sourceTree = "<group>"; };
 		84AEFA7F22200B8B00F3DC92 /* ChallengeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeModel.swift; sourceTree = "<group>"; };
@@ -2408,9 +2410,10 @@
 		8493BF712216785800685BEC /* SuccesPromote */ = {
 			isa = PBXGroup;
 			children = (
-				8493BF722216789600685BEC /* SuccessPromoteView.xib */,
-				8493BF742216797B00685BEC /* SucceessPromoteView.swift */,
 				84A945AD2223C55200944C6B /* SuccessPromoteCoordinator.swift */,
+				84A945AF2223C8E500944C6B /* SuccessPromoteViewModel.swift */,
+				84A945B12223FC7100944C6B /* SuccessPromoteView.swift */,
+				84A945B22223FC7100944C6B /* SuccessPromoteView.xib */,
 			);
 			path = SuccesPromote;
 			sourceTree = "<group>";
@@ -3297,10 +3300,10 @@
 				84B2521E21CAB1BE00565D82 /* OnboardingViewController.xib in Resources */,
 				13E170D5221311A70018EDB4 /* WordstadiumItemViewCell.xib in Resources */,
 				043EE19A221A36C2008C59CD /* RekapFooterView.xib in Resources */,
+				84A945B42223FC7100944C6B /* SuccessPromoteView.xib in Resources */,
 				043EE19C221A36C2008C59CD /* RekapViewCell.xib in Resources */,
 				84A07F9721D0D4EA00269C6B /* IdentitasController.xib in Resources */,
 				845C570D21CE0C8100EDCDFE /* ClusterCell.xib in Resources */,
-				8493BF732216789600685BEC /* SuccessPromoteView.xib in Resources */,
 				84A07FB421D0ECC100269C6B /* SuccessController.xib in Resources */,
 				84A07FC021D1465C00269C6B /* ReqClusterController.xib in Resources */,
 				84B6D6E221E1028700CD4BC8 /* KategoriClusterController.xib in Resources */,
@@ -3689,6 +3692,7 @@
 				1385A3E521DBBA8200C2910F /* QuestionController.swift in Sources */,
 				84E521B621F4A22B00B7CCBA /* StartOnboardingController.swift in Sources */,
 				1385A3E421DBBA6700C2910F /* BannerHeaderView.swift in Sources */,
+				84A945B32223FC7100944C6B /* SuccessPromoteView.swift in Sources */,
 				84B6D50B21F82B9A00DD742A /* CatatanPartyController.swift in Sources */,
 				849CABCA21CE89DD00912F8E /* SettingController.swift in Sources */,
 				849CABCE21CE8AC300912F8E /* SettingViewModel.swift in Sources */,
@@ -3752,7 +3756,6 @@
 				840850BF21D256C200696CB3 /* SectionOfProfileInfoData.swift in Sources */,
 				84619D3821DA851200EB58CF /* EditViewModel.swift in Sources */,
 				8452A4D421DE55DE00196043 /* SosmedCoordinator.swift in Sources */,
-				8493BF752216797B00685BEC /* SucceessPromoteView.swift in Sources */,
 				043EE197221A36C2008C59CD /* SuaraCapresViewCell.swift in Sources */,
 				1149EB6E22140E800050F366 /* ArgumentRightCell.swift in Sources */,
 				11E107A821CD33CA00B7B074 /* CreateJanjiCoordinator.swift in Sources */,
@@ -3787,6 +3790,7 @@
 				8493BF9222169F4D00685BEC /* PopupChallengeViewModel.swift in Sources */,
 				842A4A0121D7C5160050AA51 /* CameraController.swift in Sources */,
 				84AEFA8022200B8B00F3DC92 /* ChallengeModel.swift in Sources */,
+				84A945B02223C8E500944C6B /* SuccessPromoteViewModel.swift in Sources */,
 				11D066B021E399C1003AC9BB /* FilterRadioCell.swift in Sources */,
 				84A07FB121D0E7B000269C6B /* SelfIdentitasController.swift in Sources */,
 				13812C3921CC182500CAB327 /* AskViewCell.swift in Sources */,

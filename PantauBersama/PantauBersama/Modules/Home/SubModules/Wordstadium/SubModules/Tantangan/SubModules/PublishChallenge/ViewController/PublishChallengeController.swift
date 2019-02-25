@@ -188,8 +188,11 @@ class PublishChallengeController: UIViewController {
             .do(onNext: { [unowned self] (s) in
                 let content = LinkShareContent(url: URL(string: "\(AppContext.instance.infoForKey("URL_WEB_SHARE"))/share/wordstadium?type=open_challenge&challenge_id=\(s)")!)
                 do {
-                    try ShareDialog.show(from: self, content: content)
-                    self.viewModel.input.successI.onNext(())
+//                    try ShareDialog.show(from: self, content: content)
+                    try ShareDialog.show(from: self, content: content, completion: { (result) in
+                        print("Result facebook \(result)")
+                        self.viewModel.input.successI.onNext(())
+                    })
                 } catch {
                     
                 }
