@@ -34,6 +34,7 @@ def application_pods
     pod 'Firebase/Messaging'
     pod 'FacebookSDK'
     pod 'URLEmbeddedView'
+    pod 'FacebookShare'
 end
 
 

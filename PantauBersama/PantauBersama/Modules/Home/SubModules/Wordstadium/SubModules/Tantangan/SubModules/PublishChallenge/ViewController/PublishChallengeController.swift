@@ -12,6 +12,7 @@ import RxCocoa
 import TwitterKit
 import FBSDKLoginKit
 import Common
+import FacebookShare
 
 class PublishChallengeController: UIViewController {
     
@@ -63,6 +64,12 @@ class PublishChallengeController: UIViewController {
                 self.promoteView.configure(type: self.tantanganType, data: user)
                 self.twitterState = user.twitter
                 self.facebookState = user.facebook
+                if let valueTwitter = user.twitter {
+                    self.viewModel.input.twitterI.onNext(valueTwitter)
+                }
+                if let valueFacebook = user.facebook {
+                    self.viewModel.input.facebookI.onNext(valueFacebook)
+                }
             })
             .drive()
             .disposed(by: disposeBag)
@@ -167,6 +174,33 @@ class PublishChallengeController: UIViewController {
             .disposed(by: disposeBag)
         
         viewModel.output.publishO
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.errorO
+            .drive(onNext: { [weak self] (e) in
+                guard let alert = UIAlertController.alert(with: e) else { return }
+                self?.navigationController?.present(alert, animated: true, completion: nil)
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.output.shareFacebookO
+            .do(onNext: { [unowned self] (s) in
+                let content = LinkShareContent(url: URL(string: "\(AppContext.instance.infoForKey("URL_WEB_SHARE"))/share/wordstadium?type=open_challenge&challenge_id=\(s)")!)
+                do {
+//                    try ShareDialog.show(from: self, content: content)
+                    try ShareDialog.show(from: self, content: content, completion: { (result) in
+                        print("Result facebook \(result)")
+                        self.viewModel.input.successI.onNext(())
+                    })
+                } catch {
+                    
+                }
+            })
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.successO
             .drive()
             .disposed(by: disposeBag)
     }
