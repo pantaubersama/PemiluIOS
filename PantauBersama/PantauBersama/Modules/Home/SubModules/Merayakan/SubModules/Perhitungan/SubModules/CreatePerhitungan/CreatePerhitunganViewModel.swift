@@ -13,10 +13,12 @@ import RxCocoa
 
 class CreatePerhitunganViewModel: ViewModelType {
     struct Input {
+        let detailTPSI: AnyObserver<Void>
         let backI: AnyObserver<Void>
     }
     
     struct Output {
+        let detailTPSO: Driver<Void>
         let backO: Driver<Void>
     }
     
@@ -25,16 +27,25 @@ class CreatePerhitunganViewModel: ViewModelType {
     
     private let navigator: CreatePerhitunganNavigator
     private let backS = PublishSubject<Void>()
+    private let detailTPSS = PublishSubject<Void>()
     
     init(navigator: CreatePerhitunganNavigator) {
         self.navigator = navigator
         
-        input = Input(backI: backS.asObserver())
+        input = Input(
+            detailTPSI: detailTPSS.asObserver(),
+            backI: backS.asObserver())
         
         let back = backS
             .flatMap({ navigator.back() })
             .asDriverOnErrorJustComplete()
         
-        output = Output(backO: back)
+        let detail = detailTPSS
+            .flatMap({ navigator.launchDetailTPS() })
+            .asDriverOnErrorJustComplete()
+        
+        output = Output(
+            detailTPSO: detail,
+            backO: back)
     }
 }
