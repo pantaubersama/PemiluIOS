@@ -13,7 +13,6 @@ import RxCocoa
 
 class PerhitunganController: UITableViewController {
     private lazy var headerView =  BannerHeaderView()
-    private var viewModel: PerhitunganViewModel!
     private lazy var btnCreate: UIButton = {
        let btn = UIButton()
         btn.adjustsImageWhenHighlighted = true
@@ -22,6 +21,9 @@ class PerhitunganController: UITableViewController {
         
         return btn
     }()
+    
+    private var viewModel: PerhitunganViewModel!
+    private let disposeBag = DisposeBag()
     
     convenience init(viewModel: PerhitunganViewModel) {
         self.init()
@@ -34,6 +36,14 @@ class PerhitunganController: UITableViewController {
         configureConstraint()
         tableView.registerReusableCell(PerhitunganCell.self)
         tableView.tableHeaderView = headerView
+        
+        btnCreate.rx.tap
+            .bind(to: viewModel.input.createPerhitunganI)
+            .disposed(by: disposeBag)
+        
+        viewModel.output.createPerhitunganO
+            .drive()
+            .disposed(by: disposeBag)
     }
     
     private func configureConstraint() {

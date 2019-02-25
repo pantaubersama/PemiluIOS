@@ -36,6 +36,13 @@ public class TextField: UITextField {
     }
     
     @IBInspectable
+    public var icon: UIImage? = nil {
+        didSet {
+            setupTextField()
+        }
+    }
+    
+    @IBInspectable
     public var lineColor: UIColor = Color.grey_two {
         didSet {
             setupTextField()
@@ -90,6 +97,21 @@ public class TextField: UITextField {
             ]
             self.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: attributes)
         }
+        
+
+        if let imageIcon = icon {
+            let imageIcon = UIImageView(image: imageIcon)
+            imageIcon.translatesAutoresizingMaskIntoConstraints = false
+            self.addSubview(imageIcon)
+            
+            NSLayoutConstraint.activate([
+                imageIcon.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -4),
+                imageIcon.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+                imageIcon.heightAnchor.constraint(equalToConstant: 24),
+                imageIcon.widthAnchor.constraint(equalToConstant: 24)
+                ])
+        }
+        
     }
     
     public func editingMode(active: Bool) {
