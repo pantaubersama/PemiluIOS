@@ -26,6 +26,8 @@ class PublishChallengeViewModel: ViewModelType {
         let facebookLoginI: AnyObserver<String>
         let facebookGraphI: AnyObserver<Void>
         let publishI: AnyObserver<Void>
+        let shareFacebookI: AnyObserver<String>
+        let successI: AnyObserver<Void>
     }
     
     struct Output {
@@ -37,6 +39,9 @@ class PublishChallengeViewModel: ViewModelType {
         let facebookGraphO: Driver<MeFacebookResponse>
         let enableO: Driver<Bool>
         let publishO: Driver<Void>
+        let errorO: Driver<Error>
+        let shareFacebookO: Driver<String>
+        let successO: Driver<Void>
     }
     
     private let backS = PublishSubject<Void>()
@@ -47,6 +52,8 @@ class PublishChallengeViewModel: ViewModelType {
     private let facebookLoginS = PublishSubject<String>()
     private let facebookGraphS = PublishSubject<Void>()
     private let publishS = PublishSubject<Void>()
+    private let shareFacebookS = PublishSubject<String>()
+    private let successS = PublishSubject<Void>()
     
     private let errorTracker = ErrorTracker()
     private let activityIndicator = ActivityIndicator()
@@ -67,7 +74,9 @@ class PublishChallengeViewModel: ViewModelType {
                       refreshI: refreshS.asObserver(),
                       facebookLoginI: facebookLoginS.asObserver(),
                       facebookGraphI: facebookGraphS.asObserver(),
-                      publishI: publishS.asObserver())
+                      publishI: publishS.asObserver(),
+                      shareFacebookI: shareFacebookS.asObserver(),
+                      successI: successS.asObserver())
         
         
         let twitter = twitterLoginS
@@ -109,6 +118,7 @@ class PublishChallengeViewModel: ViewModelType {
         }.asDriverOnErrorJustComplete()
         
         var stateTwitter: Bool = false
+        var stateFacebook: Bool = false
         let user = refreshS
             .flatMapLatest { (_) -> Observable<User> in
                 return NetworkService.instance
@@ -118,6 +128,9 @@ class PublishChallengeViewModel: ViewModelType {
                     .do(onSuccess: { (user) in
                         if let twitterValue = user.twitter {
                             stateTwitter = twitterValue
+                        }
+                        if let facebookValue = user.facebook {
+                            stateFacebook = facebookValue
                         }
                     })
                     .trackError(self.errorTracker)
@@ -131,7 +144,8 @@ class PublishChallengeViewModel: ViewModelType {
             .asDriverOnErrorJustComplete()
         
         let publishOpen = publishS
-            .flatMapLatest { (_) -> Observable<Void> in
+            .withLatestFrom(facebookS)
+            .flatMapLatest { (value) -> Observable<Void> in
                 return NetworkService.instance
                     .requestObject(WordstadiumAPI
                         .createChallengeOpen(statement: model.statement ?? "",
@@ -142,13 +156,26 @@ class PublishChallengeViewModel: ViewModelType {
                         , c: BaseResponse<CreateChallengeResponse>.self)
                     .do(onSuccess: { (response) in
                         print("Response create: \(response)")
+                        if value == true && type == false {
+                            // tigger to show pop up share facebook
+                            // just for open challenge
+                            // get response id
+                            self.input.shareFacebookI.onNext(response.data.challenge.id)
+                        }
                     }, onError: { (e) in
                         print(e.localizedDescription)
+                        
                     })
+                    .trackError(self.errorTracker)
+                    .trackActivity(self.activityIndicator)
                     .asObservable()
                     .mapToVoid()
+                    .flatMapLatest({ navigator.showSuccess() })
         }.asDriverOnErrorJustComplete()
         
+        let success = successS
+            .flatMapLatest({ navigator.showSuccess() })
+            .asDriverOnErrorJustComplete()
         
         
         output = Output(meO: user,
@@ -158,7 +185,10 @@ class PublishChallengeViewModel: ViewModelType {
                         facebookLoginO: facebook,
                         facebookGraphO: facebookMe,
                         enableO: enable,
-                        publishO: publishOpen)
+                        publishO: publishOpen,
+                        errorO: errorTracker.asDriver(),
+                        shareFacebookO: shareFacebookS.asDriverOnErrorJustComplete(),
+                        successO: success)
         
     }
     

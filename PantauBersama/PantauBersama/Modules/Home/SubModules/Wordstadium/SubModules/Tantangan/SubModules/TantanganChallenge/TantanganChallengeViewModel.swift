@@ -10,6 +10,11 @@ import RxSwift
 import RxCocoa
 import Networking
 
+enum TantanganConfirmation {
+    case ok
+    case cancel
+}
+
 class TantanganChallengeViewModel: ViewModelType {
     
     var input: Input

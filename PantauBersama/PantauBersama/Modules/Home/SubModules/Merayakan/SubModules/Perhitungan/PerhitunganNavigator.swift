@@ -11,12 +11,18 @@ import RxSwift
 
 protocol PerhitunganNavigator: class {
     var navigationController: UINavigationController! { get }
-    func openPerhitunganDetail() -> Observable<Void>
+    func launchPerhitunganDetail() -> Observable<Void>
+    func launchCreatePerhitungan() -> Observable<Void>
 }
 
 extension PerhitunganNavigator where Self: BaseCoordinator<Void> {
-    func openPerhitunganDetail() -> Observable<Void> {
+    func launchPerhitunganDetail() -> Observable<Void> {
         return Observable.empty()
+    }
+    
+    func launchCreatePerhitungan() -> Observable<Void> {
+        let createPerhitunganCoordinator = CreatePerhitunganCoordinator(navigationController: navigationController)
+        return coordinate(to: createPerhitunganCoordinator)
     }
 }
 

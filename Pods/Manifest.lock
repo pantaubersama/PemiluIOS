@@ -12,6 +12,9 @@ PODS:
     - Fabric (~> 1.9.0)
   - Differentiator (3.1.0)
   - Fabric (1.9.0)
+  - FacebookCore (0.5.0):
+    - Bolts (~> 1.9)
+    - FBSDKCoreKit (~> 4.37)
   - FacebookSDK (4.38.0):
     - Bolts (~> 1.9)
     - FacebookSDK/CoreKit (= 4.38.0)
@@ -23,11 +26,18 @@ PODS:
     - Bolts (~> 1.9)
     - FacebookSDK/CoreKit
     - FBSDKMarketingKit
+  - FacebookShare (0.5.0):
+    - Bolts (~> 1.9)
+    - FacebookCore (~> 0.5)
+    - FBSDKCoreKit (~> 4.37)
+    - FBSDKShareKit (~> 4.37)
   - FBSDKCoreKit (4.39.1):
     - Bolts (~> 1.9)
   - FBSDKLoginKit (4.39.1):
     - FBSDKCoreKit
   - FBSDKMarketingKit (4.38.0):
+    - FBSDKCoreKit
+  - FBSDKShareKit (4.39.1):
     - FBSDKCoreKit
   - Firebase/Core (5.14.0):
     - Firebase/CoreOnly
@@ -119,6 +129,7 @@ DEPENDENCIES:
   - Crashlytics
   - Fabric
   - FacebookSDK
+  - FacebookShare
   - FBSDKLoginKit
   - Firebase/Core
   - Firebase/Messaging
@@ -140,10 +151,13 @@ SPEC REPOS:
     - Crashlytics
     - Differentiator
     - Fabric
+    - FacebookCore
     - FacebookSDK
+    - FacebookShare
     - FBSDKCoreKit
     - FBSDKLoginKit
     - FBSDKMarketingKit
+    - FBSDKShareKit
     - Firebase
     - FirebaseAnalytics
     - FirebaseAnalyticsInterop
@@ -174,10 +188,13 @@ SPEC CHECKSUMS:
   Crashlytics: 07fb167b1694128c1c9a5a5cc319b0e9c3ca0933
   Differentiator: be49ca3408f0ecfc761e4c7763d20c62be01b9ad
   Fabric: f988e33c97f08930a413e08123064d2e5f68d655
+  FacebookCore: 74288d0add931d361b1596beae787ab72c438249
   FacebookSDK: 73f54b8b94e09b05647cdef0af147f470cd3edc6
+  FacebookShare: 963b4bb1124a64a395b1e428163d70b5774116e8
   FBSDKCoreKit: f442aa96179cc9b382bb4abeb7e340a47cca8f91
   FBSDKLoginKit: c3079d9a4db27c492287b1eed7a4272b28cf8a59
   FBSDKMarketingKit: e609f39d74ab273cf52e2f8b7e8829ed412b2827
+  FBSDKShareKit: 27d7b982e7b1f4638da2f2b1ab6eba5afc6b5888
   Firebase: 963d5685fae888a56d6d4d9cfce6b9c976958798
   FirebaseAnalytics: c06f9d70577d79074214700a71fd5d39de5550fb
   FirebaseAnalyticsInterop: e5f21be9af6548372e2f0815834ff909bff395a2
@@ -201,6 +218,6 @@ SPEC CHECKSUMS:
   TwitterKit: 5e4f41d70b9abdb41df5467f52d7aa2c0fd26ebb
   URLEmbeddedView: 08237f670e68c9ba7ae98f7de9e3e48ae2492126
 
-PODFILE CHECKSUM: 8532d3e8f3939448aaf251ab6ac78ee0980a82b5
+PODFILE CHECKSUM: c907fd154821b5108d07877e6605a5f0cb6a92f4
 
 COCOAPODS: 1.5.3
