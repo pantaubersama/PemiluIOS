@@ -29,6 +29,7 @@ class TantanganChallengeController: UIViewController {
     private var link: String? = nil
     private var statusDebat: Bool = false
     private var headerView: HeaderTantanganView = HeaderTantanganView()
+    private var searchModel: SearchUserModel? = nil
     
     var dataSource: RxTableViewSectionedReloadDataSource<SectionOfTantanganData>!
     var tantanganType: Bool = false // for open
@@ -89,7 +90,7 @@ class TantanganChallengeController: UIViewController {
                 return cell
             case 2:
                 let cell = tableView.dequeueReusableCell(indexPath: indexPath) as LawanDebatCell
-                cell.configure(item: LawanDebatCell.Input(viewModel: self.viewModel, status: self.statusDebat))
+                cell.configure(item: LawanDebatCell.Input(viewModel: self.viewModel, status: self.statusDebat, data: self.searchModel))
                 return cell
             case 3:
                 let cell = tableView.dequeueReusableCell(indexPath: indexPath) as DateTimeCell
@@ -163,7 +164,7 @@ class TantanganChallengeController: UIViewController {
                     self.viewModel.input.kajianI.onNext(false)
                     self.viewModel.input.pernyataanI.onNext(false)
                     self.viewModel.input.lawanDebatI.onNext(false)
-                    self.viewModel.input.dateTimeI.onNext(false)
+                    self.tantanganType ? self.viewModel.input.dateTimeI.onNext(true) : self.viewModel.input.dateTimeI.onNext(false)
                     self.viewModel.input.saldoI.onNext(true)
                 }
             })
@@ -238,7 +239,7 @@ class TantanganChallengeController: UIViewController {
                     self.viewModel.input.kajianI.onNext(false)
                     self.viewModel.input.pernyataanI.onNext(false)
                     self.viewModel.input.lawanDebatI.onNext(false)
-                    self.viewModel.input.dateTimeI.onNext(false)
+                    self.tantanganType ? self.viewModel.input.dateTimeI.onNext(true) : self.viewModel.input.dateTimeI.onNext(false)
                     self.viewModel.input.saldoI.onNext(true)
                     self.statusPernyataan = true
                     self.link = url
@@ -306,9 +307,19 @@ class TantanganChallengeController: UIViewController {
         viewModel.output.symbolicButtonO
             .do(onNext: { (result) in
                 switch result {
-                case .cancel: break
+                case .cancel:
+                    self.viewModel.input.kajianI.onNext(false)
+                    self.viewModel.input.pernyataanI.onNext(false)
+                    self.viewModel.input.lawanDebatI.onNext(false)
+                    self.viewModel.input.dateTimeI.onNext(true)
+                    self.viewModel.input.saldoI.onNext(true)
                 case .oke(let data):
-                    print("data \(data)")
+                    self.searchModel = data
+                    self.viewModel.input.kajianI.onNext(false)
+                    self.viewModel.input.pernyataanI.onNext(false)
+                    self.viewModel.input.lawanDebatI.onNext(false)
+                    self.viewModel.input.dateTimeI.onNext(false)
+                    self.viewModel.input.saldoI.onNext(true)
                 }
             })
             .drive()
@@ -354,7 +365,7 @@ extension TantanganChallengeController: UITableViewDelegate {
                     return 219.0
                 }
             case 2:
-                return 181.0
+                return 200.0
             case 3:
                 return 175.0
             case 4:

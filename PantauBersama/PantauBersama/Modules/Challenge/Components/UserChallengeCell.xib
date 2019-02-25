@@ -21,7 +21,7 @@
                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Qlv-ux-5vB">
                         <rect key="frame" x="16" y="0.0" width="343" height="52.5"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bN5-bD-Xjt" customClass="CircularUIImageView" customModule="Common">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icDummyPerson" translatesAutoresizingMaskIntoConstraints="NO" id="bN5-bD-Xjt" customClass="CircularUIImageView" customModule="Common">
                                 <rect key="frame" x="0.0" y="6.5" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="gvK-6N-KgL"/>
@@ -92,4 +92,7 @@
             <point key="canvasLocation" x="93.599999999999994" y="192.95352323838082"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="icDummyPerson" width="48" height="48"/>
+    </resources>
 </document>
