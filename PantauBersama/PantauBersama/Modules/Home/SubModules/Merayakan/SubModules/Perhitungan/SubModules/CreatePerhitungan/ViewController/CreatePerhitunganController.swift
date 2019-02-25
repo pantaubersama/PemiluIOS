@@ -13,6 +13,7 @@ import RxCocoa
 
 class CreatePerhitunganController: UIViewController {
     var viewModel: CreatePerhitunganViewModel!
+    private let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +24,15 @@ class CreatePerhitunganController: UIViewController {
         
         navigationItem.leftBarButtonItem = back
         navigationItem.rightBarButtonItem = done
-        // Do any additional setup after loading the view.
+        navigationController?.navigationBar.configure(with: .white)
+        
+        back.rx.tap
+            .bind(to: viewModel.input.backI)
+            .disposed(by: disposeBag)
+        
+        viewModel.output.backO
+            .drive()
+            .disposed(by: disposeBag)
     }
 
 }

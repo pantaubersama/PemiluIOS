@@ -35,6 +35,7 @@ class CreatePerhitunganCoordinator: BaseCoordinator<Void> {
 
 extension CreatePerhitunganCoordinator: CreatePerhitunganNavigator {
     func back() -> Observable<Void> {
+        self.navigationController.popViewController(animated: true)
         return Observable.empty()
     }
 }
