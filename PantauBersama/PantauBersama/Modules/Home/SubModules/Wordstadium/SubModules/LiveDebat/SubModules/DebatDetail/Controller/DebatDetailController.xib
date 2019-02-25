@@ -25,6 +25,17 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XcL-An-EdR" customClass="RoundView" customModule="Common">
                     <rect key="frame" x="16" y="77" width="343" height="533"/>
                     <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kek-5J-ZKZ" customClass="ChallengeDetailView" customModule="PantauBersama" customModuleProvider="target">
+                            <rect key="frame" x="8" y="0.0" width="327" height="362"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="362" id="Dw1-lD-yRs"/>
+                            </constraints>
+                        </view>
+                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QjO-J0-fJ2" customClass="FooterProfileView" customModule="PantauBersama" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="362" width="343" height="171"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CQI-7P-vYz" customClass="ImageButton" customModule="Common">
                             <rect key="frame" x="289" y="4" width="50" height="50"/>
                             <constraints>
@@ -42,19 +53,18 @@
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                         </button>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kek-5J-ZKZ" customClass="ChallengeDetailView" customModule="PantauBersama" customModuleProvider="target">
-                            <rect key="frame" x="8" y="37" width="327" height="488"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </view>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="bottom" secondItem="kek-5J-ZKZ" secondAttribute="bottom" constant="8" id="57R-Rq-7he"/>
+                        <constraint firstAttribute="bottom" secondItem="QjO-J0-fJ2" secondAttribute="bottom" id="3Nm-qe-ffk"/>
                         <constraint firstItem="kek-5J-ZKZ" firstAttribute="leading" secondItem="XcL-An-EdR" secondAttribute="leading" constant="8" id="IYi-xA-i0j"/>
+                        <constraint firstItem="QjO-J0-fJ2" firstAttribute="top" secondItem="kek-5J-ZKZ" secondAttribute="bottom" id="dON-pp-Jvs"/>
                         <constraint firstAttribute="trailing" secondItem="kek-5J-ZKZ" secondAttribute="trailing" constant="8" id="iOB-JS-qmd"/>
+                        <constraint firstAttribute="trailing" secondItem="QjO-J0-fJ2" secondAttribute="trailing" id="jEY-MO-15x"/>
                         <constraint firstItem="CQI-7P-vYz" firstAttribute="top" secondItem="XcL-An-EdR" secondAttribute="top" constant="4" id="lde-vF-Udg"/>
                         <constraint firstAttribute="trailing" secondItem="CQI-7P-vYz" secondAttribute="trailing" constant="4" id="ocv-bc-7rE"/>
-                        <constraint firstItem="kek-5J-ZKZ" firstAttribute="top" secondItem="XcL-An-EdR" secondAttribute="top" constant="37" id="v8Y-8Y-bbd"/>
+                        <constraint firstItem="QjO-J0-fJ2" firstAttribute="leading" secondItem="XcL-An-EdR" secondAttribute="leading" id="q9g-4Y-GvE"/>
+                        <constraint firstItem="kek-5J-ZKZ" firstAttribute="top" secondItem="XcL-An-EdR" secondAttribute="top" id="v8Y-8Y-bbd"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">

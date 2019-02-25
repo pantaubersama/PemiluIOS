@@ -36,6 +36,13 @@ public class TextField: UITextField {
     }
     
     @IBInspectable
+    public var icon: UIImage? = nil {
+        didSet {
+            setupTextField()
+        }
+    }
+    
+    @IBInspectable
     public var lineColor: UIColor = Color.grey_two {
         didSet {
             setupTextField()
@@ -78,9 +85,19 @@ public class TextField: UITextField {
         }
     }
     
+    @IBInspectable
+    public var borderType: String = "none" {
+        didSet {
+            setupTextField()
+        }
+    }
+    
     func setupTextField() {
-        self.borderStyle = .none
-        self.setBottomBorder(color: lineColor)
+        self.borderStyle = getBorderType()
+        
+        if borderStyle == .none {
+            self.setBottomBorder(color: lineColor)
+        }
         
         if let `placeholder` = placeholder {
             self.font = UIFont(name: "BwModelicaSS01-BoldCondensed", size: 12)
@@ -90,11 +107,40 @@ public class TextField: UITextField {
             ]
             self.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: attributes)
         }
+        
+
+        if let imageIcon = icon {
+            let imageIcon = UIImageView(image: imageIcon)
+            imageIcon.translatesAutoresizingMaskIntoConstraints = false
+            self.addSubview(imageIcon)
+            
+            NSLayoutConstraint.activate([
+                imageIcon.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -4),
+                imageIcon.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+                imageIcon.heightAnchor.constraint(equalToConstant: 24),
+                imageIcon.widthAnchor.constraint(equalToConstant: 24)
+                ])
+        }
+        
     }
     
     public func editingMode(active: Bool) {
         let color = active ? activeLineColor : lineColor
-        self.setBottomBorder(color: color)
+        if self.borderStyle == .none {
+            self.setBottomBorder(color: color)
+        }
+    }
+    
+    private func getBorderType() -> TextField.BorderStyle {
+        if borderType == "round" {
+            return .roundedRect
+        } else if borderType == "line" {
+            return .line
+        } else if borderType == "bazel" {
+            return .bezel
+        } else {
+            return .none
+        }
     }
     
 }
