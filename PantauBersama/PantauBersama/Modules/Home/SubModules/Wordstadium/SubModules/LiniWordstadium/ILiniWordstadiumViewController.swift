@@ -86,6 +86,7 @@ extension ILiniWordstadiumViewController {
                 self.navigationController?.present(alert, animated: true, completion: nil)
             })
             .disposed(by: disposeBag)
+        
     }
     
     func bind(headerView: BannerHeaderView, with viewModel: ILiniWordstadiumViewModel) {

@@ -83,6 +83,12 @@ class LiniWordstadiumViewController: UITableViewController, ILiniWordstadiumView
                         .map({ itemWordstadium })
                         .bind(to: self.viewModel.input.moreI)
                         .disposed(by: self.disposeBag)
+                    
+                    cell.tapGesture.rx.event.mapToVoid()
+                        .map({ itemWordstadium })
+                        .bind(to: self.viewModel.input.itemSelectedI)
+                        .disposed(by: self.disposeBag)
+                    
                     return cell
                 }
         })

@@ -26,6 +26,7 @@ class WordstadiumItemViewCell: UITableViewCell {
     @IBOutlet weak var moreMenuBtn: UIButton!
     @IBOutlet weak var statementLbl: UILabel!
     
+    let tapGesture = UITapGestureRecognizer()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -50,6 +51,8 @@ extension WordstadiumItemViewCell: IReusableCell {
     
     func configureCell(item: Input) {
         var footerView: UIView!
+        
+        self.addGestureRecognizer(tapGesture)
         
         statementLbl.text = item.wordstadium.statement
         titleLbl.text = item.wordstadium.type.title
