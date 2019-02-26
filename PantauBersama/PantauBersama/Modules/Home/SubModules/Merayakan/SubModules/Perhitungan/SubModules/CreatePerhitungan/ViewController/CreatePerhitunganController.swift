@@ -30,7 +30,15 @@ class CreatePerhitunganController: UIViewController {
             .bind(to: viewModel.input.backI)
             .disposed(by: disposeBag)
         
+        done.rx.tap
+            .bind(to: viewModel.input.detailTPSI)
+            .disposed(by: disposeBag)
+        
         viewModel.output.backO
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.detailTPSO
             .drive()
             .disposed(by: disposeBag)
     }
