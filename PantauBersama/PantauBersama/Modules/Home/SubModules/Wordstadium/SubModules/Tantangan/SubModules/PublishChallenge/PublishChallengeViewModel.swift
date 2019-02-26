@@ -173,6 +173,30 @@ class PublishChallengeViewModel: ViewModelType {
                     .flatMapLatest({ navigator.showSuccess() })
         }.asDriverOnErrorJustComplete()
         
+        let publishDirect = publishS
+            .flatMapLatest { (_) -> Observable<Void> in
+                return NetworkService.instance
+                    .requestObject(WordstadiumAPI
+                        .createChallengeDirect(statement: model.statement ?? "",
+                                               source: model.source ?? "",
+                                               timeAt: model.timeAt ?? "",
+                                               timeLimit: Int(model.limitAt ?? "") ?? 0,
+                                               topic: model.tag ?? "",
+                                               screenName: model.screenName ?? "",
+                                               id: model.userId ?? ""),
+                                   c: BaseResponse<CreateChallengeResponse>.self)
+                    .do(onSuccess: { (response) in
+                        print("Response create : \(response)")
+                    }, onError: { (e) in
+                        print(e.localizedDescription)
+                    })
+                    .trackError(self.errorTracker)
+                    .trackActivity(self.activityIndicator)
+                    .asObservable()
+                    .mapToVoid()
+                    .flatMapLatest({ navigator.showSuccess() })
+        }.asDriverOnErrorJustComplete()
+        
         let success = successS
             .flatMapLatest({ navigator.showSuccess() })
             .asDriverOnErrorJustComplete()
@@ -185,7 +209,7 @@ class PublishChallengeViewModel: ViewModelType {
                         facebookLoginO: facebook,
                         facebookGraphO: facebookMe,
                         enableO: enable,
-                        publishO: publishOpen,
+                        publishO: type ? publishDirect : publishOpen,
                         errorO: errorTracker.asDriver(),
                         shareFacebookO: shareFacebookS.asDriverOnErrorJustComplete(),
                         successO: success)

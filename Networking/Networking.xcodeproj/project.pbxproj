@@ -48,6 +48,7 @@
 		8482E62E21D9017700D5DC07 /* PaginatableResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8482E62D21D9017700D5DC07 /* PaginatableResponse.swift */; };
 		8482E63021D9048800D5DC07 /* Paginate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8482E62F21D9048800D5DC07 /* Paginate.swift */; };
 		84A945AC2221435E00944C6B /* CreateChallengeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A945AB2221435E00944C6B /* CreateChallengeResponse.swift */; };
+		84A945B62224080800944C6B /* TwitterUsernameResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A945B52224080800944C6B /* TwitterUsernameResponse.swift */; };
 		84AEFA79221FFE5300F3DC92 /* WordstadiumAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AEFA78221FFE5300F3DC92 /* WordstadiumAPI.swift */; };
 		84AEFA7C2220009800F3DC92 /* TagKajianResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AEFA7B2220009800F3DC92 /* TagKajianResponse.swift */; };
 		84AEFA7E222002BB00F3DC92 /* OpiniumServicesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AEFA7D222002BB00F3DC92 /* OpiniumServicesAPI.swift */; };
@@ -128,6 +129,7 @@
 		8482E62D21D9017700D5DC07 /* PaginatableResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginatableResponse.swift; sourceTree = "<group>"; };
 		8482E62F21D9048800D5DC07 /* Paginate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Paginate.swift; sourceTree = "<group>"; };
 		84A945AB2221435E00944C6B /* CreateChallengeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChallengeResponse.swift; sourceTree = "<group>"; };
+		84A945B52224080800944C6B /* TwitterUsernameResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterUsernameResponse.swift; sourceTree = "<group>"; };
 		84AEFA78221FFE5300F3DC92 /* WordstadiumAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordstadiumAPI.swift; sourceTree = "<group>"; };
 		84AEFA7B2220009800F3DC92 /* TagKajianResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagKajianResponse.swift; sourceTree = "<group>"; };
 		84AEFA7D222002BB00F3DC92 /* OpiniumServicesAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpiniumServicesAPI.swift; sourceTree = "<group>"; };
@@ -222,6 +224,7 @@
 			children = (
 				84AEFA7B2220009800F3DC92 /* TagKajianResponse.swift */,
 				84A945AB2221435E00944C6B /* CreateChallengeResponse.swift */,
+				84A945B52224080800944C6B /* TwitterUsernameResponse.swift */,
 			);
 			path = Wordstadium;
 			sourceTree = "<group>";
@@ -592,6 +595,7 @@
 				84AEFA7E222002BB00F3DC92 /* OpiniumServicesAPI.swift in Sources */,
 				11F7890D220F1E81005AFC8C /* Notif.swift in Sources */,
 				118149E021EC5E9300192E97 /* UsersResponse.swift in Sources */,
+				84A945B62224080800944C6B /* TwitterUsernameResponse.swift in Sources */,
 				84FE6EB421D5F339009A0F55 /* UserResponse.swift in Sources */,
 				842A49FB21D78B6A0050AA51 /* VerificationsResponse.swift in Sources */,
 				8482E62E21D9017700D5DC07 /* PaginatableResponse.swift in Sources */,
