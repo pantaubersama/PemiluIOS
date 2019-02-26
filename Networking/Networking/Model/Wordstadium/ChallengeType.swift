@@ -10,12 +10,15 @@ import Foundation
 
 public enum ChallengeType: String, Codable {
     case openChallenge = "OpenChallenge"
+    case directChallenge = "DirectChallenge"
     case unknown
     
     public var title: String? {
         switch self {
         case .openChallenge:
             return "Open Challenge"
+        case .directChallenge:
+            return "Direct Challenge"
         default:
             return nil
         }
@@ -26,6 +29,8 @@ public enum ChallengeType: String, Codable {
         switch title {
         case "Open Challenge":
             return .openChallenge
+        case "Direct Challenge":
+            return .directChallenge
         default:
             return .unknown
         }
