@@ -48,6 +48,7 @@ class TantanganChallengeViewModel: ViewModelType {
         let twitterButtonI: AnyObserver<Void>
         let userIdTrigger: AnyObserver<String>
         let screenNameTrigger: AnyObserver<String>
+        let opponentAvatarI: AnyObserver<String>
     }
     
     struct Output {
@@ -99,6 +100,7 @@ class TantanganChallengeViewModel: ViewModelType {
     private let twitterButtonS = PublishSubject<Void>()
     private let userIdSubject = PublishSubject<String>()
     private let screenNameS = PublishSubject<String>()
+    private let opponentAvatarS = PublishSubject<String>()
     
     private let errorTracker = ErrorTracker()
     private let activityIndicator = ActivityIndicator()
@@ -136,7 +138,8 @@ class TantanganChallengeViewModel: ViewModelType {
                       symbolicButtonI: symbolicButtonS.asObserver(),
                       twitterButtonI: twitterButtonS.asObserver(),
                       userIdTrigger: userIdSubject.asObserver(),
-                      screenNameTrigger: screenNameS.asObserver())
+                      screenNameTrigger: screenNameS.asObserver(),
+                      opponentAvatarI: opponentAvatarS.asObserver())
         
         
         let itemOpen = Observable.combineLatest(kajianS, pernyataanS, dateTimeS, saldoS)
@@ -235,10 +238,13 @@ class TantanganChallengeViewModel: ViewModelType {
                 return Observable.just(ChallengeModel(tag: tag,
                                       statement: pernyataan,
                                       source: link,
-                                      timeAt: "\(date)-\(timeAt)",
+                                      timeAt: "\(date) \(timeAt)",
                                       limitAt: saldo,
                                       userId: nil,
-                                      screenName: nil))
+                                      screenName: nil,
+                                      timeString: timeAt,
+                                      userAvatar: nil,
+                                      dateString: date))
         }
 
         let nextPublishOpen = btnNextS
@@ -260,10 +266,13 @@ class TantanganChallengeViewModel: ViewModelType {
                 return Observable.just(ChallengeModel(tag: tag,
                                                       statement: pernyataan,
                                                       source: link,
-                                                      timeAt: "\(date)-\(timeAt)",
+                                                      timeAt: "\(date) \(timeAt)",
                                                       limitAt: saldo,
                                                       userId: uid,
-                                                      screenName: name))
+                                                      screenName: name,
+                                                      timeString: timeAt,
+                                                      userAvatar: "",
+                                                      dateString: date))
         }
         
         let nextPublishDirect = btnNextS

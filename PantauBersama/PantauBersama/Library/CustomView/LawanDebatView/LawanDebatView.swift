@@ -34,4 +34,7 @@ class LawanDebatView: UIView {
         addSubview(view)
     }
     
+    func configure(data: ChallengeModel) {
+        
+    }
 }

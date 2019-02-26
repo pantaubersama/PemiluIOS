@@ -28,6 +28,7 @@ class PublishChallengeController: UIViewController {
     var viewModel: PublishChallengeViewModel!
     private let disposeBag: DisposeBag = DisposeBag()
     var tantanganType: Bool = false
+    var data: ChallengeModel!
     private var twitterState: Bool? = false
     private var facebookState: Bool? = false
     
@@ -54,6 +55,8 @@ class PublishChallengeController: UIViewController {
             .bind(to: viewModel.input.facebookI)
             .disposed(by: disposeBag)
         
+        challengeDetail.configure(type: self.tantanganType, data: data)
+        
         viewModel.output.meO
             .do(onNext: { [unowned self] (user) in
                 if let thumb = user.avatar.thumbnailSquare.url {
@@ -70,6 +73,7 @@ class PublishChallengeController: UIViewController {
                 if let valueFacebook = user.facebook {
                     self.viewModel.input.facebookI.onNext(valueFacebook)
                 }
+                self.footerProfileView.configure(data: user)
             })
             .drive()
             .disposed(by: disposeBag)
@@ -205,6 +209,8 @@ class PublishChallengeController: UIViewController {
         viewModel.output.successO
             .drive()
             .disposed(by: disposeBag)
+        
+        configureConstraint(type: self.tantanganType, data: data)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -221,4 +227,22 @@ extension PublishChallengeController {
         })
     }
 
+    func configureConstraint(type: Bool, data: ChallengeModel) {
+        switch type {
+        case true:
+            self.challengeDetail.spacingLawanDebat.isHidden = false
+            if data.source != "" {
+                // assume link is active + 70
+                self.constraintChallenge.constant = 362 + 70 + 60
+            } else {
+                self.constraintChallenge.constant = 362 + 60
+            }
+        case false:
+            if data.source != "" {
+                self.constraintChallenge.constant = 362 + 70
+            } else {
+                self.constraintChallenge.constant = 362
+            }
+        }
+    }
 }

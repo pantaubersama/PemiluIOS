@@ -18,7 +18,18 @@
         </array>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ChallengeDetailView" customModule="PantauBersama" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ChallengeDetailView" customModule="PantauBersama" customModuleProvider="target">
+            <connections>
+                <outlet property="lawanDebatView" destination="Xzy-6s-1Vg" id="ADy-3E-2ia"/>
+                <outlet property="lblDate" destination="rxO-hs-97i" id="9TR-Qg-oVm"/>
+                <outlet property="lblSaldo" destination="bj9-ac-cDC" id="iGF-Vb-Mlu"/>
+                <outlet property="lblStatement" destination="S31-0c-C6P" id="rvF-Kg-IuS"/>
+                <outlet property="lblTag" destination="cjQ-vZ-j12" id="NuP-qo-NAm"/>
+                <outlet property="lblTime" destination="4cm-hf-NhD" id="w32-o9-lM1"/>
+                <outlet property="linkPreview" destination="dYa-lL-lzN" id="xwp-Ek-WFv"/>
+                <outlet property="spacingLawanDebat" destination="HbC-Qy-sP3" id="b4p-rC-NCC"/>
+            </connections>
+        </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="U7g-Wi-Br8">
             <rect key="frame" x="0.0" y="0.0" width="375" height="362"/>
@@ -70,7 +81,7 @@
                             <rect key="frame" x="0.0" y="19" width="343" height="0.0"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstAttribute="height" id="Sw6-8t-gyv"/>
+                                <constraint firstAttribute="height" priority="999" constant="70" id="Sw6-8t-gyv"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dNk-RQ-xa7" userLabel="spacing">
@@ -89,11 +100,18 @@ mengalami pertumbuhan mencapai 5,27%.
                             <color key="textColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HbC-Qy-sP3" userLabel="spacing">
+                            <rect key="frame" x="0.0" y="78.5" width="343" height="32"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="32" id="LT0-Nb-kll"/>
+                            </constraints>
+                        </view>
                         <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xzy-6s-1Vg" customClass="LawanDebatView" customModule="PantauBersama" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="78.5" width="343" height="0.0"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstAttribute="height" id="G7A-Iv-7G9"/>
+                                <constraint firstAttribute="height" priority="999" constant="60" id="G7A-Iv-7G9"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rob-Po-dV3" userLabel="spacing">
