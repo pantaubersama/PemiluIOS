@@ -55,6 +55,7 @@ class ChallengeDetailView: UIView {
             lblStatement.text = data.statement
             if data.source != "" {
                 self.linkPreview.isHidden = false
+                self.linkPreview.btnCloseLink.isHidden = true
                 // Graph data
                 if let linkString = data.source {
                     OGDataProvider.shared.fetchOGData(urlString: linkString) { [unowned self] (data, error) in
@@ -86,6 +87,7 @@ class ChallengeDetailView: UIView {
             lblStatement.text = data.statement
             if data.source != "" {
                 self.linkPreview.isHidden = false
+                self.linkPreview.btnCloseLink.isHidden = true
                 // Graph data
                 if let linkString = data.source {
                     OGDataProvider.shared.fetchOGData(urlString: linkString) { [unowned self] (data, error) in
