@@ -45,6 +45,7 @@ class TantanganChallengeViewModel: ViewModelType {
         let lawanDebatI: AnyObserver<Bool>
         let btnNextI: AnyObserver<Void>
         let symbolicButtonI: AnyObserver<Void>
+        let twitterButtonI: AnyObserver<Void>
     }
     
     struct Output {
@@ -66,6 +67,7 @@ class TantanganChallengeViewModel: ViewModelType {
         let hintDebatO: Driver<Void>
         let btnNextO: Driver<Void>
         let symbolicButtonO: Driver<SearchUserResult>
+        let twitterButtonO: Driver<SearchUserResult>
     }
     
     private let backS = PublishSubject<Void>()
@@ -92,6 +94,7 @@ class TantanganChallengeViewModel: ViewModelType {
     private let lawanDebatS = PublishSubject<Bool>()
     private let btnNextS = PublishSubject<Void>()
     private let symbolicButtonS = PublishSubject<Void>()
+    private let twitterButtonS = PublishSubject<Void>()
     
     private let errorTracker = ErrorTracker()
     private let activityIndicator = ActivityIndicator()
@@ -126,7 +129,8 @@ class TantanganChallengeViewModel: ViewModelType {
                       hintDebatI: hintDebatS.asObserver(),
                       lawanDebatI: lawanDebatS.asObserver(),
                       btnNextI: btnNextS.asObserver(),
-                      symbolicButtonI: symbolicButtonS.asObserver())
+                      symbolicButtonI: symbolicButtonS.asObserver(),
+                      twitterButtonI: twitterButtonS.asObserver())
         
         
         let itemOpen = Observable.combineLatest(kajianS, pernyataanS, dateTimeS, saldoS)
@@ -264,6 +268,10 @@ class TantanganChallengeViewModel: ViewModelType {
             .flatMapLatest({ navigator.launchSearchUser(type: .userSymbolic) })
         .asDriverOnErrorJustComplete()
         
+        let twitterSearch = twitterButtonS
+            .flatMapLatest({ navigator.launchSearchUser(type: .userTwitter)})
+            .asDriverOnErrorJustComplete()
+        
         
         output = Output(itemsO: type ? itemsDirect : itemsOpen,
                         meO: me.asDriverOnErrorJustComplete(),
@@ -282,7 +290,8 @@ class TantanganChallengeViewModel: ViewModelType {
                         cancelLinkO: pernyataanLinkCancelS.asDriverOnErrorJustComplete(),
                         hintDebatO: hintDebat,
                         btnNextO: type ? nextPublishDirect : nextPublishOpen,
-                        symbolicButtonO: symbolicSearch)
+                        symbolicButtonO: symbolicSearch,
+                        twitterButtonO: twitterSearch)
     }
     
 }

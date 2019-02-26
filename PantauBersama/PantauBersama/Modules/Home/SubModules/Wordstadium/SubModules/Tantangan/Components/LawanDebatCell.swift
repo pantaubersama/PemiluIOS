@@ -98,6 +98,14 @@ extension LawanDebatCell: IReusableCell {
         lineStatus.backgroundColor = item.status ? #colorLiteral(red: 1, green: 0.5569574237, blue: 0, alpha: 1) : #colorLiteral(red: 0.7960169315, green: 0.7961130738, blue: 0.7959839106, alpha: 1)
         status.image = item.status ? #imageLiteral(resourceName: "checkDone") : #imageLiteral(resourceName: "checkUnactive")
         statusBottom.image = item.status ? nil : #imageLiteral(resourceName: "checkInactive")
+        if item.status == false {
+            clearTwitter()
+            clearSymbolic()
+            self.radioButtonTwitter.deselect()
+            self.radioButton.deselect()
+            lblStatusSymbolic.isHidden = false
+            lblStatusTwitter.isHidden = false
+        }
         
         btnSymbolic.rx.tap
             .do(onNext: { [weak self] (_) in
@@ -107,6 +115,14 @@ extension LawanDebatCell: IReusableCell {
             .bind(to: item.viewModel.input.symbolicButtonI)
             .disposed(by: bag)
         
+        btnTwitter.rx.tap
+            .do(onNext: { [weak self] (_) in
+                self?.radioButton.deselect()
+                self?.radioButtonTwitter.select()
+            })
+            .bind(to: item.viewModel.input.twitterButtonI)
+            .disposed(by: bag)
+        
         btnHint.rx.tap
             .bind(to: item.viewModel.input.hintDebatI)
             .disposed(by: bag)
@@ -114,16 +130,42 @@ extension LawanDebatCell: IReusableCell {
         if item.data != nil && self.radioButton.isSelected {
             print("data from symbolic")
             lblStatusSymbolic.isHidden = true
+            lblStatusTwitter.isHidden = false
+            clearTwitter()
             lblFullNameSymbolic.text = item.data?.fullName
             lblUsernameSymbolic.text = item.data?.screenName
             if let url = item.data?.avatar {
                 ivSymboliic.show(fromURL: url)
+            } else {
+                ivSymboliic.image = #imageLiteral(resourceName: "icDummyPerson")
             }
-        } else {
-            
+        } else if item.data != nil && self.radioButtonTwitter.isSelected {
+            print("data from twitter")
+            lblStatusSymbolic.isHidden = false
+            lblStatusTwitter.isHidden = true
+            clearSymbolic()
+            lblUsernameTwitter.text = item.data?.screenName
+            lblFullnameTwitter.text = item.data?.fullName
+            if let url = item.data?.avatar {
+                ivTwitter.show(fromURL: url)
+            } else {
+                ivTwitter.image = #imageLiteral(resourceName: "icDummyPerson")
+            }
         }
         
         disposeBag = bag
+    }
+    
+    private func clearTwitter() {
+        lblFullnameTwitter.text = nil
+        lblUsernameTwitter.text = nil
+        ivTwitter.image = #imageLiteral(resourceName: "flatTwitterBadge72Px")
+    }
+    
+    private func clearSymbolic() {
+        lblUsernameSymbolic.text = nil
+        lblFullNameSymbolic.text = nil
+        ivSymboliic.image = #imageLiteral(resourceName: "icSymbolic")
     }
     
 }

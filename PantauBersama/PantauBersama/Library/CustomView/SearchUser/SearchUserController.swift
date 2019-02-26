@@ -80,6 +80,13 @@ class SearchUserController: UIViewController {
         rControl.rx.controlEvent(.valueChanged)
             .bind(to: viewModel.input.refreshI)
             .disposed(by: disposeBag)
+        
+        switch type {
+        case .userTwitter:
+            self.searchBar.placeholder = "Cari akun Twitter..."
+        default:
+            self.searchBar.placeholder = "Cari..."
+        }
     }
 
 

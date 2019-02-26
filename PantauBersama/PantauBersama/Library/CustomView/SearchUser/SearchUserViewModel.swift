@@ -84,6 +84,22 @@ final class SearchUserViewModel: ViewModelType {
                                                        avatar: user.avatar.thumbnail.url)
                             })
                         })
+                case .userTwitter:
+                    guard let `self` = self else { return Observable.empty() }
+                    return self.fetchTwitterUsername(q: s, page: 1, perPage: 50)
+                        .trackError(self.errorTracker)
+                        .trackActivity(self.activityIndicator)
+                        .asObservable()
+                        .map({ (list) -> [SearchUserModel] in
+                            return list.map({ (user) -> SearchUserModel in
+                                return SearchUserModel(id: "\(user.id)",
+                                                       screenName: user.screenName,
+                                                       fullName: user.name,
+                                                       avatar: user.profileImage)
+                            })
+                        })
+
+                    
                 default:
                     return Observable.empty()
                 }
@@ -152,7 +168,12 @@ final class SearchUserViewModel: ViewModelType {
         )
     }
     
-    private func fetchTwitterUsername(q: String, page: Int, perPage: Int) {
-        
+    private func fetchTwitterUsername(q: String, page: Int, perPage: Int) -> Observable<[TwitterUsername]> {
+        return NetworkService.instance
+            .requestObject(LinimasaAPI.getTwitterUsername(q: q, page: page, perPage: perPage)
+                , c: BaseResponse<TwitterUsernameResponses>.self)
+            .map({ $0.data.users })
+            .asObservable()
+            .share(replay: 1, scope: .whileConnected)
     }
 }

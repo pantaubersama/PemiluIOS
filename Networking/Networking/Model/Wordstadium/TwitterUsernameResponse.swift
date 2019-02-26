@@ -10,7 +10,7 @@ import Foundation
 
 public struct TwitterUsernameResponses: Codable {
     
-    public let response: [TwitterUsername]
+    public let users: [TwitterUsername]
     
 }
 

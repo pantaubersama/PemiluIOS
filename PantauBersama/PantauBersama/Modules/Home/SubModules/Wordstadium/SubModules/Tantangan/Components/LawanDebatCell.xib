@@ -100,7 +100,7 @@
                                                 </constraints>
                                             </imageView>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icSymbolic" translatesAutoresizingMaskIntoConstraints="NO" id="VvW-4B-rBf">
-                                                <rect key="frame" x="8" y="22.5" width="13.5" height="13.5"/>
+                                                <rect key="frame" x="8" y="24.5" width="13.5" height="13.5"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="13.300000000000001" id="1vN-zM-vyu"/>
                                                     <constraint firstAttribute="height" constant="13.300000000000001" id="tgY-zP-TsP"/>
@@ -159,7 +159,7 @@
                                             <constraint firstItem="OH5-mH-DcJ" firstAttribute="centerY" secondItem="fBT-bb-Sd1" secondAttribute="centerY" id="KkN-y3-gRO"/>
                                             <constraint firstItem="yvz-Mr-THk" firstAttribute="leading" secondItem="Mbe-d9-sw7" secondAttribute="trailing" constant="8" id="Qes-pJ-lwt"/>
                                             <constraint firstItem="VvW-4B-rBf" firstAttribute="leading" secondItem="fBT-bb-Sd1" secondAttribute="leading" constant="8" id="QkB-qm-bQW"/>
-                                            <constraint firstAttribute="bottom" secondItem="VvW-4B-rBf" secondAttribute="bottom" constant="4" id="RBL-rL-i0a"/>
+                                            <constraint firstAttribute="bottom" secondItem="VvW-4B-rBf" secondAttribute="bottom" constant="2" id="RBL-rL-i0a"/>
                                             <constraint firstItem="OH5-mH-DcJ" firstAttribute="leading" secondItem="Mbe-d9-sw7" secondAttribute="trailing" constant="8" id="RtM-Ga-n6X"/>
                                             <constraint firstItem="Mbe-d9-sw7" firstAttribute="centerY" secondItem="fBT-bb-Sd1" secondAttribute="centerY" id="T1E-s0-C8g"/>
                                             <constraint firstAttribute="trailing" secondItem="OH5-mH-DcJ" secondAttribute="trailing" constant="8" id="Wmq-vo-ucr"/>
@@ -197,7 +197,7 @@
                                                 </constraints>
                                             </imageView>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icTwitterCircle" translatesAutoresizingMaskIntoConstraints="NO" id="WCu-BP-pKE">
-                                                <rect key="frame" x="8" y="24" width="13.5" height="13.5"/>
+                                                <rect key="frame" x="8" y="24.5" width="13.5" height="13.5"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="13.300000000000001" id="KXA-9Y-WtY"/>
                                                     <constraint firstAttribute="height" constant="13.300000000000001" id="vR8-aP-DXo"/>
@@ -262,7 +262,7 @@
                                             <constraint firstItem="qgn-Xn-2gi" firstAttribute="centerY" secondItem="T8V-pb-eRs" secondAttribute="centerY" id="cGK-Y9-PkK"/>
                                             <constraint firstItem="eIz-Jc-mgm" firstAttribute="top" secondItem="T8V-pb-eRs" secondAttribute="top" id="db9-Hy-ewZ"/>
                                             <constraint firstItem="Bwf-u8-LZb" firstAttribute="leading" secondItem="qgn-Xn-2gi" secondAttribute="trailing" constant="8" id="gTj-B5-bL4"/>
-                                            <constraint firstItem="WCu-BP-pKE" firstAttribute="top" secondItem="qgn-Xn-2gi" secondAttribute="bottom" constant="-8" id="kVb-1b-gIr"/>
+                                            <constraint firstItem="WCu-BP-pKE" firstAttribute="bottom" secondItem="T8V-pb-eRs" secondAttribute="bottom" constant="-2" id="kVb-1b-gIr"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">

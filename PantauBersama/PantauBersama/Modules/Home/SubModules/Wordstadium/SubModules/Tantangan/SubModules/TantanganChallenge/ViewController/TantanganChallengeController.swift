@@ -308,12 +308,15 @@ class TantanganChallengeController: UIViewController {
             .do(onNext: { (result) in
                 switch result {
                 case .cancel:
+                    self.statusDebat = false
+                    self.searchModel = nil
                     self.viewModel.input.kajianI.onNext(false)
                     self.viewModel.input.pernyataanI.onNext(false)
                     self.viewModel.input.lawanDebatI.onNext(false)
                     self.viewModel.input.dateTimeI.onNext(true)
                     self.viewModel.input.saldoI.onNext(true)
                 case .oke(let data):
+                    self.statusDebat = true
                     self.searchModel = data
                     self.viewModel.input.kajianI.onNext(false)
                     self.viewModel.input.pernyataanI.onNext(false)
@@ -324,6 +327,31 @@ class TantanganChallengeController: UIViewController {
             })
             .drive()
             .disposed(by: disposeBag)
+        
+        viewModel.output.twitterButtonO
+            .do(onNext: { (result) in
+                switch result {
+                case .cancel:
+                    self.statusDebat = false
+                    self.searchModel = nil
+                    self.viewModel.input.kajianI.onNext(false)
+                    self.viewModel.input.pernyataanI.onNext(false)
+                    self.viewModel.input.lawanDebatI.onNext(false)
+                    self.viewModel.input.dateTimeI.onNext(true)
+                    self.viewModel.input.saldoI.onNext(true)
+                case .oke(let data):
+                    self.statusDebat = true
+                    self.searchModel = data
+                    self.viewModel.input.kajianI.onNext(false)
+                    self.viewModel.input.pernyataanI.onNext(false)
+                    self.viewModel.input.lawanDebatI.onNext(false)
+                    self.viewModel.input.dateTimeI.onNext(false)
+                    self.viewModel.input.saldoI.onNext(true)
+                }
+            })
+            .drive()
+            .disposed(by: disposeBag)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
