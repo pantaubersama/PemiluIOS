@@ -76,13 +76,13 @@
                         </userDefinedRuntimeAttributes>
                     </label>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="cLE-Nc-vlp">
-                        <rect key="frame" x="56.5" y="120.5" width="286.5" height="88"/>
+                        <rect key="frame" x="56.5" y="120.5" width="286.5" height="100"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="eLM-yn-eXf">
-                                <rect key="frame" x="0.0" y="0.0" width="286.5" height="40"/>
+                                <rect key="frame" x="0.0" y="0.0" width="286.5" height="46"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5ak-sT-KFO">
-                                        <rect key="frame" x="0.0" y="8" width="24" height="24"/>
+                                        <rect key="frame" x="0.0" y="11" width="24" height="24"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="24" id="VzJ-Aq-SYw"/>
@@ -90,30 +90,30 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fBT-bb-Sd1" customClass="RoundView" customModule="Common">
-                                        <rect key="frame" x="40" y="0.0" width="246.5" height="40"/>
+                                        <rect key="frame" x="40" y="0.0" width="246.5" height="46"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icSymbolic" translatesAutoresizingMaskIntoConstraints="NO" id="Mbe-d9-sw7" customClass="CircularUIImageView" customModule="Common">
-                                                <rect key="frame" x="8" y="8" width="24" height="24"/>
+                                                <rect key="frame" x="8" y="11" width="24" height="24"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="24" id="1bs-is-KK2"/>
                                                     <constraint firstAttribute="width" constant="24" id="HgD-b2-u6i"/>
                                                 </constraints>
                                             </imageView>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icSymbolic" translatesAutoresizingMaskIntoConstraints="NO" id="VvW-4B-rBf">
-                                                <rect key="frame" x="8" y="24.5" width="13.5" height="13.5"/>
+                                                <rect key="frame" x="8" y="30.5" width="13.5" height="13.5"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="13.300000000000001" id="1vN-zM-vyu"/>
                                                     <constraint firstAttribute="height" constant="13.300000000000001" id="tgY-zP-TsP"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username Symbolic" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OH5-mH-DcJ">
-                                                <rect key="frame" x="40" y="13" width="198.5" height="14.5"/>
+                                                <rect key="frame" x="40" y="16" width="198.5" height="14.5"/>
                                                 <fontDescription key="fontDescription" name="BwModelicaSS01-BoldCondensed" family="Bw Modelica SS01" pointSize="12"/>
                                                 <color key="textColor" red="0.79607843137254897" green="0.79607843137254897" blue="0.79607843137254897" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="yvz-Mr-THk">
-                                                <rect key="frame" x="40" y="7" width="198.5" height="26"/>
+                                                <rect key="frame" x="40" y="10" width="198.5" height="26"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RQe-gp-RO7" customClass="Label" customModule="Common">
                                                         <rect key="frame" x="0.0" y="0.0" width="198.5" height="13"/>
@@ -147,7 +147,7 @@
                                                 </constraints>
                                             </stackView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KYl-W7-05F">
-                                                <rect key="frame" x="0.0" y="0.0" width="246.5" height="40"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="246.5" height="46"/>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" red="0.97647058823529409" green="0.97647058823529409" blue="0.97647058823529409" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -174,12 +174,17 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="fBT-bb-Sd1" firstAttribute="top" secondItem="eLM-yn-eXf" secondAttribute="top" id="6Un-jH-0ul"/>
+                                    <constraint firstAttribute="trailing" secondItem="fBT-bb-Sd1" secondAttribute="trailing" id="JM8-ag-Wq4"/>
+                                    <constraint firstAttribute="bottom" secondItem="fBT-bb-Sd1" secondAttribute="bottom" id="MU5-F5-E8N"/>
+                                </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="KLJ-dr-FVN">
-                                <rect key="frame" x="0.0" y="48" width="286.5" height="40"/>
+                                <rect key="frame" x="0.0" y="54" width="286.5" height="46"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MRz-4T-crh">
-                                        <rect key="frame" x="0.0" y="8" width="24" height="24"/>
+                                        <rect key="frame" x="0.0" y="11" width="24" height="24"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="24" id="AjR-fc-xSy"/>
@@ -187,30 +192,30 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T8V-pb-eRs" customClass="RoundView" customModule="Common">
-                                        <rect key="frame" x="40" y="0.0" width="246.5" height="40"/>
+                                        <rect key="frame" x="40" y="0.0" width="246.5" height="46"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icTwitterBlue" translatesAutoresizingMaskIntoConstraints="NO" id="qgn-Xn-2gi" customClass="CircularUIImageView" customModule="Common">
-                                                <rect key="frame" x="8" y="8" width="24" height="24"/>
+                                                <rect key="frame" x="8" y="11" width="24" height="24"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="24" id="BZ3-8k-Jgx"/>
                                                     <constraint firstAttribute="width" constant="24" id="FCq-Nk-C2I"/>
                                                 </constraints>
                                             </imageView>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icTwitterCircle" translatesAutoresizingMaskIntoConstraints="NO" id="WCu-BP-pKE">
-                                                <rect key="frame" x="8" y="24.5" width="13.5" height="13.5"/>
+                                                <rect key="frame" x="8" y="30.5" width="13.5" height="13.5"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="13.300000000000001" id="KXA-9Y-WtY"/>
                                                     <constraint firstAttribute="height" constant="13.300000000000001" id="vR8-aP-DXo"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username Twitter" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lYu-bK-Hvm">
-                                                <rect key="frame" x="40" y="13" width="198.5" height="14.5"/>
+                                                <rect key="frame" x="40" y="16" width="198.5" height="14.5"/>
                                                 <fontDescription key="fontDescription" name="BwModelicaSS01-BoldCondensed" family="Bw Modelica SS01" pointSize="12"/>
                                                 <color key="textColor" red="0.78040271999999999" green="0.78037315610000002" blue="0.78039318319999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Bwf-u8-LZb">
-                                                <rect key="frame" x="40" y="7" width="198.5" height="26"/>
+                                                <rect key="frame" x="40" y="10" width="198.5" height="26"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jg3-aX-tSA" customClass="Label" customModule="Common">
                                                         <rect key="frame" x="0.0" y="0.0" width="198.5" height="13"/>
@@ -244,7 +249,7 @@
                                                 </constraints>
                                             </stackView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eIz-Jc-mgm">
-                                                <rect key="frame" x="0.0" y="0.0" width="246.5" height="40"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="246.5" height="46"/>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" red="0.97647058819999999" green="0.97647058819999999" blue="0.97647058819999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -271,10 +276,15 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="T8V-pb-eRs" firstAttribute="top" secondItem="KLJ-dr-FVN" secondAttribute="top" id="HFJ-cU-w4s"/>
+                                    <constraint firstAttribute="bottom" secondItem="T8V-pb-eRs" secondAttribute="bottom" id="mfI-nY-4Tx"/>
+                                    <constraint firstAttribute="trailing" secondItem="T8V-pb-eRs" secondAttribute="trailing" id="rs4-bC-vod"/>
+                                </constraints>
                             </stackView>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="height" constant="88" id="Cmr-M0-Mwk"/>
+                            <constraint firstAttribute="height" constant="100" id="Cmr-M0-Mwk"/>
                         </constraints>
                     </stackView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkInactive" translatesAutoresizingMaskIntoConstraints="NO" id="hxk-cF-BtM">
@@ -319,6 +329,8 @@
                 <outlet property="lblUsernameSymbolic" destination="A9k-H2-bZL" id="leY-TF-EMW"/>
                 <outlet property="lblUsernameTwitter" destination="iVE-8Y-pPT" id="fdX-gb-ZFl"/>
                 <outlet property="lineStatus" destination="diA-96-mQU" id="jQc-dH-9U3"/>
+                <outlet property="roundSymbolic" destination="fBT-bb-Sd1" id="jmH-wp-BPj"/>
+                <outlet property="roundTwitter" destination="T8V-pb-eRs" id="ukV-x7-TDn"/>
                 <outlet property="status" destination="MEe-1r-f3d" id="xZZ-Fc-dGd"/>
                 <outlet property="statusBottom" destination="hxk-cF-BtM" id="TfE-Fg-4lZ"/>
             </connections>
