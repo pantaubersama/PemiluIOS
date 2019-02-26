@@ -13,11 +13,11 @@ import Networking
 import Common
 
 protocol ILiniWordstadiumViewModelInput {
-    var refreshI: AnyObserver<String> { get }
-    var moreI: AnyObserver<Wordstadium> { get }
+    var refreshI: AnyObserver<Void> { get }
+    var moreI: AnyObserver<Challenge> { get }
     var moreMenuI: AnyObserver<WordstadiumType> { get }
     var seeMoreI: AnyObserver<SectionWordstadium> { get }
-    var itemSelectedI: AnyObserver<Wordstadium> { get }
+    var itemSelectedI: AnyObserver<Challenge> { get }
 }
 
 protocol ILiniWordstadiumViewModelOutput {
@@ -25,8 +25,10 @@ protocol ILiniWordstadiumViewModelOutput {
     var itemSelectedO: Driver<Void>! { get }
     var showHeaderO: Driver<Bool>! { get }
     var itemsO: Driver<[SectionWordstadium]>! { get }
-    var moreSelectedO: Driver<Wordstadium>! { get }
+    var moreSelectedO: Driver<Challenge>! { get }
     var moreMenuSelectedO: Driver<String>! { get }
+    var isLoading: Driver<Bool>! { get }
+    var error: Driver<Error>! { get }
 }
 
 protocol ILiniWordstadiumViewModel {
@@ -36,9 +38,65 @@ protocol ILiniWordstadiumViewModel {
     var errorTracker: ErrorTracker { get }
     var activityIndicator: ActivityIndicator { get }
     var headerViewModel: BannerHeaderViewModel { get }
+
+    func transformToSection(challenge: [Challenge],progress: ProgressType, type: LiniType) -> [SectionWordstadium]
     
 }
 
 extension ILiniWordstadiumViewModel {
     
+    func getChallenge(progress: ProgressType, type: LiniType) -> Observable<[Challenge]>{
+        return NetworkService.instance
+            .requestObject(WordstadiumAPI.getChallenges(progress: progress, type: type),
+                           c: BaseResponse<GetChallengeResponse>.self)
+            .map{( $0.data.challenges )}
+            .trackError(errorTracker)
+            .trackActivity(activityIndicator)
+            .asObservable()
+    }
+    
+    func transformToSection(challenge: [Challenge],progress: ProgressType, type: LiniType) -> [SectionWordstadium] {
+        var item:[Challenge] = []
+        var itemLive:[Challenge] = []
+        var title: String = ""
+        var description: String = ""
+        
+        switch progress {
+        case .liveNow:
+            itemLive = challenge
+            if type == .public {
+                title = "Live Now"
+            } else {
+                title = "Challenge in Progress"
+            }
+        case .comingSoon:
+            item = challenge
+            if type == .public {
+                title = "LINIMASA DEBAT"
+                description = "Daftar challenge dan debat yang akan atau sudah berlangsung ditampilkan semua di sini."
+            } else {
+                title = "MY WORDSTADIUM"
+                description = "Daftar tantangan dan debat yang akan atau sudah kamu ikuti ditampilkan semua di sini."
+            }
+        case .done:
+            item = challenge
+            if type == .public {
+                title = "Debat: Done"
+            } else {
+                title = "My Debat: Done"
+            }
+            
+        case .ongoing:
+            item = challenge
+            if type == .public {
+                title = "Challenge"
+            } else {
+                title = "My Challenge"
+            }
+        }
+        
+        
+        return [SectionWordstadium(title: title, descriptiom: description,type: type, itemType: progress, items: item, itemsLive: itemLive )]
+    }
+
 }

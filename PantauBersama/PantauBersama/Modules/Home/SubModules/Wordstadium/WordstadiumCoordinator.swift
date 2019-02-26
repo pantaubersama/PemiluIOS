@@ -18,8 +18,8 @@ protocol WordstadiumNavigator {
     func launchSearch() -> Observable<Void>
     func launchTooltip() -> Observable<TooltipResult>
     func launchWordstadiumList(wordstadium: SectionWordstadium) -> Observable<Void>
-    func launchChallenge(wordstadium: Wordstadium, type: ChallengeType) -> Observable<Void>
-    func launchLiveChallenge(wordstadium: Wordstadium) -> Observable<Void>
+    func launchChallenge(wordstadium: Challenge, type: ChallengeType) -> Observable<Void>
+    func launchLiveChallenge(wordstadium: Challenge) -> Observable<Void>
 }
 
 class WordstadiumCoordinator: BaseCoordinator<Void> {
@@ -76,12 +76,12 @@ extension WordstadiumCoordinator: WordstadiumNavigator {
         return coordinate(to: listCoordinator)
     }
     
-    func launchChallenge(wordstadium: Wordstadium, type: ChallengeType) -> Observable<Void> {
+    func launchChallenge(wordstadium: Challenge, type: ChallengeType) -> Observable<Void> {
         let challengeCoordinator = ChallengeCoordinator(navigationController: navigationController, type: type)
         return coordinate(to: challengeCoordinator)
     }
     
-    func launchLiveChallenge(wordstadium: Wordstadium) -> Observable<Void> {
+    func launchLiveChallenge(wordstadium: Challenge) -> Observable<Void> {
         let liveDebatCoordinator = LiveDebatCoordinator(navigationController: navigationController, viewType: .watch)
         return coordinate(to: liveDebatCoordinator)
     }

@@ -8,6 +8,7 @@
 
 import UIKit
 import Common
+import Networking
 
 class WordstadiumCollectionCell: UICollectionViewCell {
 
@@ -25,18 +26,17 @@ class WordstadiumCollectionCell: UICollectionViewCell {
 extension WordstadiumCollectionCell: IReusableCell {
     
     struct Input {
-        let type : ItemType
+        let type : LiniType
     }
     
     func configureCell(item: Input) {
         switch item.type {
-        case .live:
+        case .public:
             backgroundItem.image = UIImage(named: "bgWordstadiumLive")
             titleLbl.text = "Live Now"
-        case .inProgress:
+        case .personal:
             backgroundItem.image = UIImage(named: "bgWordstadiumChallange")
             titleLbl.text = "Open Challenge"
-        default: break
         }
     }
 }

@@ -18,7 +18,7 @@ class LiniWordstadiumViewController: UITableViewController, ILiniWordstadiumView
     internal let disposeBag = DisposeBag()
     
     private var headerView: BannerHeaderView!
-    private var rControl : UIRefreshControl?
+    internal lazy var rControl = UIRefreshControl()
     private var dataSource: RxTableViewSectionedReloadDataSource<SectionWordstadium>!
     
     convenience init(viewModel: ILiniWordstadiumViewModel) {
@@ -35,11 +35,16 @@ class LiniWordstadiumViewController: UITableViewController, ILiniWordstadiumView
         tableView.separatorStyle = .none
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         tableView.tableFooterView = UIView()
-        tableView.refreshControl = UIRefreshControl()
+
+        if #available(iOS 10.0, *) {
+            tableView.refreshControl = rControl
+        } else {
+            tableView.addSubview(rControl)
+        }
         
         registerCells(with: tableView)
         
-        bind(tableView: tableView, with: viewModel)
+        bind(tableView: tableView, refreshControl: rControl, with: viewModel)
         
         tableView.rx
             .setDelegate(self)
@@ -65,7 +70,7 @@ class LiniWordstadiumViewController: UITableViewController, ILiniWordstadiumView
                 let wordstadium = dataSource.sectionModels[indexPath.section]
                 
                 switch wordstadium.itemType {
-                case .live,.inProgress :
+                case .liveNow :
                     let cell = tableView.dequeueReusableCell(indexPath: indexPath) as WordstadiumViewCell
                     cell.configureCell(item: WordstadiumViewCell.Input(wordstadium: wordstadium, viewModel: self.viewModel))
                     cell.collectionView.reloadData()
@@ -73,11 +78,17 @@ class LiniWordstadiumViewController: UITableViewController, ILiniWordstadiumView
                 default:
                     let itemWordstadium = wordstadium.items[indexPath.row]
                     let cell = tableView.dequeueReusableCell(indexPath: indexPath) as WordstadiumItemViewCell
-                    cell.configureCell(item: WordstadiumItemViewCell.Input(type: wordstadium.itemType, wordstadium: itemWordstadium))
+                    cell.configureCell(item: WordstadiumItemViewCell.Input(type: wordstadium.type, itemType: wordstadium.itemType, wordstadium: itemWordstadium))
                     cell.moreMenuBtn.rx.tap
                         .map({ itemWordstadium })
                         .bind(to: self.viewModel.input.moreI)
                         .disposed(by: self.disposeBag)
+                    
+                    cell.tapGesture.rx.event.mapToVoid()
+                        .map({ itemWordstadium })
+                        .bind(to: self.viewModel.input.itemSelectedI)
+                        .disposed(by: self.disposeBag)
+                    
                     return cell
                 }
         })
@@ -97,7 +108,7 @@ class LiniWordstadiumViewController: UITableViewController, ILiniWordstadiumView
         let wordstadium = dataSource.sectionModels[section]
         
         switch wordstadium.itemType {
-        case .live, .inProgress:
+        case .liveNow:
             return 0
         default :
             return wordstadium.descriptiom.count == 0 ? 50:95
@@ -108,7 +119,7 @@ class LiniWordstadiumViewController: UITableViewController, ILiniWordstadiumView
         let wordstadium = dataSource.sectionModels[section]
         
         switch wordstadium.itemType {
-        case .live, .inProgress:
+        case .liveNow:
             return 0
         default :
             return 30
@@ -119,7 +130,7 @@ class LiniWordstadiumViewController: UITableViewController, ILiniWordstadiumView
         let wordstadium = dataSource.sectionModels[section]
         
         switch wordstadium.itemType {
-        case .live, .inProgress:
+        case .liveNow:
             return nil
         default :
             if wordstadium.descriptiom.count == 0 {
@@ -143,7 +154,7 @@ class LiniWordstadiumViewController: UITableViewController, ILiniWordstadiumView
         let wordstadium = dataSource.sectionModels[section]
         
         switch wordstadium.itemType {
-        case .live, .inProgress:
+        case .liveNow:
             return nil
         default :
             let item = tableView.dequeueReusableCell() as SeeMoreCell
@@ -157,40 +168,40 @@ class LiniWordstadiumViewController: UITableViewController, ILiniWordstadiumView
     
     
     // TODO: for testing purpose
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let wordstadium = dataSource.sectionModels[indexPath.section].itemType
-        
-        switch wordstadium {
-        case .live, .inProgress:
-            guard let navigationController = self.navigationController else { return }
-            let liveDebatCoordinator = LiveDebatCoordinator(navigationController: navigationController, viewType: .myTurn)
-            liveDebatCoordinator
-                .start()
-                .subscribe()
-                .disposed(by: disposeBag)
-        case .challenge, .privateChallenge:
-            guard let navigationController = self.navigationController else { return }
-            let challengeCoordinator = ChallengeCoordinator(navigationController: navigationController, type: .challenge)
-            challengeCoordinator
-                .start()
-                .subscribe()
-                .disposed(by: disposeBag)
-        case .comingsoon, .privateComingsoon:
-            guard let navigationController = self.navigationController else { return }
-            let challengeCoordinator = ChallengeCoordinator(navigationController: navigationController, type: .soon)
-            challengeCoordinator
-                .start()
-                .subscribe()
-                .disposed(by: disposeBag)
-        case .done, .privateDone:
-            guard let navigationController = self.navigationController else { return }
-            let challengeCoordinator = ChallengeCoordinator(navigationController: navigationController, type: .done)
-            challengeCoordinator
-                .start()
-                .subscribe()
-                .disposed(by: disposeBag)
-        }
-    }
+//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        let wordstadium = dataSource.sectionModels[indexPath.section].itemType
+//        
+//        switch wordstadium {
+//        case .live, .inProgress:
+//            guard let navigationController = self.navigationController else { return }
+//            let liveDebatCoordinator = LiveDebatCoordinator(navigationController: navigationController, viewType: .myTurn)
+//            liveDebatCoordinator
+//                .start()
+//                .subscribe()
+//                .disposed(by: disposeBag)
+//        case .challenge, .privateChallenge:
+//            guard let navigationController = self.navigationController else { return }
+//            let challengeCoordinator = ChallengeCoordinator(navigationController: navigationController, type: .challenge)
+//            challengeCoordinator
+//                .start()
+//                .subscribe()
+//                .disposed(by: disposeBag)
+//        case .comingsoon, .privateComingsoon:
+//            guard let navigationController = self.navigationController else { return }
+//            let challengeCoordinator = ChallengeCoordinator(navigationController: navigationController, type: .soon)
+//            challengeCoordinator
+//                .start()
+//                .subscribe()
+//                .disposed(by: disposeBag)
+//        case .done, .privateDone:
+//            guard let navigationController = self.navigationController else { return }
+//            let challengeCoordinator = ChallengeCoordinator(navigationController: navigationController, type: .done)
+//            challengeCoordinator
+//                .start()
+//                .subscribe()
+//                .disposed(by: disposeBag)
+//        }
+//    }
 
 
 }

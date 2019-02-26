@@ -15,28 +15,33 @@ class LiniPersonalViewModel: ILiniWordstadiumViewModel, ILiniWordstadiumViewMode
     var input: ILiniWordstadiumViewModelInput { return self }
     var output: ILiniWordstadiumViewModelOutput { return self }
     
-    var refreshI: AnyObserver<String>
-    var moreI: AnyObserver<Wordstadium>
+    var refreshI: AnyObserver<Void>
+    var moreI: AnyObserver<Challenge>
     var moreMenuI: AnyObserver<WordstadiumType>
     var seeMoreI: AnyObserver<SectionWordstadium>
-    var itemSelectedI: AnyObserver<Wordstadium>
+    var itemSelectedI: AnyObserver<Challenge>
     
     var bannerO: Driver<BannerInfo>!
     var itemSelectedO: Driver<Void>!
     var showHeaderO: Driver<Bool>!
     var itemsO: Driver<[SectionWordstadium]>!
-    var moreSelectedO: Driver<Wordstadium>!
+    var moreSelectedO: Driver<Challenge>!
     var moreMenuSelectedO: Driver<String>!
+    var isLoading: Driver<Bool>!
+    var error: Driver<Error>!
     
-    private let refreshSubject = PublishSubject<String>()
-    private let moreSubject = PublishSubject<Wordstadium>()
+    private let refreshSubject = PublishSubject<Void>()
+    private let moreSubject = PublishSubject<Challenge>()
     private let moreMenuSubject = PublishSubject<WordstadiumType>()
     private let seeMoreSubject = PublishSubject<SectionWordstadium>()
-    private let itemSelectedSubject = PublishSubject<Wordstadium>()
+    private let itemSelectedSubject = PublishSubject<Challenge>()
     
     internal let errorTracker = ErrorTracker()
     internal let activityIndicator = ActivityIndicator()
     internal let headerViewModel = BannerHeaderViewModel()
+    
+    private let publicItems = BehaviorRelay<[SectionWordstadium]>(value: [])
+    private(set) var disposeBag = DisposeBag()
     
     init(navigator: WordstadiumNavigator, showTableHeader: Bool) {
         refreshI = refreshSubject.asObserver()
@@ -45,7 +50,10 @@ class LiniPersonalViewModel: ILiniWordstadiumViewModel, ILiniWordstadiumViewMode
         seeMoreI = seeMoreSubject.asObserver()
         itemSelectedI = itemSelectedSubject.asObserver()
         
-        bannerO = refreshSubject.startWith("")
+        error = errorTracker.asDriver()
+        isLoading = activityIndicator.asDriver()
+        
+        bannerO = refreshSubject.startWith(())
             .flatMapLatest({ _ in self.bannerInfo() })
             .asDriverOnErrorJustComplete()
         
@@ -74,9 +82,61 @@ class LiniPersonalViewModel: ILiniWordstadiumViewModel, ILiniWordstadiumViewMode
         
         itemSelectedO = Driver.merge(infoSelected,seeMoreSelected,itemSelected)
         
-        itemsO = refreshSubject.startWith("")
-            .flatMapLatest({ _ in self.generateWordstadium() })
-            .asDriverOnErrorJustComplete()
+        // MARK:
+        // Get challenge list
+        refreshSubject.startWith(())
+            .flatMapLatest({ [weak self] (_) -> Observable<[Challenge]> in
+                guard let `self` = self else { return Observable<[Challenge]>.just([]) }
+                return self.getChallenge(progress: .liveNow, type: .personal)
+            })
+            .bind { [weak self](items) in
+                guard let weakSelf = self else { return }
+                if items.count > 0 {
+                    let currentItems = weakSelf.publicItems.value + weakSelf.transformToSection(challenge: items, progress: .liveNow, type: .personal)
+                    weakSelf.publicItems.accept(currentItems)
+                }
+            }.disposed(by: disposeBag)
+        
+        refreshSubject.startWith(())
+            .flatMapLatest({ [weak self] (_) -> Observable<[Challenge]> in
+                guard let `self` = self else { return Observable<[Challenge]>.just([]) }
+                return self.getChallenge(progress: .comingSoon, type: .personal)
+            })
+            .bind { [weak self](items) in
+                guard let weakSelf = self else { return }
+                if items.count > 0 {
+                    let currentItems = weakSelf.publicItems.value + weakSelf.transformToSection(challenge: items, progress: .comingSoon, type: .personal)
+                    weakSelf.publicItems.accept(currentItems)
+                }
+            }.disposed(by: disposeBag)
+        
+        refreshSubject.startWith(())
+            .flatMapLatest({ [weak self] (_) -> Observable<[Challenge]> in
+                guard let `self` = self else { return Observable<[Challenge]>.just([]) }
+                return self.getChallenge(progress: .done, type: .personal)
+            })
+            .bind { [weak self](items) in
+                guard let weakSelf = self else { return }
+                if items.count > 0 {
+                    let currentItems = weakSelf.publicItems.value + weakSelf.transformToSection(challenge: items, progress: .done, type: .personal)
+                    weakSelf.publicItems.accept(currentItems)
+                }
+            }.disposed(by: disposeBag)
+        
+        refreshSubject.startWith(())
+            .flatMapLatest({ [weak self] (_) -> Observable<[Challenge]> in
+                guard let `self` = self else { return Observable<[Challenge]>.just([]) }
+                return self.getChallenge(progress: .ongoing, type: .personal)
+            })
+            .bind { [weak self](items) in
+                guard let weakSelf = self else { return }
+                if items.count > 0 {
+                    let currentItems = weakSelf.publicItems.value + weakSelf.transformToSection(challenge: items, progress: .ongoing, type: .personal)
+                    weakSelf.publicItems.accept(currentItems)
+                }
+            }.disposed(by: disposeBag)
+        
+        itemsO = publicItems.asDriver(onErrorJustReturn: [])
         
         moreSelectedO = moreSubject
             .asObservable()
@@ -85,12 +145,10 @@ class LiniPersonalViewModel: ILiniWordstadiumViewModel, ILiniWordstadiumViewMode
         moreMenuSelectedO = moreMenuSubject
             .flatMapLatest { (type) -> Observable<String> in
                 switch type {
-                case .bagikan(let data):
+                case .bagikan:
                     return Observable.just("Tautan telah dibagikan")
-                case .salin(let data):
+                case .salin:
                     return Observable.just("Tautan telah tersalin")
-                default:
-                    return Observable.empty()
                 }
             }
             .asDriverOnErrorJustComplete()
@@ -106,40 +164,6 @@ class LiniPersonalViewModel: ILiniWordstadiumViewModel, ILiniWordstadiumViewMode
             .map{ ($0.data.bannerInfo) }
             .asObservable()
             .catchErrorJustComplete()
-    }
-    
-    private func generateWordstadium() ->  Observable<[SectionWordstadium]> {
-        var items : [SectionWordstadium] = []
-        let live = SectionWordstadium(title: "",
-                                      descriptiom: "",
-                                      itemType: .inProgress,
-                                      items: [Wordstadium(title: "", type: .default)],
-                                      itemsLive: [Wordstadium(title: "", type: .challenge),Wordstadium(title: "", type: .challenge),Wordstadium(title: "", type: .challenge)])
-        
-        let debat = SectionWordstadium(title: "MY WORDSTADIUM",
-                                       descriptiom: "Daftar tantangan dan debat yang akan atau sudah kamu ikuti ditampilkan semua di sini.",
-                                       itemType: .comingsoon,
-                                       items: [Wordstadium(title: "", type: .challenge),Wordstadium(title: "", type: .challenge),Wordstadium(title: "", type: .challenge)],
-                                       itemsLive: [])
-        
-        let done = SectionWordstadium(title: "My Debat: Done",
-                                      descriptiom: "",
-                                      itemType: .done,
-                                      items: [Wordstadium(title: "", type: .challenge),Wordstadium(title: "", type: .challenge),Wordstadium(title: "", type: .challenge)],
-                                      itemsLive: [])
-        
-        let chalenge = SectionWordstadium(title: "My Challenge",
-                                          descriptiom: "",
-                                          itemType: .challenge,
-                                          items: [Wordstadium(title: "", type: .challenge),Wordstadium(title: "", type: .challenge),Wordstadium(title: "", type: .challenge)],
-                                          itemsLive: [])
-        
-        items.append(live)
-        items.append(debat)
-        items.append(done)
-        items.append(chalenge)
-        
-        return Observable.just(items)
     }
     
 }

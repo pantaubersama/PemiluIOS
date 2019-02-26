@@ -10,6 +10,7 @@ import UIKit
 import Common
 import RxSwift
 import RxCocoa
+import Networking
 
 class WordstadiumViewCell: UITableViewCell{
 
@@ -60,14 +61,13 @@ extension WordstadiumViewCell: IReusableCell,UICollectionViewDelegate,UICollecti
         self.wordstadium = item.wordstadium
         self.viewModel = item.viewModel
         
-        switch item.wordstadium.itemType {
-        case .live:
-            self.titleLbl.text = "Live Now"
+        self.titleLbl.text = item.wordstadium.title
+        
+        switch item.wordstadium.type {
+        case .public:
             self.titleIv.image = UIImage(named: "icWordLive")
-        case .inProgress:
-            self.titleLbl.text = "Challenge in Progress"
+        case .personal:
             self.titleIv.image = UIImage(named: "icWordChallange")
-        default: break
         }
         
         let bag = DisposeBag()
@@ -94,7 +94,7 @@ extension WordstadiumViewCell: IReusableCell,UICollectionViewDelegate,UICollecti
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let collection = collectionView.dequeueReusableCell(indexPath: indexPath) as WordstadiumCollectionCell
-        collection.configureCell(item: WordstadiumCollectionCell.Input(type: self.wordstadium.itemType))
+        collection.configureCell(item: WordstadiumCollectionCell.Input(type: self.wordstadium.type))
         collection.moreMenuBtn.rx.tap
             .map({ self.wordstadium.itemsLive[indexPath.row] })
             .bind(to: self.viewModel.input.moreI)

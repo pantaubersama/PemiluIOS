@@ -29,21 +29,5 @@ class DescriptionView: UIView {
             [.flexibleWidth, .flexibleHeight]
         addSubview(view)
     }
-    
-    func config(type: ChallengeType){
-        switch type {
-        case .challengeOpen:
-            descriptionLbl.text = "Menunggu lawan debat"
-        case .challengeDirect:
-            descriptionLbl.text = "Menunggu Konfirmasi"
-        case .challengeDenied:
-            descriptionLbl.text = "Lawan Menolak Tantangan"
-            descriptionLbl.textColor = Color.red
-        case .challengeExpired:
-            descriptionLbl.text = "Tantangan Melebihi Batas Waktu"
-            descriptionLbl.textColor = Color.red
-        default: break
-        }
-    }
 
 }
