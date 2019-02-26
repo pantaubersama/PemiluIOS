@@ -30,6 +30,14 @@ class SubmitTPSConfirmationController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        btnBack.rx.tap
+            .bind { [unowned self] in
+                self.dismiss(animated: true, completion: {
+                    self.viewModel.input.successSubmitI.onNext(())
+                })
+            }
+            .disposed(by: disposeBag)
 
         btnNo.rx.tap
             .bind { [unowned self] in
@@ -46,6 +54,10 @@ class SubmitTPSConfirmationController: UIViewController {
                     self.viewLoading.isHidden = true
                 })
             }
+            .disposed(by: disposeBag)
+        
+        viewModel.output.successSubmitO
+            .drive()
             .disposed(by: disposeBag)
         
     }

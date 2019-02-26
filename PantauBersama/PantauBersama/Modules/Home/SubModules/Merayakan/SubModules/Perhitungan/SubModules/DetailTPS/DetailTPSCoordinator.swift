@@ -14,6 +14,7 @@ import RxCocoa
 protocol DetailTPSNavigator {
     func back() -> Observable<Void>
     func sendData() -> Observable<Void>
+    func successSubmit() -> Observable<Void>
     func launchDetailTPSPresiden() -> Observable<Void>
     func launchDetailTPSDPRI() -> Observable<Void>
     func launchDetailTPSDPD() -> Observable<Void>
@@ -41,6 +42,12 @@ class DetailTPSCoordinator: BaseCoordinator<Void> {
 }
 
 extension DetailTPSCoordinator: DetailTPSNavigator {
+    
+    func successSubmit() -> Observable<Void> {
+        navigationController.popToRootViewController(animated: true)
+        return Observable.never()
+    }
+    
     func back() -> Observable<Void> {
         navigationController.popViewController(animated: true)
         return Observable.never()
