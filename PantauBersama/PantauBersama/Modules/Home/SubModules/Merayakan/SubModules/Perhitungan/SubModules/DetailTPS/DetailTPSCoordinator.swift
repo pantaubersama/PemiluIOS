@@ -12,6 +12,8 @@ import RxSwift
 import RxCocoa
 
 protocol DetailTPSNavigator {
+    func back() -> Observable<Void>
+    func sendData() -> Observable<Void>
     func launchDetailTPSPresiden() -> Observable<Void>
     func launchDetailTPSDPRI() -> Observable<Void>
     func launchDetailTPSDPD() -> Observable<Void>
@@ -21,6 +23,7 @@ protocol DetailTPSNavigator {
 
 class DetailTPSCoordinator: BaseCoordinator<Void> {
     private let navigationController: UINavigationController
+    private var viewModel: DetailTPSViewModel?
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
@@ -28,8 +31,8 @@ class DetailTPSCoordinator: BaseCoordinator<Void> {
     
     override func start() -> Observable<Void> {
         let viewController = DetailTPSController()
-        let viewModel = DetailTPSViewModel(navigator: self)
-        viewController.viewModel = viewModel
+        viewModel = DetailTPSViewModel(navigator: self)
+        viewController.viewModel = viewModel!
         
         navigationController.pushViewController(viewController, animated: true)
         
@@ -38,6 +41,11 @@ class DetailTPSCoordinator: BaseCoordinator<Void> {
 }
 
 extension DetailTPSCoordinator: DetailTPSNavigator {
+    func back() -> Observable<Void> {
+        navigationController.popViewController(animated: true)
+        return Observable.never()
+    }
+    
     func launchDetailTPSPresiden() -> Observable<Void> {
         return Observable.never()
     }
@@ -55,6 +63,16 @@ extension DetailTPSCoordinator: DetailTPSNavigator {
     }
     
     func launchDetailTPSDPRDProv() -> Observable<Void> {
+        return Observable.never()
+    }
+    
+    func sendData() -> Observable<Void> {
+        if let viewModel = self.viewModel {
+            let viewController = SubmitTPSConfirmationController(viewModel: viewModel)
+            viewController.modalPresentationStyle = .overCurrentContext
+            
+            navigationController.present(viewController, animated: true, completion: nil)
+        }
         return Observable.never()
     }
     

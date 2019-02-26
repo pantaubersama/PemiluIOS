@@ -3,17 +3,17 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "baselineMoreHoriz24Px.png"
+      "filename" : "dpRmdpi.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "baselineMoreHoriz24Px@2x.png"
+      "filename" : "dpRmdpi@2x.png"
     },
     {
       "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "baselineMoreHoriz24Px@3x.png"
+      "filename" : "dpRmdpi@3x.png"
     }
   ],
   "info" : {
