@@ -13,6 +13,7 @@ import RxCocoa
 
 protocol CreatePerhitunganNavigator {
     func back() -> Observable<Void>
+    func launchDetailTPS() -> Observable<Void>
 }
 
 class CreatePerhitunganCoordinator: BaseCoordinator<Void> {
@@ -37,5 +38,10 @@ extension CreatePerhitunganCoordinator: CreatePerhitunganNavigator {
     func back() -> Observable<Void> {
         self.navigationController.popViewController(animated: true)
         return Observable.empty()
+    }
+    
+    func launchDetailTPS() -> Observable<Void> {
+        let detailTPSCoordinator = DetailTPSCoordinator(navigationController: self.navigationController)
+        return coordinate(to: detailTPSCoordinator)
     }
 }

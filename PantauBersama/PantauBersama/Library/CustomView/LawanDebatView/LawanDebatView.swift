@@ -34,4 +34,19 @@ class LawanDebatView: UIView {
         addSubview(view)
     }
     
+    func configure(data: ChallengeModel) {
+        if let url = data.userAvatar {
+            ivAvatar.show(fromURL: url)
+        } else {
+            ivAvatar.image = #imageLiteral(resourceName: "icDummyPerson")
+        }
+        lblUsername.text = data.opponentUsername
+        lblFullname.text = data.opponentName
+        if data.opponentStatus == true {
+            // case from symbolic
+            ivStatus.image = #imageLiteral(resourceName: "icSymbolic")
+        } else {
+            ivStatus.image = #imageLiteral(resourceName: "flatTwitterBadge72Px")
+        }
+    }
 }

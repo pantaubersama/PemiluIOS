@@ -8,6 +8,7 @@
 
 import UIKit
 import Common
+import Networking
 
 @IBDesignable
 class FooterProfileView: UIView {
@@ -36,5 +37,12 @@ class FooterProfileView: UIView {
         addSubview(view)
     }
 
+    func configure(data: User) {
+        if let url = data.avatar.thumbnail.url {
+            ivAvatar.show(fromURL: url)
+        }
+        lblName.text = data.fullName
+        lblStatus.text = data.about
+    }
     
 }

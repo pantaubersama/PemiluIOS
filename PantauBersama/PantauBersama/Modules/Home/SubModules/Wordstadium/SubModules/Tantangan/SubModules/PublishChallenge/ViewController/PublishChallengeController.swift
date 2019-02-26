@@ -22,12 +22,14 @@ class PublishChallengeController: UIViewController {
     @IBOutlet weak var footerProfileView: FooterProfileView!
     @IBOutlet weak var constraintPromote: NSLayoutConstraint!
     @IBOutlet weak var constraintChallenge: NSLayoutConstraint!
+    @IBOutlet weak var constraintFooterProfile: NSLayoutConstraint!
     @IBOutlet weak var headerTantanganView: HeaderTantanganView!
     @IBOutlet weak var btnPublish: Button!
     
     var viewModel: PublishChallengeViewModel!
     private let disposeBag: DisposeBag = DisposeBag()
     var tantanganType: Bool = false
+    var data: ChallengeModel!
     private var twitterState: Bool? = false
     private var facebookState: Bool? = false
     
@@ -54,6 +56,8 @@ class PublishChallengeController: UIViewController {
             .bind(to: viewModel.input.facebookI)
             .disposed(by: disposeBag)
         
+        challengeDetail.configure(type: self.tantanganType, data: data)
+        
         viewModel.output.meO
             .do(onNext: { [unowned self] (user) in
                 if let thumb = user.avatar.thumbnailSquare.url {
@@ -70,6 +74,7 @@ class PublishChallengeController: UIViewController {
                 if let valueFacebook = user.facebook {
                     self.viewModel.input.facebookI.onNext(valueFacebook)
                 }
+                self.footerProfileView.configure(data: user)
             })
             .drive()
             .disposed(by: disposeBag)
@@ -85,6 +90,7 @@ class PublishChallengeController: UIViewController {
                         if let username: String? = UserDefaults.Account.get(forKey: .usernameTwitter) {
                             switch self.tantanganType {
                             case true:
+                                self.promoteView.lblSubtitle.text = "sudah siap tayang!"
                                 self.promoteView.contentTwitter.text = "Ayo undang langsung teman Twittermu untuk berdebat!\n\n\(username ?? "")"
                             case false:
                                 self.promoteView.contentTwitter.text = "Tweet tantangan kamu sekarang. Undang temanmu untuk berdebat di sini.\n\n\(username ?? "")"
@@ -97,6 +103,7 @@ class PublishChallengeController: UIViewController {
                 case false:
                     switch self.tantanganType {
                     case true:
+                        self.promoteView.lblSubtitle.text = "sudah siap tayang! \n\nHubungkan dengan\nakun Twitter-mu"
                         self.promoteView.contentTwitter.text = "Ayo undang langsung teman Twittermu untuk berdebat!"
                     case false:
                         self.promoteView.contentTwitter.text = "Tweet tantangan kamu sekarang. Undang temanmu untuk berdebat di sini."
@@ -203,6 +210,8 @@ class PublishChallengeController: UIViewController {
         viewModel.output.successO
             .drive()
             .disposed(by: disposeBag)
+        
+        configureConstraint(type: self.tantanganType, data: data)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -219,4 +228,22 @@ extension PublishChallengeController {
         })
     }
 
+    func configureConstraint(type: Bool, data: ChallengeModel) {
+        switch type {
+        case true:
+            self.challengeDetail.spacingLawanDebat.isHidden = false
+            if data.source != "" {
+                // assume link is active + 70
+                self.constraintChallenge.constant = 362 + 70 + 60
+            } else {
+                self.constraintChallenge.constant = 362 + 60
+            }
+        case false:
+            if data.source != "" {
+                self.constraintChallenge.constant = 362 + 70
+            } else {
+                self.constraintChallenge.constant = 362
+            }
+        }
+    }
 }

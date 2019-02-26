@@ -30,6 +30,7 @@ final class PublishChallengeCoordinator: BaseCoordinator<Void> {
     override func start() -> Observable<Void> {
         let viewModel = PublishChallengeViewModel(navigator: self, type: type, model: challengeModel)
         let viewController = PublishChallengeController()
+        viewController.data = challengeModel
         viewController.tantanganType = type
         viewController.viewModel = viewModel
         viewController.hidesBottomBarWhenPushed = true

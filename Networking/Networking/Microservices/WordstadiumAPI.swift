@@ -12,7 +12,7 @@ import Common
 public enum WordstadiumAPI {
     case createChallengeOpen(statement: String, source: String, timeAt: String, timeLimit: Int, topic: String)
     case getChallenges(progress: ProgressType, type: LiniType)
-    
+    case createChallengeDirect(statement: String, source: String, timeAt: String, timeLimit: Int, topic: String, screenName: String, id: String)
     
 }
 
@@ -37,12 +37,15 @@ extension WordstadiumAPI: TargetType {
             return "/word_stadium/v1/challenges/open"
         case .getChallenges(let (_,type)):
             return "/word_stadium/v1/challenges/\(type.url)"
+        case .createChallengeDirect:
+            return "/word_stadium/v1/challenges/direct"
         }
     }
     
     public var method: Moya.Method {
         switch self {
-        case .createChallengeOpen:
+        case .createChallengeOpen,
+             .createChallengeDirect:
             return .post
         default:
             return .get
@@ -71,7 +74,8 @@ extension WordstadiumAPI: TargetType {
     
     public var task: Task {
         switch self {
-        case .createChallengeOpen:
+        case .createChallengeOpen,
+             .createChallengeDirect:
             return .uploadMultipart(self.multipartBody ?? [])
         default:
              return .requestParameters(parameters: parameters ?? [:], encoding: parameterEncoding)
@@ -98,6 +102,16 @@ extension WordstadiumAPI: TargetType {
             multipartFormData.append(buildMultipartFormData(key: "show_time_at", value: timeAt))
             multipartFormData.append(buildMultipartFormData(key: "time_limit", value: "\(timeLimit)"))
             multipartFormData.append(buildMultipartFormData(key: "topic_list", value: topic))
+            return multipartFormData
+        case .createChallengeDirect(let (statement, source, timeAt, timeLimit, topic, screenName, inviteId)):
+            var multipartFormData = [MultipartFormData]()
+            multipartFormData.append(buildMultipartFormData(key: "statement", value: statement))
+            multipartFormData.append(buildMultipartFormData(key: "statement_source", value: source))
+            multipartFormData.append(buildMultipartFormData(key: "show_time_at", value: timeAt))
+            multipartFormData.append(buildMultipartFormData(key: "time_limit", value: "\(timeLimit)"))
+            multipartFormData.append(buildMultipartFormData(key: "topic_list", value: topic))
+            multipartFormData.append(buildMultipartFormData(key: "screen_name", value: screenName))
+            multipartFormData.append(buildMultipartFormData(key: "invitation_id", value: inviteId))
             return multipartFormData
         default:
             return nil

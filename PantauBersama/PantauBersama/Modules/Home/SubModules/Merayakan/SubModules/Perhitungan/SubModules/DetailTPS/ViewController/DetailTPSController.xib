@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailTPSController" customModule="PantauBersama" customModuleProvider="target">
+            <connections>
+                <outlet property="btnAction" destination="LAL-5H-avy" id="Siw-Sn-Vmw"/>
+                <outlet property="tableView" destination="WV5-t0-fHa" id="QQt-Qx-Fee"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LAL-5H-avy" customClass="Button" customModule="Common">
+                    <rect key="frame" x="0.0" y="555" width="375" height="48"/>
+                    <color key="backgroundColor" red="0.74833399060000005" green="0.23216915129999999" blue="0.22348570819999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="48" id="Il9-7S-rxK"/>
+                    </constraints>
+                    <state key="normal" title="KIRIM DATA">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                            <real key="value" value="12"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </button>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="929" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WV5-t0-fHa">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="555"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="LAL-5H-avy" secondAttribute="bottom" id="4iG-DY-0ey"/>
+                <constraint firstItem="WV5-t0-fHa" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="IEB-6s-xj8"/>
+                <constraint firstItem="WV5-t0-fHa" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="LYQ-hP-zAD"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="LAL-5H-avy" secondAttribute="trailing" id="cWS-5O-hz8"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="WV5-t0-fHa" secondAttribute="trailing" id="cab-Ym-N36"/>
+                <constraint firstItem="LAL-5H-avy" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="ljp-MW-Xt2"/>
+                <constraint firstItem="LAL-5H-avy" firstAttribute="top" secondItem="WV5-t0-fHa" secondAttribute="bottom" id="xvn-lm-0Do"/>
+            </constraints>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+        </view>
+    </objects>
+</document>
