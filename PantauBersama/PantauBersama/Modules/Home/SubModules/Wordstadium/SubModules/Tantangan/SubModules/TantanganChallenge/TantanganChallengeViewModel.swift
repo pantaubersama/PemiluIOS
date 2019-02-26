@@ -46,6 +46,8 @@ class TantanganChallengeViewModel: ViewModelType {
         let btnNextI: AnyObserver<Void>
         let symbolicButtonI: AnyObserver<Void>
         let twitterButtonI: AnyObserver<Void>
+        let userIdTrigger: AnyObserver<String>
+        let screenNameTrigger: AnyObserver<String>
     }
     
     struct Output {
@@ -95,6 +97,8 @@ class TantanganChallengeViewModel: ViewModelType {
     private let btnNextS = PublishSubject<Void>()
     private let symbolicButtonS = PublishSubject<Void>()
     private let twitterButtonS = PublishSubject<Void>()
+    private let userIdSubject = PublishSubject<String>()
+    private let screenNameS = PublishSubject<String>()
     
     private let errorTracker = ErrorTracker()
     private let activityIndicator = ActivityIndicator()
@@ -130,7 +134,9 @@ class TantanganChallengeViewModel: ViewModelType {
                       lawanDebatI: lawanDebatS.asObserver(),
                       btnNextI: btnNextS.asObserver(),
                       symbolicButtonI: symbolicButtonS.asObserver(),
-                      twitterButtonI: twitterButtonS.asObserver())
+                      twitterButtonI: twitterButtonS.asObserver(),
+                      userIdTrigger: userIdSubject.asObserver(),
+                      screenNameTrigger: screenNameS.asObserver())
         
         
         let itemOpen = Observable.combineLatest(kajianS, pernyataanS, dateTimeS, saldoS)
@@ -246,16 +252,18 @@ class TantanganChallengeViewModel: ViewModelType {
                                                    sourceLinkS.asObservable(),
                                                    datePickerS.asObservable(),
                                                    statusTimeS.asObservable(),
-                                                   saldoTimeS.asObservable())
+                                                   saldoTimeS.asObservable(),
+                                                   userIdSubject.asObservable(),
+                                                   screenNameS.asObservable())
             .flatMapLatest { (arg) -> Observable<ChallengeModel> in
-                let (tag, pernyataan, link, date, timeAt, saldo) = arg
+                let (tag, pernyataan, link, date, timeAt, saldo, uid, name) = arg
                 return Observable.just(ChallengeModel(tag: tag,
                                                       statement: pernyataan,
                                                       source: link,
                                                       timeAt: "\(date)-\(timeAt)",
                                                       limitAt: saldo,
-                                                      userId: "",
-                                                      screenName: ""))
+                                                      userId: uid,
+                                                      screenName: name))
         }
         
         let nextPublishDirect = btnNextS

@@ -323,6 +323,8 @@ class TantanganChallengeController: UIViewController {
                     self.viewModel.input.lawanDebatI.onNext(false)
                     self.viewModel.input.dateTimeI.onNext(false)
                     self.viewModel.input.saldoI.onNext(true)
+                    self.viewModel.input.userIdTrigger.onNext(data.id ?? "")
+                    self.viewModel.input.screenNameTrigger.onNext(data.id ?? "")
                 }
             })
             .drive()
@@ -347,6 +349,8 @@ class TantanganChallengeController: UIViewController {
                     self.viewModel.input.lawanDebatI.onNext(false)
                     self.viewModel.input.dateTimeI.onNext(false)
                     self.viewModel.input.saldoI.onNext(true)
+                    self.viewModel.input.userIdTrigger.onNext(data.id ?? "")
+                    self.viewModel.input.screenNameTrigger.onNext(data.screenName ?? "")
                 }
             })
             .drive()

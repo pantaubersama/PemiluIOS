@@ -47,7 +47,11 @@ class PromoteView: UIView {
         case true: // for direct challenge
             self.containerFacebook.isHidden = true
             self.lblTitle.text = "Tantangan debat kamu,"
-            self.lblSubtitle.text = "sudah siap tayang! \n\nHubungkan dengan\nakun Twitter-mu"
+            if data.twitter == true {
+                self.lblSubtitle.text = "sudah siap tayang!"
+            } else {
+                self.lblSubtitle.text = "sudah siap tayang! \n\nHubungkan dengan\nakun Twitter-mu"
+            }
             if let statusTwitter = data.twitter {
                 switchTwitter.isOn = statusTwitter
                 // Read from UserDefaults

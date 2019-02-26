@@ -85,6 +85,7 @@ class PublishChallengeController: UIViewController {
                         if let username: String? = UserDefaults.Account.get(forKey: .usernameTwitter) {
                             switch self.tantanganType {
                             case true:
+                                self.promoteView.lblSubtitle.text = "sudah siap tayang!"
                                 self.promoteView.contentTwitter.text = "Ayo undang langsung teman Twittermu untuk berdebat!\n\n\(username ?? "")"
                             case false:
                                 self.promoteView.contentTwitter.text = "Tweet tantangan kamu sekarang. Undang temanmu untuk berdebat di sini.\n\n\(username ?? "")"
@@ -97,6 +98,7 @@ class PublishChallengeController: UIViewController {
                 case false:
                     switch self.tantanganType {
                     case true:
+                        self.promoteView.lblSubtitle.text = "sudah siap tayang! \n\nHubungkan dengan\nakun Twitter-mu"
                         self.promoteView.contentTwitter.text = "Ayo undang langsung teman Twittermu untuk berdebat!"
                     case false:
                         self.promoteView.contentTwitter.text = "Tweet tantangan kamu sekarang. Undang temanmu untuk berdebat di sini."
