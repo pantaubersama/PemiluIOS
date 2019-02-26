@@ -45,10 +45,13 @@ class ChallengeDetailView: UIView {
         case true:
             // for direct
             lawanDebatView.isHidden = false
+            lawanDebatView.configure(data: data)
             lblSaldo.text = data.limitAt
             lblDate.text = data.dateString
             lblTime.text = data.timeString
             lblTag.text = data.tag
+            lblTag.layer.borderColor = #colorLiteral(red: 1, green: 0.5569574237, blue: 0, alpha: 1)
+            lblTag.layer.borderWidth = 1.0
             lblStatement.text = data.statement
             if data.source != "" {
                 self.linkPreview.isHidden = false
@@ -78,6 +81,8 @@ class ChallengeDetailView: UIView {
             lblDate.text = data.dateString
             lblTime.text = data.timeString
             lblTag.text = data.tag
+            lblTag.layer.borderColor = #colorLiteral(red: 1, green: 0.5569574237, blue: 0, alpha: 1)
+            lblTag.layer.borderWidth = 1.0
             lblStatement.text = data.statement
             if data.source != "" {
                 self.linkPreview.isHidden = false

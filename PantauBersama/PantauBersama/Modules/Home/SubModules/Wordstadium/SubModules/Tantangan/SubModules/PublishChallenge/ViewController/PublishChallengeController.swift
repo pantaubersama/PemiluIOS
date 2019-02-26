@@ -22,6 +22,7 @@ class PublishChallengeController: UIViewController {
     @IBOutlet weak var footerProfileView: FooterProfileView!
     @IBOutlet weak var constraintPromote: NSLayoutConstraint!
     @IBOutlet weak var constraintChallenge: NSLayoutConstraint!
+    @IBOutlet weak var constraintFooterProfile: NSLayoutConstraint!
     @IBOutlet weak var headerTantanganView: HeaderTantanganView!
     @IBOutlet weak var btnPublish: Button!
     

@@ -46,9 +46,8 @@ class TantanganChallengeViewModel: ViewModelType {
         let btnNextI: AnyObserver<Void>
         let symbolicButtonI: AnyObserver<Void>
         let twitterButtonI: AnyObserver<Void>
-        let userIdTrigger: AnyObserver<String>
-        let screenNameTrigger: AnyObserver<String>
-        let opponentAvatarI: AnyObserver<String>
+        let userSearchTrigger: AnyObserver<SearchUserModel>
+        let inputLawanTrigger: AnyObserver<Bool>
     }
     
     struct Output {
@@ -98,9 +97,8 @@ class TantanganChallengeViewModel: ViewModelType {
     private let btnNextS = PublishSubject<Void>()
     private let symbolicButtonS = PublishSubject<Void>()
     private let twitterButtonS = PublishSubject<Void>()
-    private let userIdSubject = PublishSubject<String>()
-    private let screenNameS = PublishSubject<String>()
-    private let opponentAvatarS = PublishSubject<String>()
+    private let userSearchS = PublishSubject<SearchUserModel>()
+    private let inputLawanS = PublishSubject<Bool>()
     
     private let errorTracker = ErrorTracker()
     private let activityIndicator = ActivityIndicator()
@@ -137,9 +135,8 @@ class TantanganChallengeViewModel: ViewModelType {
                       btnNextI: btnNextS.asObserver(),
                       symbolicButtonI: symbolicButtonS.asObserver(),
                       twitterButtonI: twitterButtonS.asObserver(),
-                      userIdTrigger: userIdSubject.asObserver(),
-                      screenNameTrigger: screenNameS.asObserver(),
-                      opponentAvatarI: opponentAvatarS.asObserver())
+                      userSearchTrigger: userSearchS.asObserver(),
+                      inputLawanTrigger: inputLawanS.asObserver())
         
         
         let itemOpen = Observable.combineLatest(kajianS, pernyataanS, dateTimeS, saldoS)
@@ -244,7 +241,10 @@ class TantanganChallengeViewModel: ViewModelType {
                                       screenName: nil,
                                       timeString: timeAt,
                                       userAvatar: nil,
-                                      dateString: date))
+                                      dateString: date,
+                                      opponentName: nil,
+                                      opponentUsername: nil,
+                                      opponentStatus: nil))
         }
 
         let nextPublishOpen = btnNextS
@@ -259,20 +259,42 @@ class TantanganChallengeViewModel: ViewModelType {
                                                    datePickerS.asObservable(),
                                                    statusTimeS.asObservable(),
                                                    saldoTimeS.asObservable(),
-                                                   userIdSubject.asObservable(),
-                                                   screenNameS.asObservable())
+                                                   userSearchS.asObservable(),
+                                                   inputLawanS.asObservable())
             .flatMapLatest { (arg) -> Observable<ChallengeModel> in
-                let (tag, pernyataan, link, date, timeAt, saldo, uid, name) = arg
-                return Observable.just(ChallengeModel(tag: tag,
-                                                      statement: pernyataan,
-                                                      source: link,
-                                                      timeAt: "\(date) \(timeAt)",
-                                                      limitAt: saldo,
-                                                      userId: uid,
-                                                      screenName: name,
-                                                      timeString: timeAt,
-                                                      userAvatar: "",
-                                                      dateString: date))
+                let (tag, pernyataan, link, date, timeAt, saldo, user, state) = arg
+                if state == true { // case for symbolic
+                    return Observable.just(
+                        ChallengeModel(tag: tag,
+                        statement: pernyataan,
+                        source: link,
+                        timeAt: "\(date) \(timeAt)",
+                        limitAt: saldo,
+                        userId: user.id,
+                        screenName: user.id, // for purpose symbolic
+                        timeString: timeAt,
+                        userAvatar: user.avatar,
+                        dateString: date,
+                        opponentName: user.fullName,
+                        opponentUsername: user.screenName,
+                        opponentStatus: true))
+                } else {
+                    // case for twitter user
+                    return Observable.just(
+                        ChallengeModel(tag: tag,
+                        statement: pernyataan,
+                        source: link,
+                        timeAt: "\(date) \(timeAt)",
+                        limitAt: saldo,
+                        userId: user.id,
+                        screenName: user.screenName,
+                        timeString: timeAt,
+                        userAvatar: user.avatar,
+                        dateString: date,
+                        opponentName: user.fullName,
+                        opponentUsername: user.screenName,
+                        opponentStatus: false))
+                }
         }
         
         let nextPublishDirect = btnNextS

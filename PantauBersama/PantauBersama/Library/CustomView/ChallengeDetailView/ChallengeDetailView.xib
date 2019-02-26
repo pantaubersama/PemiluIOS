@@ -41,58 +41,51 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cjQ-vZ-j12" customClass="UIPaddedLabel" customModule="Common">
+                    <rect key="frame" x="16" y="49" width="20" height="11"/>
+                    <fontDescription key="fontDescription" name="Lato-Italic" family="Lato" pointSize="9"/>
+                    <color key="textColor" red="0.30980392156862746" green="0.30980392156862746" blue="0.30980392156862746" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="topInset">
+                            <real key="value" value="4"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="bottomInset">
+                            <real key="value" value="4"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="leftInset">
+                            <real key="value" value="4"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                            <integer key="value" value="1"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColor">
+                            <color key="value" red="0.97647058823529409" green="0.83921568627450982" blue="0.36078431372549019" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="4"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </label>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="PhK-ZJ-Err">
-                    <rect key="frame" x="16" y="49" width="343" height="285.5"/>
+                    <rect key="frame" x="16" y="68" width="343" height="266.5"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cjQ-vZ-j12" customClass="UIPaddedLabel" customModule="Common">
-                            <rect key="frame" x="0.0" y="0.0" width="343" height="11"/>
-                            <fontDescription key="fontDescription" name="Lato-Italic" family="Lato" pointSize="9"/>
-                            <color key="textColor" red="0.30980392156862746" green="0.30980392156862746" blue="0.30980392156862746" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                            <nil key="highlightedColor"/>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="number" keyPath="topInset">
-                                    <real key="value" value="4"/>
-                                </userDefinedRuntimeAttribute>
-                                <userDefinedRuntimeAttribute type="number" keyPath="bottomInset">
-                                    <real key="value" value="4"/>
-                                </userDefinedRuntimeAttribute>
-                                <userDefinedRuntimeAttribute type="number" keyPath="leftInset">
-                                    <real key="value" value="4"/>
-                                </userDefinedRuntimeAttribute>
-                                <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
-                                    <integer key="value" value="1"/>
-                                </userDefinedRuntimeAttribute>
-                                <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColor">
-                                    <color key="value" red="0.97647058823529409" green="0.83921568627450982" blue="0.36078431372549019" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                </userDefinedRuntimeAttribute>
-                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                    <integer key="value" value="4"/>
-                                </userDefinedRuntimeAttribute>
-                            </userDefinedRuntimeAttributes>
-                        </label>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="onf-hJ-4PS" userLabel="spacing">
-                            <rect key="frame" x="0.0" y="11" width="343" height="8"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="8" id="YTf-up-sCO"/>
-                            </constraints>
-                        </view>
                         <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dYa-lL-lzN" customClass="LinkPreviewView" customModule="PantauBersama" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="19" width="343" height="0.0"/>
+                            <rect key="frame" x="0.0" y="0.0" width="343" height="0.0"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="height" priority="999" constant="70" id="Sw6-8t-gyv"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dNk-RQ-xa7" userLabel="spacing">
-                            <rect key="frame" x="0.0" y="19" width="343" height="16"/>
+                            <rect key="frame" x="0.0" y="0.0" width="343" height="16"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="16" id="BSH-9N-aPT"/>
                             </constraints>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S31-0c-C6P">
-                            <rect key="frame" x="0.0" y="35" width="343" height="43.5"/>
+                            <rect key="frame" x="0.0" y="16" width="343" height="43.5"/>
                             <string key="text">2018 pertumbuhan ekonomi Indonesia 
 mengalami pertumbuhan mencapai 5,27%.
 2 periode yuk, biar 10,54%.</string>
@@ -101,28 +94,28 @@ mengalami pertumbuhan mencapai 5,27%.
                             <nil key="highlightedColor"/>
                         </label>
                         <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HbC-Qy-sP3" userLabel="spacing">
-                            <rect key="frame" x="0.0" y="78.5" width="343" height="32"/>
+                            <rect key="frame" x="0.0" y="59.5" width="343" height="32"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="32" id="LT0-Nb-kll"/>
                             </constraints>
                         </view>
                         <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xzy-6s-1Vg" customClass="LawanDebatView" customModule="PantauBersama" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="78.5" width="343" height="0.0"/>
+                            <rect key="frame" x="0.0" y="59.5" width="343" height="0.0"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="height" priority="999" constant="60" id="G7A-Iv-7G9"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rob-Po-dV3" userLabel="spacing">
-                            <rect key="frame" x="0.0" y="78.5" width="343" height="32"/>
+                            <rect key="frame" x="0.0" y="59.5" width="343" height="32"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="32" id="x1E-7O-Te3"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="45T-yo-FFE">
-                            <rect key="frame" x="0.0" y="110.5" width="343" height="81"/>
+                            <rect key="frame" x="0.0" y="91.5" width="343" height="81"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="sZA-qd-9U5">
                                     <rect key="frame" x="0.0" y="0.0" width="343" height="81"/>
@@ -191,14 +184,14 @@ mengalami pertumbuhan mencapai 5,27%.
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wXZ-L6-GsW" userLabel="spacing">
-                            <rect key="frame" x="0.0" y="191.5" width="343" height="32"/>
+                            <rect key="frame" x="0.0" y="172.5" width="343" height="32"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="32" id="ba4-RP-a2G"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v1G-DT-MQe">
-                            <rect key="frame" x="0.0" y="223.5" width="343" height="62"/>
+                            <rect key="frame" x="0.0" y="204.5" width="343" height="62"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="xls-EK-RzD">
                                     <rect key="frame" x="0.0" y="0.0" width="343" height="62"/>
@@ -284,8 +277,10 @@ mengalami pertumbuhan mencapai 5,27%.
                 <constraint firstItem="PhK-ZJ-Err" firstAttribute="leading" secondItem="cgk-BD-f7S" secondAttribute="leading" constant="16" id="3a0-Lt-yXH"/>
                 <constraint firstItem="6tE-Jk-7gG" firstAttribute="top" secondItem="U7g-Wi-Br8" secondAttribute="top" constant="16" id="C2w-O7-ay1"/>
                 <constraint firstItem="cgk-BD-f7S" firstAttribute="trailing" secondItem="PhK-ZJ-Err" secondAttribute="trailing" constant="16" id="Ic5-WX-qET"/>
+                <constraint firstItem="cjQ-vZ-j12" firstAttribute="top" secondItem="6tE-Jk-7gG" secondAttribute="bottom" constant="16" id="WrH-mc-WUe"/>
                 <constraint firstItem="6tE-Jk-7gG" firstAttribute="centerX" secondItem="U7g-Wi-Br8" secondAttribute="centerX" id="kT0-48-fVe"/>
-                <constraint firstItem="PhK-ZJ-Err" firstAttribute="top" secondItem="6tE-Jk-7gG" secondAttribute="bottom" constant="16" id="rRc-6B-5Si"/>
+                <constraint firstItem="cjQ-vZ-j12" firstAttribute="leading" secondItem="cgk-BD-f7S" secondAttribute="leading" constant="16" id="qLu-1L-V3j"/>
+                <constraint firstItem="PhK-ZJ-Err" firstAttribute="top" secondItem="cjQ-vZ-j12" secondAttribute="bottom" constant="8" id="rRc-6B-5Si"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="cgk-BD-f7S"/>

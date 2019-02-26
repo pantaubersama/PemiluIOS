@@ -323,14 +323,14 @@ class TantanganChallengeController: UIViewController {
                     self.viewModel.input.lawanDebatI.onNext(false)
                     self.viewModel.input.dateTimeI.onNext(false)
                     self.viewModel.input.saldoI.onNext(true)
-                    self.viewModel.input.userIdTrigger.onNext(data.id ?? "")
-                    self.viewModel.input.screenNameTrigger.onNext(data.id ?? "")
+                    self.viewModel.input.userSearchTrigger.onNext(data)
+                    self.viewModel.input.inputLawanTrigger.onNext(true)
                 }
             })
             .drive()
             .disposed(by: disposeBag)
         
-        viewModel.output.twitterButtonO
+        viewModel.output.twitterButtonO // button twitter lawan debat
             .do(onNext: { (result) in
                 switch result {
                 case .cancel:
@@ -349,8 +349,8 @@ class TantanganChallengeController: UIViewController {
                     self.viewModel.input.lawanDebatI.onNext(false)
                     self.viewModel.input.dateTimeI.onNext(false)
                     self.viewModel.input.saldoI.onNext(true)
-                    self.viewModel.input.userIdTrigger.onNext(data.id ?? "")
-                    self.viewModel.input.screenNameTrigger.onNext(data.screenName ?? "")
+                    self.viewModel.input.userSearchTrigger.onNext(data)
+                    self.viewModel.input.inputLawanTrigger.onNext(false)
                 }
             })
             .drive()

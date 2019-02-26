@@ -15,6 +15,7 @@
                 <outlet property="btnPublish" destination="BF2-Fe-hgc" id="7w5-Et-e2V"/>
                 <outlet property="challengeDetail" destination="Qb5-pk-xRI" id="QFx-gq-cBE"/>
                 <outlet property="constraintChallenge" destination="qGv-yc-k2H" id="Wb5-Vd-DSI"/>
+                <outlet property="constraintFooterProfile" destination="grJ-vR-vk0" id="zvc-82-XKS"/>
                 <outlet property="constraintPromote" destination="sgM-Db-E3T" id="dSA-SU-HtS"/>
                 <outlet property="footerProfileView" destination="rvY-Gw-D40" id="y8v-B4-kca"/>
                 <outlet property="headerTantanganView" destination="f7J-JQ-pkn" id="JjV-Qw-nQD"/>
