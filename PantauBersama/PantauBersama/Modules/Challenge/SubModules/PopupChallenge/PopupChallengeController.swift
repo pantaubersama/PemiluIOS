@@ -18,12 +18,21 @@ class PopupChallengeController: UIViewController {
     @IBOutlet weak var lblInfo: Label!
     @IBOutlet weak var tvReason: UITextView!
     
+    private let disposeBag = DisposeBag()
+    
     var viewModel: PopupChallengeViewModel!
     var type: PopupChallengeType = .default
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        btnBack.rx.tap
+            .bind(to: viewModel.input.cancelI)
+            .disposed(by: disposeBag)
+        
+        btnConfirm.rx.tap
+            .bind(to: viewModel.input.acceptI)
+            .disposed(by: disposeBag)
         // Do any additional setup after loading the view.
     }
 

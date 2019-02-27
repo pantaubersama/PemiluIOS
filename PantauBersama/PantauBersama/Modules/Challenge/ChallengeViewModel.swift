@@ -67,8 +67,13 @@ class ChallengeViewModel: ViewModelType {
                 
                 return Observable.empty()
             }
-            .do(onNext: { (result) in
-                print("result \(result)")
+            .filter({ (result) -> Bool in
+                switch result {
+                case .oke:
+                    return true
+                default:
+                    return false
+                }
             })
             .mapToVoid()
             .asDriverOnErrorJustComplete()
