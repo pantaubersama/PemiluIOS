@@ -14,8 +14,8 @@ import Lottie
 
 class CreateAskController: UIViewController {
     
-    @IBOutlet weak var ivAvatar: UIImageView!
-    @IBOutlet weak var lbFullname: Label!
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var ivAvatar: CircularUIImageView!
     @IBOutlet weak var tvQuestion: UITextView!
     @IBOutlet weak var lbQuestionLimit: Label!
     
@@ -47,6 +47,46 @@ class CreateAskController: UIViewController {
         tvQuestion.delegate = self
         tvQuestion.text = "Tulis pertanyaan terbaikmu di sini!"
         tvQuestion.textColor = UIColor.lightGray
+        
+        // MARK
+        // Setup Recent TableView
+        tableView.delegate = nil
+        tableView.dataSource = nil
+        tableView.registerReusableCell(RecentAskCell.self)
+        tableView.estimatedRowHeight = 50.0
+        tableView.separatorStyle = .none
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        
+        viewModel.output.itemsO
+            .drive(tableView.rx.items) { tableView, row, item in
+                let cell = tableView.dequeueReusableCell() as RecentAskCell
+                cell.tag = row
+                cell.lblContent.text = item.body
+                return cell
+            }
+            .disposed(by: disposeBag)
+        
+        tableView.rx.contentOffset
+            .distinctUntilChanged()
+            .flatMapLatest { [unowned self] (offset) -> Observable<Void> in
+                if offset.y > self.tableView.contentSize.height -
+                    (self.tableView.frame.height * 2) {
+                    return Observable.just(())
+                } else {
+                    return Observable.empty()
+                }
+            }
+            .bind(to: viewModel.input.nextTrigger)
+            .disposed(by: disposeBag)
+        
+        tableView.rx.itemSelected
+            .bind(to: viewModel.input.itemSelectedTrigger)
+            .disposed(by: disposeBag)
+        
+        viewModel.output.itemSelectedO
+            .drive()
+            .disposed(by: disposeBag)
+        
         // MARK
         // bind View Model
         back.rx.tap
@@ -74,9 +114,9 @@ class CreateAskController: UIViewController {
             guard let weakSelf = self else { return }
             // TODO: set avatar when user have avatar property
             if let thumbnail = user?.user.avatar.thumbnail.url {
-                self?.ivAvatar.af_setImage(withURL: URL(string: thumbnail)!)
+                weakSelf.ivAvatar.af_setImage(withURL: URL(string: thumbnail)!)
             }
-            weakSelf.lbFullname.text = (user?.user.fullName ?? "")
+//            weakSelf.lbFullname.text = (user?.user.fullName ?? "")
         })
         .disposed(by: disposeBag)
         

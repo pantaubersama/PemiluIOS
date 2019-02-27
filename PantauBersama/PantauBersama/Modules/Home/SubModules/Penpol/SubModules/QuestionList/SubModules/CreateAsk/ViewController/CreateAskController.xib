@@ -17,9 +17,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CreateAskController" customModule="PantauBersama" customModuleProvider="target">
             <connections>
-                <outlet property="ivAvatar" destination="ynz-q0-pCE" id="nQ3-Zh-25Z"/>
-                <outlet property="lbFullname" destination="dzZ-vg-bbg" id="FcQ-BF-iIM"/>
+                <outlet property="ivAvatar" destination="taS-vA-YoC" id="dRw-fw-aBg"/>
                 <outlet property="lbQuestionLimit" destination="B7p-Tr-KGo" id="iBU-bp-MhY"/>
+                <outlet property="tableView" destination="9QP-Cd-hBk" id="qTL-cj-dAq"/>
                 <outlet property="tvQuestion" destination="fUV-ow-i2d" id="u2d-hR-k8r"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -37,11 +37,11 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JIl-20-3R0">
-                    <rect key="frame" x="0.0" y="69" width="375" height="73.5"/>
+                    <rect key="frame" x="0.0" y="69" width="375" height="116.5"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Qg-E2-y23" customClass="Label" customModule="Common">
-                            <rect key="frame" x="20" y="15" width="335" height="43.5"/>
-                            <string key="text">Berikan pertanyaan singkat untuk kandidat Calon Presiden dan Calon Wakil Presiden 2019-2024. Gunakan bahasa yang baik dan jelas, yaa!</string>
+                            <rect key="frame" x="20" y="15" width="335" height="86.5"/>
+                            <string key="text">Berikan pertanyaan singkat untuk diajukan ke kedua kandidat Calon Presiden dan Calon Wakil Presiden 2019 -2024. Gunakan bahasa yang baik dan jelas. Kalau pertanyaan sudah ada, lebih asyik jangan ditanyakan lagi cukup kasih upvote pada pertanyaan yang sama aja yaa, biar Pak Presiden bisa segera jawab :</string>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" red="0.4392156862745098" green="0.4392156862745098" blue="0.4392156862745098" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <nil key="highlightedColor"/>
@@ -60,81 +60,68 @@
                         <constraint firstAttribute="bottom" secondItem="5Qg-E2-y23" secondAttribute="bottom" constant="15" id="gp8-sH-TrT"/>
                     </constraints>
                 </view>
-                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L7F-5l-fl3" customClass="RoundView" customModule="Common">
-                    <rect key="frame" x="20" y="172.5" width="22" height="22"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wi2-NY-1bm">
+                    <rect key="frame" x="0.0" y="581" width="375" height="86"/>
                     <subviews>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icDummyPerson" translatesAutoresizingMaskIntoConstraints="NO" id="ynz-q0-pCE">
-                            <rect key="frame" x="0.0" y="0.0" width="22" height="22"/>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="fUV-ow-i2d">
+                            <rect key="frame" x="41" y="4" width="325" height="54"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <fontDescription key="fontDescription" name="BwModelicaSS01-BoldCondensed" family="Bw Modelica SS01" pointSize="12"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                        </textView>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icDummyPerson" translatesAutoresizingMaskIntoConstraints="NO" id="taS-vA-YoC" customClass="CircularUIImageView" customModule="Common">
+                            <rect key="frame" x="16" y="12" width="16" height="16"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="16" id="SyJ-qH-JRf"/>
+                                <constraint firstAttribute="width" constant="16" id="Zfh-SL-jcu"/>
+                            </constraints>
                         </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0/260" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B7p-Tr-KGo" customClass="Label" customModule="Common">
+                            <rect key="frame" x="331" y="58" width="27" height="12"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" red="0.48621892929999999" green="0.48630648850000002" blue="0.48621344570000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                    <real key="value" value="10"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstItem="ynz-q0-pCE" firstAttribute="centerY" secondItem="L7F-5l-fl3" secondAttribute="centerY" id="a9Y-29-aLd"/>
-                        <constraint firstAttribute="height" constant="22" id="d6a-0s-UM6"/>
-                        <constraint firstAttribute="trailing" secondItem="ynz-q0-pCE" secondAttribute="trailing" id="eWJ-gi-Uh9"/>
-                        <constraint firstAttribute="bottom" secondItem="ynz-q0-pCE" secondAttribute="bottom" id="fmu-Gg-u0K"/>
-                        <constraint firstItem="ynz-q0-pCE" firstAttribute="top" secondItem="L7F-5l-fl3" secondAttribute="top" id="hhx-vs-Led"/>
-                        <constraint firstAttribute="width" constant="22" id="l1h-Tv-1S0"/>
-                        <constraint firstItem="ynz-q0-pCE" firstAttribute="leading" secondItem="L7F-5l-fl3" secondAttribute="leading" id="r9e-gp-Egw"/>
+                        <constraint firstItem="fUV-ow-i2d" firstAttribute="top" secondItem="Wi2-NY-1bm" secondAttribute="top" constant="4" id="1PM-9Z-F9r"/>
+                        <constraint firstAttribute="trailing" secondItem="B7p-Tr-KGo" secondAttribute="trailing" constant="17" id="2qm-A1-JJM"/>
+                        <constraint firstItem="fUV-ow-i2d" firstAttribute="bottom" secondItem="B7p-Tr-KGo" secondAttribute="top" id="GPg-Ng-ExL"/>
+                        <constraint firstAttribute="height" constant="86" id="LVd-mY-8CC"/>
+                        <constraint firstAttribute="trailing" secondItem="fUV-ow-i2d" secondAttribute="trailing" constant="9" id="PI4-TE-ebV"/>
+                        <constraint firstItem="taS-vA-YoC" firstAttribute="top" secondItem="fUV-ow-i2d" secondAttribute="top" constant="8" id="cs1-49-DK3"/>
+                        <constraint firstItem="fUV-ow-i2d" firstAttribute="leading" secondItem="taS-vA-YoC" secondAttribute="trailing" constant="9" id="eLj-ua-iUP"/>
+                        <constraint firstItem="taS-vA-YoC" firstAttribute="leading" secondItem="Wi2-NY-1bm" secondAttribute="leading" constant="16" id="kj1-qQ-N0H"/>
+                        <constraint firstAttribute="bottom" secondItem="B7p-Tr-KGo" secondAttribute="bottom" constant="16" id="yme-Wm-bhB"/>
                     </constraints>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                            <real key="value" value="11"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
                 </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dzZ-vg-bbg" customClass="Label" customModule="Common">
-                    <rect key="frame" x="47" y="172.5" width="0.0" height="22"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="typeLabel" value="bold"/>
-                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
-                            <real key="value" value="11"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
-                </label>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="fUV-ow-i2d">
-                    <rect key="frame" x="20" y="209.5" width="335" height="128"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="128" id="qOH-g8-Tl7"/>
-                    </constraints>
-                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <fontDescription key="fontDescription" name="BwModelicaSS01-BoldCondensed" family="Bw Modelica SS01" pointSize="12"/>
-                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                </textView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0/260" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B7p-Tr-KGo" customClass="Label" customModule="Common">
-                    <rect key="frame" x="328" y="347.5" width="27" height="12"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" red="0.48621892929999999" green="0.48630648850000002" blue="0.48621344570000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <nil key="highlightedColor"/>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
-                            <real key="value" value="10"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
-                </label>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9QP-Cd-hBk">
+                    <rect key="frame" x="0.0" y="185.5" width="375" height="395.5"/>
+                    <color key="backgroundColor" red="0.95687562227249146" green="0.95683962106704712" blue="0.95686405897140503" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                </tableView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="Wi2-NY-1bm" firstAttribute="top" secondItem="9QP-Cd-hBk" secondAttribute="bottom" id="1HJ-fI-adk"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="JIl-20-3R0" secondAttribute="trailing" id="4ur-w4-gFt"/>
-                <constraint firstItem="dzZ-vg-bbg" firstAttribute="top" secondItem="L7F-5l-fl3" secondAttribute="top" id="626-VN-vdf"/>
-                <constraint firstItem="B7p-Tr-KGo" firstAttribute="top" secondItem="fUV-ow-i2d" secondAttribute="bottom" constant="10" id="7tI-Nf-QGz"/>
                 <constraint firstItem="JIl-20-3R0" firstAttribute="top" secondItem="8l2-Tv-HvY" secondAttribute="bottom" id="8lK-gY-4jG"/>
-                <constraint firstItem="fUV-ow-i2d" firstAttribute="top" secondItem="L7F-5l-fl3" secondAttribute="bottom" constant="15" id="Dhf-ZP-pA2"/>
                 <constraint firstItem="8l2-Tv-HvY" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="GM1-MN-K0V"/>
-                <constraint firstItem="dzZ-vg-bbg" firstAttribute="leading" secondItem="L7F-5l-fl3" secondAttribute="trailing" constant="5" id="M6j-uE-igW"/>
                 <constraint firstItem="8l2-Tv-HvY" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="M8N-98-IGi"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="fUV-ow-i2d" secondAttribute="trailing" constant="20" id="ZOw-ha-f3t"/>
-                <constraint firstItem="dzZ-vg-bbg" firstAttribute="centerY" secondItem="L7F-5l-fl3" secondAttribute="centerY" id="aF6-Vw-q7J"/>
+                <constraint firstItem="9QP-Cd-hBk" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="OIp-OA-v3h"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Wi2-NY-1bm" secondAttribute="trailing" id="OQl-Q6-bz0"/>
+                <constraint firstItem="Wi2-NY-1bm" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="UwQ-et-ehj"/>
+                <constraint firstItem="9QP-Cd-hBk" firstAttribute="top" secondItem="JIl-20-3R0" secondAttribute="bottom" id="Xje-WU-oji"/>
                 <constraint firstItem="JIl-20-3R0" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="oV0-73-i8w"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Wi2-NY-1bm" secondAttribute="bottom" id="pBT-VO-TMq"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="9QP-Cd-hBk" secondAttribute="trailing" id="vcE-Ih-uFe"/>
                 <constraint firstItem="8l2-Tv-HvY" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="wR4-SV-8FZ"/>
-                <constraint firstItem="L7F-5l-fl3" firstAttribute="top" secondItem="JIl-20-3R0" secondAttribute="bottom" constant="30" id="xNA-Sm-oOV"/>
-                <constraint firstItem="L7F-5l-fl3" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="yNi-od-0jh"/>
-                <constraint firstItem="fUV-ow-i2d" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="zEC-Qc-LX3"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="B7p-Tr-KGo" secondAttribute="trailing" constant="20" id="zJT-gB-rBO"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>

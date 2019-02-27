@@ -338,6 +338,8 @@
 		84E6934621D296BB00EA5464 /* SectionOfProfileEditData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E6934521D296BB00EA5464 /* SectionOfProfileEditData.swift */; };
 		84F1F21321E910DE004515A4 /* Twitter+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F1F21221E910DE004515A4 /* Twitter+Rx.swift */; };
 		84F1F21821EA678F004515A4 /* Facebook+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F1F21721EA678F004515A4 /* Facebook+Rx.swift */; };
+		84F3AD402226601300AE75C6 /* RecentAskCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84F3AD3F2226601300AE75C6 /* RecentAskCell.xib */; };
+		84F3AD422226614F00AE75C6 /* RecentAskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F3AD412226614F00AE75C6 /* RecentAskCell.swift */; };
 		84F6980921C8D28B00890917 /* PilpresViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F6980821C8D28A00890917 /* PilpresViewController.swift */; };
 		84F6980B21C8D2B100890917 /* JanjiPolitikViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F6980A21C8D2B100890917 /* JanjiPolitikViewController.swift */; };
 		84F6981121C8E21B00890917 /* LinimasaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F6981021C8E21B00890917 /* LinimasaCell.swift */; };
@@ -736,6 +738,8 @@
 		84E6934521D296BB00EA5464 /* SectionOfProfileEditData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionOfProfileEditData.swift; sourceTree = "<group>"; };
 		84F1F21221E910DE004515A4 /* Twitter+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Twitter+Rx.swift"; sourceTree = "<group>"; };
 		84F1F21721EA678F004515A4 /* Facebook+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Facebook+Rx.swift"; sourceTree = "<group>"; };
+		84F3AD3F2226601300AE75C6 /* RecentAskCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecentAskCell.xib; sourceTree = "<group>"; };
+		84F3AD412226614F00AE75C6 /* RecentAskCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentAskCell.swift; sourceTree = "<group>"; };
 		84F6980821C8D28A00890917 /* PilpresViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PilpresViewController.swift; sourceTree = "<group>"; };
 		84F6980A21C8D2B100890917 /* JanjiPolitikViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JanjiPolitikViewController.swift; sourceTree = "<group>"; };
 		84F6981021C8E21B00890917 /* LinimasaCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinimasaCell.swift; sourceTree = "<group>"; };
@@ -1148,6 +1152,7 @@
 		13F4569121CF97AC00CE45F1 /* CreateAsk */ = {
 			isa = PBXGroup;
 			children = (
+				84F3AD3E22265FF200AE75C6 /* Components */,
 				13F456A221CF9D3E00CE45F1 /* ViewController */,
 				13F4569C21CF985800CE45F1 /* CreateAskViewModel.swift */,
 				13F4569E21CF986600CE45F1 /* CreateAskCoordinator.swift */,
@@ -2287,6 +2292,15 @@
 			path = Facebook;
 			sourceTree = "<group>";
 		};
+		84F3AD3E22265FF200AE75C6 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				84F3AD3F2226601300AE75C6 /* RecentAskCell.xib */,
+				84F3AD412226614F00AE75C6 /* RecentAskCell.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		84F6980721C8D23900890917 /* Janji Politik */ = {
 			isa = PBXGroup;
 			children = (
@@ -2493,6 +2507,7 @@
 				1143E81221E23229003862B6 /* loading-pantau.json in Resources */,
 				84FF8A9421F2180F00AA8CF3 /* UpdatesView.xib in Resources */,
 				84307F432200352B006DE04B /* ob4_lapor.json in Resources */,
+				84F3AD402226601300AE75C6 /* RecentAskCell.xib in Resources */,
 				84E521BA21F4A70E00B7CCBA /* ItemOnboardingController.xib in Resources */,
 				84B7B8CC21E5B24B0099E7E3 /* AddKategoriController.xib in Resources */,
 				84F892AB21C787D800DC1048 /* Lato-BoldItalic.ttf in Resources */,
@@ -3027,6 +3042,7 @@
 				1184752221FDEAC300D44FA5 /* ClusterCategoryDelegate.swift in Sources */,
 				13E9D79021E92934006A0890 /* MyJanpolListViewModel.swift in Sources */,
 				8478B8E121FF1C6600CE192A /* NotificationController.swift in Sources */,
+				84F3AD422226614F00AE75C6 /* RecentAskCell.swift in Sources */,
 				84FE6EBE21D5FEA1009A0F55 /* Network+AlertController.swift in Sources */,
 				8441DB5821CCF7D900B078DF /* DetailJanjiCoordinator.swift in Sources */,
 				13F4569D21CF985800CE45F1 /* CreateAskViewModel.swift in Sources */,

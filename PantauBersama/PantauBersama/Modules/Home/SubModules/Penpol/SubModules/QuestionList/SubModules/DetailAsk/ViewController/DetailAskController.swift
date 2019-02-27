@@ -50,9 +50,9 @@ class DetailAskController: UIViewController {
         
         buttonClose.rx.tap
             // TODO: fix this temporary fix
-            .do(onNext: { [unowned self](_) in
-                self.navigationController?.popViewController(animated: true)
-            })
+//            .do(onNext: { [unowned self](_) in
+//                self.navigationController?.popViewController(animated: true)
+//            })
             .bind(to: viewModel.input.backI)
             .disposed(by: disposeBag)
         
