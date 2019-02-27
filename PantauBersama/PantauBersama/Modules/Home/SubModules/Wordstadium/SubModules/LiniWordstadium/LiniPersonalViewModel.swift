@@ -76,7 +76,11 @@ class LiniPersonalViewModel: ILiniWordstadiumViewModel, ILiniWordstadiumViewMode
         let itemSelected = itemSelectedSubject
             .asObservable()
             .flatMapLatest({ (wordstadium) -> Observable<Void> in
-                return navigator.launchLiveChallenge(wordstadium: wordstadium)
+                if wordstadium.progress == .liveNow {
+                    return navigator.launchLiveChallenge(wordstadium: wordstadium)
+                } else {
+                    return navigator.launchChallenge(wordstadium: wordstadium)
+                }
             })
             .asDriverOnErrorJustComplete()
         

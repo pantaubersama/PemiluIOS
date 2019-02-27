@@ -321,6 +321,7 @@ pertumbuhan mencapai 5,27%.
                 <outlet property="rightUsername" destination="3lI-eU-nyU" id="oXB-2r-CYm"/>
                 <outlet property="statementLbl" destination="7x7-2g-lN3" id="fMs-G5-NF4"/>
                 <outlet property="titleLbl" destination="KYI-Ns-qvX" id="8uJ-Es-wdu"/>
+                <outlet property="topicLbl" destination="g2S-9W-G6L" id="zC4-cX-1OK"/>
                 <outlet property="vsImage" destination="fls-zk-Df3" id="34A-dY-kP3"/>
             </connections>
             <point key="canvasLocation" x="136" y="192.05397301349328"/>
