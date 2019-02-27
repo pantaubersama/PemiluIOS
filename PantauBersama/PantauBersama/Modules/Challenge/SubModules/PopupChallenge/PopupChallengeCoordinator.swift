@@ -20,22 +20,22 @@ protocol PopupChallengeNavigator {
 final class PopupChallengeCoordinator: BaseCoordinator<PopupChallengeResult> {
     
     private let navigationController: UINavigationController
-    private let viewController: PopoupChallengeController
+    private let viewController: PopupChallengeController
     var type: PopupChallengeType = .default
     
     init(navigationController: UINavigationController, type: PopupChallengeType) {
         self.navigationController = navigationController
-        self.viewController = PopoupChallengeController()
+        self.viewController = PopupChallengeController()
         self.type = type
     }
     
     override func start() -> Observable<CoordinationResult> {
         let viewModel = PopupChallengeViewModel(navigator: self)
-        let viewController = PopoupChallengeController()
+        let viewController = PopupChallengeController()
         viewController.type = type
         viewController.viewModel = viewModel
-        viewController.providesPresentationContextTransitionStyle = true
-        viewController.definesPresentationContext = true
+//        viewController.providesPresentationContextTransitionStyle = true
+//        viewController.definesPresentationContext = true
         viewController.modalPresentationStyle = .overCurrentContext
         viewController.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
         navigationController.present(viewController, animated: true, completion: nil)

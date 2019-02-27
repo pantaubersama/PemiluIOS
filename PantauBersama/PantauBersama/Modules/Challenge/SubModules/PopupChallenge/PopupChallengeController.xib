@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_0" orientation="portrait">
+    <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -15,43 +15,43 @@
         </array>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PopoupChallengeController" customModule="PantauBersama" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PopupChallengeController" customModule="PantauBersama" customModuleProvider="target">
             <connections>
-                <outlet property="btnBack" destination="TWn-W6-ibZ" id="bOB-8I-0bv"/>
-                <outlet property="btnConfirm" destination="XaQ-ab-cED" id="Tcf-Er-nN0"/>
-                <outlet property="lblInfo" destination="lX2-yh-gzo" id="24A-VQ-fSL"/>
-                <outlet property="stackComment" destination="bAE-H6-aDG" id="y71-8s-YCb"/>
-                <outlet property="tvReason" destination="ggH-Vn-4MY" id="62q-FH-86b"/>
-                <outlet property="view" destination="iN0-l3-epB" id="YvR-ga-OjK"/>
+                <outlet property="btnBack" destination="oPL-Xb-IpF" id="KGd-bf-bYi"/>
+                <outlet property="btnConfirm" destination="hfm-eo-Zcx" id="6X2-Eb-4UZ"/>
+                <outlet property="lblInfo" destination="EK1-6q-Ii6" id="P9n-ui-kJI"/>
+                <outlet property="stackComment" destination="tob-cD-ltx" id="JzU-vS-EsN"/>
+                <outlet property="tvReason" destination="m6M-r4-vrM" id="9E1-Y1-lk9"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DAw-E0-Rmx" customClass="RoundView" customModule="Common">
-                    <rect key="frame" x="21" y="128" width="278" height="312"/>
+                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vf9-3l-kr7" customClass="RoundView" customModule="Common">
+                    <rect key="frame" x="21" y="173" width="333" height="341.5"/>
                     <subviews>
-                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="wTh-Bu-dvc">
-                            <rect key="frame" x="0.0" y="0.0" width="278" height="312"/>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="X0G-oh-Irm">
+                            <rect key="frame" x="0.0" y="0.0" width="333" height="341.5"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="artboard1Xxxhdpi" translatesAutoresizingMaskIntoConstraints="NO" id="LRv-lK-Txd">
-                                    <rect key="frame" x="59" y="0.0" width="160" height="160"/>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="artboard1Xxxhdpi" translatesAutoresizingMaskIntoConstraints="NO" id="hwJ-F3-SNt">
+                                    <rect key="frame" x="86.5" y="0.0" width="160" height="160"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="160" id="QKm-sY-Yn3"/>
-                                        <constraint firstAttribute="width" constant="160" id="cab-aQ-L6z"/>
+                                        <constraint firstAttribute="height" constant="160" id="Vkm-Bm-sIu"/>
+                                        <constraint firstAttribute="width" constant="160" id="zzS-lB-G6y"/>
                                     </constraints>
                                 </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lX2-yh-gzo" customClass="Label" customModule="Common">
-                                    <rect key="frame" x="28.5" y="176" width="221" height="72"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EK1-6q-Ii6" customClass="Label" customModule="Common">
+                                    <rect key="frame" x="4" y="176" width="325" height="101.5"/>
                                     <string key="text">Kamu akan mengkonfirmasi 
 @raja_kampreta sebagai lawan debat anda
 sesuai dengan detail yang tertera.
 Tindakan ini tidak bisa dibatalkan. 
 Apakah kamu yakin?</string>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <color key="textColor" red="0.36078431372549019" green="0.36470588235294116" blue="0.38431372549019605" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <color key="textColor" red="0.36078431370000003" green="0.36470588240000001" blue="0.38431372549999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     <nil key="highlightedColor"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
@@ -59,33 +59,33 @@ Apakah kamu yakin?</string>
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                 </label>
-                                <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="bAE-H6-aDG">
-                                    <rect key="frame" x="16" y="256" width="246" height="47"/>
+                                <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="tob-cD-ltx">
+                                    <rect key="frame" x="16" y="285.5" width="301" height="47"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LDZ-Ey-kqW">
-                                            <rect key="frame" x="0.0" y="0.0" width="236" height="47"/>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YTz-QO-0lW">
+                                            <rect key="frame" x="0.0" y="0.0" width="291" height="47"/>
                                             <subviews>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Tulis di sini..." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ggH-Vn-4MY">
-                                                    <rect key="frame" x="2" y="2" width="232" height="43"/>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Tulis di sini..." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="m6M-r4-vrM">
+                                                    <rect key="frame" x="2" y="2" width="287" height="43"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="12"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
                                             </subviews>
-                                            <color key="backgroundColor" red="0.97647058823529409" green="0.97647058823529409" blue="0.97647058823529409" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <color key="backgroundColor" red="0.97647058819999999" green="0.97647058819999999" blue="0.97647058819999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="ggH-Vn-4MY" secondAttribute="bottom" constant="2" id="j69-2b-Qka"/>
-                                                <constraint firstAttribute="trailing" secondItem="ggH-Vn-4MY" secondAttribute="trailing" constant="2" id="thz-Xw-kLd"/>
-                                                <constraint firstItem="ggH-Vn-4MY" firstAttribute="leading" secondItem="LDZ-Ey-kqW" secondAttribute="leading" constant="2" id="vEu-GN-dpM"/>
-                                                <constraint firstItem="ggH-Vn-4MY" firstAttribute="top" secondItem="LDZ-Ey-kqW" secondAttribute="top" constant="2" id="zeo-V6-D3x"/>
+                                                <constraint firstAttribute="trailing" secondItem="m6M-r4-vrM" secondAttribute="trailing" constant="2" id="Gx3-OL-eq6"/>
+                                                <constraint firstAttribute="bottom" secondItem="m6M-r4-vrM" secondAttribute="bottom" constant="2" id="Q3r-Rm-ZFD"/>
+                                                <constraint firstItem="m6M-r4-vrM" firstAttribute="top" secondItem="YTz-QO-0lW" secondAttribute="top" constant="2" id="gzR-aV-X2h"/>
+                                                <constraint firstItem="m6M-r4-vrM" firstAttribute="leading" secondItem="YTz-QO-0lW" secondAttribute="leading" constant="2" id="ukA-1P-lCN"/>
                                             </constraints>
                                         </view>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xJk-aT-7GA" customClass="RoundView" customModule="Common">
-                                            <rect key="frame" x="242" y="0.0" width="4" height="47"/>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kyn-GZ-UCd" customClass="RoundView" customModule="Common">
+                                            <rect key="frame" x="297" y="0.0" width="4" height="47"/>
                                             <color key="backgroundColor" red="0.92156862750000001" green="0.18823529410000001" blue="0.2156862745" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="4" id="7nt-Pp-hi7"/>
+                                                <constraint firstAttribute="width" constant="4" id="F9B-Aa-kfm"/>
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -95,21 +95,21 @@ Apakah kamu yakin?</string>
                                         </view>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="47" id="kFg-QT-rLG"/>
+                                        <constraint firstAttribute="height" constant="47" id="rII-K8-CpP"/>
                                     </constraints>
                                 </stackView>
-                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="ZHU-I1-oR3">
-                                    <rect key="frame" x="0.0" y="264" width="278" height="48"/>
+                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="CR8-oh-5CA">
+                                    <rect key="frame" x="0.0" y="293.5" width="333" height="48"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TWn-W6-ibZ" customClass="Button" customModule="Common">
-                                            <rect key="frame" x="0.0" y="0.0" width="139" height="48"/>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oPL-Xb-IpF" customClass="Button" customModule="Common">
+                                            <rect key="frame" x="0.0" y="0.0" width="166.5" height="48"/>
                                             <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <state key="normal" title="KEMBALI">
                                                 <color key="titleColor" red="0.45882352939999999" green="0.45882352939999999" blue="0.45882352939999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             </state>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XaQ-ab-cED" customClass="Button" customModule="Common">
-                                            <rect key="frame" x="139" y="0.0" width="139" height="48"/>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hfm-eo-Zcx" customClass="Button" customModule="Common">
+                                            <rect key="frame" x="166.5" y="0.0" width="166.5" height="48"/>
                                             <color key="backgroundColor" red="0.96470588239999999" green="0.70588235290000001" blue="0.1647058824" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <state key="normal" title="YA">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -123,25 +123,26 @@ Apakah kamu yakin?</string>
                                         </button>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="48" id="bHJ-Nz-StA"/>
+                                        <constraint firstAttribute="height" constant="48" id="EOs-2b-dYz"/>
                                     </constraints>
                                 </stackView>
                             </subviews>
                             <constraints>
-                                <constraint firstItem="bAE-H6-aDG" firstAttribute="leading" secondItem="wTh-Bu-dvc" secondAttribute="leading" constant="16" id="8ZG-wp-bPm"/>
-                                <constraint firstAttribute="trailing" secondItem="ZHU-I1-oR3" secondAttribute="trailing" id="Np0-P9-JbV"/>
-                                <constraint firstAttribute="trailing" secondItem="bAE-H6-aDG" secondAttribute="trailing" constant="16" id="t9Y-Qw-NOo"/>
-                                <constraint firstItem="ZHU-I1-oR3" firstAttribute="leading" secondItem="wTh-Bu-dvc" secondAttribute="leading" id="xMF-Wo-ruQ"/>
+                                <constraint firstAttribute="trailing" secondItem="CR8-oh-5CA" secondAttribute="trailing" id="0Ka-sA-YHG"/>
+                                <constraint firstAttribute="trailing" secondItem="tob-cD-ltx" secondAttribute="trailing" constant="16" id="YSv-Zu-feq"/>
+                                <constraint firstItem="tob-cD-ltx" firstAttribute="leading" secondItem="X0G-oh-Irm" secondAttribute="leading" constant="16" id="c8g-UK-FKe"/>
+                                <constraint firstItem="CR8-oh-5CA" firstAttribute="leading" secondItem="X0G-oh-Irm" secondAttribute="leading" id="hrf-Rn-V3s"/>
                             </constraints>
                         </stackView>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="trailing" secondItem="wTh-Bu-dvc" secondAttribute="trailing" id="FKg-EO-V81"/>
-                        <constraint firstItem="wTh-Bu-dvc" firstAttribute="top" secondItem="DAw-E0-Rmx" secondAttribute="top" id="UJb-cS-JfN"/>
-                        <constraint firstAttribute="bottom" secondItem="wTh-Bu-dvc" secondAttribute="bottom" id="bxk-S9-cMw"/>
-                        <constraint firstItem="wTh-Bu-dvc" firstAttribute="leading" secondItem="DAw-E0-Rmx" secondAttribute="leading" id="zNR-x8-7lC"/>
+                        <constraint firstItem="X0G-oh-Irm" firstAttribute="leading" secondItem="vf9-3l-kr7" secondAttribute="leading" id="Dse-Y0-Sfz"/>
+                        <constraint firstItem="X0G-oh-Irm" firstAttribute="top" secondItem="vf9-3l-kr7" secondAttribute="top" id="TBs-ga-fct"/>
+                        <constraint firstAttribute="bottom" secondItem="X0G-oh-Irm" secondAttribute="bottom" id="aEw-lb-Xke"/>
+                        <constraint firstAttribute="trailing" secondItem="X0G-oh-Irm" secondAttribute="trailing" id="hmb-Tl-ERx"/>
                     </constraints>
+                    <viewLayoutGuide key="safeArea" id="Tth-Zo-h1K"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                             <real key="value" value="16"/>
@@ -149,13 +150,15 @@ Apakah kamu yakin?</string>
                     </userDefinedRuntimeAttributes>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="0.066666666666666666" green="0.066666666666666666" blue="0.066666666666666666" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="displayP3"/>
             <constraints>
-                <constraint firstItem="DAw-E0-Rmx" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="21" id="43O-7F-EEC"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="DAw-E0-Rmx" secondAttribute="trailing" constant="21" id="MJg-td-soY"/>
-                <constraint firstItem="DAw-E0-Rmx" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="ha0-g4-hUd"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="vf9-3l-kr7" secondAttribute="trailing" constant="21" id="31y-xM-v4S"/>
+                <constraint firstItem="vf9-3l-kr7" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="6Af-c9-THi"/>
+                <constraint firstItem="vf9-3l-kr7" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="CTB-9I-ohW"/>
+                <constraint firstItem="vf9-3l-kr7" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="21" id="U6k-Q9-vUi"/>
             </constraints>
-            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="10.4" y="23.838080959520241"/>
         </view>
     </objects>
     <resources>

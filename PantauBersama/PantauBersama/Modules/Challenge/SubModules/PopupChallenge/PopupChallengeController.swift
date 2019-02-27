@@ -1,18 +1,17 @@
 //
-//  PopupChallengeController.swift
+//  PopupChallengeController2.swift
 //  PantauBersama
 //
-//  Created by Hanif Sugiyanto on 15/02/19.
+//  Created by Rahardyan Bisma Setya Putra on 27/02/19.
 //  Copyright © 2019 PantauBersama. All rights reserved.
 //
 
 import UIKit
+import Common
 import RxSwift
 import RxCocoa
-import Common
 
-class PopoupChallengeController: UIViewController {
-    
+class PopupChallengeController: UIViewController {
     @IBOutlet weak var stackComment: UIStackView!
     @IBOutlet weak var btnBack: Button!
     @IBOutlet weak var btnConfirm: Button!
@@ -21,29 +20,22 @@ class PopoupChallengeController: UIViewController {
     
     var viewModel: PopupChallengeViewModel!
     var type: PopupChallengeType = .default
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    
-}
 
-extension PopoupChallengeController {
-    
-    private func config(type: PopupChallengeType) {
-        switch type {
-        case .refuse:
-            self.btnConfirm.backgroundColor = #colorLiteral(red: 0.9470950961, green: 0.2843497396, blue: 0.275824368, alpha: 1)
-            self.btnConfirm.setTitle("YA, TOLAK", for: UIControlState())
-        default:
-            break
-        }
+        // Do any additional setup after loading the view.
     }
-    
+
+
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
+    }
+    */
+
 }
