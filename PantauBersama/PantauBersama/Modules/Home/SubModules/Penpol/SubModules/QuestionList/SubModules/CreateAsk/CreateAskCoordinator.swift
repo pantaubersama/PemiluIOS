@@ -52,7 +52,7 @@ class CreateAskCoordinator: BaseCoordinator<Void> {
 
 extension CreateAskCoordinator: CreateAskNavigator {
     func launchDetailAsk(data: String) -> Observable<DetailAskResult> {
-        let detailAskCoordinator = DetailAskCoordinator(navigationController: navigationController, data: data)
+        let detailAskCoordinator = DetailAskCoordinator(navigationController: navigationController, data: data, isFromNotif: false)
         return coordinate(to: detailAskCoordinator)
     }
 }

@@ -21,15 +21,18 @@ final class DetailAskCoordinator: BaseCoordinator<DetailAskResult> {
     private let navigationController: UINavigationController
     var finish: Observable<Void>!
     private let data: String
+    private var isFromNotif: Bool
     
-    init(navigationController: UINavigationController, data: String) {
+    init(navigationController: UINavigationController, data: String, isFromNotif: Bool) {
         self.navigationController = navigationController
         self.data = data
+        self.isFromNotif = isFromNotif
     }
     
     override func start() -> Observable<CoordinationResult> {
         let viewController = DetailAskController()
         let viewModel = DetailAskViewModel(navigator: self, data: data)
+        viewController.isFromNotif = isFromNotif
         viewController.viewModel = viewModel
         viewController.hidesBottomBarWhenPushed = true
         navigationController.pushViewController(viewController, animated: true)

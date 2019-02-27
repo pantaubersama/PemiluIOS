@@ -27,6 +27,7 @@ class DetailAskController: UIViewController {
     @IBOutlet weak var btnMore: ImageButton!
     @IBOutlet weak var containerUser: UIView!
     var viewModel: DetailAskViewModel!
+    var isFromNotif: Bool = false
     private var data: Question!
     private let disposeBag: DisposeBag = DisposeBag()
     
@@ -50,9 +51,11 @@ class DetailAskController: UIViewController {
         
         buttonClose.rx.tap
             // TODO: fix this temporary fix
-//            .do(onNext: { [unowned self](_) in
-//                self.navigationController?.popViewController(animated: true)
-//            })
+            .do(onNext: { [unowned self](_) in
+                if self.isFromNotif == true {
+                 self.navigationController?.popViewController(animated: true)
+                }
+            })
             .bind(to: viewModel.input.backI)
             .disposed(by: disposeBag)
         
