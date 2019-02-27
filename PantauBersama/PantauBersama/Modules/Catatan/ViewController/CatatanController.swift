@@ -15,6 +15,10 @@ class CatatanController: UIViewController {
     
     var viewModel: CatatanViewModel!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var lblQuizResult: Label!
+    @IBOutlet weak var lblPreferenceUser: Label!
+    @IBOutlet weak var lblPreferenceResult: UILabel!
+    @IBOutlet weak var iconPreference: CircularUIImageView!
     
     private let disposeBag: DisposeBag = DisposeBag()
     
@@ -33,11 +37,54 @@ class CatatanController: UIViewController {
         tableView.dataSource = self
         tableView.tableFooterView = UIView()
         tableView.registerReusableCell(PaslonCaraouselCell.self)
-        
+        tableView.registerReusableCell(PartyCaraouselCell.self)
         
         back.rx.tap
             .bind(to: viewModel.input.backI)
             .disposed(by: disposeBag)
+        
+        // MARK
+        // User Response
+        viewModel.output.userDataO
+            .drive(onNext: { [weak self] (response) in
+                guard let `self` = self else { return }
+            })
+            .disposed(by: disposeBag)
+        
+        // MARK
+        // Total Result
+        viewModel.output.totalResultO
+            .drive(onNext: { [weak self] (response) in
+                guard let `self` = self else { return }
+                let preference = response.teams.max { $0.percentage?.isLess(than: $1.percentage ?? 0.0) ?? false }
+                let trendString: String? = String(format: "%.0f", preference?.percentage ?? 0.0)
+                let randomResponse = response.teams.randomElement()
+                if trendString == "50" {
+                    if let avatarUrl = randomResponse?.team.avatar {
+                        self.iconPreference.af_setImage(withURL: URL(string: avatarUrl)!)
+                    }
+                    self.lblQuizResult.text = "Total Kecenderungan \(response.meta.quizzes.finished) dari \(response.meta.quizzes.total) Quiz"
+                    self.lblPreferenceUser.text = "\(response.user.fullName ?? "") lebih suka jawaban dari Paslon no \(randomResponse?.team.id ?? 0)"
+                    self.lblPreferenceResult.text = String(format: "%.0f", randomResponse?.percentage ?? 0.0) + "% \(randomResponse?.team.title ?? "")"
+                } else if trendString == "0" {
+                    if let avatarUrl = randomResponse?.team.avatar {
+                        self.iconPreference.af_setImage(withURL: URL(string: avatarUrl)!)
+                    }
+                    self.lblQuizResult.text = "Total Kecenderungan \(response.meta.quizzes.finished) dari \(response.meta.quizzes.total) Quiz"
+                    self.lblPreferenceUser.text = "\(response.user.fullName ?? "") lebih suka jawaban dari Paslon no \(randomResponse?.team.id ?? 0)"
+                    self.lblPreferenceResult.text = String(format: "%.0f", randomResponse?.percentage ?? 0.0) + "% \(randomResponse?.team.title ?? "")"
+                } else {
+                    if let avatarUrl = preference?.team.avatar {
+                        self.iconPreference.af_setImage(withURL: URL(string: avatarUrl)!)
+                    }
+                    self.lblQuizResult.text = "Total Kecenderungan \(response.meta.quizzes.finished) dari \(response.meta.quizzes.total) Quiz"
+                    self.lblPreferenceUser.text = "\(response.user.fullName ?? "") lebih suka jawaban dari Paslon no \(preference?.team.id ?? 0)"
+                    self.lblPreferenceResult.text = String(format: "%.0f", preference?.percentage ?? 0.0) + "% \(preference?.team.title ?? "")"
+                }
+            })
+            .disposed(by: disposeBag)
+        
+        
         
 //        viewModel.output.enableO
 //            .do(onNext: { [weak self] (enable) in
@@ -67,8 +114,7 @@ extension CatatanController: UITableViewDelegate, UITableViewDataSource {
             let cell = tableView.dequeueReusableCell() as PaslonCaraouselCell
             return cell
         case 1:
-            let cell = UITableViewCell()
-            cell.backgroundColor = Color.blue
+            let cell = tableView.dequeueReusableCell() as PartyCaraouselCell
             return cell
         default:
             let cell = UITableViewCell()
@@ -86,7 +132,14 @@ extension CatatanController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 350.0 // case for sreen iphone 6s
+        switch UIScreen.main.bounds.height {
+        case 568:
+            return 275.0
+        case 667:
+            return 360.0 // case for sreen iphone 6s
+        default:
+            return 360.0
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

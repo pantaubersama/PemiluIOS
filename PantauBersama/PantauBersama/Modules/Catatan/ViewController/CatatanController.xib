@@ -17,6 +17,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CatatanController" customModule="PantauBersama" customModuleProvider="target">
             <connections>
+                <outlet property="iconPreference" destination="RU8-Cf-RPg" id="6PP-2C-BGL"/>
+                <outlet property="lblPreferenceResult" destination="yLU-TT-MuI" id="JkG-IH-WCT"/>
+                <outlet property="lblPreferenceUser" destination="Vaf-no-irn" id="V3y-RY-OcO"/>
+                <outlet property="lblQuizResult" destination="zIh-eZ-ZOv" id="I4E-9l-uCW"/>
                 <outlet property="tableView" destination="YQc-Ln-EPp" id="ntE-Zl-ZAQ"/>
                 <outlet property="view" destination="iN0-l3-epB" id="k7F-SH-moc"/>
             </connections>
@@ -37,20 +41,20 @@
                     </state>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eu5-Ll-gGt">
-                    <rect key="frame" x="0.0" y="433" width="320" height="87"/>
+                    <rect key="frame" x="0.0" y="443" width="320" height="77"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RU8-Cf-RPg" customClass="CircularUIImageView" customModule="Common">
-                            <rect key="frame" x="21" y="19.5" width="48" height="48"/>
+                            <rect key="frame" x="21" y="14.5" width="48" height="48"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="48" id="htR-Ha-2WD"/>
                                 <constraint firstAttribute="height" constant="48" id="rzc-SS-9S9"/>
                             </constraints>
                         </imageView>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="APY-Dq-WYU">
-                            <rect key="frame" x="85" y="16" width="219" height="55"/>
+                            <rect key="frame" x="85" y="8" width="219" height="53"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zIh-eZ-ZOv" customClass="Label" customModule="Common">
-                                    <rect key="frame" x="0.0" y="0.0" width="219" height="21"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="219" height="19"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -61,7 +65,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vaf-no-irn" customClass="Label" customModule="Common">
-                                    <rect key="frame" x="0.0" y="21" width="219" height="14"/>
+                                    <rect key="frame" x="0.0" y="19" width="219" height="14"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="14" id="pkS-AS-4t1"/>
                                     </constraints>
@@ -75,7 +79,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yLU-TT-MuI">
-                                    <rect key="frame" x="0.0" y="35" width="219" height="20"/>
+                                    <rect key="frame" x="0.0" y="33" width="219" height="20"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="20" id="oTy-O7-VmA"/>
                                     </constraints>
@@ -88,12 +92,12 @@
                     </subviews>
                     <color key="backgroundColor" red="0.95687562230000001" green="0.95683962109999998" blue="0.95686405900000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <constraints>
-                        <constraint firstItem="APY-Dq-WYU" firstAttribute="top" secondItem="Eu5-Ll-gGt" secondAttribute="top" constant="16" id="DfM-NC-EUU"/>
+                        <constraint firstItem="APY-Dq-WYU" firstAttribute="top" secondItem="Eu5-Ll-gGt" secondAttribute="top" constant="8" id="DfM-NC-EUU"/>
                         <constraint firstItem="RU8-Cf-RPg" firstAttribute="centerY" secondItem="Eu5-Ll-gGt" secondAttribute="centerY" id="OYP-MV-pmx"/>
                         <constraint firstItem="RU8-Cf-RPg" firstAttribute="leading" secondItem="Eu5-Ll-gGt" secondAttribute="leading" constant="21" id="Xn2-2F-Atb"/>
                         <constraint firstAttribute="bottom" secondItem="APY-Dq-WYU" secondAttribute="bottom" constant="16" id="g14-JP-BUX"/>
                         <constraint firstItem="APY-Dq-WYU" firstAttribute="leading" secondItem="RU8-Cf-RPg" secondAttribute="trailing" constant="16" id="iga-Xr-FIe"/>
-                        <constraint firstAttribute="height" constant="87" id="kvc-th-zMr"/>
+                        <constraint firstAttribute="height" constant="77" id="kvc-th-zMr"/>
                         <constraint firstAttribute="trailing" secondItem="APY-Dq-WYU" secondAttribute="trailing" constant="16" id="zl6-iV-HVn"/>
                     </constraints>
                 </view>
@@ -128,7 +132,7 @@
                     </constraints>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="YQc-Ln-EPp">
-                    <rect key="frame" x="0.0" y="119" width="320" height="314"/>
+                    <rect key="frame" x="0.0" y="119" width="320" height="324"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </tableView>
             </subviews>

@@ -28,6 +28,8 @@ class CatatanViewModel: ViewModelType {
         let enableO: Driver<Bool>
         let updateO: Driver<Void>
         let errorTracker: Driver<Error>
+        let userDataO: Driver<UserResponse>
+        let totalResultO: Driver<TrendResponse>
     }
     
     private var navigator: CatatanNavigator
@@ -73,9 +75,44 @@ class CatatanViewModel: ViewModelType {
             .flatMapLatest({ navigator.back() })
             .asDriverOnErrorJustComplete()
         
+        // MARK
+        // Get Local user data
+        let local: Observable<UserResponse> = AppState.local(key: .me)
+        let cloud = NetworkService.instance
+            .requestObject(PantauAuthAPI.me,
+                           c: BaseResponse<UserResponse>.self)
+            .map({ $0.data })
+            .do(onSuccess: { (response) in
+                AppState.saveMe(response)
+            })
+            .trackError(errorTracker)
+            .trackActivity(activityIndicator)
+            .asObservable()
+            .catchErrorJustComplete()
+        
+        let userData = viewWillAppearS
+            .flatMapLatest({ Observable.merge(local, cloud) })
+        
+        // MARK
+        // GET Total Result
+        let totalResult = viewWillAppearS
+            .flatMapLatest({ (_) -> Observable<TrendResponse> in
+                return NetworkService.instance
+                    .requestObject(QuizAPI.getTotalResult(),
+                                   c: BaseResponse<TrendResponse>.self)
+                    .map({ $0.data })
+                    .trackError(self.errorTracker)
+                    .trackActivity(self.activityIndicator)
+                    .asObservable()
+                    .catchErrorJustComplete()
+            })
+            .asDriverOnErrorJustComplete()
+        
         output = Output(enableO: enable,
                         updateO: update,
-                        errorTracker: errorTracker.asDriver())
+                        errorTracker: errorTracker.asDriver(),
+                        userDataO: userData.asDriverOnErrorJustComplete(),
+                        totalResultO: totalResult)
     }
     
     private func update(vote: Int, party: String) -> Observable<BaseResponse<UserResponse>> {

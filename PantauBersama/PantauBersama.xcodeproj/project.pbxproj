@@ -312,6 +312,8 @@
 		84BE8DF8222689F00079332A /* PaslonCaraouselCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BE8DF7222689F00079332A /* PaslonCaraouselCell.swift */; };
 		84BE8DFA2226980B0079332A /* HeaderCatatanView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84BE8DF92226980B0079332A /* HeaderCatatanView.xib */; };
 		84BE8DFC222698500079332A /* HeaderCatatanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BE8DFB222698500079332A /* HeaderCatatanView.swift */; };
+		84BE8DFE22269CDC0079332A /* PartyCaraouselCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84BE8DFD22269CDC0079332A /* PartyCaraouselCell.xib */; };
+		84BE8E0022269D700079332A /* PartyCaraouselCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BE8DFF22269D700079332A /* PartyCaraouselCell.swift */; };
 		84BEA55321F9884900659980 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BEA55221F9884900659980 /* NetworkService.swift */; };
 		84CA10BF21EF0DE80025CF10 /* AboutController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84CA10BE21EF0DE80025CF10 /* AboutController.xib */; };
 		84CA10C121EF107E0025CF10 /* AboutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CA10C021EF107E0025CF10 /* AboutController.swift */; };
@@ -716,6 +718,8 @@
 		84BE8DF7222689F00079332A /* PaslonCaraouselCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaslonCaraouselCell.swift; sourceTree = "<group>"; };
 		84BE8DF92226980B0079332A /* HeaderCatatanView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderCatatanView.xib; sourceTree = "<group>"; };
 		84BE8DFB222698500079332A /* HeaderCatatanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCatatanView.swift; sourceTree = "<group>"; };
+		84BE8DFD22269CDC0079332A /* PartyCaraouselCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PartyCaraouselCell.xib; sourceTree = "<group>"; };
+		84BE8DFF22269D700079332A /* PartyCaraouselCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyCaraouselCell.swift; sourceTree = "<group>"; };
 		84BEA55221F9884900659980 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		84CA10BE21EF0DE80025CF10 /* AboutController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AboutController.xib; sourceTree = "<group>"; };
 		84CA10C021EF107E0025CF10 /* AboutController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutController.swift; sourceTree = "<group>"; };
@@ -2178,6 +2182,8 @@
 				84BE8DF7222689F00079332A /* PaslonCaraouselCell.swift */,
 				84BE8DF92226980B0079332A /* HeaderCatatanView.xib */,
 				84BE8DFB222698500079332A /* HeaderCatatanView.swift */,
+				84BE8DFD22269CDC0079332A /* PartyCaraouselCell.xib */,
+				84BE8DFF22269D700079332A /* PartyCaraouselCell.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -2587,6 +2593,7 @@
 				11D066A521E3850E003AC9BB /* PenpolFilterController.xib in Resources */,
 				844C3D8C21C5323E00199871 /* LinimasaCell.xib in Resources */,
 				848B039C21E7AADF002CAA40 /* WKWebview.xib in Resources */,
+				84BE8DFE22269CDC0079332A /* PartyCaraouselCell.xib in Resources */,
 				1143E81021E212F7003862B6 /* upvote.json in Resources */,
 				842A49F521D7749D0050AA51 /* HeaderDataLapor.xib in Resources */,
 				840850C821D25D5800696CB3 /* TextViewCell.xib in Resources */,
@@ -3040,6 +3047,7 @@
 				118149EF21EC718800192E97 /* ListUserCell.swift in Sources */,
 				84A07FB621D0ED8100269C6B /* SuccessController.swift in Sources */,
 				845C570721CD1D8F00EDCDFE /* ProfileCoordinator.swift in Sources */,
+				84BE8E0022269D700079332A /* PartyCaraouselCell.swift in Sources */,
 				84307F4D22006857006DE04B /* ParserCoordinator.swift in Sources */,
 				842A4A0F21D7EE5F0050AA51 /* SuccessViewModel.swift in Sources */,
 				84B7B8D221E5B9640099E7E3 /* AddKategoriCoordinator.swift in Sources */,
