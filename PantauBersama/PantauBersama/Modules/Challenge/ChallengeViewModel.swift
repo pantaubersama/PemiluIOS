@@ -59,32 +59,21 @@ class ChallengeViewModel: ViewModelType {
             .flatMapLatest({ navigator.back() })
             .asDriverOnErrorJustComplete()
         
-//        let action = actionButtonS
-//            .flatMapLatest { [unowned self](_) -> Observable<Void> in
-//                switch self.type {
-//                case .challenge:
-//                    print("open challange")
-//                case .challengeDenied:
-//                    print("open challange denied")
-//                case .challengeDirect:
-//                    print("open challange direct")
-//                case .challengeExpired:
-//                    print("open challange expired")
-//                case .challengeOpen:
-//                    print("open challange open")
-//                case .done:
-//                    return self.navigator.openLiveDebatDone()
-//                case .soon:
-//                    print("open challange soon")
-//                case .default:
-//                    break
-//                }
-//                
-//                return Observable.empty()
-//        }
-//        .asDriverOnErrorJustComplete()
+        let action = actionButtonS
+            .flatMapLatest { [unowned self](_) -> Observable<PopupChallengeResult> in
+                if self.data.progress == .waitingOpponent {
+                    return navigator.openAcceptConfirmation()
+                }
+                
+                return Observable.empty()
+            }
+            .do(onNext: { (result) in
+                print("result \(result)")
+            })
+            .mapToVoid()
+            .asDriverOnErrorJustComplete()
         
-        output = Output(backO: back, actionO: Driver.empty(), challengeO: Driver.just(data))
+        output = Output(backO: back, actionO: action, challengeO: Driver.just(data))
     }
     
 }

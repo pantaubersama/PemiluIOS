@@ -36,7 +36,7 @@ final class PopupChallengeCoordinator: BaseCoordinator<PopupChallengeResult> {
         viewController.viewModel = viewModel
         viewController.providesPresentationContextTransitionStyle = true
         viewController.definesPresentationContext = true
-        viewController.modalPresentationStyle = UIModalPresentationStyle.overFullScreen
+        viewController.modalPresentationStyle = .overCurrentContext
         viewController.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
         navigationController.present(viewController, animated: true, completion: nil)
         return viewModel.output.actionSelected
