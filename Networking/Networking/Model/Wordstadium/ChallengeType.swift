@@ -40,6 +40,9 @@ public enum ChallengeType: String, Codable {
 public enum ChallengeProgress: String, Codable {
     case waitingOpponent = "waiting_opponent"
     case waitingConfirmation = "waiting_confirmation"
+    case comingSoon = "coming_soon"
+    case liveNow = "live_now"
+    case done = "done"
     case unknown
     
     public var title: String? {
@@ -48,6 +51,12 @@ public enum ChallengeProgress: String, Codable {
             return "Waiting Opponent"
         case .waitingConfirmation:
             return "Waiting Confirmation"
+        case .comingSoon:
+            return "Coming Soon"
+        case .liveNow:
+            return "Live Now"
+        case .done:
+            return "Done"
         default:
             return nil
         }
@@ -60,6 +69,12 @@ public enum ChallengeProgress: String, Codable {
             return .waitingOpponent
         case "Waiting Confirmation":
             return .waitingConfirmation
+        case "Coming Soon":
+            return .comingSoon
+        case "Live Now":
+            return .liveNow
+        case "Done":
+            return .done
         default:
             return .unknown
         }
@@ -68,12 +83,18 @@ public enum ChallengeProgress: String, Codable {
 
 public enum ChallengeCondition: String, Codable {
     case ongoing = "ongoing"
+    case expired = "expired"
+    case rejected = "rejected"
     case unknown
     
     public var title: String? {
         switch self {
         case .ongoing:
             return "Ongoing"
+        case .expired:
+            return "Expired"
+        case .rejected:
+            return "Rejected"
         default:
             return nil
         }
@@ -84,6 +105,10 @@ public enum ChallengeCondition: String, Codable {
         switch title {
         case "Ongoing":
             return .ongoing
+        case "Expired":
+            return .expired
+        case "Rejected":
+            return .rejected
         default:
             return .unknown
         }

@@ -56,4 +56,6 @@ public struct Audiences: Codable {
 public enum AudienceRole: String, Codable {
     case challenger = "challenger"
     case opponentCandidate = "opponent_candidate"
+    case audience = "audience"
+    case opponent = "opponent"
 }
