@@ -26,8 +26,6 @@ class WordstadiumItemViewCell: UITableViewCell {
     @IBOutlet weak var moreMenuBtn: UIButton!
     @IBOutlet weak var statementLbl: UILabel!
     
-    let tapGesture = UITapGestureRecognizer()
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -51,8 +49,6 @@ extension WordstadiumItemViewCell: IReusableCell {
     
     func configureCell(item: Input) {
         var footerView: UIView!
-        
-        self.addGestureRecognizer(tapGesture)
         
         statementLbl.text = item.wordstadium.statement
         titleLbl.text = item.wordstadium.type.title
@@ -82,11 +78,10 @@ extension WordstadiumItemViewCell: IReusableCell {
             footerView = ClapView()
         case .ongoing:
             backgroundItem.image = UIImage(named: "bgWordstadiumChallange")
-            guard let progress = item.wordstadium.progress else {return}
-            
+
             let descView = DescriptionView()
-            descView.descriptionLbl.text = progress.title
-            switch progress {
+            descView.descriptionLbl.text = item.wordstadium.progress.title
+            switch item.wordstadium.progress {
             case .waitingConfirmation:
                 descView.descriptionLbl.textColor = Color.gray
                 rightPersonView.isHidden = false

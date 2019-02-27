@@ -78,7 +78,7 @@ class LiniPublicViewModel: ILiniWordstadiumViewModel, ILiniWordstadiumViewModelI
             .asObservable()
             .flatMapLatest({ (wordstadium) -> Observable<Void> in
 //                return navigator.launchLiveChallenge(wordstadium: wordstadium)
-                return navigator.launchChallenge(wordstadium: wordstadium, type: .challenge)
+                return navigator.launchChallenge(wordstadium: wordstadium, data: wordstadium)
             })
             .asDriverOnErrorJustComplete()
         

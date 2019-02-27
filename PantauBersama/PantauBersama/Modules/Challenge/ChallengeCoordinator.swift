@@ -7,6 +7,7 @@
 //
 
 import RxSwift
+import Networking
 
 protocol ChallengeNavigator {
     func back() -> Observable<Void>
@@ -16,17 +17,17 @@ protocol ChallengeNavigator {
 final class ChallengeCoordinator: BaseCoordinator<Void> {
     
     private let navigationController: UINavigationController
-    private var type: ChallengeType = .default
+    private var data: Challenge
     
-    init(navigationController: UINavigationController, type: ChallengeType) {
+    init(navigationController: UINavigationController, data: Challenge) {
         self.navigationController = navigationController
-        self.type = type
+        self.data = data
     }
     
     override func start() -> Observable<Void> {
         let viewController = ChallengeController()
-        let viewModel = ChallengeViewModel(navigator: self, type: type)
-        viewController.type = type
+        let viewModel = ChallengeViewModel(navigator: self, data: data)
+//        viewController.type = type
         viewController.viewModel = viewModel
         viewController.hidesBottomBarWhenPushed = true
         navigationController.pushViewController(viewController, animated: true)
