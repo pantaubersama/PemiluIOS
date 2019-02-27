@@ -7,6 +7,7 @@
 //
 
 import RxSwift
+import Networking
 
 
 protocol WordstadiumListNavigator {
@@ -17,16 +18,18 @@ protocol WordstadiumListNavigator {
 final class WordstadiumListCoordinator: BaseCoordinator<Void> {
     
     private let navigationController: UINavigationController
-    private let wordstadium: SectionWordstadium
+    private let progressType: ProgressType
+    private let liniType: LiniType
     var finish: Observable<Void>!
     
-    init(navigationController: UINavigationController, wordstadium: SectionWordstadium) {
+    init(navigationController: UINavigationController, progressType: ProgressType, liniType: LiniType) {
         self.navigationController = navigationController
-        self.wordstadium = wordstadium
+        self.progressType = progressType
+        self.liniType = liniType
     }
     
     override func start() -> Observable<Void> {
-        let viewModel = WordstadiumListViewModel(navigator: self, wordstadium: self.wordstadium)
+        let viewModel = WordstadiumListViewModel(navigator: self, progress: progressType, liniType: liniType)
         let viewController = WordstadiumListViewController()
         viewController.viewModel = viewModel
         viewController.hidesBottomBarWhenPushed = true

@@ -34,7 +34,7 @@ class WordstadiumListViewModel: ViewModelType {
     let errorTracker = ErrorTracker()
     let activityIndicator = ActivityIndicator()
     
-    init(navigator: WordstadiumListNavigator,wordstadium: SectionWordstadium) {
+    init(navigator: WordstadiumListNavigator, progress: ProgressType, liniType: LiniType) {
         self.navigator = navigator
         self.navigator.finish = backSubject
         
@@ -45,7 +45,7 @@ class WordstadiumListViewModel: ViewModelType {
         let showItems = refreshSubject.startWith(())
             .flatMapLatest({ [weak self] (_) -> Observable<[SectionWordstadium]> in
                 guard let `self` = self else { return Observable<[SectionWordstadium]>.just([]) }
-                return self.getChallenge(progress: wordstadium.itemType, type: wordstadium.type)
+                return self.getChallenge(progress: progress, type: liniType)
             })
             .asDriverOnErrorJustComplete()
         

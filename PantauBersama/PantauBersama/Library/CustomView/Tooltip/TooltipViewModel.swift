@@ -57,7 +57,7 @@ class TooltipViewModel: ViewModelType {
             .flatMapLatest({ navigator.launchChallenge() })
         
         let debatDone = debatDoneS
-            .flatMapLatest({ navigator.launchDebatLive() })
+            .flatMapLatest({ navigator.launchDebatDone() })
         
         let comingSoon = comingSoonS
             .flatMapLatest({ navigator.launchComingSoon() })

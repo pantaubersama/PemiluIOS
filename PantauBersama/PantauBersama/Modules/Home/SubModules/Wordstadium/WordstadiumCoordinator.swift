@@ -72,7 +72,7 @@ extension WordstadiumCoordinator: WordstadiumNavigator {
     }
     
     func launchWordstadiumList(wordstadium: SectionWordstadium) -> Observable<Void> {
-        let listCoordinator = WordstadiumListCoordinator(navigationController: navigationController, wordstadium: wordstadium)
+        let listCoordinator = WordstadiumListCoordinator(navigationController: navigationController, progressType: wordstadium.itemType, liniType: wordstadium.type)
         return coordinate(to: listCoordinator)
     }
     
