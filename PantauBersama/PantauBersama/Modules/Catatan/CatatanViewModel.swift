@@ -30,6 +30,7 @@ class CatatanViewModel: ViewModelType {
         let errorTracker: Driver<Error>
         let userDataO: Driver<UserResponse>
         let totalResultO: Driver<TrendResponse>
+        let partyItemsO: Driver<[PoliticalParty]>
     }
     
     private var navigator: CatatanNavigator
@@ -40,6 +41,9 @@ class CatatanViewModel: ViewModelType {
     private let notePreferenceValueS = BehaviorSubject<Int>(value: 0)
     private let partyPreferenceValueI = BehaviorSubject<String>(value: "")
     private let updateS = PublishSubject<Void>()
+    private(set) var disposeBag = DisposeBag()
+    
+    var partyItems = BehaviorRelay<[PoliticalParty]>(value: [])
     
     init(navigator: CatatanNavigator) {
         self.navigator = navigator
@@ -96,7 +100,7 @@ class CatatanViewModel: ViewModelType {
         // MARK
         // GET Total Result
         let totalResult = viewWillAppearS
-            .flatMapLatest({ (_) -> Observable<TrendResponse> in
+            .flatMapLatest({ [unowned self] (_) -> Observable<TrendResponse> in
                 return NetworkService.instance
                     .requestObject(QuizAPI.getTotalResult(),
                                    c: BaseResponse<TrendResponse>.self)
@@ -108,11 +112,29 @@ class CatatanViewModel: ViewModelType {
             })
             .asDriverOnErrorJustComplete()
         
+        // MARK
+        // GET List Political Party
+        let itemsParty = viewWillAppearS
+            .flatMapLatest { [unowned self] (_) -> Observable<[PoliticalParty]> in
+                return NetworkService.instance
+                    .requestObject(PantauAuthAPI.politicalParties(page: 1, perPage: 100),
+                                   c: BaseResponse<PoliticalPartyResponse>.self)
+                    .map({ $0.data.politicalParty })
+                    .do(onSuccess: { (items) in
+                        self.partyItems.accept(items)
+                    })
+                    .asObservable()
+                    .trackError(self.errorTracker)
+                    .trackActivity(self.activityIndicator)
+                    .catchErrorJustComplete()
+            }.asDriverOnErrorJustComplete()
+        
         output = Output(enableO: enable,
                         updateO: update,
                         errorTracker: errorTracker.asDriver(),
                         userDataO: userData.asDriverOnErrorJustComplete(),
-                        totalResultO: totalResult)
+                        totalResultO: totalResult,
+                        partyItemsO: itemsParty)
     }
     
     private func update(vote: Int, party: String) -> Observable<BaseResponse<UserResponse>> {

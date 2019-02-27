@@ -9,10 +9,12 @@
 import UIKit
 import FSPagerView
 import Common
+import Networking
 
 class PartyCaraouselCell: UITableViewCell {
     
     @IBOutlet weak var contentPager: FSPagerView!
+    private var data: [PoliticalParty] = []
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -32,12 +34,14 @@ class PartyCaraouselCell: UITableViewCell {
 extension PartyCaraouselCell: FSPagerViewDelegate, FSPagerViewDataSource {
     
     func numberOfItems(in pagerView: FSPagerView) -> Int {
-        return 20
+        return data.count
     }
     
     func pagerView(_ pagerView: FSPagerView, cellForItemAt index: Int) -> FSPagerViewCell {
         let cell = pagerView.dequeueReusableCell(withReuseIdentifier: "cell", at: index)
-        cell.imageView?.image = UIImage(named: "caraousel_prabowo")
+        if let image = data[index].image.url {
+            cell.imageView?.show(fromURL: image)
+        }
         return cell
     }
     
@@ -46,10 +50,14 @@ extension PartyCaraouselCell: FSPagerViewDelegate, FSPagerViewDataSource {
 extension PartyCaraouselCell: IReusableCell {
     
     struct Input {
-        
+        let viewModel: CatatanViewModel
     }
     
     func configureCell(item: Input) {
-        
+        let data = item.viewModel.partyItems.value
+        DispatchQueue.main.async {
+            self.data = data
+            self.contentPager.reloadData()
+        }
     }
 }

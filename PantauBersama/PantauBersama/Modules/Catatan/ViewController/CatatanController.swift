@@ -97,6 +97,10 @@ class CatatanController: UIViewController {
        viewModel.output.updateO
             .drive()
             .disposed(by: disposeBag)
+        
+        viewModel.output.partyItemsO
+            .drive()
+            .disposed(by: disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -115,6 +119,7 @@ extension CatatanController: UITableViewDelegate, UITableViewDataSource {
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell() as PartyCaraouselCell
+            cell.configureCell(item: PartyCaraouselCell.Input(viewModel: self.viewModel))
             return cell
         default:
             let cell = UITableViewCell()
