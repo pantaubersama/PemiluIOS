@@ -61,7 +61,7 @@ class CreateAskController: UIViewController {
             .drive(tableView.rx.items) { tableView, row, item in
                 let cell = tableView.dequeueReusableCell() as RecentAskCell
                 cell.tag = row
-                cell.lblContent.text = item.body
+                cell.configureCell(item: RecentAskCell.Input(viewModel: self.viewModel, question: item))
                 return cell
             }
             .disposed(by: disposeBag)
@@ -84,6 +84,10 @@ class CreateAskController: UIViewController {
             .disposed(by: disposeBag)
         
         viewModel.output.itemSelectedO
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.buttonRecentO
             .drive()
             .disposed(by: disposeBag)
         

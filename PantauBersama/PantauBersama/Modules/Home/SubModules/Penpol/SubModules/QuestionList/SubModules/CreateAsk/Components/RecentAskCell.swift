@@ -31,6 +31,18 @@ class RecentAskCell: UITableViewCell {
 
 extension RecentAskCell: IReusableCell {
     
+    struct Input {
+        let viewModel: CreateAskViewModel
+        let question: QuestionModel
+    }
     
+    func configureCell(item: Input) {
+        lblContent.text = item.question.body
+        
+        btnAsk.rx.tap
+            .map({ item.question })
+            .bind(to: item.viewModel.input.buttonRecentI)
+            .disposed(by: disposeBag)
+    }
     
 }

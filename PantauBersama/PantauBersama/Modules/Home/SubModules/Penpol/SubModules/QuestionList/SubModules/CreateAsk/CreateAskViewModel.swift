@@ -23,6 +23,7 @@ class CreateAskViewModel: ViewModelType {
         let refreshTrigger: AnyObserver<String>
         let nextTrigger: AnyObserver<Void>
         let itemSelectedTrigger: AnyObserver<IndexPath>
+        let buttonRecentI: AnyObserver<QuestionModel>
     }
     
     struct Output {
@@ -32,6 +33,7 @@ class CreateAskViewModel: ViewModelType {
         let enableO: Driver<Bool>
         let itemsO: Driver<[QuestionModel]>
         let itemSelectedO: Driver<Void>
+        let buttonRecentO: Driver<Void>
     }
     
     private let createSubject = PublishSubject<Void>()
@@ -40,6 +42,7 @@ class CreateAskViewModel: ViewModelType {
     private let refreshSubject = PublishSubject<String>()
     private let nextSubject = PublishSubject<Void>()
     private let itemSelectedS = PublishSubject<IndexPath>()
+    private let buttonRecentS = PublishSubject<QuestionModel>()
     
     private let activityIndicator = ActivityIndicator()
     private let errorTracker = ErrorTracker()
@@ -55,7 +58,8 @@ class CreateAskViewModel: ViewModelType {
                       questionInput: questionRelay,
                       refreshTrigger: refreshSubject.asObserver(),
                       nextTrigger: nextSubject.asObserver(),
-                      itemSelectedTrigger: itemSelectedS.asObserver())
+                      itemSelectedTrigger: itemSelectedS.asObserver(),
+                      buttonRecentI: buttonRecentS.asObserver())
         
         
         // MARK
@@ -100,13 +104,20 @@ class CreateAskViewModel: ViewModelType {
                 return s.count > 0 && !s.containsInsensitive("Tulis pertanyaan terbaikmu di sini!")
             }.startWith(false)
             .asDriverOnErrorJustComplete()
+        
+        let recentSelected = buttonRecentS
+            .flatMapLatest { (model) -> Observable<DetailAskResult> in
+                return navigator.launchDetailAsk(data: model.id)
+        }.mapToVoid()
+        .asDriverOnErrorJustComplete()
 
         output = Output(createSelected: create,
                         userData: user,
                         loadingIndicator: activityIndicator.asDriver(),
                         enableO: enable,
                         itemsO: items.asDriverOnErrorJustComplete(),
-                        itemSelectedO: itemSelected)
+                        itemSelectedO: itemSelected,
+                        buttonRecentO: recentSelected)
     }
     
     private func createQuestion() -> Observable<QuestionModel> {
@@ -125,7 +136,7 @@ class CreateAskViewModel: ViewModelType {
         query: String) ->
         Observable<Page<[QuestionModel]>> {
             return NetworkService.instance
-                .requestObject(TanyaKandidatAPI.getQuestions(query: query, page: batch.page, perpage: batch.limit, filteredBy: "user_verified_all", orderedBy: "cached_votes_up"), c: QuestionsResponse.self)
+                .requestObject(TanyaKandidatAPI.getQuestions(query: query, page: batch.page, perpage: batch.limit, filteredBy: "user_verified_all", orderedBy: "hot_score"), c: QuestionsResponse.self)
                 .map({ self.transformToPage(response: $0, batch: batch) })
                 .asObservable()
                 .paginate(nextPageTrigger: nextBatchTrigger, hasNextPage: { (result) -> Bool in
