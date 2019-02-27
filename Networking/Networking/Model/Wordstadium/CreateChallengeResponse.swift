@@ -19,8 +19,8 @@ public struct Challenge: Codable {
     public let statement: String?
     public let showTimeAt: String?
     public let timeLimit: Int?
-    public let progress: ChallengeProgress?
-    public let condition: ChallengeCondition?
+    public let progress: ChallengeProgress
+    public let condition: ChallengeCondition
     public let topic: [String]?
     public let createdAt: String?
     public let audiences: [Audiences]

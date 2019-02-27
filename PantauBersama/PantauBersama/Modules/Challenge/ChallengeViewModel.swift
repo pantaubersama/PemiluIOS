@@ -35,17 +35,18 @@ class ChallengeViewModel: ViewModelType {
     struct Output {
         let backO: Driver<Void>
         let actionO: Driver<Void>
+        let challengeO: Driver<Challenge>
     }
     
     private var navigator: ChallengeNavigator
-    private var type: ChallengeType = .default
+    private var data: Challenge
     
     private let backS = PublishSubject<Void>()
     private let actionButtonS = PublishSubject<Void>()
     
-    init(navigator: ChallengeNavigator, type: ChallengeType) {
+    init(navigator: ChallengeNavigator, data: Challenge) {
         self.navigator = navigator
-        self.type = type
+        self.data = data
         
         input = Input(
             backI: backS.asObserver(),
@@ -58,32 +59,32 @@ class ChallengeViewModel: ViewModelType {
             .flatMapLatest({ navigator.back() })
             .asDriverOnErrorJustComplete()
         
-        let action = actionButtonS
-            .flatMapLatest { [unowned self](_) -> Observable<Void> in
-                switch self.type {
-                case .challenge:
-                    print("open challange")
-                case .challengeDenied:
-                    print("open challange denied")
-                case .challengeDirect:
-                    print("open challange direct")
-                case .challengeExpired:
-                    print("open challange expired")
-                case .challengeOpen:
-                    print("open challange open")
-                case .done:
-                    return self.navigator.openLiveDebatDone()
-                case .soon:
-                    print("open challange soon")
-                case .default:
-                    break
-                }
-                
-                return Observable.empty()
-        }
-        .asDriverOnErrorJustComplete()
+//        let action = actionButtonS
+//            .flatMapLatest { [unowned self](_) -> Observable<Void> in
+//                switch self.type {
+//                case .challenge:
+//                    print("open challange")
+//                case .challengeDenied:
+//                    print("open challange denied")
+//                case .challengeDirect:
+//                    print("open challange direct")
+//                case .challengeExpired:
+//                    print("open challange expired")
+//                case .challengeOpen:
+//                    print("open challange open")
+//                case .done:
+//                    return self.navigator.openLiveDebatDone()
+//                case .soon:
+//                    print("open challange soon")
+//                case .default:
+//                    break
+//                }
+//                
+//                return Observable.empty()
+//        }
+//        .asDriverOnErrorJustComplete()
         
-        output = Output(backO: back, actionO: action)
+        output = Output(backO: back, actionO: Driver.empty(), challengeO: Driver.just(data))
     }
     
 }
