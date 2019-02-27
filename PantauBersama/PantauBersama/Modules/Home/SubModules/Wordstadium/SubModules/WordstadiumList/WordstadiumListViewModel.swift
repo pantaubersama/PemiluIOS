@@ -95,7 +95,7 @@ class WordstadiumListViewModel: ViewModelType {
             } else {
                 title = "My Debat: Done"
             }
-            description = "Berikan komentar dan appresiasi pada debat-debat yang sudah selesai. Daftarnya ada di bawah ini:"
+            description = "Berikan komentar dan appresiasi pada debat-debat yang sudah selesai. Daftarnya ada di /Users/rahardyan/Documents/Rahardyan Bisma Setya Putra/pantau-bersama-ios/PantauBersama/PantauBersama/Library/CustomView/FooterProfileViewbawah ini:"
         case .ongoing:
             item = challenge
             if type == .public {

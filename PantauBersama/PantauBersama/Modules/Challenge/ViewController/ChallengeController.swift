@@ -131,11 +131,32 @@ extension ChallengeController {
         
         self.detailTantanganView.lblStatement.text = data.statement
         
+        if let challenger = data.audiences.filter({ $0.role == .challenger }).first {
+            self.headerTantanganView.avatar.show(fromURL: challenger.avatar?.url ?? "")
+            self.headerTantanganView.lblFullName.text = challenger.fullName
+            self.headerTantanganView.lblUsername.text = challenger.username
+        }
+        
+        if let opponent = data.audiences.filter({ $0.role == .opponentCandidate }).first {
+            self.headerTantanganView.containerOpponent.isHidden = false
+            self.headerTantanganView.avatarOpponent.show(fromURL: opponent.avatar?.url ?? "")
+            
+            self.headerTantanganView.lblNameOpponent.isHidden = false
+            self.headerTantanganView.lblNameOpponent.text = opponent.fullName
+            self.headerTantanganView.lblUsernameOpponent.isHidden = false
+            self.headerTantanganView.lblUsernameOpponent.text = opponent.username
+        }
+        
         switch data.progress {
-        case .waitingConfirmation, .waitingOpponent:
+        case .waitingConfirmation:
             self.titleContent.text = "Menunggu,"
             self.subtitleContent.text = "lawan menerima\ntantanganmu"
             self.containerHeader.backgroundColor = #colorLiteral(red: 1, green: 0.4935973287, blue: 0.3663615584, alpha: 1)
+        case .waitingOpponent:
+            self.titleContent.text = "Ini adalah Open Challenge,"
+            self.subtitleContent.text = "Terima tantangan ini?"
+            self.containerHeader.backgroundColor = #colorLiteral(red: 1, green: 0.4935973287, blue: 0.3663615584, alpha: 1)
+            self.containerAcceptChallenge.isHidden = false
         default:
             break
         }
