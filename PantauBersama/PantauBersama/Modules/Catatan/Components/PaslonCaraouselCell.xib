@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="265" id="hHE-W3-wRr" customClass="PaslonCaraouselCell" customModule="PantauBersama" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="433" height="265"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hHE-W3-wRr" id="YB6-sR-5pP">
+                <rect key="frame" x="0.0" y="0.0" width="433" height="264.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7AT-Sq-35H" customClass="FSPagerView" customModule="FSPagerView">
+                        <rect key="frame" x="20" y="11" width="393" height="243"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="7AT-Sq-35H" firstAttribute="leading" secondItem="YB6-sR-5pP" secondAttribute="leadingMargin" id="XIp-6H-NPC"/>
+                    <constraint firstItem="7AT-Sq-35H" firstAttribute="top" secondItem="YB6-sR-5pP" secondAttribute="topMargin" id="gbe-ec-LeZ"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="7AT-Sq-35H" secondAttribute="trailing" id="hdn-LI-pHN"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="7AT-Sq-35H" secondAttribute="bottom" id="hpK-c5-b36"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="contentPager" destination="7AT-Sq-35H" id="Vg7-9c-o70"/>
+            </connections>
+            <point key="canvasLocation" x="36" y="133.5832083958021"/>
+        </tableViewCell>
+    </objects>
+</document>

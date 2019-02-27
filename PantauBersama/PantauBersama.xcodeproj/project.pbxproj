@@ -308,6 +308,10 @@
 		84B7B8CE21E5B4CD0099E7E3 /* AddKategoriController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B7B8CD21E5B4CD0099E7E3 /* AddKategoriController.swift */; };
 		84B7B8D021E5B5D40099E7E3 /* AddKategoriViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B7B8CF21E5B5D40099E7E3 /* AddKategoriViewModel.swift */; };
 		84B7B8D221E5B9640099E7E3 /* AddKategoriCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B7B8D121E5B9640099E7E3 /* AddKategoriCoordinator.swift */; };
+		84BE8DF6222689AF0079332A /* PaslonCaraouselCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84BE8DF5222689AF0079332A /* PaslonCaraouselCell.xib */; };
+		84BE8DF8222689F00079332A /* PaslonCaraouselCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BE8DF7222689F00079332A /* PaslonCaraouselCell.swift */; };
+		84BE8DFA2226980B0079332A /* HeaderCatatanView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84BE8DF92226980B0079332A /* HeaderCatatanView.xib */; };
+		84BE8DFC222698500079332A /* HeaderCatatanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BE8DFB222698500079332A /* HeaderCatatanView.swift */; };
 		84BEA55321F9884900659980 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BEA55221F9884900659980 /* NetworkService.swift */; };
 		84CA10BF21EF0DE80025CF10 /* AboutController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84CA10BE21EF0DE80025CF10 /* AboutController.xib */; };
 		84CA10C121EF107E0025CF10 /* AboutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CA10C021EF107E0025CF10 /* AboutController.swift */; };
@@ -708,6 +712,10 @@
 		84B7B8CD21E5B4CD0099E7E3 /* AddKategoriController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddKategoriController.swift; sourceTree = "<group>"; };
 		84B7B8CF21E5B5D40099E7E3 /* AddKategoriViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddKategoriViewModel.swift; sourceTree = "<group>"; };
 		84B7B8D121E5B9640099E7E3 /* AddKategoriCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddKategoriCoordinator.swift; sourceTree = "<group>"; };
+		84BE8DF5222689AF0079332A /* PaslonCaraouselCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PaslonCaraouselCell.xib; sourceTree = "<group>"; };
+		84BE8DF7222689F00079332A /* PaslonCaraouselCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaslonCaraouselCell.swift; sourceTree = "<group>"; };
+		84BE8DF92226980B0079332A /* HeaderCatatanView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderCatatanView.xib; sourceTree = "<group>"; };
+		84BE8DFB222698500079332A /* HeaderCatatanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCatatanView.swift; sourceTree = "<group>"; };
 		84BEA55221F9884900659980 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		84CA10BE21EF0DE80025CF10 /* AboutController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AboutController.xib; sourceTree = "<group>"; };
 		84CA10C021EF107E0025CF10 /* AboutController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutController.swift; sourceTree = "<group>"; };
@@ -1341,6 +1349,7 @@
 		840901BB21DF31AA001BF559 /* Catatan */ = {
 			isa = PBXGroup;
 			children = (
+				84BE8DE7222686330079332A /* Components */,
 				84B6D50121F81D8000DD742A /* SubModules */,
 				840901BC21DF31BB001BF559 /* ViewController */,
 				840901C121DF3BDE001BF559 /* CatatanViewModel.swift */,
@@ -2162,6 +2171,17 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		84BE8DE7222686330079332A /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				84BE8DF5222689AF0079332A /* PaslonCaraouselCell.xib */,
+				84BE8DF7222689F00079332A /* PaslonCaraouselCell.swift */,
+				84BE8DF92226980B0079332A /* HeaderCatatanView.xib */,
+				84BE8DFB222698500079332A /* HeaderCatatanView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		84CA10BD21EF0DCF0025CF10 /* About */ = {
 			isa = PBXGroup;
 			children = (
@@ -2503,6 +2523,7 @@
 				137A29EE21E11E8F00F19072 /* TrendHeaderView.xib in Resources */,
 				84B6D6F121E24CAA00CD4BC8 /* ShareBadgeController.xib in Resources */,
 				84E2854D21CA4BC800298E31 /* FilterViewController.xib in Resources */,
+				84BE8DFA2226980B0079332A /* HeaderCatatanView.xib in Resources */,
 				84307F422200352B006DE04B /* ob2_linimasa.json in Resources */,
 				1143E81221E23229003862B6 /* loading-pantau.json in Resources */,
 				84FF8A9421F2180F00AA8CF3 /* UpdatesView.xib in Resources */,
@@ -2519,6 +2540,7 @@
 				84307F462200352B006DE04B /* ob3_penpol.json in Resources */,
 				84A07F9D21D0DC4B00269C6B /* KTPController.xib in Resources */,
 				137A29F421E2261A00F19072 /* ComingsoonController.xib in Resources */,
+				84BE8DF6222689AF0079332A /* PaslonCaraouselCell.xib in Resources */,
 				8478B8E621FF1FAA00CE192A /* InfoNotifCell.xib in Resources */,
 				84619D3C21DA88C800EB58CF /* ItemInfoCell.xib in Resources */,
 				8441DB5621CCF19C00B078DF /* DetailJanjiController.xib in Resources */,
@@ -2616,6 +2638,7 @@
 				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FSPagerView/FSPagerView.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/LTHRadioButton/LTHRadioButton.framework",
@@ -2641,6 +2664,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FSPagerView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LTHRadioButton.framework",
@@ -2782,6 +2806,7 @@
 				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FSPagerView/FSPagerView.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/LTHRadioButton/LTHRadioButton.framework",
@@ -2807,6 +2832,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FSPagerView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LTHRadioButton.framework",
@@ -2878,6 +2904,7 @@
 				840850BF21D256C200696CB3 /* SectionOfProfileInfoData.swift in Sources */,
 				84619D3821DA851200EB58CF /* EditViewModel.swift in Sources */,
 				8452A4D421DE55DE00196043 /* SosmedCoordinator.swift in Sources */,
+				84BE8DFC222698500079332A /* HeaderCatatanView.swift in Sources */,
 				11E107A821CD33CA00B7B074 /* CreateJanjiCoordinator.swift in Sources */,
 				1147F22F21F83F1A001D0D59 /* ClusterDetailViewModel.swift in Sources */,
 				11E107A721CD33CA00B7B074 /* CreateJanjiViewModel.swift in Sources */,
@@ -2922,6 +2949,7 @@
 				11B3C78D21D110DA00EDCECB /* QuizSummaryViewModel.swift in Sources */,
 				840850C321D25C7D00696CB3 /* ProfileEditController.swift in Sources */,
 				11145F5921EAD31A0046F2AA /* SearchCoordinator.swift in Sources */,
+				84BE8DF8222689F00079332A /* PaslonCaraouselCell.swift in Sources */,
 				118149E721EC625200192E97 /* ListUserViewModel.swift in Sources */,
 				84619D4921DC961A00EB58CF /* WebController.swift in Sources */,
 				11E107DB21CFD99900B7B074 /* QuizResultViewModel.swift in Sources */,

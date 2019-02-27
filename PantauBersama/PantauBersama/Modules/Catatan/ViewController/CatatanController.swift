@@ -14,15 +14,7 @@ import Common
 class CatatanController: UIViewController {
     
     var viewModel: CatatanViewModel!
-    @IBOutlet weak var segmentedControl: UISegmentedControl!
-    @IBOutlet weak var btnUpdate: Button!
-    @IBOutlet weak var container: UIView!
-    
-    lazy var catatanPilpresViewModel = CatatanPilpresViewModel()
-    lazy var catatanPartyViewModel = CatatanPartyViewModel()
-    
-    private lazy var catatanPilpresController = CatatanPilpresController(viewModel: catatanPilpresViewModel)
-    private lazy var catatanPartyController = CatatanPartyController(viewModel: catatanPartyViewModel)
+    @IBOutlet weak var tableView: UITableView!
     
     private let disposeBag: DisposeBag = DisposeBag()
     
@@ -34,55 +26,26 @@ class CatatanController: UIViewController {
         let back = UIBarButtonItem(image: #imageLiteral(resourceName: "back"), style: .plain, target: nil, action: nil)
         navigationItem.leftBarButtonItem = back
         
+        
+        // MARK
+        // Register tableview
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.tableFooterView = UIView()
+        tableView.registerReusableCell(PaslonCaraouselCell.self)
+        
+        
         back.rx.tap
             .bind(to: viewModel.input.backI)
             .disposed(by: disposeBag)
         
-        btnUpdate.rx.tap
-            .bind(to: viewModel.input.updateI)
-            .disposed(by: disposeBag)
-    
-        add(childViewController: catatanPilpresController, context: container)
-        add(childViewController: catatanPartyController, context: container)
-        
-        
-        // MARK
-        // segmented control value
-        // assign extension Reactive UIControl
-        segmentedControl.rx.value
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [unowned self] i in
-                UIView.animate(withDuration: 0.3, animations: {
-                    if i == 0 {
-                        self.catatanPilpresController.view.alpha = 1.0
-                        self.catatanPartyController.view.alpha = 0.0
-                        let values = self.catatanPilpresController.viewModel.output.notePreferenceValueO
-                        values.do(onNext: { [weak self] (value) in
-                            self?.viewModel.input.notePreferenceValueI.onNext((value))
-                        })
-                        .drive()
-                        .disposed(by: self.disposeBag)
-                    } else {
-                        self.catatanPilpresController.view.alpha = 0.0
-                        self.catatanPartyController.view.alpha = 1.0
-                        let values = self.catatanPartyViewModel.output.notPreferenceO
-                        values.do(onNext: { [weak self] (s) in
-                            self?.viewModel.input.partyPreferenceValueI.onNext((s))
-                        })
-                        .drive()
-                        .disposed(by: self.disposeBag)
-                    }
-                })
-            })
-            .disposed(by: disposeBag)
-        
-        viewModel.output.enableO
-            .do(onNext: { [weak self] (enable) in
-                guard let `self` = self else { return }
-                self.btnUpdate.backgroundColor = enable ? Color.primary_red : Color.grey_one
-            })
-            .drive(btnUpdate.rx.isEnabled)
-            .disposed(by: disposeBag)
+//        viewModel.output.enableO
+//            .do(onNext: { [weak self] (enable) in
+//                guard let `self` = self else { return }
+//                self.btnUpdate.backgroundColor = enable ? Color.primary_red : Color.grey_one
+//            })
+//            .drive(btnUpdate.rx.isEnabled)
+//            .disposed(by: disposeBag)
         
        viewModel.output.updateO
             .drive()
@@ -94,4 +57,55 @@ class CatatanController: UIViewController {
         viewModel.input.viewWillAppearI.onNext(())
     }
     
+}
+
+extension CatatanController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        switch indexPath.section {
+        case 0:
+            let cell = tableView.dequeueReusableCell() as PaslonCaraouselCell
+            return cell
+        case 1:
+            let cell = UITableViewCell()
+            cell.backgroundColor = Color.blue
+            return cell
+        default:
+            let cell = UITableViewCell()
+            return cell
+        }
+    }
+    
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 350.0 // case for sreen iphone 6s
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50.0
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        switch section {
+        case 0:
+            let view = HeaderCatatanView()
+            view.lblContent.text = "Siapakah yang saat ini cocok dengan pilihan kamu?"
+            return view
+        case 1:
+            let view = HeaderCatatanView()
+            view.lblContent.text = "Partai mana yang cocok dengan pilihan kamu?"
+            return view
+        default:
+            let view = UIView()
+            return view
+        }
+    }
 }
