@@ -69,8 +69,17 @@ extension String {
         return dateFormatter.date(from: self)
     }
     
+    public var timeAgoSinceDateForm2: String {
+        guard let date = self.toDate(format: Constant.dateTimeFormat3) else { return self }
+        return timeAgo(date: date)
+    }
+    
     public var timeAgoSinceDate: String {
         guard let date = self.toDate() else { return self }
+        return timeAgo(date: date)
+    }
+    
+    private func timeAgo(date: Date) -> String {
         let calendar = Calendar.current
         let now = Date()
         let earliest = (date < now ) ? date : now

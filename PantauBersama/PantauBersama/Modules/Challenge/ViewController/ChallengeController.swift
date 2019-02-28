@@ -164,7 +164,7 @@ extension ChallengeController {
         self.footerProfileView.ivAvatar.show(fromURL: challenger?.avatar?.url ?? "")
         self.footerProfileView.lblName.text = challenger?.fullName ?? ""
         self.footerProfileView.lblStatus.text = challenger?.about ?? ""
-        self.footerProfileView.lblPostTime.text = data.createdAt?.timeAgoSinceDate
+        self.footerProfileView.lblPostTime.text = "Posted \(data.createdAt?.timeAgoSinceDateForm2 ?? "")"
         
         switch data.progress {
         case .waitingConfirmation:
