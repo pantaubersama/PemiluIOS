@@ -14,6 +14,7 @@ import Networking
 
 class ChallengeController: UIViewController {
     
+    @IBOutlet weak var footerProfileView: FooterProfileView!
     @IBOutlet weak var containerHeader: UIView!
     @IBOutlet weak var lblHeader: UILabel!
     @IBOutlet weak var headerTantanganView: HeaderTantanganView!
@@ -132,14 +133,16 @@ extension ChallengeController {
         let opponents = data.audiences.filter({ $0.role == .opponentCandidate })
         // temporary use email, because user id and audience id are different from BE
         let isMyChallenge = myEmail == (challenger?.email ?? "")
+        let isAudience = opponents.contains(where: { ($0.email ?? "") == myEmail })
         
         self.lblHeader.text = data.type.title
-        self.detailTantanganView.lblStatement.text = data.statement
         
+        // configure header challenger side
         self.headerTantanganView.avatar.show(fromURL: challenger?.avatar?.url ?? "")
         self.headerTantanganView.lblFullName.text = challenger?.fullName ?? ""
         self.headerTantanganView.lblUsername.text = challenger?.username ?? ""
         
+        // if there is an opponents candidate, then configure header opponent side
         if let opponent = opponents.first {
             self.headerTantanganView.containerOpponent.isHidden = false
             self.headerTantanganView.avatarOpponent.show(fromURL: opponent.avatar?.url ?? "")
@@ -150,12 +153,33 @@ extension ChallengeController {
             self.headerTantanganView.lblUsernameOpponent.text = opponent.username
         }
         
+        // configure challenge detail view
+        self.detailTantanganView.lblStatement.text = data.statement
+        self.detailTantanganView.lblTag.text = data.topic?.first ?? ""
+        self.detailTantanganView.lblDate.text = data.showTimeAt?.date
+        self.detailTantanganView.lblTime.text = data.showTimeAt?.time
+        self.detailTantanganView.lblSaldo.text = "\(data.timeLimit ?? 0)"
+        
+        // configure footer view
+        self.footerProfileView.ivAvatar.show(fromURL: challenger?.avatar?.url ?? "")
+        self.footerProfileView.lblName.text = challenger?.fullName ?? ""
+        self.footerProfileView.lblStatus.text = challenger?.about ?? ""
+        self.footerProfileView.lblPostTime.text = data.createdAt?.timeAgoSinceDate
+        
         switch data.progress {
         case .waitingConfirmation:
-            self.titleContent.text = "Tantangan diterima,"
-            self.subtitleContent.text = "Segera konfirmasi sebelum\nbatas akhir waktunya!"
-            self.containerHeader.backgroundColor = #colorLiteral(red: 1, green: 0.4935973287, blue: 0.3663615584, alpha: 1)
-            self.containerAcceptChallenge.isHidden = true
+            if isAudience {
+                self.titleContent.text = "Menunggu,"
+                self.subtitleContent.text = "\(challenger?.fullName ?? "") untuk\nkonfirmasi lawan debat"
+                self.containerHeader.backgroundColor = #colorLiteral(red: 1, green: 0.4935973287, blue: 0.3663615584, alpha: 1)
+                self.containerAcceptChallenge.isHidden = true
+            } else {
+                self.titleContent.text = "Tantangan diterima,"
+                self.subtitleContent.text = "Segera konfirmasi sebelum\nbatas akhir waktunya!"
+                self.containerHeader.backgroundColor = #colorLiteral(red: 1, green: 0.4935973287, blue: 0.3663615584, alpha: 1)
+                self.containerAcceptChallenge.isHidden = true
+            }
+            
         case .waitingOpponent:
             if isMyChallenge {
                 self.titleContent.text = "Menunggu,"
