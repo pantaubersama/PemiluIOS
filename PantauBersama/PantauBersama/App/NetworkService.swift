@@ -47,6 +47,8 @@ public extension NetworkService {
                 if case MoyaError.statusCode(let response) = e  {
                     // here will check if token 401
                     // will retry to refresh token
+                    let json = try? JSONSerialization.jsonObject(with: response.data, options: JSONSerialization.ReadingOptions.allowFragments) as? [String: Any]
+                    print("json response \(json)")
                     print("STATUS CODE: \(response.statusCode)")
                 }
             })

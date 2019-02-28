@@ -127,17 +127,20 @@ extension ChallengeController {
 //    }
     
     private func configureContent(data: Challenge) {
-        self.lblHeader.text = data.type.title
+        let myEmail = AppState.local()?.user.email ?? ""
+        let challenger = data.audiences.filter({ $0.role == .challenger }).first
+        let opponents = data.audiences.filter({ $0.role == .opponentCandidate })
+        // temporary use email, because user id and audience id are different from BE
+        let isMyChallenge = myEmail == (challenger?.email ?? "")
         
+        self.lblHeader.text = data.type.title
         self.detailTantanganView.lblStatement.text = data.statement
         
-        if let challenger = data.audiences.filter({ $0.role == .challenger }).first {
-            self.headerTantanganView.avatar.show(fromURL: challenger.avatar?.url ?? "")
-            self.headerTantanganView.lblFullName.text = challenger.fullName
-            self.headerTantanganView.lblUsername.text = challenger.username
-        }
+        self.headerTantanganView.avatar.show(fromURL: challenger?.avatar?.url ?? "")
+        self.headerTantanganView.lblFullName.text = challenger?.fullName ?? ""
+        self.headerTantanganView.lblUsername.text = challenger?.username ?? ""
         
-        if let opponent = data.audiences.filter({ $0.role == .opponentCandidate }).first {
+        if let opponent = opponents.first {
             self.headerTantanganView.containerOpponent.isHidden = false
             self.headerTantanganView.avatarOpponent.show(fromURL: opponent.avatar?.url ?? "")
             
@@ -149,14 +152,22 @@ extension ChallengeController {
         
         switch data.progress {
         case .waitingConfirmation:
-            self.titleContent.text = "Menunggu,"
-            self.subtitleContent.text = "lawan menerima\ntantanganmu"
+            self.titleContent.text = "Tantangan diterima,"
+            self.subtitleContent.text = "Segera konfirmasi sebelum\nbatas akhir waktunya!"
             self.containerHeader.backgroundColor = #colorLiteral(red: 1, green: 0.4935973287, blue: 0.3663615584, alpha: 1)
+            self.containerAcceptChallenge.isHidden = true
         case .waitingOpponent:
-            self.titleContent.text = "Ini adalah Open Challenge,"
-            self.subtitleContent.text = "Terima tantangan ini?"
-            self.containerHeader.backgroundColor = #colorLiteral(red: 1, green: 0.4935973287, blue: 0.3663615584, alpha: 1)
-            self.containerAcceptChallenge.isHidden = false
+            if isMyChallenge {
+                self.titleContent.text = "Menunggu,"
+                self.subtitleContent.text = "lawan menerima\ntantanganmu"
+                self.containerHeader.backgroundColor = #colorLiteral(red: 1, green: 0.4935973287, blue: 0.3663615584, alpha: 1)
+                self.containerAcceptChallenge.isHidden = true
+            } else {
+                self.titleContent.text = "Ini adalah Open Challenge,"
+                self.subtitleContent.text = "Terima tantangan ini?"
+                self.containerHeader.backgroundColor = #colorLiteral(red: 1, green: 0.4935973287, blue: 0.3663615584, alpha: 1)
+                self.containerAcceptChallenge.isHidden = false
+            }
         default:
             break
         }
