@@ -524,6 +524,12 @@
 		84FF8A9621F21A8300AA8CF3 /* UpdatesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FF8A9521F21A8300AA8CF3 /* UpdatesView.swift */; };
 		84FF8A9921F21D0000AA8CF3 /* UpdatesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FF8A9821F21D0000AA8CF3 /* UpdatesCoordinator.swift */; };
 		84FF8A9F21F21F3A00AA8CF3 /* UpdatesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FF8A9E21F21F3A00AA8CF3 /* UpdatesViewModel.swift */; };
+		E546E46C2227F73600D05394 /* DetailTPSFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E546E46A2227F73600D05394 /* DetailTPSFooter.swift */; };
+		E546E46D2227F73600D05394 /* DetailTPSFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = E546E46B2227F73600D05394 /* DetailTPSFooter.xib */; };
+		E5F89FBE2227EEE300E0A73B /* ElectionTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F89FBC2227EEE300E0A73B /* ElectionTypeCell.swift */; };
+		E5F89FBF2227EEE300E0A73B /* ElectionTypeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E5F89FBD2227EEE300E0A73B /* ElectionTypeCell.xib */; };
+		E5F89FC22227F3DD00E0A73B /* DetailTPSHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F89FC02227F3DD00E0A73B /* DetailTPSHeader.swift */; };
+		E5F89FC32227F3DD00E0A73B /* DetailTPSHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = E5F89FC12227F3DD00E0A73B /* DetailTPSHeader.xib */; };
 		F9E6A81363EEA62DC5165AFE /* Pods_PantauBersama.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37664EC0D75D639FE37581C6 /* Pods_PantauBersama.framework */; };
 /* End PBXBuildFile section */
 
@@ -1081,6 +1087,12 @@
 		84FF8A9821F21D0000AA8CF3 /* UpdatesCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatesCoordinator.swift; sourceTree = "<group>"; };
 		84FF8A9E21F21F3A00AA8CF3 /* UpdatesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatesViewModel.swift; sourceTree = "<group>"; };
 		C4CBA51E95EB1AE7C2940BC0 /* Pods_PantauBersama_PantauBersamaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PantauBersama_PantauBersamaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E546E46A2227F73600D05394 /* DetailTPSFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTPSFooter.swift; sourceTree = "<group>"; };
+		E546E46B2227F73600D05394 /* DetailTPSFooter.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailTPSFooter.xib; sourceTree = "<group>"; };
+		E5F89FBC2227EEE300E0A73B /* ElectionTypeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectionTypeCell.swift; sourceTree = "<group>"; };
+		E5F89FBD2227EEE300E0A73B /* ElectionTypeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ElectionTypeCell.xib; sourceTree = "<group>"; };
+		E5F89FC02227F3DD00E0A73B /* DetailTPSHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTPSHeader.swift; sourceTree = "<group>"; };
+		E5F89FC12227F3DD00E0A73B /* DetailTPSHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailTPSHeader.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1421,6 +1433,12 @@
 				119123A322250CCE00617E7C /* SubmitTPSConfirmationController.xib */,
 				1191239E2224DE0B00617E7C /* DetailTPSCell.swift */,
 				1191239F2224DE0B00617E7C /* DetailTPSCell.xib */,
+				E5F89FBC2227EEE300E0A73B /* ElectionTypeCell.swift */,
+				E5F89FBD2227EEE300E0A73B /* ElectionTypeCell.xib */,
+				E5F89FC02227F3DD00E0A73B /* DetailTPSHeader.swift */,
+				E5F89FC12227F3DD00E0A73B /* DetailTPSHeader.xib */,
+				E546E46A2227F73600D05394 /* DetailTPSFooter.swift */,
+				E546E46B2227F73600D05394 /* DetailTPSFooter.xib */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -3432,6 +3450,7 @@
 				8451E05122035F9200F03E96 /* TrendImageShare.xib in Resources */,
 				84AEFA75221E738400F3DC92 /* RefuseChallengeView.xib in Resources */,
 				137A29EE21E11E8F00F19072 /* TrendHeaderView.xib in Resources */,
+				E5F89FC32227F3DD00E0A73B /* DetailTPSHeader.xib in Resources */,
 				84B6D6F121E24CAA00CD4BC8 /* ShareBadgeController.xib in Resources */,
 				84E2854D21CA4BC800298E31 /* FilterViewController.xib in Resources */,
 				84307F422200352B006DE04B /* ob2_linimasa.json in Resources */,
@@ -3439,6 +3458,7 @@
 				84FF8A9421F2180F00AA8CF3 /* UpdatesView.xib in Resources */,
 				84307F432200352B006DE04B /* ob4_lapor.json in Resources */,
 				84E521BA21F4A70E00B7CCBA /* ItemOnboardingController.xib in Resources */,
+				E546E46D2227F73600D05394 /* DetailTPSFooter.xib in Resources */,
 				84B7B8CC21E5B24B0099E7E3 /* AddKategoriController.xib in Resources */,
 				1159A1E4221E3A6000A8B120 /* clap.json in Resources */,
 				84F892AB21C787D800DC1048 /* Lato-BoldItalic.ttf in Resources */,
@@ -3461,6 +3481,7 @@
 				13F456AF21D36A8500CE45F1 /* UndangAnggotaController.xib in Resources */,
 				84FA424E2212AFAC008215C4 /* HeaderTantanganView.xib in Resources */,
 				84F892AC21C787D800DC1048 /* Lato-Hairline.ttf in Resources */,
+				E5F89FBF2227EEE300E0A73B /* ElectionTypeCell.xib in Resources */,
 				84FA42322211E278008215C4 /* TooltipView.xib in Resources */,
 				84F892AD21C787D800DC1048 /* Lato-HairlineItalic.ttf in Resources */,
 				11145F5F21EAF2730046F2AA /* SearchNavbar.xib in Resources */,
@@ -3925,6 +3946,8 @@
 				84B4DED821D375C600F60258 /* JanjiPolitikNavigator.swift in Sources */,
 				84619D4B21DC9A6A00EB58CF /* WebViewModel.swift in Sources */,
 				13E9D78B21E8FCF6006A0890 /* IJanpolViewController.swift in Sources */,
+				E5F89FC22227F3DD00E0A73B /* DetailTPSHeader.swift in Sources */,
+				E5F89FBE2227EEE300E0A73B /* ElectionTypeCell.swift in Sources */,
 				842A49FF21D79AA70050AA51 /* SelfIdentitasCoordinator.swift in Sources */,
 				840901C421DF3BEC001BF559 /* CatatanCoordinator.swift in Sources */,
 				043EE195221A36C2008C59CD /* RekapController.swift in Sources */,
@@ -4024,6 +4047,7 @@
 				84FA42502212B1C9008215C4 /* HeaderTantanganView.swift in Sources */,
 				844C3D8321C524F000199871 /* LinimasaController.swift in Sources */,
 				11702DD221CB0287001AEE3F /* QuizCell.swift in Sources */,
+				E546E46C2227F73600D05394 /* DetailTPSFooter.swift in Sources */,
 				840850C521D25CB000696CB3 /* ProfileEditViewModel.swift in Sources */,
 				137A29E821E11D0400F19072 /* HeaderQuizView.swift in Sources */,
 				84B6D52B21F8E44900DD742A /* UserJanpolListViewModel.swift in Sources */,
