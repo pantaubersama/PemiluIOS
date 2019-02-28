@@ -19,7 +19,7 @@ class CreateAskViewModel: ViewModelType {
     struct Input {
         let backTrigger: AnyObserver<Void>
         let createTrigger: AnyObserver<Void>
-        let questionInput: BehaviorRelay<String>
+        let questionInput: AnyObserver<String>
         let refreshTrigger: AnyObserver<String>
         let nextTrigger: AnyObserver<Void>
         let itemSelectedTrigger: AnyObserver<IndexPath>
@@ -38,7 +38,7 @@ class CreateAskViewModel: ViewModelType {
     
     private let createSubject = PublishSubject<Void>()
     private let backSubject = PublishSubject<Void>()
-    private let questionRelay = BehaviorRelay<String>(value: "")
+    private let questionRelay = PublishSubject<String>()
     private let refreshSubject = PublishSubject<String>()
     private let nextSubject = PublishSubject<Void>()
     private let itemSelectedS = PublishSubject<IndexPath>()
@@ -55,7 +55,7 @@ class CreateAskViewModel: ViewModelType {
         
         input = Input(backTrigger: backSubject.asObserver(),
                       createTrigger: createSubject.asObserver(),
-                      questionInput: questionRelay,
+                      questionInput: questionRelay.asObserver(),
                       refreshTrigger: refreshSubject.asObserver(),
                       nextTrigger: nextSubject.asObserver(),
                       itemSelectedTrigger: itemSelectedS.asObserver(),
@@ -64,12 +64,17 @@ class CreateAskViewModel: ViewModelType {
         
         // MARK
         // Get Recent QuestionModel
-        let items = refreshSubject.startWith("")
-            .flatMapLatest { (_) -> Observable<[QuestionModel]> in
-                return self.paginateItems(nextBatchTrigger: self.nextSubject.asObservable(), query: "")
-                    .trackError(self.errorTracker)
-                    .trackActivity(self.activityIndicator)
-                    .catchErrorJustReturn([])
+        let items = questionRelay
+            .flatMapLatest { (s) -> Observable<[QuestionModel]> in
+                print("current string : \(s)")
+                if s.count == 0 {
+                    return Observable.empty()
+                } else {
+                    return self.paginateItems(nextBatchTrigger: self.nextSubject.asObservable(), query: s)
+                        .trackError(self.errorTracker)
+                        .trackActivity(self.activityIndicator)
+                        .catchErrorJustReturn([])
+                }
             }
         
         let itemSelected = itemSelectedS
@@ -82,7 +87,10 @@ class CreateAskViewModel: ViewModelType {
         
 
         let create = createSubject
-            .flatMap({ self.createQuestion() })
+            .withLatestFrom(questionRelay)
+            .flatMapLatest({ [unowned self] (s) -> Observable<QuestionModel> in
+                return self.createQuestion(body: s)
+            })
             .mapToVoid()
             .trackActivity(activityIndicator)
             .trackError(errorTracker)
@@ -120,9 +128,9 @@ class CreateAskViewModel: ViewModelType {
                         buttonRecentO: recentSelected)
     }
     
-    private func createQuestion() -> Observable<QuestionModel> {
+    private func createQuestion(body: String) -> Observable<QuestionModel> {
         return NetworkService.instance
-            .requestObject(TanyaKandidatAPI.createQuestion(body: questionRelay.value), c: QuestionResponse.self)
+            .requestObject(TanyaKandidatAPI.createQuestion(body: body), c: QuestionResponse.self)
             .map({ (questionResponse) -> QuestionModel in
                 return QuestionModel(question: questionResponse.data.question)
             })
@@ -136,7 +144,7 @@ class CreateAskViewModel: ViewModelType {
         query: String) ->
         Observable<Page<[QuestionModel]>> {
             return NetworkService.instance
-                .requestObject(TanyaKandidatAPI.getQuestions(query: query, page: batch.page, perpage: batch.limit, filteredBy: "user_verified_all", orderedBy: "hot_score"), c: QuestionsResponse.self)
+                .requestObject(TanyaKandidatAPI.getQuestions(query: query, page: batch.page, perpage: batch.limit, filteredBy: "user_verified_all", orderedBy: ""), c: QuestionsResponse.self)
                 .map({ self.transformToPage(response: $0, batch: batch) })
                 .asObservable()
                 .paginate(nextPageTrigger: nextBatchTrigger, hasNextPage: { (result) -> Bool in

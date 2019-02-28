@@ -17,6 +17,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CreateAskController" customModule="PantauBersama" customModuleProvider="target">
             <connections>
+                <outlet property="constraintTopTableView" destination="Xje-WU-oji" id="v4P-Gp-Qwr"/>
                 <outlet property="ivAvatar" destination="taS-vA-YoC" id="dRw-fw-aBg"/>
                 <outlet property="lbQuestionLimit" destination="B7p-Tr-KGo" id="iBU-bp-MhY"/>
                 <outlet property="tableView" destination="9QP-Cd-hBk" id="qTL-cj-dAq"/>
@@ -37,10 +38,10 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JIl-20-3R0">
-                    <rect key="frame" x="0.0" y="69" width="375" height="116.5"/>
+                    <rect key="frame" x="0.0" y="69" width="375" height="192.5"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Qg-E2-y23" customClass="Label" customModule="Common">
-                            <rect key="frame" x="20" y="15" width="335" height="86.5"/>
+                            <rect key="frame" x="20" y="15" width="335" height="162.5"/>
                             <string key="text">Berikan pertanyaan singkat untuk diajukan ke kedua kandidat Calon Presiden dan Calon Wakil Presiden 2019 -2024. Gunakan bahasa yang baik dan jelas. Kalau pertanyaan sudah ada, lebih asyik jangan ditanyakan lagi cukup kasih upvote pada pertanyaan yang sama aja yaa, biar Pak Presiden bisa segera jawab :</string>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" red="0.4392156862745098" green="0.4392156862745098" blue="0.4392156862745098" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -60,11 +61,15 @@
                         <constraint firstAttribute="bottom" secondItem="5Qg-E2-y23" secondAttribute="bottom" constant="15" id="gp8-sH-TrT"/>
                     </constraints>
                 </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9QP-Cd-hBk">
+                    <rect key="frame" x="0.0" y="261.5" width="375" height="319.5"/>
+                    <color key="backgroundColor" red="0.95687562227249146" green="0.95683962106704712" blue="0.95686405897140503" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                </tableView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wi2-NY-1bm">
                     <rect key="frame" x="0.0" y="581" width="375" height="86"/>
                     <subviews>
                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="fUV-ow-i2d">
-                            <rect key="frame" x="41" y="4" width="325" height="54"/>
+                            <rect key="frame" x="41" y="4" width="325" height="45.5"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <fontDescription key="fontDescription" name="BwModelicaSS01-BoldCondensed" family="Bw Modelica SS01" pointSize="12"/>
@@ -78,7 +83,7 @@
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0/260" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B7p-Tr-KGo" customClass="Label" customModule="Common">
-                            <rect key="frame" x="331" y="58" width="27" height="12"/>
+                            <rect key="frame" x="311.5" y="49.5" width="46.5" height="20.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" red="0.48621892929999999" green="0.48630648850000002" blue="0.48621344570000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
@@ -102,14 +107,10 @@
                         <constraint firstAttribute="bottom" secondItem="B7p-Tr-KGo" secondAttribute="bottom" constant="16" id="yme-Wm-bhB"/>
                     </constraints>
                 </view>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9QP-Cd-hBk">
-                    <rect key="frame" x="0.0" y="185.5" width="375" height="395.5"/>
-                    <color key="backgroundColor" red="0.95687562227249146" green="0.95683962106704712" blue="0.95686405897140503" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                </tableView>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" red="0.95687562227249146" green="0.95683962106704712" blue="0.95686405897140503" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
             <constraints>
-                <constraint firstItem="Wi2-NY-1bm" firstAttribute="top" secondItem="9QP-Cd-hBk" secondAttribute="bottom" id="1HJ-fI-adk"/>
+                <constraint firstItem="9QP-Cd-hBk" firstAttribute="bottom" secondItem="Wi2-NY-1bm" secondAttribute="top" id="1HJ-fI-adk"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="JIl-20-3R0" secondAttribute="trailing" id="4ur-w4-gFt"/>
                 <constraint firstItem="JIl-20-3R0" firstAttribute="top" secondItem="8l2-Tv-HvY" secondAttribute="bottom" id="8lK-gY-4jG"/>
                 <constraint firstItem="8l2-Tv-HvY" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="GM1-MN-K0V"/>

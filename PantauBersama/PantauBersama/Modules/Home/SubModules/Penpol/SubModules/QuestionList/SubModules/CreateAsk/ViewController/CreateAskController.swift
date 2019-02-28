@@ -18,6 +18,7 @@ class CreateAskController: UIViewController {
     @IBOutlet weak var ivAvatar: CircularUIImageView!
     @IBOutlet weak var tvQuestion: UITextView!
     @IBOutlet weak var lbQuestionLimit: Label!
+    @IBOutlet weak var constraintTopTableView: NSLayoutConstraint!
     
     lazy var loadingAnimation: LOTAnimationView = {
         let loadingAnimation = LOTAnimationView(name: "loading-pantau")
@@ -53,6 +54,7 @@ class CreateAskController: UIViewController {
         tableView.delegate = nil
         tableView.dataSource = nil
         tableView.registerReusableCell(RecentAskCell.self)
+        tableView.tableFooterView = UIView()
         tableView.estimatedRowHeight = 50.0
         tableView.separatorStyle = .none
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
@@ -80,6 +82,9 @@ class CreateAskController: UIViewController {
             .disposed(by: disposeBag)
         
         tableView.rx.itemSelected
+            .do(onNext: { [unowned self] (_) in
+                self.tvQuestion.endEditing(true)
+            })
             .bind(to: viewModel.input.itemSelectedTrigger)
             .disposed(by: disposeBag)
         
@@ -137,19 +142,11 @@ class CreateAskController: UIViewController {
             .drive(lbQuestionLimit.rx.text)
             .disposed(by: disposeBag)
         
-        let value = BehaviorRelay<String>(value: "")
-        
         tvQuestion.rx.text
             .orEmpty
+            .distinctUntilChanged()
+            .filter({ $0 != "Tulis pertanyaan terbaikmu di sini!" })
             .bind(to: viewModel.input.questionInput)
-            .disposed(by: disposeBag)
-        
-        
-        value
-            .asObservable()
-            .subscribe { text in
-                print("this is the text \(text)")
-            }
             .disposed(by: disposeBag)
         
         viewModel.output.enableO
@@ -183,12 +180,27 @@ extension CreateAskController: UITextViewDelegate {
             textView.text = nil
             textView.textColor = Color.primary_black
         }
+        self.viewModel.input.questionInput.onNext(textView.text)
+        switch UIScreen.main.bounds.height {
+        case 568:
+            self.constraintTopTableView.constant = 143
+        case 667:
+            self.constraintTopTableView.constant = 173
+        case 736:
+            self.constraintTopTableView.constant = 193
+        case 812:
+            self.constraintTopTableView.constant = 213
+        default:
+            break
+        }
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
+        self.viewModel.input.questionInput.onNext("")
         if textView.text.isEmpty {
             textView.text = "Tulis pertanyaan terbaikmu di sini!"
             textView.textColor = UIColor.lightGray
         }
+        self.constraintTopTableView.constant = 0
     }
 }
