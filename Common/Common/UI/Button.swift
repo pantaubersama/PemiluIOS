@@ -90,6 +90,7 @@ open class Button: UIButton {
                     self.fontName = "Lato-LightItalic"
                 }
             }
+            initButton()
         }
     }
     
