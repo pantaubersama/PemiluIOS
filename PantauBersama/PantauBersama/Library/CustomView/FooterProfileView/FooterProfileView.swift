@@ -17,7 +17,7 @@ class FooterProfileView: UIView {
     @IBOutlet weak var lblName: Label!
     @IBOutlet weak var lblStatus: Label!
     
-    @IBOutlet weak var postTime: Label!
+    @IBOutlet weak var lblPostTime: Label!
     
     // Height 200.0
     override init(frame: CGRect) {

@@ -14,6 +14,8 @@
 		118149E021EC5E9300192E97 /* UsersResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118149DF21EC5E9300192E97 /* UsersResponse.swift */; };
 		1183F0DC21D4FC4800435D31 /* TanyaKandidatAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1183F0DB21D4FC4800435D31 /* TanyaKandidatAPI.swift */; };
 		1183F0DE21D535C600435D31 /* QuestionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1183F0DD21D535C600435D31 /* QuestionResponse.swift */; };
+		119123B92227877000617E7C /* PutAskAsOpponentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119123B82227877000617E7C /* PutAskAsOpponentResponse.swift */; };
+		119123BB2227B2B700617E7C /* GetChallengeDetailResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119123BA2227B2B600617E7C /* GetChallengeDetailResponse.swift */; };
 		11B145EC21D66A8400BB26C8 /* Batch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B145EB21D66A8400BB26C8 /* Batch.swift */; };
 		11B145F021D68CFA00BB26C8 /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B145EF21D68CFA00BB26C8 /* Page.swift */; };
 		11C7BB2321DB2A97008CA49B /* String+Copy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C7BB2221DB2A97008CA49B /* String+Copy.swift */; };
@@ -96,6 +98,8 @@
 		118149DF21EC5E9300192E97 /* UsersResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersResponse.swift; sourceTree = "<group>"; };
 		1183F0DB21D4FC4800435D31 /* TanyaKandidatAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TanyaKandidatAPI.swift; sourceTree = "<group>"; };
 		1183F0DD21D535C600435D31 /* QuestionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionResponse.swift; sourceTree = "<group>"; };
+		119123B82227877000617E7C /* PutAskAsOpponentResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PutAskAsOpponentResponse.swift; sourceTree = "<group>"; };
+		119123BA2227B2B600617E7C /* GetChallengeDetailResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetChallengeDetailResponse.swift; sourceTree = "<group>"; };
 		11B145EB21D66A8400BB26C8 /* Batch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Batch.swift; sourceTree = "<group>"; };
 		11B145EF21D68CFA00BB26C8 /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
 		11C7BB2221DB2A97008CA49B /* String+Copy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Copy.swift"; sourceTree = "<group>"; };
@@ -231,6 +235,8 @@
 				131AEBE62223287900B299F6 /* GetChallengeResponse.swift */,
 				13054D3B222451EB00C4C9EA /* ChallengeType.swift */,
 				84A945B52224080800944C6B /* TwitterUsernameResponse.swift */,
+				119123B82227877000617E7C /* PutAskAsOpponentResponse.swift */,
+				119123BA2227B2B600617E7C /* GetChallengeDetailResponse.swift */,
 			);
 			path = Wordstadium;
 			sourceTree = "<group>";
@@ -577,6 +583,7 @@
 				13F456C321DB7E1300CE45F1 /* BannerInfo.swift in Sources */,
 				1183F0DC21D4FC4800435D31 /* TanyaKandidatAPI.swift in Sources */,
 				13F456BB21DA806900CE45F1 /* Meta.swift in Sources */,
+				119123BB2227B2B700617E7C /* GetChallengeDetailResponse.swift in Sources */,
 				842B650E21D9505A00F95C13 /* InformantResponse.swift in Sources */,
 				842B650C21D9385100F95C13 /* Avatar.swift in Sources */,
 				11C7BB2321DB2A97008CA49B /* String+Copy.swift in Sources */,
@@ -585,6 +592,7 @@
 				13F456B521D531D300CE45F1 /* LinimasaAPI.swift in Sources */,
 				84619D3521DA21A200EB58CF /* Gender.swift in Sources */,
 				13F456BD21DB668D00CE45F1 /* JanjiPolitik.swift in Sources */,
+				119123B92227877000617E7C /* PutAskAsOpponentResponse.swift in Sources */,
 				84307F4922005786006DE04B /* FirebaseBroadcastResponse.swift in Sources */,
 				84A945AC2221435E00944C6B /* CreateChallengeResponse.swift in Sources */,
 				84F1F21521E9CD81004515A4 /* AccountResponse.swift in Sources */,

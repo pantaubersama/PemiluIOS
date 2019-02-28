@@ -46,10 +46,21 @@ extension String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = Constant.dateTimeFormat
         
-        let dt = dateFormatter.date(from: self)
-        dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
-        dateFormatter.dateFormat = "h:mm a"
-        return dateFormatter.string(from: dt!)
+        if let dt = dateFormatter.date(from: self) {
+            dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
+            dateFormatter.dateFormat = "h:mm a"
+            return dateFormatter.string(from: dt)
+        } else {
+            let dateFormat3 = DateFormatter()
+            dateFormat3.dateFormat = Constant.dateTimeFormat3
+            
+            let dt = dateFormat3.date(from: self)
+            dateFormat3.timeZone = TimeZone(abbreviation: "UTC")
+            dateFormat3.dateFormat = "h:mm a"
+            
+            return dateFormat3.string(from: dt!)
+        }
+        
     }
     
     public func toDate(format: String = Constant.dateTimeFormat) -> Date? {
@@ -58,8 +69,17 @@ extension String {
         return dateFormatter.date(from: self)
     }
     
+    public var timeAgoSinceDateForm2: String {
+        guard let date = self.toDate(format: Constant.dateTimeFormat3) else { return self }
+        return timeAgo(date: date)
+    }
+    
     public var timeAgoSinceDate: String {
         guard let date = self.toDate() else { return self }
+        return timeAgo(date: date)
+    }
+    
+    private func timeAgo(date: Date) -> String {
         let calendar = Calendar.current
         let now = Date()
         let earliest = (date < now ) ? date : now

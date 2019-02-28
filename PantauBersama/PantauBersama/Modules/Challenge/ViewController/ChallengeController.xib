@@ -32,6 +32,7 @@
                 <outlet property="containerTerima" destination="XSq-7V-hDM" id="sDg-Ya-8nL"/>
                 <outlet property="containerTolak" destination="0TF-Z9-Bzo" id="PdP-sl-tZ5"/>
                 <outlet property="detailTantanganView" destination="0ph-c5-Hx0" id="Woh-3n-Bo2"/>
+                <outlet property="footerProfileView" destination="fI8-kw-4sf" id="48o-iC-4kc"/>
                 <outlet property="headerTantanganView" destination="e0h-uJ-tUr" id="QXm-ye-h4f"/>
                 <outlet property="imageContent" destination="0gc-e5-I3w" id="Fe9-Yu-kYd"/>
                 <outlet property="lblHeader" destination="SbY-Nv-9xK" id="rI9-lo-ZCy"/>
