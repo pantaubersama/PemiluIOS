@@ -222,26 +222,32 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="717-yp-yEQ">
                                                 <rect key="frame" x="123" y="0.0" width="20" height="24"/>
                                                 <constraints>
+                                                    <constraint firstAttribute="width" constant="20" id="6RX-Mf-FYW"/>
                                                     <constraint firstAttribute="height" constant="24" id="YV6-Mt-0hI"/>
                                                 </constraints>
                                                 <state key="normal" image="icMore"/>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="50" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r5Z-iu-uhr">
-                                                <rect key="frame" x="102" y="6" width="13" height="12"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r5Z-iu-uhr">
+                                                <rect key="frame" x="108.5" y="6" width="6.5" height="12"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="20" id="WJ5-qk-DGZ"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icLike" translatesAutoresizingMaskIntoConstraints="NO" id="mSV-gq-M1u">
-                                                <rect key="frame" x="87" y="7" width="10" height="10"/>
+                                                <rect key="frame" x="93.5" y="7" width="10" height="10"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="10" id="0xP-ow-qnn"/>
                                                     <constraint firstAttribute="height" constant="10" id="GtJ-w0-MSD"/>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="10" id="bfe-QK-gWL"/>
                                                 </constraints>
                                             </imageView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
+                                            <constraint firstItem="mSV-gq-M1u" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="3GL-pt-ehJ" secondAttribute="trailing" constant="10" id="44q-J8-9U7"/>
                                             <constraint firstItem="3GL-pt-ehJ" firstAttribute="leading" secondItem="KsP-8H-pGM" secondAttribute="leading" id="GOM-BC-3Qm"/>
                                             <constraint firstItem="717-yp-yEQ" firstAttribute="centerY" secondItem="KsP-8H-pGM" secondAttribute="centerY" id="Qz9-bK-2WT"/>
                                             <constraint firstItem="mSV-gq-M1u" firstAttribute="centerY" secondItem="KsP-8H-pGM" secondAttribute="centerY" id="SRT-zh-sZ1"/>
@@ -315,6 +321,7 @@ pertumbuhan mencapai 5,27%.
                 <outlet property="leftPersonView" destination="L6a-lo-xOn" id="Stc-eA-paS"/>
                 <outlet property="leftUsername" destination="9fB-FD-TPl" id="wSi-Ny-2wb"/>
                 <outlet property="moreMenuBtn" destination="717-yp-yEQ" id="Edb-Or-MTh"/>
+                <outlet property="opponentCountLbl" destination="fgw-ih-mwm" id="6qj-YD-tXO"/>
                 <outlet property="rightPersonIv" destination="5PA-Vq-EK3" id="AkU-OB-lwN"/>
                 <outlet property="rightPersonView" destination="74M-LM-Mlf" id="h94-rD-NtD"/>
                 <outlet property="rightStatus" destination="fgw-ih-mwm" id="OGt-c2-W3k"/>

@@ -10,6 +10,9 @@ import UIKit
 
 class ClapView: UIView {
 
+    @IBOutlet weak var challengerClapLbl: UILabel!
+    @IBOutlet weak var opponentClapLbl: UILabel!
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
