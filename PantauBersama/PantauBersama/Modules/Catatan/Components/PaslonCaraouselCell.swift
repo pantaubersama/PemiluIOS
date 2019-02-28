@@ -13,6 +13,8 @@ import FSPagerView
 class PaslonCaraouselCell: UITableViewCell {
     
     @IBOutlet weak var contentPager: FSPagerView!
+    private var focusTarget: Int? = nil
+    private var viewModel: CatatanViewModel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -29,6 +31,7 @@ class PaslonCaraouselCell: UITableViewCell {
 extension PaslonCaraouselCell: FSPagerViewDelegate, FSPagerViewDataSource {
     
     private func configurePager() {
+        contentPager.alpha = 0.0
         contentPager.delegate = self
         contentPager.dataSource = self
         contentPager.transformer = FSPagerViewTransformer.init(type: .linear)
@@ -60,18 +63,55 @@ extension PaslonCaraouselCell: FSPagerViewDelegate, FSPagerViewDataSource {
             return cell
         }
     }
+    
+    func pagerViewWillEndDragging(_ pagerView: FSPagerView, targetIndex: Int) {
+        print("pager index: \(targetIndex)")
+        switch targetIndex {
+        case 0:
+            viewModel.input.notePreferenceValueI.onNext(3)
+        case 1:
+            viewModel.input.notePreferenceValueI.onNext(1)
+        case 2:
+            viewModel.input.notePreferenceValueI.onNext(2)
+        default:
+            break
+        }
+    }
 }
 
 extension PaslonCaraouselCell: IReusableCell {
     
     struct Input {
         let focus: Int
+        let viewModel: CatatanViewModel
     }
     
     func configureCell(item: Input) {
         DispatchQueue.main.async {
-            self.contentPager.scrollToItem(at: item.focus, animated: true)
+            self.viewModel = item.viewModel
             self.contentPager.reloadData()
+            
+            switch item.focus {
+            case 3:
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+                    self.contentPager.alpha = 1.0
+                    self.contentPager.scrollToItem(at: 0, animated: true)
+                })
+            case 1:
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+                    self.contentPager.alpha = 1.0
+                    self.contentPager.scrollToItem(at: 1, animated: true)
+                })
+            case 2:
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+                    self.contentPager.alpha = 1.0
+                    self.contentPager.scrollToItem(at: 2, animated: true)
+                })
+            default:
+                break
+            }
         }
+        
+        
     }
 }

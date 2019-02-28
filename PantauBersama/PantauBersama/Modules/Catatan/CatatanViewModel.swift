@@ -31,6 +31,8 @@ class CatatanViewModel: ViewModelType {
         let userDataO: Driver<UserResponse>
         let totalResultO: Driver<TrendResponse>
         let partyItemsO: Driver<[PoliticalParty]>
+        let notePreferenceValueO: Driver<Int>
+        let partyPreferenceValueO: Driver<String>
     }
     
     private var navigator: CatatanNavigator
@@ -39,7 +41,7 @@ class CatatanViewModel: ViewModelType {
     private let activityIndicator = ActivityIndicator()
     private let viewWillAppearS = PublishSubject<Void>()
     private let notePreferenceValueS = BehaviorSubject<Int>(value: 0)
-    private let partyPreferenceValueI = BehaviorSubject<String>(value: "")
+    private let partyPreferenceValueS = BehaviorSubject<String>(value: "")
     private let updateS = PublishSubject<Void>()
     private(set) var disposeBag = DisposeBag()
     
@@ -53,11 +55,11 @@ class CatatanViewModel: ViewModelType {
             backI: backS.asObserver(),
             viewWillAppearI: viewWillAppearS.asObserver(),
             notePreferenceValueI: notePreferenceValueS.asObserver(),
-            partyPreferenceValueI: partyPreferenceValueI.asObserver(),
+            partyPreferenceValueI: partyPreferenceValueS.asObserver(),
             updateI: updateS.asObserver()
         )
         
-        let enable = Observable.combineLatest(notePreferenceValueS, partyPreferenceValueI.startWith(""))
+        let enable = Observable.combineLatest(notePreferenceValueS, partyPreferenceValueS.startWith(""))
             .map { (i,s) -> Bool in
                 var state: Bool = false
                 if i > 0 || s.count > 0 {
@@ -69,7 +71,7 @@ class CatatanViewModel: ViewModelType {
         
         let update = updateS
             .withLatestFrom(Observable.combineLatest(
-                notePreferenceValueS.asObservable(), partyPreferenceValueI.startWith("")
+                notePreferenceValueS.asObservable(), partyPreferenceValueS.startWith("")
                 ))
             .flatMapLatest { [weak self] (i,s) -> Observable<BaseResponse<UserResponse>> in
                 guard let `self` = self else { return Observable.empty() }
@@ -134,7 +136,9 @@ class CatatanViewModel: ViewModelType {
                         errorTracker: errorTracker.asDriver(),
                         userDataO: userData.asDriverOnErrorJustComplete(),
                         totalResultO: totalResult,
-                        partyItemsO: itemsParty)
+                        partyItemsO: itemsParty,
+                        notePreferenceValueO: notePreferenceValueS.asDriverOnErrorJustComplete(),
+                        partyPreferenceValueO: partyPreferenceValueS.asDriverOnErrorJustComplete())
     }
     
     private func update(vote: Int, party: String) -> Observable<BaseResponse<UserResponse>> {

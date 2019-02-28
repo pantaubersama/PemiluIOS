@@ -17,6 +17,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CatatanController" customModule="PantauBersama" customModuleProvider="target">
             <connections>
+                <outlet property="btnUpdate" destination="k2D-nS-AAd" id="TV0-Z6-htV"/>
                 <outlet property="iconPreference" destination="RU8-Cf-RPg" id="6PP-2C-BGL"/>
                 <outlet property="lblPreferenceResult" destination="yLU-TT-MuI" id="JkG-IH-WCT"/>
                 <outlet property="lblPreferenceUser" destination="Vaf-no-irn" id="V3y-RY-OcO"/>

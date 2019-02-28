@@ -17,12 +17,13 @@ class PartyCaraouselCell: UITableViewCell {
     
     @IBOutlet weak var contentPager: FSPagerView!
     private var data: [PoliticalParty] = []
+    private var viewModel: CatatanViewModel!
     
     private(set) var disposeBag: DisposeBag!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+        contentPager.alpha = 0.0
         contentPager.delegate = self
         contentPager.dataSource = self
         contentPager.transformer = FSPagerViewTransformer.init(type: .linear)
@@ -56,7 +57,11 @@ extension PartyCaraouselCell: FSPagerViewDelegate, FSPagerViewDataSource {
         return cell
     }
     
-
+    func pagerViewWillEndDragging(_ pagerView: FSPagerView, targetIndex: Int) {
+        let data = self.data[targetIndex].id
+        print("pager index data: \(data)")
+        viewModel.input.partyPreferenceValueI.onNext(data)
+    }
     
 }
 
@@ -69,6 +74,7 @@ extension PartyCaraouselCell: IReusableCell {
     
     func configureCell(item: Input) {
         let bag = DisposeBag()
+        self.viewModel = item.viewModel
         let data = item.viewModel.partyItems.value
         self.data = data
         DispatchQueue.main.async {
@@ -81,7 +87,11 @@ extension PartyCaraouselCell: IReusableCell {
             // will wait time now() + 1 sec
             // to scroll content pager
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                self.contentPager.scrollToItem(at: item.focus - 1, animated: true)
+                self.contentPager.alpha = 0.0
+                UIView.animate(withDuration: 2, animations: {
+                    self.contentPager.alpha = 1.0
+                    self.contentPager.scrollToItem(at: item.focus - 1, animated: true)
+                })
             }
         }
         

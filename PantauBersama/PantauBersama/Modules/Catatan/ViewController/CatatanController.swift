@@ -14,6 +14,7 @@ import Common
 class CatatanController: UIViewController {
     
     var viewModel: CatatanViewModel!
+    @IBOutlet weak var btnUpdate: Button!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var lblQuizResult: Label!
     @IBOutlet weak var lblPreferenceUser: Label!
@@ -43,6 +44,10 @@ class CatatanController: UIViewController {
         
         back.rx.tap
             .bind(to: viewModel.input.backI)
+            .disposed(by: disposeBag)
+        
+        btnUpdate.rx.tap
+            .bind(to: viewModel.input.updateI)
             .disposed(by: disposeBag)
         
         // MARK
@@ -94,19 +99,27 @@ class CatatanController: UIViewController {
         
         
         
-//        viewModel.output.enableO
-//            .do(onNext: { [weak self] (enable) in
-//                guard let `self` = self else { return }
-//                self.btnUpdate.backgroundColor = enable ? Color.primary_red : Color.grey_one
-//            })
-//            .drive(btnUpdate.rx.isEnabled)
-//            .disposed(by: disposeBag)
+        viewModel.output.enableO
+            .do(onNext: { [weak self] (enable) in
+                guard let `self` = self else { return }
+                self.btnUpdate.backgroundColor = enable ? Color.primary_red : Color.grey_one
+            })
+            .drive(btnUpdate.rx.isEnabled)
+            .disposed(by: disposeBag)
         
        viewModel.output.updateO
             .drive()
             .disposed(by: disposeBag)
         
         viewModel.output.partyItemsO
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.notePreferenceValueO
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.partyPreferenceValueO
             .drive()
             .disposed(by: disposeBag)
     }
@@ -124,7 +137,7 @@ extension CatatanController: UITableViewDelegate, UITableViewDataSource {
         switch indexPath.section {
         case 0:
             let cell = tableView.dequeueReusableCell() as PaslonCaraouselCell
-            cell.configureCell(item: PaslonCaraouselCell.Input(focus: self.focusPaslon ?? 0))
+            cell.configureCell(item: PaslonCaraouselCell.Input(focus: self.focusPaslon ?? 0, viewModel: self.viewModel))
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell() as PartyCaraouselCell
