@@ -10,7 +10,7 @@ import UIKit
 import Common
 import FSPagerView
 
-class PaslonCaraouselCell: UITableViewCell, IReusableCell {
+class PaslonCaraouselCell: UITableViewCell {
     
     @IBOutlet weak var contentPager: FSPagerView!
     
@@ -27,8 +27,6 @@ class PaslonCaraouselCell: UITableViewCell, IReusableCell {
 }
 
 extension PaslonCaraouselCell: FSPagerViewDelegate, FSPagerViewDataSource {
-    
-    
     
     private func configurePager() {
         contentPager.delegate = self
@@ -60,6 +58,20 @@ extension PaslonCaraouselCell: FSPagerViewDelegate, FSPagerViewDataSource {
         default:
             let cell = FSPagerViewCell()
             return cell
+        }
+    }
+}
+
+extension PaslonCaraouselCell: IReusableCell {
+    
+    struct Input {
+        let focus: Int
+    }
+    
+    func configureCell(item: Input) {
+        DispatchQueue.main.async {
+            self.contentPager.scrollToItem(at: item.focus, animated: true)
+            self.contentPager.reloadData()
         }
     }
 }

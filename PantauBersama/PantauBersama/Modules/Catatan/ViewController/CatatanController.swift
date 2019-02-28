@@ -19,6 +19,8 @@ class CatatanController: UIViewController {
     @IBOutlet weak var lblPreferenceUser: Label!
     @IBOutlet weak var lblPreferenceResult: UILabel!
     @IBOutlet weak var iconPreference: CircularUIImageView!
+    private var focusPaslon: Int? = nil
+    private var focusPaty: Int? = nil
     
     private let disposeBag: DisposeBag = DisposeBag()
     
@@ -48,6 +50,12 @@ class CatatanController: UIViewController {
         viewModel.output.userDataO
             .drive(onNext: { [weak self] (response) in
                 guard let `self` = self else { return }
+                if let paslon = response.user.votePreference {
+                    self.focusPaslon = paslon
+                }
+                if let party = response.user.politicalParty?.number {
+                    self.focusPaty = party
+                }
             })
             .disposed(by: disposeBag)
         
@@ -116,10 +124,11 @@ extension CatatanController: UITableViewDelegate, UITableViewDataSource {
         switch indexPath.section {
         case 0:
             let cell = tableView.dequeueReusableCell() as PaslonCaraouselCell
+            cell.configureCell(item: PaslonCaraouselCell.Input(focus: self.focusPaslon ?? 0))
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell() as PartyCaraouselCell
-            cell.configureCell(item: PartyCaraouselCell.Input(viewModel: self.viewModel))
+            cell.configureCell(item: PartyCaraouselCell.Input(viewModel: self.viewModel, focus: self.focusPaty ?? 0))
             return cell
         default:
             let cell = UITableViewCell()
@@ -139,7 +148,7 @@ extension CatatanController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch UIScreen.main.bounds.height {
         case 568:
-            return 275.0
+            return 290.0
         case 667:
             return 360.0 // case for sreen iphone 6s
         default:

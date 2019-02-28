@@ -10,23 +10,34 @@ import UIKit
 import FSPagerView
 import Common
 import Networking
+import RxSwift
+import RxCocoa
 
 class PartyCaraouselCell: UITableViewCell {
     
     @IBOutlet weak var contentPager: FSPagerView!
     private var data: [PoliticalParty] = []
+    
+    private(set) var disposeBag: DisposeBag!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
         contentPager.delegate = self
         contentPager.dataSource = self
         contentPager.transformer = FSPagerViewTransformer.init(type: .linear)
-        self.contentPager.itemSize = CGSize(width: 275.0, height: 265.0)
+        switch UIScreen.main.bounds.height {
+        case 568:
+            self.contentPager.itemSize = CGSize(width: 250.0, height: 250.0)
+        default:
+            self.contentPager.itemSize = CGSize(width: 275.0, height: 265.0)
+        }
         contentPager.register(FSPagerViewCell.self, forCellWithReuseIdentifier: "cell")
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        disposeBag = nil
     }
     
 }
@@ -45,19 +56,35 @@ extension PartyCaraouselCell: FSPagerViewDelegate, FSPagerViewDataSource {
         return cell
     }
     
+
+    
 }
 
 extension PartyCaraouselCell: IReusableCell {
     
     struct Input {
         let viewModel: CatatanViewModel
+        let focus: Int
     }
     
     func configureCell(item: Input) {
+        let bag = DisposeBag()
         let data = item.viewModel.partyItems.value
+        self.data = data
         DispatchQueue.main.async {
-            self.data = data
             self.contentPager.reloadData()
         }
+        
+        if self.data.count == 0 {
+            // will wait until items is fully reloaded
+        } else if self.data.count > 1 {
+            // will wait time now() + 1 sec
+            // to scroll content pager
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                self.contentPager.scrollToItem(at: item.focus - 1, animated: true)
+            }
+        }
+        
+        disposeBag = bag
     }
 }
