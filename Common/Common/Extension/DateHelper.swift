@@ -14,6 +14,7 @@ public class Constant {
     public static let dateTimeFormat3 = "YYYY-MM-dd'T'HH:mm:ss.SSSZ"
     public static let dateTimeFormat4 = "HH:mm, dd MMMM YYYY"
     public static let dateFormat = "yyyy-MM-dd"
+    public static let dateFormat2 = "dd MMMM yyyy"
     public static let timeFormat = "HH:mm"
     public static let monthFormat = "MMMM"
 }
@@ -38,6 +39,13 @@ extension String {
     public var date: String? {
         guard  let date = String.dateFormatter.date(from: self)?.toString(format: Constant.dateFormat) else {
             return String.dateFormatter3.date(from: self)?.toString(format: Constant.dateFormat)
+        }
+        return date
+    }
+    
+    public func date(format: String = Constant.dateFormat) -> String? {
+        guard  let date = String.dateFormatter.date(from: self)?.toString(format: format) else {
+            return String.dateFormatter3.date(from: self)?.toString(format: format)
         }
         return date
     }

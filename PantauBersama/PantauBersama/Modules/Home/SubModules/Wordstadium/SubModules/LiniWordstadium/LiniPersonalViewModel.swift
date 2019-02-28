@@ -95,6 +95,8 @@ class LiniPersonalViewModel: ILiniWordstadiumViewModel, ILiniWordstadiumViewMode
             })
             .bind { [weak self](items) in
                 guard let weakSelf = self else { return }
+                weakSelf.publicItems.accept([])
+                
                 if items.count > 0 {
                     let currentItems = weakSelf.publicItems.value + weakSelf.transformToSection(challenge: items, progress: .liveNow, type: .personal)
                     weakSelf.publicItems.accept(currentItems)

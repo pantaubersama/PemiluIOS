@@ -26,6 +26,7 @@ class WordstadiumItemViewCell: UITableViewCell {
     @IBOutlet weak var moreMenuBtn: UIButton!
     @IBOutlet weak var statementLbl: UILabel!
     @IBOutlet weak var topicLbl: UILabel!
+    @IBOutlet weak var opponentCountLbl: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -50,6 +51,7 @@ extension WordstadiumItemViewCell: IReusableCell {
     
     func configureCell(item: Input) {
         var footerView: UIView!
+        var opponentCount: Int = 0
         
         guard let topics = item.wordstadium.topic else {return}
         var topicStr = ""
@@ -58,7 +60,7 @@ extension WordstadiumItemViewCell: IReusableCell {
         }
         topicLbl.text = topicStr
         
-        
+        titleLbl.text = item.wordstadium.progress.title
         statementLbl.text = item.wordstadium.statement
         rightPersonView.isHidden = true
         rightUsername.text = ""
@@ -72,78 +74,67 @@ extension WordstadiumItemViewCell: IReusableCell {
                 }
             case .opponent:
                 rightUsername.text = person.fullName ?? ""
+                rightPersonView.isHidden = false
                 if let thumbnailUrl = person.avatar?.thumbnail.url {
                     rightPersonIv.af_setImage(withURL: URL(string: thumbnailUrl)!)
+                }
+            case .opponentCandidate:
+                rightUsername.text = ""
+                rightPersonView.isHidden = false
+                if let thumbnailUrl = person.avatar?.thumbnail.url {
+                    rightPersonIv.af_setImage(withURL: URL(string: thumbnailUrl)!)
+                }
+                
+                if item.wordstadium.type == .directChallenge {
+                    opponentCountLbl.text = "?"
+                } else {
+                    opponentCount += 1
+                    opponentCountLbl.text = "\(opponentCount)"
                 }
             default :
                 break
             }
         }
         
-        switch item.itemType {
+        switch item.wordstadium.progress {
         case .comingSoon:
-            titleLbl.text = item.wordstadium.progress.title
             backgroundItem.image = UIImage(named: "bgWordstadiumComingsoon")
-            footerView = TimeView()
-        case .done:
-            titleLbl.text = item.wordstadium.progress.title
-            backgroundItem.image = UIImage(named: "bgWordstadiumDone")
-            footerView = ClapView()
-        case .ongoing:
-            titleLbl.text = item.wordstadium.type.title
-            backgroundItem.image = UIImage(named: "bgWordstadiumChallange")
-            
-            let descView = DescriptionView()
-            
-            switch item.wordstadium.progress {
-            case .waitingConfirmation:
-                descView.descriptionLbl.text = item.wordstadium.progress.title
-                descView.descriptionLbl.textColor = Color.gray
-                rightPersonView.isHidden = false
-            case .waitingOpponent:
-                descView.descriptionLbl.text = item.wordstadium.progress.title
-                descView.descriptionLbl.textColor = Color.gray
-            default:
-                break
+            let timeView = TimeView()
+            if let time = item.wordstadium.showTimeAt {
+                let timeLimit = Double(item.wordstadium.timeLimit ?? 0)
+                let mTimeStart = time.date(format: Constant.timeFormat) ?? ""
+                let mTimeEnd = time.toDate(format: Constant.dateTimeFormat3)?.addingTimeInterval(timeLimit * 60).toString(format: Constant.timeFormat) ?? ""
+                
+                timeView.dateLbl.text = time.date(format: Constant.dateFormat2)
+                timeView.timeLbl.text = mTimeStart  + " - " + mTimeEnd
             }
+            
+            footerView = timeView
+        case .liveNow:
+            backgroundItem.image = UIImage(named: "bgWordstadiumLive")
+            let descView = DescriptionView()
+            footerView = descView
+        case .done:
+            backgroundItem.image = UIImage(named: "bgWordstadiumDone")
+            let clapView = ClapView()
+            
+            footerView = clapView
+        case .waitingConfirmation,.waitingOpponent:
+            backgroundItem.image = UIImage(named: "bgWordstadiumChallange")
+            let descView = DescriptionView()
             
             switch item.wordstadium.condition {
             case .expired, .rejected:
                 descView.descriptionLbl.text = item.wordstadium.condition.title
                 descView.descriptionLbl.textColor = Color.red
-            default: break
+            default:
+                descView.descriptionLbl.text = item.wordstadium.progress.title
+                descView.descriptionLbl.textColor = Color.gray
             }
             
             footerView = descView
-        case .liveNow:
-            titleLbl.text = item.wordstadium.progress.title
-            let descView = DescriptionView()
-            if item.type == .public {
-                backgroundItem.image = UIImage(named: "bgWordstadiumLive")
-                descView.descriptionLbl.text = "Live selama 20 menit"
-                descView.descriptionLbl.textColor = Color.gray
-            } else {
-                backgroundItem.image = UIImage(named: "bgWordstadiumChallange")
-                switch item.wordstadium.progress {
-                case .waitingConfirmation:
-                    descView.descriptionLbl.text = item.wordstadium.progress.title
-                    descView.descriptionLbl.textColor = Color.gray
-                    rightPersonView.isHidden = false
-                case .waitingOpponent:
-                    descView.descriptionLbl.text = item.wordstadium.progress.title
-                    descView.descriptionLbl.textColor = Color.gray
-                default:
-                    break
-                }
-                
-                switch item.wordstadium.condition {
-                case .expired, .rejected:
-                    descView.descriptionLbl.text = item.wordstadium.condition.title
-                    descView.descriptionLbl.textColor = Color.red
-                default: break
-                }
-            }
-            footerView = descView
+        default:
+            break
         }
         
         footerContainerView.addSubview(footerView)
