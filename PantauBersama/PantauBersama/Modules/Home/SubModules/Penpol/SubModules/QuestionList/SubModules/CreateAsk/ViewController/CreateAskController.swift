@@ -196,10 +196,11 @@ extension CreateAskController: UITextViewDelegate {
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
-        self.viewModel.input.questionInput.onNext("")
+        self.viewModel.input.questionInput.onNext(textView.text)
         if textView.text.isEmpty {
             textView.text = "Tulis pertanyaan terbaikmu di sini!"
             textView.textColor = UIColor.lightGray
+            self.viewModel.input.questionInput.onNext(" ")
         }
         self.constraintTopTableView.constant = 0
     }

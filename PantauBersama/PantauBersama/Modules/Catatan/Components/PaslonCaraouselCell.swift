@@ -94,18 +94,24 @@ extension PaslonCaraouselCell: IReusableCell {
             switch item.focus {
             case 3:
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
-                    self.contentPager.alpha = 1.0
-                    self.contentPager.scrollToItem(at: 0, animated: true)
+                    UIView.animate(withDuration: 1.3, animations: {
+                        self.contentPager.alpha = 1.0
+                        self.contentPager.scrollToItem(at: 0, animated: true)
+                    })
                 })
             case 1:
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
-                    self.contentPager.alpha = 1.0
-                    self.contentPager.scrollToItem(at: 1, animated: true)
+                    UIView.animate(withDuration: 1.3, animations: {
+                        self.contentPager.alpha = 1.0
+                        self.contentPager.scrollToItem(at: 1, animated: true)
+                    })
                 })
             case 2:
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
-                    self.contentPager.alpha = 1.0
-                    self.contentPager.scrollToItem(at: 2, animated: true)
+                    UIView.animate(withDuration: 1.3, animations: {
+                        self.contentPager.alpha = 1.0
+                        self.contentPager.scrollToItem(at: 2, animated: true)
+                    })
                 })
             default:
                 break
