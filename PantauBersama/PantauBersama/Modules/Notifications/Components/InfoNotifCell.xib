@@ -21,7 +21,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uOv-DR-sYf">
                         <rect key="frame" x="16" y="8" width="358" height="111.5"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icDefaultNotif" translatesAutoresizingMaskIntoConstraints="NO" id="z2k-Xp-fDe">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icDefaultNotif" translatesAutoresizingMaskIntoConstraints="NO" id="z2k-Xp-fDe" customClass="CircularUIImageView" customModule="Common">
                                 <rect key="frame" x="0.0" y="8" width="36" height="36"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="36" id="APW-ar-OG7"/>
@@ -78,6 +78,7 @@ Ikuti ulasannya!</string>
             </tableViewCellContentView>
             <connections>
                 <outlet property="content" destination="rv1-YT-UdQ" id="f1h-Ok-pjr"/>
+                <outlet property="ivImage" destination="z2k-Xp-fDe" id="fSF-LT-nSZ"/>
                 <outlet property="timestamp" destination="siR-aO-3we" id="Xd7-vg-z7k"/>
             </connections>
             <point key="canvasLocation" x="84.799999999999997" y="8.0959520239880067"/>

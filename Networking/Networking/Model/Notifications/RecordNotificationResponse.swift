@@ -17,10 +17,23 @@ public struct NotificationRecord: Codable {
     public let notification: Notif?
     public let isAction: Bool?
     public let data: NotifData
+    public let createdAt: NotifCreatedAt
     
     private enum CodingKeys: String, CodingKey {
         case id, notification, data
         case isAction = "is_action"
+        case createdAt = "created_at_in_word"
+    }
+}
+
+public struct NotifCreatedAt: Codable {
+    public let timeZone: String
+    public let en: String
+    public let id: String
+    
+    private enum CodingKeys: String, CodingKey {
+        case timeZone = "time_zone"
+        case en, id
     }
 }
 
@@ -33,13 +46,24 @@ public struct NotifPayload: Codable {
     public let eventType: String
     public let quiz: NotifQuiz?
     public let broadcast: Broadcast?
-    public let badge: NotifBadge?
-    public let question: Question?
+    public let badge: AchievedBadge?
+    public let question: NotifQuestion?
     
     private enum CodingKeys: String, CodingKey {
         case notifType = "notif_type"
         case eventType = "event_type"
-        case quiz, badge, question
+        case quiz, question
+        case badge = "achieved_badge"
         case broadcast = "pemilu_broadcast"
     }
+}
+
+public struct NotifQuestion: Codable {
+    public let id: String
+    public let avatar: NotifQuestionAvatar?
+}
+
+public struct NotifQuestionAvatar: Codable {
+    public let thumbnail: String
+    public let large: String
 }

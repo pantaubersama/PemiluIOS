@@ -29,7 +29,6 @@
                             <rect key="frame" x="16" y="14" width="343" height="29"/>
                             <segments>
                                 <segment title="Semua Notifikasi"/>
-                                <segment title="Wordstadium"/>
                                 <segment title="Event"/>
                             </segments>
                             <color key="tintColor" red="0.43921568630000002" green="0.43921568630000002" blue="0.43921568630000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
