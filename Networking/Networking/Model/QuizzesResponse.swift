@@ -76,3 +76,7 @@ public struct Quiz: Codable {
         public let url: String?
     }
 }
+
+public struct SingleQuizResponse: Codable {
+    public let quiz: Quiz
+}

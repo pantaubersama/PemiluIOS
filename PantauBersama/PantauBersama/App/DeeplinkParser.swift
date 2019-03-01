@@ -49,6 +49,8 @@ public class DeeplinkParser {
                 }
             case "hasilkuis":
                print("received hasil kuis")
+               if let id = idPath {
+                }
             case "janjipolitik":
                 print("janjipolitik")
                 if let currentNavigation = UIApplication.topViewController()?.navigationController {
