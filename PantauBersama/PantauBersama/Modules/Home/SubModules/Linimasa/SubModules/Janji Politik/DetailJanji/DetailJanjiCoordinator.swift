@@ -22,24 +22,23 @@ protocol DetailJanjiNavigator {
 class DetailJanjiCoordinator: BaseCoordinator<DetailJanpolResult> {
     
     private let navigationController: UINavigationController!
-    private let data: JanjiPolitik
+    private let data: String
     
-    init(navigationController: UINavigationController, data: JanjiPolitik) {
+    init(navigationController: UINavigationController, data: String) {
         self.navigationController = navigationController
         self.data = data
     }
     
     override func start() -> Observable<CoordinationResult> {
-        FBSDKAppEvents.logEvent("Detail Janji", parameters: ["content_id": data.id])
+        FBSDKAppEvents.logEvent("Detail Janji", parameters: ["content_id": data])
         let viewController = DetailJanjiController()
         let viewModel = DetailJanjiViewModel(navigator: self, data: data)
         viewController.viewModel = viewModel
         viewController.hidesBottomBarWhenPushed = true
         
         navigationController.pushViewController(viewController, animated: true)
-        return viewModel.output.closeSelected.do(onNext: { [weak self](_) in
-            self?.navigationController.popViewController(animated: true)
-        }).asObservable()
+        return viewModel.output.closeSelected.asObservable()
+            .take(1)
     }
     
 }

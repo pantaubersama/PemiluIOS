@@ -50,6 +50,9 @@ class DetailJanjiController: UIViewController {
             .disposed(by: disposeBag)
         
         closeButton.rx.tap
+            .do(onNext: { [unowned self] (_) in
+                self.navigationController?.popViewController(animated: true)
+            })
             .bind(to: viewModel.input.closeTrigger)
             .disposed(by: disposeBag)
         

@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import RxSwift
 import RxCocoa
+import Networking
 
 public enum DeepLinkType: String {
     case badge
@@ -61,7 +62,14 @@ public class DeeplinkParser {
                 }
             case "janjipolitik":
                 print("janjipolitik")
-                if let currentNavigation = UIApplication.topViewController()?.navigationController {
+                if let id = idPath {
+                    if let currentNavigation = UIApplication.topViewController()?.navigationController {
+                        let disposeBag = DisposeBag()
+                        let detailJanji = DetailJanjiCoordinator(navigationController: currentNavigation, data: id)
+                        detailJanji.start()
+                            .subscribe()
+                            .disposed(by: disposeBag)
+                    }
                 }
             case "tanya":
                 print("tanya")
