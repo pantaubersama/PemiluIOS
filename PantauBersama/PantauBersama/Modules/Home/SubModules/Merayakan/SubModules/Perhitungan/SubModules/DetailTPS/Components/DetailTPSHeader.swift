@@ -16,7 +16,4 @@ class DetailTPSHeader: UITableViewCell, IReusableCell {
     @IBOutlet weak var lblKecamatan: Label!
     @IBOutlet weak var lblDesa: Label!
     @IBOutlet weak var btnOption: Button!
-
-    
-    
 }

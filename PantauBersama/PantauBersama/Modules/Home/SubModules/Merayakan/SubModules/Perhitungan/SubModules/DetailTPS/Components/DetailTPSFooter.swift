@@ -11,5 +11,4 @@ import Common
 
 class DetailTPSFooter: UITableViewCell, IReusableCell {
     @IBOutlet weak var btnUpload: Button!
-    
 }
