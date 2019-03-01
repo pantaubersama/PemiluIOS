@@ -10,18 +10,20 @@ import UIKit
 import RxSwift
 import RxCocoa
 import Common
+import Networking
 
 class CatatanController: UIViewController {
     
     var viewModel: CatatanViewModel!
     @IBOutlet weak var btnUpdate: Button!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var lblQuizResult: Label!
-    @IBOutlet weak var lblPreferenceUser: Label!
-    @IBOutlet weak var lblPreferenceResult: UILabel!
-    @IBOutlet weak var iconPreference: CircularUIImageView!
+    
     private var focusPaslon: Int? = nil
     private var focusPaty: Int? = nil
+    private var preferenceQuiz: String? = nil
+    private var paslonUrl: String? = nil
+    private var preferenceUser: String? = nil
+    private var preference: String? = nil
     
     private let disposeBag: DisposeBag = DisposeBag()
     
@@ -67,34 +69,38 @@ class CatatanController: UIViewController {
         // MARK
         // Total Result
         viewModel.output.totalResultO
-            .drive(onNext: { [weak self] (response) in
+            .do(onNext: { [weak self] (response) in
                 guard let `self` = self else { return }
                 let preference = response.teams.max { $0.percentage?.isLess(than: $1.percentage ?? 0.0) ?? false }
                 let trendString: String? = String(format: "%.0f", preference?.percentage ?? 0.0)
                 let randomResponse = response.teams.randomElement()
                 if trendString == "50" {
                     if let avatarUrl = randomResponse?.team.avatar {
-                        self.iconPreference.af_setImage(withURL: URL(string: avatarUrl)!)
+                        self.paslonUrl = avatarUrl
                     }
-                    self.lblQuizResult.text = "Total Kecenderungan \(response.meta.quizzes.finished) dari \(response.meta.quizzes.total) Quiz"
-                    self.lblPreferenceUser.text = "\(response.user.fullName ?? "") lebih suka jawaban dari Paslon no \(randomResponse?.team.id ?? 0)"
-                    self.lblPreferenceResult.text = String(format: "%.0f", randomResponse?.percentage ?? 0.0) + "% \(randomResponse?.team.title ?? "")"
+                    self.preferenceQuiz = "Total Kecenderungan \(response.meta.quizzes.finished) dari \(response.meta.quizzes.total) Quiz"
+                    self.preferenceUser = "\(response.user.fullName ?? "") lebih suka jawaban dari Paslon no \(randomResponse?.team.id ?? 0)"
+                    self.preference = String(format: "%.0f", randomResponse?.percentage ?? 0.0) + "% \(randomResponse?.team.title ?? "")"
                 } else if trendString == "0" {
                     if let avatarUrl = randomResponse?.team.avatar {
-                        self.iconPreference.af_setImage(withURL: URL(string: avatarUrl)!)
+                        self.paslonUrl = avatarUrl
                     }
-                    self.lblQuizResult.text = "Total Kecenderungan \(response.meta.quizzes.finished) dari \(response.meta.quizzes.total) Quiz"
-                    self.lblPreferenceUser.text = "\(response.user.fullName ?? "") lebih suka jawaban dari Paslon no \(randomResponse?.team.id ?? 0)"
-                    self.lblPreferenceResult.text = String(format: "%.0f", randomResponse?.percentage ?? 0.0) + "% \(randomResponse?.team.title ?? "")"
+                    self.preferenceQuiz = "Total Kecenderungan \(response.meta.quizzes.finished) dari \(response.meta.quizzes.total) Quiz"
+                    self.preferenceUser = "\(response.user.fullName ?? "") lebih suka jawaban dari Paslon no \(randomResponse?.team.id ?? 0)"
+                    self.preference = String(format: "%.0f", randomResponse?.percentage ?? 0.0) + "% \(randomResponse?.team.title ?? "")"
                 } else {
                     if let avatarUrl = preference?.team.avatar {
-                        self.iconPreference.af_setImage(withURL: URL(string: avatarUrl)!)
+                        self.paslonUrl = avatarUrl
                     }
-                    self.lblQuizResult.text = "Total Kecenderungan \(response.meta.quizzes.finished) dari \(response.meta.quizzes.total) Quiz"
-                    self.lblPreferenceUser.text = "\(response.user.fullName ?? "") lebih suka jawaban dari Paslon no \(preference?.team.id ?? 0)"
-                    self.lblPreferenceResult.text = String(format: "%.0f", preference?.percentage ?? 0.0) + "% \(preference?.team.title ?? "")"
+                    self.preferenceQuiz = "Total Kecenderungan \(response.meta.quizzes.finished) dari \(response.meta.quizzes.total) Quiz"
+                    self.preferenceUser = "\(response.user.fullName ?? "") lebih suka jawaban dari Paslon no \(preference?.team.id ?? 0)"
+                    self.preference = String(format: "%.0f", preference?.percentage ?? 0.0) + "% \(preference?.team.title ?? "")"
                 }
+                DispatchQueue.main.async(execute: {
+                    self.tableView.reloadData()
+                })
             })
+            .drive()
             .disposed(by: disposeBag)
         
         
@@ -137,7 +143,7 @@ extension CatatanController: UITableViewDelegate, UITableViewDataSource {
         switch indexPath.section {
         case 0:
             let cell = tableView.dequeueReusableCell() as PaslonCaraouselCell
-            cell.configureCell(item: PaslonCaraouselCell.Input(focus: self.focusPaslon ?? 0, viewModel: self.viewModel))
+            cell.configureCell(item: PaslonCaraouselCell.Input(focus: self.focusPaslon ?? 0, viewModel: self.viewModel, preferenceQuiz: self.preferenceQuiz ?? "", paslonUrl: self.paslonUrl ?? "", preferenceUser: self.preferenceUser ?? "", preference: self.preference ?? ""))
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell() as PartyCaraouselCell
@@ -161,11 +167,11 @@ extension CatatanController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch UIScreen.main.bounds.height {
         case 568:
-            return 290.0
-        case 667:
-            return 360.0 // case for sreen iphone 6s
-        default:
             return 360.0
+        case 667:
+            return 460.0 // case for sreen iphone 6s
+        default:
+            return 460.0
         }
     }
     

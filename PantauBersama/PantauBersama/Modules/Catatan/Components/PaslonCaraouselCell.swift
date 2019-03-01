@@ -9,12 +9,21 @@
 import UIKit
 import Common
 import FSPagerView
+import RxSwift
+import RxCocoa
+import Networking
 
 class PaslonCaraouselCell: UITableViewCell {
     
     @IBOutlet weak var contentPager: FSPagerView!
+    @IBOutlet weak var ivAvatarPreference: CircularUIImageView!
+    @IBOutlet weak var lblPreferenceQuiz: Label!
+    @IBOutlet weak var lblPreferenceUser: Label!
+    @IBOutlet weak var lblPreferenceResult: UILabel!
+    
     private var focusTarget: Int? = nil
     private var viewModel: CatatanViewModel!
+    private(set) var disposeBag: DisposeBag?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,6 +33,7 @@ class PaslonCaraouselCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        disposeBag = nil
     }
     
 }
@@ -84,9 +94,14 @@ extension PaslonCaraouselCell: IReusableCell {
     struct Input {
         let focus: Int
         let viewModel: CatatanViewModel
+        let preferenceQuiz: String
+        let paslonUrl: String
+        let preferenceUser: String
+        let preference: String
     }
     
     func configureCell(item: Input) {
+        let bag = DisposeBag()
         DispatchQueue.main.async {
             self.viewModel = item.viewModel
             self.contentPager.reloadData()
@@ -118,6 +133,11 @@ extension PaslonCaraouselCell: IReusableCell {
             }
         }
         
+        self.ivAvatarPreference.show(fromURL: item.paslonUrl)
+        self.lblPreferenceQuiz.text = item.preferenceQuiz
+        self.lblPreferenceUser.text = item.preferenceUser
+        self.lblPreferenceResult.text = item.preference
         
+        disposeBag = bag
     }
 }
