@@ -18,5 +18,5 @@ class ElectionTypeCell: UITableViewCell, IReusableCell {
         lblTitle.text = item.title
         btnFirstOption.setImage(item.imgFirstOption, for: .normal)
         btnSecOption.setImage(item.imgSecOption, for: .normal)
-    }    
+    }
 }
