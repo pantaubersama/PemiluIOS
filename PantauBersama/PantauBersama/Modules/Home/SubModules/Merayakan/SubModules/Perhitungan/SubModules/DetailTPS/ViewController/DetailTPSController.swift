@@ -25,11 +25,31 @@ class DetailTPSController: UIViewController {
     private let disposeBag = DisposeBag()
     
     fileprivate var elections: [ElectionType] = [
-        ElectionType(imgFirstOption: UIImage(named: "presidenmdpi"), imgSecOption: UIImage(named: "c1Presiden"), title: "PRESIDEN"),
-        ElectionType(imgFirstOption: UIImage(named: "dpRmdpi"), imgSecOption: UIImage(named: "c1DPR"), title: "DPR RI"),
-        ElectionType(imgFirstOption: UIImage(named: "dpDmdpi"), imgSecOption: UIImage(named: "c1DPD"), title: "DPD"),
-        ElectionType(imgFirstOption: UIImage(named: "dprdProvinsimdpi"), imgSecOption: UIImage(named: "c1DPRDProv"), title: "DPRD PROVINSI"),
-        ElectionType(imgFirstOption: UIImage(named: "dprdKabmdpi"), imgSecOption: UIImage(named: "c1DPRDKab"), title: "DPRD KABUPATEN/KOTA")
+        ElectionType(
+            imgFirstOption: UIImage(named: "presidenmdpi"),
+            imgSecOption: UIImage(named: "c1Presiden"),
+            title: "PRESIDEN"
+        ),
+        ElectionType(
+            imgFirstOption: UIImage(named: "dpRmdpi"),
+            imgSecOption: UIImage(named: "c1DPR"),
+            title: "DPR RI"
+        ),
+        ElectionType(
+            imgFirstOption: UIImage(named: "dpDmdpi"),
+            imgSecOption: UIImage(named: "c1DPD"),
+            title: "DPD"
+        ),
+        ElectionType(
+            imgFirstOption: UIImage(named: "dprdProvinsimdpi"),
+            imgSecOption: UIImage(named: "c1DPRDProv"),
+            title: "DPRD PROVINSI"
+        ),
+        ElectionType(
+            imgFirstOption: UIImage(named: "dprdKabmdpi"),
+            imgSecOption: UIImage(named: "c1DPRDKab"),
+            title: "DPRD KABUPATEN/KOTA"
+        )
     ]
     
     override func viewDidLoad() {
@@ -77,7 +97,6 @@ extension DetailTPSController: UITableViewDataSource {
         } else if indexPath.row == (elections.count + 1) {
             let cell = tableView.dequeueReusableCell() as DetailTPSFooter
             return cell
-            
         }
         
         let cell = tableView.dequeueReusableCell() as ElectionTypeCell
