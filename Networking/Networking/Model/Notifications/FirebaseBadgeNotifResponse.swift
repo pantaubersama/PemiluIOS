@@ -36,8 +36,19 @@ public struct AchievedBadge: Codable {
 
 public struct NotifBadge: Codable {
     public var id: String
+    public var image: NotifBadgeImage?
     
     private enum CodingKeys: String, CodingKey {
-        case id
+        case id, image
+    }
+}
+
+public struct NotifBadgeImage: Codable {
+    public var thumbnail: String?
+    public var thumbnailSquare: String?
+    
+    private enum CodingKeys: String, CodingKey {
+        case thumbnail
+        case thumbnailSquare = "thumbnail_square"
     }
 }
