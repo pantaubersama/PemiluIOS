@@ -44,7 +44,7 @@ extension NotificationCoordinator: NotificationNavigator {
     }
     
     func openQuestion(questionId: String) -> Observable<Void> {
-        let questionDetailCoorinator = DetailAskCoordinator(navigationController: self.navigationController, data: questionId)
+        let questionDetailCoorinator = DetailAskCoordinator(navigationController: self.navigationController, data: questionId, isFromNotif: false)
         return coordinate(to: questionDetailCoorinator).mapToVoid()
     }
     

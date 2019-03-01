@@ -321,6 +321,8 @@
 		84D01B9B21D20C480000492F /* SettingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84D01B9A21D20C480000492F /* SettingCell.xib */; };
 		84D01B9D21D20CA20000492F /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D01B9C21D20CA20000492F /* SettingCell.swift */; };
 		84D7A77821CE8CFF009502AF /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D7A77721CE8CFF009502AF /* ProfileViewModel.swift */; };
+		84DE3262222928970079746D /* PantauBersama.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 84B2526021CBCB2E00565D82 /* PantauBersama.entitlements */; };
+		84DE3264222930E80079746D /* share-icon-app.icns in Resources */ = {isa = PBXBuildFile; fileRef = 84DE3263222930E80079746D /* share-icon-app.icns */; };
 		84E2854421CA195C00298E31 /* CustomActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E2854321CA195C00298E31 /* CustomActionSheet.swift */; };
 		84E2854721CA1E8300298E31 /* PilpresType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E2854621CA1E8300298E31 /* PilpresType.swift */; };
 		84E2854D21CA4BC800298E31 /* FilterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84E2854C21CA4BC800298E31 /* FilterViewController.xib */; };
@@ -725,6 +727,7 @@
 		84D01B9A21D20C480000492F /* SettingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingCell.xib; sourceTree = "<group>"; };
 		84D01B9C21D20CA20000492F /* SettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
 		84D7A77721CE8CFF009502AF /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		84DE3263222930E80079746D /* share-icon-app.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "share-icon-app.icns"; sourceTree = "<group>"; };
 		84E2854321CA195C00298E31 /* CustomActionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomActionSheet.swift; sourceTree = "<group>"; };
 		84E2854621CA1E8300298E31 /* PilpresType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PilpresType.swift; sourceTree = "<group>"; };
 		84E2854C21CA4BC800298E31 /* FilterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterViewController.xib; sourceTree = "<group>"; };
@@ -1554,6 +1557,7 @@
 		844C3D7121C51DFB00199871 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				84DE3263222930E80079746D /* share-icon-app.icns */,
 				84A07F8D21D0CC8600269C6B /* Lottie */,
 				84F8929821C785BF00DC1048 /* Fonts */,
 				844C3D4621C4ED6E00199871 /* Assets.xcassets */,
@@ -2467,6 +2471,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84DE3262222928970079746D /* PantauBersama.entitlements in Resources */,
 				8428AAA321C7A7790008E975 /* Localizable.strings in Resources */,
 				13F4569521CF97DA00CE45F1 /* CreateAskController.xib in Resources */,
 				840850DD21D2832200696CB3 /* BadgeController.xib in Resources */,
@@ -2519,6 +2524,7 @@
 				84BE8DF6222689AF0079332A /* PaslonCaraouselCell.xib in Resources */,
 				8478B8E621FF1FAA00CE192A /* InfoNotifCell.xib in Resources */,
 				84619D3C21DA88C800EB58CF /* ItemInfoCell.xib in Resources */,
+				84DE3264222930E80079746D /* share-icon-app.icns in Resources */,
 				8441DB5621CCF19C00B078DF /* DetailJanjiController.xib in Resources */,
 				8451E0642207F6E500F03E96 /* data_fotoktp.json in Resources */,
 				13F456AF21D36A8500CE45F1 /* UndangAnggotaController.xib in Resources */,
@@ -3064,7 +3070,6 @@
 				84B6D52D21F8E80A00DD742A /* UserQuestionListViewModel.swift in Sources */,
 				13E9D78821E8F025006A0890 /* IJanpolListViewModel.swift in Sources */,
 				84B6D52F21F8F00E00DD742A /* UserSearchNavigator.swift in Sources */,
-				8451E05822045A1A00F03E96 /* InfoNotifController.swift in Sources */,
 				13BF405521EBADBF005C9A64 /* QuestionListViewModel.swift in Sources */,
 				13F456D621DBA2F600CE45F1 /* BannerHeaderViewModel.swift in Sources */,
 				840850E121D2844700696CB3 /* BadgeCoordinator.swift in Sources */,

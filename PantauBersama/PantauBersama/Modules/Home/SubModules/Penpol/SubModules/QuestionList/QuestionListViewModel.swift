@@ -239,7 +239,7 @@ class QuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelInput
                 case .laporkan(let question):
                     return weakSelf.reportQuestion(question: question)
                 case .salin(let question):
-                    let data = "\(AppContext.instance.infoForKey("URL_WEB"))/share/tanya/\(question.id)"
+                    let data = "\(AppContext.instance.infoForKey("URL_WEB_SHARE"))/share/tanya/\(question.id)"
                     data.copyToClipboard()
                     return Observable.just("Tautan telah tersalin")
                 }
