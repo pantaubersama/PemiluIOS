@@ -33,9 +33,14 @@ class ShareTrendViewModel: ViewModelType {
     private let viewWillAppearS = PublishSubject<Void>()
     private let shareS = PublishSubject<UIImage?>()
     
-    init(navigator: ShareTrendNavigator) {
+    private var isFromDeeplink: Bool
+    private var userId: String?
+    
+    init(navigator: ShareTrendNavigator, isFromDeeplink: Bool, userId: String?) {
         self.navigator = navigator
         self.navigator.finish = backS
+        self.isFromDeeplink = isFromDeeplink
+        self.userId = userId
         
         input = Input(backI: backS.asObserver(),
                       viewWillAppearI: viewWillAppearS.asObserver(),
@@ -50,8 +55,15 @@ class ShareTrendViewModel: ViewModelType {
             .asObservable()
             .catchErrorJustComplete()
         
+        let dataDeeplink = NetworkService.instance
+            .requestObject(QuizAPI.getTotalQuizParticipationResult(id: userId ?? ""),
+                           c: BaseResponse<TrendResponse>.self)
+            .map({ $0.data })
+            .asObservable()
+            .catchErrorJustComplete()
+        
         let trendData = viewWillAppearS
-            .flatMapLatest({ data })
+            .flatMapLatest({ isFromDeeplink ? dataDeeplink : data })
         
         let share = Observable.combineLatest(shareS, data.asObservable())
             .flatMapLatest { (image,trend) -> Observable<Void> in

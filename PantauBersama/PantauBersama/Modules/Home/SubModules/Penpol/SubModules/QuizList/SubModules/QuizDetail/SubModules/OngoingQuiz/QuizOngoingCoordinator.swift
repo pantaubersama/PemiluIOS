@@ -44,7 +44,7 @@ class QuizOngoingCoordinator: BaseCoordinator<Void>, QuizOngoingNavigator {
     }
     
     func openQuizResult(finishQuiz: Bool) -> Observable<Void> {
-        let quizResultCoordinator = QuizResultCoordinator(navigationController: self.navigationController, quiz: quiz)
+        let quizResultCoordinator = QuizResultCoordinator(navigationController: self.navigationController, quiz: quiz, isFromDeeplink: false, participationURL: nil)
         
         if finishQuiz {
             return coordinate(to: quizResultCoordinator)

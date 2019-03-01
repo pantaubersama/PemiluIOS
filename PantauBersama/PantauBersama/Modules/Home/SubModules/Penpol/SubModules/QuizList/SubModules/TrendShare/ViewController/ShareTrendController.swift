@@ -27,7 +27,7 @@ class ShareTrendController: UIViewController {
     }()
     
     private var trendResponse: TrendResponse!
-    
+    var isFromDeeplink: Bool = false
     var viewModel: ShareTrendViewModel!
     private let disposeBag: DisposeBag = DisposeBag()
     
@@ -55,7 +55,28 @@ class ShareTrendController: UIViewController {
         viewModel.output.dataO
             .drive(onNext: { [weak self] (response) in
                 guard let `self` = self else { return }
-                  let kecenderungan = response.teams.max { $0.percentage?.isLess(than: $1.percentage ?? 0.0) ?? false }
+                let kecenderungan = response.teams.max { $0.percentage?.isLess(than: $1.percentage ?? 0.0) ?? false }
+                let trendHalf = String(format: "%0.f", kecenderungan?.percentage ?? 0.0)
+                let kecenderunganRandom = response.teams.randomElement()
+                if trendHalf == "50" {
+                    if let avatarUrl = kecenderunganRandom?.team.avatar {
+                        self.ivPaslon.af_setImage(withURL: URL(string: avatarUrl)!)
+                    }
+                    self.lblDesc.text = "Total Kecenderunganmu \(response.meta.quizzes.finished) dari \(response.meta.quizzes.total) Quiz,"
+                    self.lblSubDesc.text = "\(response.user.fullName ?? "") lebih suka jawaban dari Paslon no \(kecenderunganRandom?.team.id ?? 0)"
+                    let percentage = String(format: "%.0f", kecenderunganRandom?.percentage ?? 0.0) + "%"
+                    self.lblPercentage.text = percentage
+                    self.lblTeam.text = "\(kecenderunganRandom?.team.title ?? "")"
+                } else if trendHalf == "0" {
+                    if let avatarUrl = kecenderunganRandom?.team.avatar {
+                        self.ivPaslon.af_setImage(withURL: URL(string: avatarUrl)!)
+                    }
+                    self.lblDesc.text = "Total Kecenderunganmu \(response.meta.quizzes.finished) dari \(response.meta.quizzes.total) Quiz,"
+                    self.lblSubDesc.text = "\(response.user.fullName ?? "") lebih suka jawaban dari Paslon no \(kecenderunganRandom?.team.id ?? 0)"
+                    let percentage = String(format: "%.0f", kecenderunganRandom?.percentage ?? 0.0) + "%"
+                    self.lblPercentage.text = percentage
+                    self.lblTeam.text = "\(kecenderunganRandom?.team.title ?? "")"
+                } else {
                     if let avatarUrl = kecenderungan?.team.avatar {
                         self.ivPaslon.af_setImage(withURL: URL(string: avatarUrl)!)
                     }
@@ -64,14 +85,21 @@ class ShareTrendController: UIViewController {
                     let percentage = String(format: "%.0f", kecenderungan?.percentage ?? 0.0) + "%"
                     self.lblPercentage.text = percentage
                     self.lblTeam.text = "\(kecenderungan?.team.title ?? "")"
-                
-                    self.imageScreeenShoot.configure(data: response)
+                }
+            
+                self.imageScreeenShoot.configure(data: response)
             })
             .disposed(by: disposeBag)
         
         viewModel.output.shareO
             .drive()
             .disposed(by: disposeBag)
+        
+        if self.isFromDeeplink == true {
+            self.share.isHidden = true
+        } else {
+            self.share.isHidden = false
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

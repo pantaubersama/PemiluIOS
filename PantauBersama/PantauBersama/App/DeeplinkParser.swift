@@ -36,6 +36,7 @@ public class DeeplinkParser {
             let idPath = pathComponents.last
             // identiifier components must after array [0]
             let identifier = pathComponents[1]
+            print("identitifier: \(identifier)")
             switch identifier {
             case "badge":
                 if let id = idPath {
@@ -50,6 +51,13 @@ public class DeeplinkParser {
             case "hasilkuis":
                print("received hasil kuis")
                if let id = idPath {
+                    if let currentNavigation = UIApplication.topViewController()?.navigationController {
+                        let quizResultCoordinator = QuizResultCoordinator(navigationController: currentNavigation, quiz: nil, isFromDeeplink: true, participationURL: id)
+                        let disposeBag = DisposeBag()
+                        quizResultCoordinator.start()
+                            .subscribe()
+                            .disposed(by: disposeBag)
+                    }
                 }
             case "janjipolitik":
                 print("janjipolitik")
@@ -79,12 +87,14 @@ public class DeeplinkParser {
                 }
             case "kecenderungan":
                 print("trend")
-                if let currentNavigation = UIApplication.topViewController()?.navigationController {
-                    let shareTrendCoordinator = ShareTrendCoordinator(navigationController: currentNavigation)
-                    let disposeBag = DisposeBag()
-                    shareTrendCoordinator.start()
-                        .subscribe()
-                        .disposed(by: disposeBag)
+                if let id = idPath {
+                    if let currentNavigation = UIApplication.topViewController()?.navigationController {
+                        let shareTrendCoordinator = ShareTrendCoordinator(navigationController: currentNavigation, isFromDeeplink: true, userId: id)
+                        let disposeBag = DisposeBag()
+                        shareTrendCoordinator.start()
+                            .subscribe()
+                            .disposed(by: disposeBag)
+                    }
                 }
             default: break
             }
