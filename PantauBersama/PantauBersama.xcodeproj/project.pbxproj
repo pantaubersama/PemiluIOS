@@ -313,6 +313,7 @@
 		84BE8DFE22269CDC0079332A /* PartyCaraouselCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84BE8DFD22269CDC0079332A /* PartyCaraouselCell.xib */; };
 		84BE8E0022269D700079332A /* PartyCaraouselCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BE8DFF22269D700079332A /* PartyCaraouselCell.swift */; };
 		84BEA55321F9884900659980 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BEA55221F9884900659980 /* NetworkService.swift */; };
+		84C81E572229380000AA6B79 /* DeeplinkParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C81E562229380000AA6B79 /* DeeplinkParser.swift */; };
 		84CA10BF21EF0DE80025CF10 /* AboutController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84CA10BE21EF0DE80025CF10 /* AboutController.xib */; };
 		84CA10C121EF107E0025CF10 /* AboutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CA10C021EF107E0025CF10 /* AboutController.swift */; };
 		84CA10C321EF10E20025CF10 /* AboutCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CA10C221EF10E20025CF10 /* AboutCoordinator.swift */; };
@@ -719,6 +720,7 @@
 		84BE8DFD22269CDC0079332A /* PartyCaraouselCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PartyCaraouselCell.xib; sourceTree = "<group>"; };
 		84BE8DFF22269D700079332A /* PartyCaraouselCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyCaraouselCell.swift; sourceTree = "<group>"; };
 		84BEA55221F9884900659980 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		84C81E562229380000AA6B79 /* DeeplinkParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeeplinkParser.swift; sourceTree = "<group>"; };
 		84CA10BE21EF0DE80025CF10 /* AboutController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AboutController.xib; sourceTree = "<group>"; };
 		84CA10C021EF107E0025CF10 /* AboutController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutController.swift; sourceTree = "<group>"; };
 		84CA10C221EF10E20025CF10 /* AboutCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutCoordinator.swift; sourceTree = "<group>"; };
@@ -1667,6 +1669,7 @@
 				84BEA55221F9884900659980 /* NetworkService.swift */,
 				8478B8E921FF315600CE192A /* Parser.swift */,
 				84307F4C22006857006DE04B /* ParserCoordinator.swift */,
+				84C81E562229380000AA6B79 /* DeeplinkParser.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -3013,6 +3016,7 @@
 				84D01B9D21D20CA20000492F /* SettingCell.swift in Sources */,
 				84B6D50521F829D100DD742A /* CatatanPilpresController.swift in Sources */,
 				844C3D7821C51EFD00199871 /* HomeCoordinator.swift in Sources */,
+				84C81E572229380000AA6B79 /* DeeplinkParser.swift in Sources */,
 				845C571921CE1C9900EDCDFE /* BadgeCell.swift in Sources */,
 				84B6D6E621E1069E00CD4BC8 /* KategoriClusterCoordinator.swift in Sources */,
 				84619D4421DA9A9D00EB58CF /* EditController.swift in Sources */,

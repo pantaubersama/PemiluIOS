@@ -30,9 +30,9 @@ final class ShareTrendCoordinator: BaseCoordinator<Void> {
         viewController.viewModel = viewModel
         viewController.hidesBottomBarWhenPushed = true
         navigationController.pushViewController(viewController, animated: true)
-        return finish.do(onNext: { [weak self] (_) in
-            self?.navigationController.popViewController(animated: true)
-        })
+        return finish
+            .asObservable()
+            .take(1)
     }
     
 }
@@ -40,7 +40,7 @@ final class ShareTrendCoordinator: BaseCoordinator<Void> {
 
 extension ShareTrendCoordinator: ShareTrendNavigator {
     func shareTrendResult(image: UIImage, data: TrendResponse) -> Observable<Void> {
-        let share = "Hmm.. Ternyata begini kecenderunganku 👀 #PantauBersama \(AppContext.instance.infoForKey("URL_WEB_SHARE"))/share/badge/\(data.user.id)"
+        let share = "Hmm.. Ternyata begini kecenderunganku 👀 #PantauBersama \(AppContext.instance.infoForKey("URL_WEB_SHARE"))/share/kecenderungan/\(data.user.id)"
 //        var objectToShare = [AnyObject]()
 //        objectToShare.append(image)
 //        objectToShare.append(share as AnyObject)

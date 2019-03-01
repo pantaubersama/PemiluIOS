@@ -46,6 +46,9 @@ class ShareTrendController: UIViewController {
             .disposed(by: disposeBag)
         
         back.rx.tap
+            .do(onNext: { [unowned self] (_) in
+                self.navigationController?.popViewController(animated: true)
+            })
             .bind(to: viewModel.input.backI)
             .disposed(by: disposeBag)
         
