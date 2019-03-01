@@ -110,6 +110,7 @@ class CreateAskViewModel: ViewModelType {
         let enable = questionRelay
             .map { (s) -> Bool in
                 return s.count > 0 && !s.containsInsensitive("Tulis pertanyaan terbaikmu di sini!")
+                    && s != " "
             }.startWith(false)
             .asDriverOnErrorJustComplete()
         
