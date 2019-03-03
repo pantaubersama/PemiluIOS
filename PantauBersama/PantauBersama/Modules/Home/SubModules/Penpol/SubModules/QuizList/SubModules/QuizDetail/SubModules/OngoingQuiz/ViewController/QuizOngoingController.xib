@@ -15,7 +15,7 @@
                 <outlet property="btnAChoice" destination="sbp-BE-KSU" id="DDI-am-Ezg"/>
                 <outlet property="btnBChoice" destination="EBh-42-4pT" id="ANJ-Y7-LL1"/>
                 <outlet property="ivQuiz" destination="45c-bt-rb0" id="g4Y-gh-9pK"/>
-                <outlet property="lbQuestion" destination="SYL-b2-hf3" id="bYo-5c-8ap"/>
+                <outlet property="lbQuestion" destination="RpG-jj-lLh" id="Uan-Wl-ujP"/>
                 <outlet property="tvAChoice" destination="25w-Cc-eoB" id="qYV-To-IO5"/>
                 <outlet property="tvBChoice" destination="ZzJ-be-NeW" id="Ybh-Ud-xgY"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -110,33 +110,28 @@
                         </view>
                     </subviews>
                 </stackView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SYL-b2-hf3" customClass="Label" customModule="Common">
-                    <rect key="frame" x="10" y="52" width="355" height="120"/>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="RpG-jj-lLh">
+                    <rect key="frame" x="10" y="60" width="355" height="102"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="120" id="juC-Nc-OQ1"/>
+                        <constraint firstAttribute="height" constant="102" id="7aa-8j-tL0"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <nil key="highlightedColor"/>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
-                            <real key="value" value="18"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="string" keyPath="typeLabel" value="bold"/>
-                    </userDefinedRuntimeAttributes>
-                </label>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="SYL-b2-hf3" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" priority="750" constant="8" id="4tp-Ig-YfQ"/>
                 <constraint firstItem="waj-8E-WAp" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="6Jm-dD-0tr"/>
+                <constraint firstItem="RpG-jj-lLh" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="8IW-nP-3xB"/>
                 <constraint firstItem="45c-bt-rb0" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="92w-RH-fg8"/>
+                <constraint firstItem="RpG-jj-lLh" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="16" id="AZI-bl-2UG"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="RpG-jj-lLh" secondAttribute="trailing" constant="10" id="GNQ-Gw-gav"/>
                 <constraint firstItem="waj-8E-WAp" firstAttribute="top" secondItem="45c-bt-rb0" secondAttribute="bottom" constant="-30" id="MLr-44-PTl"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="waj-8E-WAp" secondAttribute="trailing" constant="16" id="SwF-Mo-GJx"/>
                 <constraint firstItem="45c-bt-rb0" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="VO1-Ca-NZ9"/>
                 <constraint firstItem="45c-bt-rb0" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="i1y-PY-5Jr"/>
-                <constraint firstItem="SYL-b2-hf3" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="kLM-xs-Gkl"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="SYL-b2-hf3" secondAttribute="trailing" constant="10" id="o3g-eK-VQf"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="waj-8E-WAp" secondAttribute="bottom" constant="15" id="riz-Ou-Qjq"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>

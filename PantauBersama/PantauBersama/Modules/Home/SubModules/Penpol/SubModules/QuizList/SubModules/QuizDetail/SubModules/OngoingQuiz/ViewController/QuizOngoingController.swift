@@ -16,7 +16,7 @@ class QuizOngoingController: UIViewController {
     @IBOutlet weak var btnBChoice: Button!
     @IBOutlet weak var tvBChoice: UITextView!
     @IBOutlet weak var tvAChoice: UITextView!
-    @IBOutlet weak var lbQuestion: Label!
+    @IBOutlet weak var lbQuestion: UITextView!
     @IBOutlet weak var ivQuiz: UIImageView!
     
     private(set) var disposeBag = DisposeBag()
