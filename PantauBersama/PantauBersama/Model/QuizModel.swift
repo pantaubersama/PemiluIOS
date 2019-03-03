@@ -16,6 +16,7 @@ class QuizModel {
     let image: ImageModel
     let questionCount: Int
     let participationStatus: QuizStatus
+    let shareURL: String
     
     init(quiz: Quiz) {
         self.id = quiz.id
@@ -28,6 +29,7 @@ class QuizModel {
                                 mediumSquare: ImageModel.ImageSize(url: quiz.image?.largeSquare?.url ?? ""))
         self.questionCount = quiz.quizQuestionsCount
         self.participationStatus = QuizStatus(rawValue: quiz.participationStatus) ?? .notParticipating
+        self.shareURL = quiz.shareURL
     }
     
     public enum QuizStatus: String {

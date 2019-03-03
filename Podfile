@@ -33,6 +33,7 @@ def application_pods
     pod 'lottie-ios'
     pod 'Firebase/Messaging'
     pod 'FacebookSDK'
+    pod 'FSPagerView'   
 end
 
 

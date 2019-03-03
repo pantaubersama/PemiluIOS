@@ -88,7 +88,7 @@ final class Parser {
                         print("Notifikasi upvote")
                         let responseQuestionNotif = try JSONDecoder().decode(FirebaseQuestionNotifResponse.self, from: data)
                         if let currentNavigation = UIApplication.topViewController()?.navigationController {
-                            let detailAskCoordinator = DetailAskCoordinator(navigationController: currentNavigation, data: responseQuestionNotif.question.id)
+                            let detailAskCoordinator = DetailAskCoordinator(navigationController: currentNavigation, data: responseQuestionNotif.question.id, isFromNotif: true)
                             let disposeBag = DisposeBag()
                             
                             detailAskCoordinator.start()

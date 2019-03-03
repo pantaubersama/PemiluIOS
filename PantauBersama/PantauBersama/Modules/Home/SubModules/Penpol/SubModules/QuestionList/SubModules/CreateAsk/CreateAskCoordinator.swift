@@ -12,9 +12,10 @@ import RxCocoa
 protocol CreateAskNavigator {
     var back: Observable<Void>! { get set }
     var createComplete: Observable<Void>! { get set }
+    func launchDetailAsk(data: String) -> Observable<DetailAskResult>
 }
 
-class CreateAskCoordinator: BaseCoordinator<Void>, CreateAskNavigator {
+class CreateAskCoordinator: BaseCoordinator<Void> {
     var back: Observable<Void>!
     var createComplete: Observable<Void>!
     
@@ -47,4 +48,11 @@ class CreateAskCoordinator: BaseCoordinator<Void>, CreateAskNavigator {
         return Observable.merge(backObs, createObs)
     }
     
+}
+
+extension CreateAskCoordinator: CreateAskNavigator {
+    func launchDetailAsk(data: String) -> Observable<DetailAskResult> {
+        let detailAskCoordinator = DetailAskCoordinator(navigationController: navigationController, data: data, isFromNotif: false)
+        return coordinate(to: detailAskCoordinator)
+    }
 }

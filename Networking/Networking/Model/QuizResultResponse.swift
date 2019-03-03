@@ -16,10 +16,16 @@ public struct QuizResultResponse: Codable {
     public let data: DataClass
     
     public struct DataClass: Codable {
+        public let shareURL: String?
         public let teams: [TeamElement]
         public let answers: [Int]
         public let quiz: QuizResultDetailResponse
         public let user: User?
+        
+        private enum CodingKeys: String, CodingKey {
+            case shareURL = "share_url"
+            case teams, answers, quiz, user
+        }
     }
     
     public struct TeamElement: Codable {
