@@ -143,7 +143,6 @@
 		132EE0352216A39500F0429E /* WordstadiumListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132EE0342216A39500F0429E /* WordstadiumListViewController.swift */; };
 		132EE0372216A3CC00F0429E /* WordstadiumListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132EE0362216A3CC00F0429E /* WordstadiumListViewModel.swift */; };
 		132EE0392216A44E00F0429E /* WordstadiumListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132EE0382216A44E00F0429E /* WordstadiumListCoordinator.swift */; };
-		137369442217175300B698BA /* WordstadiumListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 137369432217175300B698BA /* WordstadiumListHeaderView.swift */; };
 		137369462217176100B698BA /* WordstadiumListHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 137369452217176100B698BA /* WordstadiumListHeaderView.xib */; };
 		137A29E821E11D0400F19072 /* HeaderQuizView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 137A29E721E11D0400F19072 /* HeaderQuizView.swift */; };
 		137A29EC21E11E7E00F19072 /* TrendHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 137A29EB21E11E7E00F19072 /* TrendHeaderView.swift */; };
@@ -316,6 +315,7 @@
 		84619D4B21DC9A6A00EB58CF /* WebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84619D4A21DC9A6A00EB58CF /* WebViewModel.swift */; };
 		84619D4D21DC9ABD00EB58CF /* WebCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84619D4C21DC9ABD00EB58CF /* WebCoordinator.swift */; };
 		846E8EFD21F767630036FEA2 /* SosmedController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 846E8EFC21F767630036FEA2 /* SosmedController.xib */; };
+		8474BF9C222D251600610301 /* WordstadiumListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 137369432217175300B698BA /* WordstadiumListHeaderView.swift */; };
 		8475330D21F60F6000BF3F66 /* ComingsoonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8475330C21F60F6000BF3F66 /* ComingsoonViewModel.swift */; };
 		8478B8DF21FF1B9900CE192A /* NotificationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8478B8DE21FF1B9900CE192A /* NotificationController.xib */; };
 		8478B8E121FF1C6600CE192A /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8478B8E021FF1C6600CE192A /* NotificationController.swift */; };
@@ -2971,6 +2971,8 @@
 				84B8C1D02215823F004BC1FE /* PromoteView.swift */,
 			);
 			path = PromoteView;
+			sourceTree = "<group>";
+		};
 		84BE8DE7222686330079332A /* Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -3607,7 +3609,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/../Pods/Target Support Files/Pods-PantauBersama-PantauBersamaTests/Pods-PantauBersama-PantauBersamaTests-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-PantauBersama-PantauBersamaTests/Pods-PantauBersama-PantauBersamaTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
@@ -3621,9 +3623,9 @@
 				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKShareKit/FBSDKShareKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FSPagerView/FSPagerView.framework",
 				"${BUILT_PRODUCTS_DIR}/FacebookCore/FacebookCore.framework",
 				"${BUILT_PRODUCTS_DIR}/FacebookShare/FacebookShare.framework",
-				"${BUILT_PRODUCTS_DIR}/FSPagerView/FSPagerView.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/LTHRadioButton/LTHRadioButton.framework",
@@ -3651,9 +3653,9 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKShareKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FSPagerView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookCore.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookShare.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FSPagerView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LTHRadioButton.framework",
@@ -3666,7 +3668,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-PantauBersama-PantauBersamaTests/Pods-PantauBersama-PantauBersamaTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PantauBersama-PantauBersamaTests/Pods-PantauBersama-PantauBersamaTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		8428AAAB21C7B1D30008E975 /* ShellScript */ = {
@@ -3695,7 +3697,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/../Pods/Target Support Files/Pods-PantauBersama/Pods-PantauBersama-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-PantauBersama/Pods-PantauBersama-resources.sh",
 				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework/TwitterKitResources.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
@@ -3706,7 +3708,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-PantauBersama/Pods-PantauBersama-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PantauBersama/Pods-PantauBersama-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		BD69F6DEF48FE2F0A82FA3A3 /* [CP] Check Pods Manifest.lock */ = {
@@ -3739,7 +3741,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/../Pods/Target Support Files/Pods-PantauBersama-PantauBersamaTests/Pods-PantauBersama-PantauBersamaTests-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-PantauBersama-PantauBersamaTests/Pods-PantauBersama-PantauBersamaTests-resources.sh",
 				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework/TwitterKitResources.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
@@ -3750,7 +3752,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-PantauBersama-PantauBersamaTests/Pods-PantauBersama-PantauBersamaTests-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PantauBersama-PantauBersamaTests/Pods-PantauBersama-PantauBersamaTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D1138D5EE223F3B675D546DA /* [CP] Check Pods Manifest.lock */ = {
@@ -3783,7 +3785,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/../Pods/Target Support Files/Pods-PantauBersama/Pods-PantauBersama-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-PantauBersama/Pods-PantauBersama-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
@@ -3797,9 +3799,9 @@
 				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKShareKit/FBSDKShareKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FSPagerView/FSPagerView.framework",
 				"${BUILT_PRODUCTS_DIR}/FacebookCore/FacebookCore.framework",
 				"${BUILT_PRODUCTS_DIR}/FacebookShare/FacebookShare.framework",
-				"${BUILT_PRODUCTS_DIR}/FSPagerView/FSPagerView.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/LTHRadioButton/LTHRadioButton.framework",
@@ -3827,9 +3829,9 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKShareKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FSPagerView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookCore.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookShare.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FSPagerView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LTHRadioButton.framework",
@@ -3842,7 +3844,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-PantauBersama/Pods-PantauBersama-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PantauBersama/Pods-PantauBersama-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -3852,6 +3854,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8474BF9C222D251600610301 /* WordstadiumListHeaderView.swift in Sources */,
 				1385A3E521DBBA8200C2910F /* QuestionController.swift in Sources */,
 				84E521B621F4A22B00B7CCBA /* StartOnboardingController.swift in Sources */,
 				1385A3E421DBBA6700C2910F /* BannerHeaderView.swift in Sources */,

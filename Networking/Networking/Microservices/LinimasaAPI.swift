@@ -123,7 +123,7 @@ extension LinimasaAPI: TargetType {
              .getMyJanjiPolitiks,
              .appVersions,
              .getUserJanpol,
-             .getTwitterUsername:
+             .getTwitterUsername,
              .getDetailJanpol:
             return .get
         case .deleteJanjiPolitiks:
