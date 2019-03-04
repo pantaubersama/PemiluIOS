@@ -1359,8 +1359,8 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 812AA9B85637C5C9D9F49732B354CE4C;
-			remoteInfo = GoogleUtilities;
+			remoteGlobalIDString = 98760D8C46CAB71FA6BF25A193505361;
+			remoteInfo = Protobuf;
 		};
 		0A6390FEE74C55AC4568652008B6526A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1604,8 +1604,8 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = EFF87187B46551C36797F2B899C54212;
-			remoteInfo = IQKeyboardManagerSwift;
+			remoteGlobalIDString = B30AB79ACD1A47152F19942D476DACAF;
+			remoteInfo = FBSDKLoginKit;
 		};
 		661E7578E48140FB7966395BA730A122 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1635,12 +1635,12 @@
 			remoteGlobalIDString = 884BAE1384CFCD139B60928E711B40F6;
 			remoteInfo = FacebookShare;
 		};
-		73F2CAD51C1D2E376CC42F0FE6331661 /* PBXContainerItemProxy */ = {
+		76A328A726D35CC48223D6FD721AC637 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = D3F6312F5357FE21849CF5B9C1C2C9CB;
-			remoteInfo = RxSwift;
+			remoteGlobalIDString = 34E93DA60211B9B101734067260B25FE;
+			remoteInfo = RxDataSources;
 		};
 		77B8A0307C2DB95F34F9FA11E40E476A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1746,6 +1746,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 01D165410A4A48B9A21A0074E7AF9578;
 			remoteInfo = Differentiator;
+		};
+		99280BF9050FE953E6AD977662263383 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 357DAB400AFF44C000D2384C7F35CE1F;
+			remoteInfo = FBSDKCoreKit;
 		};
 		9AE91BFC5F220229D174DDAF0D3B5AB6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1891,15 +1898,15 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 9920FE112903F1A8C550230650AD3254;
-			remoteInfo = Bolts;
+			remoteGlobalIDString = B16F84F98585051745AE5A338B02BE6A;
+			remoteInfo = Result;
 		};
-		D486A31F7FD933430902ECB3F7A26EC3 /* PBXContainerItemProxy */ = {
+		D670ACFE4542CA3E33EE2F41903922C8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = B16F84F98585051745AE5A338B02BE6A;
-			remoteInfo = Result;
+			remoteGlobalIDString = 6A2CECF3D46342C37B376A284ABDE8C4;
+			remoteInfo = "lottie-ios";
 		};
 		D4CF7587780172769CF3FB9159DDD6E2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1935,6 +1942,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = D3F6312F5357FE21849CF5B9C1C2C9CB;
 			remoteInfo = RxSwift;
+		};
+		E2A1A66DF4CBC50436A3A5AD5815AA76 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 49A4C94D1E2B0125D0D696E7DD30909F;
+			remoteInfo = RxAtomic;
 		};
 		E478FAF770091188648521290F6E51EB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -3665,6 +3679,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		ACF19306AFCD6982766AD1502D855597 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4B3F37A8DEF783013B876CE9A49831D5 /* Foundation.framework in Frameworks */,
+				E8CF3E5089B15EE33748F4521FCDDC1B /* UIKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B13D6A438172C85B6A19C6EE5D69BD0F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0535272881529676DF55384127F3CF0B /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B886D41EF763DE44F455CB7E74E9A560 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -4332,8 +4363,8 @@
 				13273C808506A6EACE6868C889C5A4EC /* Resources */,
 				DE5DD3D298836AC51FFADFFB4823F466 /* Support Files */,
 			);
-			name = FBSDKCoreKit;
-			path = FBSDKCoreKit;
+			name = GoogleAppMeasurement;
+			path = GoogleAppMeasurement;
 			sourceTree = "<group>";
 		};
 		6CF50FD49CD062F22D8E7435BBD35911 /* Frameworks */ = {
@@ -5415,7 +5446,8 @@
 			children = (
 				0412377A62A3B4689833E9D95589DA84 /* Crashlytics.framework */,
 			);
-			name = Frameworks;
+			name = "Support Files";
+			path = "../Target Support Files/FBSDKCoreKit";
 			sourceTree = "<group>";
 		};
 		A9365E0E470F750ECE2EC3F7CAE6277D /* Support Files */ = {
@@ -5497,8 +5529,8 @@
 				22AE5BA029C8916830331A91C772339C /* Fabric.h */,
 				D7218AC2AF7AD4B5A6D9305E28761A77 /* Frameworks */,
 			);
-			name = Fabric;
-			path = Fabric;
+			name = FBSDKMarketingKit;
+			path = FBSDKMarketingKit;
 			sourceTree = "<group>";
 		};
 		BBCFCD6E7B7EC582324E0238F3EAD931 /* FacebookShare */ = {
@@ -5597,7 +5629,7 @@
 				D7DBA8224CE72F06F5D6C4BFDD6025A7 /* RxSwift.framework */,
 				CAF1D0D60D68BAB49548E74CFFE04334 /* iOS */,
 			);
-			name = Frameworks;
+			name = AppLinks;
 			sourceTree = "<group>";
 		};
 		C60B62759EB098975FB3D7E55A380EBB /* Pods */ = {
@@ -5656,7 +5688,7 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
-		CF1408CF629C7361332E53B88F7BD30C = {
+		CAC545B35C5D5E36F2627CF9D5526024 /* LTHRadioButton */ = {
 			isa = PBXGroup;
 			children = (
 				24390EFD555DD124430DFF9724065945 /* Podfile */,
@@ -6082,6 +6114,25 @@
 			path = "Target Support Files/Pods-NetworkingTests";
 			sourceTree = "<group>";
 		};
+		FB7F48A7BD9066BDC5D7F5F5E52C791C /* AppDelegateSwizzler */ = {
+			isa = PBXGroup;
+			children = (
+				88C8E2E22FB80C0F59BC9B761B5F0CC3 /* GULAppDelegateSwizzler.h */,
+				08F5BF8DE82FBA459838D4215C1E5529 /* GULAppDelegateSwizzler.m */,
+				518BE2AD1A2F726E2650B70582C63FB7 /* GULAppDelegateSwizzler_Private.h */,
+				2B812C6D1A5C8322CB3772A61CF2A4E6 /* GULLoggerCodes.h */,
+			);
+			name = AppDelegateSwizzler;
+			sourceTree = "<group>";
+		};
+		FE1B1839908A777E079A0721CE6B8C70 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C440A309E142C382DEFC80BB499AABE4 /* FBSDKMarketingKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -6434,6 +6485,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		922AD23808A68E3FB2406021509FE7C2 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D4B345874498F58FF808574113B9CA89 /* Pods-PantauBersama-PantauBersamaTests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9D52E1B747BD2AA430035965C1E8806C /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -6515,11 +6574,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D5BC394A527A7D3931E161558BDA4360 /* Headers */ = {
+		DDC1EAFFB75ED353EAA868246BD4C075 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F2EF586A038C19A6E73C0DF5938F9704 /* Differentiator-umbrella.h in Headers */,
+				D3E027E69657C19230839A3B8C721D5E /* Pods-PantauBersama-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7409,6 +7468,7 @@
 				6DB544365B1C0449BF98D2AB0DC0C69C /* FBSDKShareKit */,
 				3FB564B74024F4F8B31C2F97D65AC65B /* FirebaseCore */,
 				F46F5CC6CB69D1AB2D75BE7FD9DB9730 /* FirebaseMessaging */,
+				5CCDAA0C5689BA68365335D3086C30F1 /* FSPagerView */,
 				812AA9B85637C5C9D9F49732B354CE4C /* GoogleUtilities */,
 				EFF87187B46551C36797F2B899C54212 /* IQKeyboardManagerSwift */,
 				6A2CECF3D46342C37B376A284ABDE8C4 /* lottie-ios */,
@@ -7433,6 +7493,13 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		037B2A52EA0FCDB82B4AEEF7CAC02124 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		0BD5EA50F96A54A34EFCDF9BD4EE855C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -7547,14 +7614,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A57288FF4219881874EF25E32FF7A1F3 /* Resources */ = {
+		B25CE3EB45E4B843CB952AE46B6EE103 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B25CE3EB45E4B843CB952AE46B6EE103 /* Resources */ = {
+		B45DA452E3BA1377445ACE9609F0D1A0 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -8401,6 +8468,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A452343AF73CDE53E3E857C5241F6A97 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9CEA6343E90F635A51CEEBCB2F708ABD /* Pods-PantauBersama-PantauBersamaTests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AA34DE81B0659B1BF68A0B62E9B3FDA0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -8711,6 +8786,12 @@
 			target = 9920FE112903F1A8C550230650AD3254 /* Bolts */;
 			targetProxy = DB4326ECCFD50A0401F0FEFB0F58569C /* PBXContainerItemProxy */;
 		};
+		0E68E5062701ACDBD986F371161BCE58 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Alamofire;
+			target = 3383968E74B5371B20BB519B170DC7FD /* Alamofire */;
+			targetProxy = E58FCFF0187E47FA2230C9503105086C /* PBXContainerItemProxy */;
+		};
 		175279D0D004FA03E9072B8210FAAA0D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = RxAtomic;
@@ -8957,6 +9038,12 @@
 			target = 1C26CB13ED77CE16EBC63398FE880D5A /* RxCocoa */;
 			targetProxy = 280CA8483513B56AC5CAC477690E10F0 /* PBXContainerItemProxy */;
 		};
+		75D8EBBE5C9DC9E01AD32B3CDF9BE5F4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = IQKeyboardManagerSwift;
+			target = EFF87187B46551C36797F2B899C54212 /* IQKeyboardManagerSwift */;
+			targetProxy = 578BA852B8C22E7F21C4E1A69164D8CB /* PBXContainerItemProxy */;
+		};
 		774AA7AA37BA9791CB69247983468CFE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = FirebaseCore;
@@ -9047,6 +9134,12 @@
 			target = 34E93DA60211B9B101734067260B25FE /* RxDataSources */;
 			targetProxy = 4DDDE962399FB78EE7958EF4B01AA428 /* PBXContainerItemProxy */;
 		};
+		B1ABCE394340CD5CA68E82D85F78D776 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Moya;
+			target = D3F30ECAD28E60D7AF459F5757D2D0BB /* Moya */;
+			targetProxy = F73578EBE720C1FBEFAB3074B797F1A5 /* PBXContainerItemProxy */;
+		};
 		B3BBB1073D45F7B1A0D125BDEB6037E9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = RxDataSources;
@@ -9082,6 +9175,12 @@
 			name = Moya;
 			target = D3F30ECAD28E60D7AF459F5757D2D0BB /* Moya */;
 			targetProxy = 37736AEA010469F4F07A5D34498848A8 /* PBXContainerItemProxy */;
+		};
+		C0B79EE09C438409376ECDCD1DD66B97 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "lottie-ios";
+			target = 6A2CECF3D46342C37B376A284ABDE8C4 /* lottie-ios */;
+			targetProxy = D670ACFE4542CA3E33EE2F41903922C8 /* PBXContainerItemProxy */;
 		};
 		C6186107559691AC8089717278086619 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -9637,6 +9736,45 @@
 			};
 			name = Release;
 		};
+		2CE3810D9E1402B44621B056B560E498 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DDA791B6C8716821A2301514C4960CFE /* Pods-PantauBersama-PantauBersamaTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-PantauBersama-PantauBersamaTests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-PantauBersama-PantauBersamaTests/Pods-PantauBersama-PantauBersamaTests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		2F4DCE01572A913D4D8DBBD09CDAC4A0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B0B841DF83E9F0086B3214A5EC99CE97 /* Bolts.xcconfig */;
@@ -9962,7 +10100,7 @@
 		};
 		62AF540A103A62931261C7A1F5A054C2 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 42C4C9CF9FABD7A8D62DDACB53040FBF /* Alamofire.xcconfig */;
+			baseConfigurationReference = AD7A7C1BCD7274D835C39C5CBDA60A73 /* Alamofire.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -9985,6 +10123,42 @@
 				MODULEMAP_FILE = "Target Support Files/Alamofire/Alamofire.modulemap";
 				PRODUCT_MODULE_NAME = Alamofire;
 				PRODUCT_NAME = Alamofire;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		6392089BD602AC5C9B32FED257004DE1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 42C4C9CF9FABD7A8D62DDACB53040FBF /* Alamofire.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/FSPagerView/FSPagerView-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/FSPagerView/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/FSPagerView/FSPagerView.modulemap";
+				PRODUCT_MODULE_NAME = FSPagerView;
+				PRODUCT_NAME = FSPagerView;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
@@ -10389,6 +10563,41 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		943449F1A477BA95EF70F8DE2C9AC56A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CFE327A7C19838D2B4A1D5B0B36B32FC /* FSPagerView.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/FSPagerView/FSPagerView-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/FSPagerView/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/FSPagerView/FSPagerView.modulemap";
+				PRODUCT_MODULE_NAME = FSPagerView;
+				PRODUCT_NAME = FSPagerView;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -11562,6 +11771,15 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		2CB8ACF2C504636407871EF3CD8F508F /* Build configuration list for PBXNativeTarget "Pods-PantauBersama-PantauBersamaTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AE03C7CC7684B4E16AC5BB4003A585B0 /* Debug */,
+				2CE3810D9E1402B44621B056B560E498 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		3B91B77FBB13EFD33FB1AE6F88ABA7C5 /* Build configuration list for PBXNativeTarget "IQKeyboardManagerSwift" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -11585,6 +11803,15 @@
 			buildConfigurations = (
 				C2ED92E1E3363906AC0A5C6C41F13346 /* Debug */,
 				62787F6EEBF16F413221FF3249FCDB25 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		455DC0E8145095CFB50C271CDB391F16 /* Build configuration list for PBXNativeTarget "Pods-PantauBersama" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0DE80AB0A4952B110627008D906F21E5 /* Debug */,
+				80D7E46CAD0E1A6168E779F94D7065E4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

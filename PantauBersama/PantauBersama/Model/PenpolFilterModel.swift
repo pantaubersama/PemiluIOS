@@ -40,7 +40,8 @@ extension PenpolFilterModel {
         
         let newest = FilterItem(id: "question-newest", paramKey: "order_by", paramValue: "created_at", title: "Paling Baru", type: .radio, isSelected: UserDefaults.isSelectedFilter(value: "question-newest"))
         let voteCount = FilterItem(id: "question-votecount", paramKey: "order_by", paramValue: "cached_votes_up", title: "Paling Banyak Divoting", type: .radio, isSelected: UserDefaults.isSelectedFilter(value: "question-votecount"))
-        let orderFilter = PenpolFilterModel(paramKey: "order_by", title: "Urutan", items: [newest, voteCount])
+        let trending = FilterItem(id: "question-trending", paramKey: "order_by", paramValue: "hot_score", title: "Trending", type: .radio, isSelected: UserDefaults.isSelectedFilter(value: "question-trending"))
+        let orderFilter = PenpolFilterModel(paramKey: "order_by", title: "Urutan", items: [newest, voteCount, trending])
         
         filterItems.append(userFilter)
         filterItems.append(orderFilter)

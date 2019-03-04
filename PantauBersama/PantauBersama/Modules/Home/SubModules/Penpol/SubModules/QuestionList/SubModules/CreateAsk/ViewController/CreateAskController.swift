@@ -14,10 +14,11 @@ import Lottie
 
 class CreateAskController: UIViewController {
     
-    @IBOutlet weak var ivAvatar: UIImageView!
-    @IBOutlet weak var lbFullname: Label!
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var ivAvatar: CircularUIImageView!
     @IBOutlet weak var tvQuestion: UITextView!
     @IBOutlet weak var lbQuestionLimit: Label!
+    @IBOutlet weak var constraintTopTableView: NSLayoutConstraint!
     
     lazy var loadingAnimation: LOTAnimationView = {
         let loadingAnimation = LOTAnimationView(name: "loading-pantau")
@@ -47,6 +48,54 @@ class CreateAskController: UIViewController {
         tvQuestion.delegate = self
         tvQuestion.text = "Tulis pertanyaan terbaikmu di sini!"
         tvQuestion.textColor = UIColor.lightGray
+        
+        // MARK
+        // Setup Recent TableView
+        tableView.delegate = nil
+        tableView.dataSource = nil
+        tableView.registerReusableCell(RecentAskCell.self)
+        tableView.tableFooterView = UIView()
+        tableView.estimatedRowHeight = 50.0
+        tableView.separatorStyle = .none
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        
+        viewModel.output.itemsO
+            .drive(tableView.rx.items) { tableView, row, item in
+                let cell = tableView.dequeueReusableCell() as RecentAskCell
+                cell.tag = row
+                cell.configureCell(item: RecentAskCell.Input(viewModel: self.viewModel, question: item))
+                return cell
+            }
+            .disposed(by: disposeBag)
+        
+        tableView.rx.contentOffset
+            .distinctUntilChanged()
+            .flatMapLatest { [unowned self] (offset) -> Observable<Void> in
+                if offset.y > self.tableView.contentSize.height -
+                    (self.tableView.frame.height * 2) {
+                    return Observable.just(())
+                } else {
+                    return Observable.empty()
+                }
+            }
+            .bind(to: viewModel.input.nextTrigger)
+            .disposed(by: disposeBag)
+        
+        tableView.rx.itemSelected
+            .do(onNext: { [unowned self] (_) in
+                self.tvQuestion.endEditing(true)
+            })
+            .bind(to: viewModel.input.itemSelectedTrigger)
+            .disposed(by: disposeBag)
+        
+        viewModel.output.itemSelectedO
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.buttonRecentO
+            .drive()
+            .disposed(by: disposeBag)
+        
         // MARK
         // bind View Model
         back.rx.tap
@@ -74,9 +123,9 @@ class CreateAskController: UIViewController {
             guard let weakSelf = self else { return }
             // TODO: set avatar when user have avatar property
             if let thumbnail = user?.user.avatar.thumbnail.url {
-                self?.ivAvatar.af_setImage(withURL: URL(string: thumbnail)!)
+                weakSelf.ivAvatar.af_setImage(withURL: URL(string: thumbnail)!)
             }
-            weakSelf.lbFullname.text = (user?.user.fullName ?? "")
+//            weakSelf.lbFullname.text = (user?.user.fullName ?? "")
         })
         .disposed(by: disposeBag)
         
@@ -93,19 +142,11 @@ class CreateAskController: UIViewController {
             .drive(lbQuestionLimit.rx.text)
             .disposed(by: disposeBag)
         
-        let value = BehaviorRelay<String>(value: "")
-        
         tvQuestion.rx.text
             .orEmpty
+            .distinctUntilChanged()
+            .filter({ $0 != "Tulis pertanyaan terbaikmu di sini!" })
             .bind(to: viewModel.input.questionInput)
-            .disposed(by: disposeBag)
-        
-        
-        value
-            .asObservable()
-            .subscribe { text in
-                print("this is the text \(text)")
-            }
             .disposed(by: disposeBag)
         
         viewModel.output.enableO
@@ -139,12 +180,28 @@ extension CreateAskController: UITextViewDelegate {
             textView.text = nil
             textView.textColor = Color.primary_black
         }
+        self.viewModel.input.questionInput.onNext(textView.text)
+        switch UIScreen.main.bounds.height {
+        case 568:
+            self.constraintTopTableView.constant = 143
+        case 667:
+            self.constraintTopTableView.constant = 173
+        case 736:
+            self.constraintTopTableView.constant = 193
+        case 812:
+            self.constraintTopTableView.constant = 213
+        default:
+            break
+        }
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
+        self.viewModel.input.questionInput.onNext(textView.text)
         if textView.text.isEmpty {
             textView.text = "Tulis pertanyaan terbaikmu di sini!"
             textView.textColor = UIColor.lightGray
+            self.viewModel.input.questionInput.onNext(" ")
         }
+        self.constraintTopTableView.constant = 0
     }
 }

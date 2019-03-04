@@ -45,7 +45,7 @@ class QuizSummaryController: UIViewController {
         viewModel.output.quiz
             .drive(onNext: { [unowned self]quizModel in
                 self.ivQuiz.contentMode = .scaleAspectFill
-                self.ivQuiz.show(fromURL: quizModel.image.url)
+                self.ivQuiz.show(fromURL: quizModel?.image.url ?? "")
             })
             .disposed(by: disposeBag)
         

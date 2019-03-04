@@ -19,7 +19,11 @@ class CreateAskViewModel: ViewModelType {
     struct Input {
         let backTrigger: AnyObserver<Void>
         let createTrigger: AnyObserver<Void>
-        let questionInput: BehaviorRelay<String>
+        let questionInput: AnyObserver<String>
+        let refreshTrigger: AnyObserver<String>
+        let nextTrigger: AnyObserver<Void>
+        let itemSelectedTrigger: AnyObserver<IndexPath>
+        let buttonRecentI: AnyObserver<QuestionModel>
     }
     
     struct Output {
@@ -27,11 +31,18 @@ class CreateAskViewModel: ViewModelType {
         let userData: Driver<UserResponse?>
         let loadingIndicator: Driver<Bool>
         let enableO: Driver<Bool>
+        let itemsO: Driver<[QuestionModel]>
+        let itemSelectedO: Driver<Void>
+        let buttonRecentO: Driver<Void>
     }
     
     private let createSubject = PublishSubject<Void>()
     private let backSubject = PublishSubject<Void>()
-    private let questionRelay = BehaviorRelay<String>(value: "")
+    private let questionRelay = PublishSubject<String>()
+    private let refreshSubject = PublishSubject<String>()
+    private let nextSubject = PublishSubject<Void>()
+    private let itemSelectedS = PublishSubject<IndexPath>()
+    private let buttonRecentS = PublishSubject<QuestionModel>()
     
     private let activityIndicator = ActivityIndicator()
     private let errorTracker = ErrorTracker()
@@ -44,10 +55,42 @@ class CreateAskViewModel: ViewModelType {
         
         input = Input(backTrigger: backSubject.asObserver(),
                       createTrigger: createSubject.asObserver(),
-                      questionInput: questionRelay)
+                      questionInput: questionRelay.asObserver(),
+                      refreshTrigger: refreshSubject.asObserver(),
+                      nextTrigger: nextSubject.asObserver(),
+                      itemSelectedTrigger: itemSelectedS.asObserver(),
+                      buttonRecentI: buttonRecentS.asObserver())
+        
+        
+        // MARK
+        // Get Recent QuestionModel
+        let items = questionRelay
+            .flatMapLatest { (s) -> Observable<[QuestionModel]> in
+                print("current string : \(s)")
+                if s.count == 0 {
+                    return Observable.empty()
+                } else {
+                    return self.paginateItems(nextBatchTrigger: self.nextSubject.asObservable(), query: s)
+                        .trackError(self.errorTracker)
+                        .trackActivity(self.activityIndicator)
+                        .catchErrorJustReturn([])
+                }
+            }
+        
+        let itemSelected = itemSelectedS
+            .withLatestFrom(items) { (indexPath, question)  in
+                return question[indexPath.row]
+            }.flatMapLatest { (model) -> Observable<DetailAskResult> in
+                return navigator.launchDetailAsk(data: model.id)
+            }.mapToVoid()
+            .asDriverOnErrorJustComplete()
+        
 
         let create = createSubject
-            .flatMap({ self.createQuestion() })
+            .withLatestFrom(questionRelay)
+            .flatMapLatest({ [unowned self] (s) -> Observable<QuestionModel> in
+                return self.createQuestion(body: s)
+            })
             .mapToVoid()
             .trackActivity(activityIndicator)
             .trackError(errorTracker)
@@ -67,23 +110,77 @@ class CreateAskViewModel: ViewModelType {
         let enable = questionRelay
             .map { (s) -> Bool in
                 return s.count > 0 && !s.containsInsensitive("Tulis pertanyaan terbaikmu di sini!")
+                    && s != " "
             }.startWith(false)
             .asDriverOnErrorJustComplete()
+        
+        let recentSelected = buttonRecentS
+            .flatMapLatest { (model) -> Observable<DetailAskResult> in
+                return navigator.launchDetailAsk(data: model.id)
+        }.mapToVoid()
+        .asDriverOnErrorJustComplete()
 
         output = Output(createSelected: create,
                         userData: user,
                         loadingIndicator: activityIndicator.asDriver(),
-                        enableO: enable)
+                        enableO: enable,
+                        itemsO: items.asDriverOnErrorJustComplete(),
+                        itemSelectedO: itemSelected,
+                        buttonRecentO: recentSelected)
     }
     
-    private func createQuestion() -> Observable<QuestionModel> {
+    private func createQuestion(body: String) -> Observable<QuestionModel> {
         return NetworkService.instance
-            .requestObject(TanyaKandidatAPI.createQuestion(body: questionRelay.value), c: QuestionResponse.self)
+            .requestObject(TanyaKandidatAPI.createQuestion(body: body), c: QuestionResponse.self)
             .map({ (questionResponse) -> QuestionModel in
                 return QuestionModel(question: questionResponse.data.question)
             })
             .asObservable()
             .catchErrorJustComplete()
+    }
+    
+    func recursivelyPaginateItems(
+        batch: Batch,
+        nextBatchTrigger: Observable<Void>,
+        query: String) ->
+        Observable<Page<[QuestionModel]>> {
+            return NetworkService.instance
+                .requestObject(TanyaKandidatAPI.getQuestions(query: query, page: batch.page, perpage: batch.limit, filteredBy: "user_verified_all", orderedBy: ""), c: QuestionsResponse.self)
+                .map({ self.transformToPage(response: $0, batch: batch) })
+                .asObservable()
+                .paginate(nextPageTrigger: nextBatchTrigger, hasNextPage: { (result) -> Bool in
+                    return result.batch.next().hasNextPage
+                }, nextPageFactory: { (result) -> Observable<Page<[QuestionModel]>> in
+                    return self.recursivelyPaginateItems(batch: result.batch.next(), nextBatchTrigger: nextBatchTrigger, query: query)
+                })
+                .share(replay: 1, scope: .whileConnected)
+    }
+    
+    private func transformToPage(response: QuestionsResponse, batch: Batch) -> Page<[QuestionModel]> {
+        let nextBatch = Batch(offset: batch.offset,
+                              limit: response.data.meta.pages.perPage ,
+                              total: response.data.meta.pages.total,
+                              count: response.data.meta.pages.page,
+                              page: response.data.meta.pages.page)
+        return Page<[QuestionModel]>(
+            item: generateQuestions(from: response),
+            batch: nextBatch
+        )
+    }
+    
+    private func paginateItems(
+        batch: Batch = Batch.initial,
+        nextBatchTrigger: Observable<Void>, query: String) -> Observable<[QuestionModel]> {
+        return recursivelyPaginateItems(batch: batch, nextBatchTrigger: nextBatchTrigger, query: query)
+            .scan([], accumulator: { (accumulator, page) in
+                return accumulator + page.item
+            })
+    }
+    
+    private func generateQuestions(from questionResponse: QuestionsResponse) -> [QuestionModel] {
+        return questionResponse.data.questions.map({ (questionResponse) -> QuestionModel in
+            return QuestionModel(question: questionResponse)
+        })
     }
     
 }

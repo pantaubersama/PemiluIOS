@@ -70,6 +70,7 @@ PODS:
     - GoogleUtilities/Environment (~> 5.2)
     - GoogleUtilities/Reachability (~> 5.2)
     - Protobuf (~> 3.1)
+  - FSPagerView (0.8.2)
   - GoogleAppMeasurement (5.4.0):
     - GoogleUtilities/AppDelegateSwizzler (~> 5.2)
     - GoogleUtilities/MethodSwizzler (~> 5.2)
@@ -133,6 +134,7 @@ DEPENDENCIES:
   - FBSDKLoginKit
   - Firebase/Core
   - Firebase/Messaging
+  - FSPagerView
   - IQKeyboardManagerSwift (~> 6.2.0)
   - lottie-ios
   - LTHRadioButton
@@ -164,6 +166,7 @@ SPEC REPOS:
     - FirebaseCore
     - FirebaseInstanceID
     - FirebaseMessaging
+    - FSPagerView
     - GoogleAppMeasurement
     - GoogleUtilities
     - IQKeyboardManagerSwift
@@ -201,6 +204,7 @@ SPEC CHECKSUMS:
   FirebaseCore: 8f49b70f57ab5cbb032ef41d64992ded21606459
   FirebaseInstanceID: e2fa4cb35ef5558c200f7f0ad8a53e212215f93e
   FirebaseMessaging: b412996f6a09337d232bb3a6676ce4d1f353d024
+  FSPagerView: 816a18842306973cc7cc6df8a5332272f7815c30
   GoogleAppMeasurement: 98b71f5e04142793729a5ef23e5b96651ff4b70f
   GoogleUtilities: 95996bea7c7d9b8fb811b7507669a4a8762f80c7
   IQKeyboardManagerSwift: b07ccf9d8cafe993dcd6cb794eb4ba34611a0c4e
@@ -218,6 +222,6 @@ SPEC CHECKSUMS:
   TwitterKit: 5e4f41d70b9abdb41df5467f52d7aa2c0fd26ebb
   URLEmbeddedView: 08237f670e68c9ba7ae98f7de9e3e48ae2492126
 
-PODFILE CHECKSUM: c907fd154821b5108d07877e6605a5f0cb6a92f4
+PODFILE CHECKSUM: 6c608a2d03c8d22fca992d8f2dafdb04cab42930
 
 COCOAPODS: 1.5.3
