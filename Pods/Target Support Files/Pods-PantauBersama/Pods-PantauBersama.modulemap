@@ -1,6 +1,0 @@
-framework module Pods_PantauBersama {
-  umbrella header "Pods-PantauBersama-umbrella.h"
-
-  export *
-  module * { export * }
-}
