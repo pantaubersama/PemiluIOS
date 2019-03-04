@@ -134,6 +134,19 @@ extension ChallengeController {
         let isMyChallenge = myEmail == (challenger?.email ?? "")
         let isAudience = opponents.contains(where: { ($0.email ?? "") == myEmail })
         
+        switch data.progress {
+        case .waitingConfirmation:
+            self.lblHeader.text = data.type.title
+        case .waitingOpponent:
+            self.lblHeader.text = data.type.title
+        case .comingSoon:
+            self.lblHeader.text = data.progress.title
+        case .done:
+            self.lblHeader.text = data.progress.title
+        default:
+            self.lblHeader.text = data.type.title
+        }
+        
         self.lblHeader.text = data.type.title
         
         // configure header challenger side
@@ -146,10 +159,15 @@ extension ChallengeController {
             self.headerTantanganView.containerOpponent.isHidden = false
             self.headerTantanganView.avatarOpponent.show(fromURL: opponent.avatar?.url ?? "")
             
-            self.headerTantanganView.lblNameOpponent.isHidden = false
-            self.headerTantanganView.lblNameOpponent.text = opponent.fullName
-            self.headerTantanganView.lblUsernameOpponent.isHidden = false
-            self.headerTantanganView.lblUsernameOpponent.text = opponent.username
+            if opponent.role == .opponent {
+                self.headerTantanganView.lblNameOpponent.isHidden = false
+                self.headerTantanganView.lblNameOpponent.text = opponent.fullName
+                self.headerTantanganView.lblUsernameOpponent.isHidden = false
+                self.headerTantanganView.lblUsernameOpponent.text = opponent.username
+            } else {
+                self.headerTantanganView.lblCountOpponent.isHidden = false
+                self.headerTantanganView.lblCountOpponent.text = data.type == .directChallenge ? "?" : "\(opponents.count)"
+            }
         }
         
         // configure challenge detail view
@@ -201,6 +219,19 @@ extension ChallengeController {
             self.containerHeader.backgroundColor = #colorLiteral(red: 0.1167989597, green: 0.5957490802, blue: 0.8946897388, alpha: 1)
             self.tableView.isHidden = true
             self.containerAcceptChallenge.isHidden = true
+        case .done:
+            self.titleContent.text = "Debat selesai,"
+            self.subtitleContent.text = "Inilah hasilnya:"
+            self.headerTantanganView.configureType(type: .done)
+            self.containerHeader.backgroundColor = #colorLiteral(red: 0.3294117647, green: 0.2549019608, blue: 0.6, alpha: 1)
+            self.lblHeader.text = "DONE"
+            self.imageContent.image = #imageLiteral(resourceName: "doneMask")
+            self.containerDebatDone.isHidden = false
+            self.btnTerima.backgroundColor = #colorLiteral(red: 1, green: 0.5569574237, blue: 0, alpha: 1)
+            self.btnImageTerima.image = #imageLiteral(resourceName: "outlineDebateDone24PxWhite")
+            self.btnTerima.setTitle("LIHAT DEBAT", for: UIControlState())
+            self.containerAcceptChallenge.isHidden = false
+            self.challengeButton.configure(type: .done)
         default:
             break
         }
