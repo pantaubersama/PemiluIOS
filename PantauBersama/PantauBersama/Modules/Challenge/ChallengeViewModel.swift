@@ -30,12 +30,15 @@ class ChallengeViewModel: ViewModelType {
     struct Input {
         let backI: AnyObserver<Void>
         let actionButtonI: AnyObserver<Void>
+        let confirmOpponentI: AnyObserver<String>
     }
     
     struct Output {
         let backO: Driver<Void>
         let actionO: Driver<Void>
         let challengeO: Driver<Challenge>
+        let audienceO: Driver<[Audiences]>
+        let confirmOpponentO: Driver<Void>
     }
     
     private var navigator: ChallengeNavigator
@@ -44,6 +47,9 @@ class ChallengeViewModel: ViewModelType {
     private let backS = PublishSubject<Void>()
     private let actionButtonS = PublishSubject<Void>()
     private let challengeS = PublishSubject<Challenge>()
+    private let confirmOpponentS = PublishSubject<String>()
+    
+    private var selectedAudience = ""
     
     init(navigator: ChallengeNavigator, data: Challenge) {
         self.navigator = navigator
@@ -51,7 +57,8 @@ class ChallengeViewModel: ViewModelType {
         
         input = Input(
             backI: backS.asObserver(),
-            actionButtonI: actionButtonS.asObserver())
+            actionButtonI: actionButtonS.asObserver(),
+            confirmOpponentI: confirmOpponentS.asObserver())
         
         let back = backS
             .flatMapLatest({ navigator.back() })
@@ -81,7 +88,36 @@ class ChallengeViewModel: ViewModelType {
         let challenge = challengeS.startWith(data)
             .asDriverOnErrorJustComplete()
         
-        output = Output(backO: back, actionO: action, challengeO: challenge)
+        let audience = challengeS.startWith(data)
+            .map { (challenge) -> [Audiences] in
+                return challenge.audiences.filter({ $0.role != AudienceRole.challenger })
+            }
+            .asDriverOnErrorJustComplete()
+        
+        let confirmOpponent = confirmOpponentS
+            .flatMapLatest { [unowned self](audienceId) -> Observable<PopupChallengeResult> in
+                self.selectedAudience = audienceId
+                return navigator.openAcceptConfirmation()
+            }
+            .flatMap({ [weak self](popupResult) -> Observable<Bool> in
+                guard let `self` = self else { return Observable.empty() }
+                return self.handlePopupResult(popupResult: popupResult)
+            })
+            .filter({ $0 })
+            .flatMap({ _ in self.getChallengeDetail(id: data.id) })
+            .do(onNext: { [weak self](challenge) in
+                guard let `self` = self else { return }
+                self.challengeS.onNext(challenge)
+            })
+            .mapToVoid()
+            .asDriverOnErrorJustComplete()
+        
+        
+        output = Output(backO: back,
+                        actionO: action,
+                        challengeO: challenge,
+                        audienceO: audience,
+                        confirmOpponentO: confirmOpponent)
     }
     
     private func putAskAsOpponent(into id: String) -> Observable<Bool> {
@@ -90,6 +126,15 @@ class ChallengeViewModel: ViewModelType {
                 return response.data.message == "Berhasil mencalonkan diri sebagai Lawan!"
             })
             .asObservable()
+    }
+    
+    private func putConfirmAudience(id: String) -> Observable<Bool> {
+        return NetworkService.instance.requestObject(WordstadiumAPI.confirmCandidateAsOpponent(challengeId: self.data.id, audienceId: id), c: PutAskAsOpponentResponse.self)
+            .map({ (response) -> Bool in
+                return response.data.message == "Berhasil memilih Lawan!"
+            })
+            .asObservable()
+        
     }
     
     private func getChallengeDetail(id: String) -> Observable<Challenge> {
@@ -105,10 +150,15 @@ class ChallengeViewModel: ViewModelType {
         switch popupResult {
         case .oke: // when positive button tap
             
-            // when user tap positive button and the challenge is open challenge,
+            // when user tap positive button and the challenge is open challenge with waiting opponent status,
             // it means that user want to be the opponent candidate
-            if data.type == .openChallenge {
+            if data.type == .openChallenge && data.progress == .waitingOpponent {
                 return putAskAsOpponent(into: data.id)
+            }
+            
+            // when user tap positive button to confirm the audience as opponent
+            if data.type == .openChallenge && data.progress == .waitingConfirmation {
+                return putConfirmAudience(id: self.selectedAudience)
             }
             
             // other condition please add below

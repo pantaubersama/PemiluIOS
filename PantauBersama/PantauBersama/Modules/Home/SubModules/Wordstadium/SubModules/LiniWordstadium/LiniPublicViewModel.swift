@@ -133,12 +133,12 @@ class LiniPublicViewModel: ILiniWordstadiumViewModel, ILiniWordstadiumViewModelI
         refreshSubject.startWith(())
             .flatMapLatest({ [weak self] (_) -> Observable<[Challenge]> in
                 guard let `self` = self else { return Observable<[Challenge]>.just([]) }
-                return self.getChallenge(progress: .ongoing, type: .public)
+                return self.getChallenge(progress: .challenge, type: .public)
             })
             .bind { [weak self](items) in
                 guard let weakSelf = self else { return }
                 if items.count > 0 {
-                    let currentItems = weakSelf.publicItems.value + weakSelf.transformToSection(challenge: items, progress: .ongoing, type: .public)
+                    let currentItems = weakSelf.publicItems.value + weakSelf.transformToSection(challenge: items, progress: .challenge, type: .public)
                     weakSelf.publicItems.accept(currentItems)
                 }
             }.disposed(by: disposeBag)
