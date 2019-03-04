@@ -9,18 +9,20 @@
 import UIKit
 import Common
 import RxSwift
+import Networking
 
 class UserChallengeCell: UITableViewCell {
+    
     
     @IBOutlet weak var avatar: CircularUIImageView!
     @IBOutlet weak var lblName: Label!
     @IBOutlet weak var lblUsername: Label!
     @IBOutlet weak var btnConfirm: Button!
-    private(set) var disposeBag: DisposeBag!
+    private(set) var disposeBag: DisposeBag = DisposeBag()
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        disposeBag = nil
+        disposeBag = DisposeBag()
     }
     
     override func awakeFromNib() {
@@ -28,17 +30,33 @@ class UserChallengeCell: UITableViewCell {
         // Initialization code
         btnConfirm.isHidden = true
     }
-    
+ 
 }
 
 extension UserChallengeCell: IReusableCell {
     
     struct Input {
-        
+        let audience: Audiences
+        let viewModel: ChallengeViewModel
+        let isMyChallenge: Bool
     }
     
     func configureCell(item: Input) {
+        avatar.show(fromURL: item.audience.avatar?.url ?? "")
+        lblName.text = item.audience.fullName
+        lblUsername.text = item.audience.username
+        btnConfirm.isHidden = !item.isMyChallenge
         
+        btnConfirm.rx.tap
+            .map({ item.audience.id })
+            .bind(to: item.viewModel.input.confirmOpponentI)
+            .disposed(by: disposeBag)
+        
+        item.viewModel.output
+            .confirmOpponentO
+            .drive()
+            .disposed(by: disposeBag)
+
     }
     
     func configure(data: SearchUserModel) {

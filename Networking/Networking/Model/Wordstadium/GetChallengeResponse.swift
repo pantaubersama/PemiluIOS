@@ -16,7 +16,7 @@ public struct GetChallengeResponse: Codable {
 
 public enum ProgressType {
     case liveNow
-    case ongoing
+    case challenge
     case comingSoon
     case done
     
@@ -24,8 +24,8 @@ public enum ProgressType {
         switch self {
         case .liveNow:
             return "live_now"
-        case .ongoing:
-            return "ongoing"
+        case .challenge:
+            return "challenge"
         case .comingSoon:
             return "coming_soon"
         case .done:

@@ -87,6 +87,11 @@ extension String {
         return timeAgo(date: date)
     }
     
+    public var timeLaterSinceDate: String {
+        guard let date = self.toDate(format: Constant.dateTimeFormat3) else { return self }
+        return date.timeLaterSinceDate
+    }
+    
     private func timeAgo(date: Date) -> String {
         let calendar = Calendar.current
         let now = Date()
@@ -153,6 +158,26 @@ extension Date {
         }
     }
     
+    public var timeLaterSinceDate: String {
+        let calendar = Calendar.current
+        let now = Date()
+        let earliest = (self < now ) ? self : now
+        let latest = (earliest == now) ? self : now
+        
+        let components:DateComponents = calendar.dateComponents([ .day, .hour, .minute, .second], from: earliest, to: latest)
+        
+        let day = components.day ?? 0
+        let hour = components.hour ?? 0
+        
+        if day <= 1 {
+            return "\(hour) jam lagi"
+        } else if day < 30 {
+            return "\(day) hari lagi"
+        } else {
+            return self.toString()
+        }
+    }
+    
     public var timeAgoSinceDate2: String {
         let calendar = Calendar.current
         let now = Date()
@@ -168,14 +193,13 @@ extension Date {
         
         if (day >= 5) {
             return self.toString()
-        }
-        else if (day >= 4){
+        } else if (day >= 4){
             return "4 hari lalu"
-        }else if (day >= 3){
+        } else if (day >= 3){
             return "3 hari lalu"
-        }else if (day >= 2){
+        } else if (day >= 2){
             return "2 hari lalu"
-        }else if (day >= 1){
+        } else if (day >= 1){
             return "1 hari lalu"
         } else if (hour >= 2) {
             return "\(hour) jam lalu"

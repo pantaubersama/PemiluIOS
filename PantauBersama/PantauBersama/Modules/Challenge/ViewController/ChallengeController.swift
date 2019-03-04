@@ -61,7 +61,6 @@ class ChallengeController: UIViewController {
         viewModel.output.challengeO
             .drive(onNext: { [weak self] (challenge) in
                 guard let `self` = self else { return }
-                
                 self.configureContent(data: challenge)
             })
             .disposed(by: disposeBag)
@@ -130,7 +129,7 @@ extension ChallengeController {
     private func configureContent(data: Challenge) {
         let myEmail = AppState.local()?.user.email ?? ""
         let challenger = data.audiences.filter({ $0.role == .challenger }).first
-        let opponents = data.audiences.filter({ $0.role == .opponentCandidate })
+        let opponents = data.audiences.filter({ $0.role != .challenger })
         // temporary use email, because user id and audience id are different from BE
         let isMyChallenge = myEmail == (challenger?.email ?? "")
         let isAudience = opponents.contains(where: { ($0.email ?? "") == myEmail })
@@ -180,6 +179,8 @@ extension ChallengeController {
                 self.containerAcceptChallenge.isHidden = true
             }
             
+            self.tableView.isHidden = false
+            self.configureTableOpponentCandidate(isMyChallenge: isMyChallenge)
         case .waitingOpponent:
             if isMyChallenge {
                 self.titleContent.text = "Menunggu,"
@@ -192,10 +193,30 @@ extension ChallengeController {
                 self.containerHeader.backgroundColor = #colorLiteral(red: 1, green: 0.4935973287, blue: 0.3663615584, alpha: 1)
                 self.containerAcceptChallenge.isHidden = false
             }
+        case .comingSoon:
+            self.title = "COMING SOON"
+            self.titleContent.text = "Siap-siap!"
+            self.subtitleContent.text = "Debat akan berlangsung pada \(data.showTimeAt?.timeLaterSinceDate ?? "")"
+            self.headerTantanganView.backgroundChallenge.image = #imageLiteral(resourceName: "comingSoonBG")
+            self.containerHeader.backgroundColor = #colorLiteral(red: 0.1167989597, green: 0.5957490802, blue: 0.8946897388, alpha: 1)
+            self.tableView.isHidden = true
+            self.containerAcceptChallenge.isHidden = true
         default:
             break
         }
+    }
+    
+    private func configureTableOpponentCandidate(isMyChallenge: Bool) {
+        tableView.registerReusableCell(UserChallengeCell.self)
+        tableView.rowHeight = 53
         
+        viewModel.output.audienceO
+            .drive(tableView.rx.items) { [unowned self]tableView, row, item -> UITableViewCell in
+                let cell = tableView.dequeueReusableCell() as UserChallengeCell
+                cell.configureCell(item: UserChallengeCell.Input(audience: item, viewModel: self.viewModel, isMyChallenge: isMyChallenge))
+                return cell
+            }
+            .disposed(by: disposeBag)
         
     }
 }

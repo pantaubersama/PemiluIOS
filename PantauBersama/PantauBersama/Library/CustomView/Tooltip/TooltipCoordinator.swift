@@ -51,7 +51,7 @@ final class TooltipCoordinator: BaseCoordinator<TooltipResult> {
 extension TooltipCoordinator: TooltipNavigator {
     func launchChallenge() -> Observable<Void> {
         self.navigationController.dismiss(animated: true, completion: nil)
-        let wordstadiumListCoordinator = WordstadiumListCoordinator(navigationController: navigationController, progressType: .ongoing, liniType: .public)
+        let wordstadiumListCoordinator = WordstadiumListCoordinator(navigationController: navigationController, progressType: .challenge, liniType: .public)
         return coordinate(to: wordstadiumListCoordinator)
     }
     
