@@ -185,16 +185,21 @@ extension ChallengeController {
         
         switch data.progress {
         case .waitingConfirmation:
-            if isAudience {
+            if isAudience { // if user already registered as opponent candidate
                 self.titleContent.text = "Menunggu,"
                 self.subtitleContent.text = "\(challenger?.fullName ?? "") untuk\nkonfirmasi lawan debat"
                 self.containerHeader.backgroundColor = #colorLiteral(red: 1, green: 0.4935973287, blue: 0.3663615584, alpha: 1)
                 self.containerAcceptChallenge.isHidden = true
-            } else {
+            } else if isMyChallenge { // if user is the owner of challenge
                 self.titleContent.text = "Tantangan diterima,"
                 self.subtitleContent.text = "Segera konfirmasi sebelum\nbatas akhir waktunya!"
                 self.containerHeader.backgroundColor = #colorLiteral(red: 1, green: 0.4935973287, blue: 0.3663615584, alpha: 1)
                 self.containerAcceptChallenge.isHidden = true
+            } else { // if user not the owner and has not registered yet
+                self.titleContent.text = "Ini adalah Open Challenge,"
+                self.subtitleContent.text = "Terima tantangan ini?"
+                self.containerHeader.backgroundColor = #colorLiteral(red: 1, green: 0.4935973287, blue: 0.3663615584, alpha: 1)
+                self.containerAcceptChallenge.isHidden = false
             }
             
             self.tableView.isHidden = false
@@ -241,6 +246,8 @@ extension ChallengeController {
         tableView.registerReusableCell(UserChallengeCell.self)
         tableView.rowHeight = 53
         
+        tableView.delegate = nil
+        tableView.dataSource = nil
         viewModel.output.audienceO
             .drive(tableView.rx.items) { [unowned self]tableView, row, item -> UITableViewCell in
                 let cell = tableView.dequeueReusableCell() as UserChallengeCell
