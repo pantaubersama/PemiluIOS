@@ -16,6 +16,8 @@ public enum WordstadiumAPI {
     case createChallengeDirect(statement: String, source: String, timeAt: String, timeLimit: Int, topic: String, screenName: String, id: String)
     case askAsOpponent(id: String)
     case confirmCandidateAsOpponent(challengeId: String, audienceId: String)
+    case confirmDirect(challengeId: String)
+    case rejectDirect(challengeId: String)
 }
 
 extension WordstadiumAPI: TargetType {
@@ -47,6 +49,10 @@ extension WordstadiumAPI: TargetType {
             return "/word_stadium/v1/challenges/\(id)"
         case .confirmCandidateAsOpponent:
             return "/word_stadium/v1/challenges/open/opponent_candidates"
+        case .confirmDirect:
+            return "/word_stadium//v1/challenges/direct/approve"
+        case .rejectDirect:
+            return "/word_stadium//v1/challenges/direct/reject"
         }
     }
     
@@ -55,7 +61,10 @@ extension WordstadiumAPI: TargetType {
         case .createChallengeOpen,
              .createChallengeDirect:
             return .post
-        case .askAsOpponent, .confirmCandidateAsOpponent:
+        case .askAsOpponent,
+             .confirmCandidateAsOpponent,
+             .confirmDirect,
+             .rejectDirect:
             return .put
         default:
             return .get
@@ -94,7 +103,9 @@ extension WordstadiumAPI: TargetType {
     public var task: Task {
         switch self {
         case .createChallengeOpen,
-             .createChallengeDirect:
+             .createChallengeDirect,
+             .confirmDirect,
+             .rejectDirect:
             return .uploadMultipart(self.multipartBody ?? [])
         default:
              return .requestParameters(parameters: parameters ?? [:], encoding: parameterEncoding)
@@ -131,6 +142,10 @@ extension WordstadiumAPI: TargetType {
             multipartFormData.append(buildMultipartFormData(key: "topic_list", value: topic))
             multipartFormData.append(buildMultipartFormData(key: "screen_name", value: screenName))
             multipartFormData.append(buildMultipartFormData(key: "invitation_id", value: inviteId))
+            return multipartFormData
+        case .confirmDirect(let id):
+            var multipartFormData = [MultipartFormData]()
+            multipartFormData.append(buildMultipartFormData(key: "id", value: id))
             return multipartFormData
         default:
             return nil

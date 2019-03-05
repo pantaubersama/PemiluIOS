@@ -31,6 +31,7 @@ class ChallengeViewModel: ViewModelType {
         let backI: AnyObserver<Void>
         let actionButtonI: AnyObserver<Void>
         let confirmOpponentI: AnyObserver<String>
+        let refuseII: AnyObserver<Void>
     }
     
     struct Output {
@@ -39,6 +40,7 @@ class ChallengeViewModel: ViewModelType {
         let challengeO: Driver<Challenge>
         let audienceO: Driver<[Audiences]>
         let confirmOpponentO: Driver<Void>
+        let refuseO: Driver<Void>
     }
     
     private var navigator: ChallengeNavigator
@@ -48,6 +50,7 @@ class ChallengeViewModel: ViewModelType {
     private let actionButtonS = PublishSubject<Void>()
     private let challengeS = PublishSubject<Challenge>()
     private let confirmOpponentS = PublishSubject<String>()
+    private let refuseS = PublishSubject<Void>()
     
     private var selectedAudience = ""
     
@@ -58,7 +61,8 @@ class ChallengeViewModel: ViewModelType {
         input = Input(
             backI: backS.asObserver(),
             actionButtonI: actionButtonS.asObserver(),
-            confirmOpponentI: confirmOpponentS.asObserver())
+            confirmOpponentI: confirmOpponentS.asObserver(),
+            refuseII: refuseS.asObserver())
         
         let back = backS
             .flatMapLatest({ navigator.back() })
@@ -68,7 +72,9 @@ class ChallengeViewModel: ViewModelType {
             .flatMapLatest { [unowned self](_) -> Observable<PopupChallengeResult> in
                 // openChallenge before challenger confirm the opponent, accept button still visible
                 if (self.data.progress == .waitingOpponent || self.data.progress == .waitingConfirmation) && self.data.type == .openChallenge {
-                    return navigator.openAcceptConfirmation()
+                    return navigator.openAcceptConfirmation(type: .acceptOpen)
+                } else if (self.data.progress == .waitingOpponent || self.data.progress == .waitingConfirmation) && self.data.type == .directChallenge {
+                    return navigator.openAcceptConfirmation(type: .acceptDirect)
                 }
                 return Observable.empty()
             }
@@ -97,7 +103,7 @@ class ChallengeViewModel: ViewModelType {
         let confirmOpponent = confirmOpponentS
             .flatMapLatest { [unowned self](audienceId) -> Observable<PopupChallengeResult> in
                 self.selectedAudience = audienceId
-                return navigator.openAcceptConfirmation()
+                return navigator.openAcceptConfirmation(type: .acceptOpponentOpen)
             }
             .flatMap({ [weak self](popupResult) -> Observable<Bool> in
                 guard let `self` = self else { return Observable.empty() }
@@ -112,12 +118,23 @@ class ChallengeViewModel: ViewModelType {
             .mapToVoid()
             .asDriverOnErrorJustComplete()
         
+        let refuse = refuseS
+            .flatMapLatest { [unowned self] (_) -> Observable<PopupChallengeResult> in
+                if (self.data.progress == .waitingOpponent || self.data.progress == .waitingConfirmation) && self.data.type == .directChallenge {
+                    return navigator.openAcceptConfirmation(type: .refuseDirect)
+                }
+                return Observable.empty()
+            }
+            .mapToVoid()
+            .asDriverOnErrorJustComplete()
+        
         
         output = Output(backO: back,
                         actionO: action,
                         challengeO: challenge,
                         audienceO: audience,
-                        confirmOpponentO: confirmOpponent)
+                        confirmOpponentO: confirmOpponent,
+                        refuseO: refuse)
     }
     
     private func putAskAsOpponent(into id: String) -> Observable<Bool> {
