@@ -66,8 +66,8 @@ class ChallengeViewModel: ViewModelType {
         
         let action = actionButtonS
             .flatMapLatest { [unowned self](_) -> Observable<PopupChallengeResult> in
-                // openChallenge without opponent candidate will open dialog confirmation
-                if self.data.progress == .waitingOpponent && self.data.type == .openChallenge {
+                // openChallenge before challenger confirm the opponent, accept button still visible
+                if (self.data.progress == .waitingOpponent || self.data.progress == .waitingConfirmation) && self.data.type == .openChallenge {
                     return navigator.openAcceptConfirmation()
                 }
                 return Observable.empty()
@@ -146,18 +146,21 @@ class ChallengeViewModel: ViewModelType {
     }
     
     private func handlePopupResult(popupResult: PopupChallengeResult) -> Observable<Bool> {
+        let myEmail = AppState.local()?.user.email ?? ""
+        let challenger = data.audiences.filter({ $0.role == .challenger }).first
+        let isMyChallenge = myEmail == (challenger?.email ?? "")
         // result selection
         switch popupResult {
         case .oke: // when positive button tap
             
-            // when user tap positive button and the challenge is open challenge with waiting opponent status,
+            // when user tap positive button and the challenge is open challenge with waiting opponent status or waiting confirmation status and its not my challenge,
             // it means that user want to be the opponent candidate
-            if data.type == .openChallenge && data.progress == .waitingOpponent {
+            if data.type == .openChallenge && (data.progress == .waitingOpponent || data.progress == .waitingConfirmation) && !isMyChallenge {
                 return putAskAsOpponent(into: data.id)
             }
             
             // when user tap positive button to confirm the audience as opponent
-            if data.type == .openChallenge && data.progress == .waitingConfirmation {
+            if data.type == .openChallenge && data.progress == .waitingConfirmation && isMyChallenge {
                 return putConfirmAudience(id: self.selectedAudience)
             }
             

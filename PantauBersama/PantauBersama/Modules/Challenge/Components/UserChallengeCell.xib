@@ -29,10 +29,10 @@
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="2XN-5w-z3y">
-                                <rect key="frame" x="48" y="9.5" width="188" height="34"/>
+                                <rect key="frame" x="48" y="6" width="188" height="41"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0k7-NR-z3o" customClass="Label" customModule="Common">
-                                        <rect key="frame" x="0.0" y="0.0" width="188" height="17"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="188" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -44,7 +44,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ijd-8W-4Qw" customClass="Label" customModule="Common">
-                                        <rect key="frame" x="0.0" y="17" width="188" height="17"/>
+                                        <rect key="frame" x="0.0" y="20.5" width="188" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.45882352941176469" green="0.45882352941176469" blue="0.45882352941176469" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
@@ -76,6 +76,7 @@
                         </subviews>
                     </stackView>
                 </subviews>
+                <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="Qlv-ux-5vB" secondAttribute="trailing" constant="16" id="6GH-uk-d2A"/>
                     <constraint firstItem="Qlv-ux-5vB" firstAttribute="leading" secondItem="yd2-Ex-Tyt" secondAttribute="leading" constant="16" id="C9m-bJ-7Qa"/>
