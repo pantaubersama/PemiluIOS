@@ -181,10 +181,10 @@ class ChallengeViewModel: ViewModelType {
                 return putConfirmAudience(id: self.selectedAudience)
             }
             
-            // other condition please add below
-            //                    if weakSelf.data.type == .directChallenge {
-            //
-            //                    }
+            // in case direct challenge as opponent accept challenge
+            if data.type == .directChallenge && (data.progress == .waitingOpponent || data.progress == .waitingConfirmation) && !isMyChallenge {
+                return putDirectAccept(id: data.id)
+            }
             
             return Observable.just(false)
         case .cancel: //when dismiss/negative button tap just return false to dismiss and do nothing
@@ -192,4 +192,12 @@ class ChallengeViewModel: ViewModelType {
         }
     }
     
+    private func putDirectAccept(id: String) -> Observable<Bool> {
+        return NetworkService.instance
+            .requestObject(WordstadiumAPI.confirmDirect(challengeId: id), c: PutAskAsOpponentResponse.self)
+            .map({ (response) -> Bool in
+                return response.data.message == "Tantangan Diterima!"
+            })
+            .asObservable()
+    }
 }
