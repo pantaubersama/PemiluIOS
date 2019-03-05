@@ -12,7 +12,7 @@ import Networking
 protocol ChallengeNavigator {
     func back() -> Observable<Void>
     func openLiveDebatDone() -> Observable<Void>
-    func openAcceptConfirmation() -> Observable<PopupChallengeResult>
+    func openAcceptConfirmation(type: PopupChallengeType) -> Observable<PopupChallengeResult>
 }
 
 final class ChallengeCoordinator: BaseCoordinator<Void> {
@@ -49,8 +49,8 @@ extension ChallengeCoordinator: ChallengeNavigator {
         return coordinate(to: liveDebatDoneCoordinator)
     }
     
-    func openAcceptConfirmation() -> Observable<PopupChallengeResult> {
-        let popupChallengeCoordinator = PopupChallengeCoordinator(navigationController: self.navigationController, type: .default)
+    func openAcceptConfirmation(type: PopupChallengeType) -> Observable<PopupChallengeResult> {
+        let popupChallengeCoordinator = PopupChallengeCoordinator(navigationController: self.navigationController, type: type, data: data)
         return coordinate(to: popupChallengeCoordinator)
     }
 }

@@ -31,10 +31,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vf9-3l-kr7" customClass="RoundView" customModule="Common">
-                    <rect key="frame" x="21" y="173" width="333" height="341.5"/>
+                    <rect key="frame" x="21" y="187.5" width="333" height="312"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="X0G-oh-Irm">
-                            <rect key="frame" x="0.0" y="0.0" width="333" height="341.5"/>
+                            <rect key="frame" x="0.0" y="0.0" width="333" height="312"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="artboard1Xxxhdpi" translatesAutoresizingMaskIntoConstraints="NO" id="hwJ-F3-SNt">
                                     <rect key="frame" x="86.5" y="0.0" width="160" height="160"/>
@@ -44,7 +44,7 @@
                                     </constraints>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EK1-6q-Ii6" customClass="Label" customModule="Common">
-                                    <rect key="frame" x="4" y="176" width="325" height="101.5"/>
+                                    <rect key="frame" x="16" y="176" width="301" height="72"/>
                                     <string key="text">Kamu akan mengkonfirmasi 
 @raja_kampreta sebagai lawan debat anda
 sesuai dengan detail yang tertera.
@@ -60,7 +60,7 @@ Apakah kamu yakin?</string>
                                     </userDefinedRuntimeAttributes>
                                 </label>
                                 <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="tob-cD-ltx">
-                                    <rect key="frame" x="16" y="285.5" width="301" height="47"/>
+                                    <rect key="frame" x="16" y="256" width="301" height="47"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YTz-QO-0lW">
                                             <rect key="frame" x="0.0" y="0.0" width="291" height="47"/>
@@ -99,7 +99,7 @@ Apakah kamu yakin?</string>
                                     </constraints>
                                 </stackView>
                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="CR8-oh-5CA">
-                                    <rect key="frame" x="0.0" y="293.5" width="333" height="48"/>
+                                    <rect key="frame" x="0.0" y="264" width="333" height="48"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oPL-Xb-IpF" customClass="Button" customModule="Common">
                                             <rect key="frame" x="0.0" y="0.0" width="166.5" height="48"/>
@@ -129,6 +129,8 @@ Apakah kamu yakin?</string>
                             </subviews>
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="CR8-oh-5CA" secondAttribute="trailing" id="0Ka-sA-YHG"/>
+                                <constraint firstItem="EK1-6q-Ii6" firstAttribute="leading" secondItem="X0G-oh-Irm" secondAttribute="leading" constant="16" id="DgC-yg-UkQ"/>
+                                <constraint firstAttribute="trailing" secondItem="EK1-6q-Ii6" secondAttribute="trailing" constant="16" id="Ran-xU-aqA"/>
                                 <constraint firstAttribute="trailing" secondItem="tob-cD-ltx" secondAttribute="trailing" constant="16" id="YSv-Zu-feq"/>
                                 <constraint firstItem="tob-cD-ltx" firstAttribute="leading" secondItem="X0G-oh-Irm" secondAttribute="leading" constant="16" id="c8g-UK-FKe"/>
                                 <constraint firstItem="CR8-oh-5CA" firstAttribute="leading" secondItem="X0G-oh-Irm" secondAttribute="leading" id="hrf-Rn-V3s"/>

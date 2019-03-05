@@ -50,6 +50,10 @@ class ChallengeController: UIViewController {
             .bind(to: viewModel.input.actionButtonI)
             .disposed(by: disposeBag)
         
+        btnTolak.rx.tap
+            .bind(to: viewModel.input.refuseII)
+            .disposed(by: disposeBag)
+        
         viewModel.output.backO
             .drive()
             .disposed(by: disposeBag)
@@ -63,6 +67,10 @@ class ChallengeController: UIViewController {
                 guard let `self` = self else { return }
                 self.configureContent(data: challenge)
             })
+            .disposed(by: disposeBag)
+        
+        viewModel.output.refuseO
+            .drive()
             .disposed(by: disposeBag)
     
     }
@@ -166,13 +174,19 @@ extension ChallengeController {
                 self.headerTantanganView.lblUsernameOpponent.text = opponent.username
             } else {
                 self.headerTantanganView.lblCountOpponent.isHidden = false
-                self.headerTantanganView.lblCountOpponent.text = data.type == .directChallenge ? "?" : "\(opponents.count)"
+                self.headerTantanganView.lblCountOpponent.text = data.type == .directChallenge ? "" : "\(opponents.count)"
+                self.headerTantanganView.lblNameOpponent.isHidden = data.type == .directChallenge ? false : true
+                self.headerTantanganView.lblNameOpponent.text = opponent.fullName
+                self.headerTantanganView.lblUsernameOpponent.isHidden = data.type == .directChallenge ? false : true
+                self.headerTantanganView.lblUsernameOpponent.text = opponent.username
             }
         }
         
         // configure challenge detail view
         self.detailTantanganView.lblStatement.text = data.statement
         self.detailTantanganView.lblTag.text = data.topic?.first ?? ""
+        self.detailTantanganView.lblTag.layer.borderWidth = 1.0
+        self.detailTantanganView.lblTag.layer.borderColor = #colorLiteral(red: 1, green: 0.5569574237, blue: 0, alpha: 1)
         self.detailTantanganView.lblDate.text = data.showTimeAt?.date
         self.detailTantanganView.lblTime.text = data.showTimeAt?.time
         self.detailTantanganView.lblSaldo.text = "\(data.timeLimit ?? 0)"

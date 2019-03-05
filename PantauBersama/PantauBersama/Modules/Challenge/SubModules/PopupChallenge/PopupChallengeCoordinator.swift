@@ -7,6 +7,7 @@
 //
 
 import RxSwift
+import Networking
 
 enum PopupChallengeResult {
     case cancel
@@ -21,18 +22,21 @@ final class PopupChallengeCoordinator: BaseCoordinator<PopupChallengeResult> {
     
     private let navigationController: UINavigationController
     private let viewController: PopupChallengeController
-    var type: PopupChallengeType = .default
+    var type: PopupChallengeType
+    var data: Challenge
     
-    init(navigationController: UINavigationController, type: PopupChallengeType) {
+    init(navigationController: UINavigationController, type: PopupChallengeType, data: Challenge) {
         self.navigationController = navigationController
         self.viewController = PopupChallengeController()
         self.type = type
+        self.data = data
     }
     
     override func start() -> Observable<CoordinationResult> {
         let viewModel = PopupChallengeViewModel(navigator: self)
         let viewController = PopupChallengeController()
         viewController.type = type
+        viewController.data = data
         viewController.viewModel = viewModel
 //        viewController.providesPresentationContextTransitionStyle = true
 //        viewController.definesPresentationContext = true

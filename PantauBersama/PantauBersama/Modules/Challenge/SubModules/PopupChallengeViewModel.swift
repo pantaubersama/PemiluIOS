@@ -11,8 +11,11 @@ import RxCocoa
 import Networking
 
 enum PopupChallengeType {
-    case refuse
-    case accept
+    case refuseOpen
+    case acceptOpen
+    case acceptOpponentOpen // for My Challenge
+    case refuseDirect
+    case acceptDirect
     case `default`
 }
 

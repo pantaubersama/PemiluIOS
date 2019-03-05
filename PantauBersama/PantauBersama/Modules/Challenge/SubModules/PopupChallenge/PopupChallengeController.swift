@@ -10,6 +10,7 @@ import UIKit
 import Common
 import RxSwift
 import RxCocoa
+import Networking
 
 class PopupChallengeController: UIViewController {
     @IBOutlet weak var stackComment: UIStackView!
@@ -22,6 +23,7 @@ class PopupChallengeController: UIViewController {
     
     var viewModel: PopupChallengeViewModel!
     var type: PopupChallengeType = .default
+    var data: Challenge!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,18 +35,28 @@ class PopupChallengeController: UIViewController {
         btnConfirm.rx.tap
             .bind(to: viewModel.input.acceptI)
             .disposed(by: disposeBag)
-        // Do any additional setup after loading the view.
+        
+        self.configure(data: self.data, type: self.type)
     }
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    private func configure(data: Challenge, type: PopupChallengeType) {
+        let challenger = data.audiences.filter({ $0.role == .challenger }).first
+        switch type {
+        case .acceptDirect:
+            self.btnConfirm.setTitle("SETUJU", for: UIControlState())
+            self.lblInfo.text = "Kamu akan menerima Direct Challenge\ndari @\(challenger?.username ?? "") untuk berdebat."
+        case .refuseDirect:
+            self.btnConfirm.setTitle("YA, TOLAK", for: UIControlState())
+            self.btnConfirm.backgroundColor = #colorLiteral(red: 0.7424071431, green: 0.03536110744, blue: 0.1090037152, alpha: 1)
+            self.stackComment.isHidden = false
+            self.lblInfo.text = "Kamu akan menolak Direct Challenge\ndari @\(challenger?.username ?? "") untuk berdebat. Tulis pernyataan atau alasannya sebagai hak jawab penolakan kamu."
+        case .acceptOpen:
+            self.lblInfo.text = "Kamu akan menerima tantangan dari @\(challenger?.username ?? "") untuk berdebat sesuai dengan detail yang tertera. Tindakan ini tidak bisa dibatalkan.\nApakah kamu yakin?"
+        case .acceptOpponentOpen:
+            print("Confirms my opponents, need data username")
+        default:
+            break
+        }
     }
-    */
 
 }
