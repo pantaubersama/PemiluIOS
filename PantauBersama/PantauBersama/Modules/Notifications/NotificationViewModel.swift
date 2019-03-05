@@ -105,7 +105,8 @@ final class NotificationViewModel: ViewModelType {
                 return list.map({ (notif) -> ICellConfigurator in
                     return InfoNotifiCellConfigured(item: InfoNotifCell.Input(notif: notif))
                 })
-        }
+            }
+            .asDriverOnErrorJustComplete()
         
         changeNotifMenuS
             .bind(to: refreshS)
@@ -113,6 +114,6 @@ final class NotificationViewModel: ViewModelType {
         
         output = Output(backO: back,
                         itemSelectedO: itemSelected,
-                        items: itemCell.asDriver(onErrorJustReturn: []))
+                        items: itemCell)
     }
 }

@@ -3609,7 +3609,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PantauBersama-PantauBersamaTests/Pods-PantauBersama-PantauBersamaTests-frameworks.sh",
+				"${SRCROOT}/../Pods/Target Support Files/Pods-PantauBersama-PantauBersamaTests/Pods-PantauBersama-PantauBersamaTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
@@ -3668,7 +3668,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PantauBersama-PantauBersamaTests/Pods-PantauBersama-PantauBersamaTests-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-PantauBersama-PantauBersamaTests/Pods-PantauBersama-PantauBersamaTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		8428AAAB21C7B1D30008E975 /* ShellScript */ = {
@@ -3697,7 +3697,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PantauBersama/Pods-PantauBersama-resources.sh",
+				"${SRCROOT}/../Pods/Target Support Files/Pods-PantauBersama/Pods-PantauBersama-resources.sh",
 				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework/TwitterKitResources.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
@@ -3708,7 +3708,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PantauBersama/Pods-PantauBersama-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-PantauBersama/Pods-PantauBersama-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		BD69F6DEF48FE2F0A82FA3A3 /* [CP] Check Pods Manifest.lock */ = {
@@ -3741,7 +3741,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PantauBersama-PantauBersamaTests/Pods-PantauBersama-PantauBersamaTests-resources.sh",
+				"${SRCROOT}/../Pods/Target Support Files/Pods-PantauBersama-PantauBersamaTests/Pods-PantauBersama-PantauBersamaTests-resources.sh",
 				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework/TwitterKitResources.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
@@ -3752,7 +3752,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PantauBersama-PantauBersamaTests/Pods-PantauBersama-PantauBersamaTests-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-PantauBersama-PantauBersamaTests/Pods-PantauBersama-PantauBersamaTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D1138D5EE223F3B675D546DA /* [CP] Check Pods Manifest.lock */ = {
@@ -3785,7 +3785,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PantauBersama/Pods-PantauBersama-frameworks.sh",
+				"${SRCROOT}/../Pods/Target Support Files/Pods-PantauBersama/Pods-PantauBersama-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
@@ -3844,7 +3844,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PantauBersama/Pods-PantauBersama-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-PantauBersama/Pods-PantauBersama-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
