@@ -183,38 +183,81 @@ extension ChallengeController {
         self.footerProfileView.lblStatus.text = challenger?.about ?? ""
         self.footerProfileView.lblPostTime.text = "Posted \(data.createdAt?.timeAgoSinceDateForm2 ?? "")"
         
+        // MARK
+        // Configure Type and Progress
+        // type: Direct and Open
+        // progress: waiting opponent, waiting_confirmation, coming_soon, live_now, done
+        // condition: ongoing, expired, rejected
         switch data.progress {
         case .waitingConfirmation:
-            if isAudience { // if user already registered as opponent candidate
-                self.titleContent.text = "Menunggu,"
-                self.subtitleContent.text = "\(challenger?.fullName ?? "") untuk\nkonfirmasi lawan debat"
-                self.containerHeader.backgroundColor = #colorLiteral(red: 1, green: 0.4935973287, blue: 0.3663615584, alpha: 1)
-                self.containerAcceptChallenge.isHidden = true
-            } else if isMyChallenge { // if user is the owner of challenge
-                self.titleContent.text = "Tantangan diterima,"
-                self.subtitleContent.text = "Segera konfirmasi sebelum\nbatas akhir waktunya!"
-                self.containerHeader.backgroundColor = #colorLiteral(red: 1, green: 0.4935973287, blue: 0.3663615584, alpha: 1)
-                self.containerAcceptChallenge.isHidden = true
-            } else { // if user not the owner and has not registered yet
-                self.titleContent.text = "Ini adalah Open Challenge,"
-                self.subtitleContent.text = "Terima tantangan ini?"
-                self.containerHeader.backgroundColor = #colorLiteral(red: 1, green: 0.4935973287, blue: 0.3663615584, alpha: 1)
-                self.containerAcceptChallenge.isHidden = false
+            switch data.type {
+            case .directChallenge:
+                if isAudience { // if user already registered as opponent candidate
+                    self.titleContent.text = "Ini tantangan buat kamu,"
+                    self.subtitleContent.text = "apakah dikonfirmasi?"
+                    self.containerHeader.backgroundColor = #colorLiteral(red: 1, green: 0.4935973287, blue: 0.3663615584, alpha: 1)
+                    self.containerAcceptChallenge.isHidden = false
+                    self.containerTolak.isHidden = false
+                    self.imageContent.image = #imageLiteral(resourceName: "waitingMask")
+                } else {
+                    self.titleContent.text = "Menunggu,"
+                    self.subtitleContent.text = "\(opponents.first?.fullName ?? "")\nmengkonfirmasi tantangan"
+                    self.containerHeader.backgroundColor = #colorLiteral(red: 1, green: 0.4935973287, blue: 0.3663615584, alpha: 1)
+                    self.containerAcceptChallenge.isHidden = true
+                    self.imageContent.image = #imageLiteral(resourceName: "waitingMask")
+                }
+            case .openChallenge:
+                if isAudience { // if user already registered as opponent candidate
+                    self.titleContent.text = "Menunggu,"
+                    self.subtitleContent.text = "\(challenger?.fullName ?? "") untuk\nkonfirmasi lawan debat"
+                    self.containerHeader.backgroundColor = #colorLiteral(red: 1, green: 0.4935973287, blue: 0.3663615584, alpha: 1)
+                    self.containerAcceptChallenge.isHidden = true
+                } else if isMyChallenge { // if user is the owner of challenge
+                    self.titleContent.text = "Tantangan diterima,"
+                    self.subtitleContent.text = "Segera konfirmasi sebelum\nbatas akhir waktunya!"
+                    self.containerHeader.backgroundColor = #colorLiteral(red: 1, green: 0.4935973287, blue: 0.3663615584, alpha: 1)
+                    self.containerAcceptChallenge.isHidden = true
+                } else { // if user not the owner and has not registered yet
+                    self.titleContent.text = "Ini adalah Open Challenge,"
+                    self.subtitleContent.text = "Terima tantangan ini?"
+                    self.containerHeader.backgroundColor = #colorLiteral(red: 1, green: 0.4935973287, blue: 0.3663615584, alpha: 1)
+                    self.containerAcceptChallenge.isHidden = false
+                }
+                
+                self.tableView.isHidden = false
+                self.configureTableOpponentCandidate(isMyChallenge: isMyChallenge)
+            default: break
             }
-            
-            self.tableView.isHidden = false
-            self.configureTableOpponentCandidate(isMyChallenge: isMyChallenge)
         case .waitingOpponent:
-            if isMyChallenge {
-                self.titleContent.text = "Menunggu,"
-                self.subtitleContent.text = "lawan menerima\ntantanganmu"
-                self.containerHeader.backgroundColor = #colorLiteral(red: 1, green: 0.4935973287, blue: 0.3663615584, alpha: 1)
-                self.containerAcceptChallenge.isHidden = true
-            } else {
-                self.titleContent.text = "Ini adalah Open Challenge,"
-                self.subtitleContent.text = "Terima tantangan ini?"
-                self.containerHeader.backgroundColor = #colorLiteral(red: 1, green: 0.4935973287, blue: 0.3663615584, alpha: 1)
-                self.containerAcceptChallenge.isHidden = false
+            switch data.type {
+            case .directChallenge:
+                if isAudience { // if user already registered as opponent candidate
+                    self.titleContent.text = "Ini tantangan buat kamu,"
+                    self.subtitleContent.text = "apakah dikonfirmasi?"
+                    self.containerHeader.backgroundColor = #colorLiteral(red: 1, green: 0.4935973287, blue: 0.3663615584, alpha: 1)
+                    self.containerAcceptChallenge.isHidden = false
+                    self.containerTolak.isHidden = false
+                    self.imageContent.image = #imageLiteral(resourceName: "waitingMask")
+                } else {
+                    self.titleContent.text = "Menunggu,"
+                    self.subtitleContent.text = "\(opponents.first?.fullName ?? "")\nmengkonfirmasi tantangan"
+                    self.containerHeader.backgroundColor = #colorLiteral(red: 1, green: 0.4935973287, blue: 0.3663615584, alpha: 1)
+                    self.containerAcceptChallenge.isHidden = true
+                    self.imageContent.image = #imageLiteral(resourceName: "waitingMask")
+                }
+            case .openChallenge:
+                if isMyChallenge {
+                    self.titleContent.text = "Menunggu,"
+                    self.subtitleContent.text = "lawan menerima\ntantanganmu"
+                    self.containerHeader.backgroundColor = #colorLiteral(red: 1, green: 0.4935973287, blue: 0.3663615584, alpha: 1)
+                    self.containerAcceptChallenge.isHidden = true
+                } else {
+                    self.titleContent.text = "Ini adalah Open Challenge,"
+                    self.subtitleContent.text = "Terima tantangan ini?"
+                    self.containerHeader.backgroundColor = #colorLiteral(red: 1, green: 0.4935973287, blue: 0.3663615584, alpha: 1)
+                    self.containerAcceptChallenge.isHidden = false
+                }
+            default: break
             }
         case .comingSoon:
             self.title = "COMING SOON"
