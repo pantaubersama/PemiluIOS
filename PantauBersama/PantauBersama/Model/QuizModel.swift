@@ -16,7 +16,7 @@ class QuizModel {
     let image: ImageModel
     let questionCount: Int
     let participationStatus: QuizStatus
-    let shareURL: String
+    let shareURL: String?
     
     init(quiz: Quiz) {
         self.id = quiz.id
