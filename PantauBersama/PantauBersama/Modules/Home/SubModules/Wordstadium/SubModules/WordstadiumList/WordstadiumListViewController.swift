@@ -54,10 +54,8 @@ class WordstadiumListViewController: UITableViewController {
         
         dataSource = RxTableViewSectionedReloadDataSource<SectionWordstadium>(
             configureCell: { (dataSource, tableView, indexPath, item) in
-                let wordstadium = dataSource.sectionModels[indexPath.section]
-                
                 let cell = tableView.dequeueReusableCell(indexPath: indexPath) as WordstadiumItemViewCell
-                cell.configureCell(item: WordstadiumItemViewCell.Input(type: wordstadium.type ,itemType: wordstadium.itemType, wordstadium: wordstadium.items[indexPath.row]))
+                cell.configureCell(item: WordstadiumItemViewCell.Input( wordstadium: item))
                 return cell
         })
         

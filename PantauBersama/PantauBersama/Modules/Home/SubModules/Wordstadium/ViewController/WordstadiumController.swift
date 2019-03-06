@@ -24,11 +24,11 @@ class WordstadiumController: UIViewController {
     private let disposeBag = DisposeBag()
     
     
-    private lazy var publicViewModel = LiniPublicViewModel(navigator: viewModel.navigator, showTableHeader: true)
-    private lazy var personalViewModel = LiniPersonalViewModel(navigator: viewModel.navigator, showTableHeader: true)
+    private lazy var publicViewModel: ILiniWordstadiumViewModel = LiniPublicViewModel(navigator: viewModel.navigator, showTableHeader: true)
+    private lazy var personalViewModel: ILiniWordstadiumViewModel = LiniPersonalViewModel(navigator: viewModel.navigator, showTableHeader: true)
     
-    private lazy var personalController = LiniWordstadiumViewController(viewModel: personalViewModel)
-    private lazy var publicController = LiniWordstadiumViewController(viewModel: publicViewModel)
+    private lazy var publicController:LiniWordstadiumViewController = LiniWordstadiumViewController(viewModel: publicViewModel)
+    private lazy var personalController:LiniWordstadiumViewController = LiniWordstadiumViewController(viewModel: personalViewModel)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,11 +45,11 @@ class WordstadiumController: UIViewController {
             .subscribe(onNext: { [unowned self] i in
                 UIView.animate(withDuration: 0.3, animations: {
                     if i == 0 {
-                        self.personalController.view.alpha = 0.0
                         self.publicController.view.alpha = 1.0
+                        self.personalController.view.alpha = 0.0
                     } else {
-                        self.personalController.view.alpha = 1.0
                         self.publicController.view.alpha = 0.0
+                        self.personalController.view.alpha = 1.0
                     }
                 })
             })
