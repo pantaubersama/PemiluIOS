@@ -1,13 +1,18 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13142" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12042"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UploadC1Controller" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UploadC1Controller" customModule="PantauBersama" customModuleProvider="target">
             <connections>
+                <outlet property="tableView" destination="Tif-3W-Jxt" id="ENg-Tc-vbV"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -15,8 +20,56 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="20" translatesAutoresizingMaskIntoConstraints="NO" id="Tif-3W-Jxt">
+                    <rect key="frame" x="0.0" y="20" width="375" height="598"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="separatorColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="2tf-GU-H2l"/>
+                        <outlet property="delegate" destination="-1" id="rSh-Xa-VFM"/>
+                    </connections>
+                </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="meJ-pq-Iw7">
+                    <rect key="frame" x="0.0" y="618" width="375" height="1"/>
+                    <color key="backgroundColor" white="0.90000000000000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="NOs-Sc-Zca"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EXr-7A-8cd" customClass="Button" customModule="Common">
+                    <rect key="frame" x="0.0" y="619" width="375" height="48"/>
+                    <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="48" id="hZu-f3-Joq"/>
+                    </constraints>
+                    <state key="normal" title="SIMPAN">
+                        <color key="titleColor" red="0.74117647060000003" green="0.031372549020000001" blue="0.10980392160000001" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                            <real key="value" value="12"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="string" keyPath="typeButton" value="black"/>
+                    </userDefinedRuntimeAttributes>
+                </button>
+            </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="Tif-3W-Jxt" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="3Wf-ry-R3I"/>
+                <constraint firstItem="meJ-pq-Iw7" firstAttribute="top" secondItem="Tif-3W-Jxt" secondAttribute="bottom" id="4kv-Bl-3YE"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="EXr-7A-8cd" secondAttribute="trailing" id="AQA-cO-S2h"/>
+                <constraint firstItem="meJ-pq-Iw7" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="FrY-iA-taP"/>
+                <constraint firstItem="EXr-7A-8cd" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Pl2-d1-OPb"/>
+                <constraint firstItem="Tif-3W-Jxt" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="c3P-o9-YY1"/>
+                <constraint firstItem="EXr-7A-8cd" firstAttribute="top" secondItem="meJ-pq-Iw7" secondAttribute="bottom" id="ddW-iU-2tx"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="EXr-7A-8cd" secondAttribute="bottom" id="goA-14-xf7"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="meJ-pq-Iw7" secondAttribute="trailing" id="jhQ-oc-oN6"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Tif-3W-Jxt" secondAttribute="trailing" id="ljw-hQ-bgB"/>
+            </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="39.200000000000003" y="46.326836581709152"/>
         </view>
     </objects>
 </document>

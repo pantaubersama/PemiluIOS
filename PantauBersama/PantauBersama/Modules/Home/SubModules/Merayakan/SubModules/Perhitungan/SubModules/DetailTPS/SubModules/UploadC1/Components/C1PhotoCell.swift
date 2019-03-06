@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import Common
 
-class C1PhotoCell: UITableViewCell {
+class C1PhotoCell: UITableViewCell, IReusableCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
