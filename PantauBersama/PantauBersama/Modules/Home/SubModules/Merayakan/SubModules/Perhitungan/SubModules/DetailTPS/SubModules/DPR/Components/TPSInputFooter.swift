@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import Common
 
-class TPSInputFooter: UITableViewHeaderFooterView {
+class TPSInputFooter: UITableViewHeaderFooterView, IReusableCell {
 
     /*
     // Only override draw() if you perform custom drawing.

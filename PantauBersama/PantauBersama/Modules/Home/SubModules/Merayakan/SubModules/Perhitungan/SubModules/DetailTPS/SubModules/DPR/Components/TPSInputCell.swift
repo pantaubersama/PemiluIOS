@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import Common
 
-class TPSInputCell: UITableViewCell {
+class TPSInputCell: UITableViewCell, IReusableCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
