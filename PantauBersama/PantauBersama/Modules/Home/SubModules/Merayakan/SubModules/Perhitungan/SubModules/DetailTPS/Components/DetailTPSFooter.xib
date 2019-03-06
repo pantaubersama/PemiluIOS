@@ -57,6 +57,9 @@ bagikan keseruan suasana di TPS kamu</string>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="btnUpload" destination="kcc-S0-wwh" id="llb-i0-iT0"/>
+            </connections>
             <point key="canvasLocation" x="16" y="93.103448275862078"/>
         </tableViewCell>
     </objects>

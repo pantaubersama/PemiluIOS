@@ -12,6 +12,7 @@ import RxSwift
 import RxCocoa
 
 struct ElectionType {
+    let tag: Int
     let imgFirstOption: UIImage?
     let imgSecOption: UIImage?
     let title: String
@@ -26,26 +27,31 @@ class DetailTPSController: UIViewController {
     
     fileprivate var elections: [ElectionType] = [
         ElectionType(
+            tag: 0,
             imgFirstOption: UIImage(named: "presidenmdpi"),
             imgSecOption: UIImage(named: "c1Presiden"),
             title: "PRESIDEN"
         ),
         ElectionType(
+            tag: 1,
             imgFirstOption: UIImage(named: "dpRmdpi"),
             imgSecOption: UIImage(named: "c1DPR"),
             title: "DPR RI"
         ),
         ElectionType(
+            tag: 2,
             imgFirstOption: UIImage(named: "dpDmdpi"),
             imgSecOption: UIImage(named: "c1DPD"),
             title: "DPD"
         ),
         ElectionType(
+            tag: 3,
             imgFirstOption: UIImage(named: "dprdProvinsimdpi"),
             imgSecOption: UIImage(named: "c1DPRDProv"),
             title: "DPRD PROVINSI"
         ),
         ElectionType(
+            tag: 4,
             imgFirstOption: UIImage(named: "dprdKabmdpi"),
             imgSecOption: UIImage(named: "c1DPRDKab"),
             title: "DPRD KABUPATEN/KOTA"
@@ -81,6 +87,50 @@ class DetailTPSController: UIViewController {
         viewModel.output.sendDataActionO
             .drive()
             .disposed(by: disposeBag)
+        
+        viewModel.output.detailPresidenO
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.detailDPRO
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.detailDPRKotaO
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.detailDPRProvO
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.detailDPDO
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.c1UploadO
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.c1PresidenO
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.c1DPRO
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.c1DPDO
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.c1DPRDProvO
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.c1DPRDKotaO
+            .drive()
+            .disposed(by: disposeBag)
     }
 }
 
@@ -96,11 +146,13 @@ extension DetailTPSController: UITableViewDataSource {
             
         } else if indexPath.row == (elections.count + 1) {
             let cell = tableView.dequeueReusableCell() as DetailTPSFooter
+            cell.configureCell(item: DetailTPSFooter.Input(viewModel: self.viewModel))
             return cell
         }
         
         let cell = tableView.dequeueReusableCell() as ElectionTypeCell
-        cell.configureCell(item: elections[indexPath.row - 1])
+        let input = ElectionTypeCell.Input(data: elections[indexPath.row - 1], viewModel: self.viewModel)
+        cell.configureCell(item: input)
         return cell
     }
 }

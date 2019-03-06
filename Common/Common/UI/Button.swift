@@ -88,6 +88,16 @@ open class Button: UIButton {
                     self.fontName = "Lato-HairlineItalic"
                 case .lightItalic:
                     self.fontName = "Lato-LightItalic"
+                case .bmBold:
+                    self.fontName = "BwModelicaSS01-BoldCondensed"
+                case .bmThin:
+                    self.fontName = "BwModelica-ThinCondensed"
+                case .bmBlack:
+                    self.fontName = "BwModelica-BlackCondensed"
+                case .bmLight:
+                    self.fontName = "BwModelica-LightCondensed"
+                case .bmExtraBold:
+                    self.fontName = "BwModelica-ExtraBoldCondensed"
                 }
             }
             initButton()

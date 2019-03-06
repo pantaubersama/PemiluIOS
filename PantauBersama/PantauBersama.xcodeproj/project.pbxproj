@@ -533,8 +533,52 @@
 		84FF8A9621F21A8300AA8CF3 /* UpdatesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FF8A9521F21A8300AA8CF3 /* UpdatesView.swift */; };
 		84FF8A9921F21D0000AA8CF3 /* UpdatesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FF8A9821F21D0000AA8CF3 /* UpdatesCoordinator.swift */; };
 		84FF8A9F21F21F3A00AA8CF3 /* UpdatesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FF8A9E21F21F3A00AA8CF3 /* UpdatesViewModel.swift */; };
+		E52BE9DF222F4A8C00E26E70 /* C1InputFormCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52BE9DE222F4A8C00E26E70 /* C1InputFormCoordinator.swift */; };
+		E52BE9E1222F4A9C00E26E70 /* C1InputFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52BE9E0222F4A9C00E26E70 /* C1InputFormViewModel.swift */; };
+		E52BE9E3222F4AC700E26E70 /* UploadC1Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52BE9E2222F4AC700E26E70 /* UploadC1Coordinator.swift */; };
+		E52BE9E5222F4AD300E26E70 /* UploadC1ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52BE9E4222F4AD300E26E70 /* UploadC1ViewModel.swift */; };
+		E52BE9E7222F4AEB00E26E70 /* DetailTPSDPDCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52BE9E6222F4AEB00E26E70 /* DetailTPSDPDCoordinator.swift */; };
+		E52BE9E9222F4AF800E26E70 /* DetailTPSDPDViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52BE9E8222F4AF800E26E70 /* DetailTPSDPDViewModel.swift */; };
+		E52BE9EB222F4B1B00E26E70 /* DetailTPSDPRCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52BE9EA222F4B1B00E26E70 /* DetailTPSDPRCoordinator.swift */; };
+		E52BE9ED222F4B2900E26E70 /* DetailTPSDPRViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52BE9EC222F4B2900E26E70 /* DetailTPSDPRViewModel.swift */; };
 		E546E46C2227F73600D05394 /* DetailTPSFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E546E46A2227F73600D05394 /* DetailTPSFooter.swift */; };
 		E546E46D2227F73600D05394 /* DetailTPSFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = E546E46B2227F73600D05394 /* DetailTPSFooter.xib */; };
+		E54CFAE5222C1AFA002DA0D1 /* DetailTPSDPRController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54CFAE3222C1AFA002DA0D1 /* DetailTPSDPRController.swift */; };
+		E54CFAE6222C1AFA002DA0D1 /* DetailTPSDPRController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E54CFAE4222C1AFA002DA0D1 /* DetailTPSDPRController.xib */; };
+		E54CFAEA222C1BF4002DA0D1 /* DetailTPSDPRFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54CFAE9222C1BF4002DA0D1 /* DetailTPSDPRFooter.swift */; };
+		E54CFAEC222C1C09002DA0D1 /* DetailTPSDPRFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = E54CFAEB222C1C09002DA0D1 /* DetailTPSDPRFooter.xib */; };
+		E54CFAEF222C1EC7002DA0D1 /* TPSInputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54CFAED222C1EC7002DA0D1 /* TPSInputCell.swift */; };
+		E54CFAF0222C1EC7002DA0D1 /* TPSInputCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E54CFAEE222C1EC7002DA0D1 /* TPSInputCell.xib */; };
+		E54CFAF2222C1EDF002DA0D1 /* TPSInputHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54CFAF1222C1EDF002DA0D1 /* TPSInputHeader.swift */; };
+		E54CFAF4222C1F31002DA0D1 /* TPSInputHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = E54CFAF3222C1F31002DA0D1 /* TPSInputHeader.xib */; };
+		E54CFAF6222C241A002DA0D1 /* TPSInputFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54CFAF5222C241A002DA0D1 /* TPSInputFooter.swift */; };
+		E54CFAF8222C2435002DA0D1 /* TPSInputFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = E54CFAF7222C2435002DA0D1 /* TPSInputFooter.xib */; };
+		E54CFAFC222C31E8002DA0D1 /* DetailTPSDPDController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54CFAFA222C31E8002DA0D1 /* DetailTPSDPDController.swift */; };
+		E54CFAFD222C31E8002DA0D1 /* DetailTPSDPDController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E54CFAFB222C31E8002DA0D1 /* DetailTPSDPDController.xib */; };
+		E54CFB00222C3251002DA0D1 /* DetailTPSDPRHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54CFAFF222C3251002DA0D1 /* DetailTPSDPRHeader.swift */; };
+		E54CFB02222C325D002DA0D1 /* DetailTPSDPRHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = E54CFB01222C325D002DA0D1 /* DetailTPSDPRHeader.xib */; };
+		E54CFB06222C481A002DA0D1 /* UploadC1Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54CFB04222C481A002DA0D1 /* UploadC1Controller.swift */; };
+		E54CFB07222C481A002DA0D1 /* UploadC1Controller.xib in Resources */ = {isa = PBXBuildFile; fileRef = E54CFB05222C481A002DA0D1 /* UploadC1Controller.xib */; };
+		E54CFB0B222C4A48002DA0D1 /* C1PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54CFB09222C4A48002DA0D1 /* C1PhotoCell.swift */; };
+		E54CFB0C222C4A48002DA0D1 /* C1PhotoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E54CFB0A222C4A48002DA0D1 /* C1PhotoCell.xib */; };
+		E54CFB0E222C4B8C002DA0D1 /* C1PhotoHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54CFB0D222C4B8C002DA0D1 /* C1PhotoHeader.swift */; };
+		E54CFB10222C4B99002DA0D1 /* C1PhotoHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = E54CFB0F222C4B99002DA0D1 /* C1PhotoHeader.xib */; };
+		E54CFB12222C4DD2002DA0D1 /* UploadC1Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54CFB11222C4DD2002DA0D1 /* UploadC1Header.swift */; };
+		E54CFB14222C4DE2002DA0D1 /* UploadC1Header.xib in Resources */ = {isa = PBXBuildFile; fileRef = E54CFB13222C4DE2002DA0D1 /* UploadC1Header.xib */; };
+		E5B22D57222A395F002A8C0C /* DetailTPSPresidenCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B22D56222A395F002A8C0C /* DetailTPSPresidenCoordinator.swift */; };
+		E5B22D59222A3998002A8C0C /* DetailTPSPresidenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B22D58222A3998002A8C0C /* DetailTPSPresidenViewModel.swift */; };
+		E5B22D5D222A39CF002A8C0C /* DetailTPSPresidenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B22D5B222A39CF002A8C0C /* DetailTPSPresidenController.swift */; };
+		E5B22D5E222A39CF002A8C0C /* DetailTPSPresidenController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E5B22D5C222A39CF002A8C0C /* DetailTPSPresidenController.xib */; };
+		E5B22D61222AA39C002A8C0C /* TPSButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B22D60222AA39C002A8C0C /* TPSButton.swift */; };
+		E5B22D65222AE5F4002A8C0C /* TPSTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B22D64222AE5F4002A8C0C /* TPSTextField.swift */; };
+		E5B22D68222B0381002A8C0C /* C1InputFormController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B22D66222B0381002A8C0C /* C1InputFormController.swift */; };
+		E5B22D69222B0381002A8C0C /* C1InputFormController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E5B22D67222B0381002A8C0C /* C1InputFormController.xib */; };
+		E5B22D6B222B047C002A8C0C /* C1PemilihView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B22D6A222B047C002A8C0C /* C1PemilihView.swift */; };
+		E5B22D6D222B0493002A8C0C /* C1PemilihDisabilitasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B22D6C222B0493002A8C0C /* C1PemilihDisabilitasView.swift */; };
+		E5B22D6F222B04D4002A8C0C /* C1SuratSuaraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B22D6E222B04D4002A8C0C /* C1SuratSuaraView.swift */; };
+		E5B22D71222B04F7002A8C0C /* C1PemilihView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E5B22D70222B04F7002A8C0C /* C1PemilihView.xib */; };
+		E5B22D73222B050C002A8C0C /* C1PemilihDisabilitasView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E5B22D72222B050C002A8C0C /* C1PemilihDisabilitasView.xib */; };
+		E5B22D75222B051D002A8C0C /* C1SuratSuaraView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E5B22D74222B051D002A8C0C /* C1SuratSuaraView.xib */; };
 		E5F89FBE2227EEE300E0A73B /* ElectionTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F89FBC2227EEE300E0A73B /* ElectionTypeCell.swift */; };
 		E5F89FBF2227EEE300E0A73B /* ElectionTypeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E5F89FBD2227EEE300E0A73B /* ElectionTypeCell.xib */; };
 		E5F89FC22227F3DD00E0A73B /* DetailTPSHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F89FC02227F3DD00E0A73B /* DetailTPSHeader.swift */; };
@@ -1104,8 +1148,52 @@
 		84FF8A9821F21D0000AA8CF3 /* UpdatesCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatesCoordinator.swift; sourceTree = "<group>"; };
 		84FF8A9E21F21F3A00AA8CF3 /* UpdatesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatesViewModel.swift; sourceTree = "<group>"; };
 		C4CBA51E95EB1AE7C2940BC0 /* Pods_PantauBersama_PantauBersamaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PantauBersama_PantauBersamaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E52BE9DE222F4A8C00E26E70 /* C1InputFormCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = C1InputFormCoordinator.swift; sourceTree = "<group>"; };
+		E52BE9E0222F4A9C00E26E70 /* C1InputFormViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = C1InputFormViewModel.swift; sourceTree = "<group>"; };
+		E52BE9E2222F4AC700E26E70 /* UploadC1Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadC1Coordinator.swift; sourceTree = "<group>"; };
+		E52BE9E4222F4AD300E26E70 /* UploadC1ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadC1ViewModel.swift; sourceTree = "<group>"; };
+		E52BE9E6222F4AEB00E26E70 /* DetailTPSDPDCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTPSDPDCoordinator.swift; sourceTree = "<group>"; };
+		E52BE9E8222F4AF800E26E70 /* DetailTPSDPDViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTPSDPDViewModel.swift; sourceTree = "<group>"; };
+		E52BE9EA222F4B1B00E26E70 /* DetailTPSDPRCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTPSDPRCoordinator.swift; sourceTree = "<group>"; };
+		E52BE9EC222F4B2900E26E70 /* DetailTPSDPRViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTPSDPRViewModel.swift; sourceTree = "<group>"; };
 		E546E46A2227F73600D05394 /* DetailTPSFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTPSFooter.swift; sourceTree = "<group>"; };
 		E546E46B2227F73600D05394 /* DetailTPSFooter.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailTPSFooter.xib; sourceTree = "<group>"; };
+		E54CFAE3222C1AFA002DA0D1 /* DetailTPSDPRController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTPSDPRController.swift; sourceTree = "<group>"; };
+		E54CFAE4222C1AFA002DA0D1 /* DetailTPSDPRController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailTPSDPRController.xib; sourceTree = "<group>"; };
+		E54CFAE9222C1BF4002DA0D1 /* DetailTPSDPRFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTPSDPRFooter.swift; sourceTree = "<group>"; };
+		E54CFAEB222C1C09002DA0D1 /* DetailTPSDPRFooter.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailTPSDPRFooter.xib; sourceTree = "<group>"; };
+		E54CFAED222C1EC7002DA0D1 /* TPSInputCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TPSInputCell.swift; sourceTree = "<group>"; };
+		E54CFAEE222C1EC7002DA0D1 /* TPSInputCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TPSInputCell.xib; sourceTree = "<group>"; };
+		E54CFAF1222C1EDF002DA0D1 /* TPSInputHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TPSInputHeader.swift; sourceTree = "<group>"; };
+		E54CFAF3222C1F31002DA0D1 /* TPSInputHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TPSInputHeader.xib; sourceTree = "<group>"; };
+		E54CFAF5222C241A002DA0D1 /* TPSInputFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TPSInputFooter.swift; sourceTree = "<group>"; };
+		E54CFAF7222C2435002DA0D1 /* TPSInputFooter.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TPSInputFooter.xib; sourceTree = "<group>"; };
+		E54CFAFA222C31E8002DA0D1 /* DetailTPSDPDController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTPSDPDController.swift; sourceTree = "<group>"; };
+		E54CFAFB222C31E8002DA0D1 /* DetailTPSDPDController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailTPSDPDController.xib; sourceTree = "<group>"; };
+		E54CFAFF222C3251002DA0D1 /* DetailTPSDPRHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTPSDPRHeader.swift; sourceTree = "<group>"; };
+		E54CFB01222C325D002DA0D1 /* DetailTPSDPRHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailTPSDPRHeader.xib; sourceTree = "<group>"; };
+		E54CFB04222C481A002DA0D1 /* UploadC1Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadC1Controller.swift; sourceTree = "<group>"; };
+		E54CFB05222C481A002DA0D1 /* UploadC1Controller.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UploadC1Controller.xib; sourceTree = "<group>"; };
+		E54CFB09222C4A48002DA0D1 /* C1PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = C1PhotoCell.swift; sourceTree = "<group>"; };
+		E54CFB0A222C4A48002DA0D1 /* C1PhotoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = C1PhotoCell.xib; sourceTree = "<group>"; };
+		E54CFB0D222C4B8C002DA0D1 /* C1PhotoHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = C1PhotoHeader.swift; sourceTree = "<group>"; };
+		E54CFB0F222C4B99002DA0D1 /* C1PhotoHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = C1PhotoHeader.xib; sourceTree = "<group>"; };
+		E54CFB11222C4DD2002DA0D1 /* UploadC1Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadC1Header.swift; sourceTree = "<group>"; };
+		E54CFB13222C4DE2002DA0D1 /* UploadC1Header.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UploadC1Header.xib; sourceTree = "<group>"; };
+		E5B22D56222A395F002A8C0C /* DetailTPSPresidenCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTPSPresidenCoordinator.swift; sourceTree = "<group>"; };
+		E5B22D58222A3998002A8C0C /* DetailTPSPresidenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTPSPresidenViewModel.swift; sourceTree = "<group>"; };
+		E5B22D5B222A39CF002A8C0C /* DetailTPSPresidenController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTPSPresidenController.swift; sourceTree = "<group>"; };
+		E5B22D5C222A39CF002A8C0C /* DetailTPSPresidenController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailTPSPresidenController.xib; sourceTree = "<group>"; };
+		E5B22D60222AA39C002A8C0C /* TPSButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TPSButton.swift; sourceTree = "<group>"; };
+		E5B22D64222AE5F4002A8C0C /* TPSTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TPSTextField.swift; sourceTree = "<group>"; };
+		E5B22D66222B0381002A8C0C /* C1InputFormController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = C1InputFormController.swift; sourceTree = "<group>"; };
+		E5B22D67222B0381002A8C0C /* C1InputFormController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = C1InputFormController.xib; sourceTree = "<group>"; };
+		E5B22D6A222B047C002A8C0C /* C1PemilihView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = C1PemilihView.swift; sourceTree = "<group>"; };
+		E5B22D6C222B0493002A8C0C /* C1PemilihDisabilitasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = C1PemilihDisabilitasView.swift; sourceTree = "<group>"; };
+		E5B22D6E222B04D4002A8C0C /* C1SuratSuaraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = C1SuratSuaraView.swift; sourceTree = "<group>"; };
+		E5B22D70222B04F7002A8C0C /* C1PemilihView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = C1PemilihView.xib; sourceTree = "<group>"; };
+		E5B22D72222B050C002A8C0C /* C1PemilihDisabilitasView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = C1PemilihDisabilitasView.xib; sourceTree = "<group>"; };
+		E5B22D74222B051D002A8C0C /* C1SuratSuaraView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = C1SuratSuaraView.xib; sourceTree = "<group>"; };
 		E5F89FBC2227EEE300E0A73B /* ElectionTypeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectionTypeCell.swift; sourceTree = "<group>"; };
 		E5F89FBD2227EEE300E0A73B /* ElectionTypeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ElectionTypeCell.xib; sourceTree = "<group>"; };
 		E5F89FC02227F3DD00E0A73B /* DetailTPSHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTPSHeader.swift; sourceTree = "<group>"; };
@@ -1279,7 +1367,7 @@
 		1131A6212224343C0000981D /* DetailTPS */ = {
 			isa = PBXGroup;
 			children = (
-				119123A6222522DA00617E7C /* SubModules */,
+				E5B22D54222A38B2002A8C0C /* SubModules */,
 				1191239D2224DDEB00617E7C /* Components */,
 				1131A6222224344F0000981D /* ViewController */,
 				1131A6242224346A0000981D /* DetailTPSCoordinator.swift */,
@@ -1458,13 +1546,6 @@
 				E546E46B2227F73600D05394 /* DetailTPSFooter.xib */,
 			);
 			path = Components;
-			sourceTree = "<group>";
-		};
-		119123A6222522DA00617E7C /* SubModules */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = SubModules;
 			sourceTree = "<group>";
 		};
 		1197010D21F36346005548AC /* ListCluster */ = {
@@ -3313,6 +3394,137 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
+		E52BE9DC222F4A5200E26E70 /* InputC1 */ = {
+			isa = PBXGroup;
+			children = (
+				E52BE9DD222F4A6100E26E70 /* Components */,
+				E5B22D66222B0381002A8C0C /* C1InputFormController.swift */,
+				E5B22D67222B0381002A8C0C /* C1InputFormController.xib */,
+				E52BE9DE222F4A8C00E26E70 /* C1InputFormCoordinator.swift */,
+				E52BE9E0222F4A9C00E26E70 /* C1InputFormViewModel.swift */,
+			);
+			path = InputC1;
+			sourceTree = "<group>";
+		};
+		E52BE9DD222F4A6100E26E70 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				E5B22D6A222B047C002A8C0C /* C1PemilihView.swift */,
+				E5B22D70222B04F7002A8C0C /* C1PemilihView.xib */,
+				E5B22D6C222B0493002A8C0C /* C1PemilihDisabilitasView.swift */,
+				E5B22D72222B050C002A8C0C /* C1PemilihDisabilitasView.xib */,
+				E5B22D6E222B04D4002A8C0C /* C1SuratSuaraView.swift */,
+				E5B22D74222B051D002A8C0C /* C1SuratSuaraView.xib */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		E54CFAE7222C1B47002DA0D1 /* DPR */ = {
+			isa = PBXGroup;
+			children = (
+				E54CFAE8222C1B58002DA0D1 /* Components */,
+				E54CFAE3222C1AFA002DA0D1 /* DetailTPSDPRController.swift */,
+				E54CFAE4222C1AFA002DA0D1 /* DetailTPSDPRController.xib */,
+				E52BE9EA222F4B1B00E26E70 /* DetailTPSDPRCoordinator.swift */,
+				E52BE9EC222F4B2900E26E70 /* DetailTPSDPRViewModel.swift */,
+			);
+			path = DPR;
+			sourceTree = "<group>";
+		};
+		E54CFAE8222C1B58002DA0D1 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				E54CFAFF222C3251002DA0D1 /* DetailTPSDPRHeader.swift */,
+				E54CFB01222C325D002DA0D1 /* DetailTPSDPRHeader.xib */,
+				E54CFAE9222C1BF4002DA0D1 /* DetailTPSDPRFooter.swift */,
+				E54CFAEB222C1C09002DA0D1 /* DetailTPSDPRFooter.xib */,
+				E54CFAED222C1EC7002DA0D1 /* TPSInputCell.swift */,
+				E54CFAEE222C1EC7002DA0D1 /* TPSInputCell.xib */,
+				E54CFAF1222C1EDF002DA0D1 /* TPSInputHeader.swift */,
+				E54CFAF3222C1F31002DA0D1 /* TPSInputHeader.xib */,
+				E54CFAF5222C241A002DA0D1 /* TPSInputFooter.swift */,
+				E54CFAF7222C2435002DA0D1 /* TPSInputFooter.xib */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		E54CFAF9222C31D3002DA0D1 /* DPD */ = {
+			isa = PBXGroup;
+			children = (
+				E54CFAFE222C31EF002DA0D1 /* Components */,
+				E54CFAFA222C31E8002DA0D1 /* DetailTPSDPDController.swift */,
+				E54CFAFB222C31E8002DA0D1 /* DetailTPSDPDController.xib */,
+				E52BE9E6222F4AEB00E26E70 /* DetailTPSDPDCoordinator.swift */,
+				E52BE9E8222F4AF800E26E70 /* DetailTPSDPDViewModel.swift */,
+			);
+			path = DPD;
+			sourceTree = "<group>";
+		};
+		E54CFAFE222C31EF002DA0D1 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		E54CFB03222C47FB002DA0D1 /* UploadC1 */ = {
+			isa = PBXGroup;
+			children = (
+				E54CFB08222C493F002DA0D1 /* Components */,
+				E54CFB04222C481A002DA0D1 /* UploadC1Controller.swift */,
+				E54CFB05222C481A002DA0D1 /* UploadC1Controller.xib */,
+				E52BE9E2222F4AC700E26E70 /* UploadC1Coordinator.swift */,
+				E52BE9E4222F4AD300E26E70 /* UploadC1ViewModel.swift */,
+			);
+			path = UploadC1;
+			sourceTree = "<group>";
+		};
+		E54CFB08222C493F002DA0D1 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				E54CFB11222C4DD2002DA0D1 /* UploadC1Header.swift */,
+				E54CFB13222C4DE2002DA0D1 /* UploadC1Header.xib */,
+				E54CFB09222C4A48002DA0D1 /* C1PhotoCell.swift */,
+				E54CFB0A222C4A48002DA0D1 /* C1PhotoCell.xib */,
+				E54CFB0D222C4B8C002DA0D1 /* C1PhotoHeader.swift */,
+				E54CFB0F222C4B99002DA0D1 /* C1PhotoHeader.xib */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		E5B22D54222A38B2002A8C0C /* SubModules */ = {
+			isa = PBXGroup;
+			children = (
+				E52BE9DC222F4A5200E26E70 /* InputC1 */,
+				E54CFB03222C47FB002DA0D1 /* UploadC1 */,
+				E54CFAF9222C31D3002DA0D1 /* DPD */,
+				E54CFAE7222C1B47002DA0D1 /* DPR */,
+				E5B22D55222A38BC002A8C0C /* Presiden */,
+			);
+			path = SubModules;
+			sourceTree = "<group>";
+		};
+		E5B22D55222A38BC002A8C0C /* Presiden */ = {
+			isa = PBXGroup;
+			children = (
+				E5B22D5F222A39D5002A8C0C /* Components */,
+				E5B22D5B222A39CF002A8C0C /* DetailTPSPresidenController.swift */,
+				E5B22D5C222A39CF002A8C0C /* DetailTPSPresidenController.xib */,
+				E5B22D56222A395F002A8C0C /* DetailTPSPresidenCoordinator.swift */,
+				E5B22D58222A3998002A8C0C /* DetailTPSPresidenViewModel.swift */,
+			);
+			path = Presiden;
+			sourceTree = "<group>";
+		};
+		E5B22D5F222A39D5002A8C0C /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				E5B22D60222AA39C002A8C0C /* TPSButton.swift */,
+				E5B22D64222AE5F4002A8C0C /* TPSTextField.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -3419,6 +3631,7 @@
 				84FA42472212AACA008215C4 /* TantanganChallengeController.xib in Resources */,
 				84B8C1B32215471E004BC1FE /* LawanDebatCell.xib in Resources */,
 				13F4569521CF97DA00CE45F1 /* CreateAskController.xib in Resources */,
+				E5B22D71222B04F7002A8C0C /* C1PemilihView.xib in Resources */,
 				1149EB6F22140E800050F366 /* ArgumentRightCell.xib in Resources */,
 				84B8C1C822157A27004BC1FE /* PublishChallengeController.xib in Resources */,
 				840850DD21D2832200696CB3 /* BadgeController.xib in Resources */,
@@ -3427,6 +3640,7 @@
 				84B8C1C222157584004BC1FE /* FooterProfileView.xib in Resources */,
 				84A945BC22240A8F00944C6B /* SearchUserController.xib in Resources */,
 				84FA427E2213062A008215C4 /* BidangKajianController.xib in Resources */,
+				E54CFAF8222C2435002DA0D1 /* TPSInputFooter.xib in Resources */,
 				1320595F221359C200BE9456 /* WordstadiumCollectionCell.xib in Resources */,
 				119123A12224DE0B00617E7C /* DetailTPSCell.xib in Resources */,
 				84B7B8B521E445D00099E7E3 /* empty-status.json in Resources */,
@@ -3459,6 +3673,7 @@
 				84B6D6E221E1028700CD4BC8 /* KategoriClusterController.xib in Resources */,
 				137369462217176100B698BA /* WordstadiumListHeaderView.xib in Resources */,
 				84F892AA21C787D800DC1048 /* Lato-Bold.ttf in Resources */,
+				E5B22D75222B051D002A8C0C /* C1SuratSuaraView.xib in Resources */,
 				13F456D421DB897500CE45F1 /* BannerInfoController.xib in Resources */,
 				84FA423E2212A1C7008215C4 /* CreateTantanganController.xib in Resources */,
 				840901B821DF1CBB001BF559 /* Navbar.xib in Resources */,
@@ -3466,9 +3681,12 @@
 				84E521AC21F3957F00B7CCBA /* ShareTrendController.xib in Resources */,
 				1131A61C22236A3E0000981D /* CreatePerhitunganController.xib in Resources */,
 				8451E05122035F9200F03E96 /* TrendImageShare.xib in Resources */,
+				E54CFAF4222C1F31002DA0D1 /* TPSInputHeader.xib in Resources */,
 				84AEFA75221E738400F3DC92 /* RefuseChallengeView.xib in Resources */,
 				137A29EE21E11E8F00F19072 /* TrendHeaderView.xib in Resources */,
+				E54CFAE6222C1AFA002DA0D1 /* DetailTPSDPRController.xib in Resources */,
 				E5F89FC32227F3DD00E0A73B /* DetailTPSHeader.xib in Resources */,
+				E5B22D69222B0381002A8C0C /* C1InputFormController.xib in Resources */,
 				84B6D6F121E24CAA00CD4BC8 /* ShareBadgeController.xib in Resources */,
 				84E2854D21CA4BC800298E31 /* FilterViewController.xib in Resources */,
 				84BE8DFA2226980B0079332A /* HeaderCatatanView.xib in Resources */,
@@ -3488,8 +3706,11 @@
 				846E8EFD21F767630036FEA2 /* SosmedController.xib in Resources */,
 				13812C1F21CAA48700CAB327 /* PenpolController.xib in Resources */,
 				84307F462200352B006DE04B /* ob3_penpol.json in Resources */,
+				E54CFB10222C4B99002DA0D1 /* C1PhotoHeader.xib in Resources */,
 				84A07F9D21D0DC4B00269C6B /* KTPController.xib in Resources */,
+				E54CFB0C222C4A48002DA0D1 /* C1PhotoCell.xib in Resources */,
 				13E139562213FF1B00286EDE /* SectionViewCell.xib in Resources */,
+				E54CFAEC222C1C09002DA0D1 /* DetailTPSDPRFooter.xib in Resources */,
 				137A29F421E2261A00F19072 /* ComingsoonController.xib in Resources */,
 				84FA42682212EED0008215C4 /* PernyataanCell.xib in Resources */,
 				8493BF7B2216848B00685BEC /* ChallengeController.xib in Resources */,
@@ -3506,17 +3727,20 @@
 				E5F89FBF2227EEE300E0A73B /* ElectionTypeCell.xib in Resources */,
 				84FA42322211E278008215C4 /* TooltipView.xib in Resources */,
 				84F892AD21C787D800DC1048 /* Lato-HairlineItalic.ttf in Resources */,
+				E5B22D73222B050C002A8C0C /* C1PemilihDisabilitasView.xib in Resources */,
 				11145F5F21EAF2730046F2AA /* SearchNavbar.xib in Resources */,
 				84F892AE21C787D800DC1048 /* Lato-Italic.ttf in Resources */,
 				043EE19D221A36C2008C59CD /* MerayakanController.xib in Resources */,
 				8451E06A2207F76E00F03E96 /* validation-success.json in Resources */,
 				8452A4C521DE1F4300196043 /* BuatProfileController.xib in Resources */,
+				E54CFAFD222C31E8002DA0D1 /* DetailTPSDPDController.xib in Resources */,
 				119123A522250CCE00617E7C /* SubmitTPSConfirmationController.xib in Resources */,
 				1149EB7D221A9DC90050F366 /* DebatDetailController.xib in Resources */,
 				84B6D51421F8407800DD742A /* PartyCell.xib in Resources */,
 				1108871922126FEA0041B821 /* LiveDebatController.xib in Resources */,
 				84B6D51821F87B5A00DD742A /* NotePreferenceView.xib in Resources */,
 				84F892AF21C787D800DC1048 /* Lato-Light.ttf in Resources */,
+				E54CFAF0222C1EC7002DA0D1 /* TPSInputCell.xib in Resources */,
 				1320596322135B1500BE9456 /* WordstadiumViewCell.xib in Resources */,
 				8428AAAD21C7B4B20008E975 /* GoogleService-Info.plist in Resources */,
 				84B6D50321F81D9D00DD742A /* CatatanPilpresController.xib in Resources */,
@@ -3524,12 +3748,14 @@
 				84F892B021C787D800DC1048 /* Lato-LightItalic.ttf in Resources */,
 				84FA42582212B873008215C4 /* TantanganCell.xib in Resources */,
 				118149F021EC718800192E97 /* ListUserCell.xib in Resources */,
+				E54CFB14222C4DE2002DA0D1 /* UploadC1Header.xib in Resources */,
 				84307F442200352B006DE04B /* ob1_wordstadium.json in Resources */,
 				845C571721CE1B5900EDCDFE /* BadgeCell.xib in Resources */,
 				1191239C2224DC3100617E7C /* DetailTPSController.xib in Resources */,
 				841CDA3D21C8BC1C0015680C /* LinimasaController.xib in Resources */,
 				8493BF88221699E700685BEC /* UserChallengeCell.xib in Resources */,
 				84FA426C2212F460008215C4 /* DateTimeCell.xib in Resources */,
+				E5B22D5E222A39CF002A8C0C /* DetailTPSPresidenController.xib in Resources */,
 				84A07FA721D0E2E900269C6B /* SelfIdentitasController.xib in Resources */,
 				11DA97102222C2C200A51E76 /* PerhitunganCell.xib in Resources */,
 				84E6933E21D2936E00EA5464 /* HeaderEditProfile.xib in Resources */,
@@ -3557,6 +3783,7 @@
 				84FA42642212E919008215C4 /* BidangKajianCell.xib in Resources */,
 				1147F22C21F83C01001D0D59 /* ClusterDetailController.xib in Resources */,
 				8441DB3E21CCB80B00B078DF /* ItemRadioCell.xib in Resources */,
+				E54CFB07222C481A002DA0D1 /* UploadC1Controller.xib in Resources */,
 				11D066A521E3850E003AC9BB /* PenpolFilterController.xib in Resources */,
 				844C3D8C21C5323E00199871 /* LinimasaCell.xib in Resources */,
 				848B039C21E7AADF002CAA40 /* WKWebview.xib in Resources */,
@@ -3569,6 +3796,7 @@
 				84FE6EC421D634CD009A0F55 /* BiodataView.xib in Resources */,
 				84B6D6EA21E223AA00CD4BC8 /* ClusterView.xib in Resources */,
 				84FA42702212F902008215C4 /* SaldoTimeCell.xib in Resources */,
+				E54CFB02222C325D002DA0D1 /* DetailTPSDPRHeader.xib in Resources */,
 				845C571321CE10C900EDCDFE /* IconTableCell.xib in Resources */,
 				11145F5621EACCEC0046F2AA /* SearchController.xib in Resources */,
 				11145F6B21EB473B0046F2AA /* CustomMenuBar.xib in Resources */,
@@ -3895,6 +4123,7 @@
 				84BEA55321F9884900659980 /* NetworkService.swift in Sources */,
 				84D01B9821D208DE0000492F /* SectionOfSettingData.swift in Sources */,
 				8423C3FC21F718A6000AAA63 /* DetailAskController.swift in Sources */,
+				E5B22D57222A395F002A8C0C /* DetailTPSPresidenCoordinator.swift in Sources */,
 				8493BF8022168A9B00685BEC /* ChallengeButtonView.swift in Sources */,
 				840901C221DF3BDE001BF559 /* CatatanViewModel.swift in Sources */,
 				84FA425C2212C474008215C4 /* TantanganChallengeCoordinator.swift in Sources */,
@@ -3904,6 +4133,7 @@
 				11E1079E21CD200500B7B074 /* PenpolViewModel.swift in Sources */,
 				84B6D6F621E30F8B00CD4BC8 /* ShareBadgeViewModel.swift in Sources */,
 				840850CE21D2611D00696CB3 /* DateViewCell.swift in Sources */,
+				E52BE9E9222F4AF800E26E70 /* DetailTPSDPDViewModel.swift in Sources */,
 				11B3C79221D1110700EDCECB /* QuizSummaryController.swift in Sources */,
 				84FA42422212A615008215C4 /* CreateTantanganCoordinator.swift in Sources */,
 				131DBDB22215AF78005203FF /* DescriptionView.swift in Sources */,
@@ -3921,11 +4151,13 @@
 				8423C3FF21F718E1000AAA63 /* DetailAskViewModel.swift in Sources */,
 				13E6FECB221F2109008CA788 /* LiniWordstadiumViewController.swift in Sources */,
 				840850BF21D256C200696CB3 /* SectionOfProfileInfoData.swift in Sources */,
+				E52BE9DF222F4A8C00E26E70 /* C1InputFormCoordinator.swift in Sources */,
 				84619D3821DA851200EB58CF /* EditViewModel.swift in Sources */,
 				8452A4D421DE55DE00196043 /* SosmedCoordinator.swift in Sources */,
 				1191239B2224DC3100617E7C /* DetailTPSController.swift in Sources */,
 				043EE197221A36C2008C59CD /* SuaraCapresViewCell.swift in Sources */,
 				1149EB6E22140E800050F366 /* ArgumentRightCell.swift in Sources */,
+				E54CFAF6222C241A002DA0D1 /* TPSInputFooter.swift in Sources */,
 				84BE8DFC222698500079332A /* HeaderCatatanView.swift in Sources */,
 				11E107A821CD33CA00B7B074 /* CreateJanjiCoordinator.swift in Sources */,
 				1147F22F21F83F1A001D0D59 /* ClusterDetailViewModel.swift in Sources */,
@@ -3952,6 +4184,7 @@
 				844C3D8821C5265600199871 /* AppCoordinator.swift in Sources */,
 				8441DB4121CCBECF00B078DF /* FilterModel.swift in Sources */,
 				84619D4021DA959400EB58CF /* SectionItemCell.swift in Sources */,
+				E54CFB00222C3251002DA0D1 /* DetailTPSDPRHeader.swift in Sources */,
 				84FA42492212AC63008215C4 /* TantanganChallengeController.swift in Sources */,
 				1131A6252224346A0000981D /* DetailTPSCoordinator.swift in Sources */,
 				8441DB3C21CCA6C500B078DF /* ItemRadioCell.swift in Sources */,
@@ -3965,10 +4198,13 @@
 				84A07FB121D0E7B000269C6B /* SelfIdentitasController.swift in Sources */,
 				13812C3921CC182500CAB327 /* AskViewCell.swift in Sources */,
 				1108871822126FEA0041B821 /* LiveDebatController.swift in Sources */,
+				E52BE9E3222F4AC700E26E70 /* UploadC1Coordinator.swift in Sources */,
 				137A29F821E2327D00F19072 /* ComingsoonCoordinator.swift in Sources */,
 				043EE194221A36C2008C59CD /* RekapViewModel.swift in Sources */,
 				11DA97122222CD7B00A51E76 /* PerhitunganNavigator.swift in Sources */,
 				84B2526821CC01F000565D82 /* AppState.swift in Sources */,
+				E5B22D59222A3998002A8C0C /* DetailTPSPresidenViewModel.swift in Sources */,
+				8451E05A22045AEC00F03E96 /* InfoNotifViewModel.swift in Sources */,
 				84E521BC21F4A81700B7CCBA /* ItemOnboardingController.swift in Sources */,
 				84CA10C521EF12800025CF10 /* AboutViewModel.swift in Sources */,
 				84B4DED821D375C600F60258 /* JanjiPolitikNavigator.swift in Sources */,
@@ -3980,6 +4216,7 @@
 				840901C421DF3BEC001BF559 /* CatatanCoordinator.swift in Sources */,
 				043EE195221A36C2008C59CD /* RekapController.swift in Sources */,
 				840850CA21D25EB600696CB3 /* TextViewCell.swift in Sources */,
+				E54CFAE5222C1AFA002DA0D1 /* DetailTPSDPRController.swift in Sources */,
 				11E1079621CD126900B7B074 /* QuizDetailViewModel.swift in Sources */,
 				84F6981121C8E21B00890917 /* LinimasaCell.swift in Sources */,
 				842A49F721D775420050AA51 /* HeaderDataLapor.swift in Sources */,
@@ -3996,11 +4233,13 @@
 				043EE19F221A36C2008C59CD /* MerayakanViewModel.swift in Sources */,
 				11E107DB21CFD99900B7B074 /* QuizResultViewModel.swift in Sources */,
 				8452A4D021DE544C00196043 /* SosmedController.swift in Sources */,
+				E54CFB0B222C4A48002DA0D1 /* C1PhotoCell.swift in Sources */,
 				118149E521EC622900192E97 /* ListUserController.swift in Sources */,
 				11E107AA21CD33CA00B7B074 /* CreateJanjiController.swift in Sources */,
 				845C570F21CE0DA400EDCDFE /* ClusterCell.swift in Sources */,
 				845C570B21CD3E9700EDCDFE /* SectionCell.swift in Sources */,
 				13E170C4221184EC0018EDB4 /* WordstadiumCoordinator.swift in Sources */,
+				E54CFAFC222C31E8002DA0D1 /* DetailTPSDPDController.swift in Sources */,
 				84E2854421CA195C00298E31 /* CustomActionSheet.swift in Sources */,
 				84619D3A21DA85D200EB58CF /* EditCoordinator.swift in Sources */,
 				84FA42722212FBBE008215C4 /* SaldoTimeCell.swift in Sources */,
@@ -4021,6 +4260,7 @@
 				8475330D21F60F6000BF3F66 /* ComingsoonViewModel.swift in Sources */,
 				13F456D321DB897500CE45F1 /* BannerInfoController.swift in Sources */,
 				84E2855B21CA7C4800298E31 /* FilterViewModel.swift in Sources */,
+				E52BE9E7222F4AEB00E26E70 /* DetailTPSDPDCoordinator.swift in Sources */,
 				1149EB88221BA9520050F366 /* DebatCommentController.swift in Sources */,
 				84B6D6F321E30EA700CD4BC8 /* ShareBadgeController.swift in Sources */,
 				84B7B8B721E446180099E7E3 /* EmptyView.swift in Sources */,
@@ -4045,6 +4285,8 @@
 				11E107DD21CFD99900B7B074 /* QuizResultController.swift in Sources */,
 				84B2521B21CAA71200565D82 /* ViewModelType.swift in Sources */,
 				8493BF822216912E00685BEC /* ChallengeController.swift in Sources */,
+				E5B22D6D222B0493002A8C0C /* C1PemilihDisabilitasView.swift in Sources */,
+				E5B22D5D222A39CF002A8C0C /* DetailTPSPresidenController.swift in Sources */,
 				1131A627222434770000981D /* DetailTPSViewModel.swift in Sources */,
 				84A945AE2223C55200944C6B /* SuccessPromoteCoordinator.swift in Sources */,
 				84A07FB821D0F0DD00269C6B /* IdentitasCoordinator.swift in Sources */,
@@ -4060,6 +4302,7 @@
 				11B3C78B21D110CB00EDCECB /* QuizSummaryCoordinator.swift in Sources */,
 				131DBDB02215AF69005203FF /* TimeView.swift in Sources */,
 				1131A61E22236A4E0000981D /* CreatePerhitunganCoordinator.swift in Sources */,
+				E54CFB0E222C4B8C002DA0D1 /* C1PhotoHeader.swift in Sources */,
 				1161F9F421DF4B4000C1BAD5 /* QuizButton.swift in Sources */,
 				13E6FECD221F24C9008CA788 /* LiniPublicViewModel.swift in Sources */,
 				13BF405321EBAA8F005C9A64 /* IQuestionListViewModel.swift in Sources */,
@@ -4078,6 +4321,7 @@
 				11702DD221CB0287001AEE3F /* QuizCell.swift in Sources */,
 				E546E46C2227F73600D05394 /* DetailTPSFooter.swift in Sources */,
 				840850C521D25CB000696CB3 /* ProfileEditViewModel.swift in Sources */,
+				E52BE9EB222F4B1B00E26E70 /* DetailTPSDPRCoordinator.swift in Sources */,
 				137A29E821E11D0400F19072 /* HeaderQuizView.swift in Sources */,
 				84B6D52B21F8E44900DD742A /* UserJanpolListViewModel.swift in Sources */,
 				84E2855521CA570E00298E31 /* LinimasaViewModel.swift in Sources */,
@@ -4092,11 +4336,13 @@
 				84F6980921C8D28B00890917 /* PilpresViewController.swift in Sources */,
 				1197010C21F3632D005548AC /* ListClusterController.swift in Sources */,
 				84D7A77821CE8CFF009502AF /* ProfileViewModel.swift in Sources */,
+				E52BE9ED222F4B2900E26E70 /* DetailTPSDPRViewModel.swift in Sources */,
 				84FA426E2212F778008215C4 /* DateTimeCell.swift in Sources */,
 				84FA42342212886A008215C4 /* TooltipView.swift in Sources */,
 				8452A4C321DE1EF400196043 /* BuatProfileController.swift in Sources */,
 				13E6FED0221F27AE008CA788 /* LiniPersonalViewModel.swift in Sources */,
 				84A07F9A21D0DBE200269C6B /* IdentitasController.swift in Sources */,
+				E52BE9E5222F4AD300E26E70 /* UploadC1ViewModel.swift in Sources */,
 				11D066A821E38610003AC9BB /* PenpolFilterCoordinator.swift in Sources */,
 				132EE0372216A3CC00F0429E /* WordstadiumListViewModel.swift in Sources */,
 				13E170D4221311A70018EDB4 /* WordstadiumItemViewCell.swift in Sources */,
@@ -4112,7 +4358,9 @@
 				84B6D6EC21E2248300CD4BC8 /* ClusterView.swift in Sources */,
 				84B6D6E021E1024900CD4BC8 /* KategoriClusterController.swift in Sources */,
 				842A4A0521D7E46B0050AA51 /* KTPCoordinator.swift in Sources */,
+				E52BE9E1222F4A9C00E26E70 /* C1InputFormViewModel.swift in Sources */,
 				118149EF21EC718800192E97 /* ListUserCell.swift in Sources */,
+				E5B22D6B222B047C002A8C0C /* C1PemilihView.swift in Sources */,
 				1131A61B22236A3E0000981D /* CreatePerhitunganController.swift in Sources */,
 				84A07FB621D0ED8100269C6B /* SuccessController.swift in Sources */,
 				845C570721CD1D8F00EDCDFE /* ProfileCoordinator.swift in Sources */,
@@ -4121,6 +4369,7 @@
 				84B8C1C422157686004BC1FE /* FooterProfileView.swift in Sources */,
 				11DA97072222B04D00A51E76 /* PerhitunganViewModel.swift in Sources */,
 				842A4A0F21D7EE5F0050AA51 /* SuccessViewModel.swift in Sources */,
+				E54CFAEF222C1EC7002DA0D1 /* TPSInputCell.swift in Sources */,
 				84B7B8D221E5B9640099E7E3 /* AddKategoriCoordinator.swift in Sources */,
 				84E6934021D2946C00EA5464 /* HeaderEditProfile.swift in Sources */,
 				13F456AE21D36A8500CE45F1 /* UndangAnggotaController.swift in Sources */,
@@ -4143,15 +4392,20 @@
 				84CA10C321EF10E20025CF10 /* AboutCoordinator.swift in Sources */,
 				848B039921E7AA8C002CAA40 /* WKWebview.swift in Sources */,
 				13F456CB21DB88E700CE45F1 /* BannerInfoViewModel.swift in Sources */,
+				E5B22D68222B0381002A8C0C /* C1InputFormController.swift in Sources */,
+				E5B22D6F222B04D4002A8C0C /* C1SuratSuaraView.swift in Sources */,
 				84A07FBA21D0F13200269C6B /* IdentitasViewModel.swift in Sources */,
+				E5B22D61222AA39C002A8C0C /* TPSButton.swift in Sources */,
 				11E107B521CD44FD00B7B074 /* QuizOngoingCoordinator.swift in Sources */,
 				84B6D51621F842EB00DD742A /* PartyCell.swift in Sources */,
 				84B7B8C721E4A0A00099E7E3 /* IClusterSearchDelegate.swift in Sources */,
 				11DA970B2222C29A00A51E76 /* PerhitunganController.swift in Sources */,
 				840850D221D2632500696CB3 /* ProfileEditCoordinator.swift in Sources */,
+				E54CFAF2222C1EDF002DA0D1 /* TPSInputHeader.swift in Sources */,
 				8409374D21D361240024A444 /* PilpresNavigator.swift in Sources */,
 				840850DF21D2843D00696CB3 /* BadgeViewModel.swift in Sources */,
 				1184752221FDEAC300D44FA5 /* ClusterCategoryDelegate.swift in Sources */,
+				E54CFB12222C4DD2002DA0D1 /* UploadC1Header.swift in Sources */,
 				13E139512213FEF000286EDE /* SeeMoreCell.swift in Sources */,
 				13E6FEC9221F13C0008CA788 /* ILiniWordstadiumViewController.swift in Sources */,
 				13E9D79021E92934006A0890 /* MyJanpolListViewModel.swift in Sources */,
@@ -4163,6 +4417,7 @@
 				119123B62226882400617E7C /* PopupChallengeController.swift in Sources */,
 				84FA426A2212F0F5008215C4 /* PernyataanCell.swift in Sources */,
 				8441DB5821CCF7D900B078DF /* DetailJanjiCoordinator.swift in Sources */,
+				E54CFB06222C481A002DA0D1 /* UploadC1Controller.swift in Sources */,
 				13F4569D21CF985800CE45F1 /* CreateAskViewModel.swift in Sources */,
 				13E170C2221184DF0018EDB4 /* WordstadiumViewModel.swift in Sources */,
 				842A49F921D789A30050AA51 /* VerifikasiStep.swift in Sources */,
@@ -4192,7 +4447,9 @@
 				84FA425A2212BB4B008215C4 /* TantanganCell.swift in Sources */,
 				1108871C221271CD0041B821 /* LiveDebatCoordinator.swift in Sources */,
 				840850E121D2844700696CB3 /* BadgeCoordinator.swift in Sources */,
+				E5B22D65222AE5F4002A8C0C /* TPSTextField.swift in Sources */,
 				84EC7D152215864A00CDFD4D /* PublishChallengeViewModel.swift in Sources */,
+				E54CFAEA222C1BF4002DA0D1 /* DetailTPSDPRFooter.swift in Sources */,
 				84A945BB22240A8F00944C6B /* SearchUserController.swift in Sources */,
 				8451E05C22045BD400F03E96 /* NotificationCoordinator.swift in Sources */,
 				11D066A421E3850E003AC9BB /* PenpolFilterController.swift in Sources */,

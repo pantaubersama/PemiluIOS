@@ -18,11 +18,11 @@ public extension UITableView {
         }
     }
     
-    public func registerReusableHeaderCell<T: UITableView>(_: T.Type) where T: IReusableCell {
+    public func registerReusableHeaderCell<T: UITableViewHeaderFooterView>(_: T.Type) where T: IReusableCell {
         if let nib = T.nib {
-            self.register(nib, forCellReuseIdentifier: T.reuseIdentifier)
+            self.register(nib, forHeaderFooterViewReuseIdentifier: T.reuseIdentifier)
         } else {
-            self.register(T.self, forCellReuseIdentifier: T.reuseIdentifier)
+            self.register(T.self, forHeaderFooterViewReuseIdentifier: T.reuseIdentifier)
         }
     }
     
@@ -34,4 +34,7 @@ public extension UITableView {
         return self.dequeueReusableCell(withIdentifier: T.reuseIdentifier) as! T
     }
     
+    public func dequeueReusableHeaderFooter<T: UITableViewHeaderFooterView>() -> T where T: IReusableCell {
+        return self.dequeueReusableHeaderFooterView(withIdentifier: T.reuseIdentifier) as! T
+    }
 }
