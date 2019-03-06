@@ -50,6 +50,11 @@ class PopupChallengeController: UIViewController {
             self.btnConfirm.backgroundColor = #colorLiteral(red: 0.7424071431, green: 0.03536110744, blue: 0.1090037152, alpha: 1)
             self.stackComment.isHidden = false
             self.lblInfo.text = "Kamu akan menolak Direct Challenge\ndari @\(challenger?.username ?? "") untuk berdebat. Tulis pernyataan atau alasannya sebagai hak jawab penolakan kamu."
+            self.tvReason.rx.text
+                .orEmpty
+                .distinctUntilChanged()
+                .bind(to: viewModel.input.reasonI)
+                .disposed(by: disposeBag)
         case .acceptOpen:
             self.lblInfo.text = "Kamu akan menerima tantangan dari @\(challenger?.username ?? "") untuk berdebat sesuai dengan detail yang tertera. Tindakan ini tidak bisa dibatalkan.\nApakah kamu yakin?"
         case .acceptOpponentOpen:

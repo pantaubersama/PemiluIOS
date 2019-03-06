@@ -17,7 +17,7 @@ public enum WordstadiumAPI {
     case askAsOpponent(id: String)
     case confirmCandidateAsOpponent(challengeId: String, audienceId: String)
     case confirmDirect(challengeId: String)
-    case rejectDirect(challengeId: String)
+    case rejectDirect(challengeId: String, reason: String)
     case wordsAudience(challengeId: String)
     case commentAudience(challengeId: String, words: String)
     case fighterAttack(challengeId: String, words: String)
@@ -54,9 +54,9 @@ extension WordstadiumAPI: TargetType {
         case .confirmCandidateAsOpponent:
             return "/word_stadium/v1/challenges/open/opponent_candidates"
         case .confirmDirect:
-            return "/word_stadium//v1/challenges/direct/approve"
+            return "/word_stadium/v1/challenges/direct/approve"
         case .rejectDirect:
-            return "/word_stadium//v1/challenges/direct/reject"
+            return "/word_stadium/v1/challenges/direct/reject"
         case .wordsAudience:
             return "/word_stadium/v1/words/audience"
         case .commentAudience:
@@ -178,6 +178,11 @@ extension WordstadiumAPI: TargetType {
         case .confirmDirect(let id):
             var multipartFormData = [MultipartFormData]()
             multipartFormData.append(buildMultipartFormData(key: "id", value: id))
+            return multipartFormData
+        case .rejectDirect(let (id, reason)):
+            var multipartFormData = [MultipartFormData]()
+            multipartFormData.append(buildMultipartFormData(key: "id", value: id))
+            multipartFormData.append(buildMultipartFormData(key: "reason_rejected", value: reason))
             return multipartFormData
         default:
             return nil
