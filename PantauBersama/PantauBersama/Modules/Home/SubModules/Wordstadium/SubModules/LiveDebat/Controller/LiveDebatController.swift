@@ -47,7 +47,7 @@ class LiveDebatController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        viewModel.input.loadArgumentsTrigger.onNext(())
 //        self.navigationController?.navigationBar.isHidden = true
         // config input behavior
         configureInputView()
@@ -56,7 +56,6 @@ class LiveDebatController: UIViewController {
         configureScrollButton()
         
         // for dummy ui
-        tableViewDebat.dataSource = self
         tableViewDebat.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 70))
         tableViewDebat.isScrollEnabled = false
         tableViewDebat.estimatedRowHeight = 44.0
@@ -131,6 +130,16 @@ class LiveDebatController: UIViewController {
                 })
             })
             .bind(to: viewModel.input.selectMenuTrigger)
+            .disposed(by: disposeBag)
+        
+        viewModel.output.arguments
+            .bind(to: tableViewDebat.rx.items) { tableView, row, item -> UITableViewCell in
+                if item.author.email == 
+            }
+            .disposed(by: disposeBag)
+        
+        viewModel.output.loadArguments
+            .drive()
             .disposed(by: disposeBag)
     }
     
@@ -385,26 +394,4 @@ class LiveDebatController: UIViewController {
         let bottomOffset = CGPoint(x: 0, y: -44)
         scrollView.setContentOffset(bottomOffset, animated: true)
     }
-}
-
-extension LiveDebatController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 20
-    }
-    
-    // TODO: replace with real data
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row % 2 == 0 {
-            let cell = tableView.dequeueReusableCell() as ArgumentLeftCell
-            cell.lbArgument.text = "apaaaaa ?"
-            
-            return cell
-        } else {
-            let cell = tableView.dequeueReusableCell() as ArgumentRightCell
-            
-            return cell
-        }
-    }
-    
-    
 }

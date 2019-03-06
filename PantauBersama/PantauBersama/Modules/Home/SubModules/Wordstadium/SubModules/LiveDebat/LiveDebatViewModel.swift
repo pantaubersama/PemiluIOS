@@ -14,6 +14,7 @@ import Networking
 
 class LiveDebatViewModel: ViewModelType {
     struct Input {
+        let loadArgumentsTrigger: AnyObserver<Void>
         let backTrigger: AnyObserver<Void>
         let launchDetailTrigger: AnyObserver<Void>
         let showCommentTrigger: AnyObserver<Void>
@@ -30,10 +31,12 @@ class LiveDebatViewModel: ViewModelType {
         let menu: Driver<Void>
         let menuSelected: Driver<String>
         let challenge: Driver<Challenge>
+        let arguments: BehaviorRelay<[Word]>
+        let loadArguments: Driver<Void>
     }
     
     var input: Input
-    var output: Output
+    var output: Output!
     private let navigator: LiveDebatNavigator
     private let challenge: Challenge
     
@@ -43,12 +46,16 @@ class LiveDebatViewModel: ViewModelType {
     private let viewTypeS = PublishSubject<DebatViewType>()
     private let menuS = PublishSubject<Void>()
     private let selectMenuS = PublishSubject<String>()
+    private let loadArgumentsS = PublishSubject<Void>()
+    private let arguments = BehaviorRelay<[Word]>(value: [])
+    private let loadArgumentS = PublishSubject<Void>()
     
     init(navigator: LiveDebatNavigator, challenge: Challenge, viewType: DebatViewType) {
         self.navigator = navigator
         self.challenge = challenge
         
         input = Input(
+            loadArgumentsTrigger: loadArgumentS.asObserver(),
             backTrigger: backS.asObserver(),
             launchDetailTrigger: detailS.asObserver(),
             showCommentTrigger: commentS.asObserver(),
@@ -73,6 +80,15 @@ class LiveDebatViewModel: ViewModelType {
         let menu = menuS.asDriverOnErrorJustComplete()
         
         let selectMenu = selectMenuS.asDriverOnErrorJustComplete()
+        
+        let loadArguments = loadArgumentS
+            .flatMap({ self.getArguments() })
+            .do(onNext: { [weak self](words) in
+                guard let `self` = self else { return }
+                self.arguments.accept(words)
+            })
+            .mapToVoid()
+            .asDriverOnErrorJustComplete()
             
         output = Output(
             back: back,
@@ -81,6 +97,14 @@ class LiveDebatViewModel: ViewModelType {
             viewType: viewType,
             menu: menu,
             menuSelected: selectMenu,
-            challenge: Driver.just(self.challenge))
+            challenge: Driver.just(self.challenge),
+            arguments: self.arguments,
+            loadArguments: loadArguments)
+    }
+    
+    private func getArguments() -> Observable<[Word]> {
+        return NetworkService.instance.requestObject(WordstadiumAPI.wordsFighter(challengeId: self.challenge.id), c: BaseResponse<WordsResponse>.self)
+            .map({ $0.data.words })
+            .asObservable()
     }
 }
