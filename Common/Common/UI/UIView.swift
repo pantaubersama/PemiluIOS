@@ -85,3 +85,9 @@ public extension CALayer {
     }
     
 }
+
+public extension UIView {
+    static func nib<T: UIView>(withType type: T.Type) -> T {
+        return Bundle.main.loadNibNamed(String(describing: type), owner: self, options: nil)?.first as! T
+    }
+}
