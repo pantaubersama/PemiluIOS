@@ -118,6 +118,8 @@ class ChallengeViewModel: ViewModelType {
             .mapToVoid()
             .asDriverOnErrorJustComplete()
         
+        // MARK
+        // Refuse button from Direct Challenge
         let refuse = refuseS
             .flatMapLatest { [unowned self] (_) -> Observable<PopupChallengeResult> in
                 if (self.data.progress == .waitingOpponent || self.data.progress == .waitingConfirmation) && self.data.type == .directChallenge {
@@ -125,6 +127,21 @@ class ChallengeViewModel: ViewModelType {
                 }
                 return Observable.empty()
             }
+            .flatMap({ [weak self] (result) -> Observable<Bool> in
+                guard let `self` = self else { return Observable.empty() }
+                switch result {
+                case .oke(let reason):
+                    return self.putDirectReject(id: data.id, reason: reason)
+                case .cancel:
+                    return Observable.empty()
+                }
+            })
+            .filter({ $0 })
+            .flatMap({ _ in self.getChallengeDetail(id: data.id )})
+            .do(onNext: { [weak self] (challenge) in
+                guard let `self` = self else { return }
+                self.challengeS.onNext(challenge)
+            })
             .mapToVoid()
             .asDriverOnErrorJustComplete()
         
@@ -191,12 +208,23 @@ class ChallengeViewModel: ViewModelType {
             return Observable.just(false)
         }
     }
-    
+    // MARK
+    // Handle Accept Direct from opponents sides
     private func putDirectAccept(id: String) -> Observable<Bool> {
         return NetworkService.instance
             .requestObject(WordstadiumAPI.confirmDirect(challengeId: id), c: PutAskAsOpponentResponse.self)
             .map({ (response) -> Bool in
                 return response.data.message == "Tantangan Diterima!"
+            })
+            .asObservable()
+    }
+    // MARK
+    // Handle Reject Direct with reason from opponents sides
+    private func putDirectReject(id: String, reason: String) -> Observable<Bool> {
+        return NetworkService.instance
+            .requestObject(WordstadiumAPI.rejectDirect(challengeId: id, reason: reason), c: PutAskAsOpponentResponse.self)
+            .map({ (response) -> Bool in
+                return response.data.message == "Tantangan Ditolak!"
             })
             .asObservable()
     }
