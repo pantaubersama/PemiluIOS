@@ -173,6 +173,8 @@ extension ChallengeController {
                         self.containerAcceptChallenge.isHidden = true
                         self.refuseChallengeView.configureData(data: opponents)
                         self.containerHeader.backgroundColor = #colorLiteral(red: 1, green: 0.4935973287, blue: 0.3663615584, alpha: 1)
+                        self.headerTantanganView.lblStatus.isHidden = false
+                        self.headerTantanganView.lblStatus.text = "DENIED"
                     case .ongoing:
                         if isAudience { // if user already registered as opponent candidate
                             self.titleContent.text = "Ini tantangan buat kamu,"
@@ -194,6 +196,8 @@ extension ChallengeController {
                         self.subtitleContent.text = "Tantangan melebihi batas waktu :("
                         self.containerAcceptChallenge.isHidden = true
                         self.containerHeader.backgroundColor = #colorLiteral(red: 1, green: 0.4935973287, blue: 0.3663615584, alpha: 1)
+                        self.headerTantanganView.lblStatus.isHidden = false
+                        self.headerTantanganView.lblStatus.text = "EXPIRED"
                 default: break
                 }
             case .openChallenge:

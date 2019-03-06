@@ -24,6 +24,7 @@
                 <outlet property="lblCountOpponent" destination="8iv-Kz-vDK" id="mg5-QK-L50"/>
                 <outlet property="lblFullName" destination="dOB-Et-QMP" id="w43-sW-mSB"/>
                 <outlet property="lblNameOpponent" destination="4dH-3I-Azr" id="YUg-fI-RbR"/>
+                <outlet property="lblStatus" destination="fGF-HU-0rA" id="jy8-nC-mNe"/>
                 <outlet property="lblType" destination="AGP-QU-y7v" id="PHW-H3-RCZ"/>
                 <outlet property="lblUsername" destination="ykQ-zi-CSt" id="Z4g-Od-0DG"/>
                 <outlet property="lblUsernameOpponent" destination="HsT-89-7yA" id="AvW-7E-SFr"/>
@@ -166,11 +167,18 @@
                         <constraint firstAttribute="height" constant="30" id="Ynt-ZZ-xfk"/>
                     </constraints>
                 </stackView>
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EXPIRED" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fGF-HU-0rA">
+                    <rect key="frame" x="159" y="94" width="57.5" height="17"/>
+                    <fontDescription key="fontDescription" name="BwModelicaSS01-BoldCondensed" family="Bw Modelica SS01" pointSize="14"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="piR-Bl-PSU" firstAttribute="trailing" secondItem="yHb-AT-XUO" secondAttribute="trailing" constant="-16" id="07F-YF-YyH"/>
                 <constraint firstItem="CJI-KG-qEm" firstAttribute="centerX" secondItem="pv2-hi-5RD" secondAttribute="centerX" id="0TO-54-hxv"/>
+                <constraint firstItem="fGF-HU-0rA" firstAttribute="centerX" secondItem="pv2-hi-5RD" secondAttribute="centerX" id="1ba-nR-hoB"/>
                 <constraint firstItem="2qr-TS-i1n" firstAttribute="top" secondItem="yHb-AT-XUO" secondAttribute="top" id="4z2-zo-QXJ"/>
                 <constraint firstItem="piR-Bl-PSU" firstAttribute="leading" secondItem="LrR-kh-0RT" secondAttribute="trailing" constant="8" id="7aU-am-DkH"/>
                 <constraint firstItem="l91-28-x9h" firstAttribute="leading" secondItem="hw0-Ta-sSQ" secondAttribute="trailing" constant="8" id="7h5-Zd-wmi"/>
@@ -182,6 +190,7 @@
                 <constraint firstItem="2qr-TS-i1n" firstAttribute="leading" secondItem="yHb-AT-XUO" secondAttribute="leading" id="O3u-3q-Evy"/>
                 <constraint firstItem="LrR-kh-0RT" firstAttribute="leading" secondItem="CJI-KG-qEm" secondAttribute="trailing" id="QcU-od-ohj"/>
                 <constraint firstItem="l91-28-x9h" firstAttribute="top" secondItem="yHb-AT-XUO" secondAttribute="top" constant="29" id="Qpi-FR-r01"/>
+                <constraint firstItem="fGF-HU-0rA" firstAttribute="bottom" secondItem="2qr-TS-i1n" secondAttribute="bottom" constant="-8" id="THy-23-1lG"/>
                 <constraint firstItem="yHb-AT-XUO" firstAttribute="trailing" secondItem="2qr-TS-i1n" secondAttribute="trailing" id="fMq-nZ-58g"/>
                 <constraint firstItem="hw0-Ta-sSQ" firstAttribute="top" secondItem="pv2-hi-5RD" secondAttribute="top" constant="24" id="gSB-ne-mYT"/>
                 <constraint firstItem="piR-Bl-PSU" firstAttribute="top" secondItem="pv2-hi-5RD" secondAttribute="top" constant="24" id="hMG-ET-jS5"/>
