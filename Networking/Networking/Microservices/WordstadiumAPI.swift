@@ -18,6 +18,10 @@ public enum WordstadiumAPI {
     case confirmCandidateAsOpponent(challengeId: String, audienceId: String)
     case confirmDirect(challengeId: String)
     case rejectDirect(challengeId: String)
+    case wordsAudience(challengeId: String)
+    case commentAudience(challengeId: String, words: String)
+    case fighterAttack(challengeId: String, words: String)
+    case wordsFighter(challengeId: String)
 }
 
 extension WordstadiumAPI: TargetType {
@@ -53,13 +57,23 @@ extension WordstadiumAPI: TargetType {
             return "/word_stadium//v1/challenges/direct/approve"
         case .rejectDirect:
             return "/word_stadium//v1/challenges/direct/reject"
+        case .wordsAudience:
+            return "/word_stadium/v1/words/audience"
+        case .commentAudience:
+            return "/word_stadium/v1/words/audience/comment"
+        case .fighterAttack:
+            return "/word_stadium/v1/words/fighter/attack"
+        case .wordsFighter:
+            return "/word_stadium/v1/words/fighter"
         }
     }
     
     public var method: Moya.Method {
         switch self {
         case .createChallengeOpen,
-             .createChallengeDirect:
+             .createChallengeDirect,
+             .commentAudience,
+             .fighterAttack:
             return .post
         case .askAsOpponent,
              .confirmCandidateAsOpponent,
@@ -85,6 +99,24 @@ extension WordstadiumAPI: TargetType {
             return [
                 "id": challengeId,
                 "audience_id": audienceId
+            ]
+        case .fighterAttack(let (challengeId, words)):
+            return [
+                "challenge_id": challengeId,
+                "words": words
+            ]
+        case .commentAudience(let (challengeId, words)):
+            return  [
+                "challenge_id": challengeId,
+                "words": words
+            ]
+        case .wordsAudience(let challengeId):
+            return [
+                "challenge_id": challengeId
+            ]
+        case .wordsFighter(let challengeId):
+            return [
+                "challenge_id": challengeId
             ]
         default:
             return nil

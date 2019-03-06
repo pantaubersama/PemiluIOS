@@ -10,6 +10,7 @@ import Foundation
 import Common
 import RxSwift
 import RxCocoa
+import Networking
 
 class LiveDebatViewModel: ViewModelType {
     struct Input {
@@ -28,11 +29,13 @@ class LiveDebatViewModel: ViewModelType {
         let viewType: Driver<DebatViewType>
         let menu: Driver<Void>
         let menuSelected: Driver<String>
+        let challenge: Driver<Challenge>
     }
     
     var input: Input
     var output: Output
     private let navigator: LiveDebatNavigator
+    private let challenge: Challenge
     
     private let backS = PublishSubject<Void>()
     private let detailS = PublishSubject<Void>()
@@ -41,8 +44,9 @@ class LiveDebatViewModel: ViewModelType {
     private let menuS = PublishSubject<Void>()
     private let selectMenuS = PublishSubject<String>()
     
-    init(navigator: LiveDebatNavigator, viewType: DebatViewType) {
+    init(navigator: LiveDebatNavigator, challenge: Challenge, viewType: DebatViewType) {
         self.navigator = navigator
+        self.challenge = challenge
         
         input = Input(
             backTrigger: backS.asObserver(),
@@ -76,6 +80,7 @@ class LiveDebatViewModel: ViewModelType {
             showComment: comment,
             viewType: viewType,
             menu: menu,
-            menuSelected: selectMenu)
+            menuSelected: selectMenu,
+            challenge: Driver.just(self.challenge))
     }
 }

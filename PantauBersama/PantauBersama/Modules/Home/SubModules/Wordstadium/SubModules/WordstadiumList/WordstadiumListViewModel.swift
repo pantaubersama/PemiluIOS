@@ -19,17 +19,20 @@ class WordstadiumListViewModel: ViewModelType {
     struct Input {
         let backTriggger: AnyObserver<Void>
         let refreshTrigger: AnyObserver<Void>
+        let itemSelectedTrigger: AnyObserver<Challenge>
     }
     
     struct Output {
         let items: Driver<[SectionWordstadium]>
         let isLoading: Driver<Bool>
         let error: Driver<Error>
+        let itemSelected: Driver<Void>
     }
     
     private var navigator: WordstadiumListNavigator
     private let backSubject = PublishSubject<Void>()
     private let refreshSubject = PublishSubject<Void>()
+    private let itemSelectedSubject = PublishSubject<Challenge>()
     
     let errorTracker = ErrorTracker()
     let activityIndicator = ActivityIndicator()
@@ -39,7 +42,8 @@ class WordstadiumListViewModel: ViewModelType {
         self.navigator.finish = backSubject
         
         input = Input(backTriggger: backSubject.asObserver(),
-                      refreshTrigger: refreshSubject.asObserver())
+                      refreshTrigger: refreshSubject.asObserver(),
+                      itemSelectedTrigger: itemSelectedSubject.asObserver())
         
         
         let showItems = refreshSubject.startWith(())
@@ -49,9 +53,15 @@ class WordstadiumListViewModel: ViewModelType {
             })
             .asDriverOnErrorJustComplete()
         
+        let itemSelected = itemSelectedSubject
+            .flatMap({ self.navigator.openChallenge(challenge: $0) })
+            .mapToVoid()
+            .asDriverOnErrorJustComplete()
+        
         output = Output(items: showItems,
                         isLoading: activityIndicator.asDriver(),
-                        error: errorTracker.asDriver())
+                        error: errorTracker.asDriver(),
+                        itemSelected: itemSelected)
     }
     
     func getChallenge(progress: ProgressType, type: LiniType) -> Observable<[SectionWordstadium]>{
@@ -80,6 +90,7 @@ class WordstadiumListViewModel: ViewModelType {
                 title = "Challenge in Progress"
                 description = "Daftar tantangan yang perlu respon dan perlu konfirmasi ditampilkan semua disini. Jangan sampai terlewatkan, yaa."
             }
+            return [SectionWordstadium(title: title, descriptiom: description,type: type, itemType: progress, items: itemLive, itemsLive: itemLive )]
         case .comingSoon:
             item = challenge
             if type == .public {

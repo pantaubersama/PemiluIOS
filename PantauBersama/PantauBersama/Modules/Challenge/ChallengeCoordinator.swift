@@ -11,7 +11,7 @@ import Networking
 
 protocol ChallengeNavigator {
     func back() -> Observable<Void>
-    func openLiveDebatDone() -> Observable<Void>
+    func openLiveDebatDone(challenge: Challenge) -> Observable<Void>
     func openAcceptConfirmation(type: PopupChallengeType) -> Observable<PopupChallengeResult>
 }
 
@@ -44,8 +44,8 @@ extension ChallengeCoordinator: ChallengeNavigator {
         return Observable.empty()
     }
     
-    func openLiveDebatDone() -> Observable<Void> {
-        let liveDebatDoneCoordinator = LiveDebatCoordinator(navigationController: self.navigationController, viewType: .done)
+    func openLiveDebatDone(challenge: Challenge) -> Observable<Void> {
+        let liveDebatDoneCoordinator = LiveDebatCoordinator(navigationController: self.navigationController, challenge: challenge, viewType: .done)
         return coordinate(to: liveDebatDoneCoordinator)
     }
     

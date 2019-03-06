@@ -94,6 +94,7 @@ class LiniPublicViewModel: ILiniWordstadiumViewModel, ILiniWordstadiumViewModelI
                 guard let `self` = self else { return Observable<[Challenge]>.just([]) }
                 return self.getChallenge(progress: .liveNow, type: .public)
             })
+            .map({ Array($0.prefix(3)) })
             .bind { [weak self](items) in
                 guard let weakSelf = self else { return }
                 weakSelf.publicItems.accept([])
@@ -109,6 +110,7 @@ class LiniPublicViewModel: ILiniWordstadiumViewModel, ILiniWordstadiumViewModelI
                 guard let `self` = self else { return Observable<[Challenge]>.just([]) }
                 return self.getChallenge(progress: .comingSoon, type: .public)
             })
+            .map({ Array($0.prefix(3)) })
             .bind { [weak self](items) in
                 guard let weakSelf = self else { return }
                 if items.count > 0 {
@@ -122,6 +124,7 @@ class LiniPublicViewModel: ILiniWordstadiumViewModel, ILiniWordstadiumViewModelI
                 guard let `self` = self else { return Observable<[Challenge]>.just([]) }
                 return self.getChallenge(progress: .done, type: .public)
             })
+            .map({ Array($0.prefix(3)) })
             .bind { [weak self](items) in
                 guard let weakSelf = self else { return }
                 if items.count > 0 {
@@ -135,6 +138,7 @@ class LiniPublicViewModel: ILiniWordstadiumViewModel, ILiniWordstadiumViewModelI
                 guard let `self` = self else { return Observable<[Challenge]>.just([]) }
                 return self.getChallenge(progress: .challenge, type: .public)
             })
+            .map({ Array($0.prefix(3)) })
             .bind { [weak self](items) in
                 guard let weakSelf = self else { return }
                 if items.count > 0 {
