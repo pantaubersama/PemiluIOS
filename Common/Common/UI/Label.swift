@@ -21,6 +21,12 @@ enum LabelType: String {
     case light = "light"
     case lightItalic = "light-italic"
     case regular = "regular"
+    
+    case bmBold = "bm-bold"
+    case bmExtraBold = "bm-extra-bold"
+    case bmLight = "bm-light"
+    case bmBlack = "bm-black"
+    case bmThin = "bm-thin"
 }
 
 
@@ -83,6 +89,16 @@ public class Label: UILabel {
                     self.fontName = "Lato-LightItalic"
                 case .regular:
                     self.fontName = "Lato-Regular"
+                case .bmBold:
+                    self.fontName = "BwModelicaSS01-BoldCondensed"
+                case .bmThin:
+                    self.fontName = "BwModelica-ThinCondensed"
+                case .bmBlack:
+                    self.fontName = "BwModelica-BlackCondensed"
+                case .bmLight:
+                    self.fontName = "BwModelica-LightCondensed"
+                case .bmExtraBold:
+                    self.fontName = "BwModelica-ExtraBoldCondensed"
                 }
             }
             initLabel()
