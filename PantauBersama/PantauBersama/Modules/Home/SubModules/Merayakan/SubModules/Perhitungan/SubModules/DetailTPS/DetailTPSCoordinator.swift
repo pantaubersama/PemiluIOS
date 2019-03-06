@@ -20,6 +20,9 @@ protocol DetailTPSNavigator {
     func launchDetailTPSDPD() -> Observable<Void>
     func launchDetailTPSDPRDKab() -> Observable<Void>
     func launchDetailTPSDPRDProv() -> Observable<Void>
+    func launchUploadC1() -> Observable<Void>
+    func launchC1Form(type: FormC1Type) -> Observable<Void>
+    
 }
 
 class DetailTPSCoordinator: BaseCoordinator<Void> {
@@ -34,7 +37,6 @@ class DetailTPSCoordinator: BaseCoordinator<Void> {
         let viewController = DetailTPSController()
         viewModel = DetailTPSViewModel(navigator: self)
         viewController.viewModel = viewModel!
-        
         navigationController.pushViewController(viewController, animated: true)
         
         return Observable.never()
@@ -54,23 +56,38 @@ extension DetailTPSCoordinator: DetailTPSNavigator {
     }
     
     func launchDetailTPSPresiden() -> Observable<Void> {
-        return Observable.never()
+        let searchCoordinator = DetailTPSPresidenCoordinator(navigationController: self.navigationController)
+        return coordinate(to: searchCoordinator)
     }
     
     func launchDetailTPSDPRI() -> Observable<Void> {
-        return Observable.never()
+        let searchCoordinator = DetailTPSDPRCoordinator(navigationController: self.navigationController, type: .DPRRI)
+        return coordinate(to: searchCoordinator)
     }
     
     func launchDetailTPSDPD() -> Observable<Void> {
-        return Observable.never()
+        let searchCoordinator = DetailTPSDPDCoordinator(navigationController: self.navigationController)
+        return coordinate(to: searchCoordinator)
     }
     
     func launchDetailTPSDPRDKab() -> Observable<Void> {
-        return Observable.never()
+        let searchCoordinator = DetailTPSDPRCoordinator(navigationController: self.navigationController, type: .DPRDKota)
+        return coordinate(to: searchCoordinator)
     }
     
     func launchDetailTPSDPRDProv() -> Observable<Void> {
-        return Observable.never()
+        let searchCoordinator = DetailTPSDPRCoordinator(navigationController: self.navigationController, type: .DPRDProv)
+        return coordinate(to: searchCoordinator)
+    }
+    
+    func launchUploadC1() -> Observable<Void> {
+        let searchCoordinator = UploadC1Coordinator(navigationController: self.navigationController)
+        return coordinate(to: searchCoordinator)
+    }
+    
+    func launchC1Form(type: FormC1Type) -> Observable<Void> {
+        let searchCoordinator = C1InputFormCoordinator(navigationController: self.navigationController, type: type)
+        return coordinate(to: searchCoordinator)
     }
     
     func sendData() -> Observable<Void> {
@@ -82,7 +99,5 @@ extension DetailTPSCoordinator: DetailTPSNavigator {
         }
         return Observable.never()
     }
-    
-    
 }
 
