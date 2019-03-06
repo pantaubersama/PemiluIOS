@@ -38,4 +38,3 @@ extension DetailTPSPresidenCoordinator: DetailTPSPresidenNavigator {
         return Observable.empty()
     }
 }
-

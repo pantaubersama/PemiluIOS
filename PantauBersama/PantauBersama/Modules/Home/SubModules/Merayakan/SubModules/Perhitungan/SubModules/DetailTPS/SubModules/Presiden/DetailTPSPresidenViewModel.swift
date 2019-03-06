@@ -13,12 +13,10 @@ import RxCocoa
 
 class DetailTPSPresidenViewModel: ViewModelType {
     struct Input {
-        let detailTPSI: AnyObserver<Void>
         let backI: AnyObserver<Void>
     }
     
     struct Output {
-        let detailTPSO: Driver<Void>
         let backO: Driver<Void>
     }
     
@@ -32,20 +30,12 @@ class DetailTPSPresidenViewModel: ViewModelType {
     init(navigator: DetailTPSPresidenNavigator) {
         self.navigator = navigator
         
-        input = Input(
-            detailTPSI: detailTPSS.asObserver(),
-            backI: backS.asObserver())
+        input = Input(backI: backS.asObserver())
         
         let back = backS
             .flatMap({ navigator.back() })
             .asDriverOnErrorJustComplete()
         
-        let detail = detailTPSS
-            .flatMap({ navigator.launchDetailTPS() })
-            .asDriverOnErrorJustComplete()
-        
-        output = Output(
-            detailTPSO: detail,
-            backO: back)
+        output = Output(backO: back)
     }
 }

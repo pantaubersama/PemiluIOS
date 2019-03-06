@@ -19,5 +19,18 @@ class DetailTPSPresidenController: UIViewController {
         super.viewDidLoad()
 
         title = "Presiden"
+        
+        let back = UIBarButtonItem(image: #imageLiteral(resourceName: "back"), style: .plain, target: nil, action: nil)
+        
+        navigationItem.leftBarButtonItem = back
+        navigationController?.navigationBar.configure(with: .white)
+        
+        back.rx.tap
+            .bind(to: viewModel.input.backI)
+            .disposed(by: disposeBag)
+        
+        viewModel.output.backO
+            .drive()
+            .disposed(by: disposeBag)
     }
 }
