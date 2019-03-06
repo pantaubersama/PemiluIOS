@@ -10,6 +10,7 @@ import Foundation
 import Common
 import RxSwift
 import RxCocoa
+import Networking
 
 public protocol LiveDebatNavigator {
     func back() -> Observable<Void>
@@ -27,15 +28,17 @@ public enum DebatViewType {
 class LiveDebatCoordinator: BaseCoordinator<Void> {
     private let navigationController: UINavigationController
     private let viewType: DebatViewType
+    private let challenge: Challenge
     
-    init(navigationController: UINavigationController, viewType: DebatViewType) {
+    init(navigationController: UINavigationController, challenge: Challenge, viewType: DebatViewType) {
         self.navigationController = navigationController
         self.viewType = viewType
+        self.challenge = challenge
     }
     
     override func start() -> Observable<Void> {
         let viewController = LiveDebatController()
-        let viewModel = LiveDebatViewModel(navigator: self, viewType: self.viewType)
+        let viewModel = LiveDebatViewModel(navigator: self, challenge: self.challenge, viewType: self.viewType)
         viewController.hidesBottomBarWhenPushed = true
         viewController.viewModel = viewModel
         

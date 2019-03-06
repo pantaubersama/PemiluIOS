@@ -12,6 +12,7 @@ import Networking
 
 protocol WordstadiumListNavigator {
     var finish: Observable<Void>! { get set }
+    func openChallenge(challenge: Challenge) -> Observable<Void>
 }
 
 
@@ -42,5 +43,8 @@ final class WordstadiumListCoordinator: BaseCoordinator<Void> {
 }
 
 extension WordstadiumListCoordinator: WordstadiumListNavigator {
-
+    func openChallenge(challenge: Challenge) -> Observable<Void> {
+        let debatLiveCoordinator = LiveDebatCoordinator(navigationController: self.navigationController, challenge: challenge, viewType: .watch)
+        return coordinate(to: debatLiveCoordinator)
+    }
 }
