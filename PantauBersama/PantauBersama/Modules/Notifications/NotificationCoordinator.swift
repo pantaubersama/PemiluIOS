@@ -7,10 +7,14 @@
 //
 
 import RxSwift
+import Networking
 
 
 protocol NotificationNavigator {
     func back() -> Observable<Void>
+    func openQuestion(questionId: String) -> Observable<Void>
+    func openShareBadge(badge: NotifBadge) -> Observable<Void>
+    func openQuizPage() -> Observable<Void>
 }
 
 final class NotificationCoordinator: BaseCoordinator<Void> {
@@ -37,6 +41,26 @@ extension NotificationCoordinator: NotificationNavigator {
     func back() -> Observable<Void> {
         navigationController.popViewController(animated: true)
         return Observable.empty()
+    }
+    
+    func openQuestion(questionId: String) -> Observable<Void> {
+        let questionDetailCoorinator = DetailAskCoordinator(navigationController: self.navigationController, data: questionId, isFromNotif: false)
+        return coordinate(to: questionDetailCoorinator).mapToVoid()
+    }
+    
+    func openShareBadge(badge: NotifBadge) -> Observable<Void> {
+        let shareBadgeCoordinator = ShareBadgeCoordinator(navigationController: self.navigationController, id: badge.id)
+        
+        return coordinate(to: shareBadgeCoordinator)
+    }
+    
+    func openQuizPage() -> Observable<Void> {
+        if let appWindow = UIApplication.shared.keyWindow {
+            let homeCoordinator = HomeCoordinator(window: appWindow, isNewQuiz: true)
+            
+            return coordinate(to: homeCoordinator)
+        }
+        return Observable.never()
     }
     
 }

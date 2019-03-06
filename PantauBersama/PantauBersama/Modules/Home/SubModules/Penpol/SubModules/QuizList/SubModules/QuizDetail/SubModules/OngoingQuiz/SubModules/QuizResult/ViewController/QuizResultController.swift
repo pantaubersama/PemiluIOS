@@ -21,6 +21,7 @@ class QuizResultController: UIViewController {
     @IBOutlet weak var ivPaslon: UIImageView!
     
     var viewModel: QuizResultViewModel!
+    var isFromDeeplink: Bool = false
     
     private(set) var disposeBag = DisposeBag()
     
@@ -75,6 +76,14 @@ class QuizResultController: UIViewController {
         back.rx.tap
             .bind(to: viewModel.input.backTrigger)
             .disposed(by: disposeBag)
+        
+        if self.isFromDeeplink == true {
+            self.btnShare.isHidden = true
+            self.btnAnswerKey.isHidden = true
+        } else {
+            self.btnAnswerKey.isHidden = false
+            self.btnShare.isHidden = false
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

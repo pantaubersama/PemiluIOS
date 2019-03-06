@@ -97,6 +97,9 @@ class LiniWordstadiumViewController: UITableViewController, ILiniWordstadiumView
             .disposed(by: disposeBag)
         
         viewModel.output.itemsO
+            .do(onNext: { (items) in
+                print("items \(items)")
+            })
             .drive(tableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
         

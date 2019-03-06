@@ -12,24 +12,29 @@ import Common
 import FBSDKCoreKit
 
 protocol QuizResultNavigator {
-    func shareQuizResult(quizModel: QuizModel, image: UIImage) -> Observable<Void>
-    func openSummary(quizModel: QuizModel) -> Observable<Void>
+    func shareQuizResult(quizModel: String, image: UIImage) -> Observable<Void>
+    func openSummary(quizModel: QuizModel?) -> Observable<Void>
     func finishQuiz() -> Observable<Void>
 }
 
 class QuizResultCoordinator: BaseCoordinator<Void> {
     let navigationController: UINavigationController
-    let quiz: QuizModel
+    let quiz: QuizModel?
+    let isFromDeeplink: Bool
+    let participationURL: String?
     
-    init(navigationController: UINavigationController, quiz: QuizModel) {
+    init(navigationController: UINavigationController, quiz: QuizModel?, isFromDeeplink: Bool, participationURL: String?) {
         self.navigationController = navigationController
         self.quiz = quiz
+        self.isFromDeeplink = isFromDeeplink
+        self.participationURL = participationURL
     }
     
     override func start() -> Observable<Void> {
-        FBSDKAppEvents.logEvent("Quiz Result", parameters: ["content_id": quiz.id])
+        FBSDKAppEvents.logEvent("Quiz Result", parameters: ["content_id": quiz?.id ?? ""])
         let viewController = QuizResultController()
-        let viewModel = QuizResultViewModel(navigator: self, quiz: quiz)
+        let viewModel = QuizResultViewModel(navigator: self, quiz: quiz, isFromDeeplink: isFromDeeplink, participationURL: participationURL)
+        viewController.isFromDeeplink = isFromDeeplink
         viewController.viewModel = viewModel
         
         var viewControllers: [UIViewController] = []
@@ -48,14 +53,14 @@ class QuizResultCoordinator: BaseCoordinator<Void> {
 }
 
 extension QuizResultCoordinator: QuizResultNavigator {
-    func shareQuizResult(quizModel: QuizModel, image: UIImage) -> Observable<Void> {
-        let askString = "Kamu sudah ikut? Aku sudah dapat hasilnya 😎 #PantauBersama \(AppContext.instance.infoForKey("URL_WEB_SHARE"))/share/badge/\(quizModel.id)"
+    func shareQuizResult(quizModel: String, image: UIImage) -> Observable<Void> {
+        let askString = "Kamu sudah ikut? Aku sudah dapat hasilnya 😎 #PantauBersama \(quizModel)"
         let activityViewController = UIActivityViewController(activityItems: [askString as NSString, image as UIImage], applicationActivities: nil)
         self.navigationController.present(activityViewController, animated: true, completion: nil)
         return Observable.never()
     }
     
-    func openSummary(quizModel: QuizModel) -> Observable<Void> {
+    func openSummary(quizModel: QuizModel?) -> Observable<Void> {
         let quizSummaryCoordinator = QuizSummaryCoordinator(navigationController: self.navigationController, quiz: self.quiz)
         return coordinate(to: quizSummaryCoordinator)
     }

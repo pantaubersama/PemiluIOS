@@ -21,6 +21,7 @@
 		11C7BB2321DB2A97008CA49B /* String+Copy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C7BB2221DB2A97008CA49B /* String+Copy.swift */; };
 		11C7BB2521DB36D5008CA49B /* QuestionOptionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C7BB2421DB36D5008CA49B /* QuestionOptionResponse.swift */; };
 		11D0669D21E26A07003AC9BB /* QuizResultResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D0669C21E26A07003AC9BB /* QuizResultResponse.swift */; };
+		11DA96FF221978DB00A51E76 /* FirebaseQuizNotifResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DA96FE221978DB00A51E76 /* FirebaseQuizNotifResponse.swift */; };
 		11E798D421E2F4FA002AABDC /* QuizSummaryResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E798D321E2F4FA002AABDC /* QuizSummaryResponse.swift */; };
 		11F7890B220F1E4C005AFC8C /* FirebaseQuestionNotifResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F7890A220F1E4B005AFC8C /* FirebaseQuestionNotifResponse.swift */; };
 		11F7890D220F1E81005AFC8C /* Notif.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F7890C220F1E81005AFC8C /* Notif.swift */; };
@@ -105,6 +106,7 @@
 		11C7BB2221DB2A97008CA49B /* String+Copy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Copy.swift"; sourceTree = "<group>"; };
 		11C7BB2421DB36D5008CA49B /* QuestionOptionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionOptionResponse.swift; sourceTree = "<group>"; };
 		11D0669C21E26A07003AC9BB /* QuizResultResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizResultResponse.swift; sourceTree = "<group>"; };
+		11DA96FE221978DB00A51E76 /* FirebaseQuizNotifResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseQuizNotifResponse.swift; sourceTree = "<group>"; };
 		11E798D321E2F4FA002AABDC /* QuizSummaryResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSummaryResponse.swift; sourceTree = "<group>"; };
 		11F7890A220F1E4B005AFC8C /* FirebaseQuestionNotifResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseQuestionNotifResponse.swift; sourceTree = "<group>"; };
 		11F7890C220F1E81005AFC8C /* Notif.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notif.swift; sourceTree = "<group>"; };
@@ -223,6 +225,7 @@
 				11F7890A220F1E4B005AFC8C /* FirebaseQuestionNotifResponse.swift */,
 				11F7890C220F1E81005AFC8C /* Notif.swift */,
 				11F7890E2210F89E005AFC8C /* FirebaseBadgeNotifResponse.swift */,
+				11DA96FE221978DB00A51E76 /* FirebaseQuizNotifResponse.swift */,
 			);
 			path = Notifications;
 			sourceTree = "<group>";
@@ -398,7 +401,7 @@
 				84D831EB21C4DCEC00C437B7 /* Sources */,
 				84D831EC21C4DCEC00C437B7 /* Frameworks */,
 				84D831ED21C4DCEC00C437B7 /* Resources */,
-				FB0072AC75DB0B374292CAF1 /* [CP] Embed Pods Frameworks */,
+				10A474C8EB4C17578389A3A3 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -465,6 +468,42 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		10A474C8EB4C17578389A3A3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/../Pods/Target Support Files/Pods-NetworkingTests/Pods-NetworkingTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
+				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
+				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
+				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxDataSources/RxDataSources.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differentiator.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxDataSources.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-NetworkingTests/Pods-NetworkingTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		D2D391FB904AC314B5CD9682 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -509,42 +548,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		FB0072AC75DB0B374292CAF1 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${SRCROOT}/../Pods/Target Support Files/Pods-NetworkingTests/Pods-NetworkingTests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
-				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
-				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
-				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
-				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
-				"${BUILT_PRODUCTS_DIR}/RxDataSources/RxDataSources.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differentiator.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxDataSources.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-NetworkingTests/Pods-NetworkingTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -567,6 +570,7 @@
 				84B2523A21CAC7FB00565D82 /* ErrorResponse.swift in Sources */,
 				11F7890F2210F89E005AFC8C /* FirebaseBadgeNotifResponse.swift in Sources */,
 				84FF8AA121F221C100AA8CF3 /* AppVersionResponse.swift in Sources */,
+				11DA96FF221978DB00A51E76 /* FirebaseQuizNotifResponse.swift in Sources */,
 				84B2526221CBD99900565D82 /* IdentitasResponses.swift in Sources */,
 				11B145F021D68CFA00BB26C8 /* Page.swift in Sources */,
 				11E798D421E2F4FA002AABDC /* QuizSummaryResponse.swift in Sources */,

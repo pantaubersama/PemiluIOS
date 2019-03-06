@@ -94,7 +94,7 @@ extension PenpolCoordinator: PenpolNavigator {
             let coordinator = QuizOngoingCoordinator(navigationController: self.navigationController, quiz: quiz)
             return coordinate(to: coordinator)
         case .finished:
-            let coordinator = QuizResultCoordinator(navigationController: self.navigationController, quiz: quiz)
+            let coordinator = QuizResultCoordinator(navigationController: self.navigationController, quiz: quiz, isFromDeeplink: false, participationURL: nil)
             return coordinate(to: coordinator)
         case .notParticipating:
             let coordinator = QuizDetailCoordinator(navigationController: self.navigationController, quizModel: quiz)
@@ -113,7 +113,8 @@ extension PenpolCoordinator: PenpolNavigator {
     
     func shareTrend() -> Observable<Void> {
         // TODO: coordinate to share
-        let trendCoordinator = ShareTrendCoordinator(navigationController: navigationController)
+        let userId = AppState.local()?.user.id
+        let trendCoordinator = ShareTrendCoordinator(navigationController: navigationController, isFromDeeplink: false, userId: userId ?? "")
         return coordinate(to: trendCoordinator)
     }
     
@@ -133,7 +134,7 @@ extension PenpolCoordinator: PenpolNavigator {
     }
     
     func launchDetailAsk(data: String) -> Observable<DetailAskResult> {
-        let detailAskCoordinator = DetailAskCoordinator(navigationController: navigationController, data: data)
+        let detailAskCoordinator = DetailAskCoordinator(navigationController: navigationController, data: data, isFromNotif: false)
         return coordinate(to: detailAskCoordinator)
     }
     

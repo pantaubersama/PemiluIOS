@@ -29,6 +29,7 @@ class HeaderTantanganView: UIView {
     @IBOutlet weak var lblCountOpponent: UILabel!
     @IBOutlet weak var lblNameOpponent: UILabel!
     @IBOutlet weak var lblUsernameOpponent: Label!
+    @IBOutlet weak var lblStatus: UILabel!
     
     override init(frame: CGRect) {
         let frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 139.0)

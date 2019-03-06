@@ -86,7 +86,7 @@ extension ILiniWordstadiumViewModel {
                 title = "My Debat: Done"
             }
             
-        case .ongoing:
+        case .challenge:
             item = challenge
             if type == .public {
                 title = "Challenge"

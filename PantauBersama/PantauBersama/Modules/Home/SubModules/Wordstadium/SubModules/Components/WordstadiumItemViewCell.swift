@@ -51,57 +51,40 @@ extension WordstadiumItemViewCell: IReusableCell {
     
     func configureCell(item: Input) {
         var footerView: UIView!
-        var opponentCount: Int = 0
         
-        guard let topics = item.wordstadium.topic else {return}
-        var topicStr = ""
-        for topic in topics {
-            topicStr += " \(topic)"
-        }
-        topicLbl.text = topicStr
-        
-        titleLbl.text = item.wordstadium.progress.title
-        statementLbl.text = item.wordstadium.statement
+        let chellenge = item.wordstadium
+        let challenger = chellenge.audiences.filter({ $0.role == .challenger }).first
+        let opponents = chellenge.audiences.filter({ $0.role != .challenger })
+    
+        topicLbl.text = chellenge.topic?.first ?? ""
+        statementLbl.text = chellenge.statement
         rightPersonView.isHidden = true
         rightUsername.text = ""
+        opponentCountLbl.text = ""
         
-        for person in item.wordstadium.audiences {
-            switch person.role {
-            case .challenger:
-                leftUsername.text = person.fullName ?? ""
-                if let thumbnailUrl = person.avatar?.thumbnail.url {
-                    leftPersonIv.af_setImage(withURL: URL(string: thumbnailUrl)!)
-                }
-            case .opponent:
-                rightUsername.text = person.fullName ?? ""
-                rightPersonView.isHidden = false
-                if let thumbnailUrl = person.avatar?.thumbnail.url {
-                    rightPersonIv.af_setImage(withURL: URL(string: thumbnailUrl)!)
-                }
-            case .opponentCandidate:
-                rightUsername.text = ""
-                rightPersonView.isHidden = false
-                if let thumbnailUrl = person.avatar?.thumbnail.url {
-                    rightPersonIv.af_setImage(withURL: URL(string: thumbnailUrl)!)
-                }
-                
-                if item.wordstadium.type == .directChallenge {
-                    opponentCountLbl.text = "?"
-                } else {
-                    opponentCount += 1
-                    opponentCountLbl.text = "\(opponentCount)"
-                }
-            default :
-                break
+        // configure header challenger side
+        leftUsername.text = challenger?.fullName ?? ""
+        leftPersonIv.show(fromURL: challenger?.avatar?.url ?? "")
+        
+        // if there is an opponents candidate, then configure header opponent side
+        if let opponent = opponents.first {
+            rightPersonView.isHidden = false
+            rightPersonIv.show(fromURL: opponent.avatar?.url ?? "")
+            
+            if opponent.role == .opponent {
+                rightUsername.text = opponent.fullName ?? ""
+            } else {
+                opponentCountLbl.text = chellenge.type == .directChallenge ? "?" : "\(opponents.count)"
             }
         }
         
-        switch item.wordstadium.progress {
+        switch chellenge.progress {
         case .comingSoon:
+            titleLbl.text = chellenge.progress.title
             backgroundItem.image = UIImage(named: "bgWordstadiumComingsoon")
             let timeView = TimeView()
-            if let time = item.wordstadium.showTimeAt {
-                let timeLimit = Double(item.wordstadium.timeLimit ?? 0)
+            if let time = chellenge.showTimeAt {
+                let timeLimit = Double(chellenge.timeLimit ?? 0)
                 let mTimeStart = time.date(format: Constant.timeFormat) ?? ""
                 let mTimeEnd = time.toDate(format: Constant.dateTimeFormat3)?.addingTimeInterval(timeLimit * 60).toString(format: Constant.timeFormat) ?? ""
                 
@@ -111,24 +94,27 @@ extension WordstadiumItemViewCell: IReusableCell {
             
             footerView = timeView
         case .liveNow:
+            titleLbl.text = chellenge.progress.title
             backgroundItem.image = UIImage(named: "bgWordstadiumLive")
             let descView = DescriptionView()
             footerView = descView
         case .done:
+            titleLbl.text = chellenge.progress.title
             backgroundItem.image = UIImage(named: "bgWordstadiumDone")
             let clapView = ClapView()
             
             footerView = clapView
         case .waitingConfirmation,.waitingOpponent:
+            titleLbl.text = chellenge.type.title
             backgroundItem.image = UIImage(named: "bgWordstadiumChallange")
             let descView = DescriptionView()
             
-            switch item.wordstadium.condition {
+            switch chellenge.condition {
             case .expired, .rejected:
-                descView.descriptionLbl.text = item.wordstadium.condition.title
+                descView.descriptionLbl.text = chellenge.condition.title
                 descView.descriptionLbl.textColor = Color.red
             default:
-                descView.descriptionLbl.text = item.wordstadium.progress.title
+                descView.descriptionLbl.text = chellenge.progress.title
                 descView.descriptionLbl.textColor = Color.gray
             }
             

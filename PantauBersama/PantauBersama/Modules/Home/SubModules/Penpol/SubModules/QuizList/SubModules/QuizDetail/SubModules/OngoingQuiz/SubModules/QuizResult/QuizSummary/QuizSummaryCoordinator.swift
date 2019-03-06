@@ -12,9 +12,9 @@ import RxSwift
 
 class QuizSummaryCoordinator: BaseCoordinator<Void> {
     let navigationController: UINavigationController
-    let quiz: QuizModel
+    let quiz: QuizModel?
     
-    init(navigationController: UINavigationController, quiz: QuizModel) {
+    init(navigationController: UINavigationController, quiz: QuizModel?) {
         self.navigationController = navigationController
         self.quiz = quiz
     }

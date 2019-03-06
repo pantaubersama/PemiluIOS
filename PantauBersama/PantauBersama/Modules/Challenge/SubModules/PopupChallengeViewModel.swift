@@ -11,8 +11,11 @@ import RxCocoa
 import Networking
 
 enum PopupChallengeType {
-    case refuse
-    case accept
+    case refuseOpen
+    case acceptOpen
+    case acceptOpponentOpen // for My Challenge
+    case refuseDirect
+    case acceptDirect
     case `default`
 }
 
@@ -24,6 +27,7 @@ class PopupChallengeViewModel: ViewModelType {
     struct Input {
         let cancelI: AnyObserver<Void>
         let acceptI: AnyObserver<Void>
+        let reasonI: AnyObserver<String>
     }
     
     struct Output {
@@ -36,18 +40,22 @@ class PopupChallengeViewModel: ViewModelType {
     
     private let cancelS = PublishSubject<Void>()
     private let acceptS = PublishSubject<Void>()
+    private let reasonS = PublishSubject<String>()
     
     init(navigator: PopupChallengeNavigator) {
         self.navigator = navigator
         
         input = Input(cancelI: cancelS.asObserver(),
-                      acceptI: acceptS.asObserver())
+                      acceptI: acceptS.asObserver(),
+                      reasonI: reasonS.asObserver())
         
         let cancel = cancelS
             .map({ PopupChallengeResult.cancel })
         
         let accept = acceptS
-            .map({ PopupChallengeResult.oke("")})
+            .withLatestFrom(reasonS.startWith(""))
+            .share()
+            .map({ PopupChallengeResult.oke($0) })
         
         let actionSelected = Observable.merge(cancel, accept)
             .take(1)

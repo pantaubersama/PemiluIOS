@@ -59,6 +59,9 @@ final class WebViewModel: ViewModelType {
             .requestObject(PantauAuthAPI.me,
                            c: BaseResponse<UserResponse>.self)
             .map({ $0.data })
+            .do(onSuccess: { (user) in
+                AppState.saveMe(user)
+            })
             .trackError(errorTracker)
             .trackActivity(activityIndicator)
             .asObservable()

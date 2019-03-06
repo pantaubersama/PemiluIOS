@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import RxDataSources
+import Networking
 
 class WordstadiumListViewController: UITableViewController {
 
@@ -60,6 +61,10 @@ class WordstadiumListViewController: UITableViewController {
                 return cell
         })
         
+        tableView.rx.modelSelected(Challenge.self)
+            .bind(to: viewModel.input.itemSelectedTrigger)
+            .disposed(by: disposeBag)
+        
         viewModel.output.items
             .do(onNext: { (items) in
                 let section = items[0]
@@ -88,6 +93,10 @@ class WordstadiumListViewController: UITableViewController {
                 self.navigationController?.present(alert, animated: true, completion: nil)
             })
             .disposed(by: disposeBag)
+        
+        viewModel.output.itemSelected
+            .drive()
+            .disposed(by: disposeBag)
     }
 
     // TODO: for testing purpose
@@ -95,29 +104,29 @@ class WordstadiumListViewController: UITableViewController {
 //        let wordstadium = dataSource.sectionModels[indexPath.section]
 //        
 //        switch wordstadium.itemType {
-//        case .privateChallenge, .challenge, .inProgress:
+//        case .challenge:
 //            guard let navigationController = self.navigationController else { return }
 ////            let challengeCoordinator = ChallengeCoordinator(navigationController: navigationController, type: wordstadium.items[indexPath.row].type)
-//            let challengeCoordinator = ChallengeCoordinator(navigationController: navigationController, type: .challenge)
+//            let challengeCoordinator = ChallengeCoordinator(navigationController: navigationController, data: wordstadium.items[indexPath.row])
 //            challengeCoordinator
 //                .start()
 //                .subscribe()
 //                .disposed(by: disposeBag)
-//        case .privateComingsoon, .comingsoon:
+//        case .comingSoon:
 //            guard let navigationController = self.navigationController else { return }
-//            let challengeCoordinator = ChallengeCoordinator(navigationController: navigationController, type: .soon)
+//            let challengeCoordinator = ChallengeCoordinator(navigationController: navigationController, data: wordstadium.items[indexPath.row])
 //            challengeCoordinator
 //                .start()
 //                .subscribe()
 //                .disposed(by: disposeBag)
-//        case .privateDone, .done:
+//        case .done:
 //            guard let navigationController = self.navigationController else { return }
-//            let challengeCoordinator = ChallengeCoordinator(navigationController: navigationController, type: .done)
+//            let challengeCoordinator = ChallengeCoordinator(navigationController: navigationController, data: wordstadium.items[indexPath.row])
 //            challengeCoordinator
 //                .start()
 //                .subscribe()
 //                .disposed(by: disposeBag)
-//        case .live:
+//        case .liveNow:
 //            guard let navigationController = self.navigationController else { return }
 //            let liveDebatCoordinator = LiveDebatCoordinator(navigationController: navigationController, viewType: .watch)
 //            liveDebatCoordinator

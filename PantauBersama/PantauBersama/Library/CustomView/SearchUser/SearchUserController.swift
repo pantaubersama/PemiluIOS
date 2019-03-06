@@ -48,6 +48,8 @@ class SearchUserController: UIViewController {
             .bind(to: viewModel.input.queryI)
             .disposed(by: disposeBag)
         
+        searchBar.delegate = self
+        
         viewModel.output.itemsO
             .do(onNext: { [weak self] (_) in
                 self?.rControl.endRefreshing()
@@ -90,4 +92,12 @@ class SearchUserController: UIViewController {
     }
 
 
+}
+
+extension SearchUserController: UISearchBarDelegate {
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.endEditing(true)
+    }
+    
 }

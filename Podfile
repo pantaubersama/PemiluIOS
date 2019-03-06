@@ -35,6 +35,7 @@ def application_pods
     pod 'FacebookSDK'
     pod 'URLEmbeddedView'
     pod 'FacebookShare'
+    pod 'FSPagerView'   
 end
 
 

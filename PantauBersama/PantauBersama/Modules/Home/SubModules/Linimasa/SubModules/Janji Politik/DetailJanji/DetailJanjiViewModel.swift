@@ -29,6 +29,7 @@ class DetailJanjiViewModel: ViewModelType {
         let deleteTrigger: AnyObserver<String>
         let profileTrigger: AnyObserver<UITapGestureRecognizer>
         let clusterTrigger: AnyObserver<UITapGestureRecognizer>
+        let refreshTrigger: AnyObserver<String>
     }
     
     struct Output {
@@ -48,13 +49,14 @@ class DetailJanjiViewModel: ViewModelType {
     private let deleteSubject = PublishSubject<String>()
     private let profileSubject = PublishSubject<UITapGestureRecognizer>()
     private let clusterSubject = PublishSubject<UITapGestureRecognizer>()
+    private let refreshSubject = PublishSubject<String>()
     
     private let navigator: DetailJanjiNavigator
     let errorTracker = ErrorTracker()
     let activityIndicator = ActivityIndicator()
     let headerViewModel = BannerHeaderViewModel()
     
-    init(navigator: DetailJanjiNavigator, data: JanjiPolitik) {
+    init(navigator: DetailJanjiNavigator, data: String) {
         self.navigator = navigator
         
         input = Input(
@@ -64,28 +66,52 @@ class DetailJanjiViewModel: ViewModelType {
             closeTrigger: closeSubject.asObserver(),
             deleteTrigger: deleteSubject.asObserver(),
             profileTrigger: profileSubject.asObserver(),
-            clusterTrigger: clusterSubject.asObserver())
+            clusterTrigger: clusterSubject.asObserver(),
+            refreshTrigger: refreshSubject.asObserver())
+        
+        let detail = refreshSubject.startWith("")
+            .flatMapLatest { (_) -> Observable<JanjiPolitik> in
+                return NetworkService.instance
+                    .requestObject(LinimasaAPI.getDetailJanpol(id: data),
+                                   c: BaseResponse<CreateJanjiPolitikResponse>.self)
+                    .map({ $0.data.janjiPolitik })
+                    .do(onSuccess: { (response) in
+                        print("Response: \(response)")
+                    }, onError: { (e) in
+                        print(e.localizedDescription)
+                    })
+                    .asObservable()
+                    .catchErrorJustComplete()
+        }
         
         let moreSelected = moreSubject
-            .flatMapLatest({ _ in Observable.of(data) })
+            .withLatestFrom(detail)
             .asDriverOnErrorJustComplete()
         
         let shareJanji = shareSubject
-            .flatMapLatest({ _ in navigator.shareJanji(data: data) })
+            .withLatestFrom(detail)
+            .flatMapLatest({ (data) -> Observable<Void> in
+                return navigator.shareJanji(data: data)
+            })
             .asDriver(onErrorJustReturn: ())
         
         let moreMenuSelected = moreMenuSubject
             .flatMapLatest { (type) -> Observable<String> in
                 switch type {
                 case .bagikan:
-                    return navigator.shareJanji(data: data)
-                        .map({ (_) -> String in
-                            return ""
-                        })
+                    return detail.flatMapLatest({ (data) -> Observable<String> in
+                        return navigator.shareJanji(data: data)
+                            .map({ (_) -> String in
+                                return ""
+                            })
+                    })
+                    
                 case .salin:
-                    let urlSalin = "\(AppContext.instance.infoForKey("URL_WEB"))/share/janjipolitik/\(data.id)"
-                    urlSalin.copyToClipboard()
-                    return Observable.just("Tautan telah tersalin")
+                    return detail.flatMapLatest({ (data) -> Observable<String> in
+                        let urlSalin = "\(AppContext.instance.infoForKey("URL_WEB_SHARE"))/share/janjipolitik/\(data.id)"
+                        urlSalin.copyToClipboard()
+                        return Observable.just("Tautan telah tersalin")
+                    })
                 case .hapus(let id):
                     return self.delete(id: id)
                         .do(onNext: { (response) in
@@ -111,7 +137,7 @@ class DetailJanjiViewModel: ViewModelType {
         
         
         let profile = profileSubject
-            .withLatestFrom(Observable.just(data))
+            .withLatestFrom(detail)
             .flatMapLatest { (janji) -> Observable<Void> in
                 if let myId = AppState.local()?.user.id {
                     if myId == janji.creator.id {
@@ -125,7 +151,7 @@ class DetailJanjiViewModel: ViewModelType {
             .asDriverOnErrorJustComplete()
         
         let cluster = clusterSubject
-            .withLatestFrom(Observable.just(data))
+            .withLatestFrom(detail)
             .flatMapLatest { (janpol) -> Observable<Void> in
                 if let cluster = janpol.creator.cluster {
                     return navigator.launchClusterDetail(cluster: cluster)
@@ -139,7 +165,7 @@ class DetailJanjiViewModel: ViewModelType {
             shareSelected: shareJanji,
             moreSelected: moreSelected,
             moreMenuSelected: moreMenuSelected,
-            detailJanji: Driver.of(data),
+            detailJanji: detail.asDriverOnErrorJustComplete(),
             closeSelected: closeSelected,
             profileSelected: profile,
             clusterSelected: cluster)

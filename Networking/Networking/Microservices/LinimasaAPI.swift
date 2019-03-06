@@ -20,6 +20,7 @@ public enum LinimasaAPI {
     case appVersions(type: String)
     case getUserJanpol(id: String, page: Int, perPage: Int, query: String)
     case getTwitterUsername(q: String, page: Int, perPage: Int)
+    case getDetailJanpol(id: String)
 }
 
 extension LinimasaAPI: TargetType {
@@ -57,6 +58,8 @@ extension LinimasaAPI: TargetType {
             return "/linimasa/v1/janji_politiks/user/\(id)"
         case .getTwitterUsername:
             return "/dashboard/v1/linimasa/suggest/username"
+        case .getDetailJanpol(let id):
+            return "/linimasa/v1/janji_politiks/\(id)"
         }
     }
     
@@ -120,7 +123,8 @@ extension LinimasaAPI: TargetType {
              .getMyJanjiPolitiks,
              .appVersions,
              .getUserJanpol,
-             .getTwitterUsername:
+             .getTwitterUsername,
+             .getDetailJanpol:
             return .get
         case .deleteJanjiPolitiks:
             return .delete

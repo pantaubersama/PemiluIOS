@@ -15,6 +15,13 @@ public enum WordstadiumAPI {
     case getChallenges(progress: ProgressType, type: LiniType)
     case createChallengeDirect(statement: String, source: String, timeAt: String, timeLimit: Int, topic: String, screenName: String, id: String)
     case askAsOpponent(id: String)
+    case confirmCandidateAsOpponent(challengeId: String, audienceId: String)
+    case confirmDirect(challengeId: String)
+    case rejectDirect(challengeId: String, reason: String)
+    case wordsAudience(challengeId: String)
+    case commentAudience(challengeId: String, words: String)
+    case fighterAttack(challengeId: String, words: String)
+    case wordsFighter(challengeId: String)
 }
 
 extension WordstadiumAPI: TargetType {
@@ -44,15 +51,34 @@ extension WordstadiumAPI: TargetType {
             return "/word_stadium/v1/challenges/open/ask_as_opponent"
         case .getChallengeDetail(let id):
             return "/word_stadium/v1/challenges/\(id)"
+        case .confirmCandidateAsOpponent:
+            return "/word_stadium/v1/challenges/open/opponent_candidates"
+        case .confirmDirect:
+            return "/word_stadium/v1/challenges/direct/approve"
+        case .rejectDirect:
+            return "/word_stadium/v1/challenges/direct/reject"
+        case .wordsAudience:
+            return "/word_stadium/v1/words/audience"
+        case .commentAudience:
+            return "/word_stadium/v1/words/audience/comment"
+        case .fighterAttack:
+            return "/word_stadium/v1/words/fighter/attack"
+        case .wordsFighter:
+            return "/word_stadium/v1/words/fighter"
         }
     }
     
     public var method: Moya.Method {
         switch self {
         case .createChallengeOpen,
-             .createChallengeDirect:
+             .createChallengeDirect,
+             .commentAudience,
+             .fighterAttack:
             return .post
-        case .askAsOpponent:
+        case .askAsOpponent,
+             .confirmCandidateAsOpponent,
+             .confirmDirect,
+             .rejectDirect:
             return .put
         default:
             return .get
@@ -68,6 +94,29 @@ extension WordstadiumAPI: TargetType {
         case .askAsOpponent(let id):
             return [
                 "id": id
+            ]
+        case .confirmCandidateAsOpponent(let (challengeId, audienceId)):
+            return [
+                "id": challengeId,
+                "audience_id": audienceId
+            ]
+        case .fighterAttack(let (challengeId, words)):
+            return [
+                "challenge_id": challengeId,
+                "words": words
+            ]
+        case .commentAudience(let (challengeId, words)):
+            return  [
+                "challenge_id": challengeId,
+                "words": words
+            ]
+        case .wordsAudience(let challengeId):
+            return [
+                "challenge_id": challengeId
+            ]
+        case .wordsFighter(let challengeId):
+            return [
+                "challenge_id": challengeId
             ]
         default:
             return nil
@@ -86,7 +135,9 @@ extension WordstadiumAPI: TargetType {
     public var task: Task {
         switch self {
         case .createChallengeOpen,
-             .createChallengeDirect:
+             .createChallengeDirect,
+             .confirmDirect,
+             .rejectDirect:
             return .uploadMultipart(self.multipartBody ?? [])
         default:
              return .requestParameters(parameters: parameters ?? [:], encoding: parameterEncoding)
@@ -123,6 +174,15 @@ extension WordstadiumAPI: TargetType {
             multipartFormData.append(buildMultipartFormData(key: "topic_list", value: topic))
             multipartFormData.append(buildMultipartFormData(key: "screen_name", value: screenName))
             multipartFormData.append(buildMultipartFormData(key: "invitation_id", value: inviteId))
+            return multipartFormData
+        case .confirmDirect(let id):
+            var multipartFormData = [MultipartFormData]()
+            multipartFormData.append(buildMultipartFormData(key: "id", value: id))
+            return multipartFormData
+        case .rejectDirect(let (id, reason)):
+            var multipartFormData = [MultipartFormData]()
+            multipartFormData.append(buildMultipartFormData(key: "id", value: id))
+            multipartFormData.append(buildMultipartFormData(key: "reason_rejected", value: reason))
             return multipartFormData
         default:
             return nil

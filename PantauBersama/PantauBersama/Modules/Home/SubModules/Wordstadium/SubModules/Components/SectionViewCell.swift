@@ -40,7 +40,7 @@ extension SectionViewCell: IReusableCell {
         switch item.type {
         case .done:
             titleIv.image = UIImage(named: "icDebatDone")
-        case .ongoing:
+        case .challenge:
             titleIv.image = UIImage(named: "icChallenge")
         default: break
             

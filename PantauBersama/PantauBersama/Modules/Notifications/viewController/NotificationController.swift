@@ -9,17 +9,18 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import Common
+import Networking
 
 class NotificationController: UIViewController {
     
     @IBOutlet weak var segmentedControl: UISegmentedControl!
-    @IBOutlet weak var context: UIView!
+    @IBOutlet weak var tableView: UITableView!
     
     var viewModel: NotificationViewModel!
+    private let rControl = UIRefreshControl()
+    var notifMenu: NotifMenu = .all
     
-    lazy var infoNotifViewModel: InfoNotifViewModel = InfoNotifViewModel(navigator: viewModel.navigator)
-    
-    private lazy var infoNotifController = InfoNotifController(viewModel: infoNotifViewModel)
     
     private let disposeBag = DisposeBag()
     
@@ -30,19 +31,56 @@ class NotificationController: UIViewController {
         let back = UIBarButtonItem(image: #imageLiteral(resourceName: "back"), style: .plain, target: nil, action: nil)
         navigationItem.leftBarButtonItem = back
         
-        add(childViewController: infoNotifController, context: context)
+        tableView.rowHeight = 130
+        tableView.estimatedRowHeight = UITableView.automaticDimension
+        tableView.registerReusableCell(InfoNotifCell.self)
+        tableView.delegate = nil
+        tableView.dataSource = nil
+        tableView.separatorColor = Color.RGBColor(red: 250, green: 250, blue: 250)
+        tableView.refreshControl = rControl
         
+        tableView.rx.modelSelected(CellConfigurator<InfoNotifCell, InfoNotifCell.Input>.self)
+            .map({ $0.item.notif })
+            .bind(to: viewModel.input.itemSelected)
+            .disposed(by: disposeBag)
+        
+        
+        rControl.rx.controlEvent(.valueChanged)
+            .map({ self.notifMenu })
+            .bind(to: viewModel.input.refreshI)
+            .disposed(by: disposeBag)
+        
+        viewModel.output.itemSelectedO
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.items
+            .do(onNext: { [unowned self] (_) in
+                self.rControl.endRefreshing()
+//                self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
+                self.tableView.isHidden = false
+            })
+            .drive(tableView.rx.items) { tableView, row, item in
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: item.reuseIdentifier) else {
+                    return UITableViewCell()
+                }
+                cell.tag = row
+                item.configure(cell: cell)
+                return cell
+            }
+            .disposed(by: disposeBag)
         
         segmentedControl.rx.value
+            .skip(1)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [unowned self] (i) in
-                UIView.animate(withDuration: 0.3, animations: {
-                    if i == 0 {
-                        self.infoNotifController.view.alpha = 1.0
-                    } else {
-                        self.infoNotifController.view.alpha = 1.0
-                    }
-                })
+                self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
+                self.tableView.isHidden = true
+                if i == 0 {
+                    self.viewModel.input.changeNotifMenuI.onNext(.all)
+                } else {
+                    self.viewModel.input.changeNotifMenuI.onNext(.event)
+                }
             })
             .disposed(by: disposeBag)
         

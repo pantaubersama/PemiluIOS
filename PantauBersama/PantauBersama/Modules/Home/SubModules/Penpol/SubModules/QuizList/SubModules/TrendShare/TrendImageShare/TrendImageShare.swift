@@ -43,15 +43,36 @@ class TrendImageShare: UIView {
     
     func configure(data: TrendResponse) {
         let kecenderungan = data.teams.max { $0.percentage?.isLess(than: $1.percentage ?? 0.0) ?? false }
-        
-        if let avatarUrl = kecenderungan?.team.avatar {
-            self.ivPaslon.show(fromURL: avatarUrl)
+        let trendHalf = String(format: "%0.f", kecenderungan?.percentage ?? 0.0)
+        let kecenderunganRandom = data.teams.randomElement()
+        if trendHalf == "50" {
+            if let avatarUrl = kecenderunganRandom?.team.avatar {
+                self.ivPaslon.af_setImage(withURL: URL(string: avatarUrl)!)
+            }
+            self.lblResultSummary.text = "Total Kecenderunganmu \(data.meta.quizzes.finished) dari \(data.meta.quizzes.total) Quiz,"
+            self.lblResultKecenderungan.text = "\(data.user.fullName ?? "") lebih suka jawaban dari Paslon no \(kecenderunganRandom?.team.id ?? 0)"
+            let percentage = String(format: "%.0f", kecenderunganRandom?.percentage ?? 0.0) + "%"
+            self.lblPercentage.text = percentage
+            self.lblPaslon.text = "\(kecenderunganRandom?.team.title ?? "")"
+        } else if trendHalf == "0" {
+            if let avatarUrl = kecenderunganRandom?.team.avatar {
+                self.ivPaslon.af_setImage(withURL: URL(string: avatarUrl)!)
+            }
+            self.lblResultSummary.text = "Total Kecenderunganmu \(data.meta.quizzes.finished) dari \(data.meta.quizzes.total) Quiz,"
+            self.lblResultKecenderungan.text = "\(data.user.fullName ?? "") lebih suka jawaban dari Paslon no \(kecenderunganRandom?.team.id ?? 0)"
+            let percentage = String(format: "%.0f", kecenderunganRandom?.percentage ?? 0.0) + "%"
+            self.lblPercentage.text = percentage
+            self.lblPaslon.text = "\(kecenderunganRandom?.team.title ?? "")"
+        } else {
+            if let avatarUrl = kecenderungan?.team.avatar {
+                self.ivPaslon.af_setImage(withURL: URL(string: avatarUrl)!)
+            }
+            self.lblResultSummary.text = "Total Kecenderunganmu \(data.meta.quizzes.finished) dari \(data.meta.quizzes.total) Quiz,"
+            self.lblResultKecenderungan.text = "\(data.user.fullName ?? "") lebih suka jawaban dari Paslon no \(kecenderungan?.team.id ?? 0)"
+            let percentage = String(format: "%.0f", kecenderungan?.percentage ?? 0.0) + "%"
+            self.lblPercentage.text = percentage
+            self.lblPaslon.text = "\(kecenderungan?.team.title ?? "")"
         }
-        self.lblResultSummary.text = "Total Kecenderunganmu \(data.meta.quizzes.finished) dari \(data.meta.quizzes.total) Quiz,"
-        self.lblResultKecenderungan.text = "\(data.user.fullName ?? "") lebih suka jawaban dari Paslon no \(kecenderungan?.team.id ?? 0)"
-        let percentage = String(format: "%.0f", kecenderungan?.percentage ?? 0.0) + "%"
-        self.lblPercentage.text = percentage
-        self.lblPaslon.text = "\(kecenderungan?.team.title ?? "")"
     }
     
     func configureResult(data: QuizResultModel) {
@@ -59,7 +80,7 @@ class TrendImageShare: UIView {
         self.lblPaslon.text = data.name
         self.lblPercentage.text = data.percentage
         self.lblResultSummary.text = "Dari hasil pilihan di Quiz \(data.nameQuiz),"
-        self.lblResultKecenderungan.text = "\(data.userName) lebih suka jawaban dari Paslin no \(data.paslonNo)"
+        self.lblResultKecenderungan.text = "\(data.userName) lebih suka jawaban dari Paslon no \(data.paslonNo)"
     }
     
     func configureBackground(type: ImageShareType) {

@@ -239,7 +239,7 @@ class QuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelInput
                 case .laporkan(let question):
                     return weakSelf.reportQuestion(question: question)
                 case .salin(let question):
-                    let data = "\(AppContext.instance.infoForKey("URL_WEB"))/share/tanya/\(question.id)"
+                    let data = "\(AppContext.instance.infoForKey("URL_WEB_SHARE"))/share/tanya/\(question.id)"
                     data.copyToClipboard()
                     return Observable.just("Tautan telah tersalin")
                 }
@@ -359,7 +359,7 @@ class QuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelInput
         query: String) ->
         Observable<Page<[QuestionModel]>> {
             var filteredBy = self.filterItems.filter({ $0.paramKey == "filter_by"}).first?.paramValue ?? "user_verified_all"
-            var orderedBy = self.filterItems.filter({ $0.paramKey == "order_by"}).first?.paramValue ?? "cached_votes_up"
+            var orderedBy = self.filterItems.filter({ $0.paramKey == "order_by"}).first?.paramValue ?? "hot_score"
             
             if !self.filterItems.isEmpty {
                 let filterByString = self.filterItems.filter({ (filterItem) -> Bool in
@@ -371,7 +371,7 @@ class QuestionListViewModel: IQuestionListViewModel, IQuestionListViewModelInput
                     }.first?.paramValue
                 
                 filteredBy = filterByString ?? "user_verified_all"
-                orderedBy = orderByString ?? "cached_votes_up"
+                orderedBy = orderByString ?? "hot_score"
             }
             
             return NetworkService.instance

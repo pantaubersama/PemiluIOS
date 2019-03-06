@@ -7,10 +7,17 @@
 //
 
 import UIKit
+import Networking
+import Common
 
 // actual size 120
 @IBDesignable
-class RefusewChallengeView: UIView {
+class RefuseChallengeView: UIView {
+    
+    @IBOutlet weak var ivOpponents: CircularUIImageView!
+    @IBOutlet weak var lblName: Label!
+    @IBOutlet weak var lblUsername: Label!
+    @IBOutlet weak var lblReason: Label!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -29,4 +36,11 @@ class RefusewChallengeView: UIView {
         addSubview(view)
     }
     
+    func configureData(data: [Audiences]) {
+        let opponents = data.filter({ $0.role != .challenger }).first // cause direct just have one audiences
+        ivOpponents.show(fromURL: opponents?.avatar?.thumbnail.url ?? "")
+        lblName.text = opponents?.fullName
+        lblUsername.text = opponents?.username
+        
+    }
 }

@@ -9,9 +9,15 @@
 import Foundation
 
 public struct TrendResponse: Codable {
+    public let shareURL: String?
     public let user: User
     public let teams: [TeamElement]
     public let meta: MetaTrend
+    
+    private enum CodingKeys: String, CodingKey {
+        case shareURL = "share_url"
+        case user, teams, meta
+    }
     
     public struct TeamElement: Codable {
         public let team: TeamTeam

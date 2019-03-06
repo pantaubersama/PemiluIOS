@@ -16,6 +16,7 @@ public struct QuizResultModel {
     public let avatar: String
     public let nameQuiz: String
     public let userName: String
+    public let shareURL: String
     
     init(result: QuizResultResponse.DataClass) {
         let higherPercentagePaslon = result.teams.sorted { (t1, t2) -> Bool in
@@ -28,6 +29,7 @@ public struct QuizResultModel {
         self.percentage =  String(format: "%.0f", higherPercentagePaslon?.percentage ?? 0) + "%"
         self.nameQuiz = result.quiz.title ?? ""
         self.userName = result.user?.fullName ?? ""
+        self.shareURL = result.shareURL ?? ""
     }
 }
 

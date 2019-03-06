@@ -22,19 +22,19 @@ class QuizSummaryViewModel: ViewModelType {
     
     struct Output {
         let answerKeys: Driver<[QuizSummaryModel]>
-        let quiz: Driver<QuizModel>
+        let quiz: Driver<QuizModel?>
         let back: Driver<Void>
     }
     
-    private let quiz: QuizModel
+    private let quiz: QuizModel?
     private let backSubject = PublishSubject<Void>()
     
-    init(quiz: QuizModel) {
+    init(quiz: QuizModel?) {
         self.quiz = quiz
         
         input = Input(backTrigger: backSubject.asObserver())
         
-        let answerKeys = self.quizSummary(id: quiz.id)
+        let answerKeys = self.quizSummary(id: quiz?.id ?? "")
             .asDriverOnErrorJustComplete()
         
         let quizModel = Observable.just(quiz)
