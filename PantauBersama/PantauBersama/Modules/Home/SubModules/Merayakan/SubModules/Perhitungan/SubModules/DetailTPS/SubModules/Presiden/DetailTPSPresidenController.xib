@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailTPSPresidenController" customModule="PantauBersama" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="891"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GO5-fU-IPx" customClass="Button" customModule="Common">
+                    <rect key="frame" x="0.0" y="843" width="375" height="48"/>
+                    <color key="backgroundColor" red="0.95686274509803915" green="0.95686274509803915" blue="0.95686274509803915" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="48" id="j5I-en-FM8"/>
+                    </constraints>
+                    <state key="normal" title="SIMPAN">
+                        <color key="titleColor" red="0.74117647060000003" green="0.031372549020000001" blue="0.10980392160000001" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                            <real key="value" value="12"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="string" keyPath="typeButton" value="black"/>
+                    </userDefinedRuntimeAttributes>
+                </button>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fcg-gx-2iL">
+                    <rect key="frame" x="0.0" y="20" width="375" height="823"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="bPK-pr-l8u">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="835"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bjx-cS-Og8">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="121.5"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PHS-MP-QKe" customClass="Label" customModule="Common">
+                                            <rect key="frame" x="20" y="14" width="335" height="93.5"/>
+                                            <string key="text">Kamu bisa menambah atau langsung input jumlah perolehan suara sesuai pengamatan di TPS. Tap Undo untuk membatalkan perhitungan terakhir.</string>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.4392156862745098" green="0.4392156862745098" blue="0.4392156862745098" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                    <real key="value" value="10"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="typeLabel" value="regular"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" red="0.95686274509803915" green="0.95686274509803915" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="PHS-MP-QKe" secondAttribute="bottom" constant="14" id="1aV-0o-JN3"/>
+                                        <constraint firstItem="PHS-MP-QKe" firstAttribute="leading" secondItem="bjx-cS-Og8" secondAttribute="leading" constant="20" id="9em-eh-AMt"/>
+                                        <constraint firstAttribute="trailing" secondItem="PHS-MP-QKe" secondAttribute="trailing" constant="20" id="DK9-Zc-u6M"/>
+                                        <constraint firstItem="PHS-MP-QKe" firstAttribute="top" secondItem="bjx-cS-Og8" secondAttribute="top" constant="14" id="j48-pX-TWp"/>
+                                    </constraints>
+                                </view>
+                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="bDQ-gC-d7x">
+                                    <rect key="frame" x="0.0" y="137.5" width="375" height="246.5"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="uQT-T8-xyP">
+                                            <rect key="frame" x="25" y="10" width="147.5" height="211.5"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="paslonjokowi-compres-min" translatesAutoresizingMaskIntoConstraints="NO" id="Ea5-5k-n2h">
+                                                    <rect key="frame" x="0.0" y="0.0" width="147.5" height="147.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="Ea5-5k-n2h" secondAttribute="height" multiplier="1:1" id="eeC-Cn-Pdw"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yPy-UB-Tj9" customClass="TPSButton" customModule="PantauBersama" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="163.5" width="147.5" height="48"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="48" id="022-yu-qXN"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                            <real key="value" value="14"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                            </subviews>
+                                            <viewLayoutGuide key="safeArea" id="tUS-Iw-5Kx"/>
+                                        </stackView>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="hYx-d1-aSy">
+                                            <rect key="frame" x="202.5" y="10" width="147.5" height="211.5"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="paslonprabowo-compres-min" translatesAutoresizingMaskIntoConstraints="NO" id="Idt-WL-f85">
+                                                    <rect key="frame" x="0.0" y="0.0" width="147.5" height="147.5"/>
+                                                </imageView>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w4x-4F-dYt" customClass="TPSButton" customModule="PantauBersama" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="163.5" width="147.5" height="48"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="48" id="oSg-ai-2pU"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                            <real key="value" value="14"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                            </subviews>
+                                            <viewLayoutGuide key="safeArea" id="wfi-JX-DIl"/>
+                                        </stackView>
+                                    </subviews>
+                                    <edgeInsets key="layoutMargins" top="10" left="25" bottom="25" right="25"/>
+                                </stackView>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Xd4-dt-0fA">
+                                    <rect key="frame" x="0.0" y="400" width="375" height="105"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="LtG-fj-6gG">
+                                            <rect key="frame" x="114" y="0.0" width="147.5" height="105"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Surat Suara Tidak Sah" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="esd-iv-aWr" customClass="Label" customModule="Common">
+                                                    <rect key="frame" x="0.0" y="0.0" width="147.5" height="41"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.066666666666666666" green="0.066666666666666666" blue="0.066666666666666666" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                            <real key="value" value="12"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="typeLabel" value="bold"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OM8-qh-3P5" customClass="TPSButton" customModule="PantauBersama" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="57" width="147.5" height="48"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="48" id="DgX-Ju-oLB"/>
+                                                    </constraints>
+                                                    <viewLayoutGuide key="safeArea" id="EdQ-Er-W7b"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                            <real key="value" value="14"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="plusButtonType" value="red"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                </stackView>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mp7-cA-fB7">
+                                    <rect key="frame" x="0.0" y="521" width="375" height="314"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="efH-bQ-60v">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="314"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ftQ-wD-1gs">
+                                                    <rect key="frame" x="0.0" y="25" width="375" height="30"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DATA SUARA SAH DAN TIDAK SAH" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4ME-ZS-si2" customClass="Label" customModule="Common">
+                                                            <rect key="frame" x="20" y="0.0" width="335" height="30"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <nil key="highlightedColor"/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                                    <real key="value" value="12"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="typeLabel" value="bold"/>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" red="0.48627450980392156" green="0.48627450980392156" blue="0.48627450980392156" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstItem="4ME-ZS-si2" firstAttribute="leading" secondItem="ftQ-wD-1gs" secondAttribute="leading" constant="20" id="CMm-6v-6Zu"/>
+                                                        <constraint firstAttribute="bottom" secondItem="4ME-ZS-si2" secondAttribute="bottom" id="dsG-iB-R2k"/>
+                                                        <constraint firstItem="4ME-ZS-si2" firstAttribute="top" secondItem="ftQ-wD-1gs" secondAttribute="top" id="iT9-uy-jmJ"/>
+                                                        <constraint firstAttribute="trailing" secondItem="4ME-ZS-si2" secondAttribute="trailing" constant="20" id="rxE-YX-qCv"/>
+                                                        <constraint firstAttribute="height" constant="30" id="yT0-JJ-zsz"/>
+                                                    </constraints>
+                                                </view>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fhk-46-Qg5">
+                                                    <rect key="frame" x="0.0" y="56" width="375" height="95"/>
+                                                    <subviews>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="zel-di-FGi">
+                                                            <rect key="frame" x="17" y="17" width="341" height="61"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="1. Jumlah suara tidak sah" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kTY-OB-TrQ" customClass="Label" customModule="Common">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="225" height="20.5"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <color key="textColor" red="0.066666666669999999" green="0.066666666669999999" blue="0.066666666669999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                                            <real key="value" value="12"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                        <userDefinedRuntimeAttribute type="string" keyPath="typeLabel" value="bold"/>
+                                                                    </userDefinedRuntimeAttributes>
+                                                                </label>
+                                                                <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dHB-ak-Vyz" customClass="TPSTextField" customModule="PantauBersama" customModuleProvider="target">
+                                                                    <rect key="frame" x="241" y="0.0" width="100" height="38"/>
+                                                                    <color key="backgroundColor" red="0.99607843137254903" green="0.97254901960784312" blue="0.8901960784313725" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="38" id="bhk-X2-P83"/>
+                                                                        <constraint firstAttribute="width" constant="100" id="vNV-KC-JIw"/>
+                                                                    </constraints>
+                                                                    <nil key="textColor"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                    <textInputTraits key="textInputTraits"/>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                            <real key="value" value="4"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                    </userDefinedRuntimeAttributes>
+                                                                </textField>
+                                                            </subviews>
+                                                        </stackView>
+                                                    </subviews>
+                                                    <color key="backgroundColor" red="0.97647058823529409" green="0.97647058823529409" blue="0.97647058823529409" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="trailing" secondItem="zel-di-FGi" secondAttribute="trailing" constant="17" id="Yl1-xT-E0Y"/>
+                                                        <constraint firstItem="zel-di-FGi" firstAttribute="top" secondItem="fhk-46-Qg5" secondAttribute="top" constant="17" id="aWq-Aw-CsU"/>
+                                                        <constraint firstAttribute="bottom" secondItem="zel-di-FGi" secondAttribute="bottom" constant="17" id="gWO-wz-SaL"/>
+                                                        <constraint firstItem="zel-di-FGi" firstAttribute="leading" secondItem="fhk-46-Qg5" secondAttribute="leading" constant="17" id="plU-2x-P1p"/>
+                                                        <constraint firstAttribute="height" priority="750" constant="72" id="wS7-44-3NN"/>
+                                                    </constraints>
+                                                </view>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v3P-Wq-hfW">
+                                                    <rect key="frame" x="0.0" y="152" width="375" height="72"/>
+                                                    <subviews>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Kem-7a-ONj">
+                                                            <rect key="frame" x="17" y="17" width="341" height="38"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="2. Jumlah seluruh suara sah" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3iu-gX-eAa" customClass="Label" customModule="Common">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="225" height="20.5"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <color key="textColor" red="0.066666666669999999" green="0.066666666669999999" blue="0.066666666669999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                                            <real key="value" value="12"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                        <userDefinedRuntimeAttribute type="string" keyPath="typeLabel" value="bold"/>
+                                                                    </userDefinedRuntimeAttributes>
+                                                                </label>
+                                                                <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TCr-KD-Cn5" customClass="TPSTextField" customModule="PantauBersama" customModuleProvider="target">
+                                                                    <rect key="frame" x="241" y="0.0" width="100" height="38"/>
+                                                                    <color key="backgroundColor" red="0.99607843139999996" green="0.97254901959999995" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="100" id="2Bv-WA-lxR"/>
+                                                                        <constraint firstAttribute="height" constant="38" id="DMe-6Z-tKO"/>
+                                                                    </constraints>
+                                                                    <nil key="textColor"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                    <textInputTraits key="textInputTraits"/>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                            <real key="value" value="4"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                    </userDefinedRuntimeAttributes>
+                                                                </textField>
+                                                            </subviews>
+                                                        </stackView>
+                                                    </subviews>
+                                                    <color key="backgroundColor" red="0.97647058819999999" green="0.97647058819999999" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="trailing" secondItem="Kem-7a-ONj" secondAttribute="trailing" constant="17" id="3PF-gW-nr5"/>
+                                                        <constraint firstAttribute="height" priority="750" constant="72" id="HRZ-3y-qDM"/>
+                                                        <constraint firstAttribute="bottom" secondItem="Kem-7a-ONj" secondAttribute="bottom" constant="17" id="SYT-W9-VjK"/>
+                                                        <constraint firstItem="Kem-7a-ONj" firstAttribute="top" secondItem="v3P-Wq-hfW" secondAttribute="top" constant="17" id="XuS-U3-3pE"/>
+                                                        <constraint firstItem="Kem-7a-ONj" firstAttribute="leading" secondItem="v3P-Wq-hfW" secondAttribute="leading" constant="17" id="jnr-Vl-qjx"/>
+                                                    </constraints>
+                                                    <viewLayoutGuide key="safeArea" id="OZX-hy-Xoj"/>
+                                                </view>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rbQ-gG-QLn">
+                                                    <rect key="frame" x="0.0" y="225" width="375" height="89"/>
+                                                    <subviews>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="keX-RG-JMq">
+                                                            <rect key="frame" x="17" y="17" width="341" height="55"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="3. Jumlah seluruh suara sah dan suara tidak sah" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HzA-if-R5E" customClass="Label" customModule="Common">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="225" height="41"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <color key="textColor" red="0.066666666669999999" green="0.066666666669999999" blue="0.066666666669999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                                            <real key="value" value="12"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                        <userDefinedRuntimeAttribute type="string" keyPath="typeLabel" value="bold"/>
+                                                                    </userDefinedRuntimeAttributes>
+                                                                </label>
+                                                                <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tsg-ZK-kcI" customClass="TPSTextField" customModule="PantauBersama" customModuleProvider="target">
+                                                                    <rect key="frame" x="241" y="0.0" width="100" height="38"/>
+                                                                    <color key="backgroundColor" red="0.99607843139999996" green="0.97254901959999995" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="38" id="ObI-GZ-euP"/>
+                                                                        <constraint firstAttribute="width" constant="100" id="Q3I-Ay-meD"/>
+                                                                    </constraints>
+                                                                    <nil key="textColor"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                    <textInputTraits key="textInputTraits"/>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                            <real key="value" value="4"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                    </userDefinedRuntimeAttributes>
+                                                                </textField>
+                                                            </subviews>
+                                                        </stackView>
+                                                    </subviews>
+                                                    <color key="backgroundColor" red="0.97647058819999999" green="0.97647058819999999" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="trailing" secondItem="keX-RG-JMq" secondAttribute="trailing" constant="17" id="CiF-0O-B4Z"/>
+                                                        <constraint firstItem="keX-RG-JMq" firstAttribute="leading" secondItem="rbQ-gG-QLn" secondAttribute="leading" constant="17" id="GU4-qk-Cp1"/>
+                                                        <constraint firstAttribute="bottom" secondItem="keX-RG-JMq" secondAttribute="bottom" constant="17" id="UdQ-bp-pBc"/>
+                                                        <constraint firstAttribute="height" priority="750" constant="72" id="X7d-cJ-qGp"/>
+                                                        <constraint firstItem="keX-RG-JMq" firstAttribute="top" secondItem="rbQ-gG-QLn" secondAttribute="top" constant="17" id="zVF-7L-iw8"/>
+                                                    </constraints>
+                                                    <viewLayoutGuide key="safeArea" id="mDa-Js-wRA"/>
+                                                </view>
+                                            </subviews>
+                                            <edgeInsets key="layoutMargins" top="25" left="0.0" bottom="0.0" right="0.0"/>
+                                        </stackView>
+                                    </subviews>
+                                    <color key="backgroundColor" red="0.95686274509803915" green="0.95686274509803915" blue="0.95686274509803915" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <constraints>
+                                        <constraint firstItem="efH-bQ-60v" firstAttribute="top" secondItem="mp7-cA-fB7" secondAttribute="top" id="8qY-6C-9bc"/>
+                                        <constraint firstAttribute="bottom" secondItem="efH-bQ-60v" secondAttribute="bottom" id="Geu-3K-aFQ"/>
+                                        <constraint firstItem="efH-bQ-60v" firstAttribute="leading" secondItem="mp7-cA-fB7" secondAttribute="leading" id="INE-6x-oGk"/>
+                                        <constraint firstAttribute="trailing" secondItem="efH-bQ-60v" secondAttribute="trailing" id="nnR-Dv-EuZ"/>
+                                    </constraints>
+                                </view>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="LtG-fj-6gG" firstAttribute="width" secondItem="hYx-d1-aSy" secondAttribute="width" id="WaT-7w-HHP"/>
+                            </constraints>
+                        </stackView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="bPK-pr-l8u" firstAttribute="top" secondItem="fcg-gx-2iL" secondAttribute="top" id="3Lj-FE-nev"/>
+                        <constraint firstAttribute="trailing" secondItem="bPK-pr-l8u" secondAttribute="trailing" id="DX3-z3-UfY"/>
+                        <constraint firstItem="bPK-pr-l8u" firstAttribute="leading" secondItem="fcg-gx-2iL" secondAttribute="leading" id="Zms-h7-wpb"/>
+                        <constraint firstAttribute="bottom" secondItem="bPK-pr-l8u" secondAttribute="bottom" id="hAj-eG-bGX"/>
+                        <constraint firstItem="bPK-pr-l8u" firstAttribute="width" secondItem="fcg-gx-2iL" secondAttribute="width" id="ooS-eK-Lai"/>
+                    </constraints>
+                </scrollView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="GO5-fU-IPx" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="HS0-e7-EKS"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="fcg-gx-2iL" secondAttribute="trailing" id="TY0-gu-tV9"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="GO5-fU-IPx" secondAttribute="bottom" id="TiL-Dv-liM"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="GO5-fU-IPx" secondAttribute="trailing" id="Ts0-HO-gTy"/>
+                <constraint firstItem="GO5-fU-IPx" firstAttribute="top" secondItem="fcg-gx-2iL" secondAttribute="bottom" id="gno-1c-UtR"/>
+                <constraint firstItem="fcg-gx-2iL" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="hMa-eD-j7H"/>
+                <constraint firstItem="fcg-gx-2iL" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="p2y-p3-pgc"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="39.200000000000003" y="147.07646176911544"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="paslonjokowi-compres-min" width="1000" height="1000"/>
+        <image name="paslonprabowo-compres-min" width="1000" height="1000"/>
+    </resources>
+</document>
