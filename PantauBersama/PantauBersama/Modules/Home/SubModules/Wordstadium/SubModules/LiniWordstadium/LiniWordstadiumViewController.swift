@@ -68,7 +68,6 @@ class LiniWordstadiumViewController: UITableViewController, ILiniWordstadiumView
         dataSource = RxTableViewSectionedReloadDataSource<SectionWordstadium>(
             configureCell: { (dataSource, tableView, indexPath, item) in
                 let wordstadium = dataSource.sectionModels[indexPath.section]
-                
                 switch wordstadium.itemType {
                 case .liveNow :
                     let cell = tableView.dequeueReusableCell(indexPath: indexPath) as WordstadiumViewCell
@@ -76,11 +75,10 @@ class LiniWordstadiumViewController: UITableViewController, ILiniWordstadiumView
                     cell.collectionView.reloadData()
                     return cell
                 default:
-                    let itemWordstadium = wordstadium.items[indexPath.row]
                     let cell = tableView.dequeueReusableCell(indexPath: indexPath) as WordstadiumItemViewCell
-                    cell.configureCell(item: WordstadiumItemViewCell.Input(type: wordstadium.type, itemType: wordstadium.itemType, wordstadium: itemWordstadium))
+                    cell.configureCell(item: WordstadiumItemViewCell.Input(wordstadium: item))
                     cell.moreMenuBtn.rx.tap
-                        .map({ itemWordstadium })
+                        .map({ item })
                         .bind(to: self.viewModel.input.moreI)
                         .disposed(by: self.disposeBag)
                     
@@ -99,6 +97,7 @@ class LiniWordstadiumViewController: UITableViewController, ILiniWordstadiumView
         viewModel.output.itemsO
             .do(onNext: { (items) in
                 print("items \(items)")
+                self.tableView.reloadData()
             })
             .drive(tableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
@@ -171,6 +170,7 @@ class LiniWordstadiumViewController: UITableViewController, ILiniWordstadiumView
         }
         
     }
+
     
     
     // TODO: for testing purpose

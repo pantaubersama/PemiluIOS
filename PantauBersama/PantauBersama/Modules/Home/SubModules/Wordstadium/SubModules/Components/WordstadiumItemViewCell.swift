@@ -44,8 +44,6 @@ class WordstadiumItemViewCell: UITableViewCell {
 extension WordstadiumItemViewCell: IReusableCell {
     
     struct Input {
-        let type: LiniType
-        let itemType : ProgressType
         let wordstadium: Challenge
     }
     
@@ -97,6 +95,7 @@ extension WordstadiumItemViewCell: IReusableCell {
             titleLbl.text = chellenge.progress.title
             backgroundItem.image = UIImage(named: "bgWordstadiumLive")
             let descView = DescriptionView()
+            descView.descriptionLbl.text = "Live Selama \(chellenge.timeLimit ?? 0) Menit"
             footerView = descView
         case .done:
             titleLbl.text = chellenge.progress.title

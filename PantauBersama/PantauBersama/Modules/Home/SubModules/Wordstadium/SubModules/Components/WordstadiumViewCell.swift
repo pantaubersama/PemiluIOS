@@ -93,10 +93,11 @@ extension WordstadiumViewCell: IReusableCell,UICollectionViewDelegate,UICollecti
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let challenge = self.wordstadium.itemsLive[indexPath.row]
         let collection = collectionView.dequeueReusableCell(indexPath: indexPath) as WordstadiumCollectionCell
-        collection.configureCell(item: WordstadiumCollectionCell.Input(type: self.wordstadium.type))
+        collection.configureCell(item: WordstadiumCollectionCell.Input(type: self.wordstadium.type, wordstadium: challenge))
         collection.moreMenuBtn.rx.tap
-            .map({ self.wordstadium.itemsLive[indexPath.row] })
+            .map({ challenge })
             .bind(to: self.viewModel.input.moreI)
             .disposed(by: self.disposeBag!)
         return collection

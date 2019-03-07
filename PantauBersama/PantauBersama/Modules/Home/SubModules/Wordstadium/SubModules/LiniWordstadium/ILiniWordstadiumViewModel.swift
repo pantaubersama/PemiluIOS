@@ -63,6 +63,7 @@ extension ILiniWordstadiumViewModel {
         
         switch progress {
         case .liveNow:
+            item.append(challenge[0])
             itemLive = challenge
             if type == .public {
                 title = "Live Now"

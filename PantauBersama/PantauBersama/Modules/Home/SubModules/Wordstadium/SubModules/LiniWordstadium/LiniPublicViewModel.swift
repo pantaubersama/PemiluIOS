@@ -41,9 +41,6 @@ class LiniPublicViewModel: ILiniWordstadiumViewModel, ILiniWordstadiumViewModelI
     internal let activityIndicator = ActivityIndicator()
     internal let headerViewModel = BannerHeaderViewModel()
     
-    private let publicItems = BehaviorRelay<[SectionWordstadium]>(value: [])
-    private(set) var disposeBag = DisposeBag()
-    
     init(navigator: WordstadiumNavigator, showTableHeader: Bool) {
         refreshI = refreshSubject.asObserver()
         moreI = moreSubject.asObserver()
@@ -89,65 +86,75 @@ class LiniPublicViewModel: ILiniWordstadiumViewModel, ILiniWordstadiumViewModelI
         
         // MARK:
         // Get challenge list
-        refreshSubject.startWith(())
-            .flatMapLatest({ [weak self] (_) -> Observable<[Challenge]> in
-                guard let `self` = self else { return Observable<[Challenge]>.just([]) }
-                return self.getChallenge(progress: .liveNow, type: .public)
+        itemsO = refreshSubject.startWith(())
+            .flatMapLatest({ [weak self](_) -> Observable<[SectionWordstadium]> in
+                guard let weakSelf = self else { return Observable.empty() }
+                return weakSelf.getChallenge(progress: .liveNow, type: .public)
+                    .map { [weak self](items) -> [SectionWordstadium] in
+                        guard let weakSelf = self else { return [] }
+                        if items.isEmpty {
+                            return []
+                        } else {
+                            return  weakSelf.transformToSection(challenge: items, progress: .liveNow, type: .public)
+                        }
+                    }
+                    .trackActivity(weakSelf.activityIndicator)
+                    .trackError(weakSelf.errorTracker)
+                    .asObservable()
+                    .catchErrorJustReturn([])
             })
-            .map({ Array($0.prefix(3)) })
-            .bind { [weak self](items) in
-                guard let weakSelf = self else { return }
-                weakSelf.publicItems.accept([])
+            .flatMapLatest({ [weak self](challenge) -> Observable<[SectionWordstadium]> in
+                guard let weakSelf = self else { return Observable.empty() }
+                return weakSelf.getChallenge(progress: .comingSoon, type: .public)
+                    .map({ Array($0.prefix(3)) })
+                    .map { [weak self](items) -> [SectionWordstadium] in
+                        guard let weakSelf = self else { return [] }
+                        if items.isEmpty {
+                            return challenge
+                        } else {
+                            return  challenge + weakSelf.transformToSection(challenge: items, progress: .comingSoon, type: .public)
+                        }
+                    }
+                    .trackActivity(weakSelf.activityIndicator)
+                    .trackError(weakSelf.errorTracker)
+                    .asObservable()
+                    .catchErrorJustReturn([])
+            })
+            .flatMapLatest({ [weak self](challenge) -> Observable<[SectionWordstadium]> in
+                guard let weakSelf = self else { return Observable.empty() }
+                return weakSelf.getChallenge(progress: .done, type: .public)
+                    .map({ Array($0.prefix(3)) })
+                    .map { [weak self](items) -> [SectionWordstadium] in
+                        guard let weakSelf = self else { return [] }
+                        if items.isEmpty {
+                            return challenge
+                        } else {
+                            return  challenge + weakSelf.transformToSection(challenge: items, progress: .done, type: .public)
+                        }
+                    }
+                    .trackActivity(weakSelf.activityIndicator)
+                    .trackError(weakSelf.errorTracker)
+                    .asObservable()
+                    .catchErrorJustReturn([])
+            })
+            .flatMapLatest({ [weak self](challenge) -> Observable<[SectionWordstadium]> in
+                guard let weakSelf = self else { return Observable.empty() }
+                return weakSelf.getChallenge(progress: .challenge, type: .public)
+                    .map({ Array($0.prefix(3)) })
+                    .map { [weak self](items) -> [SectionWordstadium] in
+                        guard let weakSelf = self else { return [] }
+                        if items.isEmpty {
+                            return challenge
+                        } else {
+                            return  challenge + weakSelf.transformToSection(challenge: items, progress: .challenge, type: .public)
+                        }
+                    }
+                    .trackActivity(weakSelf.activityIndicator)
+                    .trackError(weakSelf.errorTracker)
+                    .asObservable()
+                    .catchErrorJustReturn([])
                 
-                if items.count > 0 {
-                    let currentItems = weakSelf.publicItems.value + weakSelf.transformToSection(challenge: items, progress: .liveNow, type: .public)
-                    weakSelf.publicItems.accept(currentItems)
-                }
-            }.disposed(by: disposeBag)
-        
-        refreshSubject.startWith(())
-            .flatMapLatest({ [weak self] (_) -> Observable<[Challenge]> in
-                guard let `self` = self else { return Observable<[Challenge]>.just([]) }
-                return self.getChallenge(progress: .comingSoon, type: .public)
-            })
-            .map({ Array($0.prefix(3)) })
-            .bind { [weak self](items) in
-                guard let weakSelf = self else { return }
-                if items.count > 0 {
-                    let currentItems = weakSelf.publicItems.value + weakSelf.transformToSection(challenge: items, progress: .comingSoon, type: .public)
-                    weakSelf.publicItems.accept(currentItems)
-                }
-            }.disposed(by: disposeBag)
-        
-        refreshSubject.startWith(())
-            .flatMapLatest({ [weak self] (_) -> Observable<[Challenge]> in
-                guard let `self` = self else { return Observable<[Challenge]>.just([]) }
-                return self.getChallenge(progress: .done, type: .public)
-            })
-            .map({ Array($0.prefix(3)) })
-            .bind { [weak self](items) in
-                guard let weakSelf = self else { return }
-                if items.count > 0 {
-                    let currentItems = weakSelf.publicItems.value + weakSelf.transformToSection(challenge: items, progress: .done, type: .public)
-                    weakSelf.publicItems.accept(currentItems)
-                }
-            }.disposed(by: disposeBag)
-        
-        refreshSubject.startWith(())
-            .flatMapLatest({ [weak self] (_) -> Observable<[Challenge]> in
-                guard let `self` = self else { return Observable<[Challenge]>.just([]) }
-                return self.getChallenge(progress: .challenge, type: .public)
-            })
-            .map({ Array($0.prefix(3)) })
-            .bind { [weak self](items) in
-                guard let weakSelf = self else { return }
-                if items.count > 0 {
-                    let currentItems = weakSelf.publicItems.value + weakSelf.transformToSection(challenge: items, progress: .challenge, type: .public)
-                    weakSelf.publicItems.accept(currentItems)
-                }
-            }.disposed(by: disposeBag)
-        
-        itemsO = publicItems.asDriver(onErrorJustReturn: [])
+            }).asDriver(onErrorJustReturn: [])
         
         moreSelectedO = moreSubject
             .asObservable()
