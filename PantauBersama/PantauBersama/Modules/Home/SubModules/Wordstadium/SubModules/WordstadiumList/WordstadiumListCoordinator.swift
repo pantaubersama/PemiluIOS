@@ -44,7 +44,17 @@ final class WordstadiumListCoordinator: BaseCoordinator<Void> {
 
 extension WordstadiumListCoordinator: WordstadiumListNavigator {
     func openChallenge(challenge: Challenge) -> Observable<Void> {
-        let debatLiveCoordinator = LiveDebatCoordinator(navigationController: self.navigationController, challenge: challenge, viewType: .watch)
-        return coordinate(to: debatLiveCoordinator)
+        switch challenge.progress {
+        case .waitingConfirmation,
+             .waitingOpponent,
+             .comingSoon:
+            let challengeCoordinator = ChallengeCoordinator(navigationController: navigationController, data: challenge)
+            return coordinate(to: challengeCoordinator)
+        case .liveNow:
+            let debatLiveCoordinator = LiveDebatCoordinator(navigationController: self.navigationController, challenge: challenge, viewType: .watch)
+            return coordinate(to: debatLiveCoordinator)
+        default:
+            return Observable.empty()
+        }
     }
 }
