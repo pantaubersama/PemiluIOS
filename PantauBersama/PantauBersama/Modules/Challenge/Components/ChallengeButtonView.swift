@@ -7,11 +7,14 @@
 //
 
 import UIKit
+import Common
 
 @IBDesignable
 class ChallengeButtonView: UIView {
     
     @IBOutlet weak var containerLike: UIView!
+    @IBOutlet weak var btnShare: Button!
+    @IBOutlet weak var btnMore: UIButton!
     
     override init(frame: CGRect) {
         let frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 56.0)

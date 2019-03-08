@@ -314,6 +314,7 @@
 		84619D4921DC961A00EB58CF /* WebController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84619D4821DC961A00EB58CF /* WebController.swift */; };
 		84619D4B21DC9A6A00EB58CF /* WebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84619D4A21DC9A6A00EB58CF /* WebViewModel.swift */; };
 		84619D4D21DC9ABD00EB58CF /* WebCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84619D4C21DC9ABD00EB58CF /* WebCoordinator.swift */; };
+		8468AE7922315824002CBA0F /* ChallengeDetailType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8468AE7822315824002CBA0F /* ChallengeDetailType.swift */; };
 		846E8EFD21F767630036FEA2 /* SosmedController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 846E8EFC21F767630036FEA2 /* SosmedController.xib */; };
 		8474BF9C222D251600610301 /* WordstadiumListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 137369432217175300B698BA /* WordstadiumListHeaderView.swift */; };
 		8475330D21F60F6000BF3F66 /* ComingsoonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8475330C21F60F6000BF3F66 /* ComingsoonViewModel.swift */; };
@@ -929,6 +930,7 @@
 		84619D4821DC961A00EB58CF /* WebController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebController.swift; sourceTree = "<group>"; };
 		84619D4A21DC9A6A00EB58CF /* WebViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewModel.swift; sourceTree = "<group>"; };
 		84619D4C21DC9ABD00EB58CF /* WebCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebCoordinator.swift; sourceTree = "<group>"; };
+		8468AE7822315824002CBA0F /* ChallengeDetailType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeDetailType.swift; sourceTree = "<group>"; };
 		846E8EFC21F767630036FEA2 /* SosmedController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SosmedController.xib; sourceTree = "<group>"; };
 		8475330C21F60F6000BF3F66 /* ComingsoonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComingsoonViewModel.swift; sourceTree = "<group>"; };
 		8478B8DE21FF1B9900CE192A /* NotificationController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationController.xib; sourceTree = "<group>"; };
@@ -3124,6 +3126,7 @@
 		84E2854521CA1D7F00298E31 /* Enum */ = {
 			isa = PBXGroup;
 			children = (
+				8468AE7822315824002CBA0F /* ChallengeDetailType.swift */,
 				84E2854621CA1E8300298E31 /* PilpresType.swift */,
 				8441DB5921CD087000B078DF /* JanjiType.swift */,
 				13F456A821D2A68300CE45F1 /* QuestionType.swift */,
@@ -4143,6 +4146,7 @@
 				84B6D6E421E1062500CD4BC8 /* KategoriClusterViewModel.swift in Sources */,
 				84619D4D21DC9ABD00EB58CF /* WebCoordinator.swift in Sources */,
 				11E1079121CD0FE200B7B074 /* QuizDetailController.swift in Sources */,
+				8468AE7922315824002CBA0F /* ChallengeDetailType.swift in Sources */,
 				8423C40121F71927000AAA63 /* DetailAskCoordinator.swift in Sources */,
 				1149EB6A22140E670050F366 /* ArgumentLeftCell.swift in Sources */,
 				84FE6EC621D6361C009A0F55 /* BiodataView.swift in Sources */,
@@ -4204,7 +4208,6 @@
 				11DA97122222CD7B00A51E76 /* PerhitunganNavigator.swift in Sources */,
 				84B2526821CC01F000565D82 /* AppState.swift in Sources */,
 				E5B22D59222A3998002A8C0C /* DetailTPSPresidenViewModel.swift in Sources */,
-				8451E05A22045AEC00F03E96 /* InfoNotifViewModel.swift in Sources */,
 				84E521BC21F4A81700B7CCBA /* ItemOnboardingController.swift in Sources */,
 				84CA10C521EF12800025CF10 /* AboutViewModel.swift in Sources */,
 				84B4DED821D375C600F60258 /* JanjiPolitikNavigator.swift in Sources */,
