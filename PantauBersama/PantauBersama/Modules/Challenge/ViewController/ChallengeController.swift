@@ -38,6 +38,7 @@ class ChallengeController: UIViewController {
     @IBOutlet weak var btnBack: ImageButton!
     
     var viewModel: ChallengeViewModel!
+    var data: Challenge!
     private let disposeBag: DisposeBag = DisposeBag()
     
     override func viewDidLoad() {
@@ -53,6 +54,15 @@ class ChallengeController: UIViewController {
         
         btnTolak.rx.tap
             .bind(to: viewModel.input.refuseII)
+            .disposed(by: disposeBag)
+        
+        challengeButton.btnShare.rx.tap
+            .bind(to: viewModel.input.shareI)
+            .disposed(by: disposeBag)
+        
+        challengeButton.btnMore.rx.tap
+            .map({ self.data })
+            .bind(to: viewModel.input.moreI)
             .disposed(by: disposeBag)
         
         viewModel.output.backO
@@ -72,6 +82,56 @@ class ChallengeController: UIViewController {
         
         viewModel.output.refuseO
             .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.shareO
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.moreO
+            .asObservable()
+            .flatMapLatest { [weak self] (challenge) -> Observable<ChallengeDetailType> in
+                return Observable.create({ (observer) -> Disposable in
+                    let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+                    let me = AppState.local()?.user
+                    let hapus = UIAlertAction(title: "Hapus Challenge", style: .default, handler: { (_) in
+                        observer.onNext(ChallengeDetailType.hapus(id: challenge.id))
+                        observer.on(.completed)
+                    })
+                    let salin = UIAlertAction(title: "Salin Tautan", style: .default, handler: { (_) in
+                        observer.onNext(ChallengeDetailType.salin(data: challenge))
+                        observer.on(.completed)
+                    })
+                    
+                    let bagikan = UIAlertAction(title: "Bagikan", style: .default, handler: { (_) in
+                        observer.onNext(ChallengeDetailType.share(data: challenge))
+                        observer.on(.completed)
+                    })
+                    
+                    let cancel = UIAlertAction(title: "Batal", style: .cancel, handler: nil)
+                    // TODO
+                    // this function is to check user id match with audience of the challenge
+                    // and the challenge audience just one and user id is match
+                    if challenge.audiences.first?.userId == me?.id && challenge.audiences.count == 1 {
+                        alert.addAction(hapus)
+                    }
+                    alert.addAction(salin)
+                    alert.addAction(bagikan)
+                    alert.addAction(cancel)
+                    DispatchQueue.main.async {
+                        self?.navigationController?.present(alert, animated: true, completion: nil)
+                    }
+                    return Disposables.create()
+                })
+            }
+            .bind(to: viewModel.input.moreMenuI)
+            .disposed(by: disposeBag)
+        
+        viewModel.output.moreMenuO
+            .filter { !$0.isEmpty }
+            .drive(onNext: { (message) in
+                UIAlertController.showAlert(withTitle: "", andMessage: message)
+            })
             .disposed(by: disposeBag)
     
     }

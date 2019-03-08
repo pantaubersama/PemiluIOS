@@ -32,6 +32,10 @@ class ChallengeViewModel: ViewModelType {
         let actionButtonI: AnyObserver<Void>
         let confirmOpponentI: AnyObserver<String>
         let refuseII: AnyObserver<Void>
+        let shareI: AnyObserver<Void>
+        let moreI: AnyObserver<Challenge>
+        let moreMenuI: AnyObserver<ChallengeDetailType>
+        let loveI: AnyObserver<Void>
     }
     
     struct Output {
@@ -41,6 +45,10 @@ class ChallengeViewModel: ViewModelType {
         let audienceO: Driver<[Audiences]>
         let confirmOpponentO: Driver<Void>
         let refuseO: Driver<Void>
+        let shareO: Driver<Void>
+        let moreO: Driver<Challenge>
+        let moreMenuO: Driver<String>
+        let loveO: Driver<Void>
     }
     
     private var navigator: ChallengeNavigator
@@ -51,6 +59,10 @@ class ChallengeViewModel: ViewModelType {
     private let challengeS = PublishSubject<Challenge>()
     private let confirmOpponentS = PublishSubject<String>()
     private let refuseS = PublishSubject<Void>()
+    private let shareS = PublishSubject<Void>()
+    private let moreS = PublishSubject<Challenge>()
+    private let moreMenuS = PublishSubject<ChallengeDetailType>()
+    private let loveS = PublishSubject<Void>()
     
     private var selectedAudience = ""
     
@@ -62,7 +74,11 @@ class ChallengeViewModel: ViewModelType {
             backI: backS.asObserver(),
             actionButtonI: actionButtonS.asObserver(),
             confirmOpponentI: confirmOpponentS.asObserver(),
-            refuseII: refuseS.asObserver())
+            refuseII: refuseS.asObserver(),
+            shareI: shareS.asObserver(),
+            moreI: moreS.asObserver(),
+            moreMenuI: moreMenuS.asObserver(),
+            loveI: loveS.asObserver())
         
         let back = backS
             .flatMapLatest({ navigator.back() })
@@ -145,13 +161,44 @@ class ChallengeViewModel: ViewModelType {
             .mapToVoid()
             .asDriverOnErrorJustComplete()
         
+        // MARK
+        // Share activity controller output
+        let share = shareS
+            .flatMapLatest({ navigator.shareChallenge(challenge: data )})
+            .asDriverOnErrorJustComplete()
+        
+        // MARK
+        // More button output
+        let more = moreS
+            .asObservable()
+            .asDriverOnErrorJustComplete()
+        
+        let moreMenuSelected = moreMenuS
+            .flatMapLatest { (type) -> Observable<String> in
+                switch type {
+                case .hapus(let id):
+                    return Observable.just("Hapus id : \(id)")
+                case .salin:
+                    return Observable.just("Tautan telah tersalin")
+                case .share(let data):
+                    return navigator.shareChallenge(challenge: data)
+                        .map({ (_) -> String in
+                            return ""
+                        })
+                }
+        }.asDriverOnErrorJustComplete()
+        
         
         output = Output(backO: back,
                         actionO: action,
                         challengeO: challenge,
                         audienceO: audience,
                         confirmOpponentO: confirmOpponent,
-                        refuseO: refuse)
+                        refuseO: refuse,
+                        shareO: share,
+                        moreO: more,
+                        moreMenuO: moreMenuSelected,
+                        loveO: loveS.asDriverOnErrorJustComplete())
     }
     
     private func putAskAsOpponent(into id: String) -> Observable<Bool> {
