@@ -16,6 +16,7 @@
 		1183F0DE21D535C600435D31 /* QuestionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1183F0DD21D535C600435D31 /* QuestionResponse.swift */; };
 		119123B92227877000617E7C /* PutAskAsOpponentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119123B82227877000617E7C /* PutAskAsOpponentResponse.swift */; };
 		119123BB2227B2B700617E7C /* GetChallengeDetailResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119123BA2227B2B600617E7C /* GetChallengeDetailResponse.swift */; };
+		1194C01022324F27003D4B16 /* SendWordResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1194C00F22324F27003D4B16 /* SendWordResponse.swift */; };
 		119C89CD222F96CE00A7C9B5 /* Word.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119C89CC222F96CE00A7C9B5 /* Word.swift */; };
 		119C89CF222F975600A7C9B5 /* WordsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119C89CE222F975600A7C9B5 /* WordsResponse.swift */; };
 		11B145EC21D66A8400BB26C8 /* Batch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B145EB21D66A8400BB26C8 /* Batch.swift */; };
@@ -103,6 +104,7 @@
 		1183F0DD21D535C600435D31 /* QuestionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionResponse.swift; sourceTree = "<group>"; };
 		119123B82227877000617E7C /* PutAskAsOpponentResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PutAskAsOpponentResponse.swift; sourceTree = "<group>"; };
 		119123BA2227B2B600617E7C /* GetChallengeDetailResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetChallengeDetailResponse.swift; sourceTree = "<group>"; };
+		1194C00F22324F27003D4B16 /* SendWordResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendWordResponse.swift; sourceTree = "<group>"; };
 		119C89CC222F96CE00A7C9B5 /* Word.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Word.swift; sourceTree = "<group>"; };
 		119C89CE222F975600A7C9B5 /* WordsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordsResponse.swift; sourceTree = "<group>"; };
 		11B145EB21D66A8400BB26C8 /* Batch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Batch.swift; sourceTree = "<group>"; };
@@ -246,6 +248,7 @@
 				119123BA2227B2B600617E7C /* GetChallengeDetailResponse.swift */,
 				119C89CC222F96CE00A7C9B5 /* Word.swift */,
 				119C89CE222F975600A7C9B5 /* WordsResponse.swift */,
+				1194C00F22324F27003D4B16 /* SendWordResponse.swift */,
 			);
 			path = Wordstadium;
 			sourceTree = "<group>";
@@ -625,6 +628,7 @@
 				118149E021EC5E9300192E97 /* UsersResponse.swift in Sources */,
 				84A945B62224080800944C6B /* TwitterUsernameResponse.swift in Sources */,
 				84FE6EB421D5F339009A0F55 /* UserResponse.swift in Sources */,
+				1194C01022324F27003D4B16 /* SendWordResponse.swift in Sources */,
 				842A49FB21D78B6A0050AA51 /* VerificationsResponse.swift in Sources */,
 				8482E62E21D9017700D5DC07 /* PaginatableResponse.swift in Sources */,
 				84B2522B21CAB47B00565D82 /* NetworkKeychainKind.swift in Sources */,
