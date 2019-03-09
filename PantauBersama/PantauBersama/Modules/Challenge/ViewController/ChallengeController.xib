@@ -36,6 +36,10 @@
                 <outlet property="footerProfileView" destination="fI8-kw-4sf" id="48o-iC-4kc"/>
                 <outlet property="headerTantanganView" destination="e0h-uJ-tUr" id="QXm-ye-h4f"/>
                 <outlet property="imageContent" destination="0gc-e5-I3w" id="Fe9-Yu-kYd"/>
+                <outlet property="ivChallengerDone" destination="Cz7-GN-bTO" id="24H-gZ-c51"/>
+                <outlet property="ivOpponentsDone" destination="jaH-y2-0LZ" id="dfW-a6-twd"/>
+                <outlet property="lblClapsChallengerDone" destination="7Ic-Jy-BJF" id="DIz-0k-BgK"/>
+                <outlet property="lblClapsOpponentsDone" destination="DtJ-3p-Y1q" id="fjG-pz-WEa"/>
                 <outlet property="lblHeader" destination="SbY-Nv-9xK" id="rI9-lo-ZCy"/>
                 <outlet property="refuseChallengeView" destination="k7I-Yy-WAF" id="0NW-0w-bo1"/>
                 <outlet property="scrollView" destination="f84-9i-zfF" id="tin-8Q-ov2"/>

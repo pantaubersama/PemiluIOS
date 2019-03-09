@@ -36,6 +36,10 @@ class ChallengeController: UIViewController {
     @IBOutlet weak var detailTantanganView: ChallengeDetailView!
     @IBOutlet weak var refuseChallengeView: RefuseChallengeView!
     @IBOutlet weak var constraintDetailChallenge: NSLayoutConstraint!
+    @IBOutlet weak var ivChallengerDone: CircularUIImageView!
+    @IBOutlet weak var lblClapsChallengerDone: Label!
+    @IBOutlet weak var ivOpponentsDone: CircularUIImageView!
+    @IBOutlet weak var lblClapsOpponentsDone: Label!
     
     @IBOutlet weak var btnBack: ImageButton!
     
@@ -347,11 +351,13 @@ extension ChallengeController {
             self.lblHeader.text = "DONE"
             self.imageContent.image = #imageLiteral(resourceName: "doneMask")
             self.containerDebatDone.isHidden = false
+            self.ivChallengerDone.show(fromURL: challenger?.avatar?.url ?? "")
+            self.ivOpponentsDone.show(fromURL: opponents.first?.avatar?.url ?? "")
             self.btnTerima.backgroundColor = #colorLiteral(red: 1, green: 0.5569574237, blue: 0, alpha: 1)
             self.btnImageTerima.image = #imageLiteral(resourceName: "outlineDebateDone24PxWhite")
             self.btnTerima.setTitle("LIHAT DEBAT", for: UIControlState())
             self.containerAcceptChallenge.isHidden = false
-            self.challengeButton.configure(type: .done)
+            self.challengeButton.configure(type: .done, viewModel: self.viewModel, data: data)
         default:
             break
         }
