@@ -13,7 +13,7 @@ import Networking
 enum PopupChallengeType {
     case refuseOpen
     case acceptOpen
-    case acceptOpponentOpen // for My Challenge
+    case acceptOpponentOpen(idAudience: String) // for My Challenge
     case refuseDirect
     case acceptDirect
     case `default`

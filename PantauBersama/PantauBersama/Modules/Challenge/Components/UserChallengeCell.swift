@@ -39,6 +39,7 @@ extension UserChallengeCell: IReusableCell {
         let audience: Audiences
         let viewModel: ChallengeViewModel
         let isMyChallenge: Bool
+        let isExpired: Bool
     }
     
     func configureCell(item: Input) {
@@ -57,6 +58,9 @@ extension UserChallengeCell: IReusableCell {
             .drive()
             .disposed(by: disposeBag)
 
+        /// Force button confirm
+        btnConfirm.isEnabled = !item.isExpired
+        btnConfirm.backgroundColor = item.isExpired ? #colorLiteral(red: 0.9254901961, green: 0.9254901961, blue: 0.9254901961, alpha: 1) : #colorLiteral(red: 1, green: 0.5569574237, blue: 0, alpha: 1)
     }
     
     func configure(data: SearchUserModel) {

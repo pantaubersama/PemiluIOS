@@ -116,10 +116,11 @@ class ChallengeViewModel: ViewModelType {
             }
             .asDriverOnErrorJustComplete()
         
+        /// Confirm Opponent from my challenge
         let confirmOpponent = confirmOpponentS
             .flatMapLatest { [unowned self](audienceId) -> Observable<PopupChallengeResult> in
                 self.selectedAudience = audienceId
-                return navigator.openAcceptConfirmation(type: .acceptOpponentOpen)
+                return navigator.openAcceptConfirmation(type: .acceptOpponentOpen(idAudience: audienceId))
             }
             .flatMap({ [weak self](popupResult) -> Observable<Bool> in
                 guard let `self` = self else { return Observable.empty() }

@@ -8,6 +8,7 @@
 
 import UIKit
 import Common
+import Networking
 
 class LawanDebatView: UIView {
     
@@ -48,5 +49,17 @@ class LawanDebatView: UIView {
         } else {
             ivStatus.image = #imageLiteral(resourceName: "flatTwitterBadge72Px")
         }
+    }
+    
+    func configureOpponents(data: Challenge) {
+        let opponents = data.audiences.filter({ $0.role != .challenger })
+        if let url = opponents.first?.avatar?.thumbnail.url {
+            ivAvatar.show(fromURL: url)
+        } else {
+            ivAvatar.image = #imageLiteral(resourceName: "icDummyPerson")
+        }
+        lblUsername.text = opponents.first?.username
+        lblFullname.text = opponents.first?.fullName
+        // need status response from twitter or not
     }
 }
