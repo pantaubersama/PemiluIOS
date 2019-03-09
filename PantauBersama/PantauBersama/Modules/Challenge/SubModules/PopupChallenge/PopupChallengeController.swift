@@ -57,8 +57,10 @@ class PopupChallengeController: UIViewController {
                 .disposed(by: disposeBag)
         case .acceptOpen:
             self.lblInfo.text = "Kamu akan menerima tantangan dari @\(challenger?.username ?? "") untuk berdebat sesuai dengan detail yang tertera. Tindakan ini tidak bisa dibatalkan.\nApakah kamu yakin?"
-        case .acceptOpponentOpen:
-            print("Confirms my opponents, need data username")
+        case .acceptOpponentOpen(let audienceId):
+            let opponents = data.audiences.filter({ $0.id == audienceId })
+            let usernameOpponents = opponents.first?.username
+            self.lblInfo.text = "Kamu akan mengkonfirmasi @\(usernameOpponents ?? "") sebagai lawan debat anda sesuai dengan detail yang tertera. Tindakan ini tidak bisa dibatalkan.\nApakah kamu yakin?"
         default:
             break
         }

@@ -11,6 +11,7 @@ import RxSwift
 import RxCocoa
 import Common
 import Networking
+import URLEmbeddedView
 
 class ChallengeController: UIViewController {
     
@@ -34,6 +35,11 @@ class ChallengeController: UIViewController {
     @IBOutlet weak var containerDebatDone: UIView!
     @IBOutlet weak var detailTantanganView: ChallengeDetailView!
     @IBOutlet weak var refuseChallengeView: RefuseChallengeView!
+    @IBOutlet weak var constraintDetailChallenge: NSLayoutConstraint!
+    @IBOutlet weak var ivChallengerDone: CircularUIImageView!
+    @IBOutlet weak var lblClapsChallengerDone: Label!
+    @IBOutlet weak var ivOpponentsDone: CircularUIImageView!
+    @IBOutlet weak var lblClapsOpponentsDone: Label!
     
     @IBOutlet weak var btnBack: ImageButton!
     
@@ -200,14 +206,9 @@ extension ChallengeController {
             }
         }
         
-        // configure challenge detail view
-        self.detailTantanganView.lblStatement.text = data.statement
-        self.detailTantanganView.lblTag.text = data.topic?.first ?? ""
-        self.detailTantanganView.lblTag.layer.borderWidth = 1.0
-        self.detailTantanganView.lblTag.layer.borderColor = #colorLiteral(red: 1, green: 0.5569574237, blue: 0, alpha: 1)
-        self.detailTantanganView.lblDate.text = data.showTimeAt?.date
-        self.detailTantanganView.lblTime.text = data.showTimeAt?.time
-        self.detailTantanganView.lblSaldo.text = "\(data.timeLimit ?? 0)"
+        /// configure challenge detail view and refresh layout
+        self.detailTantanganView.configureData(data: data)
+        self.configureLayoutDetailChallenge(data: data)
         
         // configure footer view
         self.footerProfileView.ivAvatar.show(fromURL: challenger?.avatar?.url ?? "")
@@ -215,11 +216,16 @@ extension ChallengeController {
         self.footerProfileView.lblStatus.text = challenger?.about ?? ""
         self.footerProfileView.lblPostTime.text = "Posted \(data.createdAt?.timeAgoSinceDateForm2 ?? "")"
         
-        // MARK
-        // Configure Type and Progress
-        // type: Direct and Open
-        // progress: waiting opponent, waiting_confirmation, coming_soon, live_now, done
-        // condition: ongoing, expired, rejected
+        /**
+         Configure Challenge Detail with data Model.
+         - Parameters:
+         - Challenge type = Direct and Open.
+         - Progress type have condition waiting opponent, waiting confirmation, coming soon, live now and done.
+         - Condition type like ongoing, expired, and rejected.
+         
+         Please make sure from three user prespective, fighter, opponents, and others.
+         **/
+        
         switch data.progress {
         case .waitingConfirmation:
             switch data.type {
@@ -261,25 +267,40 @@ extension ChallengeController {
                 default: break
                 }
             case .openChallenge:
-                if isAudience { // if user already registered as opponent candidate
-                    self.titleContent.text = "Menunggu,"
-                    self.subtitleContent.text = "\(challenger?.fullName ?? "") untuk\nkonfirmasi lawan debat"
-                    self.containerHeader.backgroundColor = #colorLiteral(red: 1, green: 0.4935973287, blue: 0.3663615584, alpha: 1)
-                    self.containerAcceptChallenge.isHidden = true
-                } else if isMyChallenge { // if user is the owner of challenge
-                    self.titleContent.text = "Tantangan diterima,"
-                    self.subtitleContent.text = "Segera konfirmasi sebelum\nbatas akhir waktunya!"
-                    self.containerHeader.backgroundColor = #colorLiteral(red: 1, green: 0.4935973287, blue: 0.3663615584, alpha: 1)
-                    self.containerAcceptChallenge.isHidden = true
-                } else { // if user not the owner and has not registered yet
-                    self.titleContent.text = "Ini adalah Open Challenge,"
-                    self.subtitleContent.text = "Terima tantangan ini?"
-                    self.containerHeader.backgroundColor = #colorLiteral(red: 1, green: 0.4935973287, blue: 0.3663615584, alpha: 1)
-                    self.containerAcceptChallenge.isHidden = false
+                switch data.condition {
+                case .expired:
+                    self.titleContent.text = "Tantangan tidak valid."
+                    self.subtitleContent.text = "Tantangan melebihi batas waktu :("
+                    self.subtitleContent.textColor = #colorLiteral(red: 0.7424071431, green: 0.03536110744, blue: 0.1090037152, alpha: 1)
+                    self.headerTantanganView.lblStatus.isHidden = false
+                    self.headerTantanganView.lblStatus.text = "EXPIRED"
+                    
+                    self.tableView.isHidden = false
+                    self.configureTableOpponentCandidate(isMyChallenge: isMyChallenge, isExpired: true)
+                case .ongoing:
+                    if isAudience { // if user already registered as opponent candidate
+                        self.titleContent.text = "Menunggu,"
+                        self.subtitleContent.text = "\(challenger?.fullName ?? "") untuk\nkonfirmasi lawan debat"
+                        self.containerHeader.backgroundColor = #colorLiteral(red: 1, green: 0.4935973287, blue: 0.3663615584, alpha: 1)
+                        self.containerAcceptChallenge.isHidden = true
+                    } else if isMyChallenge { // if user is the owner of challenge
+                        self.titleContent.text = "Tantangan diterima,"
+                        self.subtitleContent.text = "Segera konfirmasi sebelum\nbatas akhir waktunya!"
+                        self.containerHeader.backgroundColor = #colorLiteral(red: 1, green: 0.4935973287, blue: 0.3663615584, alpha: 1)
+                        self.containerAcceptChallenge.isHidden = true
+                        self.imageContent.image = #imageLiteral(resourceName: "waitingMask")
+                    } else { // if user not the owner and has not registered yet
+                        self.titleContent.text = "Ini adalah Open Challenge,"
+                        self.subtitleContent.text = "Terima tantangan ini?"
+                        self.containerHeader.backgroundColor = #colorLiteral(red: 1, green: 0.4935973287, blue: 0.3663615584, alpha: 1)
+                        self.containerAcceptChallenge.isHidden = false
+                    }
+                    
+                    self.tableView.isHidden = false
+                    self.configureTableOpponentCandidate(isMyChallenge: isMyChallenge, isExpired: false)
+                default: break
                 }
-                
-                self.tableView.isHidden = false
-                self.configureTableOpponentCandidate(isMyChallenge: isMyChallenge)
+             
             default: break
             }
         case .waitingOpponent:
@@ -314,13 +335,14 @@ extension ChallengeController {
             default: break
             }
         case .comingSoon:
-            self.title = "COMING SOON"
+            self.lblHeader.text = "COMING SOON"
             self.titleContent.text = "Siap-siap!"
             self.subtitleContent.text = "Debat akan berlangsung pada \(data.showTimeAt?.timeLaterSinceDate ?? "")"
             self.headerTantanganView.backgroundChallenge.image = #imageLiteral(resourceName: "comingSoonBG")
             self.containerHeader.backgroundColor = #colorLiteral(red: 0.1167989597, green: 0.5957490802, blue: 0.8946897388, alpha: 1)
             self.tableView.isHidden = true
             self.containerAcceptChallenge.isHidden = true
+            self.imageContent.image = #imageLiteral(resourceName: "comingSoonMask")
         case .done:
             self.titleContent.text = "Debat selesai,"
             self.subtitleContent.text = "Inilah hasilnya:"
@@ -329,17 +351,19 @@ extension ChallengeController {
             self.lblHeader.text = "DONE"
             self.imageContent.image = #imageLiteral(resourceName: "doneMask")
             self.containerDebatDone.isHidden = false
+            self.ivChallengerDone.show(fromURL: challenger?.avatar?.url ?? "")
+            self.ivOpponentsDone.show(fromURL: opponents.first?.avatar?.url ?? "")
             self.btnTerima.backgroundColor = #colorLiteral(red: 1, green: 0.5569574237, blue: 0, alpha: 1)
             self.btnImageTerima.image = #imageLiteral(resourceName: "outlineDebateDone24PxWhite")
             self.btnTerima.setTitle("LIHAT DEBAT", for: UIControlState())
             self.containerAcceptChallenge.isHidden = false
-            self.challengeButton.configure(type: .done)
+            self.challengeButton.configure(type: .done, viewModel: self.viewModel, data: data)
         default:
             break
         }
     }
     
-    private func configureTableOpponentCandidate(isMyChallenge: Bool) {
+    private func configureTableOpponentCandidate(isMyChallenge: Bool, isExpired: Bool) {
         tableView.registerReusableCell(UserChallengeCell.self)
         tableView.rowHeight = 53
         
@@ -348,10 +372,42 @@ extension ChallengeController {
         viewModel.output.audienceO
             .drive(tableView.rx.items) { [unowned self]tableView, row, item -> UITableViewCell in
                 let cell = tableView.dequeueReusableCell() as UserChallengeCell
-                cell.configureCell(item: UserChallengeCell.Input(audience: item, viewModel: self.viewModel, isMyChallenge: isMyChallenge))
+                cell.configureCell(item: UserChallengeCell.Input(audience: item, viewModel: self.viewModel, isMyChallenge: isMyChallenge, isExpired: isExpired))
                 return cell
             }
             .disposed(by: disposeBag)
         
     }
+}
+
+
+extension ChallengeController {
+    
+    /**
+     Configure constraint layout if type both Open Challenge and Direct
+     constraint height for default size is 362
+     - Parameters:
+        need a Challenge Model
+     **/
+    
+    private func configureLayoutDetailChallenge(data: Challenge) {
+        switch data.type {
+        case .directChallenge:
+            self.detailTantanganView.spacingLawanDebat.isHidden = false
+            if data.source != "" {
+                self.constraintDetailChallenge.constant = 362 + 70 + 60
+            } else {
+                self.constraintDetailChallenge.constant = 362 + 60
+            }
+        case .openChallenge:
+            if data.source != "" {
+                self.constraintDetailChallenge.constant = 362 + 70
+            } else {
+                self.constraintDetailChallenge.constant = 362
+            }
+        default:
+            break
+        }
+    }
+    
 }
