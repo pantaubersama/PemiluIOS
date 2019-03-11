@@ -33,6 +33,9 @@ class DebatCommentController: UIViewController {
         
         btnSend.rx.tap
             .map({ self.tvComment.text.trimmingCharacters(in: .whitespacesAndNewlines) })
+            .filter({ (content) -> Bool in
+                return !content.isEmpty && self.tvComment.textColor != .lightGray
+            })
             .do(onNext: { [unowned self](_) in
                 self.tvComment.text = ""
             })

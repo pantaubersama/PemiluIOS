@@ -50,7 +50,7 @@ class LiveDebatController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        self.navigationController?.navigationBar.isHidden = true
+        //        self.navigationController?.navigationBar.isHidden = true
         // config input behavior
         configureInputView()
         
@@ -76,7 +76,7 @@ class LiveDebatController: UIViewController {
                 self.btnScroll.rotate(degree: isOnBottom ? 180 : 0)
             }
             .disposed(by: disposeBag)
-
+        
         
         // configure scrolling behavior for header to response
         scrollView.rx.contentOffset
@@ -117,6 +117,9 @@ class LiveDebatController: UIViewController {
             })
             .do(onNext: { [unowned self](_) in
                 self.tvInputComment.text = ""
+            })
+            .filter({ (content) -> Bool in
+                return !content.isEmpty && self.tvInputComment.textColor != .lightGray
             })
             .bind(to: self.viewModel.input.sendCommentI)
             .disposed(by: disposeBag)
@@ -199,10 +202,10 @@ class LiveDebatController: UIViewController {
         configureTitleView()
         
         viewModel.output.viewTypeO
-        .drive(onNext: { [weak self](viewType) in
-            guard let weakSelf = self else { return }
-            weakSelf.configureViewType(viewType: viewType)
-        })
+            .drive(onNext: { [weak self](viewType) in
+                guard let weakSelf = self else { return }
+                weakSelf.configureViewType(viewType: viewType)
+            })
             .disposed(by: disposeBag)
     }
     
@@ -221,7 +224,7 @@ class LiveDebatController: UIViewController {
         // move input view above the keyboard and collapse the header
         UIView.animate(withDuration: 0.4) { [unowned self] in
             self.bottomMargin.constant += keyboardFrame.height
-//            self.constraintInputViewBottom.constant += keyboardFrame.height
+            //            self.constraintInputViewBottom.constant += keyboardFrame.height
             self.view.layoutIfNeeded()
         }
         collapseHeader()
@@ -312,20 +315,25 @@ class LiveDebatController: UIViewController {
     }
     
     private func scrollToBottom() {
-        self.btnScroll.tag = 0
-        self.collapseHeader()
-        self.tableViewDebat.scrollToRow(at: IndexPath(row: self.viewModel.output.argumentsO.value.count - 1, section: 0), at: .top, animated: true)
-        self.btnScroll.rotate(degree: 180)
+        if (self.tableViewDebat.indexPathsForVisibleRows?.count ?? 0) != 0 {
+            self.btnScroll.tag = 0
+            self.collapseHeader()
+            self.tableViewDebat.scrollToRow(at: IndexPath(row: self.viewModel.output.argumentsO.value.count - 1, section: 0), at: .top, animated: true)
+            self.btnScroll.rotate(degree: 180)
+        }
     }
     
     private func scrollToTop() {
-        self.btnScroll.tag = 1
-        self.tableViewDebat.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
-        
-        if !self.isKeyboardAppear {
-            self.expandHeader()
+        if (self.tableViewDebat.indexPathsForVisibleRows?.count ?? 0) != 0 {
+            self.btnScroll.tag = 1
+            self.tableViewDebat.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+            
+            if !self.isKeyboardAppear {
+                self.expandHeader()
+            }
+            self.btnScroll.rotate(degree: 0)
         }
-        self.btnScroll.rotate(degree: 0)
+        
     }
     
     private func configureScrollButton() {
@@ -374,8 +382,8 @@ class LiveDebatController: UIViewController {
                 self.tvInputComment.text = nil
                 self.tvInputComment.textColor = Color.primary_black
             }
-        }
-        .disposed(by: disposeBag)
+            }
+            .disposed(by: disposeBag)
         
         tvInputComment.rx.didEndEditing.bind { [unowned self]in
             self.btnSendComment.isHidden = true
@@ -383,8 +391,8 @@ class LiveDebatController: UIViewController {
                 self.tvInputComment.text = "Tulis Komentar"
                 self.tvInputComment.textColor = .lightGray
             }
-        }
-        .disposed(by: disposeBag)
+            }
+            .disposed(by: disposeBag)
     }
     
     private func configureNavbar() {
