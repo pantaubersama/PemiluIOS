@@ -10,36 +10,92 @@ import Foundation
 import Common
 import RxSwift
 import RxCocoa
+import Networking
 
 class DebatCommentViewModel: ViewModelType {
     struct Input {
-        let backTrigger: AnyObserver<Void>
+        let backI: AnyObserver<Void>
+        let loadCommentI: AnyObserver<Void>
+        let sendCommentI: AnyObserver<String>
     }
     
     struct Output {
-        let back: Driver<Void>
-        let viewType: Driver<DebatViewType>
+        let backO: Driver<Void>
+        let viewTypeO: Driver<DebatViewType>
+        let loadCommentsO: Driver<Void>
+        let commentsO: BehaviorRelay<[Word]>
+        let sendCommentO: Driver<IndexPath>
     }
     
     var input: Input
-    var output: Output
+    var output: Output!
     
     private let viewType: DebatViewType
+    private let challenge: Challenge
     private let navigator: DebatCommentNavigator
     private let backS = PublishSubject<Void>()
-    init(navigator: DebatCommentNavigator, viewType: DebatViewType) {
+    private let loadCommentS = PublishSubject<Void>()
+    private let comments = BehaviorRelay<[Word]>(value: [])
+    private let sendCommentS = PublishSubject<String>()
+    
+    //TODO: remove viewType later
+    init(navigator: DebatCommentNavigator, viewType: DebatViewType, challenge: Challenge) {
         self.navigator = navigator
         self.viewType = viewType
+        self.challenge = challenge
         
-        input = Input(backTrigger: backS.asObserver())
+        input = Input(
+            backI: backS.asObserver(),
+            loadCommentI: loadCommentS.asObserver(),
+            sendCommentI: sendCommentS.asObserver()
+        )
         
         let back = backS.flatMap({navigator.dismiss()})
             .asDriverOnErrorJustComplete()
-        let viewTypeO = Observable.just(viewType)
+        
+        let viewType = Observable.just(viewType)
+            .asDriverOnErrorJustComplete()
+        
+        let loadComments = loadCommentS
+            .flatMapLatest({ self.getComments() })
+            .do(onNext: { [weak self](words) in
+                guard let `self` = self else { return }
+                self.comments.accept(words)
+            })
+            .mapToVoid()
+            .asDriverOnErrorJustComplete()
+        
+        let sendComment = sendCommentS
+            .flatMapLatest({ self.sendComment(word: $0) })
+            .do(onNext: { [weak self](word) in
+                guard let `self` = self else { return }
+                var latestValue = self.comments.value
+                latestValue.append(word)
+                self.comments.accept(latestValue)
+            })
+            .map({ _ in
+                return IndexPath(row: self.comments.value.count - 1, section: 0)
+            })
             .asDriverOnErrorJustComplete()
             
         output = Output(
-            back: back,
-            viewType: viewTypeO)
+            backO: back,
+            viewTypeO: viewType,
+            loadCommentsO: loadComments,
+            commentsO: self.comments,
+            sendCommentO: sendComment
+        )
+    }
+    
+    private func getComments() -> Observable<[Word]> {
+        return NetworkService.instance.requestObject(WordstadiumAPI.wordsAudience(challengeId: self.challenge.id), c: BaseResponse<WordsResponse>.self)
+            .map({ $0.data.words })
+            .asObservable()
+    }
+    
+    private func sendComment(word: String) -> Observable<Word> {
+        return NetworkService.instance.requestObject(WordstadiumAPI.commentAudience(challengeId: self.challenge.id, words: word), c: BaseResponse<SendWordResponse>.self)
+            .map({ $0.data.word })
+            .asObservable()
     }
 }

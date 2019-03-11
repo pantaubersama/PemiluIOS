@@ -10,6 +10,7 @@ import Foundation
 import Common
 import RxSwift
 import RxCocoa
+import Networking
 
 protocol DebatCommentNavigator {
     func dismiss() -> Observable<Void>
@@ -18,15 +19,18 @@ protocol DebatCommentNavigator {
 class DebatCommentCoordinator: BaseCoordinator<Void> {
     private let navigationController: UINavigationController
     private let viewType: DebatViewType
+    private let challenge: Challenge
     
-    init(navigationController: UINavigationController, viewType: DebatViewType) {
+    // TODO: remove viewType later, use challenge instead
+    init(navigationController: UINavigationController, viewType: DebatViewType, challenge: Challenge) {
         self.navigationController = navigationController
         self.viewType = viewType
+        self.challenge = challenge
     }
     
     override func start() -> Observable<Void> {
         let viewController = DebatCommentController()
-        let viewModel = DebatCommentViewModel(navigator: self, viewType: viewType)
+        let viewModel = DebatCommentViewModel(navigator: self, viewType: viewType, challenge: self.challenge)
         viewController.viewModel = viewModel
         viewController.modalPresentationStyle = .overCurrentContext
         

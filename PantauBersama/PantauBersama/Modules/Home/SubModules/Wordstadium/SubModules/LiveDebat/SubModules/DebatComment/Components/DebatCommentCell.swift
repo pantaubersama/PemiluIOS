@@ -8,8 +8,9 @@
 
 import UIKit
 import Common
+import Networking
 
-class DebatCommentCell: UITableViewCell, IReusableCell {
+class DebatCommentCell: UITableViewCell {
 
     @IBOutlet weak var lbCreatedAt: Label!
     @IBOutlet weak var lbContent: Label!
@@ -27,4 +28,18 @@ class DebatCommentCell: UITableViewCell, IReusableCell {
         // Configure the view for the selected state
     }
     
+}
+
+extension DebatCommentCell: IReusableCell {
+    public struct Input {
+        let word: Word
+    }
+    
+    func configureCell(item: Input) {
+        self.ivAvatar.show(fromURL: item.word.author.avatar.url ?? "")
+        self.lbContent.text = item.word.body
+        self.lbCreatedAt.text = item.word.createdAt.timeAgoSinceDateForm2
+        self.lbName.text = item.word.author.fullName
+        
+    }
 }
