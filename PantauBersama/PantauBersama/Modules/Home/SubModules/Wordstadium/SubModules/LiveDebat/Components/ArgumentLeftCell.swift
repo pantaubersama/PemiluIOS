@@ -11,8 +11,9 @@ import Common
 import RxSwift
 import RxCocoa
 import Lottie
+import Networking
 
-class ArgumentLeftCell: UITableViewCell, IReusableCell {
+class ArgumentLeftCell: UITableViewCell {
     @IBOutlet weak var lbArgument: Label!
     @IBOutlet weak var lbCraetedAt: Label!
     @IBOutlet weak var lbReadEstimation: Label!
@@ -65,4 +66,17 @@ class ArgumentLeftCell: UITableViewCell, IReusableCell {
         // Configure the view for the selected state
     }
     
+}
+
+extension ArgumentLeftCell: IReusableCell {
+    struct Input {
+        let word: Word
+        let viewModel: LiveDebatViewModel
+    }
+    
+    func configureCell(item: Input) {
+        lbArgument.text = item.word.body
+        lbReadEstimation.text = "\(item.word.readTime)"
+        lbCraetedAt.text = item.word.createdAt.timeAgoSinceDateForm2
+    }
 }

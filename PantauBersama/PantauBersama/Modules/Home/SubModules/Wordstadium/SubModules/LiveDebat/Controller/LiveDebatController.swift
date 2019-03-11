@@ -11,6 +11,7 @@ import Common
 import RxSwift
 import RxCocoa
 import IQKeyboardManagerSwift
+import Networking
 
 class LiveDebatController: UIViewController {
     
@@ -36,6 +37,8 @@ class LiveDebatController: UIViewController {
     @IBOutlet weak var constraintInputViewBottom: NSLayoutConstraint!
     @IBOutlet weak var constraintInputViewHeight: NSLayoutConstraint!
     private lazy var titleView = Button()
+    @IBOutlet weak var btnPublish: Button!
+    @IBOutlet weak var btnBatal: Button!
     
     // ui flag variable
     private var isKeyboardAppear = false
@@ -47,7 +50,6 @@ class LiveDebatController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
 //        self.navigationController?.navigationBar.isHidden = true
         // config input behavior
         configureInputView()
@@ -64,6 +66,19 @@ class LiveDebatController: UIViewController {
         tableViewDebat.registerReusableCell(ArgumentLeftCell.self)
         tableViewDebat.registerReusableCell(ArgumentRightCell.self)
         
+        // listen whether the last cell displayed or not
+        // if yes, then rotate the btnScroll and set tag to 1 (0 = scroll to bottom, 1 = scroll to top)
+        tableViewDebat.rx.willDisplayCell
+            .filter({ _ in !self.viewModel.output.argumentsO.value.isEmpty })
+            .map({ $0.indexPath })
+            .map({ $0.row == self.viewModel.output.argumentsO.value.count - 1 })
+            .bind { [unowned self](isOnBottom) in
+                self.btnScroll.tag = isOnBottom ? 0 : 1
+                self.btnScroll.rotate(degree: isOnBottom ? 180 : 0)
+            }
+            .disposed(by: disposeBag)
+
+        
         // configure scrolling behavior for header to response
         scrollView.rx.contentOffset
             .distinctUntilChanged()
@@ -71,41 +86,46 @@ class LiveDebatController: UIViewController {
                 self.configureCollapseNavbar(y: point.y, collaspingY: 40.0)
             }).disposed(by: disposeBag)
         
-        // listen whether the last cell displayed or not
-        // if yes, then rotate the btnScroll and set tag to 1 (0 = scroll to bottom, 1 = scroll to top)
-        tableViewDebat.rx.willDisplayCell
-            .map({ $0.indexPath })
-            .map({ $0.row == 19 })
-            .bind { [unowned self](isOnBottom) in
-                self.btnScroll.tag = isOnBottom ? 0 : 1
-                self.btnScroll.rotate(degree: isOnBottom ? 180 : 0)
-            }
-            .disposed(by: disposeBag)
-        
         // open debat detail when tapped
         btnDetailDebat.rx.tap
-            .bind(to: viewModel.input.launchDetailTrigger)
+            .bind(to: viewModel.input.launchDetailI)
             .disposed(by: disposeBag)
         
         // open debat comment when tapped
         btnCommentShow.rx.tap
-            .bind(to: viewModel.input.showCommentTrigger)
+            .bind(to: viewModel.input.showCommentI)
+            .disposed(by: disposeBag)
+        
+        btnPublish.rx.tap
+            .map({ [unowned self](_) in
+                return self.tvInputDebat.text.trimmingCharacters(in: .whitespacesAndNewlines)
+            })
+            .filter({ !$0.isEmpty })
+            .do(onNext: { [unowned self](_) in
+                self.tvInputDebat.text = ""
+            })
+            .bind(to: self.viewModel.input.sendArgumentsI)
+            .disposed(by: disposeBag)
+        
+        btnBatal.rx.tap
+            .map({ "" })
+            .bind(to: self.tvInputDebat.rx.text)
             .disposed(by: disposeBag)
         
         // drive
-        viewModel.output.back
+        viewModel.output.backO
             .drive()
             .disposed(by: disposeBag)
         
-        viewModel.output.launchDetail
+        viewModel.output.launchDetailO
             .drive()
             .disposed(by: disposeBag)
         
-        viewModel.output.showComment
+        viewModel.output.showCommentO
             .drive()
             .disposed(by: disposeBag)
         
-        viewModel.output.menu
+        viewModel.output.menuO
             .asObservable()
             .flatMapLatest({ [unowned self]_ -> Observable<String> in
                 return Observable.create({ (observer) -> Disposable in
@@ -130,8 +150,25 @@ class LiveDebatController: UIViewController {
                     return Disposables.create()
                 })
             })
-            .bind(to: viewModel.input.selectMenuTrigger)
+            .bind(to: viewModel.input.selectMenuI)
             .disposed(by: disposeBag)
+        
+        
+        viewModel.output.loadArgumentsO
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.argumentsO
+            .mapToVoid()
+            .skip(1)
+            .take(1)
+            .asDriverOnErrorJustComplete()
+            .drive(onNext: { [unowned self] in
+                self.tableViewDebat.reloadData()
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.input.loadArgumentsI.onNext(())
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -140,7 +177,7 @@ class LiveDebatController: UIViewController {
         configureNavbar()
         configureTitleView()
         
-        viewModel.output.viewType
+        viewModel.output.viewTypeO
         .drive(onNext: { [weak self](viewType) in
             guard let weakSelf = self else { return }
             weakSelf.configureViewType(viewType: viewType)
@@ -239,7 +276,35 @@ class LiveDebatController: UIViewController {
             titleView.setImage(UIImage(), for: .normal)
             titleView.setTitle("Result", for: .normal)
             break
+        case .participant:
+            latestCommentView.isHidden = true
+            viewComentarContainer.isHidden = true
+            viewInputContainer.isHidden = false
+            constraintTableViewBottom.constant = 105
+            viewTimeContainer.isHidden = false
+            constraintInputViewHeight.constant = 105
+            headerTitle.setTitle("LIVE NOW", for: .normal)
+            headerTitle.setImage(#imageLiteral(resourceName: "outlineLiveRed24Px"), for: .normal)
+            titleView.setTitle("LIVE NOW", for: .normal)
+            titleView.setImage(#imageLiteral(resourceName: "outlineLiveRed24Px"), for: .normal)
         }
+    }
+    
+    private func scrollToBottom() {
+        self.btnScroll.tag = 0
+        self.collapseHeader()
+        self.tableViewDebat.scrollToRow(at: IndexPath(row: self.viewModel.output.argumentsO.value.count - 1, section: 0), at: .top, animated: true)
+        self.btnScroll.rotate(degree: 180)
+    }
+    
+    private func scrollToTop() {
+        self.btnScroll.tag = 1
+        self.tableViewDebat.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+        
+        if !self.isKeyboardAppear {
+            self.expandHeader()
+        }
+        self.btnScroll.rotate(degree: 0)
     }
     
     private func configureScrollButton() {
@@ -248,16 +313,9 @@ class LiveDebatController: UIViewController {
             .bind(onNext: { [unowned self] in
                 // tag 0 = scroll to top, tag 1 = scroll to bottom
                 if self.btnScroll.tag == 1 {
-                    self.btnScroll.tag = 0
-                    self.collapseHeader()
-                    self.tableViewDebat.scrollToRow(at: IndexPath(row: 19, section: 0), at: .top, animated: true)
+                    self.scrollToBottom()
                 } else {
-                    self.btnScroll.tag = 1
-                    self.tableViewDebat.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
-                    
-                    if !self.isKeyboardAppear {
-                        self.expandHeader()
-                    }
+                    self.scrollToTop()
                 }
                 
                 
@@ -307,6 +365,16 @@ class LiveDebatController: UIViewController {
         }
         .disposed(by: disposeBag)
         
+        viewModel.output.sendArgumentO
+            .drive(onNext: { [weak self](indexPath) in
+                guard let `self` = self else { return }
+                self.tableViewDebat.insertRows(at: [indexPath], with: .right)
+                self.scrollToBottom()
+            })
+            .disposed(by: disposeBag)
+        
+        
+        
         
     }
     
@@ -320,11 +388,11 @@ class LiveDebatController: UIViewController {
         self.navigationController?.navigationBar.configure(with: .transparent)
         
         more.rx.tap
-            .bind(to: viewModel.input.showMenuTrigger)
+            .bind(to: viewModel.input.showMenuI)
             .disposed(by: disposeBag)
         
         back.rx.tap
-            .bind(to: viewModel.input.backTrigger)
+            .bind(to: viewModel.input.backI)
             .disposed(by: disposeBag)
     }
     
@@ -388,23 +456,26 @@ class LiveDebatController: UIViewController {
 }
 
 extension LiveDebatController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 20
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
     }
     
-    // TODO: replace with real data
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.viewModel.output.argumentsO.value.count
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row % 2 == 0 {
-            let cell = tableView.dequeueReusableCell() as ArgumentLeftCell
-            cell.lbArgument.text = "apaaaaa ?"
+        let item = self.viewModel.output.argumentsO.value[indexPath.row]
+        if item.author.role == AudienceRole.challenger {
+            let cell = tableView.dequeueReusableCell() as ArgumentRightCell
+            cell.configureCell(item: ArgumentRightCell.Input(word: item, viewModel: self.viewModel))
             
             return cell
         } else {
-            let cell = tableView.dequeueReusableCell() as ArgumentRightCell
+            let cell = tableView.dequeueReusableCell() as ArgumentLeftCell
+            cell.configureCell(item: ArgumentLeftCell.Input(word: item, viewModel: self.viewModel))
             
             return cell
         }
     }
-    
-    
 }

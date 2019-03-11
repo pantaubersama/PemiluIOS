@@ -23,6 +23,7 @@ public enum DebatViewType {
     case myTurn
     case theirTurn
     case done
+    case participant
 }
 
 class LiveDebatCoordinator: BaseCoordinator<Void> {

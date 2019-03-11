@@ -11,8 +11,9 @@ import Common
 import RxSwift
 import RxCocoa
 import Lottie
+import Networking
 
-class ArgumentRightCell: UITableViewCell, IReusableCell {
+class ArgumentRightCell: UITableViewCell {
     @IBOutlet weak var lbArgument: Label!
     @IBOutlet weak var lbCreatedAt: Label!
     @IBOutlet weak var lbReadEstimation: Label!
@@ -54,11 +55,18 @@ class ArgumentRightCell: UITableViewCell, IReusableCell {
             clapAnimation.bottomAnchor.constraint(equalTo: viewClapLottie.bottomAnchor)
             ])
     }
+    
+}
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+extension ArgumentRightCell: IReusableCell {
+    struct Input {
+        let word: Word
+        let viewModel: LiveDebatViewModel
     }
     
+    func configureCell(item: Input) {
+        lbArgument.text = item.word.body
+        lbReadEstimation.text = "\(item.word.readTime)"
+        lbCreatedAt.text = item.word.createdAt.timeAgoSinceDateForm2
+    }
 }
