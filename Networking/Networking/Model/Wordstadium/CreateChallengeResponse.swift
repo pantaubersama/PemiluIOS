@@ -24,6 +24,7 @@ public struct Challenge: Codable {
     public let topic: [String]?
     public let createdAt: String?
     public let audiences: [Audiences]
+    public let reason: String?
     
     private enum CodingKeys: String, CodingKey {
         case id, type, statement, progress, condition, audiences
@@ -32,6 +33,7 @@ public struct Challenge: Codable {
         case timeLimit = "time_limit"
         case topic = "topic_list"
         case createdAt = "created_at"
+        case reason = "reason_rejected"
     }
     
 }

@@ -241,6 +241,7 @@ extension ChallengeController {
                         self.containerHeader.backgroundColor = #colorLiteral(red: 1, green: 0.4935973287, blue: 0.3663615584, alpha: 1)
                         self.headerTantanganView.lblStatus.isHidden = false
                         self.headerTantanganView.lblStatus.text = "DENIED"
+                        self.refuseChallengeView.lblReason.text = data.reason
                     case .ongoing:
                         if isAudience { // if user already registered as opponent candidate
                             self.titleContent.text = "Ini tantangan buat kamu,"
