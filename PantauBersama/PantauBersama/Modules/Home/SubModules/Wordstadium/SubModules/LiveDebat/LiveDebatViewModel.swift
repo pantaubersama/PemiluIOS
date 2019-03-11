@@ -22,6 +22,7 @@ class LiveDebatViewModel: ViewModelType {
         let showMenuI: AnyObserver<Void>
         let selectMenuI: AnyObserver<String>
         let sendArgumentsI: AnyObserver<String>
+        let sendCommentI: AnyObserver<String>
     }
     
     struct Output {
@@ -35,6 +36,7 @@ class LiveDebatViewModel: ViewModelType {
         let argumentsO: BehaviorRelay<[Word]>
         let loadArgumentsO: Driver<Void>
         let sendArgumentO: Driver<IndexPath>
+        let sendCommentO: Driver<Void>
     }
     
     var input: Input
@@ -52,6 +54,7 @@ class LiveDebatViewModel: ViewModelType {
     private let arguments = BehaviorRelay<[Word]>(value: [])
     private let loadArgumentS = PublishSubject<Void>()
     private let sendArgumentS = PublishSubject<String>()
+    private let sendCommentS = PublishSubject<String>()
     
     init(navigator: LiveDebatNavigator, challenge: Challenge, viewType: DebatViewType) {
         self.navigator = navigator
@@ -65,7 +68,8 @@ class LiveDebatViewModel: ViewModelType {
             viewTypeI: viewTypeS.asObserver(),
             showMenuI: menuS.asObserver(),
             selectMenuI: selectMenuS.asObserver(),
-            sendArgumentsI: sendArgumentS.asObserver()
+            sendArgumentsI: sendArgumentS.asObserver(),
+            sendCommentI: sendCommentS.asObserver()
         )
         
         let back = backS.flatMap({navigator.back()})
@@ -106,6 +110,11 @@ class LiveDebatViewModel: ViewModelType {
                 return IndexPath(row: self.arguments.value.count - 1, section: 0)
             })
             .asDriverOnErrorJustComplete()
+        
+        let sendComment = sendCommentS
+            .flatMapLatest({ self.sendComment(word: $0) })
+            .mapToVoid()
+            .asDriverOnErrorJustComplete()
             
         output = Output(
             backO: back,
@@ -117,7 +126,8 @@ class LiveDebatViewModel: ViewModelType {
             challengeO: Driver.just(self.challenge),
             argumentsO: self.arguments,
             loadArgumentsO: loadArguments,
-            sendArgumentO: sendArgument)
+            sendArgumentO: sendArgument,
+            sendCommentO: sendComment)
     }
     
     private func getArguments() -> Observable<[Word]> {
@@ -126,8 +136,20 @@ class LiveDebatViewModel: ViewModelType {
             .asObservable()
     }
     
+    private func getComments() -> Observable<[Word]> {
+        return NetworkService.instance.requestObject(WordstadiumAPI.wordsAudience(challengeId: self.challenge.id), c: BaseResponse<WordsResponse>.self)
+            .map({ $0.data.words })
+            .asObservable()
+    }
+    
     private func sendArgument(word: String) -> Observable<Word> {
         return NetworkService.instance.requestObject(WordstadiumAPI.fighterAttack(challengeId: self.challenge.id, words: word), c: BaseResponse<SendWordResponse>.self)
+            .map({ $0.data.word })
+            .asObservable()
+    }
+    
+    private func sendComment(word: String) -> Observable<Word> {
+        return NetworkService.instance.requestObject(WordstadiumAPI.commentAudience(challengeId: self.challenge.id, words: word), c: BaseResponse<SendWordResponse>.self)
             .map({ $0.data.word })
             .asObservable()
     }

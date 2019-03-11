@@ -57,7 +57,6 @@ class LiveDebatController: UIViewController {
         // config button scroll behavior
         configureScrollButton()
         
-        // for dummy ui
         tableViewDebat.dataSource = self
         tableViewDebat.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 70))
         tableViewDebat.isScrollEnabled = false
@@ -110,6 +109,16 @@ class LiveDebatController: UIViewController {
         btnBatal.rx.tap
             .map({ "" })
             .bind(to: self.tvInputDebat.rx.text)
+            .disposed(by: disposeBag)
+        
+        btnSendComment.rx.tap
+            .map({ [unowned self](_) in
+                return self.tvInputComment.text.trimmingCharacters(in: .whitespacesAndNewlines)
+            })
+            .do(onNext: { [unowned self](_) in
+                self.tvInputComment.text = ""
+            })
+            .bind(to: self.viewModel.input.sendCommentI)
             .disposed(by: disposeBag)
         
         // drive
@@ -166,6 +175,18 @@ class LiveDebatController: UIViewController {
             .drive(onNext: { [unowned self] in
                 self.tableViewDebat.reloadData()
             })
+            .disposed(by: disposeBag)
+        
+        viewModel.output.sendArgumentO
+            .drive(onNext: { [weak self](indexPath) in
+                guard let `self` = self else { return }
+                self.tableViewDebat.insertRows(at: [indexPath], with: .right)
+                self.scrollToBottom()
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.output.sendCommentO
+            .drive()
             .disposed(by: disposeBag)
         
         viewModel.input.loadArgumentsI.onNext(())
@@ -364,18 +385,6 @@ class LiveDebatController: UIViewController {
             }
         }
         .disposed(by: disposeBag)
-        
-        viewModel.output.sendArgumentO
-            .drive(onNext: { [weak self](indexPath) in
-                guard let `self` = self else { return }
-                self.tableViewDebat.insertRows(at: [indexPath], with: .right)
-                self.scrollToBottom()
-            })
-            .disposed(by: disposeBag)
-        
-        
-        
-        
     }
     
     private func configureNavbar() {

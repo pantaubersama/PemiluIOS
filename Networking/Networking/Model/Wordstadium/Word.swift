@@ -14,7 +14,7 @@ import Foundation
 
 public struct Word: Codable {
     public let id, type, challengeID, body: String
-    public let readTime, timeSpent, timeLeft: Double
+    public let readTime, timeSpent, timeLeft: Double?
     public let createdAt: String
     public let author: Author
     
