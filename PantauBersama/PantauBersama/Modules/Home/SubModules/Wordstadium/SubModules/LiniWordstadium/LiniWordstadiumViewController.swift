@@ -127,7 +127,7 @@ class LiniWordstadiumViewController: UITableViewController, ILiniWordstadiumView
         case .liveNow:
             return 0
         default :
-            return 30
+            return wordstadium.items.count < 3 ? 0: 30
         }
     }
     
