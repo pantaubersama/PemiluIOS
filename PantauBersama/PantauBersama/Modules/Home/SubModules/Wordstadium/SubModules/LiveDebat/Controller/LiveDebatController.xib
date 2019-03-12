@@ -25,6 +25,7 @@
                 <outlet property="headerTitle" destination="Tcc-8W-Plg" id="d9A-1p-XQM"/>
                 <outlet property="imageVs" destination="33X-Ei-0bQ" id="21A-ZC-wZa"/>
                 <outlet property="ivChallenger" destination="9Fw-Hu-hSg" id="Qi5-YD-rFq"/>
+                <outlet property="ivAvatarLatestComment" destination="zTl-9o-HVf" id="VJJ-F2-Btf"/>
                 <outlet property="ivHeaderBackground" destination="GRu-Jj-Bn6" id="v50-J7-N3h"/>
                 <outlet property="ivOpponents" destination="Tfc-fV-87d" id="xK9-6T-UIA"/>
                 <outlet property="latestCommentView" destination="amy-FP-pVU" id="mDC-aU-gfQ"/>
@@ -35,6 +36,8 @@
                 <outlet property="lblTimeCounter" destination="wXd-VR-8Nt" id="gRH-rH-KI2"/>
                 <outlet property="lblUsernameChallenger" destination="mfU-ei-li1" id="Jtc-l5-yga"/>
                 <outlet property="lblUsernameOpponents" destination="tyS-AX-8CC" id="gfu-CD-JHR"/>
+                <outlet property="lbLatestCommentContent" destination="AYY-Uj-h1v" id="BLv-Vd-68w"/>
+                <outlet property="lbLatestCommentName" destination="d9C-u1-M2U" id="u16-sH-IJI"/>
                 <outlet property="scrollView" destination="YMc-k0-wfR" id="e7R-PB-n77"/>
                 <outlet property="tableViewDebat" destination="TPX-JG-RIR" id="p1R-s4-MRW"/>
                 <outlet property="tvInputComment" destination="Dej-Oe-oSW" id="twv-tr-5ZY"/>
@@ -251,7 +254,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="50" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zp7-Ki-E3y" customClass="Label" customModule="Common">
-                                                    <rect key="frame" x="24" y="0.0" width="22.5" height="24"/>
+                                                    <rect key="frame" x="24" y="0.0" width="20.5" height="24"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.92538958790000003" green="0.92554813619999998" blue="0.92537957429999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -263,7 +266,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" total" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aHM-dw-t1n" customClass="Label" customModule="Common">
-                                                    <rect key="frame" x="46.5" y="0.0" width="44.5" height="24"/>
+                                                    <rect key="frame" x="44.5" y="0.0" width="46.5" height="24"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.92538958790000003" green="0.92554813619999998" blue="0.92537957429999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -284,7 +287,7 @@
                                             <rect key="frame" x="231.5" y="0.0" width="72.5" height="24"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="70" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HVW-6v-P8V" customClass="Label" customModule="Common">
-                                                    <rect key="frame" x="0.0" y="0.0" width="17" height="24"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="16.5" height="24"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.92538958790000003" green="0.92554813619999998" blue="0.92537957429999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -296,7 +299,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" total" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r3P-UE-tUA" customClass="Label" customModule="Common">
-                                                    <rect key="frame" x="17" y="0.0" width="31.5" height="24"/>
+                                                    <rect key="frame" x="16.5" y="0.0" width="32" height="24"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.92538958790000003" green="0.92554813619999998" blue="0.92537957429999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -342,7 +345,7 @@
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Giliran Raja menulis argumen …" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="biJ-P7-fep" customClass="Label" customModule="Common">
-                                            <rect key="frame" x="40" y="11" width="124" height="10"/>
+                                            <rect key="frame" x="40" y="10" width="129" height="12"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="8"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -561,7 +564,7 @@ pertumbuhan mencapai 5,27%.
                                 <constraint firstAttribute="height" constant="2" id="HTE-DI-ChX"/>
                             </constraints>
                         </view>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icDummyPerson" translatesAutoresizingMaskIntoConstraints="NO" id="zTl-9o-HVf">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icDummyPerson" translatesAutoresizingMaskIntoConstraints="NO" id="zTl-9o-HVf" customClass="CircularUIImageView" customModule="Common">
                             <rect key="frame" x="16" y="12" width="24" height="24"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="24" id="Yfp-8m-WeD"/>
