@@ -103,7 +103,7 @@ class DebatCommentViewModel: ViewModelType {
         let myEmail = AppState.local()?.user.email ?? ""
         let isParticipant = challenge.audiences.contains(where: { $0.email == myEmail })
         
-        if  isParticipant {
+        if isParticipant {
             return DebatViewType.participant
         } else {
             return DebatViewType.watch

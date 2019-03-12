@@ -24,6 +24,7 @@ class LiveDebatViewModel: ViewModelType {
         let sendArgumentsI: AnyObserver<String>
         let sendCommentI: AnyObserver<String>
         let syncWordI: AnyObserver<Void>
+        let latestCommentI: AnyObserver<Void>
     }
     
     struct Output {
@@ -39,6 +40,7 @@ class LiveDebatViewModel: ViewModelType {
         let sendArgumentO: Driver<IndexPath>
         let sendCommentO: Driver<Void>
         let syncWordO: Driver<IndexPath>
+        let latestCommentO: Driver<Word?>
     }
     
     var input: Input
@@ -58,6 +60,7 @@ class LiveDebatViewModel: ViewModelType {
     private let loadArgumentS = PublishSubject<Void>()
     private let sendArgumentS = PublishSubject<String>()
     private let sendCommentS = PublishSubject<String>()
+    private let latestCommentS = PublishSubject<Void>()
     private let syncWordS = PublishSubject<Void>()
     
     init(navigator: LiveDebatNavigator, challenge: Challenge, viewType: DebatViewType) {
@@ -74,7 +77,8 @@ class LiveDebatViewModel: ViewModelType {
             selectMenuI: selectMenuS.asObserver(),
             sendArgumentsI: sendArgumentS.asObserver(),
             sendCommentI: sendCommentS.asObserver(),
-            syncWordI: syncWordS.asObserver()
+            syncWordI: syncWordS.asObserver(),
+            latestCommentI: latestCommentS.asObserver()
         )
         
         let back = backS.flatMap({navigator.back()})
@@ -111,16 +115,7 @@ class LiveDebatViewModel: ViewModelType {
                 guard let `self` = self else { return }
                 self.arguments.accept(words)
                 
-                let myEmail = AppState.local()?.user.email ?? ""
-                let challenger = self.challenge.audiences.filter({ $0.role == .challenger }).first
-                guard let lastWord = words.last else {
-                    // if words is empty it means that debat just started, so the first turn is challenger, then we trigger the viewType
-                    self.viewTypeS.onNext(myEmail == (challenger?.email ?? "") ? .myTurn : .theirTurn)
-                    return
-                }
-                
-                // if the last word/argument is my word then viewType is theirTurn
-                self.viewTypeS.onNext(lastWord.author.email == myEmail ? .theirTurn : .myTurn)
+                self.determineRoleFromLatestWord(words: words)
             })
             .map({ _ in
                 return IndexPath(row: self.arguments.value.count - 1, section: 0)
@@ -133,17 +128,7 @@ class LiveDebatViewModel: ViewModelType {
             .do(onNext: { [weak self](words) in
                 guard let `self` = self else { return }
                 self.arguments.accept(words)
-
-                let myEmail = AppState.local()?.user.email ?? ""
-                let challenger = self.challenge.audiences.filter({ $0.role == .challenger }).first
-                guard let lastWord = words.last else {
-                    // if words is empty it means that debat just started, so the first turn is challenger, then we trigger the viewType
-                    self.viewTypeS.onNext(myEmail == (challenger?.email ?? "") ? .myTurn : .theirTurn)
-                    return
-                }
-
-                // if the last word/argument is my word then viewType is theirTurn
-                self.viewTypeS.onNext(lastWord.author.email == myEmail ? .theirTurn : .myTurn)
+                self.determineRoleFromLatestWord(words: words)
             })
             .mapToVoid()
             .asDriverOnErrorJustComplete()
@@ -166,6 +151,11 @@ class LiveDebatViewModel: ViewModelType {
             .flatMapLatest({ self.sendComment(word: $0) })
             .mapToVoid()
             .asDriverOnErrorJustComplete()
+        
+        let latestComment = latestCommentS
+            .flatMapLatest({ self.getComments() })
+            .map({ $0.first })
+            .asDriverOnErrorJustComplete()
             
         output = Output(
             backO: back,
@@ -179,7 +169,28 @@ class LiveDebatViewModel: ViewModelType {
             loadArgumentsO: loadArguments,
             sendArgumentO: sendArgument,
             sendCommentO: sendComment,
-            syncWordO: syncWord)
+            syncWordO: syncWord,
+            latestCommentO: latestComment)
+    }
+    
+    private func determineRoleFromLatestWord(words: [Word]) {
+        let myEmail = AppState.local()?.user.email ?? ""
+        let challenger = self.challenge.audiences.filter({ $0.role == .challenger }).first
+        let isParticipant = self.challenge.audiences.contains(where: { $0.email == myEmail })
+        
+        // if words is empty it means that debat just started, so the first turn is challenger, then we trigger the viewType
+        if !isParticipant {
+            self.viewTypeS.onNext(.watch)
+            return
+        }
+        
+        guard let lastWord = words.last else {
+            self.viewTypeS.onNext(myEmail == (challenger?.email ?? "") ? .myTurn : .theirTurn)
+            return
+        }
+        
+        // if the last word/argument is my word then viewType is theirTurn
+        self.viewTypeS.onNext(lastWord.author.email == myEmail ? .theirTurn : .myTurn)
     }
     
     private func getArguments() -> Observable<[Word]> {

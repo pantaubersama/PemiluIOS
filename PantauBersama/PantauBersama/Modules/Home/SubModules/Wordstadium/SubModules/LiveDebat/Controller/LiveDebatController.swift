@@ -49,6 +49,9 @@ class LiveDebatController: UIViewController {
     @IBOutlet weak var btnPublish: Button!
     @IBOutlet weak var btnBatal: Button!
     
+    @IBOutlet weak var lbLatestCommentContent: Label!
+    @IBOutlet weak var lbLatestCommentName: Label!
+    @IBOutlet weak var ivAvatarLatestComment: UIImageView!
     // ui flag variable
     private var isKeyboardAppear = false
     private var isCommentAppear = false
@@ -208,6 +211,15 @@ class LiveDebatController: UIViewController {
             .drive()
             .disposed(by: disposeBag)
         
+        viewModel.output.latestCommentO
+            .drive(onNext: { [weak self](word) in
+                guard let `self` = self else { return }
+                self.ivAvatarLatestComment.show(fromURL: word?.author.avatar.url ?? "")
+                self.lbLatestCommentName.text = word?.author.fullName ?? ""
+                self.lbLatestCommentContent.text = word?.body ?? ""
+            })
+            .disposed(by: disposeBag)
+        
         viewModel.input.syncWordI.onNext(())
         viewModel.input.loadArgumentsI.onNext(())
         
@@ -219,6 +231,7 @@ class LiveDebatController: UIViewController {
             })
             .drive()
             .disposed(by: disposeBag)
+        viewModel.input.latestCommentI.onNext(())
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -328,12 +341,12 @@ class LiveDebatController: UIViewController {
             titleView.setTitle("Result", for: .normal)
             break
         case .participant:
-            latestCommentView.isHidden = true
-            viewComentarContainer.isHidden = true
-            viewInputContainer.isHidden = false
-            constraintTableViewBottom.constant = 105
+            latestCommentView.isHidden = false
+            viewComentarContainer.isHidden = false
+            viewInputContainer.isHidden = true
+            constraintTableViewBottom.constant = 0
             viewTimeContainer.isHidden = false
-            constraintInputViewHeight.constant = 105
+            constraintInputViewHeight.constant = 50
             headerTitle.setTitle("LIVE NOW", for: .normal)
             headerTitle.setImage(#imageLiteral(resourceName: "outlineLiveRed24Px"), for: .normal)
             titleView.setTitle("LIVE NOW", for: .normal)

@@ -76,7 +76,7 @@ extension ArgumentLeftCell: IReusableCell {
     
     func configureCell(item: Input) {
         lbArgument.text = item.word.body
-        lbReadEstimation.text = "\(item.word.readTime)"
+        lbReadEstimation.text = "\(item.word.readTime ?? 0) menit"
         lbCraetedAt.text = item.word.createdAt.timeAgoSinceDateForm2
     }
 }
