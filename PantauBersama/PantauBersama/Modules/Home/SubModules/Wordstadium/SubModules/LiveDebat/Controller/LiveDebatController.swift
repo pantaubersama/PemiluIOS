@@ -15,6 +15,15 @@ import Networking
 
 class LiveDebatController: UIViewController {
     
+    @IBOutlet weak var ivChallenger: CircularUIImageView!
+    @IBOutlet weak var lblNameChallenger: Label!
+    @IBOutlet weak var lblUsernameChallenger: Label!
+    @IBOutlet weak var ivOpponents: CircularUIImageView!
+    @IBOutlet weak var lblNameOpponents: Label!
+    @IBOutlet weak var lblUsernameOpponents: Label!
+    @IBOutlet weak var lblStatement: Label!
+    @IBOutlet weak var lblTimeCounter: Label!
+    @IBOutlet weak var lblStatusFighter: Label!
     // UI view variable
     @IBOutlet weak var latestCommentView: UIStackView!
     @IBOutlet weak var bottomMargin: NSLayoutConstraint!
@@ -43,7 +52,6 @@ class LiveDebatController: UIViewController {
     // ui flag variable
     private var isKeyboardAppear = false
     private var isCommentAppear = false
-    
     
     var viewModel: LiveDebatViewModel!
     private lazy var disposeBag: DisposeBag! = DisposeBag()
@@ -202,6 +210,15 @@ class LiveDebatController: UIViewController {
         
         viewModel.input.syncWordI.onNext(())
         viewModel.input.loadArgumentsI.onNext(())
+        
+        /// Configure header data view with challenge
+        viewModel.output.challengeO
+            .do(onNext: { [weak self] (challenge) in
+                guard let `self` = self else { return }
+                self.configureHeader(data: challenge)
+            })
+            .drive()
+            .disposed(by: disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -479,6 +496,25 @@ class LiveDebatController: UIViewController {
         // scroll to top will expand the header
         let bottomOffset = CGPoint(x: 0, y: -44)
         scrollView.setContentOffset(bottomOffset, animated: true)
+    }
+    
+    /// MARK: - Configure data challenge for Header LIVE
+    /**
+     - parameters: Challenge
+     - Refresh with data challenge:
+     - challenger will be in left side, challenger must be one user during live
+     - opponents will be in right side, opponents must be one user during live
+    **/
+    private func configureHeader(data: Challenge) {
+        let challenger = data.audiences.filter({ $0.role == .challenger }).first
+        let opponents = data.audiences.filter({ $0.role == .opponent }).first
+        self.ivChallenger.show(fromURL: challenger?.avatar?.url ?? "")
+        self.ivOpponents.show(fromURL: opponents?.avatar?.url ?? "")
+        self.lblNameChallenger.text = challenger?.fullName
+        self.lblUsernameChallenger.text = "@\(challenger?.username ?? "")"
+        self.lblNameOpponents.text = opponents?.fullName
+        self.lblUsernameOpponents.text = "@\(opponents?.username ?? "")"
+        self.lblStatement.text = data.statement
     }
 }
 
