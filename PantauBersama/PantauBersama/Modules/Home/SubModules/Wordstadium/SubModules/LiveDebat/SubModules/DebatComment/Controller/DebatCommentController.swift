@@ -53,6 +53,7 @@ class DebatCommentController: UIViewController {
             .asDriverOnErrorJustComplete()
             .drive(onNext: { [unowned self] in
                 self.tableView.reloadData()
+                self.scrollToBottom(animated: false)
             })
             .disposed(by: disposeBag)
         
@@ -90,15 +91,17 @@ class DebatCommentController: UIViewController {
             .disposed(by: disposeBag)
     }
     
-    private func scrollToBottom() {
-        self.tableView.scrollToRow(at: IndexPath(row: self.viewModel.output.commentsO.value.count - 1, section: 0), at: .bottom, animated: true)
+    private func scrollToBottom(animated: Bool = true) {
+        if (self.tableView.indexPathsForVisibleRows?.count ?? 0) != 0 {
+            self.tableView.scrollToRow(at: IndexPath(row: self.viewModel.output.commentsO.value.count - 1, section: 0), at: .bottom, animated: animated)
+        }
     }
     
     private func configureInputView() {
         viewModel.output.viewTypeO
             .drive(onNext: { [unowned self]viewType in
                 switch viewType {
-                case .done, .theirTurn:
+                case .done, .participant:
                     self.viewInputContainer.isHidden = true
                     break
                 default:

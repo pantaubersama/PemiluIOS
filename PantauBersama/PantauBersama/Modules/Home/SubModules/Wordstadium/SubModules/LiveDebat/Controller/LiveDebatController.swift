@@ -46,7 +46,7 @@ class LiveDebatController: UIViewController {
     
     
     var viewModel: LiveDebatViewModel!
-    private lazy var disposeBag = DisposeBag()
+    private lazy var disposeBag: DisposeBag! = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -188,10 +188,19 @@ class LiveDebatController: UIViewController {
             })
             .disposed(by: disposeBag)
         
+        viewModel.output.syncWordO
+            .drive(onNext: { [weak self](indexPath) in
+                guard let `self` = self else { return }
+                self.tableViewDebat.insertRows(at: [indexPath], with: .right)
+                self.scrollToBottom()
+            })
+            .disposed(by: disposeBag)
+        
         viewModel.output.sendCommentO
             .drive()
             .disposed(by: disposeBag)
         
+        viewModel.input.syncWordI.onNext(())
         viewModel.input.loadArgumentsI.onNext(())
     }
     
@@ -213,6 +222,7 @@ class LiveDebatController: UIViewController {
         super.viewWillDisappear(animated)
         unsubscribeForKeyboardEvent()
         titleView.removeFromSuperview()
+        disposeBag = nil
     }
     
     //MARK: selector
