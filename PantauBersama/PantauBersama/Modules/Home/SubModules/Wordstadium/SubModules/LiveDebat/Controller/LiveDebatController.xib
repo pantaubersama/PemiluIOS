@@ -24,8 +24,17 @@
                 <outlet property="constraintTableViewBottom" destination="5uL-3b-Nae" id="wQ2-M2-IEK"/>
                 <outlet property="headerTitle" destination="Tcc-8W-Plg" id="d9A-1p-XQM"/>
                 <outlet property="imageVs" destination="33X-Ei-0bQ" id="21A-ZC-wZa"/>
+                <outlet property="ivChallenger" destination="9Fw-Hu-hSg" id="Qi5-YD-rFq"/>
                 <outlet property="ivHeaderBackground" destination="GRu-Jj-Bn6" id="v50-J7-N3h"/>
+                <outlet property="ivOpponents" destination="Tfc-fV-87d" id="xK9-6T-UIA"/>
                 <outlet property="latestCommentView" destination="amy-FP-pVU" id="mDC-aU-gfQ"/>
+                <outlet property="lblNameChallenger" destination="hmG-hh-139" id="6xW-fQ-rcT"/>
+                <outlet property="lblNameOpponents" destination="fth-5m-IVT" id="6wg-bF-7Fg"/>
+                <outlet property="lblStatement" destination="BJe-Pt-uIS" id="SfZ-TL-Bbq"/>
+                <outlet property="lblStatusFighter" destination="biJ-P7-fep" id="8nC-Ld-1Id"/>
+                <outlet property="lblTimeCounter" destination="wXd-VR-8Nt" id="gRH-rH-KI2"/>
+                <outlet property="lblUsernameChallenger" destination="mfU-ei-li1" id="Jtc-l5-yga"/>
+                <outlet property="lblUsernameOpponents" destination="tyS-AX-8CC" id="gfu-CD-JHR"/>
                 <outlet property="scrollView" destination="YMc-k0-wfR" id="e7R-PB-n77"/>
                 <outlet property="tableViewDebat" destination="TPX-JG-RIR" id="p1R-s4-MRW"/>
                 <outlet property="tvInputComment" destination="Dej-Oe-oSW" id="twv-tr-5ZY"/>
