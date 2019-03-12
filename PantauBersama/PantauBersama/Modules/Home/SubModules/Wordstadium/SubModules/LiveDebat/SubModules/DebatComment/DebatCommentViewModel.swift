@@ -53,7 +53,7 @@ class DebatCommentViewModel: ViewModelType {
         let back = backS.flatMap({navigator.dismiss()})
             .asDriverOnErrorJustComplete()
         
-        let viewType = Observable.just(viewType)
+        let viewType = Observable.just(getViewTypeFromChallenge())
             .asDriverOnErrorJustComplete()
         
         let loadComments = loadCommentS
@@ -97,5 +97,16 @@ class DebatCommentViewModel: ViewModelType {
         return NetworkService.instance.requestObject(WordstadiumAPI.commentAudience(challengeId: self.challenge.id, words: word), c: BaseResponse<SendWordResponse>.self)
             .map({ $0.data.word })
             .asObservable()
+    }
+    
+    private func getViewTypeFromChallenge() -> DebatViewType {
+        let myEmail = AppState.local()?.user.email ?? ""
+        let isParticipant = challenge.audiences.contains(where: { $0.email == myEmail })
+        
+        if  isParticipant {
+            return DebatViewType.participant
+        } else {
+            return DebatViewType.watch
+        }
     }
 }

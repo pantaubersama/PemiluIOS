@@ -23,6 +23,7 @@ class LiveDebatViewModel: ViewModelType {
         let selectMenuI: AnyObserver<String>
         let sendArgumentsI: AnyObserver<String>
         let sendCommentI: AnyObserver<String>
+        let syncWordI: AnyObserver<Void>
     }
     
     struct Output {
@@ -37,12 +38,14 @@ class LiveDebatViewModel: ViewModelType {
         let loadArgumentsO: Driver<Void>
         let sendArgumentO: Driver<IndexPath>
         let sendCommentO: Driver<Void>
+        let syncWordO: Driver<IndexPath>
     }
     
     var input: Input
     var output: Output!
     private let navigator: LiveDebatNavigator
     private let challenge: Challenge
+    private let syncInterval: Double = 10.0
     
     private let backS = PublishSubject<Void>()
     private let detailS = PublishSubject<Void>()
@@ -55,6 +58,7 @@ class LiveDebatViewModel: ViewModelType {
     private let loadArgumentS = PublishSubject<Void>()
     private let sendArgumentS = PublishSubject<String>()
     private let sendCommentS = PublishSubject<String>()
+    private let syncWordS = PublishSubject<Void>()
     
     init(navigator: LiveDebatNavigator, challenge: Challenge, viewType: DebatViewType) {
         self.navigator = navigator
@@ -69,7 +73,8 @@ class LiveDebatViewModel: ViewModelType {
             showMenuI: menuS.asObserver(),
             selectMenuI: selectMenuS.asObserver(),
             sendArgumentsI: sendArgumentS.asObserver(),
-            sendCommentI: sendCommentS.asObserver()
+            sendCommentI: sendCommentS.asObserver(),
+            syncWordI: syncWordS.asObserver()
         )
         
         let back = backS.flatMap({navigator.back()})
@@ -89,11 +94,56 @@ class LiveDebatViewModel: ViewModelType {
         
         let selectMenu = selectMenuS.asDriverOnErrorJustComplete()
         
-        let loadArguments = loadArgumentS
-            .flatMap({ self.getArguments() })
+        // fallback mechanism, sync words every syncInterval
+        // if latest remote word from sync is the same with latest local word, terminate the next action, but if different then insert that word and notify the ui
+        let timer = Observable<Int>.timer(0, period: syncInterval, scheduler: MainScheduler.instance).mapToVoid()
+        let syncWord = Observable.of(timer, syncWordS.asObservable())
+            .merge()
+            .flatMapLatest({ self.getArguments() })
+            .filter({ [weak self](words) -> Bool in
+                guard let `self` = self else { return false }
+                guard let currentLastWord = self.arguments.value.last else { return false }
+                guard let lastRemoteWord = words.last else { return false }
+                
+                return currentLastWord.id != lastRemoteWord.id
+            })
             .do(onNext: { [weak self](words) in
                 guard let `self` = self else { return }
                 self.arguments.accept(words)
+                
+                let myEmail = AppState.local()?.user.email ?? ""
+                let challenger = self.challenge.audiences.filter({ $0.role == .challenger }).first
+                guard let lastWord = words.last else {
+                    // if words is empty it means that debat just started, so the first turn is challenger, then we trigger the viewType
+                    self.viewTypeS.onNext(myEmail == (challenger?.email ?? "") ? .myTurn : .theirTurn)
+                    return
+                }
+                
+                // if the last word/argument is my word then viewType is theirTurn
+                self.viewTypeS.onNext(lastWord.author.email == myEmail ? .theirTurn : .myTurn)
+            })
+            .map({ _ in
+                return IndexPath(row: self.arguments.value.count - 1, section: 0)
+            })
+            .asDriverOnErrorJustComplete()
+        
+        
+        let loadArguments = loadArgumentS
+            .flatMapLatest({ self.getArguments() })
+            .do(onNext: { [weak self](words) in
+                guard let `self` = self else { return }
+                self.arguments.accept(words)
+
+                let myEmail = AppState.local()?.user.email ?? ""
+                let challenger = self.challenge.audiences.filter({ $0.role == .challenger }).first
+                guard let lastWord = words.last else {
+                    // if words is empty it means that debat just started, so the first turn is challenger, then we trigger the viewType
+                    self.viewTypeS.onNext(myEmail == (challenger?.email ?? "") ? .myTurn : .theirTurn)
+                    return
+                }
+
+                // if the last word/argument is my word then viewType is theirTurn
+                self.viewTypeS.onNext(lastWord.author.email == myEmail ? .theirTurn : .myTurn)
             })
             .mapToVoid()
             .asDriverOnErrorJustComplete()
@@ -105,6 +155,7 @@ class LiveDebatViewModel: ViewModelType {
                 var latestValue = self.arguments.value
                 latestValue.append(word)
                 self.arguments.accept(latestValue)
+                self.viewTypeS.onNext(.theirTurn)
             })
             .map({ _ in
                 return IndexPath(row: self.arguments.value.count - 1, section: 0)
@@ -127,7 +178,8 @@ class LiveDebatViewModel: ViewModelType {
             argumentsO: self.arguments,
             loadArgumentsO: loadArguments,
             sendArgumentO: sendArgument,
-            sendCommentO: sendComment)
+            sendCommentO: sendComment,
+            syncWordO: syncWord)
     }
     
     private func getArguments() -> Observable<[Word]> {
