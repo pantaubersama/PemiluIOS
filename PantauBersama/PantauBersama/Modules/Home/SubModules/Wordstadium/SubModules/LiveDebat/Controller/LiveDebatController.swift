@@ -53,7 +53,6 @@ class LiveDebatController: UIViewController {
     private var isKeyboardAppear = false
     private var isCommentAppear = false
     
-    var dataChallenge: Challenge!
     var viewModel: LiveDebatViewModel!
     private lazy var disposeBag: DisposeBag! = DisposeBag()
     
@@ -213,7 +212,13 @@ class LiveDebatController: UIViewController {
         viewModel.input.loadArgumentsI.onNext(())
         
         /// Configure header data view with challenge
-        configureHeader(data: self.dataChallenge)
+        viewModel.output.challengeO
+            .do(onNext: { [weak self] (challenge) in
+                guard let `self` = self else { return }
+                self.configureHeader(data: challenge)
+            })
+            .drive()
+            .disposed(by: disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {

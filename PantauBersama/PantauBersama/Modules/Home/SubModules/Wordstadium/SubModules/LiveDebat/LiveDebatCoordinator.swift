@@ -40,7 +40,6 @@ class LiveDebatCoordinator: BaseCoordinator<Void> {
     override func start() -> Observable<Void> {
         let viewController = LiveDebatController()
         let viewModel = LiveDebatViewModel(navigator: self, challenge: self.challenge, viewType: self.viewType)
-        viewController.dataChallenge = challenge
         viewController.hidesBottomBarWhenPushed = true
         viewController.viewModel = viewModel
         
