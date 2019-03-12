@@ -11,6 +11,7 @@ import RxSwift
 import RxCocoa
 import Common
 import AlamofireImage
+import Networking
 
 class WordstadiumController: UIViewController {
 
@@ -22,7 +23,7 @@ class WordstadiumController: UIViewController {
     
     var viewModel: WordstadiumViewModel!
     private let disposeBag = DisposeBag()
-    
+    private var liniType : LiniType!
     
     private lazy var publicViewModel: ILiniWordstadiumViewModel = LiniPublicViewModel(navigator: viewModel.navigator, showTableHeader: true)
     private lazy var personalViewModel: ILiniWordstadiumViewModel = LiniPersonalViewModel(navigator: viewModel.navigator, showTableHeader: true)
@@ -47,9 +48,11 @@ class WordstadiumController: UIViewController {
                     if i == 0 {
                         self.publicController.view.alpha = 1.0
                         self.personalController.view.alpha = 0.0
+                        self.liniType = .public
                     } else {
                         self.publicController.view.alpha = 0.0
                         self.personalController.view.alpha = 1.0
+                        self.liniType = .personal
                     }
                 })
             })
@@ -76,6 +79,7 @@ class WordstadiumController: UIViewController {
         
         
         tooltipButton.rx.tap
+            .map({ self.liniType })
             .bind(to: viewModel.input.tooltipTriigger)
             .disposed(by: disposeBag)
         
