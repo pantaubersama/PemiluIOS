@@ -235,6 +235,8 @@ class LiveDebatViewModel: ViewModelType {
             Messaging.messaging().subscribe(toTopic: "ios-audience-\(challenge.id)")
             return DebatViewType.participant
         } else {
+            // subscribe notifications from Fighters
+            Messaging.messaging().subscribe(toTopic: "ios-fighter-\(challenge.id)")
             return DebatViewType.watch
         }
     }
