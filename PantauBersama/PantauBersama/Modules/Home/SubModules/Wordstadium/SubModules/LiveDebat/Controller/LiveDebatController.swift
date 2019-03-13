@@ -113,6 +113,7 @@ class LiveDebatController: UIViewController {
             .filter({ !$0.isEmpty })
             .do(onNext: { [unowned self](_) in
                 self.tvInputDebat.text = ""
+                self.view.endEditing(true)
             })
             .bind(to: self.viewModel.input.sendArgumentsI)
             .disposed(by: disposeBag)
@@ -262,10 +263,14 @@ class LiveDebatController: UIViewController {
         let keyboardFrame: CGRect = (info[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         
         // move input view above the keyboard and collapse the header
-        UIView.animate(withDuration: 0.4) { [unowned self] in
+        UIView.animate(withDuration: 0.4, animations: { [unowned self] in
             self.bottomMargin.constant += keyboardFrame.height
+            self.constraintTableViewBottom.constant += keyboardFrame.height
+            
             //            self.constraintInputViewBottom.constant += keyboardFrame.height
             self.view.layoutIfNeeded()
+        }) { (_) in
+            self.scrollToBottom()
         }
         collapseHeader()
     }
@@ -275,6 +280,7 @@ class LiveDebatController: UIViewController {
         // bring input view down
         UIView.animate(withDuration: 0.1) { [unowned self] in
             self.bottomMargin.constant = 5
+            self.constraintTableViewBottom.constant = 105
             self.view.layoutIfNeeded()
         }
     }
