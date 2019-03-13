@@ -103,7 +103,7 @@ class LiveDebatViewModel: ViewModelType {
         let timer = Observable<Int>.timer(0, period: syncInterval, scheduler: MainScheduler.instance).mapToVoid()
         let syncWord = Observable.of(timer, syncWordS.asObservable())
             .merge()
-            .flatMapLatest({ self.getArguments() })
+            .flatMapLatest({ [unowned self] in self.getArguments() })
             .filter({ [weak self](words) -> Bool in
                 guard let `self` = self else { return false }
                 guard let currentLastWord = self.arguments.value.last else { return false }
@@ -117,14 +117,14 @@ class LiveDebatViewModel: ViewModelType {
                 
                 self.determineRoleFromLatestWord(words: words)
             })
-            .map({ _ in
-                return IndexPath(row: self.arguments.value.count - 1, section: 0)
+            .map({ [weak self]_ in
+                return IndexPath(row: (self?.arguments.value.count ?? 0) - 1, section: 0)
             })
             .asDriverOnErrorJustComplete()
         
         
         let loadArguments = loadArgumentS
-            .flatMapLatest({ self.getArguments() })
+            .flatMapLatest({ [unowned self] in self.getArguments() })
             .do(onNext: { [weak self](words) in
                 guard let `self` = self else { return }
                 self.arguments.accept(words)
@@ -134,7 +134,7 @@ class LiveDebatViewModel: ViewModelType {
             .asDriverOnErrorJustComplete()
         
         let sendArgument = sendArgumentS
-            .flatMapLatest({ self.sendArgument(word: $0) })
+            .flatMapLatest({ [unowned self] in self.sendArgument(word: $0) })
             .do(onNext: { [weak self](word) in
                 guard let `self` = self else { return }
                 var latestValue = self.arguments.value
@@ -142,18 +142,18 @@ class LiveDebatViewModel: ViewModelType {
                 self.arguments.accept(latestValue)
                 self.viewTypeS.onNext(.theirTurn)
             })
-            .map({ _ in
-                return IndexPath(row: self.arguments.value.count - 1, section: 0)
+            .map({ [weak self]_ in
+                return IndexPath(row: (self?.arguments.value.count ?? 0) - 1, section: 0)
             })
             .asDriverOnErrorJustComplete()
         
         let sendComment = sendCommentS
-            .flatMapLatest({ self.sendComment(word: $0) })
+            .flatMapLatest({ [unowned self] in self.sendComment(word: $0) })
             .mapToVoid()
             .asDriverOnErrorJustComplete()
         
         let latestComment = latestCommentS
-            .flatMapLatest({ self.getComments() })
+            .flatMapLatest({ [unowned self] in self.getComments() })
             .map({ $0.last })
             .asDriverOnErrorJustComplete()
             

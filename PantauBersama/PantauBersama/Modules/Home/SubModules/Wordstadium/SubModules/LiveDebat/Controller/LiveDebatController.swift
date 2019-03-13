@@ -79,9 +79,9 @@ class LiveDebatController: UIViewController {
         // listen whether the last cell displayed or not
         // if yes, then rotate the btnScroll and set tag to 1 (0 = scroll to bottom, 1 = scroll to top)
         tableViewDebat.rx.willDisplayCell
-            .filter({ _ in !self.viewModel.output.argumentsO.value.isEmpty })
+            .filter({ [unowned self]_ in !self.viewModel.output.argumentsO.value.isEmpty })
             .map({ $0.indexPath })
-            .map({ $0.row == self.viewModel.output.argumentsO.value.count - 1 })
+            .map({ [unowned self] in $0.row == self.viewModel.output.argumentsO.value.count - 1 })
             .bind { [unowned self](isOnBottom) in
                 self.btnScroll.tag = isOnBottom ? 0 : 1
                 self.btnScroll.rotate(degree: isOnBottom ? 180 : 0)
@@ -130,7 +130,7 @@ class LiveDebatController: UIViewController {
             .do(onNext: { [unowned self](_) in
                 self.tvInputComment.text = ""
             })
-            .filter({ (content) -> Bool in
+            .filter({ [unowned self](content) -> Bool in
                 return !content.isEmpty && self.tvInputComment.textColor != .lightGray
             })
             .bind(to: self.viewModel.input.sendCommentI)
