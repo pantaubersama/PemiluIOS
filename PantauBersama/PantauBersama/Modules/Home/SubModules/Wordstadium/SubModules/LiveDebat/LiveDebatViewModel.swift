@@ -11,6 +11,7 @@ import Common
 import RxSwift
 import RxCocoa
 import Networking
+import FirebaseMessaging
 
 class LiveDebatViewModel: ViewModelType {
     struct Input {
@@ -81,7 +82,13 @@ class LiveDebatViewModel: ViewModelType {
             latestCommentI: latestCommentS.asObserver()
         )
         
-        let back = backS.flatMap({navigator.back()})
+        let back = backS
+            .do(onNext: { (_) in
+                /// Unsubcribe topic debat
+                Messaging.messaging().unsubscribe(fromTopic: "ios-fighter-\(challenge.id)")
+                Messaging.messaging().unsubscribe(fromTopic: "ios-audience-\(challenge.id)")
+            })
+            .flatMap({navigator.back()})
             .asDriverOnErrorJustComplete()
         
         let detail = detailS.flatMap({navigator.launchDetail()})
@@ -222,8 +229,14 @@ class LiveDebatViewModel: ViewModelType {
         let isParticipant = challenge.audiences.contains(where: { $0.email == myEmail })
         
         if  isParticipant {
+            /// Register subscribe notifications for Fighters and Audiences
+            /// Because we need data new argument and new comment
+            Messaging.messaging().subscribe(toTopic: "ios-fighter-\(challenge.id)")
+            Messaging.messaging().subscribe(toTopic: "ios-audience-\(challenge.id)")
             return DebatViewType.participant
         } else {
+            // subscribe notifications from Fighters
+            Messaging.messaging().subscribe(toTopic: "ios-fighter-\(challenge.id)")
             return DebatViewType.watch
         }
     }
