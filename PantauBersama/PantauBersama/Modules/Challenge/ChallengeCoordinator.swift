@@ -46,7 +46,7 @@ extension ChallengeCoordinator: ChallengeNavigator {
     }
     
     func openLiveDebatDone(challenge: Challenge) -> Observable<Void> {
-        let liveDebatDoneCoordinator = LiveDebatCoordinator(navigationController: self.navigationController, challenge: challenge, viewType: .done)
+        let liveDebatDoneCoordinator = LiveDebatCoordinator(navigationController: self.navigationController, challenge: challenge)
         return coordinate(to: liveDebatDoneCoordinator)
     }
     

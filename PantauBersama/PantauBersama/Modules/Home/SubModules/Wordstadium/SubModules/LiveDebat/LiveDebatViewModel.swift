@@ -64,7 +64,7 @@ class LiveDebatViewModel: ViewModelType {
     private let latestCommentS = PublishSubject<Void>()
     private let syncWordS = PublishSubject<Void>()
     
-    init(navigator: LiveDebatNavigator, challenge: Challenge, viewType: DebatViewType) {
+    init(navigator: LiveDebatNavigator, challenge: Challenge) {
         self.navigator = navigator
         self.challenge = challenge
         

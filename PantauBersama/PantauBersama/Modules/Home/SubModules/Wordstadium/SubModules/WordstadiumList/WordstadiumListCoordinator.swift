@@ -51,7 +51,7 @@ extension WordstadiumListCoordinator: WordstadiumListNavigator {
             let challengeCoordinator = ChallengeCoordinator(navigationController: navigationController, data: challenge)
             return coordinate(to: challengeCoordinator)
         case .liveNow:
-            let debatLiveCoordinator = LiveDebatCoordinator(navigationController: self.navigationController, challenge: challenge, viewType: .watch)
+            let debatLiveCoordinator = LiveDebatCoordinator(navigationController: self.navigationController, challenge: challenge)
             return coordinate(to: debatLiveCoordinator)
         default:
             return Observable.empty()

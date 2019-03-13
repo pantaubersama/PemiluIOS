@@ -30,7 +30,6 @@ class DebatCommentViewModel: ViewModelType {
     var input: Input
     var output: Output!
     
-    private let viewType: DebatViewType
     private let challenge: Challenge
     private let navigator: DebatCommentNavigator
     private let backS = PublishSubject<Void>()
@@ -38,10 +37,8 @@ class DebatCommentViewModel: ViewModelType {
     private let comments = BehaviorRelay<[Word]>(value: [])
     private let sendCommentS = PublishSubject<String>()
     
-    //TODO: remove viewType later
-    init(navigator: DebatCommentNavigator, viewType: DebatViewType, challenge: Challenge) {
+    init(navigator: DebatCommentNavigator, challenge: Challenge) {
         self.navigator = navigator
-        self.viewType = viewType
         self.challenge = challenge
         
         input = Input(
