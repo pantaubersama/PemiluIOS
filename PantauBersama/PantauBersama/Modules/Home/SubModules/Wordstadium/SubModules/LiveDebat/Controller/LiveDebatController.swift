@@ -79,9 +79,9 @@ class LiveDebatController: UIViewController {
         // listen whether the last cell displayed or not
         // if yes, then rotate the btnScroll and set tag to 1 (0 = scroll to bottom, 1 = scroll to top)
         tableViewDebat.rx.willDisplayCell
-            .filter({ _ in !self.viewModel.output.argumentsO.value.isEmpty })
+            .filter({ [unowned self]_ in !self.viewModel.output.argumentsO.value.isEmpty })
             .map({ $0.indexPath })
-            .map({ $0.row == self.viewModel.output.argumentsO.value.count - 1 })
+            .map({ [unowned self] in $0.row == self.viewModel.output.argumentsO.value.count - 1 })
             .bind { [unowned self](isOnBottom) in
                 self.btnScroll.tag = isOnBottom ? 0 : 1
                 self.btnScroll.rotate(degree: isOnBottom ? 180 : 0)
@@ -113,6 +113,7 @@ class LiveDebatController: UIViewController {
             .filter({ !$0.isEmpty })
             .do(onNext: { [unowned self](_) in
                 self.tvInputDebat.text = ""
+                self.view.endEditing(true)
             })
             .bind(to: self.viewModel.input.sendArgumentsI)
             .disposed(by: disposeBag)
@@ -129,7 +130,7 @@ class LiveDebatController: UIViewController {
             .do(onNext: { [unowned self](_) in
                 self.tvInputComment.text = ""
             })
-            .filter({ (content) -> Bool in
+            .filter({ [unowned self](content) -> Bool in
                 return !content.isEmpty && self.tvInputComment.textColor != .lightGray
             })
             .bind(to: self.viewModel.input.sendCommentI)
@@ -262,10 +263,14 @@ class LiveDebatController: UIViewController {
         let keyboardFrame: CGRect = (info[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         
         // move input view above the keyboard and collapse the header
-        UIView.animate(withDuration: 0.4) { [unowned self] in
+        UIView.animate(withDuration: 0.4, animations: { [unowned self] in
             self.bottomMargin.constant += keyboardFrame.height
+            self.constraintTableViewBottom.constant += keyboardFrame.height
+            
             //            self.constraintInputViewBottom.constant += keyboardFrame.height
             self.view.layoutIfNeeded()
+        }) { (_) in
+            self.scrollToBottom()
         }
         collapseHeader()
     }
@@ -275,6 +280,7 @@ class LiveDebatController: UIViewController {
         // bring input view down
         UIView.animate(withDuration: 0.1) { [unowned self] in
             self.bottomMargin.constant = 5
+            self.constraintTableViewBottom.constant = 105
             self.view.layoutIfNeeded()
         }
     }
