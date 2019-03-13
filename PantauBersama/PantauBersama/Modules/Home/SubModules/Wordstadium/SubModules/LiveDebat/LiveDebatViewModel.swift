@@ -154,7 +154,7 @@ class LiveDebatViewModel: ViewModelType {
         
         let latestComment = latestCommentS
             .flatMapLatest({ self.getComments() })
-            .map({ $0.first })
+            .map({ $0.last })
             .asDriverOnErrorJustComplete()
             
         output = Output(
