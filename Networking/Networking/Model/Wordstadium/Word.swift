@@ -33,7 +33,7 @@ public struct Word: Codable {
 public struct Author: Codable {
     public let id, email, fullName, username: String
     public let avatar: Avatar
-    public let about: String
+    public let about: String?
     private let roleString: String
     
     enum CodingKeys: String, CodingKey {

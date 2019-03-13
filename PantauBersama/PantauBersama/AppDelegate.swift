@@ -193,6 +193,21 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     // This method will be called when app received push notifications in foreground
     @available(iOS 10.0, *)
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        let myEmail = AppState.local()?.user.email ?? ""
+        /// TODO: Hide notifications whenever content type / event type is attack wordstadium and my email is match
+        /// indicating this user is send some Debat comment or argument
+        let userInfo = notification.request.content.userInfo
+        guard let payload = userInfo["payload"] as? String,
+            let data = payload.data(using: .utf8) else { return }
+        do {
+            let response = try JSONDecoder().decode(WordNotifResponse.self, from: data)
+            print("Response JSON: \(response)")
+            if response.word.author.email == myEmail {
+                completionHandler([])
+            }
+        } catch let error {
+            print(error.localizedDescription)
+        }
         completionHandler([UNNotificationPresentationOptions.alert,UNNotificationPresentationOptions.sound,UNNotificationPresentationOptions.badge])
     }
     
