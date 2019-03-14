@@ -110,9 +110,8 @@ class LiveDebatController: UIViewController {
             .map({ [unowned self](_) in
                 return self.tvInputDebat.text.trimmingCharacters(in: .whitespacesAndNewlines)
             })
-            .filter({ !$0.isEmpty })
+            .filter({ [unowned self] in !$0.isEmpty && self.tvInputDebat.textColor != .lightGray })
             .do(onNext: { [unowned self](content) in
-                if content.isEmpty { return }
                 self.tvInputDebat.text = ""
                 self.view.endEditing(true)
             })

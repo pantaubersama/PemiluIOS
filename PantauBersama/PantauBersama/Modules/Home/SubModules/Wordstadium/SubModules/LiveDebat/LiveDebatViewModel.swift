@@ -256,7 +256,7 @@ class LiveDebatViewModel: ViewModelType {
     }
     
     @objc func incomingWord(_ notification: NSNotification) {
-        guard var word = notification.userInfo?["word"] as? Word else { return }
+        guard let word = notification.userInfo?["word"] as? Word else { return }
         if self.isNewWordAdded(words: [word]) {
             self.newWordS.onNext(word)
         }
