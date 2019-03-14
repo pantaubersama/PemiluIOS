@@ -208,6 +208,14 @@ class LiveDebatController: UIViewController {
             })
             .disposed(by: disposeBag)
         
+        viewModel.output.newWordO
+            .drive(onNext: { [weak self](indexPath) in
+                guard let `self` = self else { return }
+                self.tableViewDebat.insertRows(at: [indexPath], with: .right)
+                self.scrollToBottom()
+            })
+            .disposed(by: disposeBag)
+        
         viewModel.output.sendCommentO
             .drive()
             .disposed(by: disposeBag)

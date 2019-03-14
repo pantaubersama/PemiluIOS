@@ -199,8 +199,11 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         let userInfo = notification.request.content.userInfo
         guard let payload = userInfo["payload"] as? String,
             let data = payload.data(using: .utf8) else { return }
+        
         do {
             let response = try JSONDecoder().decode(WordNotifResponse.self, from: data)
+            let wordUserInfo = ["word": response.word]
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "incoming-word"), object: nil, userInfo: wordUserInfo)
             print("Response JSON: \(response)")
             if response.word.author.email == myEmail {
                 completionHandler([])

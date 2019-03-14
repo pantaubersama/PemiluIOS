@@ -42,6 +42,7 @@ class LiveDebatViewModel: ViewModelType {
         let sendCommentO: Driver<Void>
         let syncWordO: Driver<IndexPath>
         let latestCommentO: Driver<Word?>
+        let newWordO: Driver<IndexPath>
     }
     
     var input: Input
@@ -63,6 +64,7 @@ class LiveDebatViewModel: ViewModelType {
     private let sendCommentS = PublishSubject<String>()
     private let latestCommentS = PublishSubject<Void>()
     private let syncWordS = PublishSubject<Void>()
+    private let newWordS = PublishSubject<Word>()
     
     init(navigator: LiveDebatNavigator, challenge: Challenge) {
         self.navigator = navigator
@@ -113,10 +115,13 @@ class LiveDebatViewModel: ViewModelType {
             .flatMapLatest({ [unowned self] in self.getArguments() })
             .filter({ [weak self](words) -> Bool in
                 guard let `self` = self else { return false }
-                guard let currentLastWord = self.arguments.value.last else { return false }
-                guard let lastRemoteWord = words.last else { return false }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 5, execute: {
+                    let word = words.first
+                    let wordUserInfo = ["word": word]
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "incoming-word"), object: nil, userInfo: wordUserInfo as [AnyHashable : Any])
+                })
                 
-                return currentLastWord.id != lastRemoteWord.id
+                return self.isNewWordAdded(words: words) && self.arguments.value.last?.author.email != "wkwk@wkwkw.com"
             })
             .do(onNext: { [weak self](words) in
                 guard let `self` = self else { return }
@@ -144,10 +149,7 @@ class LiveDebatViewModel: ViewModelType {
             .flatMapLatest({ [unowned self] in self.sendArgument(word: $0) })
             .do(onNext: { [weak self](word) in
                 guard let `self` = self else { return }
-                var latestValue = self.arguments.value
-                latestValue.append(word)
-                self.arguments.accept(latestValue)
-                self.viewTypeS.onNext(.theirTurn)
+                self.appendWord(word: word)
             })
             .map({ [weak self]_ in
                 return IndexPath(row: (self?.arguments.value.count ?? 0) - 1, section: 0)
@@ -163,6 +165,16 @@ class LiveDebatViewModel: ViewModelType {
             .flatMapLatest({ [unowned self] in self.getComments() })
             .map({ $0.last })
             .asDriverOnErrorJustComplete()
+        
+        let newWord = newWordS
+            .do(onNext: {[weak self](word) in
+                guard let `self` = self else { return }
+                self.appendWord(word: word)
+            })
+            .map({ [weak self]_ in
+                return IndexPath(row: (self?.arguments.value.count ?? 0) - 1, section: 0)
+            })
+            .asDriverOnErrorJustComplete()
             
         output = Output(
             backO: back,
@@ -177,27 +189,24 @@ class LiveDebatViewModel: ViewModelType {
             sendArgumentO: sendArgument,
             sendCommentO: sendComment,
             syncWordO: syncWord,
-            latestCommentO: latestComment)
+            latestCommentO: latestComment,
+            newWordO: newWord)
     }
     
     private func determineRoleFromLatestWord(words: [Word]) {
-        let myEmail = AppState.local()?.user.email ?? ""
-        let challenger = self.challenge.audiences.filter({ $0.role == .challenger }).first
-        let isParticipant = self.challenge.audiences.contains(where: { $0.email == myEmail })
-        
         // if words is empty it means that debat just started, so the first turn is challenger, then we trigger the viewType
-        if !isParticipant {
+        if !challenge.isParticipant {
             self.viewTypeS.onNext(.watch)
             return
         }
         
         guard let lastWord = words.last else {
-            self.viewTypeS.onNext(myEmail == (challenger?.email ?? "") ? .myTurn : .theirTurn)
+            self.viewTypeS.onNext(challenge.isMyChallenge ? .myTurn : .theirTurn)
             return
         }
         
         // if the last word/argument is my word then viewType is theirTurn
-        self.viewTypeS.onNext(lastWord.author.email == myEmail ? .theirTurn : .myTurn)
+        self.viewTypeS.onNext(lastWord.isMyWord ? .theirTurn : .myTurn)
     }
     
     private func getArguments() -> Observable<[Word]> {
@@ -225,10 +234,8 @@ class LiveDebatViewModel: ViewModelType {
     }
     
     private func getViewTypeFromChallenge() -> DebatViewType {
-        let myEmail = AppState.local()?.user.email ?? ""
-        let isParticipant = challenge.audiences.contains(where: { $0.email == myEmail })
-        
-        if  isParticipant {
+        NotificationCenter.default.addObserver(self, selector: #selector(self.incomingWord(_:)), name: NSNotification.Name(rawValue: "incoming-word"), object: nil)
+        if  self.challenge.isParticipant {
             /// Register subscribe notifications for Fighters and Audiences
             /// Because we need data new argument and new comment
             Messaging.messaging().subscribe(toTopic: "ios-fighter-\(challenge.id)")
@@ -239,5 +246,61 @@ class LiveDebatViewModel: ViewModelType {
             Messaging.messaging().subscribe(toTopic: "ios-fighter-\(challenge.id)")
             return DebatViewType.watch
         }
+    }
+    
+    private func isNewWordAdded(words: [Word]) -> Bool {
+        guard let currentLastWord = self.arguments.value.last else { return false }
+        guard let lastRemoteWord = words.last else { return false }
+        return currentLastWord.id != lastRemoteWord.id && words.count != self.arguments.value.count
+    }
+    
+    private func appendWord(word: Word) {
+        var latestValue = self.arguments.value
+        latestValue.append(word)
+        self.arguments.accept(latestValue)
+        self.viewTypeS.onNext(word.isMyWord ? .theirTurn : .myTurn)
+    }
+    
+    @objc func incomingWord(_ notification: NSNotification) {
+        guard var word = notification.userInfo?["word"] as? Word else { return }
+        word.body = "from noti[ wkwk"
+        word.author.email = "wkwk@wkwkw.com"
+        if self.isNewWordAdded(words: [word]) {
+            self.newWordS.onNext(word)
+        }
+        print("incoming word \(word)")
+    }
+}
+
+extension Word {
+    public var isMyWord: Bool {
+        let myEmail = AppState.local()?.user.email ?? ""
+        return self.author.email == myEmail
+    }
+}
+
+extension Challenge {
+    public var challenger: Audiences? {
+        return self.audiences.filter({ $0.role == .challenger }).first
+    }
+    
+    public var opponents: [Audiences] {
+        return self.audiences.filter({ $0.role != .challenger })
+    }
+    
+    public var isParticipant: Bool {
+        let myEmail = AppState.local()?.user.email ?? ""
+        return self.audiences.contains(where: { $0.email == myEmail })
+    }
+    
+    public var isMyChallenge: Bool {
+        let myEmail = AppState.local()?.user.email ?? ""
+        let challengerEmail = self.challenger?.email ?? ""
+        return myEmail == challengerEmail
+    }
+    
+    public var isAudience: Bool {
+        let myEmail = AppState.local()?.user.email ?? ""
+        return self.opponents.contains(where: { ($0.email ?? "") == myEmail })
     }
 }
