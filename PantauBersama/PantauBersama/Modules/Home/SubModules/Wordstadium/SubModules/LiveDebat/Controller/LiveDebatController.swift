@@ -189,6 +189,7 @@ class LiveDebatController: UIViewController {
             .asDriverOnErrorJustComplete()
             .drive(onNext: { [unowned self] in
                 self.tableViewDebat.reloadData()
+                self.scrollToBottom()
             })
             .disposed(by: disposeBag)
         
@@ -213,6 +214,13 @@ class LiveDebatController: UIViewController {
                 guard let `self` = self else { return }
                 self.tableViewDebat.insertRows(at: [indexPath], with: .right)
                 self.scrollToBottom()
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.output.nextPageO
+            .drive(onNext: { [weak self](indexPaths) in
+                guard let `self` = self else { return }
+                self.tableViewDebat.insertRows(at: indexPaths, with: .none)
             })
             .disposed(by: disposeBag)
         
@@ -562,6 +570,9 @@ extension LiveDebatController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.row == 0 {
+            self.viewModel.input.nextPageI.onNext(())
+        }
         let item = self.viewModel.output.argumentsO.value[indexPath.row]
         if item.author.role == AudienceRole.challenger {
             let cell = tableView.dequeueReusableCell() as ArgumentRightCell

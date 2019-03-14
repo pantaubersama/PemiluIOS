@@ -21,7 +21,7 @@ public enum WordstadiumAPI {
     case wordsAudience(challengeId: String)
     case commentAudience(challengeId: String, words: String)
     case fighterAttack(challengeId: String, words: String)
-    case wordsFighter(challengeId: String)
+    case wordsFighter(challengeId: String, page: Int, perPage: Int)
 }
 
 extension WordstadiumAPI: TargetType {
@@ -114,9 +114,11 @@ extension WordstadiumAPI: TargetType {
             return [
                 "challenge_id": challengeId
             ]
-        case .wordsFighter(let challengeId):
+        case .wordsFighter(let (challengeId, page, perPage)):
             return [
-                "challenge_id": challengeId
+                "challenge_id": challengeId,
+                "page": page,
+                "per_page": perPage
             ]
         default:
             return nil

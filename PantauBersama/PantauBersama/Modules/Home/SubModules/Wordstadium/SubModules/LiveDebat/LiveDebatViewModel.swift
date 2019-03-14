@@ -26,6 +26,7 @@ class LiveDebatViewModel: ViewModelType {
         let sendCommentI: AnyObserver<String>
         let syncWordI: AnyObserver<Void>
         let latestCommentI: AnyObserver<Void>
+        let nextPageI: AnyObserver<Void>
     }
     
     struct Output {
@@ -44,6 +45,7 @@ class LiveDebatViewModel: ViewModelType {
         let latestCommentO: Driver<Word?>
         let newWordO: Driver<IndexPath>
         let timeLeftO: Driver<String>
+        let nextPageO: Driver<[IndexPath]>
     }
     
     var input: Input
@@ -51,6 +53,7 @@ class LiveDebatViewModel: ViewModelType {
     private let navigator: LiveDebatNavigator
     private let challenge: Challenge
     private let syncInterval: Double = 10.0
+    private var currentPage: Int = 1
     
     private let backS = PublishSubject<Void>()
     private let detailS = PublishSubject<Void>()
@@ -67,6 +70,7 @@ class LiveDebatViewModel: ViewModelType {
     private let syncWordS = PublishSubject<Void>()
     private let newWordS = PublishSubject<Word>()
     private let timeLeftS = PublishSubject<Double>()
+    private let nextPageS = PublishSubject<Void>()
     
     init(navigator: LiveDebatNavigator, challenge: Challenge) {
         self.navigator = navigator
@@ -83,7 +87,8 @@ class LiveDebatViewModel: ViewModelType {
             sendArgumentsI: sendArgumentS.asObserver(),
             sendCommentI: sendCommentS.asObserver(),
             syncWordI: syncWordS.asObserver(),
-            latestCommentI: latestCommentS.asObserver()
+            latestCommentI: latestCommentS.asObserver(),
+            nextPageI: nextPageS.asObserver()
         )
         
         let back = backS
@@ -114,7 +119,7 @@ class LiveDebatViewModel: ViewModelType {
         let timer = Observable<Int>.timer(0, period: syncInterval, scheduler: MainScheduler.instance).mapToVoid()
         let syncWord = Observable.of(timer, syncWordS.asObservable())
             .merge()
-            .flatMapLatest({ [unowned self] in self.getArguments() })
+            .flatMapLatest({ [unowned self] in self.getArguments(page: 1) })
             .filter({ [weak self](words) -> Bool in
                 guard let `self` = self else { return false }
                 return self.isNewWordAdded(words: words) && self.arguments.value.last?.author.email != "wkwk@wkwkw.com"
@@ -137,7 +142,7 @@ class LiveDebatViewModel: ViewModelType {
         
         
         let loadArguments = loadArgumentS
-            .flatMapLatest({ [unowned self] in self.getArguments() })
+            .flatMapLatest({ [unowned self] in self.getArguments(page: self.currentPage) })
             .do(onNext: { [weak self](words) in
                 guard let `self` = self else { return }
                 self.arguments.accept(words)
@@ -151,8 +156,31 @@ class LiveDebatViewModel: ViewModelType {
                     self.timeLeftS.onNext(words.last?.timeLeft ?? Double(exactly: challenge.timeLimit ?? 0) ?? 0)
                 }
                 
+                self.currentPage += 1
             })
             .mapToVoid()
+            .asDriverOnErrorJustComplete()
+        
+        let nextPage = nextPageS
+            .flatMap({ [unowned self] in self.getArguments(page: self.currentPage) })
+            .filter({ !$0.isEmpty })
+            .do(onNext: { [weak self](loadedWords) in
+                guard let `self` = self else { return }
+                self.currentPage += 1
+                var latestWords = loadedWords
+                latestWords.append(contentsOf: self.arguments.value)
+                self.arguments.accept(latestWords)
+            })
+            .map({ (words) -> [IndexPath] in
+                var indexPath: [IndexPath] = []
+                print("words count \(words.count)")
+                for row in 1...words.count {
+                    print("row:: \(row)")
+                    indexPath.append(IndexPath(row: row - 1, section: 0))
+                }
+                
+                return indexPath
+            })
             .asDriverOnErrorJustComplete()
         
         let sendArgument = sendArgumentS
@@ -208,7 +236,8 @@ class LiveDebatViewModel: ViewModelType {
             syncWordO: syncWord,
             latestCommentO: latestComment,
             newWordO: newWord,
-            timeLeftO: timeLeft)
+            timeLeftO: timeLeft,
+            nextPageO: nextPage)
     }
     
     private func determineRoleFromLatestWord(words: [Word]) {
@@ -229,8 +258,8 @@ class LiveDebatViewModel: ViewModelType {
         self.viewTypeS.onNext((viewType: lastWord.isMyWord ? .theirTurn : .myTurn, author: author))
     }
     
-    private func getArguments() -> Observable<[Word]> {
-        return NetworkService.instance.requestObject(WordstadiumAPI.wordsFighter(challengeId: self.challenge.id), c: BaseResponse<WordsResponse>.self)
+    private func getArguments(page: Int) -> Observable<[Word]> {
+        return NetworkService.instance.requestObject(WordstadiumAPI.wordsFighter(challengeId: self.challenge.id, page: page, perPage: 10), c: BaseResponse<WordsResponse>.self)
             .map({ $0.data.words })
             .asObservable()
     }
