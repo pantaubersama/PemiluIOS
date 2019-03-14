@@ -115,12 +115,6 @@ class LiveDebatViewModel: ViewModelType {
             .flatMapLatest({ [unowned self] in self.getArguments() })
             .filter({ [weak self](words) -> Bool in
                 guard let `self` = self else { return false }
-                DispatchQueue.main.asyncAfter(deadline: .now() + 5, execute: {
-                    let word = words.first
-                    let wordUserInfo = ["word": word]
-                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "incoming-word"), object: nil, userInfo: wordUserInfo as [AnyHashable : Any])
-                })
-                
                 return self.isNewWordAdded(words: words) && self.arguments.value.last?.author.email != "wkwk@wkwkw.com"
             })
             .do(onNext: { [weak self](words) in
@@ -263,12 +257,9 @@ class LiveDebatViewModel: ViewModelType {
     
     @objc func incomingWord(_ notification: NSNotification) {
         guard var word = notification.userInfo?["word"] as? Word else { return }
-        word.body = "from noti[ wkwk"
-        word.author.email = "wkwk@wkwkw.com"
         if self.isNewWordAdded(words: [word]) {
             self.newWordS.onNext(word)
         }
-        print("incoming word \(word)")
     }
 }
 
