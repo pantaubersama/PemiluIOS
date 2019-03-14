@@ -304,7 +304,7 @@ class LiveDebatController: UIViewController {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
-    private func configureViewType(viewConfig: (viewType: DebatViewType, challenge: Challenge)) {
+    private func configureViewType(viewConfig: (viewType: DebatViewType, author: Audiences?)) {
         switch viewConfig.viewType {
         case .watch:
             latestCommentView.isHidden = true
@@ -315,6 +315,8 @@ class LiveDebatController: UIViewController {
             constraintInputViewHeight.constant = 50
             headerTitle.setTitle("LIVE NOW", for: .normal)
             headerTitle.setImage(#imageLiteral(resourceName: "outlineLiveRed24Px"), for: .normal)
+            lblStatusFighter.text = "Giliran \(viewConfig.author?.fullName ?? "") menulis argumen..."
+            lblStatusFighter.typeLabel = "italic"
             break
         case .myTurn:
             latestCommentView.isHidden = true
@@ -337,7 +339,7 @@ class LiveDebatController: UIViewController {
             constraintInputViewHeight.constant = 50
             headerTitle.setTitle("LIVE NOW", for: .normal)
             headerTitle.setImage(#imageLiteral(resourceName: "outlineLiveRed24Px"), for: .normal)
-            lblStatusFighter.text = "Giliran \(viewConfig.challenge.enemyName) menulis argumen..."
+            lblStatusFighter.text = "Giliran \(viewConfig.author?.fullName ?? "") menulis argumen..."
             lblStatusFighter.typeLabel = "italic"
             break
         case .done:

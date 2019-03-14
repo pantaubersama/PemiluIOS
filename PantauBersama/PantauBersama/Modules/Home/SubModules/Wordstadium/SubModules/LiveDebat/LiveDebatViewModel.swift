@@ -19,7 +19,7 @@ class LiveDebatViewModel: ViewModelType {
         let backI: AnyObserver<Void>
         let launchDetailI: AnyObserver<Void>
         let showCommentI: AnyObserver<Void>
-        let viewTypeI: AnyObserver<(viewType: DebatViewType, challenge: Challenge)>
+        let viewTypeI: AnyObserver<(viewType: DebatViewType, author: Audiences?)>
         let showMenuI: AnyObserver<Void>
         let selectMenuI: AnyObserver<String>
         let sendArgumentsI: AnyObserver<String>
@@ -32,7 +32,7 @@ class LiveDebatViewModel: ViewModelType {
         let backO: Driver<Void>
         let launchDetailO: Driver<Void>
         let showCommentO: Driver<Void>
-        let viewTypeO: Driver<(viewType: DebatViewType, challenge: Challenge)>
+        let viewTypeO: Driver<(viewType: DebatViewType, author: Audiences?)>
         let menuO: Driver<Void>
         let menuSelectedO: Driver<String>
         let challengeO: Driver<Challenge>
@@ -55,7 +55,7 @@ class LiveDebatViewModel: ViewModelType {
     private let backS = PublishSubject<Void>()
     private let detailS = PublishSubject<Void>()
     private let commentS = PublishSubject<Void>()
-    private let viewTypeS = PublishSubject<(viewType: DebatViewType, challenge: Challenge)>()
+    private let viewTypeS = PublishSubject<(viewType: DebatViewType, author: Audiences?)>()
     private let menuS = PublishSubject<Void>()
     private let selectMenuS = PublishSubject<String>()
     private let loadArgumentsS = PublishSubject<Void>()
@@ -101,7 +101,7 @@ class LiveDebatViewModel: ViewModelType {
         let comment = commentS.flatMap({navigator.showComment()})
             .asDriverOnErrorJustComplete()
         
-        let viewType = viewTypeS.startWith((viewType: getViewTypeFromChallenge(), challenge: challenge))
+        let viewType = viewTypeS.startWith((viewType: getViewTypeFromChallenge(), author: challenge.challenger))
             .asDriverOnErrorJustComplete()
         
         
@@ -123,6 +123,12 @@ class LiveDebatViewModel: ViewModelType {
                 guard let `self` = self else { return }
                 self.arguments.accept(words)
                 self.determineRoleFromLatestWord(words: words)
+                
+                if !self.challenge.isParticipant {
+                    self.timeLeftS.onNext(words.last?.timeLeft ?? Double(exactly: challenge.timeLimit ?? 0) ?? 0)
+                    let author = self.challenge.audiences.filter({ $0.email != words.last?.author.email ?? "" }).first
+                    self.viewTypeS.onNext((viewType: .watch, author: author))
+                }
             })
             .map({ [weak self]_ in
                 return IndexPath(row: (self?.arguments.value.count ?? 0) - 1, section: 0)
@@ -137,8 +143,14 @@ class LiveDebatViewModel: ViewModelType {
                 self.arguments.accept(words)
                 self.determineRoleFromLatestWord(words: words)
                 
-                let myWord = words.filter({ $0.isMyWord })
-                self.timeLeftS.onNext(myWord.last?.timeLeft ?? 0)
+                // notify time left ui
+                if self.challenge.isParticipant { // when participant use user's latest word obj
+                    let myWord = words.filter({ $0.isMyWord })
+                    self.timeLeftS.onNext(myWord.last?.timeLeft ?? Double(exactly: challenge.timeLimit ?? 0) ?? 0)
+                } else { // when audience use latest word(both challenger's word or opponent's word) obj
+                    self.timeLeftS.onNext(words.last?.timeLeft ?? Double(exactly: challenge.timeLimit ?? 0) ?? 0)
+                }
+                
             })
             .mapToVoid()
             .asDriverOnErrorJustComplete()
@@ -148,6 +160,8 @@ class LiveDebatViewModel: ViewModelType {
             .do(onNext: { [weak self](word) in
                 guard let `self` = self else { return }
                 self.appendWord(word: word)
+                
+                // after successfully send argument, then update the time left
                 self.timeLeftS.onNext(word.timeLeft ?? 0)
             })
             .map({ [weak self]_ in
@@ -198,20 +212,21 @@ class LiveDebatViewModel: ViewModelType {
     }
     
     private func determineRoleFromLatestWord(words: [Word]) {
+        let author = self.challenge.audiences.filter({ $0.email != words.last?.author.email ?? "" }).first
         // if words is empty it means that debat just started, so the first turn is challenger, then we trigger the viewType
         if !challenge.isParticipant {
-            self.viewTypeS.onNext((viewType: .watch, challenge: self.challenge))
+            self.viewTypeS.onNext((viewType: .watch, author: author))
             return
         }
         
         guard let lastWord = words.last else {
             let viewType = challenge.isMyChallenge ? DebatViewType.myTurn : DebatViewType.theirTurn
-            self.viewTypeS.onNext((viewType: viewType, challenge: self.challenge))
+            self.viewTypeS.onNext((viewType: viewType, author: author))
             return
         }
         
         // if the last word/argument is my word then viewType is theirTurn
-        self.viewTypeS.onNext((viewType: lastWord.isMyWord ? .theirTurn : .myTurn, challenge: self.challenge))
+        self.viewTypeS.onNext((viewType: lastWord.isMyWord ? .theirTurn : .myTurn, author: author))
     }
     
     private func getArguments() -> Observable<[Word]> {
@@ -263,7 +278,8 @@ class LiveDebatViewModel: ViewModelType {
         var latestValue = self.arguments.value
         latestValue.append(word)
         self.arguments.accept(latestValue)
-        self.viewTypeS.onNext((viewType: word.isMyWord ? .theirTurn : .myTurn, challenge: self.challenge))
+        let author = self.challenge.audiences.filter({ $0.email != word.author.email }).first
+        self.viewTypeS.onNext((viewType: word.isMyWord ? .theirTurn : .myTurn, author: author))
     }
     
     @objc func incomingWord(_ notification: NSNotification) {
