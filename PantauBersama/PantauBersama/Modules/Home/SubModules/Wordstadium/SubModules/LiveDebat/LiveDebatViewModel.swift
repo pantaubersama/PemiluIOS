@@ -19,7 +19,7 @@ class LiveDebatViewModel: ViewModelType {
         let backI: AnyObserver<Void>
         let launchDetailI: AnyObserver<Void>
         let showCommentI: AnyObserver<Void>
-        let viewTypeI: AnyObserver<DebatViewType>
+        let viewTypeI: AnyObserver<(viewType: DebatViewType, challenge: Challenge)>
         let showMenuI: AnyObserver<Void>
         let selectMenuI: AnyObserver<String>
         let sendArgumentsI: AnyObserver<String>
@@ -32,7 +32,7 @@ class LiveDebatViewModel: ViewModelType {
         let backO: Driver<Void>
         let launchDetailO: Driver<Void>
         let showCommentO: Driver<Void>
-        let viewTypeO: Driver<DebatViewType>
+        let viewTypeO: Driver<(viewType: DebatViewType, challenge: Challenge)>
         let menuO: Driver<Void>
         let menuSelectedO: Driver<String>
         let challengeO: Driver<Challenge>
@@ -43,6 +43,7 @@ class LiveDebatViewModel: ViewModelType {
         let syncWordO: Driver<IndexPath>
         let latestCommentO: Driver<Word?>
         let newWordO: Driver<IndexPath>
+        let timeLeftO: Driver<String>
     }
     
     var input: Input
@@ -54,7 +55,7 @@ class LiveDebatViewModel: ViewModelType {
     private let backS = PublishSubject<Void>()
     private let detailS = PublishSubject<Void>()
     private let commentS = PublishSubject<Void>()
-    private let viewTypeS = PublishSubject<DebatViewType>()
+    private let viewTypeS = PublishSubject<(viewType: DebatViewType, challenge: Challenge)>()
     private let menuS = PublishSubject<Void>()
     private let selectMenuS = PublishSubject<String>()
     private let loadArgumentsS = PublishSubject<Void>()
@@ -65,6 +66,7 @@ class LiveDebatViewModel: ViewModelType {
     private let latestCommentS = PublishSubject<Void>()
     private let syncWordS = PublishSubject<Void>()
     private let newWordS = PublishSubject<Word>()
+    private let timeLeftS = PublishSubject<Double>()
     
     init(navigator: LiveDebatNavigator, challenge: Challenge) {
         self.navigator = navigator
@@ -99,7 +101,7 @@ class LiveDebatViewModel: ViewModelType {
         let comment = commentS.flatMap({navigator.showComment()})
             .asDriverOnErrorJustComplete()
         
-        let viewType = viewTypeS.startWith(getViewTypeFromChallenge())
+        let viewType = viewTypeS.startWith((viewType: getViewTypeFromChallenge(), challenge: challenge))
             .asDriverOnErrorJustComplete()
         
         
@@ -120,7 +122,6 @@ class LiveDebatViewModel: ViewModelType {
             .do(onNext: { [weak self](words) in
                 guard let `self` = self else { return }
                 self.arguments.accept(words)
-                
                 self.determineRoleFromLatestWord(words: words)
             })
             .map({ [weak self]_ in
@@ -135,6 +136,9 @@ class LiveDebatViewModel: ViewModelType {
                 guard let `self` = self else { return }
                 self.arguments.accept(words)
                 self.determineRoleFromLatestWord(words: words)
+                
+                let myWord = words.filter({ $0.isMyWord })
+                self.timeLeftS.onNext(myWord.last?.timeLeft ?? 0)
             })
             .mapToVoid()
             .asDriverOnErrorJustComplete()
@@ -144,6 +148,7 @@ class LiveDebatViewModel: ViewModelType {
             .do(onNext: { [weak self](word) in
                 guard let `self` = self else { return }
                 self.appendWord(word: word)
+                self.timeLeftS.onNext(word.timeLeft ?? 0)
             })
             .map({ [weak self]_ in
                 return IndexPath(row: (self?.arguments.value.count ?? 0) - 1, section: 0)
@@ -169,6 +174,10 @@ class LiveDebatViewModel: ViewModelType {
                 return IndexPath(row: (self?.arguments.value.count ?? 0) - 1, section: 0)
             })
             .asDriverOnErrorJustComplete()
+        
+        let timeLeft = timeLeftS
+            .map({ "\($0)"})
+            .asDriverOnErrorJustComplete()
             
         output = Output(
             backO: back,
@@ -184,23 +193,25 @@ class LiveDebatViewModel: ViewModelType {
             sendCommentO: sendComment,
             syncWordO: syncWord,
             latestCommentO: latestComment,
-            newWordO: newWord)
+            newWordO: newWord,
+            timeLeftO: timeLeft)
     }
     
     private func determineRoleFromLatestWord(words: [Word]) {
         // if words is empty it means that debat just started, so the first turn is challenger, then we trigger the viewType
         if !challenge.isParticipant {
-            self.viewTypeS.onNext(.watch)
+            self.viewTypeS.onNext((viewType: .watch, challenge: self.challenge))
             return
         }
         
         guard let lastWord = words.last else {
-            self.viewTypeS.onNext(challenge.isMyChallenge ? .myTurn : .theirTurn)
+            let viewType = challenge.isMyChallenge ? DebatViewType.myTurn : DebatViewType.theirTurn
+            self.viewTypeS.onNext((viewType: viewType, challenge: self.challenge))
             return
         }
         
         // if the last word/argument is my word then viewType is theirTurn
-        self.viewTypeS.onNext(lastWord.isMyWord ? .theirTurn : .myTurn)
+        self.viewTypeS.onNext((viewType: lastWord.isMyWord ? .theirTurn : .myTurn, challenge: self.challenge))
     }
     
     private func getArguments() -> Observable<[Word]> {
@@ -252,7 +263,7 @@ class LiveDebatViewModel: ViewModelType {
         var latestValue = self.arguments.value
         latestValue.append(word)
         self.arguments.accept(latestValue)
-        self.viewTypeS.onNext(word.isMyWord ? .theirTurn : .myTurn)
+        self.viewTypeS.onNext((viewType: word.isMyWord ? .theirTurn : .myTurn, challenge: self.challenge))
     }
     
     @objc func incomingWord(_ notification: NSNotification) {
@@ -277,6 +288,11 @@ extension Challenge {
     
     public var opponents: [Audiences] {
         return self.audiences.filter({ $0.role != .challenger })
+    }
+    
+    public var enemyName: String {
+        let myEmail = AppState.local()?.user.email ?? ""
+        return self.audiences.filter({ $0.email != myEmail}).first?.fullName ?? ""
     }
     
     public var isParticipant: Bool {

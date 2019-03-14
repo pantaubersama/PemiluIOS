@@ -250,9 +250,9 @@ class LiveDebatController: UIViewController {
         configureTitleView()
         
         viewModel.output.viewTypeO
-            .drive(onNext: { [weak self](viewType) in
+            .drive(onNext: { [weak self](viewConfig) in
                 guard let weakSelf = self else { return }
-                weakSelf.configureViewType(viewType: viewType)
+                weakSelf.configureViewType(viewConfig: viewConfig)
             })
             .disposed(by: disposeBag)
     }
@@ -304,8 +304,8 @@ class LiveDebatController: UIViewController {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
-    private func configureViewType(viewType: DebatViewType) {
-        switch viewType {
+    private func configureViewType(viewConfig: (viewType: DebatViewType, challenge: Challenge)) {
+        switch viewConfig.viewType {
         case .watch:
             latestCommentView.isHidden = true
             viewComentarContainer.isHidden = false
@@ -315,8 +315,6 @@ class LiveDebatController: UIViewController {
             constraintInputViewHeight.constant = 50
             headerTitle.setTitle("LIVE NOW", for: .normal)
             headerTitle.setImage(#imageLiteral(resourceName: "outlineLiveRed24Px"), for: .normal)
-            titleView.setTitle("LIVE NOW", for: .normal)
-            titleView.setImage(#imageLiteral(resourceName: "outlineLiveRed24Px"), for: .normal)
             break
         case .myTurn:
             latestCommentView.isHidden = true
@@ -327,8 +325,8 @@ class LiveDebatController: UIViewController {
             constraintInputViewHeight.constant = 105
             headerTitle.setTitle("LIVE NOW", for: .normal)
             headerTitle.setImage(#imageLiteral(resourceName: "outlineLiveRed24Px"), for: .normal)
-            titleView.setTitle("LIVE NOW", for: .normal)
-            titleView.setImage(#imageLiteral(resourceName: "outlineLiveRed24Px"), for: .normal)
+            lblStatusFighter.text = "Giliran kamu menulis argumen..."
+            lblStatusFighter.typeLabel = "italic"
             break
         case .theirTurn:
             latestCommentView.isHidden = false
@@ -339,8 +337,8 @@ class LiveDebatController: UIViewController {
             constraintInputViewHeight.constant = 50
             headerTitle.setTitle("LIVE NOW", for: .normal)
             headerTitle.setImage(#imageLiteral(resourceName: "outlineLiveRed24Px"), for: .normal)
-            titleView.setTitle("LIVE NOW", for: .normal)
-            titleView.setImage(#imageLiteral(resourceName: "outlineLiveRed24Px"), for: .normal)
+            lblStatusFighter.text = "Giliran \(viewConfig.challenge.enemyName) menulis argumen..."
+            lblStatusFighter.typeLabel = "italic"
             break
         case .done:
             ivHeaderBackground.image = #imageLiteral(resourceName: "bgWordstadiumDone")
@@ -363,8 +361,6 @@ class LiveDebatController: UIViewController {
             constraintInputViewHeight.constant = 50
             headerTitle.setTitle("LIVE NOW", for: .normal)
             headerTitle.setImage(#imageLiteral(resourceName: "outlineLiveRed24Px"), for: .normal)
-            titleView.setTitle("LIVE NOW", for: .normal)
-            titleView.setImage(#imageLiteral(resourceName: "outlineLiveRed24Px"), for: .normal)
         }
     }
     
@@ -475,6 +471,7 @@ class LiveDebatController: UIViewController {
         titleView.fontSize = 14
         titleView.imageEdgeInsets = UIEdgeInsets(top: 0, left: -10, bottom: 0, right: 0)
         titleView.isUserInteractionEnabled = false
+        titleView.setImage(#imageLiteral(resourceName: "icSaldoWhite24"), for: .normal)
         
         if let navBar = self.navigationController?.navigationBar {
             navBar.addSubview(titleView)
@@ -483,9 +480,17 @@ class LiveDebatController: UIViewController {
                 titleView.centerXAnchor.constraint(equalTo: navBar.centerXAnchor),
                 titleView.topAnchor.constraint(equalTo: navBar.topAnchor),
                 titleView.bottomAnchor.constraint(equalTo: navBar.bottomAnchor),
-                titleView.widthAnchor.constraint(equalToConstant: 100)
+                titleView.widthAnchor.constraint(equalToConstant: 200)
                 ])
         }
+        
+        viewModel.output.timeLeftO
+            .drive(onNext: { [weak self]timeLeft in
+                guard let `self` = self else { return }
+                self.titleView.setTitle("\(timeLeft) menit tersisa", for: .normal)
+                self.lblTimeCounter.text = timeLeft
+            })
+            .disposed(by: disposeBag)
     }
     
     private func configureCollapseNavbar(y: CGFloat, collaspingY: CGFloat) {
