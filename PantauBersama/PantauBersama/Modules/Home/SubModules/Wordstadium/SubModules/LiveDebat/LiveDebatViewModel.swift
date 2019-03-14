@@ -115,7 +115,7 @@ class LiveDebatViewModel: ViewModelType {
             .flatMapLatest({ [unowned self] in self.getArguments() })
             .filter({ [weak self](words) -> Bool in
                 guard let `self` = self else { return false }
-                return self.isNewWordAdded(words: words) && self.arguments.value.last?.author.email != "wkwk@wkwkw.com"
+                return self.isNewWordAdded(words: words)
             })
             .do(onNext: { [weak self](words) in
                 guard let `self` = self else { return }
@@ -210,7 +210,7 @@ class LiveDebatViewModel: ViewModelType {
     }
     
     private func getComments() -> Observable<[Word]> {
-        return NetworkService.instance.requestObject(WordstadiumAPI.wordsAudience(challengeId: self.challenge.id), c: BaseResponse<WordsResponse>.self)
+        return NetworkService.instance.requestObject(WordstadiumAPI.wordsAudience(challengeId: self.challenge.id, page: 1, perPage: 1), c: BaseResponse<WordsResponse>.self)
             .map({ $0.data.words })
             .asObservable()
     }

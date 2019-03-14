@@ -10,6 +10,8 @@ import UIKit
 import RxSwift
 import RxCocoa
 import Common
+import RxDataSources
+import Networking
 
 class DebatCommentController: UIViewController {
     @IBOutlet weak var viewInputContainer: UIView!
@@ -21,15 +23,33 @@ class DebatCommentController: UIViewController {
     var viewModel: DebatCommentViewModel!
     
     private let disposeBag = DisposeBag()
+    private var animatedDataSource: RxTableViewSectionedAnimatedDataSource<AnimatableSectionModel<String, Word>>!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.dataSource = self
+        tableView.delegate = nil
+        tableView.dataSource = nil
         tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 70))
         tableView.estimatedRowHeight = 44.0
         tableView.rowHeight = UITableView.automaticDimension
         tableView.registerReusableCell(DebatCommentCell.self)
+        
+        
+        animatedDataSource = RxTableViewSectionedAnimatedDataSource<AnimatableSectionModel<String, Word>> (configureCell: { dataSouce, tableView, indexPath, word in
+            let cell = tableView.dequeueReusableCell(indexPath: indexPath) as DebatCommentCell
+            cell.configureCell(item: DebatCommentCell.Input(word: word))
+            return cell
+        })
+        
+        viewModel.output.commentsO
+            .map({ word in
+                [AnimatableSectionModel(model: "Section", items: word)]
+            })
+            .asObservable()
+            .bind(to: tableView.rx.items(dataSource: animatedDataSource))
+            .disposed(by: disposeBag)
+        
         
         btnSend.rx.tap
             .map({ self.tvComment.text.trimmingCharacters(in: .whitespacesAndNewlines) })
@@ -46,15 +66,30 @@ class DebatCommentController: UIViewController {
             .drive()
             .disposed(by: disposeBag)
         
-        viewModel.output.commentsO
-            .mapToVoid()
-            .skip(1)
-            .take(1)
-            .asDriverOnErrorJustComplete()
-            .drive(onNext: { [unowned self] in
-                self.tableView.reloadData()
-                self.scrollToBottom(animated: false)
+        tableView.rx.contentOffset
+            .distinctUntilChanged()
+            .flatMapLatest { [unowned self] (offset) -> Observable<Void> in
+                if offset.y > self.tableView.contentSize.height - (self.tableView.frame.height * 2) {
+                    return Observable.just(())
+                } else {
+                    return Observable.empty()
+                }
+            }
+            .bind(to: viewModel.input.nextI)
+            .disposed(by: disposeBag)
+        
+        viewModel.output.sendCommentO
+            .map({ word in
+                [AnimatableSectionModel(model: "Section", items: [word])]
             })
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.newCommentO
+            .map({ word in
+                [AnimatableSectionModel(model: "Section", items: [word])]
+            })
+            .drive()
             .disposed(by: disposeBag)
         
         viewModel.input.loadCommentI.onNext(())
@@ -74,28 +109,13 @@ class DebatCommentController: UIViewController {
                 self.dismiss(animated: true, completion: nil)
             }
             .disposed(by: disposeBag)
-        
-        // for dummy ui
-        tableView.dataSource = self
-        tableView.tableFooterView = UIView()
-        tableView.estimatedRowHeight = 44.0
-        tableView.rowHeight = UITableView.automaticDimension
-        tableView.registerReusableCell(DebatCommentCell.self)
-        
-        viewModel.output.sendCommentO
-            .drive(onNext: { [weak self](indexPath) in
-                guard let `self` = self else { return }
-                self.tableView.insertRows(at: [indexPath], with: .right)
-                self.scrollToBottom()
-            })
-            .disposed(by: disposeBag)
     }
     
-    private func scrollToBottom(animated: Bool = true) {
-        if (self.tableView.indexPathsForVisibleRows?.count ?? 0) != 0 {
-            self.tableView.scrollToRow(at: IndexPath(row: self.viewModel.output.commentsO.value.count - 1, section: 0), at: .bottom, animated: animated)
-        }
-    }
+//    private func scrollToBottom(animated: Bool = true) {
+//        if (self.tableView.indexPathsForVisibleRows?.count ?? 0) != 0 {
+//            self.tableView.scrollToRow(at: IndexPath(row: self.viewModel.output.commentsO.value.count - 1, section: 0), at: .bottom, animated: animated)
+//        }
+//    }
     
     private func configureInputView() {
         viewModel.output.viewTypeO
@@ -132,20 +152,31 @@ class DebatCommentController: UIViewController {
     }
 }
 
-extension DebatCommentController: UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.output.commentsO.value.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let word = self.viewModel.output.commentsO.value[indexPath.row]
-        let cell = tableView.dequeueReusableCell() as DebatCommentCell
-        cell.configureCell(item: DebatCommentCell.Input(word: word))
-        
-        return cell
-    }
-}
+//extension DebatCommentController: UITableViewDataSource {
+//    func numberOfSections(in tableView: UITableView) -> Int {
+//        return 1
+//    }
+//
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return viewModel.output.commentsO.value.count
+//    }
+//
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        let word = self.viewModel.output.commentsO.value[indexPath.row]
+//        let cell = tableView.dequeueReusableCell() as DebatCommentCell
+//        cell.configureCell(item: DebatCommentCell.Input(word: word))
+//
+//        return cell
+//    }
+//}
+//
+//
+//extension DebatCommentController: UITableViewDelegate {
+//
+//    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+//        if indexPath.row == self.viewModel.output.commentsO.value.count - 1 {
+//            self.viewModel.input.nextI.onNext(())
+//        }
+//    }
+//
+//}

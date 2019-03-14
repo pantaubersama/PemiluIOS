@@ -11,6 +11,7 @@
 //   let word = try? newJSONDecoder().decode(Word.self, from: jsonData)
 
 import Foundation
+import RxDataSources
 
 public struct Word: Codable {
     public let id, type, challengeID, body: String
@@ -48,4 +49,16 @@ extension Author {
     public var role: AudienceRole {
         return AudienceRole(rawValue: roleString) ?? AudienceRole.challenger
     }
+}
+
+extension Word: IdentifiableType {
+    public typealias Identity = String
+    
+    public var identity: Identity { return id }
+}
+
+extension Word: Equatable { }
+
+public func == (lhs: Word, rhs: Word) -> Bool {
+    return lhs.id == rhs.id
 }
