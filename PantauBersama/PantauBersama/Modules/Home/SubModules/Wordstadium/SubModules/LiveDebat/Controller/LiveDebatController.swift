@@ -110,8 +110,8 @@ class LiveDebatController: UIViewController {
             .map({ [unowned self](_) in
                 return self.tvInputDebat.text.trimmingCharacters(in: .whitespacesAndNewlines)
             })
-            .filter({ !$0.isEmpty })
-            .do(onNext: { [unowned self](_) in
+            .filter({ [unowned self] in !$0.isEmpty && self.tvInputDebat.textColor != .lightGray })
+            .do(onNext: { [unowned self](content) in
                 self.tvInputDebat.text = ""
                 self.view.endEditing(true)
             })
@@ -201,6 +201,14 @@ class LiveDebatController: UIViewController {
             .disposed(by: disposeBag)
         
         viewModel.output.syncWordO
+            .drive(onNext: { [weak self](indexPath) in
+                guard let `self` = self else { return }
+                self.tableViewDebat.insertRows(at: [indexPath], with: .right)
+                self.scrollToBottom()
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.output.newWordO
             .drive(onNext: { [weak self](indexPath) in
                 guard let `self` = self else { return }
                 self.tableViewDebat.insertRows(at: [indexPath], with: .right)

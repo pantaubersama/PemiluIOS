@@ -28,18 +28,16 @@ public enum DebatViewType {
 
 class LiveDebatCoordinator: BaseCoordinator<Void> {
     private let navigationController: UINavigationController
-    private let viewType: DebatViewType
     private let challenge: Challenge
     
-    init(navigationController: UINavigationController, challenge: Challenge, viewType: DebatViewType) {
+    init(navigationController: UINavigationController, challenge: Challenge) {
         self.navigationController = navigationController
-        self.viewType = viewType
         self.challenge = challenge
     }
     
     override func start() -> Observable<Void> {
         let viewController = LiveDebatController()
-        let viewModel = LiveDebatViewModel(navigator: self, challenge: self.challenge, viewType: self.viewType)
+        let viewModel = LiveDebatViewModel(navigator: self, challenge: self.challenge)
         viewController.hidesBottomBarWhenPushed = true
         viewController.viewModel = viewModel
         
@@ -60,7 +58,7 @@ extension LiveDebatCoordinator: LiveDebatNavigator {
     }
     
     func showComment() -> Observable<Void> {
-        let debatCommentCoordinator = DebatCommentCoordinator(navigationController: self.navigationController, viewType: viewType, challenge: self.challenge)
+        let debatCommentCoordinator = DebatCommentCoordinator(navigationController: self.navigationController, challenge: self.challenge)
         return coordinate(to: debatCommentCoordinator)
     }
 }
