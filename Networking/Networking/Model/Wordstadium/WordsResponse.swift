@@ -9,5 +9,6 @@
 import Foundation
 
 public struct WordsResponse: Codable {
+    public let meta: Meta
     public let words: [Word]
 }

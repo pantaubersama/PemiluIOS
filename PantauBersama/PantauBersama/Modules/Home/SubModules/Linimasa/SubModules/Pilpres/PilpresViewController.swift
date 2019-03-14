@@ -42,7 +42,7 @@ class PilpresViewController: UITableViewController {
                     self.tableView.tableHeaderView = self.headerView
                     
                     self.viewModel.output.bannerInfo
-                        .drive(onNext: { (banner) in
+                        .drive(onNext: { [unowned self] (banner) in
                             self.headerView.config(banner: banner, viewModel: self.viewModel.headerViewModel)
                         })
                         .disposed(by: self.disposeBag)
@@ -81,7 +81,7 @@ class PilpresViewController: UITableViewController {
         
         tableView.rx.contentOffset
             .distinctUntilChanged()
-            .flatMapLatest { (offset) -> Observable<Void> in
+            .flatMapLatest { [unowned self] (offset) -> Observable<Void> in
                 if offset.y > self.tableView.contentSize.height -
                     (self.tableView.frame.height * 2) {
                     return Observable.just(())
