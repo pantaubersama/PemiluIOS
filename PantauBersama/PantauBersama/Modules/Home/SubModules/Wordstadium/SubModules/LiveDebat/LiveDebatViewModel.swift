@@ -19,20 +19,21 @@ class LiveDebatViewModel: ViewModelType {
         let backI: AnyObserver<Void>
         let launchDetailI: AnyObserver<Void>
         let showCommentI: AnyObserver<Void>
-        let viewTypeI: AnyObserver<DebatViewType>
+        let viewTypeI: AnyObserver<(viewType: DebatViewType, author: Audiences?)>
         let showMenuI: AnyObserver<Void>
         let selectMenuI: AnyObserver<String>
         let sendArgumentsI: AnyObserver<String>
         let sendCommentI: AnyObserver<String>
         let syncWordI: AnyObserver<Void>
         let latestCommentI: AnyObserver<Void>
+        let nextPageI: AnyObserver<Void>
     }
     
     struct Output {
         let backO: Driver<Void>
         let launchDetailO: Driver<Void>
         let showCommentO: Driver<Void>
-        let viewTypeO: Driver<DebatViewType>
+        let viewTypeO: Driver<(viewType: DebatViewType, author: Audiences?)>
         let menuO: Driver<Void>
         let menuSelectedO: Driver<String>
         let challengeO: Driver<Challenge>
@@ -43,6 +44,8 @@ class LiveDebatViewModel: ViewModelType {
         let syncWordO: Driver<IndexPath>
         let latestCommentO: Driver<Word?>
         let newWordO: Driver<IndexPath>
+        let timeLeftO: Driver<String>
+        let nextPageO: Driver<[IndexPath]>
     }
     
     var input: Input
@@ -50,11 +53,12 @@ class LiveDebatViewModel: ViewModelType {
     private let navigator: LiveDebatNavigator
     private let challenge: Challenge
     private let syncInterval: Double = 10.0
+    private var currentPage: Int = 1
     
     private let backS = PublishSubject<Void>()
     private let detailS = PublishSubject<Void>()
     private let commentS = PublishSubject<Void>()
-    private let viewTypeS = PublishSubject<DebatViewType>()
+    private let viewTypeS = PublishSubject<(viewType: DebatViewType, author: Audiences?)>()
     private let menuS = PublishSubject<Void>()
     private let selectMenuS = PublishSubject<String>()
     private let loadArgumentsS = PublishSubject<Void>()
@@ -65,6 +69,8 @@ class LiveDebatViewModel: ViewModelType {
     private let latestCommentS = PublishSubject<Void>()
     private let syncWordS = PublishSubject<Void>()
     private let newWordS = PublishSubject<Word>()
+    private let timeLeftS = PublishSubject<Double>()
+    private let nextPageS = PublishSubject<Void>()
     
     init(navigator: LiveDebatNavigator, challenge: Challenge) {
         self.navigator = navigator
@@ -81,7 +87,8 @@ class LiveDebatViewModel: ViewModelType {
             sendArgumentsI: sendArgumentS.asObserver(),
             sendCommentI: sendCommentS.asObserver(),
             syncWordI: syncWordS.asObserver(),
-            latestCommentI: latestCommentS.asObserver()
+            latestCommentI: latestCommentS.asObserver(),
+            nextPageI: nextPageS.asObserver()
         )
         
         let back = backS
@@ -99,7 +106,7 @@ class LiveDebatViewModel: ViewModelType {
         let comment = commentS.flatMap({navigator.showComment()})
             .asDriverOnErrorJustComplete()
         
-        let viewType = viewTypeS.startWith(getViewTypeFromChallenge())
+        let viewType = viewTypeS.startWith((viewType: getViewTypeFromChallenge(), author: challenge.challenger))
             .asDriverOnErrorJustComplete()
         
         
@@ -112,7 +119,7 @@ class LiveDebatViewModel: ViewModelType {
         let timer = Observable<Int>.timer(0, period: syncInterval, scheduler: MainScheduler.instance).mapToVoid()
         let syncWord = Observable.of(timer, syncWordS.asObservable())
             .merge()
-            .flatMapLatest({ [unowned self] in self.getArguments() })
+            .flatMapLatest({ [unowned self] in self.getArguments(page: 1) })
             .filter({ [weak self](words) -> Bool in
                 guard let `self` = self else { return false }
                 return self.isNewWordAdded(words: words) && self.arguments.value.last?.author.email != "wkwk@wkwkw.com"
@@ -120,8 +127,13 @@ class LiveDebatViewModel: ViewModelType {
             .do(onNext: { [weak self](words) in
                 guard let `self` = self else { return }
                 self.arguments.accept(words)
-                
                 self.determineRoleFromLatestWord(words: words)
+                
+                if !self.challenge.isParticipant {
+                    self.timeLeftS.onNext(words.last?.timeLeft ?? Double(exactly: challenge.timeLimit ?? 0) ?? 0)
+                    let author = self.challenge.audiences.filter({ $0.email != words.last?.author.email ?? "" }).first
+                    self.viewTypeS.onNext((viewType: .watch, author: author))
+                }
             })
             .map({ [weak self]_ in
                 return IndexPath(row: (self?.arguments.value.count ?? 0) - 1, section: 0)
@@ -130,13 +142,45 @@ class LiveDebatViewModel: ViewModelType {
         
         
         let loadArguments = loadArgumentS
-            .flatMapLatest({ [unowned self] in self.getArguments() })
+            .flatMapLatest({ [unowned self] in self.getArguments(page: self.currentPage) })
             .do(onNext: { [weak self](words) in
                 guard let `self` = self else { return }
                 self.arguments.accept(words)
                 self.determineRoleFromLatestWord(words: words)
+                
+                // notify time left ui
+                if self.challenge.isParticipant { // when participant use user's latest word obj
+                    let myWord = words.filter({ $0.isMyWord })
+                    self.timeLeftS.onNext(myWord.last?.timeLeft ?? Double(exactly: challenge.timeLimit ?? 0) ?? 0)
+                } else { // when audience use latest word(both challenger's word or opponent's word) obj
+                    self.timeLeftS.onNext(words.last?.timeLeft ?? Double(exactly: challenge.timeLimit ?? 0) ?? 0)
+                }
+                
+                self.currentPage += 1
             })
             .mapToVoid()
+            .asDriverOnErrorJustComplete()
+        
+        let nextPage = nextPageS
+            .flatMap({ [unowned self] in self.getArguments(page: self.currentPage) })
+            .filter({ !$0.isEmpty })
+            .do(onNext: { [weak self](loadedWords) in
+                guard let `self` = self else { return }
+                self.currentPage += 1
+                var latestWords = loadedWords
+                latestWords.append(contentsOf: self.arguments.value)
+                self.arguments.accept(latestWords)
+            })
+            .map({ (words) -> [IndexPath] in
+                var indexPath: [IndexPath] = []
+                print("words count \(words.count)")
+                for row in 1...words.count {
+                    print("row:: \(row)")
+                    indexPath.append(IndexPath(row: row - 1, section: 0))
+                }
+                
+                return indexPath
+            })
             .asDriverOnErrorJustComplete()
         
         let sendArgument = sendArgumentS
@@ -144,6 +188,9 @@ class LiveDebatViewModel: ViewModelType {
             .do(onNext: { [weak self](word) in
                 guard let `self` = self else { return }
                 self.appendWord(word: word)
+                
+                // after successfully send argument, then update the time left
+                self.timeLeftS.onNext(word.timeLeft ?? 0)
             })
             .map({ [weak self]_ in
                 return IndexPath(row: (self?.arguments.value.count ?? 0) - 1, section: 0)
@@ -169,6 +216,10 @@ class LiveDebatViewModel: ViewModelType {
                 return IndexPath(row: (self?.arguments.value.count ?? 0) - 1, section: 0)
             })
             .asDriverOnErrorJustComplete()
+        
+        let timeLeft = timeLeftS
+            .map({ "\($0)"})
+            .asDriverOnErrorJustComplete()
             
         output = Output(
             backO: back,
@@ -184,27 +235,31 @@ class LiveDebatViewModel: ViewModelType {
             sendCommentO: sendComment,
             syncWordO: syncWord,
             latestCommentO: latestComment,
-            newWordO: newWord)
+            newWordO: newWord,
+            timeLeftO: timeLeft,
+            nextPageO: nextPage)
     }
     
     private func determineRoleFromLatestWord(words: [Word]) {
+        let author = self.challenge.audiences.filter({ $0.email != words.last?.author.email ?? "" }).first
         // if words is empty it means that debat just started, so the first turn is challenger, then we trigger the viewType
         if !challenge.isParticipant {
-            self.viewTypeS.onNext(.watch)
+            self.viewTypeS.onNext((viewType: .watch, author: author))
             return
         }
         
         guard let lastWord = words.last else {
-            self.viewTypeS.onNext(challenge.isMyChallenge ? .myTurn : .theirTurn)
+            let viewType = challenge.isMyChallenge ? DebatViewType.myTurn : DebatViewType.theirTurn
+            self.viewTypeS.onNext((viewType: viewType, author: author))
             return
         }
         
         // if the last word/argument is my word then viewType is theirTurn
-        self.viewTypeS.onNext(lastWord.isMyWord ? .theirTurn : .myTurn)
+        self.viewTypeS.onNext((viewType: lastWord.isMyWord ? .theirTurn : .myTurn, author: author))
     }
     
-    private func getArguments() -> Observable<[Word]> {
-        return NetworkService.instance.requestObject(WordstadiumAPI.wordsFighter(challengeId: self.challenge.id), c: BaseResponse<WordsResponse>.self)
+    private func getArguments(page: Int) -> Observable<[Word]> {
+        return NetworkService.instance.requestObject(WordstadiumAPI.wordsFighter(challengeId: self.challenge.id, page: page, perPage: 10), c: BaseResponse<WordsResponse>.self)
             .map({ $0.data.words })
             .asObservable()
     }
@@ -252,7 +307,8 @@ class LiveDebatViewModel: ViewModelType {
         var latestValue = self.arguments.value
         latestValue.append(word)
         self.arguments.accept(latestValue)
-        self.viewTypeS.onNext(word.isMyWord ? .theirTurn : .myTurn)
+        let author = self.challenge.audiences.filter({ $0.email != word.author.email }).first
+        self.viewTypeS.onNext((viewType: word.isMyWord ? .theirTurn : .myTurn, author: author))
     }
     
     @objc func incomingWord(_ notification: NSNotification) {
@@ -277,6 +333,11 @@ extension Challenge {
     
     public var opponents: [Audiences] {
         return self.audiences.filter({ $0.role != .challenger })
+    }
+    
+    public var enemyName: String {
+        let myEmail = AppState.local()?.user.email ?? ""
+        return self.audiences.filter({ $0.email != myEmail}).first?.fullName ?? ""
     }
     
     public var isParticipant: Bool {
