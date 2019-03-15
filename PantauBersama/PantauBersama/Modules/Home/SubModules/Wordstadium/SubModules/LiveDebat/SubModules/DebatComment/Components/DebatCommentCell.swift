@@ -28,6 +28,12 @@ class DebatCommentCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.ivAvatar.image = #imageLiteral(resourceName: "icDummyPerson")
+        self.ivAvatar.af_cancelImageRequest()
+    }
+    
 }
 
 extension DebatCommentCell: IReusableCell {
@@ -36,7 +42,9 @@ extension DebatCommentCell: IReusableCell {
     }
     
     func configureCell(item: Input) {
-        self.ivAvatar.show(fromURL: item.word.author.avatar.url ?? "")
+        if let url = item.word.author.avatar.thumbnail.url {
+            self.ivAvatar.af_setImage(withURL: URL(string: url)!)
+        }
         self.lbContent.text = item.word.body
         self.lbCreatedAt.text = item.word.createdAt.timeAgoSinceDateForm2
         self.lbName.text = item.word.author.fullName
