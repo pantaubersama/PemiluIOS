@@ -220,7 +220,12 @@ class LiveDebatController: UIViewController {
         viewModel.output.nextPageO
             .drive(onNext: { [weak self](indexPaths) in
                 guard let `self` = self else { return }
-                self.tableViewDebat.insertRows(at: indexPaths, with: .none)
+                self.tableViewDebat.reloadData()
+                
+                if let lastIndexPath = indexPaths.last {
+                    self.tableViewDebat.scrollToRow(at: lastIndexPath, at: UITableView.ScrollPosition.bottom, animated: false)
+                }
+                
             })
             .disposed(by: disposeBag)
         

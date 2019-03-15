@@ -162,6 +162,7 @@ class LiveDebatViewModel: ViewModelType {
             .asDriverOnErrorJustComplete()
         
         let nextPage = nextPageS
+            .skip(1)
             .flatMap({ [unowned self] in self.getArguments(page: self.currentPage) })
             .filter({ !$0.isEmpty })
             .do(onNext: { [weak self](loadedWords) in
