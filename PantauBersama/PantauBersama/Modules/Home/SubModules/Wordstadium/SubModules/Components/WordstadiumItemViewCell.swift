@@ -39,6 +39,15 @@ class WordstadiumItemViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        rightPersonIv.image = #imageLiteral(resourceName: "icDummyPerson")
+        leftPersonIv.image = #imageLiteral(resourceName: "icDummyPerson")
+        rightPersonIv.af_cancelImageRequest()
+        leftPersonIv.af_cancelImageRequest()
+        backgroundItem.image = nil
+    }
+    
 }
 
 extension WordstadiumItemViewCell: IReusableCell {
@@ -62,12 +71,16 @@ extension WordstadiumItemViewCell: IReusableCell {
         
         // configure header challenger side
         leftUsername.text = challenger?.fullName ?? ""
-        leftPersonIv.show(fromURL: challenger?.avatar?.url ?? "")
+        if let url = challenger?.avatar?.thumbnail.url {
+            leftPersonIv.af_setImage(withURL: URL(string: url)!)
+        }
         
         // if there is an opponents candidate, then configure header opponent side
         if let opponent = opponents.first {
             rightPersonView.isHidden = false
-            rightPersonIv.show(fromURL: opponent.avatar?.url ?? "")
+            if let url = opponent.avatar?.thumbnail.url {
+                rightPersonIv.af_setImage(withURL: URL(string: url)!)
+            }
             
             if opponent.role == .opponent {
                 rightUsername.text = opponent.fullName ?? ""
