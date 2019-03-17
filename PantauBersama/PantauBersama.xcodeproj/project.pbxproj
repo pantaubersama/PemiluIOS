@@ -181,6 +181,8 @@
 		13E6FECB221F2109008CA788 /* LiniWordstadiumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E6FECA221F2109008CA788 /* LiniWordstadiumViewController.swift */; };
 		13E6FECD221F24C9008CA788 /* LiniPublicViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E6FECC221F24C9008CA788 /* LiniPublicViewModel.swift */; };
 		13E6FED0221F27AE008CA788 /* LiniPersonalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E6FECF221F27AE008CA788 /* LiniPersonalViewModel.swift */; };
+		13E82014223E41C400CC5C70 /* WordstadiumEmptyViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E82012223E41C400CC5C70 /* WordstadiumEmptyViewCell.swift */; };
+		13E82015223E41C400CC5C70 /* WordstadiumEmptyViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13E82013223E41C400CC5C70 /* WordstadiumEmptyViewCell.xib */; };
 		13E9D78821E8F025006A0890 /* IJanpolListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E9D78721E8F025006A0890 /* IJanpolListViewModel.swift */; };
 		13E9D78B21E8FCF6006A0890 /* IJanpolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E9D78A21E8FCF5006A0890 /* IJanpolViewController.swift */; };
 		13E9D78E21E9171E006A0890 /* JanpolListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E9D78D21E9171E006A0890 /* JanpolListViewModel.swift */; };
@@ -788,6 +790,8 @@
 		13E6FECA221F2109008CA788 /* LiniWordstadiumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiniWordstadiumViewController.swift; sourceTree = "<group>"; };
 		13E6FECC221F24C9008CA788 /* LiniPublicViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiniPublicViewModel.swift; sourceTree = "<group>"; };
 		13E6FECF221F27AE008CA788 /* LiniPersonalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiniPersonalViewModel.swift; sourceTree = "<group>"; };
+		13E82012223E41C400CC5C70 /* WordstadiumEmptyViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WordstadiumEmptyViewCell.swift; path = PantauBersama/Modules/Home/SubModules/Wordstadium/SubModules/Components/WordstadiumEmptyViewCell.swift; sourceTree = SOURCE_ROOT; };
+		13E82013223E41C400CC5C70 /* WordstadiumEmptyViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = WordstadiumEmptyViewCell.xib; path = PantauBersama/Modules/Home/SubModules/Wordstadium/SubModules/Components/WordstadiumEmptyViewCell.xib; sourceTree = SOURCE_ROOT; };
 		13E9D78721E8F025006A0890 /* IJanpolListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IJanpolListViewModel.swift; sourceTree = "<group>"; };
 		13E9D78A21E8FCF5006A0890 /* IJanpolViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IJanpolViewController.swift; sourceTree = "<group>"; };
 		13E9D78D21E9171E006A0890 /* JanpolListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JanpolListViewModel.swift; sourceTree = "<group>"; };
@@ -1880,6 +1884,8 @@
 				131DBDB92215AFE3005203FF /* View */,
 				13E170D2221311A70018EDB4 /* WordstadiumItemViewCell.swift */,
 				13E170D3221311A70018EDB4 /* WordstadiumItemViewCell.xib */,
+				13E82012223E41C400CC5C70 /* WordstadiumEmptyViewCell.swift */,
+				13E82013223E41C400CC5C70 /* WordstadiumEmptyViewCell.xib */,
 				1320595C221359C200BE9456 /* WordstadiumCollectionCell.swift */,
 				1320595D221359C200BE9456 /* WordstadiumCollectionCell.xib */,
 				1320596022135B1500BE9456 /* WordstadiumViewCell.swift */,
@@ -3642,6 +3648,7 @@
 				84B8C1C822157A27004BC1FE /* PublishChallengeController.xib in Resources */,
 				840850DD21D2832200696CB3 /* BadgeController.xib in Resources */,
 				84CA10BF21EF0DE80025CF10 /* AboutController.xib in Resources */,
+				13E82015223E41C400CC5C70 /* WordstadiumEmptyViewCell.xib in Resources */,
 				842A4A0321D7C6810050AA51 /* CameraController.xib in Resources */,
 				84B8C1C222157584004BC1FE /* FooterProfileView.xib in Resources */,
 				84A945BC22240A8F00944C6B /* SearchUserController.xib in Resources */,
@@ -4451,6 +4458,7 @@
 				13F456D621DBA2F600CE45F1 /* BannerHeaderViewModel.swift in Sources */,
 				1149EB81221A9DE90050F366 /* DebatDetailViewModel.swift in Sources */,
 				84A945C022240D6600944C6B /* SearchUserCoordinator.swift in Sources */,
+				13E82014223E41C400CC5C70 /* WordstadiumEmptyViewCell.swift in Sources */,
 				84FA425A2212BB4B008215C4 /* TantanganCell.swift in Sources */,
 				1108871C221271CD0041B821 /* LiveDebatCoordinator.swift in Sources */,
 				840850E121D2844700696CB3 /* BadgeCoordinator.swift in Sources */,

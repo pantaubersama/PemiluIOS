@@ -17,7 +17,8 @@ protocol ILiniWordstadiumViewModelInput {
     var moreI: AnyObserver<Challenge> { get }
     var moreMenuI: AnyObserver<WordstadiumType> { get }
     var seeMoreI: AnyObserver<SectionWordstadium> { get }
-    var itemSelectedI: AnyObserver<Challenge> { get }
+    var itemSelectedI: AnyObserver<IndexPath> { get }
+    var collectionSelectedI: AnyObserver<Challenge> { get }
 }
 
 protocol ILiniWordstadiumViewModelOutput {
@@ -56,22 +57,26 @@ extension ILiniWordstadiumViewModel {
     }
     
     func transformToSection(challenge: [Challenge],progress: ProgressType, type: LiniType) -> [SectionWordstadium] {
-        var item:[Challenge] = []
-        var itemLive:[Challenge] = []
+        var items:[CellModel] = []
         var title: String = ""
         var description: String = ""
         
         switch progress {
         case .liveNow:
-            item.append(challenge[0])
-            itemLive = challenge
+            items = [CellModel.live(challenge)]
             if type == .public {
                 title = "Live Now"
             } else {
                 title = "Challenge in Progress"
             }
         case .comingSoon:
-            item = challenge
+            if challenge.count == 0 {
+                items = [CellModel.empty]
+            } else {
+                for item in challenge {
+                    items.append(CellModel.standard(item))
+                }
+            }
             if type == .public {
                 title = "LINIMASA DEBAT"
                 description = "Daftar challenge dan debat yang akan atau sudah berlangsung ditampilkan semua di sini."
@@ -80,7 +85,13 @@ extension ILiniWordstadiumViewModel {
                 description = "Daftar tantangan dan debat yang akan atau sudah kamu ikuti ditampilkan semua di sini."
             }
         case .done:
-            item = challenge
+            if challenge.count == 0 {
+                items = [CellModel.empty]
+            } else {
+                for item in challenge {
+                    items.append(CellModel.standard(item))
+                }
+            }
             if type == .public {
                 title = "Debat: Done"
             } else {
@@ -88,7 +99,13 @@ extension ILiniWordstadiumViewModel {
             }
             
         case .challenge:
-            item = challenge
+            if challenge.count == 0 {
+                items = [CellModel.empty]
+            } else {
+                for item in challenge {
+                    items.append(CellModel.standard(item))
+                }
+            }
             if type == .public {
                 title = "Challenge"
             } else {
@@ -97,7 +114,7 @@ extension ILiniWordstadiumViewModel {
         }
         
         
-        return [SectionWordstadium(title: title, descriptiom: description,type: type, itemType: progress, items: item, itemsLive: itemLive )]
+        return [SectionWordstadium(title: title, descriptiom: description,type: type, itemType: progress, items: items )]
     }
 
 }

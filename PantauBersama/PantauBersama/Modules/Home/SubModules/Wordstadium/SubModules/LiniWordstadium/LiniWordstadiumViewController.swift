@@ -11,6 +11,7 @@ import RxCocoa
 import RxSwift
 import Common
 import RxDataSources
+import Networking
 
 class LiniWordstadiumViewController: UITableViewController, ILiniWordstadiumViewController {
     
@@ -67,33 +68,40 @@ class LiniWordstadiumViewController: UITableViewController, ILiniWordstadiumView
         
         dataSource = RxTableViewSectionedReloadDataSource<SectionWordstadium>(
             configureCell: { (dataSource, tableView, indexPath, item) in
-                let wordstadium = dataSource.sectionModels[indexPath.section]
-                switch wordstadium.itemType {
-                case .liveNow :
+                switch item {
+                case .live(let challenges):
+                    let sectionData = dataSource.sectionModels[indexPath.section]
                     let cell = tableView.dequeueReusableCell(indexPath: indexPath) as WordstadiumViewCell
-                    cell.configureCell(item: WordstadiumViewCell.Input(wordstadium: wordstadium, viewModel: self.viewModel))
-                    cell.collectionView.reloadData()
+                    cell.configureCell(item: WordstadiumViewCell.Input(challenges: challenges, viewModel: self.viewModel, sectionData: sectionData))
                     return cell
-                default:
+                case .standard(let challenge):
                     let cell = tableView.dequeueReusableCell(indexPath: indexPath) as WordstadiumItemViewCell
-                    cell.configureCell(item: WordstadiumItemViewCell.Input(wordstadium: item))
+                    cell.configureCell(item: WordstadiumItemViewCell.Input(wordstadium: challenge))
                     cell.moreMenuBtn.rx.tap
-                        .map({ item })
+                        .map({ challenge })
                         .bind(to: self.viewModel.input.moreI)
                         .disposed(by: self.disposeBag)
                     
+                    return cell
+                case .empty:
+                    let cell = tableView.dequeueReusableCell(indexPath: indexPath) as WordstadiumEmptyViewCell
                     return cell
                 }
         })
         
         tableView.rx.itemSelected
-            .map{ (indexPath) in
-                let wordstadium = self.dataSource.sectionModels[indexPath.section]
-                return wordstadium.items[indexPath.row]
-            }
             .bind(to: viewModel.input.itemSelectedI)
             .disposed(by: disposeBag)
         
+//        tableView.rx
+//            .itemSelected
+//            .map { indexPath in
+//                return dataSource[indexPath]
+//            }
+//            .bind(to: viewModel.input.itemSelectedI)
+//            .disposed(by: disposeBag)
+        
+       
         viewModel.output.itemsO
             .do(onNext: { (items) in
                 print("items \(items)")
@@ -170,44 +178,6 @@ class LiniWordstadiumViewController: UITableViewController, ILiniWordstadiumView
         }
         
     }
-
-    
-    
-    // TODO: for testing purpose
-//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let wordstadium = dataSource.sectionModels[indexPath.section].itemType
-//        
-//        switch wordstadium {
-//        case .live, .inProgress:
-//            guard let navigationController = self.navigationController else { return }
-//            let liveDebatCoordinator = LiveDebatCoordinator(navigationController: navigationController, viewType: .myTurn)
-//            liveDebatCoordinator
-//                .start()
-//                .subscribe()
-//                .disposed(by: disposeBag)
-//        case .challenge, .privateChallenge:
-//            guard let navigationController = self.navigationController else { return }
-//            let challengeCoordinator = ChallengeCoordinator(navigationController: navigationController, type: .challenge)
-//            challengeCoordinator
-//                .start()
-//                .subscribe()
-//                .disposed(by: disposeBag)
-//        case .comingsoon, .privateComingsoon:
-//            guard let navigationController = self.navigationController else { return }
-//            let challengeCoordinator = ChallengeCoordinator(navigationController: navigationController, type: .soon)
-//            challengeCoordinator
-//                .start()
-//                .subscribe()
-//                .disposed(by: disposeBag)
-//        case .done, .privateDone:
-//            guard let navigationController = self.navigationController else { return }
-//            let challengeCoordinator = ChallengeCoordinator(navigationController: navigationController, type: .done)
-//            challengeCoordinator
-//                .start()
-//                .subscribe()
-//                .disposed(by: disposeBag)
-//        }
-//    }
 
 
 }
