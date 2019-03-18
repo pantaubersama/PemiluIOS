@@ -44,7 +44,7 @@ class WordstadiumViewCell: UITableViewCell{
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        
+        titleIv.image = nil
         disposeBag = nil
     }
     

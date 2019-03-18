@@ -176,7 +176,7 @@ mengalami pertumbuhan mencapai 5,27%.
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tju-K3-Ovi" customClass="RoundView" customModule="Common">
                                 <rect key="frame" x="8" y="40" width="48" height="48"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icDummyPerson" translatesAutoresizingMaskIntoConstraints="NO" id="BXQ-pv-qhX">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icDummyPerson" translatesAutoresizingMaskIntoConstraints="NO" id="BXQ-pv-qhX">
                                         <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
                                     </imageView>
                                 </subviews>
@@ -198,7 +198,7 @@ mengalami pertumbuhan mencapai 5,27%.
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DzX-sk-NCV" customClass="RoundView" customModule="Common">
                                 <rect key="frame" x="224" y="40" width="48" height="48"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icDummyPerson" translatesAutoresizingMaskIntoConstraints="NO" id="cmX-VS-t2E">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icDummyPerson" translatesAutoresizingMaskIntoConstraints="NO" id="cmX-VS-t2E">
                                         <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
                                     </imageView>
                                 </subviews>
