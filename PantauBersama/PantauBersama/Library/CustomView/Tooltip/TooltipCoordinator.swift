@@ -32,7 +32,7 @@ final class TooltipCoordinator: BaseCoordinator<TooltipResult> {
     
     override func start() -> Observable<CoordinationResult> {
         let viewModel = TooltipViewModel(navigator: self)
-        let viewController = TooltipView()
+        let viewController = TooltipView(type: self.liniType)
         viewController.viewModel = viewModel
         viewController.providesPresentationContextTransitionStyle = true
         viewController.definesPresentationContext = true

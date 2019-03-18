@@ -24,6 +24,7 @@ protocol ILiniWordstadiumViewController where Self: UIViewController {
 extension ILiniWordstadiumViewController {
     func registerCells(with tableView: UITableView) {
         tableView.registerReusableCell(WordstadiumViewCell.self)
+        tableView.registerReusableCell(WordstadiumEmptyViewCell.self)
         tableView.registerReusableCell(SectionViewCell.self)
         tableView.registerReusableCell(SectionViewCell2.self)
         tableView.registerReusableCell(SeeMoreCell.self)

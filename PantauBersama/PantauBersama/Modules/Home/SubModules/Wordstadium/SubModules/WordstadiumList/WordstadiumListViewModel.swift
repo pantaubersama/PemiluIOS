@@ -19,7 +19,9 @@ class WordstadiumListViewModel: ViewModelType {
     struct Input {
         let backTriggger: AnyObserver<Void>
         let refreshTrigger: AnyObserver<Void>
-        let itemSelectedTrigger: AnyObserver<Challenge>
+        let itemSelectedTrigger: AnyObserver<IndexPath>
+        let moreTrigger: AnyObserver<Challenge>
+        let moreMenuTrigger: AnyObserver<WordstadiumType>
     }
     
     struct Output {
@@ -27,12 +29,16 @@ class WordstadiumListViewModel: ViewModelType {
         let isLoading: Driver<Bool>
         let error: Driver<Error>
         let itemSelected: Driver<Void>
+        let moreSelectedO: Driver<Challenge>
+        let moreMenuSelectedO: Driver<String>
     }
     
     private var navigator: WordstadiumListNavigator
     private let backSubject = PublishSubject<Void>()
     private let refreshSubject = PublishSubject<Void>()
-    private let itemSelectedSubject = PublishSubject<Challenge>()
+    private let itemSelectedSubject = PublishSubject<IndexPath>()
+    private let moreSubject = PublishSubject<Challenge>()
+    private let moreMenuSubject = PublishSubject<WordstadiumType>()
     
     let errorTracker = ErrorTracker()
     let activityIndicator = ActivityIndicator()
@@ -43,7 +49,9 @@ class WordstadiumListViewModel: ViewModelType {
         
         input = Input(backTriggger: backSubject.asObserver(),
                       refreshTrigger: refreshSubject.asObserver(),
-                      itemSelectedTrigger: itemSelectedSubject.asObserver())
+                      itemSelectedTrigger: itemSelectedSubject.asObserver(),
+                      moreTrigger: moreSubject.asObserver(),
+                      moreMenuTrigger: moreMenuSubject.asObserver())
         
         
         let showItems = refreshSubject.startWith(())
@@ -54,14 +62,41 @@ class WordstadiumListViewModel: ViewModelType {
             .asDriverOnErrorJustComplete()
         
         let itemSelected = itemSelectedSubject
-            .flatMap({ self.navigator.openChallenge(challenge: $0) })
-            .mapToVoid()
+            .withLatestFrom(showItems) { (indexPath, challenges) -> CellModel in
+                return challenges[indexPath.section].items[indexPath.row]
+            }
+            .flatMapLatest({ (item) -> Observable<Void> in
+                switch item {
+                case .standard(let challenge):
+                    return navigator.openChallenge(challenge: challenge)
+                default :
+                    return Observable.empty()
+                }
+
+            })
+            .asDriverOnErrorJustComplete()
+        
+        let moreSelectedO = moreSubject
+            .asObservable()
+            .asDriverOnErrorJustComplete()
+        
+        let moreMenuSelectedO = moreMenuSubject
+            .flatMapLatest { (type) -> Observable<String> in
+                switch type {
+                case .bagikan:
+                    return Observable.just("Tautan telah dibagikan")
+                case .salin:
+                    return Observable.just("Tautan telah tersalin")
+                }
+            }
             .asDriverOnErrorJustComplete()
         
         output = Output(items: showItems,
                         isLoading: activityIndicator.asDriver(),
                         error: errorTracker.asDriver(),
-                        itemSelected: itemSelected)
+                        itemSelected: itemSelected,
+                        moreSelectedO: moreSelectedO,
+                        moreMenuSelectedO: moreMenuSelectedO)
     }
     
     func getChallenge(progress: ProgressType, type: LiniType) -> Observable<[SectionWordstadium]>{
@@ -75,14 +110,16 @@ class WordstadiumListViewModel: ViewModelType {
     }
     
     func transformToSection(challenge: [Challenge],progress: ProgressType, type: LiniType) -> [SectionWordstadium] {
-        var item:[Challenge] = []
-        var itemLive:[Challenge] = []
+        var items:[CellModel] = []
         var title: String = ""
         var description: String = ""
         
+        for item in challenge {
+            items.append(CellModel.standard(item))
+        }
+
         switch progress {
         case .liveNow:
-            itemLive = challenge
             if type == .public {
                 title = "Live Now"
                 description = "Ini daftar debat yang sedang berlangsung. Yuk, pantau bersama!"
@@ -90,9 +127,7 @@ class WordstadiumListViewModel: ViewModelType {
                 title = "Challenge in Progress"
                 description = "Daftar tantangan yang perlu respon dan perlu konfirmasi ditampilkan semua disini. Jangan sampai terlewatkan, yaa."
             }
-            return [SectionWordstadium(title: title, descriptiom: description,type: type, itemType: progress, items: itemLive, itemsLive: itemLive )]
         case .comingSoon:
-            item = challenge
             if type == .public {
                 title = "Debat: Coming Soon"
             } else {
@@ -100,7 +135,6 @@ class WordstadiumListViewModel: ViewModelType {
             }
             description = "Jangan lewatkan daftar debat yang akan segera berlangsung. Catat jadwalnya, yaa."
         case .done:
-            item = challenge
             if type == .public {
                 title = "Debat: Done"
             } else {
@@ -108,7 +142,6 @@ class WordstadiumListViewModel: ViewModelType {
             }
             description = "Berikan komentar dan appresiasi pada debat-debat yang sudah selesai. Daftarnya ada di /Users/rahardyan/Documents/Rahardyan Bisma Setya Putra/pantau-bersama-ios/PantauBersama/PantauBersama/Library/CustomView/FooterProfileViewbawah ini:"
         case .challenge:
-            item = challenge
             if type == .public {
                 title = "Challenge"
                 description = "Daftar Open Challenge yang bisa diikuti. Pilih debat mana yang kamu ingin ambil tantangannya. Be truthful and gentle!"
@@ -118,6 +151,6 @@ class WordstadiumListViewModel: ViewModelType {
             }
         }
         
-        return [SectionWordstadium(title: title, descriptiom: description,type: type, itemType: progress, items: item, itemsLive: itemLive )]
+        return [SectionWordstadium(title: title, descriptiom: description,type: type, itemType: progress, items: items )]
     }
 }
