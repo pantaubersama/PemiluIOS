@@ -76,6 +76,10 @@ class LawanDebatCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        ivTwitter.image = #imageLiteral(resourceName: "icDummyPerson")
+        ivSymboliic.image = #imageLiteral(resourceName: "icDummyPerson")
+        ivTwitter.af_cancelImageRequest()
+        ivSymboliic.af_cancelImageRequest()
         disposeBag = nil
     }
     
@@ -141,7 +145,7 @@ extension LawanDebatCell: IReusableCell {
             lblFullNameSymbolic.text = item.data?.fullName
             lblUsernameSymbolic.text = item.data?.screenName
             if let url = item.data?.avatar {
-                ivSymboliic.show(fromURL: url)
+                ivSymboliic.af_setImage(withURL: URL(string: url)!)
             } else {
                 ivSymboliic.image = #imageLiteral(resourceName: "icDummyPerson")
             }
@@ -155,7 +159,7 @@ extension LawanDebatCell: IReusableCell {
             lblUsernameTwitter.text = item.data?.screenName
             lblFullnameTwitter.text = item.data?.fullName
             if let url = item.data?.avatar {
-                ivTwitter.show(fromURL: url)
+                ivTwitter.af_setImage(withURL: URL(string: url)!)
             } else {
                 ivTwitter.image = #imageLiteral(resourceName: "icDummyPerson")
             }

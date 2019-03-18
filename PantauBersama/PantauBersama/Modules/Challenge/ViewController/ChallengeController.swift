@@ -182,14 +182,18 @@ extension ChallengeController {
         self.lblHeader.text = data.type.title
         
         // configure header challenger side
-        self.headerTantanganView.avatar.show(fromURL: challenger?.avatar?.url ?? "")
+        if let challengerAvatar = challenger?.avatar?.thumbnail.url {
+            self.headerTantanganView.avatar.af_setImage(withURL: URL(string: challengerAvatar)!)
+        }
         self.headerTantanganView.lblFullName.text = challenger?.fullName ?? ""
         self.headerTantanganView.lblUsername.text = challenger?.username ?? ""
         
         // if there is an opponents candidate, then configure header opponent side
         if let opponent = opponents.first {
             self.headerTantanganView.containerOpponent.isHidden = false
-            self.headerTantanganView.avatarOpponent.show(fromURL: opponent.avatar?.url ?? "")
+            if let opponentAvatar = opponent.avatar?.thumbnail.url {
+                self.headerTantanganView.avatarOpponent.af_setImage(withURL: URL(string: opponentAvatar)!)
+            }
             
             if opponent.role == .opponent {
                 self.headerTantanganView.lblNameOpponent.isHidden = false
@@ -352,8 +356,12 @@ extension ChallengeController {
             self.lblHeader.text = "DONE"
             self.imageContent.image = #imageLiteral(resourceName: "doneMask")
             self.containerDebatDone.isHidden = false
-            self.ivChallengerDone.show(fromURL: challenger?.avatar?.url ?? "")
-            self.ivOpponentsDone.show(fromURL: opponents.first?.avatar?.url ?? "")
+            if let avatarChallenger = challenger?.avatar?.thumbnail.url {
+                self.ivChallengerDone.af_setImage(withURL: URL(string: avatarChallenger)!)
+            }
+            if let avatarOpponents = opponents.first?.avatar?.thumbnail.url {
+                self.ivOpponentsDone.af_setImage(withURL: URL(string: avatarOpponents)!)
+            }
             self.btnTerima.backgroundColor = #colorLiteral(red: 1, green: 0.5569574237, blue: 0, alpha: 1)
             self.btnImageTerima.image = #imageLiteral(resourceName: "outlineDebateDone24PxWhite")
             self.btnTerima.setTitle("LIHAT DEBAT", for: UIControlState())

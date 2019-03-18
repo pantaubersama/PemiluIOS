@@ -26,6 +26,15 @@ class WordstadiumCollectionCell: UICollectionViewCell {
         super.awakeFromNib()
         // Initialization code
     }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        leftPersonIv.af_cancelImageRequest()
+        rightPersonIv.af_cancelImageRequest()
+        leftPersonIv.image = #imageLiteral(resourceName: "icDummyPerson")
+        rightPersonIv.image = #imageLiteral(resourceName: "icDummyPerson")
+        backgroundItem.image = nil
+    }
 
 }
 
@@ -46,11 +55,15 @@ extension WordstadiumCollectionCell: IReusableCell {
         
         // configure header challenger side
         leftUsername.text = challenger?.fullName ?? ""
-        leftPersonIv.show(fromURL: challenger?.avatar?.url ?? "")
+        if let urlChallenger = challenger?.avatar?.thumbnail.url {
+            leftPersonIv.af_setImage(withURL: URL(string: urlChallenger)!)
+        }
         
         // configure header opponent side
         rightUsername.text = opponent?.fullName ?? ""
-        rightPersonIv.show(fromURL: opponent?.avatar?.url ?? "")
+        if let urlOpponents = opponent?.avatar?.thumbnail.url {
+            rightPersonIv.af_setImage(withURL: URL(string: urlOpponents)!)
+        }
         
         
         switch item.type {

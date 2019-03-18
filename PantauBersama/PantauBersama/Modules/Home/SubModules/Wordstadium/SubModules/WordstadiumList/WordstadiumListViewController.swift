@@ -96,43 +96,6 @@ class WordstadiumListViewController: UITableViewController {
             .drive()
             .disposed(by: disposeBag)
     }
-
-    // TODO: for testing purpose
-//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let wordstadium = dataSource.sectionModels[indexPath.section]
-//        
-//        switch wordstadium.itemType {
-//        case .challenge:
-//            guard let navigationController = self.navigationController else { return }
-////            let challengeCoordinator = ChallengeCoordinator(navigationController: navigationController, type: wordstadium.items[indexPath.row].type)
-//            let challengeCoordinator = ChallengeCoordinator(navigationController: navigationController, data: wordstadium.items[indexPath.row])
-//            challengeCoordinator
-//                .start()
-//                .subscribe()
-//                .disposed(by: disposeBag)
-//        case .comingSoon:
-//            guard let navigationController = self.navigationController else { return }
-//            let challengeCoordinator = ChallengeCoordinator(navigationController: navigationController, data: wordstadium.items[indexPath.row])
-//            challengeCoordinator
-//                .start()
-//                .subscribe()
-//                .disposed(by: disposeBag)
-//        case .done:
-//            guard let navigationController = self.navigationController else { return }
-//            let challengeCoordinator = ChallengeCoordinator(navigationController: navigationController, data: wordstadium.items[indexPath.row])
-//            challengeCoordinator
-//                .start()
-//                .subscribe()
-//                .disposed(by: disposeBag)
-//        case .liveNow:
-//            guard let navigationController = self.navigationController else { return }
-//            let liveDebatCoordinator = LiveDebatCoordinator(navigationController: navigationController, viewType: .watch)
-//            liveDebatCoordinator
-//                .start()
-//                .subscribe()
-//                .disposed(by: disposeBag)
-//        }
-//    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
