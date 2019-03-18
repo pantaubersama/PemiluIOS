@@ -12,7 +12,7 @@ import Common
 public enum WordstadiumAPI {
     case createChallengeOpen(statement: String, source: String, timeAt: String, timeLimit: Int, topic: String)
     case getChallengeDetail(id: String)
-    case getChallenges(progress: ProgressType, type: LiniType)
+    case getChallenges(progress: ProgressType, type: LiniType, page: Int, perPage: Int)
     case createChallengeDirect(statement: String, source: String, timeAt: String, timeLimit: Int, topic: String, screenName: String, id: String)
     case askAsOpponent(id: String)
     case confirmCandidateAsOpponent(challengeId: String, audienceId: String)
@@ -43,7 +43,7 @@ extension WordstadiumAPI: TargetType {
         switch self {
         case .createChallengeOpen:
             return "/word_stadium/v1/challenges/open"
-        case .getChallenges(let (_,type)):
+        case .getChallenges(let (_,type,_,_)):
             return "/word_stadium/v1/challenges/\(type.url)"
         case .createChallengeDirect:
             return "/word_stadium/v1/challenges/direct"
@@ -87,9 +87,11 @@ extension WordstadiumAPI: TargetType {
     
     public var parameters: [String: Any]? {
         switch self {
-        case .getChallenges(let (progress,_)):
+        case .getChallenges(let (progress,_, page, perPage)):
             return [
-                "progress": progress.text
+                "progress": progress.text,
+                "page": page,
+                "per_page": perPage
             ]
         case .askAsOpponent(let id):
             return [

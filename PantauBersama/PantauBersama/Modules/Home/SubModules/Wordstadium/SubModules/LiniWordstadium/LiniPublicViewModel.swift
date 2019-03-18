@@ -88,9 +88,9 @@ class LiniPublicViewModel: ILiniWordstadiumViewModel, ILiniWordstadiumViewModelI
             .flatMapLatest({ [weak self](_) -> Observable<[SectionWordstadium]> in
                 guard let weakSelf = self else { return Observable.empty() }
                 return weakSelf.getChallenge(progress: .liveNow, type: .public)
-                    .map { [weak self](items) -> [SectionWordstadium] in
+                    .map { [weak self](data) -> [SectionWordstadium] in
                         guard let weakSelf = self else { return [] }
-                        return  weakSelf.transformToSection(challenge: items, progress: .liveNow, type: .public)
+                        return  weakSelf.transformToSection(data: data, progress: .liveNow, type: .public)
                     }
                     .trackActivity(weakSelf.activityIndicator)
                     .trackError(weakSelf.errorTracker)
@@ -100,10 +100,9 @@ class LiniPublicViewModel: ILiniWordstadiumViewModel, ILiniWordstadiumViewModelI
             .flatMapLatest({ [weak self](challenge) -> Observable<[SectionWordstadium]> in
                 guard let weakSelf = self else { return Observable.empty() }
                 return weakSelf.getChallenge(progress: .comingSoon, type: .public)
-                    .map({ Array($0.prefix(3)) })
-                    .map { [weak self](items) -> [SectionWordstadium] in
+                    .map { [weak self](data) -> [SectionWordstadium] in
                         guard let weakSelf = self else { return [] }
-                        return challenge + weakSelf.transformToSection(challenge: items, progress: .comingSoon, type: .public)
+                        return challenge + weakSelf.transformToSection(data: data, progress: .comingSoon, type: .public)
                     }
                     .trackActivity(weakSelf.activityIndicator)
                     .trackError(weakSelf.errorTracker)
@@ -113,10 +112,9 @@ class LiniPublicViewModel: ILiniWordstadiumViewModel, ILiniWordstadiumViewModelI
             .flatMapLatest({ [weak self](challenge) -> Observable<[SectionWordstadium]> in
                 guard let weakSelf = self else { return Observable.empty() }
                 return weakSelf.getChallenge(progress: .done, type: .public)
-                    .map({ Array($0.prefix(3)) })
-                    .map { [weak self](items) -> [SectionWordstadium] in
+                    .map { [weak self](data) -> [SectionWordstadium] in
                         guard let weakSelf = self else { return [] }
-                        return  challenge + weakSelf.transformToSection(challenge: items, progress: .done, type: .public)
+                        return  challenge + weakSelf.transformToSection(data: data, progress: .done, type: .public)
                     }
                     .trackActivity(weakSelf.activityIndicator)
                     .trackError(weakSelf.errorTracker)
@@ -126,10 +124,9 @@ class LiniPublicViewModel: ILiniWordstadiumViewModel, ILiniWordstadiumViewModelI
             .flatMapLatest({ [weak self](challenge) -> Observable<[SectionWordstadium]> in
                 guard let weakSelf = self else { return Observable.empty() }
                 return weakSelf.getChallenge(progress: .challenge, type: .public)
-                    .map({ Array($0.prefix(3)) })
-                    .map { [weak self](items) -> [SectionWordstadium] in
+                    .map { [weak self](data) -> [SectionWordstadium] in
                         guard let weakSelf = self else { return [] }
-                        return  challenge + weakSelf.transformToSection(challenge: items, progress: .challenge, type: .public)
+                        return  challenge + weakSelf.transformToSection(data: data, progress: .challenge, type: .public)
                     }
                     .trackActivity(weakSelf.activityIndicator)
                     .trackError(weakSelf.errorTracker)

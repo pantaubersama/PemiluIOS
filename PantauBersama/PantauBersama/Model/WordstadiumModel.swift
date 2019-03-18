@@ -22,13 +22,15 @@ struct SectionWordstadium {
     let type: LiniType
     let itemType: ProgressType
     var items: [CellModel]
+    var seeMore: Bool
     
-    init(title: String,descriptiom: String,type: LiniType,itemType: ProgressType,items: [CellModel]) {
+    init(title: String,descriptiom: String,type: LiniType,itemType: ProgressType,items: [CellModel], seeMore: Bool) {
         self.title = title
         self.descriptiom = descriptiom
         self.type = type
         self.itemType = itemType
         self.items = items
+        self.seeMore = seeMore
     }
 }
 

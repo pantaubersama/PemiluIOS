@@ -93,15 +93,6 @@ class LiniWordstadiumViewController: UITableViewController, ILiniWordstadiumView
             .bind(to: viewModel.input.itemSelectedI)
             .disposed(by: disposeBag)
         
-//        tableView.rx
-//            .itemSelected
-//            .map { indexPath in
-//                return dataSource[indexPath]
-//            }
-//            .bind(to: viewModel.input.itemSelectedI)
-//            .disposed(by: disposeBag)
-        
-       
         viewModel.output.itemsO
             .do(onNext: { (items) in
                 print("items \(items)")
@@ -121,7 +112,7 @@ class LiniWordstadiumViewController: UITableViewController, ILiniWordstadiumView
         let wordstadium = dataSource.sectionModels[section]
         
         switch wordstadium.itemType {
-        case .liveNow:
+        case .liveNow, .inProgress:
             return 0
         default :
             return wordstadium.descriptiom.count == 0 ? 50:95
@@ -132,10 +123,10 @@ class LiniWordstadiumViewController: UITableViewController, ILiniWordstadiumView
         let wordstadium = dataSource.sectionModels[section]
         
         switch wordstadium.itemType {
-        case .liveNow:
+        case .liveNow, .inProgress:
             return 0
         default :
-            return wordstadium.items.count < 3 ? 0: 30
+            return wordstadium.seeMore == false ? 0: 30
         }
     }
     
@@ -143,7 +134,7 @@ class LiniWordstadiumViewController: UITableViewController, ILiniWordstadiumView
         let wordstadium = dataSource.sectionModels[section]
         
         switch wordstadium.itemType {
-        case .liveNow:
+        case .liveNow, .inProgress:
             return nil
         default :
             if wordstadium.descriptiom.count == 0 {
@@ -167,7 +158,7 @@ class LiniWordstadiumViewController: UITableViewController, ILiniWordstadiumView
         let wordstadium = dataSource.sectionModels[section]
         
         switch wordstadium.itemType {
-        case .liveNow:
+        case .liveNow, .inProgress:
             return nil
         default :
             let item = tableView.dequeueReusableCell() as SeeMoreCell

@@ -86,10 +86,10 @@ class LiniPersonalViewModel: ILiniWordstadiumViewModel, ILiniWordstadiumViewMode
         let itemChallenges = refreshSubject.startWith(())
             .flatMapLatest({ [weak self](_) -> Observable<[SectionWordstadium]> in
                 guard let weakSelf = self else { return Observable.empty() }
-                return weakSelf.getChallenge(progress: .liveNow, type: .personal)
-                    .map { [weak self](items) -> [SectionWordstadium] in
+                return weakSelf.getChallenge(progress: .inProgress, type: .personal)
+                    .map { [weak self](data) -> [SectionWordstadium] in
                         guard let weakSelf = self else { return [] }
-                        return  weakSelf.transformToSection(challenge: items, progress: .liveNow, type: .personal)
+                        return  weakSelf.transformToSection(data: data, progress: .inProgress, type: .personal)
                     }
                     .trackActivity(weakSelf.activityIndicator)
                     .trackError(weakSelf.errorTracker)
@@ -99,9 +99,9 @@ class LiniPersonalViewModel: ILiniWordstadiumViewModel, ILiniWordstadiumViewMode
             .flatMapLatest({ [weak self](challenge) -> Observable<[SectionWordstadium]> in
                 guard let weakSelf = self else { return Observable.empty() }
                 return weakSelf.getChallenge(progress: .comingSoon, type: .personal)
-                    .map { [weak self](items) -> [SectionWordstadium] in
+                    .map { [weak self](data) -> [SectionWordstadium] in
                         guard let weakSelf = self else { return [] }
-                        return  challenge + weakSelf.transformToSection(challenge: items, progress: .comingSoon, type: .personal)
+                        return  challenge + weakSelf.transformToSection(data: data, progress: .comingSoon, type: .personal)
                     }
                     .trackActivity(weakSelf.activityIndicator)
                     .trackError(weakSelf.errorTracker)
@@ -111,9 +111,9 @@ class LiniPersonalViewModel: ILiniWordstadiumViewModel, ILiniWordstadiumViewMode
             .flatMapLatest({ [weak self](challenge) -> Observable<[SectionWordstadium]> in
                 guard let weakSelf = self else { return Observable.empty() }
                 return weakSelf.getChallenge(progress: .done, type: .personal)
-                    .map { [weak self](items) -> [SectionWordstadium] in
+                    .map { [weak self](data) -> [SectionWordstadium] in
                         guard let weakSelf = self else { return [] }
-                        return  challenge + weakSelf.transformToSection(challenge: items, progress: .done, type: .personal)
+                        return  challenge + weakSelf.transformToSection(data: data, progress: .done, type: .personal)
                     }
                     .trackActivity(weakSelf.activityIndicator)
                     .trackError(weakSelf.errorTracker)
@@ -123,9 +123,9 @@ class LiniPersonalViewModel: ILiniWordstadiumViewModel, ILiniWordstadiumViewMode
             .flatMapLatest({ [weak self](challenge) -> Observable<[SectionWordstadium]> in
                 guard let weakSelf = self else { return Observable.empty() }
                 return weakSelf.getChallenge(progress: .challenge, type: .personal)
-                    .map { [weak self](items) -> [SectionWordstadium] in
+                    .map { [weak self](data) -> [SectionWordstadium] in
                         guard let weakSelf = self else { return [] }
-                        return  challenge + weakSelf.transformToSection(challenge: items, progress: .challenge, type: .personal)
+                        return  challenge + weakSelf.transformToSection(data: data, progress: .challenge, type: .personal)
                     }
                     .trackActivity(weakSelf.activityIndicator)
                     .trackError(weakSelf.errorTracker)

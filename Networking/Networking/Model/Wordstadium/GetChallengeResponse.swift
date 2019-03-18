@@ -10,11 +10,18 @@ import Foundation
 
 public struct GetChallengeResponse: Codable {
     
-    public let challenges: [Challenge]
+    public var challenges: [Challenge]
+    public let meta: Meta
+    
+    private enum CodingKeys: String, CodingKey {
+        case challenges
+        case meta
+    }
     
 }
 
 public enum ProgressType {
+    case inProgress
     case liveNow
     case challenge
     case comingSoon
@@ -30,6 +37,8 @@ public enum ProgressType {
             return "coming_soon"
         case .done:
             return "done"
+        case .inProgress:
+            return "in_progress"
         }
     }
 }
