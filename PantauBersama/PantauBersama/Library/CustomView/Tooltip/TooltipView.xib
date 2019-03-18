@@ -22,6 +22,10 @@
                 <outlet property="containerCreate" destination="7ud-KA-mAG" id="Zr9-Ae-emg"/>
                 <outlet property="containerDebatDone" destination="pCa-Wp-4bv" id="kbD-xf-Ohy"/>
                 <outlet property="containerDebatLive" destination="3ao-BS-YRL" id="nKX-Cq-xu3"/>
+                <outlet property="lblChallenge" destination="P1F-a0-U49" id="3F7-SH-KVY"/>
+                <outlet property="lblComingSoon" destination="a2Y-ZN-HpD" id="P87-ZW-tgx"/>
+                <outlet property="lblDebatDone" destination="PtL-QU-ztR" id="ABq-u0-0KL"/>
+                <outlet property="lblDebatLive" destination="9fn-9Q-cf8" id="CKR-6i-cQR"/>
                 <outlet property="view" destination="iN0-l3-epB" id="Ioy-gc-if7"/>
             </connections>
         </placeholder>
@@ -44,7 +48,7 @@
                                     <rect key="frame" x="192" y="12" width="79" height="32"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Challenge" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P1F-a0-U49" customClass="Label" customModule="Common">
-                                            <rect key="frame" x="15" y="9.5" width="49.5" height="13.5"/>
+                                            <rect key="frame" x="15" y="9.5" width="49" height="13.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -59,9 +63,9 @@
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstItem="P1F-a0-U49" firstAttribute="centerY" secondItem="HHW-PP-4iG" secondAttribute="centerY" id="1t5-ln-fLU"/>
-                                        <constraint firstAttribute="width" constant="79" id="NAX-q2-hZG"/>
                                         <constraint firstAttribute="height" constant="32" id="Y6B-Vf-M8O"/>
-                                        <constraint firstItem="P1F-a0-U49" firstAttribute="centerX" secondItem="HHW-PP-4iG" secondAttribute="centerX" id="kt3-Yi-YXa"/>
+                                        <constraint firstAttribute="trailing" secondItem="P1F-a0-U49" secondAttribute="trailing" constant="15" id="kaJ-Wy-LYq"/>
+                                        <constraint firstItem="P1F-a0-U49" firstAttribute="leading" secondItem="HHW-PP-4iG" secondAttribute="leading" constant="15" id="zaA-bj-POl"/>
                                     </constraints>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -106,7 +110,7 @@
                                     <rect key="frame" x="180" y="12" width="91" height="32"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Debat Done" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PtL-QU-ztR" customClass="Label" customModule="Common">
-                                            <rect key="frame" x="16" y="9.5" width="59.5" height="13.5"/>
+                                            <rect key="frame" x="15" y="9.5" width="61" height="13.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -121,9 +125,9 @@
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="32" id="20F-AN-BNI"/>
+                                        <constraint firstAttribute="trailing" secondItem="PtL-QU-ztR" secondAttribute="trailing" constant="15" id="2qB-AG-0Km"/>
+                                        <constraint firstItem="PtL-QU-ztR" firstAttribute="leading" secondItem="pCa-Wp-4bv" secondAttribute="leading" constant="15" id="Iq7-z8-bPa"/>
                                         <constraint firstItem="PtL-QU-ztR" firstAttribute="centerY" secondItem="pCa-Wp-4bv" secondAttribute="centerY" id="LL7-91-4fS"/>
-                                        <constraint firstAttribute="width" constant="91" id="O4h-su-54a"/>
-                                        <constraint firstItem="PtL-QU-ztR" firstAttribute="centerX" secondItem="pCa-Wp-4bv" secondAttribute="centerX" id="OD4-Wh-huF"/>
                                     </constraints>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -168,7 +172,7 @@
                                     <rect key="frame" x="177" y="12" width="94" height="32"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coming Soon" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a2Y-ZN-HpD" customClass="Label" customModule="Common">
-                                            <rect key="frame" x="14.5" y="9.5" width="65" height="13.5"/>
+                                            <rect key="frame" x="15" y="9.5" width="64" height="13.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -183,8 +187,8 @@
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="32" id="CzG-6Z-cXk"/>
-                                        <constraint firstItem="a2Y-ZN-HpD" firstAttribute="centerX" secondItem="LbU-cK-OkT" secondAttribute="centerX" id="ZPz-Oq-UAc"/>
-                                        <constraint firstAttribute="width" constant="94" id="pBj-f2-EK1"/>
+                                        <constraint firstAttribute="trailing" secondItem="a2Y-ZN-HpD" secondAttribute="trailing" constant="15" id="DbJ-5d-TBt"/>
+                                        <constraint firstItem="a2Y-ZN-HpD" firstAttribute="leading" secondItem="LbU-cK-OkT" secondAttribute="leading" constant="15" id="Gay-jk-fPP"/>
                                         <constraint firstItem="a2Y-ZN-HpD" firstAttribute="centerY" secondItem="LbU-cK-OkT" secondAttribute="centerY" id="uuP-LB-bcY"/>
                                     </constraints>
                                     <userDefinedRuntimeAttributes>
@@ -230,7 +234,7 @@
                                     <rect key="frame" x="189" y="12" width="82" height="32"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Debat Live" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9fn-9Q-cf8" customClass="Label" customModule="Common">
-                                            <rect key="frame" x="14.5" y="9.5" width="53" height="13.5"/>
+                                            <rect key="frame" x="15" y="9.5" width="52" height="13.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -244,10 +248,10 @@
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="82" id="5h6-vB-ce0"/>
-                                        <constraint firstItem="9fn-9Q-cf8" firstAttribute="centerX" secondItem="3ao-BS-YRL" secondAttribute="centerX" id="AsS-ZG-LOT"/>
                                         <constraint firstItem="9fn-9Q-cf8" firstAttribute="centerY" secondItem="3ao-BS-YRL" secondAttribute="centerY" id="F48-nI-4bc"/>
                                         <constraint firstAttribute="height" constant="32" id="Hhg-Hk-REw"/>
+                                        <constraint firstItem="9fn-9Q-cf8" firstAttribute="leading" secondItem="3ao-BS-YRL" secondAttribute="leading" constant="15" id="dqP-MP-SjV"/>
+                                        <constraint firstAttribute="trailing" secondItem="9fn-9Q-cf8" secondAttribute="trailing" constant="15" id="rx5-R2-7yF"/>
                                     </constraints>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">

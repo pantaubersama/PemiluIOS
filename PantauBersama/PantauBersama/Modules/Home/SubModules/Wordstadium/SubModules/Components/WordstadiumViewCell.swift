@@ -75,7 +75,7 @@ extension WordstadiumViewCell: IReusableCell,UICollectionViewDelegate,UICollecti
         }
         
         self.emptyView.isHidden = item.challenges.count > 0
-        self.seeMoreBtn.isHidden = item.challenges.count > 0
+        self.seeMoreBtn.isHidden = item.challenges.count == 0
         
         let bag = DisposeBag()
         
