@@ -19,6 +19,7 @@ class WordstadiumListViewModel: ViewModelType {
     struct Input {
         let backTriggger: AnyObserver<Void>
         let refreshTrigger: AnyObserver<Void>
+        let nextTrigger: AnyObserver<Void>
         let itemSelectedTrigger: AnyObserver<IndexPath>
         let moreTrigger: AnyObserver<Challenge>
         let moreMenuTrigger: AnyObserver<WordstadiumType>
@@ -39,6 +40,7 @@ class WordstadiumListViewModel: ViewModelType {
     private let itemSelectedSubject = PublishSubject<IndexPath>()
     private let moreSubject = PublishSubject<Challenge>()
     private let moreMenuSubject = PublishSubject<WordstadiumType>()
+    private let nextSubject = PublishSubject<Void>()
     
     let errorTracker = ErrorTracker()
     let activityIndicator = ActivityIndicator()
@@ -49,17 +51,20 @@ class WordstadiumListViewModel: ViewModelType {
         
         input = Input(backTriggger: backSubject.asObserver(),
                       refreshTrigger: refreshSubject.asObserver(),
+                      nextTrigger: nextSubject.asObserver(),
                       itemSelectedTrigger: itemSelectedSubject.asObserver(),
                       moreTrigger: moreSubject.asObserver(),
                       moreMenuTrigger: moreMenuSubject.asObserver())
         
-        
         let showItems = refreshSubject.startWith(())
-            .flatMapLatest({ [weak self] (_) -> Observable<[SectionWordstadium]> in
-                guard let `self` = self else { return Observable<[SectionWordstadium]>.just([]) }
-                return self.getChallenge(progress: progress, type: liniType)
-            })
-            .asDriverOnErrorJustComplete()
+            .flatMapLatest { [unowned self] (_) -> Observable<[SectionWordstadium]> in
+                return self.paginateItems(nextBatchTrigger: self.nextSubject.asObservable(), progress: progress, type: liniType)
+                    .map{( self.transformToSection(challenge: $0, progress: progress, type: liniType) )}
+                    .trackError(self.errorTracker)
+                    .trackActivity(self.activityIndicator)
+                    .catchErrorJustReturn([])
+            }
+            .asDriver(onErrorJustReturn: [])
         
         let itemSelected = itemSelectedSubject
             .withLatestFrom(showItems) { (indexPath, challenges) -> CellModel in
@@ -99,16 +104,6 @@ class WordstadiumListViewModel: ViewModelType {
                         moreMenuSelectedO: moreMenuSelectedO)
     }
     
-    func getChallenge(progress: ProgressType, type: LiniType) -> Observable<[SectionWordstadium]>{
-        return NetworkService.instance
-            .requestObject(WordstadiumAPI.getChallenges(progress: progress, type: type),
-                           c: BaseResponse<GetChallengeResponse>.self)
-            .map{( self.transformToSection(challenge: $0.data.challenges, progress: progress, type: type) )}
-            .trackError(errorTracker)
-            .trackActivity(activityIndicator)
-            .asObservable()
-    }
-    
     func transformToSection(challenge: [Challenge],progress: ProgressType, type: LiniType) -> [SectionWordstadium] {
         var items:[CellModel] = []
         var title: String = ""
@@ -120,13 +115,11 @@ class WordstadiumListViewModel: ViewModelType {
 
         switch progress {
         case .liveNow:
-            if type == .public {
-                title = "Live Now"
-                description = "Ini daftar debat yang sedang berlangsung. Yuk, pantau bersama!"
-            } else {
-                title = "Challenge in Progress"
-                description = "Daftar tantangan yang perlu respon dan perlu konfirmasi ditampilkan semua disini. Jangan sampai terlewatkan, yaa."
-            }
+            title = "Live Now"
+            description = "Ini daftar debat yang sedang berlangsung. Yuk, pantau bersama!"
+        case .inProgress:
+            title = "Challenge in Progress"
+            description = "Daftar tantangan yang perlu respon dan perlu konfirmasi ditampilkan semua disini. Jangan sampai terlewatkan, yaa."
         case .comingSoon:
             if type == .public {
                 title = "Debat: Coming Soon"
@@ -151,6 +144,47 @@ class WordstadiumListViewModel: ViewModelType {
             }
         }
         
-        return [SectionWordstadium(title: title, descriptiom: description,type: type, itemType: progress, items: items )]
+        return [SectionWordstadium(title: title, descriptiom: description,type: type, itemType: progress, items: items, seeMore: false )]
+    }
+    
+    private func paginateItems(
+        batch: Batch = Batch.initial,
+        nextBatchTrigger: Observable<Void>,
+        progress: ProgressType,
+        type: LiniType) -> Observable<[Challenge]> {
+        return recursivelyPaginateItems(batch: batch, nextBatchTrigger: nextBatchTrigger, progress: progress, type: type)
+            .scan([], accumulator: { (accumulator, page) in
+                return accumulator + page.item
+            })
+    }
+    
+    private func recursivelyPaginateItems(
+        batch: Batch,
+        nextBatchTrigger: Observable<Void>,
+        progress: ProgressType,
+        type: LiniType) -> Observable<Page<[Challenge]>> {
+            return NetworkService.instance
+                .requestObject(WordstadiumAPI.getChallenges(progress: progress, type: type, page: batch.page, perPage: batch.limit),
+                               c: BaseResponse<GetChallengeResponse>.self)
+                .map{( self.transformToPage(response: $0, batch: batch) )}
+                .asObservable()
+                .paginate(nextPageTrigger: nextBatchTrigger, hasNextPage: { (result) -> Bool in
+                    return result.batch.next().hasNextPage
+                }, nextPageFactory: { (result) -> Observable<Page<[Challenge]>> in
+                    self.recursivelyPaginateItems(batch: result.batch.next(), nextBatchTrigger: nextBatchTrigger, progress: progress, type: type)
+                })
+                .share(replay: 1, scope: .whileConnected)
+    }
+    
+    private func transformToPage(response: BaseResponse<GetChallengeResponse>, batch: Batch) -> Page<[Challenge]> {
+        let nextBatch = Batch(offset: batch.offset,
+                              limit: response.data.meta.pages.perPage ?? 10,
+                              total: response.data.meta.pages.total,
+                              count: response.data.meta.pages.page,
+                              page: response.data.meta.pages.page)
+        return Page<[Challenge]>(
+            item: response.data.challenges,
+            batch: nextBatch
+        )
     }
 }

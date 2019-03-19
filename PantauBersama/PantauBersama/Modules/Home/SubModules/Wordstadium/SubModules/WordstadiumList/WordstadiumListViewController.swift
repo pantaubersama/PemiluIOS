@@ -52,6 +52,19 @@ class WordstadiumListViewController: UITableViewController {
             .setDelegate(self)
             .disposed(by: disposeBag)
         
+        tableView.rx.contentOffset
+            .distinctUntilChanged()
+            .flatMapLatest { [unowned self] (offset) -> Observable<Void> in
+                if offset.y > self.tableView.contentSize.height -
+                    (self.tableView.frame.height * 2) {
+                    return Observable.just(())
+                } else {
+                    return Observable.empty()
+                }
+            }
+            .bind(to: viewModel.input.nextTrigger)
+            .disposed(by: disposeBag)
+        
         dataSource = RxTableViewSectionedReloadDataSource<SectionWordstadium>(
             configureCell: { (dataSource, tableView, indexPath, item) in
                 switch item {

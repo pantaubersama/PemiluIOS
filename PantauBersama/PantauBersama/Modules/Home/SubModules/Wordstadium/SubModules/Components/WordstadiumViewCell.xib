@@ -58,7 +58,7 @@
                         <rect key="frame" x="0.0" y="56" width="320" height="180"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="ZWQ-IM-t1S">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="180"/>
+                                <rect key="frame" x="10" y="0.0" width="300" height="180"/>
                                 <color key="backgroundColor" red="0.97636479139999999" green="0.97653168440000004" blue="0.9763541818" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="180" id="YKU-L0-gtw"/>
@@ -81,7 +81,7 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Belum ada apa-apa :(" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mNf-kr-l1g" customClass="Label" customModule="Common">
-                                        <rect key="frame" x="106" y="135" width="108" height="14.5"/>
+                                        <rect key="frame" x="78.5" y="135" width="163.5" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.48627450979999998" green="0.48627450979999998" blue="0.48627450979999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
@@ -103,12 +103,12 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="ZWQ-IM-t1S" firstAttribute="leading" secondItem="SaN-7o-y1t" secondAttribute="leading" id="2jU-w9-8wN"/>
+                            <constraint firstItem="ZWQ-IM-t1S" firstAttribute="leading" secondItem="SaN-7o-y1t" secondAttribute="leading" constant="10" id="2jU-w9-8wN"/>
                             <constraint firstItem="QBS-sw-xDa" firstAttribute="leading" secondItem="SaN-7o-y1t" secondAttribute="leading" id="DVZ-Z5-BrP"/>
                             <constraint firstAttribute="bottom" secondItem="QBS-sw-xDa" secondAttribute="bottom" id="Djh-p0-kXb"/>
                             <constraint firstAttribute="trailing" secondItem="QBS-sw-xDa" secondAttribute="trailing" id="Exs-6j-efJ"/>
                             <constraint firstAttribute="height" constant="180" id="cgA-4n-LZu"/>
-                            <constraint firstAttribute="trailing" secondItem="ZWQ-IM-t1S" secondAttribute="trailing" id="rOl-dv-UzQ"/>
+                            <constraint firstAttribute="trailing" secondItem="ZWQ-IM-t1S" secondAttribute="trailing" constant="10" id="rOl-dv-UzQ"/>
                             <constraint firstItem="QBS-sw-xDa" firstAttribute="top" secondItem="SaN-7o-y1t" secondAttribute="top" id="vJo-f5-wRC"/>
                             <constraint firstItem="ZWQ-IM-t1S" firstAttribute="top" secondItem="SaN-7o-y1t" secondAttribute="top" id="vbs-d5-3PZ"/>
                             <constraint firstAttribute="bottom" secondItem="ZWQ-IM-t1S" secondAttribute="bottom" id="zPO-eW-P65"/>
