@@ -7,3 +7,13 @@
 //
 
 import Foundation
+
+public struct DistrictResponse: Codable {
+    public let districts: [District]
+    public let meta: Meta
+    
+    private enum CodingKeys: String, CodingKey {
+        case districts = "districts"
+        case meta = "meta"
+    }
+}

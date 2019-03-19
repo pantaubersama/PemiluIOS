@@ -7,3 +7,25 @@
 //
 
 import Foundation
+
+public struct Regency: Codable {
+    public let id: Int
+    public let provinceId: Int
+    public let code: Int
+    public let name: String
+    public let level: Int
+    public let domainName: String
+    public let idWilayah: Int
+    public let idParent: Int
+    
+    private enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case provinceId = "province_id"
+        case code = "code"
+        case name = "name"
+        case level = "level"
+        case domainName = "domain_name"
+        case idWilayah = "id_wilayah"
+        case idParent = "id_parent"
+    }
+}

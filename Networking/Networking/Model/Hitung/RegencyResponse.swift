@@ -7,3 +7,13 @@
 //
 
 import Foundation
+
+public struct RegencyResponse: Codable {
+    public let regencies: [Regency]
+    public let meta: Meta
+    
+    private enum CodingKeys: String, CodingKey {
+        case regencies = "regencies"
+        case meta = "meta"
+    }
+}
