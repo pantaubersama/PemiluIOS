@@ -566,6 +566,9 @@
 		E54CFB10222C4B99002DA0D1 /* C1PhotoHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = E54CFB0F222C4B99002DA0D1 /* C1PhotoHeader.xib */; };
 		E54CFB12222C4DD2002DA0D1 /* UploadC1Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54CFB11222C4DD2002DA0D1 /* UploadC1Header.swift */; };
 		E54CFB14222C4DE2002DA0D1 /* UploadC1Header.xib in Resources */ = {isa = PBXBuildFile; fileRef = E54CFB13222C4DE2002DA0D1 /* UploadC1Header.xib */; };
+		E583C9F7223ED9C5006D9590 /* SelectionDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = E583C9F4223ED9C4006D9590 /* SelectionDialog.swift */; };
+		E583C9F8223ED9C5006D9590 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E583C9F5223ED9C4006D9590 /* UIImageExtension.swift */; };
+		E583C9F9223ED9C5006D9590 /* SelectionDialogItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E583C9F6223ED9C4006D9590 /* SelectionDialogItem.swift */; };
 		E5B22D57222A395F002A8C0C /* DetailTPSPresidenCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B22D56222A395F002A8C0C /* DetailTPSPresidenCoordinator.swift */; };
 		E5B22D59222A3998002A8C0C /* DetailTPSPresidenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B22D58222A3998002A8C0C /* DetailTPSPresidenViewModel.swift */; };
 		E5B22D5D222A39CF002A8C0C /* DetailTPSPresidenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B22D5B222A39CF002A8C0C /* DetailTPSPresidenController.swift */; };
@@ -1182,6 +1185,9 @@
 		E54CFB0F222C4B99002DA0D1 /* C1PhotoHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = C1PhotoHeader.xib; sourceTree = "<group>"; };
 		E54CFB11222C4DD2002DA0D1 /* UploadC1Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadC1Header.swift; sourceTree = "<group>"; };
 		E54CFB13222C4DE2002DA0D1 /* UploadC1Header.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UploadC1Header.xib; sourceTree = "<group>"; };
+		E583C9F4223ED9C4006D9590 /* SelectionDialog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectionDialog.swift; sourceTree = "<group>"; };
+		E583C9F5223ED9C4006D9590 /* UIImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
+		E583C9F6223ED9C4006D9590 /* SelectionDialogItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectionDialogItem.swift; sourceTree = "<group>"; };
 		E5B22D56222A395F002A8C0C /* DetailTPSPresidenCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTPSPresidenCoordinator.swift; sourceTree = "<group>"; };
 		E5B22D58222A3998002A8C0C /* DetailTPSPresidenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTPSPresidenViewModel.swift; sourceTree = "<group>"; };
 		E5B22D5B222A39CF002A8C0C /* DetailTPSPresidenController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTPSPresidenController.swift; sourceTree = "<group>"; };
@@ -2330,6 +2336,7 @@
 		844C3D7321C51E7E00199871 /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				E583C9F3223ED9C4006D9590 /* SelectionDialog */,
 				84F1F21621EA6782004515A4 /* Facebook */,
 				84F1F20921E8D987004515A4 /* Twitter */,
 				84E2854121CA189B00298E31 /* CustomView */,
@@ -3495,6 +3502,16 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		E583C9F3223ED9C4006D9590 /* SelectionDialog */ = {
+			isa = PBXGroup;
+			children = (
+				E583C9F4223ED9C4006D9590 /* SelectionDialog.swift */,
+				E583C9F5223ED9C4006D9590 /* UIImageExtension.swift */,
+				E583C9F6223ED9C4006D9590 /* SelectionDialogItem.swift */,
+			);
+			path = SelectionDialog;
+			sourceTree = "<group>";
+		};
 		E5B22D54222A38B2002A8C0C /* SubModules */ = {
 			isa = PBXGroup;
 			children = (
@@ -3847,6 +3864,7 @@
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCoreLocation/RxCoreLocation.framework",
 				"${BUILT_PRODUCTS_DIR}/RxDataSources/RxDataSources.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
@@ -3877,6 +3895,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCoreLocation.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxDataSources.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
@@ -4023,6 +4042,7 @@
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCoreLocation/RxCoreLocation.framework",
 				"${BUILT_PRODUCTS_DIR}/RxDataSources/RxDataSources.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
@@ -4053,6 +4073,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCoreLocation.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxDataSources.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
@@ -4099,6 +4120,7 @@
 				84B7B8BC21E47A8F0099E7E3 /* ClusterSearchController.swift in Sources */,
 				137A29F321E2261A00F19072 /* ComingsoonController.swift in Sources */,
 				11702DD521CB08DE001AEE3F /* QuizController.swift in Sources */,
+				E583C9F7223ED9C5006D9590 /* SelectionDialog.swift in Sources */,
 				11145F5D21EAF2670046F2AA /* SearchNavbar.swift in Sources */,
 				84EC7D17221586D100CDFD4D /* PublishChallengeCoordinator.swift in Sources */,
 				84FA4284221307BF008215C4 /* BidangKajianCoordinator.swift in Sources */,
@@ -4205,6 +4227,7 @@
 				E52BE9E3222F4AC700E26E70 /* UploadC1Coordinator.swift in Sources */,
 				137A29F821E2327D00F19072 /* ComingsoonCoordinator.swift in Sources */,
 				043EE194221A36C2008C59CD /* RekapViewModel.swift in Sources */,
+				E583C9F9223ED9C5006D9590 /* SelectionDialogItem.swift in Sources */,
 				11DA97122222CD7B00A51E76 /* PerhitunganNavigator.swift in Sources */,
 				84B2526821CC01F000565D82 /* AppState.swift in Sources */,
 				E5B22D59222A3998002A8C0C /* DetailTPSPresidenViewModel.swift in Sources */,
@@ -4438,6 +4461,7 @@
 				842A4A0D21D7EDC10050AA51 /* SuccessCoordinator.swift in Sources */,
 				131AEBE1221F332900B299F6 /* WordstadiumType.swift in Sources */,
 				84B8C1D12215823F004BC1FE /* PromoteView.swift in Sources */,
+				E583C9F8223ED9C5006D9590 /* UIImageExtension.swift in Sources */,
 				84B6D52D21F8E80A00DD742A /* UserQuestionListViewModel.swift in Sources */,
 				1108871E221271DC0041B821 /* LiveDebatViewModel.swift in Sources */,
 				13E9D78821E8F025006A0890 /* IJanpolListViewModel.swift in Sources */,
