@@ -8,6 +8,7 @@
 
 import UIKit
 import Common
+import Networking
 
 class SectionViewCell2: UITableViewCell {
 
@@ -29,13 +30,21 @@ class SectionViewCell2: UITableViewCell {
 
 extension SectionViewCell2: IReusableCell {
     struct Input {
-        let title : String
-        let desc : String
+        let type: ProgressType
     }
     
     func configureCell(item: Input) {
-        titleLbl.text = item.title
-        descriptionLbl.text = item.desc
+        switch item.type {
+        case .liveNow:
+            titleLbl.text = "LINIMASA DEBAT"
+            descriptionLbl.text = "Daftar challenge dan debat yang akan atau sudah berlangsung ditampilkan semua di sini."
+        case .inProgress:
+            titleLbl.text = "MY WORDSTADIUM"
+            descriptionLbl.text = "Daftar tantangan dan debat yang akan atau sudah kamu ikuti ditampilkan semua di sini."
+        default:
+            break
+        }
+
     
     }
 }

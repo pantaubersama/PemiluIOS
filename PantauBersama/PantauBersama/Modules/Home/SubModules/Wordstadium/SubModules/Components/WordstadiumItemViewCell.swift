@@ -27,6 +27,8 @@ class WordstadiumItemViewCell: UITableViewCell {
     @IBOutlet weak var statementLbl: UILabel!
     @IBOutlet weak var topicLbl: UILabel!
     @IBOutlet weak var opponentCountLbl: UILabel!
+    @IBOutlet weak var likeView: UIView!
+    @IBOutlet weak var likeCountLbl: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -59,12 +61,13 @@ extension WordstadiumItemViewCell: IReusableCell {
     func configureCell(item: Input) {
         var footerView: UIView!
         
-        let chellenge = item.wordstadium
-        let challenger = chellenge.audiences.filter({ $0.role == .challenger }).first
-        let opponents = chellenge.audiences.filter({ $0.role != .challenger })
+        let challenge = item.wordstadium
+        let challenger = challenge.audiences.filter({ $0.role == .challenger }).first
+        let opponents = challenge.audiences.filter({ $0.role != .challenger })
     
-        topicLbl.text = chellenge.topic?.first ?? ""
-        statementLbl.text = chellenge.statement
+        likeView.isHidden = challenge.progress != .done
+        topicLbl.text = challenge.topic?.first ?? ""
+        statementLbl.text = challenge.statement
         rightPersonView.isHidden = true
         rightUsername.text = ""
         opponentCountLbl.text = ""
@@ -85,17 +88,17 @@ extension WordstadiumItemViewCell: IReusableCell {
             if opponent.role == .opponent {
                 rightUsername.text = opponent.fullName ?? ""
             } else {
-                opponentCountLbl.text = chellenge.type == .directChallenge ? "?" : "\(opponents.count)"
+                opponentCountLbl.text = challenge.type == .directChallenge ? "?" : "\(opponents.count)"
             }
         }
         
-        switch chellenge.progress {
+        switch challenge.progress {
         case .comingSoon:
-            titleLbl.text = chellenge.progress.title
+            titleLbl.text = challenge.progress.title
             backgroundItem.image = UIImage(named: "bgWordstadiumComingsoon")
             let timeView = TimeView()
-            if let time = chellenge.showTimeAt {
-                let timeLimit = Double(chellenge.timeLimit ?? 0)
+            if let time = challenge.showTimeAt {
+                let timeLimit = Double(challenge.timeLimit ?? 0)
                 let mTimeStart = time.date(format: Constant.timeFormat) ?? ""
                 let mTimeEnd = time.toDate(format: Constant.dateTimeFormat3)?.addingTimeInterval(timeLimit * 60).toString(format: Constant.timeFormat) ?? ""
                 
@@ -105,28 +108,28 @@ extension WordstadiumItemViewCell: IReusableCell {
             
             footerView = timeView
         case .liveNow:
-            titleLbl.text = chellenge.progress.title
+            titleLbl.text = challenge.progress.title
             backgroundItem.image = UIImage(named: "bgWordstadiumLive")
             let descView = DescriptionView()
-            descView.descriptionLbl.text = "Live Selama \(chellenge.timeLimit ?? 0) Menit"
+            descView.descriptionLbl.text = "Live Selama \(challenge.timeLimit ?? 0) Menit"
             footerView = descView
         case .done:
-            titleLbl.text = chellenge.progress.title
+            titleLbl.text = challenge.progress.title
             backgroundItem.image = UIImage(named: "bgWordstadiumDone")
             let clapView = ClapView()
             
             footerView = clapView
         case .waitingConfirmation,.waitingOpponent:
-            titleLbl.text = chellenge.type.title
+            titleLbl.text = challenge.type.title
             backgroundItem.image = UIImage(named: "bgWordstadiumChallange")
             let descView = DescriptionView()
             
-            switch chellenge.condition {
+            switch challenge.condition {
             case .expired, .rejected:
-                descView.descriptionLbl.text = chellenge.condition.title
+                descView.descriptionLbl.text = challenge.condition.title
                 descView.descriptionLbl.textColor = Color.red
             default:
-                descView.descriptionLbl.text = chellenge.progress.title
+                descView.descriptionLbl.text = challenge.progress.title
                 descView.descriptionLbl.textColor = Color.gray
             }
             
