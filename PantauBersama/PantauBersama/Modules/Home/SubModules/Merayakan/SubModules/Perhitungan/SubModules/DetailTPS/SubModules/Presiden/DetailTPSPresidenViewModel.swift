@@ -43,11 +43,7 @@ class DetailTPSPresidenViewModel: ViewModelType {
 //        suara1.subscribe(onNext: { (suara) in
 //            print("req changed \(suara)")
 //        }).disposed(by: bag)
-        
-        suara1.subscribe(onNext: { [weak self] (value) in
-            
-        }).disposed(by: bag)
-        
+                
         request.map({ $0.suaraCalon1 }).bind(to: suara1).disposed(by: bag)
         
         request.subscribe(onNext: { (req) in
