@@ -29,7 +29,7 @@ class LiniWordstadiumViewController: UITableViewController, ILiniWordstadiumView
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         tableView.delegate = nil
         tableView.dataSource = nil
         tableView.estimatedRowHeight = 44.0
@@ -115,7 +115,7 @@ class LiniWordstadiumViewController: UITableViewController, ILiniWordstadiumView
         case .liveNow, .inProgress:
             return 0
         default :
-            return wordstadium.descriptiom.count == 0 ? 50:95
+            return 50
         }
     }
     
@@ -124,7 +124,7 @@ class LiniWordstadiumViewController: UITableViewController, ILiniWordstadiumView
         
         switch wordstadium.itemType {
         case .liveNow, .inProgress:
-            return 0
+            return 95
         default :
             return wordstadium.seeMore == false ? 0: 30
         }
@@ -137,19 +137,11 @@ class LiniWordstadiumViewController: UITableViewController, ILiniWordstadiumView
         case .liveNow, .inProgress:
             return nil
         default :
-            if wordstadium.descriptiom.count == 0 {
-                let item = tableView.dequeueReusableCell() as SectionViewCell
-                item.configureCell(item:
-                    SectionViewCell.Input(title: wordstadium.title,
-                                          type: wordstadium.itemType))
-                return item
-            } else {
-                let item = tableView.dequeueReusableCell() as SectionViewCell2
-                item.configureCell(item:
-                    SectionViewCell2.Input(title: wordstadium.title,
-                                           desc: wordstadium.descriptiom))
-                return item
-            }
+            let item = tableView.dequeueReusableCell() as SectionViewCell
+            item.configureCell(item:
+                SectionViewCell.Input(title: wordstadium.title,
+                                      type: wordstadium.itemType))
+            return item
         }
         
     }
@@ -159,7 +151,9 @@ class LiniWordstadiumViewController: UITableViewController, ILiniWordstadiumView
         
         switch wordstadium.itemType {
         case .liveNow, .inProgress:
-            return nil
+            let item = tableView.dequeueReusableCell() as SectionViewCell2
+            item.configureCell(item: SectionViewCell2.Input(type: wordstadium.itemType))
+            return item
         default :
             let item = tableView.dequeueReusableCell() as SeeMoreCell
             item.configureCell(item:

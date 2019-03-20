@@ -59,7 +59,6 @@ extension ILiniWordstadiumViewModel {
     func transformToSection(data: GetChallengeResponse,progress: ProgressType, type: LiniType) -> [SectionWordstadium] {
         var items:[CellModel] = []
         var title: String = ""
-        var description: String = ""
         let challenges = Array(data.challenges.prefix(3))
         let seeMore = data.challenges.count > 3
         
@@ -79,11 +78,9 @@ extension ILiniWordstadiumViewModel {
                 }
             }
             if type == .public {
-                title = "LINIMASA DEBAT"
-                description = "Daftar challenge dan debat yang akan atau sudah berlangsung ditampilkan semua di sini."
+                title = "Debat: Coming Soon"
             } else {
-                title = "MY WORDSTADIUM"
-                description = "Daftar tantangan dan debat yang akan atau sudah kamu ikuti ditampilkan semua di sini."
+                title = "My Debat: Coming Soon"
             }
         case .done:
             if challenges.count == 0 {
@@ -114,7 +111,7 @@ extension ILiniWordstadiumViewModel {
             }
         }
         
-        return [SectionWordstadium(title: title, descriptiom: description,type: type, itemType: progress, items: items, seeMore: seeMore )]
+        return [SectionWordstadium(title: title, descriptiom: "",type: type, itemType: progress, items: items, seeMore: seeMore )]
     }
 
 }
