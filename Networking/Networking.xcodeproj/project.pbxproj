@@ -76,6 +76,7 @@
 		84D831F521C4DCEC00C437B7 /* NetworkingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D831F421C4DCEC00C437B7 /* NetworkingTests.swift */; };
 		84D831F721C4DCEC00C437B7 /* Networking.h in Headers */ = {isa = PBXBuildFile; fileRef = 84D831E921C4DCEC00C437B7 /* Networking.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		84E521C821F4C81500B7CCBA /* InfoFirebaseResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E521C721F4C81500B7CCBA /* InfoFirebaseResponse.swift */; };
+		84EEEC2722421A48001D993D /* CrawlResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EEEC2622421A48001D993D /* CrawlResponse.swift */; };
 		84F1F21521E9CD81004515A4 /* AccountResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F1F21421E9CD81004515A4 /* AccountResponse.swift */; };
 		84FC35EE21E89BE4005FB016 /* ClusterResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FC35ED21E89BE4005FB016 /* ClusterResponse.swift */; };
 		84FE6EB421D5F339009A0F55 /* UserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FE6EB321D5F339009A0F55 /* UserResponse.swift */; };
@@ -169,6 +170,7 @@
 		84D831F421C4DCEC00C437B7 /* NetworkingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingTests.swift; sourceTree = "<group>"; };
 		84D831F621C4DCEC00C437B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84E521C721F4C81500B7CCBA /* InfoFirebaseResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoFirebaseResponse.swift; sourceTree = "<group>"; };
+		84EEEC2622421A48001D993D /* CrawlResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrawlResponse.swift; sourceTree = "<group>"; };
 		84F1F21421E9CD81004515A4 /* AccountResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountResponse.swift; sourceTree = "<group>"; };
 		84FC35ED21E89BE4005FB016 /* ClusterResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterResponse.swift; sourceTree = "<group>"; };
 		84FE6EB321D5F339009A0F55 /* UserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResponse.swift; sourceTree = "<group>"; };
@@ -323,6 +325,7 @@
 				84FF8AA021F221C100AA8CF3 /* AppVersionResponse.swift */,
 				84E521C721F4C81500B7CCBA /* InfoFirebaseResponse.swift */,
 				84B6D51021F83B5900DD742A /* PoliticalPartyResponse.swift */,
+				84EEEC2622421A48001D993D /* CrawlResponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -597,6 +600,7 @@
 				13054D3C222451EB00C4C9EA /* ChallengeType.swift in Sources */,
 				1143E80821DEC75D003862B6 /* QuizAPI.swift in Sources */,
 				84B7B8C921E4E6730099E7E3 /* CategoriesResponse.swift in Sources */,
+				84EEEC2722421A48001D993D /* CrawlResponse.swift in Sources */,
 				13F456C321DB7E1300CE45F1 /* BannerInfo.swift in Sources */,
 				1183F0DC21D4FC4800435D31 /* TanyaKandidatAPI.swift in Sources */,
 				13F456BB21DA806900CE45F1 /* Meta.swift in Sources */,

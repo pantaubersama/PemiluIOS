@@ -8,6 +8,8 @@
 
 import UIKit
 import Common
+import Networking
+import RxSwift
 
 @IBDesignable
 class LinkPreviewView: UIView {
@@ -17,6 +19,8 @@ class LinkPreviewView: UIView {
     @IBOutlet weak var ivAvatarLink: CircularUIImageView!
     @IBOutlet weak var lblContent: Label!
     @IBOutlet weak var lblDescContent: Label!
+    
+    private(set) var disposeBag: DisposeBag = DisposeBag()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -33,6 +37,23 @@ class LinkPreviewView: UIView {
         view.frame = bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         addSubview(view)
+    }
+    
+    func configureLink(url: String) {
+        NetworkService.instance.requestObject(OpiniumServiceAPI.crawl(url: url, refetch: true),
+                                              c: BaseResponse<CrawlResponse>.self)
+            .subscribe(onSuccess: { [unowned self] (response) in
+                let data = response.data.url
+                self.lblLink.text = data.sourceUrl
+                self.lblContent.text = data.title
+                self.lblDescContent.text = data.description
+                if let best = data.bestImage {
+                    self.ivAvatarLink.af_setImage(withURL: URL(string: best)!)
+                }
+            }, onError: { (e) in
+                print(e.localizedDescription)
+            })
+            .disposed(by: disposeBag)
     }
     
 }

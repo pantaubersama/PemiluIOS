@@ -11,7 +11,6 @@ import RxSwift
 import RxCocoa
 import Common
 import Networking
-import URLEmbeddedView
 
 class ChallengeController: UIViewController {
     
