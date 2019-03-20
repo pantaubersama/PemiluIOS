@@ -40,20 +40,24 @@ class LinkPreviewView: UIView {
     }
     
     func configureLink(url: String) {
-        NetworkService.instance.requestObject(OpiniumServiceAPI.crawl(url: url, refetch: true),
-                                              c: BaseResponse<CrawlResponse>.self)
-            .subscribe(onSuccess: { [unowned self] (response) in
-                let data = response.data.url
-                self.lblLink.text = data.sourceUrl
-                self.lblContent.text = data.title
-                self.lblDescContent.text = data.description
-                if let best = data.bestImage {
-                    self.ivAvatarLink.af_setImage(withURL: URL(string: best)!)
-                }
-            }, onError: { (e) in
-                print(e.localizedDescription)
-            })
-            .disposed(by: disposeBag)
+        if url.isValidURL {
+            NetworkService.instance.requestObject(OpiniumServiceAPI.crawl(url: url, refetch: true),
+                                                  c: BaseResponse<CrawlResponse>.self)
+                .subscribe(onSuccess: { [unowned self] (response) in
+                    let data = response.data.url
+                    self.lblLink.text = data.sourceUrl
+                    self.lblContent.text = data.title
+                    self.lblDescContent.text = data.bestDesc
+                    if let best = data.bestImage {
+                        self.ivAvatarLink.af_setImage(withURL: URL(string: best)!)
+                    }
+                    }, onError: { (e) in
+                        print(e.localizedDescription)
+                })
+                .disposed(by: disposeBag)
+        } else {
+            print("link is invalid")
+        }
     }
     
 }

@@ -54,7 +54,7 @@
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uaP-hH-hKD" customClass="Label" customModule="Common">
-                            <rect key="frame" x="44" y="8" width="327" height="0.0"/>
+                            <rect key="frame" x="44" y="6" width="327" height="0.0"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -66,7 +66,7 @@
                             </userDefinedRuntimeAttributes>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U7y-f9-Vaa" customClass="Label" customModule="Common">
-                            <rect key="frame" x="44" y="8" width="327" height="22"/>
+                            <rect key="frame" x="44" y="6" width="327" height="22"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="22" id="QIZ-Xg-jka"/>
                             </constraints>
@@ -88,7 +88,7 @@
                         <constraint firstItem="x3I-we-PTc" firstAttribute="top" secondItem="GKE-cp-woX" secondAttribute="bottom" constant="4" id="6ps-5n-e9B"/>
                         <constraint firstItem="GKE-cp-woX" firstAttribute="leading" secondItem="HMN-IS-tPY" secondAttribute="leading" constant="4" id="Eir-ZG-SKp"/>
                         <constraint firstAttribute="trailing" secondItem="U7y-f9-Vaa" secondAttribute="trailing" constant="4" id="FGJ-rQ-g8J"/>
-                        <constraint firstItem="uaP-hH-hKD" firstAttribute="top" secondItem="GKE-cp-woX" secondAttribute="bottom" constant="4" id="MNh-lm-gSx"/>
+                        <constraint firstItem="uaP-hH-hKD" firstAttribute="top" secondItem="GKE-cp-woX" secondAttribute="bottom" constant="2" id="MNh-lm-gSx"/>
                         <constraint firstItem="5Af-TJ-5Bd" firstAttribute="leading" secondItem="GKE-cp-woX" secondAttribute="trailing" constant="4" id="Wm8-Tc-K6v"/>
                         <constraint firstItem="x3I-we-PTc" firstAttribute="leading" secondItem="HMN-IS-tPY" secondAttribute="leading" constant="4" id="X1k-Yn-rSa"/>
                         <constraint firstItem="U7y-f9-Vaa" firstAttribute="top" secondItem="uaP-hH-hKD" secondAttribute="bottom" id="loB-Z7-p0V"/>

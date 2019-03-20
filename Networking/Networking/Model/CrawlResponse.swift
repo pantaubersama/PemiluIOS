@@ -18,11 +18,13 @@ public class CrawlResponse: Codable {
         public let title: String?
         public let description: String?
         public let bestImage: String?
+        public let bestDesc: String?
         
         private enum CodingKeys: String, CodingKey {
             case source, title, description
             case sourceUrl = "source_url"
             case bestImage = "best_image"
+            case bestDesc = "best_description"
         }
     }
     
