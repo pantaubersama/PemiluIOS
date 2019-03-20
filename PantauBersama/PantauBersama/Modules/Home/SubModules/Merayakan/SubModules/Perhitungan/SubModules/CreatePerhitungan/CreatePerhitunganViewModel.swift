@@ -33,38 +33,14 @@ class CreatePerhitunganViewModel: ViewModelType {
     private let backS = PublishSubject<Void>()
     private let detailTPSS = PublishSubject<Void>()
     private let manager = CLLocationManager()
+    private var createRequest = RealCountRequest()
     
     var provinces = [Province]()
     var regencies = [Regency]()
     var districts = [District]()
     var villages = [Village]()
-    var selectedProvince: Province? {
-        didSet {
-            guard let code = selectedProvince?.code else {
-                return
-            }
-            getRegencies(provinceCode: code)
-        }
-    }
-    var selectedRegency: Regency? {
-        didSet {
-            guard let code = selectedRegency?.code else {
-                return
-            }
-            getDistricts(regencyCode: code)
-        }
-    }
-    var selectedDistrict: District? {
-        didSet {
-            guard let code = selectedDistrict?.code else {
-                return
-            }
-            getVillages(districtCode: code)
-        }
-    }
-    var selectedVillage: Village?
-    var coordinate = Variable(CLLocationCoordinate2D())
-    var formattedAddress = Variable("")
+    var coordinate = BehaviorRelay(value: CLLocationCoordinate2D())
+    var formattedAddress = BehaviorRelay(value: "")
     
     init(navigator: CreatePerhitunganNavigator) {
         self.navigator = navigator
@@ -100,6 +76,25 @@ class CreatePerhitunganViewModel: ViewModelType {
             .disposed(by: bag)
     }
     
+    func selectProvince(_ province: Province) {
+        createRequest.provinceCode = province.code
+        getRegencies(provinceCode: province.code)
+    }
+    
+    func selectRegency(_ reg: Regency) {
+        createRequest.regencyCode = reg.code
+        getDistricts(regencyCode: reg.code)
+    }
+    
+    func selectDistrict(_ dis: District) {
+        createRequest.districtCode = dis.code
+        getVillages(districtCode: dis.code)
+    }
+    
+    func selectVillage(_ vill: Village) {
+        createRequest.villageCode = vill.code
+    }
+    
     func updateLocation() {
         manager.startUpdatingLocation()
     }
@@ -113,6 +108,10 @@ class CreatePerhitunganViewModel: ViewModelType {
                 self?.provinces = result
             })
             .disposed(by: bag)
+    }
+    
+    func createPerhitungan() {
+        print("Request \(createRequest.dictionary)")
     }
     
     private func getRegencies(provinceCode: Int) {

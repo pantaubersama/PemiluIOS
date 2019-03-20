@@ -67,7 +67,7 @@ extension CreatePerhitunganController: UITextFieldDelegate {
             let dialog = SelectionDialog(title: "Provinsi", closeButtonTitle: "Tutup")
             viewModel.provinces.forEach({ [weak self] (province) in
                 let handler = {
-                    self?.viewModel.selectedProvince = province
+                    self?.viewModel.selectProvince(province)
                     self?.provinsiTF.text = province.name
                     dialog.close()
                 }
@@ -80,7 +80,7 @@ extension CreatePerhitunganController: UITextFieldDelegate {
             let dialog = SelectionDialog(title: "Kabupaten/Kota", closeButtonTitle: "Tutup")
             viewModel.regencies.forEach({ [weak self] (reg) in
                 let handler = {
-                    self?.viewModel.selectedRegency = reg
+                    self?.viewModel.selectRegency(reg)
                     self?.kabupatenTF.text = reg.name
                     dialog.close()
                 }
@@ -93,7 +93,7 @@ extension CreatePerhitunganController: UITextFieldDelegate {
             let dialog = SelectionDialog(title: "Kecamatan", closeButtonTitle: "Tutup")
             viewModel.districts.forEach({ [weak self] (district) in
                 let handler = {
-                    self?.viewModel.selectedDistrict = district
+                    self?.viewModel.selectDistrict(district)
                     self?.kecamatanTF.text = district.name
                     dialog.close()
                 }
@@ -106,7 +106,7 @@ extension CreatePerhitunganController: UITextFieldDelegate {
             let dialog = SelectionDialog(title: "Kelurahan/Desa", closeButtonTitle: "Tutup")
             viewModel.villages.forEach({ [weak self] (village) in
                 let handler = {
-                    self?.viewModel.selectedVillage = village
+                    self?.viewModel.selectVillage(village)
                     self?.desaTF.text = village.name
                     dialog.close()
                 }

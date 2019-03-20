@@ -87,6 +87,7 @@
 		E59E04FA223893A800EDAFF7 /* Province.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59E04F9223893A800EDAFF7 /* Province.swift */; };
 		E59E04FC223898A300EDAFF7 /* Regency.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59E04FB223898A200EDAFF7 /* Regency.swift */; };
 		E59E04FE22389B2500EDAFF7 /* District.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59E04FD22389B2500EDAFF7 /* District.swift */; };
+		E5BD7AA92241A5B3002532C0 /* RealCountRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BD7AA82241A5B3002532C0 /* RealCountRequest.swift */; };
 		E5C2E6B02236DAB100DA600B /* HitungAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C2E6AF2236DAB100DA600B /* HitungAPI.swift */; };
 /* End PBXBuildFile section */
 
@@ -186,6 +187,7 @@
 		E59E04F9223893A800EDAFF7 /* Province.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Province.swift; sourceTree = "<group>"; };
 		E59E04FB223898A200EDAFF7 /* Regency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Regency.swift; sourceTree = "<group>"; };
 		E59E04FD22389B2500EDAFF7 /* District.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = District.swift; sourceTree = "<group>"; };
+		E5BD7AA82241A5B3002532C0 /* RealCountRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealCountRequest.swift; sourceTree = "<group>"; };
 		E5C2E6AF2236DAB100DA600B /* HitungAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitungAPI.swift; sourceTree = "<group>"; };
 		F3B2B1BD2456514F2D807A68 /* Pods-NetworkingTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NetworkingTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-NetworkingTests/Pods-NetworkingTests.debug.xcconfig"; sourceTree = "<group>"; };
 		FC9D77E9B7CE8AB5A8F185B6 /* Pods_NetworkingTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NetworkingTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -383,6 +385,7 @@
 		E59E04F82238939400EDAFF7 /* Hitung */ = {
 			isa = PBXGroup;
 			children = (
+				E5BD7AA72241A59E002532C0 /* Request */,
 				E51D65EC2240026000FEDD7A /* ProvinceResponse.swift */,
 				E59E04F9223893A800EDAFF7 /* Province.swift */,
 				E51D65EE224004F100FEDD7A /* RegencyResponse.swift */,
@@ -393,6 +396,14 @@
 				E51D65F42240101400FEDD7A /* VillageResponse.swift */,
 			);
 			path = Hitung;
+			sourceTree = "<group>";
+		};
+		E5BD7AA72241A59E002532C0 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				E5BD7AA82241A5B3002532C0 /* RealCountRequest.swift */,
+			);
+			path = Request;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -655,6 +666,7 @@
 				84B2523521CAC71400565D82 /* RequestLoadingPlugin.swift in Sources */,
 				84B2526621CBFF0C00565D82 /* PantauAuthResponse.swift in Sources */,
 				13F456B921DA7F9A00CE45F1 /* FeedsResponse.swift in Sources */,
+				E5BD7AA92241A5B3002532C0 /* RealCountRequest.swift in Sources */,
 				1143E80621DE50BC003862B6 /* QuizzesResponse.swift in Sources */,
 				13F456BF21DB67C100CE45F1 /* JanjiPolitikResponse.swift in Sources */,
 				84AEFA7E222002BB00F3DC92 /* OpiniumServicesAPI.swift in Sources */,

@@ -8,12 +8,6 @@
 
 import UIKit
 
-
-enum TextFieldType: String {
-    case bw = "BwModelicaSS01-BoldCondensed"
-    case lato = "Lato-Bold"
-}
-
 @IBDesignable
 public class TextField: UITextField {
     
@@ -68,18 +62,12 @@ public class TextField: UITextField {
     }
 
     var fontName: String = "BwModelicaSS01-BoldCondensed"
-    
-    
+
     @IBInspectable
-    public var typeTextField: String = "lato" {
+    public var typeTextField: String = "regular" {
         didSet {
-            if let newFont: TextFieldType = TextFieldType(rawValue: self.typeTextField.lowercased()) {
-                switch newFont {
-                case .bw:
-                    self.fontName = "BwModelicaSS01-BoldCondensed"
-                case .lato:
-                    self.fontName = "Lato-Bold"
-                }
+            if let type = LabelType(rawValue: self.typeTextField.lowercased()) {
+                self.fontName = type.fontName
             }
             initFont()
         }

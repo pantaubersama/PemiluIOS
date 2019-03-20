@@ -15,6 +15,8 @@ class DetailTPSPresidenController: UIViewController {
     var viewModel: DetailTPSPresidenViewModel!
     private let disposeBag = DisposeBag()
     
+    @IBOutlet private var suara1Btn: TPSButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -32,5 +34,9 @@ class DetailTPSPresidenController: UIViewController {
         viewModel.output.backO
             .drive()
             .disposed(by: disposeBag)
+        
+        suara1Btn.rx_suara
+            .bind(to: viewModel.input.suara1I)
+            .disposed(by: disposeBag)        
     }
 }
