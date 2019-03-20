@@ -10,10 +10,6 @@ import Foundation
 import RxSwift
 import Networking
 
-protocol PerhitunganNavigator {
-    func launchDetailTps() -> Observable<Void>
-}
-
 class PerhitunganCoordinator: BaseCoordinator<Void> {
     var navigationController: UINavigationController!
     private var filterCoordinator: PenpolFilterCoordinator!
@@ -31,8 +27,3 @@ class PerhitunganCoordinator: BaseCoordinator<Void> {
     }
 }
 
-extension PerhitunganController: PerhitunganNavigator {
-    func launchDetailTps() -> Observable<Void> {
-        return Observable.never()
-    }
-}

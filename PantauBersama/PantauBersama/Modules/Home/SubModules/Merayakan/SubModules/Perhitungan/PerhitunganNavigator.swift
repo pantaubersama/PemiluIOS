@@ -13,6 +13,7 @@ protocol PerhitunganNavigator: class {
     var navigationController: UINavigationController! { get }
     func launchPerhitunganDetail() -> Observable<Void>
     func launchCreatePerhitungan() -> Observable<Void>
+    func launchDetailTps() -> Observable<Void>
 }
 
 extension PerhitunganNavigator where Self: BaseCoordinator<Void> {
@@ -23,6 +24,10 @@ extension PerhitunganNavigator where Self: BaseCoordinator<Void> {
     func launchCreatePerhitungan() -> Observable<Void> {
         let createPerhitunganCoordinator = CreatePerhitunganCoordinator(navigationController: navigationController)
         return coordinate(to: createPerhitunganCoordinator)
+    }
+    
+    func launchDetailTps() -> Observable<Void> {
+        return Observable.never()
     }
 }
 
