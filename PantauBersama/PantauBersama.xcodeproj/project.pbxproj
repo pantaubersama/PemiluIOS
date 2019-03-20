@@ -232,8 +232,6 @@
 		8423C3FF21F718E1000AAA63 /* DetailAskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423C3FE21F718E1000AAA63 /* DetailAskViewModel.swift */; };
 		8423C40121F71927000AAA63 /* DetailAskCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423C40021F71927000AAA63 /* DetailAskCoordinator.swift */; };
 		8428AAA321C7A7790008E975 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8428AAA521C7A7790008E975 /* Localizable.strings */; };
-		8428AAAA21C7AF330008E975 /* GoogleService-Info-Staging.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8428AAA921C7AF330008E975 /* GoogleService-Info-Staging.plist */; };
-		8428AAAD21C7B4B20008E975 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8428AAAC21C7B4B10008E975 /* GoogleService-Info.plist */; };
 		842A49F521D7749D0050AA51 /* HeaderDataLapor.xib in Resources */ = {isa = PBXBuildFile; fileRef = 842A49F421D7749D0050AA51 /* HeaderDataLapor.xib */; };
 		842A49F721D775420050AA51 /* HeaderDataLapor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842A49F621D775420050AA51 /* HeaderDataLapor.swift */; };
 		842A49F921D789A30050AA51 /* VerifikasiStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842A49F821D789A30050AA51 /* VerifikasiStep.swift */; };
@@ -569,6 +567,10 @@
 		E54CFB10222C4B99002DA0D1 /* C1PhotoHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = E54CFB0F222C4B99002DA0D1 /* C1PhotoHeader.xib */; };
 		E54CFB12222C4DD2002DA0D1 /* UploadC1Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54CFB11222C4DD2002DA0D1 /* UploadC1Header.swift */; };
 		E54CFB14222C4DE2002DA0D1 /* UploadC1Header.xib in Resources */ = {isa = PBXBuildFile; fileRef = E54CFB13222C4DE2002DA0D1 /* UploadC1Header.xib */; };
+		E550847B224297B500A54929 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E5508477224297B500A54929 /* GoogleService-Info.plist */; };
+		E550847C224297B500A54929 /* Staging.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = E5508478224297B500A54929 /* Staging.xcconfig */; };
+		E550847D224297B500A54929 /* Production.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = E5508479224297B500A54929 /* Production.xcconfig */; };
+		E550847E224297B500A54929 /* GoogleService-Info-Staging.plist in Resources */ = {isa = PBXBuildFile; fileRef = E550847A224297B500A54929 /* GoogleService-Info-Staging.plist */; };
 		E583C9F7223ED9C5006D9590 /* SelectionDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = E583C9F4223ED9C4006D9590 /* SelectionDialog.swift */; };
 		E583C9F8223ED9C5006D9590 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E583C9F5223ED9C4006D9590 /* UIImageExtension.swift */; };
 		E583C9F9223ED9C5006D9590 /* SelectionDialogItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E583C9F6223ED9C4006D9590 /* SelectionDialogItem.swift */; };
@@ -849,8 +851,6 @@
 		8428AAA021C7A7160008E975 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		8428AAA421C7A7790008E975 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		8428AAA621C7A77C0008E975 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/Localizable.strings; sourceTree = "<group>"; };
-		8428AAA921C7AF330008E975 /* GoogleService-Info-Staging.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Staging.plist"; sourceTree = "<group>"; };
-		8428AAAC21C7B4B10008E975 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		842A49F421D7749D0050AA51 /* HeaderDataLapor.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderDataLapor.xib; sourceTree = "<group>"; };
 		842A49F621D775420050AA51 /* HeaderDataLapor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderDataLapor.swift; sourceTree = "<group>"; };
 		842A49F821D789A30050AA51 /* VerifikasiStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifikasiStep.swift; sourceTree = "<group>"; };
@@ -888,8 +888,6 @@
 		844C3D5021C4ED6E00199871 /* PantauBersamaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PantauBersamaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		844C3D5421C4ED6E00199871 /* PantauBersamaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PantauBersamaTests.swift; sourceTree = "<group>"; };
 		844C3D5621C4ED6E00199871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		844C3D6021C4ED9100199871 /* Staging.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Staging.xcconfig; sourceTree = "<group>"; };
-		844C3D6121C4ED9F00199871 /* Production.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Production.xcconfig; sourceTree = "<group>"; };
 		844C3D6321C4EDE900199871 /* Common.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Common.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		844C3D6521C4EDEE00199871 /* Networking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Networking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		844C3D6C21C51CE900199871 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
@@ -1191,6 +1189,10 @@
 		E54CFB0F222C4B99002DA0D1 /* C1PhotoHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = C1PhotoHeader.xib; sourceTree = "<group>"; };
 		E54CFB11222C4DD2002DA0D1 /* UploadC1Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadC1Header.swift; sourceTree = "<group>"; };
 		E54CFB13222C4DE2002DA0D1 /* UploadC1Header.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UploadC1Header.xib; sourceTree = "<group>"; };
+		E5508477224297B500A54929 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E5508478224297B500A54929 /* Staging.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Staging.xcconfig; sourceTree = "<group>"; };
+		E5508479224297B500A54929 /* Production.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Production.xcconfig; sourceTree = "<group>"; };
+		E550847A224297B500A54929 /* GoogleService-Info-Staging.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Staging.plist"; sourceTree = "<group>"; };
 		E583C9F4223ED9C4006D9590 /* SelectionDialog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectionDialog.swift; sourceTree = "<group>"; };
 		E583C9F5223ED9C4006D9590 /* UIImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		E583C9F6223ED9C4006D9590 /* SelectionDialogItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectionDialogItem.swift; sourceTree = "<group>"; };
@@ -2249,8 +2251,8 @@
 				844C3D7321C51E7E00199871 /* Library */,
 				844C3D7221C51E2500199871 /* Coredata */,
 				844C3D7121C51DFB00199871 /* Resources */,
-				844C3D5F21C4ED7500199871 /* Config */,
 				8441DB3F21CCBEBD00B078DF /* Model */,
+				E5508476224297B500A54929 /* Config */,
 				844C3D3C21C4ED6D00199871 /* AppDelegate.swift */,
 				844C3D4821C4ED6E00199871 /* LaunchScreen.storyboard */,
 				844C3D4B21C4ED6E00199871 /* Info.plist */,
@@ -2266,17 +2268,6 @@
 				844C3D5621C4ED6E00199871 /* Info.plist */,
 			);
 			path = PantauBersamaTests;
-			sourceTree = "<group>";
-		};
-		844C3D5F21C4ED7500199871 /* Config */ = {
-			isa = PBXGroup;
-			children = (
-				844C3D6021C4ED9100199871 /* Staging.xcconfig */,
-				844C3D6121C4ED9F00199871 /* Production.xcconfig */,
-				8428AAA921C7AF330008E975 /* GoogleService-Info-Staging.plist */,
-				8428AAAC21C7B4B10008E975 /* GoogleService-Info.plist */,
-			);
-			path = Config;
 			sourceTree = "<group>";
 		};
 		844C3D6221C4EDE900199871 /* Frameworks */ = {
@@ -3511,6 +3502,17 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		E5508476224297B500A54929 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				E5508477224297B500A54929 /* GoogleService-Info.plist */,
+				E5508478224297B500A54929 /* Staging.xcconfig */,
+				E5508479224297B500A54929 /* Production.xcconfig */,
+				E550847A224297B500A54929 /* GoogleService-Info-Staging.plist */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
 		E583C9F3223ED9C4006D9590 /* SelectionDialog */ = {
 			isa = PBXGroup;
 			children = (
@@ -3684,7 +3686,6 @@
 				131DBDB42215AF87005203FF /* ClapView.xib in Resources */,
 				11E107AF21CD42C400B7B074 /* QuizOngoingController.xib in Resources */,
 				84F892A921C787D800DC1048 /* Lato-BlackItalic.ttf in Resources */,
-				8428AAAA21C7AF330008E975 /* GoogleService-Info-Staging.plist in Resources */,
 				11D066B121E399C1003AC9BB /* FilterRadioCell.xib in Resources */,
 				11E1079221CD0FE200B7B074 /* QuizDetailController.xib in Resources */,
 				13E139522213FEF000286EDE /* SeeMoreCell.xib in Resources */,
@@ -3743,6 +3744,7 @@
 				137A29F421E2261A00F19072 /* ComingsoonController.xib in Resources */,
 				84FA42682212EED0008215C4 /* PernyataanCell.xib in Resources */,
 				8493BF7B2216848B00685BEC /* ChallengeController.xib in Resources */,
+				E550847B224297B500A54929 /* GoogleService-Info.plist in Resources */,
 				84BE8DF6222689AF0079332A /* PaslonCaraouselCell.xib in Resources */,
 				8478B8E621FF1FAA00CE192A /* InfoNotifCell.xib in Resources */,
 				84619D3C21DA88C800EB58CF /* ItemInfoCell.xib in Resources */,
@@ -3771,7 +3773,6 @@
 				84F892AF21C787D800DC1048 /* Lato-Light.ttf in Resources */,
 				E54CFAF0222C1EC7002DA0D1 /* TPSInputCell.xib in Resources */,
 				1320596322135B1500BE9456 /* WordstadiumViewCell.xib in Resources */,
-				8428AAAD21C7B4B20008E975 /* GoogleService-Info.plist in Resources */,
 				84B6D50321F81D9D00DD742A /* CatatanPilpresController.xib in Resources */,
 				840901BE21DF31CD001BF559 /* CatatanController.xib in Resources */,
 				84F892B021C787D800DC1048 /* Lato-LightItalic.ttf in Resources */,
@@ -3790,6 +3791,7 @@
 				84E6933E21D2936E00EA5464 /* HeaderEditProfile.xib in Resources */,
 				8493BF7E2216893100685BEC /* ChallengeButtonView.xib in Resources */,
 				84B7B8B321E4454B0099E7E3 /* EmptyView.xib in Resources */,
+				E550847C224297B500A54929 /* Staging.xcconfig in Resources */,
 				84F892B121C787D800DC1048 /* Lato-Regular.ttf in Resources */,
 				13812C3A21CC182500CAB327 /* AskViewCell.xib in Resources */,
 				84F6981721C9364700890917 /* LinimasaJanjiCell.xib in Resources */,
@@ -3830,6 +3832,7 @@
 				845C571321CE10C900EDCDFE /* IconTableCell.xib in Resources */,
 				11145F5621EACCEC0046F2AA /* SearchController.xib in Resources */,
 				11145F6B21EB473B0046F2AA /* CustomMenuBar.xib in Resources */,
+				E550847E224297B500A54929 /* GoogleService-Info-Staging.plist in Resources */,
 				844C3D4721C4ED6E00199871 /* Assets.xcassets in Resources */,
 				11B3C79321D1110700EDCECB /* QuizSummaryController.xib in Resources */,
 				8451E0662207F71800F03E96 /* selfie-id-card.json in Resources */,
@@ -3840,6 +3843,7 @@
 				043EE196221A36C2008C59CD /* RekapController.xib in Resources */,
 				131DBDB82215AFCC005203FF /* DescriptionView.xib in Resources */,
 				84A07FA221D0DFF600269C6B /* SignatureController.xib in Resources */,
+				E550847D224297B500A54929 /* Production.xcconfig in Resources */,
 				1149EB6B22140E670050F366 /* ArgumentLeftCell.xib in Resources */,
 				845C570921CD3D5700EDCDFE /* SectionCell.xib in Resources */,
 				11B145FC21D72FFA00BB26C8 /* CreateAskHeaderView.xib in Resources */,
@@ -4547,7 +4551,7 @@
 /* Begin XCBuildConfiguration section */
 		844C3D5721C4ED6E00199871 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 844C3D6021C4ED9100199871 /* Staging.xcconfig */;
+			baseConfigurationReference = E5508478224297B500A54929 /* Staging.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
@@ -4610,7 +4614,7 @@
 		};
 		844C3D5821C4ED6E00199871 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 844C3D6121C4ED9F00199871 /* Production.xcconfig */;
+			baseConfigurationReference = E5508479224297B500A54929 /* Production.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
