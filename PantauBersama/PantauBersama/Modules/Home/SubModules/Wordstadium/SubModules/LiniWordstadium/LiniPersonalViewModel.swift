@@ -76,7 +76,7 @@ class LiniPersonalViewModel: ILiniWordstadiumViewModel, ILiniWordstadiumViewMode
         let colectionSelected = collectionSelectedSubject
             .asObservable()
             .flatMapLatest({ (challenge) -> Observable<Void> in
-                return navigator.launchLiveChallenge(wordstadium: challenge)
+                return navigator.launchChallenge(wordstadium: challenge)
             })
             .asDriverOnErrorJustComplete()
 
