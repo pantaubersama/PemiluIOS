@@ -26,7 +26,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="82"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Apa Pertanyaanmu buat calon Capres Indonesia ?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F6v-Ce-lvW">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tulis pertanyaan terbaikmu disini!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F6v-Ce-lvW">
                     <rect key="frame" x="24" y="42" width="280" height="14.5"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="14.5" id="2yq-eY-fS1"/>
@@ -85,6 +85,6 @@
         </view>
     </objects>
     <resources>
-        <image name="icDummyPerson" width="64" height="64"/>
+        <image name="icDummyPerson" width="48" height="48"/>
     </resources>
 </document>

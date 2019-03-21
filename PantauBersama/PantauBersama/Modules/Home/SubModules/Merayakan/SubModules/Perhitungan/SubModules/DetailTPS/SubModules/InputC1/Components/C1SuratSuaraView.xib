@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="2Uw-W8-pde" customClass="C1SuratSuaraView" customModule="PantauBersama" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="472"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="c7i-3r-YrK">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="472"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pOT-g4-ege">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="48.5"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" text="III. DATA PENGGUNAAN SURAT SUARA" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yxz-Vo-ubR" customClass="Label" customModule="Common">
+                                    <rect key="frame" x="16" y="8" width="382" height="32.5"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <nil key="highlightedColor"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                            <real key="value" value="12"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="typeLabel" value="bm-bold"/>
+                                    </userDefinedRuntimeAttributes>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" red="0.94901960780000005" green="0.46666666670000001" blue="0.1137254902" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstItem="Yxz-Vo-ubR" firstAttribute="top" secondItem="pOT-g4-ege" secondAttribute="top" constant="8" id="Cer-pS-RoK"/>
+                                <constraint firstAttribute="bottom" secondItem="Yxz-Vo-ubR" secondAttribute="bottom" constant="8" id="HDc-Dd-b0D"/>
+                                <constraint firstAttribute="trailing" secondItem="Yxz-Vo-ubR" secondAttribute="trailing" constant="16" id="QkS-Ch-VCq"/>
+                                <constraint firstItem="Yxz-Vo-ubR" firstAttribute="leading" secondItem="pOT-g4-ege" secondAttribute="leading" constant="16" id="gjA-Oj-kS9"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vhu-uT-VJT">
+                            <rect key="frame" x="0.0" y="48.5" width="414" height="423.5"/>
+                            <subviews>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="mhd-eb-zfl">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="423.5"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tdd-Pe-wAg">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="135"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="gYS-Ml-ONl">
+                                                    <rect key="frame" x="17" y="17" width="380" height="101"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="1. Jumlah surat suara yang diterima, termasuk surat suara cadangan 2% dari DPT (2+3+4)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eJu-cO-wUZ" customClass="Label" customModule="Common">
+                                                            <rect key="frame" x="0.0" y="0.0" width="264" height="61"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <color key="textColor" red="0.066666666669999999" green="0.066666666669999999" blue="0.066666666669999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                                    <real key="value" value="12"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="typeLabel" value="bm-bold"/>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </label>
+                                                        <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LJX-2N-vTL" customClass="TPSTextField" customModule="PantauBersama" customModuleProvider="target">
+                                                            <rect key="frame" x="280" y="0.0" width="100" height="38"/>
+                                                            <color key="backgroundColor" red="0.99607843139999996" green="0.97254901959999995" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="38" id="DXz-mZ-1Jl"/>
+                                                                <constraint firstAttribute="width" constant="100" id="pi7-IQ-G15"/>
+                                                            </constraints>
+                                                            <nil key="textColor"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <textInputTraits key="textInputTraits"/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                    <real key="value" value="4"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </textField>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstItem="gYS-Ml-ONl" firstAttribute="top" secondItem="tdd-Pe-wAg" secondAttribute="top" constant="17" id="68b-lA-y2D"/>
+                                                <constraint firstAttribute="height" priority="750" constant="72" id="ilW-e7-WVF"/>
+                                                <constraint firstAttribute="trailing" secondItem="gYS-Ml-ONl" secondAttribute="trailing" constant="17" id="l4P-Dc-HNM"/>
+                                                <constraint firstAttribute="bottom" secondItem="gYS-Ml-ONl" secondAttribute="bottom" constant="17" id="zH1-aA-ZG2"/>
+                                                <constraint firstItem="gYS-Ml-ONl" firstAttribute="leading" secondItem="tdd-Pe-wAg" secondAttribute="leading" constant="17" id="zUm-o2-Wut"/>
+                                            </constraints>
+                                        </view>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zcs-vP-pil">
+                                            <rect key="frame" x="0.0" y="136" width="414" height="95"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="8wJ-9b-Nxv">
+                                                    <rect key="frame" x="17" y="17" width="380" height="61"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="2. Jumlah surat suara yang dikembalikan oleh pemilik karena rusak/keliru coblos" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tUd-8d-J9l" customClass="Label" customModule="Common">
+                                                            <rect key="frame" x="0.0" y="0.0" width="264" height="61"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <color key="textColor" red="0.066666666669999999" green="0.066666666669999999" blue="0.066666666669999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                                    <real key="value" value="12"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="typeLabel" value="bm-bold"/>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </label>
+                                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Km7-Eq-yoB" customClass="TPSTextField" customModule="PantauBersama" customModuleProvider="target">
+                                                            <rect key="frame" x="280" y="0.0" width="100" height="38"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="38" id="2uk-yS-uxd"/>
+                                                                <constraint firstAttribute="width" constant="100" id="4B2-ak-8Rx"/>
+                                                            </constraints>
+                                                            <nil key="textColor"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <textInputTraits key="textInputTraits"/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                    <real key="value" value="4"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                    <color key="value" red="0.79607843140000001" green="0.79607843140000001" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColorActive">
+                                                                    <color key="value" red="0.031372549020000001" green="0.74117647060000003" blue="0.6588235294" alpha="1" colorSpace="calibratedRGB"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                    <real key="value" value="1"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </textField>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="8wJ-9b-Nxv" secondAttribute="bottom" constant="17" id="3Mh-9U-Yfh"/>
+                                                <constraint firstAttribute="height" priority="750" constant="72" id="QB7-Hm-ioE"/>
+                                                <constraint firstAttribute="trailing" secondItem="8wJ-9b-Nxv" secondAttribute="trailing" constant="17" id="VOa-UZ-n3l"/>
+                                                <constraint firstItem="8wJ-9b-Nxv" firstAttribute="leading" secondItem="Zcs-vP-pil" secondAttribute="leading" constant="17" id="aDn-Hg-0Nu"/>
+                                                <constraint firstItem="8wJ-9b-Nxv" firstAttribute="top" secondItem="Zcs-vP-pil" secondAttribute="top" constant="17" id="txz-Wo-RbG"/>
+                                            </constraints>
+                                            <viewLayoutGuide key="safeArea" id="6Fa-wU-GRi"/>
+                                        </view>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n5o-OO-J6l">
+                                            <rect key="frame" x="0.0" y="232" width="414" height="115.5"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="WZF-ar-uOd">
+                                                    <rect key="frame" x="17" y="17" width="380" height="81.5"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="3. Jumlah surat suara yang tidak digunakan/tidak terpakai, termasuk sisa surat suara cadangan" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WR3-QN-chy" customClass="Label" customModule="Common">
+                                                            <rect key="frame" x="0.0" y="0.0" width="264" height="81.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <color key="textColor" red="0.066666666669999999" green="0.066666666669999999" blue="0.066666666669999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                                    <real key="value" value="12"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="typeLabel" value="bm-bold"/>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </label>
+                                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Q10-6p-9x7" customClass="TPSTextField" customModule="PantauBersama" customModuleProvider="target">
+                                                            <rect key="frame" x="280" y="0.0" width="100" height="38"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="38" id="Cta-5k-Q3t"/>
+                                                                <constraint firstAttribute="width" constant="100" id="mUR-au-Evj"/>
+                                                            </constraints>
+                                                            <nil key="textColor"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <textInputTraits key="textInputTraits"/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                    <real key="value" value="4"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                    <color key="value" red="0.79607843140000001" green="0.79607843140000001" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColorActive">
+                                                                    <color key="value" red="0.031372549020000001" green="0.74117647060000003" blue="0.6588235294" alpha="1" colorSpace="calibratedRGB"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                    <real key="value" value="1"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </textField>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" priority="750" constant="72" id="CTO-iH-CYl"/>
+                                                <constraint firstAttribute="bottom" secondItem="WZF-ar-uOd" secondAttribute="bottom" constant="17" id="INx-FC-7Ag"/>
+                                                <constraint firstAttribute="trailing" secondItem="WZF-ar-uOd" secondAttribute="trailing" constant="17" id="MJA-vk-iRS"/>
+                                                <constraint firstItem="WZF-ar-uOd" firstAttribute="leading" secondItem="n5o-OO-J6l" secondAttribute="leading" constant="17" id="MeZ-0u-Mhm"/>
+                                                <constraint firstItem="WZF-ar-uOd" firstAttribute="top" secondItem="n5o-OO-J6l" secondAttribute="top" constant="17" id="Mgc-xx-aNp"/>
+                                            </constraints>
+                                            <viewLayoutGuide key="safeArea" id="08h-0k-fjz"/>
+                                        </view>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oqh-E5-Ghj">
+                                            <rect key="frame" x="0.0" y="348.5" width="414" height="75"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="U3O-as-Ob7">
+                                                    <rect key="frame" x="17" y="17" width="380" height="41"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="4. Jumlah surat suara yang digunakan" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cmZ-wL-LXY" customClass="Label" customModule="Common">
+                                                            <rect key="frame" x="0.0" y="0.0" width="264" height="41"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <color key="textColor" red="0.066666666669999999" green="0.066666666669999999" blue="0.066666666669999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                                    <real key="value" value="12"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="typeLabel" value="bm-bold"/>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </label>
+                                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7v2-sj-4oE" customClass="TPSTextField" customModule="PantauBersama" customModuleProvider="target">
+                                                            <rect key="frame" x="280" y="0.0" width="100" height="38"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="100" id="JV7-wd-aQk"/>
+                                                                <constraint firstAttribute="height" constant="38" id="hQk-1x-2Hy"/>
+                                                            </constraints>
+                                                            <nil key="textColor"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <textInputTraits key="textInputTraits"/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                    <real key="value" value="4"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                    <color key="value" red="0.79607843140000001" green="0.79607843140000001" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColorActive">
+                                                                    <color key="value" red="0.031372549020000001" green="0.74117647060000003" blue="0.6588235294" alpha="1" colorSpace="calibratedRGB"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                    <real key="value" value="1"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </textField>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" priority="750" constant="72" id="2xL-YK-x8N"/>
+                                                <constraint firstItem="U3O-as-Ob7" firstAttribute="leading" secondItem="Oqh-E5-Ghj" secondAttribute="leading" constant="17" id="JR5-XL-A0N"/>
+                                                <constraint firstItem="U3O-as-Ob7" firstAttribute="top" secondItem="Oqh-E5-Ghj" secondAttribute="top" constant="17" id="oj6-by-Xka"/>
+                                                <constraint firstAttribute="bottom" secondItem="U3O-as-Ob7" secondAttribute="bottom" constant="17" id="taM-p1-Yum"/>
+                                                <constraint firstAttribute="trailing" secondItem="U3O-as-Ob7" secondAttribute="trailing" constant="17" id="ygP-mX-KD1"/>
+                                            </constraints>
+                                            <viewLayoutGuide key="safeArea" id="sd3-jn-e5p"/>
+                                        </view>
+                                    </subviews>
+                                    <viewLayoutGuide key="safeArea" id="aCV-Z2-MGc"/>
+                                </stackView>
+                            </subviews>
+                            <color key="backgroundColor" red="0.95686274509803915" green="0.95686274509803915" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="mhd-eb-zfl" secondAttribute="bottom" id="Vqn-QC-wht"/>
+                                <constraint firstItem="mhd-eb-zfl" firstAttribute="leading" secondItem="vhu-uT-VJT" secondAttribute="leading" id="aF3-8J-fB2"/>
+                                <constraint firstItem="mhd-eb-zfl" firstAttribute="top" secondItem="vhu-uT-VJT" secondAttribute="top" id="bkk-Rg-vEY"/>
+                                <constraint firstAttribute="trailing" secondItem="mhd-eb-zfl" secondAttribute="trailing" id="rnu-e3-EW1"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="c7i-3r-YrK" secondAttribute="trailing" id="0DM-JE-ySV"/>
+                <constraint firstItem="c7i-3r-YrK" firstAttribute="leading" secondItem="adB-ve-lJN" secondAttribute="leading" id="1ID-jK-BIN"/>
+                <constraint firstItem="adB-ve-lJN" firstAttribute="bottom" secondItem="c7i-3r-YrK" secondAttribute="bottom" id="OBc-Ut-cZ3"/>
+                <constraint firstItem="c7i-3r-YrK" firstAttribute="top" secondItem="adB-ve-lJN" secondAttribute="top" id="hhG-Ls-hDH"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="adB-ve-lJN"/>
+            <point key="canvasLocation" x="57.600000000000001" y="184.40779610194903"/>
+        </view>
+    </objects>
+</document>

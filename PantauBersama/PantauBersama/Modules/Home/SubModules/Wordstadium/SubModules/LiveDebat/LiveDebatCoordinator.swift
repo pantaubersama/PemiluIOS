@@ -10,21 +10,35 @@ import Foundation
 import Common
 import RxSwift
 import RxCocoa
+import Networking
 
 public protocol LiveDebatNavigator {
     func back() -> Observable<Void>
+    func launchDetail() -> Observable<Void>
+    func showComment() -> Observable<Void>
+}
+
+public enum DebatViewType {
+    case watch
+    case myTurn
+    case theirTurn
+    case done
 }
 
 class LiveDebatCoordinator: BaseCoordinator<Void> {
     private let navigationController: UINavigationController
+    private let viewType: DebatViewType
+    private let challenge: Challenge
     
-    init(navigationController: UINavigationController) {
+    init(navigationController: UINavigationController, challenge: Challenge, viewType: DebatViewType) {
         self.navigationController = navigationController
+        self.viewType = viewType
+        self.challenge = challenge
     }
     
     override func start() -> Observable<Void> {
         let viewController = LiveDebatController()
-        let viewModel = LiveDebatViewModel(navigator: self)
+        let viewModel = LiveDebatViewModel(navigator: self, challenge: self.challenge, viewType: self.viewType)
         viewController.hidesBottomBarWhenPushed = true
         viewController.viewModel = viewModel
         
@@ -37,5 +51,15 @@ extension LiveDebatCoordinator: LiveDebatNavigator {
     func back() -> Observable<Void> {
         self.navigationController.popViewController(animated: true)
         return Observable.never()
+    }
+    
+    func launchDetail() -> Observable<Void> {
+        let debatDetailCoordinator = DebatDetailCoordinator(navigationController: self.navigationController)
+        return coordinate(to: debatDetailCoordinator)
+    }
+    
+    func showComment() -> Observable<Void> {
+        let debatCommentCoordinator = DebatCommentCoordinator(navigationController: self.navigationController, viewType: viewType)
+        return coordinate(to: debatCommentCoordinator)
     }
 }

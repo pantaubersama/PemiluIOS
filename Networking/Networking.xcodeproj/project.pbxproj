@@ -14,16 +14,21 @@
 		118149E021EC5E9300192E97 /* UsersResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118149DF21EC5E9300192E97 /* UsersResponse.swift */; };
 		1183F0DC21D4FC4800435D31 /* TanyaKandidatAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1183F0DB21D4FC4800435D31 /* TanyaKandidatAPI.swift */; };
 		1183F0DE21D535C600435D31 /* QuestionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1183F0DD21D535C600435D31 /* QuestionResponse.swift */; };
+		119123B92227877000617E7C /* PutAskAsOpponentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119123B82227877000617E7C /* PutAskAsOpponentResponse.swift */; };
+		119123BB2227B2B700617E7C /* GetChallengeDetailResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119123BA2227B2B600617E7C /* GetChallengeDetailResponse.swift */; };
 		11B145EC21D66A8400BB26C8 /* Batch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B145EB21D66A8400BB26C8 /* Batch.swift */; };
 		11B145F021D68CFA00BB26C8 /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B145EF21D68CFA00BB26C8 /* Page.swift */; };
 		11C7BB2321DB2A97008CA49B /* String+Copy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C7BB2221DB2A97008CA49B /* String+Copy.swift */; };
 		11C7BB2521DB36D5008CA49B /* QuestionOptionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C7BB2421DB36D5008CA49B /* QuestionOptionResponse.swift */; };
 		11D0669D21E26A07003AC9BB /* QuizResultResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D0669C21E26A07003AC9BB /* QuizResultResponse.swift */; };
+		11DA96FF221978DB00A51E76 /* FirebaseQuizNotifResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DA96FE221978DB00A51E76 /* FirebaseQuizNotifResponse.swift */; };
 		11E798D421E2F4FA002AABDC /* QuizSummaryResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E798D321E2F4FA002AABDC /* QuizSummaryResponse.swift */; };
 		11F7890B220F1E4C005AFC8C /* FirebaseQuestionNotifResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F7890A220F1E4B005AFC8C /* FirebaseQuestionNotifResponse.swift */; };
 		11F7890D220F1E81005AFC8C /* Notif.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F7890C220F1E81005AFC8C /* Notif.swift */; };
 		11F7890F2210F89E005AFC8C /* FirebaseBadgeNotifResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F7890E2210F89E005AFC8C /* FirebaseBadgeNotifResponse.swift */; };
+		13054D3C222451EB00C4C9EA /* ChallengeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13054D3B222451EB00C4C9EA /* ChallengeType.swift */; };
 		1311A96F21DD3011001B053B /* UserPantau.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1311A96E21DD3011001B053B /* UserPantau.swift */; };
+		131AEBE72223287900B299F6 /* GetChallengeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 131AEBE62223287900B299F6 /* GetChallengeResponse.swift */; };
 		137A2A0121E3C80F00F19072 /* TrendResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 137A2A0021E3C80F00F19072 /* TrendResponse.swift */; };
 		13D9483A21DDD56D00722EB1 /* InfoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D9483921DDD56D00722EB1 /* InfoResponse.swift */; };
 		13F456B521D531D300CE45F1 /* LinimasaAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F456B421D531D300CE45F1 /* LinimasaAPI.swift */; };
@@ -47,6 +52,11 @@
 		8482E62A21D8E5AB00D5DC07 /* BadgesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8482E62921D8E5AB00D5DC07 /* BadgesResponse.swift */; };
 		8482E62E21D9017700D5DC07 /* PaginatableResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8482E62D21D9017700D5DC07 /* PaginatableResponse.swift */; };
 		8482E63021D9048800D5DC07 /* Paginate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8482E62F21D9048800D5DC07 /* Paginate.swift */; };
+		84A945AC2221435E00944C6B /* CreateChallengeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A945AB2221435E00944C6B /* CreateChallengeResponse.swift */; };
+		84A945B62224080800944C6B /* TwitterUsernameResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A945B52224080800944C6B /* TwitterUsernameResponse.swift */; };
+		84AEFA79221FFE5300F3DC92 /* WordstadiumAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AEFA78221FFE5300F3DC92 /* WordstadiumAPI.swift */; };
+		84AEFA7C2220009800F3DC92 /* TagKajianResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AEFA7B2220009800F3DC92 /* TagKajianResponse.swift */; };
+		84AEFA7E222002BB00F3DC92 /* OpiniumServicesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AEFA7D222002BB00F3DC92 /* OpiniumServicesAPI.swift */; };
 		84B2522B21CAB47B00565D82 /* NetworkKeychainKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B2522A21CAB47B00565D82 /* NetworkKeychainKind.swift */; };
 		84B2523521CAC71400565D82 /* RequestLoadingPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B2523421CAC71400565D82 /* RequestLoadingPlugin.swift */; };
 		84B2523721CAC7D000565D82 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B2523621CAC7D000565D82 /* NetworkError.swift */; };
@@ -69,6 +79,16 @@
 		84FE6EB621D5F35E009A0F55 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FE6EB521D5F35E009A0F55 /* User.swift */; };
 		84FE6EB821D5F374009A0F55 /* BaseResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FE6EB721D5F374009A0F55 /* BaseResponse.swift */; };
 		84FF8AA121F221C100AA8CF3 /* AppVersionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FF8AA021F221C100AA8CF3 /* AppVersionResponse.swift */; };
+		E51D65ED2240026000FEDD7A /* ProvinceResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51D65EC2240026000FEDD7A /* ProvinceResponse.swift */; };
+		E51D65EF224004F100FEDD7A /* RegencyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51D65EE224004F100FEDD7A /* RegencyResponse.swift */; };
+		E51D65F1224005F300FEDD7A /* DistrictResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51D65F0224005F300FEDD7A /* DistrictResponse.swift */; };
+		E51D65F32240100900FEDD7A /* Village.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51D65F22240100900FEDD7A /* Village.swift */; };
+		E51D65F52240101400FEDD7A /* VillageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51D65F42240101400FEDD7A /* VillageResponse.swift */; };
+		E59E04FA223893A800EDAFF7 /* Province.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59E04F9223893A800EDAFF7 /* Province.swift */; };
+		E59E04FC223898A300EDAFF7 /* Regency.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59E04FB223898A200EDAFF7 /* Regency.swift */; };
+		E59E04FE22389B2500EDAFF7 /* District.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59E04FD22389B2500EDAFF7 /* District.swift */; };
+		E5BD7AA92241A5B3002532C0 /* RealCountRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BD7AA82241A5B3002532C0 /* RealCountRequest.swift */; };
+		E5C2E6B02236DAB100DA600B /* HitungAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C2E6AF2236DAB100DA600B /* HitungAPI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,16 +109,21 @@
 		118149DF21EC5E9300192E97 /* UsersResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersResponse.swift; sourceTree = "<group>"; };
 		1183F0DB21D4FC4800435D31 /* TanyaKandidatAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TanyaKandidatAPI.swift; sourceTree = "<group>"; };
 		1183F0DD21D535C600435D31 /* QuestionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionResponse.swift; sourceTree = "<group>"; };
+		119123B82227877000617E7C /* PutAskAsOpponentResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PutAskAsOpponentResponse.swift; sourceTree = "<group>"; };
+		119123BA2227B2B600617E7C /* GetChallengeDetailResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetChallengeDetailResponse.swift; sourceTree = "<group>"; };
 		11B145EB21D66A8400BB26C8 /* Batch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Batch.swift; sourceTree = "<group>"; };
 		11B145EF21D68CFA00BB26C8 /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
 		11C7BB2221DB2A97008CA49B /* String+Copy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Copy.swift"; sourceTree = "<group>"; };
 		11C7BB2421DB36D5008CA49B /* QuestionOptionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionOptionResponse.swift; sourceTree = "<group>"; };
 		11D0669C21E26A07003AC9BB /* QuizResultResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizResultResponse.swift; sourceTree = "<group>"; };
+		11DA96FE221978DB00A51E76 /* FirebaseQuizNotifResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseQuizNotifResponse.swift; sourceTree = "<group>"; };
 		11E798D321E2F4FA002AABDC /* QuizSummaryResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSummaryResponse.swift; sourceTree = "<group>"; };
 		11F7890A220F1E4B005AFC8C /* FirebaseQuestionNotifResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseQuestionNotifResponse.swift; sourceTree = "<group>"; };
 		11F7890C220F1E81005AFC8C /* Notif.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notif.swift; sourceTree = "<group>"; };
 		11F7890E2210F89E005AFC8C /* FirebaseBadgeNotifResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseBadgeNotifResponse.swift; sourceTree = "<group>"; };
+		13054D3B222451EB00C4C9EA /* ChallengeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeType.swift; sourceTree = "<group>"; };
 		1311A96E21DD3011001B053B /* UserPantau.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPantau.swift; sourceTree = "<group>"; };
+		131AEBE62223287900B299F6 /* GetChallengeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetChallengeResponse.swift; sourceTree = "<group>"; };
 		137A2A0021E3C80F00F19072 /* TrendResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendResponse.swift; sourceTree = "<group>"; };
 		13D9483921DDD56D00722EB1 /* InfoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoResponse.swift; sourceTree = "<group>"; };
 		13F456B421D531D300CE45F1 /* LinimasaAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinimasaAPI.swift; sourceTree = "<group>"; };
@@ -123,6 +148,11 @@
 		8482E62921D8E5AB00D5DC07 /* BadgesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgesResponse.swift; sourceTree = "<group>"; };
 		8482E62D21D9017700D5DC07 /* PaginatableResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginatableResponse.swift; sourceTree = "<group>"; };
 		8482E62F21D9048800D5DC07 /* Paginate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Paginate.swift; sourceTree = "<group>"; };
+		84A945AB2221435E00944C6B /* CreateChallengeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChallengeResponse.swift; sourceTree = "<group>"; };
+		84A945B52224080800944C6B /* TwitterUsernameResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterUsernameResponse.swift; sourceTree = "<group>"; };
+		84AEFA78221FFE5300F3DC92 /* WordstadiumAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordstadiumAPI.swift; sourceTree = "<group>"; };
+		84AEFA7B2220009800F3DC92 /* TagKajianResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagKajianResponse.swift; sourceTree = "<group>"; };
+		84AEFA7D222002BB00F3DC92 /* OpiniumServicesAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpiniumServicesAPI.swift; sourceTree = "<group>"; };
 		84B2522A21CAB47B00565D82 /* NetworkKeychainKind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkKeychainKind.swift; sourceTree = "<group>"; };
 		84B2523421CAC71400565D82 /* RequestLoadingPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestLoadingPlugin.swift; sourceTree = "<group>"; };
 		84B2523621CAC7D000565D82 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
@@ -149,6 +179,16 @@
 		84FE6EB721D5F374009A0F55 /* BaseResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseResponse.swift; sourceTree = "<group>"; };
 		84FF8AA021F221C100AA8CF3 /* AppVersionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppVersionResponse.swift; sourceTree = "<group>"; };
 		85BAE50647296BF2C83ACD7C /* Pods_Networking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Networking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E51D65EC2240026000FEDD7A /* ProvinceResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProvinceResponse.swift; sourceTree = "<group>"; };
+		E51D65EE224004F100FEDD7A /* RegencyResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegencyResponse.swift; sourceTree = "<group>"; };
+		E51D65F0224005F300FEDD7A /* DistrictResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistrictResponse.swift; sourceTree = "<group>"; };
+		E51D65F22240100900FEDD7A /* Village.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Village.swift; sourceTree = "<group>"; };
+		E51D65F42240101400FEDD7A /* VillageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VillageResponse.swift; sourceTree = "<group>"; };
+		E59E04F9223893A800EDAFF7 /* Province.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Province.swift; sourceTree = "<group>"; };
+		E59E04FB223898A200EDAFF7 /* Regency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Regency.swift; sourceTree = "<group>"; };
+		E59E04FD22389B2500EDAFF7 /* District.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = District.swift; sourceTree = "<group>"; };
+		E5BD7AA82241A5B3002532C0 /* RealCountRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealCountRequest.swift; sourceTree = "<group>"; };
+		E5C2E6AF2236DAB100DA600B /* HitungAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitungAPI.swift; sourceTree = "<group>"; };
 		F3B2B1BD2456514F2D807A68 /* Pods-NetworkingTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NetworkingTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-NetworkingTests/Pods-NetworkingTests.debug.xcconfig"; sourceTree = "<group>"; };
 		FC9D77E9B7CE8AB5A8F185B6 /* Pods_NetworkingTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NetworkingTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -205,8 +245,23 @@
 				11F7890A220F1E4B005AFC8C /* FirebaseQuestionNotifResponse.swift */,
 				11F7890C220F1E81005AFC8C /* Notif.swift */,
 				11F7890E2210F89E005AFC8C /* FirebaseBadgeNotifResponse.swift */,
+				11DA96FE221978DB00A51E76 /* FirebaseQuizNotifResponse.swift */,
 			);
 			path = Notifications;
+			sourceTree = "<group>";
+		};
+		84AEFA7A2220008200F3DC92 /* Wordstadium */ = {
+			isa = PBXGroup;
+			children = (
+				84AEFA7B2220009800F3DC92 /* TagKajianResponse.swift */,
+				84A945AB2221435E00944C6B /* CreateChallengeResponse.swift */,
+				131AEBE62223287900B299F6 /* GetChallengeResponse.swift */,
+				13054D3B222451EB00C4C9EA /* ChallengeType.swift */,
+				84A945B52224080800944C6B /* TwitterUsernameResponse.swift */,
+				119123B82227877000617E7C /* PutAskAsOpponentResponse.swift */,
+				119123BA2227B2B600617E7C /* GetChallengeDetailResponse.swift */,
+			);
+			path = Wordstadium;
 			sourceTree = "<group>";
 		};
 		84B2522921CAB45C00565D82 /* NetworkKeychain */ = {
@@ -226,6 +281,9 @@
 				13F456B421D531D300CE45F1 /* LinimasaAPI.swift */,
 				1143E80721DEC75D003862B6 /* QuizAPI.swift */,
 				8451E05F2204672700F03E96 /* NotificationAPI.swift */,
+				84AEFA78221FFE5300F3DC92 /* WordstadiumAPI.swift */,
+				84AEFA7D222002BB00F3DC92 /* OpiniumServicesAPI.swift */,
+				E5C2E6AF2236DAB100DA600B /* HitungAPI.swift */,
 			);
 			path = Microservices;
 			sourceTree = "<group>";
@@ -233,6 +291,8 @@
 		84B2523821CAC7E900565D82 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E59E04F82238939400EDAFF7 /* Hitung */,
+				84AEFA7A2220008200F3DC92 /* Wordstadium */,
 				84307F4722005770006DE04B /* Notifications */,
 				84B2523921CAC7FB00565D82 /* ErrorResponse.swift */,
 				84B2526121CBD99900565D82 /* IdentitasResponses.swift */,
@@ -322,6 +382,30 @@
 			path = NetworkingTests;
 			sourceTree = "<group>";
 		};
+		E59E04F82238939400EDAFF7 /* Hitung */ = {
+			isa = PBXGroup;
+			children = (
+				E5BD7AA72241A59E002532C0 /* Request */,
+				E51D65EC2240026000FEDD7A /* ProvinceResponse.swift */,
+				E59E04F9223893A800EDAFF7 /* Province.swift */,
+				E51D65EE224004F100FEDD7A /* RegencyResponse.swift */,
+				E59E04FB223898A200EDAFF7 /* Regency.swift */,
+				E51D65F0224005F300FEDD7A /* DistrictResponse.swift */,
+				E59E04FD22389B2500EDAFF7 /* District.swift */,
+				E51D65F22240100900FEDD7A /* Village.swift */,
+				E51D65F42240101400FEDD7A /* VillageResponse.swift */,
+			);
+			path = Hitung;
+			sourceTree = "<group>";
+		};
+		E5BD7AA72241A59E002532C0 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				E5BD7AA82241A5B3002532C0 /* RealCountRequest.swift */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -363,7 +447,7 @@
 				84D831EB21C4DCEC00C437B7 /* Sources */,
 				84D831EC21C4DCEC00C437B7 /* Frameworks */,
 				84D831ED21C4DCEC00C437B7 /* Resources */,
-				FB0072AC75DB0B374292CAF1 /* [CP] Embed Pods Frameworks */,
+				10A474C8EB4C17578389A3A3 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -430,6 +514,44 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		10A474C8EB4C17578389A3A3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/../Pods/Target Support Files/Pods-NetworkingTests/Pods-NetworkingTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
+				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
+				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
+				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCoreLocation/RxCoreLocation.framework",
+				"${BUILT_PRODUCTS_DIR}/RxDataSources/RxDataSources.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differentiator.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCoreLocation.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxDataSources.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-NetworkingTests/Pods-NetworkingTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		D2D391FB904AC314B5CD9682 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -474,42 +596,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		FB0072AC75DB0B374292CAF1 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${SRCROOT}/../Pods/Target Support Files/Pods-NetworkingTests/Pods-NetworkingTests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
-				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
-				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
-				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
-				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
-				"${BUILT_PRODUCTS_DIR}/RxDataSources/RxDataSources.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differentiator.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxDataSources.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-NetworkingTests/Pods-NetworkingTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -519,6 +605,7 @@
 			files = (
 				11B145EC21D66A8400BB26C8 /* Batch.swift in Sources */,
 				84E521C821F4C81500B7CCBA /* InfoFirebaseResponse.swift in Sources */,
+				84AEFA79221FFE5300F3DC92 /* WordstadiumAPI.swift in Sources */,
 				1183F0DE21D535C600435D31 /* QuestionResponse.swift in Sources */,
 				13F456C521DB7EF900CE45F1 /* Image.swift in Sources */,
 				1143E81421E24946003862B6 /* QuizQuestionsResponse.swift in Sources */,
@@ -528,35 +615,50 @@
 				11C7BB2521DB36D5008CA49B /* QuestionOptionResponse.swift in Sources */,
 				8482E63021D9048800D5DC07 /* Paginate.swift in Sources */,
 				84FC35EE21E89BE4005FB016 /* ClusterResponse.swift in Sources */,
+				E51D65EF224004F100FEDD7A /* RegencyResponse.swift in Sources */,
 				84B2523A21CAC7FB00565D82 /* ErrorResponse.swift in Sources */,
 				11F7890F2210F89E005AFC8C /* FirebaseBadgeNotifResponse.swift in Sources */,
 				84FF8AA121F221C100AA8CF3 /* AppVersionResponse.swift in Sources */,
+				11DA96FF221978DB00A51E76 /* FirebaseQuizNotifResponse.swift in Sources */,
 				84B2526221CBD99900565D82 /* IdentitasResponses.swift in Sources */,
 				11B145F021D68CFA00BB26C8 /* Page.swift in Sources */,
 				11E798D421E2F4FA002AABDC /* QuizSummaryResponse.swift in Sources */,
+				E59E04FC223898A300EDAFF7 /* Regency.swift in Sources */,
 				11F7890B220F1E4C005AFC8C /* FirebaseQuestionNotifResponse.swift in Sources */,
 				13D9483A21DDD56D00722EB1 /* InfoResponse.swift in Sources */,
 				1311A96F21DD3011001B053B /* UserPantau.swift in Sources */,
 				8451E05522043A9D00F03E96 /* PayloadResponse.swift in Sources */,
+				131AEBE72223287900B299F6 /* GetChallengeResponse.swift in Sources */,
 				1143E81821E25D1B003862B6 /* QuizAnswerResponse.swift in Sources */,
 				13F456B721DA7BD000CE45F1 /* Feeds.swift in Sources */,
+				13054D3C222451EB00C4C9EA /* ChallengeType.swift in Sources */,
 				1143E80821DEC75D003862B6 /* QuizAPI.swift in Sources */,
 				84B7B8C921E4E6730099E7E3 /* CategoriesResponse.swift in Sources */,
 				13F456C321DB7E1300CE45F1 /* BannerInfo.swift in Sources */,
+				E59E04FE22389B2500EDAFF7 /* District.swift in Sources */,
 				1183F0DC21D4FC4800435D31 /* TanyaKandidatAPI.swift in Sources */,
+				E59E04FA223893A800EDAFF7 /* Province.swift in Sources */,
 				13F456BB21DA806900CE45F1 /* Meta.swift in Sources */,
+				119123BB2227B2B700617E7C /* GetChallengeDetailResponse.swift in Sources */,
 				842B650E21D9505A00F95C13 /* InformantResponse.swift in Sources */,
 				842B650C21D9385100F95C13 /* Avatar.swift in Sources */,
 				11C7BB2321DB2A97008CA49B /* String+Copy.swift in Sources */,
 				84B6D51121F83B5900DD742A /* PoliticalPartyResponse.swift in Sources */,
+				84AEFA7C2220009800F3DC92 /* TagKajianResponse.swift in Sources */,
 				13F456B521D531D300CE45F1 /* LinimasaAPI.swift in Sources */,
 				84619D3521DA21A200EB58CF /* Gender.swift in Sources */,
 				13F456BD21DB668D00CE45F1 /* JanjiPolitik.swift in Sources */,
+				E51D65F52240101400FEDD7A /* VillageResponse.swift in Sources */,
+				119123B92227877000617E7C /* PutAskAsOpponentResponse.swift in Sources */,
 				84307F4922005786006DE04B /* FirebaseBroadcastResponse.swift in Sources */,
+				E51D65ED2240026000FEDD7A /* ProvinceResponse.swift in Sources */,
+				84A945AC2221435E00944C6B /* CreateChallengeResponse.swift in Sources */,
 				84F1F21521E9CD81004515A4 /* AccountResponse.swift in Sources */,
 				84B2669D21D4BB1400C7B783 /* PantauRefreshResponse.swift in Sources */,
 				84FE6EB821D5F374009A0F55 /* BaseResponse.swift in Sources */,
 				84B2526421CBDE2600565D82 /* PantauAuthAPI.swift in Sources */,
+				E5C2E6B02236DAB100DA600B /* HitungAPI.swift in Sources */,
+				E51D65F32240100900FEDD7A /* Village.swift in Sources */,
 				137A2A0121E3C80F00F19072 /* TrendResponse.swift in Sources */,
 				84FE6EB621D5F35E009A0F55 /* User.swift in Sources */,
 				8482E62A21D8E5AB00D5DC07 /* BadgesResponse.swift in Sources */,
@@ -564,10 +666,14 @@
 				84B2523521CAC71400565D82 /* RequestLoadingPlugin.swift in Sources */,
 				84B2526621CBFF0C00565D82 /* PantauAuthResponse.swift in Sources */,
 				13F456B921DA7F9A00CE45F1 /* FeedsResponse.swift in Sources */,
+				E5BD7AA92241A5B3002532C0 /* RealCountRequest.swift in Sources */,
 				1143E80621DE50BC003862B6 /* QuizzesResponse.swift in Sources */,
 				13F456BF21DB67C100CE45F1 /* JanjiPolitikResponse.swift in Sources */,
+				84AEFA7E222002BB00F3DC92 /* OpiniumServicesAPI.swift in Sources */,
 				11F7890D220F1E81005AFC8C /* Notif.swift in Sources */,
+				E51D65F1224005F300FEDD7A /* DistrictResponse.swift in Sources */,
 				118149E021EC5E9300192E97 /* UsersResponse.swift in Sources */,
+				84A945B62224080800944C6B /* TwitterUsernameResponse.swift in Sources */,
 				84FE6EB421D5F339009A0F55 /* UserResponse.swift in Sources */,
 				842A49FB21D78B6A0050AA51 /* VerificationsResponse.swift in Sources */,
 				8482E62E21D9017700D5DC07 /* PaginatableResponse.swift in Sources */,

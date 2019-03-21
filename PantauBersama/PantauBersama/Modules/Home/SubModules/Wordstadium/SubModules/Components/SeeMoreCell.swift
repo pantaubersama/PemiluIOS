@@ -8,22 +8,36 @@
 
 import UIKit
 import Common
+import RxSwift
 
 class SeeMoreCell: UITableViewCell {
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    @IBOutlet weak var seeMoreBtn: UIButton!
+    
+    private var disposeBag : DisposeBag?
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        disposeBag = nil
     }
     
 }
 
 extension SeeMoreCell: IReusableCell {
+    struct Input {
+        let wordstadium: SectionWordstadium
+        let viewModel: ILiniWordstadiumViewModel
+    }
     
+    func configureCell(item: Input) {
+        let bag = DisposeBag()
+        
+        seeMoreBtn.rx.tap
+            .map({ item.wordstadium })
+            .bind(to: item.viewModel.input.seeMoreI)
+            .disposed(by: bag)
+        
+        disposeBag = bag
+    }
 }

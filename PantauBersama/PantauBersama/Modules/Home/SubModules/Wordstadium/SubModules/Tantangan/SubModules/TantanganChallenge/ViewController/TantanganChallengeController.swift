@@ -29,6 +29,7 @@ class TantanganChallengeController: UIViewController {
     private var link: String? = nil
     private var statusDebat: Bool = false
     private var headerView: HeaderTantanganView = HeaderTantanganView()
+    private var searchModel: SearchUserModel? = nil
     
     var dataSource: RxTableViewSectionedReloadDataSource<SectionOfTantanganData>!
     var tantanganType: Bool = false // for open
@@ -89,7 +90,7 @@ class TantanganChallengeController: UIViewController {
                 return cell
             case 2:
                 let cell = tableView.dequeueReusableCell(indexPath: indexPath) as LawanDebatCell
-                cell.configure(item: LawanDebatCell.Input(viewModel: self.viewModel, status: self.statusDebat))
+                cell.configure(item: LawanDebatCell.Input(viewModel: self.viewModel, status: self.statusDebat, data: self.searchModel))
                 return cell
             case 3:
                 let cell = tableView.dequeueReusableCell(indexPath: indexPath) as DateTimeCell
@@ -126,15 +127,15 @@ class TantanganChallengeController: UIViewController {
         viewModel.output.kajianSelected
             .do(onNext: { [unowned self] (result) in
                 switch result {
-                case .ok(let id):
-                    print("ID: \(id)")
+                case .ok(let name):
+                    self.viewModel.input.nameKajianI.onNext(name)
                     self.viewModel.input.kajianI.onNext(false)
                     self.viewModel.input.pernyataanI.onNext(false)
                     self.viewModel.input.lawanDebatI.onNext(true)
                     self.viewModel.input.dateTimeI.onNext(true)
                     self.viewModel.input.saldoI.onNext(true)
                     self.statusKajian = true
-                    self.nameKajian = id
+                    self.nameKajian = name
                 case .cancel:
                     break
                 }
@@ -163,7 +164,7 @@ class TantanganChallengeController: UIViewController {
                     self.viewModel.input.kajianI.onNext(false)
                     self.viewModel.input.pernyataanI.onNext(false)
                     self.viewModel.input.lawanDebatI.onNext(false)
-                    self.viewModel.input.dateTimeI.onNext(false)
+                    self.tantanganType ? self.viewModel.input.dateTimeI.onNext(true) : self.viewModel.input.dateTimeI.onNext(false)
                     self.viewModel.input.saldoI.onNext(true)
                 }
             })
@@ -176,7 +177,7 @@ class TantanganChallengeController: UIViewController {
                 self.viewModel.input.pernyataanI.onNext(false)
                 self.viewModel.input.lawanDebatI.onNext(false)
                 self.viewModel.input.dateTimeI.onNext(false)
-                self.viewModel.input.saldoI.onNext(false)
+                self.viewModel.input.saldoI.onNext(true)
                 self.statusDateTime = false
                 self.date = s
             })
@@ -238,11 +239,34 @@ class TantanganChallengeController: UIViewController {
                     self.viewModel.input.kajianI.onNext(false)
                     self.viewModel.input.pernyataanI.onNext(false)
                     self.viewModel.input.lawanDebatI.onNext(false)
-                    self.viewModel.input.dateTimeI.onNext(false)
+                    self.tantanganType ? self.viewModel.input.dateTimeI.onNext(true) : self.viewModel.input.dateTimeI.onNext(false)
                     self.viewModel.input.saldoI.onNext(true)
                     self.statusPernyataan = true
                     self.link = url
+                    self.viewModel.input.sourceLinkI.onNext(url)
                 }
+            })
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.cancelLinkO
+            .do(onNext: { [unowned self] (_) in
+                if self.contentPernyataan != nil {
+                    self.viewModel.input.kajianI.onNext(false)
+                    self.viewModel.input.pernyataanI.onNext(false)
+                    self.viewModel.input.lawanDebatI.onNext(false)
+                    self.viewModel.input.dateTimeI.onNext(false)
+                    self.viewModel.input.saldoI.onNext(true)
+                    self.statusPernyataan = true
+                } else {
+                    self.viewModel.input.kajianI.onNext(false)
+                    self.viewModel.input.pernyataanI.onNext(false)
+                    self.viewModel.input.lawanDebatI.onNext(true)
+                    self.viewModel.input.dateTimeI.onNext(true)
+                    self.viewModel.input.saldoI.onNext(true)
+                    self.statusPernyataan = false
+                }
+                self.link = nil
             })
             .drive()
             .disposed(by: disposeBag)
@@ -265,11 +289,7 @@ class TantanganChallengeController: UIViewController {
         viewModel.output.btnNextO
             .drive()
             .disposed(by: disposeBag)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.navigationBar.configure(with: .white)
+        
         switch tantanganType {
         case false:
             viewModel.input.kajianI.onNext(false)
@@ -283,6 +303,64 @@ class TantanganChallengeController: UIViewController {
             viewModel.input.dateTimeI.onNext(true)
             viewModel.input.saldoI.onNext(true)
         }
+        
+        viewModel.output.symbolicButtonO
+            .do(onNext: { (result) in
+                switch result {
+                case .cancel:
+                    self.statusDebat = false
+                    self.searchModel = nil
+                    self.viewModel.input.kajianI.onNext(false)
+                    self.viewModel.input.pernyataanI.onNext(false)
+                    self.viewModel.input.lawanDebatI.onNext(false)
+                    self.viewModel.input.dateTimeI.onNext(true)
+                    self.viewModel.input.saldoI.onNext(true)
+                case .oke(let data):
+                    self.statusDebat = true
+                    self.searchModel = data
+                    self.viewModel.input.kajianI.onNext(false)
+                    self.viewModel.input.pernyataanI.onNext(false)
+                    self.viewModel.input.lawanDebatI.onNext(false)
+                    self.viewModel.input.dateTimeI.onNext(false)
+                    self.viewModel.input.saldoI.onNext(true)
+                    self.viewModel.input.userSearchTrigger.onNext(data)
+                    self.viewModel.input.inputLawanTrigger.onNext(true)
+                }
+            })
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.twitterButtonO // button twitter lawan debat
+            .do(onNext: { (result) in
+                switch result {
+                case .cancel:
+                    self.statusDebat = false
+                    self.searchModel = nil
+                    self.viewModel.input.kajianI.onNext(false)
+                    self.viewModel.input.pernyataanI.onNext(false)
+                    self.viewModel.input.lawanDebatI.onNext(false)
+                    self.viewModel.input.dateTimeI.onNext(true)
+                    self.viewModel.input.saldoI.onNext(true)
+                case .oke(let data):
+                    self.statusDebat = true
+                    self.searchModel = data
+                    self.viewModel.input.kajianI.onNext(false)
+                    self.viewModel.input.pernyataanI.onNext(false)
+                    self.viewModel.input.lawanDebatI.onNext(false)
+                    self.viewModel.input.dateTimeI.onNext(false)
+                    self.viewModel.input.saldoI.onNext(true)
+                    self.viewModel.input.userSearchTrigger.onNext(data)
+                    self.viewModel.input.inputLawanTrigger.onNext(false)
+                }
+            })
+            .drive()
+            .disposed(by: disposeBag)
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.configure(with: .white)
     }
     
 }
@@ -294,15 +372,15 @@ extension TantanganChallengeController: UITableViewDelegate {
         case false:
             switch indexPath.section {
             case 0:
-                return 90.0
+                return 110.0
             case 1:
                 if link != nil {
-                    return 219.0 + 75.0
+                    return 219.0 + 75.0 - 24.0
                 } else {
                     return 219.0
                 }
             case 2:
-                return 151.0
+                return 175.0
             case 3:
                 return 140.0
             default:
@@ -311,7 +389,7 @@ extension TantanganChallengeController: UITableViewDelegate {
         case true:
             switch indexPath.section {
             case 0:
-                return 90.0
+                return 110.0
             case 1:
                 if link != nil {
                     return 219.0 + 75.0
@@ -319,9 +397,9 @@ extension TantanganChallengeController: UITableViewDelegate {
                     return 219.0
                 }
             case 2:
-                return 181.0
+                return 200.0
             case 3:
-                return 151.0
+                return 175.0
             case 4:
                 return 140.0
             default:

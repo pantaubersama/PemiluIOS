@@ -8,6 +8,7 @@
 
 import UIKit
 import Common
+import Networking
 
 @IBDesignable
 class FooterProfileView: UIView {
@@ -16,6 +17,7 @@ class FooterProfileView: UIView {
     @IBOutlet weak var lblName: Label!
     @IBOutlet weak var lblStatus: Label!
     
+    @IBOutlet weak var lblPostTime: Label!
     
     // Height 200.0
     override init(frame: CGRect) {
@@ -35,5 +37,12 @@ class FooterProfileView: UIView {
         addSubview(view)
     }
 
+    func configure(data: User) {
+        if let url = data.avatar.thumbnail.url {
+            ivAvatar.show(fromURL: url)
+        }
+        lblName.text = data.fullName
+        lblStatus.text = data.about
+    }
     
 }

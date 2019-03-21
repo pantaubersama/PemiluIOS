@@ -27,6 +27,7 @@ class PernyataanCell: UITableViewCell {
     @IBOutlet weak var btnHint: UIButton!
     @IBOutlet weak var btnLink: Button!
     @IBOutlet weak var linkPreviewView: LinkPreviewView!
+    @IBOutlet weak var statusBottom: UIImageView!
     
     @IBOutlet weak var contraintLinkPreview: NSLayoutConstraint!
     private var disposeBag: DisposeBag!
@@ -61,6 +62,7 @@ extension PernyataanCell: IReusableCell {
         
         lineStatus.backgroundColor = item.status ? #colorLiteral(red: 1, green: 0.5569574237, blue: 0, alpha: 1) : #colorLiteral(red: 0.7960169315, green: 0.7961130738, blue: 0.7959839106, alpha: 1)
         status.image = item.status ? #imageLiteral(resourceName: "checkDone") : #imageLiteral(resourceName: "checkUnactive")
+        statusBottom.image = item.status ? nil : #imageLiteral(resourceName: "checkInactive")
         
         tvPernyataan.delegate = self
         if item.content == nil {
@@ -72,6 +74,7 @@ extension PernyataanCell: IReusableCell {
         }
         
         if item.link == nil {
+            item.viewModel.input.sourceLinkI.onNext((""))
             btnLink.setTitle("Sertakan link disini", for: .normal)
             btnLink.isHidden = false
         } else {
@@ -109,8 +112,7 @@ extension PernyataanCell: IReusableCell {
                     self.contraintLinkPreview.constant = 0.0
                 })
             })
-            .asDriverOnErrorJustComplete()
-            .drive()
+            .bind(to: item.viewModel.input.pernyataanLinkCancelI)
             .disposed(by: bag)
         
         tvPernyataan.rx.text

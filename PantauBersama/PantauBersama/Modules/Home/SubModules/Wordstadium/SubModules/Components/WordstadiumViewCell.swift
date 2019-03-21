@@ -10,6 +10,7 @@ import UIKit
 import Common
 import RxSwift
 import RxCocoa
+import Networking
 
 class WordstadiumViewCell: UITableViewCell{
 
@@ -17,9 +18,12 @@ class WordstadiumViewCell: UITableViewCell{
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var titleIv: UIImageView!
     @IBOutlet weak var titleLbl: UILabel!
+    @IBOutlet weak var seeMoreBtn: UIButton!
     
-    private var collectionType : ItemCollectionType!
-    private var items : [Wordstadium]!
+    private var wordstadium: SectionWordstadium!
+    private var viewModel: ILiniWordstadiumViewModel!
+    
+    private var disposeBag : DisposeBag?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -36,6 +40,12 @@ class WordstadiumViewCell: UITableViewCell{
         // Configure the view for the selected state
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        disposeBag = nil
+    }
+    
     
 }
 
@@ -43,31 +53,53 @@ extension WordstadiumViewCell: IReusableCell,UICollectionViewDelegate,UICollecti
     
     
     struct Input {
-        let type : ItemCollectionType
-        let wordstadium: [Wordstadium]
+        let wordstadium: SectionWordstadium
+        let viewModel : ILiniWordstadiumViewModel
     }
     
     func configureCell(item: Input) {
-        self.collectionType = item.type
-        self.items = item.wordstadium
+        self.wordstadium = item.wordstadium
+        self.viewModel = item.viewModel
         
-        switch item.type {
-        case .live:
-            self.titleLbl.text = "Live Now"
+        self.titleLbl.text = item.wordstadium.title
+        
+        switch item.wordstadium.type {
+        case .public:
             self.titleIv.image = UIImage(named: "icWordLive")
-        case .challenge:
-            self.titleLbl.text = "Challenge in Progress"
+        case .personal:
             self.titleIv.image = UIImage(named: "icWordChallange")
         }
+        
+        let bag = DisposeBag()
+        
+        seeMoreBtn.rx.tap
+            .map({ item.wordstadium })
+            .bind(to: item.viewModel.input.seeMoreI)
+            .disposed(by: bag)
+
+        self.collectionView.rx.itemSelected
+            .map{(indexPath) in
+                return self.wordstadium.itemsLive[indexPath.row]
+            }
+            .bind(to: item.viewModel.input.itemSelectedI)
+            .disposed(by: bag)
+        
+        disposeBag = bag
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.items.count
+        return self.wordstadium.itemsLive.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let challenge = self.wordstadium.itemsLive[indexPath.row]
         let collection = collectionView.dequeueReusableCell(indexPath: indexPath) as WordstadiumCollectionCell
-        collection.configureCell(item: WordstadiumCollectionCell.Input(type: self.collectionType))
+        collection.configureCell(item: WordstadiumCollectionCell.Input(type: self.wordstadium.type, wordstadium: challenge))
+        collection.moreMenuBtn.rx.tap
+            .map({ challenge })
+            .bind(to: self.viewModel.input.moreI)
+            .disposed(by: self.disposeBag!)
         return collection
     }
     
@@ -75,4 +107,5 @@ extension WordstadiumViewCell: IReusableCell,UICollectionViewDelegate,UICollecti
     {
         return CGSize(width: 280.0, height: 180.0)
     }
+    
 }

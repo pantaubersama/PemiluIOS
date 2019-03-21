@@ -14,6 +14,7 @@
             <connections>
                 <outlet property="ivAvatar" destination="mJp-7J-P63" id="5FO-KI-vBW"/>
                 <outlet property="lblName" destination="Wk6-xe-3vN" id="vSt-KM-Qod"/>
+                <outlet property="lblPostTime" destination="I8b-gM-fhu" id="w6J-wK-nBj"/>
                 <outlet property="lblStatus" destination="Bkg-Nn-Jeh" id="hVH-3H-KnV"/>
             </connections>
         </placeholder>
@@ -43,7 +44,7 @@
                             <rect key="frame" x="16" y="57" width="343" height="30"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wk6-xe-3vN" customClass="Label" customModule="Common">
-                                    <rect key="frame" x="150.5" y="0.0" width="42" height="15"/>
+                                    <rect key="frame" x="157" y="0.0" width="29" height="15"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     <nil key="highlightedColor"/>
@@ -55,7 +56,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bkg-Nn-Jeh" customClass="Label" customModule="Common">
-                                    <rect key="frame" x="150.5" y="15" width="42" height="15"/>
+                                    <rect key="frame" x="158.5" y="15" width="26" height="15"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" red="0.30980392159999998" green="0.30980392159999998" blue="0.30980392159999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     <nil key="highlightedColor"/>
@@ -70,6 +71,20 @@
                                 <constraint firstAttribute="height" constant="30" id="EiI-96-15K"/>
                             </constraints>
                         </stackView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I8b-gM-fhu" customClass="Label" customModule="Common">
+                            <rect key="frame" x="187.5" y="95" width="0.0" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="21" id="oL6-Q6-SIr"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                    <real key="value" value="9"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
@@ -78,7 +93,9 @@
                         <constraint firstItem="mJp-7J-P63" firstAttribute="top" secondItem="APC-Fp-tPj" secondAttribute="top" constant="17" id="AqQ-Iq-Cgq"/>
                         <constraint firstItem="mJp-7J-P63" firstAttribute="centerX" secondItem="APC-Fp-tPj" secondAttribute="centerX" id="P9G-8R-LNc"/>
                         <constraint firstAttribute="height" constant="120" id="PEw-cu-2ZB"/>
+                        <constraint firstItem="I8b-gM-fhu" firstAttribute="centerX" secondItem="eLy-Jz-Ynz" secondAttribute="centerX" id="QV4-7G-ZnH"/>
                         <constraint firstAttribute="trailing" secondItem="eLy-Jz-Ynz" secondAttribute="trailing" constant="16" id="Yf2-Fn-KuL"/>
+                        <constraint firstItem="I8b-gM-fhu" firstAttribute="top" secondItem="eLy-Jz-Ynz" secondAttribute="bottom" constant="8" id="lF8-Vt-XA7"/>
                     </constraints>
                 </view>
             </subviews>

@@ -247,6 +247,14 @@ mengalami pertumbuhan mencapai 5,27%.
             <size key="customSize" width="280" height="180"/>
             <connections>
                 <outlet property="backgroundItem" destination="S0V-36-1mK" id="uet-Pp-CEE"/>
+                <outlet property="leftPersonIv" destination="BXQ-pv-qhX" id="5ec-v7-Kz3"/>
+                <outlet property="leftUsername" destination="XeI-h1-Ucj" id="rIz-Lj-eaK"/>
+                <outlet property="moreMenuBtn" destination="4fL-F9-ktM" id="iPw-pZ-fRd"/>
+                <outlet property="rightPersonIv" destination="cmX-VS-t2E" id="LoQ-qs-w5j"/>
+                <outlet property="rightUsername" destination="98l-Rw-fWl" id="MbQ-IR-rzF"/>
+                <outlet property="statementLbl" destination="Xi5-W0-sPU" id="Xt6-my-kJr"/>
+                <outlet property="titleLbl" destination="xfM-hl-bLj" id="VUN-Xk-rHX"/>
+                <outlet property="topicLbl" destination="4cq-fP-iId" id="gVu-1o-YzN"/>
             </connections>
             <point key="canvasLocation" x="-8" y="165.51724137931035"/>
         </collectionViewCell>

@@ -10,17 +10,60 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ChallengeButtonView" customModule="PantauBersama" customModuleProvider="target">
+            <connections>
+                <outlet property="btnMore" destination="zxZ-AF-JDE" id="PQU-0e-ajd"/>
+                <outlet property="btnShare" destination="o7J-pm-qy6" id="mrI-ud-Vwa"/>
+                <outlet property="containerLike" destination="zsq-H2-zsc" id="Syb-Wb-uXi"/>
+            </connections>
+        </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="dB5-zX-IRg">
             <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="QNH-TB-pZg">
-                    <rect key="frame" x="0.0" y="0.0" width="359" height="56"/>
+                    <rect key="frame" x="16" y="0.0" width="343" height="56"/>
                     <subviews>
+                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zsq-H2-zsc">
+                            <rect key="frame" x="0.0" y="0.0" width="0.0" height="56"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Ie-HL-erO">
+                                    <rect key="frame" x="0.0" y="16" width="24" height="24"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="24" id="9sb-bW-9YZ"/>
+                                        <constraint firstAttribute="height" constant="24" id="DVp-3w-A2h"/>
+                                    </constraints>
+                                    <state key="normal" image="icLike"/>
+                                </button>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WIg-zj-u3r" customClass="Label" customModule="Common">
+                                    <rect key="frame" x="28" y="18" width="20.5" height="20.5"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                            <real key="value" value="12"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="typeLabel" value="bold"/>
+                                    </userDefinedRuntimeAttributes>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="7Ie-HL-erO" firstAttribute="leading" secondItem="zsq-H2-zsc" secondAttribute="leading" id="HJf-jx-kGy"/>
+                                <constraint firstAttribute="width" priority="250" constant="24" id="fZo-In-1Kj"/>
+                                <constraint firstItem="7Ie-HL-erO" firstAttribute="centerY" secondItem="zsq-H2-zsc" secondAttribute="centerY" id="fcG-Gw-jUL"/>
+                                <constraint firstItem="WIg-zj-u3r" firstAttribute="leading" secondItem="7Ie-HL-erO" secondAttribute="trailing" constant="4" id="kW0-mv-NoF"/>
+                                <constraint firstItem="WIg-zj-u3r" firstAttribute="centerY" secondItem="zsq-H2-zsc" secondAttribute="centerY" id="z2q-aH-SzQ"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yBQ-vR-2W5">
+                            <rect key="frame" x="0.0" y="0.0" width="50" height="56"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </view>
                         <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceLeftToRight" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o7J-pm-qy6" customClass="Button" customModule="Common">
-                            <rect key="frame" x="0.0" y="16" width="319" height="24"/>
+                            <rect key="frame" x="66" y="16" width="237" height="24"/>
                             <state key="normal" title="BAGIKAN" image="outlineShare24Px">
                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
@@ -32,19 +75,24 @@
                             </userDefinedRuntimeAttributes>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zxZ-AF-JDE">
-                            <rect key="frame" x="335" y="16" width="24" height="24"/>
+                            <rect key="frame" x="319" y="16" width="24" height="24"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="24" id="Mi8-CL-qlj"/>
                                 <constraint firstAttribute="height" constant="24" id="e6w-eu-dGZ"/>
                             </constraints>
-                            <state key="normal" image="baselineMoreHoriz24Px"/>
+                            <state key="normal" image="baselineMoreHorizBlack24Px"/>
                         </button>
                     </subviews>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="zsq-H2-zsc" secondAttribute="bottom" id="IIi-d5-dYV"/>
+                        <constraint firstItem="zsq-H2-zsc" firstAttribute="top" secondItem="QNH-TB-pZg" secondAttribute="top" id="d6j-ru-jTT"/>
+                        <constraint firstItem="zsq-H2-zsc" firstAttribute="leading" secondItem="QNH-TB-pZg" secondAttribute="leading" id="kSd-UF-LN1"/>
+                    </constraints>
                 </stackView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="QNH-TB-pZg" firstAttribute="leading" secondItem="XNo-Xh-kFH" secondAttribute="leading" id="OKo-qF-vpK"/>
+                <constraint firstItem="QNH-TB-pZg" firstAttribute="leading" secondItem="XNo-Xh-kFH" secondAttribute="leading" constant="16" id="OKo-qF-vpK"/>
                 <constraint firstItem="XNo-Xh-kFH" firstAttribute="trailing" secondItem="QNH-TB-pZg" secondAttribute="trailing" constant="16" id="Q3e-28-YVL"/>
                 <constraint firstAttribute="bottom" secondItem="QNH-TB-pZg" secondAttribute="bottom" id="uCG-Q3-wAm"/>
                 <constraint firstItem="QNH-TB-pZg" firstAttribute="top" secondItem="dB5-zX-IRg" secondAttribute="top" id="vSi-og-Lnh"/>
@@ -55,7 +103,8 @@
         </view>
     </objects>
     <resources>
-        <image name="baselineMoreHoriz24Px" width="24" height="24"/>
+        <image name="baselineMoreHorizBlack24Px" width="24" height="24"/>
+        <image name="icLike" width="12" height="12"/>
         <image name="outlineShare24Px" width="24" height="24"/>
     </resources>
 </document>

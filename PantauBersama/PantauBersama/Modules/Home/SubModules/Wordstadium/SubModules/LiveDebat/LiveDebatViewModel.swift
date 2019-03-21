@@ -10,30 +10,77 @@ import Foundation
 import Common
 import RxSwift
 import RxCocoa
+import Networking
 
 class LiveDebatViewModel: ViewModelType {
     struct Input {
         let backTrigger: AnyObserver<Void>
+        let launchDetailTrigger: AnyObserver<Void>
+        let showCommentTrigger: AnyObserver<Void>
+        let viewTypeTrigger: AnyObserver<DebatViewType>
+        let showMenuTrigger: AnyObserver<Void>
+        let selectMenuTrigger: AnyObserver<String>
     }
     
     struct Output {
         let back: Driver<Void>
+        let launchDetail: Driver<Void>
+        let showComment: Driver<Void>
+        let viewType: Driver<DebatViewType>
+        let menu: Driver<Void>
+        let menuSelected: Driver<String>
+        let challenge: Driver<Challenge>
     }
     
     var input: Input
     var output: Output
-    var navigator: LiveDebatNavigator
+    private let navigator: LiveDebatNavigator
+    private let challenge: Challenge
     
     private let backS = PublishSubject<Void>()
+    private let detailS = PublishSubject<Void>()
+    private let commentS = PublishSubject<Void>()
+    private let viewTypeS = PublishSubject<DebatViewType>()
+    private let menuS = PublishSubject<Void>()
+    private let selectMenuS = PublishSubject<String>()
     
-    init(navigator: LiveDebatNavigator) {
+    init(navigator: LiveDebatNavigator, challenge: Challenge, viewType: DebatViewType) {
         self.navigator = navigator
+        self.challenge = challenge
         
-        input = Input(backTrigger: backS.asObserver())
+        input = Input(
+            backTrigger: backS.asObserver(),
+            launchDetailTrigger: detailS.asObserver(),
+            showCommentTrigger: commentS.asObserver(),
+            viewTypeTrigger: viewTypeS.asObserver(),
+            showMenuTrigger: menuS.asObserver(),
+            selectMenuTrigger: selectMenuS.asObserver()
+        )
         
         let back = backS.flatMap({navigator.back()})
             .asDriverOnErrorJustComplete()
         
-        output = Output(back: back)
+        let detail = detailS.flatMap({navigator.launchDetail()})
+            .asDriverOnErrorJustComplete()
+        
+        let comment = commentS.flatMap({navigator.showComment()})
+            .asDriverOnErrorJustComplete()
+        
+        let viewType = viewTypeS.startWith(viewType)
+            .asDriverOnErrorJustComplete()
+        
+        
+        let menu = menuS.asDriverOnErrorJustComplete()
+        
+        let selectMenu = selectMenuS.asDriverOnErrorJustComplete()
+            
+        output = Output(
+            back: back,
+            launchDetail: detail,
+            showComment: comment,
+            viewType: viewType,
+            menu: menu,
+            menuSelected: selectMenu,
+            challenge: Driver.just(self.challenge))
     }
 }

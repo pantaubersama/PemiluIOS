@@ -2,6 +2,16 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>APIKey_OPINIUM</key>
+	<string>$(APIKey_OPINIUM)</string>
+	<key>URL_API_OPINIUM_SERVICE</key>
+	<string>$(URL_API_OPINIUM_SERVICE)</string>
+	<key>URL_API_WORDSTADIUM</key>
+	<string>$(URL_API_WORDSTADIUM)</string>
+	<key>FacebookAutoLogAppEventsEnabled</key>
+	<true/>
+	<key>URL_WEB_SHARE</key>
+	<string>$(URL_WEB_SHARE)</string>
 	<key>DOMAIN_SYMBOLIC_REDIRECT</key>
 	<string>$(DOMAIN_SYMBOLIC_REDIRECT)</string>
 	<key>URL_API_NOTIFICATION</key>
@@ -128,6 +138,12 @@
 	<string>Pantau Bersama memerlukan akses camera untuk melakukan proses input verifikasi</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Pantau Bersama memerlukan akses pustaka foto untuk melakukan proses input verifikasi serta mengganti profile gambar</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Pantau Bersama memerlukan akses lokasi untuk data lokasi perhitungan suara</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Pantau Bersama memerlukan akses lokasi untuk data lokasi perhitungan suara</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Pantau Bersama memerlukan akses lokasi untuk data lokasi perhitungan suara</string>
 	<key>REDIRECT_URI</key>
 	<string>$(REDIRECT_URI)</string>
 	<key>SECRET_TWITTER</key>

@@ -13,23 +13,42 @@ import RxCocoa
 import IQKeyboardManagerSwift
 
 class LiveDebatController: UIViewController {
+    
+    // UI view variable
+    @IBOutlet weak var latestCommentView: UIStackView!
+    @IBOutlet weak var bottomMargin: NSLayoutConstraint!
+    @IBOutlet weak var headerTitle: Button!
+    @IBOutlet weak var btnSendComment: ImageButton!
+    @IBOutlet weak var viewClapContainer: UIView!
+    @IBOutlet weak var ivHeaderBackground: UIImageView!
+    @IBOutlet weak var viewTimeContainer: UIStackView!
+    @IBOutlet weak var btnCommentShow: UIButton!
     @IBOutlet weak var btnScroll: Button!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var tableViewDebat: UITableView!
     @IBOutlet weak var tvInputDebat: UITextView!
+    @IBOutlet weak var tvInputComment: UITextView!
     @IBOutlet weak var imageVs: UIImageView!
+    @IBOutlet weak var viewInputContainer: UIView!
+    @IBOutlet weak var viewComentarContainer: UIView!
+    @IBOutlet weak var btnDetailDebat: Button!
+    @IBOutlet weak var constraintTableViewBottom: NSLayoutConstraint!
     @IBOutlet weak var constraintInputViewBottom: NSLayoutConstraint!
-    
+    @IBOutlet weak var constraintInputViewHeight: NSLayoutConstraint!
     private lazy var titleView = Button()
+    
+    // ui flag variable
     private var isKeyboardAppear = false
+    private var isCommentAppear = false
+    
     
     var viewModel: LiveDebatViewModel!
-    
     private lazy var disposeBag = DisposeBag()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        self.navigationController?.navigationBar.isHidden = true
         // config input behavior
         configureInputView()
         
@@ -38,7 +57,7 @@ class LiveDebatController: UIViewController {
         
         // for dummy ui
         tableViewDebat.dataSource = self
-        tableViewDebat.tableFooterView = UIView()
+        tableViewDebat.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 70))
         tableViewDebat.isScrollEnabled = false
         tableViewDebat.estimatedRowHeight = 44.0
         tableViewDebat.rowHeight = UITableView.automaticDimension
@@ -63,9 +82,55 @@ class LiveDebatController: UIViewController {
             }
             .disposed(by: disposeBag)
         
+        // open debat detail when tapped
+        btnDetailDebat.rx.tap
+            .bind(to: viewModel.input.launchDetailTrigger)
+            .disposed(by: disposeBag)
         
+        // open debat comment when tapped
+        btnCommentShow.rx.tap
+            .bind(to: viewModel.input.showCommentTrigger)
+            .disposed(by: disposeBag)
+        
+        // drive
         viewModel.output.back
             .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.launchDetail
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.showComment
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.menu
+            .asObservable()
+            .flatMapLatest({ [unowned self]_ -> Observable<String> in
+                return Observable.create({ (observer) -> Disposable in
+                    let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+                    let salinTautan = UIAlertAction(title: "Salin Tautan", style: .default, handler: { (_) in
+                        observer.onNext("salin")
+                        observer.on(.completed)
+                    })
+                    let bagikan = UIAlertAction(title: "Bagikan", style: .default, handler: { (_) in
+                        observer.onNext("bagigan")
+                        observer.on(.completed)
+                    })
+                    
+                    let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+                    
+                    alert.addAction(salinTautan)
+                    alert.addAction(bagikan)
+                    alert.addAction(cancel)
+                    DispatchQueue.main.async {
+                        self.navigationController?.present(alert, animated: true, completion: nil)
+                    }
+                    return Disposables.create()
+                })
+            })
+            .bind(to: viewModel.input.selectMenuTrigger)
             .disposed(by: disposeBag)
     }
     
@@ -74,13 +139,46 @@ class LiveDebatController: UIViewController {
         subscribeForKeyboardEvent()
         configureNavbar()
         configureTitleView()
+        
+        viewModel.output.viewType
+        .drive(onNext: { [weak self](viewType) in
+            guard let weakSelf = self else { return }
+            weakSelf.configureViewType(viewType: viewType)
+        })
+            .disposed(by: disposeBag)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         unsubscribeForKeyboardEvent()
+        titleView.removeFromSuperview()
     }
     
+    //MARK: selector
+    @objc func keyboardWillAppear(notification: NSNotification) {
+        isKeyboardAppear = true
+        let info = notification.userInfo!
+        let keyboardFrame: CGRect = (info[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        
+        // move input view above the keyboard and collapse the header
+        UIView.animate(withDuration: 0.4) { [unowned self] in
+            self.bottomMargin.constant += keyboardFrame.height
+//            self.constraintInputViewBottom.constant += keyboardFrame.height
+            self.view.layoutIfNeeded()
+        }
+        collapseHeader()
+    }
+    
+    @objc func keyboardWillDisappear() {
+        isKeyboardAppear = false
+        // bring input view down
+        UIView.animate(withDuration: 0.1) { [unowned self] in
+            self.bottomMargin.constant = 5
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    //MARK: private func
     private func subscribeForKeyboardEvent() {
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillAppear), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillDisappear), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -91,25 +189,56 @@ class LiveDebatController: UIViewController {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
-    @objc func keyboardWillAppear(notification: NSNotification) {
-        isKeyboardAppear = true
-        let info = notification.userInfo!
-        let keyboardFrame: CGRect = (info[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
-        
-        // move input view above the keyboard and collapse the header
-        UIView.animate(withDuration: 0.4) { [unowned self] in
-            self.constraintInputViewBottom.constant += keyboardFrame.height
-            self.view.layoutIfNeeded()
-        }
-        collapseHeader()
-    }
-    
-    @objc func keyboardWillDisappear() {
-        isKeyboardAppear = false
-        // bring input view down
-        UIView.animate(withDuration: 0.1) { [unowned self] in
-            self.constraintInputViewBottom.constant = 0
-            self.view.layoutIfNeeded()
+    private func configureViewType(viewType: DebatViewType) {
+        switch viewType {
+        case .watch:
+            latestCommentView.isHidden = true
+            viewComentarContainer.isHidden = false
+            viewInputContainer.isHidden = true
+            constraintTableViewBottom.constant = 0
+            viewTimeContainer.isHidden = true
+            constraintInputViewHeight.constant = 50
+            headerTitle.setTitle("LIVE NOW", for: .normal)
+            headerTitle.setImage(#imageLiteral(resourceName: "outlineLiveRed24Px"), for: .normal)
+            titleView.setTitle("LIVE NOW", for: .normal)
+            titleView.setImage(#imageLiteral(resourceName: "outlineLiveRed24Px"), for: .normal)
+            break
+        case .myTurn:
+            latestCommentView.isHidden = true
+            viewComentarContainer.isHidden = true
+            viewInputContainer.isHidden = false
+            constraintTableViewBottom.constant = 105
+            viewTimeContainer.isHidden = false
+            constraintInputViewHeight.constant = 105
+            headerTitle.setTitle("LIVE NOW", for: .normal)
+            headerTitle.setImage(#imageLiteral(resourceName: "outlineLiveRed24Px"), for: .normal)
+            titleView.setTitle("LIVE NOW", for: .normal)
+            titleView.setImage(#imageLiteral(resourceName: "outlineLiveRed24Px"), for: .normal)
+            break
+        case .theirTurn:
+            latestCommentView.isHidden = false
+            viewComentarContainer.isHidden = false
+            viewInputContainer.isHidden = true
+            constraintTableViewBottom.constant = 0
+            viewTimeContainer.isHidden = false
+            constraintInputViewHeight.constant = 50
+            headerTitle.setTitle("LIVE NOW", for: .normal)
+            headerTitle.setImage(#imageLiteral(resourceName: "outlineLiveRed24Px"), for: .normal)
+            titleView.setTitle("LIVE NOW", for: .normal)
+            titleView.setImage(#imageLiteral(resourceName: "outlineLiveRed24Px"), for: .normal)
+            break
+        case .done:
+            ivHeaderBackground.image = #imageLiteral(resourceName: "bgWordstadiumDone")
+            latestCommentView.isHidden = false
+            viewTimeContainer.isHidden = true
+            viewClapContainer.isHidden = false
+            constraintTableViewBottom.constant = 0
+            constraintInputViewHeight.constant = 50
+            headerTitle.setTitle("Result", for: .normal)
+            headerTitle.setImage(UIImage(), for: .normal)
+            titleView.setImage(UIImage(), for: .normal)
+            titleView.setTitle("Result", for: .normal)
+            break
         }
     }
     
@@ -121,7 +250,7 @@ class LiveDebatController: UIViewController {
                 if self.btnScroll.tag == 1 {
                     self.btnScroll.tag = 0
                     self.collapseHeader()
-                    self.tableViewDebat.scrollToRow(at: IndexPath(row: 19, section: 0), at: .bottom, animated: true)
+                    self.tableViewDebat.scrollToRow(at: IndexPath(row: 19, section: 0), at: .top, animated: true)
                 } else {
                     self.btnScroll.tag = 1
                     self.tableViewDebat.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
@@ -140,7 +269,45 @@ class LiveDebatController: UIViewController {
         // setup placeholder
         tvInputDebat.text = "Tulis argumen kamu disini"
         tvInputDebat.textColor = .lightGray
-        tvInputDebat.delegate = self
+        
+        tvInputDebat.rx.didBeginEditing.bind { [unowned self]in
+            if self.tvInputDebat.textColor == .lightGray {
+                self.tvInputDebat.text = nil
+                self.tvInputDebat.textColor = Color.primary_black
+            }
+            }
+            .disposed(by: disposeBag)
+        
+        tvInputDebat.rx.didEndEditing.bind { [unowned self]in
+            if self.tvInputDebat.text.isEmpty {
+                self.tvInputDebat.text = "Tulis Komentar"
+                self.tvInputDebat.textColor = .lightGray
+            }
+            }
+            .disposed(by: disposeBag)
+        
+        tvInputComment.text = "Tulis Komentar"
+        tvInputComment.textColor = .lightGray
+        
+        tvInputComment.rx.didBeginEditing.bind { [unowned self]in
+            self.btnSendComment.isHidden = false
+            if self.tvInputComment.textColor == .lightGray {
+                self.tvInputComment.text = nil
+                self.tvInputComment.textColor = Color.primary_black
+            }
+        }
+        .disposed(by: disposeBag)
+        
+        tvInputComment.rx.didEndEditing.bind { [unowned self]in
+            self.btnSendComment.isHidden = true
+            if self.tvInputComment.text.isEmpty {
+                self.tvInputComment.text = "Tulis Komentar"
+                self.tvInputComment.textColor = .lightGray
+            }
+        }
+        .disposed(by: disposeBag)
+        
+        
     }
     
     private func configureNavbar() {
@@ -151,6 +318,10 @@ class LiveDebatController: UIViewController {
         self.navigationItem.rightBarButtonItem = more
         
         self.navigationController?.navigationBar.configure(with: .transparent)
+        
+        more.rx.tap
+            .bind(to: viewModel.input.showMenuTrigger)
+            .disposed(by: disposeBag)
         
         back.rx.tap
             .bind(to: viewModel.input.backTrigger)
@@ -163,8 +334,6 @@ class LiveDebatController: UIViewController {
         titleView.translatesAutoresizingMaskIntoConstraints = false
         titleView.typeButton = "bold"
         titleView.fontSize = 14
-        titleView.setTitle("LIVE NOW", for: .normal)
-        titleView.setImage(#imageLiteral(resourceName: "outlineLiveRed24Px"), for: .normal)
         titleView.imageEdgeInsets = UIEdgeInsets(top: 0, left: -10, bottom: 0, right: 0)
         titleView.isUserInteractionEnabled = false
         
@@ -238,22 +407,4 @@ extension LiveDebatController: UITableViewDataSource {
     }
     
     
-}
-
-extension LiveDebatController: UITextViewDelegate {
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        // lightGray color indicate that the contents is a placeholder, then we need to make it nil
-        if textView.textColor == .lightGray {
-            textView.text = nil
-            textView.textColor = Color.primary_black
-        }
-    }
-    
-    func textViewDidEndEditing(_ textView: UITextView) {
-        // if user stop editing and the text is empty, then we set the placeholder
-        if textView.text.isEmpty {
-            textView.text = "Tulis argumen kamu disini"
-            textView.textColor = .lightGray
-        }
-    }
 }

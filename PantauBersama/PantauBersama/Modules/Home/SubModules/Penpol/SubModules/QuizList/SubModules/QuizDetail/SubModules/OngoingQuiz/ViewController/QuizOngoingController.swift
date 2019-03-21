@@ -16,7 +16,8 @@ class QuizOngoingController: UIViewController {
     @IBOutlet weak var btnBChoice: Button!
     @IBOutlet weak var tvBChoice: UITextView!
     @IBOutlet weak var tvAChoice: UITextView!
-    @IBOutlet weak var lbQuestion: Label!
+    @IBOutlet weak var tvQuestion: UITextView!
+    
     @IBOutlet weak var ivQuiz: UIImageView!
     
     private(set) var disposeBag = DisposeBag()
@@ -64,7 +65,7 @@ class QuizOngoingController: UIViewController {
         
         viewModel.output.question
             .drive(onNext: { [unowned self]question in
-                self.lbQuestion.text = question.content
+                self.tvQuestion.text = question.content
                 self.tvAChoice.setAttributedHtmlText(question.answers[0].content)
                 self.answerA = question.answers[0].content
                 self.tvBChoice.setAttributedHtmlText(question.answers[1].content)

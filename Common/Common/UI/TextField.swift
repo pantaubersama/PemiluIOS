@@ -8,12 +8,6 @@
 
 import UIKit
 
-
-enum TextFieldType: String {
-    case bw = "BwModelicaSS01-BoldCondensed"
-    case lato = "Lato-Bold"
-}
-
 @IBDesignable
 public class TextField: UITextField {
     
@@ -33,6 +27,13 @@ public class TextField: UITextField {
     
     override public func prepareForInterfaceBuilder() {
         setupTextField()
+    }
+    
+    @IBInspectable
+    public var icon: UIImage? = nil {
+        didSet {
+            setupTextField()
+        }
     }
     
     @IBInspectable
@@ -61,26 +62,30 @@ public class TextField: UITextField {
     }
 
     var fontName: String = "BwModelicaSS01-BoldCondensed"
-    
-    
+
     @IBInspectable
-    public var typeTextField: String = "lato" {
+    public var typeTextField: String = "regular" {
         didSet {
-            if let newFont: TextFieldType = TextFieldType(rawValue: self.typeTextField.lowercased()) {
-                switch newFont {
-                case .bw:
-                    self.fontName = "BwModelicaSS01-BoldCondensed"
-                case .lato:
-                    self.fontName = "Lato-Bold"
-                }
+            if let type = LabelType(rawValue: self.typeTextField.lowercased()) {
+                self.fontName = type.fontName
             }
             initFont()
         }
     }
     
+    @IBInspectable
+    public var borderType: String = "none" {
+        didSet {
+            setupTextField()
+        }
+    }
+    
     func setupTextField() {
-        self.borderStyle = .none
-        self.setBottomBorder(color: lineColor)
+        self.borderStyle = getBorderType()
+        
+        if borderStyle == .none {
+            self.setBottomBorder(color: lineColor)
+        }
         
         if let `placeholder` = placeholder {
             self.font = UIFont(name: "BwModelicaSS01-BoldCondensed", size: 12)
@@ -90,11 +95,40 @@ public class TextField: UITextField {
             ]
             self.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: attributes)
         }
+        
+
+        if let imageIcon = icon {
+            let imageIcon = UIImageView(image: imageIcon)
+            imageIcon.translatesAutoresizingMaskIntoConstraints = false
+            self.addSubview(imageIcon)
+            
+            NSLayoutConstraint.activate([
+                imageIcon.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -4),
+                imageIcon.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+                imageIcon.heightAnchor.constraint(equalToConstant: 24),
+                imageIcon.widthAnchor.constraint(equalToConstant: 24)
+                ])
+        }
+        
     }
     
     public func editingMode(active: Bool) {
         let color = active ? activeLineColor : lineColor
-        self.setBottomBorder(color: color)
+        if self.borderStyle == .none {
+            self.setBottomBorder(color: color)
+        }
+    }
+    
+    private func getBorderType() -> TextField.BorderStyle {
+        if borderType == "round" {
+            return .roundedRect
+        } else if borderType == "line" {
+            return .line
+        } else if borderType == "bazel" {
+            return .bezel
+        } else {
+            return .none
+        }
     }
     
 }

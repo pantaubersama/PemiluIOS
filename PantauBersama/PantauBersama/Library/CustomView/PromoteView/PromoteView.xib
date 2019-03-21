@@ -25,7 +25,6 @@
                 <outlet property="contentFacebook" destination="iu7-kx-XDw" id="ihc-pL-Buv"/>
                 <outlet property="contentTwitter" destination="lW5-2T-uyT" id="Pth-wc-YxZ"/>
                 <outlet property="contraintTopStack" destination="uus-61-dgN" id="NLF-BP-u6Z"/>
-                <outlet property="heightStackConstant" destination="ptW-ar-JV9" id="LIk-eF-Za9"/>
                 <outlet property="lblSubtitle" destination="xWN-Xe-APm" id="B7g-6z-5kG"/>
                 <outlet property="lblTitle" destination="WlZ-sX-iSb" id="udL-e8-eeT"/>
                 <outlet property="switchFacebook" destination="eyM-ZF-XMz" id="dKw-JW-P4D"/>
@@ -53,10 +52,10 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="00C-eB-W35">
-                    <rect key="frame" x="16" y="168" width="343" height="187"/>
+                    <rect key="frame" x="16" y="143" width="343" height="227"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k37-vS-Oue">
-                            <rect key="frame" x="0.0" y="0.0" width="343" height="187"/>
+                            <rect key="frame" x="0.0" y="0.0" width="343" height="101"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icTwitter32" translatesAutoresizingMaskIntoConstraints="NO" id="ee8-N9-hoo">
                                     <rect key="frame" x="0.0" y="0.0" width="32" height="32"/>
@@ -80,8 +79,9 @@
                                                 <userDefinedRuntimeAttribute type="string" keyPath="typeLabel" value="bold"/>
                                             </userDefinedRuntimeAttributes>
                                         </label>
-                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="46m-ID-D2h">
+                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="46m-ID-D2h">
                                             <rect key="frame" x="246" y="0.0" width="51" height="32"/>
+                                            <color key="onTintColor" red="0.96470588239999999" green="0.70588235290000001" blue="0.1647058824" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         </switch>
                                     </subviews>
                                     <constraints>
@@ -89,7 +89,7 @@
                                     </constraints>
                                 </stackView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tweet tantangan kamu sekarang. Undang temanmu untuk berdebat di sini." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lW5-2T-uyT" customClass="Label" customModule="Common">
-                                    <rect key="frame" x="48" y="32" width="279" height="153"/>
+                                    <rect key="frame" x="48" y="32" width="279" height="67"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" red="0.30980392159999998" green="0.30980392159999998" blue="0.30980392159999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     <nil key="highlightedColor"/>
@@ -110,11 +110,11 @@
                                 <constraint firstAttribute="trailing" secondItem="kDH-I8-Gks" secondAttribute="trailing" id="n2f-9N-DWz"/>
                                 <constraint firstItem="ee8-N9-hoo" firstAttribute="top" secondItem="k37-vS-Oue" secondAttribute="top" id="pLz-hQ-a8r"/>
                                 <constraint firstAttribute="bottom" secondItem="lW5-2T-uyT" secondAttribute="bottom" constant="2" id="pW2-1n-c5U"/>
-                                <constraint firstItem="lW5-2T-uyT" firstAttribute="top" secondItem="kDH-I8-Gks" secondAttribute="bottom" id="scN-ug-w1Z"/>
+                                <constraint firstItem="lW5-2T-uyT" firstAttribute="top" secondItem="kDH-I8-Gks" secondAttribute="bottom" priority="750" id="scN-ug-w1Z"/>
                             </constraints>
                         </view>
-                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fa1-dm-Cap">
-                            <rect key="frame" x="0.0" y="0.0" width="343" height="34"/>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fa1-dm-Cap">
+                            <rect key="frame" x="0.0" y="126" width="343" height="101"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icFacebook32" translatesAutoresizingMaskIntoConstraints="NO" id="opu-e2-V4r">
                                     <rect key="frame" x="0.0" y="0.0" width="32" height="32"/>
@@ -138,8 +138,9 @@
                                                 <userDefinedRuntimeAttribute type="string" keyPath="typeLabel" value="bold"/>
                                             </userDefinedRuntimeAttributes>
                                         </label>
-                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eyM-ZF-XMz">
+                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="eyM-ZF-XMz">
                                             <rect key="frame" x="246" y="0.0" width="51" height="32"/>
+                                            <color key="onTintColor" red="0.96470588239999999" green="0.70588235290000001" blue="0.1647058824" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         </switch>
                                     </subviews>
                                     <constraints>
@@ -147,7 +148,7 @@
                                     </constraints>
                                 </stackView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Post tantangan debatmu melalui Facebook. Undang temanmu untuk berdebat di sini." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iu7-kx-XDw" customClass="Label" customModule="Common">
-                                    <rect key="frame" x="48" y="32" width="279" height="0.0"/>
+                                    <rect key="frame" x="48" y="32" width="279" height="67"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" red="0.30980392159999998" green="0.30980392159999998" blue="0.30980392159999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     <nil key="highlightedColor"/>
@@ -167,15 +168,12 @@
                                 <constraint firstAttribute="trailing" secondItem="iu7-kx-XDw" secondAttribute="trailing" constant="16" id="Rnj-1Q-mat"/>
                                 <constraint firstAttribute="bottom" secondItem="iu7-kx-XDw" secondAttribute="bottom" constant="2" id="lOB-FG-0lV"/>
                                 <constraint firstItem="iu7-kx-XDw" firstAttribute="leading" secondItem="opu-e2-V4r" secondAttribute="trailing" constant="16" id="r0C-WO-cXP"/>
-                                <constraint firstItem="iu7-kx-XDw" firstAttribute="top" secondItem="HwW-h3-uqJ" secondAttribute="bottom" id="sgq-bc-WXo"/>
+                                <constraint firstItem="iu7-kx-XDw" firstAttribute="top" secondItem="HwW-h3-uqJ" secondAttribute="bottom" priority="750" id="sgq-bc-WXo"/>
                                 <constraint firstItem="opu-e2-V4r" firstAttribute="top" secondItem="Fa1-dm-Cap" secondAttribute="top" id="wJb-WK-DcB"/>
                             </constraints>
                         </view>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="187" id="ptW-ar-JV9"/>
-                    </constraints>
                 </stackView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -191,7 +189,7 @@
                 <constraint firstItem="xWN-Xe-APm" firstAttribute="top" secondItem="WlZ-sX-iSb" secondAttribute="bottom" id="abC-g2-XrE"/>
                 <constraint firstItem="00C-eB-W35" firstAttribute="leading" secondItem="Txp-9k-QLn" secondAttribute="leading" constant="16" id="gEg-e3-8dM"/>
                 <constraint firstItem="Txp-9k-QLn" firstAttribute="trailing" secondItem="00C-eB-W35" secondAttribute="trailing" constant="16" id="lWJ-jr-UNv"/>
-                <constraint firstItem="00C-eB-W35" firstAttribute="top" secondItem="xWN-Xe-APm" secondAttribute="bottom" constant="41" id="uus-61-dgN"/>
+                <constraint firstItem="00C-eB-W35" firstAttribute="top" secondItem="xWN-Xe-APm" secondAttribute="bottom" constant="16" id="uus-61-dgN"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="Txp-9k-QLn"/>

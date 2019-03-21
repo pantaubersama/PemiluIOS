@@ -21,8 +21,9 @@
                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Qlv-ux-5vB">
                         <rect key="frame" x="16" y="0.0" width="343" height="52.5"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bN5-bD-Xjt" customClass="CircularUIImageView" customModule="Common">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icDummyPerson" translatesAutoresizingMaskIntoConstraints="NO" id="bN5-bD-Xjt" customClass="CircularUIImageView" customModule="Common">
                                 <rect key="frame" x="0.0" y="6.5" width="40" height="40"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="gvK-6N-KgL"/>
                                     <constraint firstAttribute="width" constant="40" id="nIP-Dx-6l4"/>
@@ -33,6 +34,7 @@
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0k7-NR-z3o" customClass="Label" customModule="Common">
                                         <rect key="frame" x="0.0" y="0.0" width="188" height="17"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -45,6 +47,7 @@
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ijd-8W-4Qw" customClass="Label" customModule="Common">
                                         <rect key="frame" x="0.0" y="17" width="188" height="17"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.45882352941176469" green="0.45882352941176469" blue="0.45882352941176469" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
@@ -74,8 +77,10 @@
                                 </userDefinedRuntimeAttributes>
                             </button>
                         </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </stackView>
                 </subviews>
+                <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="Qlv-ux-5vB" secondAttribute="trailing" constant="16" id="6GH-uk-d2A"/>
                     <constraint firstItem="Qlv-ux-5vB" firstAttribute="leading" secondItem="yd2-Ex-Tyt" secondAttribute="leading" constant="16" id="C9m-bJ-7Qa"/>
@@ -83,7 +88,17 @@
                     <constraint firstItem="Qlv-ux-5vB" firstAttribute="top" secondItem="yd2-Ex-Tyt" secondAttribute="top" id="oFH-fw-z6O"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <connections>
+                <outlet property="avatar" destination="bN5-bD-Xjt" id="L8G-er-uSW"/>
+                <outlet property="btnConfirm" destination="zdv-SG-Ybc" id="CDJ-EE-nVW"/>
+                <outlet property="lblName" destination="0k7-NR-z3o" id="AsF-HA-xqm"/>
+                <outlet property="lblUsername" destination="ijd-8W-4Qw" id="ymc-dn-N7H"/>
+            </connections>
             <point key="canvasLocation" x="93.599999999999994" y="192.95352323838082"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="icDummyPerson" width="48" height="48"/>
+    </resources>
 </document>

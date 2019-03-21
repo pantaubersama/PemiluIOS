@@ -17,6 +17,9 @@ protocol WordstadiumNavigator {
     func launchNote() -> Observable<Void>
     func launchSearch() -> Observable<Void>
     func launchTooltip() -> Observable<TooltipResult>
+    func launchWordstadiumList(wordstadium: SectionWordstadium) -> Observable<Void>
+    func launchChallenge(wordstadium: Challenge) -> Observable<Void>
+    func launchLiveChallenge(wordstadium: Challenge) -> Observable<Void>
 }
 
 class WordstadiumCoordinator: BaseCoordinator<Void> {
@@ -37,6 +40,7 @@ class WordstadiumCoordinator: BaseCoordinator<Void> {
 }
 
 extension WordstadiumCoordinator: WordstadiumNavigator {
+    
     func launchProfile(isMyAccount: Bool, userId: String?) -> Observable<Void> {
         let profileCoordinator = ProfileCoordinator(navigationController: navigationController, isMyAccount: isMyAccount, userId: userId)
         return coordinate(to: profileCoordinator)
@@ -65,5 +69,20 @@ extension WordstadiumCoordinator: WordstadiumNavigator {
     func launchTooltip() -> Observable<TooltipResult> {
         let tooltipCoordinator = TooltipCoordinator(navigationController: navigationController)
         return coordinate(to: tooltipCoordinator)
+    }
+    
+    func launchWordstadiumList(wordstadium: SectionWordstadium) -> Observable<Void> {
+        let listCoordinator = WordstadiumListCoordinator(navigationController: navigationController, progressType: wordstadium.itemType, liniType: wordstadium.type)
+        return coordinate(to: listCoordinator)
+    }
+    
+    func launchChallenge(wordstadium: Challenge) -> Observable<Void> {
+        let challengeCoordinator = ChallengeCoordinator(navigationController: navigationController, data: wordstadium)
+        return coordinate(to: challengeCoordinator)
+    }
+    
+    func launchLiveChallenge(wordstadium: Challenge) -> Observable<Void> {
+        let liveDebatCoordinator = LiveDebatCoordinator(navigationController: navigationController, challenge: wordstadium, viewType: .watch)
+        return coordinate(to: liveDebatCoordinator)
     }
 }

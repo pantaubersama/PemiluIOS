@@ -63,7 +63,6 @@ final class RekapViewModel: ViewModelType {
             .asDriver(onErrorJustReturn: [])
         
         let kecamatan = kecamatanSubject
-        .flatMapLatest({ navigator.launchKecamatan() })
         .asDriverOnErrorJustComplete()
         
         output = Output(

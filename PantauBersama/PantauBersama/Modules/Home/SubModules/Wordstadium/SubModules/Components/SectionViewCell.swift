@@ -8,6 +8,7 @@
 
 import UIKit
 import Common
+import Networking
 
 class SectionViewCell: UITableViewCell {
     @IBOutlet weak var titleLbl: UILabel!
@@ -30,7 +31,7 @@ extension SectionViewCell: IReusableCell {
     
     struct Input {
         let title : String
-        let type : ItemType
+        let type : ProgressType
     }
     
     func configureCell(item: Input) {

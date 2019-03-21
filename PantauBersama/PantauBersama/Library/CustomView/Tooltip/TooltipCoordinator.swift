@@ -7,6 +7,7 @@
 //
 
 import RxSwift
+import Networking
 
 protocol TooltipNavigator {
     func launchChallenge() -> Observable<Void>
@@ -49,20 +50,27 @@ final class TooltipCoordinator: BaseCoordinator<TooltipResult> {
 
 extension TooltipCoordinator: TooltipNavigator {
     func launchChallenge() -> Observable<Void> {
-        print("Challenge")
-        return Observable.empty()
+        self.navigationController.dismiss(animated: true, completion: nil)
+        let wordstadiumListCoordinator = WordstadiumListCoordinator(navigationController: navigationController, progressType: .challenge, liniType: .public)
+        return coordinate(to: wordstadiumListCoordinator)
     }
     
     func launchDebatDone() -> Observable<Void> {
-        return Observable.empty()
+        self.navigationController.dismiss(animated: true, completion: nil)
+        let wordstadiumListCoordinator = WordstadiumListCoordinator(navigationController: navigationController, progressType: .done, liniType: .public)
+        return coordinate(to: wordstadiumListCoordinator)
     }
     
     func launchComingSoon() -> Observable<Void> {
-        return Observable.empty()
+        self.navigationController.dismiss(animated: true, completion: nil)
+        let wordstadiumListCoordinator = WordstadiumListCoordinator(navigationController: navigationController, progressType: .comingSoon, liniType: .public)
+        return coordinate(to: wordstadiumListCoordinator)
     }
     
     func launchDebatLive() -> Observable<Void> {
-        return Observable.empty()
+        self.navigationController.dismiss(animated: true, completion: nil)
+        let wordstadiumListCoordinator = WordstadiumListCoordinator(navigationController: navigationController, progressType: .liveNow, liniType: .public)
+        return coordinate(to: wordstadiumListCoordinator)
     }
     
     func launchTantangan() -> Observable<Void> {

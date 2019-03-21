@@ -10,6 +10,9 @@ import UIKit
 
 class TimeView: UIView {
 
+    @IBOutlet weak var dateLbl: UILabel!
+    @IBOutlet weak var timeLbl: UILabel!
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()

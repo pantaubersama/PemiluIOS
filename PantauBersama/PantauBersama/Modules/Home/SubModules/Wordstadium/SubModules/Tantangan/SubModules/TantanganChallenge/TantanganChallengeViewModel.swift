@@ -10,6 +10,11 @@ import RxSwift
 import RxCocoa
 import Networking
 
+enum TantanganConfirmation {
+    case ok
+    case cancel
+}
+
 class TantanganChallengeViewModel: ViewModelType {
     
     var input: Input
@@ -19,6 +24,7 @@ class TantanganChallengeViewModel: ViewModelType {
         let backI: AnyObserver<Void>
         let refreshI: AnyObserver<String>
         let kajianI: AnyObserver<Bool>
+        let nameKajianI: AnyObserver<String>
         let pernyataanI: AnyObserver<Bool>
         let dateTimeI: AnyObserver<Bool>
         let saldoI: AnyObserver<Bool>
@@ -33,9 +39,15 @@ class TantanganChallengeViewModel: ViewModelType {
         let saldoTimeI: AnyObserver<String>
         let hintSaldoI: AnyObserver<Void>
         let pernyataanLinkI: AnyObserver<Void>
+        let sourceLinkI: AnyObserver<String>
+        let pernyataanLinkCancelI: AnyObserver<Void>
         let hintDebatI: AnyObserver<Void>
         let lawanDebatI: AnyObserver<Bool>
         let btnNextI: AnyObserver<Void>
+        let symbolicButtonI: AnyObserver<Void>
+        let twitterButtonI: AnyObserver<Void>
+        let userSearchTrigger: AnyObserver<SearchUserModel>
+        let inputLawanTrigger: AnyObserver<Bool>
     }
     
     struct Output {
@@ -53,13 +65,17 @@ class TantanganChallengeViewModel: ViewModelType {
         let hintSaldoO: Driver<Void>
         let enableNextO: Driver<Bool>
         let pernyataanLink: Driver<PernyataanLinkResult>
+        let cancelLinkO: Driver<Void>
         let hintDebatO: Driver<Void>
         let btnNextO: Driver<Void>
+        let symbolicButtonO: Driver<SearchUserResult>
+        let twitterButtonO: Driver<SearchUserResult>
     }
     
     private let backS = PublishSubject<Void>()
     private let refreshS = PublishSubject<String>()
     private let kajianS = PublishSubject<Bool>()
+    private let nameKajianS = PublishSubject<String>()
     private let pernyataanS = PublishSubject<Bool>()
     private let dateTimeS = PublishSubject<Bool>()
     private let saldoS = PublishSubject<Bool>()
@@ -74,9 +90,15 @@ class TantanganChallengeViewModel: ViewModelType {
     private let saldoTimeS = PublishSubject<String>()
     private let hintSaldoS = PublishSubject<Void>()
     private let pernyataanLinkS = PublishSubject<Void>()
+    private let sourceLinkS = PublishSubject<String>()
+    private let pernyataanLinkCancelS = PublishSubject<Void>()
     private let hintDebatS = PublishSubject<Void>()
     private let lawanDebatS = PublishSubject<Bool>()
     private let btnNextS = PublishSubject<Void>()
+    private let symbolicButtonS = PublishSubject<Void>()
+    private let twitterButtonS = PublishSubject<Void>()
+    private let userSearchS = PublishSubject<SearchUserModel>()
+    private let inputLawanS = PublishSubject<Bool>()
     
     private let errorTracker = ErrorTracker()
     private let activityIndicator = ActivityIndicator()
@@ -91,6 +113,7 @@ class TantanganChallengeViewModel: ViewModelType {
         input = Input(backI: backS.asObserver(),
                       refreshI: refreshS.asObserver(),
                       kajianI: kajianS.asObserver(),
+                      nameKajianI: nameKajianS.asObserver(),
                       pernyataanI: pernyataanS.asObserver(),
                       dateTimeI: dateTimeS.asObserver(),
                       saldoI: saldoS.asObserver(),
@@ -105,9 +128,15 @@ class TantanganChallengeViewModel: ViewModelType {
                       saldoTimeI: saldoTimeS.asObserver(),
                       hintSaldoI: hintSaldoS.asObserver(),
                       pernyataanLinkI: pernyataanLinkS.asObserver(),
+                      sourceLinkI: sourceLinkS.asObserver(),
+                      pernyataanLinkCancelI: pernyataanLinkCancelS.asObserver(),
                       hintDebatI: hintDebatS.asObserver(),
                       lawanDebatI: lawanDebatS.asObserver(),
-                      btnNextI: btnNextS.asObserver())
+                      btnNextI: btnNextS.asObserver(),
+                      symbolicButtonI: symbolicButtonS.asObserver(),
+                      twitterButtonI: twitterButtonS.asObserver(),
+                      userSearchTrigger: userSearchS.asObserver(),
+                      inputLawanTrigger: inputLawanS.asObserver())
         
         
         let itemOpen = Observable.combineLatest(kajianS, pernyataanS, dateTimeS, saldoS)
@@ -195,9 +224,93 @@ class TantanganChallengeViewModel: ViewModelType {
             .flatMapLatest({ navigator.launchPernyataanLink() })
             .asDriverOnErrorJustComplete()
         
-        let nextPublish = btnNextS
-            .flatMapLatest({ navigator.launchPublish(type: type) })
+        let challengeOpenModel = Observable.combineLatest(nameKajianS.asObservable(),
+                                                          pernyataanTextS.asObservable(),
+                                                          sourceLinkS.asObservable().startWith(""),
+                                                          datePickerS.asObservable(),
+                                                          statusTimeS.asObservable(),
+                                                          saldoTimeS.asObservable())
+            .flatMapLatest { (arg) -> Observable<ChallengeModel> in
+                let (tag, pernyataan, link, date, timeAt, saldo) = arg
+                return Observable.just(ChallengeModel(tag: tag,
+                                      statement: pernyataan,
+                                      source: link,
+                                      timeAt: "\(date) \(timeAt)",
+                                      limitAt: saldo,
+                                      userId: nil,
+                                      screenName: nil,
+                                      timeString: timeAt,
+                                      userAvatar: nil,
+                                      dateString: date,
+                                      opponentName: nil,
+                                      opponentUsername: nil,
+                                      opponentStatus: nil))
+        }
+
+        let nextPublishOpen = btnNextS
+            .withLatestFrom(challengeOpenModel)
+            .flatMapLatest { (model) -> Observable<Void> in
+                return navigator.launchPublish(type: type, model: model)
+        }.asDriverOnErrorJustComplete()
+        
+        let directModel = Observable.combineLatest(nameKajianS.asObservable(),
+                                                   pernyataanTextS.asObservable(),
+                                                   sourceLinkS.asObservable(),
+                                                   datePickerS.asObservable(),
+                                                   statusTimeS.asObservable(),
+                                                   saldoTimeS.asObservable(),
+                                                   userSearchS.asObservable(),
+                                                   inputLawanS.asObservable())
+            .flatMapLatest { (arg) -> Observable<ChallengeModel> in
+                let (tag, pernyataan, link, date, timeAt, saldo, user, state) = arg
+                if state == true { // case for symbolic
+                    return Observable.just(
+                        ChallengeModel(tag: tag,
+                        statement: pernyataan,
+                        source: link,
+                        timeAt: "\(date) \(timeAt)",
+                        limitAt: saldo,
+                        userId: user.id,
+                        screenName: user.id, // for purpose symbolic
+                        timeString: timeAt,
+                        userAvatar: user.avatar,
+                        dateString: date,
+                        opponentName: user.fullName,
+                        opponentUsername: user.screenName,
+                        opponentStatus: true))
+                } else {
+                    // case for twitter user
+                    return Observable.just(
+                        ChallengeModel(tag: tag,
+                        statement: pernyataan,
+                        source: link,
+                        timeAt: "\(date) \(timeAt)",
+                        limitAt: saldo,
+                        userId: user.id,
+                        screenName: user.screenName,
+                        timeString: timeAt,
+                        userAvatar: user.avatar,
+                        dateString: date,
+                        opponentName: user.fullName,
+                        opponentUsername: user.screenName,
+                        opponentStatus: false))
+                }
+        }
+        
+        let nextPublishDirect = btnNextS
+            .withLatestFrom(directModel)
+            .flatMapLatest { (model) -> Observable<Void> in
+                return navigator.launchPublish(type: type, model: model)
+        }.asDriverOnErrorJustComplete()
+        
+        let symbolicSearch = symbolicButtonS
+            .flatMapLatest({ navigator.launchSearchUser(type: .userSymbolic) })
+        .asDriverOnErrorJustComplete()
+        
+        let twitterSearch = twitterButtonS
+            .flatMapLatest({ navigator.launchSearchUser(type: .userTwitter)})
             .asDriverOnErrorJustComplete()
+        
         
         output = Output(itemsO: type ? itemsDirect : itemsOpen,
                         meO: me.asDriverOnErrorJustComplete(),
@@ -213,8 +326,11 @@ class TantanganChallengeViewModel: ViewModelType {
                         hintSaldoO: hintSaldo,
                         enableNextO: enable,
                         pernyataanLink: pernyataanLink,
+                        cancelLinkO: pernyataanLinkCancelS.asDriverOnErrorJustComplete(),
                         hintDebatO: hintDebat,
-                        btnNextO: nextPublish)
+                        btnNextO: type ? nextPublishDirect : nextPublishOpen,
+                        symbolicButtonO: symbolicSearch,
+                        twitterButtonO: twitterSearch)
     }
     
 }

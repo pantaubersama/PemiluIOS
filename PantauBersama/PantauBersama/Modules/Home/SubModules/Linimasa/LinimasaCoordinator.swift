@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import Networking
+import FBSDKCoreKit
 
 enum TypeUpdates {
     case minor
@@ -36,6 +37,7 @@ class LinimasaCoordinator: BaseCoordinator<Void> {
     }
 
     override func start() -> Observable<CoordinationResult> {
+        FBSDKAppEvents.logEvent("Linimasa")
         let viewController = LinimasaController()
         let viewModel = LinimasaViewModel(navigator: self)
         viewController.viewModel = viewModel
@@ -46,7 +48,7 @@ class LinimasaCoordinator: BaseCoordinator<Void> {
 
 extension LinimasaCoordinator: LinimasaNavigator {
     func launchJanjiDetail(data: JanjiPolitik) -> Observable<DetailJanpolResult> {
-        let janjiDetailCoordinator = DetailJanjiCoordinator(navigationController: navigationController, data: data)
+        let janjiDetailCoordinator = DetailJanjiCoordinator(navigationController: navigationController, data: data.id)
         return coordinate(to: janjiDetailCoordinator)
     }
     

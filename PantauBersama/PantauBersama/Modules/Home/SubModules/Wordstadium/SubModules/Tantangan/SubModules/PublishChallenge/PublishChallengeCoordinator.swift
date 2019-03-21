@@ -7,9 +7,11 @@
 //
 
 import RxSwift
+import Networking
 
 protocol PublishChallengeNavigator {
     var finish: Observable<Void>! { get set }
+    func showSuccess() -> Observable<Void>
 }
 
 final class PublishChallengeCoordinator: BaseCoordinator<Void> {
@@ -17,15 +19,18 @@ final class PublishChallengeCoordinator: BaseCoordinator<Void> {
     private let navigationController: UINavigationController
     var finish: Observable<Void>!
     var type: Bool
+    var challengeModel: ChallengeModel
     
-    init(navigationController: UINavigationController, type: Bool) {
+    init(navigationController: UINavigationController, type: Bool, model: ChallengeModel) {
         self.navigationController = navigationController
         self.type = type
+        self.challengeModel = model
     }
     
     override func start() -> Observable<Void> {
-        let viewModel = PublishChallengeViewModel(navigator: self, type: type)
+        let viewModel = PublishChallengeViewModel(navigator: self, type: type, model: challengeModel)
         let viewController = PublishChallengeController()
+        viewController.data = challengeModel
         viewController.tantanganType = type
         viewController.viewModel = viewModel
         viewController.hidesBottomBarWhenPushed = true
@@ -38,5 +43,8 @@ final class PublishChallengeCoordinator: BaseCoordinator<Void> {
 }
 
 extension PublishChallengeCoordinator: PublishChallengeNavigator {
-    
+    func showSuccess() -> Observable<Void> {
+        let successCoordinator = SuccessPromoteCoordinator(navigationController: navigationController)
+        return coordinate(to: successCoordinator)
+    }
 }

@@ -16,15 +16,15 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="219" id="row-Y0-aH6" customClass="PernyataanCell" customModule="PantauBersama" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="382" height="219"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="260" id="row-Y0-aH6" customClass="PernyataanCell" customModule="PantauBersama" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="382" height="260"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="row-Y0-aH6" id="32h-J7-IUe">
-                <rect key="frame" x="0.0" y="0.0" width="382" height="218.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="382" height="259.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="btC-Ov-veo">
-                        <rect key="frame" x="27.5" y="0.0" width="1" height="218.5"/>
+                        <rect key="frame" x="27.5" y="0.0" width="1" height="259.5"/>
                         <color key="backgroundColor" red="0.79608923200000004" green="0.79605895280000005" blue="0.79607945680000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="1" id="TsV-3p-Ue8"/>
@@ -109,17 +109,23 @@
                             <color key="titleColor" red="0.95686274510000002" green="0.58039215690000001" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         </state>
                     </button>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkInactive" translatesAutoresizingMaskIntoConstraints="NO" id="TgQ-Lc-MPg" userLabel="statusBottom">
+                        <rect key="frame" x="16" y="235.5" width="24" height="24"/>
+                    </imageView>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="TgQ-Lc-MPg" firstAttribute="height" secondItem="Y7C-mO-jKW" secondAttribute="height" id="5tZ-1p-hEx"/>
                     <constraint firstAttribute="trailingMargin" secondItem="bqi-t7-YuY" secondAttribute="trailing" constant="18" id="6fO-Hb-bID"/>
                     <constraint firstItem="btC-Ov-veo" firstAttribute="top" secondItem="32h-J7-IUe" secondAttribute="top" id="7ro-zi-WhE"/>
                     <constraint firstAttribute="bottom" secondItem="btC-Ov-veo" secondAttribute="bottom" id="7xp-bT-92b"/>
                     <constraint firstItem="Y7C-mO-jKW" firstAttribute="top" secondItem="32h-J7-IUe" secondAttribute="top" id="9FE-cQ-tVt"/>
                     <constraint firstAttribute="trailingMargin" secondItem="e1K-yj-237" secondAttribute="trailing" constant="18" id="Bho-QI-Sbe"/>
+                    <constraint firstItem="TgQ-Lc-MPg" firstAttribute="width" secondItem="Y7C-mO-jKW" secondAttribute="width" id="C74-eA-hae"/>
                     <constraint firstItem="syK-Ig-W3w" firstAttribute="top" secondItem="32h-J7-IUe" secondAttribute="top" id="Clb-EZ-M5u"/>
                     <constraint firstItem="wFZ-PS-Get" firstAttribute="top" secondItem="bqi-t7-YuY" secondAttribute="bottom" constant="4" id="FI3-Xw-aba"/>
                     <constraint firstItem="bqi-t7-YuY" firstAttribute="top" secondItem="e1K-yj-237" secondAttribute="bottom" priority="750" constant="8" id="LAF-3E-PJc"/>
                     <constraint firstItem="QRo-uD-iXJ" firstAttribute="leading" secondItem="btC-Ov-veo" secondAttribute="trailing" constant="28" id="UIT-kj-IK5"/>
+                    <constraint firstAttribute="baseline" secondItem="TgQ-Lc-MPg" secondAttribute="bottom" id="cOy-yL-CP6"/>
                     <constraint firstItem="btC-Ov-veo" firstAttribute="centerX" secondItem="Y7C-mO-jKW" secondAttribute="centerX" id="cPs-Au-ZUv"/>
                     <constraint firstAttribute="trailingMargin" secondItem="QRo-uD-iXJ" secondAttribute="trailing" constant="18" id="dj3-dA-Elg"/>
                     <constraint firstItem="syK-Ig-W3w" firstAttribute="leading" secondItem="Y7C-mO-jKW" secondAttribute="trailing" constant="16" id="dmY-Ce-zjY"/>
@@ -128,6 +134,7 @@
                     <constraint firstItem="QRo-uD-iXJ" firstAttribute="top" secondItem="syK-Ig-W3w" secondAttribute="bottom" constant="4" id="iki-dL-BAu"/>
                     <constraint firstItem="bqi-t7-YuY" firstAttribute="leading" secondItem="btC-Ov-veo" secondAttribute="trailing" constant="28" id="kM1-2W-Wz0"/>
                     <constraint firstItem="e1K-yj-237" firstAttribute="leading" secondItem="btC-Ov-veo" secondAttribute="trailing" constant="28" id="nP3-x5-TUB"/>
+                    <constraint firstItem="TgQ-Lc-MPg" firstAttribute="centerX" secondItem="btC-Ov-veo" secondAttribute="centerX" id="ot1-vJ-fTh"/>
                     <constraint firstItem="Rw4-4S-8Pa" firstAttribute="top" secondItem="wFZ-PS-Get" secondAttribute="bottom" constant="8" id="qFE-xl-uoh"/>
                     <constraint firstItem="Rw4-4S-8Pa" firstAttribute="leading" secondItem="btC-Ov-veo" secondAttribute="trailing" constant="28" id="quV-fe-Zid"/>
                     <constraint firstItem="e1K-yj-237" firstAttribute="top" secondItem="QRo-uD-iXJ" secondAttribute="bottom" constant="4" id="sbn-ac-Bcb"/>
@@ -143,12 +150,14 @@
                 <outlet property="lineStatus" destination="btC-Ov-veo" id="87o-Ic-zNg"/>
                 <outlet property="linkPreviewView" destination="e1K-yj-237" id="Zyr-Qc-2ms"/>
                 <outlet property="status" destination="Y7C-mO-jKW" id="KPG-jO-4oF"/>
+                <outlet property="statusBottom" destination="TgQ-Lc-MPg" id="wmj-mO-qAD"/>
                 <outlet property="tvPernyataan" destination="bqi-t7-YuY" id="VBm-zz-toZ"/>
             </connections>
-            <point key="canvasLocation" x="54.399999999999999" y="189.3553223388306"/>
+            <point key="canvasLocation" x="54.399999999999999" y="207.79610194902551"/>
         </tableViewCell>
     </objects>
     <resources>
+        <image name="checkInactive" width="24" height="24"/>
         <image name="checkUnactive" width="24" height="24"/>
         <image name="outlineHint16Px" width="16" height="16"/>
         <image name="outlineLink24Px" width="24" height="24"/>

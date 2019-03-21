@@ -10,6 +10,7 @@ project 'Common/Common.xcodeproj'
 def application_rx 
     pod 'RxSwift', '4.4.0'
     pod 'RxCocoa', '4.4.0'
+    pod 'RxCoreLocation'
 
 end
 
@@ -32,7 +33,10 @@ def application_pods
     pod 'FBSDKLoginKit'
     pod 'lottie-ios'
     pod 'Firebase/Messaging'
-    pod "URLEmbeddedView"
+    pod 'FacebookSDK'
+    pod 'URLEmbeddedView'
+    pod 'FacebookShare'
+    pod 'FSPagerView'
 end
 
 

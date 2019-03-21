@@ -22,12 +22,12 @@ protocol IJanpolNavigator: class {
 
 extension IJanpolNavigator where Self: BaseCoordinator<Void> {
     func launchJanjiDetail(data: JanjiPolitik) -> Observable<DetailJanpolResult> {
-        let janjiDetailCoordinator = DetailJanjiCoordinator(navigationController: navigationController, data: data)
+        let janjiDetailCoordinator = DetailJanjiCoordinator(navigationController: navigationController, data: data.id)
         return coordinate(to: janjiDetailCoordinator)
     }
     
     func shareJanji(data: JanjiPolitik) -> Observable<Void> {
-        let share = "Sudah tahu Janji yang ini, belum? Siap-siap catatan, ya! ✔️ \(AppContext.instance.infoForKey("URL_WEB"))/share/janjipolitik/\(data.id)"
+        let share = "Sudah tahu Janji yang ini, belum? Siap-siap catatan, ya! ✔️ \(AppContext.instance.infoForKey("URL_WEB_SHARE"))/share/janjipolitik/\(data.id)"
         let activityViewController = UIActivityViewController(activityItems: [share as NSString], applicationActivities: nil)
 
         self.navigationController.present(activityViewController, animated: true, completion: nil)
