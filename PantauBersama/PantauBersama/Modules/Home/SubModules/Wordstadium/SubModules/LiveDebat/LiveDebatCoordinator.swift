@@ -14,7 +14,7 @@ import Networking
 
 public protocol LiveDebatNavigator {
     func back() -> Observable<Void>
-    func launchDetail() -> Observable<Void>
+    func launchDetail(challenge: Challenge) -> Observable<Void>
     func showComment() -> Observable<Void>
 }
 
@@ -52,8 +52,8 @@ extension LiveDebatCoordinator: LiveDebatNavigator {
         return Observable.never()
     }
     
-    func launchDetail() -> Observable<Void> {
-        let debatDetailCoordinator = DebatDetailCoordinator(navigationController: self.navigationController)
+    func launchDetail(challenge: Challenge) -> Observable<Void> {
+        let debatDetailCoordinator = DebatDetailCoordinator(navigationController: self.navigationController, challenge: challenge)
         return coordinate(to: debatDetailCoordinator)
     }
     

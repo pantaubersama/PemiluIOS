@@ -67,6 +67,9 @@ class LiveDebatController: UIViewController {
         
         // config button scroll behavior
         configureScrollButton()
+        let oldFrame = tableViewDebat.frame
+        tableViewDebat.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
+        tableViewDebat.frame = oldFrame
         
         tableViewDebat.dataSource = self
         tableViewDebat.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 70))
@@ -218,9 +221,9 @@ class LiveDebatController: UIViewController {
             .disposed(by: disposeBag)
         
         viewModel.output.nextPageO
-            .drive(onNext: { [weak self](indexPaths) in
+            .drive(onNext: { [weak self] in
                 guard let `self` = self else { return }
-                self.tableViewDebat.insertRows(at: indexPaths, with: .none)
+                self.tableViewDebat.reloadData()
             })
             .disposed(by: disposeBag)
         
@@ -342,7 +345,7 @@ class LiveDebatController: UIViewController {
             latestCommentView.isHidden = false
             viewComentarContainer.isHidden = false
             viewInputContainer.isHidden = true
-            constraintTableViewBottom.constant = 0
+            constraintTableViewBottom.constant = 50
             viewTimeContainer.isHidden = false
             constraintInputViewHeight.constant = 50
             headerTitle.setTitle("LIVE NOW", for: .normal)
@@ -378,7 +381,7 @@ class LiveDebatController: UIViewController {
         if (self.tableViewDebat.indexPathsForVisibleRows?.count ?? 0) != 0 {
             self.btnScroll.tag = 0
             self.collapseHeader()
-            self.tableViewDebat.scrollToRow(at: IndexPath(row: self.viewModel.output.argumentsO.value.count - 1, section: 0), at: .top, animated: true)
+            self.tableViewDebat.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
             self.btnScroll.rotate(degree: 180)
         }
     }
@@ -386,11 +389,8 @@ class LiveDebatController: UIViewController {
     private func scrollToTop() {
         if (self.tableViewDebat.indexPathsForVisibleRows?.count ?? 0) != 0 {
             self.btnScroll.tag = 1
-            self.tableViewDebat.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+            self.tableViewDebat.scrollToRow(at: IndexPath(row: self.viewModel.output.argumentsO.value.count - 1, section: 0), at: .top, animated: true)
             
-            if !self.isKeyboardAppear {
-                self.expandHeader()
-            }
             self.btnScroll.rotate(degree: 0)
         }
         
@@ -570,7 +570,8 @@ extension LiveDebatController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == 0 {
+        print("row \(indexPath.row)")
+        if indexPath.row == self.viewModel.output.argumentsO.value.count - 3 {
             self.viewModel.input.nextPageI.onNext(())
         }
         let item = self.viewModel.output.argumentsO.value[indexPath.row]
