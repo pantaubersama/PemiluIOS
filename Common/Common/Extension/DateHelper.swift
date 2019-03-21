@@ -175,7 +175,7 @@ extension Date {
         } else if day < 30 {
             return "\(day) hari lagi"
         } else {
-            return self.toString()
+            return self.toString(format: Constant.dateFormat2)
         }
     }
     

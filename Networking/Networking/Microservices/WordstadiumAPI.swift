@@ -22,6 +22,7 @@ public enum WordstadiumAPI {
     case commentAudience(challengeId: String, words: String)
     case fighterAttack(challengeId: String, words: String)
     case wordsFighter(challengeId: String, page: Int, perPage: Int)
+    case deleteOpenChallenge(challengeId: String)
 }
 
 extension WordstadiumAPI: TargetType {
@@ -65,6 +66,8 @@ extension WordstadiumAPI: TargetType {
             return "/word_stadium/v1/words/fighter/attack"
         case .wordsFighter:
             return "/word_stadium/v1/words/fighter"
+        case .deleteOpenChallenge(let id):
+            return "/word_stadium/v1/challenges/open/delete/\(id)"
         }
     }
     
@@ -80,6 +83,8 @@ extension WordstadiumAPI: TargetType {
              .confirmDirect,
              .rejectDirect:
             return .put
+        case .deleteOpenChallenge:
+            return .delete
         default:
             return .get
         }

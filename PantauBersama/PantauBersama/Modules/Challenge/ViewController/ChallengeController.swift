@@ -70,9 +70,9 @@ class ChallengeController: UIViewController {
             .bind(to: viewModel.input.moreI)
             .disposed(by: disposeBag)
         
-        viewModel.output.backO
-            .drive()
-            .disposed(by: disposeBag)
+//        viewModel.output.backO
+//            .drive()
+//            .disposed(by: disposeBag)
         
         viewModel.output.actionO
             .drive()
@@ -117,7 +117,10 @@ class ChallengeController: UIViewController {
                     // TODO
                     // this function is to check user id match with audience of the challenge
                     // and the challenge audience just one and user id is match
-                    if challenge.audiences.first?.userId == me?.id && challenge.audiences.count == 1 {
+                    /// Check if challenge audience just one and user id is match
+                    let challenger = challenge.audiences.filter({ $0.role == .challenger }).first
+                    let isMyChallenge = me?.email == (challenger?.email ?? "")
+                    if isMyChallenge && challenge.progress == .waitingOpponent && challenge.type == .openChallenge {
                         alert.addAction(hapus)
                     }
                     alert.addAction(salin)

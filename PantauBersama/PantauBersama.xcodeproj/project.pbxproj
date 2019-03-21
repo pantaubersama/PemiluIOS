@@ -2359,8 +2359,6 @@
 				043EE17E221A36C2008C59CD /* Merayakan */,
 				137A29EF21E225DF00F19072 /* Comingsoon */,
 				13F456D721DBACF400CE45F1 /* Banner */,
-				844C3D8021C524AE00199871 /* Vote */,
-				844C3D7F21C524A700199871 /* Lapor */,
 				844C3D7E21C5249300199871 /* Wordstadium */,
 				844C3D7D21C5248400199871 /* Penpol */,
 				844C3D7C21C5247D00199871 /* Linimasa */,
@@ -2400,20 +2398,6 @@
 				13E170C3221184EC0018EDB4 /* WordstadiumCoordinator.swift */,
 			);
 			path = Wordstadium;
-			sourceTree = "<group>";
-		};
-		844C3D7F21C524A700199871 /* Lapor */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Lapor;
-			sourceTree = "<group>";
-		};
-		844C3D8021C524AE00199871 /* Vote */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Vote;
 			sourceTree = "<group>";
 		};
 		844C3D8121C524BC00199871 /* ViewController */ = {

@@ -21,6 +21,11 @@ enum ChallengeType {
     case challengeExpired
 }
 
+enum ChallengeDetailResult {
+    case result(id: String)
+    case cancel
+}
+
 class ChallengeViewModel: ViewModelType {
     
     var input: Input
@@ -36,10 +41,11 @@ class ChallengeViewModel: ViewModelType {
         let moreI: AnyObserver<Challenge>
         let moreMenuI: AnyObserver<ChallengeDetailType>
         let loveI: AnyObserver<Void>
+        let deleteI: AnyObserver<String>
     }
     
     struct Output {
-        let backO: Driver<Void>
+        let backO: Driver<ChallengeDetailResult>
         let actionO: Driver<Void>
         let challengeO: Driver<Challenge>
         let audienceO: Driver<[Audiences]>
@@ -63,7 +69,10 @@ class ChallengeViewModel: ViewModelType {
     private let moreS = PublishSubject<Challenge>()
     private let moreMenuS = PublishSubject<ChallengeDetailType>()
     private let loveS = PublishSubject<Void>()
+    private let deleteS = PublishSubject<String>()
     
+    private let errorTracker = ErrorTracker()
+    private let activityIndicator = ActivityIndicator()
     private var selectedAudience = ""
     
     init(navigator: ChallengeNavigator, data: Challenge) {
@@ -78,11 +87,12 @@ class ChallengeViewModel: ViewModelType {
             shareI: shareS.asObserver(),
             moreI: moreS.asObserver(),
             moreMenuI: moreMenuS.asObserver(),
-            loveI: loveS.asObserver())
+            loveI: loveS.asObserver(),
+            deleteI: deleteS.asObserver())
         
-        let back = backS
-            .flatMapLatest({ navigator.back() })
-            .asDriverOnErrorJustComplete()
+//        let back = backS
+//            .flatMapLatest({ navigator.back() })
+//            .asDriverOnErrorJustComplete()
         
         let action = actionButtonS
             .flatMapLatest { [unowned self](_) -> Observable<PopupChallengeResult> in
@@ -178,7 +188,17 @@ class ChallengeViewModel: ViewModelType {
             .flatMapLatest { (type) -> Observable<String> in
                 switch type {
                 case .hapus(let id):
-                    return Observable.just("Hapus id : \(id)")
+                    return navigator.deleteChallenge(challengeId: id)
+                        .flatMap({ (result) -> Observable<String> in
+                            switch result {
+                            case .ok(let data):
+                                return self.handleDeleteChallenge(challengeId: data)
+                            default: return Observable.empty()
+                            }
+                        })
+                        .map({ (_) -> String in
+                            return ""
+                        })
                 case .salin:
                     return Observable.just("Tautan telah tersalin")
                 case .share(let data):
@@ -189,8 +209,16 @@ class ChallengeViewModel: ViewModelType {
                 }
         }.asDriverOnErrorJustComplete()
         
+        /// Need configuration coordination result, after delete challenge need know item index
+        let backSelected = backS.map({ ChallengeDetailResult.cancel })
+        let deleteSelected = deleteS
+            .map{ (result) in ChallengeDetailResult.result(id: result) }
+        let closeSelected = Observable.merge(backSelected, deleteSelected)
+            .take(1)
+            .asDriverOnErrorJustComplete()
         
-        output = Output(backO: back,
+        
+        output = Output(backO: closeSelected,
                         actionO: action,
                         challengeO: challenge,
                         audienceO: audience,
@@ -275,5 +303,21 @@ class ChallengeViewModel: ViewModelType {
                 return response.data.message == "Tantangan Ditolak!"
             })
             .asObservable()
+    }
+    
+    // MARK: - Handle delete challenge
+    private func handleDeleteChallenge(challengeId: String) -> Observable<String> {
+        return NetworkService.instance
+            .requestObject(WordstadiumAPI.deleteOpenChallenge(challengeId: challengeId),
+                           c: DeleteChallengeResponse.self)
+            .map({ (response) -> String in
+                return response.data.message
+            })
+            .do(onSuccess: { [unowned self] (_) in
+                self.deleteS.onNext(challengeId)
+            })
+            .asObservable()
+            .trackActivity(self.activityIndicator)
+            .trackError(self.errorTracker)
     }
 }

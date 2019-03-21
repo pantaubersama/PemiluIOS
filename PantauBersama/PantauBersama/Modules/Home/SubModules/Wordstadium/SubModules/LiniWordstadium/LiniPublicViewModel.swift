@@ -148,6 +148,8 @@ class LiniPublicViewModel: ILiniWordstadiumViewModel, ILiniWordstadiumViewModelI
                     return Observable.just("Tautan telah dibagikan")
                 case .salin:
                     return Observable.just("Tautan telah tersalin")
+                case .hapus:
+                    return Observable.just("Challenge berhasil di hapus")
                 }
             }
             .asDriverOnErrorJustComplete()

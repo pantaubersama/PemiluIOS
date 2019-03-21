@@ -77,6 +77,7 @@
 		84D831F721C4DCEC00C437B7 /* Networking.h in Headers */ = {isa = PBXBuildFile; fileRef = 84D831E921C4DCEC00C437B7 /* Networking.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		84E521C821F4C81500B7CCBA /* InfoFirebaseResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E521C721F4C81500B7CCBA /* InfoFirebaseResponse.swift */; };
 		84EEEC2722421A48001D993D /* CrawlResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EEEC2622421A48001D993D /* CrawlResponse.swift */; };
+		84EEEC292243537C001D993D /* DeleteChallengeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EEEC282243537C001D993D /* DeleteChallengeResponse.swift */; };
 		84F1F21521E9CD81004515A4 /* AccountResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F1F21421E9CD81004515A4 /* AccountResponse.swift */; };
 		84FC35EE21E89BE4005FB016 /* ClusterResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FC35ED21E89BE4005FB016 /* ClusterResponse.swift */; };
 		84FE6EB421D5F339009A0F55 /* UserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FE6EB321D5F339009A0F55 /* UserResponse.swift */; };
@@ -171,6 +172,7 @@
 		84D831F621C4DCEC00C437B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84E521C721F4C81500B7CCBA /* InfoFirebaseResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoFirebaseResponse.swift; sourceTree = "<group>"; };
 		84EEEC2622421A48001D993D /* CrawlResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrawlResponse.swift; sourceTree = "<group>"; };
+		84EEEC282243537C001D993D /* DeleteChallengeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteChallengeResponse.swift; sourceTree = "<group>"; };
 		84F1F21421E9CD81004515A4 /* AccountResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountResponse.swift; sourceTree = "<group>"; };
 		84FC35ED21E89BE4005FB016 /* ClusterResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterResponse.swift; sourceTree = "<group>"; };
 		84FE6EB321D5F339009A0F55 /* UserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResponse.swift; sourceTree = "<group>"; };
@@ -254,6 +256,7 @@
 				119C89CC222F96CE00A7C9B5 /* Word.swift */,
 				119C89CE222F975600A7C9B5 /* WordsResponse.swift */,
 				1194C00F22324F27003D4B16 /* SendWordResponse.swift */,
+				84EEEC282243537C001D993D /* DeleteChallengeResponse.swift */,
 			);
 			path = Wordstadium;
 			sourceTree = "<group>";
@@ -623,6 +626,7 @@
 				119C89CF222F975600A7C9B5 /* WordsResponse.swift in Sources */,
 				84B2526421CBDE2600565D82 /* PantauAuthAPI.swift in Sources */,
 				137A2A0121E3C80F00F19072 /* TrendResponse.swift in Sources */,
+				84EEEC292243537C001D993D /* DeleteChallengeResponse.swift in Sources */,
 				84FE6EB621D5F35E009A0F55 /* User.swift in Sources */,
 				8482E62A21D8E5AB00D5DC07 /* BadgesResponse.swift in Sources */,
 				84B2523721CAC7D000565D82 /* NetworkError.swift in Sources */,
