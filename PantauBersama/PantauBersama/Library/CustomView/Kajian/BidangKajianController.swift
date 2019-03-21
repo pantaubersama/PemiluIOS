@@ -47,6 +47,11 @@ class BidangKajianController: UIViewController {
             .bind(to: viewModel.input.queryI)
             .disposed(by: disposeBag)
         
+        searchBar.returnKeyType = .done
+        searchBar.rx.searchButtonClicked.bind { [unowned self] in
+            self.searchBar.endEditing(true)
+        }.disposed(by: disposeBag)
+        
         viewModel.output.itemsO
             .do(onNext: { [weak self] (_) in
                 self?.rControl.endRefreshing()
@@ -81,4 +86,11 @@ class BidangKajianController: UIViewController {
         
     }
     
+}
+
+extension BidangKajianController: UISearchBarDelegate {
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.endEditing(true)
+    }
 }

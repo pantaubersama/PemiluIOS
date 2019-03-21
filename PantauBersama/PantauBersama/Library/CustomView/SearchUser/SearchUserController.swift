@@ -48,7 +48,10 @@ class SearchUserController: UIViewController {
             .bind(to: viewModel.input.queryI)
             .disposed(by: disposeBag)
         
-        searchBar.delegate = self
+        searchBar.returnKeyType = .done
+        searchBar.rx.searchButtonClicked.bind { [unowned self] in
+            self.searchBar.endEditing(true)
+        }.disposed(by: disposeBag)
         
         viewModel.output.itemsO
             .do(onNext: { [weak self] (_) in
@@ -90,14 +93,4 @@ class SearchUserController: UIViewController {
             self.searchBar.placeholder = "Cari..."
         }
     }
-
-
-}
-
-extension SearchUserController: UISearchBarDelegate {
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.endEditing(true)
-    }
-    
 }
