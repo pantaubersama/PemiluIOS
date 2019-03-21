@@ -11,6 +11,7 @@ import Networking
 
 enum WordstadiumType {
     
+    case hapus(data: String)
     case salin(data: Challenge)
     case bagikan(data: Challenge)
     
@@ -20,11 +21,15 @@ enum WordstadiumType {
             return #imageLiteral(resourceName: "outlineLink24Px")
         case .bagikan:
             return #imageLiteral(resourceName: "outlineShare24Px")
+        default:
+            return nil
         }
     }
     
     var description: String {
         switch self {
+        case .hapus:
+            return "Hapus Challenge"
         case .salin:
             return "Salin Tautan"
         case .bagikan:

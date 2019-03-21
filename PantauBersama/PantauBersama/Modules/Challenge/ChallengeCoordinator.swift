@@ -9,11 +9,17 @@
 import RxSwift
 import Networking
 
+enum DeleteChallengeResult {
+    case ok(data: String)
+    case cancel
+}
+
 protocol ChallengeNavigator {
     func back() -> Observable<Void>
     func openLiveDebatDone(challenge: Challenge) -> Observable<Void>
     func openAcceptConfirmation(type: PopupChallengeType) -> Observable<PopupChallengeResult>
     func shareChallenge(challenge: Challenge) -> Observable<Void>
+    func deleteChallenge(challengeId: String) -> Observable<DeleteChallengeResult>
 }
 
 final class ChallengeCoordinator: BaseCoordinator<Void> {
@@ -33,7 +39,12 @@ final class ChallengeCoordinator: BaseCoordinator<Void> {
         viewController.viewModel = viewModel
         viewController.hidesBottomBarWhenPushed = true
         navigationController.pushViewController(viewController, animated: true)
-        return Observable.empty()
+        return viewModel.output.backO.asObservable()
+            .take(1)
+            .do(onNext: { [unowned self] (_) in
+                self.navigationController.popViewController(animated: true)
+            })
+            .mapToVoid()
     }
     
 }
@@ -60,5 +71,23 @@ extension ChallengeCoordinator: ChallengeNavigator {
         let activityViewController = UIActivityViewController(activityItems: [shareString as NSString], applicationActivities: nil)
         self.navigationController.present(activityViewController, animated: true, completion: nil)
         return Observable.never()
+    }
+    
+    func deleteChallenge(challengeId: String) -> Observable<DeleteChallengeResult> {
+        return Observable<DeleteChallengeResult>.create({ [weak self] (observer) -> Disposable in
+            let alert = UIAlertController(title: "Delete Challenge", message: "Apakah Anda yakin untuk menghapus challenge ini?", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
+                observer.onNext(DeleteChallengeResult.ok(data: challengeId))
+                observer.on(.completed)
+            }))
+            alert.addAction(UIAlertAction(title: "Batal", style: .cancel, handler: { (_) in
+                observer.onNext(DeleteChallengeResult.cancel)
+                observer.on(.completed)
+            }))
+            DispatchQueue.main.async {
+                self?.navigationController.present(alert, animated: true, completion: nil)
+            }
+            return Disposables.create()
+        })
     }
 }
