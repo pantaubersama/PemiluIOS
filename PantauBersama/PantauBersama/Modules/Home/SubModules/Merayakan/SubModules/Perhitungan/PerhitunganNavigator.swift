@@ -8,12 +8,14 @@
 
 import Foundation
 import RxSwift
+import Networking
 
 protocol PerhitunganNavigator: class {
     var navigationController: UINavigationController! { get }
     func launchPerhitunganDetail() -> Observable<Void>
     func launchCreatePerhitungan() -> Observable<Void>
     func launchDetailTps() -> Observable<Void>
+    func launchBannerInfo(bannerInfo: BannerInfo) -> Observable<Void>
 }
 
 extension PerhitunganNavigator where Self: BaseCoordinator<Void> {
@@ -28,6 +30,11 @@ extension PerhitunganNavigator where Self: BaseCoordinator<Void> {
     
     func launchDetailTps() -> Observable<Void> {
         return Observable.never()
+    }
+    
+    func launchBannerInfo(bannerInfo: BannerInfo) -> Observable<Void> {
+        let bannerInfoCoordinator = BannerInfoCoordinator(navigationController: self.navigationController, bannerInfo: bannerInfo)
+        return coordinate(to: bannerInfoCoordinator)
     }
 }
 

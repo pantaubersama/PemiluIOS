@@ -44,6 +44,16 @@ class PerhitunganController: UITableViewController {
         viewModel.output.createPerhitunganO
             .drive()
             .disposed(by: disposeBag)
+        
+        self.viewModel.output.bannerInfo
+            .drive(onNext: { (banner) in
+                self.headerView.config(banner: banner, viewModel: self.viewModel.headerViewModel)
+            })
+            .disposed(by: self.disposeBag)
+        
+        viewModel.output.infoSelected
+            .drive()
+            .disposed(by: disposeBag)
     }
     
     private func configureConstraint() {

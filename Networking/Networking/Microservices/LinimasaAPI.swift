@@ -10,7 +10,7 @@ import Moya
 import Common
 
 public enum LinimasaAPI {
-    case getBannerInfos(pageName: String)
+    case getBannerInfos(pageName: BannerPage)
     case getFeeds(filter: String, page: Int, perPage: Int, query: String)
     case getJanjiPolitiks(query: String, cid: String, filter: String, page: Int, perPage: Int)
     case deleteJanjiPolitiks(id: String)
@@ -67,7 +67,7 @@ extension LinimasaAPI: TargetType {
         switch self {
         case .getBannerInfos(let pageName):
             return [
-                "page_name": pageName
+                "page_name": pageName.text
             ]
         case .getFeeds(let (filter, page, perPage, query)):
             return [
