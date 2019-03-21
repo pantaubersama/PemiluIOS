@@ -38,6 +38,7 @@ class ArgumentLeftCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
         viewClapLottie.addSubview(clapAnimation)
         configureConstraint()
         btnClap.rx.tap

@@ -19,21 +19,24 @@ class DebatDetailViewModel: ViewModelType {
     
     struct Output {
         let back: Driver<Void>
+        let challengeO: Driver<Challenge>
     }
     
     var input: Input
     var output: Output
     
+    private let challenge: Challenge
     private let navigator: DebatDetailNavigator
     private let backS = PublishSubject<Void>()
-    init(navigator: DebatDetailNavigator) {
+    init(navigator: DebatDetailNavigator, challenge: Challenge) {
         self.navigator = navigator
+        self.challenge = challenge
         
         input = Input(backTrigger: backS.asObserver())
         
         let back = backS.flatMap({navigator.back()})
             .asDriverOnErrorJustComplete()
-        
-        output = Output(back: back)
+        let challengeView = Driver.just(self.challenge)
+        output = Output(back: back, challengeO: challengeView)
     }
 }
