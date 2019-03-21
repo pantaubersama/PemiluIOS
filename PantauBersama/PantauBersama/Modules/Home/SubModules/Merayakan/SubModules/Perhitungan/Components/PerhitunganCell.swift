@@ -8,18 +8,45 @@
 
 import UIKit
 import Common
+import RxSwift
+import RxCocoa
+import Networking
 
-class PerhitunganCell: UITableViewCell, IReusableCell {
+typealias PerhitunganCellConfigured = CellConfigurator<PerhitunganCell, PerhitunganCell.Input>
+class PerhitunganCell: UITableViewCell {
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    private(set) var disposeBag = DisposeBag()
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        disposeBag = DisposeBag()
     }
+    
+}
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+extension PerhitunganCell: IReusableCell {
+    
+    struct Input {
+        let viewModel: PerhitunganViewModel
+        let data: RealCount
+    }
+    
+    func configureCell(item: Input) {
+        let feeds = item.data
+        let bag = DisposeBag()
+        
+        configure(data: feeds)
+        
+//        more.rx.tap
+//            .map({ feeds })
+//            .bind(to: item.viewModel.input.moreTrigger)
+//            .disposed(by: bag)
+        
+        disposeBag = bag
+    }
+    
+    func configure(data: RealCount) {
+        
     }
     
 }

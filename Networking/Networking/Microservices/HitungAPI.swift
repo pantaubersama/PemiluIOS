@@ -49,7 +49,7 @@ public enum HitungAPI {
     
     case putRealCount(id: Int, noTps: Int)
     case getRealCount(id: Int)
-    case getRealCounts(page: Int, perPage: Int, userId: String?, villageCode: String?)
+    case getRealCounts(page: Int, perPage: Int, userId: String?, villageCode: String?, dapilId: String?)
     case postRealCount(request: RealCountRequest)
 }
 
@@ -151,13 +151,14 @@ extension HitungAPI: TargetType {
             ]
         case .getRealCount(let id):
             return ["id": id]
-        case .getRealCounts(let page, let perPage, let userId, let villageCode):
+        case .getRealCounts(let page, let perPage, let userId, let villageCode, let dapilId):
             var params: [String: Any] = [
                 "page": page,
                 "per_page": perPage
             ]
             params["user_id"] = userId
             params["village_code"] = villageCode
+            params["dapil_id"] = dapilId
             return params
         case .putCalculations(let parameters):
             return parameters
