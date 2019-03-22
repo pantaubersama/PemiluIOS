@@ -12,6 +12,7 @@ import RxCocoa
 import Common
 import RxDataSources
 import Networking
+import IQKeyboardManagerSwift
 
 class DebatCommentController: UIViewController {
     @IBOutlet weak var viewInputContainer: UIView!
@@ -20,21 +21,37 @@ class DebatCommentController: UIViewController {
     @IBOutlet weak var btnClose: UIBarButtonItem!
     @IBOutlet weak var tvComment: UITextView!
     @IBOutlet weak var btnSend: ImageButton!
+    @IBOutlet weak var heightInput: NSLayoutConstraint!
+    @IBOutlet weak var heightContainerInput: NSLayoutConstraint!
     var viewModel: DebatCommentViewModel!
-    
+    private let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer()
     private let disposeBag = DisposeBag()
     private var animatedDataSource: RxTableViewSectionedAnimatedDataSource<AnimatableSectionModel<String, Word>>!
+    private var tableHeader: UIView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 70))
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.delegate = nil
         tableView.dataSource = nil
-        tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 70))
+        tableHeader.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
+        tableView.tableHeaderView = tableHeader
         tableView.estimatedRowHeight = 44.0
         tableView.rowHeight = UITableView.automaticDimension
         tableView.registerReusableCell(DebatCommentCell.self)
+        tableView.addGestureRecognizer(tapGesture)
         
+        tableView.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
+        
+        tapGesture.rx.event
+            .subscribe(onNext: { [unowned self] (_) in
+                self.tvComment.endEditing(true)
+            })
+            .disposed(by: disposeBag)
+        
+        tvComment.delegate = self
+        tvComment.isScrollEnabled = false
+        textViewDidChange(tvComment)
         
         animatedDataSource = RxTableViewSectionedAnimatedDataSource<AnimatableSectionModel<String, Word>> (configureCell: { dataSouce, tableView, indexPath, word in
             let cell = tableView.dequeueReusableCell(indexPath: indexPath) as DebatCommentCell
@@ -44,7 +61,7 @@ class DebatCommentController: UIViewController {
         
         viewModel.output.commentsO
             .map({ word in
-                [AnimatableSectionModel(model: "Section", items: word)]
+                [AnimatableSectionModel(model: "Section", items: word.reversed())]
             })
             .asObservable()
             .bind(to: tableView.rx.items(dataSource: animatedDataSource))
@@ -57,7 +74,9 @@ class DebatCommentController: UIViewController {
                 return !content.isEmpty && self.tvComment.textColor != .lightGray
             })
             .do(onNext: { [unowned self](_) in
-                self.tvComment.text = ""
+                self.tvComment.text = nil
+                self.tvComment.isEditable = true
+                self.textViewDidChange(self.tvComment)
             })
             .bind(to: self.viewModel.input.sendCommentI)
             .disposed(by: disposeBag)
@@ -79,10 +98,15 @@ class DebatCommentController: UIViewController {
             .disposed(by: disposeBag)
         
         viewModel.output.sendCommentO
-            .map({ word in
-                [AnimatableSectionModel(model: "Section", items: [word])]
+//            .map({ word in
+//                [AnimatableSectionModel(model: "Section", items: [word])]
+//            })
+            .drive(onNext: { [weak self] (_) in
+                guard let `self` = self else { return  }
+                self.tvComment.text = nil
+                self.tvComment.isEditable = true
+                self.textViewDidChange(self.tvComment)
             })
-            .drive()
             .disposed(by: disposeBag)
         
         viewModel.output.newCommentO
@@ -103,6 +127,9 @@ class DebatCommentController: UIViewController {
         staticNavigationBar.setBackgroundImage(UIImage(), for: .default)
         staticNavigationBar.shadowImage = UIImage()
         staticNavigationBar.tintColor = .black
+        
+        /// Disable IQKeyboardManager
+        IQKeyboardManager.shared.enableAutoToolbar = false
         
         btnClose.rx.tap
             .bind { [unowned self](_) in
@@ -138,7 +165,8 @@ class DebatCommentController: UIViewController {
             if self.tvComment.textColor == .lightGray {
                 self.tvComment.text = nil
                 self.tvComment.textColor = Color.primary_black
-            }
+                self.textViewDidChange(self.tvComment)
+                }
             }
             .disposed(by: disposeBag)
         
@@ -150,33 +178,27 @@ class DebatCommentController: UIViewController {
             }
             .disposed(by: disposeBag)
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        /// Enable IQKeyboardManager
+        IQKeyboardManager.shared.enableAutoToolbar = true
+    }
 }
 
-//extension DebatCommentController: UITableViewDataSource {
-//    func numberOfSections(in tableView: UITableView) -> Int {
-//        return 1
-//    }
-//
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return viewModel.output.commentsO.value.count
-//    }
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let word = self.viewModel.output.commentsO.value[indexPath.row]
-//        let cell = tableView.dequeueReusableCell() as DebatCommentCell
-//        cell.configureCell(item: DebatCommentCell.Input(word: word))
-//
-//        return cell
-//    }
-//}
-//
-//
-//extension DebatCommentController: UITableViewDelegate {
-//
-//    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-//        if indexPath.row == self.viewModel.output.commentsO.value.count - 1 {
-//            self.viewModel.input.nextI.onNext(())
-//        }
-//    }
-//
-//}
+extension DebatCommentController: UITextViewDelegate {
+    func textViewDidChange(_ textView: UITextView) {
+        let size = CGSize(width: textView.frame.width, height: .infinity)
+        let estimateSize = textView.sizeThatFits(size)
+        if estimateSize.height > 100 {
+            heightInput.constant = 100
+            heightContainerInput.constant = 120
+            textView.isScrollEnabled = true
+        } else {
+            heightInput.constant = estimateSize.height
+            heightContainerInput.constant = estimateSize.height + 20
+            textView.isScrollEnabled = false
+        }
+    }
+}

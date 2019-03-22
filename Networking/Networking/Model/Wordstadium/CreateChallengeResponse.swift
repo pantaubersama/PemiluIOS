@@ -49,11 +49,13 @@ public struct Audiences: Codable {
     public let username: String?
     public let avatar: Avatar?
     public let about: String?
+    public let clapCount: Int?
     
     private enum CodingKeys: String, CodingKey {
         case id, role, email, avatar, about, username
         case userId = "user_id"
         case fullName = "full_name"
+        case clapCount = "clap_count"
     }
 }
 

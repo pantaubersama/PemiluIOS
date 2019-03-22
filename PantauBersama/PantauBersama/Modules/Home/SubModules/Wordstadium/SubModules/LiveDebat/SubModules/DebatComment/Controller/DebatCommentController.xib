@@ -14,6 +14,8 @@
             <connections>
                 <outlet property="btnClose" destination="ua8-D7-sPS" id="YRl-Ca-8eP"/>
                 <outlet property="btnSend" destination="o8A-T4-kZr" id="6Dr-5F-eS7"/>
+                <outlet property="heightContainerInput" destination="i0c-nO-qcX" id="YsQ-uc-ldn"/>
+                <outlet property="heightInput" destination="TCb-oO-Zfx" id="vlH-XD-080"/>
                 <outlet property="staticNavigationBar" destination="dlJ-QZ-Sg7" id="yqN-Eu-lPB"/>
                 <outlet property="tableView" destination="Gvx-jE-hRX" id="CRj-5W-Wob"/>
                 <outlet property="tvComment" destination="bZm-Bt-KHC" id="nHn-kZ-qdX"/>
@@ -29,8 +31,12 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9sB-Lx-fHi">
                     <rect key="frame" x="0.0" y="69" width="375" height="598"/>
                     <subviews>
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Gvx-jE-hRX">
+                            <rect key="frame" x="0.0" y="29.5" width="375" height="568.5"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </tableView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tFF-dX-ShS">
-                            <rect key="frame" x="0.0" y="540" width="375" height="48"/>
+                            <rect key="frame" x="0.0" y="550" width="375" height="48"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OwN-eu-spD">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="2"/>
@@ -63,6 +69,9 @@
                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Tulis Komentar" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="bZm-Bt-KHC">
                                     <rect key="frame" x="56" y="7" width="261" height="36"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="36" id="TCb-oO-Zfx"/>
+                                    </constraints>
                                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -96,7 +105,6 @@
                                 <constraint firstAttribute="trailing" secondItem="o8A-T4-kZr" secondAttribute="trailing" constant="4" id="JT3-en-Aau"/>
                                 <constraint firstItem="bZm-Bt-KHC" firstAttribute="top" secondItem="OwN-eu-spD" secondAttribute="bottom" constant="5" id="Jev-2N-DUa"/>
                                 <constraint firstItem="Oqr-7T-buz" firstAttribute="trailing" secondItem="3eh-7U-zd8" secondAttribute="trailing" id="Ke3-Zt-Y6K"/>
-                                <constraint firstAttribute="bottom" secondItem="bZm-Bt-KHC" secondAttribute="bottom" constant="5" id="bJa-WM-bi3"/>
                                 <constraint firstItem="bZm-Bt-KHC" firstAttribute="leading" secondItem="3eh-7U-zd8" secondAttribute="trailing" constant="16" id="fUY-Oa-BJI"/>
                                 <constraint firstAttribute="height" constant="48" id="i0c-nO-qcX"/>
                                 <constraint firstItem="3eh-7U-zd8" firstAttribute="centerY" secondItem="tFF-dX-ShS" secondAttribute="centerY" id="nY8-Gp-1tT"/>
@@ -135,10 +143,6 @@
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                         </view>
-                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Gvx-jE-hRX">
-                            <rect key="frame" x="0.0" y="29.5" width="375" height="510.5"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </tableView>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
@@ -150,8 +154,8 @@
                         <constraint firstItem="d8w-i4-U0k" firstAttribute="top" secondItem="9sB-Lx-fHi" secondAttribute="top" constant="-5" id="jFo-QK-vBv"/>
                         <constraint firstItem="d8w-i4-U0k" firstAttribute="leading" secondItem="9sB-Lx-fHi" secondAttribute="leading" id="jxg-wX-yf4"/>
                         <constraint firstAttribute="trailing" secondItem="d8w-i4-U0k" secondAttribute="trailing" id="m6q-kp-R8p"/>
-                        <constraint firstItem="tFF-dX-ShS" firstAttribute="top" secondItem="Gvx-jE-hRX" secondAttribute="bottom" id="qsv-yw-xBk"/>
-                        <constraint firstAttribute="bottom" secondItem="tFF-dX-ShS" secondAttribute="bottom" constant="10" id="tuZ-nc-kNa"/>
+                        <constraint firstItem="Gvx-jE-hRX" firstAttribute="bottom" secondItem="9sB-Lx-fHi" secondAttribute="bottom" id="qsv-yw-xBk"/>
+                        <constraint firstAttribute="bottom" secondItem="tFF-dX-ShS" secondAttribute="bottom" id="tuZ-nc-kNa"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="topRadius">

@@ -20,6 +20,7 @@ class DebatCommentCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        transform = CGAffineTransform(rotationAngle: -CGFloat(Double.pi))
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
