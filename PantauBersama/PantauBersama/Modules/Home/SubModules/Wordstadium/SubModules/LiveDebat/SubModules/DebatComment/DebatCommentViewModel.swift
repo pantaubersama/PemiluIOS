@@ -67,6 +67,9 @@ class DebatCommentViewModel: ViewModelType {
         
         let loadComments = loadCommentS
             .flatMapLatest({ self.getComments() })
+            .map({ (word) -> [Word] in
+                return word.reversed()
+            })
             .do(onNext: { [weak self](words) in
                 guard let `self` = self else { return }
                 self.comments.accept(words)
@@ -128,15 +131,17 @@ class DebatCommentViewModel: ViewModelType {
     
     @objc func incomingWord(_ notification: NSNotification) {
         guard let word = notification.userInfo?["word"] as? Word else { return }
-        if self.isNewWordAdded(words: [word]) {
+        if self.isNewWordAdded(words: [word]) == true {
             self.newCommentS.onNext(word)
+        } else {
+            print("word sudah ada")
         }
     }
     
     private func isNewWordAdded(words: [Word]) -> Bool {
         guard let currentLastWord = self.comments.value.last else { return false }
         guard let lastRemoteWord = words.last else { return false }
-        return currentLastWord.id != lastRemoteWord.id && words.count != self.comments.value.count
+        return currentLastWord.id != lastRemoteWord.id
     }
     
     /**
@@ -151,7 +156,9 @@ class DebatCommentViewModel: ViewModelType {
         nextBatchTrigger: Observable<Void>) -> Observable<[Word]> {
         return recursivelyPaginateItems(batch: batch, nextBatchTrigger: nextBatchTrigger)
             .scan([], accumulator: { (accumulator, page) in
-                return accumulator + page.item
+                /// MARK: This is will throw error because currently pagination from BE not match
+                let page = accumulator + page.item
+                return page
             })
     }
     
@@ -178,7 +185,7 @@ class DebatCommentViewModel: ViewModelType {
                               count: response.data.meta.pages.page,
                               page: response.data.meta.pages.page)
         return Page<[Word]>(
-            item: response.data.words,
+            item: response.data.words.reversed(),
             batch: nextBatch
         )
     }

@@ -27,17 +27,21 @@ class DebatCommentController: UIViewController {
     private let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer()
     private let disposeBag = DisposeBag()
     private var animatedDataSource: RxTableViewSectionedAnimatedDataSource<AnimatableSectionModel<String, Word>>!
+    private var tableHeader: UIView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 70))
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.delegate = nil
         tableView.dataSource = nil
-        tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 70))
+        tableHeader.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
+        tableView.tableHeaderView = tableHeader
         tableView.estimatedRowHeight = 44.0
         tableView.rowHeight = UITableView.automaticDimension
         tableView.registerReusableCell(DebatCommentCell.self)
         tableView.addGestureRecognizer(tapGesture)
+        
+        tableView.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
         
         tapGesture.rx.event
             .subscribe(onNext: { [unowned self] (_) in
@@ -57,7 +61,7 @@ class DebatCommentController: UIViewController {
         
         viewModel.output.commentsO
             .map({ word in
-                [AnimatableSectionModel(model: "Section", items: word)]
+                [AnimatableSectionModel(model: "Section", items: word.reversed())]
             })
             .asObservable()
             .bind(to: tableView.rx.items(dataSource: animatedDataSource))
@@ -94,9 +98,9 @@ class DebatCommentController: UIViewController {
             .disposed(by: disposeBag)
         
         viewModel.output.sendCommentO
-            .map({ word in
-                [AnimatableSectionModel(model: "Section", items: [word])]
-            })
+//            .map({ word in
+//                [AnimatableSectionModel(model: "Section", items: [word])]
+//            })
             .drive(onNext: { [weak self] (_) in
                 guard let `self` = self else { return  }
                 self.tvComment.text = nil
