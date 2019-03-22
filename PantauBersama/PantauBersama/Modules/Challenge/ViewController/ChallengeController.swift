@@ -369,6 +369,8 @@ extension ChallengeController {
             self.btnTerima.setTitle("LIHAT DEBAT", for: UIControlState())
             self.containerAcceptChallenge.isHidden = false
             self.challengeButton.configure(type: .done, viewModel: self.viewModel, data: data)
+            self.lblClapsChallengerDone.text = "\(data.challenger?.clapCount ?? 0)"
+            self.lblClapsOpponentsDone.text = "\(data.opponents.first?.clapCount ?? 0)"
         default:
             break
         }

@@ -117,7 +117,8 @@ extension WordstadiumItemViewCell: IReusableCell {
             titleLbl.text = challenge.progress.title
             backgroundItem.image = UIImage(named: "bgWordstadiumDone")
             let clapView = ClapView()
-            
+            clapView.challengerClapLbl.text = "\(challenge.challenger?.clapCount ?? 0)"
+            clapView.opponentClapLbl.text = "\(challenge.opponents.first?.clapCount ?? 0)"
             footerView = clapView
         case .waitingConfirmation,.waitingOpponent:
             titleLbl.text = challenge.type.title

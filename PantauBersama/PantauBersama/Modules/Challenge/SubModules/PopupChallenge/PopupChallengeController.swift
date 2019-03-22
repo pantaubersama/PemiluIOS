@@ -37,6 +37,23 @@ class PopupChallengeController: UIViewController {
             .disposed(by: disposeBag)
         
         self.configure(data: self.data, type: self.type)
+        
+        tvReason.text = "Tulis di sini..."
+        tvReason.textColor = .lightGray
+        
+        tvReason.rx.didBeginEditing.bind { [unowned self] in
+            if self.tvReason.textColor == .lightGray {
+                self.tvReason.text = nil
+                self.tvReason.textColor = Color.primary_black
+            }
+        }.disposed(by: disposeBag)
+        
+        tvReason.rx.didEndEditing.bind { [unowned self] in
+            if self.tvReason.text.isEmpty {
+                self.tvReason.text = "Tulis di sini..."
+                self.tvReason.textColor = .lightGray
+            }
+        }.disposed(by: disposeBag)
     }
     
     private func configure(data: Challenge, type: PopupChallengeType) {
