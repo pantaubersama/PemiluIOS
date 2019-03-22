@@ -37,7 +37,7 @@ class PerhitunganViewModel: ViewModelType {
         let error: Driver<Error>
         let moreSelected: Driver<RealCount>
         let moreMenuSelected: Driver<Void>
-//        let itemSelected: Driver<Void>
+        let itemSelected: Driver<Void>
     }
     
     var input: Input
@@ -115,6 +115,15 @@ class PerhitunganViewModel: ViewModelType {
             })
             .asDriverOnErrorJustComplete()
         
+        let selected = itemSelectedSubject
+            .withLatestFrom(feedsItems) { (indexPath, items) -> RealCount in
+                return items[indexPath.row]
+            }
+            .flatMapLatest({ _ in
+                return navigator.launchCreatePerhitungan()
+            })
+            .asDriverOnErrorJustComplete()
+        
         output = Output(createPerhitunganO: createPerhitungan,
                         feedsCells: feedsCells,
                         bannerInfo: bannerInfo,
@@ -122,7 +131,8 @@ class PerhitunganViewModel: ViewModelType {
                         isLoading: activityIndicator.asDriver(),
                         error: errorTracker.asDriver(),
                         moreSelected: moreSelected,
-                        moreMenuSelected: moreMenuSelected)
+                        moreMenuSelected: moreMenuSelected,
+                        itemSelected: selected)
     }
     
     private func paginateItems(

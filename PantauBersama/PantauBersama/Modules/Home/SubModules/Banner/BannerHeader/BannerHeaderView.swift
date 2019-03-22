@@ -64,9 +64,9 @@ class BannerHeaderView: UIView {
         case .tantangan:
             ivInfoBackground.image = UIImage(named: "icBannerTantangan")
         case .perhitungan:
-            ivInfoBackground.image = UIImage(named: "icBannerTantangan")
+            ivInfoBackground.image = UIImage(named: "icBannerPerhitungan")
         case .rekapitulasi:
-            ivInfoBackground.image = UIImage(named: "icBannerTantangan")
+            ivInfoBackground.image = UIImage(named: "icBannerRekapitulasi")
         default:
             return
         }
