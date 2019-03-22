@@ -12,12 +12,18 @@ import RxSwift
 import RxCocoa
 import Networking
 
+
+enum PerhitunganType {
+    case hapus(data: RealCount)
+    case edit(data: RealCount)
+}
+
 class PerhitunganViewModel: ViewModelType {
     struct Input {
         let refreshTrigger: AnyObserver<Void>
         let createPerhitunganTrigger: AnyObserver<Void>
-//        let moreTrigger: AnyObserver<Feeds>
-//        let moreMenuTrigger: AnyObserver<PilpresType>
+        let moreTrigger: AnyObserver<RealCount>
+        let moreMenuTrigger: AnyObserver<PerhitunganType>
         let nextTrigger: AnyObserver<Void>
         let itemSelectTrigger: AnyObserver<IndexPath>
     }
@@ -29,6 +35,8 @@ class PerhitunganViewModel: ViewModelType {
         let infoSelected: Driver<Void>
         let isLoading: Driver<Bool>
         let error: Driver<Error>
+        let moreSelected: Driver<RealCount>
+        let moreMenuSelected: Driver<Void>
 //        let itemSelected: Driver<Void>
     }
     
@@ -39,8 +47,8 @@ class PerhitunganViewModel: ViewModelType {
     
     private let refreshSubject = PublishSubject<Void>()
     private let createPerhitunganSubject = PublishSubject<Void>()
-//    private let moreSubject = PublishSubject<Feeds>()
-//    private let moreMenuSubject = PublishSubject<PilpresType>()
+    private let moreSubject = PublishSubject<RealCount>()
+    private let moreMenuSubject = PublishSubject<PerhitunganType>()
     private let nextSubject = PublishSubject<Void>()
     private let itemSelectedSubject = PublishSubject<IndexPath>()
     
@@ -52,6 +60,8 @@ class PerhitunganViewModel: ViewModelType {
         
         input = Input(refreshTrigger: refreshSubject.asObserver(),
                       createPerhitunganTrigger: createPerhitunganSubject.asObserver(),
+                      moreTrigger: moreSubject.asObserver(),
+                      moreMenuTrigger: moreMenuSubject.asObserver(),
                       nextTrigger: nextSubject.asObserver(),
                       itemSelectTrigger: itemSelectedSubject.asObserver())
         
@@ -90,12 +100,29 @@ class PerhitunganViewModel: ViewModelType {
             })
             .asDriverOnErrorJustComplete()
         
+        let moreSelected = moreSubject
+            .asObserver().asDriverOnErrorJustComplete()
+        
+        let moreMenuSelected = moreMenuSubject
+            .flatMapLatest({ (type) -> Observable<Void> in
+                switch type {
+                case .hapus(let data):
+                    return Observable.empty()
+                case .edit(let data):
+                    return Observable.empty()
+                }
+
+            })
+            .asDriverOnErrorJustComplete()
+        
         output = Output(createPerhitunganO: createPerhitungan,
                         feedsCells: feedsCells,
                         bannerInfo: bannerInfo,
                         infoSelected: infoSelected,
                         isLoading: activityIndicator.asDriver(),
-                        error: errorTracker.asDriver())
+                        error: errorTracker.asDriver(),
+                        moreSelected: moreSelected,
+                        moreMenuSelected: moreMenuSelected)
     }
     
     private func paginateItems(

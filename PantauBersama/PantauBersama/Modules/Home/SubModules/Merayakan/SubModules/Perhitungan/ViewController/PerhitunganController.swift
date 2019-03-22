@@ -108,6 +108,38 @@ class PerhitunganController: UITableViewController {
             }
             .disposed(by: disposeBag)
         
+        viewModel.output.moreSelected
+            .asObservable()
+            .flatMapLatest({ [weak self] (data) -> Observable<PerhitunganType> in
+                return Observable.create({ (observer) -> Disposable in
+                    
+                    let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+                    let hapus = UIAlertAction(title: "Hapus", style: .default, handler: { (_) in
+                        observer.onNext(PerhitunganType.hapus(data: data))
+                        observer.on(.completed)
+                    })
+                    let edit = UIAlertAction(title: "Edit Data TPS", style: .default, handler: { (_) in
+                        observer.onNext(PerhitunganType.edit(data: data))
+                        observer.on(.completed)
+                    })
+                    let cancel = UIAlertAction(title: "Batal", style: .cancel, handler: nil)
+                    
+                    alert.addAction(hapus)
+                    alert.addAction(edit)
+                    alert.addAction(cancel)
+                    DispatchQueue.main.async {
+                        self?.navigationController?.present(alert, animated: true, completion: nil)
+                    }
+                    return Disposables.create()
+                })
+            })
+            .bind(to: viewModel.input.moreMenuTrigger)
+            .disposed(by: disposeBag)
+        
+        viewModel.output.moreMenuSelected
+            .drive()
+            .disposed(by: disposeBag)
+        
     }
     
     private func configureConstraint() {
