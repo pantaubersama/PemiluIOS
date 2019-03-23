@@ -120,7 +120,7 @@ class PerhitunganViewModel: ViewModelType {
                 return items[indexPath.row]
             }
             .flatMapLatest({ _ in
-                return navigator.launchCreatePerhitungan()
+                return navigator.launchDetailTps()
             })
             .asDriverOnErrorJustComplete()
         

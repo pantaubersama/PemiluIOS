@@ -34,10 +34,7 @@ class MerayakanCoordinator: BaseCoordinator<Void> {
 }
 
 extension MerayakanCoordinator : MerayakanNavigator {
-    func launchDetailTps() -> Observable<Void> {
-        let coordinator = MerayakanCoordinator(navigationController: navigationController)
-        return coordinate(to: coordinator)
-    }
+    
     
     func launchSearch() -> Observable<Void> {
         let notificationCoordinator = NotificationCoordinator(navigationController: navigationController)

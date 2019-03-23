@@ -59,6 +59,10 @@ class PerhitunganController: UITableViewController {
             .bind(to: viewModel.input.refreshTrigger)
             .disposed(by: disposeBag)
         
+        tableView.rx.itemSelected
+            .bind(to: viewModel.input.itemSelectTrigger)
+            .disposed(by: disposeBag)
+        
         tableView.rx.contentOffset
             .distinctUntilChanged()
             .flatMapLatest { (offset) -> Observable<Void> in
@@ -137,6 +141,10 @@ class PerhitunganController: UITableViewController {
             .disposed(by: disposeBag)
         
         viewModel.output.moreMenuSelected
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.itemSelected
             .drive()
             .disposed(by: disposeBag)
         

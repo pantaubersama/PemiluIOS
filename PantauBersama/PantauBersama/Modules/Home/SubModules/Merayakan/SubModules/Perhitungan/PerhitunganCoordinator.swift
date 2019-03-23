@@ -20,8 +20,6 @@ class PerhitunganCoordinator: BaseCoordinator<Void> {
     
     override func start() -> Observable<CoordinationResult> {
         let viewController  = PerhitunganController()
-//        let viewModel       = PerhitunganViewModel(navigator: self)
-//        viewController.viewModel = viewModel
         navigationController.setViewControllers([viewController], animated: true)
         return Observable.never()
     }

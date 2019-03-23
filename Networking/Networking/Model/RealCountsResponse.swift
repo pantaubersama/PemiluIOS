@@ -33,7 +33,7 @@ public struct RealCount: Codable {
     public var village: Village
     public var latitude: String
     public var longitude: String
-    public var status: String
+    public var status: RealCountStatus
     public var user: User
     public var logs: Logs
     
@@ -64,6 +64,25 @@ public struct Logs: Codable {
             case dprdProvinsi = "dprd_provinsi"
             case dprdKabupaten = "dprd_kabupaten"
             case suasanaTps = "suasana_tps"
+        }
+    }
+    
+}
+
+public enum RealCountStatus: String, Codable {
+    case sandbox = "sandbox"
+    case draft = "draft"
+    case published = "published"
+
+    
+    public var text: String {
+        switch self {
+        case .sandbox:
+            return "Uji Coba"
+        case .draft:
+            return "Belum Dikirim"
+        case .published:
+            return "Terkirim"
         }
     }
     

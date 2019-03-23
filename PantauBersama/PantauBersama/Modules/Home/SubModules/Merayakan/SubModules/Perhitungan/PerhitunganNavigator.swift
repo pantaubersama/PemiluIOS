@@ -29,12 +29,8 @@ extension PerhitunganNavigator where Self: BaseCoordinator<Void> {
     }
     
     func launchDetailTps() -> Observable<Void> {
-        return Observable.never()
-    }
-    
-    func launchBannerInfo(bannerInfo: BannerInfo) -> Observable<Void> {
-        let bannerInfoCoordinator = BannerInfoCoordinator(navigationController: self.navigationController, bannerInfo: bannerInfo)
-        return coordinate(to: bannerInfoCoordinator)
+        let detailTPSCoordinator = DetailTPSCoordinator(navigationController: navigationController)
+        return coordinate(to: detailTPSCoordinator)
     }
 }
 

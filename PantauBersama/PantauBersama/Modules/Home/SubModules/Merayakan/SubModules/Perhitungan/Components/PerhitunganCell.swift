@@ -54,12 +54,21 @@ extension PerhitunganCell: IReusableCell {
     }
     
     func configure(data: RealCount) {
+        switch data.status {
+        case .draft:
+            tpsStatusView.backgroundColor = Color.primary_red
+        case .sandbox:
+            tpsStatusView.backgroundColor = Color.grey_four
+        case .published:
+            tpsStatusView.backgroundColor = Color.secondary_cyan
+        }
         tpsNameLbl.text = "TPS \(data.tps)"
-        tpsStatusLbl.text = data.status
+        tpsStatusLbl.text = data.status.text
         provinceLbl.text = data.province.name
         regencyLbl.text = data.regency.name
         districtLbl.text = data.district.name
         vilageLbl.text = data.village.name
+        
         
     }
     
