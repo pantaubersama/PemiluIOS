@@ -330,7 +330,7 @@ class QuizViewModel: ViewModelType {
     private func bannerInfo() -> Observable<BannerInfo> {
         return NetworkService.instance
             .requestObject(
-                LinimasaAPI.getBannerInfos(pageName: "kuis"),
+                LinimasaAPI.getBannerInfos(pageName: BannerPage.kuis),
                 c: BaseResponse<BannerInfoResponse>.self
             )
             .map{ ($0.data.bannerInfo) }

@@ -30,6 +30,7 @@
 		1311A96F21DD3011001B053B /* UserPantau.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1311A96E21DD3011001B053B /* UserPantau.swift */; };
 		131AEBE72223287900B299F6 /* GetChallengeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 131AEBE62223287900B299F6 /* GetChallengeResponse.swift */; };
 		137A2A0121E3C80F00F19072 /* TrendResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 137A2A0021E3C80F00F19072 /* TrendResponse.swift */; };
+		13B39F3C2243F2BA00B1861E /* RealCountsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B39F3B2243F2BA00B1861E /* RealCountsResponse.swift */; };
 		13D9483A21DDD56D00722EB1 /* InfoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D9483921DDD56D00722EB1 /* InfoResponse.swift */; };
 		13F456B521D531D300CE45F1 /* LinimasaAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F456B421D531D300CE45F1 /* LinimasaAPI.swift */; };
 		13F456B721DA7BD000CE45F1 /* Feeds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F456B621DA7BD000CE45F1 /* Feeds.swift */; };
@@ -125,6 +126,7 @@
 		1311A96E21DD3011001B053B /* UserPantau.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPantau.swift; sourceTree = "<group>"; };
 		131AEBE62223287900B299F6 /* GetChallengeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetChallengeResponse.swift; sourceTree = "<group>"; };
 		137A2A0021E3C80F00F19072 /* TrendResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendResponse.swift; sourceTree = "<group>"; };
+		13B39F3B2243F2BA00B1861E /* RealCountsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealCountsResponse.swift; sourceTree = "<group>"; };
 		13D9483921DDD56D00722EB1 /* InfoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoResponse.swift; sourceTree = "<group>"; };
 		13F456B421D531D300CE45F1 /* LinimasaAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinimasaAPI.swift; sourceTree = "<group>"; };
 		13F456B621DA7BD000CE45F1 /* Feeds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feeds.swift; sourceTree = "<group>"; };
@@ -333,6 +335,7 @@
 				84FF8AA021F221C100AA8CF3 /* AppVersionResponse.swift */,
 				84E521C721F4C81500B7CCBA /* InfoFirebaseResponse.swift */,
 				84B6D51021F83B5900DD742A /* PoliticalPartyResponse.swift */,
+				13B39F3B2243F2BA00B1861E /* RealCountsResponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -610,6 +613,7 @@
 				13F456C521DB7EF900CE45F1 /* Image.swift in Sources */,
 				1143E81421E24946003862B6 /* QuizQuestionsResponse.swift in Sources */,
 				8451E0602204672700F03E96 /* NotificationAPI.swift in Sources */,
+				13B39F3C2243F2BA00B1861E /* RealCountsResponse.swift in Sources */,
 				11D0669D21E26A07003AC9BB /* QuizResultResponse.swift in Sources */,
 				8451E06222046AB600F03E96 /* RecordNotificationResponse.swift in Sources */,
 				11C7BB2521DB36D5008CA49B /* QuestionOptionResponse.swift in Sources */,

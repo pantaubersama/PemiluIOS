@@ -37,6 +37,8 @@ class DetailTPSCoordinator: BaseCoordinator<Void> {
         let viewController = DetailTPSController()
         viewModel = DetailTPSViewModel(navigator: self)
         viewController.viewModel = viewModel!
+        viewController.hidesBottomBarWhenPushed = true
+        
         navigationController.pushViewController(viewController, animated: true)
         
         return Observable.never()

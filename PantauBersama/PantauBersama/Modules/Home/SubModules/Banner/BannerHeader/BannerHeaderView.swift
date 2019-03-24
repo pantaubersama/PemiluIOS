@@ -40,7 +40,7 @@ class BannerHeaderView: UIView {
     }
     
     func config(banner: BannerInfo, viewModel: BannerHeaderViewModel) {
-        body.text = banner.body
+        body.text = banner.body + " "
         if let readmore = UIFont(name: "Lato-Bold", size: 12) {
             DispatchQueue.main.async { [weak self] in
                 // Danger, check character more than 8 count if not app will crash
@@ -63,6 +63,10 @@ class BannerHeaderView: UIView {
             ivInfoBackground.image = UIImage(named: "icBannerDebat")
         case .tantangan:
             ivInfoBackground.image = UIImage(named: "icBannerTantangan")
+        case .perhitungan:
+            ivInfoBackground.image = UIImage(named: "icBannerPerhitungan")
+        case .rekapitulasi:
+            ivInfoBackground.image = UIImage(named: "icBannerRekapitulasi")
         default:
             return
         }

@@ -42,24 +42,30 @@ public enum BannerPage: String, Codable {
     case kuis = "kuis"
     case debat = "debat"
     case tantangan = "tantangan"
+    case perhitungan = "perhitungan"
+    case rekapitulasi = "rekapitulasi"
     case unknown
     
-    public var title: String? {
+    public var text: String {
         switch self {
         case .pilpres:
-            return "Pilpres"
+            return "pilpres"
         case .janji_politik:
-            return "Janji Politik"
+            return "janji politik"
         case .tanya:
-            return "Tanya"
+            return "tanya"
         case .kuis:
-            return "Kuis"
+            return "kuis"
         case .debat:
-            return "Debat"
+            return "debat"
         case .tantangan:
-            return "Tantangan"
+            return "tantangan"
+        case .perhitungan:
+            return "perhitungan"
+        case .rekapitulasi:
+            return "rekapitulasi"
         default:
-            return nil
+            return ""
         }
     }
     
@@ -78,6 +84,10 @@ public enum BannerPage: String, Codable {
             return .debat
         case "Tantangan":
             return .tantangan
+        case "Perhitungan":
+            return .perhitungan
+        case "Rekapitulasi":
+            return .rekapitulasi
         default:
             return .unknown
         }
