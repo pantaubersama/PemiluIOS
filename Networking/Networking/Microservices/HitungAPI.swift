@@ -50,7 +50,7 @@ public enum HitungAPI {
     case putRealCount(id: Int, noTps: Int)
     case getRealCount(id: Int)
     case getRealCounts(page: Int, perPage: Int, userId: String?, villageCode: String?, dapilId: String?)
-    case postRealCount(request: RealCountRequest)
+    case postRealCount(noTps: String, province: String, regencies: String, district: String, village: String, lat: Double, long: Double)
 }
 
 extension HitungAPI: TargetType {
@@ -142,8 +142,16 @@ extension HitungAPI: TargetType {
     
     public var parameters: [String: Any]? {
         switch self {
-        case .postRealCount(let request):
-            return request.dictionary ?? [:]            
+        case .postRealCount(let (noTps, province, regencies, district, village, lat, long)):
+            return [
+                "tps": noTps,
+                "province_code": province,
+                "regency_code": regencies,
+                "district_code": district,
+                "village_code": village,
+                "latitude": lat,
+                "longitude": long
+            ]
         case .putRealCount(let id, let noTps):
             return [
                 "tps": noTps,

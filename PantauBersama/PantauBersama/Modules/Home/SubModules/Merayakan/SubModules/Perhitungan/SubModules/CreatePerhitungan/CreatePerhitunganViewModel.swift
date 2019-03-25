@@ -16,24 +16,35 @@ import CoreLocation
 
 class CreatePerhitunganViewModel: ViewModelType {
     struct Input {
+        let tpsNoI: AnyObserver<String>
+        let provinceI: AnyObserver<String>
+        let regenciesI: AnyObserver<String>
+        let districtI: AnyObserver<String>
+        let villageI: AnyObserver<String>
         let detailTPSI: AnyObserver<Void>
         let backI: AnyObserver<Void>
     }
     
     struct Output {
-        let detailTPSO: Driver<Void>
+        let createO: Driver<Void>
         let backO: Driver<Void>
+        let enableO: Driver<Bool>
+        let errorO: Driver<Error>
     }
     
     var input: Input
-    var output: Output
+    var output: Output!
     
     private let bag = DisposeBag()
     private let navigator: CreatePerhitunganNavigator
+    private let noTpsS = PublishSubject<String>()
+    private let provinceS = PublishSubject<String>()
+    private let districtS = PublishSubject<String>()
+    private let regenciesS = PublishSubject<String>()
+    private let villageS = PublishSubject<String>()
     private let backS = PublishSubject<Void>()
     private let detailTPSS = PublishSubject<Void>()
     private let manager = CLLocationManager()
-    private var createRequest = RealCountRequest()
     
     var provinces = [Province]()
     var regencies = [Regency]()
@@ -41,11 +52,19 @@ class CreatePerhitunganViewModel: ViewModelType {
     var villages = [Village]()
     var coordinate = BehaviorRelay(value: CLLocationCoordinate2D())
     var formattedAddress = BehaviorRelay(value: "")
+
     
     init(navigator: CreatePerhitunganNavigator) {
         self.navigator = navigator
+        let errorTracker = ErrorTracker()
+        let activityIndicator = ActivityIndicator()
         
         input = Input(
+            tpsNoI: noTpsS.asObserver(),
+            provinceI: provinceS.asObserver(),
+            regenciesI: regenciesS.asObserver(),
+            districtI: districtS.asObserver(),
+            villageI: villageS.asObserver(),
             detailTPSI: detailTPSS.asObserver(),
             backI: backS.asObserver())
         
@@ -53,13 +72,34 @@ class CreatePerhitunganViewModel: ViewModelType {
             .flatMap({ navigator.back() })
             .asDriverOnErrorJustComplete()
         
-        let detail = detailTPSS
-            .flatMap({ navigator.launchDetailTPS() })
+        let enablePost = Observable.combineLatest(noTpsS, provinceS, regenciesS, districtS, villageS)
+            .map { (noTps, province, regencies, district, village) -> Bool in
+                return noTps.count > 0 && province.count > 0 && district.count > 0 && village.count > 0
+            }
+            .startWith(false)
             .asDriverOnErrorJustComplete()
         
+        let done = detailTPSS
+            .withLatestFrom(Observable.combineLatest(noTpsS, provinceS, regenciesS, districtS, villageS))
+            .flatMapLatest({ (noTps, province, regencies, district, village) in
+                return NetworkService.instance.requestObject(
+                    HitungAPI.postRealCount(noTps: noTps, province: province, regencies: regencies, district: district, village: village, lat: self.coordinate.value.latitude, long: self.coordinate.value.longitude),
+                    c: BaseResponse<CreateJanjiPolitikResponse>.self)
+                    .trackError(errorTracker)
+                    .trackActivity(activityIndicator)
+                    .catchErrorJustComplete()
+                
+            })
+            .flatMap { (response) in
+                navigator.launchDetailTPS()
+            }
+        
+        
         output = Output(
-            detailTPSO: detail,
-            backO: back)
+            createO: done.asDriverOnErrorJustComplete(),
+            backO: back,
+            enableO: enablePost,
+            errorO: errorTracker.asDriver())
         
         manager.requestWhenInUseAuthorization()
         
@@ -77,22 +117,22 @@ class CreatePerhitunganViewModel: ViewModelType {
     }
     
     func selectProvince(_ province: Province) {
-        createRequest.provinceCode = province.code
+        self.input.provinceI.onNext("\(province.code)")
         getRegencies(provinceCode: province.code)
     }
     
     func selectRegency(_ reg: Regency) {
-        createRequest.regencyCode = reg.code
+        self.input.regenciesI.onNext("\(reg.code)")
         getDistricts(regencyCode: reg.code)
     }
     
     func selectDistrict(_ dis: District) {
-        createRequest.districtCode = dis.code
+        self.input.districtI.onNext("\(dis.code)")
         getVillages(districtCode: dis.code)
     }
     
     func selectVillage(_ vill: Village) {
-        createRequest.villageCode = vill.code
+        self.input.villageI.onNext("\(vill.code)")
     }
     
     func updateLocation() {
@@ -108,10 +148,6 @@ class CreatePerhitunganViewModel: ViewModelType {
                 self?.provinces = result
             })
             .disposed(by: bag)
-    }
-    
-    func createPerhitungan() {
-        print("Request \(createRequest.dictionary)")
     }
     
     private func getRegencies(provinceCode: Int) {
@@ -146,6 +182,7 @@ class CreatePerhitunganViewModel: ViewModelType {
             })
             .disposed(by: bag)
     }
+    
 }
 
 extension CLPlacemark {
