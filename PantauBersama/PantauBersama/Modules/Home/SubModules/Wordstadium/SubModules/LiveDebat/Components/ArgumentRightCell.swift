@@ -33,7 +33,7 @@ class ArgumentRightCell: UITableViewCell {
         return clapAnimation
     }()
     
-    private let disposeBag = DisposeBag()
+    private(set) var disposeBag = DisposeBag()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -57,6 +57,12 @@ class ArgumentRightCell: UITableViewCell {
             ])
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        disposeBag = DisposeBag()
+        lbClapStatus.isHidden = true
+    }
+    
 }
 
 extension ArgumentRightCell: IReusableCell {
@@ -66,8 +72,30 @@ extension ArgumentRightCell: IReusableCell {
     }
     
     func configureCell(item: Input) {
+        item.viewModel.output.viewTypeO
+            .drive(onNext: { [weak self](result) in
+                guard let `self` = self else { return }
+                self.configureViewType(viewConfig: result)
+            })
+            .disposed(by: disposeBag)
+        
         lbArgument.text = item.word.body
         lbReadEstimation.text = "\(item.word.readTime ?? 0) menit"
         lbCreatedAt.text = item.word.createdAt.timeAgoSinceDateForm2
+    }
+    
+    private func configureViewType(viewConfig: (viewType: DebatViewType, author: Audiences?)) {
+        switch viewConfig.viewType {
+        case .watch:
+            btnClap.isUserInteractionEnabled = true
+            break
+        case .myTurn, .theirTurn, .participant:
+            btnClap.isUserInteractionEnabled = false
+            lbClapStatus.isHidden = true
+            break
+        case .done:
+            btnClap.isUserInteractionEnabled = false
+            break
+        }
     }
 }

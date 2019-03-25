@@ -34,7 +34,7 @@ class ArgumentLeftCell: UITableViewCell {
         return clapAnimation
     }()
     
-    private let disposeBag = DisposeBag()
+    private(set) var disposeBag = DisposeBag()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -48,10 +48,6 @@ class ArgumentLeftCell: UITableViewCell {
             .disposed(by: disposeBag)
     }
     
-    func configureCell(item: Any) {
-        
-    }
-    
     private func configureConstraint() {
         NSLayoutConstraint.activate([
             clapAnimation.trailingAnchor.constraint(equalTo: viewClapLottie.trailingAnchor),
@@ -61,10 +57,10 @@ class ArgumentLeftCell: UITableViewCell {
             ])
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        disposeBag = DisposeBag()
+        lbClapStatus.isHidden = true
     }
     
 }
@@ -76,8 +72,30 @@ extension ArgumentLeftCell: IReusableCell {
     }
     
     func configureCell(item: Input) {
+        item.viewModel.output.viewTypeO
+            .drive(onNext: { [weak self](result) in
+                guard let `self` = self else { return }
+                self.configureViewType(viewConfig: result)
+            })
+            .disposed(by: disposeBag)
+        
         lbArgument.text = item.word.body
         lbReadEstimation.text = "\(item.word.readTime ?? 0) menit"
         lbCraetedAt.text = item.word.createdAt.timeAgoSinceDateForm2
+    }
+    
+    private func configureViewType(viewConfig: (viewType: DebatViewType, author: Audiences?)) {
+        switch viewConfig.viewType {
+        case .watch:
+            btnClap.isUserInteractionEnabled = true
+            break
+        case .myTurn, .theirTurn, .participant:
+            btnClap.isUserInteractionEnabled = false
+            lbClapStatus.isHidden = true
+            break
+        case .done:
+            btnClap.isUserInteractionEnabled = false
+            break
+        }
     }
 }
