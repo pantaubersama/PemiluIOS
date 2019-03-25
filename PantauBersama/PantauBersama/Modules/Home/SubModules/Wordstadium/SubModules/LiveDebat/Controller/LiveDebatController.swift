@@ -79,19 +79,6 @@ class LiveDebatController: UIViewController {
         tableViewDebat.registerReusableCell(ArgumentLeftCell.self)
         tableViewDebat.registerReusableCell(ArgumentRightCell.self)
         
-        // listen whether the last cell displayed or not
-        // if yes, then rotate the btnScroll and set tag to 1 (0 = scroll to bottom, 1 = scroll to top)
-        tableViewDebat.rx.willDisplayCell
-            .filter({ [unowned self]_ in !self.viewModel.output.argumentsO.value.isEmpty })
-            .map({ $0.indexPath })
-            .map({ [unowned self] in $0.row == self.viewModel.output.argumentsO.value.count - 1 })
-            .bind { [unowned self](isOnBottom) in
-                self.btnScroll.tag = isOnBottom ? 0 : 1
-                self.btnScroll.rotate(degree: isOnBottom ? 180 : 0)
-            }
-            .disposed(by: disposeBag)
-        
-        
         // configure scrolling behavior for header to response
         scrollView.rx.contentOffset
             .distinctUntilChanged()
@@ -224,6 +211,7 @@ class LiveDebatController: UIViewController {
             .drive(onNext: { [weak self] in
                 guard let `self` = self else { return }
                 self.tableViewDebat.reloadData()
+                
             })
             .disposed(by: disposeBag)
         
@@ -321,7 +309,7 @@ class LiveDebatController: UIViewController {
             latestCommentView.isHidden = true
             viewComentarContainer.isHidden = false
             viewInputContainer.isHidden = true
-            constraintTableViewBottom.constant = 0
+            constraintTableViewBottom.constant = 50
             viewTimeContainer.isHidden = true
             constraintInputViewHeight.constant = 50
             headerTitle.setTitle("LIVE NOW", for: .normal)
@@ -358,7 +346,7 @@ class LiveDebatController: UIViewController {
             latestCommentView.isHidden = false
             viewTimeContainer.isHidden = true
             viewClapContainer.isHidden = false
-            constraintTableViewBottom.constant = 0
+            constraintTableViewBottom.constant = 50
             constraintInputViewHeight.constant = 50
             headerTitle.setTitle("Result", for: .normal)
             headerTitle.setImage(UIImage(), for: .normal)
@@ -369,7 +357,7 @@ class LiveDebatController: UIViewController {
             latestCommentView.isHidden = false
             viewComentarContainer.isHidden = false
             viewInputContainer.isHidden = true
-            constraintTableViewBottom.constant = 0
+            constraintTableViewBottom.constant = 50
             viewTimeContainer.isHidden = false
             constraintInputViewHeight.constant = 50
             headerTitle.setTitle("LIVE NOW", for: .normal)
@@ -383,6 +371,7 @@ class LiveDebatController: UIViewController {
             self.collapseHeader()
             self.tableViewDebat.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
             self.btnScroll.rotate(degree: 180)
+            self.btnScroll.isHidden = true
         }
     }
     
@@ -406,8 +395,48 @@ class LiveDebatController: UIViewController {
                 } else {
                     self.scrollToTop()
                 }
-                
-                
+            })
+            .disposed(by: disposeBag)
+        
+        var prevScrolPoint: CGFloat = 0.0
+        tableViewDebat.rx.contentOffset
+            .throttle(0.5, latest: false, scheduler: MainScheduler.instance)
+            .map({ point -> Int in
+                print("point \(point)")
+                if point.y > prevScrolPoint {
+                    // TOP
+                    print("SCROLL TOP")
+                    prevScrolPoint = point.y
+                    return 1
+                } else if point.y < 100.0 {
+                    // INITIAL
+                    print("SCROLL INIT")
+                    prevScrolPoint = point.y
+                    return -1
+                } else {
+                    // Down
+                    print("SCROLL DOWN")
+                    prevScrolPoint = point.y
+                    return 0
+                }
+            })
+            .distinctUntilChanged()
+            .bind(onNext: { [unowned self]scrollingPos in
+                switch scrollingPos {
+                case 0: // scroll down
+                    self.btnScroll.isHidden = false
+                    self.btnScroll.tag = 1
+                    self.btnScroll.rotate(degree: 0)
+                    break
+                case 1: // scroll up
+                    self.btnScroll.isHidden = false
+                    self.btnScroll.tag = 0
+                    self.btnScroll.rotate(degree: 180)
+                    break
+                default: // init
+                    self.btnScroll.isHidden = true
+                    break
+                }
             })
             .disposed(by: disposeBag)
     }
