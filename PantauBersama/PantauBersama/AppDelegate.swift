@@ -207,6 +207,8 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
             print("Response JSON: \(response)")
             if response.word.author.email == myEmail {
                 completionHandler([])
+            } else {
+                completionHandler([]) // silent all notifications
             }
         } catch let error {
             print(error.localizedDescription)
