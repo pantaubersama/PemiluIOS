@@ -328,6 +328,7 @@
 		8478B8EA21FF315600CE192A /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8478B8E921FF315600CE192A /* Parser.swift */; };
 		847B4A162249F8890071A8F5 /* LinimasaNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847B4A152249F8890071A8F5 /* LinimasaNode.swift */; };
 		847B4A19224A1EA00071A8F5 /* ASControlNode+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847B4A18224A1EA00071A8F5 /* ASControlNode+Rx.swift */; };
+		847B4A1B224A28F90071A8F5 /* QuizNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847B4A1A224A28F90071A8F5 /* QuizNode.swift */; };
 		848B039921E7AA8C002CAA40 /* WKWebview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848B039821E7AA8C002CAA40 /* WKWebview.swift */; };
 		848B039C21E7AADF002CAA40 /* WKWebview.xib in Resources */ = {isa = PBXBuildFile; fileRef = 848B039B21E7AADF002CAA40 /* WKWebview.xib */; };
 		848B039F21E7B538002CAA40 /* WKWebCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848B039E21E7B538002CAA40 /* WKWebCoordinator.swift */; };
@@ -948,6 +949,7 @@
 		8478B8E921FF315600CE192A /* Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
 		847B4A152249F8890071A8F5 /* LinimasaNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinimasaNode.swift; sourceTree = "<group>"; };
 		847B4A18224A1EA00071A8F5 /* ASControlNode+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ASControlNode+Rx.swift"; sourceTree = "<group>"; };
+		847B4A1A224A28F90071A8F5 /* QuizNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizNode.swift; sourceTree = "<group>"; };
 		848B039821E7AA8C002CAA40 /* WKWebview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKWebview.swift; sourceTree = "<group>"; };
 		848B039B21E7AADF002CAA40 /* WKWebview.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WKWebview.xib; sourceTree = "<group>"; };
 		848B039E21E7B538002CAA40 /* WKWebCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKWebCoordinator.swift; sourceTree = "<group>"; };
@@ -1493,6 +1495,7 @@
 				137A29E721E11D0400F19072 /* HeaderQuizView.swift */,
 				137A29ED21E11E8F00F19072 /* TrendHeaderView.xib */,
 				137A29EB21E11E7E00F19072 /* TrendHeaderView.swift */,
+				847B4A1A224A28F90071A8F5 /* QuizNode.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -4336,6 +4339,7 @@
 				84B7B8BE21E47B400099E7E3 /* ClusterSearchViewModel.swift in Sources */,
 				84B6D50F21F8345900DD742A /* CatatanPartyViewModel.swift in Sources */,
 				845C570521CD1C2300EDCDFE /* HeaderProfile.swift in Sources */,
+				847B4A1B224A28F90071A8F5 /* QuizNode.swift in Sources */,
 				84B6D6E821E1E7FC00CD4BC8 /* ClusterCellViewModel.swift in Sources */,
 				84B7B8CE21E5B4CD0099E7E3 /* AddKategoriController.swift in Sources */,
 				043EE19E221A36C2008C59CD /* MerayakanController.swift in Sources */,
