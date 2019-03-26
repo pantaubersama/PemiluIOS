@@ -47,7 +47,7 @@ class LiveDebatViewModel: ViewModelType {
         let newWordO: Driver<IndexPath>
         let timeLeftO: Driver<String>
         let nextPageO: Driver<Void>
-        let clapO: Driver<IndexPath>
+        let clapO: Driver<IndexPath?>
     }
     
     var input: Input
@@ -229,7 +229,23 @@ class LiveDebatViewModel: ViewModelType {
         
         let clap = clapS
             .flatMapLatest({ [unowned self] in self.clapWord(id: $0) })
-            .map(<#T##transform: (Word) throws -> R##(Word) throws -> R#>)
+            .map { [weak self](clappedWord) -> IndexPath? in
+                guard let weakSelf = self else { return nil }
+                var currentValue = weakSelf.arguments.value
+                guard let index = currentValue.index(where: { item -> Bool in
+                    return item.id == clappedWord.id
+                }) else { return nil }
+                
+                var updateWord = currentValue[index]
+                updateWord.isClapped = true
+                updateWord.clapCount = (updateWord.clapCount ?? 0) + 1
+                currentValue.remove(at: index)
+                currentValue.insert(updateWord, at: index)
+                weakSelf.arguments.accept(currentValue)
+                
+                return IndexPath(row: index, section: 0)
+            }
+            .asDriver(onErrorJustReturn: nil)
             
         output = Output(
             backO: back,
@@ -248,7 +264,7 @@ class LiveDebatViewModel: ViewModelType {
             newWordO: newWord,
             timeLeftO: timeLeft,
             nextPageO: nextPage,
-            clapO: <#Driver<IndexPath>#>)
+            clapO: clap)
     }
     
     private func determineRoleFromLatestWord(words: [Word]) {

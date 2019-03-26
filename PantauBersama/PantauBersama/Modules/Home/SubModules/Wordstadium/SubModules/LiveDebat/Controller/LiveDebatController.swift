@@ -228,6 +228,13 @@ class LiveDebatController: UIViewController {
             })
             .disposed(by: disposeBag)
         
+        viewModel.output.clapO
+            .drive(onNext: { [weak self]indexPath in
+                guard let `self` = self, let `indexPath` = indexPath else { return }
+                self.tableViewDebat.reloadRows(at: [indexPath], with: UITableView.RowAnimation.none)
+            })
+            .disposed(by: disposeBag)
+        
         viewModel.input.syncWordI.onNext(())
         viewModel.input.loadArgumentsI.onNext(())
         
@@ -599,7 +606,6 @@ extension LiveDebatController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print("row \(indexPath.row)")
         if indexPath.row == self.viewModel.output.argumentsO.value.count - 3 {
             self.viewModel.input.nextPageI.onNext(())
         }

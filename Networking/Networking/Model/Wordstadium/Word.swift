@@ -18,8 +18,8 @@ public struct Word: Codable {
     public let readTime, timeSpent, timeLeft: Double?
     public let createdAt: String
     public let author: Author
-    public let clapCount: Int?
-    public let isClapped: Bool
+    public var clapCount: Int?
+    public var isClapped: Bool
     
     enum CodingKeys: String, CodingKey {
         case id, type

@@ -71,7 +71,7 @@ extension ArgumentLeftCell: IReusableCell {
         item.viewModel.output.viewTypeO
             .drive(onNext: { [weak self](result) in
                 guard let `self` = self else { return }
-                self.configureViewType(viewConfig: result, word: item.word)
+                self.configureViewType(viewConfig: result, item: item)
             })
             .disposed(by: disposeBag)
         
@@ -81,16 +81,18 @@ extension ArgumentLeftCell: IReusableCell {
         lbClapCount.text = "\(item.word.clapCount ?? 0)"
     }
     
-    private func configureViewType(viewConfig: (viewType: DebatViewType, author: Audiences?), word: Word) {
+    private func configureViewType(viewConfig: (viewType: DebatViewType, author: Audiences?), item: Input) {
         switch viewConfig.viewType {
         case .watch:
             btnClap.isUserInteractionEnabled = true
-            lbClapStatus.isHidden = !word.isClapped
-            clapAnimation.play(fromProgress: word.isClapped ? 1 : 0, toProgress: word.isClapped ? 1 : 0, withCompletion: nil)
+            lbClapStatus.isHidden = !item.word.isClapped
+            clapAnimation.play(fromProgress: item.word.isClapped ? 1 : 0, toProgress: item.word.isClapped ? 1 : 0, withCompletion: nil)
             btnClap.rx.tap
-                .bind{ [unowned self] in
+                .map({ item.word.id })
+                .do(onNext: { [unowned self](_) in
                     self.clapAnimation.play()
-                }
+                })
+                .bind(to: item.viewModel.input.clapI)
                 .disposed(by: disposeBag)
             break
         case .myTurn, .theirTurn, .participant:
