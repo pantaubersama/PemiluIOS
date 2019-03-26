@@ -34,7 +34,8 @@ def application_pods
     pod 'Firebase/Messaging'
     pod 'FacebookSDK'
     pod 'FacebookShare'
-    pod 'FSPagerView'   
+    pod 'FSPagerView'  
+    pod 'Texture' 
 end
 
 
