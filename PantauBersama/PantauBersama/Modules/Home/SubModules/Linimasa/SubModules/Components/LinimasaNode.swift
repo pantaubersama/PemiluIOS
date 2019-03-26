@@ -93,6 +93,8 @@ class LinimasaNode: ASCellNode {
         node.placeholderColor = Attributes.placeholderColor
         node.cornerRadius = 5.0
         node.style.alignSelf = .center
+        node.style.flexShrink = 1.0
+        node.style.flexGrow = 1.0
         return node
     }()
     
@@ -142,7 +144,7 @@ class LinimasaNode: ASCellNode {
         if let media = item.feeds.source.media?.first {
             statusImageNode.isHidden = false
             statusImageNode.setURL(URL(string: media), resetToDefault: true)
-            statusImageNode.style.preferredSize = CGSize(width: 275.0, height: 154.7)
+            statusImageNode.style.height = ASDimensionMake(160.0)
         }
         
         buttonNode.rx.tapper()
@@ -177,7 +179,7 @@ extension LinimasaNode {
         let profileCornerSpec = ASCornerLayoutSpec(child: profileImageNode,
                                                    corner: statusProfileImageNode,
                                                    location: .bottomLeft)
-        profileCornerSpec.offset = CGPoint(x: 0, y: 0)
+        profileCornerSpec.offset = CGPoint(x: 4, y: 2)
         
         let nameStackSpec = ASStackLayoutSpec(direction: .horizontal,
                                               spacing: 1.0,
@@ -186,7 +188,7 @@ extension LinimasaNode {
                                               children: [nameProfileNode, usernameProfileNode, dateStatusNode])
         /// content spec vertical
         let contentInnerSpec = ASStackLayoutSpec(direction: .vertical,
-                                                 spacing: 3.0,
+                                                 spacing: 5.0,
                                                  justifyContent: .start,
                                                  alignItems: .stretch,
                                                  children: [headerStackSpec, nameStackSpec, statusNode, statusImageNode])
