@@ -27,6 +27,7 @@ class LiveDebatViewModel: ViewModelType {
         let syncWordI: AnyObserver<Void>
         let latestCommentI: AnyObserver<Void>
         let nextPageI: AnyObserver<Void>
+        let clapI: AnyObserver<String>
     }
     
     struct Output {
@@ -46,6 +47,7 @@ class LiveDebatViewModel: ViewModelType {
         let newWordO: Driver<IndexPath>
         let timeLeftO: Driver<String>
         let nextPageO: Driver<Void>
+        let clapO: Driver<IndexPath>
     }
     
     var input: Input
@@ -71,6 +73,7 @@ class LiveDebatViewModel: ViewModelType {
     private let newWordS = PublishSubject<Word>()
     private let timeLeftS = PublishSubject<Double>()
     private let nextPageS = PublishSubject<Void>()
+    private let clapS = PublishSubject<String>()
     
     init(navigator: LiveDebatNavigator, challenge: Challenge) {
         self.navigator = navigator
@@ -88,7 +91,8 @@ class LiveDebatViewModel: ViewModelType {
             sendCommentI: sendCommentS.asObserver(),
             syncWordI: syncWordS.asObserver(),
             latestCommentI: latestCommentS.asObserver(),
-            nextPageI: nextPageS.asObserver()
+            nextPageI: nextPageS.asObserver(),
+            clapI: clapS.asObserver()
         )
         
         let back = backS
@@ -222,6 +226,10 @@ class LiveDebatViewModel: ViewModelType {
         let timeLeft = timeLeftS
             .map({ "\($0)"})
             .asDriverOnErrorJustComplete()
+        
+        let clap = clapS
+            .flatMapLatest({ [unowned self] in self.clapWord(id: $0) })
+            .map(<#T##transform: (Word) throws -> R##(Word) throws -> R#>)
             
         output = Output(
             backO: back,
@@ -239,7 +247,8 @@ class LiveDebatViewModel: ViewModelType {
             latestCommentO: latestComment,
             newWordO: newWord,
             timeLeftO: timeLeft,
-            nextPageO: nextPage)
+            nextPageO: nextPage,
+            clapO: <#Driver<IndexPath>#>)
     }
     
     private func determineRoleFromLatestWord(words: [Word]) {
@@ -280,6 +289,12 @@ class LiveDebatViewModel: ViewModelType {
     
     private func sendComment(word: String) -> Observable<Word> {
         return NetworkService.instance.requestObject(WordstadiumAPI.commentAudience(challengeId: self.challenge.id, words: word), c: BaseResponse<SendWordResponse>.self)
+            .map({ $0.data.word })
+            .asObservable()
+    }
+    
+    private func clapWord(id: String) -> Observable<Word> {
+        return NetworkService.instance.requestObject(WordstadiumAPI.clapWord(wordId: id), c: BaseResponse<SendWordResponse>.self)
             .map({ $0.data.word })
             .asObservable()
     }

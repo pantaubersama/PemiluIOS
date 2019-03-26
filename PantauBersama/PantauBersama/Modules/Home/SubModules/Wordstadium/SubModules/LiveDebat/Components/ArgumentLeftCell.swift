@@ -41,11 +41,6 @@ class ArgumentLeftCell: UITableViewCell {
         self.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
         viewClapLottie.addSubview(clapAnimation)
         configureConstraint()
-        btnClap.rx.tap
-            .bind{ [unowned self] in
-                self.clapAnimation.play()
-            }
-            .disposed(by: disposeBag)
     }
     
     private func configureConstraint() {
@@ -61,6 +56,7 @@ class ArgumentLeftCell: UITableViewCell {
         super.prepareForReuse()
         disposeBag = DisposeBag()
         lbClapStatus.isHidden = true
+        clapAnimation.stop()
     }
     
 }
@@ -75,19 +71,27 @@ extension ArgumentLeftCell: IReusableCell {
         item.viewModel.output.viewTypeO
             .drive(onNext: { [weak self](result) in
                 guard let `self` = self else { return }
-                self.configureViewType(viewConfig: result)
+                self.configureViewType(viewConfig: result, word: item.word)
             })
             .disposed(by: disposeBag)
         
         lbArgument.text = item.word.body
         lbReadEstimation.text = "\(item.word.readTime ?? 0) menit"
         lbCraetedAt.text = item.word.createdAt.timeAgoSinceDateForm2
+        lbClapCount.text = "\(item.word.clapCount ?? 0)"
     }
     
-    private func configureViewType(viewConfig: (viewType: DebatViewType, author: Audiences?)) {
+    private func configureViewType(viewConfig: (viewType: DebatViewType, author: Audiences?), word: Word) {
         switch viewConfig.viewType {
         case .watch:
             btnClap.isUserInteractionEnabled = true
+            lbClapStatus.isHidden = !word.isClapped
+            clapAnimation.play(fromProgress: word.isClapped ? 1 : 0, toProgress: word.isClapped ? 1 : 0, withCompletion: nil)
+            btnClap.rx.tap
+                .bind{ [unowned self] in
+                    self.clapAnimation.play()
+                }
+                .disposed(by: disposeBag)
             break
         case .myTurn, .theirTurn, .participant:
             btnClap.isUserInteractionEnabled = false
