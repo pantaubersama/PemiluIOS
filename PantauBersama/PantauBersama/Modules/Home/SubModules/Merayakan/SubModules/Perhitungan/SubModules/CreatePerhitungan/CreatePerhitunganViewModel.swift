@@ -84,19 +84,19 @@ class CreatePerhitunganViewModel: ViewModelType {
             .flatMapLatest({ (noTps, province, regencies, district, village) in
                 return NetworkService.instance.requestObject(
                     HitungAPI.postRealCount(noTps: noTps, province: province, regencies: regencies, district: district, village: village, lat: self.coordinate.value.latitude, long: self.coordinate.value.longitude),
-                    c: BaseResponse<CreateJanjiPolitikResponse>.self)
+                    c: BaseResponse<CreateTpsResponse>.self)
                     .trackError(errorTracker)
                     .trackActivity(activityIndicator)
                     .catchErrorJustComplete()
-                
             })
-            .flatMap { (response) in
-                navigator.launchDetailTPS()
+            .map { (response) in
+                navigator.launchDetailTPS(realCount: response.data.realCount)
             }
+            .mapToVoid().asDriverOnErrorJustComplete()
         
         
         output = Output(
-            createO: done.asDriverOnErrorJustComplete(),
+            createO: done,
             backO: back,
             enableO: enablePost,
             errorO: errorTracker.asDriver())

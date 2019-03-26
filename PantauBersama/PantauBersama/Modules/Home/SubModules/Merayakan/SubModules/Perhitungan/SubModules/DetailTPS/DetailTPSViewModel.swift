@@ -10,10 +10,13 @@ import Foundation
 import Common
 import RxSwift
 import RxCocoa
+import Networking
 
 class DetailTPSViewModel: ViewModelType {
     struct Input {
         let backI: AnyObserver<Void>
+        let moreI: AnyObserver<RealCount>
+        let moreMenuI: AnyObserver<PerhitunganType>
         let sendDataActionI: AnyObserver<Void>
         let successSubmitI: AnyObserver<Void>
         let detailPresidenI: AnyObserver<Void>
@@ -31,6 +34,8 @@ class DetailTPSViewModel: ViewModelType {
     
     struct Output {
         let backO: Driver<Void>
+        let moreO: Driver<RealCount>
+        let moreMenuO: Driver<Void>
         let sendDataActionO: Driver<Void>
         let successSubmitO: Driver<Void>
         let detailPresidenO: Driver<Void>
@@ -44,6 +49,7 @@ class DetailTPSViewModel: ViewModelType {
         let c1DPDO: Driver<Void>
         let c1DPRDProvO: Driver<Void>
         let c1DPRDKotaO: Driver<Void>
+        let realCountO: Driver<RealCount>
     }
     
     var input: Input
@@ -51,6 +57,8 @@ class DetailTPSViewModel: ViewModelType {
     
     private let navigator: DetailTPSNavigator
     
+    private let moreS = PublishSubject<RealCount>()
+    private let moreMenuS = PublishSubject<PerhitunganType>()
     private let successSubmitS = PublishSubject<Void>()
     private let sendDataActionS = PublishSubject<Void>()
     private let backS = PublishSubject<Void>()
@@ -66,11 +74,13 @@ class DetailTPSViewModel: ViewModelType {
     private let c1DPRDKotaS = PublishSubject<Void>()
     private let c1UploadS = PublishSubject<Void>()
     
-    init(navigator: DetailTPSNavigator) {
+    init(navigator: DetailTPSNavigator, realCount: RealCount) {
         self.navigator = navigator
         
         input = Input(
             backI: backS.asObserver(),
+            moreI: moreS.asObserver(),
+            moreMenuI: moreMenuS.asObserver(),
             sendDataActionI: sendDataActionS.asObserver(),
             successSubmitI: successSubmitS.asObserver(),
             detailPresidenI: detailPresidenS.asObserver(),
@@ -142,8 +152,26 @@ class DetailTPSViewModel: ViewModelType {
             .flatMap({ navigator.launchC1Form(type: .dprdKota) })
             .asDriverOnErrorJustComplete()
         
+        
+        let moreSelected = moreS
+            .asObserver().asDriverOnErrorJustComplete()
+        
+        let moreMenuSelected = moreMenuS
+            .flatMapLatest({ (type) -> Observable<Void> in
+                switch type {
+                case .hapus(let data):
+                    return Observable.empty()
+                case .edit(let data):
+                    return Observable.empty()
+                }
+                
+            })
+            .asDriverOnErrorJustComplete()
+        
         output = Output(
             backO: back,
+            moreO: moreSelected,
+            moreMenuO: moreMenuSelected,
             sendDataActionO: sendDataAction,
             successSubmitO: successSubmit,
             detailPresidenO: detailPresiden,
@@ -156,7 +184,8 @@ class DetailTPSViewModel: ViewModelType {
             c1DPRO: c1FormDPR,
             c1DPDO: c1FormDPD,
             c1DPRDProvO: c1FormDPRDProv,
-            c1DPRDKotaO: c1FormDPRDKota
+            c1DPRDKotaO: c1FormDPRDKota,
+            realCountO: Driver.just(realCount)
         )
     }
 }
