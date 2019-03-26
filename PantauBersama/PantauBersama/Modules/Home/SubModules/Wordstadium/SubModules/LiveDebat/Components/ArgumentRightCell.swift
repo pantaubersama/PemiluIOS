@@ -40,12 +40,6 @@ class ArgumentRightCell: UITableViewCell {
         self.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
         viewClapLottie.addSubview(clapAnimation)
         configureConstraint()
-        
-        btnClap.rx.tap
-            .bind{ [unowned self] in
-                self.clapAnimation.play()
-            }
-            .disposed(by: disposeBag)
     }
     
     private func configureConstraint() {
@@ -61,6 +55,7 @@ class ArgumentRightCell: UITableViewCell {
         super.prepareForReuse()
         disposeBag = DisposeBag()
         lbClapStatus.isHidden = true
+        clapAnimation.stop()
     }
     
 }
@@ -75,19 +70,29 @@ extension ArgumentRightCell: IReusableCell {
         item.viewModel.output.viewTypeO
             .drive(onNext: { [weak self](result) in
                 guard let `self` = self else { return }
-                self.configureViewType(viewConfig: result)
+                self.configureViewType(viewConfig: result, item: item)
             })
             .disposed(by: disposeBag)
         
         lbArgument.text = item.word.body
         lbReadEstimation.text = "\(item.word.readTime ?? 0) menit"
         lbCreatedAt.text = item.word.createdAt.timeAgoSinceDateForm2
+        lbClapCount.text = "\(item.word.clapCount ?? 0)"
     }
     
-    private func configureViewType(viewConfig: (viewType: DebatViewType, author: Audiences?)) {
+    private func configureViewType(viewConfig: (viewType: DebatViewType, author: Audiences?), item: Input) {
         switch viewConfig.viewType {
         case .watch:
             btnClap.isUserInteractionEnabled = true
+            lbClapStatus.isHidden = !item.word.isClapped
+            clapAnimation.play(fromProgress: item.word.isClapped ? 1 : 0, toProgress: item.word.isClapped ? 1 : 0, withCompletion: nil)
+            btnClap.rx.tap
+                .map({ item.word.id })
+                .do(onNext: { [unowned self](_) in
+                    self.clapAnimation.play()
+                })
+                .bind(to: item.viewModel.input.clapI)
+                .disposed(by: disposeBag)
             break
         case .myTurn, .theirTurn, .participant:
             btnClap.isUserInteractionEnabled = false

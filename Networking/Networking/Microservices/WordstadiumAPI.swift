@@ -84,7 +84,8 @@ extension WordstadiumAPI: TargetType {
         case .askAsOpponent,
              .confirmCandidateAsOpponent,
              .confirmDirect,
-             .rejectDirect:
+             .rejectDirect,
+             .clapWord:
             return .put
         case .deleteOpenChallenge:
             return .delete
