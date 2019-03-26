@@ -47,7 +47,7 @@ class QuizNode: ASCellNode {
     lazy var buttonQuizNode: ASButtonNode = {
        let node = ASButtonNode()
         node.placeholderEnabled = true
-        node.style.preferredSize = CGSize(width: 72.8, height: 23.8)
+        node.style.preferredSize = CGSize(width: 72.8, height: 24.0)
         node.cornerRadius = 4
         node.style.alignSelf = .start
         return node
@@ -58,6 +58,7 @@ class QuizNode: ASCellNode {
         node.placeholderEnabled = true
         node.setImage(#imageLiteral(resourceName: "icShare"), for: .normal)
         node.style.alignSelf = .end
+        node.style.preferredSize = CGSize(width: 24.0, height: 24.0)
         return node
     }()
     
