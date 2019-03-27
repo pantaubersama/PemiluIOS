@@ -30,9 +30,9 @@ class DebatCommentCoordinator: BaseCoordinator<Void> {
         let viewModel = DebatCommentViewModel(navigator: self, challenge: self.challenge)
         viewController.viewModel = viewModel
         viewController.modalPresentationStyle = .overCurrentContext
-        
-//        let nav = UINavigationController(rootViewController: viewController)
-        
+        viewController.providesPresentationContextTransitionStyle = true
+        viewController.definesPresentationContext = true
+        viewController.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
         navigationController.present(viewController, animated: true, completion: nil)
         return Observable.never()
     }

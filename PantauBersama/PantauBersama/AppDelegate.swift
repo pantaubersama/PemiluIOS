@@ -197,6 +197,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         /// TODO: Hide notifications whenever content type / event type is attack wordstadium and my email is match
         /// indicating this user is send some Debat comment or argument
         let userInfo = notification.request.content.userInfo
+        print("Response user info: \(userInfo)")
         guard let payload = userInfo["payload"] as? String,
             let data = payload.data(using: .utf8) else { return }
         
