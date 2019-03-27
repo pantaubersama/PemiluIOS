@@ -326,6 +326,9 @@
 		8478B8E621FF1FAA00CE192A /* InfoNotifCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8478B8E521FF1FAA00CE192A /* InfoNotifCell.xib */; };
 		8478B8E821FF210E00CE192A /* InfoNotifCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8478B8E721FF210E00CE192A /* InfoNotifCell.swift */; };
 		8478B8EA21FF315600CE192A /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8478B8E921FF315600CE192A /* Parser.swift */; };
+		847B4A162249F8890071A8F5 /* LinimasaNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847B4A152249F8890071A8F5 /* LinimasaNode.swift */; };
+		847B4A19224A1EA00071A8F5 /* ASControlNode+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847B4A18224A1EA00071A8F5 /* ASControlNode+Rx.swift */; };
+		847B4A1B224A28F90071A8F5 /* QuizNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847B4A1A224A28F90071A8F5 /* QuizNode.swift */; };
 		848B039921E7AA8C002CAA40 /* WKWebview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848B039821E7AA8C002CAA40 /* WKWebview.swift */; };
 		848B039C21E7AADF002CAA40 /* WKWebview.xib in Resources */ = {isa = PBXBuildFile; fileRef = 848B039B21E7AADF002CAA40 /* WKWebview.xib */; };
 		848B039F21E7B538002CAA40 /* WKWebCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848B039E21E7B538002CAA40 /* WKWebCoordinator.swift */; };
@@ -944,6 +947,9 @@
 		8478B8E521FF1FAA00CE192A /* InfoNotifCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoNotifCell.xib; sourceTree = "<group>"; };
 		8478B8E721FF210E00CE192A /* InfoNotifCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoNotifCell.swift; sourceTree = "<group>"; };
 		8478B8E921FF315600CE192A /* Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
+		847B4A152249F8890071A8F5 /* LinimasaNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinimasaNode.swift; sourceTree = "<group>"; };
+		847B4A18224A1EA00071A8F5 /* ASControlNode+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ASControlNode+Rx.swift"; sourceTree = "<group>"; };
+		847B4A1A224A28F90071A8F5 /* QuizNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizNode.swift; sourceTree = "<group>"; };
 		848B039821E7AA8C002CAA40 /* WKWebview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKWebview.swift; sourceTree = "<group>"; };
 		848B039B21E7AADF002CAA40 /* WKWebview.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WKWebview.xib; sourceTree = "<group>"; };
 		848B039E21E7B538002CAA40 /* WKWebCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKWebCoordinator.swift; sourceTree = "<group>"; };
@@ -1489,6 +1495,7 @@
 				137A29E721E11D0400F19072 /* HeaderQuizView.swift */,
 				137A29ED21E11E8F00F19072 /* TrendHeaderView.xib */,
 				137A29EB21E11E7E00F19072 /* TrendHeaderView.swift */,
+				847B4A1A224A28F90071A8F5 /* QuizNode.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -2338,6 +2345,7 @@
 		844C3D7321C51E7E00199871 /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				847B4A17224A1E860071A8F5 /* Texture */,
 				84F1F21621EA6782004515A4 /* Facebook */,
 				84F1F20921E8D987004515A4 /* Twitter */,
 				84E2854121CA189B00298E31 /* CustomView */,
@@ -2430,6 +2438,7 @@
 				84F6981021C8E21B00890917 /* LinimasaCell.swift */,
 				84F6981621C9364700890917 /* LinimasaJanjiCell.xib */,
 				84F6981821C93B8900890917 /* LinimasaJanjiCell.swift */,
+				847B4A152249F8890071A8F5 /* LinimasaNode.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -2574,6 +2583,14 @@
 				8478B8E721FF210E00CE192A /* InfoNotifCell.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		847B4A17224A1E860071A8F5 /* Texture */ = {
+			isa = PBXGroup;
+			children = (
+				847B4A18224A1EA00071A8F5 /* ASControlNode+Rx.swift */,
+			);
+			path = Texture;
 			sourceTree = "<group>";
 		};
 		848B039A21E7AA9F002CAA40 /* WKWebview */ = {
@@ -3855,7 +3872,11 @@
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/LTHRadioButton/LTHRadioButton.framework",
+				"${BUILT_PRODUCTS_DIR}/PINCache/PINCache.framework",
+				"${BUILT_PRODUCTS_DIR}/PINOperation/PINOperation.framework",
+				"${BUILT_PRODUCTS_DIR}/PINRemoteImage/PINRemoteImage.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/Texture/AsyncDisplayKit.framework",
 				"${PODS_ROOT}/TwitterCore/iOS/TwitterCore.framework",
 				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework",
 				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
@@ -3884,7 +3905,11 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LTHRadioButton.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINCache.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINOperation.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINRemoteImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AsyncDisplayKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwitterCore.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwitterKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lottie.framework",
@@ -4029,7 +4054,11 @@
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/LTHRadioButton/LTHRadioButton.framework",
+				"${BUILT_PRODUCTS_DIR}/PINCache/PINCache.framework",
+				"${BUILT_PRODUCTS_DIR}/PINOperation/PINOperation.framework",
+				"${BUILT_PRODUCTS_DIR}/PINRemoteImage/PINRemoteImage.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/Texture/AsyncDisplayKit.framework",
 				"${PODS_ROOT}/TwitterCore/iOS/TwitterCore.framework",
 				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework",
 				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
@@ -4058,7 +4087,11 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LTHRadioButton.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINCache.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINOperation.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINRemoteImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AsyncDisplayKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwitterCore.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwitterKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lottie.framework",
@@ -4089,6 +4122,7 @@
 				84FA42402212A595008215C4 /* CreateTantanganViewModel.swift in Sources */,
 				84B7B8BC21E47A8F0099E7E3 /* ClusterSearchController.swift in Sources */,
 				137A29F321E2261A00F19072 /* ComingsoonController.swift in Sources */,
+				847B4A162249F8890071A8F5 /* LinimasaNode.swift in Sources */,
 				11702DD521CB08DE001AEE3F /* QuizController.swift in Sources */,
 				11145F5D21EAF2670046F2AA /* SearchNavbar.swift in Sources */,
 				84EC7D17221586D100CDFD4D /* PublishChallengeCoordinator.swift in Sources */,
@@ -4300,10 +4334,12 @@
 				1161F9F421DF4B4000C1BAD5 /* QuizButton.swift in Sources */,
 				13E6FECD221F24C9008CA788 /* LiniPublicViewModel.swift in Sources */,
 				13BF405321EBAA8F005C9A64 /* IQuestionListViewModel.swift in Sources */,
+				847B4A19224A1EA00071A8F5 /* ASControlNode+Rx.swift in Sources */,
 				8478B8EA21FF315600CE192A /* Parser.swift in Sources */,
 				84B7B8BE21E47B400099E7E3 /* ClusterSearchViewModel.swift in Sources */,
 				84B6D50F21F8345900DD742A /* CatatanPartyViewModel.swift in Sources */,
 				845C570521CD1C2300EDCDFE /* HeaderProfile.swift in Sources */,
+				847B4A1B224A28F90071A8F5 /* QuizNode.swift in Sources */,
 				84B6D6E821E1E7FC00CD4BC8 /* ClusterCellViewModel.swift in Sources */,
 				84B7B8CE21E5B4CD0099E7E3 /* AddKategoriController.swift in Sources */,
 				043EE19E221A36C2008C59CD /* MerayakanController.swift in Sources */,
