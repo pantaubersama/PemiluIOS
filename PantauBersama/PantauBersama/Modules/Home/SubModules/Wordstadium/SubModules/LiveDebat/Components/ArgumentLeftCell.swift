@@ -85,8 +85,10 @@ extension ArgumentLeftCell: IReusableCell {
         switch viewConfig.viewType {
         case .watch:
             btnClap.isUserInteractionEnabled = true
-            lbClapStatus.isHidden = !item.word.isClapped
-            clapAnimation.play(fromProgress: item.word.isClapped ? 1 : 0, toProgress: item.word.isClapped ? 1 : 0, withCompletion: nil)
+            if let isClapped = item.word.isClapped {
+                lbClapStatus.isHidden = !isClapped
+                clapAnimation.play(fromProgress: isClapped ? 1 : 0, toProgress: isClapped ? 1 : 0, withCompletion: nil)
+            }
             btnClap.rx.tap
                 .map({ item.word.id })
                 .do(onNext: { [unowned self](_) in

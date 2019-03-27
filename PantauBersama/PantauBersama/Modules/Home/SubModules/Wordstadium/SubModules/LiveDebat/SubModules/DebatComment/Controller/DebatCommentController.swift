@@ -23,11 +23,14 @@ class DebatCommentController: UIViewController {
     @IBOutlet weak var btnSend: ImageButton!
     @IBOutlet weak var heightInput: NSLayoutConstraint!
     @IBOutlet weak var heightContainerInput: NSLayoutConstraint!
+    @IBOutlet weak var bottomInputContainerConstant: NSLayoutConstraint!
+    @IBOutlet weak var bottomTableViewConstant: NSLayoutConstraint!
     var viewModel: DebatCommentViewModel!
     private let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer()
     private let disposeBag = DisposeBag()
     private var animatedDataSource: RxTableViewSectionedAnimatedDataSource<AnimatableSectionModel<String, Word>>!
-    private var tableHeader: UIView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 70))
+    private var tableHeader: UIView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 5))
+    private var isKeyboardAppear = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -98,9 +101,9 @@ class DebatCommentController: UIViewController {
             .disposed(by: disposeBag)
         
         viewModel.output.sendCommentO
-//            .map({ word in
-//                [AnimatableSectionModel(model: "Section", items: [word])]
-//            })
+            .map({ word in
+                [AnimatableSectionModel(model: "Section", items: [word])]
+            })
             .drive(onNext: { [weak self] (_) in
                 guard let `self` = self else { return  }
                 self.tvComment.text = nil
@@ -130,19 +133,16 @@ class DebatCommentController: UIViewController {
         
         /// Disable IQKeyboardManager
         IQKeyboardManager.shared.enableAutoToolbar = false
+        IQKeyboardManager.shared.enable = false
         
         btnClose.rx.tap
             .bind { [unowned self](_) in
                 self.dismiss(animated: true, completion: nil)
             }
             .disposed(by: disposeBag)
+        /// Subscrice keyboard event
+        subscribeForKeyboardEvent()
     }
-    
-//    private func scrollToBottom(animated: Bool = true) {
-//        if (self.tableView.indexPathsForVisibleRows?.count ?? 0) != 0 {
-//            self.tableView.scrollToRow(at: IndexPath(row: self.viewModel.output.commentsO.value.count - 1, section: 0), at: .bottom, animated: animated)
-//        }
-//    }
     
     private func configureInputView() {
         viewModel.output.viewTypeO
@@ -184,6 +184,9 @@ class DebatCommentController: UIViewController {
         
         /// Enable IQKeyboardManager
         IQKeyboardManager.shared.enableAutoToolbar = true
+        IQKeyboardManager.shared.enable = true
+        /// Unsubcribe Keyboard
+        unsubscribeForKeyboardEvent()
     }
 }
 
@@ -201,4 +204,48 @@ extension DebatCommentController: UITextViewDelegate {
             textView.isScrollEnabled = false
         }
     }
+}
+
+
+extension DebatCommentController {
+    
+    /// Keyboard Logic
+    private func subscribeForKeyboardEvent() {
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillAppear), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillDisappear), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    private func unsubscribeForKeyboardEvent() {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc func keyboardWillAppear(notification: NSNotification) {
+        isKeyboardAppear = true
+        let info = notification.userInfo!
+        let keyboardFrame: CGRect = (info[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        // move input view above the keyboard
+        UIView.animate(withDuration: 0.4, animations: { [unowned self] in
+            self.bottomInputContainerConstant.constant += keyboardFrame.height
+            self.view.layoutIfNeeded()
+        }) { (_) in
+            self.scrollToBottom()
+        }
+    }
+    
+    @objc func keyboardWillDisappear() {
+        isKeyboardAppear = false
+        // bring input view down
+        UIView.animate(withDuration: 0.1, animations: { [unowned self] in
+            self.bottomInputContainerConstant.constant = 0.0
+            self.view.layoutIfNeeded()
+        })
+    }
+    
+    private func scrollToBottom() {
+        if self.tableView.indexPathsForVisibleRows?.count ?? 0 != 0 {
+            self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .bottom, animated: true)
+        }
+    }
+    
 }

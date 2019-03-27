@@ -68,7 +68,7 @@ class DebatCommentViewModel: ViewModelType {
         let loadComments = loadCommentS
             .flatMapLatest({ self.getComments() })
             .map({ (word) -> [Word] in
-                return word.reversed()
+                return word
             })
             .do(onNext: { [weak self](words) in
                 guard let `self` = self else { return }
@@ -107,7 +107,12 @@ class DebatCommentViewModel: ViewModelType {
     }
     
     private func getComments() -> Observable<[Word]> {
-        return self.paginateItems(nextBatchTrigger: self.nextSubject.asObservable())
+        return NetworkService.instance
+            .requestObject(WordstadiumAPI.wordsAudience(challengeId: challenge.id, page: 1, perPage: Int.max),
+                           c: BaseResponse<WordsResponse>.self)
+            .map({ $0.data.words })
+            .asObservable()
+//        return self.paginateItems(nextBatchTrigger: self.nextSubject.asObservable())
     }
     
     private func sendComment(word: String) -> Observable<Word> {
@@ -157,8 +162,10 @@ class DebatCommentViewModel: ViewModelType {
         return recursivelyPaginateItems(batch: batch, nextBatchTrigger: nextBatchTrigger)
             .scan([], accumulator: { (accumulator, page) in
                 /// MARK: This is will throw error because currently pagination from BE not match
-                let page = accumulator + page.item
-                return page
+                let latestValues = self.comments.value
+                let filtered = zip(latestValues, page.item).map { $0.0 == $0.1 }.contains(false)
+                let pages = accumulator + page.item
+                return filtered ? pages : latestValues
             })
     }
     
