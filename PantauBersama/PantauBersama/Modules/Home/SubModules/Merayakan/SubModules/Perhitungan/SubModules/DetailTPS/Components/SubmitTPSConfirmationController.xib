@@ -36,8 +36,8 @@
                                 <constraint firstAttribute="width" constant="94" id="PBg-T5-jDp"/>
                             </constraints>
                         </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Data kamu berhasil terkirim" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q2e-0G-dmz" customClass="Label" customModule="Common">
-                            <rect key="frame" x="58" y="161" width="162" height="19.5"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Data kamu berhasil terkirim" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q2e-0G-dmz" customClass="Label" customModule="Common">
+                            <rect key="frame" x="58" y="161" width="162" height="38.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -49,7 +49,7 @@
                             </userDefinedRuntimeAttributes>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="09c-Ba-Var" customClass="Button" customModule="Common">
-                            <rect key="frame" x="103.5" y="234.5" width="71" height="30"/>
+                            <rect key="frame" x="103.5" y="233.5" width="71" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="8Oe-42-ycZ"/>
                                 <constraint firstAttribute="width" constant="71" id="yMt-jw-gf5"/>
@@ -67,10 +67,10 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
+                        <constraint firstAttribute="bottom" secondItem="09c-Ba-Var" secondAttribute="bottom" constant="15.5" id="86r-aw-mIW"/>
                         <constraint firstAttribute="trailing" secondItem="q2e-0G-dmz" secondAttribute="trailing" constant="58" id="HAX-XT-p3n"/>
                         <constraint firstItem="q2e-0G-dmz" firstAttribute="top" secondItem="Ha2-ma-jY4" secondAttribute="bottom" constant="32" id="ICZ-K4-uBP"/>
                         <constraint firstAttribute="height" constant="279" id="Mxz-XM-SSN"/>
-                        <constraint firstItem="09c-Ba-Var" firstAttribute="top" secondItem="q2e-0G-dmz" secondAttribute="bottom" constant="54" id="ZO9-UV-fo3"/>
                         <constraint firstItem="09c-Ba-Var" firstAttribute="centerX" secondItem="PrQ-8m-Suy" secondAttribute="centerX" id="bU4-yZ-glb"/>
                         <constraint firstItem="q2e-0G-dmz" firstAttribute="leading" secondItem="PrQ-8m-Suy" secondAttribute="leading" constant="58" id="nwI-q9-2Z0"/>
                         <constraint firstItem="Ha2-ma-jY4" firstAttribute="centerX" secondItem="PrQ-8m-Suy" secondAttribute="centerX" id="ort-ee-2hh"/>

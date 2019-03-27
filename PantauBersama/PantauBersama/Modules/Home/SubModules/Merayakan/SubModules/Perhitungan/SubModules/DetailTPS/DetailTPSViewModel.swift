@@ -18,6 +18,7 @@ class DetailTPSViewModel: ViewModelType {
         let moreI: AnyObserver<RealCount>
         let moreMenuI: AnyObserver<PerhitunganType>
         let sendDataActionI: AnyObserver<Void>
+        let submitActionI: AnyObserver<Void>
         let successSubmitI: AnyObserver<Void>
         let detailPresidenI: AnyObserver<Void>
         let detailDPRI: AnyObserver<Void>
@@ -37,6 +38,7 @@ class DetailTPSViewModel: ViewModelType {
         let moreO: Driver<RealCount>
         let moreMenuO: Driver<Void>
         let sendDataActionO: Driver<Void>
+        let submitActionO: Driver<Void>
         let successSubmitO: Driver<Void>
         let detailPresidenO: Driver<Void>
         let detailDPRO: Driver<Void>
@@ -53,7 +55,7 @@ class DetailTPSViewModel: ViewModelType {
     }
     
     var input: Input
-    var output: Output
+    var output: Output!
     
     private let navigator: DetailTPSNavigator
     
@@ -61,6 +63,7 @@ class DetailTPSViewModel: ViewModelType {
     private let moreMenuS = PublishSubject<PerhitunganType>()
     private let successSubmitS = PublishSubject<Void>()
     private let sendDataActionS = PublishSubject<Void>()
+    private let submitActionS = PublishSubject<Void>()
     private let backS = PublishSubject<Void>()
     private let detailPresidenS = PublishSubject<Void>()
     private let detailDPRS = PublishSubject<Void>()
@@ -74,6 +77,9 @@ class DetailTPSViewModel: ViewModelType {
     private let c1DPRDKotaS = PublishSubject<Void>()
     private let c1UploadS = PublishSubject<Void>()
     
+    let errorTracker = ErrorTracker()
+    let activityIndicator = ActivityIndicator()
+    
     init(navigator: DetailTPSNavigator, realCount: RealCount) {
         self.navigator = navigator
         
@@ -82,6 +88,7 @@ class DetailTPSViewModel: ViewModelType {
             moreI: moreS.asObserver(),
             moreMenuI: moreMenuS.asObserver(),
             sendDataActionI: sendDataActionS.asObserver(),
+            submitActionI: submitActionS.asObserver(),
             successSubmitI: successSubmitS.asObserver(),
             detailPresidenI: detailPresidenS.asObserver(),
             detailDPRI: detailDPRS.asObserver(),
@@ -103,6 +110,17 @@ class DetailTPSViewModel: ViewModelType {
         let sendDataAction = sendDataActionS
             .flatMap({ navigator.sendData() })
             .asDriverOnErrorJustComplete()
+        
+        let submitAction = submitActionS
+            .flatMap({ (_) in
+                return NetworkService.instance.requestObject(
+                    HitungAPI.publishRealCount(id: realCount.id),
+                    c: BaseResponse<CreateTpsResponse>.self)
+                    .trackError(self.errorTracker)
+                    .trackActivity(self.activityIndicator)
+                    .catchErrorJustComplete()
+            })
+            .mapToVoid().asDriverOnErrorJustComplete()
         
         let successSubmit = successSubmitS
             .flatMap({ navigator.successSubmit() })
@@ -173,6 +191,7 @@ class DetailTPSViewModel: ViewModelType {
             moreO: moreSelected,
             moreMenuO: moreMenuSelected,
             sendDataActionO: sendDataAction,
+            submitActionO: submitAction,
             successSubmitO: successSubmit,
             detailPresidenO: detailPresiden,
             detailDPRO: detailDPR,
