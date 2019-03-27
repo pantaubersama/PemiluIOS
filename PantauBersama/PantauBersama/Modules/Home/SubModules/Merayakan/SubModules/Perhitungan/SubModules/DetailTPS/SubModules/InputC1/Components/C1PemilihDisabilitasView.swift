@@ -7,15 +7,56 @@
 //
 
 import UIKit
+import Common
+import RxSwift
 
 class C1PemilihDisabilitasView: UIView {
 
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
-    */
+    @IBOutlet weak var txtTerdaftarLaki: TPSTextField!
+    @IBOutlet weak var txtTerdaftarPerempuan: TPSTextField!
+    @IBOutlet weak var txtTerdaftarTotal: TPSTextField!
+    @IBOutlet weak var txtPilihLaki: TPSTextField!
+    @IBOutlet weak var txtPilihPerempuan: TPSTextField!
+    @IBOutlet weak var txtPilihTotal: TPSTextField!
 
+    private(set) var disposeBag = DisposeBag()
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        
+       disposeBag = DisposeBag()
+    }
+    
+    func config(viewModel: C1InputFormViewModel) {
+        
+        txtTerdaftarLaki.rx.text.orEmpty
+            .bind(to: viewModel.input.disTerdaftarLakiI)
+            .disposed(by: disposeBag)
+        
+        txtTerdaftarPerempuan.rx.text.orEmpty
+            .bind(to: viewModel.input.disTerdaftarPerempuanI)
+            .disposed(by: disposeBag)
+        
+        txtPilihLaki.rx.text.orEmpty
+            .bind(to: viewModel.input.disPilihLakiI)
+            .disposed(by: disposeBag)
+        
+        txtPilihPerempuan.rx.text.orEmpty
+            .bind(to: viewModel.input.disPilihPerempuanI)
+            .disposed(by: disposeBag)
+        
+        viewModel.output.disTerdaftarTotalO
+            .drive(onNext: { (total) in
+                self.txtTerdaftarTotal.text = total
+            })
+            .disposed(by: self.disposeBag)
+        
+        viewModel.output.disPilihTotalO
+            .drive(onNext: { (total) in
+                self.txtPilihTotal.text = total
+            })
+            .disposed(by: self.disposeBag)
+        
+    }
+    
 }

@@ -7,15 +7,45 @@
 //
 
 import UIKit
+import Common
+import RxSwift
 
 class C1SuratSuaraView: UIView {
-
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+    @IBOutlet weak var txtSuratDikembalikan: TPSTextField!
+    @IBOutlet weak var txtSuratTidakDigunakan: TPSTextField!
+    @IBOutlet weak var txtSuratDigunakan: TPSTextField!
+    @IBOutlet weak var txtSuratDiterima: TPSTextField!
+    
+    private(set) var disposeBag = DisposeBag()
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        
+        disposeBag = DisposeBag()
     }
-    */
+    
+    func config(viewModel: C1InputFormViewModel) {
+        
+        txtSuratDikembalikan.rx.text.orEmpty
+            .bind(to: viewModel.input.suratDikembalikanI)
+            .disposed(by: disposeBag)
+        
+        txtSuratTidakDigunakan.rx.text.orEmpty
+            .bind(to: viewModel.input.suratTidakDigunakanI)
+            .disposed(by: disposeBag)
+        
+        txtSuratDigunakan.rx.text.orEmpty
+            .bind(to: viewModel.input.suratDigunakanI)
+            .disposed(by: disposeBag)
+        
+
+        
+        viewModel.output.suratDiterimaO
+            .drive(onNext: { (total) in
+                self.txtSuratDiterima.text = total
+            })
+            .disposed(by: self.disposeBag)
+        
+    }
 
 }
