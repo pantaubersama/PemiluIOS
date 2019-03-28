@@ -21,12 +21,46 @@ enum LabelType: String {
     case light = "light"
     case lightItalic = "light-italic"
     case regular = "regular"
-    
     case bmBold = "bm-bold"
     case bmExtraBold = "bm-extra-bold"
     case bmLight = "bm-light"
     case bmBlack = "bm-black"
     case bmThin = "bm-thin"
+    
+    var fontName: String {
+        switch self {
+        case .bold:
+            return "Lato-Bold"
+        case .black:
+            return "Lato-Black"
+        case .blackItalic:
+            return "Lato-BlackItalic"
+        case .boldItalic:
+            return "Lato-BoldItalic"
+        case .hairline:
+            return "Lato-Hairline"
+        case .hairlineItalic:
+            return "Lato-HairlineItalic"
+        case .italic:
+            return "Lato-Italic"
+        case .light:
+            return "Lato-Light"
+        case .lightItalic:
+            return "Lato-LightItalic"
+        case .regular:
+            return "Lato-Regular"
+        case .bmBold:
+            return "BwModelicaSS01-BoldCondensed"
+        case .bmThin:
+            return "BwModelica-ThinCondensed"
+        case .bmBlack:
+            return "BwModelica-BlackCondensed"
+        case .bmLight:
+            return "BwModelica-LightCondensed"
+        case .bmExtraBold:
+            return "BwModelica-ExtraBoldCondensed"
+        }
+    }
 }
 
 
@@ -67,39 +101,8 @@ public class Label: UILabel {
     @IBInspectable
     public var typeLabel: String = "regular" {
         didSet {
-            if let newFont: LabelType = LabelType(rawValue: self.typeLabel.lowercased()) {
-                switch newFont {
-                case .bold:
-                    self.fontName = "Lato-Bold"
-                case .black:
-                    self.fontName = "Lato-Black"
-                case .blackItalic:
-                    self.fontName = "Lato-BlackItalic"
-                case .boldItalic:
-                    self.fontName = "Lato-BoldItalic"
-                case .hairline:
-                    self.fontName = "Lato-Hairline"
-                case .hairlineItalic:
-                    self.fontName = "Lato-HairlineItalic"
-                case .italic:
-                    self.fontName = "Lato-Italic"
-                case .light:
-                    self.fontName = "Lato-Light"
-                case .lightItalic:
-                    self.fontName = "Lato-LightItalic"
-                case .regular:
-                    self.fontName = "Lato-Regular"
-                case .bmBold:
-                    self.fontName = "BwModelicaSS01-BoldCondensed"
-                case .bmThin:
-                    self.fontName = "BwModelica-ThinCondensed"
-                case .bmBlack:
-                    self.fontName = "BwModelica-BlackCondensed"
-                case .bmLight:
-                    self.fontName = "BwModelica-LightCondensed"
-                case .bmExtraBold:
-                    self.fontName = "BwModelica-ExtraBoldCondensed"
-                }
+            if let type = LabelType(rawValue: self.typeLabel.lowercased()) {
+                self.fontName = type.fontName
             }
             initLabel()
         }

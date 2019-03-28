@@ -20,6 +20,11 @@
 		043EE19D221A36C2008C59CD /* MerayakanController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 043EE18F221A36C2008C59CD /* MerayakanController.xib */; };
 		043EE19E221A36C2008C59CD /* MerayakanController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043EE190221A36C2008C59CD /* MerayakanController.swift */; };
 		043EE19F221A36C2008C59CD /* MerayakanViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043EE191221A36C2008C59CD /* MerayakanViewModel.swift */; };
+		043EE1A4221CC910008C59CD /* PerhitunganCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043EE1A3221CC910008C59CD /* PerhitunganCoordinator.swift */; };
+		043EE1A6221CC940008C59CD /* PerhitunganViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043EE1A5221CC940008C59CD /* PerhitunganViewModel.swift */; };
+		043EE1AF221CC99F008C59CD /* TPSViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043EE1AD221CC99F008C59CD /* TPSViewCell.swift */; };
+		043EE1B0221CC99F008C59CD /* TPSViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 043EE1AE221CC99F008C59CD /* TPSViewCell.xib */; };
+		043EE1B3221CCD7C008C59CD /* PerhitunganController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043EE1B1221CCD7C008C59CD /* PerhitunganController.swift */; };
 		1108871822126FEA0041B821 /* LiveDebatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1108871622126FEA0041B821 /* LiveDebatController.swift */; };
 		1108871922126FEA0041B821 /* LiveDebatController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1108871722126FEA0041B821 /* LiveDebatController.xib */; };
 		1108871C221271CD0041B821 /* LiveDebatCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1108871B221271CD0041B821 /* LiveDebatCoordinator.swift */; };
@@ -103,8 +108,6 @@
 		11D066AC21E38850003AC9BB /* PenpolFilterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D066AB21E38850003AC9BB /* PenpolFilterModel.swift */; };
 		11D066B021E399C1003AC9BB /* FilterRadioCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D066AE21E399C1003AC9BB /* FilterRadioCell.swift */; };
 		11D066B121E399C1003AC9BB /* FilterRadioCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11D066AF21E399C1003AC9BB /* FilterRadioCell.xib */; };
-		11DA97072222B04D00A51E76 /* PerhitunganViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DA97062222B04D00A51E76 /* PerhitunganViewModel.swift */; };
-		11DA970B2222C29A00A51E76 /* PerhitunganController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DA970A2222C29A00A51E76 /* PerhitunganController.swift */; };
 		11DA970F2222C2C200A51E76 /* PerhitunganCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DA970D2222C2C200A51E76 /* PerhitunganCell.swift */; };
 		11DA97102222C2C200A51E76 /* PerhitunganCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11DA970E2222C2C200A51E76 /* PerhitunganCell.xib */; };
 		11DA97122222CD7B00A51E76 /* PerhitunganNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DA97112222CD7B00A51E76 /* PerhitunganNavigator.swift */; };
@@ -232,8 +235,6 @@
 		8423C3FF21F718E1000AAA63 /* DetailAskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423C3FE21F718E1000AAA63 /* DetailAskViewModel.swift */; };
 		8423C40121F71927000AAA63 /* DetailAskCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423C40021F71927000AAA63 /* DetailAskCoordinator.swift */; };
 		8428AAA321C7A7790008E975 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8428AAA521C7A7790008E975 /* Localizable.strings */; };
-		8428AAAA21C7AF330008E975 /* GoogleService-Info-Staging.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8428AAA921C7AF330008E975 /* GoogleService-Info-Staging.plist */; };
-		8428AAAD21C7B4B20008E975 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8428AAAC21C7B4B10008E975 /* GoogleService-Info.plist */; };
 		842A49F521D7749D0050AA51 /* HeaderDataLapor.xib in Resources */ = {isa = PBXBuildFile; fileRef = 842A49F421D7749D0050AA51 /* HeaderDataLapor.xib */; };
 		842A49F721D775420050AA51 /* HeaderDataLapor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842A49F621D775420050AA51 /* HeaderDataLapor.swift */; };
 		842A49F921D789A30050AA51 /* VerifikasiStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842A49F821D789A30050AA51 /* VerifikasiStep.swift */; };
@@ -572,6 +573,13 @@
 		E54CFB10222C4B99002DA0D1 /* C1PhotoHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = E54CFB0F222C4B99002DA0D1 /* C1PhotoHeader.xib */; };
 		E54CFB12222C4DD2002DA0D1 /* UploadC1Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54CFB11222C4DD2002DA0D1 /* UploadC1Header.swift */; };
 		E54CFB14222C4DE2002DA0D1 /* UploadC1Header.xib in Resources */ = {isa = PBXBuildFile; fileRef = E54CFB13222C4DE2002DA0D1 /* UploadC1Header.xib */; };
+		E550847B224297B500A54929 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E5508477224297B500A54929 /* GoogleService-Info.plist */; };
+		E550847C224297B500A54929 /* Staging.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = E5508478224297B500A54929 /* Staging.xcconfig */; };
+		E550847D224297B500A54929 /* Production.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = E5508479224297B500A54929 /* Production.xcconfig */; };
+		E550847E224297B500A54929 /* GoogleService-Info-Staging.plist in Resources */ = {isa = PBXBuildFile; fileRef = E550847A224297B500A54929 /* GoogleService-Info-Staging.plist */; };
+		E583C9F7223ED9C5006D9590 /* SelectionDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = E583C9F4223ED9C4006D9590 /* SelectionDialog.swift */; };
+		E583C9F8223ED9C5006D9590 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E583C9F5223ED9C4006D9590 /* UIImageExtension.swift */; };
+		E583C9F9223ED9C5006D9590 /* SelectionDialogItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E583C9F6223ED9C4006D9590 /* SelectionDialogItem.swift */; };
 		E5B22D57222A395F002A8C0C /* DetailTPSPresidenCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B22D56222A395F002A8C0C /* DetailTPSPresidenCoordinator.swift */; };
 		E5B22D59222A3998002A8C0C /* DetailTPSPresidenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B22D58222A3998002A8C0C /* DetailTPSPresidenViewModel.swift */; };
 		E5B22D5D222A39CF002A8C0C /* DetailTPSPresidenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B22D5B222A39CF002A8C0C /* DetailTPSPresidenController.swift */; };
@@ -631,6 +639,11 @@
 		043EE18F221A36C2008C59CD /* MerayakanController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MerayakanController.xib; sourceTree = "<group>"; };
 		043EE190221A36C2008C59CD /* MerayakanController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MerayakanController.swift; sourceTree = "<group>"; };
 		043EE191221A36C2008C59CD /* MerayakanViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MerayakanViewModel.swift; sourceTree = "<group>"; };
+		043EE1A3221CC910008C59CD /* PerhitunganCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerhitunganCoordinator.swift; sourceTree = "<group>"; };
+		043EE1A5221CC940008C59CD /* PerhitunganViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerhitunganViewModel.swift; sourceTree = "<group>"; };
+		043EE1AD221CC99F008C59CD /* TPSViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TPSViewCell.swift; sourceTree = "<group>"; };
+		043EE1AE221CC99F008C59CD /* TPSViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TPSViewCell.xib; sourceTree = "<group>"; };
+		043EE1B1221CCD7C008C59CD /* PerhitunganController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerhitunganController.swift; sourceTree = "<group>"; };
 		04A224A86FBFD6EFE137644F /* Pods-PantauBersama.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PantauBersama.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-PantauBersama/Pods-PantauBersama.debug.xcconfig"; sourceTree = "<group>"; };
 		1108871622126FEA0041B821 /* LiveDebatController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveDebatController.swift; sourceTree = "<group>"; };
 		1108871722126FEA0041B821 /* LiveDebatController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LiveDebatController.xib; sourceTree = "<group>"; };
@@ -715,8 +728,6 @@
 		11D066AB21E38850003AC9BB /* PenpolFilterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PenpolFilterModel.swift; sourceTree = "<group>"; };
 		11D066AE21E399C1003AC9BB /* FilterRadioCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterRadioCell.swift; sourceTree = "<group>"; };
 		11D066AF21E399C1003AC9BB /* FilterRadioCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterRadioCell.xib; sourceTree = "<group>"; };
-		11DA97062222B04D00A51E76 /* PerhitunganViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerhitunganViewModel.swift; sourceTree = "<group>"; };
-		11DA970A2222C29A00A51E76 /* PerhitunganController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerhitunganController.swift; sourceTree = "<group>"; };
 		11DA970D2222C2C200A51E76 /* PerhitunganCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerhitunganCell.swift; sourceTree = "<group>"; };
 		11DA970E2222C2C200A51E76 /* PerhitunganCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PerhitunganCell.xib; sourceTree = "<group>"; };
 		11DA97112222CD7B00A51E76 /* PerhitunganNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerhitunganNavigator.swift; sourceTree = "<group>"; };
@@ -849,8 +860,6 @@
 		8428AAA021C7A7160008E975 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		8428AAA421C7A7790008E975 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		8428AAA621C7A77C0008E975 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/Localizable.strings; sourceTree = "<group>"; };
-		8428AAA921C7AF330008E975 /* GoogleService-Info-Staging.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Staging.plist"; sourceTree = "<group>"; };
-		8428AAAC21C7B4B10008E975 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		842A49F421D7749D0050AA51 /* HeaderDataLapor.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderDataLapor.xib; sourceTree = "<group>"; };
 		842A49F621D775420050AA51 /* HeaderDataLapor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderDataLapor.swift; sourceTree = "<group>"; };
 		842A49F821D789A30050AA51 /* VerifikasiStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifikasiStep.swift; sourceTree = "<group>"; };
@@ -888,8 +897,6 @@
 		844C3D5021C4ED6E00199871 /* PantauBersamaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PantauBersamaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		844C3D5421C4ED6E00199871 /* PantauBersamaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PantauBersamaTests.swift; sourceTree = "<group>"; };
 		844C3D5621C4ED6E00199871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		844C3D6021C4ED9100199871 /* Staging.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Staging.xcconfig; sourceTree = "<group>"; };
-		844C3D6121C4ED9F00199871 /* Production.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Production.xcconfig; sourceTree = "<group>"; };
 		844C3D6321C4EDE900199871 /* Common.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Common.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		844C3D6521C4EDEE00199871 /* Networking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Networking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		844C3D6C21C51CE900199871 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
@@ -1194,6 +1201,13 @@
 		E54CFB0F222C4B99002DA0D1 /* C1PhotoHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = C1PhotoHeader.xib; sourceTree = "<group>"; };
 		E54CFB11222C4DD2002DA0D1 /* UploadC1Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadC1Header.swift; sourceTree = "<group>"; };
 		E54CFB13222C4DE2002DA0D1 /* UploadC1Header.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UploadC1Header.xib; sourceTree = "<group>"; };
+		E5508477224297B500A54929 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E5508478224297B500A54929 /* Staging.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Staging.xcconfig; sourceTree = "<group>"; };
+		E5508479224297B500A54929 /* Production.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Production.xcconfig; sourceTree = "<group>"; };
+		E550847A224297B500A54929 /* GoogleService-Info-Staging.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Staging.plist"; sourceTree = "<group>"; };
+		E583C9F4223ED9C4006D9590 /* SelectionDialog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectionDialog.swift; sourceTree = "<group>"; };
+		E583C9F5223ED9C4006D9590 /* UIImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
+		E583C9F6223ED9C4006D9590 /* SelectionDialogItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectionDialogItem.swift; sourceTree = "<group>"; };
 		E5B22D56222A395F002A8C0C /* DetailTPSPresidenCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTPSPresidenCoordinator.swift; sourceTree = "<group>"; };
 		E5B22D58222A3998002A8C0C /* DetailTPSPresidenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTPSPresidenViewModel.swift; sourceTree = "<group>"; };
 		E5B22D5B222A39CF002A8C0C /* DetailTPSPresidenController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTPSPresidenController.swift; sourceTree = "<group>"; };
@@ -1243,6 +1257,7 @@
 				043EE18E221A36C2008C59CD /* ViewController */,
 				043EE17F221A36C2008C59CD /* MerayakanCoordinator.swift */,
 				043EE191221A36C2008C59CD /* MerayakanViewModel.swift */,
+				043EE17F221A36C2008C59CD /* MerayakanCoordinator.swift */,
 			);
 			path = Merayakan;
 			sourceTree = "<group>";
@@ -1636,8 +1651,9 @@
 				1131A616222369DC0000981D /* SubModules */,
 				11DA970C2222C2A500A51E76 /* Components */,
 				11DA97012222AFA100A51E76 /* ViewController */,
-				11DA97062222B04D00A51E76 /* PerhitunganViewModel.swift */,
+				043EE1A5221CC940008C59CD /* PerhitunganViewModel.swift */,
 				11DA97112222CD7B00A51E76 /* PerhitunganNavigator.swift */,
+				043EE1A3221CC910008C59CD /* PerhitunganCoordinator.swift */,
 			);
 			path = Perhitungan;
 			sourceTree = "<group>";
@@ -1645,7 +1661,7 @@
 		11DA97012222AFA100A51E76 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				11DA970A2222C29A00A51E76 /* PerhitunganController.swift */,
+				043EE1B1221CCD7C008C59CD /* PerhitunganController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1653,6 +1669,8 @@
 		11DA970C2222C2A500A51E76 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				043EE1AD221CC99F008C59CD /* TPSViewCell.swift */,
+				043EE1AE221CC99F008C59CD /* TPSViewCell.xib */,
 				11DA970D2222C2C200A51E76 /* PerhitunganCell.swift */,
 				11DA970E2222C2C200A51E76 /* PerhitunganCell.xib */,
 			);
@@ -2249,8 +2267,8 @@
 				844C3D7321C51E7E00199871 /* Library */,
 				844C3D7221C51E2500199871 /* Coredata */,
 				844C3D7121C51DFB00199871 /* Resources */,
-				844C3D5F21C4ED7500199871 /* Config */,
 				8441DB3F21CCBEBD00B078DF /* Model */,
+				E5508476224297B500A54929 /* Config */,
 				844C3D3C21C4ED6D00199871 /* AppDelegate.swift */,
 				844C3D4821C4ED6E00199871 /* LaunchScreen.storyboard */,
 				844C3D4B21C4ED6E00199871 /* Info.plist */,
@@ -2266,17 +2284,6 @@
 				844C3D5621C4ED6E00199871 /* Info.plist */,
 			);
 			path = PantauBersamaTests;
-			sourceTree = "<group>";
-		};
-		844C3D5F21C4ED7500199871 /* Config */ = {
-			isa = PBXGroup;
-			children = (
-				844C3D6021C4ED9100199871 /* Staging.xcconfig */,
-				844C3D6121C4ED9F00199871 /* Production.xcconfig */,
-				8428AAA921C7AF330008E975 /* GoogleService-Info-Staging.plist */,
-				8428AAAC21C7B4B10008E975 /* GoogleService-Info.plist */,
-			);
-			path = Config;
 			sourceTree = "<group>";
 		};
 		844C3D6221C4EDE900199871 /* Frameworks */ = {
@@ -2346,6 +2353,7 @@
 			isa = PBXGroup;
 			children = (
 				847B4A17224A1E860071A8F5 /* Texture */,
+				E583C9F3223ED9C4006D9590 /* SelectionDialog */,
 				84F1F21621EA6782004515A4 /* Facebook */,
 				84F1F20921E8D987004515A4 /* Twitter */,
 				84E2854121CA189B00298E31 /* CustomView */,
@@ -3505,6 +3513,27 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		E5508476224297B500A54929 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				E5508477224297B500A54929 /* GoogleService-Info.plist */,
+				E5508478224297B500A54929 /* Staging.xcconfig */,
+				E5508479224297B500A54929 /* Production.xcconfig */,
+				E550847A224297B500A54929 /* GoogleService-Info-Staging.plist */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+		E583C9F3223ED9C4006D9590 /* SelectionDialog */ = {
+			isa = PBXGroup;
+			children = (
+				E583C9F4223ED9C4006D9590 /* SelectionDialog.swift */,
+				E583C9F5223ED9C4006D9590 /* UIImageExtension.swift */,
+				E583C9F6223ED9C4006D9590 /* SelectionDialogItem.swift */,
+			);
+			path = SelectionDialog;
+			sourceTree = "<group>";
+		};
 		E5B22D54222A38B2002A8C0C /* SubModules */ = {
 			isa = PBXGroup;
 			children = (
@@ -3669,7 +3698,6 @@
 				131DBDB42215AF87005203FF /* ClapView.xib in Resources */,
 				11E107AF21CD42C400B7B074 /* QuizOngoingController.xib in Resources */,
 				84F892A921C787D800DC1048 /* Lato-BlackItalic.ttf in Resources */,
-				8428AAAA21C7AF330008E975 /* GoogleService-Info-Staging.plist in Resources */,
 				11D066B121E399C1003AC9BB /* FilterRadioCell.xib in Resources */,
 				11E1079221CD0FE200B7B074 /* QuizDetailController.xib in Resources */,
 				13E139522213FEF000286EDE /* SeeMoreCell.xib in Resources */,
@@ -3729,6 +3757,7 @@
 				137A29F421E2261A00F19072 /* ComingsoonController.xib in Resources */,
 				84FA42682212EED0008215C4 /* PernyataanCell.xib in Resources */,
 				8493BF7B2216848B00685BEC /* ChallengeController.xib in Resources */,
+				E550847B224297B500A54929 /* GoogleService-Info.plist in Resources */,
 				84BE8DF6222689AF0079332A /* PaslonCaraouselCell.xib in Resources */,
 				8478B8E621FF1FAA00CE192A /* InfoNotifCell.xib in Resources */,
 				84619D3C21DA88C800EB58CF /* ItemInfoCell.xib in Resources */,
@@ -3757,7 +3786,6 @@
 				84F892AF21C787D800DC1048 /* Lato-Light.ttf in Resources */,
 				E54CFAF0222C1EC7002DA0D1 /* TPSInputCell.xib in Resources */,
 				1320596322135B1500BE9456 /* WordstadiumViewCell.xib in Resources */,
-				8428AAAD21C7B4B20008E975 /* GoogleService-Info.plist in Resources */,
 				84B6D50321F81D9D00DD742A /* CatatanPilpresController.xib in Resources */,
 				840901BE21DF31CD001BF559 /* CatatanController.xib in Resources */,
 				84F892B021C787D800DC1048 /* Lato-LightItalic.ttf in Resources */,
@@ -3776,6 +3804,7 @@
 				84E6933E21D2936E00EA5464 /* HeaderEditProfile.xib in Resources */,
 				8493BF7E2216893100685BEC /* ChallengeButtonView.xib in Resources */,
 				84B7B8B321E4454B0099E7E3 /* EmptyView.xib in Resources */,
+				E550847C224297B500A54929 /* Staging.xcconfig in Resources */,
 				84F892B121C787D800DC1048 /* Lato-Regular.ttf in Resources */,
 				13812C3A21CC182500CAB327 /* AskViewCell.xib in Resources */,
 				84F6981721C9364700890917 /* LinimasaJanjiCell.xib in Resources */,
@@ -3795,6 +3824,7 @@
 				84B2669F21D4DB9A00C7B783 /* ProfileEditController.xib in Resources */,
 				84F892A721C7875200DC1048 /* BwModelica-ThinCondensed.otf in Resources */,
 				137A29F621E2303400F19072 /* coming-soon-coffee.json in Resources */,
+				043EE1B0221CC99F008C59CD /* TPSViewCell.xib in Resources */,
 				84FA42642212E919008215C4 /* BidangKajianCell.xib in Resources */,
 				1147F22C21F83C01001D0D59 /* ClusterDetailController.xib in Resources */,
 				8441DB3E21CCB80B00B078DF /* ItemRadioCell.xib in Resources */,
@@ -3815,6 +3845,7 @@
 				845C571321CE10C900EDCDFE /* IconTableCell.xib in Resources */,
 				11145F5621EACCEC0046F2AA /* SearchController.xib in Resources */,
 				11145F6B21EB473B0046F2AA /* CustomMenuBar.xib in Resources */,
+				E550847E224297B500A54929 /* GoogleService-Info-Staging.plist in Resources */,
 				844C3D4721C4ED6E00199871 /* Assets.xcassets in Resources */,
 				11B3C79321D1110700EDCECB /* QuizSummaryController.xib in Resources */,
 				8451E0662207F71800F03E96 /* selfie-id-card.json in Resources */,
@@ -3825,6 +3856,7 @@
 				043EE196221A36C2008C59CD /* RekapController.xib in Resources */,
 				131DBDB82215AFCC005203FF /* DescriptionView.xib in Resources */,
 				84A07FA221D0DFF600269C6B /* SignatureController.xib in Resources */,
+				E550847D224297B500A54929 /* Production.xcconfig in Resources */,
 				1149EB6B22140E670050F366 /* ArgumentLeftCell.xib in Resources */,
 				845C570921CD3D5700EDCDFE /* SectionCell.xib in Resources */,
 				11B145FC21D72FFA00BB26C8 /* CreateAskHeaderView.xib in Resources */,
@@ -3859,6 +3891,7 @@
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCoreLocation/RxCoreLocation.framework",
 				"${BUILT_PRODUCTS_DIR}/RxDataSources/RxDataSources.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
@@ -3892,6 +3925,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCoreLocation.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxDataSources.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
@@ -4041,6 +4075,7 @@
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCoreLocation/RxCoreLocation.framework",
 				"${BUILT_PRODUCTS_DIR}/RxDataSources/RxDataSources.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
@@ -4074,6 +4109,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCoreLocation.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxDataSources.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
@@ -4124,6 +4160,7 @@
 				137A29F321E2261A00F19072 /* ComingsoonController.swift in Sources */,
 				847B4A162249F8890071A8F5 /* LinimasaNode.swift in Sources */,
 				11702DD521CB08DE001AEE3F /* QuizController.swift in Sources */,
+				E583C9F7223ED9C5006D9590 /* SelectionDialog.swift in Sources */,
 				11145F5D21EAF2670046F2AA /* SearchNavbar.swift in Sources */,
 				84EC7D17221586D100CDFD4D /* PublishChallengeCoordinator.swift in Sources */,
 				84FA4284221307BF008215C4 /* BidangKajianCoordinator.swift in Sources */,
@@ -4144,6 +4181,7 @@
 				84FA424B2212ACF6008215C4 /* TantanganChallengeViewModel.swift in Sources */,
 				13812C2B21CAA71F00CAB327 /* PenpolCoordinator.swift in Sources */,
 				11E1079421CD101900B7B074 /* QuizDetailCoordinator.swift in Sources */,
+				043EE1B3221CCD7C008C59CD /* PerhitunganController.swift in Sources */,
 				84FA428222130728008215C4 /* BidangKajianViewModel.swift in Sources */,
 				842A4A0B21D7EAA60050AA51 /* SignatureViewModel.swift in Sources */,
 				8452A4C921DE265500196043 /* BuatProfileViewModel.swift in Sources */,
@@ -4173,6 +4211,7 @@
 				11E1079121CD0FE200B7B074 /* QuizDetailController.swift in Sources */,
 				8468AE7922315824002CBA0F /* ChallengeDetailType.swift in Sources */,
 				8423C40121F71927000AAA63 /* DetailAskCoordinator.swift in Sources */,
+				043EE1A4221CC910008C59CD /* PerhitunganCoordinator.swift in Sources */,
 				1149EB6A22140E670050F366 /* ArgumentLeftCell.swift in Sources */,
 				84FE6EC621D6361C009A0F55 /* BiodataView.swift in Sources */,
 				844C3D7021C51D3500199871 /* PantauBarKind.swift in Sources */,
@@ -4207,6 +4246,7 @@
 				11D066AC21E38850003AC9BB /* PenpolFilterModel.swift in Sources */,
 				043EE199221A36C2008C59CD /* RekapFooterView.swift in Sources */,
 				11145F6921EB47310046F2AA /* CustomMenuBar.swift in Sources */,
+				043EE1A6221CC940008C59CD /* PerhitunganViewModel.swift in Sources */,
 				8452A4CB21DE271B00196043 /* BuatProfileCoordinator.swift in Sources */,
 				13F4569F21CF986600CE45F1 /* CreateAskCoordinator.swift in Sources */,
 				840901BA21DF1DE6001BF559 /* Navbar.swift in Sources */,
@@ -4230,6 +4270,7 @@
 				E52BE9E3222F4AC700E26E70 /* UploadC1Coordinator.swift in Sources */,
 				137A29F821E2327D00F19072 /* ComingsoonCoordinator.swift in Sources */,
 				043EE194221A36C2008C59CD /* RekapViewModel.swift in Sources */,
+				E583C9F9223ED9C5006D9590 /* SelectionDialogItem.swift in Sources */,
 				11DA97122222CD7B00A51E76 /* PerhitunganNavigator.swift in Sources */,
 				84B2526821CC01F000565D82 /* AppState.swift in Sources */,
 				E5B22D59222A3998002A8C0C /* DetailTPSPresidenViewModel.swift in Sources */,
@@ -4333,6 +4374,7 @@
 				E54CFB0E222C4B8C002DA0D1 /* C1PhotoHeader.swift in Sources */,
 				1161F9F421DF4B4000C1BAD5 /* QuizButton.swift in Sources */,
 				13E6FECD221F24C9008CA788 /* LiniPublicViewModel.swift in Sources */,
+				043EE1AF221CC99F008C59CD /* TPSViewCell.swift in Sources */,
 				13BF405321EBAA8F005C9A64 /* IQuestionListViewModel.swift in Sources */,
 				847B4A19224A1EA00071A8F5 /* ASControlNode+Rx.swift in Sources */,
 				8478B8EA21FF315600CE192A /* Parser.swift in Sources */,
@@ -4465,6 +4507,7 @@
 				842A4A0D21D7EDC10050AA51 /* SuccessCoordinator.swift in Sources */,
 				131AEBE1221F332900B299F6 /* WordstadiumType.swift in Sources */,
 				84B8C1D12215823F004BC1FE /* PromoteView.swift in Sources */,
+				E583C9F8223ED9C5006D9590 /* UIImageExtension.swift in Sources */,
 				84B6D52D21F8E80A00DD742A /* UserQuestionListViewModel.swift in Sources */,
 				1108871E221271DC0041B821 /* LiveDebatViewModel.swift in Sources */,
 				13E9D78821E8F025006A0890 /* IJanpolListViewModel.swift in Sources */,
@@ -4539,7 +4582,7 @@
 /* Begin XCBuildConfiguration section */
 		844C3D5721C4ED6E00199871 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 844C3D6021C4ED9100199871 /* Staging.xcconfig */;
+			baseConfigurationReference = E5508478224297B500A54929 /* Staging.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
@@ -4602,7 +4645,7 @@
 		};
 		844C3D5821C4ED6E00199871 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 844C3D6121C4ED9F00199871 /* Production.xcconfig */;
+			baseConfigurationReference = E5508479224297B500A54929 /* Production.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;

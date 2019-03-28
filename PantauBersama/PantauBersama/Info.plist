@@ -138,6 +138,12 @@
 	<string>Pantau Bersama memerlukan akses camera untuk melakukan proses input verifikasi</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Pantau Bersama memerlukan akses pustaka foto untuk melakukan proses input verifikasi serta mengganti profile gambar</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Pantau Bersama memerlukan akses lokasi untuk data lokasi perhitungan suara</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Pantau Bersama memerlukan akses lokasi untuk data lokasi perhitungan suara</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Pantau Bersama memerlukan akses lokasi untuk data lokasi perhitungan suara</string>
 	<key>REDIRECT_URI</key>
 	<string>$(REDIRECT_URI)</string>
 	<key>SECRET_TWITTER</key>

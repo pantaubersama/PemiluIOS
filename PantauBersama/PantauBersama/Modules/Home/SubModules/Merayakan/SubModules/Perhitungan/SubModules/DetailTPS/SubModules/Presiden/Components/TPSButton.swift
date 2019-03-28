@@ -8,8 +8,12 @@
 
 import UIKit
 import Common
+import RxCocoa
+import RxSwift
 
 class TPSButton: UIControl {
+    private let bag = DisposeBag()
+    
     @IBInspectable var plusButtonType: String = "green" {
         didSet {
             setNeedsDisplay()
@@ -23,10 +27,19 @@ class TPSButton: UIControl {
         }
     }
     
-    var value: Int = 0 {
+    var suara: Int = 0 {
         didSet {
-            textField.text = "\(value)"
+            textField.text = "\(suara)"
+            sendActions(for: [.valueChanged, .editingChanged])
         }
+    }
+    
+    var rx_suara: ControlProperty<Int> {
+        return TPSButton.valuePublic(control: self, getter: { (control) -> Int in
+            return control.suara
+        }, setter: { (control, value) in
+            control.suara = value
+        })
     }
     
     lazy fileprivate var textField: UITextField = {
@@ -85,11 +98,18 @@ class TPSButton: UIControl {
             textField.topAnchor.constraint(equalTo: self.topAnchor),
             textField.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             textField.trailingAnchor.constraint(equalTo: plusButton.centerXAnchor)])
+        
+        textField.rx
+            .text
+            .map({ Int($0 ?? "") ?? 0 })
+            .bind(to: rx_suara )
+            .disposed(by: bag)
+        
     }
     
     @objc
     fileprivate func addPressed() {
-        value += 1
+        suara = suara + 1
     }
 }
 
@@ -98,6 +118,26 @@ extension TPSButton: UITextFieldDelegate {
         guard CharacterSet(charactersIn: "0123456789").isSuperset(of: CharacterSet(charactersIn: string)) else {
             return false
         }
+
         return true
+    }
+}
+
+extension UIControl {
+    static func valuePublic<T, ControlType: UIControl>(_ control: ControlType, getter:  @escaping (ControlType) -> T, setter: @escaping (ControlType, T) -> ()) -> ControlProperty<T> {
+        let values: Observable<T> = Observable.deferred { [weak control] in
+            guard let existingSelf = control else {
+                return Observable.empty()
+            }
+            
+            return (existingSelf as UIControl).rx.controlEvent([.allEditingEvents, .valueChanged])
+                .flatMap { _ in
+                    return control.map { Observable.just(getter($0)) } ?? Observable.empty()
+                }
+                .startWith(getter(existingSelf))
+        }
+        return ControlProperty(values: values, valueSink: Binder(control) { control, value in
+            setter(control, value)
+        })
     }
 }

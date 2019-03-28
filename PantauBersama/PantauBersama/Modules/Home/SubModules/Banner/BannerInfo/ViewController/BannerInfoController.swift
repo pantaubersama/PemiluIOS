@@ -57,6 +57,10 @@ class BannerInfoController: UIViewController {
             imgHeader.image = UIImage(named: "icDebatInfoHeader")
         case .debat_personal:
             imgHeader.image = UIImage(named: "icTantanganInfoHeader")
+        case .perhitungan:
+            imgHeader.image = UIImage(named: "icPerhitunganInfoHeader")
+        case .rekapitulasi:
+            imgHeader.image = UIImage(named: "icRekapitulasiInfoHeader")
         default:
             return
         }

@@ -33,6 +33,7 @@
 		1311A96F21DD3011001B053B /* UserPantau.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1311A96E21DD3011001B053B /* UserPantau.swift */; };
 		131AEBE72223287900B299F6 /* GetChallengeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 131AEBE62223287900B299F6 /* GetChallengeResponse.swift */; };
 		137A2A0121E3C80F00F19072 /* TrendResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 137A2A0021E3C80F00F19072 /* TrendResponse.swift */; };
+		13B39F3C2243F2BA00B1861E /* RealCountsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B39F3B2243F2BA00B1861E /* RealCountsResponse.swift */; };
 		13D9483A21DDD56D00722EB1 /* InfoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D9483921DDD56D00722EB1 /* InfoResponse.swift */; };
 		13F456B521D531D300CE45F1 /* LinimasaAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F456B421D531D300CE45F1 /* LinimasaAPI.swift */; };
 		13F456B721DA7BD000CE45F1 /* Feeds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F456B621DA7BD000CE45F1 /* Feeds.swift */; };
@@ -85,6 +86,16 @@
 		84FE6EB821D5F374009A0F55 /* BaseResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FE6EB721D5F374009A0F55 /* BaseResponse.swift */; };
 		84FF87C9223905E400147D54 /* WordNotifResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FF87C8223905E400147D54 /* WordNotifResponse.swift */; };
 		84FF8AA121F221C100AA8CF3 /* AppVersionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FF8AA021F221C100AA8CF3 /* AppVersionResponse.swift */; };
+		E51D65ED2240026000FEDD7A /* ProvinceResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51D65EC2240026000FEDD7A /* ProvinceResponse.swift */; };
+		E51D65EF224004F100FEDD7A /* RegencyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51D65EE224004F100FEDD7A /* RegencyResponse.swift */; };
+		E51D65F1224005F300FEDD7A /* DistrictResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51D65F0224005F300FEDD7A /* DistrictResponse.swift */; };
+		E51D65F32240100900FEDD7A /* Village.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51D65F22240100900FEDD7A /* Village.swift */; };
+		E51D65F52240101400FEDD7A /* VillageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51D65F42240101400FEDD7A /* VillageResponse.swift */; };
+		E59E04FA223893A800EDAFF7 /* Province.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59E04F9223893A800EDAFF7 /* Province.swift */; };
+		E59E04FC223898A300EDAFF7 /* Regency.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59E04FB223898A200EDAFF7 /* Regency.swift */; };
+		E59E04FE22389B2500EDAFF7 /* District.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59E04FD22389B2500EDAFF7 /* District.swift */; };
+		E5BD7AA92241A5B3002532C0 /* RealCountRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BD7AA82241A5B3002532C0 /* RealCountRequest.swift */; };
+		E5C2E6B02236DAB100DA600B /* HitungAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C2E6AF2236DAB100DA600B /* HitungAPI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -124,6 +135,7 @@
 		1311A96E21DD3011001B053B /* UserPantau.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPantau.swift; sourceTree = "<group>"; };
 		131AEBE62223287900B299F6 /* GetChallengeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetChallengeResponse.swift; sourceTree = "<group>"; };
 		137A2A0021E3C80F00F19072 /* TrendResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendResponse.swift; sourceTree = "<group>"; };
+		13B39F3B2243F2BA00B1861E /* RealCountsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealCountsResponse.swift; sourceTree = "<group>"; };
 		13D9483921DDD56D00722EB1 /* InfoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoResponse.swift; sourceTree = "<group>"; };
 		13F456B421D531D300CE45F1 /* LinimasaAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinimasaAPI.swift; sourceTree = "<group>"; };
 		13F456B621DA7BD000CE45F1 /* Feeds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feeds.swift; sourceTree = "<group>"; };
@@ -181,6 +193,16 @@
 		84FF87C8223905E400147D54 /* WordNotifResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordNotifResponse.swift; sourceTree = "<group>"; };
 		84FF8AA021F221C100AA8CF3 /* AppVersionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppVersionResponse.swift; sourceTree = "<group>"; };
 		85BAE50647296BF2C83ACD7C /* Pods_Networking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Networking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E51D65EC2240026000FEDD7A /* ProvinceResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProvinceResponse.swift; sourceTree = "<group>"; };
+		E51D65EE224004F100FEDD7A /* RegencyResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegencyResponse.swift; sourceTree = "<group>"; };
+		E51D65F0224005F300FEDD7A /* DistrictResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistrictResponse.swift; sourceTree = "<group>"; };
+		E51D65F22240100900FEDD7A /* Village.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Village.swift; sourceTree = "<group>"; };
+		E51D65F42240101400FEDD7A /* VillageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VillageResponse.swift; sourceTree = "<group>"; };
+		E59E04F9223893A800EDAFF7 /* Province.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Province.swift; sourceTree = "<group>"; };
+		E59E04FB223898A200EDAFF7 /* Regency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Regency.swift; sourceTree = "<group>"; };
+		E59E04FD22389B2500EDAFF7 /* District.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = District.swift; sourceTree = "<group>"; };
+		E5BD7AA82241A5B3002532C0 /* RealCountRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealCountRequest.swift; sourceTree = "<group>"; };
+		E5C2E6AF2236DAB100DA600B /* HitungAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitungAPI.swift; sourceTree = "<group>"; };
 		F3B2B1BD2456514F2D807A68 /* Pods-NetworkingTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NetworkingTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-NetworkingTests/Pods-NetworkingTests.debug.xcconfig"; sourceTree = "<group>"; };
 		FC9D77E9B7CE8AB5A8F185B6 /* Pods_NetworkingTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NetworkingTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -280,6 +302,7 @@
 				8451E05F2204672700F03E96 /* NotificationAPI.swift */,
 				84AEFA78221FFE5300F3DC92 /* WordstadiumAPI.swift */,
 				84AEFA7D222002BB00F3DC92 /* OpiniumServicesAPI.swift */,
+				E5C2E6AF2236DAB100DA600B /* HitungAPI.swift */,
 			);
 			path = Microservices;
 			sourceTree = "<group>";
@@ -287,6 +310,7 @@
 		84B2523821CAC7E900565D82 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E59E04F82238939400EDAFF7 /* Hitung */,
 				84AEFA7A2220008200F3DC92 /* Wordstadium */,
 				84307F4722005770006DE04B /* Notifications */,
 				84B2523921CAC7FB00565D82 /* ErrorResponse.swift */,
@@ -329,6 +353,7 @@
 				84E521C721F4C81500B7CCBA /* InfoFirebaseResponse.swift */,
 				84B6D51021F83B5900DD742A /* PoliticalPartyResponse.swift */,
 				84EEEC2622421A48001D993D /* CrawlResponse.swift */,
+				13B39F3B2243F2BA00B1861E /* RealCountsResponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -376,6 +401,30 @@
 				84D831F621C4DCEC00C437B7 /* Info.plist */,
 			);
 			path = NetworkingTests;
+			sourceTree = "<group>";
+		};
+		E59E04F82238939400EDAFF7 /* Hitung */ = {
+			isa = PBXGroup;
+			children = (
+				E5BD7AA72241A59E002532C0 /* Request */,
+				E51D65EC2240026000FEDD7A /* ProvinceResponse.swift */,
+				E59E04F9223893A800EDAFF7 /* Province.swift */,
+				E51D65EE224004F100FEDD7A /* RegencyResponse.swift */,
+				E59E04FB223898A200EDAFF7 /* Regency.swift */,
+				E51D65F0224005F300FEDD7A /* DistrictResponse.swift */,
+				E59E04FD22389B2500EDAFF7 /* District.swift */,
+				E51D65F22240100900FEDD7A /* Village.swift */,
+				E51D65F42240101400FEDD7A /* VillageResponse.swift */,
+			);
+			path = Hitung;
+			sourceTree = "<group>";
+		};
+		E5BD7AA72241A59E002532C0 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				E5BD7AA82241A5B3002532C0 /* RealCountRequest.swift */,
+			);
+			path = Request;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -501,6 +550,7 @@
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCoreLocation/RxCoreLocation.framework",
 				"${BUILT_PRODUCTS_DIR}/RxDataSources/RxDataSources.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 			);
@@ -514,6 +564,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCoreLocation.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxDataSources.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 			);
@@ -580,11 +631,13 @@
 				13F456C521DB7EF900CE45F1 /* Image.swift in Sources */,
 				1143E81421E24946003862B6 /* QuizQuestionsResponse.swift in Sources */,
 				8451E0602204672700F03E96 /* NotificationAPI.swift in Sources */,
+				13B39F3C2243F2BA00B1861E /* RealCountsResponse.swift in Sources */,
 				11D0669D21E26A07003AC9BB /* QuizResultResponse.swift in Sources */,
 				8451E06222046AB600F03E96 /* RecordNotificationResponse.swift in Sources */,
 				11C7BB2521DB36D5008CA49B /* QuestionOptionResponse.swift in Sources */,
 				8482E63021D9048800D5DC07 /* Paginate.swift in Sources */,
 				84FC35EE21E89BE4005FB016 /* ClusterResponse.swift in Sources */,
+				E51D65EF224004F100FEDD7A /* RegencyResponse.swift in Sources */,
 				84B2523A21CAC7FB00565D82 /* ErrorResponse.swift in Sources */,
 				11F7890F2210F89E005AFC8C /* FirebaseBadgeNotifResponse.swift in Sources */,
 				84FF8AA121F221C100AA8CF3 /* AppVersionResponse.swift in Sources */,
@@ -593,6 +646,7 @@
 				119C89CD222F96CE00A7C9B5 /* Word.swift in Sources */,
 				11B145F021D68CFA00BB26C8 /* Page.swift in Sources */,
 				11E798D421E2F4FA002AABDC /* QuizSummaryResponse.swift in Sources */,
+				E59E04FC223898A300EDAFF7 /* Regency.swift in Sources */,
 				11F7890B220F1E4C005AFC8C /* FirebaseQuestionNotifResponse.swift in Sources */,
 				13D9483A21DDD56D00722EB1 /* InfoResponse.swift in Sources */,
 				1311A96F21DD3011001B053B /* UserPantau.swift in Sources */,
@@ -605,7 +659,9 @@
 				84B7B8C921E4E6730099E7E3 /* CategoriesResponse.swift in Sources */,
 				84EEEC2722421A48001D993D /* CrawlResponse.swift in Sources */,
 				13F456C321DB7E1300CE45F1 /* BannerInfo.swift in Sources */,
+				E59E04FE22389B2500EDAFF7 /* District.swift in Sources */,
 				1183F0DC21D4FC4800435D31 /* TanyaKandidatAPI.swift in Sources */,
+				E59E04FA223893A800EDAFF7 /* Province.swift in Sources */,
 				13F456BB21DA806900CE45F1 /* Meta.swift in Sources */,
 				119123BB2227B2B700617E7C /* GetChallengeDetailResponse.swift in Sources */,
 				842B650E21D9505A00F95C13 /* InformantResponse.swift in Sources */,
@@ -617,14 +673,18 @@
 				13F456B521D531D300CE45F1 /* LinimasaAPI.swift in Sources */,
 				84619D3521DA21A200EB58CF /* Gender.swift in Sources */,
 				13F456BD21DB668D00CE45F1 /* JanjiPolitik.swift in Sources */,
+				E51D65F52240101400FEDD7A /* VillageResponse.swift in Sources */,
 				119123B92227877000617E7C /* PutAskAsOpponentResponse.swift in Sources */,
 				84307F4922005786006DE04B /* FirebaseBroadcastResponse.swift in Sources */,
+				E51D65ED2240026000FEDD7A /* ProvinceResponse.swift in Sources */,
 				84A945AC2221435E00944C6B /* CreateChallengeResponse.swift in Sources */,
 				84F1F21521E9CD81004515A4 /* AccountResponse.swift in Sources */,
 				84B2669D21D4BB1400C7B783 /* PantauRefreshResponse.swift in Sources */,
 				84FE6EB821D5F374009A0F55 /* BaseResponse.swift in Sources */,
 				119C89CF222F975600A7C9B5 /* WordsResponse.swift in Sources */,
 				84B2526421CBDE2600565D82 /* PantauAuthAPI.swift in Sources */,
+				E5C2E6B02236DAB100DA600B /* HitungAPI.swift in Sources */,
+				E51D65F32240100900FEDD7A /* Village.swift in Sources */,
 				137A2A0121E3C80F00F19072 /* TrendResponse.swift in Sources */,
 				84EEEC292243537C001D993D /* DeleteChallengeResponse.swift in Sources */,
 				84FE6EB621D5F35E009A0F55 /* User.swift in Sources */,
@@ -633,10 +693,12 @@
 				84B2523521CAC71400565D82 /* RequestLoadingPlugin.swift in Sources */,
 				84B2526621CBFF0C00565D82 /* PantauAuthResponse.swift in Sources */,
 				13F456B921DA7F9A00CE45F1 /* FeedsResponse.swift in Sources */,
+				E5BD7AA92241A5B3002532C0 /* RealCountRequest.swift in Sources */,
 				1143E80621DE50BC003862B6 /* QuizzesResponse.swift in Sources */,
 				13F456BF21DB67C100CE45F1 /* JanjiPolitikResponse.swift in Sources */,
 				84AEFA7E222002BB00F3DC92 /* OpiniumServicesAPI.swift in Sources */,
 				11F7890D220F1E81005AFC8C /* Notif.swift in Sources */,
+				E51D65F1224005F300FEDD7A /* DistrictResponse.swift in Sources */,
 				118149E021EC5E9300192E97 /* UsersResponse.swift in Sources */,
 				84A945B62224080800944C6B /* TwitterUsernameResponse.swift in Sources */,
 				84FE6EB421D5F339009A0F55 /* UserResponse.swift in Sources */,

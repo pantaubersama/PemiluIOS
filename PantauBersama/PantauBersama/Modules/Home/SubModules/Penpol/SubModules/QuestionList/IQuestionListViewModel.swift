@@ -138,7 +138,7 @@ extension IQuestionListViewModel {
     func bannerInfo() -> Observable<BannerInfo> {
         return NetworkService.instance
             .requestObject(
-                LinimasaAPI.getBannerInfos(pageName: "tanya"),
+                LinimasaAPI.getBannerInfos(pageName: BannerPage.tanya),
                 c: BaseResponse<BannerInfoResponse>.self
             )
             .map{ ($0.data.bannerInfo) }

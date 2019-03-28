@@ -180,7 +180,7 @@ class LiniPersonalViewModel: ILiniWordstadiumViewModel, ILiniWordstadiumViewMode
     private func bannerInfo() -> Observable<BannerInfo> {
         return NetworkService.instance
             .requestObject(
-                LinimasaAPI.getBannerInfos(pageName: "debat_personal"),
+                LinimasaAPI.getBannerInfos(pageName: BannerPage.tantangan),
                 c: BaseResponse<BannerInfoResponse>.self
             )
             .map{ ($0.data.bannerInfo) }

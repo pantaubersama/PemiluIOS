@@ -29,7 +29,6 @@ class LiniWordstadiumViewController: UITableViewController, ILiniWordstadiumView
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         tableView.delegate = nil
         tableView.dataSource = nil
         tableView.estimatedRowHeight = 44.0

@@ -224,7 +224,7 @@ class PilpresViewModel: ViewModelType {
     private func bannerInfo() -> Observable<BannerInfo> {
         return NetworkService.instance
             .requestObject(
-                LinimasaAPI.getBannerInfos(pageName: "pilpres"),
+                LinimasaAPI.getBannerInfos(pageName: BannerPage.pilpres),
                 c: BaseResponse<BannerInfoResponse>.self
             )
             .map{ ($0.data.bannerInfo) }
