@@ -11,9 +11,9 @@ import UIKit
 enum PantauBarKind: Int {
     case linimasa
     case penpol // pendidikan politik
-//    case wordstadium
+    case wordstadium
 //    case lapor
-//    case merayakan
+    case merayakan
     
     var title: String? {
         switch self {
@@ -21,12 +21,10 @@ enum PantauBarKind: Int {
             return "Menyerap"
         case .penpol:
             return "Menggali"
-//        case .wordstadium:
-//            return "Menguji"
-//        case .lapor:
-//            return "Menjaga"
-//        case .merayakan:
-//            return "Merayakan"
+        case .wordstadium:
+            return "Menguji"
+        case .merayakan:
+            return "Merayakan"
         }
     }
     
@@ -36,12 +34,10 @@ enum PantauBarKind: Int {
             return #imageLiteral(resourceName: "icLinimasaInactive")
         case .penpol:
             return #imageLiteral(resourceName: "icPendidikanPolitikInactive")
-//        case .wordstadium:
-//            return #imageLiteral(resourceName: "icWordstadiumInactive")
-//        case .lapor:
-//            return #imageLiteral(resourceName: "icLaporInactive")
-//        case .merayakan:
-//            return #imageLiteral(resourceName: "icHitungSuaraInactive")
+        case .wordstadium:
+            return #imageLiteral(resourceName: "icWordstadiumInactive")
+        case .merayakan:
+            return #imageLiteral(resourceName: "icHitungSuaraInactive")
         }
     }
     
@@ -51,12 +47,10 @@ enum PantauBarKind: Int {
             return #imageLiteral(resourceName: "icLinimasaActive")
         case .penpol:
             return #imageLiteral(resourceName: "icPendidikanPolitikActive")
-//        case .wordstadium:
-//            return #imageLiteral(resourceName: "icWordstadiumActive")
-//        case .lapor:
-//            return #imageLiteral(resourceName: "icLaporActive")
-//        case .merayakan:
-//            return #imageLiteral(resourceName: "icHitungSuaraActive")
+        case .wordstadium:
+            return #imageLiteral(resourceName: "icWordstadiumActive")
+        case .merayakan:
+            return #imageLiteral(resourceName: "icHitungSuaraActive")
         }
     }
     
