@@ -19,7 +19,10 @@ class WordstadiumListViewModel: ViewModelType {
     struct Input {
         let backTriggger: AnyObserver<Void>
         let refreshTrigger: AnyObserver<Void>
-        let itemSelectedTrigger: AnyObserver<Challenge>
+        let nextTrigger: AnyObserver<Void>
+        let itemSelectedTrigger: AnyObserver<IndexPath>
+        let moreTrigger: AnyObserver<Challenge>
+        let moreMenuTrigger: AnyObserver<WordstadiumType>
     }
     
     struct Output {
@@ -27,12 +30,17 @@ class WordstadiumListViewModel: ViewModelType {
         let isLoading: Driver<Bool>
         let error: Driver<Error>
         let itemSelected: Driver<Void>
+        let moreSelectedO: Driver<Challenge>
+        let moreMenuSelectedO: Driver<String>
     }
     
     private var navigator: WordstadiumListNavigator
     private let backSubject = PublishSubject<Void>()
     private let refreshSubject = PublishSubject<Void>()
-    private let itemSelectedSubject = PublishSubject<Challenge>()
+    private let itemSelectedSubject = PublishSubject<IndexPath>()
+    private let moreSubject = PublishSubject<Challenge>()
+    private let moreMenuSubject = PublishSubject<WordstadiumType>()
+    private let nextSubject = PublishSubject<Void>()
     
     let errorTracker = ErrorTracker()
     let activityIndicator = ActivityIndicator()
@@ -43,56 +51,78 @@ class WordstadiumListViewModel: ViewModelType {
         
         input = Input(backTriggger: backSubject.asObserver(),
                       refreshTrigger: refreshSubject.asObserver(),
-                      itemSelectedTrigger: itemSelectedSubject.asObserver())
-        
+                      nextTrigger: nextSubject.asObserver(),
+                      itemSelectedTrigger: itemSelectedSubject.asObserver(),
+                      moreTrigger: moreSubject.asObserver(),
+                      moreMenuTrigger: moreMenuSubject.asObserver())
         
         let showItems = refreshSubject.startWith(())
-            .flatMapLatest({ [weak self] (_) -> Observable<[SectionWordstadium]> in
-                guard let `self` = self else { return Observable<[SectionWordstadium]>.just([]) }
-                return self.getChallenge(progress: progress, type: liniType)
+            .flatMapLatest { [unowned self] (_) -> Observable<[SectionWordstadium]> in
+                return self.paginateItems(nextBatchTrigger: self.nextSubject.asObservable(), progress: progress, type: liniType)
+                    .map{( self.transformToSection(challenge: $0, progress: progress, type: liniType) )}
+                    .trackError(self.errorTracker)
+                    .trackActivity(self.activityIndicator)
+                    .catchErrorJustReturn([])
+            }
+            .asDriver(onErrorJustReturn: [])
+        
+        let itemSelected = itemSelectedSubject
+            .withLatestFrom(showItems) { (indexPath, challenges) -> CellModel in
+                return challenges[indexPath.section].items[indexPath.row]
+            }
+            .flatMapLatest({ (item) -> Observable<Void> in
+                switch item {
+                case .standard(let challenge):
+                    return navigator.openChallenge(challenge: challenge)
+                default :
+                    return Observable.empty()
+                }
+
             })
             .asDriverOnErrorJustComplete()
         
-        let itemSelected = itemSelectedSubject
-            .flatMap({ self.navigator.openChallenge(challenge: $0) })
-            .mapToVoid()
+        let moreSelectedO = moreSubject
+            .asObservable()
+            .asDriverOnErrorJustComplete()
+        
+        let moreMenuSelectedO = moreMenuSubject
+            .flatMapLatest { (type) -> Observable<String> in
+                switch type {
+                case .bagikan:
+                    return Observable.just("Tautan telah dibagikan")
+                case .salin:
+                    return Observable.just("Tautan telah tersalin")
+                case .hapus:
+                    return Observable.just("Challenge berhasil di hapus")
+                }
+            }
             .asDriverOnErrorJustComplete()
         
         output = Output(items: showItems,
                         isLoading: activityIndicator.asDriver(),
                         error: errorTracker.asDriver(),
-                        itemSelected: itemSelected)
-    }
-    
-    func getChallenge(progress: ProgressType, type: LiniType) -> Observable<[SectionWordstadium]>{
-        return NetworkService.instance
-            .requestObject(WordstadiumAPI.getChallenges(progress: progress, type: type),
-                           c: BaseResponse<GetChallengeResponse>.self)
-            .map{( self.transformToSection(challenge: $0.data.challenges, progress: progress, type: type) )}
-            .trackError(errorTracker)
-            .trackActivity(activityIndicator)
-            .asObservable()
+                        itemSelected: itemSelected,
+                        moreSelectedO: moreSelectedO,
+                        moreMenuSelectedO: moreMenuSelectedO)
     }
     
     func transformToSection(challenge: [Challenge],progress: ProgressType, type: LiniType) -> [SectionWordstadium] {
-        var item:[Challenge] = []
-        var itemLive:[Challenge] = []
+        var items:[CellModel] = []
         var title: String = ""
         var description: String = ""
         
+        for item in challenge {
+            items.append(CellModel.standard(item))
+        }
+
         switch progress {
         case .liveNow:
-            itemLive = challenge
-            if type == .public {
-                title = "Live Now"
-                description = "Ini daftar debat yang sedang berlangsung. Yuk, pantau bersama!"
-            } else {
-                title = "Challenge in Progress"
-                description = "Daftar tantangan yang perlu respon dan perlu konfirmasi ditampilkan semua disini. Jangan sampai terlewatkan, yaa."
-            }
-            return [SectionWordstadium(title: title, descriptiom: description,type: type, itemType: progress, items: itemLive, itemsLive: itemLive )]
+            title = "Live Now"
+            description = "Ini daftar debat yang sedang berlangsung. Yuk, pantau bersama!"
+        case .inProgress:
+            title = "Challenge in Progress"
+            description = "Daftar tantangan yang perlu respon dan perlu konfirmasi ditampilkan semua disini. Jangan sampai terlewatkan, yaa."
         case .comingSoon:
-            item = challenge
             if type == .public {
                 title = "Debat: Coming Soon"
             } else {
@@ -100,15 +130,13 @@ class WordstadiumListViewModel: ViewModelType {
             }
             description = "Jangan lewatkan daftar debat yang akan segera berlangsung. Catat jadwalnya, yaa."
         case .done:
-            item = challenge
             if type == .public {
                 title = "Debat: Done"
             } else {
                 title = "My Debat: Done"
             }
-            description = "Berikan komentar dan appresiasi pada debat-debat yang sudah selesai. Daftarnya ada di /Users/rahardyan/Documents/Rahardyan Bisma Setya Putra/pantau-bersama-ios/PantauBersama/PantauBersama/Library/CustomView/FooterProfileViewbawah ini:"
+            description = "Berikan komentar dan appresiasi pada debat-debat yang sudah selesai. Daftarnya ada di bawah ini:"
         case .challenge:
-            item = challenge
             if type == .public {
                 title = "Challenge"
                 description = "Daftar Open Challenge yang bisa diikuti. Pilih debat mana yang kamu ingin ambil tantangannya. Be truthful and gentle!"
@@ -118,6 +146,47 @@ class WordstadiumListViewModel: ViewModelType {
             }
         }
         
-        return [SectionWordstadium(title: title, descriptiom: description,type: type, itemType: progress, items: item, itemsLive: itemLive )]
+        return [SectionWordstadium(title: title, descriptiom: description,type: type, itemType: progress, items: items, seeMore: false )]
+    }
+    
+    private func paginateItems(
+        batch: Batch = Batch.initial,
+        nextBatchTrigger: Observable<Void>,
+        progress: ProgressType,
+        type: LiniType) -> Observable<[Challenge]> {
+        return recursivelyPaginateItems(batch: batch, nextBatchTrigger: nextBatchTrigger, progress: progress, type: type)
+            .scan([], accumulator: { (accumulator, page) in
+                return accumulator + page.item
+            })
+    }
+    
+    private func recursivelyPaginateItems(
+        batch: Batch,
+        nextBatchTrigger: Observable<Void>,
+        progress: ProgressType,
+        type: LiniType) -> Observable<Page<[Challenge]>> {
+            return NetworkService.instance
+                .requestObject(WordstadiumAPI.getChallenges(progress: progress, type: type, page: batch.page, perPage: batch.limit),
+                               c: BaseResponse<GetChallengeResponse>.self)
+                .map{( self.transformToPage(response: $0, batch: batch) )}
+                .asObservable()
+                .paginate(nextPageTrigger: nextBatchTrigger, hasNextPage: { (result) -> Bool in
+                    return result.batch.next().hasNextPage
+                }, nextPageFactory: { (result) -> Observable<Page<[Challenge]>> in
+                    self.recursivelyPaginateItems(batch: result.batch.next(), nextBatchTrigger: nextBatchTrigger, progress: progress, type: type)
+                })
+                .share(replay: 1, scope: .whileConnected)
+    }
+    
+    private func transformToPage(response: BaseResponse<GetChallengeResponse>, batch: Batch) -> Page<[Challenge]> {
+        let nextBatch = Batch(offset: batch.offset,
+                              limit: response.data.meta.pages.perPage ?? 10,
+                              total: response.data.meta.pages.total,
+                              count: response.data.meta.pages.page,
+                              page: response.data.meta.pages.page)
+        return Page<[Challenge]>(
+            item: response.data.challenges,
+            batch: nextBatch
+        )
     }
 }

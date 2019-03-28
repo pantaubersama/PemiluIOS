@@ -11,8 +11,9 @@ import Common
 import RxSwift
 import RxCocoa
 import Lottie
+import Networking
 
-class ArgumentRightCell: UITableViewCell, IReusableCell {
+class ArgumentRightCell: UITableViewCell {
     @IBOutlet weak var lbArgument: Label!
     @IBOutlet weak var lbCreatedAt: Label!
     @IBOutlet weak var lbReadEstimation: Label!
@@ -32,18 +33,13 @@ class ArgumentRightCell: UITableViewCell, IReusableCell {
         return clapAnimation
     }()
     
-    private let disposeBag = DisposeBag()
+    private(set) var disposeBag = DisposeBag()
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
         viewClapLottie.addSubview(clapAnimation)
         configureConstraint()
-        
-        btnClap.rx.tap
-            .bind{ [unowned self] in
-                self.clapAnimation.play()
-            }
-            .disposed(by: disposeBag)
     }
     
     private func configureConstraint() {
@@ -54,11 +50,59 @@ class ArgumentRightCell: UITableViewCell, IReusableCell {
             clapAnimation.bottomAnchor.constraint(equalTo: viewClapLottie.bottomAnchor)
             ])
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        disposeBag = DisposeBag()
+        lbClapStatus.isHidden = true
+        clapAnimation.stop()
     }
     
+}
+
+extension ArgumentRightCell: IReusableCell {
+    struct Input {
+        let word: Word
+        let viewModel: LiveDebatViewModel
+    }
+    
+    func configureCell(item: Input) {
+        item.viewModel.output.viewTypeO
+            .drive(onNext: { [weak self](result) in
+                guard let `self` = self else { return }
+                self.configureViewType(viewConfig: result, item: item)
+            })
+            .disposed(by: disposeBag)
+        
+        lbArgument.text = item.word.body
+        lbReadEstimation.text = "\(item.word.readTime ?? 0) menit"
+        lbCreatedAt.text = item.word.createdAt.timeAgoSinceDateForm2
+        lbClapCount.text = "\(item.word.clapCount ?? 0)"
+    }
+    
+    private func configureViewType(viewConfig: (viewType: DebatViewType, author: Audiences?), item: Input) {
+        switch viewConfig.viewType {
+        case .watch:
+            btnClap.isUserInteractionEnabled = true
+            if let isClapped = item.word.isClapped {
+                lbClapStatus.isHidden = !isClapped
+                clapAnimation.play(fromProgress: isClapped ? 1 : 0, toProgress: isClapped ? 1 : 0, withCompletion: nil)
+            }
+            btnClap.rx.tap
+                .map({ item.word.id })
+                .do(onNext: { [unowned self](_) in
+                    self.clapAnimation.play()
+                })
+                .bind(to: item.viewModel.input.clapI)
+                .disposed(by: disposeBag)
+            break
+        case .myTurn, .theirTurn, .participant:
+            btnClap.isUserInteractionEnabled = false
+            lbClapStatus.isHidden = true
+            break
+        case .done:
+            btnClap.isUserInteractionEnabled = false
+            break
+        }
+    }
 }

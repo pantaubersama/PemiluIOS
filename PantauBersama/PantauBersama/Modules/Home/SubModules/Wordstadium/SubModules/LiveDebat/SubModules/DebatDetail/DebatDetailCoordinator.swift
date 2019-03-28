@@ -10,21 +10,24 @@ import Foundation
 import Common
 import RxSwift
 import RxCocoa
+import Networking
 
 protocol DebatDetailNavigator {
     func back() -> Observable<Void>
 }
 
 class DebatDetailCoordinator: BaseCoordinator<Void> {
-    let navigationController: UINavigationController
+    private let navigationController: UINavigationController
+    private let challenge: Challenge
     
-    init(navigationController: UINavigationController) {
+    init(navigationController: UINavigationController, challenge: Challenge) {
         self.navigationController = navigationController
+        self.challenge = challenge
     }
     
     override func start() -> Observable<Void> {
         let viewController = DebatDetailController()
-        let viewModel = DebatDetailViewModel(navigator: self)
+        let viewModel = DebatDetailViewModel(navigator: self, challenge: challenge)
         viewController.viewModel = viewModel
         
         viewController.modalPresentationStyle = .overCurrentContext

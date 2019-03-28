@@ -12,16 +12,18 @@ import Common
 public enum WordstadiumAPI {
     case createChallengeOpen(statement: String, source: String, timeAt: String, timeLimit: Int, topic: String)
     case getChallengeDetail(id: String)
-    case getChallenges(progress: ProgressType, type: LiniType)
+    case getChallenges(progress: ProgressType, type: LiniType, page: Int, perPage: Int)
     case createChallengeDirect(statement: String, source: String, timeAt: String, timeLimit: Int, topic: String, screenName: String, id: String)
     case askAsOpponent(id: String)
     case confirmCandidateAsOpponent(challengeId: String, audienceId: String)
     case confirmDirect(challengeId: String)
     case rejectDirect(challengeId: String, reason: String)
-    case wordsAudience(challengeId: String)
+    case wordsAudience(challengeId: String, page: Int, perPage: Int)
     case commentAudience(challengeId: String, words: String)
     case fighterAttack(challengeId: String, words: String)
-    case wordsFighter(challengeId: String)
+    case wordsFighter(challengeId: String, page: Int, perPage: Int)
+    case deleteOpenChallenge(challengeId: String)
+    case clapWord(wordId: String)
 }
 
 extension WordstadiumAPI: TargetType {
@@ -43,7 +45,7 @@ extension WordstadiumAPI: TargetType {
         switch self {
         case .createChallengeOpen:
             return "/word_stadium/v1/challenges/open"
-        case .getChallenges(let (_,type)):
+        case .getChallenges(let (_,type,_,_)):
             return "/word_stadium/v1/challenges/\(type.url)"
         case .createChallengeDirect:
             return "/word_stadium/v1/challenges/direct"
@@ -65,6 +67,10 @@ extension WordstadiumAPI: TargetType {
             return "/word_stadium/v1/words/fighter/attack"
         case .wordsFighter:
             return "/word_stadium/v1/words/fighter"
+        case .deleteOpenChallenge(let id):
+            return "/word_stadium/v1/challenges/open/delete/\(id)"
+        case .clapWord:
+            return "/word_stadium/v1/words/clap"
         }
     }
     
@@ -78,8 +84,11 @@ extension WordstadiumAPI: TargetType {
         case .askAsOpponent,
              .confirmCandidateAsOpponent,
              .confirmDirect,
-             .rejectDirect:
+             .rejectDirect,
+             .clapWord:
             return .put
+        case .deleteOpenChallenge:
+            return .delete
         default:
             return .get
         }
@@ -87,9 +96,11 @@ extension WordstadiumAPI: TargetType {
     
     public var parameters: [String: Any]? {
         switch self {
-        case .getChallenges(let (progress,_)):
+        case .getChallenges(let (progress,_, page, perPage)):
             return [
-                "progress": progress.text
+                "progress": progress.text,
+                "page": page,
+                "per_page": perPage
             ]
         case .askAsOpponent(let id):
             return [
@@ -110,13 +121,21 @@ extension WordstadiumAPI: TargetType {
                 "challenge_id": challengeId,
                 "words": words
             ]
-        case .wordsAudience(let challengeId):
+        case .wordsAudience(let (challengeId, page, perPage)):
             return [
-                "challenge_id": challengeId
+                "challenge_id": challengeId,
+                "page": page,
+                "per_page": perPage
             ]
-        case .wordsFighter(let challengeId):
+        case .wordsFighter(let (challengeId, page, perPage)):
             return [
-                "challenge_id": challengeId
+                "challenge_id": challengeId,
+                "page": page,
+                "per_page": perPage
+            ]
+        case .clapWord(let wordId):
+            return [
+                "word_id": wordId
             ]
         default:
             return nil

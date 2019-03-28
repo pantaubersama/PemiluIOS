@@ -22,15 +22,17 @@ final class TooltipCoordinator: BaseCoordinator<TooltipResult> {
     
     private let navigationController: UINavigationController!
     private let viewController: TooltipView
+    private let liniType: LiniType
     
-    init(navigationController: UINavigationController) {
+    init(navigationController: UINavigationController, liniType: LiniType) {
         self.navigationController = navigationController
         self.viewController = TooltipView()
+        self.liniType = liniType
     }
     
     override func start() -> Observable<CoordinationResult> {
         let viewModel = TooltipViewModel(navigator: self)
-        let viewController = TooltipView()
+        let viewController = TooltipView(type: self.liniType)
         viewController.viewModel = viewModel
         viewController.providesPresentationContextTransitionStyle = true
         viewController.definesPresentationContext = true
@@ -51,25 +53,25 @@ final class TooltipCoordinator: BaseCoordinator<TooltipResult> {
 extension TooltipCoordinator: TooltipNavigator {
     func launchChallenge() -> Observable<Void> {
         self.navigationController.dismiss(animated: true, completion: nil)
-        let wordstadiumListCoordinator = WordstadiumListCoordinator(navigationController: navigationController, progressType: .challenge, liniType: .public)
+        let wordstadiumListCoordinator = WordstadiumListCoordinator(navigationController: navigationController, progressType: .challenge, liniType: self.liniType)
         return coordinate(to: wordstadiumListCoordinator)
     }
     
     func launchDebatDone() -> Observable<Void> {
         self.navigationController.dismiss(animated: true, completion: nil)
-        let wordstadiumListCoordinator = WordstadiumListCoordinator(navigationController: navigationController, progressType: .done, liniType: .public)
+        let wordstadiumListCoordinator = WordstadiumListCoordinator(navigationController: navigationController, progressType: .done, liniType: self.liniType)
         return coordinate(to: wordstadiumListCoordinator)
     }
     
     func launchComingSoon() -> Observable<Void> {
         self.navigationController.dismiss(animated: true, completion: nil)
-        let wordstadiumListCoordinator = WordstadiumListCoordinator(navigationController: navigationController, progressType: .comingSoon, liniType: .public)
+        let wordstadiumListCoordinator = WordstadiumListCoordinator(navigationController: navigationController, progressType: .comingSoon, liniType: self.liniType)
         return coordinate(to: wordstadiumListCoordinator)
     }
     
     func launchDebatLive() -> Observable<Void> {
         self.navigationController.dismiss(animated: true, completion: nil)
-        let wordstadiumListCoordinator = WordstadiumListCoordinator(navigationController: navigationController, progressType: .liveNow, liniType: .public)
+        let wordstadiumListCoordinator = WordstadiumListCoordinator(navigationController: navigationController, progressType: .liveNow, liniType: self.liniType)
         return coordinate(to: wordstadiumListCoordinator)
     }
     

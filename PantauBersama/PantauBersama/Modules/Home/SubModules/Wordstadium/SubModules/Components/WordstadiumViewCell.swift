@@ -19,9 +19,11 @@ class WordstadiumViewCell: UITableViewCell{
     @IBOutlet weak var titleIv: UIImageView!
     @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var seeMoreBtn: UIButton!
+    @IBOutlet weak var emptyView: UIView!
     
-    private var wordstadium: SectionWordstadium!
+    private var challenges: [Challenge]!
     private var viewModel: ILiniWordstadiumViewModel!
+    private var type: LiniType!
     
     private var disposeBag : DisposeBag?
     
@@ -42,7 +44,7 @@ class WordstadiumViewCell: UITableViewCell{
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        
+        titleIv.image = nil
         disposeBag = nil
     }
     
@@ -53,35 +55,40 @@ extension WordstadiumViewCell: IReusableCell,UICollectionViewDelegate,UICollecti
     
     
     struct Input {
-        let wordstadium: SectionWordstadium
+        let challenges: [Challenge]
         let viewModel : ILiniWordstadiumViewModel
+        let sectionData: SectionWordstadium
     }
     
     func configureCell(item: Input) {
-        self.wordstadium = item.wordstadium
         self.viewModel = item.viewModel
+        self.challenges = item.challenges
+        self.type = item.sectionData.type
+
+        self.titleLbl.text = item.sectionData.title
         
-        self.titleLbl.text = item.wordstadium.title
-        
-        switch item.wordstadium.type {
+        switch item.sectionData.type {
         case .public:
             self.titleIv.image = UIImage(named: "icWordLive")
         case .personal:
             self.titleIv.image = UIImage(named: "icWordChallange")
         }
         
+        self.emptyView.isHidden = item.challenges.count > 0
+        self.seeMoreBtn.isHidden = !item.sectionData.seeMore
+        
         let bag = DisposeBag()
         
         seeMoreBtn.rx.tap
-            .map({ item.wordstadium })
+            .map({ item.sectionData })
             .bind(to: item.viewModel.input.seeMoreI)
             .disposed(by: bag)
 
         self.collectionView.rx.itemSelected
             .map{(indexPath) in
-                return self.wordstadium.itemsLive[indexPath.row]
+                return self.challenges[indexPath.row]
             }
-            .bind(to: item.viewModel.input.itemSelectedI)
+            .bind(to: item.viewModel.input.collectionSelectedI)
             .disposed(by: bag)
         
         disposeBag = bag
@@ -89,15 +96,14 @@ extension WordstadiumViewCell: IReusableCell,UICollectionViewDelegate,UICollecti
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.wordstadium.itemsLive.count
+        return self.challenges.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let challenge = self.wordstadium.itemsLive[indexPath.row]
         let collection = collectionView.dequeueReusableCell(indexPath: indexPath) as WordstadiumCollectionCell
-        collection.configureCell(item: WordstadiumCollectionCell.Input(type: self.wordstadium.type, wordstadium: challenge))
+        collection.configureCell(item: WordstadiumCollectionCell.Input(type: self.type, wordstadium: self.challenges[indexPath.row]))
         collection.moreMenuBtn.rx.tap
-            .map({ challenge })
+            .map({ self.challenges[indexPath.row] })
             .bind(to: self.viewModel.input.moreI)
             .disposed(by: self.disposeBag!)
         return collection

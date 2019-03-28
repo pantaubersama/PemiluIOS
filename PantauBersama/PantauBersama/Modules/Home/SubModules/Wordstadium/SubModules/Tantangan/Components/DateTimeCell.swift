@@ -73,8 +73,14 @@ extension DateTimeCell: IReusableCell {
             tvJam.text = item.time
         }
         
-        let currentDate = NSDate()
-        datePicker.minimumDate = currentDate as Date
+        var oneDayFromNow: Date {
+            return (Calendar.current as NSCalendar).date(byAdding: .day, value: 1, to: Date())!
+        }
+        var oneMonthFromNow: Date {
+            return (Calendar.current as NSCalendar).date(byAdding: .month, value: 1, to: Date())!
+        }
+        datePicker.minimumDate = oneDayFromNow
+        datePicker.maximumDate = oneMonthFromNow
         
         datePicker.rx.date
             .skip(1)

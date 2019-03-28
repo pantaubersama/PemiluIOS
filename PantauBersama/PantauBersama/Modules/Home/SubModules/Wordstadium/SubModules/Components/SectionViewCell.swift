@@ -38,6 +38,8 @@ extension SectionViewCell: IReusableCell {
         titleLbl.text = item.title
         
         switch item.type {
+        case .comingSoon:
+            titleIv.image = UIImage(named: "icDebatComingsoon")
         case .done:
             titleIv.image = UIImage(named: "icDebatDone")
         case .challenge:

@@ -14,7 +14,7 @@ import Networking
 
 public protocol LiveDebatNavigator {
     func back() -> Observable<Void>
-    func launchDetail() -> Observable<Void>
+    func launchDetail(challenge: Challenge) -> Observable<Void>
     func showComment() -> Observable<Void>
 }
 
@@ -23,22 +23,21 @@ public enum DebatViewType {
     case myTurn
     case theirTurn
     case done
+    case participant
 }
 
 class LiveDebatCoordinator: BaseCoordinator<Void> {
     private let navigationController: UINavigationController
-    private let viewType: DebatViewType
     private let challenge: Challenge
     
-    init(navigationController: UINavigationController, challenge: Challenge, viewType: DebatViewType) {
+    init(navigationController: UINavigationController, challenge: Challenge) {
         self.navigationController = navigationController
-        self.viewType = viewType
         self.challenge = challenge
     }
     
     override func start() -> Observable<Void> {
         let viewController = LiveDebatController()
-        let viewModel = LiveDebatViewModel(navigator: self, challenge: self.challenge, viewType: self.viewType)
+        let viewModel = LiveDebatViewModel(navigator: self, challenge: self.challenge)
         viewController.hidesBottomBarWhenPushed = true
         viewController.viewModel = viewModel
         
@@ -53,13 +52,13 @@ extension LiveDebatCoordinator: LiveDebatNavigator {
         return Observable.never()
     }
     
-    func launchDetail() -> Observable<Void> {
-        let debatDetailCoordinator = DebatDetailCoordinator(navigationController: self.navigationController)
+    func launchDetail(challenge: Challenge) -> Observable<Void> {
+        let debatDetailCoordinator = DebatDetailCoordinator(navigationController: self.navigationController, challenge: challenge)
         return coordinate(to: debatDetailCoordinator)
     }
     
     func showComment() -> Observable<Void> {
-        let debatCommentCoordinator = DebatCommentCoordinator(navigationController: self.navigationController, viewType: viewType)
+        let debatCommentCoordinator = DebatCommentCoordinator(navigationController: self.navigationController, challenge: self.challenge)
         return coordinate(to: debatCommentCoordinator)
     }
 }

@@ -10,7 +10,6 @@ import UIKit
 import RxSwift
 import RxCocoa
 import Common
-import URLEmbeddedView
 
 enum PernyataanLinkResult {
     case cancel
@@ -32,8 +31,6 @@ class PernyataanCell: UITableViewCell {
     @IBOutlet weak var contraintLinkPreview: NSLayoutConstraint!
     private var disposeBag: DisposeBag!
     
-    let linkPreview = URLEmbeddedView()
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -42,7 +39,8 @@ class PernyataanCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        linkPreview.prepareViewsForReuse()
+        linkPreviewView.ivAvatarLink.af_cancelImageRequest()
+        linkPreviewView.ivAvatarLink.image = nil
         disposeBag = nil
     }
     
@@ -81,19 +79,7 @@ extension PernyataanCell: IReusableCell {
             btnLink.setTitle(item.link, for: .normal)
             btnLink.isHidden = true
             if let linkString = item.link {
-                OGDataProvider.shared.fetchOGData(urlString: linkString, completion: { [unowned self] (data, error) in
-                    if let _ = error {
-                        return
-                    }
-                    DispatchQueue.main.async(execute: {
-                        self.linkPreviewView.lblLink.text = data.sourceUrl?.absoluteString
-                        self.linkPreviewView.lblContent.text = data.siteName
-                        self.linkPreviewView.lblDescContent.text = data.pageDescription
-                        if let avatar = data.imageUrl?.absoluteString {
-                            self.linkPreviewView.ivAvatarLink.af_setImage(withURL: URL(string: avatar)!)
-                        }
-                    })
-                })
+                self.linkPreviewView.configureLink(url: linkString)
             }
             UIView.transition(with: self.linkPreviewView, duration: 0.4, options: .transitionCrossDissolve, animations: { [weak self] in
                 guard let `self` = self else { return }
@@ -143,9 +129,6 @@ extension PernyataanCell: IReusableCell {
         
         btnLink.rx.tap
             .do(onNext: { [unowned self] (_) in
-                OGImageProvider.shared.clearMemoryCache()
-                OGImageProvider.shared.clearAllCache()
-                OGDataProvider.shared.deleteOGData(urlString: item.link ?? "")
                 self.linkPreviewView.ivAvatarLink.image = nil
             })
             .bind(to: item.viewModel.input.pernyataanLinkI)

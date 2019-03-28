@@ -33,9 +33,9 @@ def application_pods
     pod 'lottie-ios'
     pod 'Firebase/Messaging'
     pod 'FacebookSDK'
-    pod 'URLEmbeddedView'
     pod 'FacebookShare'
-    pod 'FSPagerView'   
+    pod 'FSPagerView'  
+    pod 'Texture' 
 end
 
 

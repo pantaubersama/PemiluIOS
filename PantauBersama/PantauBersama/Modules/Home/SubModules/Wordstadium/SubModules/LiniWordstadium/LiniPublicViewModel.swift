@@ -20,7 +20,8 @@ class LiniPublicViewModel: ILiniWordstadiumViewModel, ILiniWordstadiumViewModelI
     var moreI: AnyObserver<Challenge>
     var moreMenuI: AnyObserver<WordstadiumType>
     var seeMoreI: AnyObserver<SectionWordstadium>
-    var itemSelectedI: AnyObserver<Challenge>
+    var itemSelectedI: AnyObserver<IndexPath>
+    var collectionSelectedI: AnyObserver<Challenge>
     
     var bannerO: Driver<BannerInfo>!
     var itemSelectedO: Driver<Void>!
@@ -35,7 +36,8 @@ class LiniPublicViewModel: ILiniWordstadiumViewModel, ILiniWordstadiumViewModelI
     private let moreSubject = PublishSubject<Challenge>()
     private let moreMenuSubject = PublishSubject<WordstadiumType>()
     private let seeMoreSubject = PublishSubject<SectionWordstadium>()
-    private let itemSelectedSubject = PublishSubject<Challenge>()
+    private let itemSelectedSubject = PublishSubject<IndexPath>()
+    private let collectionSelectedSubject = PublishSubject<Challenge>()
     
     internal let errorTracker = ErrorTracker()
     internal let activityIndicator = ActivityIndicator()
@@ -47,6 +49,7 @@ class LiniPublicViewModel: ILiniWordstadiumViewModel, ILiniWordstadiumViewModelI
         moreMenuI = moreMenuSubject.asObserver()
         seeMoreI = seeMoreSubject.asObserver()
         itemSelectedI = itemSelectedSubject.asObserver()
+        collectionSelectedI = collectionSelectedSubject.asObserver()
         
         error = errorTracker.asDriver()
         isLoading = activityIndicator.asDriver()
@@ -67,36 +70,27 @@ class LiniPublicViewModel: ILiniWordstadiumViewModel, ILiniWordstadiumViewModelI
         let seeMoreSelected = seeMoreSubject
             .asObservable()
             .flatMapLatest({ (wordstadium) -> Observable<Void> in
-                return navigator.launchWordstadiumList(wordstadium: wordstadium)
+                return navigator.launchWordstadiumList(progressType: wordstadium.itemType, liniType: wordstadium.type)
             })
             .asDriverOnErrorJustComplete()
         
-        let itemSelected = itemSelectedSubject
+        let colectionSelected = collectionSelectedSubject
             .asObservable()
-            .flatMapLatest({ (wordstadium) -> Observable<Void> in
-                if wordstadium.progress == .liveNow {
-                    return navigator.launchLiveChallenge(wordstadium: wordstadium)
-                } else {
-                    return navigator.launchChallenge(wordstadium: wordstadium)
-                }
+            .flatMapLatest({ (challenge) -> Observable<Void> in
+                return navigator.launchLiveChallenge(wordstadium: challenge)
             })
             .asDriverOnErrorJustComplete()
         
-        itemSelectedO = Driver.merge(infoSelected,seeMoreSelected,itemSelected)
         
         // MARK:
         // Get challenge list
-        itemsO = refreshSubject.startWith(())
+        let itemChallenges = refreshSubject.startWith(())
             .flatMapLatest({ [weak self](_) -> Observable<[SectionWordstadium]> in
                 guard let weakSelf = self else { return Observable.empty() }
                 return weakSelf.getChallenge(progress: .liveNow, type: .public)
-                    .map { [weak self](items) -> [SectionWordstadium] in
+                    .map { [weak self](data) -> [SectionWordstadium] in
                         guard let weakSelf = self else { return [] }
-                        if items.isEmpty {
-                            return []
-                        } else {
-                            return  weakSelf.transformToSection(challenge: items, progress: .liveNow, type: .public)
-                        }
+                        return  weakSelf.transformToSection(data: data, progress: .liveNow, type: .public)
                     }
                     .trackActivity(weakSelf.activityIndicator)
                     .trackError(weakSelf.errorTracker)
@@ -106,14 +100,9 @@ class LiniPublicViewModel: ILiniWordstadiumViewModel, ILiniWordstadiumViewModelI
             .flatMapLatest({ [weak self](challenge) -> Observable<[SectionWordstadium]> in
                 guard let weakSelf = self else { return Observable.empty() }
                 return weakSelf.getChallenge(progress: .comingSoon, type: .public)
-                    .map({ Array($0.prefix(3)) })
-                    .map { [weak self](items) -> [SectionWordstadium] in
+                    .map { [weak self](data) -> [SectionWordstadium] in
                         guard let weakSelf = self else { return [] }
-                        if items.isEmpty {
-                            return challenge
-                        } else {
-                            return  challenge + weakSelf.transformToSection(challenge: items, progress: .comingSoon, type: .public)
-                        }
+                        return challenge + weakSelf.transformToSection(data: data, progress: .comingSoon, type: .public)
                     }
                     .trackActivity(weakSelf.activityIndicator)
                     .trackError(weakSelf.errorTracker)
@@ -123,14 +112,9 @@ class LiniPublicViewModel: ILiniWordstadiumViewModel, ILiniWordstadiumViewModelI
             .flatMapLatest({ [weak self](challenge) -> Observable<[SectionWordstadium]> in
                 guard let weakSelf = self else { return Observable.empty() }
                 return weakSelf.getChallenge(progress: .done, type: .public)
-                    .map({ Array($0.prefix(3)) })
-                    .map { [weak self](items) -> [SectionWordstadium] in
+                    .map { [weak self](data) -> [SectionWordstadium] in
                         guard let weakSelf = self else { return [] }
-                        if items.isEmpty {
-                            return challenge
-                        } else {
-                            return  challenge + weakSelf.transformToSection(challenge: items, progress: .done, type: .public)
-                        }
+                        return  challenge + weakSelf.transformToSection(data: data, progress: .done, type: .public)
                     }
                     .trackActivity(weakSelf.activityIndicator)
                     .trackError(weakSelf.errorTracker)
@@ -140,14 +124,9 @@ class LiniPublicViewModel: ILiniWordstadiumViewModel, ILiniWordstadiumViewModelI
             .flatMapLatest({ [weak self](challenge) -> Observable<[SectionWordstadium]> in
                 guard let weakSelf = self else { return Observable.empty() }
                 return weakSelf.getChallenge(progress: .challenge, type: .public)
-                    .map({ Array($0.prefix(3)) })
-                    .map { [weak self](items) -> [SectionWordstadium] in
+                    .map { [weak self](data) -> [SectionWordstadium] in
                         guard let weakSelf = self else { return [] }
-                        if items.isEmpty {
-                            return challenge
-                        } else {
-                            return  challenge + weakSelf.transformToSection(challenge: items, progress: .challenge, type: .public)
-                        }
+                        return  challenge + weakSelf.transformToSection(data: data, progress: .challenge, type: .public)
                     }
                     .trackActivity(weakSelf.activityIndicator)
                     .trackError(weakSelf.errorTracker)
@@ -155,6 +134,8 @@ class LiniPublicViewModel: ILiniWordstadiumViewModel, ILiniWordstadiumViewModelI
                     .catchErrorJustReturn([])
                 
             }).asDriver(onErrorJustReturn: [])
+        
+        itemsO = itemChallenges
         
         moreSelectedO = moreSubject
             .asObservable()
@@ -167,16 +148,40 @@ class LiniPublicViewModel: ILiniWordstadiumViewModel, ILiniWordstadiumViewModelI
                     return Observable.just("Tautan telah dibagikan")
                 case .salin:
                     return Observable.just("Tautan telah tersalin")
+                case .hapus:
+                    return Observable.just("Challenge berhasil di hapus")
                 }
             }
             .asDriverOnErrorJustComplete()
+        
+        let itemSelected = itemSelectedSubject
+            .withLatestFrom(itemChallenges) { (indexPath, challenges) -> CellModel in
+                return challenges[indexPath.section].items[indexPath.row]
+            }
+            .flatMapLatest({ (item) -> Observable<Void> in
+                switch item {
+                case .standard(let challenge):
+                    if challenge.progress == .liveNow {
+                        return navigator.launchLiveChallenge(wordstadium: challenge)
+                    } else {
+                        return navigator.launchChallenge(wordstadium: challenge)
+                    }
+                default :
+                    return Observable.empty()
+                }
+                
+            })
+            .asDriverOnErrorJustComplete()
+
+        
+        itemSelectedO = Driver.merge(infoSelected,seeMoreSelected,itemSelected,colectionSelected)
         
     }
     
     private func bannerInfo() -> Observable<BannerInfo> {
         return NetworkService.instance
             .requestObject(
-                LinimasaAPI.getBannerInfos(pageName: "debat"),
+                LinimasaAPI.getBannerInfos(pageName: "debat_public"),
                 c: BaseResponse<BannerInfoResponse>.self
             )
             .map{ ($0.data.bannerInfo) }

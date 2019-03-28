@@ -22,6 +22,8 @@ class UserChallengeCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        avatar.image = #imageLiteral(resourceName: "icDummyPerson")
+        avatar.af_cancelImageRequest()
         disposeBag = DisposeBag()
     }
     
@@ -39,10 +41,13 @@ extension UserChallengeCell: IReusableCell {
         let audience: Audiences
         let viewModel: ChallengeViewModel
         let isMyChallenge: Bool
+        let isExpired: Bool
     }
     
     func configureCell(item: Input) {
-        avatar.show(fromURL: item.audience.avatar?.url ?? "")
+        if let avatarAudience = item.audience.avatar?.thumbnail.url {
+            avatar.af_setImage(withURL: URL(string: avatarAudience)!)
+        }
         lblName.text = item.audience.fullName
         lblUsername.text = item.audience.username
         btnConfirm.isHidden = !item.isMyChallenge
@@ -57,11 +62,14 @@ extension UserChallengeCell: IReusableCell {
             .drive()
             .disposed(by: disposeBag)
 
+        /// Force button confirm
+        btnConfirm.isEnabled = !item.isExpired
+        btnConfirm.backgroundColor = item.isExpired ? #colorLiteral(red: 0.9254901961, green: 0.9254901961, blue: 0.9254901961, alpha: 1) : #colorLiteral(red: 1, green: 0.5569574237, blue: 0, alpha: 1)
     }
     
     func configure(data: SearchUserModel) {
         if let url = data.avatar {
-            self.avatar.show(fromURL: url)
+            self.avatar.af_setImage(withURL: URL(string: url)!)
         }
         lblName.text = data.fullName
         lblUsername.text = data.screenName

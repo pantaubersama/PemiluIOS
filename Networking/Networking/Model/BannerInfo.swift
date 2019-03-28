@@ -40,8 +40,8 @@ public enum BannerPage: String, Codable {
     case janji_politik = "janji politik"
     case tanya = "tanya"
     case kuis = "kuis"
-    case debat = "debat"
-    case tantangan = "tantangan"
+    case debat_public = "debat_public"
+    case debat_personal = "debat_personal"
     case unknown
     
     public var title: String? {
@@ -54,9 +54,9 @@ public enum BannerPage: String, Codable {
             return "Tanya"
         case .kuis:
             return "Kuis"
-        case .debat:
+        case .debat_public:
             return "Debat"
-        case .tantangan:
+        case .debat_personal:
             return "Tantangan"
         default:
             return nil
@@ -75,9 +75,9 @@ public enum BannerPage: String, Codable {
         case "Kuis":
             return .kuis
         case "Debat":
-            return .debat
+            return .debat_public
         case "Tantangan":
-            return .tantangan
+            return .debat_personal
         default:
             return .unknown
         }

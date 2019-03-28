@@ -9,28 +9,35 @@ import Foundation
 import RxDataSources
 import Networking
 
+enum CellModel {
+    case live([Challenge])
+    case standard(Challenge)
+    case empty
+}
+
+
 struct SectionWordstadium {
     let title: String
     let descriptiom: String
     let type: LiniType
     let itemType: ProgressType
-    var items: [Challenge]
-    var itemsLive: [Challenge]
+    var items: [CellModel]
+    var seeMore: Bool
     
-    init(title: String,descriptiom: String,type: LiniType,itemType: ProgressType,items: [Challenge], itemsLive: [Challenge]) {
+    init(title: String,descriptiom: String,type: LiniType,itemType: ProgressType,items: [CellModel], seeMore: Bool) {
         self.title = title
         self.descriptiom = descriptiom
         self.type = type
         self.itemType = itemType
         self.items = items
-        self.itemsLive = itemsLive
+        self.seeMore = seeMore
     }
 }
 
 extension SectionWordstadium: SectionModelType {
-    typealias Item = Challenge
+    typealias Item = CellModel
     
-    init(original: SectionWordstadium, items: [Challenge]) {
+    init(original: SectionWordstadium, items: [CellModel]) {
         self = original
         self.items = items
     }

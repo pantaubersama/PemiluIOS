@@ -133,10 +133,46 @@ extension SearchCoordinator: SearchNavigator {
     }
     
     func openQuiz(quiz: QuizModel) -> Observable<Void> {
-        return Observable.never()
+        if !PantauAuthAPI.isLoggedIn {
+            let alert = UIAlertController(title: "Perhatian", message: "Sesi Anda telah berakhir, silahkan login terlebih dahulu", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Login", style: .destructive, handler: { (_) in
+                KeychainService.remove(type: NetworkKeychainKind.token)
+                KeychainService.remove(type: NetworkKeychainKind.refreshToken)
+                // need improve this later
+                // todo using wkwbview or using another framework to handle auth
+                var appCoordinator: AppCoordinator!
+                let disposeBag = DisposeBag()
+                var window: UIWindow?
+                window = UIWindow()
+                appCoordinator = AppCoordinator(window: window!)
+                appCoordinator.start()
+                    .subscribe()
+                    .disposed(by: disposeBag)
+                
+            }))
+            alert.show()
+            
+            return Observable.never()
+        }
+        
+        switch quiz.participationStatus {
+        case .inProgress:
+            let coordinator = QuizOngoingCoordinator(navigationController: self.navigationController, quiz: quiz)
+            return coordinate(to: coordinator)
+        case .finished:
+            let coordinator = QuizResultCoordinator(navigationController: self.navigationController, quiz: quiz, isFromDeeplink: false, participationURL: nil)
+            return coordinate(to: coordinator)
+        case .notParticipating:
+            let coordinator = QuizDetailCoordinator(navigationController: self.navigationController, quizModel: quiz)
+            return coordinate(to: coordinator)
+        }
     }
     
     func shareQuiz(quiz: QuizModel) -> Observable<Void> {
+        // TODO: coordinate to share
+        let share = "Iseng-iseng serius main Quiz ini dulu. Kira-kira masih cocok apa ternyata malah nggak cocok, yaa 😶 #PantauBersama \(AppContext.instance.infoForKey("URL_WEB_SHARE"))/share/kuis/\(quiz.id)"
+        let activityViewController = UIActivityViewController(activityItems: [share as NSString], applicationActivities: nil)
+        self.navigationController.present(activityViewController, animated: true, completion: nil)
         return Observable.never()
     }
     

@@ -23,7 +23,7 @@ final class WordstadiumViewModel: ViewModelType {
         let catatanTrigger: AnyObserver<Void>
         let notificationTrigger: AnyObserver<Void>
         let viewWillAppearTrigger: AnyObserver<Void>
-        let tooltipTriigger: AnyObserver<Void>
+        let tooltipTriigger: AnyObserver<LiniType>
     }
     
     struct Output {
@@ -41,7 +41,7 @@ final class WordstadiumViewModel: ViewModelType {
     private let catatanS = PublishSubject<Void>()
     private let notificationS = PublishSubject<Void>()
     private let viewWillppearS = PublishSubject<Void>()
-    private let tooltipS = PublishSubject<Void>()
+    private let tooltipS = PublishSubject<LiniType>()
     
     init(navigator: WordstadiumNavigator) {
         self.navigator = navigator
@@ -78,8 +78,14 @@ final class WordstadiumViewModel: ViewModelType {
             .asDriverOnErrorJustComplete()
         
         let tooltip = tooltipS
-            .flatMapLatest({ navigator.launchTooltip() })
+            .flatMapLatest({ (type) -> Observable<TooltipResult> in
+                return navigator.launchTooltip(type: type)
+            })
             .asDriverOnErrorJustComplete()
+        
+//        let tooltip = tooltipS
+//            .flatMapLatest({ navigator.launchTooltip() })
+//            .asDriverOnErrorJustComplete()
         
         output = Output(searchSelected: search,
                         profileSelected: profile,
