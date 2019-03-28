@@ -42,7 +42,7 @@ public struct Quiz: Codable {
     public let createdAt: String
     public let createdAtInWord: CreatedAt
     public let participationStatus: String
-    public let shareURL: String
+    public let shareURL: String?
     
     enum CodingKeys: String, CodingKey {
         case id, title, description, image
