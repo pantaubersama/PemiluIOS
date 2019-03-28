@@ -103,7 +103,7 @@ class DetailTPSViewModel: ViewModelType {
             .asDriverOnErrorJustComplete()
         
         let detailPresiden = detailPresidenS
-            .flatMap({ navigator.launchDetailTPSPresiden() })
+            .flatMap({ navigator.launchDetailTPSPresiden(data: self.data) })
             .asDriverOnErrorJustComplete()
         
         let detailDPR = detailDPRS

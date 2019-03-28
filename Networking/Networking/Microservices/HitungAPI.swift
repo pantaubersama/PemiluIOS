@@ -145,6 +145,12 @@ extension HitungAPI: TargetType {
             multipartFormData.append(buildMultipartFormData(key: "latitude", value: "\(data.latitude ?? 0.0)"))
             multipartFormData.append(buildMultipartFormData(key: "longitude", value: "\(data.longitude ?? 0.0)"))
             return multipartFormData
+        case .putCalculations(let parameters):
+            var multipartFormData = [MultipartFormData]()
+            for keyAndValue in parameters {
+             multipartFormData.append(buildMultipartFormData(key: keyAndValue.key, value: "\(keyAndValue.value)"))
+            }
+            return multipartFormData
         default:
             return nil
         }
@@ -168,8 +174,6 @@ extension HitungAPI: TargetType {
             params["village_code"] = villageCode
             params["dapil_id"] = dapilId
             return params
-        case .putCalculations(let parameters):
-            return parameters
         case .getDapils(let provinceCode, let regenciCode, let districtCode, let tingkat):
             return [
                 "province_code": provinceCode,
@@ -232,7 +236,8 @@ extension HitungAPI: TargetType {
     public var task: Task {
         switch self {
         case .postImageRealCount,
-             .postRealCount:
+             .postRealCount,
+             .putCalculations:
             return .uploadMultipart(self.multipartBody ?? [])
         default:
             return .requestParameters(parameters: parameters ?? [:], encoding: parameterEncoding)

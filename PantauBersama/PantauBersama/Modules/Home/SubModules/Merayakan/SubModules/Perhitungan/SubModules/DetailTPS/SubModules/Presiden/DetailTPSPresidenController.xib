@@ -13,6 +13,11 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailTPSPresidenController" customModule="PantauBersama" customModuleProvider="target">
             <connections>
                 <outlet property="suara1Btn" destination="yPy-UB-Tj9" id="Hlq-pe-sSp"/>
+                <outlet property="suara2Btn" destination="w4x-4F-dYt" id="hCr-DK-r3G"/>
+                <outlet property="suara3Btn" destination="OM8-qh-3P5" id="iQP-cn-naC"/>
+                <outlet property="tfTotalInvalidValue" destination="dHB-ak-Vyz" id="BOa-tZ-0sv"/>
+                <outlet property="tfTotalValidValue" destination="TCr-KD-Cn5" id="MHh-kQ-Fx2"/>
+                <outlet property="tfTotalValue" destination="tsg-ZK-kcI" id="9SN-Ak-SJP"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

@@ -16,6 +16,11 @@ class DetailTPSPresidenController: UIViewController {
     private let disposeBag = DisposeBag()
     
     @IBOutlet private var suara1Btn: TPSButton!
+    @IBOutlet weak var suara3Btn: TPSButton!
+    @IBOutlet weak var suara2Btn: TPSButton!
+    @IBOutlet weak var tfTotalInvalidValue: TPSTextField!
+    @IBOutlet weak var tfTotalValidValue: TPSTextField!
+    @IBOutlet weak var tfTotalValue: TPSTextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +42,27 @@ class DetailTPSPresidenController: UIViewController {
         
         suara1Btn.rx_suara
             .bind(to: viewModel.input.suara1I)
-            .disposed(by: disposeBag)        
+            .disposed(by: disposeBag)
+        
+        suara2Btn.rx_suara
+            .bind(to: viewModel.input.suara2I)
+            .disposed(by: disposeBag)
+        
+        suara3Btn.rx_suara
+            .bind(to: viewModel.input.suara3I)
+            .disposed(by: disposeBag)
+        
+        
+        viewModel.output.suara1O
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.suara2O
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.suara3O
+            .drive()
+            .disposed(by: disposeBag)
     }
 }
