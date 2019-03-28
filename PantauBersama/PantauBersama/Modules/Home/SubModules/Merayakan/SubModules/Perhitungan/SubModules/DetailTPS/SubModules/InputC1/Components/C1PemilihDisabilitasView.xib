@@ -157,7 +157,7 @@
                                                                 <userDefinedRuntimeAttribute type="string" keyPath="typeLabel" value="regular"/>
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
-                                                        <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pm5-qq-fcl" customClass="TPSTextField" customModule="PantauBersama" customModuleProvider="target">
+                                                        <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pm5-qq-fcl" customClass="TPSTextField" customModule="PantauBersama" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="28.5" width="116.5" height="38"/>
                                                             <color key="backgroundColor" red="0.99607843139999996" green="0.97254901959999995" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="textColor"/>
@@ -288,7 +288,7 @@
                                                                 <userDefinedRuntimeAttribute type="string" keyPath="typeLabel" value="regular"/>
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
-                                                        <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="s3f-d7-KA7" customClass="TPSTextField" customModule="PantauBersama" customModuleProvider="target">
+                                                        <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="s3f-d7-KA7" customClass="TPSTextField" customModule="PantauBersama" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="28.5" width="116.5" height="38"/>
                                                             <color key="backgroundColor" red="0.99607843139999996" green="0.97254901959999995" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="textColor"/>
@@ -325,6 +325,14 @@
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="rhd-t7-Ip3"/>
+            <connections>
+                <outlet property="txtPilihLaki" destination="tWV-4p-zl8" id="Hr9-DK-fTu"/>
+                <outlet property="txtPilihPerempuan" destination="0mb-Yv-Muw" id="14M-ak-xdM"/>
+                <outlet property="txtPilihTotal" destination="s3f-d7-KA7" id="umq-ud-iAQ"/>
+                <outlet property="txtTerdaftarLaki" destination="9Ft-2Q-TJX" id="vNK-Bn-WU7"/>
+                <outlet property="txtTerdaftarPerempuan" destination="th5-0F-mIf" id="zxo-KU-Hkt"/>
+                <outlet property="txtTerdaftarTotal" destination="pm5-qq-fcl" id="XcV-8m-Qcj"/>
+            </connections>
             <point key="canvasLocation" x="105.59999999999999" y="245.57721139430288"/>
         </view>
     </objects>
