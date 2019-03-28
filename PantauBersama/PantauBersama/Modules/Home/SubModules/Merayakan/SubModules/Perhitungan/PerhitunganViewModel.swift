@@ -119,9 +119,7 @@ class PerhitunganViewModel: ViewModelType {
             .withLatestFrom(feedsItems) { (indexPath, items) -> RealCount in
                 return items[indexPath.row]
             }
-            .flatMapLatest({ _ in
-                return navigator.launchDetailTps()
-            })
+            .flatMapLatest({ navigator.launchDetailTps(data: $0)})
             .asDriverOnErrorJustComplete()
         
         output = Output(createPerhitunganO: createPerhitungan,

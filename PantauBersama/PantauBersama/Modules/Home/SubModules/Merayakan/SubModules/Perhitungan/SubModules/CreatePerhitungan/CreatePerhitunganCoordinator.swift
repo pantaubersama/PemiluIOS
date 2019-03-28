@@ -10,10 +10,11 @@ import Foundation
 import Common
 import RxSwift
 import RxCocoa
+import Networking
 
 protocol CreatePerhitunganNavigator {
     func back() -> Observable<Void>
-    func launchDetailTPS() -> Observable<Void>
+    func launchDetailTPS(data: RealCount) -> Observable<Void>
 }
 
 class CreatePerhitunganCoordinator: BaseCoordinator<Void> {
@@ -40,8 +41,8 @@ extension CreatePerhitunganCoordinator: CreatePerhitunganNavigator {
         return Observable.empty()
     }
     
-    func launchDetailTPS() -> Observable<Void> {
-        let detailTPSCoordinator = DetailTPSCoordinator(navigationController: self.navigationController)
+    func launchDetailTPS(data: RealCount) -> Observable<Void> {
+        let detailTPSCoordinator = DetailTPSCoordinator(navigationController: self.navigationController, data: data)
         return coordinate(to: detailTPSCoordinator)
     }
 }

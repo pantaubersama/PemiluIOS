@@ -35,7 +35,7 @@ public struct RealCount: Codable {
     public var longitude: String
     public var status: RealCountStatus
     public var user: User
-    public var logs: Logs
+    public var logs: Logs?
     
     enum CodingKeys: String, CodingKey {
         case id, tps, province, regency, district, village, latitude, longitude, status, user, logs

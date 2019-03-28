@@ -10,6 +10,7 @@ import Foundation
 import Common
 import RxSwift
 import RxCocoa
+import Networking
 
 class DetailTPSViewModel: ViewModelType {
     struct Input {
@@ -44,12 +45,14 @@ class DetailTPSViewModel: ViewModelType {
         let c1DPDO: Driver<Void>
         let c1DPRDProvO: Driver<Void>
         let c1DPRDKotaO: Driver<Void>
+        let data: Driver<RealCount>
     }
     
     var input: Input
-    var output: Output
+    var output: Output!
     
     private let navigator: DetailTPSNavigator
+    private let data: RealCount
     
     private let successSubmitS = PublishSubject<Void>()
     private let sendDataActionS = PublishSubject<Void>()
@@ -66,8 +69,9 @@ class DetailTPSViewModel: ViewModelType {
     private let c1DPRDKotaS = PublishSubject<Void>()
     private let c1UploadS = PublishSubject<Void>()
     
-    init(navigator: DetailTPSNavigator) {
+    init(navigator: DetailTPSNavigator, data: RealCount) {
         self.navigator = navigator
+        self.data = data
         
         input = Input(
             backI: backS.asObserver(),
@@ -156,7 +160,8 @@ class DetailTPSViewModel: ViewModelType {
             c1DPRO: c1FormDPR,
             c1DPDO: c1FormDPD,
             c1DPRDProvO: c1FormDPRDProv,
-            c1DPRDKotaO: c1FormDPRDKota
+            c1DPRDKotaO: c1FormDPRDKota,
+            data: Driver.just(self.data)
         )
     }
 }

@@ -26,7 +26,7 @@ class CreatePerhitunganViewModel: ViewModelType {
     }
     
     var input: Input
-    var output: Output
+    var output: Output!
     
     private let bag = DisposeBag()
     private let navigator: CreatePerhitunganNavigator
@@ -42,6 +42,9 @@ class CreatePerhitunganViewModel: ViewModelType {
     var coordinate = BehaviorRelay(value: CLLocationCoordinate2D())
     var formattedAddress = BehaviorRelay(value: "")
     
+    private var errorTracker = ErrorTracker()
+    private var activityIndicator = ActivityIndicator()
+    
     init(navigator: CreatePerhitunganNavigator) {
         self.navigator = navigator
         
@@ -54,7 +57,12 @@ class CreatePerhitunganViewModel: ViewModelType {
             .asDriverOnErrorJustComplete()
         
         let detail = detailTPSS
-            .flatMap({ navigator.launchDetailTPS() })
+            .flatMapLatest({ [weak self] (_) -> Observable<RealCountPostRequest> in
+                guard let `self` = self else { return Observable.empty() }
+                return self.createPerhitungan()
+            })
+            .flatMapLatest({ self.navigator.launchDetailTPS(data: $0.realCount )})
+            .mapToVoid()
             .asDriverOnErrorJustComplete()
         
         output = Output(
@@ -110,8 +118,15 @@ class CreatePerhitunganViewModel: ViewModelType {
             .disposed(by: bag)
     }
     
-    func createPerhitungan() {
-        print("Request \(createRequest.dictionary)")
+    func createPerhitungan() -> Observable<RealCountPostRequest> {
+        /// TODO: Post Real counts using multipartform POST
+       return NetworkService.instance.requestObject(HitungAPI.postRealCount(request: createRequest),
+                                                    c: BaseResponse<RealCountPostRequest>.self)
+            .map({ $0.data })
+            .trackError(self.errorTracker)
+            .trackActivity(self.activityIndicator)
+            .catchErrorJustComplete()
+            .asObservable()
     }
     
     private func getRegencies(provinceCode: Int) {

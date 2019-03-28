@@ -142,6 +142,14 @@ extension DetailTPSController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell() as DetailTPSHeader
+            
+            self.viewModel.output.data
+                .drive(onNext: { [weak self] (data) in
+                    guard let `self` = self else { return }
+                    cell.configureCell(item: DetailTPSHeader.Input(viewModel: self.viewModel, data: data))
+                })
+                .disposed(by: self.disposeBag)
+            
             return cell
             
         } else if indexPath.row == (elections.count + 1) {

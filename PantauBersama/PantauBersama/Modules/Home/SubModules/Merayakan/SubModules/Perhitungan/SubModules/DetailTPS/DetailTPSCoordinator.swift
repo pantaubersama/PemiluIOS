@@ -10,6 +10,7 @@ import Foundation
 import Common
 import RxSwift
 import RxCocoa
+import Networking
 
 protocol DetailTPSNavigator {
     func back() -> Observable<Void>
@@ -28,14 +29,16 @@ protocol DetailTPSNavigator {
 class DetailTPSCoordinator: BaseCoordinator<Void> {
     private let navigationController: UINavigationController
     private var viewModel: DetailTPSViewModel?
+    private var data: RealCount
     
-    init(navigationController: UINavigationController) {
+    init(navigationController: UINavigationController, data: RealCount) {
         self.navigationController = navigationController
+        self.data = data
     }
     
     override func start() -> Observable<Void> {
         let viewController = DetailTPSController()
-        viewModel = DetailTPSViewModel(navigator: self)
+        viewModel = DetailTPSViewModel(navigator: self, data: self.data)
         viewController.viewModel = viewModel!
         viewController.hidesBottomBarWhenPushed = true
         

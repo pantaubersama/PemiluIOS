@@ -135,6 +135,16 @@ extension HitungAPI: TargetType {
                 multipartFormData.append(buildMultipartFormData(name: "file", value: image))
             }
             return multipartFormData
+        case .postRealCount(let data):
+            var multipartFormData = [MultipartFormData]()
+            multipartFormData.append(buildMultipartFormData(key: "tps", value: "\(data.tps ?? 0)"))
+            multipartFormData.append(buildMultipartFormData(key: "province_code", value: "\(data.provinceCode ?? 0)"))
+            multipartFormData.append(buildMultipartFormData(key: "regency_code", value: "\(data.regencyCode ?? 0)"))
+            multipartFormData.append(buildMultipartFormData(key: "district_code", value: "\(data.districtCode ?? 0)"))
+            multipartFormData.append(buildMultipartFormData(key: "village_code", value: "\(data.villageCode ?? 0)"))
+            multipartFormData.append(buildMultipartFormData(key: "latitude", value: "\(data.latitude ?? 0.0)"))
+            multipartFormData.append(buildMultipartFormData(key: "longitude", value: "\(data.longitude ?? 0.0)"))
+            return multipartFormData
         default:
             return nil
         }
@@ -142,8 +152,6 @@ extension HitungAPI: TargetType {
     
     public var parameters: [String: Any]? {
         switch self {
-        case .postRealCount(let request):
-            return request.dictionary ?? [:]            
         case .putRealCount(let id, let noTps):
             return [
                 "tps": noTps,
@@ -223,7 +231,8 @@ extension HitungAPI: TargetType {
     
     public var task: Task {
         switch self {
-        case .postImageRealCount:
+        case .postImageRealCount,
+             .postRealCount:
             return .uploadMultipart(self.multipartBody ?? [])
         default:
             return .requestParameters(parameters: parameters ?? [:], encoding: parameterEncoding)
