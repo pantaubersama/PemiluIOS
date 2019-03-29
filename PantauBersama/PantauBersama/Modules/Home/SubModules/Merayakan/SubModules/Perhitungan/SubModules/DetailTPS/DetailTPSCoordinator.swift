@@ -29,16 +29,16 @@ protocol DetailTPSNavigator {
 class DetailTPSCoordinator: BaseCoordinator<Void> {
     private let navigationController: UINavigationController
     private var viewModel: DetailTPSViewModel?
-    private var data: RealCount
+    private let realCount: RealCount
     
-    init(navigationController: UINavigationController, data: RealCount) {
+    init(navigationController: UINavigationController, realCount: RealCount) {
         self.navigationController = navigationController
-        self.data = data
+        self.realCount = realCount
     }
     
     override func start() -> Observable<Void> {
         let viewController = DetailTPSController()
-        viewModel = DetailTPSViewModel(navigator: self, data: self.data)
+        viewModel = DetailTPSViewModel(navigator: self, realCount: realCount)
         viewController.viewModel = viewModel!
         viewController.hidesBottomBarWhenPushed = true
         

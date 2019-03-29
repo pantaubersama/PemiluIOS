@@ -69,15 +69,22 @@ class PerhitunganViewModel: ViewModelType {
             .flatMap({ navigator.launchCreatePerhitungan() })
             .asDriverOnErrorJustComplete()
         
+        // MARK
+        // Get user data from userDefaults
+        let userData: Data? = UserDefaults.Account.get(forKey: .me)
+        let user = try? JSONDecoder().decode(UserResponse.self, from: userData ?? Data())
+        
         // MARK:
         // Get feeds pagination
         let feedsItems = refreshSubject.startWith(())
             .flatMapLatest { [unowned self] (_) -> Observable<[RealCount]> in
-                return self.paginateItems(nextBatchTrigger: self.nextSubject.asObservable(), userId: nil, villageCode: nil, dapilId: nil)
+                return self.paginateItems(nextBatchTrigger: self.nextSubject.asObservable(), userId: user?.user.id , villageCode: nil, dapilId: nil)
                     .trackError(self.errorTracker)
                     .trackActivity(self.activityIndicator)
                     .catchErrorJustReturn([])
-            }
+            }.map({ (items) in
+                return [RealCount()] + items
+            })
             .asDriver(onErrorJustReturn: [])
         
         // MARK:
@@ -119,7 +126,9 @@ class PerhitunganViewModel: ViewModelType {
             .withLatestFrom(feedsItems) { (indexPath, items) -> RealCount in
                 return items[indexPath.row]
             }
-            .flatMapLatest({ navigator.launchDetailTps(data: $0)})
+            .flatMapLatest({ (data) in
+                return navigator.launchDetailTps(realCount: data)
+            })
             .asDriverOnErrorJustComplete()
         
         output = Output(createPerhitunganO: createPerhitungan,
@@ -188,7 +197,7 @@ class PerhitunganViewModel: ViewModelType {
             .asObservable()
             .catchErrorJustComplete()
     }
-    
+
 }
 
 

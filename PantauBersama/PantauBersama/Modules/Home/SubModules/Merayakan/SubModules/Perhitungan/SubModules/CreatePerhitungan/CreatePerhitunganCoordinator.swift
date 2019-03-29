@@ -14,7 +14,7 @@ import Networking
 
 protocol CreatePerhitunganNavigator {
     func back() -> Observable<Void>
-    func launchDetailTPS(data: RealCount) -> Observable<Void>
+    func launchDetailTPS(realCount: RealCount) -> Observable<Void>
 }
 
 class CreatePerhitunganCoordinator: BaseCoordinator<Void> {
@@ -41,8 +41,8 @@ extension CreatePerhitunganCoordinator: CreatePerhitunganNavigator {
         return Observable.empty()
     }
     
-    func launchDetailTPS(data: RealCount) -> Observable<Void> {
-        let detailTPSCoordinator = DetailTPSCoordinator(navigationController: self.navigationController, data: data)
+    func launchDetailTPS(realCount: RealCount) -> Observable<Void> {
+        let detailTPSCoordinator = DetailTPSCoordinator(navigationController: self.navigationController, realCount: realCount)
         return coordinate(to: detailTPSCoordinator)
     }
 }

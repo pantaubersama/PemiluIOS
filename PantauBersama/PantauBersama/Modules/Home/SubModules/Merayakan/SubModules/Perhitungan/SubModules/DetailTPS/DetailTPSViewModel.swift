@@ -15,7 +15,10 @@ import Networking
 class DetailTPSViewModel: ViewModelType {
     struct Input {
         let backI: AnyObserver<Void>
+        let moreI: AnyObserver<RealCount>
+        let moreMenuI: AnyObserver<PerhitunganType>
         let sendDataActionI: AnyObserver<Void>
+        let submitActionI: AnyObserver<Void>
         let successSubmitI: AnyObserver<Void>
         let detailPresidenI: AnyObserver<Void>
         let detailDPRI: AnyObserver<Void>
@@ -32,7 +35,10 @@ class DetailTPSViewModel: ViewModelType {
     
     struct Output {
         let backO: Driver<Void>
+        let moreO: Driver<RealCount>
+        let moreMenuO: Driver<Void>
         let sendDataActionO: Driver<Void>
+        let submitActionO: Driver<Void>
         let successSubmitO: Driver<Void>
         let detailPresidenO: Driver<Void>
         let detailDPRO: Driver<Void>
@@ -45,7 +51,7 @@ class DetailTPSViewModel: ViewModelType {
         let c1DPDO: Driver<Void>
         let c1DPRDProvO: Driver<Void>
         let c1DPRDKotaO: Driver<Void>
-        let data: Driver<RealCount>
+        let realCountO: Driver<RealCount>
     }
     
     var input: Input
@@ -54,8 +60,11 @@ class DetailTPSViewModel: ViewModelType {
     private let navigator: DetailTPSNavigator
     private let data: RealCount
     
+    private let moreS = PublishSubject<RealCount>()
+    private let moreMenuS = PublishSubject<PerhitunganType>()
     private let successSubmitS = PublishSubject<Void>()
     private let sendDataActionS = PublishSubject<Void>()
+    private let submitActionS = PublishSubject<Void>()
     private let backS = PublishSubject<Void>()
     private let detailPresidenS = PublishSubject<Void>()
     private let detailDPRS = PublishSubject<Void>()
@@ -69,13 +78,19 @@ class DetailTPSViewModel: ViewModelType {
     private let c1DPRDKotaS = PublishSubject<Void>()
     private let c1UploadS = PublishSubject<Void>()
     
-    init(navigator: DetailTPSNavigator, data: RealCount) {
+    let errorTracker = ErrorTracker()
+    let activityIndicator = ActivityIndicator()
+    
+    init(navigator: DetailTPSNavigator, realCount: RealCount) {
         self.navigator = navigator
-        self.data = data
+        self.data = realCount
         
         input = Input(
             backI: backS.asObserver(),
+            moreI: moreS.asObserver(),
+            moreMenuI: moreMenuS.asObserver(),
             sendDataActionI: sendDataActionS.asObserver(),
+            submitActionI: submitActionS.asObserver(),
             successSubmitI: successSubmitS.asObserver(),
             detailPresidenI: detailPresidenS.asObserver(),
             detailDPRI: detailDPRS.asObserver(),
@@ -97,6 +112,17 @@ class DetailTPSViewModel: ViewModelType {
         let sendDataAction = sendDataActionS
             .flatMap({ navigator.sendData() })
             .asDriverOnErrorJustComplete()
+        
+        let submitAction = submitActionS
+            .flatMap({ (_) in
+                return NetworkService.instance.requestObject(
+                    HitungAPI.publishRealCount(id: realCount.id),
+                    c: BaseResponse<CreateTpsResponse>.self)
+                    .trackError(self.errorTracker)
+                    .trackActivity(self.activityIndicator)
+                    .catchErrorJustComplete()
+            })
+            .mapToVoid().asDriverOnErrorJustComplete()
         
         let successSubmit = successSubmitS
             .flatMap({ navigator.successSubmit() })
@@ -146,9 +172,28 @@ class DetailTPSViewModel: ViewModelType {
             .flatMap({ navigator.launchC1Form(type: .dprdKota) })
             .asDriverOnErrorJustComplete()
         
+        
+        let moreSelected = moreS
+            .asObserver().asDriverOnErrorJustComplete()
+        
+        let moreMenuSelected = moreMenuS
+            .flatMapLatest({ (type) -> Observable<Void> in
+                switch type {
+                case .hapus(let data):
+                    return Observable.empty()
+                case .edit(let data):
+                    return Observable.empty()
+                }
+                
+            })
+            .asDriverOnErrorJustComplete()
+        
         output = Output(
             backO: back,
+            moreO: moreSelected,
+            moreMenuO: moreMenuSelected,
             sendDataActionO: sendDataAction,
+            submitActionO: submitAction,
             successSubmitO: successSubmit,
             detailPresidenO: detailPresiden,
             detailDPRO: detailDPR,
@@ -161,7 +206,7 @@ class DetailTPSViewModel: ViewModelType {
             c1DPDO: c1FormDPD,
             c1DPRDProvO: c1FormDPRDProv,
             c1DPRDKotaO: c1FormDPRDKota,
-            data: Driver.just(self.data)
+            realCountO: Driver.just(realCount)
         )
     }
 }

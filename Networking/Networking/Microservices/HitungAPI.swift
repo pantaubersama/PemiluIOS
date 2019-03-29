@@ -50,7 +50,8 @@ public enum HitungAPI {
     case putRealCount(id: Int, noTps: Int)
     case getRealCount(id: Int)
     case getRealCounts(page: Int, perPage: Int, userId: String?, villageCode: String?, dapilId: String?)
-    case postRealCount(request: RealCountRequest)
+    case postRealCount(noTps: String, province: String, regencies: String, district: String, village: String, lat: Double, long: Double)
+    case publishRealCount(id: String)
 }
 
 extension HitungAPI: TargetType {
@@ -77,6 +78,8 @@ extension HitungAPI: TargetType {
         case .getRealCounts,
              .postRealCount:
             return "/hitung/v1/real_counts"
+        case .publishRealCount(let id):
+            return "/hitung/v1/real_counts/\(id)/draft"
         case .getCalculations,
              .putCalculations:
             return "/hitung/v1/calculations"
@@ -111,7 +114,8 @@ extension HitungAPI: TargetType {
     public var method: Moya.Method {
         switch self {
         case .postImageRealCount,
-             .postRealCount:
+             .postRealCount,
+             .publishRealCount:
             return .post
         case .deleteImages:
             return .delete
@@ -134,16 +138,6 @@ extension HitungAPI: TargetType {
             if let image = image.jpegData(compressionQuality: 0.1) {
                 multipartFormData.append(buildMultipartFormData(name: "file", value: image))
             }
-            return multipartFormData
-        case .postRealCount(let data):
-            var multipartFormData = [MultipartFormData]()
-            multipartFormData.append(buildMultipartFormData(key: "tps", value: "\(data.tps ?? 0)"))
-            multipartFormData.append(buildMultipartFormData(key: "province_code", value: "\(data.provinceCode ?? 0)"))
-            multipartFormData.append(buildMultipartFormData(key: "regency_code", value: "\(data.regencyCode ?? 0)"))
-            multipartFormData.append(buildMultipartFormData(key: "district_code", value: "\(data.districtCode ?? 0)"))
-            multipartFormData.append(buildMultipartFormData(key: "village_code", value: "\(data.villageCode ?? 0)"))
-            multipartFormData.append(buildMultipartFormData(key: "latitude", value: "\(data.latitude ?? 0.0)"))
-            multipartFormData.append(buildMultipartFormData(key: "longitude", value: "\(data.longitude ?? 0.0)"))
             return multipartFormData
         case .putCalculations(let (realCountId, type, invalidVote, candidates, parties)):
             var multipartFormData = [MultipartFormData]()
@@ -173,6 +167,16 @@ extension HitungAPI: TargetType {
                 "hitung_real_count_id": hitungRealCountId,
                 "calculation_type": tingkat.rawValue
             ]
+        case .postRealCount(let (noTps, province, regencies, district, village, lat, long)):
+            return [
+                "tps": noTps,
+                "province_code": province,
+                "regency_code": regencies,
+                "district_code": district,
+                "village_code": village,
+                "latitude": lat,
+                "longitude": long
+            ]
         case .putRealCount(let id, let noTps):
             return [
                 "tps": noTps,
@@ -189,6 +193,8 @@ extension HitungAPI: TargetType {
             params["village_code"] = villageCode
             params["dapil_id"] = dapilId
             return params
+        case .publishRealCount(let id):
+            return ["id": id]
         case .getDapils(let provinceCode, let regenciCode, let districtCode, let tingkat):
             return [
                 "province_code": provinceCode,

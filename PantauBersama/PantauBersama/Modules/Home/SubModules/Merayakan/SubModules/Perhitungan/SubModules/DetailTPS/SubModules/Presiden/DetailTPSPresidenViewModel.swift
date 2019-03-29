@@ -132,7 +132,8 @@ class DetailTPSPresidenViewModel: ViewModelType {
         /// Need configuration array JSON Object candidates
         /// Currently this config support for multipartForm data
         let send = sendSubject
-            .withLatestFrom(Observable.combineLatest(self.candidatesCount, suara3Subject.asObservable()))
+            .withLatestFrom(Observable.combineLatest(self.candidatesCount,
+                                                     suara3Subject.asObservable().startWith(0)))
             .flatMapLatest { [weak self] (c, i) -> Observable<Void> in
                 guard let `self` = self else { return Observable.empty() }
                 var latestValue = c

@@ -14,7 +14,7 @@ protocol PerhitunganNavigator: class {
     var navigationController: UINavigationController! { get }
     func launchPerhitunganDetail() -> Observable<Void>
     func launchCreatePerhitungan() -> Observable<Void>
-    func launchDetailTps(data: RealCount) -> Observable<Void>
+    func launchDetailTps(realCount: RealCount) -> Observable<Void>
     func launchBannerInfo(bannerInfo: BannerInfo) -> Observable<Void>
 }
 
@@ -28,8 +28,8 @@ extension PerhitunganNavigator where Self: BaseCoordinator<Void> {
         return coordinate(to: createPerhitunganCoordinator)
     }
     
-    func launchDetailTps(data: RealCount) -> Observable<Void> {
-        let detailTPSCoordinator = DetailTPSCoordinator(navigationController: navigationController, data: data)
+    func launchDetailTps(realCount: RealCount) -> Observable<Void> {
+        let detailTPSCoordinator = DetailTPSCoordinator(navigationController: navigationController, realCount: realCount)
         return coordinate(to: detailTPSCoordinator)
     }
 }

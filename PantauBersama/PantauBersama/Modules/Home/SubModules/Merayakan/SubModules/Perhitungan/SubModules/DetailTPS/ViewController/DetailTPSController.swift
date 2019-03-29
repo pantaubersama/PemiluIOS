@@ -10,6 +10,7 @@ import UIKit
 import Common
 import RxSwift
 import RxCocoa
+import Networking
 
 struct ElectionType {
     let tag: Int
@@ -23,6 +24,7 @@ class DetailTPSController: UIViewController {
     @IBOutlet weak var btnAction: Button!
     
     var viewModel: DetailTPSViewModel!
+    var realCount: RealCount!
     private let disposeBag = DisposeBag()
     
     fileprivate var elections: [ElectionType] = [
@@ -131,6 +133,52 @@ class DetailTPSController: UIViewController {
         viewModel.output.c1DPRDKotaO
             .drive()
             .disposed(by: disposeBag)
+        
+        viewModel.output.realCountO
+            .drive(onNext: { (data) in
+                self.realCount = data
+                
+                if data.status == .published {
+                    self.btnAction.isEnabled = false
+                    let btnAttr = NSAttributedString(string: "Data Terkirim",
+                                                     attributes: [NSAttributedString.Key.foregroundColor : Color.cyan_warm_light])
+                    self.btnAction.setAttributedTitle(btnAttr, for: .normal)
+                }
+                
+            })
+            .disposed(by: self.disposeBag)
+        
+        viewModel.output.moreO
+            .asObservable()
+            .flatMapLatest({ [weak self] (data) -> Observable<PerhitunganType> in
+                return Observable.create({ (observer) -> Disposable in
+                    
+                    let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+                    let hapus = UIAlertAction(title: "Hapus", style: .default, handler: { (_) in
+                        observer.onNext(PerhitunganType.hapus(data: data))
+                        observer.on(.completed)
+                    })
+                    let edit = UIAlertAction(title: "Edit Data TPS", style: .default, handler: { (_) in
+                        observer.onNext(PerhitunganType.edit(data: data))
+                        observer.on(.completed)
+                    })
+                    let cancel = UIAlertAction(title: "Batal", style: .cancel, handler: nil)
+                    
+                    alert.addAction(hapus)
+                    alert.addAction(edit)
+                    alert.addAction(cancel)
+                    DispatchQueue.main.async {
+                        self?.navigationController?.present(alert, animated: true, completion: nil)
+                    }
+                    return Disposables.create()
+                })
+            })
+            .bind(to: viewModel.input.moreMenuI)
+            .disposed(by: disposeBag)
+        
+        viewModel.output.moreMenuO
+            .drive()
+            .disposed(by: disposeBag)
     }
 }
 
@@ -142,14 +190,16 @@ extension DetailTPSController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell() as DetailTPSHeader
-            
-            self.viewModel.output.data
-                .drive(onNext: { [weak self] (data) in
-                    guard let `self` = self else { return }
-                    cell.configureCell(item: DetailTPSHeader.Input(viewModel: self.viewModel, data: data))
-                })
-                .disposed(by: self.disposeBag)
-            
+            cell.lblTitle.text = "TPS \(realCount.tps)"
+            cell.lblProvinsi.text = realCount.province.name
+            cell.lblKota.text = realCount.regency.name
+            cell.lblKecamatan.text = realCount.district.name
+            cell.lblDesa.text = realCount.village.name
+            cell.btnOption.rx.tap
+                .map({ self.realCount })
+                .bind(to: viewModel.input.moreI)
+                .disposed(by: disposeBag)
+        
             return cell
             
         } else if indexPath.row == (elections.count + 1) {

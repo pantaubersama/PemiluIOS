@@ -56,7 +56,7 @@
                                                     <rect key="frame" x="17" y="17" width="380" height="101"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="1. Jumlah surat suara yang diterima, termasuk surat suara cadangan 2% dari DPT (2+3+4)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eJu-cO-wUZ" customClass="Label" customModule="Common">
-                                                            <rect key="frame" x="0.0" y="0.0" width="264" height="61"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="264" height="29"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" red="0.066666666669999999" green="0.066666666669999999" blue="0.066666666669999999" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -67,7 +67,7 @@
                                                                 <userDefinedRuntimeAttribute type="string" keyPath="typeLabel" value="bm-bold"/>
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
-                                                        <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LJX-2N-vTL" customClass="TPSTextField" customModule="PantauBersama" customModuleProvider="target">
+                                                        <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LJX-2N-vTL" customClass="TPSTextField" customModule="PantauBersama" customModuleProvider="target">
                                                             <rect key="frame" x="280" y="0.0" width="100" height="38"/>
                                                             <color key="backgroundColor" red="0.99607843139999996" green="0.97254901959999995" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
                                                             <constraints>
@@ -75,7 +75,7 @@
                                                                 <constraint firstAttribute="width" constant="100" id="pi7-IQ-G15"/>
                                                             </constraints>
                                                             <nil key="textColor"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits"/>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -102,7 +102,7 @@
                                                     <rect key="frame" x="17" y="17" width="380" height="61"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="2. Jumlah surat suara yang dikembalikan oleh pemilik karena rusak/keliru coblos" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tUd-8d-J9l" customClass="Label" customModule="Common">
-                                                            <rect key="frame" x="0.0" y="0.0" width="264" height="61"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="264" height="29"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" red="0.066666666669999999" green="0.066666666669999999" blue="0.066666666669999999" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -157,7 +157,7 @@
                                                     <rect key="frame" x="17" y="17" width="380" height="81.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="3. Jumlah surat suara yang tidak digunakan/tidak terpakai, termasuk sisa surat suara cadangan" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WR3-QN-chy" customClass="Label" customModule="Common">
-                                                            <rect key="frame" x="0.0" y="0.0" width="264" height="81.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="264" height="43.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" red="0.066666666669999999" green="0.066666666669999999" blue="0.066666666669999999" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -212,7 +212,7 @@
                                                     <rect key="frame" x="17" y="17" width="380" height="41"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="4. Jumlah surat suara yang digunakan" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cmZ-wL-LXY" customClass="Label" customModule="Common">
-                                                            <rect key="frame" x="0.0" y="0.0" width="264" height="41"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="264" height="14.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" red="0.066666666669999999" green="0.066666666669999999" blue="0.066666666669999999" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -286,6 +286,12 @@
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="adB-ve-lJN"/>
+            <connections>
+                <outlet property="txtSuratDigunakan" destination="7v2-sj-4oE" id="TO9-hm-IuW"/>
+                <outlet property="txtSuratDikembalikan" destination="Km7-Eq-yoB" id="9mp-YR-8EW"/>
+                <outlet property="txtSuratDiterima" destination="LJX-2N-vTL" id="BIN-6P-cYZ"/>
+                <outlet property="txtSuratTidakDigunakan" destination="Q10-6p-9x7" id="JAi-CY-WWh"/>
+            </connections>
             <point key="canvasLocation" x="57.600000000000001" y="184.40779610194903"/>
         </view>
     </objects>
