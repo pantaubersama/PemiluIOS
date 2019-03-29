@@ -54,6 +54,9 @@ class CreatePerhitunganViewModel: ViewModelType {
     var formattedAddress = BehaviorRelay(value: "")
 
     
+    private var errorTracker = ErrorTracker()
+    private var activityIndicator = ActivityIndicator()
+    
     init(navigator: CreatePerhitunganNavigator) {
         self.navigator = navigator
         let errorTracker = ErrorTracker()
@@ -149,7 +152,7 @@ class CreatePerhitunganViewModel: ViewModelType {
             })
             .disposed(by: bag)
     }
-    
+
     private func getRegencies(provinceCode: Int) {
         return NetworkService
             .instance

@@ -27,8 +27,8 @@ public enum RealCountImageType: String {
 }
 
 public enum HitungAPI {
-    case getCalculations(hitungRealCountId: Int, tingkat: TingkatPemilihan)
-    case putCalculations(parameters: [String: Any])
+    case getCalculations(hitungRealCountId: String, tingkat: TingkatPemilihan)
+    case putCalculations(hitungRealCountId: String, type: TingkatPemilihan, invalidVote: Int, candidates: [CandidatesCount], parties: [CandidatesCount]?)
     
     case getCandidates(tingkat: TingkatPemilihan)
     case getProvinces(page: Int, perPage: Int)
@@ -139,6 +139,22 @@ extension HitungAPI: TargetType {
                 multipartFormData.append(buildMultipartFormData(name: "file", value: image))
             }
             return multipartFormData
+        case .putCalculations(let (realCountId, type, invalidVote, candidates, parties)):
+            var multipartFormData = [MultipartFormData]()
+            multipartFormData.append(buildMultipartFormData(key: "hitung_real_count_id", value: realCountId))
+            multipartFormData.append(buildMultipartFormData(key: "calculation_type", value: type.rawValue))
+            multipartFormData.append(buildMultipartFormData(key: "invalid_vote", value: "\(invalidVote)"))
+            for candidate in candidates {
+                multipartFormData.append(buildMultipartFormData(key: "candidates[][id]", value: "\(candidate.id)"))
+                multipartFormData.append(buildMultipartFormData(key: "candidates[][total_vote]", value: "\(candidate.totalVote)"))
+            }
+            if let partie = parties {
+                for parties in partie {
+                    multipartFormData.append(buildMultipartFormData(key: "parties[][id]", value: "\(parties.id)"))
+                    multipartFormData.append(buildMultipartFormData(key: "parties[][total_vote]", value: "\(parties.totalVote)"))
+                }
+            }
+            return multipartFormData
         default:
             return nil
         }
@@ -146,6 +162,11 @@ extension HitungAPI: TargetType {
     
     public var parameters: [String: Any]? {
         switch self {
+        case .getCalculations(let (hitungRealCountId, tingkat)):
+            return [
+                "hitung_real_count_id": hitungRealCountId,
+                "calculation_type": tingkat.rawValue
+            ]
         case .postRealCount(let (noTps, province, regencies, district, village, lat, long)):
             return [
                 "tps": noTps,
@@ -174,8 +195,6 @@ extension HitungAPI: TargetType {
             return params
         case .publishRealCount(let id):
             return ["id": id]
-        case .putCalculations(let parameters):
-            return parameters
         case .getDapils(let provinceCode, let regenciCode, let districtCode, let tingkat):
             return [
                 "province_code": provinceCode,
@@ -237,7 +256,8 @@ extension HitungAPI: TargetType {
     
     public var task: Task {
         switch self {
-        case .postImageRealCount:
+        case .postImageRealCount,
+             .putCalculations:
             return .uploadMultipart(self.multipartBody ?? [])
         default:
             return .requestParameters(parameters: parameters ?? [:], encoding: parameterEncoding)

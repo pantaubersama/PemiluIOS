@@ -38,9 +38,13 @@ public struct RealCount: Codable {
     public var createdAt: String
     public var createdAtWord: CreatedAt
     public var province: Province
+    public var provinceCode: Int
     public var regency: Regency
+    public var regencyCode: Int
     public var district: District
+    public var districtCode: Int
     public var village: Village
+    public var villageCode: Int
     public var latitude: String
     public var longitude: String
     public var status: RealCountStatus
@@ -61,12 +65,20 @@ public struct RealCount: Codable {
         self.status = RealCountStatus.sandbox
         self.user = nil
         self.logs = nil
+        self.provinceCode = 0
+        self.regencyCode = 0
+        self.districtCode = 0
+        self.villageCode = 0
     }
     
     enum CodingKeys: String, CodingKey {
         case id, tps, province, regency, district, village, latitude, longitude, status, user, logs
         case createdAt = "created_at"
         case createdAtWord = "created_at_in_word"
+        case provinceCode = "province_code"
+        case regencyCode = "regency_code"
+        case districtCode = "district_code"
+        case villageCode = "village_code"
     }
     
 }

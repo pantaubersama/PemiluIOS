@@ -16,7 +16,7 @@ protocol DetailTPSNavigator {
     func back() -> Observable<Void>
     func sendData() -> Observable<Void>
     func successSubmit() -> Observable<Void>
-    func launchDetailTPSPresiden() -> Observable<Void>
+    func launchDetailTPSPresiden(data: RealCount) -> Observable<Void>
     func launchDetailTPSDPRI() -> Observable<Void>
     func launchDetailTPSDPD() -> Observable<Void>
     func launchDetailTPSDPRDKab() -> Observable<Void>
@@ -60,8 +60,8 @@ extension DetailTPSCoordinator: DetailTPSNavigator {
         return Observable.never()
     }
     
-    func launchDetailTPSPresiden() -> Observable<Void> {
-        let searchCoordinator = DetailTPSPresidenCoordinator(navigationController: self.navigationController)
+    func launchDetailTPSPresiden(data: RealCount) -> Observable<Void> {
+        let searchCoordinator = DetailTPSPresidenCoordinator(navigationController: self.navigationController, uuid: data.id)
         return coordinate(to: searchCoordinator)
     }
     

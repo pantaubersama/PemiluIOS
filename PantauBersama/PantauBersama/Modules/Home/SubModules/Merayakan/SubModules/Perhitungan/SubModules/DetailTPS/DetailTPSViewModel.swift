@@ -58,6 +58,7 @@ class DetailTPSViewModel: ViewModelType {
     var output: Output!
     
     private let navigator: DetailTPSNavigator
+    private let data: RealCount
     
     private let moreS = PublishSubject<RealCount>()
     private let moreMenuS = PublishSubject<PerhitunganType>()
@@ -82,6 +83,7 @@ class DetailTPSViewModel: ViewModelType {
     
     init(navigator: DetailTPSNavigator, realCount: RealCount) {
         self.navigator = navigator
+        self.data = realCount
         
         input = Input(
             backI: backS.asObserver(),
@@ -127,7 +129,7 @@ class DetailTPSViewModel: ViewModelType {
             .asDriverOnErrorJustComplete()
         
         let detailPresiden = detailPresidenS
-            .flatMap({ navigator.launchDetailTPSPresiden() })
+            .flatMap({ navigator.launchDetailTPSPresiden(data: self.data) })
             .asDriverOnErrorJustComplete()
         
         let detailDPR = detailDPRS
