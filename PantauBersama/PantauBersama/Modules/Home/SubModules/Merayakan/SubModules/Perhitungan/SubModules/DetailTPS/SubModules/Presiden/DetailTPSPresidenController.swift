@@ -21,6 +21,7 @@ class DetailTPSPresidenController: UIViewController {
     @IBOutlet weak var tfTotalInvalidValue: TPSTextField!
     @IBOutlet weak var tfTotalValidValue: TPSTextField!
     @IBOutlet weak var tfTotalValue: TPSTextField!
+    @IBOutlet weak var btnSimpan: Button!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +35,10 @@ class DetailTPSPresidenController: UIViewController {
         
         back.rx.tap
             .bind(to: viewModel.input.backI)
+            .disposed(by: disposeBag)
+        
+        btnSimpan.rx.tap
+            .bind(to: viewModel.input.sendI)
             .disposed(by: disposeBag)
         
         viewModel.output.backO
@@ -62,7 +67,54 @@ class DetailTPSPresidenController: UIViewController {
             .disposed(by: disposeBag)
         
         viewModel.output.suara3O
+            .drive(onNext: { [weak self] (value) in
+                guard let `self` = self else { return }
+                 self.tfTotalInvalidValue.text = "\(value)"
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.output.totalSuaraO
+            .drive(onNext: { [weak self] (value) in
+                guard let `self` = self else { return }
+                self.tfTotalValue.text = "\(value)"
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.output.totalValidO
+            .drive(onNext: { [weak self] (value) in
+                guard let `self` = self else { return }
+                self.tfTotalValidValue.text = "\(value)"
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.output.sendO
             .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.invalidO
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.dataO
+            .drive(onNext: { [weak self] (calculations) in
+                guard let `self` = self else { return }
+                let suara1 = calculations.candidates?.filter({ $0.actorId == "1"}).first?.totalVote ?? 0
+                let suara2 = calculations.candidates?.filter({ $0.actorId == "2"}).first?.totalVote ?? 0
+                let suara3 = calculations.invalidVote
+                self.suara1Btn.suara = suara1
+                self.suara2Btn.suara = suara2
+                self.suara3Btn.suara = suara3
+                self.tfTotalInvalidValue.text = "\(suara3)"
+                self.tfTotalValue.text = "\(suara1 + suara2 + suara3)"
+                self.tfTotalValidValue.text = "\(suara1 + suara2)"
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.output.errorO
+            .drive(onNext: { [weak self] (e) in
+                guard let alert = UIAlertController.alert(with: e) else { return }
+                self?.navigationController?.present(alert, animated: true, completion: nil)
+            })
             .disposed(by: disposeBag)
     }
 }

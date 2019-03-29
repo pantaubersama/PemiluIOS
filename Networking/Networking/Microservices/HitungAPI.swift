@@ -27,8 +27,8 @@ public enum RealCountImageType: String {
 }
 
 public enum HitungAPI {
-    case getCalculations(hitungRealCountId: Int, tingkat: TingkatPemilihan)
-    case putCalculations(parameters: [String: Any])
+    case getCalculations(hitungRealCountId: String, tingkat: TingkatPemilihan)
+    case putCalculations(hitungRealCountId: String, type: TingkatPemilihan, invalidVote: Int, candidates: [CandidatesCount], parties: [CandidatesCount]?)
     
     case getCandidates(tingkat: TingkatPemilihan)
     case getProvinces(page: Int, perPage: Int)
@@ -145,10 +145,20 @@ extension HitungAPI: TargetType {
             multipartFormData.append(buildMultipartFormData(key: "latitude", value: "\(data.latitude ?? 0.0)"))
             multipartFormData.append(buildMultipartFormData(key: "longitude", value: "\(data.longitude ?? 0.0)"))
             return multipartFormData
-        case .putCalculations(let parameters):
+        case .putCalculations(let (realCountId, type, invalidVote, candidates, parties)):
             var multipartFormData = [MultipartFormData]()
-            for keyAndValue in parameters {
-             multipartFormData.append(buildMultipartFormData(key: keyAndValue.key, value: "\(keyAndValue.value)"))
+            multipartFormData.append(buildMultipartFormData(key: "hitung_real_count_id", value: realCountId))
+            multipartFormData.append(buildMultipartFormData(key: "calculation_type", value: type.rawValue))
+            multipartFormData.append(buildMultipartFormData(key: "invalid_vote", value: "\(invalidVote)"))
+            for candidate in candidates {
+                multipartFormData.append(buildMultipartFormData(key: "candidates[][id]", value: "\(candidate.id)"))
+                multipartFormData.append(buildMultipartFormData(key: "candidates[][total_vote]", value: "\(candidate.totalVote)"))
+            }
+            if let partie = parties {
+                for parties in partie {
+                    multipartFormData.append(buildMultipartFormData(key: "parties[][id]", value: "\(parties.id)"))
+                    multipartFormData.append(buildMultipartFormData(key: "parties[][total_vote]", value: "\(parties.totalVote)"))
+                }
             }
             return multipartFormData
         default:
@@ -158,6 +168,11 @@ extension HitungAPI: TargetType {
     
     public var parameters: [String: Any]? {
         switch self {
+        case .getCalculations(let (hitungRealCountId, tingkat)):
+            return [
+                "hitung_real_count_id": hitungRealCountId,
+                "calculation_type": tingkat.rawValue
+            ]
         case .putRealCount(let id, let noTps):
             return [
                 "tps": noTps,

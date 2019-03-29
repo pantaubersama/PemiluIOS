@@ -16,11 +16,15 @@ class DetailTPSPresidenViewModel: ViewModelType {
     
     struct Input {
         let backI: AnyObserver<Void>
-        let suara1I: PublishSubject<Int>
-        let suara2I: PublishSubject<Int>
-        let suara3I: PublishSubject<Int> // for tidak sah
-        let sendI: PublishSubject<Void>
-        let invalidI: PublishSubject<Int>
+        let suara1I: AnyObserver<Int>
+        let suara2I: AnyObserver<Int>
+        let suara3I: AnyObserver<Int> // for tidak sah
+        let sendI: AnyObserver<Void>
+        let invalidI: AnyObserver<Int>
+        let totalInvalidI: AnyObserver<Int>
+        let totalValidValueI: AnyObserver<Int>
+        let totalValueI: AnyObserver<Int>
+        let refreshI: AnyObserver<String>
     }
     
     struct Output {
@@ -30,6 +34,10 @@ class DetailTPSPresidenViewModel: ViewModelType {
         let suara2O: Driver<Int>
         let suara3O: Driver<Int>
         let invalidO: Driver<Int>
+        let totalSuaraO: Driver<Int>
+        let totalValidO: Driver<Int>
+        let dataO: Driver<Calculation>
+        let errorO: Driver<Error>
     }
     
     var input: Input
@@ -44,8 +52,15 @@ class DetailTPSPresidenViewModel: ViewModelType {
     private let suara3Subject = PublishSubject<Int>()
     private let sendSubject = PublishSubject<Void>()
     private let invalidSubject = PublishSubject<Int>()
+    private let totalInvalidSubject = PublishSubject<Int>()
+    private let totalValidValueSubject = PublishSubject<Int>()
+    private let totalValueSubject = PublishSubject<Int>()
+    private let refreshSubject = PublishSubject<String>()
     
-    private let candidatesCount = BehaviorRelay(value: [CandidatesCount]())
+    private let candidatesCount = BehaviorRelay<[CandidatesCount]>(value: [])
+    private let bufferCandidate1 = BehaviorRelay<Int>(value: 0)
+    private let bufferCandidate2 = BehaviorRelay<Int>(value: 0)
+    var bufferInvalid = BehaviorRelay<Int>(value: 0)
     
     private let errorTracker = ErrorTracker()
     private let activityIndicator = ActivityIndicator()
@@ -59,18 +74,39 @@ class DetailTPSPresidenViewModel: ViewModelType {
                       suara2I: suara2Subject.asObserver(),
                       suara3I: suara3Subject.asObserver(),
                       sendI: sendSubject.asObserver(),
-                      invalidI: invalidSubject.asObserver())
+                      invalidI: invalidSubject.asObserver(),
+                      totalInvalidI: totalInvalidSubject.asObserver(),
+                      totalValidValueI: totalValidValueSubject.asObserver(),
+                      totalValueI: totalValueSubject.asObserver(),
+                      refreshI: refreshSubject.asObserver())
         
         let back = backS
             .flatMap({ navigator.back() })
             .asDriverOnErrorJustComplete()
+        
+        /// Get data from latest value
+        let data = refreshSubject.startWith("")
+            .flatMapLatest { [weak self] (_) -> Observable<Calculation> in
+                guard let `self` = self else { return Observable.empty() }
+                return NetworkService.instance
+                    .requestObject(HitungAPI
+                        .getCalculations(
+                            hitungRealCountId: self.uuid,
+                            tingkat: .presiden),
+                                   c: BaseResponse<RealCountResponse>.self)
+                    .map({ $0.data.calculation })
+                    .trackError(self.errorTracker)
+                    .trackActivity(self.activityIndicator)
+                    .asObservable()
+        }.asDriverOnErrorJustComplete()
         
         
         /// When suara 1 triggered, store values with id 1 and value
         let suara1 = suara1Subject
             .flatMapLatest { [weak self] (value) -> Observable<Int> in
                 guard let `self` = self else { return Observable.empty() }
-                self.candidatesCount.accept([CandidatesCount(id: 1, totalVote: value)])
+                self.bufferCandidate1.accept(value)
+                
                 return Observable.just(value)
         }.asDriverOnErrorJustComplete()
         
@@ -78,49 +114,68 @@ class DetailTPSPresidenViewModel: ViewModelType {
         let suara2 = suara2Subject
             .flatMapLatest { [weak self] (value) -> Observable<Int> in
                 guard let `self` = self else { return Observable.empty() }
-                self.candidatesCount.accept([CandidatesCount(id: 2, totalVote: value)])
+                self.bufferCandidate2.accept(value)
                 return Observable.just(value)
             }.asDriverOnErrorJustComplete()
         
         
-        /// TODO: Send actions
+        /// When suara 3 triggered
+        let suara3 = suara3Subject
+            .flatMapLatest { [weak self] (value) -> Observable<Int> in
+                guard let `self` = self else { return Observable.empty() }
+                self.bufferInvalid.accept(value)
+                return Observable.just(value)
+        }.asDriverOnErrorJustComplete()
+        
+        /// TODO: Send actions need wait observable with 2 conditions
+        /// If conditions not fullfiled then disable send button
+        /// Need configuration array JSON Object candidates
+        /// Currently this config support for multipartForm data
         let send = sendSubject
-            .withLatestFrom(Observable.combineLatest(self.candidatesCount, invalidSubject))
+            .withLatestFrom(Observable.combineLatest(self.candidatesCount, suara3Subject.asObservable()))
             .flatMapLatest { [weak self] (c, i) -> Observable<Void> in
                 guard let `self` = self else { return Observable.empty() }
+                var latestValue = c
+                latestValue.append(CandidatesCount(id: 1, totalVote: self.bufferCandidate1.value))
+                latestValue.append(CandidatesCount(id: 2, totalVote: self.bufferCandidate2.value))
                 return NetworkService.instance
-                    .requestObject(HitungAPI
-                        .putCalculations(parameters: [
-                            "hitung_real_count_id": uuid,
-                            "calculation_type": "presiden",
-                            "invalid_vote": i,
-                            "candidates": c.dictionary as Any
-                            ]), c: BaseResponse<RealCountResponse>.self)
+                    .requestObject(HitungAPI.putCalculations(hitungRealCountId: self.uuid,
+                                                             type: .presiden,
+                                                             invalidVote: i,
+                                                             candidates: latestValue,
+                                                             parties: nil),
+                                   c: BaseResponse<RealCountResponse>.self)
                     .trackError(self.errorTracker)
                     .trackActivity(self.activityIndicator)
-                    .catchErrorJustComplete()
+                    .asObservable()
                     .mapToVoid()
         }
         
+        // Trigger whenever values changes all values
+        let totalSuaraO = Observable.merge(suara1Subject.asObservable(),
+                                           suara2Subject.asObservable(),
+                                           suara3Subject.asObservable())
+            .map({ [unowned self] (values) -> Int in
+                return self.bufferInvalid.value + self.bufferCandidate1.value + self.bufferCandidate2.value
+            })
+            .asDriverOnErrorJustComplete()
+        
+        let totalValidSuaraO = Observable.merge(suara1Subject.asObservable(),
+                                                suara2Subject.asObservable())
+            .map { [unowned self] (values) -> Int in
+                return self.bufferCandidate1.value + self.bufferCandidate2.value
+        }.asDriverOnErrorJustComplete()
         
         output = Output(backO: back,
                         sendO: send.asDriverOnErrorJustComplete(),
                         suara1O: suara1,
                         suara2O: suara2,
-                        suara3O: suara3Subject.asDriverOnErrorJustComplete(),
-                        invalidO: invalidSubject.asDriverOnErrorJustComplete())
+                        suara3O: suara3,
+                        invalidO: invalidSubject.asDriverOnErrorJustComplete(),
+                        totalSuaraO: totalSuaraO,
+                        totalValidO: totalValidSuaraO,
+                        dataO: data,
+                        errorO: errorTracker.asDriver())
     }
 }
 
-// Object to save candidates in presiden real count
-struct CandidatesCount {
-    var id: Int
-    var totalVote: Int
-
-    init(id: Int, totalVote: Int) {
-        self.id = id
-        self.totalVote = totalVote
-    }
-}
-
-extension CandidatesCount: Encodable { }

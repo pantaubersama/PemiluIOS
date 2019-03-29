@@ -9,7 +9,7 @@
 import Foundation
 
 public struct RealCountResponse: Codable {
-    public let status: Bool
+    public let status: Bool?
     public let calculation: Calculation
 }
 
@@ -35,10 +35,31 @@ public struct Calculation: Codable {
     }
 }
 
-
 public struct ItemActor: Codable {
-    public let actorId: Int
-    public let actorType: String
-    public let totalVote: Int
+    public let actorId: String?
+    public let actorType: String?
+    public let totalVote: Int?
+    
+    private enum CodingKeys: String, CodingKey {
+        case actorId = "actor_id"
+        case actorType = "actor_type"
+        case totalVote = "total_vote"
+    }
 }
 
+
+// Object to save candidates in presiden real count
+public struct CandidatesCount: Codable {
+    public var id: Int
+    public var totalVote: Int
+    
+    public init(id: Int, totalVote: Int) {
+        self.id = id
+        self.totalVote = totalVote
+    }
+    
+    private enum CodingKeys: String, CodingKey {
+        case id
+        case totalVote = "total_vote"
+    }
+}
