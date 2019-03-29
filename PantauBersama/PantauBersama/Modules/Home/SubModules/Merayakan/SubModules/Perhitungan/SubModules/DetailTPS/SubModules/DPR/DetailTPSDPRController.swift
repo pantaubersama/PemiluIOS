@@ -10,6 +10,8 @@ import UIKit
 import Common
 import RxSwift
 import RxCocoa
+import RxDataSources
+import Networking
 
 enum TPSDPRType {
     case DPRRI
@@ -39,6 +41,8 @@ class DetailTPSDPRController: UIViewController {
     lazy var footer = UIView.nib(withType: DetailTPSDPRFooter.self)
     lazy var header = UIView.nib(withType: DetailTPSDPRHeader.self)
     
+    private var animatedDataSource: RxTableViewSectionedAnimatedDataSource<AnimatableSectionModel<String, CandidateResponse>>!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -53,15 +57,36 @@ class DetailTPSDPRController: UIViewController {
             .bind(to: viewModel.input.backI)
             .disposed(by: disposeBag)
         
+        tableView.delegate = nil
+        tableView.dataSource = nil
+        
         tableView.setTableHeaderView(headerView: header)
         tableView.setTableFooterView(footerView: footer)
         tableView.registerReusableCell(TPSInputCell.self)
         tableView.registerReusableHeaderCell(TPSInputFooter.self)
         tableView.registerReusableHeaderCell(TPSInputHeader.self)
         
+        tableView.rx.setDelegate(self)
+            .disposed(by: disposeBag)
+        
         viewModel.output.backO
             .drive()
             .disposed(by: disposeBag)
+        
+        animatedDataSource =
+            RxTableViewSectionedAnimatedDataSource<AnimatableSectionModel<String, CandidateResponse>>(configureCell: { (dataSource, tableView, indexPath, response) in
+                let cell = tableView.dequeueReusableCell(indexPath: indexPath) as TPSInputCell
+                return cell
+            })
+        
+        viewModel.output.data
+            .map({ data in
+                [AnimatableSectionModel(model: "Section", items: data)]
+            })
+            .asObservable()
+            .bind(to: tableView.rx.items(dataSource: animatedDataSource))
+            .disposed(by: disposeBag)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -71,14 +96,7 @@ class DetailTPSDPRController: UIViewController {
     }
 }
 
-extension DetailTPSDPRController: UITableViewDelegate, UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
-    }
+extension DetailTPSDPRController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = tableView.dequeueReusableHeaderFooter() as TPSInputHeader
@@ -88,10 +106,5 @@ extension DetailTPSDPRController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let footer = tableView.dequeueReusableHeaderFooter() as TPSInputFooter
         return footer
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell() as TPSInputCell
-        return cell
     }
 }

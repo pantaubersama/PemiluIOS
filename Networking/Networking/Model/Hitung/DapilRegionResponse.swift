@@ -16,7 +16,6 @@ public enum TingkatDapil: String, Codable {
 }
 
 public struct DapilRegionResponse: Codable {
-    
     public let id: Int
     public let nama: String
     public let tingkat: TingkatDapil
@@ -25,16 +24,15 @@ public struct DapilRegionResponse: Codable {
     public let totalAlokasiKursi: Int?
     public let idVersi: Int?
     public let noDapil: Int?
-    public let statusCoterminous: Bool
-    public let idPro: Int?
-    public let parent: Int?
-    public let alokasiKursi: Int?
-    public let sisaPenduduk: Int?
-    public let peringkatPenduduk: Int?
-    public let alokasiSisaKursi: Int?
-    public let stdDev: Int?
-    public let mean: Int?
-    public let maxAlokasiKursi: Int?
-    public let minAlokasiKursi: Int?
-    
+//        public let statusCoterminous: Bool
+//        public let idPro: Int?
+//        public let parent: Int?
+//        public let alokasiKursi: Int?
+//        public let sisaPenduduk: Int?
+//        public let peringkatPenduduk: Int?
+//        public let alokasiSisaKursi: Int?
+//        public let stdDev: Int?
+//        public let mean: Int?
+//        public let maxAlokasiKursi: Int?
+//        public let minAlokasiKursi: Int?
 }

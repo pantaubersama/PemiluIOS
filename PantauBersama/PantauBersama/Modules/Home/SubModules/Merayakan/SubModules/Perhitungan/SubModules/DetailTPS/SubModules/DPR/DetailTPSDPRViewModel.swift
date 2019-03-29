@@ -20,6 +20,7 @@ class DetailTPSDPRViewModel: ViewModelType {
     
     struct Output {
         let backO: Driver<Void>
+        let data: Driver<[CandidateResponse]>
     }
     
     var input: Input
@@ -54,11 +55,16 @@ class DetailTPSDPRViewModel: ViewModelType {
                                                        tingkat: .dpr)
                         , c: BaseResponse<DapilRegionResponse>.self)
                     .map({ $0.data })
+                    .do(onSuccess: { (response) in
+                        print("Dapil response: \(response)")
+                    }, onError: { (e) in
+                        print(e.localizedDescription)
+                    })
                     .trackError(self.errorTracker)
                     .trackActivity(self.activityIndicator)
                     .flatMapLatest({ [weak self] (dapilResponse) -> Observable<[CandidateResponse]> in
                         guard let `self` = self else { return Observable.empty() }
-                        return self.getCandidates(idDapils: dapilResponse.noDapil ?? 0)
+                        return self.getCandidates(idDapils: dapilResponse.id)
                     })
                     .asObservable()
         }
@@ -68,7 +74,8 @@ class DetailTPSDPRViewModel: ViewModelType {
             .flatMap({ navigator.back() })
             .asDriverOnErrorJustComplete()
         
-        output = Output(backO: back)
+        output = Output(backO: back,
+                        data: data.asDriverOnErrorJustComplete())
     }
 }
 
@@ -81,9 +88,13 @@ extension DetailTPSDPRViewModel {
             .requestObject(HitungAPI.getCandidates(dapilId: idDapils, tingkat: .dpr),
                            c: BaseResponses<CandidateResponse>.self)
             .map({ $0.data })
+            .do(onSuccess: { (response) in
+                print("Response: \(response)")
+            }, onError: { (e) in
+                print(e.localizedDescription)
+            })
             .trackError(self.errorTracker)
             .trackActivity(self.activityIndicator)
             .asObservable()
     }
-    
 }

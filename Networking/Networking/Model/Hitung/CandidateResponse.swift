@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import RxDataSources
 
 public struct CandidateResponse: Codable {
     public let id: Int
@@ -61,4 +62,15 @@ public struct Party: Codable {
         case id, name, acronym, logo
         case serialNumber = "serial_number"
     }
+}
+
+extension CandidateResponse: IdentifiableType {
+    public typealias Identity = Int
+    public var identity: Identity { return id }
+}
+
+extension CandidateResponse: Equatable { }
+
+public func == (lhs: CandidateResponse, rhs: CandidateResponse) -> Bool {
+    return lhs.id == rhs.id
 }
