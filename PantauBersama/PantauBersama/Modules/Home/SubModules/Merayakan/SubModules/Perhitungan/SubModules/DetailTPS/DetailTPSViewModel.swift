@@ -133,7 +133,7 @@ class DetailTPSViewModel: ViewModelType {
             .asDriverOnErrorJustComplete()
         
         let detailDPR = detailDPRS
-            .flatMap({ navigator.launchDetailTPSDPRI() })
+            .flatMap({ navigator.launchDetailTPSDPRI(data: self.data) })
             .asDriverOnErrorJustComplete()
         
         let detailDPD = detailDPDS
@@ -141,11 +141,11 @@ class DetailTPSViewModel: ViewModelType {
             .asDriverOnErrorJustComplete()
         
         let detailDPRProv = detailDPRProvS
-            .flatMap({ navigator.launchDetailTPSDPRDProv() })
+            .flatMap({ navigator.launchDetailTPSDPRDProv(data: self.data) })
             .asDriverOnErrorJustComplete()
         
         let detailDPRKota = detailDPRKotaS
-            .flatMap({ navigator.launchDetailTPSDPRDKab() })
+            .flatMap({ navigator.launchDetailTPSDPRDKab(data: self.data) })
             .asDriverOnErrorJustComplete()
         
         let c1Upload = c1UploadS

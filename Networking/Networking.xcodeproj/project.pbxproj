@@ -56,6 +56,8 @@
 		8482E62A21D8E5AB00D5DC07 /* BadgesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8482E62921D8E5AB00D5DC07 /* BadgesResponse.swift */; };
 		8482E62E21D9017700D5DC07 /* PaginatableResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8482E62D21D9017700D5DC07 /* PaginatableResponse.swift */; };
 		8482E63021D9048800D5DC07 /* Paginate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8482E62F21D9048800D5DC07 /* Paginate.swift */; };
+		8485089F224DF0E200AD2DD4 /* DapilRegionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8485089E224DF0E200AD2DD4 /* DapilRegionResponse.swift */; };
+		848508A1224DF2B700AD2DD4 /* CandidateResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848508A0224DF2B700AD2DD4 /* CandidateResponse.swift */; };
 		84A945AC2221435E00944C6B /* CreateChallengeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A945AB2221435E00944C6B /* CreateChallengeResponse.swift */; };
 		84A945B62224080800944C6B /* TwitterUsernameResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A945B52224080800944C6B /* TwitterUsernameResponse.swift */; };
 		84AEFA79221FFE5300F3DC92 /* WordstadiumAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AEFA78221FFE5300F3DC92 /* WordstadiumAPI.swift */; };
@@ -161,6 +163,8 @@
 		8482E62921D8E5AB00D5DC07 /* BadgesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgesResponse.swift; sourceTree = "<group>"; };
 		8482E62D21D9017700D5DC07 /* PaginatableResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginatableResponse.swift; sourceTree = "<group>"; };
 		8482E62F21D9048800D5DC07 /* Paginate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Paginate.swift; sourceTree = "<group>"; };
+		8485089E224DF0E200AD2DD4 /* DapilRegionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DapilRegionResponse.swift; sourceTree = "<group>"; };
+		848508A0224DF2B700AD2DD4 /* CandidateResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandidateResponse.swift; sourceTree = "<group>"; };
 		84A945AB2221435E00944C6B /* CreateChallengeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChallengeResponse.swift; sourceTree = "<group>"; };
 		84A945B52224080800944C6B /* TwitterUsernameResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterUsernameResponse.swift; sourceTree = "<group>"; };
 		84AEFA78221FFE5300F3DC92 /* WordstadiumAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordstadiumAPI.swift; sourceTree = "<group>"; };
@@ -419,6 +423,8 @@
 				E51D65F22240100900FEDD7A /* Village.swift */,
 				E51D65F42240101400FEDD7A /* VillageResponse.swift */,
 				13B39F3B2243F2BA00B1861E /* RealCountsResponse.swift */,
+				8485089E224DF0E200AD2DD4 /* DapilRegionResponse.swift */,
+				848508A0224DF2B700AD2DD4 /* CandidateResponse.swift */,
 			);
 			path = Hitung;
 			sourceTree = "<group>";
@@ -661,6 +667,8 @@
 				8451E05522043A9D00F03E96 /* PayloadResponse.swift in Sources */,
 				131AEBE72223287900B299F6 /* GetChallengeResponse.swift in Sources */,
 				1143E81821E25D1B003862B6 /* QuizAnswerResponse.swift in Sources */,
+				848508A1224DF2B700AD2DD4 /* CandidateResponse.swift in Sources */,
+				8485089F224DF0E200AD2DD4 /* DapilRegionResponse.swift in Sources */,
 				13F456B721DA7BD000CE45F1 /* Feeds.swift in Sources */,
 				13054D3C222451EB00C4C9EA /* ChallengeType.swift in Sources */,
 				1143E80821DEC75D003862B6 /* QuizAPI.swift in Sources */,

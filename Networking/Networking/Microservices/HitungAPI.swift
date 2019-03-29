@@ -30,7 +30,7 @@ public enum HitungAPI {
     case getCalculations(hitungRealCountId: String, tingkat: TingkatPemilihan)
     case putCalculations(hitungRealCountId: String, type: TingkatPemilihan, invalidVote: Int, candidates: [CandidatesCount], parties: [CandidatesCount]?)
     
-    case getCandidates(tingkat: TingkatPemilihan)
+    case getCandidates(dapilId: Int, tingkat: TingkatPemilihan)
     case getProvinces(page: Int, perPage: Int)
     case getRegencies(page: Int, perPage: Int, provinceCode: Int)
     case getDistricts(page: Int, perPage: Int, regencyCode: Int)
@@ -239,7 +239,11 @@ extension HitungAPI: TargetType {
             return parameters
         case .getImagesRealCount(let hitungRealCountId):
             return ["hitung_real_count_id": hitungRealCountId]
-            
+        case .getCandidates(let (dapilId, tingkat)):
+            return [
+                "dapil_id": dapilId,
+                "tingkat": tingkat.rawValue
+            ]
         default:
             return nil
         }
