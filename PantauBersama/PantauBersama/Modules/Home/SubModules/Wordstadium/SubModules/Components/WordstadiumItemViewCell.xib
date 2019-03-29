@@ -227,36 +227,46 @@
                                                 </constraints>
                                                 <state key="normal" image="icMore"/>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r5Z-iu-uhr">
-                                                <rect key="frame" x="108.5" y="6" width="6.5" height="12"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LKg-sz-01o">
+                                                <rect key="frame" x="91.5" y="0.0" width="31.5" height="24"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r5Z-iu-uhr">
+                                                        <rect key="frame" x="20" y="6" width="6.5" height="12"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="20" id="WJ5-qk-DGZ"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icLike" translatesAutoresizingMaskIntoConstraints="NO" id="mSV-gq-M1u">
+                                                        <rect key="frame" x="7" y="7" width="10" height="10"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="10" id="GtJ-w0-MSD"/>
+                                                            <constraint firstAttribute="width" constant="10" id="bfe-QK-gWL"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="20" id="WJ5-qk-DGZ"/>
+                                                    <constraint firstItem="r5Z-iu-uhr" firstAttribute="leading" secondItem="mSV-gq-M1u" secondAttribute="trailing" constant="3" id="4rh-56-55P"/>
+                                                    <constraint firstItem="mSV-gq-M1u" firstAttribute="centerY" secondItem="LKg-sz-01o" secondAttribute="centerY" id="8bY-Rh-ZFO"/>
+                                                    <constraint firstItem="r5Z-iu-uhr" firstAttribute="centerY" secondItem="LKg-sz-01o" secondAttribute="centerY" id="cKs-6h-5kZ"/>
+                                                    <constraint firstItem="r5Z-iu-uhr" firstAttribute="leading" secondItem="LKg-sz-01o" secondAttribute="leading" constant="20" id="f9q-Ks-BsF"/>
+                                                    <constraint firstAttribute="trailing" secondItem="r5Z-iu-uhr" secondAttribute="trailing" constant="5" id="kgG-mF-cRm"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icLike" translatesAutoresizingMaskIntoConstraints="NO" id="mSV-gq-M1u">
-                                                <rect key="frame" x="93.5" y="7" width="10" height="10"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="10" id="0xP-ow-qnn"/>
-                                                    <constraint firstAttribute="height" constant="10" id="GtJ-w0-MSD"/>
-                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="10" id="bfe-QK-gWL"/>
-                                                </constraints>
-                                            </imageView>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstItem="mSV-gq-M1u" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="3GL-pt-ehJ" secondAttribute="trailing" constant="10" id="44q-J8-9U7"/>
+                                            <constraint firstAttribute="bottom" secondItem="LKg-sz-01o" secondAttribute="bottom" id="E0V-iO-Fp7"/>
                                             <constraint firstItem="3GL-pt-ehJ" firstAttribute="leading" secondItem="KsP-8H-pGM" secondAttribute="leading" id="GOM-BC-3Qm"/>
+                                            <constraint firstItem="717-yp-yEQ" firstAttribute="leading" secondItem="LKg-sz-01o" secondAttribute="trailing" id="NR6-6x-Ysv"/>
                                             <constraint firstItem="717-yp-yEQ" firstAttribute="centerY" secondItem="KsP-8H-pGM" secondAttribute="centerY" id="Qz9-bK-2WT"/>
-                                            <constraint firstItem="mSV-gq-M1u" firstAttribute="centerY" secondItem="KsP-8H-pGM" secondAttribute="centerY" id="SRT-zh-sZ1"/>
                                             <constraint firstAttribute="trailing" secondItem="717-yp-yEQ" secondAttribute="trailing" id="eJK-8L-NpM"/>
-                                            <constraint firstItem="r5Z-iu-uhr" firstAttribute="leading" secondItem="mSV-gq-M1u" secondAttribute="trailing" constant="5" id="oFM-5E-mbp"/>
-                                            <constraint firstItem="717-yp-yEQ" firstAttribute="leading" secondItem="r5Z-iu-uhr" secondAttribute="trailing" constant="8" id="oy2-8u-vmn"/>
                                             <constraint firstAttribute="height" constant="24" id="pAT-Ke-0N5"/>
-                                            <constraint firstItem="r5Z-iu-uhr" firstAttribute="centerY" secondItem="KsP-8H-pGM" secondAttribute="centerY" id="rM2-HL-jXU"/>
                                             <constraint firstItem="3GL-pt-ehJ" firstAttribute="centerY" secondItem="KsP-8H-pGM" secondAttribute="centerY" id="uOz-Rk-C7b"/>
+                                            <constraint firstItem="LKg-sz-01o" firstAttribute="top" secondItem="KsP-8H-pGM" secondAttribute="top" id="v1D-2l-IYT"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f8g-Hj-Fa9">
@@ -320,6 +330,8 @@ pertumbuhan mencapai 5,27%.
                 <outlet property="leftPersonIv" destination="O83-Ca-liW" id="IhQ-Z5-PVu"/>
                 <outlet property="leftPersonView" destination="L6a-lo-xOn" id="Stc-eA-paS"/>
                 <outlet property="leftUsername" destination="9fB-FD-TPl" id="wSi-Ny-2wb"/>
+                <outlet property="likeCountLbl" destination="r5Z-iu-uhr" id="H3f-gM-iKQ"/>
+                <outlet property="likeView" destination="LKg-sz-01o" id="o0r-fN-e58"/>
                 <outlet property="moreMenuBtn" destination="717-yp-yEQ" id="Edb-Or-MTh"/>
                 <outlet property="opponentCountLbl" destination="fgw-ih-mwm" id="6qj-YD-tXO"/>
                 <outlet property="rightPersonIv" destination="5PA-Vq-EK3" id="AkU-OB-lwN"/>

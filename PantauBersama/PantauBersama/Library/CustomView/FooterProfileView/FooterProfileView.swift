@@ -39,7 +39,7 @@ class FooterProfileView: UIView {
 
     func configure(data: User) {
         if let url = data.avatar.thumbnail.url {
-            ivAvatar.show(fromURL: url)
+            ivAvatar.af_setImage(withURL: URL(string: url)!)
         }
         lblName.text = data.fullName
         lblStatus.text = data.about

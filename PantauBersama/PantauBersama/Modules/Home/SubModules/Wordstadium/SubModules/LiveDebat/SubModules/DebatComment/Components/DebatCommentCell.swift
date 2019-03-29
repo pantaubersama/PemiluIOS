@@ -8,8 +8,9 @@
 
 import UIKit
 import Common
+import Networking
 
-class DebatCommentCell: UITableViewCell, IReusableCell {
+class DebatCommentCell: UITableViewCell {
 
     @IBOutlet weak var lbCreatedAt: Label!
     @IBOutlet weak var lbContent: Label!
@@ -19,6 +20,7 @@ class DebatCommentCell: UITableViewCell, IReusableCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        transform = CGAffineTransform(rotationAngle: -CGFloat(Double.pi))
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -27,4 +29,26 @@ class DebatCommentCell: UITableViewCell, IReusableCell {
         // Configure the view for the selected state
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.ivAvatar.image = #imageLiteral(resourceName: "icDummyPerson")
+        self.ivAvatar.af_cancelImageRequest()
+    }
+    
+}
+
+extension DebatCommentCell: IReusableCell {
+    public struct Input {
+        let word: Word
+    }
+    
+    func configureCell(item: Input) {
+        if let url = item.word.author.avatar.thumbnail.url {
+            self.ivAvatar.af_setImage(withURL: URL(string: url)!)
+        }
+        self.lbContent.text = item.word.body
+        self.lbCreatedAt.text = item.word.createdAt.timeAgoSinceDateForm2
+        self.lbName.text = item.word.author.fullName
+        
+    }
 }

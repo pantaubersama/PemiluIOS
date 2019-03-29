@@ -52,7 +52,7 @@ class HeaderTantanganView: UIView {
     func configure(data: User, type: HeaderTantanganType) {
         switch type {
         case .open:
-            if let avatar = data.avatar.mediumSquare.url {
+            if let avatar = data.avatar.thumbnail.url {
                 self.avatar.af_setImage(withURL: URL(string: avatar)!)
             }
             lblFullName.text = data.fullName
@@ -60,7 +60,7 @@ class HeaderTantanganView: UIView {
             lblType.text = "OPEN CHALLENGE"
         case .direct:
             lblType.text = "DIRECT CHALLENGE"
-            if let avatar = data.avatar.mediumSquare.url {
+            if let avatar = data.avatar.thumbnail.url {
                 self.avatar.af_setImage(withURL: URL(string: avatar)!)
             }
             lblFullName.text = data.fullName

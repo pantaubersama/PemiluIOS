@@ -10,21 +10,27 @@ import UIKit
 import Common
 import RxSwift
 import RxCocoa
+import Networking
 
 class TooltipView: UIViewController {
     
     @IBOutlet weak var containerChallenge: RoundView!
     @IBOutlet weak var btnChallenge: UIButton!
+    @IBOutlet weak var lblChallenge: Label!
     @IBOutlet weak var containerDebatDone: RoundView!
     @IBOutlet weak var btnDebatDone: UIButton!
+    @IBOutlet weak var lblDebatDone: Label!
     @IBOutlet weak var containerComingSoon: RoundView!
     @IBOutlet weak var btnComingSoon: UIButton!
+    @IBOutlet weak var lblComingSoon: Label!
     @IBOutlet weak var containerDebatLive: RoundView!
     @IBOutlet weak var btnDebatLive: UIButton!
+    @IBOutlet weak var lblDebatLive: Label!
     @IBOutlet weak var containerCreate: RoundView!
     @IBOutlet weak var btnCreate: UIButton!
     
     var viewModel: TooltipViewModel!
+    var type: LiniType!
     private let disposeBag: DisposeBag = DisposeBag()
     
     private let tapChallenge: UITapGestureRecognizer = UITapGestureRecognizer()
@@ -34,8 +40,25 @@ class TooltipView: UIViewController {
     private let tapCreate: UITapGestureRecognizer = UITapGestureRecognizer()
     private let tapCancel: UITapGestureRecognizer = UITapGestureRecognizer()
     
+    convenience init(type: LiniType) {
+        self.init()
+        self.type = type
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if self.type == .personal {
+            lblChallenge.text = "My Challenge"
+            lblDebatDone.text = "My Debat Done"
+            lblComingSoon.text = "My Debat Coming Soon"
+            lblDebatLive.text = "In Proggress"
+        } else {
+            lblChallenge.text = "Challenge"
+            lblDebatDone.text = "Debat Done"
+            lblComingSoon.text = "Coming Soon"
+            lblDebatLive.text = "Debat Live"
+        }
         
         btnChallenge.rx.tap
             .bind(to: viewModel.input.challengeI)

@@ -52,50 +52,59 @@ public extension NetworkService {
                     print("STATUS CODE: \(response.statusCode)")
                 }
             })
-            .retryWhen({ (e) in
-                Observable.zip(e, Observable.range(start: 1, count: 3), resultSelector: { $1 }).flatMap {
-                    i in
-                    return self.provider.rx.request(MultiTarget(PantauAuthAPI.refresh(type: .refreshToken)))
-                        .asObservable()
-                        .filterSuccessfulStatusAndRedirectCodes()
-                        .map(PantauRefreshResponse.self)
-                        .catchError({ (e) in
-                            print("baseUrl error login \(t.baseURL)\(t.path) \(t.headers)")
-                            print("error \(e.localizedDescription)")
-                            if case MoyaError.statusCode(let response) = e {
-                                print("Status response: ... \(response.statusCode)")
-                                if response.statusCode == 401 {
-                                    print("Your session is expired....")
-                                    let alert = UIAlertController(title: "Perhatian", message: "Sesi Anda telah berakhir, silahkan login terlebih dahulu", preferredStyle: .alert)
-                                    alert.addAction(UIAlertAction(title: "Login", style: .destructive, handler: { (_) in
-                                        KeychainService.remove(type: NetworkKeychainKind.token)
-                                        KeychainService.remove(type: NetworkKeychainKind.refreshToken)
-                                        // need improve this later
-                                        // todo using wkwbview or using another framework to handle auth
-                                        var appCoordinator: AppCoordinator!
-                                        let disposeBag = DisposeBag()
-                                        var window: UIWindow?
-                                        window = UIWindow()
-                                        appCoordinator = AppCoordinator(window: window!)
-                                        appCoordinator.start()
-                                            .subscribe()
-                                            .disposed(by: disposeBag)
-
-                                    }))
-                                    alert.show()
+            .retryWhen({ (error: Observable<Error>) -> Observable<PantauRefreshResponse> in
+                return error.enumerated().flatMap { (index, error) -> Observable<PantauRefreshResponse> in
+                    guard let moyaError = error as? MoyaError, let response = moyaError.response, index <= 3  else {
+                        throw error
+                    }
+                    
+                    if response.statusCode == 401 {
+                        // Reffresh token
+                        return self.provider.rx.request(MultiTarget(PantauAuthAPI.refresh(type: .refreshToken)))
+                            .asObservable()
+                            .filterSuccessfulStatusAndRedirectCodes()
+                            .map(PantauRefreshResponse.self)
+                            .catchError({ (e) in
+                                print("baseUrl error login \(t.baseURL)\(t.path) \(t.headers)")
+                                print("error \(e.localizedDescription)")
+                                if case MoyaError.statusCode(let response) = e {
+                                    print("Status response: ... \(response.statusCode)")
+                                    if response.statusCode == 401 {
+                                        print("Your session is expired....")
+                                        let alert = UIAlertController(title: "Perhatian", message: "Sesi Anda telah berakhir, silahkan login terlebih dahulu", preferredStyle: .alert)
+                                        alert.addAction(UIAlertAction(title: "Login", style: .destructive, handler: { (_) in
+                                            KeychainService.remove(type: NetworkKeychainKind.token)
+                                            KeychainService.remove(type: NetworkKeychainKind.refreshToken)
+                                            // need improve this later
+                                            // todo using wkwbview or using another framework to handle auth
+                                            var appCoordinator: AppCoordinator!
+                                            let disposeBag = DisposeBag()
+                                            var window: UIWindow?
+                                            window = UIWindow()
+                                            appCoordinator = AppCoordinator(window: window!)
+                                            appCoordinator.start()
+                                                .subscribe()
+                                                .disposed(by: disposeBag)
+                                            
+                                        }))
+                                        alert.show()
+                                    }
                                 }
-                            }
-                            return Observable.error(e)
-                        })
-                        .flatMapLatest({ (r) -> Single<PantauRefreshResponse> in
-                            let t = r.accessToken
-                            let rt = r.refreshToken
-                            let tt = r.tokenType
-                            UserDefaults.Account.set(tt, forKey: .tokenType)
-                            KeychainService.update(type: NetworkKeychainKind.refreshToken, data: rt)
-                            KeychainService.update(type: NetworkKeychainKind.token, data: t)
-                            return Single.just(r) // This function will refresh last request with new access token
-                        })
+                                return Observable.error(e)
+                            })
+                            .flatMapLatest({ (r) -> Observable<PantauRefreshResponse> in
+                                let t = r.accessToken
+                                let rt = r.refreshToken
+                                let tt = r.tokenType
+                                UserDefaults.Account.set(tt, forKey: .tokenType)
+                                KeychainService.update(type: NetworkKeychainKind.refreshToken, data: rt)
+                                KeychainService.update(type: NetworkKeychainKind.token, data: t)
+                                return Observable.just(r) // This function will refresh last request with new access token
+                            })
+                    } else {
+                        return Observable.error(error)
+                    }
+
                 }
             })
             .map(c.self)

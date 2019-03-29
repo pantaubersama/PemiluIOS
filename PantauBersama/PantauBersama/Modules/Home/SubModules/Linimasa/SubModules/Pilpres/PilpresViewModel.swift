@@ -51,6 +51,8 @@ class PilpresViewModel: ViewModelType {
     private var searchQuery: String?
     private let disposeBag = DisposeBag()
     
+    var feeds = BehaviorRelay<[Feeds]>(value: [])
+    
     init(navigator: LinimasaNavigator, searchTrigger: PublishSubject<String>? = nil, showTableHeader: Bool) {
         self.navigator = navigator
         
@@ -110,6 +112,7 @@ class PilpresViewModel: ViewModelType {
         // Map feeds response to cell list
         let feedsCells = feedsItems
             .map { (list) -> [ICellConfigurator] in
+                self.feeds.accept(list)
                 return list.map({ (feeds) -> ICellConfigurator in
                     return LinimasaCellConfigured(item: LinimasaCell.Input(viewModel: self, feeds: feeds))
                 })

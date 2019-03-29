@@ -17,7 +17,8 @@ protocol ILiniWordstadiumViewModelInput {
     var moreI: AnyObserver<Challenge> { get }
     var moreMenuI: AnyObserver<WordstadiumType> { get }
     var seeMoreI: AnyObserver<SectionWordstadium> { get }
-    var itemSelectedI: AnyObserver<Challenge> { get }
+    var itemSelectedI: AnyObserver<IndexPath> { get }
+    var collectionSelectedI: AnyObserver<Challenge> { get }
 }
 
 protocol ILiniWordstadiumViewModelOutput {
@@ -39,48 +40,56 @@ protocol ILiniWordstadiumViewModel {
     var activityIndicator: ActivityIndicator { get }
     var headerViewModel: BannerHeaderViewModel { get }
 
-    func transformToSection(challenge: [Challenge],progress: ProgressType, type: LiniType) -> [SectionWordstadium]
+    func transformToSection(data: GetChallengeResponse,progress: ProgressType, type: LiniType) -> [SectionWordstadium]
     
 }
 
 extension ILiniWordstadiumViewModel {
     
-    func getChallenge(progress: ProgressType, type: LiniType) -> Observable<[Challenge]>{
+    func getChallenge(progress: ProgressType, type: LiniType) -> Observable<GetChallengeResponse>{
         return NetworkService.instance
-            .requestObject(WordstadiumAPI.getChallenges(progress: progress, type: type),
+            .requestObject(WordstadiumAPI.getChallenges(progress: progress, type: type, page: 1, perPage: 4),
                            c: BaseResponse<GetChallengeResponse>.self)
-            .map{( $0.data.challenges )}
+            .map{( $0.data )}
             .trackError(errorTracker)
             .trackActivity(activityIndicator)
             .asObservable()
     }
     
-    func transformToSection(challenge: [Challenge],progress: ProgressType, type: LiniType) -> [SectionWordstadium] {
-        var item:[Challenge] = []
-        var itemLive:[Challenge] = []
+    func transformToSection(data: GetChallengeResponse,progress: ProgressType, type: LiniType) -> [SectionWordstadium] {
+        var items:[CellModel] = []
         var title: String = ""
-        var description: String = ""
+        let challenges = Array(data.challenges.prefix(3))
+        let seeMore = data.challenges.count > 3
         
         switch progress {
         case .liveNow:
-            item.append(challenge[0])
-            itemLive = challenge
-            if type == .public {
-                title = "Live Now"
-            } else {
-                title = "Challenge in Progress"
-            }
+            items = [CellModel.live(challenges)]
+            title = "Live Now"
+        case .inProgress:
+            items = [CellModel.live(challenges)]
+            title = "Challenge in Progress"
         case .comingSoon:
-            item = challenge
-            if type == .public {
-                title = "LINIMASA DEBAT"
-                description = "Daftar challenge dan debat yang akan atau sudah berlangsung ditampilkan semua di sini."
+            if challenges.count == 0 {
+                items = [CellModel.empty]
             } else {
-                title = "MY WORDSTADIUM"
-                description = "Daftar tantangan dan debat yang akan atau sudah kamu ikuti ditampilkan semua di sini."
+                for item in challenges {
+                    items.append(CellModel.standard(item))
+                }
+            }
+            if type == .public {
+                title = "Debat: Coming Soon"
+            } else {
+                title = "My Debat: Coming Soon"
             }
         case .done:
-            item = challenge
+            if challenges.count == 0 {
+                items = [CellModel.empty]
+            } else {
+                for item in challenges {
+                    items.append(CellModel.standard(item))
+                }
+            }
             if type == .public {
                 title = "Debat: Done"
             } else {
@@ -88,7 +97,13 @@ extension ILiniWordstadiumViewModel {
             }
             
         case .challenge:
-            item = challenge
+            if challenges.count == 0 {
+                items = [CellModel.empty]
+            } else {
+                for item in challenges {
+                    items.append(CellModel.standard(item))
+                }
+            }
             if type == .public {
                 title = "Challenge"
             } else {
@@ -96,8 +111,7 @@ extension ILiniWordstadiumViewModel {
             }
         }
         
-        
-        return [SectionWordstadium(title: title, descriptiom: description,type: type, itemType: progress, items: item, itemsLive: itemLive )]
+        return [SectionWordstadium(title: title, descriptiom: "",type: type, itemType: progress, items: items, seeMore: seeMore )]
     }
 
 }

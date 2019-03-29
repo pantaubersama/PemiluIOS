@@ -13,6 +13,7 @@ public class Constant {
     public static let dateTimeFormat2 = "yyyy-MM-dd HH:mm:ss"
     public static let dateTimeFormat3 = "YYYY-MM-dd'T'HH:mm:ss.SSSZ"
     public static let dateTimeFormat4 = "HH:mm, dd MMMM YYYY"
+    public static let dateTimeFormat5 = "EEEE, dd MMMM YYYY"
     public static let dateFormat = "yyyy-MM-dd"
     public static let dateFormat2 = "dd MMMM yyyy"
     public static let timeFormat = "HH:mm"
@@ -174,7 +175,7 @@ extension Date {
         } else if day < 30 {
             return "\(day) hari lagi"
         } else {
-            return self.toString()
+            return self.toString(format: Constant.dateFormat2)
         }
     }
     

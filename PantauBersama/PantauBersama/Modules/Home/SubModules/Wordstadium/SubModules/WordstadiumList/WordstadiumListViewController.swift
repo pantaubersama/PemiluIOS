@@ -52,16 +52,42 @@ class WordstadiumListViewController: UITableViewController {
             .setDelegate(self)
             .disposed(by: disposeBag)
         
+        tableView.rx.contentOffset
+            .distinctUntilChanged()
+            .flatMapLatest { [unowned self] (offset) -> Observable<Void> in
+                if offset.y > self.tableView.contentSize.height -
+                    (self.tableView.frame.height * 2) {
+                    return Observable.just(())
+                } else {
+                    return Observable.empty()
+                }
+            }
+            .bind(to: viewModel.input.nextTrigger)
+            .disposed(by: disposeBag)
+        
         dataSource = RxTableViewSectionedReloadDataSource<SectionWordstadium>(
             configureCell: { (dataSource, tableView, indexPath, item) in
-                let cell = tableView.dequeueReusableCell(indexPath: indexPath) as WordstadiumItemViewCell
-                cell.configureCell(item: WordstadiumItemViewCell.Input( wordstadium: item))
-                return cell
+                switch item {
+                case .standard(let challenge):
+                    let cell = tableView.dequeueReusableCell(indexPath: indexPath) as WordstadiumItemViewCell
+                    cell.configureCell(item: WordstadiumItemViewCell.Input( wordstadium: challenge))
+                    
+                    cell.moreMenuBtn.rx.tap
+                        .map({ challenge })
+                        .bind(to: self.viewModel.input.moreTrigger)
+                        .disposed(by: self.disposeBag)
+                    
+                    return cell
+                default:
+                    return UITableViewCell(style: .default, reuseIdentifier: "Cell")
+                }
+
         })
         
-        tableView.rx.modelSelected(Challenge.self)
+        tableView.rx.itemSelected
             .bind(to: viewModel.input.itemSelectedTrigger)
             .disposed(by: disposeBag)
+
         
         viewModel.output.items
             .do(onNext: { (items) in
@@ -95,44 +121,55 @@ class WordstadiumListViewController: UITableViewController {
         viewModel.output.itemSelected
             .drive()
             .disposed(by: disposeBag)
+        
+        viewModel.output.moreSelectedO
+            .asObservable()
+            .flatMapLatest({ [weak self] (wordstadium) -> Observable<WordstadiumType> in
+                return Observable.create({ (observer) -> Disposable in
+                    let me = AppState.local()?.user
+                    let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+                    let hapus = UIAlertAction(title: "Hapus Challenge", style: .default, handler: { (_) in
+                        observer.onNext(WordstadiumType.hapus(data: wordstadium.id))
+                        observer.on(.completed)
+                    })
+                    let salin = UIAlertAction(title: "Salin Tautan", style: .default, handler: { (_) in
+                        observer.onNext(WordstadiumType.salin(data: wordstadium))
+                        observer.on(.completed)
+                    })
+                    let bagikan = UIAlertAction(title: "Bagikan", style: .default, handler: { (_) in
+                        observer.onNext(WordstadiumType.bagikan(data: wordstadium))
+                        observer.on(.completed)
+                    })
+                    let cancel = UIAlertAction(title: "Batal", style: .cancel, handler: nil)
+                    /// Check if challenge audience just one and user id is match
+                    let challenger = wordstadium.audiences.filter({ $0.role == .challenger }).first
+                    let isMyChallenge = me?.email == (challenger?.email ?? "")
+                    if isMyChallenge && wordstadium.progress == .waitingOpponent && wordstadium.type == .openChallenge {
+                        alert.addAction(hapus)
+                    }
+                    
+                    alert.addAction(salin)
+                    alert.addAction(bagikan)
+                    alert.addAction(cancel)
+                    DispatchQueue.main.async {
+                        self?.navigationController?.present(alert, animated: true, completion: nil)
+                    }
+                    return Disposables.create()
+                })
+            })
+            .bind(to: viewModel.input.moreMenuTrigger)
+            .disposed(by: disposeBag)
+        
+        viewModel.output.moreMenuSelectedO
+            .filter { !$0.isEmpty }
+            .drive(onNext: { (message) in
+                UIAlertController.showAlert(withTitle: "", andMessage: message)
+            })
+            .disposed(by: disposeBag)
+        
+        
     }
 
-    // TODO: for testing purpose
-//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let wordstadium = dataSource.sectionModels[indexPath.section]
-//        
-//        switch wordstadium.itemType {
-//        case .challenge:
-//            guard let navigationController = self.navigationController else { return }
-////            let challengeCoordinator = ChallengeCoordinator(navigationController: navigationController, type: wordstadium.items[indexPath.row].type)
-//            let challengeCoordinator = ChallengeCoordinator(navigationController: navigationController, data: wordstadium.items[indexPath.row])
-//            challengeCoordinator
-//                .start()
-//                .subscribe()
-//                .disposed(by: disposeBag)
-//        case .comingSoon:
-//            guard let navigationController = self.navigationController else { return }
-//            let challengeCoordinator = ChallengeCoordinator(navigationController: navigationController, data: wordstadium.items[indexPath.row])
-//            challengeCoordinator
-//                .start()
-//                .subscribe()
-//                .disposed(by: disposeBag)
-//        case .done:
-//            guard let navigationController = self.navigationController else { return }
-//            let challengeCoordinator = ChallengeCoordinator(navigationController: navigationController, data: wordstadium.items[indexPath.row])
-//            challengeCoordinator
-//                .start()
-//                .subscribe()
-//                .disposed(by: disposeBag)
-//        case .liveNow:
-//            guard let navigationController = self.navigationController else { return }
-//            let liveDebatCoordinator = LiveDebatCoordinator(navigationController: navigationController, viewType: .watch)
-//            liveDebatCoordinator
-//                .start()
-//                .subscribe()
-//                .disposed(by: disposeBag)
-//        }
-//    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

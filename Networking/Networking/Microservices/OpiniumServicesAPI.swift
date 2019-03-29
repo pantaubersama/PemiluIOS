@@ -11,6 +11,7 @@ import Common
 
 public enum OpiniumServiceAPI {
     case tagKajian(page: Int, perPage: Int, q: String)
+    case crawl(url: String, refetch: Bool)
 }
 
 extension OpiniumServiceAPI: TargetType {
@@ -35,6 +36,8 @@ extension OpiniumServiceAPI: TargetType {
         switch self {
         case .tagKajian:
             return "/opinium_service/v1/tags"
+        case .crawl:
+            return "/common/v1/crawl"
         }
     }
     
@@ -63,6 +66,11 @@ extension OpiniumServiceAPI: TargetType {
                 "page": page,
                 "per_page": perPage,
                 "q": q
+            ]
+        case .crawl(let (url, refetch)):
+            return [
+                "url": url,
+                "refetch": refetch
             ]
         }
     }

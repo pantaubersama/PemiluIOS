@@ -16,8 +16,8 @@ protocol WordstadiumNavigator {
     func launchBannerInfo(bannerInfo: BannerInfo) -> Observable<Void>
     func launchNote() -> Observable<Void>
     func launchSearch() -> Observable<Void>
-    func launchTooltip() -> Observable<TooltipResult>
-    func launchWordstadiumList(wordstadium: SectionWordstadium) -> Observable<Void>
+    func launchTooltip(type: LiniType) -> Observable<TooltipResult>
+    func launchWordstadiumList(progressType: ProgressType, liniType: LiniType) -> Observable<Void>
     func launchChallenge(wordstadium: Challenge) -> Observable<Void>
     func launchLiveChallenge(wordstadium: Challenge) -> Observable<Void>
 }
@@ -66,13 +66,13 @@ extension WordstadiumCoordinator: WordstadiumNavigator {
         return coordinate(to: searchCoordinator)
     }
     
-    func launchTooltip() -> Observable<TooltipResult> {
-        let tooltipCoordinator = TooltipCoordinator(navigationController: navigationController)
+    func launchTooltip(type: LiniType) -> Observable<TooltipResult> {
+        let tooltipCoordinator = TooltipCoordinator(navigationController: navigationController, liniType: type)
         return coordinate(to: tooltipCoordinator)
     }
     
-    func launchWordstadiumList(wordstadium: SectionWordstadium) -> Observable<Void> {
-        let listCoordinator = WordstadiumListCoordinator(navigationController: navigationController, progressType: wordstadium.itemType, liniType: wordstadium.type)
+    func launchWordstadiumList(progressType: ProgressType, liniType: LiniType) -> Observable<Void> {
+        let listCoordinator = WordstadiumListCoordinator(navigationController: navigationController, progressType: progressType, liniType: liniType)
         return coordinate(to: listCoordinator)
     }
     
@@ -82,7 +82,7 @@ extension WordstadiumCoordinator: WordstadiumNavigator {
     }
     
     func launchLiveChallenge(wordstadium: Challenge) -> Observable<Void> {
-        let liveDebatCoordinator = LiveDebatCoordinator(navigationController: navigationController, challenge: wordstadium, viewType: .watch)
+        let liveDebatCoordinator = LiveDebatCoordinator(navigationController: navigationController, challenge: wordstadium)
         return coordinate(to: liveDebatCoordinator)
     }
 }

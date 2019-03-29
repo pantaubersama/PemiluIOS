@@ -184,6 +184,8 @@
 		13E6FECB221F2109008CA788 /* LiniWordstadiumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E6FECA221F2109008CA788 /* LiniWordstadiumViewController.swift */; };
 		13E6FECD221F24C9008CA788 /* LiniPublicViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E6FECC221F24C9008CA788 /* LiniPublicViewModel.swift */; };
 		13E6FED0221F27AE008CA788 /* LiniPersonalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E6FECF221F27AE008CA788 /* LiniPersonalViewModel.swift */; };
+		13E82014223E41C400CC5C70 /* WordstadiumEmptyViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E82012223E41C400CC5C70 /* WordstadiumEmptyViewCell.swift */; };
+		13E82015223E41C400CC5C70 /* WordstadiumEmptyViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13E82013223E41C400CC5C70 /* WordstadiumEmptyViewCell.xib */; };
 		13E9D78821E8F025006A0890 /* IJanpolListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E9D78721E8F025006A0890 /* IJanpolListViewModel.swift */; };
 		13E9D78B21E8FCF6006A0890 /* IJanpolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E9D78A21E8FCF5006A0890 /* IJanpolViewController.swift */; };
 		13E9D78E21E9171E006A0890 /* JanpolListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E9D78D21E9171E006A0890 /* JanpolListViewModel.swift */; };
@@ -226,6 +228,7 @@
 		840901C421DF3BEC001BF559 /* CatatanCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840901C321DF3BEC001BF559 /* CatatanCoordinator.swift */; };
 		8409374B21D360D10024A444 /* PilpresViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8409374A21D360D10024A444 /* PilpresViewModel.swift */; };
 		8409374D21D361240024A444 /* PilpresNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8409374C21D361240024A444 /* PilpresNavigator.swift */; };
+		840BD0852233A9CD00F0B90F /* love.json in Resources */ = {isa = PBXBuildFile; fileRef = 840BD0842233A9CD00F0B90F /* love.json */; };
 		841CDA3D21C8BC1C0015680C /* LinimasaController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 841CDA3C21C8BC1C0015680C /* LinimasaController.xib */; };
 		8423C3FA21F71711000AAA63 /* DetailAskController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8423C3F921F71711000AAA63 /* DetailAskController.xib */; };
 		8423C3FC21F718A6000AAA63 /* DetailAskController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423C3FB21F718A6000AAA63 /* DetailAskController.swift */; };
@@ -324,6 +327,9 @@
 		8478B8E621FF1FAA00CE192A /* InfoNotifCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8478B8E521FF1FAA00CE192A /* InfoNotifCell.xib */; };
 		8478B8E821FF210E00CE192A /* InfoNotifCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8478B8E721FF210E00CE192A /* InfoNotifCell.swift */; };
 		8478B8EA21FF315600CE192A /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8478B8E921FF315600CE192A /* Parser.swift */; };
+		847B4A162249F8890071A8F5 /* LinimasaNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847B4A152249F8890071A8F5 /* LinimasaNode.swift */; };
+		847B4A19224A1EA00071A8F5 /* ASControlNode+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847B4A18224A1EA00071A8F5 /* ASControlNode+Rx.swift */; };
+		847B4A1B224A28F90071A8F5 /* QuizNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847B4A1A224A28F90071A8F5 /* QuizNode.swift */; };
 		848B039921E7AA8C002CAA40 /* WKWebview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848B039821E7AA8C002CAA40 /* WKWebview.swift */; };
 		848B039C21E7AADF002CAA40 /* WKWebview.xib in Resources */ = {isa = PBXBuildFile; fileRef = 848B039B21E7AADF002CAA40 /* WKWebview.xib */; };
 		848B039F21E7B538002CAA40 /* WKWebCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848B039E21E7B538002CAA40 /* WKWebCoordinator.swift */; };
@@ -798,6 +804,8 @@
 		13E6FECA221F2109008CA788 /* LiniWordstadiumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiniWordstadiumViewController.swift; sourceTree = "<group>"; };
 		13E6FECC221F24C9008CA788 /* LiniPublicViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiniPublicViewModel.swift; sourceTree = "<group>"; };
 		13E6FECF221F27AE008CA788 /* LiniPersonalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiniPersonalViewModel.swift; sourceTree = "<group>"; };
+		13E82012223E41C400CC5C70 /* WordstadiumEmptyViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WordstadiumEmptyViewCell.swift; path = PantauBersama/Modules/Home/SubModules/Wordstadium/SubModules/Components/WordstadiumEmptyViewCell.swift; sourceTree = SOURCE_ROOT; };
+		13E82013223E41C400CC5C70 /* WordstadiumEmptyViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = WordstadiumEmptyViewCell.xib; path = PantauBersama/Modules/Home/SubModules/Wordstadium/SubModules/Components/WordstadiumEmptyViewCell.xib; sourceTree = SOURCE_ROOT; };
 		13E9D78721E8F025006A0890 /* IJanpolListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IJanpolListViewModel.swift; sourceTree = "<group>"; };
 		13E9D78A21E8FCF5006A0890 /* IJanpolViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IJanpolViewController.swift; sourceTree = "<group>"; };
 		13E9D78D21E9171E006A0890 /* JanpolListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JanpolListViewModel.swift; sourceTree = "<group>"; };
@@ -843,6 +851,7 @@
 		840901C321DF3BEC001BF559 /* CatatanCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatatanCoordinator.swift; sourceTree = "<group>"; };
 		8409374A21D360D10024A444 /* PilpresViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PilpresViewModel.swift; sourceTree = "<group>"; };
 		8409374C21D361240024A444 /* PilpresNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PilpresNavigator.swift; sourceTree = "<group>"; };
+		840BD0842233A9CD00F0B90F /* love.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = love.json; sourceTree = "<group>"; };
 		841CDA3C21C8BC1C0015680C /* LinimasaController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LinimasaController.xib; sourceTree = "<group>"; };
 		8423C3F921F71711000AAA63 /* DetailAskController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailAskController.xib; sourceTree = "<group>"; };
 		8423C3FB21F718A6000AAA63 /* DetailAskController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailAskController.swift; sourceTree = "<group>"; };
@@ -945,6 +954,9 @@
 		8478B8E521FF1FAA00CE192A /* InfoNotifCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoNotifCell.xib; sourceTree = "<group>"; };
 		8478B8E721FF210E00CE192A /* InfoNotifCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoNotifCell.swift; sourceTree = "<group>"; };
 		8478B8E921FF315600CE192A /* Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
+		847B4A152249F8890071A8F5 /* LinimasaNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinimasaNode.swift; sourceTree = "<group>"; };
+		847B4A18224A1EA00071A8F5 /* ASControlNode+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ASControlNode+Rx.swift"; sourceTree = "<group>"; };
+		847B4A1A224A28F90071A8F5 /* QuizNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizNode.swift; sourceTree = "<group>"; };
 		848B039821E7AA8C002CAA40 /* WKWebview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKWebview.swift; sourceTree = "<group>"; };
 		848B039B21E7AADF002CAA40 /* WKWebview.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WKWebview.xib; sourceTree = "<group>"; };
 		848B039E21E7B538002CAA40 /* WKWebCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKWebCoordinator.swift; sourceTree = "<group>"; };
@@ -1243,6 +1255,7 @@
 			children = (
 				043EE180221A36C2008C59CD /* SubModules */,
 				043EE18E221A36C2008C59CD /* ViewController */,
+				043EE17F221A36C2008C59CD /* MerayakanCoordinator.swift */,
 				043EE191221A36C2008C59CD /* MerayakanViewModel.swift */,
 				043EE17F221A36C2008C59CD /* MerayakanCoordinator.swift */,
 			);
@@ -1497,6 +1510,7 @@
 				137A29E721E11D0400F19072 /* HeaderQuizView.swift */,
 				137A29ED21E11E8F00F19072 /* TrendHeaderView.xib */,
 				137A29EB21E11E7E00F19072 /* TrendHeaderView.swift */,
+				847B4A1A224A28F90071A8F5 /* QuizNode.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -1895,6 +1909,8 @@
 				131DBDB92215AFE3005203FF /* View */,
 				13E170D2221311A70018EDB4 /* WordstadiumItemViewCell.swift */,
 				13E170D3221311A70018EDB4 /* WordstadiumItemViewCell.xib */,
+				13E82012223E41C400CC5C70 /* WordstadiumEmptyViewCell.swift */,
+				13E82013223E41C400CC5C70 /* WordstadiumEmptyViewCell.xib */,
 				1320595C221359C200BE9456 /* WordstadiumCollectionCell.swift */,
 				1320595D221359C200BE9456 /* WordstadiumCollectionCell.xib */,
 				1320596022135B1500BE9456 /* WordstadiumViewCell.swift */,
@@ -2336,6 +2352,7 @@
 		844C3D7321C51E7E00199871 /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				847B4A17224A1E860071A8F5 /* Texture */,
 				E583C9F3223ED9C4006D9590 /* SelectionDialog */,
 				84F1F21621EA6782004515A4 /* Facebook */,
 				84F1F20921E8D987004515A4 /* Twitter */,
@@ -2358,8 +2375,6 @@
 				043EE17E221A36C2008C59CD /* Merayakan */,
 				137A29EF21E225DF00F19072 /* Comingsoon */,
 				13F456D721DBACF400CE45F1 /* Banner */,
-				844C3D8021C524AE00199871 /* Vote */,
-				844C3D7F21C524A700199871 /* Lapor */,
 				844C3D7E21C5249300199871 /* Wordstadium */,
 				844C3D7D21C5248400199871 /* Penpol */,
 				844C3D7C21C5247D00199871 /* Linimasa */,
@@ -2401,20 +2416,6 @@
 			path = Wordstadium;
 			sourceTree = "<group>";
 		};
-		844C3D7F21C524A700199871 /* Lapor */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Lapor;
-			sourceTree = "<group>";
-		};
-		844C3D8021C524AE00199871 /* Vote */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Vote;
-			sourceTree = "<group>";
-		};
 		844C3D8121C524BC00199871 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -2445,6 +2446,7 @@
 				84F6981021C8E21B00890917 /* LinimasaCell.swift */,
 				84F6981621C9364700890917 /* LinimasaJanjiCell.xib */,
 				84F6981821C93B8900890917 /* LinimasaJanjiCell.swift */,
+				847B4A152249F8890071A8F5 /* LinimasaNode.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -2591,6 +2593,14 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		847B4A17224A1E860071A8F5 /* Texture */ = {
+			isa = PBXGroup;
+			children = (
+				847B4A18224A1EA00071A8F5 /* ASControlNode+Rx.swift */,
+			);
+			path = Texture;
+			sourceTree = "<group>";
+		};
 		848B039A21E7AA9F002CAA40 /* WKWebview */ = {
 			isa = PBXGroup;
 			children = (
@@ -2696,6 +2706,7 @@
 		84A07F8D21D0CC8600269C6B /* Lottie */ = {
 			isa = PBXGroup;
 			children = (
+				840BD0842233A9CD00F0B90F /* love.json */,
 				1159A1E3221E3A6000A8B120 /* clap.json */,
 				8451E0692207F76E00F03E96 /* validation-success.json */,
 				8451E0672207F74400F03E96 /* upload-ttd.json */,
@@ -3667,6 +3678,7 @@
 				84B8C1C822157A27004BC1FE /* PublishChallengeController.xib in Resources */,
 				840850DD21D2832200696CB3 /* BadgeController.xib in Resources */,
 				84CA10BF21EF0DE80025CF10 /* AboutController.xib in Resources */,
+				13E82015223E41C400CC5C70 /* WordstadiumEmptyViewCell.xib in Resources */,
 				842A4A0321D7C6810050AA51 /* CameraController.xib in Resources */,
 				84B8C1C222157584004BC1FE /* FooterProfileView.xib in Resources */,
 				84A945BC22240A8F00944C6B /* SearchUserController.xib in Resources */,
@@ -3690,6 +3702,7 @@
 				11E1079221CD0FE200B7B074 /* QuizDetailController.xib in Resources */,
 				13E139522213FEF000286EDE /* SeeMoreCell.xib in Resources */,
 				13E170C0221184B70018EDB4 /* WordstadiumController.xib in Resources */,
+				840BD0852233A9CD00F0B90F /* love.json in Resources */,
 				8451E0682207F74400F03E96 /* upload-ttd.json in Resources */,
 				84B2521E21CAB1BE00565D82 /* OnboardingViewController.xib in Resources */,
 				13E170D5221311A70018EDB4 /* WordstadiumItemViewCell.xib in Resources */,
@@ -3892,10 +3905,13 @@
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/LTHRadioButton/LTHRadioButton.framework",
+				"${BUILT_PRODUCTS_DIR}/PINCache/PINCache.framework",
+				"${BUILT_PRODUCTS_DIR}/PINOperation/PINOperation.framework",
+				"${BUILT_PRODUCTS_DIR}/PINRemoteImage/PINRemoteImage.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/Texture/AsyncDisplayKit.framework",
 				"${PODS_ROOT}/TwitterCore/iOS/TwitterCore.framework",
 				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework",
-				"${BUILT_PRODUCTS_DIR}/URLEmbeddedView/URLEmbeddedView.framework",
 				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -3923,10 +3939,13 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LTHRadioButton.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINCache.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINOperation.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINRemoteImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AsyncDisplayKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwitterCore.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwitterKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/URLEmbeddedView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lottie.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -4070,10 +4089,13 @@
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/LTHRadioButton/LTHRadioButton.framework",
+				"${BUILT_PRODUCTS_DIR}/PINCache/PINCache.framework",
+				"${BUILT_PRODUCTS_DIR}/PINOperation/PINOperation.framework",
+				"${BUILT_PRODUCTS_DIR}/PINRemoteImage/PINRemoteImage.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/Texture/AsyncDisplayKit.framework",
 				"${PODS_ROOT}/TwitterCore/iOS/TwitterCore.framework",
 				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework",
-				"${BUILT_PRODUCTS_DIR}/URLEmbeddedView/URLEmbeddedView.framework",
 				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -4101,10 +4123,13 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LTHRadioButton.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINCache.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINOperation.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINRemoteImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AsyncDisplayKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwitterCore.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwitterKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/URLEmbeddedView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lottie.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -4133,6 +4158,7 @@
 				84FA42402212A595008215C4 /* CreateTantanganViewModel.swift in Sources */,
 				84B7B8BC21E47A8F0099E7E3 /* ClusterSearchController.swift in Sources */,
 				137A29F321E2261A00F19072 /* ComingsoonController.swift in Sources */,
+				847B4A162249F8890071A8F5 /* LinimasaNode.swift in Sources */,
 				11702DD521CB08DE001AEE3F /* QuizController.swift in Sources */,
 				E583C9F7223ED9C5006D9590 /* SelectionDialog.swift in Sources */,
 				11145F5D21EAF2670046F2AA /* SearchNavbar.swift in Sources */,
@@ -4350,10 +4376,12 @@
 				13E6FECD221F24C9008CA788 /* LiniPublicViewModel.swift in Sources */,
 				043EE1AF221CC99F008C59CD /* TPSViewCell.swift in Sources */,
 				13BF405321EBAA8F005C9A64 /* IQuestionListViewModel.swift in Sources */,
+				847B4A19224A1EA00071A8F5 /* ASControlNode+Rx.swift in Sources */,
 				8478B8EA21FF315600CE192A /* Parser.swift in Sources */,
 				84B7B8BE21E47B400099E7E3 /* ClusterSearchViewModel.swift in Sources */,
 				84B6D50F21F8345900DD742A /* CatatanPartyViewModel.swift in Sources */,
 				845C570521CD1C2300EDCDFE /* HeaderProfile.swift in Sources */,
+				847B4A1B224A28F90071A8F5 /* QuizNode.swift in Sources */,
 				84B6D6E821E1E7FC00CD4BC8 /* ClusterCellViewModel.swift in Sources */,
 				84B7B8CE21E5B4CD0099E7E3 /* AddKategoriController.swift in Sources */,
 				043EE19E221A36C2008C59CD /* MerayakanController.swift in Sources */,
@@ -4411,6 +4439,7 @@
 				84BE8E0022269D700079332A /* PartyCaraouselCell.swift in Sources */,
 				84307F4D22006857006DE04B /* ParserCoordinator.swift in Sources */,
 				84B8C1C422157686004BC1FE /* FooterProfileView.swift in Sources */,
+				11DA97072222B04D00A51E76 /* PerhitunganViewModel.swift in Sources */,
 				842A4A0F21D7EE5F0050AA51 /* SuccessViewModel.swift in Sources */,
 				E54CFAEF222C1EC7002DA0D1 /* TPSInputCell.swift in Sources */,
 				84B7B8D221E5B9640099E7E3 /* AddKategoriCoordinator.swift in Sources */,
@@ -4442,6 +4471,7 @@
 				11E107B521CD44FD00B7B074 /* QuizOngoingCoordinator.swift in Sources */,
 				84B6D51621F842EB00DD742A /* PartyCell.swift in Sources */,
 				84B7B8C721E4A0A00099E7E3 /* IClusterSearchDelegate.swift in Sources */,
+				11DA970B2222C29A00A51E76 /* PerhitunganController.swift in Sources */,
 				840850D221D2632500696CB3 /* ProfileEditCoordinator.swift in Sources */,
 				E54CFAF2222C1EDF002DA0D1 /* TPSInputHeader.swift in Sources */,
 				8409374D21D361240024A444 /* PilpresNavigator.swift in Sources */,
@@ -4487,6 +4517,7 @@
 				13F456D621DBA2F600CE45F1 /* BannerHeaderViewModel.swift in Sources */,
 				1149EB81221A9DE90050F366 /* DebatDetailViewModel.swift in Sources */,
 				84A945C022240D6600944C6B /* SearchUserCoordinator.swift in Sources */,
+				13E82014223E41C400CC5C70 /* WordstadiumEmptyViewCell.swift in Sources */,
 				84FA425A2212BB4B008215C4 /* TantanganCell.swift in Sources */,
 				1108871C221271CD0041B821 /* LiveDebatCoordinator.swift in Sources */,
 				840850E121D2844700696CB3 /* BadgeCoordinator.swift in Sources */,

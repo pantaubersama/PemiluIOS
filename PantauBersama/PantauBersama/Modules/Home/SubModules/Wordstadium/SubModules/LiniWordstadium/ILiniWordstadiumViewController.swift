@@ -24,6 +24,7 @@ protocol ILiniWordstadiumViewController where Self: UIViewController {
 extension ILiniWordstadiumViewController {
     func registerCells(with tableView: UITableView) {
         tableView.registerReusableCell(WordstadiumViewCell.self)
+        tableView.registerReusableCell(WordstadiumEmptyViewCell.self)
         tableView.registerReusableCell(SectionViewCell.self)
         tableView.registerReusableCell(SectionViewCell2.self)
         tableView.registerReusableCell(SeeMoreCell.self)
@@ -36,8 +37,12 @@ extension ILiniWordstadiumViewController {
             .asObservable()
             .flatMapLatest({ [weak self] (wordstadium) -> Observable<WordstadiumType> in
                 return Observable.create({ (observer) -> Disposable in
-                    
+                    let me = AppState.local()?.user
                     let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+                    let hapus = UIAlertAction(title: "Hapus Challenge", style: .default, handler: { (_) in
+                        observer.onNext(WordstadiumType.hapus(data: wordstadium.id))
+                        observer.on(.completed)
+                    })
                     let salin = UIAlertAction(title: "Salin Tautan", style: .default, handler: { (_) in
                         observer.onNext(WordstadiumType.salin(data: wordstadium))
                         observer.on(.completed)
@@ -47,6 +52,13 @@ extension ILiniWordstadiumViewController {
                         observer.on(.completed)
                     })
                     let cancel = UIAlertAction(title: "Batal", style: .cancel, handler: nil)
+                    
+                    /// Check if challenge audience just one and user id is match
+                    let challenger = wordstadium.audiences.filter({ $0.role == .challenger }).first
+                    let isMyChallenge = me?.email == (challenger?.email ?? "")
+                    if isMyChallenge && wordstadium.progress == .waitingOpponent && wordstadium.type == .openChallenge {
+                        alert.addAction(hapus)
+                    }
                     
                     alert.addAction(salin)
                     alert.addAction(bagikan)

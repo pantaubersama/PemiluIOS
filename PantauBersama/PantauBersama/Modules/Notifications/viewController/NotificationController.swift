@@ -74,7 +74,10 @@ class NotificationController: UIViewController {
             .skip(1)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [unowned self] (i) in
-                self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
+                if self.tableView.indexPathsForVisibleRows?.count != 0 {
+                    self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
+                }
+                
                 self.tableView.isHidden = true
                 if i == 0 {
                     self.viewModel.input.changeNotifMenuI.onNext(.all)

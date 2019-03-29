@@ -129,7 +129,12 @@ extension PaslonCaraouselCell: IReusableCell {
                     })
                 })
             default:
-                break
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+                    UIView.animate(withDuration: 1.3, animations: {
+                        self.contentPager.alpha = 1.0
+                        self.contentPager.scrollToItem(at: 0, animated: true)
+                    })
+                })
             }
         }
         

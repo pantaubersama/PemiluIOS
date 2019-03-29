@@ -8,8 +8,6 @@
 	<array>
 		<string>applinks:share.pantaubersama.com</string>
 		<string>applinks:staging-share.pantaubersama.com</string>
-		<string>applinks:identitas.extrainteger.com</string>
-		<string>applinks:app.symbolic.id</string>
 	</array>
 </dict>
 </plist>
