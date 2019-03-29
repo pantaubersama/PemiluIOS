@@ -50,7 +50,8 @@ public enum HitungAPI {
     case putRealCount(id: Int, noTps: Int)
     case getRealCount(id: Int)
     case getRealCounts(page: Int, perPage: Int, userId: String?, villageCode: String?, dapilId: String?)
-    case postRealCount(request: RealCountRequest)
+    case postRealCount(noTps: String, province: String, regencies: String, district: String, village: String, lat: Double, long: Double)
+    case publishRealCount(id: String)
 }
 
 extension HitungAPI: TargetType {
@@ -77,6 +78,8 @@ extension HitungAPI: TargetType {
         case .getRealCounts,
              .postRealCount:
             return "/hitung/v1/real_counts"
+        case .publishRealCount(let id):
+            return "/hitung/v1/real_counts/\(id)/draft"
         case .getCalculations,
              .putCalculations:
             return "/hitung/v1/calculations"
@@ -111,7 +114,8 @@ extension HitungAPI: TargetType {
     public var method: Moya.Method {
         switch self {
         case .postImageRealCount,
-             .postRealCount:
+             .postRealCount,
+             .publishRealCount:
             return .post
         case .deleteImages:
             return .delete
@@ -142,8 +146,16 @@ extension HitungAPI: TargetType {
     
     public var parameters: [String: Any]? {
         switch self {
-        case .postRealCount(let request):
-            return request.dictionary ?? [:]            
+        case .postRealCount(let (noTps, province, regencies, district, village, lat, long)):
+            return [
+                "tps": noTps,
+                "province_code": province,
+                "regency_code": regencies,
+                "district_code": district,
+                "village_code": village,
+                "latitude": lat,
+                "longitude": long
+            ]
         case .putRealCount(let id, let noTps):
             return [
                 "tps": noTps,
@@ -160,6 +172,8 @@ extension HitungAPI: TargetType {
             params["village_code"] = villageCode
             params["dapil_id"] = dapilId
             return params
+        case .publishRealCount(let id):
+            return ["id": id]
         case .putCalculations(let parameters):
             return parameters
         case .getDapils(let provinceCode, let regenciCode, let districtCode, let tingkat):

@@ -37,6 +37,7 @@ enum FormC1Type {
 class C1InputFormController: UIViewController {
     var viewModel: C1InputFormViewModel!
     var type: FormC1Type!
+    @IBOutlet weak var lblDesc: Label!
     
     private let disposeBag = DisposeBag()
     
@@ -50,6 +51,7 @@ class C1InputFormController: UIViewController {
         super.viewDidLoad()
         
         title = type.title
+        lblDesc.text = "Silahkan masukkan data Model C1 \(type.title.lowercased()) pada kolom dibawah ini :"
         
         let back = UIBarButtonItem(image: #imageLiteral(resourceName: "back"), style: .plain, target: nil, action: nil)
         
@@ -60,6 +62,10 @@ class C1InputFormController: UIViewController {
             .bind(to: viewModel.input.backI)
             .disposed(by: disposeBag)
 
+        pemilihView.config(viewModel: viewModel)
+        pemilihDisabilitasView.config(viewModel: viewModel)
+        suratSuaraView.config(viewModel: viewModel)
+        
         containerView.addArrangedSubview(pemilihView)
         containerView.addArrangedSubview(pemilihDisabilitasView)
         containerView.addArrangedSubview(suratSuaraView)

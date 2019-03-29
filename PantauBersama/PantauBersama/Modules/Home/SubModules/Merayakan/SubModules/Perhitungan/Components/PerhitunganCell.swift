@@ -22,6 +22,7 @@ class PerhitunganCell: UITableViewCell {
     @IBOutlet weak var vilageLbl: Label!
     @IBOutlet weak var tpsStatusLbl: UILabel!
     @IBOutlet weak var tpsStatusView: RoundView!
+    @IBOutlet weak var borderView: UIView!
     
     private(set) var disposeBag = DisposeBag()
     
@@ -56,10 +57,13 @@ extension PerhitunganCell: IReusableCell {
     func configure(data: RealCount) {
         switch data.status {
         case .draft:
+            borderView.backgroundColor = Color.orange_warm_dark
             tpsStatusView.backgroundColor = Color.primary_red
         case .sandbox:
+            borderView.backgroundColor = Color.grey_four
             tpsStatusView.backgroundColor = Color.grey_four
         case .published:
+            borderView.backgroundColor = Color.orange_warm_dark
             tpsStatusView.backgroundColor = Color.secondary_cyan
         }
         tpsNameLbl.text = "TPS \(data.tps)"

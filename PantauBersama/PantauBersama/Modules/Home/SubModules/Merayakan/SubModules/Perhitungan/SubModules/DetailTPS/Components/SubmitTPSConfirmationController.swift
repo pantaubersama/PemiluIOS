@@ -45,20 +45,34 @@ class SubmitTPSConfirmationController: UIViewController {
             }
             .disposed(by: disposeBag)
         
-        // for dummy simulation
         btnYes.rx.tap
             .bind { [unowned self] in
                 self.viewConfirmation.isHidden = true
-                
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
-                    self.viewLoading.isHidden = true
-                })
+                self.viewModel.input.submitActionI.onNext(())
             }
             .disposed(by: disposeBag)
         
         viewModel.output.successSubmitO
             .drive()
             .disposed(by: disposeBag)
+        
+        viewModel.output.submitActionO
+            .drive(onNext: { (_) in
+                self.viewLoading.isHidden = true
+                
+            })
+            .disposed(by: self.disposeBag)
+        
+//        viewModel.output.submitActionO
+//            .drive(onNext: { (_) in
+//                self.viewConfirmation.isHidden = true
+//
+//                DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+//                    self.viewLoading.isHidden = true
+//                })
+//
+//            })
+//            .disposed(by: self.disposeBag)
         
     }
 
