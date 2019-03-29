@@ -257,7 +257,6 @@ extension HitungAPI: TargetType {
     public var task: Task {
         switch self {
         case .postImageRealCount,
-             .postRealCount,
              .putCalculations:
             return .uploadMultipart(self.multipartBody ?? [])
         default:
