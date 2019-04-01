@@ -23,6 +23,7 @@ enum ChallengeType {
 
 enum ChallengeDetailResult {
     case result(id: String)
+    case delete(id: String)
     case cancel
 }
 
@@ -210,17 +211,14 @@ class ChallengeViewModel: ViewModelType {
         }.asDriverOnErrorJustComplete()
         
         let putLove = loveS
-            .flatMapLatest({ [unowned self] in self.putLove(id: self.data.id) })
-            .do(onNext: { [weak self](isSuccess) in
+            .flatMapLatest({ [unowned self] in
+                if self.data.
+                self.putLove(id: self.data.id)
+            })
+            .do(onNext: { [weak self](challenge) in
                 guard let `self` = self else { return }
-                if !isSuccess {
-                    return
-                }
                 
-                var challenge = data
-                challenge.isLiked = true
-                challenge.likeCount = (challenge.likeCount ?? 0) + 1
-                
+                self.data = challenge
                 self.challengeS.onNext(challenge)
             })
             .asDriverOnErrorJustComplete()
@@ -229,7 +227,7 @@ class ChallengeViewModel: ViewModelType {
         /// Need configuration coordination result, after delete challenge need know item index
         let backSelected = backS.map({ ChallengeDetailResult.cancel })
         let deleteSelected = deleteS
-            .map{ (result) in ChallengeDetailResult.result(id: result) }
+            .map{ (result) in ChallengeDetailResult.delete(id: result) }
         let closeSelected = Observable.merge(backSelected, deleteSelected)
             .take(1)
             .asDriverOnErrorJustComplete()
@@ -312,10 +310,10 @@ class ChallengeViewModel: ViewModelType {
             .asObservable()
     }
     
-    private func putLove(id: String) -> Observable<Bool> {
+    private func putLove(id: String) -> Observable<Challenge> {
         return NetworkService.instance
             .requestObject(WordstadiumAPI.loveChallenge(challengeId: id), c: BaseResponse<CreateChallengeResponse>.self)
-            .map({ $0.data.challenge.isLiked ?? false })
+            .map({ $0.data.challenge })
             .asObservable()
     }
 

@@ -70,7 +70,7 @@ class WordstadiumListViewModel: ViewModelType {
             .withLatestFrom(showItems) { (indexPath, challenges) -> CellModel in
                 return challenges[indexPath.section].items[indexPath.row]
             }
-            .flatMapLatest({ (item) -> Observable<Void> in
+            .flatMapLatest({ (item) -> Observable<ChallengeDetailResult> in
                 switch item {
                 case .standard(let challenge):
                     return navigator.openChallenge(challenge: challenge)
@@ -79,6 +79,7 @@ class WordstadiumListViewModel: ViewModelType {
                 }
 
             })
+            .mapToVoid()
             .asDriverOnErrorJustComplete()
         
         let moreSelectedO = moreSubject

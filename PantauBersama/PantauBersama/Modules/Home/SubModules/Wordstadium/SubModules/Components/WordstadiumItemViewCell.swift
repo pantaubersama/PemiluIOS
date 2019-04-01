@@ -29,6 +29,7 @@ class WordstadiumItemViewCell: UITableViewCell {
     @IBOutlet weak var opponentCountLbl: UILabel!
     @IBOutlet weak var likeView: UIView!
     @IBOutlet weak var likeCountLbl: UILabel!
+    @IBOutlet weak var ivLike: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -71,6 +72,7 @@ extension WordstadiumItemViewCell: IReusableCell {
         rightPersonView.isHidden = true
         rightUsername.text = ""
         opponentCountLbl.text = ""
+        likeCountLbl.text = "\(item.wordstadium.likeCount ?? 0)"
         
         // configure header challenger side
         leftUsername.text = challenger?.fullName ?? ""

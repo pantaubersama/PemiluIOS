@@ -17,13 +17,13 @@ enum DeleteChallengeResult {
 
 protocol ChallengeNavigator {
     func back() -> Observable<Void>
-    func openLiveDebatDone(challenge: Challenge) -> Observable<Void>
+    func openLiveDebatDone(challenge: Challenge) -> Observable<ChallengeDetailResult>
     func openAcceptConfirmation(type: PopupChallengeType) -> Observable<PopupChallengeResult>
     func shareChallenge(challenge: Challenge) -> Observable<Void>
     func deleteChallenge(challengeId: String) -> Observable<DeleteChallengeResult>
 }
 
-final class ChallengeCoordinator: BaseCoordinator<Void> {
+final class ChallengeCoordinator: BaseCoordinator<ChallengeDetailResult> {
     
     private let navigationController: UINavigationController
     private var data: Challenge
@@ -33,7 +33,7 @@ final class ChallengeCoordinator: BaseCoordinator<Void> {
         self.data = data
     }
     
-    override func start() -> Observable<Void> {
+    override func start() -> Observable<ChallengeDetailResult> {
         let viewController = ChallengeController()
         let viewModel = ChallengeViewModel(navigator: self, data: data)
         viewController.data = data
@@ -45,7 +45,6 @@ final class ChallengeCoordinator: BaseCoordinator<Void> {
             .do(onNext: { [unowned self] (_) in
                 self.navigationController.popViewController(animated: true)
             })
-            .mapToVoid()
     }
     
 }
@@ -57,7 +56,7 @@ extension ChallengeCoordinator: ChallengeNavigator {
         return Observable.empty()
     }
     
-    func openLiveDebatDone(challenge: Challenge) -> Observable<Void> {
+    func openLiveDebatDone(challenge: Challenge) -> Observable<ChallengeDetailResult> {
         let liveDebatDoneCoordinator = LiveDebatCoordinator(navigationController: self.navigationController, challenge: challenge)
         return coordinate(to: liveDebatDoneCoordinator)
     }

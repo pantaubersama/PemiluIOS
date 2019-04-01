@@ -26,7 +26,7 @@ public enum DebatViewType {
     case participant
 }
 
-class LiveDebatCoordinator: BaseCoordinator<Void> {
+class LiveDebatCoordinator: BaseCoordinator<ChallengeDetailResult> {
     private let navigationController: UINavigationController
     private let challenge: Challenge
     
@@ -35,14 +35,14 @@ class LiveDebatCoordinator: BaseCoordinator<Void> {
         self.challenge = challenge
     }
     
-    override func start() -> Observable<Void> {
+    override func start() -> Observable<ChallengeDetailResult> {
         let viewController = LiveDebatController()
         let viewModel = LiveDebatViewModel(navigator: self, challenge: self.challenge)
         viewController.hidesBottomBarWhenPushed = true
         viewController.viewModel = viewModel
         
         navigationController.pushViewController(viewController, animated: true)
-        return Observable.never()
+        return Observable.just(ChallengeDetailResult.cancel)
     }
 }
 

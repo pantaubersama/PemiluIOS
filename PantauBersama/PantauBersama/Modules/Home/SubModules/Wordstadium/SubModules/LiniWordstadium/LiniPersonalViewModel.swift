@@ -75,9 +75,10 @@ class LiniPersonalViewModel: ILiniWordstadiumViewModel, ILiniWordstadiumViewMode
         
         let colectionSelected = collectionSelectedSubject
             .asObservable()
-            .flatMapLatest({ (challenge) -> Observable<Void> in
+            .flatMapLatest({ (challenge) -> Observable<ChallengeDetailResult> in
                 return navigator.launchChallenge(wordstadium: challenge)
             })
+            .mapToVoid()
             .asDriverOnErrorJustComplete()
 
         
@@ -157,7 +158,7 @@ class LiniPersonalViewModel: ILiniWordstadiumViewModel, ILiniWordstadiumViewMode
             .withLatestFrom(itemChallenges) { (indexPath, challenges) -> CellModel in
                 return challenges[indexPath.section].items[indexPath.row]
             }
-            .flatMapLatest({ (item) -> Observable<Void> in
+            .flatMapLatest({ (item) -> Observable<ChallengeDetailResult> in
                 switch item {
                 case .standard(let challenge):
                     if challenge.progress == .liveNow {
@@ -170,6 +171,7 @@ class LiniPersonalViewModel: ILiniWordstadiumViewModel, ILiniWordstadiumViewMode
                 }
                 
             })
+            .mapToVoid()
             .asDriverOnErrorJustComplete()
         
         

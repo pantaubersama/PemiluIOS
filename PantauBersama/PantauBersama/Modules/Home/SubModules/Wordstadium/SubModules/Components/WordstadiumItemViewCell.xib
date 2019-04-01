@@ -327,6 +327,7 @@ pertumbuhan mencapai 5,27%.
             <connections>
                 <outlet property="backgroundItem" destination="24g-Zx-MS5" id="JUE-AZ-A6h"/>
                 <outlet property="footerContainerView" destination="51F-cU-N5I" id="q0o-0e-uOX"/>
+                <outlet property="ivLike" destination="mSV-gq-M1u" id="rf0-bx-B8e"/>
                 <outlet property="leftPersonIv" destination="O83-Ca-liW" id="IhQ-Z5-PVu"/>
                 <outlet property="leftPersonView" destination="L6a-lo-xOn" id="Stc-eA-paS"/>
                 <outlet property="leftUsername" destination="9fB-FD-TPl" id="wSi-Ny-2wb"/>

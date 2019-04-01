@@ -12,7 +12,7 @@ import Common
 
 protocol WordstadiumListNavigator {
     var finish: Observable<Void>! { get set }
-    func openChallenge(challenge: Challenge) -> Observable<Void>
+    func openChallenge(challenge: Challenge) -> Observable<ChallengeDetailResult>
     func shareChallenge(challenge: Challenge) -> Observable<Void>
 }
 
@@ -44,7 +44,7 @@ final class WordstadiumListCoordinator: BaseCoordinator<Void> {
 }
 
 extension WordstadiumListCoordinator: WordstadiumListNavigator {
-    func openChallenge(challenge: Challenge) -> Observable<Void> {
+    func openChallenge(challenge: Challenge) -> Observable<ChallengeDetailResult> {
         switch challenge.progress {
         case .waitingConfirmation,
              .waitingOpponent,
