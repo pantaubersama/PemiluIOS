@@ -17,6 +17,7 @@ class TPSInputHeader: UIView {
     @IBOutlet weak var ivLogo: UIImageView!
     @IBOutlet weak var lblNameParty: Label!
     @IBOutlet weak var lblNumberParty: Label!
+    @IBOutlet weak var btnCounter: TPSButton!
     private(set) var disposeBag: DisposeBag?
     
     override init(frame: CGRect) {
@@ -43,10 +44,25 @@ class TPSInputHeader: UIView {
         addSubview(view)
     }
     
-    func configure(header: String, number: Int, logo: String) {
+    func configure(header: String, number: Int, logo: String, viewModel: DetailTPSDPRViewModel, section: Int) {
+        let bag = DisposeBag()
+        
         ivLogo.af_setImage(withURL: URL(string: logo)!)
         lblNameParty.text = header
         lblNumberParty.text = "No urut \(number)"
+        
+        btnCounter.rx_suara
+            .do(onNext: { (_) in
+                print("This is section \(section)")
+            })
+            .map({ PartyCount(section: section,
+                              number: number,
+                              value: $0)})
+            .bind(to: viewModel.input.counterPartyI)
+            .disposed(by: bag)
+        
+        
+        disposeBag = bag
     }
     
 }

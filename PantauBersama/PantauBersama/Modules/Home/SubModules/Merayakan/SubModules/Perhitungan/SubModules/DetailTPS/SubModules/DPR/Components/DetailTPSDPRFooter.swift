@@ -10,6 +10,10 @@ import UIKit
 
 class DetailTPSDPRFooter: UIView {
 
+    @IBOutlet weak var tfInvalidCount: TPSTextField!
+    @IBOutlet weak var tfValidCount: TPSTextField!
+    @IBOutlet weak var tfCount: TPSTextField!
+    
     /*
     // Only override draw() if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.

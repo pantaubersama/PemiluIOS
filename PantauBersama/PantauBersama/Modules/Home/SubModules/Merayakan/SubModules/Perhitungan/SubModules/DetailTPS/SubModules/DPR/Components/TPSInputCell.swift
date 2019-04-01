@@ -41,12 +41,36 @@ extension TPSInputCell: IReusableCell {
     
     struct Input {
         let candidates: Candidates
+        let viewModel: DetailTPSDPRViewModel
+        let indexPath: IndexPath
     }
     
     func configureCell(item: Input) {
         let bag = DisposeBag()
         
         lblNameCandidatees.text = item.candidates.name ?? ""
+        
+//        /// Purpose for initial value
+//        for itemActor in item.viewModel.bufferItemActor.value {
+//            if itemActor.actorId == "\(item.candidates.id)" {
+//                btnVote.suara = itemActor.totalVote ?? 0
+//            } else {
+//                btnVote.suara = 0
+//            }
+//        }
+//
+//        for candidates in item.viewModel.candidatesPartyValue.value {
+//            if candidates.id == item.candidates.id {
+//                btnVote.suara = candidates.totalVote
+//            } else {
+//                btnVote.suara = 0
+//            }
+//        }
+        
+        btnVote.rx_suara
+            .map({ CandidatePartyCount(id: item.candidates.id, totalVote: $0, indexPath: item.indexPath)})
+            .bind(to: item.viewModel.input.counterI)
+            .disposed(by: bag)
         
         disposeBag = bag
     }

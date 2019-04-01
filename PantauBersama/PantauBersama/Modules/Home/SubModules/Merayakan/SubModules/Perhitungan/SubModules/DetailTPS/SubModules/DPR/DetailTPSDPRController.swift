@@ -37,12 +37,12 @@ class DetailTPSDPRController: UIViewController {
     private let disposeBag = DisposeBag()
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var btnSuaraTidakSah: TPSButton!
     
     lazy var footer = UIView.nib(withType: DetailTPSDPRFooter.self)
     lazy var header = UIView.nib(withType: DetailTPSDPRHeader.self)
     
     private var dataSource: RxTableViewSectionedReloadDataSource<SectionModelDPR>!
-    private var dataCandidate: CandidateResponse!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,6 +56,10 @@ class DetailTPSDPRController: UIViewController {
         
         back.rx.tap
             .bind(to: viewModel.input.backI)
+            .disposed(by: disposeBag)
+        
+        btnSuaraTidakSah.rx_suara
+            .bind(to: viewModel.input.invalidCountI)
             .disposed(by: disposeBag)
         
         tableView.delegate = nil
@@ -74,7 +78,7 @@ class DetailTPSDPRController: UIViewController {
         
         dataSource = RxTableViewSectionedReloadDataSource<SectionModelDPR>(configureCell: { (dataSource, tableView, indexPath, item) -> UITableViewCell in
             let cell = tableView.dequeueReusableCell(indexPath: indexPath) as TPSInputCell
-            cell.configureCell(item: TPSInputCell.Input(candidates: item))
+            cell.configureCell(item: TPSInputCell.Input(candidates: item, viewModel: self.viewModel, indexPath: indexPath))
             return cell
         })
         
@@ -82,6 +86,35 @@ class DetailTPSDPRController: UIViewController {
             .drive(tableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
         
+        viewModel.output.nameDapilO
+            .drive(onNext: { [weak self] (name) in
+                guard let `self` = self else { return }
+                self.header.configure(name: name)
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.output.counterO
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.errorO
+            .drive(onNext: { [weak self] (e) in
+                guard let alert = UIAlertController.alert(with: e) else { return }
+                self?.navigationController?.present(alert, animated: true, completion: nil)
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.output.invalidO
+            .do(onNext: { [weak self] (value) in
+                guard let `self` = self else { return }
+                self.footer.tfInvalidCount.text = "\(value)"
+            })
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.initialValueO
+            .drive()
+            .disposed(by: disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -98,7 +131,8 @@ extension DetailTPSDPRController: UITableViewDelegate {
         let number = dataSource.sectionModels[section].number
         let logo = dataSource.sectionModels[section].logo
         let headerView = TPSInputHeader()
-        headerView.configure(header: headerName, number: number, logo: logo)
+        headerView.configure(header: headerName, number: number, logo: logo, viewModel: self.viewModel, section: section)
+        
         return headerView
     }
     

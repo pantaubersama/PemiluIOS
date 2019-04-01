@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TPSInputHeader" customModule="PantauBersama" customModuleProvider="target">
             <connections>
+                <outlet property="btnCounter" destination="LAm-bD-yI1" id="H6d-1h-y95"/>
                 <outlet property="ivLogo" destination="ZLN-KS-aNE" id="U2E-TH-AB9"/>
                 <outlet property="lblNameParty" destination="Wrp-St-aZX" id="q0k-xY-4XT"/>
                 <outlet property="lblNumberParty" destination="6Q9-Kt-uXi" id="ObJ-MG-6Fk"/>

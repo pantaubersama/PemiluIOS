@@ -198,6 +198,11 @@
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="iOT-E2-CQC"/>
+            <connections>
+                <outlet property="tfCount" destination="SUp-7s-JKh" id="gIp-sb-LGO"/>
+                <outlet property="tfInvalidCount" destination="Bbq-6E-7Jk" id="bvc-At-J4H"/>
+                <outlet property="tfValidCount" destination="N5g-Yd-YrU" id="fu8-qB-Gar"/>
+            </connections>
             <point key="canvasLocation" x="100" y="428"/>
         </view>
     </objects>

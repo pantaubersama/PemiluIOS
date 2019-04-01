@@ -11,6 +11,8 @@ import Common
 
 class TPSInputFooter: UIView {
     
+    @IBOutlet weak var tfTotalPartyCount: TPSTextField!
+    
     override init(frame: CGRect) {
         let frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 55.0)
         super.init(frame: frame)
