@@ -209,6 +209,23 @@ class ChallengeViewModel: ViewModelType {
                 }
         }.asDriverOnErrorJustComplete()
         
+        let putLove = loveS
+            .flatMapLatest({ [unowned self] in self.putLove(id: self.data.id) })
+            .do(onNext: { [weak self](isSuccess) in
+                guard let `self` = self else { return }
+                if !isSuccess {
+                    return
+                }
+                
+                var challenge = data
+                challenge.isLiked = true
+                challenge.likeCount = (challenge.likeCount ?? 0) + 1
+                
+                self.challengeS.onNext(challenge)
+            })
+            .asDriverOnErrorJustComplete()
+            .mapToVoid()
+        
         /// Need configuration coordination result, after delete challenge need know item index
         let backSelected = backS.map({ ChallengeDetailResult.cancel })
         let deleteSelected = deleteS
@@ -227,7 +244,7 @@ class ChallengeViewModel: ViewModelType {
                         shareO: share,
                         moreO: more,
                         moreMenuO: moreMenuSelected,
-                        loveO: loveS.asDriverOnErrorJustComplete())
+                        loveO: putLove)
     }
     
     private func putAskAsOpponent(into id: String) -> Observable<Bool> {
@@ -294,6 +311,14 @@ class ChallengeViewModel: ViewModelType {
             })
             .asObservable()
     }
+    
+    private func putLove(id: String) -> Observable<Bool> {
+        return NetworkService.instance
+            .requestObject(WordstadiumAPI.loveChallenge(challengeId: id), c: BaseResponse<CreateChallengeResponse>.self)
+            .map({ $0.data.challenge.isLiked ?? false })
+            .asObservable()
+    }
+
     // MARK
     // Handle Reject Direct with reason from opponents sides
     private func putDirectReject(id: String, reason: String) -> Observable<Bool> {

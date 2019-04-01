@@ -21,6 +21,7 @@ class ChallengeButtonView: UIView {
     @IBOutlet weak var btnMore: UIButton!
     @IBOutlet weak var containerLottie: UIView!
     @IBOutlet weak var btnLove: UIButton!
+    @IBOutlet weak var lbLoveCount: Label!
     
     private(set) var disposeBag: DisposeBag = DisposeBag()
     
@@ -74,9 +75,8 @@ class ChallengeButtonView: UIView {
         case .done:
             containerLike.isHidden = false
             
-            /// Configure is liked or not then play Lottie Animation
-            
-            
+            loveAnimation.play(fromProgress: data.isLiked ?? false ? 1 : 0, toProgress: data.isLiked ?? false ? 1 : 0, withCompletion: nil)
+            lbLoveCount.text = "\(data.likeCount ?? 0)"
             btnLove.rx.tap
                 .do(onNext: { [unowned self] (_) in
                     /// check condition model data is liked or not

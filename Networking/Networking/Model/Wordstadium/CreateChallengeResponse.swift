@@ -26,6 +26,8 @@ public struct Challenge: Codable {
     public let audiences: [Audiences]
     public let reason: String?
     public let clapCount: Int
+    public var likeCount: Int?
+    public var isLiked: Bool?
     
     private enum CodingKeys: String, CodingKey {
         case id, type, statement, progress, condition, audiences
@@ -36,6 +38,8 @@ public struct Challenge: Codable {
         case createdAt = "created_at"
         case reason = "reason_rejected"
         case clapCount = "clap_count"
+        case likeCount = "like_count"
+        case isLiked = "is_liked"
     }
     
 }
