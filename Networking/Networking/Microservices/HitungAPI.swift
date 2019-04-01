@@ -86,7 +86,7 @@ extension HitungAPI: TargetType {
         case .getCandidates:
             return "/hitung/v1/candidates"
         case .getDapils:
-            return "/hitung/v1/dapils"
+            return "/hitung/v1/dapils/region"
         case .getDistricts:
             return "/hitung/v1/districts"
         case .getSuasanaTPS:

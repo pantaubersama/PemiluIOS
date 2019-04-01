@@ -330,6 +330,7 @@
 		847B4A162249F8890071A8F5 /* LinimasaNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847B4A152249F8890071A8F5 /* LinimasaNode.swift */; };
 		847B4A19224A1EA00071A8F5 /* ASControlNode+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847B4A18224A1EA00071A8F5 /* ASControlNode+Rx.swift */; };
 		847B4A1B224A28F90071A8F5 /* QuizNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847B4A1A224A28F90071A8F5 /* QuizNode.swift */; };
+		848508A3224E044E00AD2DD4 /* SectionModelDPR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848508A2224E044E00AD2DD4 /* SectionModelDPR.swift */; };
 		848B039921E7AA8C002CAA40 /* WKWebview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848B039821E7AA8C002CAA40 /* WKWebview.swift */; };
 		848B039C21E7AADF002CAA40 /* WKWebview.xib in Resources */ = {isa = PBXBuildFile; fileRef = 848B039B21E7AADF002CAA40 /* WKWebview.xib */; };
 		848B039F21E7B538002CAA40 /* WKWebCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848B039E21E7B538002CAA40 /* WKWebCoordinator.swift */; };
@@ -957,6 +958,7 @@
 		847B4A152249F8890071A8F5 /* LinimasaNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinimasaNode.swift; sourceTree = "<group>"; };
 		847B4A18224A1EA00071A8F5 /* ASControlNode+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ASControlNode+Rx.swift"; sourceTree = "<group>"; };
 		847B4A1A224A28F90071A8F5 /* QuizNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizNode.swift; sourceTree = "<group>"; };
+		848508A2224E044E00AD2DD4 /* SectionModelDPR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionModelDPR.swift; sourceTree = "<group>"; };
 		848B039821E7AA8C002CAA40 /* WKWebview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKWebview.swift; sourceTree = "<group>"; };
 		848B039B21E7AADF002CAA40 /* WKWebview.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WKWebview.xib; sourceTree = "<group>"; };
 		848B039E21E7B538002CAA40 /* WKWebCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKWebCoordinator.swift; sourceTree = "<group>"; };
@@ -1255,7 +1257,6 @@
 			children = (
 				043EE180221A36C2008C59CD /* SubModules */,
 				043EE18E221A36C2008C59CD /* ViewController */,
-				043EE17F221A36C2008C59CD /* MerayakanCoordinator.swift */,
 				043EE191221A36C2008C59CD /* MerayakanViewModel.swift */,
 				043EE17F221A36C2008C59CD /* MerayakanCoordinator.swift */,
 			);
@@ -3465,6 +3466,7 @@
 				E54CFAF3222C1F31002DA0D1 /* TPSInputHeader.xib */,
 				E54CFAF5222C241A002DA0D1 /* TPSInputFooter.swift */,
 				E54CFAF7222C2435002DA0D1 /* TPSInputFooter.xib */,
+				848508A2224E044E00AD2DD4 /* SectionModelDPR.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -4368,6 +4370,7 @@
 				8451E05E22045C6B00F03E96 /* NotificationViewModel.swift in Sources */,
 				844C3D3D21C4ED6D00199871 /* AppDelegate.swift in Sources */,
 				84B8C1BF22157347004BC1FE /* ChallengeDetailView.swift in Sources */,
+				848508A3224E044E00AD2DD4 /* SectionModelDPR.swift in Sources */,
 				11B3C78B21D110CB00EDCECB /* QuizSummaryCoordinator.swift in Sources */,
 				131DBDB02215AF69005203FF /* TimeView.swift in Sources */,
 				1131A61E22236A4E0000981D /* CreatePerhitunganCoordinator.swift in Sources */,
@@ -4439,7 +4442,6 @@
 				84BE8E0022269D700079332A /* PartyCaraouselCell.swift in Sources */,
 				84307F4D22006857006DE04B /* ParserCoordinator.swift in Sources */,
 				84B8C1C422157686004BC1FE /* FooterProfileView.swift in Sources */,
-				11DA97072222B04D00A51E76 /* PerhitunganViewModel.swift in Sources */,
 				842A4A0F21D7EE5F0050AA51 /* SuccessViewModel.swift in Sources */,
 				E54CFAEF222C1EC7002DA0D1 /* TPSInputCell.swift in Sources */,
 				84B7B8D221E5B9640099E7E3 /* AddKategoriCoordinator.swift in Sources */,
@@ -4471,7 +4473,6 @@
 				11E107B521CD44FD00B7B074 /* QuizOngoingCoordinator.swift in Sources */,
 				84B6D51621F842EB00DD742A /* PartyCell.swift in Sources */,
 				84B7B8C721E4A0A00099E7E3 /* IClusterSearchDelegate.swift in Sources */,
-				11DA970B2222C29A00A51E76 /* PerhitunganController.swift in Sources */,
 				840850D221D2632500696CB3 /* ProfileEditCoordinator.swift in Sources */,
 				E54CFAF2222C1EDF002DA0D1 /* TPSInputHeader.swift in Sources */,
 				8409374D21D361240024A444 /* PilpresNavigator.swift in Sources */,

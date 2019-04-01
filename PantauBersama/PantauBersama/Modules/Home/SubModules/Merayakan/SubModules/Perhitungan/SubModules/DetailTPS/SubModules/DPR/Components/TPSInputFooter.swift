@@ -9,14 +9,27 @@
 import UIKit
 import Common
 
-class TPSInputFooter: UITableViewHeaderFooterView, IReusableCell {
-
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+class TPSInputFooter: UIView {
+    
+    override init(frame: CGRect) {
+        let frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 55.0)
+        super.init(frame: frame)
+        setup()
     }
-    */
-
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        setup()
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+    }
+    
+    private func setup() {
+        let view = loadNib()
+        view.frame = bounds
+        view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        addSubview(view)
+    }
 }

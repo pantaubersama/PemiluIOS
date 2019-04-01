@@ -20,7 +20,7 @@ class DetailTPSDPRViewModel: ViewModelType {
     
     struct Output {
         let backO: Driver<Void>
-        let data: Driver<[CandidateResponse]>
+        let itemsO: Driver<[SectionModelDPR]>
     }
     
     var input: Input
@@ -69,13 +69,17 @@ class DetailTPSDPRViewModel: ViewModelType {
                     .asObservable()
         }
         
+        let items = data
+            .flatMapLatest { (response) -> Observable<[SectionModelDPR]> in
+                return self.transformToSection(response: response)
+        }.asDriverOnErrorJustComplete()
         
         let back = backS
             .flatMap({ navigator.back() })
             .asDriverOnErrorJustComplete()
         
         output = Output(backO: back,
-                        data: data.asDriverOnErrorJustComplete())
+                        itemsO: items)
     }
 }
 
@@ -96,5 +100,25 @@ extension DetailTPSDPRViewModel {
             .trackError(self.errorTracker)
             .trackActivity(self.activityIndicator)
             .asObservable()
+    }
+    
+    private func transformToSection(response: [CandidateResponse]) -> Observable<[SectionModelDPR]> {
+        var items: [SectionModelDPR] = []
+        
+        for item in response {
+            items.append(SectionModelDPR(header: item.name , number: item.serialNumber, logo: item.logo?.thumbnail.url ?? "", items: item.candidates ?? []))
+        }
+        
+        return Observable.just(items)
+    }
+}
+
+final class TPSInfoDummyData {
+    static func tpsInfoData(data: Candidates, header: String, number: Int, logo: String) -> Observable<[SectionModelDPR]> {
+        
+        var item: [SectionModelDPR] = []
+        item.append(SectionModelDPR(header: header, number: number, logo: logo, items: [data]))
+        return Observable.just(item)
+        
     }
 }

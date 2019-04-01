@@ -8,9 +8,17 @@
 
 import UIKit
 import Common
+import Networking
+import RxSwift
+import RxCocoa
 
-class TPSInputCell: UITableViewCell, IReusableCell {
+class TPSInputCell: UITableViewCell {
 
+    @IBOutlet weak var lblNameCandidatees: Label!
+    @IBOutlet weak var btnVote: TPSButton!
+    
+    private(set) var disposeBag: DisposeBag?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -20,6 +28,27 @@ class TPSInputCell: UITableViewCell, IReusableCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        disposeBag = nil
+    }
+}
+
+extension TPSInputCell: IReusableCell {
+    
+    struct Input {
+        let candidates: Candidates
+    }
+    
+    func configureCell(item: Input) {
+        let bag = DisposeBag()
+        
+        lblNameCandidatees.text = item.candidates.name ?? ""
+        
+        disposeBag = bag
     }
     
 }

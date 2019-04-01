@@ -59,6 +59,10 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="btnVote" destination="tbt-68-sLM" id="m9Q-EA-8fS"/>
+                <outlet property="lblNameCandidatees" destination="9DI-mi-sGk" id="PCO-yG-9za"/>
+            </connections>
             <point key="canvasLocation" x="57.600000000000001" y="62.968515742128943"/>
         </tableViewCell>
     </objects>
