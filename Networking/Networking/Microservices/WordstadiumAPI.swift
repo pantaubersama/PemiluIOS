@@ -147,6 +147,10 @@ extension WordstadiumAPI: TargetType {
             return [
                 "challenge_id": challengeId
             ]
+        case .unloveChallenge(let challengeId):
+            return [
+                "challenge_id": challengeId
+            ]
         default:
             return nil
         }

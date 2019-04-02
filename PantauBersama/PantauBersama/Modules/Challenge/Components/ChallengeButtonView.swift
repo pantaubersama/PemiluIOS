@@ -80,7 +80,12 @@ class ChallengeButtonView: UIView {
             btnLove.rx.tap
                 .do(onNext: { [unowned self] (_) in
                     /// check condition model data is liked or not
-                    self.loveAnimation.play(fromProgress: 0, toProgress: 1, withCompletion: nil)
+                    if (data.isLiked ?? false) {
+                        self.loveAnimation.play(fromProgress: 0, toProgress: 0, withCompletion: nil)
+                    } else {
+                        self.loveAnimation.play(fromProgress: 0, toProgress: 1, withCompletion: nil)
+                    }
+                    
                 })
                 .bind(to: viewModel.input.loveI)
                 .disposed(by: bag)

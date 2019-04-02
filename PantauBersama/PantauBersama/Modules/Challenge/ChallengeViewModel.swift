@@ -211,15 +211,19 @@ class ChallengeViewModel: ViewModelType {
         }.asDriverOnErrorJustComplete()
         
         let putLove = loveS
+            .do(onNext: { [unowned self](_) in
+                self.data.likeCount = (self.data.isLiked ?? false) ? (self.data.likeCount ?? 0) - 1 : (self.data.likeCount ?? 0) + 1
+                self.data.isLiked = !(self.data.isLiked ?? false)
+                self.challengeS.onNext(self.data)
+            })
             .flatMapLatest({ [unowned self] in
-                if self.data.
-                self.putLove(id: self.data.id)
+                return (self.data.isLiked ?? false) ? self.putLove(id: self.data.id) : self.deleteLove(id: self.data.id)
             })
             .do(onNext: { [weak self](challenge) in
                 guard let `self` = self else { return }
                 
                 self.data = challenge
-                self.challengeS.onNext(challenge)
+                self.challengeS.onNext(self.data)
             })
             .asDriverOnErrorJustComplete()
             .mapToVoid()
@@ -313,6 +317,13 @@ class ChallengeViewModel: ViewModelType {
     private func putLove(id: String) -> Observable<Challenge> {
         return NetworkService.instance
             .requestObject(WordstadiumAPI.loveChallenge(challengeId: id), c: BaseResponse<CreateChallengeResponse>.self)
+            .map({ $0.data.challenge })
+            .asObservable()
+    }
+    
+    private func deleteLove(id: String) -> Observable<Challenge> {
+        return NetworkService.instance
+            .requestObject(WordstadiumAPI.unloveChallenge(challengeId: id), c: BaseResponse<CreateChallengeResponse>.self)
             .map({ $0.data.challenge })
             .asObservable()
     }
