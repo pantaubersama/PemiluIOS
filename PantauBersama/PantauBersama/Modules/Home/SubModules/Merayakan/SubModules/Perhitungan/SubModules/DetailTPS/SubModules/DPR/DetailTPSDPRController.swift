@@ -119,7 +119,7 @@ class DetailTPSDPRController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        self.viewModel.input.viewWillAppearI.onNext(())
         tableView.updateHeaderViewFrame()
     }
 }

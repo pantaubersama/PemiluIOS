@@ -25,6 +25,7 @@ class DetailTPSDPRViewModel: ViewModelType {
         let counterI: BehaviorSubject<CandidatePartyCount>
         let invalidCountI: AnyObserver<Int>
         let counterPartyI: AnyObserver<PartyCount>
+        let viewWillAppearI: AnyObserver<Void>
     }
     
     struct Output {
@@ -54,6 +55,7 @@ class DetailTPSDPRViewModel: ViewModelType {
     private let candidatesValue = BehaviorRelay<[CandidatesCount]>(value: [])
     private let invalidCountS = PublishSubject<Int>()
     private let counterPartyS = PublishSubject<PartyCount>()
+    private let viewWillAppearS = PublishSubject<Void>()
     
     var candidatesPartyValue = BehaviorRelay<[CandidatePartyCount]>(value: [])
     var bufferInvalid = BehaviorRelay<Int>(value: 0)
@@ -68,7 +70,8 @@ class DetailTPSDPRViewModel: ViewModelType {
                       refreshI: refreshS.asObserver(),
                       counterI: counterS.asObserver(),
                       invalidCountI: invalidCountS.asObserver(),
-                      counterPartyI: counterPartyS.asObserver())
+                      counterPartyI: counterPartyS.asObserver(),
+                      viewWillAppearI: viewWillAppearS.asObserver())
         
         
         /// TODO
@@ -96,7 +99,7 @@ class DetailTPSDPRViewModel: ViewModelType {
         /// TODO
         /// Get dapils by region to get id dapils
         /// Then fetch Candidates to get item
-        let data = refreshS.startWith("")
+        let data = viewWillAppearS
             .flatMapLatest { [weak self] (_) -> Observable<[CandidateResponse]> in
                 guard let `self` = self else { return Observable.empty() }
                 return NetworkService.instance
