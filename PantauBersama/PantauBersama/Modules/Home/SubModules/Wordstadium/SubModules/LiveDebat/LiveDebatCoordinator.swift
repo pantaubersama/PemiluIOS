@@ -42,7 +42,7 @@ class LiveDebatCoordinator: BaseCoordinator<ChallengeDetailResult> {
         viewController.viewModel = viewModel
         
         navigationController.pushViewController(viewController, animated: true)
-        return Observable.just(ChallengeDetailResult.cancel)
+        return Observable.just(ChallengeDetailResult.cancel(isChange: false))
     }
 }
 

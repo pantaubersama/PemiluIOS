@@ -24,7 +24,7 @@ enum ChallengeType {
 enum ChallengeDetailResult {
     case result(id: String)
     case delete(id: String)
-    case cancel
+    case cancel(isChange: Bool)
 }
 
 class ChallengeViewModel: ViewModelType {
@@ -59,7 +59,16 @@ class ChallengeViewModel: ViewModelType {
     }
     
     private var navigator: ChallengeNavigator
-    private var data: Challenge
+    private var data: Challenge {
+        didSet {
+            if oldValue.isLiked != data.isLiked {
+                isDataChanged = true
+            }
+            
+            // add another challenge to detect changes if necessary
+        }
+    }
+    private var isDataChanged: Bool = false
     
     private let backS = PublishSubject<Void>()
     private let actionButtonS = PublishSubject<Void>()
@@ -229,7 +238,7 @@ class ChallengeViewModel: ViewModelType {
             .mapToVoid()
         
         /// Need configuration coordination result, after delete challenge need know item index
-        let backSelected = backS.map({ ChallengeDetailResult.cancel })
+        let backSelected = backS.map({ [unowned self] in ChallengeDetailResult.cancel(isChange: self.isDataChanged) })
         let deleteSelected = deleteS
             .map{ (result) in ChallengeDetailResult.delete(id: result) }
         let closeSelected = Observable.merge(backSelected, deleteSelected)

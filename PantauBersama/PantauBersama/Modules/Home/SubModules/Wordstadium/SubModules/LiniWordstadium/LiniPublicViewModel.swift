@@ -174,6 +174,12 @@ class LiniPublicViewModel: ILiniWordstadiumViewModel, ILiniWordstadiumViewModelI
             })
             .do(onNext: { [unowned self](result) in
                 switch result {
+                case .cancel(let isChange):
+                    if isChange {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+                            self.refreshSubject.onNext(())
+                        })
+                    }
                 case .delete(let _):
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
                         self.refreshSubject.onNext(())
