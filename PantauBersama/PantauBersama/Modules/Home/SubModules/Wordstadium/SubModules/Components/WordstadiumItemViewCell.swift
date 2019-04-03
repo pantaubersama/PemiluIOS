@@ -49,6 +49,7 @@ class WordstadiumItemViewCell: UITableViewCell {
         rightPersonIv.af_cancelImageRequest()
         leftPersonIv.af_cancelImageRequest()
         backgroundItem.image = nil
+        ivLike.tintColor = nil
     }
     
 }
@@ -73,6 +74,12 @@ extension WordstadiumItemViewCell: IReusableCell {
         rightUsername.text = ""
         opponentCountLbl.text = ""
         likeCountLbl.text = "\(item.wordstadium.likeCount ?? 0)"
+        
+        // TODO: Need icon
+        if (item.wordstadium.isLiked ?? false) {
+            ivLike.image = ivLike.image?.withRenderingMode(.alwaysTemplate)
+            ivLike.tintColor = UIColor.red
+        }
         
         // configure header challenger side
         leftUsername.text = challenger?.fullName ?? ""
