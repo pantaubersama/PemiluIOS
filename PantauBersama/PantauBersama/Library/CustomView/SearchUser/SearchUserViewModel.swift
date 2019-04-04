@@ -169,11 +169,20 @@ final class SearchUserViewModel: ViewModelType {
     }
     
     private func fetchTwitterUsername(q: String, page: Int, perPage: Int) -> Observable<[TwitterUsername]> {
-        return NetworkService.instance
-            .requestObject(LinimasaAPI.getTwitterUsername(q: q, page: page, perPage: perPage)
-                , c: BaseResponse<TwitterUsernameResponses>.self)
-            .map({ $0.data.users })
-            .asObservable()
-            .share(replay: 1, scope: .whileConnected)
+        if q == "" {
+            return NetworkService.instance
+                .requestObject(LinimasaAPI.getTwitterUsername(q: "a", page: page, perPage: perPage)
+                    , c: BaseResponse<TwitterUsernameResponses>.self)
+                .map({ $0.data.users })
+                .asObservable()
+                .share(replay: 1, scope: .whileConnected)
+        } else {
+            return NetworkService.instance
+                .requestObject(LinimasaAPI.getTwitterUsername(q: q, page: page, perPage: perPage)
+                    , c: BaseResponse<TwitterUsernameResponses>.self)
+                .map({ $0.data.users })
+                .asObservable()
+                .share(replay: 1, scope: .whileConnected)
+        }
     }
 }
