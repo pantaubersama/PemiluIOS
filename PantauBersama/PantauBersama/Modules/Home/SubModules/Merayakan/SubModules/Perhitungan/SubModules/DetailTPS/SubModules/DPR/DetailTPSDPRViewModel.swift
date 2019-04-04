@@ -83,6 +83,12 @@ class DetailTPSDPRViewModel: ViewModelType {
         
         /// TODO
         /// Get data realcount calculations saved
+        /**
+         initial value will triggered whenever view is appear
+         - returns: candidates array and parties array, each
+         candidates represent as Item Actor: have id, and total value
+         we must store this id and value and match will some array of data in SectionModelDPR items
+         **/
         let initialValue = refreshS.startWith("")
             .flatMapLatest { [weak self] (_) -> Observable<RealCountResponse> in
                 guard let `self` = self else { return Observable.empty() }
@@ -117,59 +123,11 @@ class DetailTPSDPRViewModel: ViewModelType {
         
         /// Counter Mechanism
         /// TODO: Need Id and total value
-//        counterS
-//            .do(onNext: { [weak self] (candidatCount) in
-//                guard let `self` = self else { return }
-//                var latestValue = self.candidatesValue.value
-//                latestValue.append(CandidatesCount(id: candidatCount.id, totalVote: candidatCount.totalVote))
-//                
-//                var latestCandidates = self.candidatesPartyValue.value
-//                latestCandidates.append(candidatCount)
-//                self.candidatesPartyValue.accept(latestCandidates)
-//                
-//                var currentRelayValue = self.itemsRelay.value
-//                /// Updated sections
-//                guard let section = currentRelayValue.index(where: { current -> Bool in
-//                    return current.items[candidatCount.indexPath.row].id == candidatCount.id
-//                }) else { return }
-//                print(section)
-//                /// Updated row in Section == candidates
-//                let candidates = currentRelayValue[candidatCount.indexPath.section].items
-//                guard let row = candidates.index(where: { current -> Bool in
-//                    return current.id == candidatCount.id
-//                }) else { return }
-//                print(row)
-//                
-//                var updateCandidates = currentRelayValue[section].items[row]
-//                    updateCandidates.value = candidatCount.totalVote
-//                    currentRelayValue[section].items.remove(at: row)
-//                currentRelayValue[section].items.insert(updateCandidates, at: row)
-//                    self.itemsRelay.accept(currentRelayValue)
-//                print(updateCandidates)
-//            })
-//            .bind { [weak self] candidatCount in
-//            }
-//            .disposed(by: disposeBag)
+        /// Don't have any idea about this
         
         let updateItems = counterS
             .flatMapLatest { [weak self] (candidateCount) -> Observable<Void> in
                 guard let `self` = self else { return Observable.empty() }
-//                var latestValue = self.itemsRelay.value
-//
-//                guard let sectionValue = latestValue.index(where: { current -> Bool in
-//                    return current.items[candidateCount.indexPath.row].id == candidateCount.id
-//                }) else { return Observable.empty() }
-//                let candidates = latestValue[candidateCount.indexPath.section].items
-//
-//                guard let rowValue = candidates.index(where: { current -> Bool in
-//                    return current.id == candidateCount.id
-//                }) else { return Observable.empty() }
-//
-//                var updateValue = latestValue[sectionValue].items[rowValue]
-//                updateValue.value = candidateCount.totalVote
-//                latestValue[sectionValue].items.remove(at: rowValue)
-//                latestValue[sectionValue].items.insert(updateValue, at: rowValue)
-//                self.itemsRelay.accept(latestValue)
                 
                 var latestValue = self.candidatesPartyValue.value
                 guard let index = latestValue.index(where: { current -> Bool in
@@ -242,7 +200,9 @@ extension DetailTPSDPRViewModel {
             .trackActivity(self.activityIndicator)
             .asObservable()
     }
-
+    /// MARK: - Transform response into section model
+    /// this function will plot every section parties, and every section parties have candidates items
+    /// match this values with Item actor and changes items in section model 
     private func transformToSection(response: [CandidateResponse]) -> Observable<[SectionModelDPR]> {
         var items: [SectionModelDPR] = []
         for item in response {
@@ -255,7 +215,7 @@ extension DetailTPSDPRViewModel {
         self.itemsRelay.accept(items)
         return Observable.just(items)
     }
-    
+    /// Mark: - Generate candidates Actor
     private func generateCandidates(data: CandidateResponse, itemActor: [CandidatePartyCount]) -> [CandidateActor] {
         var candidate: [CandidateActor] = []
         print("Item actor: \(itemActor)")
