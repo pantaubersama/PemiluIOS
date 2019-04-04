@@ -49,7 +49,11 @@ class ChallengeController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        /// Quick fix navigation from deep link
         btnBack.rx.tap
+            .do(onNext: { [unowned self] (_) in
+                self.navigationController?.popViewController(animated: true)
+            })
             .bind(to: viewModel.input.backI)
             .disposed(by: disposeBag)
         

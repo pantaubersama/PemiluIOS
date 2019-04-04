@@ -80,7 +80,7 @@ class LiniWordstadiumViewController: UITableViewController, ILiniWordstadiumView
                     cell.moreMenuBtn.rx.tap
                         .map({ challenge })
                         .bind(to: self.viewModel.input.moreI)
-                        .disposed(by: self.disposeBag)
+                        .disposed(by: cell.disposeBag)
                     
                     return cell
                 case .empty:

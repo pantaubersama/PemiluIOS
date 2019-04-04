@@ -42,9 +42,6 @@ final class ChallengeCoordinator: BaseCoordinator<Void> {
         navigationController.pushViewController(viewController, animated: true)
         return viewModel.output.backO.asObservable()
             .take(1)
-            .do(onNext: { [unowned self] (_) in
-                self.navigationController.popViewController(animated: true)
-            })
             .mapToVoid()
     }
     

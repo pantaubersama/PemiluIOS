@@ -144,9 +144,14 @@ class LiniPublicViewModel: ILiniWordstadiumViewModel, ILiniWordstadiumViewModelI
         moreMenuSelectedO = moreMenuSubject
             .flatMapLatest { (type) -> Observable<String> in
                 switch type {
-                case .bagikan:
-                    return Observable.just("Tautan telah dibagikan")
-                case .salin:
+                case .bagikan(let challenge):
+                    return navigator.shareChallenge(challenge: challenge)
+                        .map({ (_) -> String in
+                            return ""
+                        })
+                case .salin(let challenge):
+                    let urlSalin = "\(AppContext.instance.infoForKey("URL_WEB_SHARE"))/share/wordstadium/\(challenge.id)"
+                    urlSalin.copyToClipboard()
                     return Observable.just("Tautan telah tersalin")
                 case .hapus:
                     return Observable.just("Challenge berhasil di hapus")
