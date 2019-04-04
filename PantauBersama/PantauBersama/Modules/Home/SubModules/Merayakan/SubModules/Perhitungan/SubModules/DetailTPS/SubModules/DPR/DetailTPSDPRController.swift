@@ -117,6 +117,13 @@ class DetailTPSDPRController: UIViewController {
         viewModel.output.dataO
             .drive()
             .disposed(by: disposeBag)
+        
+        viewModel.output.updateItemsO
+            .do(onNext: { [unowned self] (_) in
+                self.viewModel.input.viewWillAppearI.onNext(())
+            })
+            .drive()
+            .disposed(by: disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -37,7 +37,7 @@ class DetailTPSDPRViewModel: ViewModelType {
         let counterPartyO: Driver<PartyCount>
         let initialValueO: Driver<RealCountResponse>
         let dataO: Driver<Void>
-        let updateItemsO: Driver<[SectionModelDPR]>
+        let updateItemsO: Driver<Void>
     }
     
     var input: Input
@@ -45,6 +45,7 @@ class DetailTPSDPRViewModel: ViewModelType {
     
     private let navigator: DetailTPSDPRNavigator
     private let realCount: RealCount
+    private let type: TingkatPemilihan
     private let errorTracker = ErrorTracker()
     private let activityIndicator = ActivityIndicator()
     
@@ -67,9 +68,10 @@ class DetailTPSDPRViewModel: ViewModelType {
     
     private(set) var disposeBag = DisposeBag()
     
-    init(navigator: DetailTPSDPRNavigator, realCount: RealCount) {
+    init(navigator: DetailTPSDPRNavigator, realCount: RealCount, type: TingkatPemilihan) {
         self.navigator = navigator
         self.realCount = realCount
+        self.type = type
         
         input = Input(backI: backS.asObserver(),
                       refreshI: refreshS.asObserver(),
@@ -107,27 +109,7 @@ class DetailTPSDPRViewModel: ViewModelType {
         let data = viewWillAppearS
             .flatMapLatest { [weak self] (_) -> Observable<[CandidateResponse]> in
                 guard let `self` = self else { return Observable.empty() }
-                return NetworkService.instance
-                    .requestObject(HitungAPI.getDapils(provinceCode: self.realCount.provinceCode,
-                                                       regenciCode: self.realCount.regencyCode,
-                                                       districtCode: self.realCount.districtCode,
-                                                       tingkat: .dpr)
-                        , c: BaseResponse<DapilRegionResponse>.self)
-                    .map({ $0.data })
-                    .do(onSuccess: { [weak self] (response) in
-                        guard let `self` = self else { return }
-                        print("Dapil response: \(response)")
-                        self.nameDapilS.accept(response.nama)
-                    }, onError: { (e) in
-                        print(e.localizedDescription)
-                    })
-                    .trackError(self.errorTracker)
-                    .trackActivity(self.activityIndicator)
-                    .flatMapLatest({ [weak self] (dapilResponse) -> Observable<[CandidateResponse]> in
-                        guard let `self` = self else { return Observable.empty() }
-                        return self.getCandidates(idDapils: dapilResponse.id)
-                    })
-                    .asObservable()
+                return self.getDapils(tingkat: type)
             }.flatMapLatest { (response) -> Observable<[SectionModelDPR]> in
                 return self.transformToSection(response: response)
             }.mapToVoid()
@@ -170,26 +152,35 @@ class DetailTPSDPRViewModel: ViewModelType {
 //            .disposed(by: disposeBag)
         
         let updateItems = counterS
-            .flatMapLatest { [weak self] (candidateCount) -> Observable<[SectionModelDPR]> in
+            .flatMapLatest { [weak self] (candidateCount) -> Observable<Void> in
                 guard let `self` = self else { return Observable.empty() }
-                var latestValue = self.itemsRelay.value
+//                var latestValue = self.itemsRelay.value
+//
+//                guard let sectionValue = latestValue.index(where: { current -> Bool in
+//                    return current.items[candidateCount.indexPath.row].id == candidateCount.id
+//                }) else { return Observable.empty() }
+//                let candidates = latestValue[candidateCount.indexPath.section].items
+//
+//                guard let rowValue = candidates.index(where: { current -> Bool in
+//                    return current.id == candidateCount.id
+//                }) else { return Observable.empty() }
+//
+//                var updateValue = latestValue[sectionValue].items[rowValue]
+//                updateValue.value = candidateCount.totalVote
+//                latestValue[sectionValue].items.remove(at: rowValue)
+//                latestValue[sectionValue].items.insert(updateValue, at: rowValue)
+//                self.itemsRelay.accept(latestValue)
                 
-                guard let sectionValue = latestValue.index(where: { current -> Bool in
-                    return current.items[candidateCount.indexPath.row].id == candidateCount.id
-                }) else { return Observable.empty() }
-                let candidates = latestValue[candidateCount.indexPath.section].items
-                
-                guard let rowValue = candidates.index(where: { current -> Bool in
+                var latestValue = self.candidatesPartyValue.value
+                guard let index = latestValue.index(where: { current -> Bool in
                     return current.id == candidateCount.id
                 }) else { return Observable.empty() }
+                latestValue[index].totalVote = candidateCount.totalVote
+                latestValue.remove(at: index)
+                latestValue.insert(candidateCount, at: index)
+                self.candidatesPartyValue.accept(latestValue)
                 
-                var updateValue = latestValue[sectionValue].items[rowValue]
-                updateValue.value = candidateCount.totalVote
-                latestValue[sectionValue].items.remove(at: rowValue)
-                latestValue[sectionValue].items.insert(updateValue, at: rowValue)
-                self.itemsRelay.accept(latestValue)
-                
-                return Observable.just(latestValue)
+                return Observable.just(())
         }.asDriverOnErrorJustComplete()
         
         
@@ -227,37 +218,47 @@ class DetailTPSDPRViewModel: ViewModelType {
 
 
 extension DetailTPSDPRViewModel {
-    
-    /// MARK: - Handle List All Candidates
-    private func getCandidates(idDapils: Int) -> Observable<[CandidateResponse]> {
+    /// MARK: - Get Dapils Location
+    private func getDapils(tingkat: TingkatPemilihan) -> Observable<[CandidateResponse]> {
         return NetworkService.instance
-            .requestObject(HitungAPI.getCandidates(dapilId: idDapils, tingkat: .dpr),
+            .requestObject(HitungAPI.getDapils(provinceCode: self.realCount.provinceCode,
+                                               regenciCode: self.realCount.regencyCode,
+                                               districtCode: self.realCount.districtCode,
+                                               tingkat: tingkat),
+                           c: BaseResponse<DapilRegionResponse>.self)
+            .map({ $0.data })
+            .trackError(self.errorTracker)
+            .trackActivity(self.activityIndicator)
+            .flatMapLatest({ self.getCandidates(idDapils: $0.id, tingkat: tingkat) })
+            .asObservable()
+    }
+    /// MARK: - Handle List All Candidates
+    private func getCandidates(idDapils: Int, tingkat: TingkatPemilihan) -> Observable<[CandidateResponse]> {
+        return NetworkService.instance
+            .requestObject(HitungAPI.getCandidates(dapilId: idDapils, tingkat: tingkat),
                            c: BaseResponses<CandidateResponse>.self)
             .map({ $0.data })
-            .do(onSuccess: { (response) in
-                print("Response: \(response)")
-            }, onError: { (e) in
-                print(e.localizedDescription)
-            })
             .trackError(self.errorTracker)
             .trackActivity(self.activityIndicator)
             .asObservable()
     }
-    
+
     private func transformToSection(response: [CandidateResponse]) -> Observable<[SectionModelDPR]> {
         var items: [SectionModelDPR] = []
         for item in response {
             items.append(SectionModelDPR(header: item.name,
                                          number: item.serialNumber,
                                          logo: item.logo?.thumbnail.url ?? "",
-                                         items: self.generateCandidates(data: item)))
+                                         items: self.generateCandidates(data: item,
+                                                                        itemActor: self.candidatesPartyValue.value)))
         }
         self.itemsRelay.accept(items)
         return Observable.just(items)
     }
     
-    private func generateCandidates(data: CandidateResponse) -> [CandidateActor] {
+    private func generateCandidates(data: CandidateResponse, itemActor: [CandidatePartyCount]) -> [CandidateActor] {
         var candidate: [CandidateActor] = []
+        print("Item actor: \(itemActor)")
         
         for datas in data.candidates ?? [] {
             candidate.append(CandidateActor(id: datas.id,

@@ -66,7 +66,7 @@ extension DetailTPSCoordinator: DetailTPSNavigator {
     }
     
     func launchDetailTPSDPRI(data: RealCount) -> Observable<Void> {
-        let searchCoordinator = DetailTPSDPRCoordinator(navigationController: self.navigationController, type: .DPRRI, realCount: data)
+        let searchCoordinator = DetailTPSDPRCoordinator(navigationController: self.navigationController, type: .DPRRI, realCount: data, tingkat: .dpr)
         return coordinate(to: searchCoordinator)
     }
     
@@ -76,12 +76,12 @@ extension DetailTPSCoordinator: DetailTPSNavigator {
     }
     
     func launchDetailTPSDPRDKab(data: RealCount) -> Observable<Void> {
-        let searchCoordinator = DetailTPSDPRCoordinator(navigationController: self.navigationController, type: .DPRDKota, realCount: data)
+        let searchCoordinator = DetailTPSDPRCoordinator(navigationController: self.navigationController, type: .DPRDKota, realCount: data, tingkat: .kabupaten)
         return coordinate(to: searchCoordinator)
     }
     
     func launchDetailTPSDPRDProv(data: RealCount) -> Observable<Void> {
-        let searchCoordinator = DetailTPSDPRCoordinator(navigationController: self.navigationController, type: .DPRDProv, realCount: data)
+        let searchCoordinator = DetailTPSDPRCoordinator(navigationController: self.navigationController, type: .DPRDProv, realCount: data, tingkat: .provinsi)
         return coordinate(to: searchCoordinator)
     }
     
