@@ -115,10 +115,17 @@ public class DeeplinkParser {
                         .map({ $0.data.challenge })
                         .subscribe(onSuccess: { (response) in
                             if let currentNavigation = UIApplication.topViewController()?.navigationController {
-                                let challengeDetail = ChallengeCoordinator(navigationController: currentNavigation, data: response)
-                                challengeDetail.start()
-                                    .subscribe()
-                                    .disposed(by: disposeBag)
+                                if response.progress == .liveNow {
+                                    let liveDetail = LiveDebatCoordinator(navigationController: currentNavigation, challenge: response)
+                                    liveDetail.start()
+                                        .subscribe()
+                                        .disposed(by: disposeBag)
+                                } else {
+                                    let challengeDetail = ChallengeCoordinator(navigationController: currentNavigation, data: response)
+                                    challengeDetail.start()
+                                        .subscribe()
+                                        .disposed(by: disposeBag)
+                                }
                             }
                         })
                         .disposed(by: disposeBag)
