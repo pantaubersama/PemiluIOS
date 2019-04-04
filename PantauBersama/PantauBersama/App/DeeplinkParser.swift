@@ -19,6 +19,7 @@ public enum DeepLinkType: String {
     case tanya
     case kuis
     case kecenderungan
+    case wordstadium
 }
 
 public class DeeplinkParser {
@@ -103,6 +104,31 @@ public class DeeplinkParser {
                             .subscribe()
                             .disposed(by: disposeBag)
                     }
+                }
+            case "wordstadium":
+                print("Wordstadium")
+                if let id = idPath {
+                    let disposeBag = DisposeBag()
+                    NetworkService.instance
+                        .requestObject(WordstadiumAPI.getChallengeDetail(id: id),
+                                       c: BaseResponse<CreateChallengeResponse>.self)
+                        .map({ $0.data.challenge })
+                        .subscribe(onSuccess: { (response) in
+                            if let currentNavigation = UIApplication.topViewController()?.navigationController {
+                                if response.progress == .liveNow {
+                                    let liveDetail = LiveDebatCoordinator(navigationController: currentNavigation, challenge: response)
+                                    liveDetail.start()
+                                        .subscribe()
+                                        .disposed(by: disposeBag)
+                                } else {
+                                    let challengeDetail = ChallengeCoordinator(navigationController: currentNavigation, data: response)
+                                    challengeDetail.start()
+                                        .subscribe()
+                                        .disposed(by: disposeBag)
+                                }
+                            }
+                        })
+                        .disposed(by: disposeBag)
                 }
             default: break
             }

@@ -9,6 +9,7 @@
 import UIKit
 import Common
 import Networking
+import RxSwift
 
 class WordstadiumItemViewCell: UITableViewCell {
 
@@ -30,6 +31,8 @@ class WordstadiumItemViewCell: UITableViewCell {
     @IBOutlet weak var likeView: UIView!
     @IBOutlet weak var likeCountLbl: UILabel!
     
+    var disposeBag: DisposeBag = DisposeBag()
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -48,6 +51,7 @@ class WordstadiumItemViewCell: UITableViewCell {
         rightPersonIv.af_cancelImageRequest()
         leftPersonIv.af_cancelImageRequest()
         backgroundItem.image = nil
+        disposeBag = DisposeBag()
     }
     
 }
