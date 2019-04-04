@@ -10,6 +10,13 @@ import Foundation
 import Networking
 import RxDataSources
 
+
+struct CandidateActor {
+    var id: Int
+    var name: String
+    var value: Int
+}
+
 struct SectionModelDPR {
     var header: String
     var number: Int
@@ -18,9 +25,9 @@ struct SectionModelDPR {
 }
 
 extension SectionModelDPR: SectionModelType {
-    typealias Item = Candidates
+    typealias Item = CandidateActor
     
-    init(original: SectionModelDPR, items: [Candidates]) {
+    init(original: SectionModelDPR, items: [CandidateActor]) {
         self = original
         self.items = items
     }

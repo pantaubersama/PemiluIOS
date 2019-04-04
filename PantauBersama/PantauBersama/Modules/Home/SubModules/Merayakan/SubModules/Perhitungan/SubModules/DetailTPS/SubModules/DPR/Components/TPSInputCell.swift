@@ -34,13 +34,14 @@ class TPSInputCell: UITableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         disposeBag = nil
+        btnVote.suara = 0
     }
 }
 
 extension TPSInputCell: IReusableCell {
     
     struct Input {
-        let candidates: Candidates
+        let candidates: CandidateActor
         let viewModel: DetailTPSDPRViewModel
         let indexPath: IndexPath
     }
@@ -48,7 +49,9 @@ extension TPSInputCell: IReusableCell {
     func configureCell(item: Input) {
         let bag = DisposeBag()
         
-        lblNameCandidatees.text = item.candidates.name ?? ""
+        lblNameCandidatees.text = item.candidates.name
+        
+        btnVote.suara = item.candidates.value
         
 //        /// Purpose for initial value
 //        for itemActor in item.viewModel.bufferItemActor.value {

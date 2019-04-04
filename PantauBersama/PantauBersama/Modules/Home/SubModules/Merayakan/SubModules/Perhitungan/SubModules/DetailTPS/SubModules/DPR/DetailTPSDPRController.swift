@@ -86,16 +86,14 @@ class DetailTPSDPRController: UIViewController {
             .drive(tableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
         
+        
         viewModel.output.nameDapilO
             .drive(onNext: { [weak self] (name) in
                 guard let `self` = self else { return }
                 self.header.configure(name: name)
             })
             .disposed(by: disposeBag)
-        
-        viewModel.output.counterO
-            .drive()
-            .disposed(by: disposeBag)
+    
         
         viewModel.output.errorO
             .drive(onNext: { [weak self] (e) in
@@ -113,6 +111,10 @@ class DetailTPSDPRController: UIViewController {
             .disposed(by: disposeBag)
         
         viewModel.output.initialValueO
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.dataO
             .drive()
             .disposed(by: disposeBag)
     }
