@@ -129,7 +129,7 @@ class DetailTPSDPRViewModel: ViewModelType {
             .distinctUntilChanged({ $0.totalVote != $1.totalVote })
             .flatMapLatest { [weak self] (candidateCount) -> Observable<Void> in
                 guard let `self` = self else { return Observable.empty() }
-                
+                self.candidatesPartyValue.accept([candidateCount])
                 self.updateSectionModel(candidatePartyCount: candidateCount)
                 
                 return Observable.just(())
