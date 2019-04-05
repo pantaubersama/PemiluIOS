@@ -129,7 +129,9 @@ class DetailTPSDPRViewModel: ViewModelType {
             .distinctUntilChanged({ $0.totalVote != $1.totalVote })
             .flatMapLatest { [weak self] (candidateCount) -> Observable<Void> in
                 guard let `self` = self else { return Observable.empty() }
-                self.candidatesPartyValue.accept([candidateCount])
+                var currentCandidatesParty = self.candidatesPartyValue.value
+                currentCandidatesParty.append(candidateCount)
+                self.candidatesPartyValue.accept(currentCandidatesParty)
                 self.updateSectionModel(candidatePartyCount: candidateCount)
                 
                 return Observable.just(())
@@ -225,8 +227,7 @@ extension DetailTPSDPRViewModel {
         if updateCandidate != nil {
             updateCandidate?.value = candidatePartyCount.totalVote
             currentCandidate.items[index] = updateCandidate!
-            currentSectionedModels.remove(at: candidatePartyCount.indexPath.section)
-            currentSectionedModels.append(currentCandidate)
+            currentSectionedModels[candidatePartyCount.indexPath.section] = currentCandidate
             
             self.itemsRelay.accept(currentSectionedModels)
         }
