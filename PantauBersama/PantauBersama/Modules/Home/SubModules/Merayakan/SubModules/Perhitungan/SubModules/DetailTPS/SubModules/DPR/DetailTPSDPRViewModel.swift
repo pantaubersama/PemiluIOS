@@ -126,17 +126,11 @@ class DetailTPSDPRViewModel: ViewModelType {
         /// Don't have any idea about this
         
         let updateItems = counterS
+            .distinctUntilChanged({ $0.totalVote != $1.totalVote })
             .flatMapLatest { [weak self] (candidateCount) -> Observable<Void> in
                 guard let `self` = self else { return Observable.empty() }
                 
-                var latestValue = self.candidatesPartyValue.value
-                guard let index = latestValue.index(where: { current -> Bool in
-                    return current.id == candidateCount.id
-                }) else { return Observable.empty() }
-                latestValue[index].totalVote = candidateCount.totalVote
-                latestValue.remove(at: index)
-                latestValue.insert(candidateCount, at: index)
-                self.candidatesPartyValue.accept(latestValue)
+                self.updateSectionModel(candidatePartyCount: candidateCount)
                 
                 return Observable.just(())
         }.asDriverOnErrorJustComplete()
@@ -215,15 +209,40 @@ extension DetailTPSDPRViewModel {
         self.itemsRelay.accept(items)
         return Observable.just(items)
     }
+    
+    private func updateSectionModel(candidatePartyCount: CandidatePartyCount) {
+        var currentSectionedModels = self.itemsRelay.value
+        
+        var currentCandidate = currentSectionedModels[candidatePartyCount.indexPath.section]
+        guard let index = currentCandidate.items.index(where: { current -> Bool in
+            return current.id == candidatePartyCount.id
+        }) else { return }
+        
+        var updateCandidate = currentCandidate.items.filter { (candidate) -> Bool in
+            return candidate.id == candidatePartyCount.id
+        }.first
+        
+        if updateCandidate != nil {
+            updateCandidate?.value = candidatePartyCount.totalVote
+            currentCandidate.items[index] = updateCandidate!
+            currentSectionedModels.remove(at: candidatePartyCount.indexPath.section)
+            currentSectionedModels.append(currentCandidate)
+            
+            self.itemsRelay.accept(currentSectionedModels)
+        }
+    }
+
+    
     /// Mark: - Generate candidates Actor
     private func generateCandidates(data: CandidateResponse, itemActor: [CandidatePartyCount]) -> [CandidateActor] {
         var candidate: [CandidateActor] = []
         print("Item actor: \(itemActor)")
         
         for datas in data.candidates ?? [] {
+            let updatedValue = itemActor.filter({ $0.id == datas.id }).first?.totalVote
             candidate.append(CandidateActor(id: datas.id,
                                             name: datas.name ?? "",
-                                            value: 0))
+                                            value: updatedValue ?? 0))
         }
         
         return candidate

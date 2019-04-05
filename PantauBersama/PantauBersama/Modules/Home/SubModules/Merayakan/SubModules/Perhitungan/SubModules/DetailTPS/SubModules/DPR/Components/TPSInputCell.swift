@@ -69,8 +69,10 @@ extension TPSInputCell: IReusableCell {
 //                btnVote.suara = 0
 //            }
 //        }
+    
         
         btnVote.rx_suara
+            .skip(1)
             .map({ CandidatePartyCount(id: item.candidates.id, totalVote: $0, indexPath: item.indexPath)})
             .bind(to: item.viewModel.input.counterI)
             .disposed(by: bag)
