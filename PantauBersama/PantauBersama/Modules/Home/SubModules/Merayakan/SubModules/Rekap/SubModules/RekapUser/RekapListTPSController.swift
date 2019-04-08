@@ -1,5 +1,5 @@
 //
-//  RekapListVillageController.swift
+//  RekapListTPSController.swift
 //  PantauBersama
 //
 //  Created by Hanif Sugiyanto on 08/04/19.
@@ -10,21 +10,23 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class RekapListVillageController: UITableViewController {
+class RekapListTPSController: UITableViewController {
     
-    var viewModel: RekapListVillageViewModel!
+    var viewModel: RekapListTPSViewModel!
     private let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         tableView.delegate = nil
         tableView.dataSource = nil
-        tableView.rowHeight = 150.0
+        tableView.rowHeight = 112.0
+        tableView.estimatedRowHeight = UITableView.automaticDimension
         tableView.separatorStyle = .none
-        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        tableView.registerReusableCell(RekapViewCell.self)
+        tableView.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
+        tableView.registerReusableCell(RekapTPSUserCell.self)
         tableView.tableFooterView = UIView()
-        tableView.refreshControl = UIRefreshControl()
+        tableView.allowsSelection = false
         
         let back = UIBarButtonItem(image: #imageLiteral(resourceName: "back"), style: .plain, target: nil, action: nil)
         navigationItem.leftBarButtonItem = back
@@ -39,14 +41,12 @@ class RekapListVillageController: UITableViewController {
                 self.tableView.refreshControl?.endRefreshing()
             })
             .drive(tableView.rx.items) { tableView, row, item in
-                let cell = tableView.dequeueReusableCell() as RekapViewCell
-                cell.configureVillage(data: item, type: .kota)
+                let cell = tableView.dequeueReusableCell() as RekapTPSUserCell
+                cell.configureCell(item: RekapTPSUserCell.Input(data: item))
                 return cell
-            }.disposed(by: disposeBag)
-        
-        tableView.rx.itemSelected
-            .bind(to: viewModel.input.itemSelectedI)
+            }
             .disposed(by: disposeBag)
+        
         
         viewModel.output.backO
             .drive()
@@ -58,11 +58,6 @@ class RekapListVillageController: UITableViewController {
                 self.navigationItem.title = name
             })
             .disposed(by: disposeBag)
-        
-        viewModel.output.itemSelectedO
-            .drive()
-            .disposed(by: disposeBag)
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {

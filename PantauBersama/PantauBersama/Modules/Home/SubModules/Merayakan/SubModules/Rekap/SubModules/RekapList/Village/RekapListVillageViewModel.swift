@@ -19,12 +19,14 @@ final class RekapListVillageViewModel: ViewModelType {
     struct Input {
         let refreshI: AnyObserver<String>
         let backI: AnyObserver<Void>
+        let itemSelectedI: AnyObserver<IndexPath>
     }
 
     struct Output {
         let itemsO: Driver<[SummaryVillage]>
         let backO: Driver<Void>
         let titleO: Driver<String>
+        let itemSelectedO: Driver<Void>
     }
     
     private let navigator: RekapListVillageNavigator
@@ -34,6 +36,7 @@ final class RekapListVillageViewModel: ViewModelType {
     
     private let backS = PublishSubject<Void>()
     private let refreshS = PublishSubject<String>()
+    private let itemSelectedS = PublishSubject<IndexPath>()
     private let titleRelay = BehaviorRelay<String>(value: "")
 
     init(navigator: RekapListVillageNavigator, data: Int) {
@@ -41,7 +44,8 @@ final class RekapListVillageViewModel: ViewModelType {
         self.data = data
         
         input = Input(refreshI: refreshS.asObserver(),
-                      backI: backS.asObserver())
+                      backI: backS.asObserver(),
+                      itemSelectedI: itemSelectedS.asObserver())
         
         let back = backS
             .flatMapLatest({ navigator.back() })
@@ -55,24 +59,26 @@ final class RekapListVillageViewModel: ViewModelType {
                                    c: BaseResponse<SummaryVillageeResponse>.self)
                     .do(onSuccess: { (response) in
                         self.titleRelay.accept(response.data.region.name)
-                    }, onError: { (e) in
-                        print(e.localizedDescription)
                     })
                     .map({ $0.data.percentages })
-                    .do(onSuccess: { (response) in
-                        print(response)
-                    }, onError: { (e) in
-                        print(e.localizedDescription)
-                    })
                     .trackError(self.errorTracker)
                     .trackActivity(self.activityIndicator)
                     .asObservable()
         }
+        
+        let itemSelected = itemSelectedS
+            .withLatestFrom(items) { indexPath, model in
+                return model[indexPath.row]
+            }
+            .flatMapLatest { (summary) -> Observable<Void> in
+                return navigator.launchDetail(villageCode: summary.region.code, villageName: summary.region.name)
+            }
+            .asDriverOnErrorJustComplete()
             
         
         output = Output(itemsO: items.asDriverOnErrorJustComplete(),
                         backO: back,
-                        titleO: self.titleRelay.asDriverOnErrorJustComplete())
+                        titleO: self.titleRelay.asDriverOnErrorJustComplete(), itemSelectedO: itemSelected)
         
     }
 

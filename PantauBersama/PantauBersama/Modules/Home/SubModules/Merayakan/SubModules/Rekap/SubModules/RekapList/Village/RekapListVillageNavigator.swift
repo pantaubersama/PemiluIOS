@@ -12,7 +12,7 @@ import Networking
 
 protocol RekapListVillageNavigator {
     func back() -> Observable<Void>
-    func launchDetail() -> Observable<Void>
+    func launchDetail(villageCode: Int, villageName: String) -> Observable<Void>
 }
 
 final class RekapListVillageCoordinator: BaseCoordinator<Void> {
@@ -39,7 +39,8 @@ extension RekapListVillageCoordinator: RekapListVillageNavigator {
         navigationController.popViewController(animated: true)
         return Observable.empty()
     }
-    func launchDetail() -> Observable<Void> {
-        return Observable.empty()
+    func launchDetail(villageCode: Int, villageName: String) -> Observable<Void> {
+        let rekapListTPSCoordinator = RekapListTPSCoordinator(navigationController: navigationController, villageId: villageCode, villageName: villageName)
+        return coordinate(to: rekapListTPSCoordinator)
     }
 }

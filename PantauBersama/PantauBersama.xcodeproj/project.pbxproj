@@ -456,6 +456,11 @@
 		84CAF442225B3B2B003128B3 /* RekapListVillageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CAF441225B3B2A003128B3 /* RekapListVillageController.swift */; };
 		84CAF444225B3BF4003128B3 /* RekapListVillageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CAF443225B3BF4003128B3 /* RekapListVillageViewModel.swift */; };
 		84CAF446225B3CA9003128B3 /* RekapListVillageNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CAF445225B3CA9003128B3 /* RekapListVillageNavigator.swift */; };
+		84CAF449225B458C003128B3 /* RekapTPSUserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84CAF448225B458C003128B3 /* RekapTPSUserCell.xib */; };
+		84CAF44B225B47AF003128B3 /* RekapTPSUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CAF44A225B47AF003128B3 /* RekapTPSUserCell.swift */; };
+		84CAF44D225B47F2003128B3 /* RekapListTPSController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CAF44C225B47F2003128B3 /* RekapListTPSController.swift */; };
+		84CAF44F225B4895003128B3 /* RekapListTPSViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CAF44E225B4895003128B3 /* RekapListTPSViewModel.swift */; };
+		84CAF453225B490B003128B3 /* RekapListTPSNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CAF452225B490B003128B3 /* RekapListTPSNavigator.swift */; };
 		84D01B9821D208DE0000492F /* SectionOfSettingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D01B9721D208DE0000492F /* SectionOfSettingData.swift */; };
 		84D01B9B21D20C480000492F /* SettingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84D01B9A21D20C480000492F /* SettingCell.xib */; };
 		84D01B9D21D20CA20000492F /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D01B9C21D20CA20000492F /* SettingCell.swift */; };
@@ -1092,6 +1097,11 @@
 		84CAF441225B3B2A003128B3 /* RekapListVillageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RekapListVillageController.swift; sourceTree = "<group>"; };
 		84CAF443225B3BF4003128B3 /* RekapListVillageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RekapListVillageViewModel.swift; sourceTree = "<group>"; };
 		84CAF445225B3CA9003128B3 /* RekapListVillageNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RekapListVillageNavigator.swift; sourceTree = "<group>"; };
+		84CAF448225B458C003128B3 /* RekapTPSUserCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RekapTPSUserCell.xib; sourceTree = "<group>"; };
+		84CAF44A225B47AF003128B3 /* RekapTPSUserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RekapTPSUserCell.swift; sourceTree = "<group>"; };
+		84CAF44C225B47F2003128B3 /* RekapListTPSController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RekapListTPSController.swift; sourceTree = "<group>"; };
+		84CAF44E225B4895003128B3 /* RekapListTPSViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RekapListTPSViewModel.swift; sourceTree = "<group>"; };
+		84CAF452225B490B003128B3 /* RekapListTPSNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RekapListTPSNavigator.swift; sourceTree = "<group>"; };
 		84D01B9721D208DE0000492F /* SectionOfSettingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionOfSettingData.swift; sourceTree = "<group>"; };
 		84D01B9A21D20C480000492F /* SettingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingCell.xib; sourceTree = "<group>"; };
 		84D01B9C21D20CA20000492F /* SettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
@@ -3138,6 +3148,10 @@
 		84CAF439225B1DA6003128B3 /* RekapUser */ = {
 			isa = PBXGroup;
 			children = (
+				84CAF447225B4536003128B3 /* Components */,
+				84CAF44C225B47F2003128B3 /* RekapListTPSController.swift */,
+				84CAF44E225B4895003128B3 /* RekapListTPSViewModel.swift */,
+				84CAF452225B490B003128B3 /* RekapListTPSNavigator.swift */,
 			);
 			path = RekapUser;
 			sourceTree = "<group>";
@@ -3150,6 +3164,15 @@
 				84CAF445225B3CA9003128B3 /* RekapListVillageNavigator.swift */,
 			);
 			path = Village;
+			sourceTree = "<group>";
+		};
+		84CAF447225B4536003128B3 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				84CAF448225B458C003128B3 /* RekapTPSUserCell.xib */,
+				84CAF44A225B47AF003128B3 /* RekapTPSUserCell.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		84D01B9921D20C140000492F /* Components */ = {
@@ -3885,6 +3908,7 @@
 				8441DB3E21CCB80B00B078DF /* ItemRadioCell.xib in Resources */,
 				E54CFB07222C481A002DA0D1 /* UploadC1Controller.xib in Resources */,
 				11D066A521E3850E003AC9BB /* PenpolFilterController.xib in Resources */,
+				84CAF449225B458C003128B3 /* RekapTPSUserCell.xib in Resources */,
 				844C3D8C21C5323E00199871 /* LinimasaCell.xib in Resources */,
 				848B039C21E7AADF002CAA40 /* WKWebview.xib in Resources */,
 				84BE8DFE22269CDC0079332A /* PartyCaraouselCell.xib in Resources */,
@@ -4395,6 +4419,7 @@
 				11E1079C21CD1B5F00B7B074 /* QuizNavigator.swift in Sources */,
 				13E139592215548500286EDE /* SectionViewCell2.swift in Sources */,
 				1183F0E021D53A9100435D31 /* QuestionModel.swift in Sources */,
+				84CAF44B225B47AF003128B3 /* RekapTPSUserCell.swift in Sources */,
 				84619D3E21DA89F600EB58CF /* ItemInfoCell.swift in Sources */,
 				1143E81621E24A6A003862B6 /* QuizQuestionModel.swift in Sources */,
 				84A07FC421D14E8000269C6B /* ReqClusterViewModel.swift in Sources */,
@@ -4438,6 +4463,7 @@
 				847B4A19224A1EA00071A8F5 /* ASControlNode+Rx.swift in Sources */,
 				8478B8EA21FF315600CE192A /* Parser.swift in Sources */,
 				84CAF444225B3BF4003128B3 /* RekapListVillageViewModel.swift in Sources */,
+				84CAF453225B490B003128B3 /* RekapListTPSNavigator.swift in Sources */,
 				84B7B8BE21E47B400099E7E3 /* ClusterSearchViewModel.swift in Sources */,
 				84B6D50F21F8345900DD742A /* CatatanPartyViewModel.swift in Sources */,
 				845C570521CD1C2300EDCDFE /* HeaderProfile.swift in Sources */,
@@ -4552,6 +4578,7 @@
 				E54CFB06222C481A002DA0D1 /* UploadC1Controller.swift in Sources */,
 				13F4569D21CF985800CE45F1 /* CreateAskViewModel.swift in Sources */,
 				13E170C2221184DF0018EDB4 /* WordstadiumViewModel.swift in Sources */,
+				84CAF44D225B47F2003128B3 /* RekapListTPSController.swift in Sources */,
 				842A49F921D789A30050AA51 /* VerifikasiStep.swift in Sources */,
 				11B145EE21D67C8200BB26C8 /* AskCellViewModel.swift in Sources */,
 				13E139552213FF1B00286EDE /* SectionViewCell.swift in Sources */,
@@ -4587,6 +4614,7 @@
 				84A945BB22240A8F00944C6B /* SearchUserController.swift in Sources */,
 				8451E05C22045BD400F03E96 /* NotificationCoordinator.swift in Sources */,
 				11D066A421E3850E003AC9BB /* PenpolFilterController.swift in Sources */,
+				84CAF44F225B4895003128B3 /* RekapListTPSViewModel.swift in Sources */,
 				84FA423622128A57008215C4 /* TooltipViewModel.swift in Sources */,
 				8409374B21D360D10024A444 /* PilpresViewModel.swift in Sources */,
 				1320595E221359C200BE9456 /* WordstadiumCollectionCell.swift in Sources */,
