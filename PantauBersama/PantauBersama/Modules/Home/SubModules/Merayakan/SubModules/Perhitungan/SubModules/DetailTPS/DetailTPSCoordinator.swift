@@ -17,10 +17,10 @@ protocol DetailTPSNavigator {
     func sendData() -> Observable<Void>
     func successSubmit() -> Observable<Void>
     func launchDetailTPSPresiden(data: RealCount) -> Observable<Void>
-    func launchDetailTPSDPRI() -> Observable<Void>
+    func launchDetailTPSDPRI(data: RealCount) -> Observable<Void>
     func launchDetailTPSDPD() -> Observable<Void>
-    func launchDetailTPSDPRDKab() -> Observable<Void>
-    func launchDetailTPSDPRDProv() -> Observable<Void>
+    func launchDetailTPSDPRDKab(data: RealCount) -> Observable<Void>
+    func launchDetailTPSDPRDProv(data: RealCount) -> Observable<Void>
     func launchUploadC1() -> Observable<Void>
     func launchC1Form(type: FormC1Type) -> Observable<Void>
     
@@ -65,8 +65,8 @@ extension DetailTPSCoordinator: DetailTPSNavigator {
         return coordinate(to: searchCoordinator)
     }
     
-    func launchDetailTPSDPRI() -> Observable<Void> {
-        let searchCoordinator = DetailTPSDPRCoordinator(navigationController: self.navigationController, type: .DPRRI)
+    func launchDetailTPSDPRI(data: RealCount) -> Observable<Void> {
+        let searchCoordinator = DetailTPSDPRCoordinator(navigationController: self.navigationController, type: .DPRRI, realCount: data, tingkat: .dpr)
         return coordinate(to: searchCoordinator)
     }
     
@@ -75,13 +75,13 @@ extension DetailTPSCoordinator: DetailTPSNavigator {
         return coordinate(to: searchCoordinator)
     }
     
-    func launchDetailTPSDPRDKab() -> Observable<Void> {
-        let searchCoordinator = DetailTPSDPRCoordinator(navigationController: self.navigationController, type: .DPRDKota)
+    func launchDetailTPSDPRDKab(data: RealCount) -> Observable<Void> {
+        let searchCoordinator = DetailTPSDPRCoordinator(navigationController: self.navigationController, type: .DPRDKota, realCount: data, tingkat: .kabupaten)
         return coordinate(to: searchCoordinator)
     }
     
-    func launchDetailTPSDPRDProv() -> Observable<Void> {
-        let searchCoordinator = DetailTPSDPRCoordinator(navigationController: self.navigationController, type: .DPRDProv)
+    func launchDetailTPSDPRDProv(data: RealCount) -> Observable<Void> {
+        let searchCoordinator = DetailTPSDPRCoordinator(navigationController: self.navigationController, type: .DPRDProv, realCount: data, tingkat: .provinsi)
         return coordinate(to: searchCoordinator)
     }
     

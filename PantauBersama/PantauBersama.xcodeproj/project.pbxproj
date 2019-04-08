@@ -330,6 +330,7 @@
 		847B4A162249F8890071A8F5 /* LinimasaNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847B4A152249F8890071A8F5 /* LinimasaNode.swift */; };
 		847B4A19224A1EA00071A8F5 /* ASControlNode+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847B4A18224A1EA00071A8F5 /* ASControlNode+Rx.swift */; };
 		847B4A1B224A28F90071A8F5 /* QuizNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847B4A1A224A28F90071A8F5 /* QuizNode.swift */; };
+		848508A3224E044E00AD2DD4 /* SectionModelDPR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848508A2224E044E00AD2DD4 /* SectionModelDPR.swift */; };
 		848B039921E7AA8C002CAA40 /* WKWebview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848B039821E7AA8C002CAA40 /* WKWebview.swift */; };
 		848B039C21E7AADF002CAA40 /* WKWebview.xib in Resources */ = {isa = PBXBuildFile; fileRef = 848B039B21E7AADF002CAA40 /* WKWebview.xib */; };
 		848B039F21E7B538002CAA40 /* WKWebCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848B039E21E7B538002CAA40 /* WKWebCoordinator.swift */; };
@@ -448,6 +449,19 @@
 		84CA10C121EF107E0025CF10 /* AboutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CA10C021EF107E0025CF10 /* AboutController.swift */; };
 		84CA10C321EF10E20025CF10 /* AboutCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CA10C221EF10E20025CF10 /* AboutCoordinator.swift */; };
 		84CA10C521EF12800025CF10 /* AboutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CA10C421EF12800025CF10 /* AboutViewModel.swift */; };
+		84CAF436225B0346003128B3 /* RekapHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CAF435225B0346003128B3 /* RekapHeaderView.swift */; };
+		84CAF43B225B1DB4003128B3 /* RekapListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CAF43A225B1DB4003128B3 /* RekapListController.swift */; };
+		84CAF43D225B1E6B003128B3 /* RekapListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CAF43C225B1E6B003128B3 /* RekapListViewModel.swift */; };
+		84CAF43F225B1F15003128B3 /* RekapListNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CAF43E225B1F15003128B3 /* RekapListNavigator.swift */; };
+		84CAF442225B3B2B003128B3 /* RekapListVillageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CAF441225B3B2A003128B3 /* RekapListVillageController.swift */; };
+		84CAF444225B3BF4003128B3 /* RekapListVillageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CAF443225B3BF4003128B3 /* RekapListVillageViewModel.swift */; };
+		84CAF446225B3CA9003128B3 /* RekapListVillageNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CAF445225B3CA9003128B3 /* RekapListVillageNavigator.swift */; };
+		84CAF449225B458C003128B3 /* RekapTPSUserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84CAF448225B458C003128B3 /* RekapTPSUserCell.xib */; };
+		84CAF44B225B47AF003128B3 /* RekapTPSUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CAF44A225B47AF003128B3 /* RekapTPSUserCell.swift */; };
+		84CAF44D225B47F2003128B3 /* RekapListTPSController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CAF44C225B47F2003128B3 /* RekapListTPSController.swift */; };
+		84CAF44F225B4895003128B3 /* RekapListTPSViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CAF44E225B4895003128B3 /* RekapListTPSViewModel.swift */; };
+		84CAF453225B490B003128B3 /* RekapListTPSNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CAF452225B490B003128B3 /* RekapListTPSNavigator.swift */; };
+		84CAF456225B5812003128B3 /* RekapDetailTPSController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CAF455225B5811003128B3 /* RekapDetailTPSController.swift */; };
 		84D01B9821D208DE0000492F /* SectionOfSettingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D01B9721D208DE0000492F /* SectionOfSettingData.swift */; };
 		84D01B9B21D20C480000492F /* SettingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84D01B9A21D20C480000492F /* SettingCell.xib */; };
 		84D01B9D21D20CA20000492F /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D01B9C21D20CA20000492F /* SettingCell.swift */; };
@@ -957,6 +971,7 @@
 		847B4A152249F8890071A8F5 /* LinimasaNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinimasaNode.swift; sourceTree = "<group>"; };
 		847B4A18224A1EA00071A8F5 /* ASControlNode+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ASControlNode+Rx.swift"; sourceTree = "<group>"; };
 		847B4A1A224A28F90071A8F5 /* QuizNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizNode.swift; sourceTree = "<group>"; };
+		848508A2224E044E00AD2DD4 /* SectionModelDPR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionModelDPR.swift; sourceTree = "<group>"; };
 		848B039821E7AA8C002CAA40 /* WKWebview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKWebview.swift; sourceTree = "<group>"; };
 		848B039B21E7AADF002CAA40 /* WKWebview.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WKWebview.xib; sourceTree = "<group>"; };
 		848B039E21E7B538002CAA40 /* WKWebCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKWebCoordinator.swift; sourceTree = "<group>"; };
@@ -1076,6 +1091,19 @@
 		84CA10C021EF107E0025CF10 /* AboutController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutController.swift; sourceTree = "<group>"; };
 		84CA10C221EF10E20025CF10 /* AboutCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutCoordinator.swift; sourceTree = "<group>"; };
 		84CA10C421EF12800025CF10 /* AboutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewModel.swift; sourceTree = "<group>"; };
+		84CAF435225B0346003128B3 /* RekapHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RekapHeaderView.swift; sourceTree = "<group>"; };
+		84CAF43A225B1DB4003128B3 /* RekapListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RekapListController.swift; sourceTree = "<group>"; };
+		84CAF43C225B1E6B003128B3 /* RekapListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RekapListViewModel.swift; sourceTree = "<group>"; };
+		84CAF43E225B1F15003128B3 /* RekapListNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RekapListNavigator.swift; sourceTree = "<group>"; };
+		84CAF441225B3B2A003128B3 /* RekapListVillageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RekapListVillageController.swift; sourceTree = "<group>"; };
+		84CAF443225B3BF4003128B3 /* RekapListVillageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RekapListVillageViewModel.swift; sourceTree = "<group>"; };
+		84CAF445225B3CA9003128B3 /* RekapListVillageNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RekapListVillageNavigator.swift; sourceTree = "<group>"; };
+		84CAF448225B458C003128B3 /* RekapTPSUserCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RekapTPSUserCell.xib; sourceTree = "<group>"; };
+		84CAF44A225B47AF003128B3 /* RekapTPSUserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RekapTPSUserCell.swift; sourceTree = "<group>"; };
+		84CAF44C225B47F2003128B3 /* RekapListTPSController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RekapListTPSController.swift; sourceTree = "<group>"; };
+		84CAF44E225B4895003128B3 /* RekapListTPSViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RekapListTPSViewModel.swift; sourceTree = "<group>"; };
+		84CAF452225B490B003128B3 /* RekapListTPSNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RekapListTPSNavigator.swift; sourceTree = "<group>"; };
+		84CAF455225B5811003128B3 /* RekapDetailTPSController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RekapDetailTPSController.swift; sourceTree = "<group>"; };
 		84D01B9721D208DE0000492F /* SectionOfSettingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionOfSettingData.swift; sourceTree = "<group>"; };
 		84D01B9A21D20C480000492F /* SettingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingCell.xib; sourceTree = "<group>"; };
 		84D01B9C21D20CA20000492F /* SettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
@@ -1255,7 +1283,6 @@
 			children = (
 				043EE180221A36C2008C59CD /* SubModules */,
 				043EE18E221A36C2008C59CD /* ViewController */,
-				043EE17F221A36C2008C59CD /* MerayakanCoordinator.swift */,
 				043EE191221A36C2008C59CD /* MerayakanViewModel.swift */,
 				043EE17F221A36C2008C59CD /* MerayakanCoordinator.swift */,
 			);
@@ -1274,6 +1301,7 @@
 		043EE181221A36C2008C59CD /* Rekap */ = {
 			isa = PBXGroup;
 			children = (
+				84CAF437225B1D95003128B3 /* SubModules */,
 				043EE183221A36C2008C59CD /* RekapViewModel.swift */,
 				11DA97132222CE9200A51E76 /* RekapNavigator.swift */,
 				043EE184221A36C2008C59CD /* ViewController */,
@@ -1300,6 +1328,7 @@
 				043EE18B221A36C2008C59CD /* RekapFooterView.xib */,
 				043EE18C221A36C2008C59CD /* SuaraCapresViewCell.xib */,
 				043EE18D221A36C2008C59CD /* RekapViewCell.xib */,
+				84CAF435225B0346003128B3 /* RekapHeaderView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -3098,6 +3127,65 @@
 			path = About;
 			sourceTree = "<group>";
 		};
+		84CAF437225B1D95003128B3 /* SubModules */ = {
+			isa = PBXGroup;
+			children = (
+				84CAF439225B1DA6003128B3 /* RekapUser */,
+				84CAF438225B1D9E003128B3 /* RekapList */,
+			);
+			path = SubModules;
+			sourceTree = "<group>";
+		};
+		84CAF438225B1D9E003128B3 /* RekapList */ = {
+			isa = PBXGroup;
+			children = (
+				84CAF440225B34D4003128B3 /* Village */,
+				84CAF43A225B1DB4003128B3 /* RekapListController.swift */,
+				84CAF43C225B1E6B003128B3 /* RekapListViewModel.swift */,
+				84CAF43E225B1F15003128B3 /* RekapListNavigator.swift */,
+			);
+			path = RekapList;
+			sourceTree = "<group>";
+		};
+		84CAF439225B1DA6003128B3 /* RekapUser */ = {
+			isa = PBXGroup;
+			children = (
+				84CAF454225B57FD003128B3 /* SubModules */,
+				84CAF447225B4536003128B3 /* Components */,
+				84CAF44C225B47F2003128B3 /* RekapListTPSController.swift */,
+				84CAF44E225B4895003128B3 /* RekapListTPSViewModel.swift */,
+				84CAF452225B490B003128B3 /* RekapListTPSNavigator.swift */,
+			);
+			path = RekapUser;
+			sourceTree = "<group>";
+		};
+		84CAF440225B34D4003128B3 /* Village */ = {
+			isa = PBXGroup;
+			children = (
+				84CAF441225B3B2A003128B3 /* RekapListVillageController.swift */,
+				84CAF443225B3BF4003128B3 /* RekapListVillageViewModel.swift */,
+				84CAF445225B3CA9003128B3 /* RekapListVillageNavigator.swift */,
+			);
+			path = Village;
+			sourceTree = "<group>";
+		};
+		84CAF447225B4536003128B3 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				84CAF448225B458C003128B3 /* RekapTPSUserCell.xib */,
+				84CAF44A225B47AF003128B3 /* RekapTPSUserCell.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		84CAF454225B57FD003128B3 /* SubModules */ = {
+			isa = PBXGroup;
+			children = (
+				84CAF455225B5811003128B3 /* RekapDetailTPSController.swift */,
+			);
+			path = SubModules;
+			sourceTree = "<group>";
+		};
 		84D01B9921D20C140000492F /* Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -3465,6 +3553,7 @@
 				E54CFAF3222C1F31002DA0D1 /* TPSInputHeader.xib */,
 				E54CFAF5222C241A002DA0D1 /* TPSInputFooter.swift */,
 				E54CFAF7222C2435002DA0D1 /* TPSInputFooter.xib */,
+				848508A2224E044E00AD2DD4 /* SectionModelDPR.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -3830,6 +3919,7 @@
 				8441DB3E21CCB80B00B078DF /* ItemRadioCell.xib in Resources */,
 				E54CFB07222C481A002DA0D1 /* UploadC1Controller.xib in Resources */,
 				11D066A521E3850E003AC9BB /* PenpolFilterController.xib in Resources */,
+				84CAF449225B458C003128B3 /* RekapTPSUserCell.xib in Resources */,
 				844C3D8C21C5323E00199871 /* LinimasaCell.xib in Resources */,
 				848B039C21E7AADF002CAA40 /* WKWebview.xib in Resources */,
 				84BE8DFE22269CDC0079332A /* PartyCaraouselCell.xib in Resources */,
@@ -4157,10 +4247,12 @@
 				84A07FBC21D129FC00269C6B /* GroupProfileInfoData.swift in Sources */,
 				84FA42402212A595008215C4 /* CreateTantanganViewModel.swift in Sources */,
 				84B7B8BC21E47A8F0099E7E3 /* ClusterSearchController.swift in Sources */,
+				84CAF43F225B1F15003128B3 /* RekapListNavigator.swift in Sources */,
 				137A29F321E2261A00F19072 /* ComingsoonController.swift in Sources */,
 				847B4A162249F8890071A8F5 /* LinimasaNode.swift in Sources */,
 				11702DD521CB08DE001AEE3F /* QuizController.swift in Sources */,
 				E583C9F7223ED9C5006D9590 /* SelectionDialog.swift in Sources */,
+				84CAF43B225B1DB4003128B3 /* RekapListController.swift in Sources */,
 				11145F5D21EAF2670046F2AA /* SearchNavbar.swift in Sources */,
 				84EC7D17221586D100CDFD4D /* PublishChallengeCoordinator.swift in Sources */,
 				84FA4284221307BF008215C4 /* BidangKajianCoordinator.swift in Sources */,
@@ -4235,6 +4327,7 @@
 				11E107A721CD33CA00B7B074 /* CreateJanjiViewModel.swift in Sources */,
 				84FF8A9921F21D0000AA8CF3 /* UpdatesCoordinator.swift in Sources */,
 				842A4A0921D7EA990050AA51 /* SignatureCoordinator.swift in Sources */,
+				84CAF442225B3B2B003128B3 /* RekapListVillageController.swift in Sources */,
 				8452A4D221DE54B800196043 /* SosmedViewModel.swift in Sources */,
 				84EC7D132215859F00CDFD4D /* PublishChallengeController.swift in Sources */,
 				84FA423822128B23008215C4 /* TooltipCoordinator.swift in Sources */,
@@ -4337,6 +4430,7 @@
 				11E1079C21CD1B5F00B7B074 /* QuizNavigator.swift in Sources */,
 				13E139592215548500286EDE /* SectionViewCell2.swift in Sources */,
 				1183F0E021D53A9100435D31 /* QuestionModel.swift in Sources */,
+				84CAF44B225B47AF003128B3 /* RekapTPSUserCell.swift in Sources */,
 				84619D3E21DA89F600EB58CF /* ItemInfoCell.swift in Sources */,
 				1143E81621E24A6A003862B6 /* QuizQuestionModel.swift in Sources */,
 				84A07FC421D14E8000269C6B /* ReqClusterViewModel.swift in Sources */,
@@ -4368,6 +4462,7 @@
 				8451E05E22045C6B00F03E96 /* NotificationViewModel.swift in Sources */,
 				844C3D3D21C4ED6D00199871 /* AppDelegate.swift in Sources */,
 				84B8C1BF22157347004BC1FE /* ChallengeDetailView.swift in Sources */,
+				848508A3224E044E00AD2DD4 /* SectionModelDPR.swift in Sources */,
 				11B3C78B21D110CB00EDCECB /* QuizSummaryCoordinator.swift in Sources */,
 				131DBDB02215AF69005203FF /* TimeView.swift in Sources */,
 				1131A61E22236A4E0000981D /* CreatePerhitunganCoordinator.swift in Sources */,
@@ -4378,6 +4473,8 @@
 				13BF405321EBAA8F005C9A64 /* IQuestionListViewModel.swift in Sources */,
 				847B4A19224A1EA00071A8F5 /* ASControlNode+Rx.swift in Sources */,
 				8478B8EA21FF315600CE192A /* Parser.swift in Sources */,
+				84CAF444225B3BF4003128B3 /* RekapListVillageViewModel.swift in Sources */,
+				84CAF453225B490B003128B3 /* RekapListTPSNavigator.swift in Sources */,
 				84B7B8BE21E47B400099E7E3 /* ClusterSearchViewModel.swift in Sources */,
 				84B6D50F21F8345900DD742A /* CatatanPartyViewModel.swift in Sources */,
 				845C570521CD1C2300EDCDFE /* HeaderProfile.swift in Sources */,
@@ -4439,7 +4536,6 @@
 				84BE8E0022269D700079332A /* PartyCaraouselCell.swift in Sources */,
 				84307F4D22006857006DE04B /* ParserCoordinator.swift in Sources */,
 				84B8C1C422157686004BC1FE /* FooterProfileView.swift in Sources */,
-				11DA97072222B04D00A51E76 /* PerhitunganViewModel.swift in Sources */,
 				842A4A0F21D7EE5F0050AA51 /* SuccessViewModel.swift in Sources */,
 				E54CFAEF222C1EC7002DA0D1 /* TPSInputCell.swift in Sources */,
 				84B7B8D221E5B9640099E7E3 /* AddKategoriCoordinator.swift in Sources */,
@@ -4465,14 +4561,15 @@
 				848B039921E7AA8C002CAA40 /* WKWebview.swift in Sources */,
 				13F456CB21DB88E700CE45F1 /* BannerInfoViewModel.swift in Sources */,
 				E5B22D68222B0381002A8C0C /* C1InputFormController.swift in Sources */,
+				84CAF446225B3CA9003128B3 /* RekapListVillageNavigator.swift in Sources */,
 				E5B22D6F222B04D4002A8C0C /* C1SuratSuaraView.swift in Sources */,
 				84A07FBA21D0F13200269C6B /* IdentitasViewModel.swift in Sources */,
 				E5B22D61222AA39C002A8C0C /* TPSButton.swift in Sources */,
 				11E107B521CD44FD00B7B074 /* QuizOngoingCoordinator.swift in Sources */,
 				84B6D51621F842EB00DD742A /* PartyCell.swift in Sources */,
 				84B7B8C721E4A0A00099E7E3 /* IClusterSearchDelegate.swift in Sources */,
-				11DA970B2222C29A00A51E76 /* PerhitunganController.swift in Sources */,
 				840850D221D2632500696CB3 /* ProfileEditCoordinator.swift in Sources */,
+				84CAF43D225B1E6B003128B3 /* RekapListViewModel.swift in Sources */,
 				E54CFAF2222C1EDF002DA0D1 /* TPSInputHeader.swift in Sources */,
 				8409374D21D361240024A444 /* PilpresNavigator.swift in Sources */,
 				840850DF21D2843D00696CB3 /* BadgeViewModel.swift in Sources */,
@@ -4492,6 +4589,7 @@
 				E54CFB06222C481A002DA0D1 /* UploadC1Controller.swift in Sources */,
 				13F4569D21CF985800CE45F1 /* CreateAskViewModel.swift in Sources */,
 				13E170C2221184DF0018EDB4 /* WordstadiumViewModel.swift in Sources */,
+				84CAF44D225B47F2003128B3 /* RekapListTPSController.swift in Sources */,
 				842A49F921D789A30050AA51 /* VerifikasiStep.swift in Sources */,
 				11B145EE21D67C8200BB26C8 /* AskCellViewModel.swift in Sources */,
 				13E139552213FF1B00286EDE /* SectionViewCell.swift in Sources */,
@@ -4507,6 +4605,7 @@
 				842A4A0D21D7EDC10050AA51 /* SuccessCoordinator.swift in Sources */,
 				131AEBE1221F332900B299F6 /* WordstadiumType.swift in Sources */,
 				84B8C1D12215823F004BC1FE /* PromoteView.swift in Sources */,
+				84CAF456225B5812003128B3 /* RekapDetailTPSController.swift in Sources */,
 				E583C9F8223ED9C5006D9590 /* UIImageExtension.swift in Sources */,
 				84B6D52D21F8E80A00DD742A /* UserQuestionListViewModel.swift in Sources */,
 				1108871E221271DC0041B821 /* LiveDebatViewModel.swift in Sources */,
@@ -4527,6 +4626,7 @@
 				84A945BB22240A8F00944C6B /* SearchUserController.swift in Sources */,
 				8451E05C22045BD400F03E96 /* NotificationCoordinator.swift in Sources */,
 				11D066A421E3850E003AC9BB /* PenpolFilterController.swift in Sources */,
+				84CAF44F225B4895003128B3 /* RekapListTPSViewModel.swift in Sources */,
 				84FA423622128A57008215C4 /* TooltipViewModel.swift in Sources */,
 				8409374B21D360D10024A444 /* PilpresViewModel.swift in Sources */,
 				1320595E221359C200BE9456 /* WordstadiumCollectionCell.swift in Sources */,
@@ -4537,6 +4637,7 @@
 				84E2855321CA524200298E31 /* FilterCoordinator.swift in Sources */,
 				84FF8A9F21F21F3A00AA8CF3 /* UpdatesViewModel.swift in Sources */,
 				848B03A121E7B5DE002CAA40 /* WKWebViewModel.swift in Sources */,
+				84CAF436225B0346003128B3 /* RekapHeaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

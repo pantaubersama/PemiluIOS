@@ -20,14 +20,14 @@ final class RekapViewModel: ViewModelType {
     
     struct Input {
         let refreshTrigger: AnyObserver<String>
-        let loadDataTrigger: AnyObserver<Void>
-        let kecamatanTrigger: AnyObserver<Void>
+        let itemSelected: AnyObserver<IndexPath>
     }
     
     struct Output {
-        // let feedsCells: Driver<[ICellConfigurator]>
-        let items: Driver<[String]>
-        let kecamatanO: Driver<Void>
+        let itemsO: Driver<[SimpleSummary]>
+        let contributionsO: Driver<ContributionResponse>
+        let summaryPresidentO: Driver<SummaryPresidentResponse>
+        let itemSelectedO: Driver<Void>
     }
     
     let navigator: RekapNavigator
@@ -36,82 +36,66 @@ final class RekapViewModel: ViewModelType {
     let activityIndicator = ActivityIndicator()
     let headerViewModel = BannerHeaderViewModel()
     
-    private let refreshSubject      = PublishSubject<String>()
-    private let loadDataSubject     = PublishSubject<Void>()
-    private let kecamatanSubject    = PublishSubject<Void>()
-    private var filterItems: [PenpolFilterModel.FilterItem] = []
-    private var searchQuery: String?
-    private let disposeBag = DisposeBag()
-    
+    private let refreshSubject = PublishSubject<String>()
+    private let itemSelectedS = PublishSubject<IndexPath>()
     
     init(navigator: RekapNavigator) {
         self.navigator = navigator
     
         input = Input(
             refreshTrigger: refreshSubject.asObserver(),
-            loadDataTrigger: loadDataSubject.asObserver(),
-            kecamatanTrigger: kecamatanSubject.asObserver()
+            itemSelected: itemSelectedS.asObserver()
         )
         
-        let items = loadDataSubject
-            .do(onNext: { (_) in
-                print("clicked")
-            })
-            .map { (_) -> [String] in
-                return ["a", "b", "c"]
+        /// GET Contributions response
+        let contributions = refreshSubject.startWith("")
+            .flatMapLatest { (_) -> Observable<ContributionResponse> in
+                return NetworkService.instance
+                    .requestObject(HitungAPI.getContribution, c: BaseResponse<ContributionResponse>.self)
+                    .map({ $0.data })
+                    .trackError(self.errorTracker)
+                    .trackActivity(self.activityIndicator)
+                    .asObservable()
+        }
+        
+        /// GET Calculcations National for Presidents
+        let summaryAll = refreshSubject.startWith("")
+            .flatMapLatest { (_) -> Observable<SummaryPresidentResponse> in
+                return NetworkService.instance
+                    .requestObject(HitungAPI.summaryPresidenShow(level: 0,
+                                                                 region: 0,
+                                                                 tps: 0,
+                                                                 realCountId: ""),
+                                   c: BaseResponse<SummaryPresidentResponse>.self)
+                    .map({ $0.data })
+                    .trackError(self.errorTracker)
+                    .trackActivity(self.activityIndicator)
+                    .asObservable()
+        }
+        /// GET Summary each province
+        let provinceAll = refreshSubject.startWith("")
+            .flatMapLatest { [weak self] (_) -> Observable<[SimpleSummary]> in
+                guard let `self` = self else { return Observable.empty() }
+                return NetworkService.instance
+                    .requestObject(HitungAPI.summaryPresidenList(level: 0, region: 0),
+                                   c: BaseResponse<SummaryProvinceResponse>.self)
+                    .map({ $0.data.percentages })
+                    .trackError(self.errorTracker)
+                    .trackActivity(self.activityIndicator)
+                    .asObservable()
+        }
+        /// Item selected
+        let itemSelected = itemSelectedS
+            .withLatestFrom(provinceAll) { indexPath, model in
+                return model[indexPath.row]
             }
-            .asDriver(onErrorJustReturn: [])
-        
-        let kecamatan = kecamatanSubject
-        .asDriverOnErrorJustComplete()
-        
-        output = Output(
-            // feedsCells: feedsCells
-            items: items,
-            kecamatanO: kecamatan
-        )
-    }
-    
-    private func paginateItems(
-        batch: Batch = Batch.initial,
-        nextBatchTrigger: Observable<Void>,
-        filter: String,
-        query: String) -> Observable<[Feeds]> {
-        return recursivelyPaginateItems(batch: batch, nextBatchTrigger: nextBatchTrigger, filter: filter, query: query)
-            .scan([], accumulator: { (accumulator, page) in
-                return accumulator + page.item
-            })
-    }
-    
-    private func recursivelyPaginateItems(
-        batch: Batch,
-        nextBatchTrigger: Observable<Void>,
-        filter: String,
-        query: String) ->
-        Observable<Page<[Feeds]>> {
-            return NetworkService.instance
-                .requestObject(LinimasaAPI.getFeeds(filter: filter, page: batch.page, perPage: batch.limit, query: query),
-                               c: BaseResponse<FeedsResponse>.self)
-                .map({ self.transformToPage(response: $0, batch: batch) })
-                .asObservable()
-                .paginate(nextPageTrigger: nextBatchTrigger, hasNextPage: { (result) -> Bool in
-                    return result.batch.next().hasNextPage
-                }, nextPageFactory: { (result) -> Observable<Page<[Feeds]>> in
-                    self.recursivelyPaginateItems(batch: result.batch.next(), nextBatchTrigger: nextBatchTrigger, filter: filter, query: query)
-                })
-                .share(replay: 1, scope: .whileConnected)
+            .flatMapLatest({ navigator.launchDetail(item: $0.region)})
+            .asDriver(onErrorJustReturn: ())
             
-    }
-    
-    private func transformToPage(response: BaseResponse<FeedsResponse>, batch: Batch) -> Page<[Feeds]> {
-        let nextBatch = Batch(offset: batch.offset,
-                              limit: response.data.meta.pages.perPage ?? 10,
-                              total: response.data.meta.pages.total,
-                              count: response.data.meta.pages.page,
-                              page: response.data.meta.pages.page)
-        return Page<[Feeds]>(
-            item: response.data.feeds,
-            batch: nextBatch
-        )
+        
+        
+        output = Output(itemsO: provinceAll.asDriverOnErrorJustComplete(),
+                        contributionsO: contributions.asDriverOnErrorJustComplete(),
+                        summaryPresidentO: summaryAll.asDriverOnErrorJustComplete(), itemSelectedO: itemSelected)
     }
 }

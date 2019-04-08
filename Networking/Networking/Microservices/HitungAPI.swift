@@ -30,7 +30,7 @@ public enum HitungAPI {
     case getCalculations(hitungRealCountId: String, tingkat: TingkatPemilihan)
     case putCalculations(hitungRealCountId: String, type: TingkatPemilihan, invalidVote: Int, candidates: [CandidatesCount], parties: [CandidatesCount]?)
     
-    case getCandidates(tingkat: TingkatPemilihan)
+    case getCandidates(dapilId: Int, tingkat: TingkatPemilihan)
     case getProvinces(page: Int, perPage: Int)
     case getRegencies(page: Int, perPage: Int, provinceCode: Int)
     case getDistricts(page: Int, perPage: Int, regencyCode: Int)
@@ -52,6 +52,9 @@ public enum HitungAPI {
     case getRealCounts(page: Int, perPage: Int, userId: String?, villageCode: String?, dapilId: String?)
     case postRealCount(noTps: String, province: String, regencies: String, district: String, village: String, lat: Double, long: Double)
     case publishRealCount(id: String)
+    
+    case summaryPresidenShow(level: Int, region: Int, tps: Int, realCountId: String)
+    case summaryPresidenList(level: Int, region: Int)
 }
 
 extension HitungAPI: TargetType {
@@ -86,7 +89,7 @@ extension HitungAPI: TargetType {
         case .getCandidates:
             return "/hitung/v1/candidates"
         case .getDapils:
-            return "/hitung/v1/dapils"
+            return "/hitung/v1/dapils/region"
         case .getDistricts:
             return "/hitung/v1/districts"
         case .getSuasanaTPS:
@@ -108,6 +111,10 @@ extension HitungAPI: TargetType {
         case .getImagesRealCount,
              .postImageRealCount:
             return "/hitung/v1/images"
+        case .summaryPresidenShow:
+            return "/hitung/v1/summary/president/show"
+        case .summaryPresidenList:
+            return "/hitung/v1/summary/president/list"
         }
     }
     
@@ -239,7 +246,23 @@ extension HitungAPI: TargetType {
             return parameters
         case .getImagesRealCount(let hitungRealCountId):
             return ["hitung_real_count_id": hitungRealCountId]
-            
+        case .getCandidates(let (dapilId, tingkat)):
+            return [
+                "dapil_id": dapilId,
+                "tingkat": tingkat.rawValue
+            ]
+        case .summaryPresidenShow(let (level, region, tps, rid)):
+            return [
+                "level": level,
+                "region": region,
+                "tps": tps,
+                "hitung_real_count_id": rid
+            ]
+        case .summaryPresidenList(let (level, region)):
+            return [
+                "level": level,
+                "region": region
+            ]
         default:
             return nil
         }

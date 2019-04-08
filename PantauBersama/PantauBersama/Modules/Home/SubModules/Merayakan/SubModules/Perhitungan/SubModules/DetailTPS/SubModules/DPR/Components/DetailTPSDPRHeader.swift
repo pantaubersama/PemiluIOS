@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import Common
 
 class DetailTPSDPRHeader: UIView {
 
+    @IBOutlet weak var lblNameDapil: Label!
     /*
     // Only override draw() if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
@@ -17,5 +19,9 @@ class DetailTPSDPRHeader: UIView {
         // Drawing code
     }
     */
+    
+    func configure(name: String) {
+        lblNameDapil.text = "Dapil: " + name
+    }
 
 }

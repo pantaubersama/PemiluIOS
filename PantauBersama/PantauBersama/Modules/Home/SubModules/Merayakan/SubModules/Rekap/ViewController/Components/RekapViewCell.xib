@@ -204,6 +204,7 @@
                 <outlet property="labelPersentase1" destination="4D9-Kh-ute" id="3F3-ef-EMF"/>
                 <outlet property="labelPersentase2" destination="v2B-gA-9K1" id="6IP-Pk-LcU"/>
                 <outlet property="labelRegion" destination="2Gi-Yp-5TI" id="bim-sf-4Fq"/>
+                <outlet property="labelRegionName" destination="2Gi-Yp-5TI" id="Acc-5V-qh7"/>
                 <outlet property="labelSuaraTidakSah" destination="mQe-ej-0i2" id="QcI-z9-p2v"/>
                 <outlet property="labelTotalSuara" destination="3fh-2E-cyM" id="LcH-lj-ASr"/>
                 <outlet property="labelTps" destination="6le-4h-2Sy" id="kAV-xV-1bS"/>

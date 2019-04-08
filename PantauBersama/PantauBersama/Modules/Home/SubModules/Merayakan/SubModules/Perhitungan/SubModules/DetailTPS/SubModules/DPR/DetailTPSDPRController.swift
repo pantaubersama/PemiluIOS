@@ -10,6 +10,8 @@ import UIKit
 import Common
 import RxSwift
 import RxCocoa
+import RxDataSources
+import Networking
 
 enum TPSDPRType {
     case DPRRI
@@ -35,9 +37,12 @@ class DetailTPSDPRController: UIViewController {
     private let disposeBag = DisposeBag()
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var btnSuaraTidakSah: TPSButton!
     
     lazy var footer = UIView.nib(withType: DetailTPSDPRFooter.self)
     lazy var header = UIView.nib(withType: DetailTPSDPRHeader.self)
+    
+    private var dataSource: RxTableViewSectionedReloadDataSource<SectionModelDPR>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,45 +58,95 @@ class DetailTPSDPRController: UIViewController {
             .bind(to: viewModel.input.backI)
             .disposed(by: disposeBag)
         
+        btnSuaraTidakSah.rx_suara
+            .bind(to: viewModel.input.invalidCountI)
+            .disposed(by: disposeBag)
+        
+        tableView.delegate = nil
+        tableView.dataSource = nil
+        
         tableView.setTableHeaderView(headerView: header)
         tableView.setTableFooterView(footerView: footer)
         tableView.registerReusableCell(TPSInputCell.self)
-        tableView.registerReusableHeaderCell(TPSInputFooter.self)
-        tableView.registerReusableHeaderCell(TPSInputHeader.self)
+        
+        tableView.rx.setDelegate(self)
+            .disposed(by: disposeBag)
         
         viewModel.output.backO
+            .drive()
+            .disposed(by: disposeBag)
+        
+        dataSource = RxTableViewSectionedReloadDataSource<SectionModelDPR>(configureCell: { (dataSource, tableView, indexPath, item) -> UITableViewCell in
+            let cell = tableView.dequeueReusableCell(indexPath: indexPath) as TPSInputCell
+            cell.configureCell(item: TPSInputCell.Input(candidates: item, viewModel: self.viewModel, indexPath: indexPath))
+            return cell
+        })
+        
+        viewModel.output.itemsO
+            .drive(tableView.rx.items(dataSource: dataSource))
+            .disposed(by: disposeBag)
+        
+        
+        viewModel.output.nameDapilO
+            .drive(onNext: { [weak self] (name) in
+                guard let `self` = self else { return }
+                self.header.configure(name: name)
+            })
+            .disposed(by: disposeBag)
+    
+        
+        viewModel.output.errorO
+            .drive(onNext: { [weak self] (e) in
+                guard let alert = UIAlertController.alert(with: e) else { return }
+                self?.navigationController?.present(alert, animated: true, completion: nil)
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.output.invalidO
+            .do(onNext: { [weak self] (value) in
+                guard let `self` = self else { return }
+                self.footer.tfInvalidCount.text = "\(value)"
+            })
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.initialValueO
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.dataO
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.updateItemsO
+            .do(onNext: { [unowned self] (_) in
+                self.viewModel.input.viewWillAppearI.onNext(())
+            })
             .drive()
             .disposed(by: disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        self.viewModel.input.viewWillAppearI.onNext(())
         tableView.updateHeaderViewFrame()
     }
 }
 
-extension DetailTPSDPRController: UITableViewDelegate, UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
-    }
+extension DetailTPSDPRController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = tableView.dequeueReusableHeaderFooter() as TPSInputHeader
-        return header
+        let headerName = dataSource.sectionModels[section].header
+        let number = dataSource.sectionModels[section].number
+        let logo = dataSource.sectionModels[section].logo
+        let headerView = TPSInputHeader()
+        headerView.configure(header: headerName, number: number, logo: logo, viewModel: self.viewModel, section: section)
+        
+        return headerView
     }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let footer = tableView.dequeueReusableHeaderFooter() as TPSInputFooter
+        let footer = TPSInputFooter()
         return footer
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell() as TPSInputCell
-        return cell
     }
 }

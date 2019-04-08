@@ -63,3 +63,29 @@ public struct CandidatesCount: Codable {
         case totalVote = "total_vote"
     }
 }
+
+
+public struct CandidatePartyCount: Codable {
+    public var id: Int
+    public var totalVote: Int
+    public var indexPath: IndexPath
+    
+    public init(id: Int, totalVote: Int, indexPath: IndexPath) {
+        self.id = id
+        self.totalVote = totalVote
+        self.indexPath = indexPath
+    }
+}
+
+
+public struct PartyCount: Codable {
+    public var section: Int
+    public var number: Int
+    public var value: Int
+    
+    public init(section: Int, number: Int, value: Int) {
+        self.section = section
+        self.number = number
+        self.value = value
+    }
+}
