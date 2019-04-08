@@ -19,11 +19,11 @@
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Onv-Rp-frU">
                     <rect key="frame" x="0.0" y="20" width="414" height="1398"/>
                     <subviews>
-                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xd7-rc-rUm">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xd7-rc-rUm">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" text="I. DATA PEMILIH dan DATA PENGGUNA HAK PILIH" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S7r-jq-XAn" customClass="Label" customModule="Common">
-                                    <rect key="frame" x="16" y="8" width="382" height="20.5"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" text="I. DATA PEMILIH dan DATA PENGGUNA HAK PILIH" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S7r-jq-XAn" customClass="Label" customModule="Common">
+                                    <rect key="frame" x="16" y="8" width="382" height="34"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
@@ -39,18 +39,19 @@
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="S7r-jq-XAn" secondAttribute="trailing" constant="16" id="0Tj-fu-f6h"/>
                                 <constraint firstItem="S7r-jq-XAn" firstAttribute="leading" secondItem="Xd7-rc-rUm" secondAttribute="leading" constant="16" id="JHG-2d-GxF"/>
+                                <constraint firstAttribute="height" constant="50" id="Mth-1k-q2V"/>
                                 <constraint firstItem="S7r-jq-XAn" firstAttribute="top" secondItem="Xd7-rc-rUm" secondAttribute="top" constant="8" id="OcD-Bl-Lqa"/>
                                 <constraint firstAttribute="bottom" secondItem="S7r-jq-XAn" secondAttribute="bottom" constant="8" id="YvK-Cg-yWg"/>
                             </constraints>
                         </view>
-                        <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="6c4-Wa-81E">
-                            <rect key="frame" x="0.0" y="50" width="414" height="806"/>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="6c4-Wa-81E">
+                            <rect key="frame" x="0.0" y="50" width="414" height="705"/>
                             <subviews>
-                                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6lV-Qi-dpz">
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6lV-Qi-dpz">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" text="A. DATA PEMILIH" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ALm-AC-m6i" customClass="Label" customModule="Common">
-                                            <rect key="frame" x="16" y="8" width="382" height="20.5"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" text="A. DATA PEMILIH" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ALm-AC-m6i" customClass="Label" customModule="Common">
+                                            <rect key="frame" x="16" y="8" width="382" height="34"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.066666666669999999" green="0.066666666669999999" blue="0.066666666669999999" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -65,17 +66,21 @@
                                     <color key="backgroundColor" red="0.92549019607843142" green="0.92549019607843142" blue="0.92549019607843142" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstItem="ALm-AC-m6i" firstAttribute="leading" secondItem="6lV-Qi-dpz" secondAttribute="leading" constant="16" id="4N2-Qn-Bxa"/>
+                                        <constraint firstAttribute="height" constant="50" id="FIs-Ai-vb5"/>
                                         <constraint firstAttribute="bottom" secondItem="ALm-AC-m6i" secondAttribute="bottom" constant="8" id="Lp9-6t-NkK"/>
                                         <constraint firstAttribute="trailing" secondItem="ALm-AC-m6i" secondAttribute="trailing" constant="16" id="N1S-mo-7gS"/>
                                         <constraint firstItem="ALm-AC-m6i" firstAttribute="top" secondItem="6lV-Qi-dpz" secondAttribute="top" constant="8" id="P3c-ac-yAh"/>
                                     </constraints>
                                     <viewLayoutGuide key="safeArea" id="xD6-bh-rsa"/>
                                 </view>
-                                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="xB8-4i-1Zs">
-                                    <rect key="frame" x="0.0" y="50" width="414" height="387"/>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="xB8-4i-1Zs">
+                                    <rect key="frame" x="0.0" y="50" width="414" height="165"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" text="1. Jumlah Pemilih dalam DPT (Model A.3-KPU)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AVI-aD-jLG" customClass="Label" customModule="Common">
-                                            <rect key="frame" x="16" y="16" width="382" height="278.5"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" text="1. Jumlah Pemilih dalam DPT (Model A.3-KPU)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AVI-aD-jLG" customClass="Label" customModule="Common">
+                                            <rect key="frame" x="16" y="16" width="382" height="50"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="50" id="voj-90-omY"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.066666666669999999" green="0.066666666669999999" blue="0.066666666669999999" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -86,14 +91,14 @@
                                                 <userDefinedRuntimeAttribute type="string" keyPath="typeLabel" value="bm-bold"/>
                                             </userDefinedRuntimeAttributes>
                                         </label>
-                                        <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="4xf-3Y-XOj">
-                                            <rect key="frame" x="16" y="310.5" width="382" height="60.5"/>
+                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="4xf-3Y-XOj">
+                                            <rect key="frame" x="16" y="82" width="382" height="67"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="lT3-p0-jgs">
-                                                    <rect key="frame" x="0.0" y="0.0" width="116.5" height="60.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="116.5" height="67"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" text="Laki-laki (L)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9hF-28-zqK" customClass="Label" customModule="Common">
-                                                            <rect key="frame" x="0.0" y="0.0" width="116.5" height="14.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="116.5" height="21"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" red="0.48627450980392156" green="0.48627450980392156" blue="0.48627450980392156" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -105,7 +110,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vsf-4R-KhO" customClass="TPSTextField" customModule="PantauBersama" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="22.5" width="116.5" height="38"/>
+                                                            <rect key="frame" x="0.0" y="29" width="116.5" height="38"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="38" id="5Na-ki-QC5"/>
                                                             </constraints>
@@ -130,10 +135,10 @@
                                                     </subviews>
                                                 </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="28a-BP-n2n">
-                                                    <rect key="frame" x="132.5" y="0.0" width="117" height="60.5"/>
+                                                    <rect key="frame" x="132.5" y="0.0" width="117" height="67"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" text="Perempuan (P)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rdZ-8G-Lmx" customClass="Label" customModule="Common">
-                                                            <rect key="frame" x="0.0" y="0.0" width="117" height="14.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="117" height="21"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" red="0.48627450979999998" green="0.48627450979999998" blue="0.48627450979999998" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -145,7 +150,10 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="F1l-kz-NUq" customClass="TPSTextField" customModule="PantauBersama" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="22.5" width="117" height="38"/>
+                                                            <rect key="frame" x="0.0" y="29" width="117" height="38"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="38" id="f4B-4q-jGb"/>
+                                                            </constraints>
                                                             <nil key="textColor"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits"/>
@@ -168,10 +176,10 @@
                                                     <viewLayoutGuide key="safeArea" id="Dkj-3M-bGN"/>
                                                 </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="pvF-qt-nnn">
-                                                    <rect key="frame" x="265.5" y="0.0" width="116.5" height="60.5"/>
+                                                    <rect key="frame" x="265.5" y="0.0" width="116.5" height="67"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" text="Jumlah (L+P)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XOa-wt-Pf6" customClass="Label" customModule="Common">
-                                                            <rect key="frame" x="0.0" y="0.0" width="116.5" height="14.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="116.5" height="21"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" red="0.48627450979999998" green="0.48627450979999998" blue="0.48627450979999998" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -183,8 +191,11 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RSp-oj-O9e" customClass="TPSTextField" customModule="PantauBersama" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="22.5" width="116.5" height="38"/>
+                                                            <rect key="frame" x="0.0" y="29" width="116.5" height="38"/>
                                                             <color key="backgroundColor" red="0.99607843137254903" green="0.97254901960784312" blue="0.8901960784313725" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="38" id="ybn-DV-bzM"/>
+                                                            </constraints>
                                                             <nil key="textColor"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits"/>
@@ -202,11 +213,14 @@
                                     </subviews>
                                     <edgeInsets key="layoutMargins" top="16" left="16" bottom="16" right="16"/>
                                 </stackView>
-                                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="KeL-bZ-CXi">
-                                    <rect key="frame" x="0.0" y="437" width="414" height="123"/>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="KeL-bZ-CXi">
+                                    <rect key="frame" x="0.0" y="215" width="414" height="161"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" text="2. Jumlah Pemilih dalam DPTb (Model A-4 KPU)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J9P-U6-Iq3" customClass="Label" customModule="Common">
-                                            <rect key="frame" x="16" y="16" width="382" height="14.5"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" text="2. Jumlah Pemilih dalam DPTb (Model A-4 KPU)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J9P-U6-Iq3" customClass="Label" customModule="Common">
+                                            <rect key="frame" x="16" y="16" width="382" height="50"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="50" id="I0L-7c-DHH"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.066666666669999999" green="0.066666666669999999" blue="0.066666666669999999" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -217,14 +231,14 @@
                                                 <userDefinedRuntimeAttribute type="string" keyPath="typeLabel" value="bm-bold"/>
                                             </userDefinedRuntimeAttributes>
                                         </label>
-                                        <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="82I-aY-OBl">
-                                            <rect key="frame" x="16" y="46.5" width="382" height="60.5"/>
+                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="82I-aY-OBl">
+                                            <rect key="frame" x="16" y="82" width="382" height="63"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="hWt-nc-tGI">
-                                                    <rect key="frame" x="0.0" y="0.0" width="116.5" height="60.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="116.5" height="63"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" text="Laki-laki (L)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pkv-TS-lZY" customClass="Label" customModule="Common">
-                                                            <rect key="frame" x="0.0" y="0.0" width="116.5" height="14.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="116.5" height="17"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" red="0.48627450979999998" green="0.48627450979999998" blue="0.48627450979999998" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -236,7 +250,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="63m-z4-Jf2" customClass="TPSTextField" customModule="PantauBersama" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="22.5" width="116.5" height="38"/>
+                                                            <rect key="frame" x="0.0" y="25" width="116.5" height="38"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="38" id="LHW-CP-kcC"/>
                                                             </constraints>
@@ -261,10 +275,10 @@
                                                     </subviews>
                                                 </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="c6H-K3-SuT">
-                                                    <rect key="frame" x="132.5" y="0.0" width="117" height="60.5"/>
+                                                    <rect key="frame" x="132.5" y="0.0" width="117" height="63"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" text="Perempuan (P)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dky-BS-r9g" customClass="Label" customModule="Common">
-                                                            <rect key="frame" x="0.0" y="0.0" width="117" height="14.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="117" height="20"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" red="0.48627450979999998" green="0.48627450979999998" blue="0.48627450979999998" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -276,7 +290,10 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mI5-Q1-YNk" customClass="TPSTextField" customModule="PantauBersama" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="22.5" width="117" height="38"/>
+                                                            <rect key="frame" x="0.0" y="28" width="117" height="35"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="35" id="f0e-0N-kAh"/>
+                                                            </constraints>
                                                             <nil key="textColor"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits"/>
@@ -299,10 +316,10 @@
                                                     <viewLayoutGuide key="safeArea" id="2zT-mO-n6z"/>
                                                 </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="93Z-2S-4E3">
-                                                    <rect key="frame" x="265.5" y="0.0" width="116.5" height="60.5"/>
+                                                    <rect key="frame" x="265.5" y="0.0" width="116.5" height="63"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" text="Jumlah (L+P)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gFk-10-EHh" customClass="Label" customModule="Common">
-                                                            <rect key="frame" x="0.0" y="0.0" width="116.5" height="14.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="116.5" height="20"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" red="0.48627450979999998" green="0.48627450979999998" blue="0.48627450979999998" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -314,8 +331,11 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="x9G-XS-t0q" customClass="TPSTextField" customModule="PantauBersama" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="22.5" width="116.5" height="38"/>
+                                                            <rect key="frame" x="0.0" y="28" width="116.5" height="35"/>
                                                             <color key="backgroundColor" red="0.99607843139999996" green="0.97254901959999995" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="35" id="x25-Jf-B2j"/>
+                                                            </constraints>
                                                             <nil key="textColor"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits"/>
@@ -334,11 +354,14 @@
                                     <edgeInsets key="layoutMargins" top="16" left="16" bottom="16" right="16"/>
                                     <viewLayoutGuide key="safeArea" id="qk7-es-6FX"/>
                                 </stackView>
-                                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="HBp-3p-I6Y">
-                                    <rect key="frame" x="0.0" y="560" width="414" height="123"/>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="HBp-3p-I6Y">
+                                    <rect key="frame" x="0.0" y="376" width="414" height="165"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" text="3. Jumlah Pemilih dalam DPK ( Model A.DPK-KPU)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PRg-Aw-mY6" customClass="Label" customModule="Common">
-                                            <rect key="frame" x="16" y="16" width="382" height="14.5"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" text="3. Jumlah Pemilih dalam DPK ( Model A.DPK-KPU)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PRg-Aw-mY6" customClass="Label" customModule="Common">
+                                            <rect key="frame" x="16" y="16" width="382" height="50"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="50" id="bAD-XS-DU5"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.066666666669999999" green="0.066666666669999999" blue="0.066666666669999999" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -349,14 +372,14 @@
                                                 <userDefinedRuntimeAttribute type="string" keyPath="typeLabel" value="bm-bold"/>
                                             </userDefinedRuntimeAttributes>
                                         </label>
-                                        <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="x8N-c4-0EG">
-                                            <rect key="frame" x="16" y="46.5" width="382" height="60.5"/>
+                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="x8N-c4-0EG">
+                                            <rect key="frame" x="16" y="82" width="382" height="67"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Cc8-tr-ljs">
-                                                    <rect key="frame" x="0.0" y="0.0" width="116.5" height="60.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="116.5" height="67"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" text="Laki-laki (L)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="07n-2C-iIs" customClass="Label" customModule="Common">
-                                                            <rect key="frame" x="0.0" y="0.0" width="116.5" height="14.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="116.5" height="21"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" red="0.48627450979999998" green="0.48627450979999998" blue="0.48627450979999998" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -368,7 +391,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3F4-yl-aDs" customClass="TPSTextField" customModule="PantauBersama" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="22.5" width="116.5" height="38"/>
+                                                            <rect key="frame" x="0.0" y="29" width="116.5" height="38"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="38" id="IaK-tt-tcF"/>
                                                             </constraints>
@@ -393,10 +416,10 @@
                                                     </subviews>
                                                 </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Pgh-JF-vjd">
-                                                    <rect key="frame" x="132.5" y="0.0" width="117" height="60.5"/>
+                                                    <rect key="frame" x="132.5" y="0.0" width="117" height="67"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" text="Perempuan (P)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="reZ-IZ-mCq" customClass="Label" customModule="Common">
-                                                            <rect key="frame" x="0.0" y="0.0" width="117" height="14.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="117" height="21"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" red="0.48627450979999998" green="0.48627450979999998" blue="0.48627450979999998" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -408,7 +431,10 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aUM-cp-ETG" customClass="TPSTextField" customModule="PantauBersama" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="22.5" width="117" height="38"/>
+                                                            <rect key="frame" x="0.0" y="29" width="117" height="38"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="38" id="hbG-jM-n4a"/>
+                                                            </constraints>
                                                             <nil key="textColor"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits"/>
@@ -431,10 +457,10 @@
                                                     <viewLayoutGuide key="safeArea" id="NSn-DO-jsN"/>
                                                 </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="wEe-Qh-uSi">
-                                                    <rect key="frame" x="265.5" y="0.0" width="116.5" height="60.5"/>
+                                                    <rect key="frame" x="265.5" y="0.0" width="116.5" height="67"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" text="Jumlah (L+P)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K3V-ZV-epb" customClass="Label" customModule="Common">
-                                                            <rect key="frame" x="0.0" y="0.0" width="116.5" height="14.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="116.5" height="21"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" red="0.48627450979999998" green="0.48627450979999998" blue="0.48627450979999998" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -446,8 +472,11 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="p2H-AK-M6i" customClass="TPSTextField" customModule="PantauBersama" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="22.5" width="116.5" height="38"/>
+                                                            <rect key="frame" x="0.0" y="29" width="116.5" height="38"/>
                                                             <color key="backgroundColor" red="0.99607843139999996" green="0.97254901959999995" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="38" id="Tdk-mp-TLQ"/>
+                                                            </constraints>
                                                             <nil key="textColor"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits"/>
@@ -466,11 +495,14 @@
                                     <edgeInsets key="layoutMargins" top="16" left="16" bottom="16" right="16"/>
                                     <viewLayoutGuide key="safeArea" id="8hp-Lw-wua"/>
                                 </stackView>
-                                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="LoL-Tg-vNx">
-                                    <rect key="frame" x="0.0" y="683" width="414" height="123"/>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="LoL-Tg-vNx">
+                                    <rect key="frame" x="0.0" y="541" width="414" height="164"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" text="4. Jumlah Pemilih (A.1 + A.2 + A.3)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m26-BR-JUF" customClass="Label" customModule="Common">
-                                            <rect key="frame" x="16" y="16" width="382" height="14.5"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" text="4. Jumlah Pemilih (A.1 + A.2 + A.3)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m26-BR-JUF" customClass="Label" customModule="Common">
+                                            <rect key="frame" x="16" y="16" width="382" height="50"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="50" id="xja-Yg-8RO"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.066666666669999999" green="0.066666666669999999" blue="0.066666666669999999" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -481,14 +513,14 @@
                                                 <userDefinedRuntimeAttribute type="string" keyPath="typeLabel" value="bm-bold"/>
                                             </userDefinedRuntimeAttributes>
                                         </label>
-                                        <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="63i-Ak-1QU">
-                                            <rect key="frame" x="16" y="46.5" width="382" height="60.5"/>
+                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="63i-Ak-1QU">
+                                            <rect key="frame" x="16" y="82" width="382" height="66"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="zM9-t6-FGo">
-                                                    <rect key="frame" x="0.0" y="0.0" width="116.5" height="60.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="116.5" height="66"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" text="Laki-laki (L)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wCl-6b-J8D" customClass="Label" customModule="Common">
-                                                            <rect key="frame" x="0.0" y="0.0" width="116.5" height="14.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="116.5" height="20"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" red="0.48627450979999998" green="0.48627450979999998" blue="0.48627450979999998" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -500,8 +532,11 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mOB-JF-QFq" customClass="TPSTextField" customModule="PantauBersama" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="22.5" width="116.5" height="38"/>
+                                                            <rect key="frame" x="0.0" y="28" width="116.5" height="38"/>
                                                             <color key="backgroundColor" red="0.99607843139999996" green="0.97254901959999995" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="38" id="xwe-OF-2a3"/>
+                                                            </constraints>
                                                             <nil key="textColor"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits"/>
@@ -514,10 +549,10 @@
                                                     </subviews>
                                                 </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="DQE-5b-Ois">
-                                                    <rect key="frame" x="132.5" y="0.0" width="117" height="60.5"/>
+                                                    <rect key="frame" x="132.5" y="0.0" width="117" height="66"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" text="Perempuan (P)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dax-5D-MsX" customClass="Label" customModule="Common">
-                                                            <rect key="frame" x="0.0" y="0.0" width="117" height="14.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="117" height="20"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" red="0.48627450979999998" green="0.48627450979999998" blue="0.48627450979999998" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -529,8 +564,11 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Riq-dB-dQH" customClass="TPSTextField" customModule="PantauBersama" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="22.5" width="117" height="38"/>
+                                                            <rect key="frame" x="0.0" y="28" width="117" height="38"/>
                                                             <color key="backgroundColor" red="0.99607843139999996" green="0.97254901959999995" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="38" id="SNq-nZ-UVe"/>
+                                                            </constraints>
                                                             <nil key="textColor"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits"/>
@@ -544,10 +582,10 @@
                                                     <viewLayoutGuide key="safeArea" id="sWh-T9-SkY"/>
                                                 </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="SWj-OJ-ecQ">
-                                                    <rect key="frame" x="265.5" y="0.0" width="116.5" height="60.5"/>
+                                                    <rect key="frame" x="265.5" y="0.0" width="116.5" height="66"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" text="Jumlah (L+P)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hPz-Aa-g9t" customClass="Label" customModule="Common">
-                                                            <rect key="frame" x="0.0" y="0.0" width="116.5" height="14.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="116.5" height="20"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" red="0.48627450979999998" green="0.48627450979999998" blue="0.48627450979999998" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -559,7 +597,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5aZ-cR-wWb" customClass="TPSTextField" customModule="PantauBersama" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="22.5" width="116.5" height="38"/>
+                                                            <rect key="frame" x="0.0" y="28" width="116.5" height="38"/>
                                                             <color key="backgroundColor" red="0.99607843139999996" green="0.97254901959999995" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="38" id="uVo-Fp-Hoj"/>
@@ -583,15 +621,20 @@
                                     <viewLayoutGuide key="safeArea" id="mF5-FR-KqJ"/>
                                 </stackView>
                             </subviews>
+                            <constraints>
+                                <constraint firstItem="LoL-Tg-vNx" firstAttribute="top" secondItem="6c4-Wa-81E" secondAttribute="top" constant="541" id="MJe-VQ-Kxv"/>
+                                <constraint firstItem="HBp-3p-I6Y" firstAttribute="top" secondItem="6c4-Wa-81E" secondAttribute="top" constant="376" id="ZQy-FB-Lnl"/>
+                                <constraint firstItem="KeL-bZ-CXi" firstAttribute="top" secondItem="6c4-Wa-81E" secondAttribute="top" constant="215" id="d8o-uP-7QB"/>
+                            </constraints>
                         </stackView>
-                        <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="lpd-Ig-egU">
-                            <rect key="frame" x="0.0" y="856" width="414" height="542"/>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="lpd-Ig-egU">
+                            <rect key="frame" x="0.0" y="755" width="414" height="643"/>
                             <subviews>
-                                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OEl-iz-0T6">
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OEl-iz-0T6">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" text="B PENGGUNA HAK PILIH" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qYW-Q3-INT" customClass="Label" customModule="Common">
-                                            <rect key="frame" x="16" y="8" width="382" height="20.5"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" text="B PENGGUNA HAK PILIH" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qYW-Q3-INT" customClass="Label" customModule="Common">
+                                            <rect key="frame" x="16" y="8" width="382" height="34"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.066666666669999999" green="0.066666666669999999" blue="0.066666666669999999" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -607,16 +650,17 @@
                                     <constraints>
                                         <constraint firstAttribute="bottom" secondItem="qYW-Q3-INT" secondAttribute="bottom" constant="8" id="4o7-wh-EA8"/>
                                         <constraint firstItem="qYW-Q3-INT" firstAttribute="top" secondItem="OEl-iz-0T6" secondAttribute="top" constant="8" id="Jor-Xd-Bnk"/>
+                                        <constraint firstAttribute="height" constant="50" id="UXV-Nv-Jxh"/>
                                         <constraint firstItem="qYW-Q3-INT" firstAttribute="leading" secondItem="OEl-iz-0T6" secondAttribute="leading" constant="16" id="Wc1-Zu-GbY"/>
                                         <constraint firstAttribute="trailing" secondItem="qYW-Q3-INT" secondAttribute="trailing" constant="16" id="blg-sb-GX4"/>
                                     </constraints>
                                     <viewLayoutGuide key="safeArea" id="Q28-kr-O9y"/>
                                 </view>
-                                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="3m0-gj-4oA">
-                                    <rect key="frame" x="0.0" y="50" width="414" height="123"/>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="3m0-gj-4oA">
+                                    <rect key="frame" x="0.0" y="50" width="414" height="155"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" text="1. Jumlah pengguna hak pilih dalam DPT (Model C7.DPT-KPU)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hNW-Pz-a5S" customClass="Label" customModule="Common">
-                                            <rect key="frame" x="16" y="16" width="382" height="14.5"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" text="1. Jumlah pengguna hak pilih dalam DPT (Model C7.DPT-KPU)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hNW-Pz-a5S" customClass="Label" customModule="Common">
+                                            <rect key="frame" x="16" y="16" width="382" height="41"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.066666666669999999" green="0.066666666669999999" blue="0.066666666669999999" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -627,14 +671,14 @@
                                                 <userDefinedRuntimeAttribute type="string" keyPath="typeLabel" value="bm-bold"/>
                                             </userDefinedRuntimeAttributes>
                                         </label>
-                                        <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="qN1-d4-RTi">
-                                            <rect key="frame" x="16" y="46.5" width="382" height="60.5"/>
+                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="qN1-d4-RTi">
+                                            <rect key="frame" x="16" y="73" width="382" height="66"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="nPN-w3-el7">
-                                                    <rect key="frame" x="0.0" y="0.0" width="116.5" height="60.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="116.5" height="66"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" text="Laki-laki (L)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dIX-Jy-e8z" customClass="Label" customModule="Common">
-                                                            <rect key="frame" x="0.0" y="0.0" width="116.5" height="14.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="116.5" height="20"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" red="0.48627450979999998" green="0.48627450979999998" blue="0.48627450979999998" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -646,7 +690,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Brb-qS-GYj" customClass="TPSTextField" customModule="PantauBersama" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="22.5" width="116.5" height="38"/>
+                                                            <rect key="frame" x="0.0" y="28" width="116.5" height="38"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="38" id="kfb-ox-V4a"/>
                                                             </constraints>
@@ -671,10 +715,10 @@
                                                     </subviews>
                                                 </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="XXE-HK-drv">
-                                                    <rect key="frame" x="132.5" y="0.0" width="117" height="60.5"/>
+                                                    <rect key="frame" x="132.5" y="0.0" width="117" height="66"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" text="Perempuan (P)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3cw-uL-fDQ" customClass="Label" customModule="Common">
-                                                            <rect key="frame" x="0.0" y="0.0" width="117" height="14.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="117" height="20"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" red="0.48627450979999998" green="0.48627450979999998" blue="0.48627450979999998" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -686,7 +730,10 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SnL-0J-8pz" customClass="TPSTextField" customModule="PantauBersama" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="22.5" width="117" height="38"/>
+                                                            <rect key="frame" x="0.0" y="28" width="117" height="38"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="38" id="ayq-51-hIy"/>
+                                                            </constraints>
                                                             <nil key="textColor"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits"/>
@@ -709,10 +756,10 @@
                                                     <viewLayoutGuide key="safeArea" id="OFw-xQ-Sad"/>
                                                 </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="yKu-Zg-gJM">
-                                                    <rect key="frame" x="265.5" y="0.0" width="116.5" height="60.5"/>
+                                                    <rect key="frame" x="265.5" y="0.0" width="116.5" height="66"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" text="Jumlah (L+P)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qmM-it-uMd" customClass="Label" customModule="Common">
-                                                            <rect key="frame" x="0.0" y="0.0" width="116.5" height="14.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="116.5" height="20"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" red="0.48627450979999998" green="0.48627450979999998" blue="0.48627450979999998" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -724,8 +771,11 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tGP-S6-wSf" customClass="TPSTextField" customModule="PantauBersama" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="22.5" width="116.5" height="38"/>
+                                                            <rect key="frame" x="0.0" y="28" width="116.5" height="38"/>
                                                             <color key="backgroundColor" red="0.99607843139999996" green="0.97254901959999995" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="38" id="gnw-V8-j7l"/>
+                                                            </constraints>
                                                             <nil key="textColor"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits"/>
@@ -741,13 +791,16 @@
                                             </subviews>
                                         </stackView>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="qN1-d4-RTi" firstAttribute="top" secondItem="3m0-gj-4oA" secondAttribute="top" constant="73" id="Aqn-ON-a7i"/>
+                                    </constraints>
                                     <edgeInsets key="layoutMargins" top="16" left="16" bottom="16" right="16"/>
                                 </stackView>
-                                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="FgG-Zg-ZBq">
-                                    <rect key="frame" x="0.0" y="173" width="414" height="123"/>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="FgG-Zg-ZBq">
+                                    <rect key="frame" x="0.0" y="205" width="414" height="156"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" text="2. Jumlah pengguna hak pilih dalam DPTb (Model C7.DPTb-KPU)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pnd-dL-sHX" customClass="Label" customModule="Common">
-                                            <rect key="frame" x="16" y="16" width="382" height="14.5"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" text="2. Jumlah pengguna hak pilih dalam DPTb (Model C7.DPTb-KPU)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pnd-dL-sHX" customClass="Label" customModule="Common">
+                                            <rect key="frame" x="16" y="16" width="382" height="41"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.066666666669999999" green="0.066666666669999999" blue="0.066666666669999999" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -758,14 +811,14 @@
                                                 <userDefinedRuntimeAttribute type="string" keyPath="typeLabel" value="bm-bold"/>
                                             </userDefinedRuntimeAttributes>
                                         </label>
-                                        <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="eOm-r5-tAj">
-                                            <rect key="frame" x="16" y="46.5" width="382" height="60.5"/>
+                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="eOm-r5-tAj">
+                                            <rect key="frame" x="16" y="73" width="382" height="67"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Ugx-rH-zOy">
-                                                    <rect key="frame" x="0.0" y="0.0" width="116.5" height="60.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="116.5" height="67"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" text="Laki-laki (L)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rxJ-8p-Z3Y" customClass="Label" customModule="Common">
-                                                            <rect key="frame" x="0.0" y="0.0" width="116.5" height="14.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="116.5" height="21"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" red="0.48627450979999998" green="0.48627450979999998" blue="0.48627450979999998" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -777,7 +830,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mCB-yL-7s1" customClass="TPSTextField" customModule="PantauBersama" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="22.5" width="116.5" height="38"/>
+                                                            <rect key="frame" x="0.0" y="29" width="116.5" height="38"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="38" id="99O-dN-eoZ"/>
                                                             </constraints>
@@ -802,10 +855,10 @@
                                                     </subviews>
                                                 </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="QaU-oF-XDF">
-                                                    <rect key="frame" x="132.5" y="0.0" width="117" height="60.5"/>
+                                                    <rect key="frame" x="132.5" y="0.0" width="117" height="67"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" text="Perempuan (P)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vSh-Wi-Wgk" customClass="Label" customModule="Common">
-                                                            <rect key="frame" x="0.0" y="0.0" width="117" height="14.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="117" height="21"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" red="0.48627450979999998" green="0.48627450979999998" blue="0.48627450979999998" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -817,7 +870,10 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TUt-nj-jES" customClass="TPSTextField" customModule="PantauBersama" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="22.5" width="117" height="38"/>
+                                                            <rect key="frame" x="0.0" y="29" width="117" height="38"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="38" id="89b-Mn-1Px"/>
+                                                            </constraints>
                                                             <nil key="textColor"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits"/>
@@ -840,10 +896,10 @@
                                                     <viewLayoutGuide key="safeArea" id="gTu-5t-bGb"/>
                                                 </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="VZS-mm-1sE">
-                                                    <rect key="frame" x="265.5" y="0.0" width="116.5" height="60.5"/>
+                                                    <rect key="frame" x="265.5" y="0.0" width="116.5" height="67"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" text="Jumlah (L+P)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cUc-XU-nQu" customClass="Label" customModule="Common">
-                                                            <rect key="frame" x="0.0" y="0.0" width="116.5" height="14.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="116.5" height="21"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" red="0.48627450979999998" green="0.48627450979999998" blue="0.48627450979999998" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -855,8 +911,11 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Wgj-yq-cjs" customClass="TPSTextField" customModule="PantauBersama" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="22.5" width="116.5" height="38"/>
+                                                            <rect key="frame" x="0.0" y="29" width="116.5" height="38"/>
                                                             <color key="backgroundColor" red="0.99607843139999996" green="0.97254901959999995" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="38" id="suM-sh-Z2W"/>
+                                                            </constraints>
                                                             <nil key="textColor"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits"/>
@@ -872,14 +931,17 @@
                                             </subviews>
                                         </stackView>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="eOm-r5-tAj" firstAttribute="top" secondItem="FgG-Zg-ZBq" secondAttribute="top" constant="73" id="kdb-Yn-n8Y"/>
+                                    </constraints>
                                     <edgeInsets key="layoutMargins" top="16" left="16" bottom="16" right="16"/>
                                     <viewLayoutGuide key="safeArea" id="e99-eC-sK8"/>
                                 </stackView>
-                                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="KIK-LC-11g">
-                                    <rect key="frame" x="0.0" y="296" width="414" height="123"/>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="KIK-LC-11g">
+                                    <rect key="frame" x="0.0" y="361" width="414" height="156"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" text="3. Jumlah pengguna hak pilih dalam DPK (Model C7.DPK-KPU)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D8v-UT-Bjj" customClass="Label" customModule="Common">
-                                            <rect key="frame" x="16" y="16" width="382" height="14.5"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" text="3. Jumlah pengguna hak pilih dalam DPK (Model C7.DPK-KPU)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D8v-UT-Bjj" customClass="Label" customModule="Common">
+                                            <rect key="frame" x="16" y="16" width="382" height="41"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.066666666669999999" green="0.066666666669999999" blue="0.066666666669999999" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -890,14 +952,14 @@
                                                 <userDefinedRuntimeAttribute type="string" keyPath="typeLabel" value="bm-bold"/>
                                             </userDefinedRuntimeAttributes>
                                         </label>
-                                        <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Gfr-1j-xAd">
-                                            <rect key="frame" x="16" y="46.5" width="382" height="60.5"/>
+                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Gfr-1j-xAd">
+                                            <rect key="frame" x="16" y="73" width="382" height="67"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="iv2-AC-fkD">
-                                                    <rect key="frame" x="0.0" y="0.0" width="116.5" height="60.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="116.5" height="67"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" text="Laki-laki (L)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jv9-er-Gd4" customClass="Label" customModule="Common">
-                                                            <rect key="frame" x="0.0" y="0.0" width="116.5" height="14.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="116.5" height="21"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" red="0.48627450979999998" green="0.48627450979999998" blue="0.48627450979999998" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -909,7 +971,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7lf-2C-79w" customClass="TPSTextField" customModule="PantauBersama" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="22.5" width="116.5" height="38"/>
+                                                            <rect key="frame" x="0.0" y="29" width="116.5" height="38"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="38" id="cuS-0q-iQ6"/>
                                                             </constraints>
@@ -934,10 +996,10 @@
                                                     </subviews>
                                                 </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="3rt-Ba-8T1">
-                                                    <rect key="frame" x="132.5" y="0.0" width="117" height="60.5"/>
+                                                    <rect key="frame" x="132.5" y="0.0" width="117" height="67"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" text="Perempuan (P)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HXF-gU-cgd" customClass="Label" customModule="Common">
-                                                            <rect key="frame" x="0.0" y="0.0" width="117" height="14.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="117" height="21"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" red="0.48627450979999998" green="0.48627450979999998" blue="0.48627450979999998" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -949,7 +1011,10 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="q0G-p8-vaB" customClass="TPSTextField" customModule="PantauBersama" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="22.5" width="117" height="38"/>
+                                                            <rect key="frame" x="0.0" y="29" width="117" height="38"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="38" id="UmN-7R-qaM"/>
+                                                            </constraints>
                                                             <nil key="textColor"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits"/>
@@ -972,10 +1037,10 @@
                                                     <viewLayoutGuide key="safeArea" id="F35-V4-Htd"/>
                                                 </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="TS7-py-xDw">
-                                                    <rect key="frame" x="265.5" y="0.0" width="116.5" height="60.5"/>
+                                                    <rect key="frame" x="265.5" y="0.0" width="116.5" height="67"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" text="Jumlah (L+P)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vft-TO-C4z" customClass="Label" customModule="Common">
-                                                            <rect key="frame" x="0.0" y="0.0" width="116.5" height="14.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="116.5" height="21"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" red="0.48627450979999998" green="0.48627450979999998" blue="0.48627450979999998" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -987,8 +1052,11 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aY8-El-Kvc" customClass="TPSTextField" customModule="PantauBersama" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="22.5" width="116.5" height="38"/>
+                                                            <rect key="frame" x="0.0" y="29" width="116.5" height="38"/>
                                                             <color key="backgroundColor" red="0.99607843139999996" green="0.97254901959999995" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="38" id="kM0-a6-Loq"/>
+                                                            </constraints>
                                                             <nil key="textColor"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits"/>
@@ -1004,14 +1072,17 @@
                                             </subviews>
                                         </stackView>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Gfr-1j-xAd" firstAttribute="top" secondItem="KIK-LC-11g" secondAttribute="top" constant="73" id="vsc-Ft-Ko7"/>
+                                    </constraints>
                                     <edgeInsets key="layoutMargins" top="16" left="16" bottom="16" right="16"/>
                                     <viewLayoutGuide key="safeArea" id="gfL-I1-z7V"/>
                                 </stackView>
-                                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="i15-SN-rTm">
-                                    <rect key="frame" x="0.0" y="419" width="414" height="123"/>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="i15-SN-rTm">
+                                    <rect key="frame" x="0.0" y="517" width="414" height="126"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" text="4.  Jumlah Pengguna Hak Pilih (B.1 + B.2 + B.3)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y6k-20-eRB" customClass="Label" customModule="Common">
-                                            <rect key="frame" x="16" y="16" width="382" height="14.5"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" text="4.  Jumlah Pengguna Hak Pilih (B.1 + B.2 + B.3)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y6k-20-eRB" customClass="Label" customModule="Common">
+                                            <rect key="frame" x="16" y="16" width="382" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.066666666669999999" green="0.066666666669999999" blue="0.066666666669999999" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -1022,14 +1093,14 @@
                                                 <userDefinedRuntimeAttribute type="string" keyPath="typeLabel" value="bm-bold"/>
                                             </userDefinedRuntimeAttributes>
                                         </label>
-                                        <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="4vc-Qh-4Ge">
-                                            <rect key="frame" x="16" y="46.5" width="382" height="60.5"/>
+                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="4vc-Qh-4Ge">
+                                            <rect key="frame" x="16" y="53" width="382" height="57"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="x53-gh-mqN">
-                                                    <rect key="frame" x="0.0" y="0.0" width="116.5" height="60.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="116.5" height="57"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" text="Laki-laki (L)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ez0-D2-htB" customClass="Label" customModule="Common">
-                                                            <rect key="frame" x="0.0" y="0.0" width="116.5" height="14.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="116.5" height="19"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" red="0.48627450979999998" green="0.48627450979999998" blue="0.48627450979999998" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -1041,8 +1112,11 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cAB-44-1cs" customClass="TPSTextField" customModule="PantauBersama" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="22.5" width="116.5" height="38"/>
+                                                            <rect key="frame" x="0.0" y="27" width="116.5" height="30"/>
                                                             <color key="backgroundColor" red="0.99607843139999996" green="0.97254901959999995" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="30" id="JjU-xy-ci5"/>
+                                                            </constraints>
                                                             <nil key="textColor"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits"/>
@@ -1055,10 +1129,10 @@
                                                     </subviews>
                                                 </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="TPg-7z-T1S">
-                                                    <rect key="frame" x="132.5" y="0.0" width="117" height="60.5"/>
+                                                    <rect key="frame" x="132.5" y="0.0" width="117" height="57"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" text="Perempuan (P)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vwB-Qy-Jus" customClass="Label" customModule="Common">
-                                                            <rect key="frame" x="0.0" y="0.0" width="117" height="14.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="117" height="19"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" red="0.48627450979999998" green="0.48627450979999998" blue="0.48627450979999998" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -1070,8 +1144,11 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="U5P-eg-mUF" customClass="TPSTextField" customModule="PantauBersama" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="22.5" width="117" height="38"/>
+                                                            <rect key="frame" x="0.0" y="27" width="117" height="30"/>
                                                             <color key="backgroundColor" red="0.99607843139999996" green="0.97254901959999995" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="30" id="a4F-k6-5Qz"/>
+                                                            </constraints>
                                                             <nil key="textColor"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits"/>
@@ -1085,10 +1162,10 @@
                                                     <viewLayoutGuide key="safeArea" id="CCA-bJ-KYl"/>
                                                 </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="8lc-1Q-IWo">
-                                                    <rect key="frame" x="265.5" y="0.0" width="116.5" height="60.5"/>
+                                                    <rect key="frame" x="265.5" y="0.0" width="116.5" height="57"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" text="Jumlah (L+P)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DNR-1P-h6h" customClass="Label" customModule="Common">
-                                                            <rect key="frame" x="0.0" y="0.0" width="116.5" height="14.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="116.5" height="11"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" red="0.48627450979999998" green="0.48627450979999998" blue="0.48627450979999998" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -1100,7 +1177,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="y3a-vV-LMX" customClass="TPSTextField" customModule="PantauBersama" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="22.5" width="116.5" height="38"/>
+                                                            <rect key="frame" x="0.0" y="19" width="116.5" height="38"/>
                                                             <color key="backgroundColor" red="0.99607843139999996" green="0.97254901959999995" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="38" id="TPJ-2H-Ors"/>
@@ -1120,13 +1197,24 @@
                                             </subviews>
                                         </stackView>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="4vc-Qh-4Ge" firstAttribute="top" secondItem="i15-SN-rTm" secondAttribute="top" constant="53" id="i6E-qd-j2v"/>
+                                    </constraints>
                                     <edgeInsets key="layoutMargins" top="16" left="16" bottom="16" right="16"/>
                                     <viewLayoutGuide key="safeArea" id="vc7-KG-dgr"/>
                                 </stackView>
                             </subviews>
+                            <constraints>
+                                <constraint firstItem="Bly-HE-MIp" firstAttribute="bottom" secondItem="KIK-LC-11g" secondAttribute="bottom" constant="126" id="L3n-JA-qGp"/>
+                                <constraint firstItem="FgG-Zg-ZBq" firstAttribute="top" secondItem="lpd-Ig-egU" secondAttribute="top" constant="205" id="W7l-I2-kf3"/>
+                                <constraint firstItem="KIK-LC-11g" firstAttribute="top" secondItem="lpd-Ig-egU" secondAttribute="top" constant="361" id="uvK-1z-Hgt"/>
+                            </constraints>
                             <viewLayoutGuide key="safeArea" id="Bly-HE-MIp"/>
                         </stackView>
                     </subviews>
+                    <constraints>
+                        <constraint firstItem="lpd-Ig-egU" firstAttribute="top" secondItem="Onv-Rp-frU" secondAttribute="top" constant="755" id="ENg-bx-Tkk"/>
+                    </constraints>
                 </stackView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1150,9 +1238,21 @@
                 <outlet property="txtADPKLaki" destination="3F4-yl-aDs" id="fEg-WY-mWT"/>
                 <outlet property="txtADPKPerempuan" destination="aUM-cp-ETG" id="ZdW-Kj-dgU"/>
                 <outlet property="txtADPKTotal" destination="p2H-AK-M6i" id="Etm-DY-ntu"/>
+                <outlet property="txtC7DPKLaki" destination="7lf-2C-79w" id="W1l-Mt-heO"/>
+                <outlet property="txtC7DPKPerempuan" destination="q0G-p8-vaB" id="R3a-p6-sJb"/>
+                <outlet property="txtC7DPKTotal" destination="aY8-El-Kvc" id="8pr-2l-zMj"/>
+                <outlet property="txtC7DPTBLaki" destination="mCB-yL-7s1" id="PhG-hm-pgw"/>
+                <outlet property="txtC7DPTBPerempuan" destination="TUt-nj-jES" id="i2h-2Q-RfW"/>
+                <outlet property="txtC7DPTBTotal" destination="Wgj-yq-cjs" id="bJs-N5-fyf"/>
+                <outlet property="txtC7DPTLaki" destination="Brb-qS-GYj" id="0i9-29-Bps"/>
+                <outlet property="txtC7DPTPerempuan" destination="SnL-0J-8pz" id="95z-Oa-Utl"/>
+                <outlet property="txtC7DPTTotal" destination="tGP-S6-wSf" id="rbN-xK-NAl"/>
                 <outlet property="txtTotalAllA3" destination="5aZ-cR-wWb" id="Hox-a4-xW8"/>
+                <outlet property="txtTotalAllC7" destination="y3a-vV-LMX" id="YJt-xi-uSc"/>
                 <outlet property="txtTotalLakiA3" destination="mOB-JF-QFq" id="faQ-tZ-8rQ"/>
+                <outlet property="txtTotalLakiC7" destination="cAB-44-1cs" id="4f9-Rz-tE0"/>
                 <outlet property="txtTotalPerempuanA3" destination="Riq-dB-dQH" id="MrC-2A-vXg"/>
+                <outlet property="txtTotalPerempuanC7" destination="U5P-eg-mUF" id="WJK-0D-TCc"/>
             </connections>
             <point key="canvasLocation" x="105.59999999999999" y="698.95052473763121"/>
         </view>

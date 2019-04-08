@@ -461,6 +461,7 @@
 		84CAF44D225B47F2003128B3 /* RekapListTPSController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CAF44C225B47F2003128B3 /* RekapListTPSController.swift */; };
 		84CAF44F225B4895003128B3 /* RekapListTPSViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CAF44E225B4895003128B3 /* RekapListTPSViewModel.swift */; };
 		84CAF453225B490B003128B3 /* RekapListTPSNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CAF452225B490B003128B3 /* RekapListTPSNavigator.swift */; };
+		84CAF456225B5812003128B3 /* RekapDetailTPSController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CAF455225B5811003128B3 /* RekapDetailTPSController.swift */; };
 		84D01B9821D208DE0000492F /* SectionOfSettingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D01B9721D208DE0000492F /* SectionOfSettingData.swift */; };
 		84D01B9B21D20C480000492F /* SettingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84D01B9A21D20C480000492F /* SettingCell.xib */; };
 		84D01B9D21D20CA20000492F /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D01B9C21D20CA20000492F /* SettingCell.swift */; };
@@ -1102,6 +1103,7 @@
 		84CAF44C225B47F2003128B3 /* RekapListTPSController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RekapListTPSController.swift; sourceTree = "<group>"; };
 		84CAF44E225B4895003128B3 /* RekapListTPSViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RekapListTPSViewModel.swift; sourceTree = "<group>"; };
 		84CAF452225B490B003128B3 /* RekapListTPSNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RekapListTPSNavigator.swift; sourceTree = "<group>"; };
+		84CAF455225B5811003128B3 /* RekapDetailTPSController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RekapDetailTPSController.swift; sourceTree = "<group>"; };
 		84D01B9721D208DE0000492F /* SectionOfSettingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionOfSettingData.swift; sourceTree = "<group>"; };
 		84D01B9A21D20C480000492F /* SettingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingCell.xib; sourceTree = "<group>"; };
 		84D01B9C21D20CA20000492F /* SettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
@@ -3148,6 +3150,7 @@
 		84CAF439225B1DA6003128B3 /* RekapUser */ = {
 			isa = PBXGroup;
 			children = (
+				84CAF454225B57FD003128B3 /* SubModules */,
 				84CAF447225B4536003128B3 /* Components */,
 				84CAF44C225B47F2003128B3 /* RekapListTPSController.swift */,
 				84CAF44E225B4895003128B3 /* RekapListTPSViewModel.swift */,
@@ -3173,6 +3176,14 @@
 				84CAF44A225B47AF003128B3 /* RekapTPSUserCell.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		84CAF454225B57FD003128B3 /* SubModules */ = {
+			isa = PBXGroup;
+			children = (
+				84CAF455225B5811003128B3 /* RekapDetailTPSController.swift */,
+			);
+			path = SubModules;
 			sourceTree = "<group>";
 		};
 		84D01B9921D20C140000492F /* Components */ = {
@@ -4594,6 +4605,7 @@
 				842A4A0D21D7EDC10050AA51 /* SuccessCoordinator.swift in Sources */,
 				131AEBE1221F332900B299F6 /* WordstadiumType.swift in Sources */,
 				84B8C1D12215823F004BC1FE /* PromoteView.swift in Sources */,
+				84CAF456225B5812003128B3 /* RekapDetailTPSController.swift in Sources */,
 				E583C9F8223ED9C5006D9590 /* UIImageExtension.swift in Sources */,
 				84B6D52D21F8E80A00DD742A /* UserQuestionListViewModel.swift in Sources */,
 				1108871E221271DC0041B821 /* LiveDebatViewModel.swift in Sources */,
