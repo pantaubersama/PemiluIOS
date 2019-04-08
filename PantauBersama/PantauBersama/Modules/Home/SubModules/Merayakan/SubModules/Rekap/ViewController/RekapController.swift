@@ -65,42 +65,13 @@ class RekapController: UIViewController {
             }
             .disposed(by: disposeBag)
         
+        tableView.rx.itemSelected
+            .bind(to: self.viewModel.input.itemSelected)
+            .disposed(by: disposeBag)
+        
+        viewModel.output.itemSelectedO
+            .drive()
+            .disposed(by: disposeBag)
     }
     
 }
-
-//extension RekapController : UITableViewDataSource {
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        if section == 1 {
-//            return self.viewModel.itemsProvince.value.count
-//        }else { return 1 }
-//    }
-//
-//    func numberOfSections(in tableView: UITableView) -> Int {
-//        return 2
-//    }
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        if indexPath.section == 0 {
-//            let cell = tableView.dequeueReusableCell() as SuaraCapresViewCell
-//            cell.configureCell(item: SuaraCapresViewCell.Item(viewModel: self.viewModel))
-//            return cell
-//        }else {
-//            let cell = tableView.dequeueReusableCell() as RekapViewCell
-//            cell.configure(data: "", type: self.pageType)
-//            return cell
-//        }
-//    }
-//}
-//
-//extension RekapController : UITableViewDelegate {
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//
-//    }
-//
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        if indexPath.section == 0 {
-//            return 400
-//        }else { return 150.0 }
-//    }
-//}

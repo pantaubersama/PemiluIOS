@@ -78,7 +78,7 @@ extension RekapViewCell : IReusableCell {
         let paslon2 = item.data.percentage?.candidates?.filter({ $0.id == 2}).first
         labelPersentase1.text = "\(paslon1?.percentage ?? 0.0)%"
         labelPersentase2.text = "\(paslon2?.percentage ?? 0.0)%"
-        labelRegion.text = item.data.region?.name
+        labelRegion.text = item.data.region.name
         
         switch item.type {
         case .tps:
@@ -98,6 +98,27 @@ extension RekapViewCell : IReusableCell {
         switch type {
         case .tps:
 //            self.regionTopConstraint.constant =
+            self.regionView.isHidden    = true
+            self.regionTopConstraint.constant  = -(self.regionView.frame.height)
+            self.tpsView.isHidden       = false
+        default:
+            self.tpsView.isHidden       = true
+            self.tpsTopConstraint.constant  = -(self.tpsView.frame.height)
+            self.regionView.isHidden    = false
+        }
+    }
+    
+    func configureVillage(data: SummaryVillage, type: RekapType) {
+        labelSuaraTidakSah.text = "\(data.percentage?.invalidVote.totalVote ?? 0)"
+        labelTotalSuara.text = "\(data.percentage?.totalVote ?? 0)"
+        let paslon1 = data.percentage?.candidates?.filter({ $0.id == 1}).first
+        let paslon2 = data.percentage?.candidates?.filter({ $0.id == 2}).first
+        labelPersentase1.text = "\(paslon1?.percentage ?? 0.0)%"
+        labelPersentase2.text = "\(paslon2?.percentage ?? 0.0)%"
+        labelRegion.text = data.region.name
+        
+        switch type {
+        case .tps:
             self.regionView.isHidden    = true
             self.regionTopConstraint.constant  = -(self.regionView.frame.height)
             self.tpsView.isHidden       = false

@@ -450,6 +450,12 @@
 		84CA10C321EF10E20025CF10 /* AboutCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CA10C221EF10E20025CF10 /* AboutCoordinator.swift */; };
 		84CA10C521EF12800025CF10 /* AboutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CA10C421EF12800025CF10 /* AboutViewModel.swift */; };
 		84CAF436225B0346003128B3 /* RekapHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CAF435225B0346003128B3 /* RekapHeaderView.swift */; };
+		84CAF43B225B1DB4003128B3 /* RekapListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CAF43A225B1DB4003128B3 /* RekapListController.swift */; };
+		84CAF43D225B1E6B003128B3 /* RekapListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CAF43C225B1E6B003128B3 /* RekapListViewModel.swift */; };
+		84CAF43F225B1F15003128B3 /* RekapListNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CAF43E225B1F15003128B3 /* RekapListNavigator.swift */; };
+		84CAF442225B3B2B003128B3 /* RekapListVillageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CAF441225B3B2A003128B3 /* RekapListVillageController.swift */; };
+		84CAF444225B3BF4003128B3 /* RekapListVillageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CAF443225B3BF4003128B3 /* RekapListVillageViewModel.swift */; };
+		84CAF446225B3CA9003128B3 /* RekapListVillageNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CAF445225B3CA9003128B3 /* RekapListVillageNavigator.swift */; };
 		84D01B9821D208DE0000492F /* SectionOfSettingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D01B9721D208DE0000492F /* SectionOfSettingData.swift */; };
 		84D01B9B21D20C480000492F /* SettingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84D01B9A21D20C480000492F /* SettingCell.xib */; };
 		84D01B9D21D20CA20000492F /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D01B9C21D20CA20000492F /* SettingCell.swift */; };
@@ -1080,6 +1086,12 @@
 		84CA10C221EF10E20025CF10 /* AboutCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutCoordinator.swift; sourceTree = "<group>"; };
 		84CA10C421EF12800025CF10 /* AboutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewModel.swift; sourceTree = "<group>"; };
 		84CAF435225B0346003128B3 /* RekapHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RekapHeaderView.swift; sourceTree = "<group>"; };
+		84CAF43A225B1DB4003128B3 /* RekapListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RekapListController.swift; sourceTree = "<group>"; };
+		84CAF43C225B1E6B003128B3 /* RekapListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RekapListViewModel.swift; sourceTree = "<group>"; };
+		84CAF43E225B1F15003128B3 /* RekapListNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RekapListNavigator.swift; sourceTree = "<group>"; };
+		84CAF441225B3B2A003128B3 /* RekapListVillageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RekapListVillageController.swift; sourceTree = "<group>"; };
+		84CAF443225B3BF4003128B3 /* RekapListVillageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RekapListVillageViewModel.swift; sourceTree = "<group>"; };
+		84CAF445225B3CA9003128B3 /* RekapListVillageNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RekapListVillageNavigator.swift; sourceTree = "<group>"; };
 		84D01B9721D208DE0000492F /* SectionOfSettingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionOfSettingData.swift; sourceTree = "<group>"; };
 		84D01B9A21D20C480000492F /* SettingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingCell.xib; sourceTree = "<group>"; };
 		84D01B9C21D20CA20000492F /* SettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
@@ -1277,6 +1289,7 @@
 		043EE181221A36C2008C59CD /* Rekap */ = {
 			isa = PBXGroup;
 			children = (
+				84CAF437225B1D95003128B3 /* SubModules */,
 				043EE183221A36C2008C59CD /* RekapViewModel.swift */,
 				11DA97132222CE9200A51E76 /* RekapNavigator.swift */,
 				043EE184221A36C2008C59CD /* ViewController */,
@@ -3102,6 +3115,43 @@
 			path = About;
 			sourceTree = "<group>";
 		};
+		84CAF437225B1D95003128B3 /* SubModules */ = {
+			isa = PBXGroup;
+			children = (
+				84CAF439225B1DA6003128B3 /* RekapUser */,
+				84CAF438225B1D9E003128B3 /* RekapList */,
+			);
+			path = SubModules;
+			sourceTree = "<group>";
+		};
+		84CAF438225B1D9E003128B3 /* RekapList */ = {
+			isa = PBXGroup;
+			children = (
+				84CAF440225B34D4003128B3 /* Village */,
+				84CAF43A225B1DB4003128B3 /* RekapListController.swift */,
+				84CAF43C225B1E6B003128B3 /* RekapListViewModel.swift */,
+				84CAF43E225B1F15003128B3 /* RekapListNavigator.swift */,
+			);
+			path = RekapList;
+			sourceTree = "<group>";
+		};
+		84CAF439225B1DA6003128B3 /* RekapUser */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = RekapUser;
+			sourceTree = "<group>";
+		};
+		84CAF440225B34D4003128B3 /* Village */ = {
+			isa = PBXGroup;
+			children = (
+				84CAF441225B3B2A003128B3 /* RekapListVillageController.swift */,
+				84CAF443225B3BF4003128B3 /* RekapListVillageViewModel.swift */,
+				84CAF445225B3CA9003128B3 /* RekapListVillageNavigator.swift */,
+			);
+			path = Village;
+			sourceTree = "<group>";
+		};
 		84D01B9921D20C140000492F /* Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -4162,10 +4212,12 @@
 				84A07FBC21D129FC00269C6B /* GroupProfileInfoData.swift in Sources */,
 				84FA42402212A595008215C4 /* CreateTantanganViewModel.swift in Sources */,
 				84B7B8BC21E47A8F0099E7E3 /* ClusterSearchController.swift in Sources */,
+				84CAF43F225B1F15003128B3 /* RekapListNavigator.swift in Sources */,
 				137A29F321E2261A00F19072 /* ComingsoonController.swift in Sources */,
 				847B4A162249F8890071A8F5 /* LinimasaNode.swift in Sources */,
 				11702DD521CB08DE001AEE3F /* QuizController.swift in Sources */,
 				E583C9F7223ED9C5006D9590 /* SelectionDialog.swift in Sources */,
+				84CAF43B225B1DB4003128B3 /* RekapListController.swift in Sources */,
 				11145F5D21EAF2670046F2AA /* SearchNavbar.swift in Sources */,
 				84EC7D17221586D100CDFD4D /* PublishChallengeCoordinator.swift in Sources */,
 				84FA4284221307BF008215C4 /* BidangKajianCoordinator.swift in Sources */,
@@ -4240,6 +4292,7 @@
 				11E107A721CD33CA00B7B074 /* CreateJanjiViewModel.swift in Sources */,
 				84FF8A9921F21D0000AA8CF3 /* UpdatesCoordinator.swift in Sources */,
 				842A4A0921D7EA990050AA51 /* SignatureCoordinator.swift in Sources */,
+				84CAF442225B3B2B003128B3 /* RekapListVillageController.swift in Sources */,
 				8452A4D221DE54B800196043 /* SosmedViewModel.swift in Sources */,
 				84EC7D132215859F00CDFD4D /* PublishChallengeController.swift in Sources */,
 				84FA423822128B23008215C4 /* TooltipCoordinator.swift in Sources */,
@@ -4384,6 +4437,7 @@
 				13BF405321EBAA8F005C9A64 /* IQuestionListViewModel.swift in Sources */,
 				847B4A19224A1EA00071A8F5 /* ASControlNode+Rx.swift in Sources */,
 				8478B8EA21FF315600CE192A /* Parser.swift in Sources */,
+				84CAF444225B3BF4003128B3 /* RekapListVillageViewModel.swift in Sources */,
 				84B7B8BE21E47B400099E7E3 /* ClusterSearchViewModel.swift in Sources */,
 				84B6D50F21F8345900DD742A /* CatatanPartyViewModel.swift in Sources */,
 				845C570521CD1C2300EDCDFE /* HeaderProfile.swift in Sources */,
@@ -4470,6 +4524,7 @@
 				848B039921E7AA8C002CAA40 /* WKWebview.swift in Sources */,
 				13F456CB21DB88E700CE45F1 /* BannerInfoViewModel.swift in Sources */,
 				E5B22D68222B0381002A8C0C /* C1InputFormController.swift in Sources */,
+				84CAF446225B3CA9003128B3 /* RekapListVillageNavigator.swift in Sources */,
 				E5B22D6F222B04D4002A8C0C /* C1SuratSuaraView.swift in Sources */,
 				84A07FBA21D0F13200269C6B /* IdentitasViewModel.swift in Sources */,
 				E5B22D61222AA39C002A8C0C /* TPSButton.swift in Sources */,
@@ -4477,6 +4532,7 @@
 				84B6D51621F842EB00DD742A /* PartyCell.swift in Sources */,
 				84B7B8C721E4A0A00099E7E3 /* IClusterSearchDelegate.swift in Sources */,
 				840850D221D2632500696CB3 /* ProfileEditCoordinator.swift in Sources */,
+				84CAF43D225B1E6B003128B3 /* RekapListViewModel.swift in Sources */,
 				E54CFAF2222C1EDF002DA0D1 /* TPSInputHeader.swift in Sources */,
 				8409374D21D361240024A444 /* PilpresNavigator.swift in Sources */,
 				840850DF21D2843D00696CB3 /* BadgeViewModel.swift in Sources */,

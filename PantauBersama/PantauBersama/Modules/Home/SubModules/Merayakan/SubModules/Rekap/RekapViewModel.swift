@@ -20,12 +20,14 @@ final class RekapViewModel: ViewModelType {
     
     struct Input {
         let refreshTrigger: AnyObserver<String>
+        let itemSelected: AnyObserver<IndexPath>
     }
     
     struct Output {
         let itemsO: Driver<[SimpleSummary]>
         let contributionsO: Driver<ContributionResponse>
         let summaryPresidentO: Driver<SummaryPresidentResponse>
+        let itemSelectedO: Driver<Void>
     }
     
     let navigator: RekapNavigator
@@ -35,14 +37,14 @@ final class RekapViewModel: ViewModelType {
     let headerViewModel = BannerHeaderViewModel()
     
     private let refreshSubject = PublishSubject<String>()
-    var itemsProvince = BehaviorRelay<[SummaryPercentage]>(value: [])
-    
+    private let itemSelectedS = PublishSubject<IndexPath>()
     
     init(navigator: RekapNavigator) {
         self.navigator = navigator
     
         input = Input(
-            refreshTrigger: refreshSubject.asObserver()
+            refreshTrigger: refreshSubject.asObserver(),
+            itemSelected: itemSelectedS.asObserver()
         )
         
         /// GET Contributions response
@@ -78,19 +80,22 @@ final class RekapViewModel: ViewModelType {
                     .requestObject(HitungAPI.summaryPresidenList(level: 0, region: 0),
                                    c: BaseResponse<SummaryProvinceResponse>.self)
                     .map({ $0.data.percentages })
-                    .do(onSuccess: { (response) in
-                        print(response)
-                    }, onError: { (e) in
-                        print(e.localizedDescription)
-                    })
                     .trackError(self.errorTracker)
                     .trackActivity(self.activityIndicator)
                     .asObservable()
         }
+        /// Item selected
+        let itemSelected = itemSelectedS
+            .withLatestFrom(provinceAll) { indexPath, model in
+                return model[indexPath.row]
+            }
+            .flatMapLatest({ navigator.launchDetail(item: $0.region)})
+            .asDriver(onErrorJustReturn: ())
+            
         
         
         output = Output(itemsO: provinceAll.asDriverOnErrorJustComplete(),
                         contributionsO: contributions.asDriverOnErrorJustComplete(),
-                        summaryPresidentO: summaryAll.asDriverOnErrorJustComplete())
+                        summaryPresidentO: summaryAll.asDriverOnErrorJustComplete(), itemSelectedO: itemSelected)
     }
 }

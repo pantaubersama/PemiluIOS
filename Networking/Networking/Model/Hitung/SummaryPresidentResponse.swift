@@ -36,17 +36,13 @@ public struct Region: Codable {
     public let code: Int
     public let name: String
     public let level: Int
-    public let domainName: String
     public let createdAt: String
     public let updatedAt: String
-    public let idWilayah: Int
     
     private enum CodingKeys: String, CodingKey {
         case id, code, name, level
-        case domainName = "domain_name"
         case createdAt = "created_at"
         case updatedAt = "updated_at"
-        case idWilayah = "id_wilayah"
     }
 }
 
