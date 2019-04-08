@@ -449,6 +449,7 @@
 		84CA10C121EF107E0025CF10 /* AboutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CA10C021EF107E0025CF10 /* AboutController.swift */; };
 		84CA10C321EF10E20025CF10 /* AboutCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CA10C221EF10E20025CF10 /* AboutCoordinator.swift */; };
 		84CA10C521EF12800025CF10 /* AboutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CA10C421EF12800025CF10 /* AboutViewModel.swift */; };
+		84CAF436225B0346003128B3 /* RekapHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CAF435225B0346003128B3 /* RekapHeaderView.swift */; };
 		84D01B9821D208DE0000492F /* SectionOfSettingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D01B9721D208DE0000492F /* SectionOfSettingData.swift */; };
 		84D01B9B21D20C480000492F /* SettingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84D01B9A21D20C480000492F /* SettingCell.xib */; };
 		84D01B9D21D20CA20000492F /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D01B9C21D20CA20000492F /* SettingCell.swift */; };
@@ -1078,6 +1079,7 @@
 		84CA10C021EF107E0025CF10 /* AboutController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutController.swift; sourceTree = "<group>"; };
 		84CA10C221EF10E20025CF10 /* AboutCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutCoordinator.swift; sourceTree = "<group>"; };
 		84CA10C421EF12800025CF10 /* AboutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewModel.swift; sourceTree = "<group>"; };
+		84CAF435225B0346003128B3 /* RekapHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RekapHeaderView.swift; sourceTree = "<group>"; };
 		84D01B9721D208DE0000492F /* SectionOfSettingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionOfSettingData.swift; sourceTree = "<group>"; };
 		84D01B9A21D20C480000492F /* SettingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingCell.xib; sourceTree = "<group>"; };
 		84D01B9C21D20CA20000492F /* SettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
@@ -1301,6 +1303,7 @@
 				043EE18B221A36C2008C59CD /* RekapFooterView.xib */,
 				043EE18C221A36C2008C59CD /* SuaraCapresViewCell.xib */,
 				043EE18D221A36C2008C59CD /* RekapViewCell.xib */,
+				84CAF435225B0346003128B3 /* RekapHeaderView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -4538,6 +4541,7 @@
 				84E2855321CA524200298E31 /* FilterCoordinator.swift in Sources */,
 				84FF8A9F21F21F3A00AA8CF3 /* UpdatesViewModel.swift in Sources */,
 				848B03A121E7B5DE002CAA40 /* WKWebViewModel.swift in Sources */,
+				84CAF436225B0346003128B3 /* RekapHeaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
