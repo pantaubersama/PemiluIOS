@@ -39,7 +39,7 @@ public enum HitungAPI {
     case getContribution
     case getVillages(page: Int, perPage: Int, districtCode: Int)
     
-    case getFormC1(hitungRealCountId: Int, tingkat: TingkatPemilihan)
+    case getFormC1(hitungRealCountId: String, tingkat: TingkatPemilihan)
     case putFormC1(parameters: [String: Any])
     
     case deleteImages(id: Int)

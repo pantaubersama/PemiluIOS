@@ -462,6 +462,12 @@
 		84CAF44F225B4895003128B3 /* RekapListTPSViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CAF44E225B4895003128B3 /* RekapListTPSViewModel.swift */; };
 		84CAF453225B490B003128B3 /* RekapListTPSNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CAF452225B490B003128B3 /* RekapListTPSNavigator.swift */; };
 		84CAF456225B5812003128B3 /* RekapDetailTPSController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CAF455225B5811003128B3 /* RekapDetailTPSController.swift */; };
+		84CAF459225C4B5E003128B3 /* C1SummaryFormView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84CAF458225C4B5D003128B3 /* C1SummaryFormView.xib */; };
+		84CAF45B225C4E22003128B3 /* C1SummaryFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CAF45A225C4E22003128B3 /* C1SummaryFormView.swift */; };
+		84CAF45D225C4E89003128B3 /* RekapDetailTPSViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CAF45C225C4E89003128B3 /* RekapDetailTPSViewModel.swift */; };
+		84CAF45F225C4ECD003128B3 /* RekapDetailTPSNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CAF45E225C4ECD003128B3 /* RekapDetailTPSNavigator.swift */; };
+		84CAF463225C758E003128B3 /* C1SummaryPemilihView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84CAF462225C758E003128B3 /* C1SummaryPemilihView.xib */; };
+		84CAF465225C7838003128B3 /* C1SummaryPemilihView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CAF464225C7838003128B3 /* C1SummaryPemilihView.swift */; };
 		84D01B9821D208DE0000492F /* SectionOfSettingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D01B9721D208DE0000492F /* SectionOfSettingData.swift */; };
 		84D01B9B21D20C480000492F /* SettingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84D01B9A21D20C480000492F /* SettingCell.xib */; };
 		84D01B9D21D20CA20000492F /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D01B9C21D20CA20000492F /* SettingCell.swift */; };
@@ -1104,6 +1110,12 @@
 		84CAF44E225B4895003128B3 /* RekapListTPSViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RekapListTPSViewModel.swift; sourceTree = "<group>"; };
 		84CAF452225B490B003128B3 /* RekapListTPSNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RekapListTPSNavigator.swift; sourceTree = "<group>"; };
 		84CAF455225B5811003128B3 /* RekapDetailTPSController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RekapDetailTPSController.swift; sourceTree = "<group>"; };
+		84CAF458225C4B5D003128B3 /* C1SummaryFormView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = C1SummaryFormView.xib; sourceTree = "<group>"; };
+		84CAF45A225C4E22003128B3 /* C1SummaryFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = C1SummaryFormView.swift; sourceTree = "<group>"; };
+		84CAF45C225C4E89003128B3 /* RekapDetailTPSViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RekapDetailTPSViewModel.swift; sourceTree = "<group>"; };
+		84CAF45E225C4ECD003128B3 /* RekapDetailTPSNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RekapDetailTPSNavigator.swift; sourceTree = "<group>"; };
+		84CAF462225C758E003128B3 /* C1SummaryPemilihView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = C1SummaryPemilihView.xib; sourceTree = "<group>"; };
+		84CAF464225C7838003128B3 /* C1SummaryPemilihView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = C1SummaryPemilihView.swift; sourceTree = "<group>"; };
 		84D01B9721D208DE0000492F /* SectionOfSettingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionOfSettingData.swift; sourceTree = "<group>"; };
 		84D01B9A21D20C480000492F /* SettingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingCell.xib; sourceTree = "<group>"; };
 		84D01B9C21D20CA20000492F /* SettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
@@ -3181,9 +3193,23 @@
 		84CAF454225B57FD003128B3 /* SubModules */ = {
 			isa = PBXGroup;
 			children = (
+				84CAF457225C4B24003128B3 /* Components */,
 				84CAF455225B5811003128B3 /* RekapDetailTPSController.swift */,
+				84CAF45C225C4E89003128B3 /* RekapDetailTPSViewModel.swift */,
+				84CAF45E225C4ECD003128B3 /* RekapDetailTPSNavigator.swift */,
 			);
 			path = SubModules;
+			sourceTree = "<group>";
+		};
+		84CAF457225C4B24003128B3 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				84CAF458225C4B5D003128B3 /* C1SummaryFormView.xib */,
+				84CAF45A225C4E22003128B3 /* C1SummaryFormView.swift */,
+				84CAF462225C758E003128B3 /* C1SummaryPemilihView.xib */,
+				84CAF464225C7838003128B3 /* C1SummaryPemilihView.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		84D01B9921D20C140000492F /* Components */ = {
@@ -3807,6 +3833,7 @@
 				84F892AA21C787D800DC1048 /* Lato-Bold.ttf in Resources */,
 				E5B22D75222B051D002A8C0C /* C1SuratSuaraView.xib in Resources */,
 				13F456D421DB897500CE45F1 /* BannerInfoController.xib in Resources */,
+				84CAF459225C4B5E003128B3 /* C1SummaryFormView.xib in Resources */,
 				84FA423E2212A1C7008215C4 /* CreateTantanganController.xib in Resources */,
 				840901B821DF1CBB001BF559 /* Navbar.xib in Resources */,
 				84B8C1AF221537FA004BC1FE /* LinkPreviewView.xib in Resources */,
@@ -3866,6 +3893,7 @@
 				043EE19D221A36C2008C59CD /* MerayakanController.xib in Resources */,
 				8451E06A2207F76E00F03E96 /* validation-success.json in Resources */,
 				8452A4C521DE1F4300196043 /* BuatProfileController.xib in Resources */,
+				84CAF463225C758E003128B3 /* C1SummaryPemilihView.xib in Resources */,
 				E54CFAFD222C31E8002DA0D1 /* DetailTPSDPDController.xib in Resources */,
 				119123A522250CCE00617E7C /* SubmitTPSConfirmationController.xib in Resources */,
 				1149EB7D221A9DC90050F366 /* DebatDetailController.xib in Resources */,
@@ -4325,6 +4353,7 @@
 				84B8C1B122153AA4004BC1FE /* LinkPreviewView.swift in Sources */,
 				11DA97142222CE9200A51E76 /* RekapNavigator.swift in Sources */,
 				11E107A721CD33CA00B7B074 /* CreateJanjiViewModel.swift in Sources */,
+				84CAF45F225C4ECD003128B3 /* RekapDetailTPSNavigator.swift in Sources */,
 				84FF8A9921F21D0000AA8CF3 /* UpdatesCoordinator.swift in Sources */,
 				842A4A0921D7EA990050AA51 /* SignatureCoordinator.swift in Sources */,
 				84CAF442225B3B2B003128B3 /* RekapListVillageController.swift in Sources */,
@@ -4418,6 +4447,7 @@
 				13BF405121EBAA1E005C9A64 /* IQuestionListViewController.swift in Sources */,
 				13F4569421CF97DA00CE45F1 /* CreateAskController.swift in Sources */,
 				849CABCC21CE8A5100912F8E /* SettingCoordinator.swift in Sources */,
+				84CAF45B225C4E22003128B3 /* C1SummaryFormView.swift in Sources */,
 				844C3D4521C4ED6D00199871 /* PantauBersama.xcdatamodeld in Sources */,
 				8475330D21F60F6000BF3F66 /* ComingsoonViewModel.swift in Sources */,
 				13F456D321DB897500CE45F1 /* BannerInfoController.swift in Sources */,
@@ -4572,6 +4602,7 @@
 				84CAF43D225B1E6B003128B3 /* RekapListViewModel.swift in Sources */,
 				E54CFAF2222C1EDF002DA0D1 /* TPSInputHeader.swift in Sources */,
 				8409374D21D361240024A444 /* PilpresNavigator.swift in Sources */,
+				84CAF465225C7838003128B3 /* C1SummaryPemilihView.swift in Sources */,
 				840850DF21D2843D00696CB3 /* BadgeViewModel.swift in Sources */,
 				1184752221FDEAC300D44FA5 /* ClusterCategoryDelegate.swift in Sources */,
 				E54CFB12222C4DD2002DA0D1 /* UploadC1Header.swift in Sources */,
@@ -4597,6 +4628,7 @@
 				1147F23321F84306001D0D59 /* ClusterSearchNavigator.swift in Sources */,
 				11DA970F2222C2C200A51E76 /* PerhitunganCell.swift in Sources */,
 				131DBDAE2215AF48005203FF /* ClapView.swift in Sources */,
+				84CAF45D225C4E89003128B3 /* RekapDetailTPSViewModel.swift in Sources */,
 				840850D721D2802000696CB3 /* ProfileInfoDummyData.swift in Sources */,
 				13F4569921CF982E00CE45F1 /* QuestionNavigator.swift in Sources */,
 				84E2854721CA1E8300298E31 /* PilpresType.swift in Sources */,

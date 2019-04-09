@@ -7,9 +7,11 @@
 //
 
 import RxSwift
+import Networking
 
 protocol RekapListTPSNavigator {
     func back() -> Observable<Void>
+    func launchDetailTPSUser(realCount: RealCount) -> Observable<Void>
 }
 
 final class RekapListTPSCoordinator: BaseCoordinator<Void> {
@@ -37,5 +39,9 @@ extension RekapListTPSCoordinator: RekapListTPSNavigator {
     func back() -> Observable<Void> {
         navigationController.popViewController(animated: true)
         return Observable.empty()
+    }
+    func launchDetailTPSUser(realCount: RealCount) -> Observable<Void> {
+        let detailTPSUserCoordinator = RekapDetailTPSCoordinator(navigationController: navigationController, realCount: realCount)
+        return coordinate(to: detailTPSUserCoordinator)
     }
 }
