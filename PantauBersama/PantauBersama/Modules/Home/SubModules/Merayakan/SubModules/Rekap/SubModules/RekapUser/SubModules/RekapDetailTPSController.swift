@@ -17,18 +17,21 @@ class RekapDetailTPSController: UITableViewController {
     var viewModel: RekapDetailTPSViewModel!
     private var dataSource: RxTableViewSectionedReloadDataSource<SectionModelsTPSSummary>!
     private let disposeBag = DisposeBag()
+    private let headerView = SummaryPresidenTPSView()
+    private let footerView = RekapDetailTPSFooter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.delegate = nil
-        tableView.dataSource = nil
+        tableView.delegate = self
+        tableView.dataSource = self
         tableView.rowHeight = 44.0
         tableView.estimatedRowHeight = UITableView.automaticDimension
         tableView.separatorStyle = .none
-        tableView.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
-        tableView.tableFooterView = UIView()
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         tableView.allowsSelection = false
         tableView.registerReusableCell(RekapViewCell.self)
+        tableView.tableHeaderView = headerView
+        tableView.tableFooterView = footerView
         
         title = "TPS"
         let back = UIBarButtonItem(image: #imageLiteral(resourceName: "back"), style: .plain, target: nil, action: nil)
@@ -36,37 +39,6 @@ class RekapDetailTPSController: UITableViewController {
         
         back.rx.tap
             .bind(to: viewModel.input.backI)
-            .disposed(by: disposeBag)
-        
-        dataSource = RxTableViewSectionedReloadDataSource<SectionModelsTPSSummary>(configureCell: { (dataSource, tableView, indexPath, item) -> UITableViewCell in
-            switch item {
-            case .presiden(let data):
-                let cell = tableView.dequeueReusableCell() as RekapViewCell
-                return cell
-            case .lampiran(let data):
-                let cell = tableView.dequeueReusableCell() as RekapViewCell
-                return cell
-            case .c1PemilihDPT(let c1Summary),
-                 .c1PemilihDPTb(let c1Summary),
-                 .c1PemilihDPK(let c1Summary),
-                 .c1TotalPemilihA1A3(let c1Summary),
-                 .c1HakDPT(let c1Summary),
-                 .c1HakDPTb(let c1Summary),
-                 .c1HakDPK(let c1Summary),
-                 .c1TotalHakB1B3(let c1Summary),
-                 .c1DisabilitasTotal(let c1Summary),
-                 .c1DisabilitasHak(let c1Summary),
-                 .c1TotalSuaraDPT(let c1Summary),
-                 .c1TotalSuraRusak(let c1Summary),
-                 .c1TotalSuaraTidakDigunakan(let c1Summary),
-                 .c1TotalSuaraDigunakan(let c1Summary):
-                let cell = tableView.dequeueReusableCell() as RekapViewCell
-                return cell
-            }
-        })
-        
-        viewModel.output.itemsO
-            .drive(tableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
         
         viewModel.output.backO
@@ -77,6 +49,21 @@ class RekapDetailTPSController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell() as RekapViewCell
+        
+        return cell
+        
+    }
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 2
     }
     
 }

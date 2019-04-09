@@ -20,7 +20,7 @@ class RekapListTPSController: UITableViewController {
         
         tableView.delegate = nil
         tableView.dataSource = nil
-        tableView.rowHeight = 112.0
+        tableView.rowHeight = 120.0
         tableView.estimatedRowHeight = UITableView.automaticDimension
         tableView.separatorStyle = .none
         tableView.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)

@@ -11,15 +11,15 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="119" id="nCD-MQ-WKO" customClass="RekapTPSUserCell" customModule="PantauBersama" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="389" height="119"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="146" id="nCD-MQ-WKO" customClass="RekapTPSUserCell" customModule="PantauBersama" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="389" height="146"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nCD-MQ-WKO" id="jXI-Uv-gft">
-                <rect key="frame" x="0.0" y="0.0" width="389" height="118.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="389" height="145.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1eY-cI-veD" customClass="RoundView" customModule="Common">
-                        <rect key="frame" x="16" y="0.0" width="357" height="118.5"/>
+                        <rect key="frame" x="16" y="16" width="357" height="129.5"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SdS-sJ-hmp">
                                 <rect key="frame" x="0.0" y="0.0" width="357" height="37"/>
@@ -35,7 +35,7 @@
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JsG-ZA-bX6" customClass="Label" customModule="Common">
-                                                <rect key="frame" x="28" y="2" width="275" height="20.5"/>
+                                                <rect key="frame" x="28" y="5" width="275" height="14.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -83,7 +83,7 @@
                                         <rect key="frame" x="17" y="0.0" width="320" height="50"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bSs-AT-xT6" customClass="Label" customModule="Common">
-                                                <rect key="frame" x="0.0" y="0.0" width="320" height="29.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="35.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="0.60784313729999995" green="0.0" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <nil key="highlightedColor"/>
@@ -95,7 +95,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jCE-od-7Va" customClass="Label" customModule="Common">
-                                                <rect key="frame" x="0.0" y="29.5" width="320" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="35.5" width="320" height="14.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -139,7 +139,7 @@
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="1eY-cI-veD" secondAttribute="trailing" constant="16" id="3fk-Nm-6lm"/>
                     <constraint firstAttribute="bottom" secondItem="1eY-cI-veD" secondAttribute="bottom" id="BYK-XP-Mbe"/>
-                    <constraint firstItem="1eY-cI-veD" firstAttribute="top" secondItem="jXI-Uv-gft" secondAttribute="top" id="SRn-QX-1ZX"/>
+                    <constraint firstItem="1eY-cI-veD" firstAttribute="top" secondItem="jXI-Uv-gft" secondAttribute="top" constant="16" id="SRn-QX-1ZX"/>
                     <constraint firstItem="1eY-cI-veD" firstAttribute="leading" secondItem="jXI-Uv-gft" secondAttribute="leading" constant="16" id="ei4-XR-eFL"/>
                 </constraints>
             </tableViewCellContentView>
@@ -149,7 +149,7 @@
                 <outlet property="lblTPS" destination="bSs-AT-xT6" id="LBN-Xf-4xH"/>
                 <outlet property="lblWilayah" destination="jCE-od-7Va" id="HRf-EY-YRm"/>
             </connections>
-            <point key="canvasLocation" x="149.59999999999999" y="187.55622188905548"/>
+            <point key="canvasLocation" x="149.59999999999999" y="199.70014992503749"/>
         </tableViewCell>
     </objects>
     <resources>

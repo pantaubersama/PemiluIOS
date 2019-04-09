@@ -468,6 +468,10 @@
 		84CAF45F225C4ECD003128B3 /* RekapDetailTPSNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CAF45E225C4ECD003128B3 /* RekapDetailTPSNavigator.swift */; };
 		84CAF463225C758E003128B3 /* C1SummaryPemilihView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84CAF462225C758E003128B3 /* C1SummaryPemilihView.xib */; };
 		84CAF465225C7838003128B3 /* C1SummaryPemilihView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CAF464225C7838003128B3 /* C1SummaryPemilihView.swift */; };
+		84CAF467225CC84A003128B3 /* SummaryPresidenTPSView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84CAF466225CC84A003128B3 /* SummaryPresidenTPSView.xib */; };
+		84CAF469225CCD6B003128B3 /* SummaryPresidenTPSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CAF468225CCD6B003128B3 /* SummaryPresidenTPSView.swift */; };
+		84CAF46D225CCEF3003128B3 /* RekapDetailTPSFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CAF46C225CCEF3003128B3 /* RekapDetailTPSFooter.swift */; };
+		84CAF46F225CCF3C003128B3 /* RekapDetailTPSFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84CAF46E225CCF3C003128B3 /* RekapDetailTPSFooter.xib */; };
 		84D01B9821D208DE0000492F /* SectionOfSettingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D01B9721D208DE0000492F /* SectionOfSettingData.swift */; };
 		84D01B9B21D20C480000492F /* SettingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84D01B9A21D20C480000492F /* SettingCell.xib */; };
 		84D01B9D21D20CA20000492F /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D01B9C21D20CA20000492F /* SettingCell.swift */; };
@@ -1116,6 +1120,10 @@
 		84CAF45E225C4ECD003128B3 /* RekapDetailTPSNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RekapDetailTPSNavigator.swift; sourceTree = "<group>"; };
 		84CAF462225C758E003128B3 /* C1SummaryPemilihView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = C1SummaryPemilihView.xib; sourceTree = "<group>"; };
 		84CAF464225C7838003128B3 /* C1SummaryPemilihView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = C1SummaryPemilihView.swift; sourceTree = "<group>"; };
+		84CAF466225CC84A003128B3 /* SummaryPresidenTPSView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SummaryPresidenTPSView.xib; sourceTree = "<group>"; };
+		84CAF468225CCD6B003128B3 /* SummaryPresidenTPSView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryPresidenTPSView.swift; sourceTree = "<group>"; };
+		84CAF46C225CCEF3003128B3 /* RekapDetailTPSFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RekapDetailTPSFooter.swift; sourceTree = "<group>"; };
+		84CAF46E225CCF3C003128B3 /* RekapDetailTPSFooter.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RekapDetailTPSFooter.xib; sourceTree = "<group>"; };
 		84D01B9721D208DE0000492F /* SectionOfSettingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionOfSettingData.swift; sourceTree = "<group>"; };
 		84D01B9A21D20C480000492F /* SettingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingCell.xib; sourceTree = "<group>"; };
 		84D01B9C21D20CA20000492F /* SettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
@@ -3208,6 +3216,10 @@
 				84CAF45A225C4E22003128B3 /* C1SummaryFormView.swift */,
 				84CAF462225C758E003128B3 /* C1SummaryPemilihView.xib */,
 				84CAF464225C7838003128B3 /* C1SummaryPemilihView.swift */,
+				84CAF466225CC84A003128B3 /* SummaryPresidenTPSView.xib */,
+				84CAF468225CCD6B003128B3 /* SummaryPresidenTPSView.swift */,
+				84CAF46C225CCEF3003128B3 /* RekapDetailTPSFooter.swift */,
+				84CAF46E225CCF3C003128B3 /* RekapDetailTPSFooter.xib */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -3816,6 +3828,7 @@
 				11D066B121E399C1003AC9BB /* FilterRadioCell.xib in Resources */,
 				11E1079221CD0FE200B7B074 /* QuizDetailController.xib in Resources */,
 				13E139522213FEF000286EDE /* SeeMoreCell.xib in Resources */,
+				84CAF467225CC84A003128B3 /* SummaryPresidenTPSView.xib in Resources */,
 				13E170C0221184B70018EDB4 /* WordstadiumController.xib in Resources */,
 				840BD0852233A9CD00F0B90F /* love.json in Resources */,
 				8451E0682207F74400F03E96 /* upload-ttd.json in Resources */,
@@ -3875,6 +3888,7 @@
 				8493BF7B2216848B00685BEC /* ChallengeController.xib in Resources */,
 				E550847B224297B500A54929 /* GoogleService-Info.plist in Resources */,
 				84BE8DF6222689AF0079332A /* PaslonCaraouselCell.xib in Resources */,
+				84CAF46F225CCF3C003128B3 /* RekapDetailTPSFooter.xib in Resources */,
 				8478B8E621FF1FAA00CE192A /* InfoNotifCell.xib in Resources */,
 				84619D3C21DA88C800EB58CF /* ItemInfoCell.xib in Resources */,
 				84DE3264222930E80079746D /* share-icon-app.icns in Resources */,
@@ -4464,6 +4478,7 @@
 				84619D3E21DA89F600EB58CF /* ItemInfoCell.swift in Sources */,
 				1143E81621E24A6A003862B6 /* QuizQuestionModel.swift in Sources */,
 				84A07FC421D14E8000269C6B /* ReqClusterViewModel.swift in Sources */,
+				84CAF469225CCD6B003128B3 /* SummaryPresidenTPSView.swift in Sources */,
 				84F6981521C8FAB000890917 /* UIControl.swift in Sources */,
 				84A07FA421D0E27F00269C6B /* SignatureController.swift in Sources */,
 				84B7B8D021E5B5D40099E7E3 /* AddKategoriViewModel.swift in Sources */,
@@ -4591,6 +4606,7 @@
 				848B039921E7AA8C002CAA40 /* WKWebview.swift in Sources */,
 				13F456CB21DB88E700CE45F1 /* BannerInfoViewModel.swift in Sources */,
 				E5B22D68222B0381002A8C0C /* C1InputFormController.swift in Sources */,
+				84CAF46D225CCEF3003128B3 /* RekapDetailTPSFooter.swift in Sources */,
 				84CAF446225B3CA9003128B3 /* RekapListVillageNavigator.swift in Sources */,
 				E5B22D6F222B04D4002A8C0C /* C1SuratSuaraView.swift in Sources */,
 				84A07FBA21D0F13200269C6B /* IdentitasViewModel.swift in Sources */,
