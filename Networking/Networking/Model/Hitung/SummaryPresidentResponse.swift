@@ -68,3 +68,29 @@ public struct InvalidSummary: Codable {
         case percentage
     }
 }
+
+// Because response very very random
+// need separate summary detail presiden, region key coding key invalid because level is optional
+
+public struct DetailSummaryPresidenResponse: Codable {
+    public let tps: Int
+    public let user: User?
+    public let percentage: DetailSummaryPercentage
+}
+
+public struct DetailSummaryPercentage: Codable {
+    public let region: VillageRegion
+    public let type: String
+    public let candidates: [CandidateSummary]?
+    public let invalidVote: InvalidSummary
+    public let totalVote: Int
+    
+    private enum CodingKeys: String, CodingKey {
+        case region, candidates
+        case type = "summary_type"
+        case invalidVote = "invalid_vote"
+        case totalVote = "total_vote"
+    }
+}
+
+

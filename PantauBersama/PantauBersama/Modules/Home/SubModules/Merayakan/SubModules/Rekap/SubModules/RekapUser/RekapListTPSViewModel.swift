@@ -19,12 +19,14 @@ final class RekapListTPSViewModel: ViewModelType {
         let backI: AnyObserver<Void>
         let refreshI: AnyObserver<String>
         let nextI: AnyObserver<Void>
+        let itemSelectedI: AnyObserver<IndexPath>
     }
     
     struct Output {
         let backO: Driver<Void>
         let itemsO: Driver<[RealCount]>
         let titleO: Driver<String>
+        let itemSelectedO: Driver<Void>
     }
     
     private let navigator: RekapListTPSNavigator
@@ -36,6 +38,7 @@ final class RekapListTPSViewModel: ViewModelType {
     private let backS = PublishSubject<Void>()
     private let refreshS = PublishSubject<String>()
     private let nextS = PublishSubject<Void>()
+    private let itemSelectedS = PublishSubject<IndexPath>()
     
     init(navigator: RekapListTPSNavigator, villageId: Int, villageName: String) {
         self.navigator = navigator
@@ -44,7 +47,8 @@ final class RekapListTPSViewModel: ViewModelType {
         
         input = Input(backI: backS.asObserver(),
                       refreshI: refreshS.asObserver(),
-                      nextI: nextS.asObserver())
+                      nextI: nextS.asObserver(),
+                      itemSelectedI: itemSelectedS.asObserver())
         
         let back = backS
             .flatMapLatest({ navigator.back() })
@@ -57,12 +61,22 @@ final class RekapListTPSViewModel: ViewModelType {
                     .trackError(self.errorTracker)
                     .trackActivity(self.activityIndicator)
                     .asObservable()
-        }.asDriverOnErrorJustComplete()
+        }
+        
+        /// Item Selected
+        let itemSelected = itemSelectedS
+            .withLatestFrom(items) { indexPath, model in
+                return model[indexPath.row]
+            }
+            .flatMapLatest({ navigator.launchDetailTPSUser(realCount: $0)})
+            .asDriverOnErrorJustComplete()
+        
         
         
         output = Output(backO: back,
-                        itemsO: items,
-                        titleO: Driver.just(self.villageName))
+                        itemsO: items.asDriverOnErrorJustComplete(),
+                        titleO: Driver.just(self.villageName),
+                        itemSelectedO: itemSelected)
         
     }
     

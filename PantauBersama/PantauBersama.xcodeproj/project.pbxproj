@@ -462,6 +462,18 @@
 		84CAF44F225B4895003128B3 /* RekapListTPSViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CAF44E225B4895003128B3 /* RekapListTPSViewModel.swift */; };
 		84CAF453225B490B003128B3 /* RekapListTPSNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CAF452225B490B003128B3 /* RekapListTPSNavigator.swift */; };
 		84CAF456225B5812003128B3 /* RekapDetailTPSController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CAF455225B5811003128B3 /* RekapDetailTPSController.swift */; };
+		84CAF459225C4B5E003128B3 /* C1SummaryFormView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84CAF458225C4B5D003128B3 /* C1SummaryFormView.xib */; };
+		84CAF45B225C4E22003128B3 /* C1SummaryFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CAF45A225C4E22003128B3 /* C1SummaryFormView.swift */; };
+		84CAF45D225C4E89003128B3 /* RekapDetailTPSViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CAF45C225C4E89003128B3 /* RekapDetailTPSViewModel.swift */; };
+		84CAF45F225C4ECD003128B3 /* RekapDetailTPSNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CAF45E225C4ECD003128B3 /* RekapDetailTPSNavigator.swift */; };
+		84CAF463225C758E003128B3 /* C1SummaryPemilihView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84CAF462225C758E003128B3 /* C1SummaryPemilihView.xib */; };
+		84CAF465225C7838003128B3 /* C1SummaryPemilihView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CAF464225C7838003128B3 /* C1SummaryPemilihView.swift */; };
+		84CAF467225CC84A003128B3 /* SummaryPresidenTPSView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84CAF466225CC84A003128B3 /* SummaryPresidenTPSView.xib */; };
+		84CAF469225CCD6B003128B3 /* SummaryPresidenTPSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CAF468225CCD6B003128B3 /* SummaryPresidenTPSView.swift */; };
+		84CAF46D225CCEF3003128B3 /* RekapDetailTPSFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CAF46C225CCEF3003128B3 /* RekapDetailTPSFooter.swift */; };
+		84CAF46F225CCF3C003128B3 /* RekapDetailTPSFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84CAF46E225CCF3C003128B3 /* RekapDetailTPSFooter.xib */; };
+		84CAF471225CD7B3003128B3 /* RekapDetailPhotosCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CAF470225CD7B2003128B3 /* RekapDetailPhotosCell.swift */; };
+		84CAF473225CD822003128B3 /* RekapDetailPhotosCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84CAF472225CD822003128B3 /* RekapDetailPhotosCell.xib */; };
 		84D01B9821D208DE0000492F /* SectionOfSettingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D01B9721D208DE0000492F /* SectionOfSettingData.swift */; };
 		84D01B9B21D20C480000492F /* SettingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84D01B9A21D20C480000492F /* SettingCell.xib */; };
 		84D01B9D21D20CA20000492F /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D01B9C21D20CA20000492F /* SettingCell.swift */; };
@@ -1104,6 +1116,18 @@
 		84CAF44E225B4895003128B3 /* RekapListTPSViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RekapListTPSViewModel.swift; sourceTree = "<group>"; };
 		84CAF452225B490B003128B3 /* RekapListTPSNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RekapListTPSNavigator.swift; sourceTree = "<group>"; };
 		84CAF455225B5811003128B3 /* RekapDetailTPSController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RekapDetailTPSController.swift; sourceTree = "<group>"; };
+		84CAF458225C4B5D003128B3 /* C1SummaryFormView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = C1SummaryFormView.xib; sourceTree = "<group>"; };
+		84CAF45A225C4E22003128B3 /* C1SummaryFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = C1SummaryFormView.swift; sourceTree = "<group>"; };
+		84CAF45C225C4E89003128B3 /* RekapDetailTPSViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RekapDetailTPSViewModel.swift; sourceTree = "<group>"; };
+		84CAF45E225C4ECD003128B3 /* RekapDetailTPSNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RekapDetailTPSNavigator.swift; sourceTree = "<group>"; };
+		84CAF462225C758E003128B3 /* C1SummaryPemilihView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = C1SummaryPemilihView.xib; sourceTree = "<group>"; };
+		84CAF464225C7838003128B3 /* C1SummaryPemilihView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = C1SummaryPemilihView.swift; sourceTree = "<group>"; };
+		84CAF466225CC84A003128B3 /* SummaryPresidenTPSView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SummaryPresidenTPSView.xib; sourceTree = "<group>"; };
+		84CAF468225CCD6B003128B3 /* SummaryPresidenTPSView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryPresidenTPSView.swift; sourceTree = "<group>"; };
+		84CAF46C225CCEF3003128B3 /* RekapDetailTPSFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RekapDetailTPSFooter.swift; sourceTree = "<group>"; };
+		84CAF46E225CCF3C003128B3 /* RekapDetailTPSFooter.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RekapDetailTPSFooter.xib; sourceTree = "<group>"; };
+		84CAF470225CD7B2003128B3 /* RekapDetailPhotosCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RekapDetailPhotosCell.swift; sourceTree = "<group>"; };
+		84CAF472225CD822003128B3 /* RekapDetailPhotosCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RekapDetailPhotosCell.xib; sourceTree = "<group>"; };
 		84D01B9721D208DE0000492F /* SectionOfSettingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionOfSettingData.swift; sourceTree = "<group>"; };
 		84D01B9A21D20C480000492F /* SettingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingCell.xib; sourceTree = "<group>"; };
 		84D01B9C21D20CA20000492F /* SettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
@@ -3181,9 +3205,29 @@
 		84CAF454225B57FD003128B3 /* SubModules */ = {
 			isa = PBXGroup;
 			children = (
+				84CAF457225C4B24003128B3 /* Components */,
 				84CAF455225B5811003128B3 /* RekapDetailTPSController.swift */,
+				84CAF45C225C4E89003128B3 /* RekapDetailTPSViewModel.swift */,
+				84CAF45E225C4ECD003128B3 /* RekapDetailTPSNavigator.swift */,
 			);
 			path = SubModules;
+			sourceTree = "<group>";
+		};
+		84CAF457225C4B24003128B3 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				84CAF458225C4B5D003128B3 /* C1SummaryFormView.xib */,
+				84CAF45A225C4E22003128B3 /* C1SummaryFormView.swift */,
+				84CAF462225C758E003128B3 /* C1SummaryPemilihView.xib */,
+				84CAF464225C7838003128B3 /* C1SummaryPemilihView.swift */,
+				84CAF466225CC84A003128B3 /* SummaryPresidenTPSView.xib */,
+				84CAF468225CCD6B003128B3 /* SummaryPresidenTPSView.swift */,
+				84CAF46C225CCEF3003128B3 /* RekapDetailTPSFooter.swift */,
+				84CAF46E225CCF3C003128B3 /* RekapDetailTPSFooter.xib */,
+				84CAF470225CD7B2003128B3 /* RekapDetailPhotosCell.swift */,
+				84CAF472225CD822003128B3 /* RekapDetailPhotosCell.xib */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		84D01B9921D20C140000492F /* Components */ = {
@@ -3790,6 +3834,7 @@
 				11D066B121E399C1003AC9BB /* FilterRadioCell.xib in Resources */,
 				11E1079221CD0FE200B7B074 /* QuizDetailController.xib in Resources */,
 				13E139522213FEF000286EDE /* SeeMoreCell.xib in Resources */,
+				84CAF467225CC84A003128B3 /* SummaryPresidenTPSView.xib in Resources */,
 				13E170C0221184B70018EDB4 /* WordstadiumController.xib in Resources */,
 				840BD0852233A9CD00F0B90F /* love.json in Resources */,
 				8451E0682207F74400F03E96 /* upload-ttd.json in Resources */,
@@ -3807,6 +3852,7 @@
 				84F892AA21C787D800DC1048 /* Lato-Bold.ttf in Resources */,
 				E5B22D75222B051D002A8C0C /* C1SuratSuaraView.xib in Resources */,
 				13F456D421DB897500CE45F1 /* BannerInfoController.xib in Resources */,
+				84CAF459225C4B5E003128B3 /* C1SummaryFormView.xib in Resources */,
 				84FA423E2212A1C7008215C4 /* CreateTantanganController.xib in Resources */,
 				840901B821DF1CBB001BF559 /* Navbar.xib in Resources */,
 				84B8C1AF221537FA004BC1FE /* LinkPreviewView.xib in Resources */,
@@ -3848,6 +3894,7 @@
 				8493BF7B2216848B00685BEC /* ChallengeController.xib in Resources */,
 				E550847B224297B500A54929 /* GoogleService-Info.plist in Resources */,
 				84BE8DF6222689AF0079332A /* PaslonCaraouselCell.xib in Resources */,
+				84CAF46F225CCF3C003128B3 /* RekapDetailTPSFooter.xib in Resources */,
 				8478B8E621FF1FAA00CE192A /* InfoNotifCell.xib in Resources */,
 				84619D3C21DA88C800EB58CF /* ItemInfoCell.xib in Resources */,
 				84DE3264222930E80079746D /* share-icon-app.icns in Resources */,
@@ -3866,6 +3913,7 @@
 				043EE19D221A36C2008C59CD /* MerayakanController.xib in Resources */,
 				8451E06A2207F76E00F03E96 /* validation-success.json in Resources */,
 				8452A4C521DE1F4300196043 /* BuatProfileController.xib in Resources */,
+				84CAF463225C758E003128B3 /* C1SummaryPemilihView.xib in Resources */,
 				E54CFAFD222C31E8002DA0D1 /* DetailTPSDPDController.xib in Resources */,
 				119123A522250CCE00617E7C /* SubmitTPSConfirmationController.xib in Resources */,
 				1149EB7D221A9DC90050F366 /* DebatDetailController.xib in Resources */,
@@ -3931,6 +3979,7 @@
 				84FE6EC421D634CD009A0F55 /* BiodataView.xib in Resources */,
 				84B6D6EA21E223AA00CD4BC8 /* ClusterView.xib in Resources */,
 				84FA42702212F902008215C4 /* SaldoTimeCell.xib in Resources */,
+				84CAF473225CD822003128B3 /* RekapDetailPhotosCell.xib in Resources */,
 				E54CFB02222C325D002DA0D1 /* DetailTPSDPRHeader.xib in Resources */,
 				845C571321CE10C900EDCDFE /* IconTableCell.xib in Resources */,
 				11145F5621EACCEC0046F2AA /* SearchController.xib in Resources */,
@@ -4325,6 +4374,7 @@
 				84B8C1B122153AA4004BC1FE /* LinkPreviewView.swift in Sources */,
 				11DA97142222CE9200A51E76 /* RekapNavigator.swift in Sources */,
 				11E107A721CD33CA00B7B074 /* CreateJanjiViewModel.swift in Sources */,
+				84CAF45F225C4ECD003128B3 /* RekapDetailTPSNavigator.swift in Sources */,
 				84FF8A9921F21D0000AA8CF3 /* UpdatesCoordinator.swift in Sources */,
 				842A4A0921D7EA990050AA51 /* SignatureCoordinator.swift in Sources */,
 				84CAF442225B3B2B003128B3 /* RekapListVillageController.swift in Sources */,
@@ -4369,6 +4419,7 @@
 				E5B22D59222A3998002A8C0C /* DetailTPSPresidenViewModel.swift in Sources */,
 				84E521BC21F4A81700B7CCBA /* ItemOnboardingController.swift in Sources */,
 				84CA10C521EF12800025CF10 /* AboutViewModel.swift in Sources */,
+				84CAF471225CD7B3003128B3 /* RekapDetailPhotosCell.swift in Sources */,
 				84B4DED821D375C600F60258 /* JanjiPolitikNavigator.swift in Sources */,
 				84619D4B21DC9A6A00EB58CF /* WebViewModel.swift in Sources */,
 				13E9D78B21E8FCF6006A0890 /* IJanpolViewController.swift in Sources */,
@@ -4418,6 +4469,7 @@
 				13BF405121EBAA1E005C9A64 /* IQuestionListViewController.swift in Sources */,
 				13F4569421CF97DA00CE45F1 /* CreateAskController.swift in Sources */,
 				849CABCC21CE8A5100912F8E /* SettingCoordinator.swift in Sources */,
+				84CAF45B225C4E22003128B3 /* C1SummaryFormView.swift in Sources */,
 				844C3D4521C4ED6D00199871 /* PantauBersama.xcdatamodeld in Sources */,
 				8475330D21F60F6000BF3F66 /* ComingsoonViewModel.swift in Sources */,
 				13F456D321DB897500CE45F1 /* BannerInfoController.swift in Sources */,
@@ -4434,6 +4486,7 @@
 				84619D3E21DA89F600EB58CF /* ItemInfoCell.swift in Sources */,
 				1143E81621E24A6A003862B6 /* QuizQuestionModel.swift in Sources */,
 				84A07FC421D14E8000269C6B /* ReqClusterViewModel.swift in Sources */,
+				84CAF469225CCD6B003128B3 /* SummaryPresidenTPSView.swift in Sources */,
 				84F6981521C8FAB000890917 /* UIControl.swift in Sources */,
 				84A07FA421D0E27F00269C6B /* SignatureController.swift in Sources */,
 				84B7B8D021E5B5D40099E7E3 /* AddKategoriViewModel.swift in Sources */,
@@ -4561,6 +4614,7 @@
 				848B039921E7AA8C002CAA40 /* WKWebview.swift in Sources */,
 				13F456CB21DB88E700CE45F1 /* BannerInfoViewModel.swift in Sources */,
 				E5B22D68222B0381002A8C0C /* C1InputFormController.swift in Sources */,
+				84CAF46D225CCEF3003128B3 /* RekapDetailTPSFooter.swift in Sources */,
 				84CAF446225B3CA9003128B3 /* RekapListVillageNavigator.swift in Sources */,
 				E5B22D6F222B04D4002A8C0C /* C1SuratSuaraView.swift in Sources */,
 				84A07FBA21D0F13200269C6B /* IdentitasViewModel.swift in Sources */,
@@ -4572,6 +4626,7 @@
 				84CAF43D225B1E6B003128B3 /* RekapListViewModel.swift in Sources */,
 				E54CFAF2222C1EDF002DA0D1 /* TPSInputHeader.swift in Sources */,
 				8409374D21D361240024A444 /* PilpresNavigator.swift in Sources */,
+				84CAF465225C7838003128B3 /* C1SummaryPemilihView.swift in Sources */,
 				840850DF21D2843D00696CB3 /* BadgeViewModel.swift in Sources */,
 				1184752221FDEAC300D44FA5 /* ClusterCategoryDelegate.swift in Sources */,
 				E54CFB12222C4DD2002DA0D1 /* UploadC1Header.swift in Sources */,
@@ -4597,6 +4652,7 @@
 				1147F23321F84306001D0D59 /* ClusterSearchNavigator.swift in Sources */,
 				11DA970F2222C2C200A51E76 /* PerhitunganCell.swift in Sources */,
 				131DBDAE2215AF48005203FF /* ClapView.swift in Sources */,
+				84CAF45D225C4E89003128B3 /* RekapDetailTPSViewModel.swift in Sources */,
 				840850D721D2802000696CB3 /* ProfileInfoDummyData.swift in Sources */,
 				13F4569921CF982E00CE45F1 /* QuestionNavigator.swift in Sources */,
 				84E2854721CA1E8300298E31 /* PilpresType.swift in Sources */,

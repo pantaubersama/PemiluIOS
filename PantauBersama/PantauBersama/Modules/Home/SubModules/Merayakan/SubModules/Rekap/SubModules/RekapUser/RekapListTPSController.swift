@@ -20,13 +20,12 @@ class RekapListTPSController: UITableViewController {
         
         tableView.delegate = nil
         tableView.dataSource = nil
-        tableView.rowHeight = 112.0
+        tableView.rowHeight = 120.0
         tableView.estimatedRowHeight = UITableView.automaticDimension
         tableView.separatorStyle = .none
         tableView.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
         tableView.registerReusableCell(RekapTPSUserCell.self)
         tableView.tableFooterView = UIView()
-        tableView.allowsSelection = false
         
         let back = UIBarButtonItem(image: #imageLiteral(resourceName: "back"), style: .plain, target: nil, action: nil)
         navigationItem.leftBarButtonItem = back
@@ -43,8 +42,13 @@ class RekapListTPSController: UITableViewController {
             .drive(tableView.rx.items) { tableView, row, item in
                 let cell = tableView.dequeueReusableCell() as RekapTPSUserCell
                 cell.configureCell(item: RekapTPSUserCell.Input(data: item))
+                cell.selectionStyle = .none
                 return cell
             }
+            .disposed(by: disposeBag)
+        
+        tableView.rx.itemSelected
+            .bind(to: viewModel.input.itemSelectedI)
             .disposed(by: disposeBag)
         
         
@@ -57,6 +61,10 @@ class RekapListTPSController: UITableViewController {
                 guard let `self` = self else { return }
                 self.navigationItem.title = name
             })
+            .disposed(by: disposeBag)
+        
+        viewModel.output.itemSelectedO
+            .drive()
             .disposed(by: disposeBag)
     }
     
