@@ -10,6 +10,7 @@ import UIKit
 import Common
 import RxSwift
 import RxCocoa
+import Networking
 
 class RekapDetailTPSFooter: UIView {
     
@@ -40,6 +41,16 @@ class RekapDetailTPSFooter: UIView {
     private func configureView() {
         stackView.addArrangedSubview(c1SummaryPemilihView)
         stackView.addArrangedSubview(c1SuratSuaraView)
+        
+        c1SuratSuaraView.txtSuratDigunakan.isEnabled = false
+        c1SuratSuaraView.txtSuratDiterima.isEnabled = false
+        c1SuratSuaraView.txtSuratDikembalikan.isEnabled = false
+        c1SuratSuaraView.txtSuratTidakDigunakan.isEnabled = false
+    }
+    
+    func configure(data: C1Response) {
+        self.c1SummaryPemilihView.configure(data: data)
+        self.c1SuratSuaraView.configure(data: data)
     }
     
 }

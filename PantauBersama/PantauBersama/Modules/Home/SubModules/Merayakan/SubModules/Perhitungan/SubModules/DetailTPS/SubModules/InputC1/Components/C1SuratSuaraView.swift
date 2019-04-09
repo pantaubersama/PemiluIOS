@@ -9,6 +9,7 @@
 import UIKit
 import Common
 import RxSwift
+import Networking
 
 class C1SuratSuaraView: UIView {
     @IBOutlet weak var txtSuratDikembalikan: TPSTextField!
@@ -45,6 +46,10 @@ class C1SuratSuaraView: UIView {
                 self.txtSuratDiterima.text = total
             })
             .disposed(by: self.disposeBag)
+        
+    }
+    
+    func configure(data: C1Response) {
         
     }
 

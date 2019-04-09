@@ -14,7 +14,7 @@ import Common
 
 class SummaryPresidenTPSView: UIView {
     
-    @IBOutlet weak var ivAvatar: UIImageView!
+    @IBOutlet weak var ivAvatar: CircularUIImageView!
     @IBOutlet weak var lblName: Label!
     @IBOutlet weak var lblTPS: Label!
     @IBOutlet weak var lblWilayah: Label!
@@ -43,4 +43,20 @@ class SummaryPresidenTPSView: UIView {
         addSubview(view)
     }
     
+    func configure(data: DetailSummaryPresidenResponse) {
+        if let avatar = data.user?.avatar.thumbnail.url {
+            self.ivAvatar.af_setImage(withURL: URL(string: avatar)!)
+        }
+        lblName.text = data.user?.fullName
+        lblTPS.text = "\(data.tps)"
+        lblWilayah.text = data.percentage.region.name
+        let candidatesSatu = data.percentage.candidates?.filter({ $0.id == 1}).first
+        let candidateDua = data.percentage.candidates?.filter({ $0.id == 2}).first
+        lblPercentagePaslonSatu.text = "\(candidatesSatu?.percentage ?? 0.0)%"
+        lblPercentagePaslonDua.text = "\(candidateDua?.percentage ?? 0.0)%"
+        lblSummaryPaslonSatu.text = "| \(candidatesSatu?.totalVote ?? 0) suara"
+        lblSummaryPaslonDua.text = "| \(candidateDua?.totalVote ?? 0) suara"
+        lblSuaraTakSah.text = "\(data.percentage.invalidVote.totalVote)"
+        lblSuaraSah.text = "\(data.percentage.totalVote)"
+    }
 }

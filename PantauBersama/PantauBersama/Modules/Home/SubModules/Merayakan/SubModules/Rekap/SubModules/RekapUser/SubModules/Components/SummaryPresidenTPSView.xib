@@ -12,7 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SummaryPresidenTPSView" customModule="PantauBersama" customModuleProvider="target">
             <connections>
-                <outlet property="ivAvatar" destination="NnB-rp-bOE" id="tlf-bA-X9R"/>
+                <outlet property="ivAvatar" destination="NnB-rp-bOE" id="fbw-Jn-8dq"/>
                 <outlet property="lblName" destination="i86-Ig-KxN" id="Lff-DZ-otl"/>
                 <outlet property="lblPercentagePaslonDua" destination="IL9-1d-S2c" id="Swg-FZ-PBL"/>
                 <outlet property="lblPercentagePaslonSatu" destination="K62-34-Pml" id="5hk-sW-MWB"/>
@@ -35,7 +35,7 @@
                         <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="nLx-mZ-3cT">
                             <rect key="frame" x="10" y="18.5" width="355" height="18"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NnB-rp-bOE">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NnB-rp-bOE" customClass="CircularUIImageView" customModule="Common">
                                     <rect key="frame" x="0.0" y="0.0" width="18" height="18"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="18" id="T8x-Fr-Psi"/>

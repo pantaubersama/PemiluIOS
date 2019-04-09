@@ -22,8 +22,9 @@ final class RekapDetailTPSViewModel: ViewModelType {
     }
     
     struct Output {
-        let itemsO: Driver<[SectionModelsTPSSummary]>
         let backO: Driver<Void>
+        let summaryPresidenO: Driver<DetailSummaryPresidenResponse>
+        let c1SummaryO: Driver<C1Response>
     }
     
     private let navigator: RekapDetailTPSNavigator
@@ -48,11 +49,11 @@ final class RekapDetailTPSViewModel: ViewModelType {
         
         /// GET Summary presiden
         let summaryPresiden = refreshS.startWith("")
-            .flatMapLatest { [weak self] (_) -> Observable<DetailSummaryPercentage> in
+            .flatMapLatest { [weak self] (_) -> Observable<DetailSummaryPresidenResponse> in
                 guard let `self` = self else { return Observable.empty() }
                 return NetworkService.instance
                     .requestObject(HitungAPI.summaryPresidenShow(level: 6, region: realCount.villageCode, tps: realCount.tps, realCountId: realCount.id), c: BaseResponse<DetailSummaryPresidenResponse>.self)
-                    .map({ $0.data.percentage })
+                    .map({ $0.data })
                     .do(onSuccess: { (summary) in
                         print("Summary: \(summary)")
                     }, onError: { (e) in
@@ -82,39 +83,10 @@ final class RekapDetailTPSViewModel: ViewModelType {
                 
         }
         
-        /// Assing to items section
-        let item = Observable.combineLatest(summaryPresiden, c1Summary)
-            .flatMapLatest { (summaryPresiden, c1Summary) -> Observable<[SectionModelsTPSSummary]> in
-                return Observable.just([
-                    SectionModelsTPSSummary(title: nil, description: nil, items: [TPSItemModel.presiden(summaryPresiden)]),
-                    SectionModelsTPSSummary(title: nil, description: "Lampiran", items: [TPSItemModel.lampiran(c1Summary.realCount.logs)]),
-                    SectionModelsTPSSummary(title: "I. DATA PEMILIH dan DATA PENGGUNA HAK PILIH", description: "A. DATA PEMILIH", items: [
-                            TPSItemModel.c1PemilihDPT(c1Summary),
-                            TPSItemModel.c1PemilihDPTb(c1Summary),
-                            TPSItemModel.c1PemilihDPK(c1Summary),
-                            TPSItemModel.c1TotalPemilihA1A3(c1Summary)
-                        ]),
-                    SectionModelsTPSSummary(title: nil, description: "B. PENGGUNA HAK PILIH", items: [
-                            TPSItemModel.c1HakDPT(c1Summary),
-                            TPSItemModel.c1HakDPTb(c1Summary),
-                            TPSItemModel.c1HakDPK(c1Summary),
-                            TPSItemModel.c1TotalHakB1B3(c1Summary)
-                        ]),
-                    SectionModelsTPSSummary(title: "II. DATA PEMILIH DISABILITAS", description: nil, items: [
-                            TPSItemModel.c1DisabilitasTotal(c1Summary),
-                            TPSItemModel.c1DisabilitasHak(c1Summary)
-                        ]),
-                    SectionModelsTPSSummary(title: "III. DATA PENGGUNAAN SURAT SUARA", description: nil, items: [
-                            TPSItemModel.c1TotalSuaraDPT(c1Summary),
-                            TPSItemModel.c1TotalSuraRusak(c1Summary),
-                            TPSItemModel.c1TotalSuaraTidakDigunakan(c1Summary),
-                            TPSItemModel.c1TotalSuaraDigunakan(c1Summary)
-                        ])
-                ])
-        }.asDriver(onErrorJustReturn: [])
         
-        
-        output = Output(itemsO: item, backO: back)
+        output = Output(backO: back,
+                        summaryPresidenO: summaryPresiden.asDriverOnErrorJustComplete(),
+                        c1SummaryO: c1Summary.asDriverOnErrorJustComplete())
         
     }
 }
