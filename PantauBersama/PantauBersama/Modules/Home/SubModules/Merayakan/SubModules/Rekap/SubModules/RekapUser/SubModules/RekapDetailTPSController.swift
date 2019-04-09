@@ -54,6 +54,7 @@ class RekapDetailTPSController: UITableViewController {
         
         viewModel.output.c1SummaryO
             .drive(onNext: { [weak self] (response) in
+                print("ITEM RESPONSE: \(response)")
                 guard let `self` = self else { return }
                 self.footerView.configure(data: response)
             })

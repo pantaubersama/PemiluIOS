@@ -50,7 +50,10 @@ class C1SuratSuaraView: UIView {
     }
     
     func configure(data: C1Response) {
-        
+        txtSuratDigunakan.text = "\(data.suratDigunakan)"
+        txtSuratDikembalikan.text = "\(data.suratDikembalikan)"
+        txtSuratTidakDigunakan.text = "\(data.suratTidakDigunakan)"
+        txtSuratDiterima.text = "\(0)"
     }
 
 }
