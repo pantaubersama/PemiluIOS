@@ -166,7 +166,7 @@ class C1InputFormViewModel: ViewModelType {
             .asDriverOnErrorJustComplete()
         
         let a3Total = Observable.combineLatest(A3LakiS, A3PerempuanS)
-            .map { [weak self] (laki, perempuan) -> String in
+            .map { (laki, perempuan) -> String in
                 let total = (Int(laki) ?? 0) + (Int(perempuan) ?? 0)
                 return "\(total)"
             }
