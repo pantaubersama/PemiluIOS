@@ -31,7 +31,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OO7-oo-hU2" customClass="Label" customModule="Common">
-                                <rect key="frame" x="86" y="16" width="226" height="50"/>
+                                <rect key="frame" x="86" y="16" width="270" height="50"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.4392156862745098" green="0.4392156862745098" blue="0.4392156862745098" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -42,10 +42,6 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="typeLabel" value="regular"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n3g-GD-S8Q">
-                                <rect key="frame" x="332" y="16" width="24" height="50"/>
-                                <state key="normal" image="outlineCloseBlack24Px"/>
-                            </button>
                         </subviews>
                         <edgeInsets key="layoutMargins" top="16" left="16" bottom="16" right="16"/>
                     </stackView>
@@ -61,7 +57,4 @@
             <point key="canvasLocation" x="0.0" y="50.374812593703155"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="outlineCloseBlack24Px" width="24" height="24"/>
-    </resources>
 </document>
