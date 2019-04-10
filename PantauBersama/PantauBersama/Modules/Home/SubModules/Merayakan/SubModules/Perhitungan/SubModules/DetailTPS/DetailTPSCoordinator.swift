@@ -99,7 +99,7 @@ extension DetailTPSCoordinator: DetailTPSNavigator {
         if let viewModel = self.viewModel {
             let viewController = SubmitTPSConfirmationController(viewModel: viewModel)
             viewController.modalPresentationStyle = .overCurrentContext
-            
+            viewController.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
             navigationController.present(viewController, animated: true, completion: nil)
         }
         return Observable.never()
