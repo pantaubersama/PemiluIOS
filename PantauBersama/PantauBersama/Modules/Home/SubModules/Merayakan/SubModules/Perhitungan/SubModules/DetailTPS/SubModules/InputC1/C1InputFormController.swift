@@ -38,6 +38,7 @@ class C1InputFormController: UIViewController {
     var viewModel: C1InputFormViewModel!
     var type: FormC1Type!
     @IBOutlet weak var lblDesc: Label!
+    @IBOutlet weak var btnSimpan: Button!
     
     private let disposeBag = DisposeBag()
     
@@ -61,6 +62,10 @@ class C1InputFormController: UIViewController {
         back.rx.tap
             .bind(to: viewModel.input.backI)
             .disposed(by: disposeBag)
+        
+        btnSimpan.rx.tap
+            .bind(to: viewModel.input.simpanI)
+            .disposed(by: disposeBag)
 
         pemilihView.config(viewModel: viewModel)
         pemilihDisabilitasView.config(viewModel: viewModel)
@@ -73,5 +78,62 @@ class C1InputFormController: UIViewController {
         viewModel.output.backO
             .drive()
             .disposed(by: disposeBag)
+        
+        viewModel.output.c1SummaryO
+            .drive(onNext: { [weak self] (response) in
+                guard let `self` = self else { return }
+                self.pemilihView.configureInitial(data: response)
+                self.pemilihDisabilitasView.configureInitial(data: response)
+                self.suratSuaraView.configure(data: response)
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.output.simpanO
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.errorO
+            .drive(onNext: { [weak self] (e) in
+                guard let alert = UIAlertController.alert(with: e) else { return }
+                self?.navigationController?.present(alert, animated: true, completion: nil)
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.output.a3O
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.a4O
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.aDpkO
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.c7DptO
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.c7DptbO
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.c7DpkO
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.disTerdaftarO
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.disHakO
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.suratO
+            .drive()
+            .disposed(by: disposeBag)
+        
     }
 }

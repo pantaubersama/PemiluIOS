@@ -10,6 +10,7 @@ import Foundation
 import Common
 import RxSwift
 import RxCocoa
+import Networking
 
 class C1InputFormViewModel: ViewModelType {
     
@@ -39,6 +40,8 @@ class C1InputFormViewModel: ViewModelType {
         let suratDikembalikanI: AnyObserver<String>
         let suratTidakDigunakanI: AnyObserver<String>
         let suratDigunakanI: AnyObserver<String>
+        
+        let refreshI: AnyObserver<String>
     }
     
     struct Output {
@@ -63,13 +66,30 @@ class C1InputFormViewModel: ViewModelType {
         let disPilihTotalO: Driver<String>
         
         let suratDiterimaO: Driver<String>
+        let c1SummaryO: Driver<C1Response>
+        let errorO: Driver<Error>
+        
+        let a3O: Driver<Void>
+        let a4O: Driver<Void>
+        let aDpkO: Driver<Void>
+        let c7DptO: Driver<Void>
+        let c7DptbO: Driver<Void>
+        let c7DpkO: Driver<Void>
+        let disTerdaftarO: Driver<Void>
+        let disHakO: Driver<Void>
+        let suratO: Driver<Void>
     }
     
     
     var input: Input
-    var output: Output
+    var output: Output!
     
     private let navigator: C1InputFormNavigator
+    private let realCount: RealCount
+    private let tingkat: TingkatPemilihan
+    private let errorTracker = ErrorTracker()
+    private let activityIndicator = ActivityIndicator()
+    
     private let backS = PublishSubject<Void>()
     private let simpanS = PublishSubject<Void>()
     private let detailTPSS = PublishSubject<Void>()
@@ -98,8 +118,12 @@ class C1InputFormViewModel: ViewModelType {
     private let suratTidakDigunakanS = PublishSubject<String>()
     private let suratDigunakanS = PublishSubject<String>()
     
-    init(navigator: C1InputFormNavigator) {
+    private let refreshS = PublishSubject<String>()
+    
+    init(navigator: C1InputFormNavigator, realCount: RealCount, tingkat: TingkatPemilihan) {
         self.navigator = navigator
+        self.realCount = realCount
+        self.tingkat = tingkat
         
         input = Input(backI: backS.asObserver(),
                       simpanI: simpanS.asObserver(),
@@ -121,14 +145,28 @@ class C1InputFormViewModel: ViewModelType {
                       disPilihPerempuanI: disPilihPerempuanS.asObserver(),
                       suratDikembalikanI: suratDikembalikanS.asObserver(),
                       suratTidakDigunakanI: suratTidakDigunakanS.asObserver(),
-                      suratDigunakanI: suratDigunakanS.asObserver())
+                      suratDigunakanI: suratDigunakanS.asObserver(),
+                      refreshI: refreshS.asObserver())
+        
+        /// TODO: GET Initial value
+        let c1Summary = refreshS.startWith("")
+            .flatMapLatest { [weak self] (_) -> Observable<C1Response> in
+                guard let `self` = self else { return Observable.empty() }
+                return NetworkService.instance
+                    .requestObject(HitungAPI.getFormC1(hitungRealCountId: realCount.id, tingkat: tingkat), c: BaseResponse<SummaryC1Response>.self)
+                    .map({ $0.data.formC1 })
+                    .trackError(self.errorTracker)
+                    .trackActivity(self.activityIndicator)
+                    .asObservable()
+                
+        }
         
         let back = backS
             .flatMap({ navigator.back() })
             .asDriverOnErrorJustComplete()
         
         let a3Total = Observable.combineLatest(A3LakiS, A3PerempuanS)
-            .map { (laki, perempuan) -> String in
+            .map { [weak self] (laki, perempuan) -> String in
                 let total = (Int(laki) ?? 0) + (Int(perempuan) ?? 0)
                 return "\(total)"
             }
@@ -230,8 +268,188 @@ class C1InputFormViewModel: ViewModelType {
             .asDriver(onErrorJustReturn: "0")
         
         
+        /// TODO: Handle Save
+        let save = simpanS.asDriverOnErrorJustComplete()
+        
+        
+        // MARK
+        // A3 Save and Others
+        let a3 = Observable.combineLatest(A3LakiS.startWith("0"),
+                                           A3PerempuanS.startWith("0"))
+            .flatMapLatest { l,p -> Driver<SummaryC1Response> in
+                return NetworkService.instance
+                    .requestObject(HitungAPI.putFormC1(parameters: [
+                        "hitung_real_count_id": self.realCount.id,
+                        "form_c1_type": self.tingkat.rawValue,
+                        "a3_laki_laki": l,
+                        "a3_perempuan": p
+                        ]), c: BaseResponse<SummaryC1Response>.self)
+                    .map{ $0.data }
+                    .asObservable()
+                    .trackError(self.errorTracker)
+                    .trackActivity(self.activityIndicator)
+                    .asDriverOnErrorJustComplete()
+            }
+            .mapToVoid()
+            .asDriverOnErrorJustComplete()
+        
+        let a4 = Observable.combineLatest(A4LakiS.startWith("0"),
+                                           A4PerempuanS.startWith("0"))
+            .flatMapLatest { l,p -> Driver<SummaryC1Response> in
+                return NetworkService.instance
+                    .requestObject(HitungAPI.putFormC1(parameters: [
+                        "hitung_real_count_id": self.realCount.id,
+                        "form_c1_type": self.tingkat.rawValue,
+                        "a4_laki_laki": l,
+                        "a4_perempuan": p
+                        ]), c: BaseResponse<SummaryC1Response>.self)
+                    .map{ $0.data }
+                    .asObservable()
+                    .trackError(self.errorTracker)
+                    .trackActivity(self.activityIndicator)
+                    .asDriverOnErrorJustComplete()
+            }
+            .mapToVoid()
+            .asDriverOnErrorJustComplete()
+        
+        let aDpk =  Observable.combineLatest(ADPKLakiS.startWith("0"),
+                                           ADPKPerempuanS.startWith("0"))
+            .flatMapLatest { l,p -> Driver<SummaryC1Response> in
+                return NetworkService.instance
+                    .requestObject(HitungAPI.putFormC1(parameters: [
+                        "hitung_real_count_id": self.realCount.id,
+                        "form_c1_type": self.tingkat.rawValue,
+                        "a_dpk_laki_laki": l,
+                        "a_dpk_perempuan": p
+                        ]), c: BaseResponse<SummaryC1Response>.self)
+                    .map{ $0.data }
+                    .asObservable()
+                    .trackError(self.errorTracker)
+                    .trackActivity(self.activityIndicator)
+                    .asDriverOnErrorJustComplete()
+            }
+            .mapToVoid()
+            .asDriverOnErrorJustComplete()
+        
+        let c7Dpt = Observable.combineLatest(C7DPTLakiS.startWith("0"),
+                                             C7DPTPerempuanS.startWith("0"))
+            .flatMapLatest { l,p -> Driver<SummaryC1Response> in
+                return NetworkService.instance
+                    .requestObject(HitungAPI.putFormC1(parameters: [
+                        "hitung_real_count_id": self.realCount.id,
+                        "form_c1_type": self.tingkat.rawValue,
+                        "c7_dpt_laki_laki": l,
+                        "c7_dpt_perempuan": p
+                        ]), c: BaseResponse<SummaryC1Response>.self)
+                    .map{ $0.data }
+                    .asObservable()
+                    .trackError(self.errorTracker)
+                    .trackActivity(self.activityIndicator)
+                    .asDriverOnErrorJustComplete()
+            }
+            .mapToVoid()
+            .asDriverOnErrorJustComplete()
+        
+        let c7Dptb = Observable.combineLatest(C7DPTBLakiS.startWith("0"),
+                                              C7DPTBPerempuanS.startWith("0"))
+            .flatMapLatest { l,p -> Driver<SummaryC1Response> in
+                return NetworkService.instance
+                    .requestObject(HitungAPI.putFormC1(parameters: [
+                        "hitung_real_count_id": self.realCount.id,
+                        "form_c1_type": self.tingkat.rawValue,
+                        "c7_dptb_laki_laki": l,
+                        "c7_dptb_perempuan": p
+                        ]), c: BaseResponse<SummaryC1Response>.self)
+                    .map{ $0.data }
+                    .asObservable()
+                    .trackError(self.errorTracker)
+                    .trackActivity(self.activityIndicator)
+                    .asDriverOnErrorJustComplete()
+            }
+            .mapToVoid()
+            .asDriverOnErrorJustComplete()
+        
+        let c7Dpk = Observable.combineLatest(C7DPKLakiS.startWith("0"),
+                                             C7DPKPerempuanS.startWith("0"))
+            .flatMapLatest { l,p -> Driver<SummaryC1Response> in
+                return NetworkService.instance
+                    .requestObject(HitungAPI.putFormC1(parameters: [
+                        "hitung_real_count_id": self.realCount.id,
+                        "form_c1_type": self.tingkat.rawValue,
+                        "c7_dpk_laki_laki": l,
+                        "c7_dpk_perempuan": p
+                        ]), c: BaseResponse<SummaryC1Response>.self)
+                    .map{ $0.data }
+                    .asObservable()
+                    .trackError(self.errorTracker)
+                    .trackActivity(self.activityIndicator)
+                    .asDriverOnErrorJustComplete()
+            }
+            .mapToVoid()
+            .asDriverOnErrorJustComplete()
+        
+        let disTerdaftar = Observable.combineLatest(disTerdaftarLakiS.startWith("0"),
+                                                    disTerdaftarPerempuanS.startWith("0"))
+            .flatMapLatest { l,p -> Driver<SummaryC1Response> in
+                return NetworkService.instance
+                    .requestObject(HitungAPI.putFormC1(parameters: [
+                        "hitung_real_count_id": self.realCount.id,
+                        "form_c1_type": self.tingkat.rawValue,
+                        "disabilitas_terdaftar_laki_laki": l,
+                        "disabilitas_terdaftar_perempuan": p
+                        ]), c: BaseResponse<SummaryC1Response>.self)
+                    .map{ $0.data }
+                    .asObservable()
+                    .trackError(self.errorTracker)
+                    .trackActivity(self.activityIndicator)
+                    .asDriverOnErrorJustComplete()
+            }
+            .mapToVoid()
+            .asDriverOnErrorJustComplete()
+        
+        let disHak = Observable.combineLatest(disPilihLakiS.startWith("0"),
+                                              disPilihPerempuanS.startWith("0"))
+            .flatMapLatest { l,p -> Driver<SummaryC1Response> in
+                return NetworkService.instance
+                    .requestObject(HitungAPI.putFormC1(parameters: [
+                        "hitung_real_count_id": self.realCount.id,
+                        "form_c1_type": self.tingkat.rawValue,
+                        "disabilitas_hak_pilih_laki_laki": l,
+                        "disabilitas_hak_pilih_perempuan": p
+                        ]), c: BaseResponse<SummaryC1Response>.self)
+                    .map{ $0.data }
+                    .asObservable()
+                    .trackError(self.errorTracker)
+                    .trackActivity(self.activityIndicator)
+                    .asDriverOnErrorJustComplete()
+            }
+            .mapToVoid()
+            .asDriverOnErrorJustComplete()
+        
+        let surat = Observable.combineLatest(suratDikembalikanS.startWith("0"),
+                                             suratTidakDigunakanS.startWith("0"),
+                                             suratDigunakanS.startWith("0"))
+            .flatMapLatest { a,b,c -> Driver<SummaryC1Response> in
+                return NetworkService.instance
+                    .requestObject(HitungAPI.putFormC1(parameters: [
+                        "hitung_real_count_id": self.realCount.id,
+                        "form_c1_type": self.tingkat.rawValue,
+                        "surat_dikembalikan": a,
+                        "surat_tidak_digunakan": b,
+                        "surat_digunakan": c
+                        ]), c: BaseResponse<SummaryC1Response>.self)
+                    .map{ $0.data }
+                    .asObservable()
+                    .trackError(self.errorTracker)
+                    .trackActivity(self.activityIndicator)
+                    .asDriverOnErrorJustComplete()
+            }
+            .mapToVoid()
+            .asDriverOnErrorJustComplete()
+        
+        
         output = Output(backO: back,
-                        simpanO: Driver.empty(),
+                        simpanO: save,
                         A3TotalO: a3Total,
                         A4TotalO: a4Total,
                         ADPKTotalO: aDPKTotal,
@@ -246,6 +464,16 @@ class C1InputFormViewModel: ViewModelType {
                         TotalAllC7O: TotalAllC7,
                         disTerdaftarTotalO: disTerdaftarTotal,
                         disPilihTotalO: disPilihTotal,
-                        suratDiterimaO: Driver.just("0"))
+                        suratDiterimaO: Driver.just("0"), c1SummaryO: c1Summary.asDriverOnErrorJustComplete(),
+                        errorO: self.errorTracker.asDriver(),
+                        a3O: a3,
+                        a4O: a4,
+                        aDpkO: aDpk,
+                        c7DptO: c7Dpt,
+                        c7DptbO: c7Dptb,
+                        c7DpkO: c7Dpk,
+                        disTerdaftarO: disTerdaftar,
+                        disHakO: disHak,
+                        suratO: surat)
     }
 }
