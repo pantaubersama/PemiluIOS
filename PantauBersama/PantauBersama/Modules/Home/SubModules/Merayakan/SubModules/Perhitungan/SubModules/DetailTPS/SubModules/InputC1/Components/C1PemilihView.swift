@@ -9,6 +9,7 @@
 import UIKit
 import Common
 import RxSwift
+import Networking
 
 class C1PemilihView: UIView {
 
@@ -174,4 +175,37 @@ class C1PemilihView: UIView {
         
     }
 
+    func configureInitial(data: C1Response) {
+        txtA3Laki.text = "\(data.a3Laki)"
+        txtA3Perempuan.text = "\(data.a3Perempuan)"
+        txtA3Total.text = "\(data.aggregates.a3Total)"
+        
+        txtA4Laki.text = "\(data.a4Laki)"
+        txtA4Perempuan.text = "\(data.a4Perempuan)"
+        txtA4Total.text = "\(data.aggregates.a4Total)"
+        
+        txtADPKLaki.text = "\(data.aDpkLaki)"
+        txtADPKPerempuan.text = "\(data.aDpkPerempuan)"
+        txtADPKTotal.text = "\(data.aggregates.aDpkTotal)"
+        
+        txtTotalLakiA3.text = "\(data.aggregates.pemilihLakiTotal)"
+        txtTotalPerempuanA3.text = "\(data.aggregates.pemilihPerempuanTotal)"
+        txtTotalAllA3.text = "\(data.aggregates.a3Total)"
+        
+        txtC7DPTLaki.text = "\(data.c7DptLaki)"
+        txtC7DPTPerempuan.text = "\(data.c7DptPerempuan)"
+        txtC7DPTTotal.text = "\(data.aggregates.c7DptTotal)"
+        
+        txtC7DPTBLaki.text = "\(data.c7DptbLaki)"
+        txtC7DPTBPerempuan.text = "\(data.c7DptbPerempuan)"
+        txtC7DPTBTotal.text = "\(data.aggregates.c7dptbTotal)"
+        
+        txtC7DPKLaki.text = "\(data.c7DpkLaki)"
+        txtC7DPKPerempuan.text = "\(data.c7DpkPerempuan)"
+        txtC7DPKTotal.text = "\(data.aggregates.c7dpkTotal)"
+        
+        txtTotalLakiC7.text = "\(data.aggregates.c7LakiHakPilihTotal)"
+        txtTotalPerempuanC7.text = "\(data.aggregates.c7PerempuanHakPilihTotal)"
+        txtTotalAllC7.text = "\(data.aggregates.c7HakPilihTotal)"
+    }
 }

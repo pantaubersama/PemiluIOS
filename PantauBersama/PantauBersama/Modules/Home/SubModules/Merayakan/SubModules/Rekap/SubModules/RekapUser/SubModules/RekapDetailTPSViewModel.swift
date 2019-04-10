@@ -221,48 +221,46 @@ final class RekapDetailTPSViewModel: ViewModelType {
     }
     
     private func transformToSection(data: [ImageResponse], type: RealCountImageType) -> [SectionModelsTPSImages] {
-        
-        var title: String = ""
-        
+        var section: [SectionModelsTPSImages] = []
         switch type {
         case .c1Presiden:
             if data.count == 0 {
-                title = ""
+                section = []
             } else {
-                title = "Lampiran Model C1-PPWP (Presiden)"
+                section.append(SectionModelsTPSImages(title: "Lampiran Model C1-PPWP (Presiden)", items: data))
             }
         case .c1DPR:
             if data.count == 0 {
-                title = ""
+                section = []
             } else {
-                title = "Lampiran Model C1-DPR RI"
+                section.append(SectionModelsTPSImages(title: "Lampiran Model C1-DPR RI", items: data))
             }
         case .c1DPD:
             if data.count == 0 {
-                title = ""
+                section = []
             } else {
-                title = "Lampiran Model C1-DPD"
+                section.append(SectionModelsTPSImages(title: "Lampiran Model C1-DPD", items: data))
             }
         case .c1DPRDProvinsi:
             if data.count == 0 {
-                title = ""
+                section = []
             } else {
-                title = "Lampiran Model C1-DPRD Provinsi"
+                section.append(SectionModelsTPSImages(title: "Lampiran Model C1-DPRD Provinsi", items: data))
             }
         case .c1DPRDKabupaten:
             if data.count == 0 {
-                title = ""
+                section = []
             } else {
-                title = "Lampiran Model C1-DPRD Kabupaten/Kota"
+                section.append(SectionModelsTPSImages(title: "Lampiran Model C1-DPRD Kabupaten/Kota", items: data))
             }
         case .suasanaTPS:
             if data.count == 0 {
-                title = ""
+                section = []
             } else {
-                title = "Lampiran Suasana TPS"
+                section.append(SectionModelsTPSImages(title: "Lampiran Suasana TPS", items: data))
             }
         }
-        return [SectionModelsTPSImages(title: title, items: data)]
+        return section
     }
 }
 

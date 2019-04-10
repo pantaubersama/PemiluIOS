@@ -38,8 +38,9 @@ class RekapDetailTPSController: UITableViewController {
         navigationItem.leftBarButtonItem = back
         
         dataSource = RxTableViewSectionedReloadDataSource<SectionModelsTPSImages>(configureCell: { (dataSource, tableView, indexPath, item) in
+            print("section models: \(dataSource.sectionModels)")
             let cell = tableView.dequeueReusableCell(indexPath: indexPath) as RekapDetailPhotosCell
-            cell.configureCell(item: RekapDetailPhotosCell.Input(data: item, title: "\(dataSource.sectionModels[indexPath.row].title) \(indexPath.row + 1)"))
+            cell.configureCell(item: RekapDetailPhotosCell.Input(data: item, title: "Gambar \(indexPath.row)"))
             return cell
         })
         

@@ -153,23 +153,23 @@ class DetailTPSViewModel: ViewModelType {
             .asDriverOnErrorJustComplete()
         
         let c1FormPresiden = c1PresidenS
-            .flatMap({ navigator.launchC1Form(type: .presiden) })
+            .flatMap({ _ in navigator.launchC1Form(type: .presiden, data: self.data, tingkat: .presiden) })
             .asDriverOnErrorJustComplete()
         
         let c1FormDPR = c1DPRS
-            .flatMap({ navigator.launchC1Form(type: .dpr) })
+            .flatMap({ navigator.launchC1Form(type: .dpr, data: self.data, tingkat: .dpr) })
             .asDriverOnErrorJustComplete()
         
         let c1FormDPD = c1DPDS
-            .flatMap({ navigator.launchC1Form(type: .dpd) })
+            .flatMap({ navigator.launchC1Form(type: .dpd, data: self.data, tingkat: .dpd) })
             .asDriverOnErrorJustComplete()
         
         let c1FormDPRDProv = c1DPRDProvS
-            .flatMap({ navigator.launchC1Form(type: .dprdProv) })
+            .flatMap({ navigator.launchC1Form(type: .dprdProv, data: self.data, tingkat: .provinsi) })
             .asDriverOnErrorJustComplete()
         
         let c1FormDPRDKota = c1DPRDKotaS
-            .flatMap({ navigator.launchC1Form(type: .dprdKota) })
+            .flatMap({ navigator.launchC1Form(type: .dprdKota, data: self.data, tingkat: .kabupaten) })
             .asDriverOnErrorJustComplete()
         
         

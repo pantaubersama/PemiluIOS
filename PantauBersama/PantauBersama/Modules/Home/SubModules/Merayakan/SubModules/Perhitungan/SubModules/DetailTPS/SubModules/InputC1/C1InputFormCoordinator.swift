@@ -9,6 +9,7 @@
 import Common
 import RxSwift
 import RxCocoa
+import Networking
 
 protocol C1InputFormNavigator {
     func back() -> Observable<Void>
@@ -17,15 +18,19 @@ protocol C1InputFormNavigator {
 class C1InputFormCoordinator: BaseCoordinator<Void> {
     private let navigationController: UINavigationController
     private let type: FormC1Type
+    private let realCount: RealCount
+    private let tingkat: TingkatPemilihan
     
-    init(navigationController: UINavigationController, type: FormC1Type) {
+    init(navigationController: UINavigationController, type: FormC1Type, realCount: RealCount, tingkat: TingkatPemilihan) {
         self.type = type
         self.navigationController = navigationController
+        self.realCount = realCount
+        self.tingkat = tingkat
     }
     
     override func start() -> Observable<Void> {
         let viewController = C1InputFormController()
-        let viewModel = C1InputFormViewModel(navigator: self)
+        let viewModel = C1InputFormViewModel(navigator: self, realCount: self.realCount, tingkat: self.tingkat)
         viewController.viewModel = viewModel
         viewController.hidesBottomBarWhenPushed = true
         viewController.type = type

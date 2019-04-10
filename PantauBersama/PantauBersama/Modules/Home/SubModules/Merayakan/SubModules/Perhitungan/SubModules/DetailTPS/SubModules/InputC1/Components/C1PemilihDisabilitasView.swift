@@ -9,6 +9,7 @@
 import UIKit
 import Common
 import RxSwift
+import Networking
 
 class C1PemilihDisabilitasView: UIView {
 
@@ -57,6 +58,15 @@ class C1PemilihDisabilitasView: UIView {
             })
             .disposed(by: self.disposeBag)
         
+    }
+    
+    func configureInitial(data: C1Response) {
+        txtTerdaftarLaki.text = "\(data.disabilitasTerdaftarLaki)"
+        txtTerdaftarPerempuan.text = "\(data.disabilitasTerdaftarPerempuan)"
+        txtTerdaftarTotal.text = "\(data.aggregates.disabilitasTerdaftarTotal)"
+        txtPilihLaki.text = "\(data.disabilitiasHakPilihLaki)"
+        txtPilihPerempuan.text = "\(data.disabilitasHakPilihPerempuan)"
+        txtPilihTotal.text = "\(data.aggregates.disabilitasHakPilihTotal)"
     }
     
 }

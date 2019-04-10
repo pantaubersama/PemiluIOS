@@ -49,6 +49,7 @@ class TPSTextField: UITextField {
         super.awakeFromNib()
         
         font = UIFont(name: "Lato-Regular", size: 14)
+        keyboardType = .numberPad
     }
     
     override func layoutSubviews() {
