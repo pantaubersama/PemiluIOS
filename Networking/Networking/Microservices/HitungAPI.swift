@@ -44,7 +44,7 @@ public enum HitungAPI {
     
     case deleteImages(id: Int)
     case getImages(id: Int)
-    case getImagesRealCount(hitungRealCountId: Int)
+    case getImagesRealCount(hitungRealCountId: String, type: RealCountImageType, page: Int, perPage: Int)
     case postImageRealCount(hitungRealCountId: Int, type: RealCountImageType, image: UIImage)
     
     case putRealCount(id: Int, noTps: Int)
@@ -244,8 +244,13 @@ extension HitungAPI: TargetType {
             ]
         case .putFormC1(let parameters):
             return parameters
-        case .getImagesRealCount(let hitungRealCountId):
-            return ["hitung_real_count_id": hitungRealCountId]
+        case .getImagesRealCount(let (hitungRealCountId, type, page, perPage)):
+            return [
+                "hitung_real_count_id": hitungRealCountId,
+                "image_type": type.rawValue,
+                "page": page,
+                "per_page": perPage
+            ]
         case .getCandidates(let (dapilId, tingkat)):
             return [
                 "dapil_id": dapilId,
