@@ -25,8 +25,8 @@
                             <constraint firstAttribute="height" constant="45" id="SFH-ac-UKv"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZxB-k4-EXQ" customClass="Label" customModule="Common">
-                        <rect key="frame" x="60" y="21.5" width="42" height="20.5"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZxB-k4-EXQ" customClass="Label" customModule="Common">
+                        <rect key="frame" x="60" y="32" width="0.0" height="0.0"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -46,6 +46,7 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="ivRekapImage" destination="E7k-QP-Y0q" id="slr-VL-Aus"/>
+                <outlet property="lblRekap" destination="ZxB-k4-EXQ" id="xDl-G3-PRT"/>
             </connections>
             <point key="canvasLocation" x="138.40000000000001" y="163.71814092953525"/>
         </tableViewCell>

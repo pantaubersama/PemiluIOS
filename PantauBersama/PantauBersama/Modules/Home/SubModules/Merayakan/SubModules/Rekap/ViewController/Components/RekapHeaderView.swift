@@ -48,8 +48,8 @@ class RekapHeaderView: UIView {
                 guard let `self` = self else { return }
                 let candidate1 = response.percentage?.candidates?.filter({ $0.id == 1 }).first
                 let candidate2 = response.percentage?.candidates?.filter({ $0.id == 2 }).first
-                let percentageSatuFormat = String(format: "%.0f", candidate1?.percentage ?? 0.0)
-                let percentageDuaFormat = String(format: "%.0f", candidate2?.percentage ?? 0.0)
+                let percentageSatuFormat = String(format: "%.2f", candidate1?.percentage ?? 0.0)
+                let percentageDuaFormat = String(format: "%.2f", candidate2?.percentage ?? 0.0)
                 self.suaraCapresView.lblPaslonSatuPercentage.text = percentageSatuFormat
                 self.suaraCapresView.lblPaslonDuaPercentage.text = percentageDuaFormat
                 print("Float number : \(Float(candidate1?.percentage ?? 0.0))")

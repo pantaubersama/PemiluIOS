@@ -39,7 +39,7 @@ class RekapDetailTPSController: UITableViewController {
         
         dataSource = RxTableViewSectionedReloadDataSource<SectionModelsTPSImages>(configureCell: { (dataSource, tableView, indexPath, item) in
             let cell = tableView.dequeueReusableCell(indexPath: indexPath) as RekapDetailPhotosCell
-            cell.configureCell(item: RekapDetailPhotosCell.Input(data: item))
+            cell.configureCell(item: RekapDetailPhotosCell.Input(data: item, title: "\(dataSource.sectionModels[indexPath.row].title) \(indexPath.row + 1)"))
             return cell
         })
         
