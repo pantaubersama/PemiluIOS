@@ -29,6 +29,7 @@ class WordstadiumItemViewCell: UITableViewCell {
     @IBOutlet weak var opponentCountLbl: UILabel!
     @IBOutlet weak var likeView: UIView!
     @IBOutlet weak var likeCountLbl: UILabel!
+    @IBOutlet weak var ivLike: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -48,6 +49,7 @@ class WordstadiumItemViewCell: UITableViewCell {
         rightPersonIv.af_cancelImageRequest()
         leftPersonIv.af_cancelImageRequest()
         backgroundItem.image = nil
+        ivLike.tintColor = nil
     }
     
 }
@@ -71,6 +73,13 @@ extension WordstadiumItemViewCell: IReusableCell {
         rightPersonView.isHidden = true
         rightUsername.text = ""
         opponentCountLbl.text = ""
+        likeCountLbl.text = "\(item.wordstadium.likeCount ?? 0)"
+        
+        // TODO: Need icon
+        if (item.wordstadium.isLiked ?? false) {
+            ivLike.image = ivLike.image?.withRenderingMode(.alwaysTemplate)
+            ivLike.tintColor = UIColor.red
+        }
         
         // configure header challenger side
         leftUsername.text = challenger?.fullName ?? ""

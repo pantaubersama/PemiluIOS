@@ -23,7 +23,8 @@ enum ChallengeType {
 
 enum ChallengeDetailResult {
     case result(id: String)
-    case cancel
+    case delete(id: String)
+    case cancel(isChange: Bool)
 }
 
 class ChallengeViewModel: ViewModelType {
@@ -58,7 +59,16 @@ class ChallengeViewModel: ViewModelType {
     }
     
     private var navigator: ChallengeNavigator
-    private var data: Challenge
+    private var data: Challenge {
+        didSet {
+            if oldValue.isLiked != data.isLiked {
+                isDataChanged = true
+            }
+            
+            // add another challenge to detect changes if necessary
+        }
+    }
+    private var isDataChanged: Bool = false
     
     private let backS = PublishSubject<Void>()
     private let actionButtonS = PublishSubject<Void>()
@@ -209,10 +219,28 @@ class ChallengeViewModel: ViewModelType {
                 }
         }.asDriverOnErrorJustComplete()
         
+        let putLove = loveS
+            .do(onNext: { [unowned self](_) in
+                self.data.likeCount = (self.data.isLiked ?? false) ? (self.data.likeCount ?? 0) - 1 : (self.data.likeCount ?? 0) + 1
+                self.data.isLiked = !(self.data.isLiked ?? false)
+                self.challengeS.onNext(self.data)
+            })
+            .flatMapLatest({ [unowned self] in
+                return (self.data.isLiked ?? false) ? self.putLove(id: self.data.id) : self.deleteLove(id: self.data.id)
+            })
+            .do(onNext: { [weak self](challenge) in
+                guard let `self` = self else { return }
+                
+                self.data = challenge
+                self.challengeS.onNext(self.data)
+            })
+            .asDriverOnErrorJustComplete()
+            .mapToVoid()
+        
         /// Need configuration coordination result, after delete challenge need know item index
-        let backSelected = backS.map({ ChallengeDetailResult.cancel })
+        let backSelected = backS.map({ [unowned self] in ChallengeDetailResult.cancel(isChange: self.isDataChanged) })
         let deleteSelected = deleteS
-            .map{ (result) in ChallengeDetailResult.result(id: result) }
+            .map{ (result) in ChallengeDetailResult.delete(id: result) }
         let closeSelected = Observable.merge(backSelected, deleteSelected)
             .take(1)
             .asDriverOnErrorJustComplete()
@@ -227,7 +255,7 @@ class ChallengeViewModel: ViewModelType {
                         shareO: share,
                         moreO: more,
                         moreMenuO: moreMenuSelected,
-                        loveO: loveS.asDriverOnErrorJustComplete())
+                        loveO: putLove)
     }
     
     private func putAskAsOpponent(into id: String) -> Observable<Bool> {
@@ -294,6 +322,21 @@ class ChallengeViewModel: ViewModelType {
             })
             .asObservable()
     }
+    
+    private func putLove(id: String) -> Observable<Challenge> {
+        return NetworkService.instance
+            .requestObject(WordstadiumAPI.loveChallenge(challengeId: id), c: BaseResponse<CreateChallengeResponse>.self)
+            .map({ $0.data.challenge })
+            .asObservable()
+    }
+    
+    private func deleteLove(id: String) -> Observable<Challenge> {
+        return NetworkService.instance
+            .requestObject(WordstadiumAPI.unloveChallenge(challengeId: id), c: BaseResponse<CreateChallengeResponse>.self)
+            .map({ $0.data.challenge })
+            .asObservable()
+    }
+
     // MARK
     // Handle Reject Direct with reason from opponents sides
     private func putDirectReject(id: String, reason: String) -> Observable<Bool> {

@@ -70,7 +70,7 @@ class WordstadiumListViewModel: ViewModelType {
             .withLatestFrom(showItems) { (indexPath, challenges) -> CellModel in
                 return challenges[indexPath.section].items[indexPath.row]
             }
-            .flatMapLatest({ (item) -> Observable<Void> in
+            .flatMapLatest({ (item) -> Observable<ChallengeDetailResult> in
                 switch item {
                 case .standard(let challenge):
                     return navigator.openChallenge(challenge: challenge)
@@ -79,6 +79,7 @@ class WordstadiumListViewModel: ViewModelType {
                 }
 
             })
+            .mapToVoid()
             .asDriverOnErrorJustComplete()
         
         let moreSelectedO = moreSubject
@@ -88,9 +89,14 @@ class WordstadiumListViewModel: ViewModelType {
         let moreMenuSelectedO = moreMenuSubject
             .flatMapLatest { (type) -> Observable<String> in
                 switch type {
-                case .bagikan:
-                    return Observable.just("Tautan telah dibagikan")
-                case .salin:
+                case .bagikan(let challenge):
+                    return navigator.shareChallenge(challenge: challenge)
+                        .map({ (_) -> String in
+                            return ""
+                        })
+                case .salin(let challenge):
+                    let urlSalin = "\(AppContext.instance.infoForKey("URL_WEB_SHARE"))/share/wordstadium/\(challenge.id)"
+                    urlSalin.copyToClipboard()
                     return Observable.just("Tautan telah tersalin")
                 case .hapus:
                     return Observable.just("Challenge berhasil di hapus")

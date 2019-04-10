@@ -17,6 +17,7 @@
                 <outlet property="btnShare" destination="o7J-pm-qy6" id="mrI-ud-Vwa"/>
                 <outlet property="containerLike" destination="zsq-H2-zsc" id="Syb-Wb-uXi"/>
                 <outlet property="containerLottie" destination="guR-3z-PLf" id="g7A-Pn-UZg"/>
+                <outlet property="lbLoveCount" destination="WIg-zj-u3r" id="QSH-Tn-cZh"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -42,7 +43,7 @@
                                     </constraints>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WIg-zj-u3r" customClass="Label" customModule="Common">
-                                    <rect key="frame" x="40" y="21" width="14" height="14.5"/>
+                                    <rect key="frame" x="40" y="18" width="20.5" height="20.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>

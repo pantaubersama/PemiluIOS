@@ -24,6 +24,8 @@ public enum WordstadiumAPI {
     case wordsFighter(challengeId: String, page: Int, perPage: Int)
     case deleteOpenChallenge(challengeId: String)
     case clapWord(wordId: String)
+    case loveChallenge(challengeId: String)
+    case unloveChallenge(challengeId: String)
 }
 
 extension WordstadiumAPI: TargetType {
@@ -71,6 +73,8 @@ extension WordstadiumAPI: TargetType {
             return "/word_stadium/v1/challenges/open/delete/\(id)"
         case .clapWord:
             return "/word_stadium/v1/words/clap"
+        case .loveChallenge, .unloveChallenge:
+            return "/word_stadium/v1/challenges/like"
         }
     }
     
@@ -85,9 +89,11 @@ extension WordstadiumAPI: TargetType {
              .confirmCandidateAsOpponent,
              .confirmDirect,
              .rejectDirect,
-             .clapWord:
+             .clapWord,
+             .loveChallenge:
             return .put
-        case .deleteOpenChallenge:
+        case .deleteOpenChallenge,
+             .unloveChallenge:
             return .delete
         default:
             return .get
@@ -136,6 +142,14 @@ extension WordstadiumAPI: TargetType {
         case .clapWord(let wordId):
             return [
                 "word_id": wordId
+            ]
+        case .loveChallenge(let challengeId):
+            return [
+                "challenge_id": challengeId
+            ]
+        case .unloveChallenge(let challengeId):
+            return [
+                "challenge_id": challengeId
             ]
         default:
             return nil

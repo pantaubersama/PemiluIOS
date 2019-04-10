@@ -89,6 +89,10 @@ class ChallengeController: UIViewController {
             .drive()
             .disposed(by: disposeBag)
         
+        viewModel.output.loveO
+            .drive()
+            .disposed(by: disposeBag)
+        
         viewModel.output.shareO
             .drive()
             .disposed(by: disposeBag)

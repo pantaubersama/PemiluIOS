@@ -65,6 +65,7 @@ class LiniPublicViewModel: ILiniWordstadiumViewModel, ILiniWordstadiumViewModelI
             .flatMapLatest({ (banner) -> Observable<Void> in
                 return navigator.launchBannerInfo(bannerInfo: banner)
             })
+            .mapToVoid()
             .asDriverOnErrorJustComplete()
         
         let seeMoreSelected = seeMoreSubject
@@ -76,9 +77,10 @@ class LiniPublicViewModel: ILiniWordstadiumViewModel, ILiniWordstadiumViewModelI
         
         let colectionSelected = collectionSelectedSubject
             .asObservable()
-            .flatMapLatest({ (challenge) -> Observable<Void> in
+            .flatMapLatest({ (challenge) -> Observable<ChallengeDetailResult> in
                 return navigator.launchLiveChallenge(wordstadium: challenge)
             })
+            .mapToVoid()
             .asDriverOnErrorJustComplete()
         
         
@@ -158,7 +160,7 @@ class LiniPublicViewModel: ILiniWordstadiumViewModel, ILiniWordstadiumViewModelI
             .withLatestFrom(itemChallenges) { (indexPath, challenges) -> CellModel in
                 return challenges[indexPath.section].items[indexPath.row]
             }
-            .flatMapLatest({ (item) -> Observable<Void> in
+            .flatMapLatest({ (item) -> Observable<ChallengeDetailResult> in
                 switch item {
                 case .standard(let challenge):
                     if challenge.progress == .liveNow {
@@ -169,8 +171,24 @@ class LiniPublicViewModel: ILiniWordstadiumViewModel, ILiniWordstadiumViewModelI
                 default :
                     return Observable.empty()
                 }
-                
             })
+            .do(onNext: { [unowned self](result) in
+                switch result {
+                case .cancel(let isChange):
+                    if isChange {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+                            self.refreshSubject.onNext(())
+                        })
+                    }
+                case .delete(let _):
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+                        self.refreshSubject.onNext(())
+                    })
+                default:
+                    break
+                }
+            })
+            .mapToVoid()
             .asDriverOnErrorJustComplete()
 
         
