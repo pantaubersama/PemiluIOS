@@ -107,7 +107,38 @@ public class DeeplinkParser {
                 }
             case "wordstadium":
                 print("Wordstadium")
-                if let id = idPath {
+                if let type = url.getQueryString(parameter: "type") {
+                    if type == "direct_challenge" {
+                        guard let inviteCode = url.getQueryString(parameter: "invite_code") else { return }
+                        guard let t = url.getQueryString(parameter: "t") else { return }
+                        guard let user: User = AppState.local()?.user else { return }
+                        
+                        if ((user.twitter ?? false) && t == "1") {
+                            let disposeBag = DisposeBag()
+                            NetworkService.instance.requestObject(WordstadiumAPI.approveDirect(inviteCode: inviteCode),
+                                                         c: BaseResponse<CreateChallengeResponse>.self)
+                                .map({ $0.data.challenge })
+                                .subscribe(onSuccess: { (challenge) in
+                                    if let currentNavigation = UIApplication.topViewController()?.navigationController {
+                                        if challenge.progress == .liveNow {
+                                            let liveDetail = LiveDebatCoordinator(navigationController: currentNavigation, challenge: challenge)
+                                            liveDetail.start()
+                                                .subscribe()
+                                                .disposed(by: disposeBag)
+                                        } else {
+                                            let challengeDetail = ChallengeCoordinator(navigationController: currentNavigation, data: challenge)
+                                            challengeDetail.start()
+                                                .subscribe()
+                                                .disposed(by: disposeBag)
+                                        }
+                                    }
+                                })
+                                .disposed(by: disposeBag)
+                        }
+                        
+                        print("code \(inviteCode) and t \(t)")
+                    }
+                } else if let id = idPath {
                     let disposeBag = DisposeBag()
                     NetworkService.instance
                         .requestObject(WordstadiumAPI.getChallengeDetail(id: id),

@@ -17,6 +17,7 @@ public enum WordstadiumAPI {
     case askAsOpponent(id: String)
     case confirmCandidateAsOpponent(challengeId: String, audienceId: String)
     case confirmDirect(challengeId: String)
+    case approveDirect(inviteCode: String)
     case rejectDirect(challengeId: String, reason: String)
     case wordsAudience(challengeId: String, page: Int, perPage: Int)
     case commentAudience(challengeId: String, words: String)
@@ -71,6 +72,8 @@ extension WordstadiumAPI: TargetType {
             return "/word_stadium/v1/challenges/open/delete/\(id)"
         case .clapWord:
             return "/word_stadium/v1/words/clap"
+        case .approveDirect:
+            return "/word_stadium/v1/challenges/direct/approve"
         }
     }
     
@@ -85,7 +88,8 @@ extension WordstadiumAPI: TargetType {
              .confirmCandidateAsOpponent,
              .confirmDirect,
              .rejectDirect,
-             .clapWord:
+             .clapWord,
+             .approveDirect:
             return .put
         case .deleteOpenChallenge:
             return .delete
@@ -136,6 +140,10 @@ extension WordstadiumAPI: TargetType {
         case .clapWord(let wordId):
             return [
                 "word_id": wordId
+            ]
+        case .approveDirect(let inviteCode):
+            return [
+                "invite_code": inviteCode
             ]
         default:
             return nil
