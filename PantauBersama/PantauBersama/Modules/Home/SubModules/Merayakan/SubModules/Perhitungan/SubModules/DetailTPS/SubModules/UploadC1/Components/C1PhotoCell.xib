@@ -22,7 +22,7 @@
                     <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="wqo-cl-Lsn">
                         <rect key="frame" x="0.0" y="0.0" width="372" height="82"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LjP-Up-5Gl">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LjP-Up-5Gl">
                                 <rect key="frame" x="16" y="16" width="50" height="50"/>
                                 <color key="backgroundColor" red="0.5450980392" green="0.61568627450000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -54,6 +54,10 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="ivImages" destination="LjP-Up-5Gl" id="NLU-8a-2yG"/>
+                <outlet property="lblTitle" destination="OO7-oo-hU2" id="l7P-Vt-eGA"/>
+            </connections>
             <point key="canvasLocation" x="0.0" y="50.374812593703155"/>
         </tableViewCell>
     </objects>

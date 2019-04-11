@@ -9,8 +9,11 @@
 import UIKit
 import Common
 
-class C1PhotoCell: UITableViewCell, IReusableCell {
+class C1PhotoCell: UITableViewCell {
 
+    @IBOutlet weak var ivImages: UIImageView!
+    @IBOutlet weak var lblTitle: Label!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -20,6 +23,20 @@ class C1PhotoCell: UITableViewCell, IReusableCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+}
+
+extension C1PhotoCell: IReusableCell {
+    
+    struct Input {
+        let data: StashImages
+        let title: String
+    }
+    
+    func configureCell(item: Input) {
+        ivImages.image = item.data.images
+        lblTitle.text = "Gambar " + item.title
     }
     
 }

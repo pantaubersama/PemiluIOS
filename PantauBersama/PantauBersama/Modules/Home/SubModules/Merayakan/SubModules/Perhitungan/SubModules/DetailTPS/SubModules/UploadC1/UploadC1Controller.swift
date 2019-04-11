@@ -18,9 +18,11 @@ class UploadC1Controller: UIViewController {
     private let disposeBag = DisposeBag()
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var btnSave: Button!
     
     lazy var header = UIView.nib(withType: UploadC1Header.self)
     private var dataSource: RxTableViewSectionedAnimatedDataSource<SectionC1Models>!
+    private var bufferSection: Int = 0
     
 //    var titles = [
 //        "1. Model C1-PPWP (Presiden)",
@@ -45,6 +47,10 @@ class UploadC1Controller: UIViewController {
             .bind(to: viewModel.input.backI)
             .disposed(by: disposeBag)
         
+        btnSave.rx.tap
+            .bind(to: viewModel.input.simpanI)
+            .disposed(by: disposeBag)
+        
         tableView.delegate = nil
         tableView.dataSource = nil
         tableView.setTableHeaderView(headerView: header)
@@ -64,10 +70,42 @@ class UploadC1Controller: UIViewController {
         
         let initialState = SectionC1TableViewState(section: sections)
         
-        let addCommand = self.viewModel.relayImages.asObservable()
+        let addCommand = self.viewModel.output.imageUpdatedO
+            .asObservable()
+            .distinctUntilChanged()
             .map({ TableViewEditingCommand.AppendItem(item: $0, section: $0.section )})
         
         let deleteCommand = tableView.rx.itemDeleted.asObservable()
+            .do(onNext: { (indexPath) in
+                print("deleting images in : \(indexPath)")
+                switch indexPath.section {
+                case 0:
+                    var latestValue = self.viewModel.presidenImageRelay.value
+                    latestValue.remove(at: indexPath.row)
+                    self.viewModel.presidenImageRelay.accept(latestValue)
+                case 1:
+                    var latestValue = self.viewModel.dprImageRelay.value
+                    latestValue.remove(at: indexPath.row)
+                    self.viewModel.dprImageRelay.accept(latestValue)
+                case 2:
+                    var latestValue = self.viewModel.dpdImageRelay.value
+                    latestValue.remove(at: indexPath.row)
+                    self.viewModel.dpdImageRelay.accept(latestValue)
+                case 3:
+                    var latestValue = self.viewModel.dprdProvImageRelay.value
+                    latestValue.remove(at: indexPath.row)
+                    self.viewModel.dprdProvImageRelay.accept(latestValue)
+                case 4:
+                    var latestValue = self.viewModel.dprdImageRelay.value
+                    latestValue.remove(at: indexPath.row)
+                    self.viewModel.dprdImageRelay.accept(latestValue)
+                case 5:
+                    var latestValue = self.viewModel.suasanaImageRelay.value
+                    latestValue.remove(at: indexPath.row)
+                    self.viewModel.suasanaImageRelay.accept(latestValue)
+                default: break
+                }
+            })
             .map(TableViewEditingCommand.DeleteItem)
         
         Observable.of(addCommand, deleteCommand)
@@ -95,14 +133,14 @@ class UploadC1Controller: UIViewController {
                 controller.sourceType = .photoLibrary
                 controller.delegate = self
                 self.navigationController?.present(controller, animated: true, completion: nil)
+                self.bufferSection = section
             })
             .drive()
             .disposed(by: disposeBag)
         
-        viewModel.output.imageUpdatedO
+        viewModel.output.simpanO
             .drive()
             .disposed(by: disposeBag)
-        
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -147,17 +185,18 @@ extension UploadC1Controller: UIImagePickerControllerDelegate, UINavigationContr
             guard let `self` = self else { return }
             if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
                 print("Edited image")
-                self.viewModel.input.imagesI.onNext(image)
+                self.viewModel.input.imagesI.onNext(StashImages(section: self.bufferSection, images: image, id: UUID().uuidString))
             } else if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
                 print("ORIGINAL")
-                self.viewModel.input.imagesI.onNext(image)
+                self.viewModel.input.imagesI.onNext(StashImages(section: self.bufferSection, images: image, id: UUID().uuidString))
             }
         })
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         self.navigationController?.dismiss(animated: true, completion: nil)
-        self.viewModel.input.imagesI.onNext(nil)
+//        self.viewModel.input.imagesI.onNext(nil)
+        self.viewModel.input.imagesI.onNext(StashImages(section: self.bufferSection, images: nil, id: UUID().uuidString))
     }
     
 }
@@ -170,15 +209,12 @@ extension UploadC1Controller {
             animationConfiguration: AnimationConfiguration(insertAnimation: .top, reloadAnimation: .fade, deleteAnimation: .left),
             configureCell: { (dataSource, table, idxPath, item) in
                 let cell = table.dequeueReusableCell(indexPath: idxPath) as C1PhotoCell
+                cell.configureCell(item: C1PhotoCell.Input(data: item, title: "\(idxPath.row + 1)"))
                 return cell
             },
             canEditRowAtIndexPath: { _, _ in
                 return true
-            },
-            canMoveRowAtIndexPath: { _, _ in
-                return true
-            }
-        )
+            })
     }
     
 }

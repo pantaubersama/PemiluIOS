@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UploadC1Controller" customModule="PantauBersama" customModuleProvider="target">
             <connections>
+                <outlet property="btnSave" destination="EXr-7A-8cd" id="nqp-IP-yhk"/>
                 <outlet property="tableView" destination="Tif-3W-Jxt" id="ENg-Tc-vbV"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>

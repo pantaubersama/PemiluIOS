@@ -29,6 +29,14 @@ enum TableViewEditingCommand {
     case AppendItem(item: StashImages, section: Int)
     case DeleteItem(IndexPath)
 }
+extension TableViewEditingCommand {
+    
+    func addItem(item: StashImages, section: Int) -> TableViewEditingCommand {
+        return TableViewEditingCommand.AppendItem(item: item, section: section)
+    }
+    
+}
+
 
 struct SectionC1Models {
     var header: String
