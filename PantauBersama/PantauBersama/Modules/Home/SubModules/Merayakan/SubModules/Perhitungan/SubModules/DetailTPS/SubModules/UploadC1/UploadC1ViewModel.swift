@@ -21,6 +21,7 @@ class UploadC1ViewModel: ViewModelType {
         let simpanI: AnyObserver<Void>
         let refreshI: AnyObserver<String>
         let nextI: AnyObserver<Void>
+        let deleteImagesI: AnyObserver<String>
     }
     
     struct Output {
@@ -30,6 +31,7 @@ class UploadC1ViewModel: ViewModelType {
         let simpanO: Driver<Void>
         let initialDataO: Driver<[SectionC1Models]>
         let errorO: Driver<Error>
+        let deletedImagesO: Driver<Void>
     }
     
     var input: Input
@@ -46,6 +48,7 @@ class UploadC1ViewModel: ViewModelType {
     private let simpanS = PublishSubject<Void>()
     private let refreshS = PublishSubject<String>()
     private let nextS = PublishSubject<Void>()
+    private let deleteImageS = PublishSubject<String>()
     
     var presidenImageRelay = BehaviorRelay<[StashImages]>(value: [])
     var dprImageRelay = BehaviorRelay<[StashImages]>(value: [])
@@ -64,7 +67,8 @@ class UploadC1ViewModel: ViewModelType {
                       imagesI: imageS.asObserver(),
                       simpanI: simpanS.asObserver(),
                       refreshI: refreshS.asObserver(),
-                      nextI: nextS.asObserver())
+                      nextI: nextS.asObserver(),
+                      deleteImagesI: deleteImageS.asObserver())
         
         /// MARK: GET Initial Data
         let initialData = refreshS.startWith("")
@@ -159,7 +163,7 @@ class UploadC1ViewModel: ViewModelType {
         let updatedImages = imageS
             .do(onNext: { [weak self] (stash) in
                 guard let `self` = self else { return }
-                print("Stash: \(stash)")
+                print("Stash Images: \(stash)")
                 switch stash.section {
                 case 0:
                     print("adding images in section 1")
@@ -194,18 +198,95 @@ class UploadC1ViewModel: ViewModelType {
                 default: break
                 }
             })
-            .filter({ $0.images != nil })
+            .filter({ $0.section != 7 })
             .asDriverOnErrorJustComplete()
         
         
         let save = simpanS
+            .do(onNext: { (_) in
+                print("IMAGES COUNT: \(self.dprdImageRelay.value.count)")
+            })
+            .flatMapLatest({ [weak self] (_) -> Observable<Void> in
+                guard let `self` = self else { return Observable.empty() }
+                let presidenValue = self.presidenImageRelay.value
+                let stashImage = presidenValue.filter({ $0.url == nil })
+                print("Stash count original pic: \(stashImage.count)")
+                for stash in stashImage {
+                    if let image = stash.images {
+                        return self.postImages(realCount: realCount.id, type: .c1Presiden, image: image)
+                    }
+                }
+                return Observable.just(())
+            })
+            .flatMapLatest({ [weak self] (_) -> Observable<Void> in
+                guard let `self` = self else { return Observable.empty() }
+                let dprValue = self.dprImageRelay.value
+                let stashImage = dprValue.filter({ $0.url == nil })
+                for stash in stashImage {
+                    if let image = stash.images {
+                        return self.postImages(realCount: realCount.id, type: .c1DPR, image: image)
+                    }
+                }
+                return Observable.just(())
+            })
+            .flatMapLatest({ [weak self] (_) -> Observable<Void> in
+                guard let `self` = self else { return Observable.empty() }
+                let dpdValue = self.dpdImageRelay.value
+                let stashImage = dpdValue.filter({ $0.url == nil })
+                for stash in stashImage {
+                    if let image = stash.images {
+                        return self.postImages(realCount: realCount.id, type: .c1DPD, image: image)
+                    }
+                }
+                return Observable.just(())
+            })
+            .flatMapLatest({ [weak self] (_) -> Observable<Void> in
+                guard let `self` = self else { return Observable.empty() }
+                let dprdProvValue = self.dprdProvImageRelay.value
+                let stashImage = dprdProvValue.filter({ $0.url == nil })
+                for stash in stashImage {
+                    if let image = stash.images {
+                        return self.postImages(realCount: realCount.id, type: .c1DPRDProvinsi, image: image)
+                    }
+                }
+                return Observable.just(())
+            })
+            .flatMapLatest({ [weak self] (_) -> Observable<Void> in
+                guard let `self` = self else { return Observable.empty() }
+                let dprdKab = self.dprdImageRelay.value
+                let stashImage = dprdKab.filter({ $0.url == nil })
+                for stash in stashImage {
+                    if let image = stash.images {
+                        return self.postImages(realCount: realCount.id, type: .c1DPRDKabupaten, image: image)
+                    }
+                }
+                return Observable.just(())
+            })
+            .flatMapLatest({ [weak self] (_) -> Observable<Void> in
+                guard let `self` = self else { return Observable.empty() }
+                let suasanaValue = self.suasanaImageRelay.value
+                let stashImage = suasanaValue.filter({ $0.url == nil })
+                for stash in stashImage {
+                    if let image = stash.images {
+                        return self.postImages(realCount: realCount.id, type: .suasanaTPS, image: image)
+                    }
+                }
+                return Observable.just(())
+            })
             .asDriverOnErrorJustComplete()
+        
+        let delete = deleteImageS
+            .flatMapLatest { [weak self] (id) -> Observable<Void> in
+                guard let `self` = self else { return Observable.empty() }
+                return self.deleteImages(id: id)
+            }.asDriverOnErrorJustComplete()
         
         output = Output(backO: back, addImageO: addImages,
                         imageUpdatedO: updatedImages,
                         simpanO: save,
                         initialDataO: initialData,
-                        errorO: errorTracker.asDriver())
+                        errorO: errorTracker.asDriver(),
+                        deletedImagesO: delete)
     }
 }
 
@@ -260,15 +341,15 @@ extension UploadC1ViewModel {
         case .c1Presiden:
             var stashImages: [StashImages] = []
             for datas in data {
-                stashImages.append(StashImages(section: 0, images: nil, id: datas.id, url: datas.file.thumbnail.url))
-                self.imageS.onNext(StashImages(section: 0, images: #imageLiteral(resourceName: "outlineImage24Px"), id: datas.id, url: datas.file.thumbnail.url))
+//                stashImages.append(StashImages(section: 0, images: nil, id: datas.id, url: datas.file.thumbnail.url))
+                self.imageS.onNext(StashImages(section: 0, images: nil, id: datas.id, url: datas.file.thumbnail.url))
             }
             latestValue.append(SectionC1Models(header: "1. Model C1-PPWP (Presiden)", items: stashImages))
             self.relaySections.accept(latestValue)
         case .c1DPR:
             var stashImages: [StashImages] = []
             for datas in data {
-                stashImages.append(StashImages(section: 1, images: nil, id: datas.id, url: datas.file.thumbnail.url))
+//                stashImages.append(StashImages(section: 1, images: nil, id: datas.id, url: datas.file.thumbnail.url))
                 self.imageS.onNext(StashImages(section: 1, images: #imageLiteral(resourceName: "outlineImage24Px"), id: datas.id, url: datas.file.thumbnail.url))
             }
             latestValue.append(SectionC1Models(header: "2. Model C1-DPR RI", items: stashImages))
@@ -276,7 +357,7 @@ extension UploadC1ViewModel {
         case .c1DPD:
             var stashImages: [StashImages] = []
             for datas in data {
-                stashImages.append(StashImages(section: 2, images: nil, id: datas.id, url: datas.file.thumbnail.url))
+//                stashImages.append(StashImages(section: 2, images: nil, id: datas.id, url: datas.file.thumbnail.url))
                 self.imageS.onNext(StashImages(section: 2, images: #imageLiteral(resourceName: "outlineImage24Px"), id: datas.id, url: datas.file.thumbnail.url))
             }
             latestValue.append(SectionC1Models(header: "3. Model C1-DPD", items: stashImages))
@@ -284,7 +365,7 @@ extension UploadC1ViewModel {
         case .c1DPRDProvinsi:
             var stashImages: [StashImages] = []
             for datas in data {
-                stashImages.append(StashImages(section: 3, images: nil, id: datas.id, url: datas.file.thumbnail.url))
+//                stashImages.append(StashImages(section: 3, images: nil, id: datas.id, url: datas.file.thumbnail.url))
                 self.imageS.onNext(StashImages(section: 3, images: #imageLiteral(resourceName: "outlineImage24Px"), id: datas.id, url: datas.file.thumbnail.url))
             }
             latestValue.append(SectionC1Models(header: "4. Model C1-DPRD Provinsi", items: stashImages))
@@ -292,7 +373,7 @@ extension UploadC1ViewModel {
         case .c1DPRDKabupaten:
             var stashImages: [StashImages] = []
             for datas in data {
-                stashImages.append(StashImages(section: 4, images: nil, id: datas.id, url: datas.file.thumbnail.url))
+//                stashImages.append(StashImages(section: 4, images: nil, id: datas.id, url: datas.file.thumbnail.url))
                 self.imageS.onNext(StashImages(section: 4, images: #imageLiteral(resourceName: "outlineImage24Px"), id: datas.id, url: datas.file.thumbnail.url))
             }
             latestValue.append(SectionC1Models(header: "5. Model C1-DPRD Kabupaten/Kota", items: stashImages))
@@ -300,7 +381,7 @@ extension UploadC1ViewModel {
         case .suasanaTPS:
             var stashImages: [StashImages] = []
             for datas in data {
-                stashImages.append(StashImages(section: 5, images: nil, id: datas.id, url: datas.file.thumbnail.url))
+//                stashImages.append(StashImages(section: 5, images: nil, id: datas.id, url: datas.file.thumbnail.url))
                 self.imageS.onNext(StashImages(section: 5, images: #imageLiteral(resourceName: "outlineImage24Px"), id: datas.id, url: datas.file.thumbnail.url))
             }
             latestValue.append(SectionC1Models(header: "6. Suasana TPS", items: stashImages))
@@ -309,5 +390,34 @@ extension UploadC1ViewModel {
         
         print("Total Relay: \(latestValue.count)")
         return self.relaySections.value
+    }
+    
+    private func postImages(realCount: String, type: RealCountImageType, image: UIImage) -> Observable<Void> {
+        return NetworkService.instance
+            .requestObject(HitungAPI.postImageRealCount(hitungRealCountId: realCount, type: type, image: image),
+                           c: BaseResponse<PostImageResponse>.self)
+            .do(onSuccess: { (response) in
+                print("Status Upload: \(response.data.status)")
+            }, onError: { (e) in
+                print(e.localizedDescription)
+            })
+            .trackError(self.errorTracker)
+            .trackActivity(self.activityIndicator)
+            .mapToVoid()
+            .asObservable()
+    }
+    
+    private func deleteImages(id: String) -> Observable<Void> {
+        return NetworkService.instance
+            .requestObject(HitungAPI.deleteImages(id: id), c: BaseResponse<PostImageResponse>.self)
+            .do(onSuccess: { (response) in
+                print("Status delete: \(response.data.status)")
+            }, onError: { (e) in
+                print(e.localizedDescription)
+            })
+            .trackError(self.errorTracker)
+            .trackActivity(self.activityIndicator)
+            .mapToVoid()
+            .asObservable()
     }
 }

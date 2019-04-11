@@ -75,26 +75,62 @@ class UploadC1Controller: UIViewController {
                 switch indexPath.section {
                 case 0:
                     var latestValue = self.viewModel.presidenImageRelay.value
+                    let models = latestValue[indexPath.row]
+                    if models.url == nil {
+                        // assume this value is from local
+                    } else {
+                        self.viewModel.input.deleteImagesI.onNext(models.id ?? "")
+                    }
                     latestValue.remove(at: indexPath.row)
                     self.viewModel.presidenImageRelay.accept(latestValue)
                 case 1:
                     var latestValue = self.viewModel.dprImageRelay.value
+                    let models = latestValue[indexPath.row]
+                    if models.url == nil {
+                        // assume this value is from local
+                    } else {
+                        self.viewModel.input.deleteImagesI.onNext(models.id ?? "")
+                    }
                     latestValue.remove(at: indexPath.row)
                     self.viewModel.dprImageRelay.accept(latestValue)
                 case 2:
                     var latestValue = self.viewModel.dpdImageRelay.value
+                    let models = latestValue[indexPath.row]
+                    if models.url == nil {
+                        // assume this value is from local
+                    } else {
+                        self.viewModel.input.deleteImagesI.onNext(models.id ?? "")
+                    }
                     latestValue.remove(at: indexPath.row)
                     self.viewModel.dpdImageRelay.accept(latestValue)
                 case 3:
                     var latestValue = self.viewModel.dprdProvImageRelay.value
+                    let models = latestValue[indexPath.row]
+                    if models.url == nil {
+                        // assume this value is from local
+                    } else {
+                        self.viewModel.input.deleteImagesI.onNext(models.id ?? "")
+                    }
                     latestValue.remove(at: indexPath.row)
                     self.viewModel.dprdProvImageRelay.accept(latestValue)
                 case 4:
                     var latestValue = self.viewModel.dprdImageRelay.value
+                    let models = latestValue[indexPath.row]
+                    if models.url == nil {
+                        // assume this value is from local
+                    } else {
+                        self.viewModel.input.deleteImagesI.onNext(models.id ?? "")
+                    }
                     latestValue.remove(at: indexPath.row)
                     self.viewModel.dprdImageRelay.accept(latestValue)
                 case 5:
                     var latestValue = self.viewModel.suasanaImageRelay.value
+                    let models = latestValue[indexPath.row]
+                    if models.url == nil {
+                        // assume this value is from local
+                    } else {
+                        self.viewModel.input.deleteImagesI.onNext(models.id ?? "")
+                    }
                     latestValue.remove(at: indexPath.row)
                     self.viewModel.suasanaImageRelay.accept(latestValue)
                 default: break
@@ -134,6 +170,10 @@ class UploadC1Controller: UIViewController {
             .disposed(by: disposeBag)
         
         viewModel.output.simpanO
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.deletedImagesO
             .drive()
             .disposed(by: disposeBag)
     }
@@ -194,7 +234,7 @@ extension UploadC1Controller: UIImagePickerControllerDelegate, UINavigationContr
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         self.navigationController?.dismiss(animated: true, completion: nil)
-        self.viewModel.input.imagesI.onNext(StashImages(section: self.bufferSection, images: nil, id: UUID().uuidString, url: nil))
+        self.viewModel.input.imagesI.onNext(StashImages(section: 7, images: nil, id: UUID().uuidString, url: nil))
     }
     
 }
