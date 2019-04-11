@@ -21,7 +21,7 @@ protocol DetailTPSNavigator {
     func launchDetailTPSDPD() -> Observable<Void>
     func launchDetailTPSDPRDKab(data: RealCount) -> Observable<Void>
     func launchDetailTPSDPRDProv(data: RealCount) -> Observable<Void>
-    func launchUploadC1() -> Observable<Void>
+    func launchUploadC1(data: RealCount) -> Observable<Void>
     func launchC1Form(type: FormC1Type, data: RealCount, tingkat: TingkatPemilihan) -> Observable<Void>
     
 }
@@ -85,8 +85,8 @@ extension DetailTPSCoordinator: DetailTPSNavigator {
         return coordinate(to: searchCoordinator)
     }
     
-    func launchUploadC1() -> Observable<Void> {
-        let searchCoordinator = UploadC1Coordinator(navigationController: self.navigationController)
+    func launchUploadC1(data: RealCount) -> Observable<Void> {
+        let searchCoordinator = UploadC1Coordinator(navigationController: self.navigationController, realCount: data)
         return coordinate(to: searchCoordinator)
     }
     

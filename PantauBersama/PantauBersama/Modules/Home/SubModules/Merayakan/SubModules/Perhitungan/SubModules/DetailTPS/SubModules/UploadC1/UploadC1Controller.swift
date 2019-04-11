@@ -23,15 +23,7 @@ class UploadC1Controller: UIViewController {
     lazy var header = UIView.nib(withType: UploadC1Header.self)
     private var dataSource: RxTableViewSectionedAnimatedDataSource<SectionC1Models>!
     private var bufferSection: Int = 0
-    
-//    var titles = [
-//        "1. Model C1-PPWP (Presiden)",
-//        "2. Model C1-DPR RI",
-//        "3. Model C1-DPD",
-//        "4. Model C1-DPRD Provinsi",
-//        "5. Model C1-DPRD Kabupaten/Kota",
-//        "6. Suasana TPS"
-//    ]
+    private var sectionModel: [SectionC1Models] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,14 +51,16 @@ class UploadC1Controller: UIViewController {
         tableView.rx.setDelegate(self)
             .disposed(by: disposeBag)
         
+    
         dataSource = UploadC1Controller.dataSource()
         
-        let sections: [SectionC1Models] = [SectionC1Models(header: "1. Model C1-PPWP (Presiden)", items: []),
-                                           SectionC1Models(header: "2. Model C1-DPR RI", items: []),
-                                           SectionC1Models(header: "3. Model C1-DPD", items: []),
-                                           SectionC1Models(header: "4. Model C1-DPRD Provinsi", items: []),
-                                           SectionC1Models(header: "5. Model C1-DPRD Kabupaten/Kota", items: []),
-                                           SectionC1Models(header: "6. Suasana TPS", items: [])]
+    
+        let sections: [SectionC1Models] = [SectionC1Models(header: "1. Model C1-PPWP (Presiden)", items: self.viewModel.presidenImageRelay.value),
+                                           SectionC1Models(header: "2. Model C1-DPR RI", items: self.viewModel.dprImageRelay.value),
+                                           SectionC1Models(header: "3. Model C1-DPD", items: self.viewModel.dpdImageRelay.value),
+                                           SectionC1Models(header: "4. Model C1-DPRD Provinsi", items: self.viewModel.dprdProvImageRelay.value),
+                                           SectionC1Models(header: "5. Model C1-DPRD Kabupaten/Kota", items: self.viewModel.dprdImageRelay.value),
+                                           SectionC1Models(header: "6. Suasana TPS", items: self.viewModel.suasanaImageRelay.value)]
         
         let initialState = SectionC1TableViewState(section: sections)
         
@@ -132,6 +126,7 @@ class UploadC1Controller: UIViewController {
                 let controller = UIImagePickerController()
                 controller.sourceType = .photoLibrary
                 controller.delegate = self
+                controller.allowsEditing = true
                 self.navigationController?.present(controller, animated: true, completion: nil)
                 self.bufferSection = section
             })
@@ -147,6 +142,10 @@ class UploadC1Controller: UIViewController {
         super.viewWillAppear(animated)
         
         tableView.updateHeaderViewFrame()
+        
+        viewModel.output.initialDataO
+            .drive()
+            .disposed(by: disposeBag)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -185,18 +184,17 @@ extension UploadC1Controller: UIImagePickerControllerDelegate, UINavigationContr
             guard let `self` = self else { return }
             if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
                 print("Edited image")
-                self.viewModel.input.imagesI.onNext(StashImages(section: self.bufferSection, images: image, id: UUID().uuidString))
+                self.viewModel.input.imagesI.onNext(StashImages(section: self.bufferSection, images: image, id: UUID().uuidString, url: nil))
             } else if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
                 print("ORIGINAL")
-                self.viewModel.input.imagesI.onNext(StashImages(section: self.bufferSection, images: image, id: UUID().uuidString))
+                self.viewModel.input.imagesI.onNext(StashImages(section: self.bufferSection, images: image, id: UUID().uuidString, url: nil))
             }
         })
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         self.navigationController?.dismiss(animated: true, completion: nil)
-//        self.viewModel.input.imagesI.onNext(nil)
-        self.viewModel.input.imagesI.onNext(StashImages(section: self.bufferSection, images: nil, id: UUID().uuidString))
+        self.viewModel.input.imagesI.onNext(StashImages(section: self.bufferSection, images: nil, id: UUID().uuidString, url: nil))
     }
     
 }

@@ -14,11 +14,13 @@ struct StashImages {
     var section: Int
     var images: UIImage?
     var id: String?
+    var url: String?
     
-    init(section: Int, images: UIImage?, id: String?) {
+    init(section: Int, images: UIImage?, id: String?, url: String?) {
         self.section = section
         self.images = images
         self.id = id
+        self.url = url
     }
     
 }

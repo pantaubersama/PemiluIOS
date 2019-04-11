@@ -9,6 +9,7 @@
 import Common
 import RxSwift
 import RxCocoa
+import Networking
 
 protocol UploadC1Navigator {
     func back() -> Observable<Void>
@@ -16,14 +17,16 @@ protocol UploadC1Navigator {
 
 class UploadC1Coordinator: BaseCoordinator<Void> {
     private let navigationController: UINavigationController
+    private let realCount: RealCount
     
-    init(navigationController: UINavigationController) {
+    init(navigationController: UINavigationController, realCount: RealCount) {
         self.navigationController = navigationController
+        self.realCount = realCount
     }
     
     override func start() -> Observable<Void> {
         let viewController = UploadC1Controller()
-        let viewModel = UploadC1ViewModel(navigator: self)
+        let viewModel = UploadC1ViewModel(navigator: self, realCount: self.realCount)
         viewController.viewModel = viewModel
         viewController.hidesBottomBarWhenPushed = true
         

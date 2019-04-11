@@ -35,7 +35,11 @@ extension C1PhotoCell: IReusableCell {
     }
     
     func configureCell(item: Input) {
-        ivImages.image = item.data.images
+        if item.data.url == nil {
+            ivImages.image = item.data.images
+        } else {
+            ivImages.af_setImage(withURL: URL(string: item.data.url ?? "")!)
+        }
         lblTitle.text = "Gambar " + item.title
     }
     
