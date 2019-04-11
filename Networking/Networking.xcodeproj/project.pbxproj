@@ -46,6 +46,7 @@
 		3937C71E623049AC040C9194 /* Pods_NetworkingTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC9D77E9B7CE8AB5A8F185B6 /* Pods_NetworkingTests.framework */; };
 		3A2C6CA971EDD4A483DECAB6 /* Pods_Networking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85BAE50647296BF2C83ACD7C /* Pods_Networking.framework */; };
 		840B6691225F37DA003628FB /* PostImageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840B6690225F37DA003628FB /* PostImageResponse.swift */; };
+		840B6693225F9425003628FB /* CandidateDPDResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840B6692225F9425003628FB /* CandidateDPDResponse.swift */; };
 		842A49FB21D78B6A0050AA51 /* VerificationsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842A49FA21D78B6A0050AA51 /* VerificationsResponse.swift */; };
 		842B650C21D9385100F95C13 /* Avatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842B650B21D9385100F95C13 /* Avatar.swift */; };
 		842B650E21D9505A00F95C13 /* InformantResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842B650D21D9505A00F95C13 /* InformantResponse.swift */; };
@@ -159,6 +160,7 @@
 		22CA8A8E534F0F359CC66429 /* Pods-Networking.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Networking.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-Networking/Pods-Networking.debug.xcconfig"; sourceTree = "<group>"; };
 		2A1DC7500A4E8322692EC937 /* Pods-NetworkingTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NetworkingTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-NetworkingTests/Pods-NetworkingTests.release.xcconfig"; sourceTree = "<group>"; };
 		840B6690225F37DA003628FB /* PostImageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostImageResponse.swift; sourceTree = "<group>"; };
+		840B6692225F9425003628FB /* CandidateDPDResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandidateDPDResponse.swift; sourceTree = "<group>"; };
 		842A49FA21D78B6A0050AA51 /* VerificationsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationsResponse.swift; sourceTree = "<group>"; };
 		842B650B21D9385100F95C13 /* Avatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Avatar.swift; sourceTree = "<group>"; };
 		842B650D21D9505A00F95C13 /* InformantResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformantResponse.swift; sourceTree = "<group>"; };
@@ -443,6 +445,7 @@
 				84CAF460225C586F003128B3 /* SummaryC1Response.swift */,
 				84C53BE4225DA1550046FFFE /* SummaryImageResponse.swift */,
 				840B6690225F37DA003628FB /* PostImageResponse.swift */,
+				840B6692225F9425003628FB /* CandidateDPDResponse.swift */,
 			);
 			path = Hitung;
 			sourceTree = "<group>";
@@ -665,6 +668,7 @@
 				11D0669D21E26A07003AC9BB /* QuizResultResponse.swift in Sources */,
 				8451E06222046AB600F03E96 /* RecordNotificationResponse.swift in Sources */,
 				848508AC2257471B00AD2DD4 /* SummaryPresidentResponse.swift in Sources */,
+				840B6693225F9425003628FB /* CandidateDPDResponse.swift in Sources */,
 				840B6691225F37DA003628FB /* PostImageResponse.swift in Sources */,
 				11C7BB2521DB36D5008CA49B /* QuestionOptionResponse.swift in Sources */,
 				8482E63021D9048800D5DC07 /* Paginate.swift in Sources */,

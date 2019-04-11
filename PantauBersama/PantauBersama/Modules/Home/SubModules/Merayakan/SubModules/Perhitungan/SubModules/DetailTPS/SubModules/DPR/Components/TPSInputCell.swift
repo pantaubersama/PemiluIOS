@@ -80,4 +80,8 @@ extension TPSInputCell: IReusableCell {
         disposeBag = bag
     }
     
+    func configureDPD(item: CandidateActor) {
+        lblNameCandidatees.text = item.name
+    }
+    
 }

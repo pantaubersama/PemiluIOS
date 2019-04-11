@@ -229,6 +229,7 @@
 		8409374B21D360D10024A444 /* PilpresViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8409374A21D360D10024A444 /* PilpresViewModel.swift */; };
 		8409374D21D361240024A444 /* PilpresNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8409374C21D361240024A444 /* PilpresNavigator.swift */; };
 		840B668F225E2193003628FB /* SectionC1Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840B668E225E2193003628FB /* SectionC1Models.swift */; };
+		840B6695225F9A55003628FB /* TableView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840B6694225F9A55003628FB /* TableView+Ext.swift */; };
 		840BD0852233A9CD00F0B90F /* love.json in Resources */ = {isa = PBXBuildFile; fileRef = 840BD0842233A9CD00F0B90F /* love.json */; };
 		841CDA3D21C8BC1C0015680C /* LinimasaController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 841CDA3C21C8BC1C0015680C /* LinimasaController.xib */; };
 		8423C3FA21F71711000AAA63 /* DetailAskController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8423C3F921F71711000AAA63 /* DetailAskController.xib */; };
@@ -879,6 +880,7 @@
 		8409374A21D360D10024A444 /* PilpresViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PilpresViewModel.swift; sourceTree = "<group>"; };
 		8409374C21D361240024A444 /* PilpresNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PilpresNavigator.swift; sourceTree = "<group>"; };
 		840B668E225E2193003628FB /* SectionC1Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionC1Models.swift; sourceTree = "<group>"; };
+		840B6694225F9A55003628FB /* TableView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TableView+Ext.swift"; sourceTree = "<group>"; };
 		840BD0842233A9CD00F0B90F /* love.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = love.json; sourceTree = "<group>"; };
 		841CDA3C21C8BC1C0015680C /* LinimasaController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LinimasaController.xib; sourceTree = "<group>"; };
 		8423C3F921F71711000AAA63 /* DetailAskController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailAskController.xib; sourceTree = "<group>"; };
@@ -2420,6 +2422,7 @@
 				84FE6EB921D5FC9B009A0F55 /* ActivityIndicator.swift */,
 				84FE6EBB21D5FCB9009A0F55 /* ErrorTracker.swift */,
 				84FE6EBD21D5FEA1009A0F55 /* Network+AlertController.swift */,
+				840B6694225F9A55003628FB /* TableView+Ext.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -3607,20 +3610,12 @@
 		E54CFAF9222C31D3002DA0D1 /* DPD */ = {
 			isa = PBXGroup;
 			children = (
-				E54CFAFE222C31EF002DA0D1 /* Components */,
 				E54CFAFA222C31E8002DA0D1 /* DetailTPSDPDController.swift */,
 				E54CFAFB222C31E8002DA0D1 /* DetailTPSDPDController.xib */,
 				E52BE9E6222F4AEB00E26E70 /* DetailTPSDPDCoordinator.swift */,
 				E52BE9E8222F4AF800E26E70 /* DetailTPSDPDViewModel.swift */,
 			);
 			path = DPD;
-			sourceTree = "<group>";
-		};
-		E54CFAFE222C31EF002DA0D1 /* Components */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Components;
 			sourceTree = "<group>";
 		};
 		E54CFB03222C47FB002DA0D1 /* UploadC1 */ = {
@@ -4296,6 +4291,7 @@
 				849CABCA21CE89DD00912F8E /* SettingController.swift in Sources */,
 				849CABCE21CE8AC300912F8E /* SettingViewModel.swift in Sources */,
 				845C571521CE122B00EDCDFE /* IconTableCell.swift in Sources */,
+				840B6695225F9A55003628FB /* TableView+Ext.swift in Sources */,
 				84A07FBC21D129FC00269C6B /* GroupProfileInfoData.swift in Sources */,
 				84FA42402212A595008215C4 /* CreateTantanganViewModel.swift in Sources */,
 				84B7B8BC21E47A8F0099E7E3 /* ClusterSearchController.swift in Sources */,

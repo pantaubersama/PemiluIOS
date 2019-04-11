@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import RxDataSources
 
 class DetailTPSDPDController: UIViewController {
     var viewModel: DetailTPSDPDViewModel!
@@ -19,6 +20,8 @@ class DetailTPSDPDController: UIViewController {
     
     lazy var footer = UIView.nib(withType: DetailTPSDPRFooter.self)
     lazy var header = UIView.nib(withType: DetailTPSDPRHeader.self)
+    
+    private var dataSource: RxTableViewSectionedReloadDataSource<SectionModelDPD>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,9 +37,34 @@ class DetailTPSDPDController: UIViewController {
             .bind(to: viewModel.input.backI)
             .disposed(by: disposeBag)
         
+        tableView.delegate = nil
+        tableView.dataSource = nil
         tableView.setTableHeaderView(headerView: header)
         tableView.setTableFooterView(footerView: footer)
         tableView.registerReusableCell(TPSInputCell.self)
+        tableView.rx.setDelegate(self)
+            .disposed(by: disposeBag)
+        
+        /// Setup Datasource
+        dataSource = RxTableViewSectionedReloadDataSource<SectionModelDPD>(configureCell: { (ds, table, idx, item) -> UITableViewCell in
+            let cell = self.tableView.dequeueReusableCell(indexPath: idx) as TPSInputCell
+            cell.configureDPD(item: item)
+            return cell
+        })
+        
+        viewModel.output.items
+            .do(onNext: { [weak self] (_) in
+                guard let `self` = self else { return }
+                self.tableView.reloadData()
+            })
+            .drive(tableView.rx.items(dataSource: dataSource))
+            .disposed(by: disposeBag)
+        
+        header.configure(name: viewModel.nameWilayahRelay.value)
+        
+//        dataSource.titleForHeaderInSection = { dataSource, indexPath in
+//            return dataSource.sectionModels[indexPath].header
+//        }
         
         viewModel.output.backO
             .drive()
@@ -50,47 +78,12 @@ class DetailTPSDPDController: UIViewController {
     }
 }
 
-extension DetailTPSDPDController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell() as TPSInputCell
-        return cell
-    }
+extension DetailTPSDPDController: UITableViewDelegate {
+//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        let header = DetailTPSDPRHeader()
+//        let name = dataSource.sectionModels[section].header
+//        header.configure(name: name)
+//        return header
+//    }
 }
 
-extension UITableView {
-    
-    /// Set table header view & add Auto layout.
-    func setTableHeaderView(headerView: UIView) {
-        headerView.translatesAutoresizingMaskIntoConstraints = false
-        
-        // Set first.
-        self.tableHeaderView = headerView
-        
-        // Then setup AutoLayout.
-        headerView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        headerView.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
-        headerView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        
-        updateHeaderViewFrame()
-    }
-    
-    /// Update header view's frame.
-    func updateHeaderViewFrame() {
-        guard let headerView = self.tableHeaderView else { return }
-        
-        // Update the size of the header based on its internal content.
-        headerView.layoutIfNeeded()
-        
-        // ***Trigger table view to know that header should be updated.
-        let header = self.tableHeaderView
-        self.tableHeaderView = header
-    }
-    
-    func setTableFooterView(footerView: UIView) {
-        self.tableFooterView = footerView
-    }
-}
