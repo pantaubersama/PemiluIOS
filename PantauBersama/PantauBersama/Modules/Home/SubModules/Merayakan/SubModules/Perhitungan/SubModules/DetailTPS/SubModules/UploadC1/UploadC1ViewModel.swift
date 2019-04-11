@@ -339,49 +339,37 @@ extension UploadC1ViewModel {
         
         switch type {
         case .c1Presiden:
-            var stashImages: [StashImages] = []
             for datas in data {
-//                stashImages.append(StashImages(section: 0, images: nil, id: datas.id, url: datas.file.thumbnail.url))
                 self.imageS.onNext(StashImages(section: 0, images: nil, id: datas.id, url: datas.file.thumbnail.url))
             }
             latestValue.append(SectionC1Models(header: "1. Model C1-PPWP (Presiden)", items: stashImages))
             self.relaySections.accept(latestValue)
         case .c1DPR:
-            var stashImages: [StashImages] = []
             for datas in data {
-//                stashImages.append(StashImages(section: 1, images: nil, id: datas.id, url: datas.file.thumbnail.url))
                 self.imageS.onNext(StashImages(section: 1, images: #imageLiteral(resourceName: "outlineImage24Px"), id: datas.id, url: datas.file.thumbnail.url))
             }
             latestValue.append(SectionC1Models(header: "2. Model C1-DPR RI", items: stashImages))
             self.relaySections.accept(latestValue)
         case .c1DPD:
-            var stashImages: [StashImages] = []
             for datas in data {
-//                stashImages.append(StashImages(section: 2, images: nil, id: datas.id, url: datas.file.thumbnail.url))
                 self.imageS.onNext(StashImages(section: 2, images: #imageLiteral(resourceName: "outlineImage24Px"), id: datas.id, url: datas.file.thumbnail.url))
             }
             latestValue.append(SectionC1Models(header: "3. Model C1-DPD", items: stashImages))
             self.relaySections.accept(latestValue)
         case .c1DPRDProvinsi:
-            var stashImages: [StashImages] = []
             for datas in data {
-//                stashImages.append(StashImages(section: 3, images: nil, id: datas.id, url: datas.file.thumbnail.url))
                 self.imageS.onNext(StashImages(section: 3, images: #imageLiteral(resourceName: "outlineImage24Px"), id: datas.id, url: datas.file.thumbnail.url))
             }
             latestValue.append(SectionC1Models(header: "4. Model C1-DPRD Provinsi", items: stashImages))
             self.relaySections.accept(latestValue)
         case .c1DPRDKabupaten:
-            var stashImages: [StashImages] = []
             for datas in data {
-//                stashImages.append(StashImages(section: 4, images: nil, id: datas.id, url: datas.file.thumbnail.url))
                 self.imageS.onNext(StashImages(section: 4, images: #imageLiteral(resourceName: "outlineImage24Px"), id: datas.id, url: datas.file.thumbnail.url))
             }
             latestValue.append(SectionC1Models(header: "5. Model C1-DPRD Kabupaten/Kota", items: stashImages))
             self.relaySections.accept(latestValue)
         case .suasanaTPS:
-            var stashImages: [StashImages] = []
             for datas in data {
-//                stashImages.append(StashImages(section: 5, images: nil, id: datas.id, url: datas.file.thumbnail.url))
                 self.imageS.onNext(StashImages(section: 5, images: #imageLiteral(resourceName: "outlineImage24Px"), id: datas.id, url: datas.file.thumbnail.url))
             }
             latestValue.append(SectionC1Models(header: "6. Suasana TPS", items: stashImages))
