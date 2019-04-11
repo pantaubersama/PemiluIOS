@@ -8,7 +8,13 @@
 
 import UIKit
 import Common
+import RxSwift
 
 class C1PhotoHeader: UITableViewHeaderFooterView, IReusableCell {
+    
+    @IBOutlet weak var btnAdd: UIButton!
     @IBOutlet weak var lblTitle: Label!
+    
+    var disposeBag: DisposeBag = DisposeBag()
+    
 }

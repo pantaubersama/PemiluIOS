@@ -228,6 +228,7 @@
 		840901C421DF3BEC001BF559 /* CatatanCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840901C321DF3BEC001BF559 /* CatatanCoordinator.swift */; };
 		8409374B21D360D10024A444 /* PilpresViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8409374A21D360D10024A444 /* PilpresViewModel.swift */; };
 		8409374D21D361240024A444 /* PilpresNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8409374C21D361240024A444 /* PilpresNavigator.swift */; };
+		840B668F225E2193003628FB /* SectionC1Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840B668E225E2193003628FB /* SectionC1Models.swift */; };
 		840BD0852233A9CD00F0B90F /* love.json in Resources */ = {isa = PBXBuildFile; fileRef = 840BD0842233A9CD00F0B90F /* love.json */; };
 		841CDA3D21C8BC1C0015680C /* LinimasaController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 841CDA3C21C8BC1C0015680C /* LinimasaController.xib */; };
 		8423C3FA21F71711000AAA63 /* DetailAskController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8423C3F921F71711000AAA63 /* DetailAskController.xib */; };
@@ -877,6 +878,7 @@
 		840901C321DF3BEC001BF559 /* CatatanCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatatanCoordinator.swift; sourceTree = "<group>"; };
 		8409374A21D360D10024A444 /* PilpresViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PilpresViewModel.swift; sourceTree = "<group>"; };
 		8409374C21D361240024A444 /* PilpresNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PilpresNavigator.swift; sourceTree = "<group>"; };
+		840B668E225E2193003628FB /* SectionC1Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionC1Models.swift; sourceTree = "<group>"; };
 		840BD0842233A9CD00F0B90F /* love.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = love.json; sourceTree = "<group>"; };
 		841CDA3C21C8BC1C0015680C /* LinimasaController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LinimasaController.xib; sourceTree = "<group>"; };
 		8423C3F921F71711000AAA63 /* DetailAskController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailAskController.xib; sourceTree = "<group>"; };
@@ -3629,6 +3631,7 @@
 				E54CFB05222C481A002DA0D1 /* UploadC1Controller.xib */,
 				E52BE9E2222F4AC700E26E70 /* UploadC1Coordinator.swift */,
 				E52BE9E4222F4AD300E26E70 /* UploadC1ViewModel.swift */,
+				840B668E225E2193003628FB /* SectionC1Models.swift */,
 			);
 			path = UploadC1;
 			sourceTree = "<group>";
@@ -4384,6 +4387,7 @@
 				845C570221CD1AEB00EDCDFE /* ProfileController.swift in Sources */,
 				84CA10C121EF107E0025CF10 /* AboutController.swift in Sources */,
 				11D0669F21E26A57003AC9BB /* QuizResultModel.swift in Sources */,
+				840B668F225E2193003628FB /* SectionC1Models.swift in Sources */,
 				84A07FC221D14D4F00269C6B /* ReqClusterController.swift in Sources */,
 				11B3C79621D1126700EDCECB /* QuizSummaryKeyCell.swift in Sources */,
 				11D066AC21E38850003AC9BB /* PenpolFilterModel.swift in Sources */,

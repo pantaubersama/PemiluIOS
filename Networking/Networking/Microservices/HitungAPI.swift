@@ -22,7 +22,7 @@ public enum RealCountImageType: String {
     case c1DPR = "c1_dpr_ri"
     case c1DPD = "c1_dpd"
     case c1DPRDProvinsi = "c1_dprd_provinsi"
-    case c1DPRDKabupaten = "c1_dprd_kabupaten"
+    case c1DPRDKabupaten = "c1_dprb_kabupaten"
     case suasanaTPS = "suasana_tps"
 }
 
@@ -42,10 +42,10 @@ public enum HitungAPI {
     case getFormC1(hitungRealCountId: String, tingkat: TingkatPemilihan)
     case putFormC1(parameters: [String: Any])
     
-    case deleteImages(id: Int)
-    case getImages(id: Int)
+    case deleteImages(id: String)
+    case getImages(id: String)
     case getImagesRealCount(hitungRealCountId: String, type: RealCountImageType, page: Int, perPage: Int)
-    case postImageRealCount(hitungRealCountId: Int, type: RealCountImageType, image: UIImage)
+    case postImageRealCount(hitungRealCountId: String, type: RealCountImageType, image: UIImage)
     
     case putRealCount(id: Int, noTps: Int)
     case getRealCount(id: Int)
@@ -140,7 +140,7 @@ extension HitungAPI: TargetType {
             
         case .postImageRealCount(let hitungRealCountId, let type, let image):
             var multipartFormData = [MultipartFormData]()
-            multipartFormData.append(buildMultipartFormData(key: "hitung_real_count_id", value: "\(hitungRealCountId)"))
+            multipartFormData.append(buildMultipartFormData(key: "hitung_real_count_id", value: hitungRealCountId))
             multipartFormData.append(buildMultipartFormData(key: "image_type", value: type.rawValue))
             if let image = image.jpegData(compressionQuality: 0.1) {
                 multipartFormData.append(buildMultipartFormData(name: "file", value: image))

@@ -149,7 +149,7 @@ class DetailTPSViewModel: ViewModelType {
             .asDriverOnErrorJustComplete()
         
         let c1Upload = c1UploadS
-            .flatMap({ navigator.launchUploadC1() })
+            .flatMap({ navigator.launchUploadC1(data: self.data) })
             .asDriverOnErrorJustComplete()
         
         let c1FormPresiden = c1PresidenS
