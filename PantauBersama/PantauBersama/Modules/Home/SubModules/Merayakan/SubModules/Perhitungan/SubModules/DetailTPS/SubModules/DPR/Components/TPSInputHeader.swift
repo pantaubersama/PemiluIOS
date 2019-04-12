@@ -52,9 +52,6 @@ extension TPSInputHeader: IReusableCell {
         
         btnSuara
             .rx_suara
-            .do(onNext: { (value) in
-                print("Values sections \(value)")
-            })
             .skip(1)
             .distinctUntilChanged({ (a, b) -> Bool in
                 return a != b

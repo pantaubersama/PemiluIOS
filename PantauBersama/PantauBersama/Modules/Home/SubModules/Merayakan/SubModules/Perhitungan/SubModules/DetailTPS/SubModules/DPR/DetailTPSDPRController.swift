@@ -181,7 +181,11 @@ extension DetailTPSDPRController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let footerCount = dataSource.sectionModels[section].footerCount
         let footer = TPSInputFooter()
+        
+        footer.configure(footerCount: footerCount)
+        
         return footer
     }
 }

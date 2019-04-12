@@ -32,6 +32,9 @@ public enum HitungAPI {
     
     case putCalculationsCandidates(id: String, type: TingkatPemilihan, invalidVote: Int, candidates: [CandidatePartyCount], parties: [CandidatePartyCount]?, initialData: [ItemActor]?)
     
+    case putCalculationsCandidatesAndParty(id: String, type: TingkatPemilihan, invalidVote: Int, candidates: [CandidatePartyCount], parties: [PartyCount]?, initialData: [ItemActor]?)
+    
+    
     case getCandidates(dapilId: Int, tingkat: TingkatPemilihan)
     case getProvinces(page: Int, perPage: Int)
     case getRegencies(page: Int, perPage: Int, provinceCode: Int)
@@ -87,7 +90,8 @@ extension HitungAPI: TargetType {
             return "/hitung/v1/real_counts/\(id)/draft"
         case .getCalculations,
              .putCalculations,
-             .putCalculationsCandidates:
+             .putCalculationsCandidates,
+             .putCalculationsCandidatesAndParty:
             return "/hitung/v1/calculations"
         case .getCandidates:
             return "/hitung/v1/candidates"
@@ -193,6 +197,9 @@ extension HitungAPI: TargetType {
                     }
                 }
             }
+            return multipartFormData
+        case .putCalculationsCandidatesAndParty(let (data)):
+            var multipartFormData = [MultipartFormData]()
             return multipartFormData
         default:
             return nil
@@ -318,7 +325,8 @@ extension HitungAPI: TargetType {
         switch self {
         case .postImageRealCount,
              .putCalculations,
-             .putCalculationsCandidates:
+             .putCalculationsCandidates,
+             .putCalculationsCandidatesAndParty:
             return .uploadMultipart(self.multipartBody ?? [])
         default:
             return .requestParameters(parameters: parameters ?? [:], encoding: parameterEncoding)

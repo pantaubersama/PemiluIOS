@@ -27,20 +27,18 @@ class DetailTPSDPRViewModel: ViewModelType {
         let counterPartyI: AnyObserver<PartyCount>
         let viewWillAppearI: AnyObserver<Void>
         let bufferPartyI: AnyObserver<PartyCount>
+        let simpanI: AnyObserver<Void>
     }
     
     struct Output {
         let backO: Driver<Void>
-        let itemsO: Driver<[SectionModelDPR]>
         let nameDapilO: Driver<String>
         let errorO: Driver<Error>
         let invalidO: Driver<Int>
-        let initialValueO: Driver<RealCountResponse>
-        let dataO: Driver<Void>
-        let updateItemsO: Driver<Void>
-        
+        let initialValueO: Driver<Void>
         let itemsSections: Driver<[SectionModelCalculations]>
         let bufferPartyO: Driver<PartyCount>
+        let simpanO: Driver<Void>
     }
     
     var input: Input
@@ -55,18 +53,16 @@ class DetailTPSDPRViewModel: ViewModelType {
     private let backS = PublishSubject<Void>()
     private let detailTPSS = PublishSubject<Void>()
     private let refreshS = PublishSubject<String>()
-    private let nameDapilS = BehaviorRelay<String>(value: "")
     private let counterS = PublishSubject<CandidatePartyCount>()
-    private let candidatesValue = BehaviorRelay<[CandidatesCount]>(value: [])
     private let invalidCountS = PublishSubject<Int>()
     private let counterPartyS = PublishSubject<PartyCount>()
     private let viewWillAppearS = PublishSubject<Void>()
     private let bufferPartyS = PublishSubject<PartyCount>()
+    private let simpanS = PublishSubject<Void>()
     
-    private let itemsRelay = BehaviorRelay<[SectionModelDPR]>(value: [])
     private let itemRelay = BehaviorRelay<[SectionModelCalculations]>(value: [])
     
-    var candidatesPartyValue = BehaviorRelay<[CandidatePartyCount]>(value: [])
+    private var candidatesPartyValue = BehaviorRelay<[CandidatePartyCount]>(value: [])
     private let partyValue = BehaviorRelay<[PartyCount]>(value: [])
     
     var bufferInvalid = BehaviorRelay<Int>(value: 0)
@@ -86,7 +82,8 @@ class DetailTPSDPRViewModel: ViewModelType {
                       invalidCountI: invalidCountS.asObserver(),
                       counterPartyI: counterPartyS.asObserver(),
                       viewWillAppearI: viewWillAppearS.asObserver(),
-                      bufferPartyI: bufferPartyS.asObserver())
+                      bufferPartyI: bufferPartyS.asObserver(),
+                      simpanI: simpanS.asObserver())
         
         
         /// MARK
@@ -158,10 +155,16 @@ class DetailTPSDPRViewModel: ViewModelType {
                 }.first
                 
                 if updateCandidate != nil {
+                    /// assign updated candidates value
                     updateCandidate?.value = candidateCount.totalVote
                     currentCandidates.items[index] = updateCandidate!
-                    latestItems[candidateCount.indexPath.section] = currentCandidates
                     // after assign row and section, then keep into Relay Sections Models
+                    let currentPartyHeader = latestItems[candidateCount.indexPath.section].headerCount
+                    var totalValueCandidates = currentCandidates.items.map({ $0.value }).reduce(0, +)
+                    totalValueCandidates += currentPartyHeader
+                    /// assign footer value with header count and each row value
+                    currentCandidates.footerCount = totalValueCandidates
+                    latestItems[candidateCount.indexPath.section] = currentCandidates
                     self.itemRelay.accept(latestItems)
                 }
                 return Observable.just(latestItems)
@@ -171,43 +174,21 @@ class DetailTPSDPRViewModel: ViewModelType {
         /// MARK
         /// Update Header counter
         let headerUpdates = counterPartyS
-//            .distinctUntilChanged({ $0.value != $1.value })
-            .do(onNext: { (partyCount) in
-                print("PARTY COUNT ==== \(partyCount)")
-            })
             .flatMapLatest { [weak self] (partyCount) -> Observable<[SectionModelCalculations]> in
                 guard let `self` = self else { return Observable.empty() }
-                // TODO
-                // Fetch latest party values
-//                var latestPartyValue = self.partyValue.value
-//
-//                if latestPartyValue.contains(where: { $0.number == partyCount.number }) {
-//                    guard let index = latestPartyValue.index(where: { current -> Bool in
-//                        return current.number == partyCount.number
-//                    }) else { return Observable.empty() }
-//                    latestPartyValue.remove(at: index)
-//                    latestPartyValue.append(partyCount)
-//                } else {
-//                    latestPartyValue.append(partyCount)
-//                }
-//                self.partyValue.accept(latestPartyValue)
-//
-//                /// Match with latest items
+                /// Match with latest items sections
                 var latestItems = self.itemRelay.value
-//
-                if latestItems.contains(where: { $0.headerNumber == partyCount.number }) {
-                    guard let index = latestItems.index(where: { current -> Bool in
-                        return current.headerNumber == partyCount.number
-                    }) else { return Observable.empty() }
-
-                    print("Index Section yang berubah = \(index)")
-                }
-//
-//                /// Match with current sections
+                /// Match with current sections
                 var currentParty = latestItems[partyCount.section]
                 currentParty.headerCount = partyCount.value
-//
-//                /// Assign latest values with current party
+                /// Calculate footer with all sum in row
+                let latestCandidate = latestItems[partyCount.section].items
+                var totalValueFooter = latestCandidate.map({ $0.value }).reduce(0, +)
+                totalValueFooter += partyCount.value
+                /// Assign value footer
+                currentParty.footerCount = totalValueFooter
+
+                /// Assign latest values with current party
                 latestItems[partyCount.section] = currentParty
                 latestItems[partyCount.section].items = latestItems[partyCount.section].items
                 
@@ -231,8 +212,8 @@ class DetailTPSDPRViewModel: ViewModelType {
          candidates represent as Item Actor: have id, and total value
          we must store this id and value and match will some array of data in SectionModelDPR items
          **/
-        let initialValue = refreshS.startWith("")
-            .flatMapLatest { [weak self] (_) -> Observable<RealCountResponse> in
+        let initialValue = viewWillAppearS
+            .flatMapLatest { [weak self] (_) -> Observable<Void> in
                 guard let `self` = self else { return Observable.empty() }
                 return NetworkService.instance
                     .requestObject(HitungAPI.getCalculations(hitungRealCountId: self.realCount.id,
@@ -242,40 +223,16 @@ class DetailTPSDPRViewModel: ViewModelType {
                     .do(onSuccess: { (response) in
                         print("Response candidates: \(response.calculation.candidates ?? [])")
                         self.bufferItemActor.accept(response.calculation.candidates ?? [])
-                    }, onError: { (e) in
-                        print(e.localizedDescription)
+                     
+                        let lastValueCandidate = response.calculation.candidates?.map({ $0.totalVote ?? 0 }).reduce(0, +)
+                        let lastValueParty = response.calculation.parties?.map({ $0.totalVote ?? 0 }).reduce(0, +)
+                        
                     })
                     .trackError(self.errorTracker)
                     .trackActivity(self.activityIndicator)
                     .asObservable()
+                    .mapToVoid()
             }.asDriverOnErrorJustComplete()
-        
-        
-        /// TODO
-        /// Get dapils by region to get id dapils
-        /// Then fetch Candidates to get item
-        let data = viewWillAppearS
-            .flatMapLatest { [weak self] (_) -> Observable<[CandidateResponse]> in
-                guard let `self` = self else { return Observable.empty() }
-                return self.getDapils(tingkat: type)
-            }.flatMapLatest { (response) -> Observable<[SectionModelDPR]> in
-                return self.transformToSection(response: response)
-            }.mapToVoid()
-            .asDriverOnErrorJustComplete()
-        
-        /// Counter Mechanism
-        /// TODO: Need Id and total value
-        let updateItems = counterS
-//            .distinctUntilChanged({ $0.totalVote != $1.totalVote })
-            .flatMapLatest { [weak self] (candidateCount) -> Observable<Void> in
-                guard let `self` = self else { return Observable.empty() }
-                var currentCandidatesParty = self.candidatesPartyValue.value
-                currentCandidatesParty.append(candidateCount)
-                self.candidatesPartyValue.accept(currentCandidatesParty)
-                self.updateSectionModel(candidatePartyCount: candidateCount)
-                
-                return Observable.just(())
-        }.asDriverOnErrorJustComplete()
         
         
         let invalid = invalidCountS
@@ -290,24 +247,40 @@ class DetailTPSDPRViewModel: ViewModelType {
             .flatMap({ navigator.back() })
             .asDriverOnErrorJustComplete()
         
-//        let partyCount = counterPartyS
-//            .flatMapLatest({ [weak self] (party) -> Observable<PartyCount> in
-//                guard let `self` = self else { return Observable.empty() }
-//                print(party)
-//                return Observable.just(party)
-//            })
-//            .asDriverOnErrorJustComplete()
+        
+        /// MARK
+        /// Handle Save
+        let simpan = simpanS
+            .withLatestFrom(Observable.combineLatest(invalidCountS.asObservable().startWith(0),
+                                                     self.candidatesPartyValue,
+                                                     self.partyValue,
+                                                     self.bufferItemActor))
+            .flatMapLatest { [weak self] (invalid, candidates, party, initialData) -> Observable<Void> in
+                guard let `self` = self else { return Observable.empty() }
+                
+                return NetworkService.instance
+                    .requestObject(HitungAPI.putCalculationsCandidatesAndParty(id: self.realCount.id,
+                                                                       type: self.type,
+                                                                       invalidVote: invalid,
+                                                                       candidates: candidates,
+                                                                       parties: party,
+                                                                       initialData: initialData),
+                                   c: BaseResponse<RealCountResponse>.self)
+                    .trackError(self.errorTracker)
+                    .trackActivity(self.activityIndicator)
+                    .asObservable()
+                    .mapToVoid()
+            }.asDriverOnErrorJustComplete()
+    
         
         output = Output(backO: back,
-                        itemsO: itemsRelay.asDriverOnErrorJustComplete(),
                         nameDapilO: nameDapil,
                         errorO: errorTracker.asDriver(),
                         invalidO: invalid,
                         initialValueO: initialValue,
-                        dataO: data,
-                        updateItemsO: updateItems,
                         itemsSections: mergeItems,
-                        bufferPartyO: bufferPartyS.asDriverOnErrorJustComplete())
+                        bufferPartyO: bufferPartyS.asDriverOnErrorJustComplete(),
+                        simpanO: simpan)
     }
 }
 
@@ -340,42 +313,42 @@ extension DetailTPSDPRViewModel {
     /// MARK: - Transform response into section model
     /// this function will plot every section parties, and every section parties have candidates items
     /// match this values with Item actor and changes items in section model 
-    private func transformToSection(response: [CandidateResponse]) -> Observable<[SectionModelDPR]> {
-        var items: [SectionModelDPR] = []
-        for item in response {
-            items.append(SectionModelDPR(header: item.name,
-                                         number: item.serialNumber,
-                                         logo: item.logo?.thumbnail.url ?? "",
-                                         items: self.generateCandidates(data: item,
-                                                                        itemActor: self.candidatesPartyValue.value)))
-        }
-        self.itemsRelay.accept(items)
-        return Observable.just(items)
-    }
+//    private func transformToSection(response: [CandidateResponse]) -> Observable<[SectionModelDPR]> {
+//        var items: [SectionModelDPR] = []
+//        for item in response {
+//            items.append(SectionModelDPR(header: item.name,
+//                                         number: item.serialNumber,
+//                                         logo: item.logo?.thumbnail.url ?? "",
+//                                         items: self.generateCandidates(data: item,
+//                                                                        itemActor: self.candidatesPartyValue.value)))
+//        }
+//        self.itemsRelay.accept(items)
+//        return Observable.just(items)
+//    }
     
-    private func updateSectionModel(candidatePartyCount: CandidatePartyCount) {
-        var currentSectionedModels = self.itemsRelay.value
-        
-        var currentCandidate = currentSectionedModels[candidatePartyCount.indexPath.section]
-        guard let index = currentCandidate.items.index(where: { current -> Bool in
-            return current.id == candidatePartyCount.id
-        }) else { return }
-        
-        var updateCandidate = currentCandidate.items.filter { (candidate) -> Bool in
-            return candidate.id == candidatePartyCount.id
-        }.first
-        
-        print("Index updated: \(index)")
-        print("Updated candidate: \(updateCandidate)")
-        
-        if updateCandidate != nil {
-            updateCandidate?.value = candidatePartyCount.totalVote
-            currentCandidate.items[index] = updateCandidate!
-            currentSectionedModels[candidatePartyCount.indexPath.section] = currentCandidate
-            
-            self.itemsRelay.accept(currentSectionedModels)
-        }
-    }
+//    private func updateSectionModel(candidatePartyCount: CandidatePartyCount) {
+//        var currentSectionedModels = self.itemsRelay.value
+//
+//        var currentCandidate = currentSectionedModels[candidatePartyCount.indexPath.section]
+//        guard let index = currentCandidate.items.index(where: { current -> Bool in
+//            return current.id == candidatePartyCount.id
+//        }) else { return }
+//
+//        var updateCandidate = currentCandidate.items.filter { (candidate) -> Bool in
+//            return candidate.id == candidatePartyCount.id
+//        }.first
+//
+//        print("Index updated: \(index)")
+//        print("Updated candidate: \(updateCandidate)")
+//
+//        if updateCandidate != nil {
+//            updateCandidate?.value = candidatePartyCount.totalVote
+//            currentCandidate.items[index] = updateCandidate!
+//            currentSectionedModels[candidatePartyCount.indexPath.section] = currentCandidate
+//
+//            self.itemsRelay.accept(currentSectionedModels)
+//        }
+//    }
 
     
     /// Mark: - Generate candidates Actor
@@ -399,9 +372,9 @@ extension DetailTPSDPRViewModel {
         var items: [SectionModelCalculations] = []
         
         for item in response {
-            let updatedSection = self.partyValue.value.filter({ $0.number == item.serialNumber }).first?.value
+            let headerCount = self.partyValue.value.filter({ $0.number == item.serialNumber }).first?.value // iki urung ke nggo, nanti pas initial
             items.append(SectionModelCalculations(header: item.name,
-                                                  headerCount: updatedSection ?? 0,
+                                                  headerCount: headerCount ?? 0,
                                                   headerNumber: item.serialNumber,
                                                   headerLogo: item.logo?.thumbnail.url ?? "",
                                                   items: self.generateCandidates(data: item, itemActor: self.candidatesPartyValue.value),
