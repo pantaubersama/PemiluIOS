@@ -171,40 +171,43 @@ class DetailTPSDPRViewModel: ViewModelType {
         /// MARK
         /// Update Header counter
         let headerUpdates = counterPartyS
+//            .distinctUntilChanged({ $0.value != $1.value })
+            .do(onNext: { (partyCount) in
+                print("PARTY COUNT ==== \(partyCount)")
+            })
             .flatMapLatest { [weak self] (partyCount) -> Observable<[SectionModelCalculations]> in
                 guard let `self` = self else { return Observable.empty() }
-                
                 // TODO
                 // Fetch latest party values
-                var latestPartyValue = self.partyValue.value
-                
-                if latestPartyValue.contains(where: { $0.number == partyCount.number }) {
-                    guard let index = latestPartyValue.index(where: { current -> Bool in
-                        return current.number == partyCount.number
-                    }) else { return Observable.empty() }
-                    latestPartyValue.remove(at: index)
-                    latestPartyValue.append(partyCount)
-                } else {
-                    latestPartyValue.append(partyCount)
-                }
-                self.partyValue.accept(latestPartyValue)
-                
-                /// Match with latest items
+//                var latestPartyValue = self.partyValue.value
+//
+//                if latestPartyValue.contains(where: { $0.number == partyCount.number }) {
+//                    guard let index = latestPartyValue.index(where: { current -> Bool in
+//                        return current.number == partyCount.number
+//                    }) else { return Observable.empty() }
+//                    latestPartyValue.remove(at: index)
+//                    latestPartyValue.append(partyCount)
+//                } else {
+//                    latestPartyValue.append(partyCount)
+//                }
+//                self.partyValue.accept(latestPartyValue)
+//
+//                /// Match with latest items
                 var latestItems = self.itemRelay.value
-                
+//
                 if latestItems.contains(where: { $0.headerNumber == partyCount.number }) {
                     guard let index = latestItems.index(where: { current -> Bool in
                         return current.headerNumber == partyCount.number
                     }) else { return Observable.empty() }
-                    
+
                     print("Index Section yang berubah = \(index)")
                 }
-                
-                /// Match with current sections
+//
+//                /// Match with current sections
                 var currentParty = latestItems[partyCount.section]
                 currentParty.headerCount = partyCount.value
-    
-                /// Assign latest values with current party
+//
+//                /// Assign latest values with current party
                 latestItems[partyCount.section] = currentParty
                 latestItems[partyCount.section].items = latestItems[partyCount.section].items
                 

@@ -68,6 +68,7 @@ class DetailTPSDPRController: UIViewController {
         tableView.setTableHeaderView(headerView: header)
         tableView.setTableFooterView(footerView: footer)
         tableView.registerReusableCell(TPSInputCell.self)
+        tableView.registerReusableCell(TPSInputHeader.self)
         
         tableView.rx.setDelegate(self)
             .disposed(by: disposeBag)
@@ -148,35 +149,34 @@ class DetailTPSDPRController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.viewModel.input.viewWillAppearI.onNext(())
+        
         tableView.updateHeaderViewFrame()
     }
 }
 
 extension DetailTPSDPRController: UITableViewDelegate {
     
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 78.0
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 55.0
+    }
+    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerName = dataSource.sectionModels[section].header
         let number = dataSource.sectionModels[section].headerNumber
         let logo = dataSource.sectionModels[section].headerLogo
-        let headerView = TPSInputHeader()
-        headerView.configure(header: headerName, number: number, logo: logo, viewModel: self.viewModel, section: section)
+        let headerCount = dataSource.sectionModels[section].headerCount
         
-        
-        headerView.btnCounter
-            .rx_suara
-            .map({ PartyCount(section: section, number: number, value: $0) })
-            .bind(to: self.viewModel.input.counterPartyI)
-            .disposed(by: headerView.disposeBag)
-        
-//        headerView.btnCounter
-//            .rx_suara
-//            .map({ PartyCount(section: section, number: number, value: $0) })
-//            .subscribe(onNext: { [weak self] (party) in
-//                guard let `self` = self else { return }
-//                self.viewModel.input.bufferPartyI.onNext(party)
-//            })
-//            .disposed(by: self.disposeBag)
-        
+        let headerView = tableView.dequeueReusableCell() as TPSInputHeader
+        headerView.configureCell(item: TPSInputHeader.Input(name: headerName,
+                                                            section: section,
+                                                            number: number,
+                                                            logo: logo,
+                                                            viewModel: self.viewModel,
+                                                            headerCount: headerCount))
         return headerView
     }
     
