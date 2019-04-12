@@ -17,7 +17,7 @@ class TPSInputCell: UITableViewCell {
     @IBOutlet weak var lblNameCandidatees: Label!
     @IBOutlet weak var btnVote: TPSButton!
     
-    private(set) var disposeBag: DisposeBag?
+    private(set) var disposeBag = DisposeBag()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -33,7 +33,7 @@ class TPSInputCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        disposeBag = nil
+        disposeBag = DisposeBag()
         btnVote.suara = 0
     }
 }
@@ -82,6 +82,7 @@ extension TPSInputCell: IReusableCell {
     
     func configureDPD(item: CandidateActor) {
         lblNameCandidatees.text = item.name
+        btnVote.suara = item.value
     }
     
 }

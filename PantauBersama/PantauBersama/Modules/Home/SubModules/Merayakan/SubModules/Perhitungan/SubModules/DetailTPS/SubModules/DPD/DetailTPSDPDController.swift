@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import RxDataSources
+import Networking
 
 class DetailTPSDPDController: UIViewController {
     var viewModel: DetailTPSDPDViewModel!
@@ -17,6 +18,7 @@ class DetailTPSDPDController: UIViewController {
     private let disposeBag = DisposeBag()
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var btnInvalid: TPSButton!
     
     lazy var footer = UIView.nib(withType: DetailTPSDPRFooter.self)
     lazy var header = UIView.nib(withType: DetailTPSDPRHeader.self)
@@ -37,6 +39,10 @@ class DetailTPSDPDController: UIViewController {
             .bind(to: viewModel.input.backI)
             .disposed(by: disposeBag)
         
+        btnInvalid.rx_suara
+            .bind(to: viewModel.input.invalidValueI)
+            .disposed(by: disposeBag)
+        
         tableView.delegate = nil
         tableView.dataSource = nil
         tableView.setTableHeaderView(headerView: header)
@@ -49,6 +55,13 @@ class DetailTPSDPDController: UIViewController {
         dataSource = RxTableViewSectionedReloadDataSource<SectionModelDPD>(configureCell: { (ds, table, idx, item) -> UITableViewCell in
             let cell = self.tableView.dequeueReusableCell(indexPath: idx) as TPSInputCell
             cell.configureDPD(item: item)
+            
+            cell.btnVote.rx_suara
+                .skip(1)
+                .map({ CandidatePartyCount(id: item.id, totalVote: $0, indexPath: idx)})
+                .bind(to: self.viewModel.input.counterI)
+                .disposed(by: cell.disposeBag)
+            
             return cell
         })
         
@@ -69,6 +82,45 @@ class DetailTPSDPDController: UIViewController {
         viewModel.output.backO
             .drive()
             .disposed(by: disposeBag)
+        
+        viewModel.output.candidatePartyCountO
+            .do(onNext: { [weak self] (value) in
+                guard let `self` = self else { return }
+                // if id is math then get the latest value
+                print("ALL CANDIDATES: \(value)")
+                let sum = value.map({ $0.totalVote }).reduce(0, +)
+                print("TOTAL ALL: \(sum)")
+                self.viewModel.input.lastValueI.onNext(sum)
+                
+            })
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.suaraSahO
+            .do(onNext: { [weak self] (value) in
+                guard let `self` = self else { return }
+                print("SUM TOTAL: \(value)")
+                self.footer.tfValidCount.text = "\(value)"
+            })
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.suaraInvalidO
+            .do(onNext: { [weak self] (value) in
+                guard let `self` = self else { return }
+                self.footer.tfInvalidCount.text = "\(value)"
+            })
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.totalSuaraO
+            .do(onNext: { [weak self] (value) in
+                guard let `self` = self else { return }
+                self.footer.tfCount.text = "\(value)"
+            })
+            .drive()
+            .disposed(by: disposeBag)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
