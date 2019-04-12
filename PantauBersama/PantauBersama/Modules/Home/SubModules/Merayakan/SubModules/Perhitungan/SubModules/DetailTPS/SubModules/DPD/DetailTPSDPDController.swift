@@ -11,6 +11,7 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 import Networking
+import Common
 
 class DetailTPSDPDController: UIViewController {
     var viewModel: DetailTPSDPDViewModel!
@@ -19,6 +20,7 @@ class DetailTPSDPDController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var btnInvalid: TPSButton!
+    @IBOutlet weak var btnSimpan: Button!
     
     lazy var footer = UIView.nib(withType: DetailTPSDPRFooter.self)
     lazy var header = UIView.nib(withType: DetailTPSDPRHeader.self)
@@ -41,6 +43,10 @@ class DetailTPSDPDController: UIViewController {
         
         btnInvalid.rx_suara
             .bind(to: viewModel.input.invalidValueI)
+            .disposed(by: disposeBag)
+        
+        btnSimpan.rx.tap
+            .bind(to: viewModel.input.simpanI)
             .disposed(by: disposeBag)
         
         tableView.delegate = nil
@@ -88,10 +94,7 @@ class DetailTPSDPDController: UIViewController {
         viewModel.output.candidatePartyCountO
             .do(onNext: { [weak self] (value) in
                 guard let `self` = self else { return }
-                // if id is math then get the latest value
-                print("ALL CANDIDATES: \(value)")
                 let sum = value.map({ $0.totalVote }).reduce(0, +)
-                print("TOTAL ALL: \(sum)")
                 self.viewModel.input.lastValueI.onNext(sum)
                 
             })
@@ -123,21 +126,32 @@ class DetailTPSDPDController: UIViewController {
             .drive()
             .disposed(by: disposeBag)
         
+        viewModel.output.simapnO
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.errorO
+            .drive(onNext: { [weak self] (e) in
+                guard let alert = UIAlertController.alert(with: e) else { return }
+                self?.navigationController?.present(alert, animated: true, completion: nil)
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.output.initialO
+            .drive()
+            .disposed(by: disposeBag)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        self.viewModel.input.viewWillAppearI.onNext(())
         
         tableView.updateHeaderViewFrame()
     }
 }
 
 extension DetailTPSDPDController: UITableViewDelegate {
-//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        let header = DetailTPSDPRHeader()
-//        let name = dataSource.sectionModels[section].header
-//        header.configure(name: name)
-//        return header
-//    }
 }
 

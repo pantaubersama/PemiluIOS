@@ -30,6 +30,8 @@ public enum HitungAPI {
     case getCalculations(hitungRealCountId: String, tingkat: TingkatPemilihan)
     case putCalculations(hitungRealCountId: String, type: TingkatPemilihan, invalidVote: Int, candidates: [CandidatesCount], parties: [CandidatesCount]?)
     
+    case putCalculationsCandidates(id: String, type: TingkatPemilihan, invalidVote: Int, candidates: [CandidatePartyCount], parties: [CandidatePartyCount]?, initialData: [ItemActor]?)
+    
     case getCandidates(dapilId: Int, tingkat: TingkatPemilihan)
     case getProvinces(page: Int, perPage: Int)
     case getRegencies(page: Int, perPage: Int, provinceCode: Int)
@@ -84,7 +86,8 @@ extension HitungAPI: TargetType {
         case .publishRealCount(let id):
             return "/hitung/v1/real_counts/\(id)/draft"
         case .getCalculations,
-             .putCalculations:
+             .putCalculations,
+             .putCalculationsCandidates:
             return "/hitung/v1/calculations"
         case .getCandidates:
             return "/hitung/v1/candidates"
@@ -128,7 +131,8 @@ extension HitungAPI: TargetType {
             return .delete
         case .putCalculations,
              .putFormC1,
-             .putRealCount:
+             .putRealCount,
+             .putCalculationsCandidates:
             return .put
         default:
             return .get
@@ -159,6 +163,34 @@ extension HitungAPI: TargetType {
                 for parties in partie {
                     multipartFormData.append(buildMultipartFormData(key: "parties[][id]", value: "\(parties.id)"))
                     multipartFormData.append(buildMultipartFormData(key: "parties[][total_vote]", value: "\(parties.totalVote)"))
+                }
+            }
+            return multipartFormData
+        case .putCalculationsCandidates(let (realCountId, type, invalidVote, candidates, parties, initialData)):
+            var multipartFormData = [MultipartFormData]()
+            multipartFormData.append(buildMultipartFormData(key: "hitung_real_count_id", value: realCountId))
+            multipartFormData.append(buildMultipartFormData(key: "calculation_type", value: type.rawValue))
+            multipartFormData.append(buildMultipartFormData(key: "invalid_vote", value: "\(invalidVote)"))
+            for candidate in candidates {
+                multipartFormData.append(buildMultipartFormData(key: "candidates[][id]", value: "\(candidate.id)"))
+                multipartFormData.append(buildMultipartFormData(key: "candidates[][total_vote]", value: "\(candidate.totalVote)"))
+            }
+            if let partie = parties {
+                for data in partie {
+                    multipartFormData.append(buildMultipartFormData(key: "parties[][id]", value: "\(data.id)"))
+                    multipartFormData.append(buildMultipartFormData(key: "parties[][total_vote]", value: "\(data.totalVote)"))
+                }
+            }
+            if let initial = initialData {
+                for data in initial {
+                    print("Data initial: \(data)")
+                    if let lastCandidateValue = candidates.filter({ "\($0.id)" == data.actorId }).first {
+                        print("Last candidate is same: \(lastCandidateValue), totalValue: \(lastCandidateValue.totalVote)")
+                    } else {
+                        /// assume data initial is different, then append
+                        multipartFormData.append(buildMultipartFormData(key: "candidates[][id]", value: data.actorId ?? ""))
+                        multipartFormData.append(buildMultipartFormData(key: "candidates[][total_vote]", value: "\(data.totalVote ?? 0)"))
+                    }
                 }
             }
             return multipartFormData
@@ -285,7 +317,8 @@ extension HitungAPI: TargetType {
     public var task: Task {
         switch self {
         case .postImageRealCount,
-             .putCalculations:
+             .putCalculations,
+             .putCalculationsCandidates:
             return .uploadMultipart(self.multipartBody ?? [])
         default:
             return .requestParameters(parameters: parameters ?? [:], encoding: parameterEncoding)
