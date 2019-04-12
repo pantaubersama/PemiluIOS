@@ -73,11 +73,13 @@ class DetailTPSDPDController: UIViewController {
             .drive(tableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
         
-        header.configure(name: viewModel.nameWilayahRelay.value)
-        
-//        dataSource.titleForHeaderInSection = { dataSource, indexPath in
-//            return dataSource.sectionModels[indexPath].header
-//        }
+        viewModel.output.dapilName
+            .do(onNext: { [weak self] (s) in
+                guard let `self` = self else { return }
+                self.header.configure(name: s)
+            })
+            .drive()
+            .disposed(by: disposeBag)
         
         viewModel.output.backO
             .drive()

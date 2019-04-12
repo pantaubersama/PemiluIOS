@@ -29,6 +29,7 @@ class DetailTPSDPDViewModel: ViewModelType {
         let suaraSahO: Driver<Int>
         let suaraInvalidO: Driver<Int>
         let totalSuaraO: Driver<Int>
+        let dapilName: Driver<String>
     }
     
     var input: Input
@@ -42,17 +43,14 @@ class DetailTPSDPDViewModel: ViewModelType {
     
     private let refreshS = PublishSubject<String>()
     private let counterS = PublishSubject<CandidatePartyCount>()
-    
-    var nameWilayahRelay = BehaviorRelay<String>(value: "")
-    private let itemsRelay = BehaviorRelay<[SectionModelDPD]>(value: [])
-    
-    private let candidatesParty = BehaviorRelay<[CandidatePartyCount]>(value: [])
-    private let suaraSahRelay = BehaviorRelay<Int>(value: 0)
-    
     private let backS = PublishSubject<Void>()
     private let detailTPSS = PublishSubject<Void>()
     private let lastValueS = PublishSubject<Int>()
     private let invalidValueS = PublishSubject<Int>()
+    
+    private let itemsRelay = BehaviorRelay<[SectionModelDPD]>(value: [])
+    private let candidatesParty = BehaviorRelay<[CandidatePartyCount]>(value: [])
+    private let suaraSahRelay = BehaviorRelay<Int>(value: 0)
     
     init(navigator: DetailTPSDPDNavigator, data: RealCount, tingkat: TingkatPemilihan) {
         self.navigator = navigator
@@ -68,6 +66,23 @@ class DetailTPSDPDViewModel: ViewModelType {
         let back = backS
             .flatMap({ navigator.back() })
             .asDriverOnErrorJustComplete()
+        
+        /// TODO
+        /// Fetch dapil name
+        let dapilName = refreshS.startWith("")
+            .flatMapLatest { [weak self] (_) -> Observable<String> in
+                guard let `self` = self else { return Observable.empty() }
+                return NetworkService.instance
+                    .requestObject(HitungAPI.getDapils(provinceCode: self.data.provinceCode,
+                                                       regenciCode: self.data.regencyCode,
+                                                       districtCode: self.data.districtCode,
+                                                       tingkat: self.tingkat)
+                        , c: BaseResponse<DapilRegionResponse>.self)
+                    .map({ $0.data.nama })
+                    .trackError(self.errorTracker)
+                    .trackActivity(self.activityIndicator)
+                    .asObservable()
+            }.asDriverOnErrorJustComplete()
         
         
         /// TODO
@@ -155,7 +170,8 @@ class DetailTPSDPDViewModel: ViewModelType {
                         candidatePartyCountO: candidatesParty.asDriverOnErrorJustComplete(),
                         suaraSahO: totalSuaraSah,
                         suaraInvalidO: totalInvalidSuara,
-                        totalSuaraO: totalSuara)
+                        totalSuaraO: totalSuara,
+                        dapilName: dapilName)
     }
 }
 
@@ -181,11 +197,6 @@ extension DetailTPSDPDViewModel {
             .requestObject(HitungAPI.getCandidates(dapilId: idDapils, tingkat: tingkat),
                            c: BaseResponses<CandidateDPDResponse>.self)
             .map({ $0.data })
-            .do(onSuccess: { [weak self] (response) in
-                guard let `self` = self else { return }
-                let nameWilayah = response.first?.nama ?? ""
-                self.nameWilayahRelay.accept(nameWilayah)
-            })
             .trackError(self.errorTracker)
             .trackActivity(self.activityIndicator)
             .asObservable()
@@ -194,7 +205,6 @@ extension DetailTPSDPDViewModel {
     private func transformToSection(response: [CandidateDPDResponse]) -> Observable<[SectionModelDPD]> {
         var items: [SectionModelDPD] = []
         for item in response {
-            self.nameWilayahRelay.accept(item.nama)
             items.append(SectionModelDPD(header: item.nama,
                                          items: self.generateCandidates(data: item),
                                          total: 0))
