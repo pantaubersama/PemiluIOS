@@ -18,7 +18,7 @@ class TPSInputHeader: UIView {
     @IBOutlet weak var lblNameParty: Label!
     @IBOutlet weak var lblNumberParty: Label!
     @IBOutlet weak var btnCounter: TPSButton!
-    private(set) var disposeBag: DisposeBag?
+    private(set) var disposeBag = DisposeBag()
     
     override init(frame: CGRect) {
         let frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 78.0)
@@ -51,15 +51,13 @@ class TPSInputHeader: UIView {
         lblNameParty.text = header
         lblNumberParty.text = "No urut \(number)"
         
-        btnCounter.rx_suara
-            .do(onNext: { (_) in
-                print("This is section \(section)")
-            })
-            .map({ PartyCount(section: section,
-                              number: number,
-                              value: $0)})
-            .bind(to: viewModel.input.counterPartyI)
-            .disposed(by: bag)
+//        btnCounter.rx_suara
+//            .skip(1)
+//            .map({ PartyCount(section: section,
+//                              number: number,
+//                              value: $0)})
+//            .bind(to: viewModel.input.counterPartyI)
+//            .disposed(by: bag)
         
         
         disposeBag = bag

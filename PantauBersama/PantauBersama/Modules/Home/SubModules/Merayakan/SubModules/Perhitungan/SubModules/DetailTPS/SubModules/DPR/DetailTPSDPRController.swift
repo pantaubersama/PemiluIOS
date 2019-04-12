@@ -42,7 +42,7 @@ class DetailTPSDPRController: UIViewController {
     lazy var footer = UIView.nib(withType: DetailTPSDPRFooter.self)
     lazy var header = UIView.nib(withType: DetailTPSDPRHeader.self)
     
-    private var dataSource: RxTableViewSectionedReloadDataSource<SectionModelDPR>!
+    private var dataSource: RxTableViewSectionedReloadDataSource<SectionModelCalculations>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,13 +76,24 @@ class DetailTPSDPRController: UIViewController {
             .drive()
             .disposed(by: disposeBag)
         
-        dataSource = RxTableViewSectionedReloadDataSource<SectionModelDPR>(configureCell: { (dataSource, tableView, indexPath, item) -> UITableViewCell in
+        dataSource = RxTableViewSectionedReloadDataSource<SectionModelCalculations>(configureCell: { (dataSource, tableView, indexPath, item) -> UITableViewCell in
             let cell = tableView.dequeueReusableCell(indexPath: indexPath) as TPSInputCell
-            cell.configureCell(item: TPSInputCell.Input(candidates: item, viewModel: self.viewModel, indexPath: indexPath))
+            cell.configureDPD(item: item)
+            
+            cell.btnVote.rx_suara
+                .skip(1)
+                .map({ CandidatePartyCount(id: item.id, totalVote: $0, indexPath: indexPath)})
+                .bind(to: self.viewModel.input.counterI)
+                .disposed(by: cell.disposeBag)
+            
             return cell
         })
         
-        viewModel.output.itemsO
+        viewModel.output.itemsSections
+            .do(onNext: { [weak self] (_) in
+                guard let `self` = self else { return }
+                self.tableView.reloadData()
+            })
             .drive(tableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
         
@@ -110,20 +121,28 @@ class DetailTPSDPRController: UIViewController {
             .drive()
             .disposed(by: disposeBag)
         
-        viewModel.output.initialValueO
-            .drive()
-            .disposed(by: disposeBag)
+//        viewModel.output.initialValueO
+//            .drive()
+//            .disposed(by: disposeBag)
+//
+//        viewModel.output.dataO
+//            .drive()
+//            .disposed(by: disposeBag)
         
-        viewModel.output.dataO
-            .drive()
-            .disposed(by: disposeBag)
+//        viewModel.output.updateItemsO
+//            .do(onNext: { [unowned self] (_) in
+//                self.viewModel.input.viewWillAppearI.onNext(())
+//            })
+//            .drive()
+//            .disposed(by: disposeBag)
         
-        viewModel.output.updateItemsO
-            .do(onNext: { [unowned self] (_) in
-                self.viewModel.input.viewWillAppearI.onNext(())
-            })
-            .drive()
-            .disposed(by: disposeBag)
+//        viewModel.output.bufferPartyO
+//            .do(onNext: { [weak self] (party) in
+//                guard let `self` = self else { return }
+//                self.viewModel.input.counterPartyI.onNext(party)
+//            })
+//            .drive()
+//            .disposed(by: disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -137,10 +156,26 @@ extension DetailTPSDPRController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerName = dataSource.sectionModels[section].header
-        let number = dataSource.sectionModels[section].number
-        let logo = dataSource.sectionModels[section].logo
+        let number = dataSource.sectionModels[section].headerNumber
+        let logo = dataSource.sectionModels[section].headerLogo
         let headerView = TPSInputHeader()
         headerView.configure(header: headerName, number: number, logo: logo, viewModel: self.viewModel, section: section)
+        
+        
+        headerView.btnCounter
+            .rx_suara
+            .map({ PartyCount(section: section, number: number, value: $0) })
+            .bind(to: self.viewModel.input.counterPartyI)
+            .disposed(by: headerView.disposeBag)
+        
+//        headerView.btnCounter
+//            .rx_suara
+//            .map({ PartyCount(section: section, number: number, value: $0) })
+//            .subscribe(onNext: { [weak self] (party) in
+//                guard let `self` = self else { return }
+//                self.viewModel.input.bufferPartyI.onNext(party)
+//            })
+//            .disposed(by: self.disposeBag)
         
         return headerView
     }
