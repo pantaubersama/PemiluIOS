@@ -40,6 +40,12 @@ public struct ItemActor: Codable {
     public let actorType: String?
     public let totalVote: Int?
     
+    public init(id: String, vote: Int, type: String) {
+        self.actorId = id
+        self.totalVote = vote
+        self.actorType = type
+    }
+    
     private enum CodingKeys: String, CodingKey {
         case actorId = "actor_id"
         case actorType = "actor_type"

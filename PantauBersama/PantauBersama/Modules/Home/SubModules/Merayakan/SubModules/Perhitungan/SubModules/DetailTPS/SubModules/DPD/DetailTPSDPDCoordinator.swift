@@ -9,6 +9,7 @@
 import Common
 import RxSwift
 import RxCocoa
+import Networking
 
 protocol DetailTPSDPDNavigator {
     func back() -> Observable<Void>
@@ -16,14 +17,18 @@ protocol DetailTPSDPDNavigator {
 
 class DetailTPSDPDCoordinator: BaseCoordinator<Void> {
     private let navigationController: UINavigationController
+    private let data: RealCount
+    private let tingkat: TingkatPemilihan
     
-    init(navigationController: UINavigationController) {
+    init(navigationController: UINavigationController, data: RealCount, tingkat: TingkatPemilihan) {
         self.navigationController = navigationController
+        self.data = data
+        self.tingkat = tingkat
     }
     
     override func start() -> Observable<Void> {
         let viewController = DetailTPSDPDController()
-        let viewModel = DetailTPSDPDViewModel(navigator: self)
+        let viewModel = DetailTPSDPDViewModel(navigator: self, data: self.data, tingkat: self.tingkat)
         viewController.viewModel = viewModel
         viewController.hidesBottomBarWhenPushed = true
         

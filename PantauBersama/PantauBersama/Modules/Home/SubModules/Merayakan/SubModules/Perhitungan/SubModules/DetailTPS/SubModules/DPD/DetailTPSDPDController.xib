@@ -12,6 +12,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailTPSDPDController" customModule="PantauBersama" customModuleProvider="target">
             <connections>
+                <outlet property="btnInvalid" destination="tRw-Vc-JKs" id="q4x-yU-KcQ"/>
+                <outlet property="btnSimpan" destination="Kn8-ED-wUW" id="oBq-OR-et4"/>
                 <outlet property="tableView" destination="R2V-HD-Nkt" id="gHs-4f-ZDN"/>
                 <outlet property="view" destination="0Vm-Jq-M72" id="uxC-bN-BSu"/>
             </connections>

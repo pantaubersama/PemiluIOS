@@ -94,7 +94,7 @@ class DetailTPSDPRViewModel: ViewModelType {
                 guard let `self` = self else { return Observable.empty() }
                 return NetworkService.instance
                     .requestObject(HitungAPI.getCalculations(hitungRealCountId: self.realCount.id,
-                                                             tingkat: .dpr),
+                                                             tingkat: self.type),
                                    c: BaseResponse<RealCountResponse>.self)
                     .map({ $0.data })
                     .do(onSuccess: { (response) in
@@ -123,8 +123,6 @@ class DetailTPSDPRViewModel: ViewModelType {
         
         /// Counter Mechanism
         /// TODO: Need Id and total value
-        /// Don't have any idea about this
-        
         let updateItems = counterS
             .distinctUntilChanged({ $0.totalVote != $1.totalVote })
             .flatMapLatest { [weak self] (candidateCount) -> Observable<Void> in
@@ -224,6 +222,9 @@ extension DetailTPSDPRViewModel {
             return candidate.id == candidatePartyCount.id
         }.first
         
+        print("Index updated: \(index)")
+        print("Updated candidate: \(updateCandidate)")
+        
         if updateCandidate != nil {
             updateCandidate?.value = candidatePartyCount.totalVote
             currentCandidate.items[index] = updateCandidate!
@@ -249,3 +250,32 @@ extension DetailTPSDPRViewModel {
         return candidate
     }
 }
+
+
+struct SectionCandidateTableViewState {
+    
+    var sections: [SectionModelDPR]
+    
+    init(section: [SectionModelDPR]) {
+        self.sections = section
+    }
+    
+    func executeCommand(command: CandidateTableViewCommand) -> SectionCandidateTableViewState {
+        switch command {
+        case .updateItem(let data):
+            var sections = self.sections
+            let items = sections[data.section].items
+            
+            sections[data.section] = SectionModelDPR(original: sections[data.section], items: items)
+            
+            return SectionCandidateTableViewState(section: sections)
+        }
+    }
+}
+
+
+enum CandidateTableViewCommand {
+    case updateItem(item: CandidateActor, section: Int, header: Int, footer: Int)
+}
+
+

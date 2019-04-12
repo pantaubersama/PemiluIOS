@@ -137,7 +137,7 @@ class DetailTPSViewModel: ViewModelType {
             .asDriverOnErrorJustComplete()
         
         let detailDPD = detailDPDS
-            .flatMap({ navigator.launchDetailTPSDPD() })
+            .flatMap({ navigator.launchDetailTPSDPD(data: self.data) })
             .asDriverOnErrorJustComplete()
         
         let detailDPRProv = detailDPRProvS
