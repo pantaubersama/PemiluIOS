@@ -181,6 +181,22 @@ class DetailTPSDPRViewModel: ViewModelType {
         let headerUpdates = counterPartyS
             .flatMapLatest { [weak self] (partyCount) -> Observable<[SectionModelCalculations]> in
                 guard let `self` = self else { return Observable.empty() }
+                
+                /// TODO
+                /// assign each value for Party Count
+                var latestPartyCount = self.partyValue.value
+                if latestPartyCount.contains(where: { $0.number == partyCount.number }) {
+                    guard let index = latestPartyCount.index(where: { current -> Bool in
+                        return current.number == partyCount.number
+                    }) else { return Observable.empty() }
+                    latestPartyCount.remove(at: index)
+                    latestPartyCount.append(partyCount)
+                } else {
+                    latestPartyCount.append(partyCount)
+                }
+                self.partyValue.accept(latestPartyCount)
+                
+                
                 /// Match with latest items sections
                 var latestItems = self.itemRelay.value
                 /// Match with current sections

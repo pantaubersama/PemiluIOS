@@ -136,7 +136,8 @@ extension HitungAPI: TargetType {
         case .putCalculations,
              .putFormC1,
              .putRealCount,
-             .putCalculationsCandidates:
+             .putCalculationsCandidates,
+             .putCalculationsCandidatesAndParty:
             return .put
         default:
             return .get
@@ -198,8 +199,33 @@ extension HitungAPI: TargetType {
                 }
             }
             return multipartFormData
-        case .putCalculationsCandidatesAndParty(let (data)):
+        case .putCalculationsCandidatesAndParty(let (realCountId, type, invalidVote, candidates, parties, initialData)):
             var multipartFormData = [MultipartFormData]()
+            multipartFormData.append(buildMultipartFormData(key: "hitung_real_count_id", value: realCountId))
+            multipartFormData.append(buildMultipartFormData(key: "calculation_type", value: type.rawValue))
+            multipartFormData.append(buildMultipartFormData(key: "invalid_vote", value: "\(invalidVote)"))
+            for candidate in candidates {
+                multipartFormData.append(buildMultipartFormData(key: "candidates[][id]", value: "\(candidate.id)"))
+                multipartFormData.append(buildMultipartFormData(key: "candidates[][total_vote]", value: "\(candidate.totalVote)"))
+            }
+            if let partie = parties {
+                for data in partie {
+                    multipartFormData.append(buildMultipartFormData(key: "parties[][id]", value: "\(data.number)"))
+                    multipartFormData.append(buildMultipartFormData(key: "parties[][total_vote]", value: "\(data.value)"))
+                }
+            }
+            if let initial = initialData {
+                for data in initial {
+                    print("Data initial: \(data)")
+                    if let lastCandidateValue = candidates.filter({ "\($0.id)" == data.actorId }).first {
+                        print("Last candidate is same: \(lastCandidateValue), totalValue: \(lastCandidateValue.totalVote)")
+                    } else {
+                        /// assume data initial is different, then append
+                        multipartFormData.append(buildMultipartFormData(key: "candidates[][id]", value: data.actorId ?? ""))
+                        multipartFormData.append(buildMultipartFormData(key: "candidates[][total_vote]", value: "\(data.totalVote ?? 0)"))
+                    }
+                }
+            }
             return multipartFormData
         default:
             return nil

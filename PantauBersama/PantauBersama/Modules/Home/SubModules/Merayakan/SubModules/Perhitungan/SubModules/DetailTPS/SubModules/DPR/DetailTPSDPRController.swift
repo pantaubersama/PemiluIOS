@@ -38,6 +38,7 @@ class DetailTPSDPRController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var btnSuaraTidakSah: TPSButton!
+    @IBOutlet weak var btnSimpan: Button!
     
     lazy var footer = UIView.nib(withType: DetailTPSDPRFooter.self)
     lazy var header = UIView.nib(withType: DetailTPSDPRHeader.self)
@@ -60,6 +61,10 @@ class DetailTPSDPRController: UIViewController {
         
         btnSuaraTidakSah.rx_suara
             .bind(to: viewModel.input.invalidCountI)
+            .disposed(by: disposeBag)
+        
+        btnSimpan.rx.tap
+            .bind(to: viewModel.input.simpanI)
             .disposed(by: disposeBag)
         
         tableView.delegate = nil
@@ -145,24 +150,10 @@ class DetailTPSDPRController: UIViewController {
 //            .drive()
 //            .disposed(by: disposeBag)
 //
-//        viewModel.output.dataO
-//            .drive()
-//            .disposed(by: disposeBag)
+        viewModel.output.simpanO
+            .drive()
+            .disposed(by: disposeBag)
         
-//        viewModel.output.updateItemsO
-//            .do(onNext: { [unowned self] (_) in
-//                self.viewModel.input.viewWillAppearI.onNext(())
-//            })
-//            .drive()
-//            .disposed(by: disposeBag)
-        
-//        viewModel.output.bufferPartyO
-//            .do(onNext: { [weak self] (party) in
-//                guard let `self` = self else { return }
-//                self.viewModel.input.counterPartyI.onNext(party)
-//            })
-//            .drive()
-//            .disposed(by: disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {

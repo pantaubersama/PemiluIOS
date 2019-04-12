@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailTPSDPRController" customModule="PantauBersama" customModuleProvider="target">
             <connections>
+                <outlet property="btnSimpan" destination="gj5-Cc-IXY" id="QCI-jc-e3V"/>
                 <outlet property="btnSuaraTidakSah" destination="48r-nw-FEF" id="XbZ-we-RWv"/>
                 <outlet property="tableView" destination="LAp-pR-Cgg" id="acY-Al-dbK"/>
                 <outlet property="view" destination="UhJ-tK-6wA" id="hTZ-e9-QKI"/>
