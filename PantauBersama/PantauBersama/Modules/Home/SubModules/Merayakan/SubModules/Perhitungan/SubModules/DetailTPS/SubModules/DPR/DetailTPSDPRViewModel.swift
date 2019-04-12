@@ -28,6 +28,7 @@ class DetailTPSDPRViewModel: ViewModelType {
         let viewWillAppearI: AnyObserver<Void>
         let bufferPartyI: AnyObserver<PartyCount>
         let simpanI: AnyObserver<Void>
+        let suarahSahI: AnyObserver<Int>
     }
     
     struct Output {
@@ -39,6 +40,8 @@ class DetailTPSDPRViewModel: ViewModelType {
         let itemsSections: Driver<[SectionModelCalculations]>
         let bufferPartyO: Driver<PartyCount>
         let simpanO: Driver<Void>
+        let totalSuaraSahO: Driver<Int>
+        let totalSuaraO: Driver<Int>
     }
     
     var input: Input
@@ -59,6 +62,7 @@ class DetailTPSDPRViewModel: ViewModelType {
     private let viewWillAppearS = PublishSubject<Void>()
     private let bufferPartyS = PublishSubject<PartyCount>()
     private let simpanS = PublishSubject<Void>()
+    private let suarahSahS = PublishSubject<Int>()
     
     private let itemRelay = BehaviorRelay<[SectionModelCalculations]>(value: [])
     
@@ -83,7 +87,8 @@ class DetailTPSDPRViewModel: ViewModelType {
                       counterPartyI: counterPartyS.asObserver(),
                       viewWillAppearI: viewWillAppearS.asObserver(),
                       bufferPartyI: bufferPartyS.asObserver(),
-                      simpanI: simpanS.asObserver())
+                      simpanI: simpanS.asObserver(),
+                      suarahSahI: suarahSahS.asObserver())
         
         
         /// MARK
@@ -226,7 +231,6 @@ class DetailTPSDPRViewModel: ViewModelType {
                      
                         let lastValueCandidate = response.calculation.candidates?.map({ $0.totalVote ?? 0 }).reduce(0, +)
                         let lastValueParty = response.calculation.parties?.map({ $0.totalVote ?? 0 }).reduce(0, +)
-                        
                     })
                     .trackError(self.errorTracker)
                     .trackActivity(self.activityIndicator)
@@ -247,6 +251,18 @@ class DetailTPSDPRViewModel: ViewModelType {
             .flatMap({ navigator.back() })
             .asDriverOnErrorJustComplete()
         
+        
+        /// MARK
+        /// Handle All valid suara
+        let totalSuaraSah = suarahSahS
+            .asDriverOnErrorJustComplete()
+        /// MARK
+        /// Handle All Suara
+        let totalSuara = Observable.combineLatest(suarahSahS.asObservable().startWith(0),
+                                                  invalidCountS.asObservable().startWith(0))
+            .flatMapLatest { (a,b) -> Observable<Int> in
+                return Observable.just(a + b)
+            }.asDriverOnErrorJustComplete()
         
         /// MARK
         /// Handle Save
@@ -280,7 +296,9 @@ class DetailTPSDPRViewModel: ViewModelType {
                         initialValueO: initialValue,
                         itemsSections: mergeItems,
                         bufferPartyO: bufferPartyS.asDriverOnErrorJustComplete(),
-                        simpanO: simpan)
+                        simpanO: simpan,
+                        totalSuaraSahO: totalSuaraSah,
+                        totalSuaraO: totalSuara)
     }
 }
 

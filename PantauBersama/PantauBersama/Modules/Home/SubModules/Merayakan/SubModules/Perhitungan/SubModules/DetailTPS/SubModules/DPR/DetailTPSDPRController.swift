@@ -91,11 +91,30 @@ class DetailTPSDPRController: UIViewController {
         })
         
         viewModel.output.itemsSections
-            .do(onNext: { [weak self] (_) in
+            .do(onNext: { [weak self] (sections) in
                 guard let `self` = self else { return }
-                self.tableView.reloadData()
+//                self.tableView.reloadData()
+                let sumFooter = sections.map({ $0.footerCount }).reduce(0, +)
+                self.viewModel.input.suarahSahI.onNext(sumFooter)
+                
             })
             .drive(tableView.rx.items(dataSource: dataSource))
+            .disposed(by: disposeBag)
+        
+        viewModel.output.totalSuaraSahO
+            .do(onNext: { [weak self] (value) in
+                guard let `self` = self else { return }
+                self.footer.tfValidCount.text = "\(value)"
+            })
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.totalSuaraO
+            .do(onNext: { [weak self] (value) in
+                guard let `self` = self else { return }
+                self.footer.tfCount.text = "\(value)"
+            })
+            .drive()
             .disposed(by: disposeBag)
         
         
