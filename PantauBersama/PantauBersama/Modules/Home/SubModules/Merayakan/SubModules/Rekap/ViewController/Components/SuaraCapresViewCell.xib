@@ -87,13 +87,13 @@
                         <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Sja-E6-gPS">
                             <rect key="frame" x="10" y="10" width="300" height="142.5"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="paslonjokowi-compres-min" translatesAutoresizingMaskIntoConstraints="NO" id="Zjd-SB-AlG">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="paslonJokowiWithTitle" translatesAutoresizingMaskIntoConstraints="NO" id="Zjd-SB-AlG">
                                     <rect key="frame" x="0.0" y="0.0" width="142.5" height="142.5"/>
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="Zjd-SB-AlG" secondAttribute="height" multiplier="1:1" id="asP-Iz-euK"/>
                                     </constraints>
                                 </imageView>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="paslonprabowo-compres-min" translatesAutoresizingMaskIntoConstraints="NO" id="xPo-xF-5iW">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="paslonPrabowoWithTitle" translatesAutoresizingMaskIntoConstraints="NO" id="xPo-xF-5iW">
                                     <rect key="frame" x="157.5" y="0.0" width="142.5" height="142.5"/>
                                 </imageView>
                             </subviews>
@@ -273,7 +273,7 @@
         </view>
     </objects>
     <resources>
-        <image name="paslonjokowi-compres-min" width="1000" height="1000"/>
-        <image name="paslonprabowo-compres-min" width="1000" height="1000"/>
+        <image name="paslonJokowiWithTitle" width="140" height="140"/>
+        <image name="paslonPrabowoWithTitle" width="140" height="140"/>
     </resources>
 </document>
