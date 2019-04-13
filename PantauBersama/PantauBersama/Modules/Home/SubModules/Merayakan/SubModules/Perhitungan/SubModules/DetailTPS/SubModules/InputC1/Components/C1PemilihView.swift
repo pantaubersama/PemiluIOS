@@ -208,4 +208,22 @@ class C1PemilihView: UIView {
         txtTotalPerempuanC7.text = "\(data.aggregates.c7PerempuanHakPilihTotal)"
         txtTotalAllC7.text = "\(data.aggregates.c7HakPilihTotal)"
     }
+    
+    func configDataTerkirim(enable: Bool) {
+        let groupsTxt: [TPSTextField] = [txtA3Laki, txtA3Perempuan,
+                                         txtA3Total, txtA4Laki,
+                                         txtA4Perempuan, txtA4Total,
+                                         txtADPKLaki, txtADPKPerempuan,
+                                         txtADPKTotal, txtTotalLakiA3,
+                                         txtTotalPerempuanA3, txtTotalAllA3,
+                                         txtC7DPTLaki, txtC7DPTPerempuan,
+                                         txtC7DPTTotal, txtC7DPTBLaki,
+                                         txtC7DPTBPerempuan, txtC7DPTBTotal,
+                                         txtC7DPKLaki, txtC7DPKPerempuan,
+                                         txtC7DPKTotal, txtTotalLakiC7,
+                                         txtTotalPerempuanC7, txtTotalAllC7]
+        groupsTxt.forEach { (textField) in
+            textField.isEnabled = enable
+        }
+    }
 }

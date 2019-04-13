@@ -55,5 +55,16 @@ class C1SuratSuaraView: UIView {
         txtSuratTidakDigunakan.text = "\(data.suratTidakDigunakan)"
         txtSuratDiterima.text = "\(0)"
     }
+    
+      func configDataTerkirim(enable: Bool) {
+        let groupTextField: [TPSTextField] = [txtSuratDikembalikan,
+                                              txtSuratTidakDigunakan,
+                                              txtSuratDigunakan,
+                                              txtSuratDiterima]
+        groupTextField.forEach { (textField) in
+            textField.isEnabled = enable
+        }
+        
+     }
 
 }

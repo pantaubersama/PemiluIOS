@@ -32,6 +32,7 @@ class UploadC1ViewModel: ViewModelType {
         let initialDataO: Driver<[SectionC1Models]>
         let errorO: Driver<Error>
         let deletedImagesO: Driver<Void>
+        let realCountO: Driver<RealCount>
     }
     
     var input: Input
@@ -286,7 +287,8 @@ class UploadC1ViewModel: ViewModelType {
                         simpanO: save,
                         initialDataO: initialData,
                         errorO: errorTracker.asDriver(),
-                        deletedImagesO: delete)
+                        deletedImagesO: delete,
+                        realCountO: Driver.just(self.realCount))
     }
 }
 
