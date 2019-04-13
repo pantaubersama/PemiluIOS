@@ -28,7 +28,6 @@ class RekapDetailTPSController: UITableViewController {
         tableView.estimatedRowHeight = UITableView.automaticDimension
         tableView.separatorStyle = .none
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        tableView.allowsSelection = false
         tableView.registerReusableCell(RekapDetailPhotosCell.self)
         tableView.tableHeaderView = headerView
         tableView.tableFooterView = footerView
@@ -38,11 +37,14 @@ class RekapDetailTPSController: UITableViewController {
         navigationItem.leftBarButtonItem = back
         
         dataSource = RxTableViewSectionedReloadDataSource<SectionModelsTPSImages>(configureCell: { (dataSource, tableView, indexPath, item) in
-            print("section models: \(dataSource.sectionModels)")
             let cell = tableView.dequeueReusableCell(indexPath: indexPath) as RekapDetailPhotosCell
             cell.configureCell(item: RekapDetailPhotosCell.Input(data: item, title: "Gambar \(indexPath.row)"))
             return cell
         })
+        
+        tableView.rx.itemSelected
+            .bind(to: viewModel.input.itemSelected)
+            .disposed(by: disposeBag)
         
         viewModel.output.itemsImageO
             .do(onNext: { [weak self] (items) in
@@ -69,6 +71,7 @@ class RekapDetailTPSController: UITableViewController {
             .bind(to: viewModel.input.nextI)
             .disposed(by: disposeBag)
         
+    
         back.rx.tap
             .bind(to: viewModel.input.backI)
             .disposed(by: disposeBag)
@@ -86,7 +89,6 @@ class RekapDetailTPSController: UITableViewController {
         
         viewModel.output.c1SummaryO
             .drive(onNext: { [weak self] (response) in
-                print("ITEM RESPONSE: \(response)")
                 guard let `self` = self else { return }
                 self.footerView.configure(data: response)
             })
@@ -97,6 +99,10 @@ class RekapDetailTPSController: UITableViewController {
                 guard let alert = UIAlertController.alert(with: e) else { return }
                 self?.navigationController?.present(alert, animated: true, completion: nil)
             })
+            .disposed(by: disposeBag)
+        
+        viewModel.output.itemSelectedO
+            .drive()
             .disposed(by: disposeBag)
         
     }
