@@ -53,7 +53,7 @@ class C1SuratSuaraView: UIView {
         txtSuratDigunakan.text = "\(data.suratDigunakan)"
         txtSuratDikembalikan.text = "\(data.suratDikembalikan)"
         txtSuratTidakDigunakan.text = "\(data.suratTidakDigunakan)"
-        txtSuratDiterima.text = "\(0)"
+        txtSuratDiterima.text = "\(data.aggregates.totalSuara)"
     }
     
       func configDataTerkirim(enable: Bool) {
