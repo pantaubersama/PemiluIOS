@@ -78,6 +78,7 @@ class C1InputFormViewModel: ViewModelType {
         let disTerdaftarO: Driver<Void>
         let disHakO: Driver<Void>
         let suratO: Driver<Void>
+        let realCountO: Driver<RealCount>
     }
     
     
@@ -476,6 +477,7 @@ class C1InputFormViewModel: ViewModelType {
                         c7DpkO: c7Dpk,
                         disTerdaftarO: disTerdaftar,
                         disHakO: disHak,
-                        suratO: surat)
+                        suratO: surat,
+                        realCountO: Driver.just(self.realCount))
     }
 }

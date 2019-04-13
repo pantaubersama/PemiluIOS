@@ -63,16 +63,12 @@ class SubmitTPSConfirmationController: UIViewController {
             })
             .disposed(by: self.disposeBag)
         
-//        viewModel.output.submitActionO
-//            .drive(onNext: { (_) in
-//                self.viewConfirmation.isHidden = true
-//
-//                DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
-//                    self.viewLoading.isHidden = true
-//                })
-//
-//            })
-//            .disposed(by: self.disposeBag)
+        viewModel.output.errorO
+            .drive(onNext: { [weak self] (e) in
+                guard let alert = UIAlertController.alert(with: e) else { return }
+                self?.navigationController?.present(alert, animated: true, completion: nil)
+            })
+            .disposed(by: disposeBag)
         
     }
 

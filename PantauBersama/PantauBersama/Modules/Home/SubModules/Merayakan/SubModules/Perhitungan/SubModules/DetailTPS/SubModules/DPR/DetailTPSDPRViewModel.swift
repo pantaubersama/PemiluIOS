@@ -45,6 +45,7 @@ class DetailTPSDPRViewModel: ViewModelType {
         let simpanO: Driver<Void>
         let totalSuaraSahO: Driver<Int>
         let totalSuaraO: Driver<Int>
+        let realCountO: Driver<RealCount>
     }
     
     var input: Input
@@ -350,7 +351,8 @@ class DetailTPSDPRViewModel: ViewModelType {
                         bufferPartyO: bufferPartyS.asDriverOnErrorJustComplete(),
                         simpanO: simpan,
                         totalSuaraSahO: totalSuaraSah,
-                        totalSuaraO: totalSuara)
+                        totalSuaraO: totalSuara,
+                        realCountO: Driver.just(self.realCount))
     }
 }
 

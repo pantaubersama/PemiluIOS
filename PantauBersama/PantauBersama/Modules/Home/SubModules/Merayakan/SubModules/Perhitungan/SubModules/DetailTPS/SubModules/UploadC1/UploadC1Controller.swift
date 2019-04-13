@@ -24,6 +24,7 @@ class UploadC1Controller: UIViewController {
     private var dataSource: RxTableViewSectionedAnimatedDataSource<SectionC1Models>!
     private var bufferSection: Int = 0
     private var sectionModel: [SectionC1Models] = []
+    private var isSaved: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -176,6 +177,20 @@ class UploadC1Controller: UIViewController {
         viewModel.output.deletedImagesO
             .drive()
             .disposed(by: disposeBag)
+        
+        viewModel.output.realCountO
+            .drive(onNext: { [weak self] (data) in
+                guard let `self` = self else { return }
+                if data.status == .published {
+                    self.btnSave.isEnabled = false
+                    self.isSaved = true
+                    let btnAttr = NSAttributedString(string: "Data Terkirim",
+                                                     attributes: [NSAttributedString.Key.foregroundColor : Color.cyan_warm_light])
+                    self.btnSave.setAttributedTitle(btnAttr, for: .normal)
+                }
+                
+            })
+            .disposed(by: self.disposeBag)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -199,13 +214,17 @@ extension UploadC1Controller: UITableViewDelegate {
         let header = tableView.dequeueReusableHeaderFooter() as C1PhotoHeader
         header.lblTitle.text = dataSource.sectionModels[section].header
         
+        if self.isSaved == true {
+            header.btnAdd.isEnabled = false
+        } else {
+            header.btnAdd.rx.tap
+                .subscribe(onNext: { [weak self] (_) in
+                    guard let `self` = self else { return }
+                    self.viewModel.input.addImagesI.onNext(section)
+                })
+                .disposed(by: self.disposeBag)
+        }
         
-        header.btnAdd.rx.tap
-            .subscribe(onNext: { [weak self] (_) in
-                guard let `self` = self else { return }
-                self.viewModel.input.addImagesI.onNext(section)
-            })
-            .disposed(by: self.disposeBag)
 
         return header
     }

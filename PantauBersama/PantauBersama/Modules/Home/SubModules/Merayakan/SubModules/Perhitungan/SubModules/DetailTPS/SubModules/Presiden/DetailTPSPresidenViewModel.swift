@@ -38,13 +38,15 @@ class DetailTPSPresidenViewModel: ViewModelType {
         let totalValidO: Driver<Int>
         let dataO: Driver<Calculation>
         let errorO: Driver<Error>
+        let realCountO: Driver<RealCount>
     }
     
     var input: Input
     var output: Output!
     
     private let navigator: DetailTPSPresidenNavigator
-    private let uuid: String
+    private let data: RealCount
+    
     private let backS = PublishSubject<Void>()
     private let detailTPSS = PublishSubject<Void>()
     private let suara1Subject = PublishSubject<Int>()
@@ -65,9 +67,9 @@ class DetailTPSPresidenViewModel: ViewModelType {
     private let errorTracker = ErrorTracker()
     private let activityIndicator = ActivityIndicator()
     
-    init(navigator: DetailTPSPresidenNavigator, uuid: String) {
+    init(navigator: DetailTPSPresidenNavigator, data: RealCount) {
         self.navigator = navigator
-        self.uuid = uuid
+        self.data = data
         
         input = Input(backI: backS.asObserver(),
                       suara1I: suara1Subject.asObserver(),
@@ -91,7 +93,7 @@ class DetailTPSPresidenViewModel: ViewModelType {
                 return NetworkService.instance
                     .requestObject(HitungAPI
                         .getCalculations(
-                            hitungRealCountId: self.uuid,
+                            hitungRealCountId: self.data.id,
                             tingkat: .presiden),
                                    c: BaseResponse<RealCountResponse>.self)
                     .map({ $0.data.calculation })
@@ -140,7 +142,7 @@ class DetailTPSPresidenViewModel: ViewModelType {
                 latestValue.append(CandidatesCount(id: 1, totalVote: self.bufferCandidate1.value))
                 latestValue.append(CandidatesCount(id: 2, totalVote: self.bufferCandidate2.value))
                 return NetworkService.instance
-                    .requestObject(HitungAPI.putCalculations(hitungRealCountId: self.uuid,
+                    .requestObject(HitungAPI.putCalculations(hitungRealCountId: self.data.id,
                                                              type: .presiden,
                                                              invalidVote: i,
                                                              candidates: latestValue,
@@ -176,7 +178,8 @@ class DetailTPSPresidenViewModel: ViewModelType {
                         totalSuaraO: totalSuaraO,
                         totalValidO: totalValidSuaraO,
                         dataO: data,
-                        errorO: errorTracker.asDriver())
+                        errorO: errorTracker.asDriver(),
+                        realCountO: Driver.just(self.data))
     }
 }
 

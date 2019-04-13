@@ -52,6 +52,7 @@ class DetailTPSViewModel: ViewModelType {
         let c1DPRDProvO: Driver<Void>
         let c1DPRDKotaO: Driver<Void>
         let realCountO: Driver<RealCount>
+        let errorO: Driver<Error>
     }
     
     var input: Input
@@ -206,7 +207,8 @@ class DetailTPSViewModel: ViewModelType {
             c1DPDO: c1FormDPD,
             c1DPRDProvO: c1FormDPRDProv,
             c1DPRDKotaO: c1FormDPRDKota,
-            realCountO: Driver.just(realCount)
+            realCountO: Driver.just(realCount),
+            errorO: errorTracker.asDriver()
         )
     }
 }

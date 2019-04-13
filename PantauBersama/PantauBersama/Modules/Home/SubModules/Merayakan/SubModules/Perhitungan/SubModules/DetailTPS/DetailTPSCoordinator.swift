@@ -61,7 +61,7 @@ extension DetailTPSCoordinator: DetailTPSNavigator {
     }
     
     func launchDetailTPSPresiden(data: RealCount) -> Observable<Void> {
-        let searchCoordinator = DetailTPSPresidenCoordinator(navigationController: self.navigationController, uuid: data.id)
+        let searchCoordinator = DetailTPSPresidenCoordinator(navigationController: self.navigationController, data: data)
         return coordinate(to: searchCoordinator)
     }
     

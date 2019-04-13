@@ -36,6 +36,7 @@ class DetailTPSDPDViewModel: ViewModelType {
         let simapnO: Driver<Void>
         let errorO: Driver<Error>
         let initialO: Driver<Void>
+        let realCountO: Driver<RealCount>
     }
     
     var input: Input
@@ -253,7 +254,8 @@ class DetailTPSDPDViewModel: ViewModelType {
                         dapilName: dapilName,
                         simapnO: simpan,
                         errorO: errorTracker.asDriver(),
-                        initialO: initialValue)
+                        initialO: initialValue,
+                        realCountO: Driver.just(self.data))
     }
 }
 

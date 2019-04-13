@@ -116,5 +116,18 @@ class DetailTPSPresidenController: UIViewController {
                 self?.navigationController?.present(alert, animated: true, completion: nil)
             })
             .disposed(by: disposeBag)
+        
+        viewModel.output.realCountO
+            .drive(onNext: { [weak self] (data) in
+                guard let `self` = self else { return }
+                if data.status == .published {
+                    self.btnSimpan.isEnabled = false
+                    let btnAttr = NSAttributedString(string: "Data Terkirim",
+                                                     attributes: [NSAttributedString.Key.foregroundColor : Color.cyan_warm_light])
+                    self.btnSimpan.setAttributedTitle(btnAttr, for: .normal)
+                }
+                
+            })
+            .disposed(by: self.disposeBag)
     }
 }

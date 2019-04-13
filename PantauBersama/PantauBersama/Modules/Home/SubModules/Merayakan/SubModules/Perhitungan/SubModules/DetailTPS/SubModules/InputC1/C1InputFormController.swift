@@ -135,5 +135,21 @@ class C1InputFormController: UIViewController {
             .drive()
             .disposed(by: disposeBag)
         
+        viewModel.output.realCountO
+            .drive(onNext: { [weak self] (data) in
+                guard let `self` = self else { return }
+                if data.status == .published {
+                    self.btnSimpan.isEnabled = false
+                    let btnAttr = NSAttributedString(string: "Data Terkirim",
+                                                     attributes: [NSAttributedString.Key.foregroundColor : Color.cyan_warm_light])
+                    self.btnSimpan.setAttributedTitle(btnAttr, for: .normal)
+                    
+                    self.pemilihView.configDataTerkirim(enable: false)
+                    self.pemilihDisabilitasView.configDataTerkirim(enable: false)
+                    self.suratSuaraView.configDataTerkirim(enable: false)
+                }
+                
+            })
+            .disposed(by: self.disposeBag)
     }
 }

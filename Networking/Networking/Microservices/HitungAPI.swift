@@ -22,7 +22,7 @@ public enum RealCountImageType: String {
     case c1DPR = "c1_dpr_ri"
     case c1DPD = "c1_dpd"
     case c1DPRDProvinsi = "c1_dprd_provinsi"
-    case c1DPRDKabupaten = "c1_dprb_kabupaten"
+    case c1DPRDKabupaten = "c1_dprd_kabupaten"
     case suasanaTPS = "suasana_tps"
 }
 

@@ -17,16 +17,16 @@ protocol DetailTPSPresidenNavigator {
 
 class DetailTPSPresidenCoordinator: BaseCoordinator<Void> {
     private let navigationController: UINavigationController
-    private let uuid: String
+    private let data: RealCount
     
-    init(navigationController: UINavigationController, uuid: String) {
+    init(navigationController: UINavigationController, data: RealCount) {
         self.navigationController = navigationController
-        self.uuid = uuid
+        self.data = data
     }
     
     override func start() -> Observable<Void> {
         let viewController = DetailTPSPresidenController()
-        let viewModel = DetailTPSPresidenViewModel(navigator: self, uuid: self.uuid)
+        let viewModel = DetailTPSPresidenViewModel(navigator: self, data: self.data)
         viewController.viewModel = viewModel
         viewController.hidesBottomBarWhenPushed = true
         

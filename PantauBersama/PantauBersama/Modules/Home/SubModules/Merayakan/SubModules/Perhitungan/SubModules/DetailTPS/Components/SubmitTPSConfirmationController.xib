@@ -137,11 +137,8 @@ pastikan terkoneksi dengan internet</string>
                                 <constraint firstAttribute="width" constant="111.5" id="hLh-uv-uu8"/>
                             </constraints>
                         </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fmJ-6P-fWt" customClass="Label" customModule="Common">
-                            <rect key="frame" x="49" y="140" width="180" height="38.5"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="38.5" id="Bty-SC-MpK"/>
-                            </constraints>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fmJ-6P-fWt" customClass="Label" customModule="Common">
+                            <rect key="frame" x="49" y="140" width="180" height="31.5"/>
                             <string key="text">Apakah kamu yakin data yang
 kamu masukkan sudah benar?</string>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -149,7 +146,7 @@ kamu masukkan sudah benar?</string>
                             <nil key="highlightedColor"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
-                                    <real key="value" value="16"/>
+                                    <real key="value" value="13"/>
                                 </userDefinedRuntimeAttribute>
                                 <userDefinedRuntimeAttribute type="string" keyPath="typeLabel" value="bold"/>
                             </userDefinedRuntimeAttributes>

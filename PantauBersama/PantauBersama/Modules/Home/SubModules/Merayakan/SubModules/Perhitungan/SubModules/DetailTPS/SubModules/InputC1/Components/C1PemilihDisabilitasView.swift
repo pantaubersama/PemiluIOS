@@ -69,4 +69,13 @@ class C1PemilihDisabilitasView: UIView {
         txtPilihTotal.text = "\(data.aggregates.disabilitasHakPilihTotal)"
     }
     
+    func configDataTerkirim(enable: Bool) {
+        let groupTxt: [TPSTextField] = [txtTerdaftarLaki, txtTerdaftarPerempuan,
+                                        txtTerdaftarTotal, txtPilihLaki,
+                                        txtPilihPerempuan, txtPilihTotal]
+        groupTxt.forEach { (textField) in
+            textField.isEnabled = enable
+        }
+    }
+    
 }
