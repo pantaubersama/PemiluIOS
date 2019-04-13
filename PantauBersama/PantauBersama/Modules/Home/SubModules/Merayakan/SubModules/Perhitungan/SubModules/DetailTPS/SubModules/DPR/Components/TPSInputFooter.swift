@@ -34,4 +34,8 @@ class TPSInputFooter: UIView {
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         addSubview(view)
     }
+    
+    func configure(footerCount: Int) {
+        tfTotalPartyCount.text = "\(footerCount)"
+    }
 }

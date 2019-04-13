@@ -38,11 +38,12 @@ class DetailTPSDPRController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var btnSuaraTidakSah: TPSButton!
+    @IBOutlet weak var btnSimpan: Button!
     
     lazy var footer = UIView.nib(withType: DetailTPSDPRFooter.self)
     lazy var header = UIView.nib(withType: DetailTPSDPRHeader.self)
     
-    private var dataSource: RxTableViewSectionedReloadDataSource<SectionModelDPR>!
+    private var dataSource: RxTableViewSectionedReloadDataSource<SectionModelCalculations>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,12 +63,17 @@ class DetailTPSDPRController: UIViewController {
             .bind(to: viewModel.input.invalidCountI)
             .disposed(by: disposeBag)
         
+        btnSimpan.rx.tap
+            .bind(to: viewModel.input.simpanI)
+            .disposed(by: disposeBag)
+        
         tableView.delegate = nil
         tableView.dataSource = nil
         
         tableView.setTableHeaderView(headerView: header)
         tableView.setTableFooterView(footerView: footer)
         tableView.registerReusableCell(TPSInputCell.self)
+        tableView.registerReusableCell(TPSInputHeader.self)
         
         tableView.rx.setDelegate(self)
             .disposed(by: disposeBag)
@@ -76,14 +82,44 @@ class DetailTPSDPRController: UIViewController {
             .drive()
             .disposed(by: disposeBag)
         
-        dataSource = RxTableViewSectionedReloadDataSource<SectionModelDPR>(configureCell: { (dataSource, tableView, indexPath, item) -> UITableViewCell in
+        dataSource = RxTableViewSectionedReloadDataSource<SectionModelCalculations>(configureCell: { (dataSource, tableView, indexPath, item) -> UITableViewCell in
             let cell = tableView.dequeueReusableCell(indexPath: indexPath) as TPSInputCell
-            cell.configureCell(item: TPSInputCell.Input(candidates: item, viewModel: self.viewModel, indexPath: indexPath))
+            cell.configureDPD(item: item)
+            
+            cell.btnVote.rx_suara
+                .skip(1)
+                .map({ CandidatePartyCount(id: item.id, totalVote: $0, indexPath: indexPath)})
+                .bind(to: self.viewModel.input.counterI)
+                .disposed(by: cell.disposeBag)
+            
             return cell
         })
         
-        viewModel.output.itemsO
+        viewModel.output.itemsSections
+            .do(onNext: { [weak self] (sections) in
+                guard let `self` = self else { return }
+//                self.tableView.reloadData()
+                let sumFooter = sections.map({ $0.footerCount }).reduce(0, +)
+                self.viewModel.input.suarahSahI.onNext(sumFooter)
+                
+            })
             .drive(tableView.rx.items(dataSource: dataSource))
+            .disposed(by: disposeBag)
+        
+        viewModel.output.totalSuaraSahO
+            .do(onNext: { [weak self] (value) in
+                guard let `self` = self else { return }
+                self.footer.tfValidCount.text = "\(value)"
+            })
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.totalSuaraO
+            .do(onNext: { [weak self] (value) in
+                guard let `self` = self else { return }
+                self.footer.tfCount.text = "\(value)"
+            })
+            .drive()
             .disposed(by: disposeBag)
         
         
@@ -113,40 +149,53 @@ class DetailTPSDPRController: UIViewController {
         viewModel.output.initialValueO
             .drive()
             .disposed(by: disposeBag)
-        
-        viewModel.output.dataO
+
+        viewModel.output.simpanO
             .drive()
             .disposed(by: disposeBag)
         
-        viewModel.output.updateItemsO
-            .do(onNext: { [unowned self] (_) in
-                self.viewModel.input.viewWillAppearI.onNext(())
-            })
-            .drive()
-            .disposed(by: disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.viewModel.input.viewWillAppearI.onNext(())
+        
         tableView.updateHeaderViewFrame()
     }
 }
 
 extension DetailTPSDPRController: UITableViewDelegate {
     
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 78.0
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 55.0
+    }
+    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerName = dataSource.sectionModels[section].header
-        let number = dataSource.sectionModels[section].number
-        let logo = dataSource.sectionModels[section].logo
-        let headerView = TPSInputHeader()
-        headerView.configure(header: headerName, number: number, logo: logo, viewModel: self.viewModel, section: section)
+        let number = dataSource.sectionModels[section].headerNumber
+        let logo = dataSource.sectionModels[section].headerLogo
+        let headerCount = dataSource.sectionModels[section].headerCount
         
+        let headerView = tableView.dequeueReusableCell() as TPSInputHeader
+        headerView.configureCell(item: TPSInputHeader.Input(name: headerName,
+                                                            section: section,
+                                                            number: number,
+                                                            logo: logo,
+                                                            viewModel: self.viewModel,
+                                                            headerCount: headerCount))
         return headerView
     }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let footerCount = dataSource.sectionModels[section].footerCount
         let footer = TPSInputFooter()
+        
+        footer.configure(footerCount: footerCount)
+        
         return footer
     }
 }

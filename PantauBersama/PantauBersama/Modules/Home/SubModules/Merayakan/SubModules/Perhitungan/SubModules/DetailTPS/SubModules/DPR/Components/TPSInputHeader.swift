@@ -12,57 +12,55 @@ import RxSwift
 import RxCocoa
 import Networking
 
-class TPSInputHeader: UIView {
+class TPSInputHeader: UITableViewCell {
+    
+    
+    @IBOutlet weak var ivImage: UIImageView!
+    @IBOutlet weak var lblName: Label!
+    @IBOutlet weak var lblSerialNumber: Label!
+    @IBOutlet weak var btnSuara: TPSButton!
+    
+    
+    var disposeBag = DisposeBag()
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        ivImage.af_cancelImageRequest()
+        ivImage.image = nil
+        disposeBag = DisposeBag()
+    }
+}
 
-    @IBOutlet weak var ivLogo: UIImageView!
-    @IBOutlet weak var lblNameParty: Label!
-    @IBOutlet weak var lblNumberParty: Label!
-    @IBOutlet weak var btnCounter: TPSButton!
-    private(set) var disposeBag: DisposeBag?
-    
-    override init(frame: CGRect) {
-        let frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 78.0)
-        super.init(frame: frame)
-        setup()
+extension TPSInputHeader: IReusableCell {
+    struct Input {
+        let name: String
+        let section: Int
+        let number: Int
+        let logo: String
+        let viewModel: DetailTPSDPRViewModel
+        let headerCount: Int
     }
     
-    required init?(coder aDecoder: NSCoder) {
-       super.init(coder: aDecoder)
-        setup()
-    }
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        ivLogo.image = nil
-        ivLogo.af_cancelImageRequest()
-    }
-    
-    private func setup() {
-        let view = loadNib()
-        view.frame = bounds
-        view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        addSubview(view)
-    }
-    
-    func configure(header: String, number: Int, logo: String, viewModel: DetailTPSDPRViewModel, section: Int) {
+    func configureCell(item: Input) {
         let bag = DisposeBag()
+        ivImage.af_setImage(withURL: URL(string: item.logo)!)
         
-        ivLogo.af_setImage(withURL: URL(string: logo)!)
-        lblNameParty.text = header
-        lblNumberParty.text = "No urut \(number)"
+        lblName.text = item.name
+        lblSerialNumber.text = "No. Urut " + "\(item.number)"
         
-        btnCounter.rx_suara
-            .do(onNext: { (_) in
-                print("This is section \(section)")
+        btnSuara.suara = item.headerCount
+        
+        btnSuara
+            .rx_suara
+            .skip(1)
+            .distinctUntilChanged({ (a, b) -> Bool in
+                return a != b
             })
-            .map({ PartyCount(section: section,
-                              number: number,
-                              value: $0)})
-            .bind(to: viewModel.input.counterPartyI)
+            .map({ PartyCount(section: item.section, number: item.number, value: $0) })
+            .bind(to: item.viewModel.input.counterPartyI)
             .disposed(by: bag)
         
-        
         disposeBag = bag
+        
     }
-    
 }

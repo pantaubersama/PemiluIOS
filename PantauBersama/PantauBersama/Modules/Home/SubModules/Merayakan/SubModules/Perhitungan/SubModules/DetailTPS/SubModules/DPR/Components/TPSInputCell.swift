@@ -45,32 +45,14 @@ extension TPSInputCell: IReusableCell {
         let viewModel: DetailTPSDPRViewModel
         let indexPath: IndexPath
     }
-    
+    /// IKI RA KANGGO
     func configureCell(item: Input) {
         let bag = DisposeBag()
         
-        lblNameCandidatees.text = item.candidates.name
+        lblNameCandidatees.text = "\(item.candidates.number). \(item.candidates.name)"
         
         btnVote.suara = item.candidates.value
-        
-//        /// Purpose for initial value
-//        for itemActor in item.viewModel.bufferItemActor.value {
-//            if itemActor.actorId == "\(item.candidates.id)" {
-//                btnVote.suara = itemActor.totalVote ?? 0
-//            } else {
-//                btnVote.suara = 0
-//            }
-//        }
-//
-//        for candidates in item.viewModel.candidatesPartyValue.value {
-//            if candidates.id == item.candidates.id {
-//                btnVote.suara = candidates.totalVote
-//            } else {
-//                btnVote.suara = 0
-//            }
-//        }
-    
-        
+
         btnVote.rx_suara
             .skip(1)
             .map({ CandidatePartyCount(id: item.candidates.id, totalVote: $0, indexPath: item.indexPath)})
@@ -81,7 +63,7 @@ extension TPSInputCell: IReusableCell {
     }
     
     func configureDPD(item: CandidateActor) {
-        lblNameCandidatees.text = item.name
+        lblNameCandidatees.text = "\(item.number). \(item.name)"
         btnVote.suara = item.value
     }
     
