@@ -47,8 +47,8 @@ class RekapController: UIViewController {
         tableView.tableFooterView = UIView()
         tableView.refreshControl = UIRefreshControl()
         // table view header
-        self.tableView.tableHeaderView  = headerView
         self.headerView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 115 + 400)
+        self.tableView.tableHeaderView  = headerView
         self.headerView.config(viewModel: self.viewModel)
         let footer                      = RekapFooterView()
         self.tableView.tableFooterView  = footer
@@ -70,6 +70,10 @@ class RekapController: UIViewController {
             .disposed(by: disposeBag)
         
         viewModel.output.itemSelectedO
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.infoSelectedO
             .drive()
             .disposed(by: disposeBag)
     }

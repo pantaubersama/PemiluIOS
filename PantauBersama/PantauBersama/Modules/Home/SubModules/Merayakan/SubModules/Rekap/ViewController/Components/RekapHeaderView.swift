@@ -54,8 +54,14 @@ class RekapHeaderView: UIView {
                 self.suaraCapresView.lblPaslonDuaPercentage.text = percentageDuaFormat
                 print("Float number : \(Float(candidate1?.percentage ?? 0.0))")
                 self.suaraCapresView.progressView.setProgress(Float(candidate1?.percentage ?? 0.0) / 100, animated: true)
-                self.suaraCapresView.lblRerataSatu.text = "Rerata \(candidate1?.totalVote ?? 0) suara"
-                self.suaraCapresView.lblRerataDua.text = "Rerata \(candidate2?.totalVote ?? 0) suara"
+                self.suaraCapresView.lblRerataSatu.text = "Rata-rata \(candidate1?.totalVote ?? 0) suara"
+                self.suaraCapresView.lblRerataDua.text = "Rata-rata \(candidate2?.totalVote ?? 0) suara"
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.output.bannerInfoO
+            .drive(onNext: { (bannerInfo) in
+                bannerInfoView.config(banner: bannerInfo, viewModel: viewModel.headerViewModel)
             })
             .disposed(by: disposeBag)
     }

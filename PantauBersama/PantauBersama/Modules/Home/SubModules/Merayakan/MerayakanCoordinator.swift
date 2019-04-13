@@ -34,6 +34,11 @@ class MerayakanCoordinator: BaseCoordinator<Void> {
 }
 
 extension MerayakanCoordinator : MerayakanNavigator {
+    func launchBanner(bannerInfo: BannerInfo) -> Observable<Void> {
+        let bannerInfoCoordinator = BannerInfoCoordinator(navigationController: self.navigationController, bannerInfo: bannerInfo)
+        return coordinate(to: bannerInfoCoordinator)
+    }
+    
     
     func launchDetail(item: Region) -> Observable<Void> {
         let rekapList = RekapListCoordinator(navigationController: navigationController, region: item)
