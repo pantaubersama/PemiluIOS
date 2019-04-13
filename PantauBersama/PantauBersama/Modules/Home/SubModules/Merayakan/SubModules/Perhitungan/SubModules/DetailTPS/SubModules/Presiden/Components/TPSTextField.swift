@@ -50,6 +50,7 @@ class TPSTextField: UITextField {
         
         font = UIFont(name: "Lato-Regular", size: 14)
         keyboardType = .numberPad
+        text = "\(0)"
     }
     
     override func layoutSubviews() {

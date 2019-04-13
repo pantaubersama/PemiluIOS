@@ -30,6 +30,8 @@ class DetailTPSDPRViewModel: ViewModelType {
         let simpanI: AnyObserver<Void>
         let suarahSahI: AnyObserver<Int>
         let footerCountI: AnyObserver<Void>
+        let sumInitialCandidates: AnyObserver<Int> /// initial values sum for candidates
+        let sumInitialParty: AnyObserver<Int> /// Initial values sum for party
     }
     
     struct Output {
@@ -65,6 +67,8 @@ class DetailTPSDPRViewModel: ViewModelType {
     private let simpanS = PublishSubject<Void>()
     private let suarahSahS = PublishSubject<Int>()
     private let footerCountS = PublishSubject<Void>()
+    private let sumInitialCandidatesS = PublishSubject<Int>()
+    private let sumInitialPartyS = PublishSubject<Int>()
     
     private let itemRelay = BehaviorRelay<[SectionModelCalculations]>(value: [])
     
@@ -73,7 +77,6 @@ class DetailTPSDPRViewModel: ViewModelType {
     
     private var bufferItemActor = BehaviorRelay<[ItemActor]>(value: [])
     private var bufferPartyActor = BehaviorRelay<[ItemActor]>(value: [])
-    private var bufferFooterCount = BehaviorRelay<[Int]>(value: [])
     
     private(set) var disposeBag = DisposeBag()
     
@@ -91,7 +94,9 @@ class DetailTPSDPRViewModel: ViewModelType {
                       bufferPartyI: bufferPartyS.asObserver(),
                       simpanI: simpanS.asObserver(),
                       suarahSahI: suarahSahS.asObserver(),
-                      footerCountI: footerCountS.asObserver())
+                      footerCountI: footerCountS.asObserver(),
+                      sumInitialCandidates: sumInitialCandidatesS.asObserver(),
+                      sumInitialParty: sumInitialPartyS.asObserver())
         
         
         /// MARK
@@ -123,22 +128,6 @@ class DetailTPSDPRViewModel: ViewModelType {
                 guard let `self` = self else { return Observable.empty() }
                 return self.transformToSectionsCalculations(response: response)
             }
-//            .flatMapLatest { [weak self] (sectioned) -> Observable<[SectionModelCalculations]> in
-//                guard let `self` = self else { return Observable.empty() }
-////                var footerSection: [Int] = []
-////                for sections in sectioned {
-////                    let sumCandidatesItem = sections.items.map({ $0.value }).reduce(0, +)
-////                    print("SUM TOTAL EACH SECTION: \(sumCandidatesItem)")
-////                    footerSection.append(sumCandidatesItem)
-////                }
-//                var latestSectioned = sectioned
-//                let sum = latestSectioned.map({ $0.items.map({ $0.value}).reduce(0, +)})
-//                var footer = latestSectioned.map({ $0.footerCount })
-//                footer = sum
-//                latestSectioned.map({ $0.footerCount }) = footer
-////                self.bufferFooterCount.accept(footerSection)
-//                return Observable.just(latestSectioned)
-//        }
         
         
         /// MARK
@@ -150,6 +139,19 @@ class DetailTPSDPRViewModel: ViewModelType {
                 /// TODO
                 /// Latest candidates use fo sum each row and append into sections models
                 var latestCandidates = self.candidatesPartyValue.value
+                var initialCandidates = self.bufferItemActor.value
+                /// Handle initial first
+                /// this logic is to remove initial data, and replaced with new ones
+                if initialCandidates.contains(where: { $0.actorId == "\(candidateCount.id)"}) {
+                    guard let index = initialCandidates.index(where: { current -> Bool in
+                        return current.actorId == "\(candidateCount.id)"
+                    }) else { return Observable.empty() }
+                    print("Same id, must clear initial value at index: \(index)")
+                    initialCandidates.remove(at: index)
+                    let sumInitial = initialCandidates.map({ $0.totalVote ?? 0}).reduce(0, +)
+                    self.sumInitialCandidatesS.onNext(sumInitial)
+                    self.bufferItemActor.accept(initialCandidates)
+                }
                 /// filter if id is match, remove and append with latest values
                 if latestCandidates.contains(where: { $0.id == candidateCount.id }) {
                     guard let index = latestCandidates.index(where: { current -> Bool in
@@ -204,6 +206,20 @@ class DetailTPSDPRViewModel: ViewModelType {
                 /// TODO
                 /// assign each value for Party Count
                 var latestPartyCount = self.partyValue.value
+                /// handle initial party
+                var initialParty = self.bufferPartyActor.value
+                /// this logic is to remove initial data, and replaced with new ones
+                if initialParty.contains(where: { $0.actorId == "\(partyCount.number)"}) {
+                    guard let index = initialParty.index(where: { current -> Bool in
+                        return current.actorId == "\(partyCount.number)"
+                    }) else { return Observable.empty() }
+                    print("same serial number, must clear in initial value at index: \(index)")
+                    initialParty.remove(at: index)
+                    let sumPartyInitial = initialParty.map({ $0.totalVote ?? 0 }).reduce(0, +)
+                    self.sumInitialPartyS.onNext(sumPartyInitial)
+                    self.bufferPartyActor.accept(initialParty)
+                }
+                
                 if latestPartyCount.contains(where: { $0.number == partyCount.number }) {
                     guard let index = latestPartyCount.index(where: { current -> Bool in
                         return current.number == partyCount.number
@@ -257,27 +273,18 @@ class DetailTPSDPRViewModel: ViewModelType {
                         self.bufferItemActor.accept(response.calculation.candidates ?? [])
                         self.bufferPartyActor.accept(response.calculation.parties ?? [])
                         let lastValueCandidate = response.calculation.candidates?.map({ $0.totalVote ?? 0 }).reduce(0, +)
+                        self.sumInitialCandidatesS.onNext(lastValueCandidate ?? 0)
                         let lastValueParty = response.calculation.parties?.map({ $0.totalVote ?? 0 }).reduce(0, +)
+                        self.sumInitialPartyS.onNext(lastValueParty ?? 0)
+                        self.invalidCountS.onNext(response.calculation.invalidVote)
+                        
                     })
                     .trackError(self.errorTracker)
                     .trackActivity(self.activityIndicator)
                     .asObservable()
                     .mapToVoid()
             }.asDriverOnErrorJustComplete()
-        
-        /// TODO
-        /// updates section with latest footer counts
-        let initial = footerCountS
-            .flatMapLatest { [weak self] (_) -> Observable<[SectionModelCalculations]> in
-                guard let `self` = self else { return Observable.empty() }
-                var latestItems = self.itemRelay.value
-                var latestFooter = self.bufferFooterCount.value
-                print("ALL SUM FOOTER: \(latestFooter)")
-                
-                
-                return Observable.just(latestItems)
-            }
-        
+
         
         /// MARK
         /// Merge all Observable sections: It will contains 3 observable
@@ -295,10 +302,13 @@ class DetailTPSDPRViewModel: ViewModelType {
         
         /// MARK
         /// Handle All valid suara
+        /// Need handle data from initial data
         let totalSuaraSah = suarahSahS
             .asDriverOnErrorJustComplete()
+        
         /// MARK
         /// Handle All Suara
+        /// Need handle data from initial data
         let totalSuara = Observable.combineLatest(suarahSahS.asObservable().startWith(0),
                                                   invalidCountS.asObservable().startWith(0))
             .flatMapLatest { (a,b) -> Observable<Int> in
@@ -378,7 +388,8 @@ extension DetailTPSDPRViewModel {
             let initialValue = self.bufferItemActor.value.filter({ $0.actorId == "\(datas.id)" }).first?.totalVote
             candidate.append(CandidateActor(id: datas.id,
                                             name: datas.name ?? "",
-                                            value: initialValue ?? 0))
+                                            value: initialValue ?? 0,
+                                            number: datas.serialNumber))
         }
         
         return candidate

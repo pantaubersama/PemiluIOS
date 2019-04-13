@@ -15,6 +15,14 @@ struct CandidateActor {
     var id: Int
     var name: String
     var value: Int
+    var number: Int
+    
+    init(id: Int, name: String, value: Int, number: Int) {
+        self.id = id
+        self.name = name
+        self.value = value
+        self.number = number
+    }
 }
 
 struct SectionModelDPR {

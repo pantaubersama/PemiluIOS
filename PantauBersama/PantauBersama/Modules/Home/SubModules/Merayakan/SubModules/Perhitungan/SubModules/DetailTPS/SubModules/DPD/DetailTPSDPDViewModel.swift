@@ -302,7 +302,8 @@ extension DetailTPSDPDViewModel {
             let initialValue = self.candidateActorRelay.value.filter({ $0.actorId == "\(datas.id)"}).first?.totalVote
             candidate.append(CandidateActor(id: datas.id,
                                             name: datas.name,
-                                            value: initialValue ?? 0))
+                                            value: initialValue ?? 0,
+                                            number: datas.number))
         }
         return candidate
     }

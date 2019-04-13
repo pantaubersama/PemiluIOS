@@ -46,7 +46,7 @@ extension TPSInputHeader: IReusableCell {
         ivImage.af_setImage(withURL: URL(string: item.logo)!)
         
         lblName.text = item.name
-        lblSerialNumber.text = "No Urut " + "\(item.number)"
+        lblSerialNumber.text = "No. Urut " + "\(item.number)"
         
         btnSuara.suara = item.headerCount
         
