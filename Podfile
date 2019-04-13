@@ -37,6 +37,7 @@ def application_pods
     pod 'FacebookShare'
     pod 'FSPagerView'  
     pod 'Texture' 
+    pod 'SimpleImageViewer', '~> 1.1.1'
 end
 
 

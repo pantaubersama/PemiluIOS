@@ -140,6 +140,7 @@ PODS:
     - RxSwift (~> 4.0)
   - RxSwift (4.4.0):
     - RxAtomic (~> 4.4)
+  - SimpleImageViewer (1.1.1)
   - Texture (2.8):
     - Texture/AssetsLibrary (= 2.8)
     - Texture/Core (= 2.8)
@@ -182,6 +183,7 @@ DEPENDENCIES:
   - RxCoreLocation
   - RxDataSources (~> 3.1.0)
   - RxSwift (= 4.4.0)
+  - SimpleImageViewer (~> 1.1.1)
   - Texture
   - TwitterKit
 
@@ -224,6 +226,7 @@ SPEC REPOS:
     - RxCoreLocation
     - RxDataSources
     - RxSwift
+    - SimpleImageViewer
     - Texture
     - TwitterCore
     - TwitterKit
@@ -266,10 +269,11 @@ SPEC CHECKSUMS:
   RxCoreLocation: c6997da8180717c96b495c7a7bb63e48a5a8b320
   RxDataSources: a843bad90c29817f5923ec8163f4af2de084ceb3
   RxSwift: 5976ecd04fc2fefd648827c23de5e11157faa973
+  SimpleImageViewer: 34c3a2cde2d9ac022146772cefc27fca14b0c8b1
   Texture: fc6e0157201f3a6e503d364c147b1872e365cef4
   TwitterCore: 8cbc9ad34d91c63a0035ea05bfbfc0d7ca72a28c
   TwitterKit: 5e4f41d70b9abdb41df5467f52d7aa2c0fd26ebb
 
-PODFILE CHECKSUM: 6b45d05815025d2f4da722a0555dec50bbd42c2e
+PODFILE CHECKSUM: c8cc81241375894c6d34fbfa0fc9f7fe2468424d
 
 COCOAPODS: 1.5.3

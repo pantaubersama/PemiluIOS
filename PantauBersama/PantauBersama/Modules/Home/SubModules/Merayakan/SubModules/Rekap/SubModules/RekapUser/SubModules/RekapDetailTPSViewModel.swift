@@ -20,6 +20,7 @@ final class RekapDetailTPSViewModel: ViewModelType {
         let refreshI: AnyObserver<String>
         let backI: AnyObserver<Void>
         let nextI: AnyObserver<Void>
+        let itemSelected: AnyObserver<IndexPath>
     }
     
     struct Output {
@@ -28,6 +29,7 @@ final class RekapDetailTPSViewModel: ViewModelType {
         let c1SummaryO: Driver<C1Response>
         let errorO: Driver<Error>
         let itemsImageO: Driver<[SectionModelsTPSImages]>
+        let itemSelectedO: Driver<Void>
     }
     
     private let navigator: RekapDetailTPSNavigator
@@ -38,17 +40,18 @@ final class RekapDetailTPSViewModel: ViewModelType {
     private let refreshS = PublishSubject<String>()
     private let backS = PublishSubject<Void>()
     private let nextS = PublishSubject<Void>()
+    private let itemSelectedS = PublishSubject<IndexPath>()
     
-    var presidenImage = BehaviorRelay<[ImageResponse]>(value: [])
-    var suasanaImage = BehaviorRelay<[ImageResponse]>(value: [])
     
     init(navigator: RekapDetailTPSNavigator, realCount: RealCount) {
         self.navigator = navigator
         self.realCount = realCount
         
+        
         input = Input(refreshI: refreshS.asObserver(),
                       backI: backS.asObserver(),
-                      nextI: nextS.asObserver())
+                      nextI: nextS.asObserver(),
+                      itemSelected: itemSelectedS.asObserver())
         
         let back = backS
             .flatMapLatest({ navigator.back() })
@@ -165,15 +168,27 @@ final class RekapDetailTPSViewModel: ViewModelType {
                     .trackError(self.errorTracker)
                     .asObservable()
                     .catchErrorJustReturn([])
-            }.asDriver(onErrorJustReturn: [])
+            }
         
         
+        /// Mark handle image selected
+        let itemSelected = itemSelectedS
+            .withLatestFrom(itemImages) { (indexPath, itemImages) in
+                return itemImages[indexPath.section].items[indexPath.row]
+            }
+            .flatMapLatest { (imageResponse) -> Observable<Void> in
+                let url = URL(string: imageResponse.file.url)!
+                let data = try? Data(contentsOf: url)
+                return navigator.imageViewer(image: imageResponse, data: UIImage(data: data!))
+            }
+            .asDriverOnErrorJustComplete()
         
         output = Output(backO: back,
                         summaryPresidenO: summaryPresiden.asDriverOnErrorJustComplete(),
                         c1SummaryO: c1Summary.asDriverOnErrorJustComplete(),
                         errorO: errorTracker.asDriver(),
-                        itemsImageO: itemImages)
+                        itemsImageO: itemImages.asDriver(onErrorJustReturn: []),
+                        itemSelectedO: itemSelected)
         
     }
     
