@@ -32,7 +32,7 @@ public enum HitungAPI {
     
     case putCalculationsCandidates(id: String, type: TingkatPemilihan, invalidVote: Int, candidates: [CandidatePartyCount], parties: [CandidatePartyCount]?, initialData: [ItemActor]?)
     
-    case putCalculationsCandidatesAndParty(id: String, type: TingkatPemilihan, invalidVote: Int, candidates: [CandidatePartyCount], parties: [PartyCount]?, initialData: [ItemActor]?)
+    case putCalculationsCandidatesAndParty(id: String, type: TingkatPemilihan, invalidVote: Int, candidates: [CandidatePartyCount], parties: [PartyCount]?, initialData: [ItemActor]?, initialPartyData: [ItemActor]?)
     
     
     case getCandidates(dapilId: Int, tingkat: TingkatPemilihan)
@@ -199,7 +199,7 @@ extension HitungAPI: TargetType {
                 }
             }
             return multipartFormData
-        case .putCalculationsCandidatesAndParty(let (realCountId, type, invalidVote, candidates, parties, initialData)):
+        case .putCalculationsCandidatesAndParty(let (realCountId, type, invalidVote, candidates, parties, initialData, initialPartyData)):
             var multipartFormData = [MultipartFormData]()
             multipartFormData.append(buildMultipartFormData(key: "hitung_real_count_id", value: realCountId))
             multipartFormData.append(buildMultipartFormData(key: "calculation_type", value: type.rawValue))
@@ -223,6 +223,16 @@ extension HitungAPI: TargetType {
                         /// assume data initial is different, then append
                         multipartFormData.append(buildMultipartFormData(key: "candidates[][id]", value: data.actorId ?? ""))
                         multipartFormData.append(buildMultipartFormData(key: "candidates[][total_vote]", value: "\(data.totalVote ?? 0)"))
+                    }
+                }
+            }
+            if let initialParty = initialPartyData {
+                for data in initialParty {
+                    if let lastPartyValue = parties?.filter({ $0.number == Int(data.actorId ?? "" )}).first {
+                        print("Last party is same: \(lastPartyValue), totalValue: \(lastPartyValue.value)")
+                    } else {
+                        multipartFormData.append(buildMultipartFormData(key: "parties[][id]", value: data.actorId ?? ""))
+                        multipartFormData.append(buildMultipartFormData(key: "parties[][total_vote]", value: "\(data.totalVote ?? 0)"))
                     }
                 }
             }

@@ -146,10 +146,10 @@ class DetailTPSDPRController: UIViewController {
             .drive()
             .disposed(by: disposeBag)
         
-//        viewModel.output.initialValueO
-//            .drive()
-//            .disposed(by: disposeBag)
-//
+        viewModel.output.initialValueO
+            .drive()
+            .disposed(by: disposeBag)
+
         viewModel.output.simpanO
             .drive()
             .disposed(by: disposeBag)

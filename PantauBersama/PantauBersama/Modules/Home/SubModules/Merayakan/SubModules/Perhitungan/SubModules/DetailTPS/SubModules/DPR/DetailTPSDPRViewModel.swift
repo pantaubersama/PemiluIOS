@@ -29,6 +29,7 @@ class DetailTPSDPRViewModel: ViewModelType {
         let bufferPartyI: AnyObserver<PartyCount>
         let simpanI: AnyObserver<Void>
         let suarahSahI: AnyObserver<Int>
+        let footerCountI: AnyObserver<Void>
     }
     
     struct Output {
@@ -63,15 +64,16 @@ class DetailTPSDPRViewModel: ViewModelType {
     private let bufferPartyS = PublishSubject<PartyCount>()
     private let simpanS = PublishSubject<Void>()
     private let suarahSahS = PublishSubject<Int>()
+    private let footerCountS = PublishSubject<Void>()
     
     private let itemRelay = BehaviorRelay<[SectionModelCalculations]>(value: [])
     
     private var candidatesPartyValue = BehaviorRelay<[CandidatePartyCount]>(value: [])
     private let partyValue = BehaviorRelay<[PartyCount]>(value: [])
     
-    var bufferInvalid = BehaviorRelay<Int>(value: 0)
-    var bufferTotal = BehaviorRelay<Int>(value: 0)
-    var bufferItemActor = BehaviorRelay<[ItemActor]>(value: [])
+    private var bufferItemActor = BehaviorRelay<[ItemActor]>(value: [])
+    private var bufferPartyActor = BehaviorRelay<[ItemActor]>(value: [])
+    private var bufferFooterCount = BehaviorRelay<[Int]>(value: [])
     
     private(set) var disposeBag = DisposeBag()
     
@@ -88,7 +90,8 @@ class DetailTPSDPRViewModel: ViewModelType {
                       viewWillAppearI: viewWillAppearS.asObserver(),
                       bufferPartyI: bufferPartyS.asObserver(),
                       simpanI: simpanS.asObserver(),
-                      suarahSahI: suarahSahS.asObserver())
+                      suarahSahI: suarahSahS.asObserver(),
+                      footerCountI: footerCountS.asObserver())
         
         
         /// MARK
@@ -120,6 +123,22 @@ class DetailTPSDPRViewModel: ViewModelType {
                 guard let `self` = self else { return Observable.empty() }
                 return self.transformToSectionsCalculations(response: response)
             }
+//            .flatMapLatest { [weak self] (sectioned) -> Observable<[SectionModelCalculations]> in
+//                guard let `self` = self else { return Observable.empty() }
+////                var footerSection: [Int] = []
+////                for sections in sectioned {
+////                    let sumCandidatesItem = sections.items.map({ $0.value }).reduce(0, +)
+////                    print("SUM TOTAL EACH SECTION: \(sumCandidatesItem)")
+////                    footerSection.append(sumCandidatesItem)
+////                }
+//                var latestSectioned = sectioned
+//                let sum = latestSectioned.map({ $0.items.map({ $0.value}).reduce(0, +)})
+//                var footer = latestSectioned.map({ $0.footerCount })
+//                footer = sum
+//                latestSectioned.map({ $0.footerCount }) = footer
+////                self.bufferFooterCount.accept(footerSection)
+//                return Observable.just(latestSectioned)
+//        }
         
         
         /// MARK
@@ -217,14 +236,6 @@ class DetailTPSDPRViewModel: ViewModelType {
                 return Observable.just(latestItems)
         }
         
-        
-        /// MARK
-        /// Merge all Observable sections: It will contains 3 observable
-        let mergeItems = Observable.merge(itemsSection, itemsUpdate, headerUpdates)
-            .asDriverOnErrorJustComplete()
-        
-        
-        
         /// TODO
         /// Get data realcount calculations saved
         /**
@@ -244,7 +255,7 @@ class DetailTPSDPRViewModel: ViewModelType {
                     .do(onSuccess: { (response) in
                         print("Response candidates: \(response.calculation.candidates ?? [])")
                         self.bufferItemActor.accept(response.calculation.candidates ?? [])
-                     
+                        self.bufferPartyActor.accept(response.calculation.parties ?? [])
                         let lastValueCandidate = response.calculation.candidates?.map({ $0.totalVote ?? 0 }).reduce(0, +)
                         let lastValueParty = response.calculation.parties?.map({ $0.totalVote ?? 0 }).reduce(0, +)
                     })
@@ -254,13 +265,27 @@ class DetailTPSDPRViewModel: ViewModelType {
                     .mapToVoid()
             }.asDriverOnErrorJustComplete()
         
+        /// TODO
+        /// updates section with latest footer counts
+        let initial = footerCountS
+            .flatMapLatest { [weak self] (_) -> Observable<[SectionModelCalculations]> in
+                guard let `self` = self else { return Observable.empty() }
+                var latestItems = self.itemRelay.value
+                var latestFooter = self.bufferFooterCount.value
+                print("ALL SUM FOOTER: \(latestFooter)")
+                
+                
+                return Observable.just(latestItems)
+            }
+        
+        
+        /// MARK
+        /// Merge all Observable sections: It will contains 3 observable
+        let mergeItems = Observable.merge(itemsSection, itemsUpdate, headerUpdates)
+            .asDriverOnErrorJustComplete()
         
         let invalid = invalidCountS
-            .flatMapLatest { [weak self] (value) -> Observable<Int> in
-                guard let `self` = self else { return Observable.empty() }
-                self.bufferInvalid.accept(value)
-                return Observable.just(value)
-        }.asDriverOnErrorJustComplete()
+        .asDriverOnErrorJustComplete()
         
         
         let back = backS
@@ -286,8 +311,9 @@ class DetailTPSDPRViewModel: ViewModelType {
             .withLatestFrom(Observable.combineLatest(invalidCountS.asObservable().startWith(0),
                                                      self.candidatesPartyValue,
                                                      self.partyValue,
-                                                     self.bufferItemActor))
-            .flatMapLatest { [weak self] (invalid, candidates, party, initialData) -> Observable<Void> in
+                                                     self.bufferItemActor,
+                                                     self.bufferPartyActor))
+            .flatMapLatest { [weak self] (invalid, candidates, party, initialData, initialParty) -> Observable<Void> in
                 guard let `self` = self else { return Observable.empty() }
                 
                 return NetworkService.instance
@@ -296,7 +322,7 @@ class DetailTPSDPRViewModel: ViewModelType {
                                                                        invalidVote: invalid,
                                                                        candidates: candidates,
                                                                        parties: party,
-                                                                       initialData: initialData),
+                                                                       initialData: initialData, initialPartyData: initialParty),
                                    c: BaseResponse<RealCountResponse>.self)
                     .trackError(self.errorTracker)
                     .trackActivity(self.activityIndicator)
@@ -344,57 +370,15 @@ extension DetailTPSDPRViewModel {
             .trackActivity(self.activityIndicator)
             .asObservable()
     }
-    /// MARK: - Transform response into section model
-    /// this function will plot every section parties, and every section parties have candidates items
-    /// match this values with Item actor and changes items in section model 
-//    private func transformToSection(response: [CandidateResponse]) -> Observable<[SectionModelDPR]> {
-//        var items: [SectionModelDPR] = []
-//        for item in response {
-//            items.append(SectionModelDPR(header: item.name,
-//                                         number: item.serialNumber,
-//                                         logo: item.logo?.thumbnail.url ?? "",
-//                                         items: self.generateCandidates(data: item,
-//                                                                        itemActor: self.candidatesPartyValue.value)))
-//        }
-//        self.itemsRelay.accept(items)
-//        return Observable.just(items)
-//    }
-    
-//    private func updateSectionModel(candidatePartyCount: CandidatePartyCount) {
-//        var currentSectionedModels = self.itemsRelay.value
-//
-//        var currentCandidate = currentSectionedModels[candidatePartyCount.indexPath.section]
-//        guard let index = currentCandidate.items.index(where: { current -> Bool in
-//            return current.id == candidatePartyCount.id
-//        }) else { return }
-//
-//        var updateCandidate = currentCandidate.items.filter { (candidate) -> Bool in
-//            return candidate.id == candidatePartyCount.id
-//        }.first
-//
-//        print("Index updated: \(index)")
-//        print("Updated candidate: \(updateCandidate)")
-//
-//        if updateCandidate != nil {
-//            updateCandidate?.value = candidatePartyCount.totalVote
-//            currentCandidate.items[index] = updateCandidate!
-//            currentSectionedModels[candidatePartyCount.indexPath.section] = currentCandidate
-//
-//            self.itemsRelay.accept(currentSectionedModels)
-//        }
-//    }
-
-    
     /// Mark: - Generate candidates Actor
-    private func generateCandidates(data: CandidateResponse, itemActor: [CandidatePartyCount]) -> [CandidateActor] {
+    private func generateCandidates(data: CandidateResponse) -> [CandidateActor] {
         var candidate: [CandidateActor] = []
-        print("Item actor: \(itemActor)")
-        
-        for datas in data.candidates ?? [] {
-            let updatedValue = itemActor.filter({ $0.id == datas.id }).first?.totalVote
+
+        for datas in data.candidates {
+            let initialValue = self.bufferItemActor.value.filter({ $0.actorId == "\(datas.id)" }).first?.totalVote
             candidate.append(CandidateActor(id: datas.id,
                                             name: datas.name ?? "",
-                                            value: updatedValue ?? 0))
+                                            value: initialValue ?? 0))
         }
         
         return candidate
@@ -406,13 +390,15 @@ extension DetailTPSDPRViewModel {
         var items: [SectionModelCalculations] = []
         
         for item in response {
-            let headerCount = self.partyValue.value.filter({ $0.number == item.serialNumber }).first?.value // iki urung ke nggo, nanti pas initial
+            let headerCount = self.bufferPartyActor.value.filter({ $0.actorId == "\(item.serialNumber)"}).first?.totalVote
+            /// TODO: Calculate footer
+            /// ...
             items.append(SectionModelCalculations(header: item.name,
                                                   headerCount: headerCount ?? 0,
                                                   headerNumber: item.serialNumber,
                                                   headerLogo: item.logo?.thumbnail.url ?? "",
-                                                  items: self.generateCandidates(data: item, itemActor: self.candidatesPartyValue.value),
-                                                  footerCount: 0))
+                                                  items: self.generateCandidates(data: item),
+                                                  footerCount: headerCount ?? 0))
         }
         
         self.itemRelay.accept(items)
@@ -420,4 +406,9 @@ extension DetailTPSDPRViewModel {
     }
     
     
+}
+
+
+func + (left: Int?, right: Int?) -> Int? {
+    return left != nil ? right != nil ? left! + right! : left : right
 }

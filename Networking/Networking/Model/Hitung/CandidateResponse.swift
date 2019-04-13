@@ -16,7 +16,7 @@ public struct CandidateResponse: Codable {
     public let acronym: String
     public let logo: Avatar?
     public let actorType: String?
-    public let candidates: [Candidates]?
+    public let candidates: [Candidates]
     
     private enum CodingKeys: String, CodingKey {
         case id, name, logo, candidates, acronym
