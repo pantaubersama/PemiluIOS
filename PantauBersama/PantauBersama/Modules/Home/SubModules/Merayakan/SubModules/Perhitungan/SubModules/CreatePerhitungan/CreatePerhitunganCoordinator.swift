@@ -19,14 +19,18 @@ protocol CreatePerhitunganNavigator {
 
 class CreatePerhitunganCoordinator: BaseCoordinator<Void> {
     private let navigationController: UINavigationController
+    private let isEdit: Bool
+    private let realCount: RealCount?
     
-    init(navigationController: UINavigationController) {
+    init(navigationController: UINavigationController, isEdit: Bool, realCount: RealCount?) {
         self.navigationController = navigationController
+        self.isEdit = isEdit
+        self.realCount = realCount
     }
     
     override func start() -> Observable<Void> {
         let viewController = CreatePerhitunganController()
-        let viewModel = CreatePerhitunganViewModel(navigator: self)
+        let viewModel = CreatePerhitunganViewModel(navigator: self, data: self.realCount, isEdit: self.isEdit)
         viewController.viewModel = viewModel
         viewController.hidesBottomBarWhenPushed = true
         

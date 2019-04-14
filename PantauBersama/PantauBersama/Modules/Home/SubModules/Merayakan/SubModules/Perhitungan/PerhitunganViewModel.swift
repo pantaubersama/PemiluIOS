@@ -114,9 +114,10 @@ class PerhitunganViewModel: ViewModelType {
             .flatMapLatest({ (type) -> Observable<Void> in
                 switch type {
                 case .hapus(let data):
-                    return Observable.empty()
+                    /// Handle delete data
+                    return self.deleteRealCount(id: data.id)
                 case .edit(let data):
-                    return Observable.empty()
+                    return self.navigator.editTPS(realCount: data)
                 }
 
             })
@@ -196,6 +197,21 @@ class PerhitunganViewModel: ViewModelType {
             .map{ ($0.data.bannerInfo) }
             .asObservable()
             .catchErrorJustComplete()
+    }
+    
+    /// MARK: Delete realcounts
+    private func deleteRealCount(id: String) -> Observable<Void> {
+        return NetworkService.instance
+            .requestObject(HitungAPI.deleteRealCount(id: id),
+                           c: BaseResponse<CreateTpsResponse>.self)
+            .asObservable()
+            .do(onNext: { [weak self] (response) in
+                guard let `self` = self else { return }
+                self.refreshSubject.onNext(())
+            })
+            .trackError(self.errorTracker)
+            .trackActivity(self.activityIndicator)
+            .mapToVoid()
     }
 
 }

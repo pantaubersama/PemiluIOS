@@ -23,6 +23,7 @@ class CreatePerhitunganViewModel: ViewModelType {
         let villageI: AnyObserver<String>
         let detailTPSI: AnyObserver<Void>
         let backI: AnyObserver<Void>
+        let refreshI: AnyObserver<String>
     }
     
     struct Output {
@@ -30,6 +31,7 @@ class CreatePerhitunganViewModel: ViewModelType {
         let backO: Driver<Void>
         let enableO: Driver<Bool>
         let errorO: Driver<Error>
+        let initialDataO: Driver<RealCount?>
     }
     
     var input: Input
@@ -45,6 +47,7 @@ class CreatePerhitunganViewModel: ViewModelType {
     private let backS = PublishSubject<Void>()
     private let detailTPSS = PublishSubject<Void>()
     private let manager = CLLocationManager()
+    private let refreshS = PublishSubject<String>()
     
     var provinces = [Province]()
     var regencies = [Regency]()
@@ -56,11 +59,15 @@ class CreatePerhitunganViewModel: ViewModelType {
     
     private var errorTracker = ErrorTracker()
     private var activityIndicator = ActivityIndicator()
+    private let data: RealCount?
+    var isEdit: Bool
     
-    init(navigator: CreatePerhitunganNavigator) {
+    init(navigator: CreatePerhitunganNavigator, data: RealCount? = nil, isEdit: Bool) {
         self.navigator = navigator
         let errorTracker = ErrorTracker()
         let activityIndicator = ActivityIndicator()
+        self.data = data
+        self.isEdit = isEdit
         
         input = Input(
             tpsNoI: noTpsS.asObserver(),
@@ -69,7 +76,8 @@ class CreatePerhitunganViewModel: ViewModelType {
             districtI: districtS.asObserver(),
             villageI: villageS.asObserver(),
             detailTPSI: detailTPSS.asObserver(),
-            backI: backS.asObserver())
+            backI: backS.asObserver(),
+            refreshI: refreshS.asObserver())
         
         let back = backS
             .flatMap({ navigator.back() })
@@ -97,12 +105,12 @@ class CreatePerhitunganViewModel: ViewModelType {
             }
             .mapToVoid().asDriverOnErrorJustComplete()
         
-        
         output = Output(
             createO: done,
             backO: back,
             enableO: enablePost,
-            errorO: errorTracker.asDriver())
+            errorO: errorTracker.asDriver(),
+            initialDataO: Driver.just(data))
         
         manager.requestWhenInUseAuthorization()
         
