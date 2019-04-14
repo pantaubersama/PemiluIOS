@@ -15,6 +15,7 @@ protocol RekapNavigator: class {
     
     func launchBanner(bannerInfo: BannerInfo) -> Observable<Void>
     func launchDetail(item: Region) -> Observable<Void>
+    func launchLink() -> Observable<Void>
 }
 
 extension RekapNavigator where Self: BaseCoordinator<Void> {

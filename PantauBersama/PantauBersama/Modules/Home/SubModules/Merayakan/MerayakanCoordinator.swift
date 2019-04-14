@@ -34,6 +34,11 @@ class MerayakanCoordinator: BaseCoordinator<Void> {
 }
 
 extension MerayakanCoordinator : MerayakanNavigator {
+    func launchLink() -> Observable<Void> {
+        let webView = WKWebCoordinator(navigationController: navigationController, url: "https://app.pantaubersama.com/")
+        return coordinate(to: webView)
+    }
+    
     func launchBanner(bannerInfo: BannerInfo) -> Observable<Void> {
         let bannerInfoCoordinator = BannerInfoCoordinator(navigationController: self.navigationController, bannerInfo: bannerInfo)
         return coordinate(to: bannerInfoCoordinator)

@@ -80,7 +80,7 @@
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="uQT-T8-xyP">
                                             <rect key="frame" x="25" y="10" width="147.5" height="211.5"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="paslonjokowi-compres-min" translatesAutoresizingMaskIntoConstraints="NO" id="Ea5-5k-n2h">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="paslonJokowiWithTitle" translatesAutoresizingMaskIntoConstraints="NO" id="Ea5-5k-n2h">
                                                     <rect key="frame" x="0.0" y="0.0" width="147.5" height="147.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="Ea5-5k-n2h" secondAttribute="height" multiplier="1:1" id="eeC-Cn-Pdw"/>
@@ -104,7 +104,7 @@
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="hYx-d1-aSy">
                                             <rect key="frame" x="202.5" y="10" width="147.5" height="211.5"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="paslonprabowo-compres-min" translatesAutoresizingMaskIntoConstraints="NO" id="Idt-WL-f85">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="paslonPrabowoWithTitle" translatesAutoresizingMaskIntoConstraints="NO" id="Idt-WL-f85">
                                                     <rect key="frame" x="0.0" y="0.0" width="147.5" height="147.5"/>
                                                 </imageView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w4x-4F-dYt" customClass="TPSButton" customModule="PantauBersama" customModuleProvider="target">
@@ -375,7 +375,7 @@
         </view>
     </objects>
     <resources>
-        <image name="paslonjokowi-compres-min" width="1000" height="1000"/>
-        <image name="paslonprabowo-compres-min" width="1000" height="1000"/>
+        <image name="paslonJokowiWithTitle" width="140" height="140"/>
+        <image name="paslonPrabowoWithTitle" width="140" height="140"/>
     </resources>
 </document>

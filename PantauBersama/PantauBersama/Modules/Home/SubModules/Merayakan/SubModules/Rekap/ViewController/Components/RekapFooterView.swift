@@ -36,11 +36,13 @@ class RekapFooterView: UIView {
         let attrs3 = [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 12), NSAttributedString.Key.foregroundColor : #colorLiteral(red: 0.06666666667, green: 0.06666666667, blue: 0.06666666667, alpha: 1)] as [NSAttributedString.Key : Any]
         
         let attributedString1 = NSMutableAttributedString(string:"Buka di ", attributes:attrs1)
-        let attributedString2 = NSMutableAttributedString(string:"web.pantaubersama.com", attributes:attrs2)
+        let attributedString2 = NSMutableAttributedString(string:"app.pantaubersama.com", attributes:attrs2)
         let attributedString3 = NSMutableAttributedString(string:"\nUntuk penyajian data yang lebih lengkap, hingga ke perhitungan Legislatif", attributes:attrs3)
         
         attributedString1.append(attributedString2)
         attributedString1.append(attributedString3)
         self.labelNote.attributedText = attributedString1
     }
+    
+    
 }

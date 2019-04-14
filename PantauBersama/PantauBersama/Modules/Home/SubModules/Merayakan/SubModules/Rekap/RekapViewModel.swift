@@ -21,6 +21,7 @@ final class RekapViewModel: ViewModelType {
     struct Input {
         let refreshTrigger: AnyObserver<String>
         let itemSelected: AnyObserver<IndexPath>
+        let linkSelected: AnyObserver<UITapGestureRecognizer>
     }
     
     struct Output {
@@ -30,6 +31,7 @@ final class RekapViewModel: ViewModelType {
         let itemSelectedO: Driver<Void>
         let bannerInfoO: Driver<BannerInfo>
         let infoSelectedO: Driver<Void>
+        let linkSelectedO: Driver<Void>
     }
     
     let navigator: RekapNavigator
@@ -40,13 +42,15 @@ final class RekapViewModel: ViewModelType {
     
     private let refreshSubject = PublishSubject<String>()
     private let itemSelectedS = PublishSubject<IndexPath>()
+    private let linkSelectedS = PublishSubject<UITapGestureRecognizer>()
     
     init(navigator: RekapNavigator) {
         self.navigator = navigator
     
         input = Input(
             refreshTrigger: refreshSubject.asObserver(),
-            itemSelected: itemSelectedS.asObserver()
+            itemSelected: itemSelectedS.asObserver(),
+            linkSelected: linkSelectedS.asObserver()
         )
         
         /// GET Contributions response
@@ -106,13 +110,19 @@ final class RekapViewModel: ViewModelType {
             }
             .asDriverOnErrorJustComplete()
         
+        let linkSelected = linkSelectedS
+            .mapToVoid()
+            .flatMapLatest({ navigator.launchLink() })
+            .asDriverOnErrorJustComplete()
+        
         
         output = Output(itemsO: provinceAll.asDriverOnErrorJustComplete(),
                         contributionsO: contributions.asDriverOnErrorJustComplete(),
                         summaryPresidentO: summaryAll.asDriverOnErrorJustComplete(),
                         itemSelectedO: itemSelected,
                         bannerInfoO: bannerInfo,
-                        infoSelectedO: infoSelected)
+                        infoSelectedO: infoSelected,
+                        linkSelectedO: linkSelected)
     }
 }
 

@@ -28,6 +28,7 @@ class RekapController: UIViewController {
     private let disposeBag = DisposeBag()
     
     private var pageType : RekapType!
+    private var tap: UITapGestureRecognizer = UITapGestureRecognizer()
     
     convenience init(viewModel: RekapViewModel, pageType type: RekapType = .kota) {
         self.init()
@@ -51,7 +52,13 @@ class RekapController: UIViewController {
         self.tableView.tableHeaderView  = headerView
         self.headerView.config(viewModel: self.viewModel)
         let footer                      = RekapFooterView()
+        footer.addGestureRecognizer(tap)
+        footer.isUserInteractionEnabled = true
         self.tableView.tableFooterView  = footer
+        
+        tap.rx.event
+            .bind(to: viewModel.input.linkSelected)
+            .disposed(by: disposeBag)
         
         viewModel.output.itemsO
             .do(onNext: { [weak self] (_) in
@@ -76,6 +83,12 @@ class RekapController: UIViewController {
         viewModel.output.infoSelectedO
             .drive()
             .disposed(by: disposeBag)
+        
+      
+        viewModel.output.linkSelectedO
+            .drive()
+            .disposed(by: disposeBag)
+        
     }
     
 }

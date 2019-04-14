@@ -39,7 +39,7 @@ class RekapHeaderView: UIView {
             .drive(onNext: { [weak self] (response) in
                 guard let `self` = self else { return }
                 self.suaraCapresView.lblParticipant.text = "\(response.total)"
-                self.suaraCapresView.lblUpdated.text = "Pembaruan terakhir pukul " + response.lastUpdate.createdInWord.id
+                self.suaraCapresView.lblUpdated.text = "Pembaruan terakhir " + response.lastUpdate.createdInWord.id
             })
             .disposed(by: disposeBag)
         
