@@ -52,7 +52,7 @@ public enum HitungAPI {
     case getImagesRealCount(hitungRealCountId: String, type: RealCountImageType, page: Int, perPage: Int)
     case postImageRealCount(hitungRealCountId: String, type: RealCountImageType, image: UIImage)
     
-    case putRealCount(id: Int, noTps: Int)
+    case putRealCount(id: String, noTps: Int)
     case getRealCount(id: Int)
     case getRealCounts(page: Int, perPage: Int, userId: String?, villageCode: String?, dapilId: String?)
     case postRealCount(noTps: String, province: String, regencies: String, district: String, village: String, lat: Double, long: Double)
@@ -67,7 +67,6 @@ extension HitungAPI: TargetType {
     
     public var headers: [String : String]? {
         let token = KeychainService.load(type: NetworkKeychainKind.token) ?? ""
-        print("tokenx \(token)")        
         return [
             "Content-Type"  : "application/json",
             "Accept"        : "application/json",
@@ -81,8 +80,9 @@ extension HitungAPI: TargetType {
     
     public var path: String {
         switch self {
-        case .getRealCount(let id),
-             .putRealCount(let id, _):
+        case .getRealCount(let id):
+            return "/hitung/v1/real_counts/\(id)"
+        case .putRealCount(let id, _):
             return "/hitung/v1/real_counts/\(id)"
         case .deleteRealCount(let id):
             return "/hitung/v1/real_counts/\(id)"
@@ -241,6 +241,10 @@ extension HitungAPI: TargetType {
                 }
             }
             return multipartFormData
+//        case .putRealCount(let (_, noTps)):
+//            var multipartFormData = [MultipartFormData]()
+//            multipartFormData.append(buildMultipartFormData(key: "tps", value: "\(noTps)"))
+//            return multipartFormData
         default:
             return nil
         }
@@ -262,11 +266,6 @@ extension HitungAPI: TargetType {
                 "village_code": village,
                 "latitude": lat,
                 "longitude": long
-            ]
-        case .putRealCount(let id, let noTps):
-            return [
-                "tps": noTps,
-                "id": id
             ]
         case .getRealCount(let id):
             return ["id": id]
@@ -350,6 +349,10 @@ extension HitungAPI: TargetType {
         case .deleteRealCount(let (realCountId)):
             return [
                 "id": realCountId
+            ]
+        case .putRealCount( let( _, noTps)):
+            return [
+                "tps": noTps
             ]
         default:
             return nil

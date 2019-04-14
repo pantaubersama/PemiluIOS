@@ -159,6 +159,11 @@ class PerhitunganController: UITableViewController {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.viewModel.input.refreshTrigger.onNext(())
+    }
+    
     private func configureConstraint() {
         if #available(iOS 11.0, *) {
             NSLayoutConstraint.activate([
@@ -177,19 +182,4 @@ class PerhitunganController: UITableViewController {
                 ])
         }
     }
-
-//    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return 20
-//    }
-    
-//    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return 168
-//    }
-    
-//    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell() as PerhitunganCell
-//
-//        return cell
-//    }
-
 }

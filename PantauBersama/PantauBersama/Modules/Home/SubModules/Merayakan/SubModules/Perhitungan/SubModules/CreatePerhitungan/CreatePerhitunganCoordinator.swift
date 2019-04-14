@@ -21,11 +21,13 @@ class CreatePerhitunganCoordinator: BaseCoordinator<Void> {
     private let navigationController: UINavigationController
     private let isEdit: Bool
     private let realCount: RealCount?
+    private let isFromDetail: Bool
     
-    init(navigationController: UINavigationController, isEdit: Bool, realCount: RealCount?) {
+    init(navigationController: UINavigationController, isEdit: Bool, realCount: RealCount?, isFromDetail: Bool) {
         self.navigationController = navigationController
         self.isEdit = isEdit
         self.realCount = realCount
+        self.isFromDetail = isFromDetail
     }
     
     override func start() -> Observable<Void> {
@@ -41,7 +43,11 @@ class CreatePerhitunganCoordinator: BaseCoordinator<Void> {
 
 extension CreatePerhitunganCoordinator: CreatePerhitunganNavigator {
     func back() -> Observable<Void> {
-        self.navigationController.popViewController(animated: true)
+        if self.isFromDetail == true {
+            self.navigationController.popToRootViewController(animated: true)
+        } else {
+            self.navigationController.popViewController(animated: true)
+        }
         return Observable.empty()
     }
     

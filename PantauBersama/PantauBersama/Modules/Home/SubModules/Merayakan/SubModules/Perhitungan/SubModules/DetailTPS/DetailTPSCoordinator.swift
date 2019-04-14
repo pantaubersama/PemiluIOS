@@ -23,7 +23,7 @@ protocol DetailTPSNavigator {
     func launchDetailTPSDPRDProv(data: RealCount) -> Observable<Void>
     func launchUploadC1(data: RealCount) -> Observable<Void>
     func launchC1Form(type: FormC1Type, data: RealCount, tingkat: TingkatPemilihan) -> Observable<Void>
-    
+    func launchEditTPS(realCount: RealCount) -> Observable<Void>
 }
 
 class DetailTPSCoordinator: BaseCoordinator<Void> {
@@ -103,6 +103,11 @@ extension DetailTPSCoordinator: DetailTPSNavigator {
             navigationController.present(viewController, animated: true, completion: nil)
         }
         return Observable.never()
+    }
+    
+    func launchEditTPS(realCount: RealCount) -> Observable<Void> {
+        let createPerhitunganCoordinator = CreatePerhitunganCoordinator(navigationController: navigationController, isEdit: true, realCount: realCount, isFromDetail: true)
+        return coordinate(to: createPerhitunganCoordinator)
     }
 }
 

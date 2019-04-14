@@ -70,14 +70,6 @@ class CreatePerhitunganController: UIViewController {
             .drive(done.rx.isEnabled)
             .disposed(by: disposeBag)
         
-//        viewModel.output.errorO
-//            .drive(onNext: { [weak self] (error) in
-//                guard let `self` = self else { return }
-//                guard let alert = UIAlertController.alert(with: error) else { return }
-//                self.navigationController?.present(alert, animated: true, completion: nil)
-//            })
-//            .disposed(by: disposeBag)
-        
         viewModel.output.errorO
             .drive(onNext: { [weak self] (e) in
                 guard let alert = UIAlertController.alert(with: e) else { return }
@@ -86,7 +78,6 @@ class CreatePerhitunganController: UIViewController {
             .disposed(by: disposeBag)
         
         if viewModel.isEdit == true {
-            print("JUST TPS EDIT")
             let groupTextField: [TextField] = [provinsiTF,
                                                kabupatenTF,
                                                kecamatanTF,

@@ -105,8 +105,34 @@ class CreatePerhitunganViewModel: ViewModelType {
             }
             .mapToVoid().asDriverOnErrorJustComplete()
         
+        /// MARK: Just edit number TPS
+        let edit = detailTPSS
+            .withLatestFrom(noTpsS)
+            .flatMapLatest({ [weak self] (noTps) -> Observable<Void> in
+                guard let `self` = self else { return Observable.empty() }
+                if let realCount =  self.data {
+                    print("data: ID: \(realCount.id)")
+                    print("no tps: \(noTps)")
+                    return NetworkService.instance
+                        .requestObject(HitungAPI.putRealCount(id: realCount.id, noTps: Int(noTps)!),
+                                       c: BaseResponse<CreateTpsResponse>.self)
+                        .trackError(self.errorTracker)
+                        .trackActivity(self.activityIndicator)
+                        .mapToVoid()
+                        .catchErrorJustComplete()
+                } else {
+                    return Observable.empty()
+                }
+            })
+            .map { (_) in
+                navigator.back()
+            }
+            .mapToVoid()
+            .asDriverOnErrorJustComplete()
+        
+        
         output = Output(
-            createO: done,
+            createO: self.isEdit ? edit : done,
             backO: back,
             enableO: enablePost,
             errorO: errorTracker.asDriver(),
