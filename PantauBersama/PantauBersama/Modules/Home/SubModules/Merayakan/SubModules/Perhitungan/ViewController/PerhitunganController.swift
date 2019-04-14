@@ -122,15 +122,24 @@ class PerhitunganController: UITableViewController {
                         observer.onNext(PerhitunganType.hapus(data: data))
                         observer.on(.completed)
                     })
-                    let edit = UIAlertAction(title: "Edit Data TPS", style: .default, handler: { (_) in
+                    let edit = UIAlertAction(title: "Ubah Data TPS", style: .default, handler: { (_) in
                         observer.onNext(PerhitunganType.edit(data: data))
                         observer.on(.completed)
                     })
                     let cancel = UIAlertAction(title: "Batal", style: .cancel, handler: nil)
                     
-                    alert.addAction(hapus)
-                    alert.addAction(edit)
-                    alert.addAction(cancel)
+                    if data.status == .sandbox {
+                        alert.addAction(edit)
+                        alert.addAction(cancel)
+                    } else if data.status == .published {
+                        alert.addAction(hapus)
+                        alert.addAction(cancel)
+                    } else {
+                        alert.addAction(hapus)
+                        alert.addAction(edit)
+                        alert.addAction(cancel)
+                    }
+                    
                     DispatchQueue.main.async {
                         self?.navigationController?.present(alert, animated: true, completion: nil)
                     }
@@ -148,6 +157,11 @@ class PerhitunganController: UITableViewController {
             .drive()
             .disposed(by: disposeBag)
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.viewModel.input.refreshTrigger.onNext(())
     }
     
     private func configureConstraint() {
@@ -168,19 +182,4 @@ class PerhitunganController: UITableViewController {
                 ])
         }
     }
-
-//    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return 20
-//    }
-    
-//    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return 168
-//    }
-    
-//    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell() as PerhitunganCell
-//
-//        return cell
-//    }
-
 }

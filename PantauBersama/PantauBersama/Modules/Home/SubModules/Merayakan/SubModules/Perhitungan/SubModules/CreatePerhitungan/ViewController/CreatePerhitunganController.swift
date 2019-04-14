@@ -70,20 +70,41 @@ class CreatePerhitunganController: UIViewController {
             .drive(done.rx.isEnabled)
             .disposed(by: disposeBag)
         
-//        viewModel.output.errorO
-//            .drive(onNext: { [weak self] (error) in
-//                guard let `self` = self else { return }
-//                guard let alert = UIAlertController.alert(with: error) else { return }
-//                self.navigationController?.present(alert, animated: true, completion: nil)
-//            })
-//            .disposed(by: disposeBag)
-        
         viewModel.output.errorO
             .drive(onNext: { [weak self] (e) in
                 guard let alert = UIAlertController.alert(with: e) else { return }
                 self?.navigationController?.present(alert, animated: true, completion: nil)
             })
             .disposed(by: disposeBag)
+        
+        if viewModel.isEdit == true {
+            let groupTextField: [TextField] = [provinsiTF,
+                                               kabupatenTF,
+                                               kecamatanTF,
+                                               desaTF]
+            groupTextField.forEach { (tf) in
+                tf.isEnabled = false
+            }
+            viewModel.output.initialDataO
+                .do(onNext: { [weak self] (realCount) in
+                    guard let `self` = self else { return }
+                    if let realCount = realCount {
+                        self.viewModel.input.provinceI.onNext("\(realCount.provinceCode)")
+                        self.viewModel.input.regenciesI.onNext("\(realCount.regencyCode)")
+                        self.viewModel.input.districtI.onNext("\(realCount.districtCode)")
+                        self.viewModel.input.villageI.onNext("\(realCount.villageCode)")
+                        self.provinsiTF.text = realCount.province.name
+                        self.kabupatenTF.text = realCount.regency.name
+                        self.kecamatanTF.text = realCount.district.name
+                        self.desaTF.text = realCount.village.name
+                        self.noTpsTF.text = "\(realCount.tps)"
+                        self.viewModel.input.tpsNoI.onNext("\(realCount.tps)")
+                    }
+                })
+                .drive()
+                .disposed(by: disposeBag)
+        }
+        
     }
 }
 

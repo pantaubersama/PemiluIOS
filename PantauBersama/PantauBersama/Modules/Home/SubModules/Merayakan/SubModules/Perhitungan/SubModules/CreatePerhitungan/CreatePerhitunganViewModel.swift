@@ -23,6 +23,7 @@ class CreatePerhitunganViewModel: ViewModelType {
         let villageI: AnyObserver<String>
         let detailTPSI: AnyObserver<Void>
         let backI: AnyObserver<Void>
+        let refreshI: AnyObserver<String>
     }
     
     struct Output {
@@ -30,6 +31,7 @@ class CreatePerhitunganViewModel: ViewModelType {
         let backO: Driver<Void>
         let enableO: Driver<Bool>
         let errorO: Driver<Error>
+        let initialDataO: Driver<RealCount?>
     }
     
     var input: Input
@@ -45,6 +47,7 @@ class CreatePerhitunganViewModel: ViewModelType {
     private let backS = PublishSubject<Void>()
     private let detailTPSS = PublishSubject<Void>()
     private let manager = CLLocationManager()
+    private let refreshS = PublishSubject<String>()
     
     var provinces = [Province]()
     var regencies = [Regency]()
@@ -56,11 +59,15 @@ class CreatePerhitunganViewModel: ViewModelType {
     
     private var errorTracker = ErrorTracker()
     private var activityIndicator = ActivityIndicator()
+    private let data: RealCount?
+    var isEdit: Bool
     
-    init(navigator: CreatePerhitunganNavigator) {
+    init(navigator: CreatePerhitunganNavigator, data: RealCount? = nil, isEdit: Bool) {
         self.navigator = navigator
         let errorTracker = ErrorTracker()
         let activityIndicator = ActivityIndicator()
+        self.data = data
+        self.isEdit = isEdit
         
         input = Input(
             tpsNoI: noTpsS.asObserver(),
@@ -69,7 +76,8 @@ class CreatePerhitunganViewModel: ViewModelType {
             districtI: districtS.asObserver(),
             villageI: villageS.asObserver(),
             detailTPSI: detailTPSS.asObserver(),
-            backI: backS.asObserver())
+            backI: backS.asObserver(),
+            refreshI: refreshS.asObserver())
         
         let back = backS
             .flatMap({ navigator.back() })
@@ -97,12 +105,38 @@ class CreatePerhitunganViewModel: ViewModelType {
             }
             .mapToVoid().asDriverOnErrorJustComplete()
         
+        /// MARK: Just edit number TPS
+        let edit = detailTPSS
+            .withLatestFrom(noTpsS)
+            .flatMapLatest({ [weak self] (noTps) -> Observable<Void> in
+                guard let `self` = self else { return Observable.empty() }
+                if let realCount =  self.data {
+                    print("data: ID: \(realCount.id)")
+                    print("no tps: \(noTps)")
+                    return NetworkService.instance
+                        .requestObject(HitungAPI.putRealCount(id: realCount.id, noTps: Int(noTps)!),
+                                       c: BaseResponse<CreateTpsResponse>.self)
+                        .trackError(self.errorTracker)
+                        .trackActivity(self.activityIndicator)
+                        .mapToVoid()
+                        .catchErrorJustComplete()
+                } else {
+                    return Observable.empty()
+                }
+            })
+            .map { (_) in
+                navigator.back()
+            }
+            .mapToVoid()
+            .asDriverOnErrorJustComplete()
+        
         
         output = Output(
-            createO: done,
+            createO: self.isEdit ? edit : done,
             backO: back,
             enableO: enablePost,
-            errorO: errorTracker.asDriver())
+            errorO: errorTracker.asDriver(),
+            initialDataO: Driver.just(data))
         
         manager.requestWhenInUseAuthorization()
         

@@ -15,18 +15,18 @@
         <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="140" id="KGk-i7-Jjw" customClass="PerhitunganCell" customModule="PantauBersama" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="320" height="140"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="320" height="139.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SoB-UV-GQb">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="141"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SoB-UV-GQb">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="133"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rmw-Fu-4dk">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="30"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TPS Tester 12" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VM9-fC-kXl" customClass="Label" customModule="Common">
-                                        <rect key="frame" x="25" y="5" width="105.5" height="20"/>
+                                        <rect key="frame" x="25" y="5" width="85.5" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="894-xy-99u"/>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" priority="750" constant="30" id="B9R-sN-D7w"/>
@@ -42,7 +42,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mgB-og-ygK" customClass="RoundView" customModule="Common">
-                                        <rect key="frame" x="140.5" y="5" width="59.5" height="20"/>
+                                        <rect key="frame" x="120.5" y="5" width="59.5" height="20"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sandbox" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bSZ-Lu-mOq">
                                                 <rect key="frame" x="5" y="2.5" width="49.5" height="14.5"/>
@@ -69,13 +69,14 @@
                                         <constraints>
                                             <constraint firstAttribute="width" constant="46" id="G0p-Nd-XSo"/>
                                         </constraints>
+                                        <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="image" keyPath="imageIcon" value="icMore"/>
                                             <userDefinedRuntimeAttribute type="color" keyPath="imageTintColor">
                                                 <color key="value" cocoaTouchSystemColor="darkTextColor"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="color" keyPath="imagePressedTintColor">
-                                                <color key="value" red="0.74182659390000005" green="0.033272977920000002" blue="0.1091294661" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="value" cocoaTouchSystemColor="darkTextColor"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </button>
@@ -93,17 +94,17 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fIq-Vk-xAZ">
-                                <rect key="frame" x="25" y="45" width="270" height="80"/>
+                                <rect key="frame" x="25" y="45" width="270" height="73"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="44c-aS-2Hf">
-                                        <rect key="frame" x="0.0" y="0.0" width="3" height="80"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="3" height="73"/>
                                         <color key="backgroundColor" red="0.91987603900000003" green="0.18888336419999999" blue="0.21535322069999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="3" id="Ljk-jf-vGp"/>
                                         </constraints>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="0J4-bx-6aT">
-                                        <rect key="frame" x="13" y="3.5" width="257" height="73"/>
+                                        <rect key="frame" x="13" y="0.0" width="257" height="73"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="q2D-0H-H3k">
                                                 <rect key="frame" x="0.0" y="0.0" width="257" height="14.5"/>
@@ -237,9 +238,9 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="80" id="ORo-Th-jBL"/>
                                     <constraint firstAttribute="bottom" secondItem="44c-aS-2Hf" secondAttribute="bottom" id="U6o-lk-bF3"/>
                                     <constraint firstAttribute="trailing" secondItem="0J4-bx-6aT" secondAttribute="trailing" id="a4w-Qa-Dfd"/>
+                                    <constraint firstItem="0J4-bx-6aT" firstAttribute="height" secondItem="fIq-Vk-xAZ" secondAttribute="height" id="c5z-82-U19"/>
                                     <constraint firstItem="0J4-bx-6aT" firstAttribute="centerY" secondItem="fIq-Vk-xAZ" secondAttribute="centerY" id="eSp-cn-kFO"/>
                                     <constraint firstItem="0J4-bx-6aT" firstAttribute="leading" secondItem="44c-aS-2Hf" secondAttribute="trailing" constant="10" id="jtZ-Kl-OOf"/>
                                     <constraint firstItem="44c-aS-2Hf" firstAttribute="top" secondItem="fIq-Vk-xAZ" secondAttribute="top" id="m9x-4T-wlo"/>

@@ -19,14 +19,20 @@ protocol CreatePerhitunganNavigator {
 
 class CreatePerhitunganCoordinator: BaseCoordinator<Void> {
     private let navigationController: UINavigationController
+    private let isEdit: Bool
+    private let realCount: RealCount?
+    private let isFromDetail: Bool
     
-    init(navigationController: UINavigationController) {
+    init(navigationController: UINavigationController, isEdit: Bool, realCount: RealCount?, isFromDetail: Bool) {
         self.navigationController = navigationController
+        self.isEdit = isEdit
+        self.realCount = realCount
+        self.isFromDetail = isFromDetail
     }
     
     override func start() -> Observable<Void> {
         let viewController = CreatePerhitunganController()
-        let viewModel = CreatePerhitunganViewModel(navigator: self)
+        let viewModel = CreatePerhitunganViewModel(navigator: self, data: self.realCount, isEdit: self.isEdit)
         viewController.viewModel = viewModel
         viewController.hidesBottomBarWhenPushed = true
         
@@ -37,7 +43,11 @@ class CreatePerhitunganCoordinator: BaseCoordinator<Void> {
 
 extension CreatePerhitunganCoordinator: CreatePerhitunganNavigator {
     func back() -> Observable<Void> {
-        self.navigationController.popViewController(animated: true)
+        if self.isFromDetail == true {
+            self.navigationController.popToRootViewController(animated: true)
+        } else {
+            self.navigationController.popViewController(animated: true)
+        }
         return Observable.empty()
     }
     

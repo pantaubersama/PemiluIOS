@@ -181,9 +181,10 @@ class DetailTPSViewModel: ViewModelType {
             .flatMapLatest({ (type) -> Observable<Void> in
                 switch type {
                 case .hapus(let data):
-                    return Observable.empty()
+                    return self.deleteRealCount(id: data.id)
+                        .flatMapLatest({ navigator.back() })
                 case .edit(let data):
-                    return Observable.empty()
+                    return self.navigator.launchEditTPS(realCount: data)
                 }
                 
             })
@@ -210,5 +211,21 @@ class DetailTPSViewModel: ViewModelType {
             realCountO: Driver.just(realCount),
             errorO: errorTracker.asDriver()
         )
+        
+        
+       
+    }
+}
+
+extension DetailTPSViewModel {
+    /// MARK: Delete realcounts
+    private func deleteRealCount(id: String) -> Observable<Void> {
+        return NetworkService.instance
+            .requestObject(HitungAPI.deleteRealCount(id: id),
+                           c: BaseResponse<CreateTpsResponse>.self)
+            .asObservable()
+            .trackError(self.errorTracker)
+            .trackActivity(self.activityIndicator)
+            .mapToVoid()
     }
 }
