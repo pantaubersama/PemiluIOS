@@ -52,50 +52,63 @@ class C1PemilihView: UIView {
     func config(viewModel: C1InputFormViewModel) {
         
         txtA3Laki.rx.text.orEmpty
+            .filter({ !$0.isEmpty })
             .bind(to: viewModel.input.A3LakiI)
             .disposed(by: disposeBag)
 
         txtA3Perempuan.rx.text.orEmpty
+            .filter({ !$0.isEmpty })
             .bind(to: viewModel.input.A3PerempuanI)
             .disposed(by: disposeBag)
 
         txtA4Laki.rx.text.orEmpty
+            .distinctUntilChanged()
+            .filter({ !$0.isEmpty })
             .bind(to: viewModel.input.A4LakiI)
             .disposed(by: disposeBag)
         
         txtA4Perempuan.rx.text.orEmpty
+            .filter({ !$0.isEmpty })
             .bind(to: viewModel.input.A4PerempuanI)
             .disposed(by: disposeBag)
         
         txtADPKLaki.rx.text.orEmpty
+            .filter({ !$0.isEmpty })
             .bind(to: viewModel.input.ADPKLakiI)
             .disposed(by: disposeBag)
         
         txtADPKPerempuan.rx.text.orEmpty
+            .filter({ !$0.isEmpty })
             .bind(to: viewModel.input.ADPKPerempuanI)
             .disposed(by: disposeBag)
 
         txtC7DPTLaki.rx.text.orEmpty
+            .filter({ !$0.isEmpty })
             .bind(to: viewModel.input.C7DPTLakiI)
             .disposed(by: disposeBag)
         
         txtC7DPTPerempuan.rx.text.orEmpty
+            .filter({ !$0.isEmpty })
             .bind(to: viewModel.input.C7DPTPerempuanI)
             .disposed(by: disposeBag)
         
         txtC7DPTBLaki.rx.text.orEmpty
+            .filter({ !$0.isEmpty })
             .bind(to: viewModel.input.C7DPTBLakiI)
             .disposed(by: disposeBag)
         
         txtC7DPTBPerempuan.rx.text.orEmpty
+            .filter({ !$0.isEmpty })
             .bind(to: viewModel.input.C7DPTBPerempuanI)
             .disposed(by: disposeBag)
         
         txtC7DPKLaki.rx.text.orEmpty
+            .filter({ !$0.isEmpty })
             .bind(to: viewModel.input.C7DPKLakiI)
             .disposed(by: disposeBag)
         
         txtC7DPKPerempuan.rx.text.orEmpty
+            .filter({ !$0.isEmpty })
             .bind(to: viewModel.input.C7DPKPerempuanI)
             .disposed(by: disposeBag)
 

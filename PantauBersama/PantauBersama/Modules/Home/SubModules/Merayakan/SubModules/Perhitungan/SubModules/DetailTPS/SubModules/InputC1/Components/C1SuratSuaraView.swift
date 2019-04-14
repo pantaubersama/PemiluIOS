@@ -28,14 +28,17 @@ class C1SuratSuaraView: UIView {
     func config(viewModel: C1InputFormViewModel) {
         
         txtSuratDikembalikan.rx.text.orEmpty
+            .filter({ !$0.isEmpty })
             .bind(to: viewModel.input.suratDikembalikanI)
             .disposed(by: disposeBag)
         
         txtSuratTidakDigunakan.rx.text.orEmpty
+            .filter({ !$0.isEmpty })
             .bind(to: viewModel.input.suratTidakDigunakanI)
             .disposed(by: disposeBag)
         
         txtSuratDigunakan.rx.text.orEmpty
+            .filter({ !$0.isEmpty })
             .bind(to: viewModel.input.suratDigunakanI)
             .disposed(by: disposeBag)
         

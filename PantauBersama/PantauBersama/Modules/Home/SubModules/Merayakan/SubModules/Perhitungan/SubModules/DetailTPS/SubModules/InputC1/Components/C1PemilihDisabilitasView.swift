@@ -31,18 +31,22 @@ class C1PemilihDisabilitasView: UIView {
     func config(viewModel: C1InputFormViewModel) {
         
         txtTerdaftarLaki.rx.text.orEmpty
+            .filter({ !$0.isEmpty })
             .bind(to: viewModel.input.disTerdaftarLakiI)
             .disposed(by: disposeBag)
         
         txtTerdaftarPerempuan.rx.text.orEmpty
+            .filter({ !$0.isEmpty })
             .bind(to: viewModel.input.disTerdaftarPerempuanI)
             .disposed(by: disposeBag)
         
         txtPilihLaki.rx.text.orEmpty
+            .filter({ !$0.isEmpty })
             .bind(to: viewModel.input.disPilihLakiI)
             .disposed(by: disposeBag)
         
         txtPilihPerempuan.rx.text.orEmpty
+            .filter({ !$0.isEmpty })
             .bind(to: viewModel.input.disPilihPerempuanI)
             .disposed(by: disposeBag)
         

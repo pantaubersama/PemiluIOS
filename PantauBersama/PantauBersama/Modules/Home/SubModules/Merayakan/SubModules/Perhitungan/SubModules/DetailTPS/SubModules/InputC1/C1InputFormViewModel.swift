@@ -277,8 +277,6 @@ class C1InputFormViewModel: ViewModelType {
         // A3 Save and Others
         let a3 = Observable.combineLatest(A3LakiS.startWith("0"),
                                            A3PerempuanS.startWith("0"))
-//            .skip(1)
-//            .distinctUntilChanged()
             .flatMapLatest { l,p -> Driver<SummaryC1Response> in
                 return NetworkService.instance
                     .requestObject(HitungAPI.putFormC1(parameters: [
