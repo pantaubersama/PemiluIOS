@@ -59,7 +59,7 @@ public struct RealCount: Codable {
         self.province = Province(id: 34, code: 34, name: "DAERAH ISTIMEWA YOGYAKARTA", level: 1, domainName: "yogyakartaprov", idWilayah: 41863)
         self.regency = Regency(id: 3404, provinceId: 34, code: 3404, name: "SLEMAN", level: 2, domainName: "slemankab", idWilayah: 42221, idParent: 41863)
         self.district = District(id: 340407, code: 340407, regencyCode: 3404, name: "DEPOK", idParent: 42221, idWilayah: 42259, level: 3)
-        self.village = Village(id: 3404072003, code: 3404072003, districtCode: 340407, name: "Condongcatur")
+        self.village = Village(id: 0, code: 0, districtCode: 340407, name: "Condongcatur") ///  integer literal '3404072003' overflows when stored into 'Int'
         self.latitude = ""
         self.longitude = ""
         self.status = RealCountStatus.sandbox
