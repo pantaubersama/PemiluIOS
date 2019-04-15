@@ -12,7 +12,7 @@ public struct Regency: Codable {
     public let id: Int
     public let provinceId: Int
     public let code: Int
-    public let name: String
+    public var name: String
     public let level: Int
     public let domainName: String
     public let idWilayah: Int

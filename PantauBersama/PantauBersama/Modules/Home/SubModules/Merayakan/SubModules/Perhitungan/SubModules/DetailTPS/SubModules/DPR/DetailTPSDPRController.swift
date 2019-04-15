@@ -43,6 +43,8 @@ class DetailTPSDPRController: UIViewController {
     lazy var footer = UIView.nib(withType: DetailTPSDPRFooter.self)
     lazy var header = UIView.nib(withType: DetailTPSDPRHeader.self)
     
+    var isSanbox: Bool = false
+    
     private var dataSource: RxTableViewSectionedReloadDataSource<SectionModelCalculations>!
     
     override func viewDidLoad() {

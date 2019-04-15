@@ -28,6 +28,9 @@ class DetailTPSPresidenCoordinator: BaseCoordinator<Void> {
     override func start() -> Observable<Void> {
         let viewController = DetailTPSPresidenController()
         let viewModel = DetailTPSPresidenViewModel(navigator: self, data: self.data)
+        if data.status == .sandbox {
+            viewController.isSanbox = true
+        }
         viewController.viewModel = viewModel
         viewController.hidesBottomBarWhenPushed = true
         

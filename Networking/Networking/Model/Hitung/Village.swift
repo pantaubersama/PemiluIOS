@@ -12,7 +12,7 @@ public struct Village: Codable {
     public let id: Int
     public let code: Int
     public let districtCode: Int
-    public let name: String
+    public var name: String
     
     private enum CodingKeys: String, CodingKey {
         case id = "id"

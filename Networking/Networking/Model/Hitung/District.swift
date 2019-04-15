@@ -12,7 +12,7 @@ public struct District: Codable {
     public let id: Int
     public let code: Int
     public let regencyCode: Int
-    public let name: String
+    public var name: String
     public let idParent: Int
     public let idWilayah: Int
     public let level: Int
