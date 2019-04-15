@@ -236,6 +236,9 @@ class DetailTPSDPDViewModel: ViewModelType {
                                                                        parties: nil,
                                                                        initialData: initialData),
                                    c: BaseResponse<RealCountResponse>.self)
+                    .do(onSuccess: { (_) in
+                        navigator.showSuccess()
+                    })
                     .trackError(self.errorTracker)
                     .trackActivity(self.activityIndicator)
                     .asObservable()

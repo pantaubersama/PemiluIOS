@@ -204,9 +204,6 @@ class UploadC1ViewModel: ViewModelType {
         
         
         let save = simpanS
-            .do(onNext: { (_) in
-                print("IMAGES COUNT: \(self.dprdImageRelay.value.count)")
-            })
             .flatMapLatest({ [weak self] (_) -> Observable<Void> in
                 guard let `self` = self else { return Observable.empty() }
                 let presidenValue = self.presidenImageRelay.value
@@ -274,6 +271,7 @@ class UploadC1ViewModel: ViewModelType {
                 }
                 return Observable.just(())
             })
+            .flatMap({ self.navigator.showSuccess() })
             .asDriverOnErrorJustComplete()
         
         let delete = deleteImageS

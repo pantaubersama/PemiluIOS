@@ -90,7 +90,7 @@ extension HitungAPI: TargetType {
              .postRealCount:
             return "/hitung/v1/real_counts"
         case .publishRealCount(let id):
-            return "/hitung/v1/real_counts/\(id)/draft"
+            return "/hitung/v1/real_counts/\(id)/publish"
         case .getCalculations,
              .putCalculations,
              .putCalculationsCandidates,

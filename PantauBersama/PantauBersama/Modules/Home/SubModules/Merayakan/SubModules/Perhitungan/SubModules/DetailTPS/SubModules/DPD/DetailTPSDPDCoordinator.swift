@@ -13,6 +13,7 @@ import Networking
 
 protocol DetailTPSDPDNavigator {
     func back() -> Observable<Void>
+    func showSuccess()
 }
 
 class DetailTPSDPDCoordinator: BaseCoordinator<Void> {
@@ -41,5 +42,12 @@ extension DetailTPSDPDCoordinator: DetailTPSDPDNavigator {
     func back() -> Observable<Void> {
         self.navigationController.popViewController(animated: true)
         return Observable.empty()
+    }
+    func showSuccess() {
+        let alert = UIAlertController(title: "Sukses", message: "Behasil menambahkan data", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Oke", style: .default, handler: { (action) in
+            self.navigationController.popViewController(animated: true)
+        }))
+        navigationController.present(alert, animated: true, completion: nil)
     }
 }
