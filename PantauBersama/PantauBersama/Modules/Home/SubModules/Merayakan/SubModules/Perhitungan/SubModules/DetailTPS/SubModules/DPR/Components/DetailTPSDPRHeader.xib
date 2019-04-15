@@ -22,9 +22,8 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uVu-SG-GPr">
                             <rect key="frame" x="0.0" y="0.0" width="426" height="52"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1j1-I9-Aam" customClass="Label" customModule="Common">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Kamu bisa menambah atau langsung input jumlah perolehan suara sesuai pengamatan di TPS." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1j1-I9-Aam" customClass="Label" customModule="Common">
                                     <rect key="frame" x="20" y="14" width="386" height="24"/>
-                                    <string key="text">Kamu bisa menambah atau langsung input jumlah perolehan suara sesuai pengamatan di TPS. Tap Undo untuk membatalkan perhitungan terakhir.</string>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" red="0.43921568630000002" green="0.43921568630000002" blue="0.43921568630000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     <nil key="highlightedColor"/>
