@@ -21,9 +21,9 @@ enum RekapType {
 class RekapController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
-    private var emptyView = EmptyView()
     var viewModel: RekapViewModel!
     private var headerView = RekapHeaderView()
+    private let emptyView = RekapEmptyView()
     
     private let disposeBag = DisposeBag()
     
@@ -51,7 +51,7 @@ class RekapController: UIViewController {
         // table view header
         self.headerView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 115 + 420)
         self.tableView.tableHeaderView  = headerView
-        self.headerView.config(viewModel: self.viewModel)
+        self.headerView.config(viewModel: self.viewModel, tableView: self.tableView)
         let footer                      = RekapFooterView()
         footer.addGestureRecognizer(tap)
         footer.isUserInteractionEnabled = true
@@ -75,7 +75,7 @@ class RekapController: UIViewController {
             .disposed(by: disposeBag)
         
         viewModel.output.itemsO
-            .do(onNext: { [weak self] (_) in
+            .do(onNext: { [weak self] (items) in
                 guard let `self` = self else { return }
                 self.tableView.refreshControl?.endRefreshing()
             })
@@ -103,6 +103,11 @@ class RekapController: UIViewController {
             .drive()
             .disposed(by: disposeBag)
         
+        /// Create tableView empty view first
+        self.emptyView.frame = self.tableView.bounds
+        self.tableView.backgroundView = self.emptyView
+        self.tableView.tableHeaderView?.isHidden = true
+        self.tableView.tableFooterView?.isHidden = true
     }
     
 }

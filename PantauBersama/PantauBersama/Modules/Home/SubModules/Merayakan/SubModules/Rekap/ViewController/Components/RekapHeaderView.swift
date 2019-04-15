@@ -15,7 +15,7 @@ class RekapHeaderView: UIView {
     private let disposeBag: DisposeBag = DisposeBag()
     let suaraCapresView = SuaraCapresViewCell()
     
-    func config(viewModel: RekapViewModel) {
+    func config(viewModel: RekapViewModel, tableView: UITableView) {
         let bannerInfoView = BannerHeaderView()
         suaraCapresView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -41,6 +41,12 @@ class RekapHeaderView: UIView {
                 guard let `self` = self else { return }
                 self.suaraCapresView.lblParticipant.text = "\(response.total)"
                 self.suaraCapresView.lblUpdated.text = "Pembaruan terakhir " + response.lastUpdate.createdInWord.id
+                
+                if response.total != 0 {
+                    tableView.backgroundView = nil
+                    tableView.tableHeaderView?.isHidden = false
+                    tableView.tableFooterView?.isHidden = false
+                }
             })
             .disposed(by: disposeBag)
         
@@ -56,11 +62,17 @@ class RekapHeaderView: UIView {
                 print("Float number : \(Float(candidate1?.percentage ?? 0.0))")
                 /// Need configure track tint is for candidates 2
                 /// progress tint is for candidatees 1
-                self.suaraCapresView.progressView.trackTintColor = Color.RGBColor(red: 242, green: 119, blue: 29)
-                self.suaraCapresView.progressView.progressTintColor = Color.RGBColor(red: 155, green: 0, blue: 18)
-                self.suaraCapresView.progressView.setProgress(Float(candidate1?.percentage ?? 0.0) / 100, animated: true)
-                self.suaraCapresView.lblRerataSatu.text = "Rata-rata \(candidate1?.totalVote ?? 0) suara"
-                self.suaraCapresView.lblRerataDua.text = "Rata-rata \(candidate2?.totalVote ?? 0) suara"
+                /// check percentage first if 0.00 %
+                if response.percentage?.candidates == nil {
+                    self.suaraCapresView.progressView.isHidden = true
+                } else {
+                    self.suaraCapresView.progressView.isHidden = false
+                    self.suaraCapresView.progressView.trackTintColor = Color.RGBColor(red: 242, green: 119, blue: 29)
+                    self.suaraCapresView.progressView.progressTintColor = Color.RGBColor(red: 155, green: 0, blue: 18)
+                    self.suaraCapresView.progressView.setProgress(Float(candidate1?.percentage ?? 0.0) / 100, animated: true)
+                    self.suaraCapresView.lblRerataSatu.text = "Rata-rata \(candidate1?.totalVote ?? 0) suara"
+                    self.suaraCapresView.lblRerataDua.text = "Rata-rata \(candidate2?.totalVote ?? 0) suara"
+                }
             })
             .disposed(by: disposeBag)
         

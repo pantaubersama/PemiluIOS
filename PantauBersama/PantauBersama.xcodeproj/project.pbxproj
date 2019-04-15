@@ -263,6 +263,8 @@
 		8441DB5621CCF19C00B078DF /* DetailJanjiController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8441DB5521CCF19C00B078DF /* DetailJanjiController.xib */; };
 		8441DB5821CCF7D900B078DF /* DetailJanjiCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441DB5721CCF7D900B078DF /* DetailJanjiCoordinator.swift */; };
 		8441DB5A21CD087000B078DF /* JanjiType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441DB5921CD087000B078DF /* JanjiType.swift */; };
+		8448DFFC22647C7E00A2B83F /* RekapEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8448DFFB22647C7E00A2B83F /* RekapEmptyView.swift */; };
+		8448DFFE22647CB400A2B83F /* RekapEmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8448DFFD22647CB400A2B83F /* RekapEmptyView.xib */; };
 		844C2BA521CC0F2500BC439A /* BannerHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 844C2BA421CC0F2500BC439A /* BannerHeaderView.xib */; };
 		844C3D3D21C4ED6D00199871 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844C3D3C21C4ED6D00199871 /* AppDelegate.swift */; };
 		844C3D4521C4ED6D00199871 /* PantauBersama.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 844C3D4321C4ED6D00199871 /* PantauBersama.xcdatamodeld */; };
@@ -916,6 +918,8 @@
 		8441DB5521CCF19C00B078DF /* DetailJanjiController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailJanjiController.xib; sourceTree = "<group>"; };
 		8441DB5721CCF7D900B078DF /* DetailJanjiCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailJanjiCoordinator.swift; sourceTree = "<group>"; };
 		8441DB5921CD087000B078DF /* JanjiType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JanjiType.swift; sourceTree = "<group>"; };
+		8448DFFB22647C7E00A2B83F /* RekapEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RekapEmptyView.swift; sourceTree = "<group>"; };
+		8448DFFD22647CB400A2B83F /* RekapEmptyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RekapEmptyView.xib; sourceTree = "<group>"; };
 		844C2BA421CC0F2500BC439A /* BannerHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BannerHeaderView.xib; sourceTree = "<group>"; };
 		844C2BA621CC112700BC439A /* BannerHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerHeaderView.swift; sourceTree = "<group>"; };
 		844C3D3921C4ED6D00199871 /* PantauBersama.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PantauBersama.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -3161,6 +3165,8 @@
 			children = (
 				84CAF439225B1DA6003128B3 /* RekapUser */,
 				84CAF438225B1D9E003128B3 /* RekapList */,
+				8448DFFB22647C7E00A2B83F /* RekapEmptyView.swift */,
+				8448DFFD22647CB400A2B83F /* RekapEmptyView.xib */,
 			);
 			path = SubModules;
 			sourceTree = "<group>";
@@ -3915,6 +3921,7 @@
 				E54CFAFD222C31E8002DA0D1 /* DetailTPSDPDController.xib in Resources */,
 				119123A522250CCE00617E7C /* SubmitTPSConfirmationController.xib in Resources */,
 				1149EB7D221A9DC90050F366 /* DebatDetailController.xib in Resources */,
+				8448DFFE22647CB400A2B83F /* RekapEmptyView.xib in Resources */,
 				84B6D51421F8407800DD742A /* PartyCell.xib in Resources */,
 				1108871922126FEA0041B821 /* LiveDebatController.xib in Resources */,
 				84B6D51821F87B5A00DD742A /* NotePreferenceView.xib in Resources */,
@@ -4379,6 +4386,7 @@
 				11E107A721CD33CA00B7B074 /* CreateJanjiViewModel.swift in Sources */,
 				84CAF45F225C4ECD003128B3 /* RekapDetailTPSNavigator.swift in Sources */,
 				84FF8A9921F21D0000AA8CF3 /* UpdatesCoordinator.swift in Sources */,
+				8448DFFC22647C7E00A2B83F /* RekapEmptyView.swift in Sources */,
 				842A4A0921D7EA990050AA51 /* SignatureCoordinator.swift in Sources */,
 				84CAF442225B3B2B003128B3 /* RekapListVillageController.swift in Sources */,
 				8452A4D221DE54B800196043 /* SosmedViewModel.swift in Sources */,
