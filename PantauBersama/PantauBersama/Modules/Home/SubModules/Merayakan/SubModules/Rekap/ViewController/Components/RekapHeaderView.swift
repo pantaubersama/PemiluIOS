@@ -46,6 +46,7 @@ class RekapHeaderView: UIView {
                     tableView.backgroundView = nil
                     tableView.tableHeaderView?.isHidden = false
                     tableView.tableFooterView?.isHidden = false
+                    tableView.isScrollEnabled = true
                 }
             })
             .disposed(by: disposeBag)

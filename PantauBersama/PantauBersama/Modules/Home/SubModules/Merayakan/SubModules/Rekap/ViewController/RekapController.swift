@@ -108,6 +108,7 @@ class RekapController: UIViewController {
         self.tableView.backgroundView = self.emptyView
         self.tableView.tableHeaderView?.isHidden = true
         self.tableView.tableFooterView?.isHidden = true
+        self.tableView.isScrollEnabled = false
     }
     
 }
