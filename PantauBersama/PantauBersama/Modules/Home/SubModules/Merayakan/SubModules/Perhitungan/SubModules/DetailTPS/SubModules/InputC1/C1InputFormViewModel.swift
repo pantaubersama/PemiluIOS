@@ -268,6 +268,14 @@ class C1InputFormViewModel: ViewModelType {
             .startWith("0")
             .asDriver(onErrorJustReturn: "0")
         
+        let suratDiterima = Observable.combineLatest(suratDikembalikanS, suratTidakDigunakanS, suratDigunakanS)
+            .map { ( a, b, c ) -> String in
+                let total = (Int(a) ?? 0) + (Int(b) ?? 0) + (Int(c) ?? 0)
+                return "\(total)"
+            }
+            .startWith("0")
+            .asDriver(onErrorJustReturn: "0")
+        
         
         /// TODO: Handle Save
         let save = simpanS
@@ -467,7 +475,8 @@ class C1InputFormViewModel: ViewModelType {
                         TotalAllC7O: TotalAllC7,
                         disTerdaftarTotalO: disTerdaftarTotal,
                         disPilihTotalO: disPilihTotal,
-                        suratDiterimaO: Driver.just("0"), c1SummaryO: c1Summary.asDriverOnErrorJustComplete(),
+                        suratDiterimaO: suratDiterima,
+                        c1SummaryO: c1Summary.asDriverOnErrorJustComplete(),
                         errorO: self.errorTracker.asDriver(),
                         a3O: a3,
                         a4O: a4,

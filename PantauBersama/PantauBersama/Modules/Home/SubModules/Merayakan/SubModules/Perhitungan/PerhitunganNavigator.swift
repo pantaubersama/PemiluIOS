@@ -30,8 +30,13 @@ extension PerhitunganNavigator where Self: BaseCoordinator<Void> {
     }
     
     func launchDetailTps(realCount: RealCount) -> Observable<Void> {
-        let detailTPSCoordinator = DetailTPSCoordinator(navigationController: navigationController, realCount: realCount)
-        return coordinate(to: detailTPSCoordinator)
+        if realCount.status == .sandbox {
+            let detailTPSCoordinator = DetailTPSCoordinator(navigationController: navigationController, realCount: realCount, isFromSanbox: true)
+            return coordinate(to: detailTPSCoordinator)
+        } else {
+            let detailTPSCoordinator = DetailTPSCoordinator(navigationController: navigationController, realCount: realCount, isFromSanbox: false)
+            return coordinate(to: detailTPSCoordinator)
+        }
     }
     
     func editTPS(realCount: RealCount) -> Observable<Void> {

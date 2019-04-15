@@ -30,6 +30,8 @@ class RekapController: UIViewController {
     private var pageType : RekapType!
     private var tap: UITapGestureRecognizer = UITapGestureRecognizer()
     
+    internal lazy var rControl = UIRefreshControl()
+    
     convenience init(viewModel: RekapViewModel, pageType type: RekapType = .kota) {
         self.init()
         self.viewModel  = viewModel
@@ -46,7 +48,6 @@ class RekapController: UIViewController {
         tableView.separatorStyle = .none
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         tableView.tableFooterView = UIView()
-        tableView.refreshControl = UIRefreshControl()
         // table view header
         self.headerView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 115 + 400)
         self.tableView.tableHeaderView  = headerView
@@ -55,6 +56,19 @@ class RekapController: UIViewController {
         footer.addGestureRecognizer(tap)
         footer.isUserInteractionEnabled = true
         self.tableView.tableFooterView  = footer
+        
+        if #available(iOS 10.0, *) {
+            tableView.refreshControl = rControl
+        } else {
+            tableView.addSubview(rControl)
+        }
+        
+        rControl.rx.controlEvent(.valueChanged)
+            .map({ (_) -> String in
+                return ""
+            })
+            .bind(to: viewModel.input.refreshTrigger)
+            .disposed(by: disposeBag)
         
         tap.rx.event
             .bind(to: viewModel.input.linkSelected)

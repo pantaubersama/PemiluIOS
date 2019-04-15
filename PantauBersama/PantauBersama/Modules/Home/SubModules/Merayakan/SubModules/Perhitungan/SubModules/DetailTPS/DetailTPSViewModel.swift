@@ -60,6 +60,7 @@ class DetailTPSViewModel: ViewModelType {
     
     private let navigator: DetailTPSNavigator
     private let data: RealCount
+    private let isFromSanbox: Bool
     
     private let moreS = PublishSubject<RealCount>()
     private let moreMenuS = PublishSubject<PerhitunganType>()
@@ -82,9 +83,10 @@ class DetailTPSViewModel: ViewModelType {
     let errorTracker = ErrorTracker()
     let activityIndicator = ActivityIndicator()
     
-    init(navigator: DetailTPSNavigator, realCount: RealCount) {
+    init(navigator: DetailTPSNavigator, realCount: RealCount, isFromSanbox: Bool) {
         self.navigator = navigator
         self.data = realCount
+        self.isFromSanbox = isFromSanbox
         
         input = Input(
             backI: backS.asObserver(),
@@ -112,6 +114,10 @@ class DetailTPSViewModel: ViewModelType {
         
         let sendDataAction = sendDataActionS
             .flatMap({ navigator.sendData() })
+            .asDriverOnErrorJustComplete()
+        
+        let backAsSanbox = sendDataActionS
+            .flatMap({ navigator.back() })
             .asDriverOnErrorJustComplete()
         
         let submitAction = submitActionS
@@ -194,7 +200,7 @@ class DetailTPSViewModel: ViewModelType {
             backO: back,
             moreO: moreSelected,
             moreMenuO: moreMenuSelected,
-            sendDataActionO: sendDataAction,
+            sendDataActionO: isFromSanbox ? backAsSanbox : sendDataAction,
             submitActionO: submitAction,
             successSubmitO: successSubmit,
             detailPresidenO: detailPresiden,

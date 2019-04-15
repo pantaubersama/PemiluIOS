@@ -52,7 +52,12 @@ extension CreatePerhitunganCoordinator: CreatePerhitunganNavigator {
     }
     
     func launchDetailTPS(realCount: RealCount) -> Observable<Void> {
-        let detailTPSCoordinator = DetailTPSCoordinator(navigationController: self.navigationController, realCount: realCount)
-        return coordinate(to: detailTPSCoordinator)
+        if realCount.status == .sandbox {
+            let detailTPSCoordinator = DetailTPSCoordinator(navigationController: self.navigationController, realCount: realCount, isFromSanbox: true)
+            return coordinate(to: detailTPSCoordinator)
+        } else {
+            let detailTPSCoordinator = DetailTPSCoordinator(navigationController: self.navigationController, realCount: realCount, isFromSanbox: false)
+            return coordinate(to: detailTPSCoordinator)
+        }
     }
 }

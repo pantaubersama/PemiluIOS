@@ -30,15 +30,17 @@ class DetailTPSCoordinator: BaseCoordinator<Void> {
     private let navigationController: UINavigationController
     private var viewModel: DetailTPSViewModel?
     private let realCount: RealCount
+    private let isFromSanbox: Bool
     
-    init(navigationController: UINavigationController, realCount: RealCount) {
+    init(navigationController: UINavigationController, realCount: RealCount, isFromSanbox: Bool) {
         self.navigationController = navigationController
         self.realCount = realCount
+        self.isFromSanbox = isFromSanbox
     }
     
     override func start() -> Observable<Void> {
         let viewController = DetailTPSController()
-        viewModel = DetailTPSViewModel(navigator: self, realCount: realCount)
+        viewModel = DetailTPSViewModel(navigator: self, realCount: realCount, isFromSanbox: isFromSanbox)
         viewController.viewModel = viewModel!
         viewController.hidesBottomBarWhenPushed = true
         
