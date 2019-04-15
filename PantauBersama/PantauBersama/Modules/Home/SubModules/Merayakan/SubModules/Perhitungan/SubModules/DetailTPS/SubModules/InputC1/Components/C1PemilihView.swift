@@ -188,18 +188,27 @@ class C1PemilihView: UIView {
         
     }
 
-    func configureInitial(data: C1Response) {
+    func configureInitial(data: C1Response, viewModel: C1InputFormViewModel) {
         txtA3Laki.text = "\(data.a3Laki)"
         txtA3Perempuan.text = "\(data.a3Perempuan)"
         txtA3Total.text = "\(data.aggregates.a3Total)"
+        
+        viewModel.input.A3LakiI.onNext("\(data.a3Laki)")
+        viewModel.input.A3PerempuanI.onNext("\(data.a3Perempuan)")
         
         txtA4Laki.text = "\(data.a4Laki)"
         txtA4Perempuan.text = "\(data.a4Perempuan)"
         txtA4Total.text = "\(data.aggregates.a4Total)"
         
+        viewModel.input.A4LakiI.onNext("\(data.a4Laki)")
+        viewModel.input.A4PerempuanI.onNext("\(data.a4Perempuan)")
+        
         txtADPKLaki.text = "\(data.aDpkLaki)"
         txtADPKPerempuan.text = "\(data.aDpkPerempuan)"
         txtADPKTotal.text = "\(data.aggregates.aDpkTotal)"
+        
+        viewModel.input.ADPKLakiI.onNext("\(data.aDpkLaki)")
+        viewModel.input.ADPKPerempuanI.onNext("\(data.aDpkPerempuan)")
         
         txtTotalLakiA3.text = "\(data.aggregates.pemilihLakiTotal)"
         txtTotalPerempuanA3.text = "\(data.aggregates.pemilihPerempuanTotal)"
@@ -209,13 +218,22 @@ class C1PemilihView: UIView {
         txtC7DPTPerempuan.text = "\(data.c7DptPerempuan)"
         txtC7DPTTotal.text = "\(data.aggregates.c7DptTotal)"
         
+        viewModel.input.C7DPTLakiI.onNext("\(data.c7DpkLaki)")
+        viewModel.input.C7DPTPerempuanI.onNext("\(data.c7DpkLaki)")
+        
         txtC7DPTBLaki.text = "\(data.c7DptbLaki)"
         txtC7DPTBPerempuan.text = "\(data.c7DptbPerempuan)"
         txtC7DPTBTotal.text = "\(data.aggregates.c7dptbTotal)"
         
+        viewModel.input.C7DPTBLakiI.onNext("\(data.c7DptbLaki)")
+        viewModel.input.C7DPTBPerempuanI.onNext("\(data.c7DptbPerempuan)")
+        
         txtC7DPKLaki.text = "\(data.c7DpkLaki)"
         txtC7DPKPerempuan.text = "\(data.c7DpkPerempuan)"
         txtC7DPKTotal.text = "\(data.aggregates.c7dpkTotal)"
+        
+        viewModel.input.C7DPKLakiI.onNext("\(data.c7DpkLaki)")
+        viewModel.input.C7DPKPerempuanI.onNext("\(data.c7DpkPerempuan)")
         
         txtTotalLakiC7.text = "\(data.aggregates.c7LakiHakPilihTotal)"
         txtTotalPerempuanC7.text = "\(data.aggregates.c7PerempuanHakPilihTotal)"

@@ -168,7 +168,6 @@ class DetailTPSController: UIViewController {
                         alert.addAction(edit)
                         alert.addAction(cancel)
                     } else if data.status == .published {
-                        alert.addAction(edit)
                         alert.addAction(cancel)
                     } else {
                         alert.addAction(edit)

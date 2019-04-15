@@ -165,12 +165,12 @@ class DetailTPSDPDController: UIViewController {
                 .bind(to: viewModel.input.simpanI)
                 .disposed(by: disposeBag)
             
-            viewModel.output.errorO
-                .drive(onNext: { [weak self] (e) in
-                    guard let alert = UIAlertController.alert(with: e) else { return }
-                    self?.navigationController?.present(alert, animated: true, completion: nil)
-                })
-                .disposed(by: disposeBag)
+//            viewModel.output.errorO
+//                .drive(onNext: { [weak self] (e) in
+//                    guard let alert = UIAlertController.alert(with: e) else { return }
+//                    self?.navigationController?.present(alert, animated: true, completion: nil)
+//                })
+//                .disposed(by: disposeBag)
         }
         
     }

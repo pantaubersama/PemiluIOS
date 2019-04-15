@@ -83,17 +83,7 @@ class DetailTPSDPRController: UIViewController {
         
         dataSource = RxTableViewSectionedReloadDataSource<SectionModelCalculations>(configureCell: { (dataSource, tableView, indexPath, item) -> UITableViewCell in
             let cell = tableView.dequeueReusableCell(indexPath: indexPath) as TPSInputCell
-            cell.configureDPD(item: item)
-            
-            if self.isPublished == true {
-                cell.btnVote.isEnabled = false
-            } else {
-                cell.btnVote.rx_suara
-                    .skip(1)
-                    .map({ CandidatePartyCount(id: item.id, totalVote: $0, indexPath: indexPath)})
-                    .bind(to: self.viewModel.input.counterI)
-                    .disposed(by: cell.disposeBag)
-            }
+            cell.configureCell(item: TPSInputCell.Input(candidates: item, viewModel: self.viewModel, indexPath: indexPath, isEnabled: self.isPublished))
             return cell
         })
         

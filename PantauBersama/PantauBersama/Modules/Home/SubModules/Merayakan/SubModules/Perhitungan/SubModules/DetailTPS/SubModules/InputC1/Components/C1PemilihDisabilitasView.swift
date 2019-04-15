@@ -64,13 +64,18 @@ class C1PemilihDisabilitasView: UIView {
         
     }
     
-    func configureInitial(data: C1Response) {
+    func configureInitial(data: C1Response, viewModel: C1InputFormViewModel) {
         txtTerdaftarLaki.text = "\(data.disabilitasTerdaftarLaki)"
         txtTerdaftarPerempuan.text = "\(data.disabilitasTerdaftarPerempuan)"
         txtTerdaftarTotal.text = "\(data.aggregates.disabilitasTerdaftarTotal)"
         txtPilihLaki.text = "\(data.disabilitiasHakPilihLaki)"
         txtPilihPerempuan.text = "\(data.disabilitasHakPilihPerempuan)"
         txtPilihTotal.text = "\(data.aggregates.disabilitasHakPilihTotal)"
+        
+        viewModel.input.disTerdaftarLakiI.onNext("\(data.disabilitasTerdaftarLaki)")
+        viewModel.input.disTerdaftarPerempuanI.onNext("\(data.disabilitasTerdaftarPerempuan)")
+        viewModel.input.disPilihLakiI.onNext("\(data.disabilitiasHakPilihLaki)")
+        viewModel.input.disPilihPerempuanI.onNext("\(data.disabilitasHakPilihPerempuan)")
     }
     
     func configDataTerkirim(enable: Bool) {

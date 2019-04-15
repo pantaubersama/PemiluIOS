@@ -114,67 +114,67 @@ final class RekapDetailTPSViewModel: ViewModelType {
                     .asObservable()
                     .catchErrorJustReturn([])
             }
-            .flatMapLatest { [weak self] (section) -> Observable<[SectionModelsTPSImages]> in
-                guard let `self` = self else { return Observable.empty()
-                }
-                return self.paginateItems(nextBatchTrigger: self.nextS.asObservable(), type: .c1DPR)
-                    .map({ [weak self] (data) -> [SectionModelsTPSImages] in
-                        guard let `self` = self else { return [] }
-                        return section + self.transformToSection(data: data, type: .c1DPR)
-                    })
-                    .trackActivity(self.activityIndicator)
-                    .trackError(self.errorTracker)
-                    .asObservable()
-                    .catchErrorJustReturn([])
-            }
-            .flatMapLatest { [weak self] (section) -> Observable<[SectionModelsTPSImages]> in
-                guard let `self` = self else { return Observable.empty() }
-                return self.paginateItems(nextBatchTrigger: self.nextS.asObservable(), type: .c1DPD)
-                    .map({ [weak self] (data) -> [SectionModelsTPSImages] in
-                        guard let `self` = self else { return [] }
-                        return section + self.transformToSection(data: data, type: .c1DPD)
-                    })
-                    .trackActivity(self.activityIndicator)
-                    .trackError(self.errorTracker)
-                    .asObservable()
-                    .catchErrorJustReturn([])
-            }
-            .flatMapLatest { [weak self] (section) -> Observable<[SectionModelsTPSImages]> in
-                guard let `self` = self else { return Observable.empty() }
-                return self.paginateItems(nextBatchTrigger: self.nextS.asObservable(), type: .c1DPRDProvinsi)
-                    .map({ [weak self] (data) -> [SectionModelsTPSImages] in
-                        guard let `self` = self else { return [] }
-                        return section + self.transformToSection(data: data, type: .c1DPRDProvinsi)
-                    })
-                    .trackActivity(self.activityIndicator)
-                    .trackError(self.errorTracker)
-                    .asObservable()
-                    .catchErrorJustReturn([])
-            }
-            .flatMapLatest { [weak self] (section) -> Observable<[SectionModelsTPSImages]> in
-                guard let `self` = self else { return Observable.empty() }
-                return self.paginateItems(nextBatchTrigger: self.nextS.asObservable(), type: .c1DPRDKabupaten)
-                    .map({ [weak self] (data) -> [SectionModelsTPSImages] in
-                        guard let `self` = self else { return [] }
-                        return section + self.transformToSection(data: data, type: .c1DPRDKabupaten)
-                    })
-                    .trackActivity(self.activityIndicator)
-                    .trackError(self.errorTracker)
-                    .asObservable()
-                    .catchErrorJustReturn([])
-            }
-            .flatMapLatest { [weak self] (section) -> Observable<[SectionModelsTPSImages]> in
-                guard let `self` = self else { return Observable.empty() }
-                return self.paginateItems(nextBatchTrigger: self.nextS.asObservable(), type: .suasanaTPS)
-                    .map({ [weak self] (data) -> [SectionModelsTPSImages] in
-                        guard let `self` = self else { return [] }
-                        return section + self.transformToSection(data: data, type: .suasanaTPS)
-                    })
-                    .trackActivity(self.activityIndicator)
-                    .trackError(self.errorTracker)
-                    .asObservable()
-                    .catchErrorJustReturn([])
-            }
+//            .flatMapLatest { [weak self] (section) -> Observable<[SectionModelsTPSImages]> in
+//                guard let `self` = self else { return Observable.empty()
+//                }
+//                return self.paginateItems(nextBatchTrigger: self.nextS.asObservable(), type: .c1DPR)
+//                    .map({ [weak self] (data) -> [SectionModelsTPSImages] in
+//                        guard let `self` = self else { return [] }
+//                        return section + self.transformToSection(data: data, type: .c1DPR)
+//                    })
+//                    .trackActivity(self.activityIndicator)
+//                    .trackError(self.errorTracker)
+//                    .asObservable()
+//                    .catchErrorJustReturn([])
+//            }
+//            .flatMapLatest { [weak self] (section) -> Observable<[SectionModelsTPSImages]> in
+//                guard let `self` = self else { return Observable.empty() }
+//                return self.paginateItems(nextBatchTrigger: self.nextS.asObservable(), type: .c1DPD)
+//                    .map({ [weak self] (data) -> [SectionModelsTPSImages] in
+//                        guard let `self` = self else { return [] }
+//                        return section + self.transformToSection(data: data, type: .c1DPD)
+//                    })
+//                    .trackActivity(self.activityIndicator)
+//                    .trackError(self.errorTracker)
+//                    .asObservable()
+//                    .catchErrorJustReturn([])
+//            }
+//            .flatMapLatest { [weak self] (section) -> Observable<[SectionModelsTPSImages]> in
+//                guard let `self` = self else { return Observable.empty() }
+//                return self.paginateItems(nextBatchTrigger: self.nextS.asObservable(), type: .c1DPRDProvinsi)
+//                    .map({ [weak self] (data) -> [SectionModelsTPSImages] in
+//                        guard let `self` = self else { return [] }
+//                        return section + self.transformToSection(data: data, type: .c1DPRDProvinsi)
+//                    })
+//                    .trackActivity(self.activityIndicator)
+//                    .trackError(self.errorTracker)
+//                    .asObservable()
+//                    .catchErrorJustReturn([])
+//            }
+//            .flatMapLatest { [weak self] (section) -> Observable<[SectionModelsTPSImages]> in
+//                guard let `self` = self else { return Observable.empty() }
+//                return self.paginateItems(nextBatchTrigger: self.nextS.asObservable(), type: .c1DPRDKabupaten)
+//                    .map({ [weak self] (data) -> [SectionModelsTPSImages] in
+//                        guard let `self` = self else { return [] }
+//                        return section + self.transformToSection(data: data, type: .c1DPRDKabupaten)
+//                    })
+//                    .trackActivity(self.activityIndicator)
+//                    .trackError(self.errorTracker)
+//                    .asObservable()
+//                    .catchErrorJustReturn([])
+//            }
+//            .flatMapLatest { [weak self] (section) -> Observable<[SectionModelsTPSImages]> in
+//                guard let `self` = self else { return Observable.empty() }
+//                return self.paginateItems(nextBatchTrigger: self.nextS.asObservable(), type: .suasanaTPS)
+//                    .map({ [weak self] (data) -> [SectionModelsTPSImages] in
+//                        guard let `self` = self else { return [] }
+//                        return section + self.transformToSection(data: data, type: .suasanaTPS)
+//                    })
+//                    .trackActivity(self.activityIndicator)
+//                    .trackError(self.errorTracker)
+//                    .asObservable()
+//                    .catchErrorJustReturn([])
+//            }
         
         
         /// Mark handle image selected
@@ -251,36 +251,38 @@ final class RekapDetailTPSViewModel: ViewModelType {
             } else {
                 section.append(SectionModelsTPSImages(title: "Lampiran Model C1-PPWP (Presiden)", items: data))
             }
-        case .c1DPR:
-            if data.count == 0 {
-                section = []
-            } else {
-                section.append(SectionModelsTPSImages(title: "Lampiran Model C1-DPR RI", items: data))
-            }
-        case .c1DPD:
-            if data.count == 0 {
-                section = []
-            } else {
-                section.append(SectionModelsTPSImages(title: "Lampiran Model C1-DPD", items: data))
-            }
-        case .c1DPRDProvinsi:
-            if data.count == 0 {
-                section = []
-            } else {
-                section.append(SectionModelsTPSImages(title: "Lampiran Model C1-DPRD Provinsi", items: data))
-            }
-        case .c1DPRDKabupaten:
-            if data.count == 0 {
-                section = []
-            } else {
-                section.append(SectionModelsTPSImages(title: "Lampiran Model C1-DPRD Kabupaten/Kota", items: data))
-            }
-        case .suasanaTPS:
-            if data.count == 0 {
-                section = []
-            } else {
-                section.append(SectionModelsTPSImages(title: "Lampiran Suasana TPS", items: data))
-            }
+//        case .c1DPR:
+//            if data.count == 0 {
+//                section = []
+//            } else {
+//                section.append(SectionModelsTPSImages(title: "Lampiran Model C1-DPR RI", items: data))
+//            }
+//        case .c1DPD:
+//            if data.count == 0 {
+//                section = []
+//            } else {
+//                section.append(SectionModelsTPSImages(title: "Lampiran Model C1-DPD", items: data))
+//            }
+//        case .c1DPRDProvinsi:
+//            if data.count == 0 {
+//                section = []
+//            } else {
+//                section.append(SectionModelsTPSImages(title: "Lampiran Model C1-DPRD Provinsi", items: data))
+//            }
+//        case .c1DPRDKabupaten:
+//            if data.count == 0 {
+//                section = []
+//            } else {
+//                section.append(SectionModelsTPSImages(title: "Lampiran Model C1-DPRD Kabupaten/Kota", items: data))
+//            }
+//        case .suasanaTPS:
+//            if data.count == 0 {
+//                section = []
+//            } else {
+//                section.append(SectionModelsTPSImages(title: "Lampiran Suasana TPS", items: data))
+//            }
+        default:
+            return []
         }
         return section
     }

@@ -129,7 +129,6 @@ class DetailTPSDPDViewModel: ViewModelType {
                         self.candidateActorRelay.accept(response.calculation.candidates ?? [])
                         
                     })
-                    .trackError(self.errorTracker)
                     .trackActivity(self.activityIndicator)
                     .asObservable()
                     .mapToVoid()

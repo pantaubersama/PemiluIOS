@@ -97,7 +97,6 @@ class DetailTPSPresidenViewModel: ViewModelType {
                             tingkat: .presiden),
                                    c: BaseResponse<RealCountResponse>.self)
                     .map({ $0.data.calculation })
-                    .trackError(self.errorTracker)
                     .trackActivity(self.activityIndicator)
                     .asObservable()
         }.asDriverOnErrorJustComplete()
