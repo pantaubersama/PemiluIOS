@@ -14,6 +14,8 @@ import Networking
 protocol MerayakanNavigator: RekapNavigator, PerhitunganNavigator {
     func launchSearch() -> Observable<Void>
     func launchNotifications() -> Observable<Void>
+    func launchProfile() -> Observable<Void>
+    func launchNote() -> Observable<Void>
 }
 
 class MerayakanCoordinator: BaseCoordinator<Void> {
@@ -51,18 +53,18 @@ extension MerayakanCoordinator : MerayakanNavigator {
     }
     
     func launchSearch() -> Observable<Void> {
-        let notificationCoordinator = NotificationCoordinator(navigationController: navigationController)
-        return coordinate(to: notificationCoordinator)
+        let searchCoordinator = SearchCoordinator(navigationController: navigationController)
+        return coordinate(to: searchCoordinator)
     }
     
-    func launchKecamatan() -> Observable<Void> {
-        let notificationCoordinator = NotificationCoordinator(navigationController: navigationController)
-        return coordinate(to: notificationCoordinator)
+    func launchNote() -> Observable<Void> {
+        let noteCoordinator = CatatanCoordinator(navigationController: navigationController)
+        return coordinate(to: noteCoordinator)
     }
     
-    func launchTps() -> Observable<Void> {
-        let notificationCoordinator = NotificationCoordinator(navigationController: navigationController)
-        return coordinate(to: notificationCoordinator)
+    func launchProfile() -> Observable<Void> {
+        let profileCoordinator = ProfileCoordinator(navigationController: navigationController, isMyAccount: true, userId: nil)
+        return coordinate(to: profileCoordinator)
     }
     
     func launchBannerInfo(bannerInfo: BannerInfo) -> Observable<Void> {

@@ -57,6 +57,40 @@ class MerayakanController: UIViewController {
                 })
             })
             .disposed(by: disposeBag)
+        
+        navbar.notification.rx.tap
+            .bind(to: viewModel.input.notifTrigger)
+            .disposed(by: disposeBag)
+        
+        navbar.profile.rx.tap
+            .bind(to: viewModel.input.profileTrigger)
+            .disposed(by: disposeBag)
+        
+        navbar.note.rx.tap
+            .bind(to: viewModel.input.catatanTrigger)
+            .disposed(by: disposeBag)
+        
+        navbar.search.rx.tap
+            .bind(to: viewModel.input.searchTrigger)
+            .disposed(by: disposeBag)
+        
+        viewModel.output.notifSelected
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.profileSelected
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.catatanSelected
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.output.searchSelected
+            .drive()
+            .disposed(by: disposeBag)
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
