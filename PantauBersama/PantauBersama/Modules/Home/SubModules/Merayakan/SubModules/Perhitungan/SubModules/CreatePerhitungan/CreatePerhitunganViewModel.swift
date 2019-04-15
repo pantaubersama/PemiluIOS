@@ -32,6 +32,7 @@ class CreatePerhitunganViewModel: ViewModelType {
         let enableO: Driver<Bool>
         let errorO: Driver<Error>
         let initialDataO: Driver<RealCount?>
+        let createSanboxO: Driver<Void>
     }
     
     var input: Input
@@ -61,13 +62,15 @@ class CreatePerhitunganViewModel: ViewModelType {
     private var activityIndicator = ActivityIndicator()
     private let data: RealCount?
     var isEdit: Bool
+    private var isFromSanbox: Bool
     
-    init(navigator: CreatePerhitunganNavigator, data: RealCount? = nil, isEdit: Bool) {
+    init(navigator: CreatePerhitunganNavigator, data: RealCount? = nil, isEdit: Bool, isFromSanbox: Bool) {
         self.navigator = navigator
         let errorTracker = ErrorTracker()
         let activityIndicator = ActivityIndicator()
         self.data = data
         self.isEdit = isEdit
+        self.isFromSanbox = isFromSanbox
         
         input = Input(
             tpsNoI: noTpsS.asObserver(),
@@ -105,6 +108,21 @@ class CreatePerhitunganViewModel: ViewModelType {
             }
             .mapToVoid().asDriverOnErrorJustComplete()
         
+        let doneSandbox = detailTPSS
+            .withLatestFrom(Observable.combineLatest(noTpsS, provinceS, regenciesS, districtS, villageS.startWith(" ")))
+            .flatMapLatest { (n, p, r, d, v) -> Observable<RealCount> in
+                return self.generateDummySandbox(provinceCode: Int(p) ?? 0,
+                                                 regencyCode: Int(r) ?? 0,
+                                                 districtCode: Int(d) ?? 0,
+                                                 villageCode: Int(v) ?? 0,
+                                                 noTPS: Int(n) ?? 0)
+            }.map { (response) in
+                navigator.launchDetailTPS(realCount: response)
+            }
+            .mapToVoid()
+            .asDriverOnErrorJustComplete()
+    
+        
         /// MARK: Just edit number TPS
         let edit = detailTPSS
             .withLatestFrom(noTpsS)
@@ -136,7 +154,8 @@ class CreatePerhitunganViewModel: ViewModelType {
             backO: back,
             enableO: enablePost,
             errorO: errorTracker.asDriver(),
-            initialDataO: Driver.just(data))
+            initialDataO: Driver.just(data),
+            createSanboxO: doneSandbox)
         
         manager.requestWhenInUseAuthorization()
         
@@ -218,6 +237,26 @@ class CreatePerhitunganViewModel: ViewModelType {
                 self?.villages = result
             })
             .disposed(by: bag)
+    }
+    
+    private func generateDummySandbox(provinceCode: Int,
+                                      regencyCode: Int,
+                                      districtCode: Int,
+                                      villageCode: Int,
+                                      noTPS: Int)-> Observable<RealCount> {
+        var realCount = RealCount()
+        realCount.provinceCode = provinceCode
+        realCount.regencyCode = regencyCode
+        realCount.districtCode = districtCode
+        realCount.villageCode = villageCode
+        
+        // save local data
+        UserDefaults.Account.set(provinceCode, forKey: .provinceCode)
+        UserDefaults.Account.set(regencyCode, forKey: .regencyCode)
+        UserDefaults.Account.set(districtCode, forKey: .districtCode)
+        UserDefaults.Account.set(villageCode, forKey: .villagesCode)
+        
+        return Observable.just(realCount)
     }
     
 }

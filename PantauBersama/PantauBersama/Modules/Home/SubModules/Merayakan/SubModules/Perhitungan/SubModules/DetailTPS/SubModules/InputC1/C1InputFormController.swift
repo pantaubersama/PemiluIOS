@@ -44,6 +44,8 @@ class C1InputFormController: UIViewController {
     
     @IBOutlet weak var containerView: UIStackView!
     
+    var isSanbox: Bool = false
+    
     lazy var pemilihView = UIView.nib(withType: C1PemilihView.self)
     lazy var pemilihDisabilitasView = UIView.nib(withType: C1PemilihDisabilitasView.self)
     lazy var suratSuaraView = UIView.nib(withType: C1SuratSuaraView.self)
@@ -61,10 +63,6 @@ class C1InputFormController: UIViewController {
         
         back.rx.tap
             .bind(to: viewModel.input.backI)
-            .disposed(by: disposeBag)
-        
-        btnSimpan.rx.tap
-            .bind(to: viewModel.input.simpanI)
             .disposed(by: disposeBag)
 
         pemilihView.config(viewModel: viewModel)
@@ -92,64 +90,79 @@ class C1InputFormController: UIViewController {
             .drive()
             .disposed(by: disposeBag)
         
-        viewModel.output.errorO
-            .drive(onNext: { [weak self] (e) in
-                guard let alert = UIAlertController.alert(with: e) else { return }
-                self?.navigationController?.present(alert, animated: true, completion: nil)
-            })
-            .disposed(by: disposeBag)
         
-        viewModel.output.a3O
-            .drive()
-            .disposed(by: disposeBag)
-        
-        viewModel.output.a4O
-            .drive()
-            .disposed(by: disposeBag)
-        
-        viewModel.output.aDpkO
-            .drive()
-            .disposed(by: disposeBag)
-        
-        viewModel.output.c7DptO
-            .drive()
-            .disposed(by: disposeBag)
-        
-        viewModel.output.c7DptbO
-            .drive()
-            .disposed(by: disposeBag)
-        
-        viewModel.output.c7DpkO
-            .drive()
-            .disposed(by: disposeBag)
-        
-        viewModel.output.disTerdaftarO
-            .drive()
-            .disposed(by: disposeBag)
-        
-        viewModel.output.disHakO
-            .drive()
-            .disposed(by: disposeBag)
-        
-        viewModel.output.suratO
-            .drive()
-            .disposed(by: disposeBag)
-        
-        viewModel.output.realCountO
-            .drive(onNext: { [weak self] (data) in
-                guard let `self` = self else { return }
-                if data.status == .published {
-                    self.btnSimpan.isEnabled = false
-                    let btnAttr = NSAttributedString(string: "Data Terkirim",
-                                                     attributes: [NSAttributedString.Key.foregroundColor : Color.cyan_warm_light])
-                    self.btnSimpan.setAttributedTitle(btnAttr, for: .normal)
+        /// Just sanbox
+        if self.isSanbox == true {
+            btnSimpan.rx.tap
+                .subscribe(onNext: { [weak self] (_) in
+                    guard let `self` = self else { return }
+                    self.navigationController?.popViewController(animated: true)
+                })
+                .disposed(by: disposeBag)
+        } else {
+            btnSimpan.rx.tap
+                .bind(to: viewModel.input.simpanI)
+                .disposed(by: disposeBag)
+            
+            viewModel.output.errorO
+                .drive(onNext: { [weak self] (e) in
+                    guard let alert = UIAlertController.alert(with: e) else { return }
+                    self?.navigationController?.present(alert, animated: true, completion: nil)
+                })
+                .disposed(by: disposeBag)
+            
+            viewModel.output.a3O
+                .drive()
+                .disposed(by: disposeBag)
+            
+            viewModel.output.a4O
+                .drive()
+                .disposed(by: disposeBag)
+            
+            viewModel.output.aDpkO
+                .drive()
+                .disposed(by: disposeBag)
+            
+            viewModel.output.c7DptO
+                .drive()
+                .disposed(by: disposeBag)
+            
+            viewModel.output.c7DptbO
+                .drive()
+                .disposed(by: disposeBag)
+            
+            viewModel.output.c7DpkO
+                .drive()
+                .disposed(by: disposeBag)
+            
+            viewModel.output.disTerdaftarO
+                .drive()
+                .disposed(by: disposeBag)
+            
+            viewModel.output.disHakO
+                .drive()
+                .disposed(by: disposeBag)
+            
+            viewModel.output.suratO
+                .drive()
+                .disposed(by: disposeBag)
+            
+            viewModel.output.realCountO
+                .drive(onNext: { [weak self] (data) in
+                    guard let `self` = self else { return }
+                    if data.status == .published {
+                        self.btnSimpan.isEnabled = false
+                        let btnAttr = NSAttributedString(string: "Data Terkirim",
+                                                         attributes: [NSAttributedString.Key.foregroundColor : Color.cyan_warm_light])
+                        self.btnSimpan.setAttributedTitle(btnAttr, for: .normal)
+                        
+                        self.pemilihView.configDataTerkirim(enable: false)
+                        self.pemilihDisabilitasView.configDataTerkirim(enable: false)
+                        self.suratSuaraView.configDataTerkirim(enable: false)
+                    }
                     
-                    self.pemilihView.configDataTerkirim(enable: false)
-                    self.pemilihDisabilitasView.configDataTerkirim(enable: false)
-                    self.suratSuaraView.configDataTerkirim(enable: false)
-                }
-                
-            })
-            .disposed(by: self.disposeBag)
+                })
+                .disposed(by: self.disposeBag)
+        }
     }
 }

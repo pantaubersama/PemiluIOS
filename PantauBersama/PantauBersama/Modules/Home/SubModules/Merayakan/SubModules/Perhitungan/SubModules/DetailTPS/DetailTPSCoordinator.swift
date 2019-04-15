@@ -108,8 +108,13 @@ extension DetailTPSCoordinator: DetailTPSNavigator {
     }
     
     func launchEditTPS(realCount: RealCount) -> Observable<Void> {
-        let createPerhitunganCoordinator = CreatePerhitunganCoordinator(navigationController: navigationController, isEdit: true, realCount: realCount, isFromDetail: true)
-        return coordinate(to: createPerhitunganCoordinator)
+        if realCount.status == .sandbox {
+            let createPerhitunganCoordinator = CreatePerhitunganCoordinator(navigationController: navigationController, isEdit: true, realCount: realCount, isFromDetail: true, isFromSandbox: true)
+            return coordinate(to: createPerhitunganCoordinator)
+        } else {
+            let createPerhitunganCoordinator = CreatePerhitunganCoordinator(navigationController: navigationController, isEdit: true, realCount: realCount, isFromDetail: true, isFromSandbox: false)
+            return coordinate(to: createPerhitunganCoordinator)
+        }
     }
 }
 

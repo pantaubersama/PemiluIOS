@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 import Networking
-
+import Common
 
 protocol MerayakanNavigator: RekapNavigator, PerhitunganNavigator {
     func launchSearch() -> Observable<Void>

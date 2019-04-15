@@ -32,6 +32,9 @@ class C1InputFormCoordinator: BaseCoordinator<Void> {
     override func start() -> Observable<Void> {
         let viewController = C1InputFormController()
         let viewModel = C1InputFormViewModel(navigator: self, realCount: self.realCount, tingkat: self.tingkat)
+        if self.realCount.status == .sandbox {
+            viewController.isSanbox = true
+        }
         viewController.viewModel = viewModel
         viewController.hidesBottomBarWhenPushed = true
         viewController.type = type

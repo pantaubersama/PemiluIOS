@@ -92,6 +92,16 @@ public extension UserDefaults {
             case version
             case skipVersion
             case instanceId
+            /// For merayakan
+            case provinceCode
+            case regencyCode
+            case districtCode
+            case villagesCode
+            case nameProvince
+            case nameRegency
+            case nameDistrict
+            case nameVillages
+            case noTPS
         }
     }
 }

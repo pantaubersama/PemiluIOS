@@ -26,6 +26,8 @@ class UploadC1Controller: UIViewController {
     private var sectionModel: [SectionC1Models] = []
     private var isSaved: Bool = false
     
+    var isSanbox: Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -38,10 +40,6 @@ class UploadC1Controller: UIViewController {
         
         back.rx.tap
             .bind(to: viewModel.input.backI)
-            .disposed(by: disposeBag)
-        
-        btnSave.rx.tap
-            .bind(to: viewModel.input.simpanI)
             .disposed(by: disposeBag)
         
         tableView.delegate = nil
@@ -191,6 +189,19 @@ class UploadC1Controller: UIViewController {
                 
             })
             .disposed(by: self.disposeBag)
+        
+        if self.isSanbox == true {
+            btnSave.rx.tap
+                .subscribe(onNext: { [weak self] (_) in
+                    guard let `self` = self else { return }
+                    self.navigationController?.popViewController(animated: true)
+                })
+                .disposed(by: disposeBag)
+        } else {
+            btnSave.rx.tap
+                .bind(to: viewModel.input.simpanI)
+                .disposed(by: disposeBag)
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {

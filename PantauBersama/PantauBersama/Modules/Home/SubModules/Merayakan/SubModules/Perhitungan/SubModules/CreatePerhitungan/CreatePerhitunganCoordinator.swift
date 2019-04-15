@@ -22,17 +22,20 @@ class CreatePerhitunganCoordinator: BaseCoordinator<Void> {
     private let isEdit: Bool
     private let realCount: RealCount?
     private let isFromDetail: Bool
+    private let isFromSandbox: Bool
     
-    init(navigationController: UINavigationController, isEdit: Bool, realCount: RealCount?, isFromDetail: Bool) {
+    init(navigationController: UINavigationController, isEdit: Bool, realCount: RealCount?, isFromDetail: Bool, isFromSandbox: Bool) {
         self.navigationController = navigationController
         self.isEdit = isEdit
         self.realCount = realCount
         self.isFromDetail = isFromDetail
+        self.isFromSandbox = isFromSandbox
     }
     
     override func start() -> Observable<Void> {
         let viewController = CreatePerhitunganController()
-        let viewModel = CreatePerhitunganViewModel(navigator: self, data: self.realCount, isEdit: self.isEdit)
+        viewController.isSanbox = self.isFromSandbox
+        let viewModel = CreatePerhitunganViewModel(navigator: self, data: self.realCount, isEdit: self.isEdit, isFromSanbox: isFromDetail)
         viewController.viewModel = viewModel
         viewController.hidesBottomBarWhenPushed = true
         

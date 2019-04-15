@@ -23,6 +23,8 @@ class CreatePerhitunganController: UIViewController {
     
     @IBOutlet private var addressLabel: Label!
     
+    var isSanbox: Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -77,7 +79,7 @@ class CreatePerhitunganController: UIViewController {
             })
             .disposed(by: disposeBag)
         
-        if viewModel.isEdit == true {
+        if viewModel.isEdit == true && isSanbox == false {
             let groupTextField: [TextField] = [provinsiTF,
                                                kabupatenTF,
                                                kecamatanTF,
@@ -103,6 +105,19 @@ class CreatePerhitunganController: UIViewController {
                 })
                 .drive()
                 .disposed(by: disposeBag)
+        } else {
+            let groupTextField: [TextField] = [provinsiTF,
+                                               kabupatenTF,
+                                               kecamatanTF,
+                                               desaTF]
+            groupTextField.forEach { (tf) in
+                tf.isEnabled = true
+            }
+            
+            viewModel.output.createSanboxO
+                .drive()
+                .disposed(by: disposeBag)
+            
         }
         
     }
@@ -116,6 +131,11 @@ extension CreatePerhitunganController: UITextFieldDelegate {
                 let handler = {
                     self?.viewModel.selectProvince(province)
                     self?.provinsiTF.text = province.name
+                    // save local if sandbox
+                    if self?.isSanbox == true {
+                        UserDefaults.Account.reset(forKey: .nameProvince)
+                        UserDefaults.Account.set(province.name, forKey: .nameProvince)
+                    }
                     dialog.close()
                 }
                 dialog.addItem(item: province.name, didTapHandler: handler)
@@ -129,6 +149,10 @@ extension CreatePerhitunganController: UITextFieldDelegate {
                 let handler = {
                     self?.viewModel.selectRegency(reg)
                     self?.kabupatenTF.text = reg.name
+                    if self?.isSanbox == true {
+                        UserDefaults.Account.reset(forKey: .nameRegency)
+                        UserDefaults.Account.set(reg.name, forKey: .nameRegency)
+                    }
                     dialog.close()
                 }
                 dialog.addItem(item: reg.name, didTapHandler: handler)
@@ -142,6 +166,10 @@ extension CreatePerhitunganController: UITextFieldDelegate {
                 let handler = {
                     self?.viewModel.selectDistrict(district)
                     self?.kecamatanTF.text = district.name
+                    if self?.isSanbox == true {
+                        UserDefaults.Account.reset(forKey: .nameDistrict)
+                        UserDefaults.Account.set(district.name, forKey: .nameDistrict)
+                    }
                     dialog.close()
                 }
                 dialog.addItem(item: district.name, didTapHandler: handler)
@@ -155,6 +183,10 @@ extension CreatePerhitunganController: UITextFieldDelegate {
                 let handler = {
                     self?.viewModel.selectVillage(village)
                     self?.desaTF.text = village.name
+                    if self?.isSanbox == true {
+                        UserDefaults.Account.reset(forKey: .nameVillages)
+                        UserDefaults.Account.set(village.name, forKey: .nameVillages)
+                    }
                     dialog.close()
                 }
                 dialog.addItem(item: village.name, didTapHandler: handler)
