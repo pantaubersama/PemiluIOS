@@ -56,7 +56,7 @@ extension DetailTPSCoordinator: DetailTPSNavigator {
     }
     
     func back() -> Observable<Void> {
-        navigationController.popViewController(animated: true)
+        navigationController.popToRootViewController(animated: true)
         return Observable.never()
     }
     
