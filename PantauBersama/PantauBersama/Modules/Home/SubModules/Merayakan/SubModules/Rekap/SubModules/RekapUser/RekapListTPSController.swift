@@ -15,6 +15,8 @@ class RekapListTPSController: UITableViewController {
     var viewModel: RekapListTPSViewModel!
     private let disposeBag = DisposeBag()
     
+    private lazy var emptyView = EmptyView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -35,8 +37,14 @@ class RekapListTPSController: UITableViewController {
             .disposed(by: disposeBag)
         
         viewModel.output.itemsO
-            .do(onNext: { [weak self] (_) in
+            .do(onNext: { [weak self] (items) in
                 guard let `self` = self else { return }
+                if items.count == 0 {
+                    self.emptyView.frame = self.tableView.bounds
+                    self.tableView.backgroundView = self.emptyView
+                } else {
+                    self.tableView.backgroundView = nil
+                }
                 self.tableView.refreshControl?.endRefreshing()
             })
             .drive(tableView.rx.items) { tableView, row, item in
