@@ -105,7 +105,7 @@ class CreatePerhitunganController: UIViewController {
                 })
                 .drive()
                 .disposed(by: disposeBag)
-        } else {
+        } else if viewModel.isEdit == true && isSanbox == true {
             let groupTextField: [TextField] = [provinsiTF,
                                                kabupatenTF,
                                                kecamatanTF,
@@ -113,6 +113,11 @@ class CreatePerhitunganController: UIViewController {
             groupTextField.forEach { (tf) in
                 tf.isEnabled = true
             }
+            
+            UserDefaults.Account.reset(forKey: .nameProvince)
+            UserDefaults.Account.reset(forKey: .nameRegency)
+            UserDefaults.Account.reset(forKey: .nameDistrict)
+            UserDefaults.Account.reset(forKey: .nameVillages)
             
             viewModel.output.createSanboxO
                 .drive()

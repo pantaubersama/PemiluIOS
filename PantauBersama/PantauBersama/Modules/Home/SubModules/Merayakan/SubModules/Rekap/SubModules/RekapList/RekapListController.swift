@@ -15,6 +15,8 @@ class RekapListController: UITableViewController {
     var viewModel: RekapListViewModel!
     private let disposeBag = DisposeBag()
     
+    internal lazy var rControl = UIRefreshControl()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -25,7 +27,6 @@ class RekapListController: UITableViewController {
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         tableView.registerReusableCell(RekapViewCell.self)
         tableView.tableFooterView = UIView()
-        tableView.refreshControl = UIRefreshControl()
         
         let back = UIBarButtonItem(image: #imageLiteral(resourceName: "back"), style: .plain, target: nil, action: nil)
         navigationItem.leftBarButtonItem = back
@@ -33,6 +34,19 @@ class RekapListController: UITableViewController {
         back.rx.tap
             .bind(to: viewModel.input.backI)
             .disposed(by: disposeBag)
+        
+        rControl.rx.controlEvent(.valueChanged)
+            .map({ (_) -> String in
+                return ""
+            })
+            .bind(to: viewModel.input.refreshI)
+            .disposed(by: disposeBag)
+        
+        if #available(iOS 10.0, *) {
+            tableView.refreshControl = rControl
+        } else {
+            tableView.addSubview(rControl)
+        }
         
         viewModel.output.itemsO
             .do(onNext: { [weak self] (_) in

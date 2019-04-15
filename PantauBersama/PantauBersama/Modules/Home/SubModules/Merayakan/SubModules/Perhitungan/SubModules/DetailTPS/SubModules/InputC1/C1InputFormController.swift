@@ -80,9 +80,9 @@ class C1InputFormController: UIViewController {
         viewModel.output.c1SummaryO
             .drive(onNext: { [weak self] (response) in
                 guard let `self` = self else { return }
-                self.pemilihView.configureInitial(data: response)
-                self.pemilihDisabilitasView.configureInitial(data: response)
-                self.suratSuaraView.configure(data: response)
+                self.pemilihView.configureInitial(data: response, viewModel: self.viewModel)
+                self.pemilihDisabilitasView.configureInitial(data: response, viewModel: self.viewModel)
+                self.suratSuaraView.configureViewModel(data: response, viewModel: self.viewModel)
             })
             .disposed(by: disposeBag)
         
@@ -105,6 +105,9 @@ class C1InputFormController: UIViewController {
                 .disposed(by: disposeBag)
             
             viewModel.output.errorO
+                .asObservable()
+                .take(1)
+                .asDriverOnErrorJustComplete()
                 .drive(onNext: { [weak self] (e) in
                     guard let alert = UIAlertController.alert(with: e) else { return }
                     self?.navigationController?.present(alert, animated: true, completion: nil)

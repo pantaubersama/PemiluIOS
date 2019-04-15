@@ -249,12 +249,14 @@ class CreatePerhitunganViewModel: ViewModelType {
         realCount.regencyCode = regencyCode
         realCount.districtCode = districtCode
         realCount.villageCode = villageCode
+        realCount.tps = noTPS
         
         // save local data
         UserDefaults.Account.set(provinceCode, forKey: .provinceCode)
         UserDefaults.Account.set(regencyCode, forKey: .regencyCode)
         UserDefaults.Account.set(districtCode, forKey: .districtCode)
         UserDefaults.Account.set(villageCode, forKey: .villagesCode)
+        UserDefaults.Account.set(noTPS, forKey: .noTPS)
         
         return Observable.just(realCount)
     }

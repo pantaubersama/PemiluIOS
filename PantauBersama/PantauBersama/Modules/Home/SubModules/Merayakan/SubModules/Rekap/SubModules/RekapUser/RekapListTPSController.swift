@@ -17,6 +17,8 @@ class RekapListTPSController: UITableViewController {
     
     private lazy var emptyView = EmptyView()
     
+    internal lazy var rControl = UIRefreshControl()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -32,6 +34,19 @@ class RekapListTPSController: UITableViewController {
         let back = UIBarButtonItem(image: #imageLiteral(resourceName: "back"), style: .plain, target: nil, action: nil)
         navigationItem.leftBarButtonItem = back
         
+        rControl.rx.controlEvent(.valueChanged)
+            .map({ (_) -> String in
+                return ""
+            })
+            .bind(to: viewModel.input.refreshI)
+            .disposed(by: disposeBag)
+        
+        if #available(iOS 10.0, *) {
+            tableView.refreshControl = rControl
+        } else {
+            tableView.addSubview(rControl)
+        }
+        
         back.rx.tap
             .bind(to: viewModel.input.backI)
             .disposed(by: disposeBag)
@@ -39,13 +54,13 @@ class RekapListTPSController: UITableViewController {
         viewModel.output.itemsO
             .do(onNext: { [weak self] (items) in
                 guard let `self` = self else { return }
+                self.tableView.refreshControl?.endRefreshing()
                 if items.count == 0 {
                     self.emptyView.frame = self.tableView.bounds
                     self.tableView.backgroundView = self.emptyView
                 } else {
                     self.tableView.backgroundView = nil
                 }
-                self.tableView.refreshControl?.endRefreshing()
             })
             .drive(tableView.rx.items) { tableView, row, item in
                 let cell = tableView.dequeueReusableCell() as RekapTPSUserCell

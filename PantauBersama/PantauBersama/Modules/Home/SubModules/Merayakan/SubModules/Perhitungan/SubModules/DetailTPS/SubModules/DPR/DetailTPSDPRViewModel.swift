@@ -113,7 +113,6 @@ class DetailTPSDPRViewModel: ViewModelType {
                                                        tingkat: self.type),
                                    c: BaseResponse<DapilRegionResponse>.self)
                     .map({ $0.data.nama })
-                    .trackError(self.errorTracker)
                     .trackActivity(self.activityIndicator)
                     .asObservable()
             }.asDriverOnErrorJustComplete()
@@ -281,7 +280,6 @@ class DetailTPSDPRViewModel: ViewModelType {
                         self.invalidCountS.onNext(response.calculation.invalidVote)
                         
                     })
-                    .trackError(self.errorTracker)
                     .trackActivity(self.activityIndicator)
                     .asObservable()
                     .mapToVoid()

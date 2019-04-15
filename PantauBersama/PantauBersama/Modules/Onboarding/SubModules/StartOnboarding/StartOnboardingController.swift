@@ -13,7 +13,7 @@ import UIKit
 enum PageViews: Int {
     case firstItem
     case secondItem
-//    case thirdItem
+    case thirdItem
 //    case fourthItem
 //    case fiveItem
 }
@@ -35,7 +35,7 @@ final class StartOnboardingController: UIViewController {
         return [
             self.getOnboardingItemVC(item: .firstItem),
             self.getOnboardingItemVC(item: .secondItem),
-//            self.getOnboardingItemVC(item: .thirdItem),
+            self.getOnboardingItemVC(item: .thirdItem),
 //            self.getOnboardingItemVC(item: .fourthItem),
 //            self.getOnboardingItemVC(item: .fiveItem)
         ]
@@ -86,9 +86,9 @@ final class StartOnboardingController: UIViewController {
 //        case .fourthItem:
 //            ob.item = OnboardingiItem(title: "Inspector Over Spectator", description: "Kemudahan pelaporan dugaan pelanggaran Pemilu 2019.", lottieAnimationView: "ob4_lapor")
 //            return ob
-//        case .fiveItem:
-//            ob.item = OnboardingiItem(title: "Festivity Over Apathy", description: "Rekapitulasi partisipatif real-time dan transparan.", lottieAnimationView: "ob5_perhitungan")
-//            return ob
+        case .thirdItem:
+            ob.item = OnboardingiItem(title: "Festivity Over Apathy", description: "Rekapitulasi partisipatif real-time dan transparan.", lottieAnimationView: "ob5_perhitungan")
+            return ob
         }
     }
     
@@ -100,7 +100,7 @@ final class StartOnboardingController: UIViewController {
         if orderedViewController.count > pageControl.currentPage {
             self.pageContrainer.goToNextPage()
             pageControl.currentPage += 1
-            if pageControl.currentPage == 1 {
+            if pageControl.currentPage == 2 {
                 self.btnNext.setTitle("SELESAI", for: .normal)
                 self.btnNext.addTarget(self, action: #selector(handleSelesai(sender:)), for: .touchUpInside)
             }
@@ -156,7 +156,7 @@ extension StartOnboardingController: UIPageViewControllerDataSource, UIPageViewC
             }
             pageControl.currentPage = currentIndex
             self.btnNext.setTitle("LANJUT", for: .normal)
-            if currentIndex == 1 {
+            if currentIndex == 2 {
                 self.btnNext.setTitle("SELESAI", for: .normal)
             }
         }

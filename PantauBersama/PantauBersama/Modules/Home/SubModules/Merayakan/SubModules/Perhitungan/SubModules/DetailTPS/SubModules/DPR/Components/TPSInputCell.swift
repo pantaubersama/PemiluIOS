@@ -44,10 +44,13 @@ extension TPSInputCell: IReusableCell {
         let candidates: CandidateActor
         let viewModel: DetailTPSDPRViewModel
         let indexPath: IndexPath
+        let isEnabled: Bool
     }
-    /// IKI RA KANGGO
+    
     func configureCell(item: Input) {
         let bag = DisposeBag()
+        
+        btnVote.isEnabled = !item.isEnabled
         
         lblNameCandidatees.text = "\(item.candidates.number). \(item.candidates.name)"
         

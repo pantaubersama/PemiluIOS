@@ -52,6 +52,17 @@ class C1SuratSuaraView: UIView {
         
     }
     
+    func configureViewModel(data: C1Response, viewModel: C1InputFormViewModel) {
+        txtSuratDigunakan.text = "\(data.suratDigunakan)"
+        txtSuratDikembalikan.text = "\(data.suratDikembalikan)"
+        txtSuratTidakDigunakan.text = "\(data.suratTidakDigunakan)"
+        txtSuratDiterima.text = "\(data.aggregates.totalSuara)"
+        
+        viewModel.input.suratDigunakanI.onNext("\(data.suratDigunakan)")
+        viewModel.input.suratDikembalikanI.onNext("\(data.suratDikembalikan)")
+        viewModel.input.suratTidakDigunakanI.onNext("\(data.suratTidakDigunakan)")
+    }
+    
     func configure(data: C1Response) {
         txtSuratDigunakan.text = "\(data.suratDigunakan)"
         txtSuratDikembalikan.text = "\(data.suratDikembalikan)"
