@@ -26,6 +26,7 @@ class DetailTPSDPDController: UIViewController {
     lazy var header = UIView.nib(withType: DetailTPSDPRHeader.self)
     
     private var dataSource: RxTableViewSectionedReloadDataSource<SectionModelDPD>!
+    private var isPublished: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,11 +63,15 @@ class DetailTPSDPDController: UIViewController {
             let cell = self.tableView.dequeueReusableCell(indexPath: idx) as TPSInputCell
             cell.configureDPD(item: item)
             
-            cell.btnVote.rx_suara
-                .skip(1)
-                .map({ CandidatePartyCount(id: item.id, totalVote: $0, indexPath: idx)})
-                .bind(to: self.viewModel.input.counterI)
-                .disposed(by: cell.disposeBag)
+            if self.isPublished == true {
+                cell.btnVote.isEnabled = false
+            } else {
+                cell.btnVote.rx_suara
+                    .skip(1)
+                    .map({ CandidatePartyCount(id: item.id, totalVote: $0, indexPath: idx)})
+                    .bind(to: self.viewModel.input.counterI)
+                    .disposed(by: cell.disposeBag)
+            }
             
             return cell
         })
@@ -145,6 +150,8 @@ class DetailTPSDPDController: UIViewController {
             .drive(onNext: { [weak self] (data) in
                 guard let `self` = self else { return }
                 if data.status == .published {
+                    self.isPublished = true
+                    self.btnInvalid.isEnabled = false
                     self.btnSimpan.isEnabled = false
                     let btnAttr = NSAttributedString(string: "Data Terkirim",
                                                      attributes: [NSAttributedString.Key.foregroundColor : Color.cyan_warm_light])

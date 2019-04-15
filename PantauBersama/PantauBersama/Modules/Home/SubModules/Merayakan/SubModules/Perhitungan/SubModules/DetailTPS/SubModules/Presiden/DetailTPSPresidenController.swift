@@ -121,6 +121,12 @@ class DetailTPSPresidenController: UIViewController {
             .drive(onNext: { [weak self] (data) in
                 guard let `self` = self else { return }
                 if data.status == .published {
+                    let groupsSuara: [TPSButton] = [self.suara1Btn,
+                                                    self.suara3Btn,
+                                                    self.suara2Btn]
+                    groupsSuara.forEach({ (button) in
+                        button.isEnabled = false
+                    })
                     self.btnSimpan.isEnabled = false
                     let btnAttr = NSAttributedString(string: "Data Terkirim",
                                                      attributes: [NSAttributedString.Key.foregroundColor : Color.cyan_warm_light])

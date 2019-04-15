@@ -109,6 +109,7 @@ class DetailTPSDPRViewModel: ViewModelType {
                     .requestObject(HitungAPI.getDapils(provinceCode: self.realCount.provinceCode,
                                                        regenciCode: self.realCount.regencyCode,
                                                        districtCode: self.realCount.districtCode,
+                                                       villageCode: self.realCount.villageCode ?? 0,
                                                        tingkat: self.type),
                                    c: BaseResponse<DapilRegionResponse>.self)
                     .map({ $0.data.nama })
@@ -367,6 +368,7 @@ extension DetailTPSDPRViewModel {
             .requestObject(HitungAPI.getDapils(provinceCode: self.realCount.provinceCode,
                                                regenciCode: self.realCount.regencyCode,
                                                districtCode: self.realCount.districtCode,
+                                               villageCode: self.realCount.villageCode ?? 0,
                                                tingkat: tingkat),
                            c: BaseResponse<DapilRegionResponse>.self)
             .map({ $0.data })

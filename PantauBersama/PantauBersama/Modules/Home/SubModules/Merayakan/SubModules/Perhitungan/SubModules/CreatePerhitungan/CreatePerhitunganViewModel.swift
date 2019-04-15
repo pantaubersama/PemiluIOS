@@ -83,7 +83,7 @@ class CreatePerhitunganViewModel: ViewModelType {
             .flatMap({ navigator.back() })
             .asDriverOnErrorJustComplete()
         
-        let enablePost = Observable.combineLatest(noTpsS, provinceS, regenciesS, districtS, villageS)
+        let enablePost = Observable.combineLatest(noTpsS, provinceS, regenciesS, districtS, villageS.startWith(" "))
             .map { (noTps, province, regencies, district, village) -> Bool in
                 return noTps.count > 0 && province.count > 0 && district.count > 0 && village.count > 0
             }
@@ -91,7 +91,7 @@ class CreatePerhitunganViewModel: ViewModelType {
             .asDriverOnErrorJustComplete()
         
         let done = detailTPSS
-            .withLatestFrom(Observable.combineLatest(noTpsS, provinceS, regenciesS, districtS, villageS))
+            .withLatestFrom(Observable.combineLatest(noTpsS, provinceS, regenciesS, districtS, villageS.startWith(" ")))
             .flatMapLatest({ (noTps, province, regencies, district, village) in
                 return NetworkService.instance.requestObject(
                     HitungAPI.postRealCount(noTps: noTps, province: province, regencies: regencies, district: district, village: village, lat: self.coordinate.value.latitude, long: self.coordinate.value.longitude),

@@ -92,7 +92,7 @@ class CreatePerhitunganController: UIViewController {
                         self.viewModel.input.provinceI.onNext("\(realCount.provinceCode)")
                         self.viewModel.input.regenciesI.onNext("\(realCount.regencyCode)")
                         self.viewModel.input.districtI.onNext("\(realCount.districtCode)")
-                        self.viewModel.input.villageI.onNext("\(realCount.villageCode)")
+                        self.viewModel.input.villageI.onNext("\(realCount.villageCode ?? 0)")
                         self.provinsiTF.text = realCount.province.name
                         self.kabupatenTF.text = realCount.regency.name
                         self.kecamatanTF.text = realCount.district.name
@@ -162,19 +162,6 @@ extension CreatePerhitunganController: UITextFieldDelegate {
             dialog.show()
             return false
         } else if textField == noTpsTF {
-//            let dialog = SelectionDialog(title: "Kelurahan/Desa", closeButtonTitle: "Tutup")
-//            viewModel.villages.forEach({ [weak self] (village) in
-//                let handler = {
-//                    self?.viewModel.selectVillage(village)
-//                    self?.desaTF.text = village.name
-//                    dialog.close()
-//                }
-//                dialog.addItem(item: village.name, didTapHandler: handler)
-//            })
-//            dialog.show()
-            
-//            guard let noTps = Int(self.noTpsTF.text ?? "") else {return false}
-//            self.viewModel.selectTps(noTps)
             return false
         }
         return true

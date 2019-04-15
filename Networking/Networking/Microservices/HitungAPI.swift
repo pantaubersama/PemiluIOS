@@ -39,7 +39,7 @@ public enum HitungAPI {
     case getProvinces(page: Int, perPage: Int)
     case getRegencies(page: Int, perPage: Int, provinceCode: Int)
     case getDistricts(page: Int, perPage: Int, regencyCode: Int)
-    case getDapils(provinceCode: Int, regenciCode: Int, districtCode: Int, tingkat: TingkatPemilihan)
+    case getDapils(provinceCode: Int, regenciCode: Int, districtCode: Int, villageCode: Int, tingkat: TingkatPemilihan)
     case getSuasanaTPS(page: Int, perPage: Int)
     case getContribution
     case getVillages(page: Int, perPage: Int, districtCode: Int)
@@ -280,13 +280,24 @@ extension HitungAPI: TargetType {
             return params
         case .publishRealCount(let id):
             return ["id": id]
-        case .getDapils(let provinceCode, let regenciCode, let districtCode, let tingkat):
-            return [
-                "province_code": provinceCode,
-                "regency_code": regenciCode,
-                "district_code": districtCode,
-                "tingkat": tingkat.rawValue
-            ]
+        case .getDapils(let provinceCode, let regenciCode, let districtCode, let villagesCode, let tingkat):
+            switch tingkat {
+            case .kabupaten:
+                return [
+                    "province_code": provinceCode,
+                    "regency_code": regenciCode,
+                    "district_code": districtCode,
+                    "village_code": villagesCode,
+                    "tingkat": tingkat.rawValue
+                ]
+            default:
+                return [
+                    "province_code": provinceCode,
+                    "regency_code": regenciCode,
+                    "district_code": districtCode,
+                    "tingkat": tingkat.rawValue
+                ]
+            }
         case .getDistricts(let page, let perPage, let regencyCode):
             return [
                 "page": page,

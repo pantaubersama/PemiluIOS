@@ -44,6 +44,7 @@ class DetailTPSDPRController: UIViewController {
     lazy var header = UIView.nib(withType: DetailTPSDPRHeader.self)
     
     private var dataSource: RxTableViewSectionedReloadDataSource<SectionModelCalculations>!
+    private var isPublished: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,12 +87,15 @@ class DetailTPSDPRController: UIViewController {
             let cell = tableView.dequeueReusableCell(indexPath: indexPath) as TPSInputCell
             cell.configureDPD(item: item)
             
-            cell.btnVote.rx_suara
-                .skip(1)
-                .map({ CandidatePartyCount(id: item.id, totalVote: $0, indexPath: indexPath)})
-                .bind(to: self.viewModel.input.counterI)
-                .disposed(by: cell.disposeBag)
-            
+            if self.isPublished == true {
+                cell.btnVote.isEnabled = false
+            } else {
+                cell.btnVote.rx_suara
+                    .skip(1)
+                    .map({ CandidatePartyCount(id: item.id, totalVote: $0, indexPath: indexPath)})
+                    .bind(to: self.viewModel.input.counterI)
+                    .disposed(by: cell.disposeBag)
+            }
             return cell
         })
         
@@ -158,7 +162,9 @@ class DetailTPSDPRController: UIViewController {
             .drive(onNext: { [weak self] (data) in
                 guard let `self` = self else { return }
                 if data.status == .published {
+                    self.isPublished = true
                     self.btnSimpan.isEnabled = false
+                    self.btnSuaraTidakSah.isEnabled = false
                     let btnAttr = NSAttributedString(string: "Data Terkirim",
                                                      attributes: [NSAttributedString.Key.foregroundColor : Color.cyan_warm_light])
                     self.btnSimpan.setAttributedTitle(btnAttr, for: .normal)
@@ -194,6 +200,11 @@ extension DetailTPSDPRController: UITableViewDelegate {
         let headerCount = dataSource.sectionModels[section].headerCount
         
         let headerView = tableView.dequeueReusableCell() as TPSInputHeader
+        
+        if self.isPublished == true {
+            headerView.btnSuara.isEnabled = false
+        }
+        
         headerView.configureCell(item: TPSInputHeader.Input(name: headerName,
                                                             section: section,
                                                             number: number,

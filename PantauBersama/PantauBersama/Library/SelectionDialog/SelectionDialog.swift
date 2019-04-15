@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Common
 
 open class SelectionDialog: UIView {
     open var items: [SelectionDialogItem] = []
@@ -195,11 +196,11 @@ open class SelectionDialog: UIView {
     }
     
     fileprivate func createTitleLabel() -> UIView {
-        let view = UILabel(frame: CGRect(x: 0, y: 0, width: 300, height: titleHeight))
+        let view = Label(frame: CGRect(x: 0, y: 0, width: 300, height: titleHeight))
         
         view.text = title
         view.textAlignment = .center
-        view.font = UIFont.boldSystemFont(ofSize: 18.0)
+        view.fontSize = 18
         
         let bottomLayer = CALayer()
         bottomLayer.frame = CGRect(x: 0, y: view.bounds.size.height, width: view.bounds.size.width, height: 0.5)
@@ -211,8 +212,8 @@ open class SelectionDialog: UIView {
     
     fileprivate func createCloseButton() -> UIButton {
         let minValue = min(CGFloat(items.count)*50.0, minHeight)
-        let button = UIButton(frame: CGRect(x: 0, y: titleHeight + minValue, width: 300, height: buttonHeight))
-        
+        let button = Button(frame: CGRect(x: 0, y: titleHeight + minValue, width: 300, height: buttonHeight))
+        button.fontSize = 18
         button.addTarget(self, action: #selector(SelectionDialog.close), for: UIControl.Event.touchUpInside)
         
         let colorNormal = closeButtonColor != nil ? closeButtonColor : button.tintColor

@@ -44,7 +44,7 @@ public struct RealCount: Codable {
     public var district: District
     public var districtCode: Int
     public var village: Village
-    public var villageCode: Int
+    public var villageCode: Int?
     public var latitude: String
     public var longitude: String
     public var status: RealCountStatus

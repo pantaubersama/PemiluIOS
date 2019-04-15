@@ -90,6 +90,7 @@ class DetailTPSDPDViewModel: ViewModelType {
                     .requestObject(HitungAPI.getDapils(provinceCode: self.data.provinceCode,
                                                        regenciCode: self.data.regencyCode,
                                                        districtCode: self.data.districtCode,
+                                                       villageCode: self.data.villageCode ?? 0,
                                                        tingkat: self.tingkat)
                         , c: BaseResponse<DapilRegionResponse>.self)
                     .map({ $0.data.nama })
@@ -270,6 +271,7 @@ extension DetailTPSDPDViewModel {
             .requestObject(HitungAPI.getDapils(provinceCode: self.data.provinceCode,
                                                regenciCode: self.data.regencyCode,
                                                districtCode: self.data.districtCode,
+                                               villageCode: self.data.villageCode ?? 0,
                                                tingkat: tingkat),
                            c: BaseResponse<DapilRegionResponse>.self)
             .map({ $0.data })

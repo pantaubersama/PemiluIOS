@@ -67,7 +67,7 @@ final class RekapDetailTPSViewModel: ViewModelType {
             .flatMapLatest { [weak self] (_) -> Observable<DetailSummaryPresidenResponse> in
                 guard let `self` = self else { return Observable.empty() }
                 return NetworkService.instance
-                    .requestObject(HitungAPI.summaryPresidenShow(level: 6, region: realCount.villageCode, tps: realCount.tps, realCountId: realCount.id), c: BaseResponse<DetailSummaryPresidenResponse>.self)
+                    .requestObject(HitungAPI.summaryPresidenShow(level: 6, region: realCount.villageCode ?? 0, tps: realCount.tps, realCountId: realCount.id), c: BaseResponse<DetailSummaryPresidenResponse>.self)
                     .map({ $0.data })
                     .do(onSuccess: { (summary) in
                         print("Summary: \(summary)")
