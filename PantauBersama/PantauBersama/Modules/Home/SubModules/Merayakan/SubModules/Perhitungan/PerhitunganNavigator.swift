@@ -25,7 +25,7 @@ extension PerhitunganNavigator where Self: BaseCoordinator<Void> {
     }
     
     func launchCreatePerhitungan() -> Observable<Void> {
-        let createPerhitunganCoordinator = CreatePerhitunganCoordinator(navigationController: navigationController, isEdit: false, realCount: nil, isFromDetail: false)
+        let createPerhitunganCoordinator = CreatePerhitunganCoordinator(navigationController: navigationController, isEdit: false, realCount: nil, isFromDetail: false, isFromSandbox: false)
         return coordinate(to: createPerhitunganCoordinator)
     }
     
@@ -40,8 +40,13 @@ extension PerhitunganNavigator where Self: BaseCoordinator<Void> {
     }
     
     func editTPS(realCount: RealCount) -> Observable<Void> {
-        let createPerhitunganCoordinator = CreatePerhitunganCoordinator(navigationController: navigationController, isEdit: true, realCount: realCount, isFromDetail: false)
-        return coordinate(to: createPerhitunganCoordinator)
+        if realCount.status == .sandbox {
+            let createPerhitunganCoordinator = CreatePerhitunganCoordinator(navigationController: navigationController, isEdit: true, realCount: realCount, isFromDetail: false, isFromSandbox: true)
+            return coordinate(to: createPerhitunganCoordinator)
+        } else {
+            let createPerhitunganCoordinator = CreatePerhitunganCoordinator(navigationController: navigationController, isEdit: true, realCount: realCount, isFromDetail: false, isFromSandbox: false)
+            return coordinate(to: createPerhitunganCoordinator)
+        }
     }
 }
 

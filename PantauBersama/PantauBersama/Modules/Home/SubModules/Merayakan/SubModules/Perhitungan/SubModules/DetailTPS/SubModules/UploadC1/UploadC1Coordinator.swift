@@ -28,6 +28,9 @@ class UploadC1Coordinator: BaseCoordinator<Void> {
     override func start() -> Observable<Void> {
         let viewController = UploadC1Controller()
         let viewModel = UploadC1ViewModel(navigator: self, realCount: self.realCount)
+        if self.realCount.status == .sandbox {
+            viewController.isSanbox = true
+        }
         viewController.viewModel = viewModel
         viewController.hidesBottomBarWhenPushed = true
         

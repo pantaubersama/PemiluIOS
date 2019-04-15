@@ -25,6 +25,8 @@ class DetailTPSDPDController: UIViewController {
     lazy var footer = UIView.nib(withType: DetailTPSDPRFooter.self)
     lazy var header = UIView.nib(withType: DetailTPSDPRHeader.self)
     
+    var isSanbox: Bool = false
+    
     private var dataSource: RxTableViewSectionedReloadDataSource<SectionModelDPD>!
     
     override func viewDidLoad() {
@@ -43,10 +45,6 @@ class DetailTPSDPDController: UIViewController {
         
         btnInvalid.rx_suara
             .bind(to: viewModel.input.invalidValueI)
-            .disposed(by: disposeBag)
-        
-        btnSimpan.rx.tap
-            .bind(to: viewModel.input.simpanI)
             .disposed(by: disposeBag)
         
         tableView.delegate = nil
@@ -130,13 +128,6 @@ class DetailTPSDPDController: UIViewController {
             .drive()
             .disposed(by: disposeBag)
         
-        viewModel.output.errorO
-            .drive(onNext: { [weak self] (e) in
-                guard let alert = UIAlertController.alert(with: e) else { return }
-                self?.navigationController?.present(alert, animated: true, completion: nil)
-            })
-            .disposed(by: disposeBag)
-        
         viewModel.output.initialO
             .drive()
             .disposed(by: disposeBag)
@@ -153,6 +144,27 @@ class DetailTPSDPDController: UIViewController {
                 
             })
             .disposed(by: self.disposeBag)
+        
+        if self.isSanbox == true {
+            btnSimpan.rx.tap
+                .subscribe(onNext: { [weak self] (_) in
+                    guard let `self` = self else { return }
+                    self.navigationController?.popViewController(animated: true)
+                })
+                .disposed(by: disposeBag)
+        } else {
+            
+            btnSimpan.rx.tap
+                .bind(to: viewModel.input.simpanI)
+                .disposed(by: disposeBag)
+            
+            viewModel.output.errorO
+                .drive(onNext: { [weak self] (e) in
+                    guard let alert = UIAlertController.alert(with: e) else { return }
+                    self?.navigationController?.present(alert, animated: true, completion: nil)
+                })
+                .disposed(by: disposeBag)
+        }
         
     }
     

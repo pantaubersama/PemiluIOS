@@ -80,6 +80,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // MARK: Check version
         UserDefaults.Account.set(false, forKey: .skipVersion)
         
+        /// MARK: Set Sanbox data
+        setSanboxMerayakanRealCounts()
         return true
     }
 
@@ -312,6 +314,34 @@ extension AppDelegate {
             }
         }
         return true
+    }
+    
+}
+
+/// Extension for initial Merayakan Sanbox
+
+extension AppDelegate {
+    
+    private func setSanboxMerayakanRealCounts() {
+        UserDefaults.Account.reset(forKey: .provinceCode)
+        UserDefaults.Account.reset(forKey: .regencyCode)
+        UserDefaults.Account.reset(forKey: .districtCode)
+        UserDefaults.Account.reset(forKey: .villagesCode)
+        UserDefaults.Account.reset(forKey: .nameProvince)
+        UserDefaults.Account.reset(forKey: .nameRegency)
+        UserDefaults.Account.reset(forKey: .nameDistrict)
+        UserDefaults.Account.reset(forKey: .nameVillages)
+        UserDefaults.Account.reset(forKey: .noTPS)
+        
+        UserDefaults.Account.set(34, forKey: .provinceCode)
+        UserDefaults.Account.set("DAERAH ISTIMEWA YOGYAKARTA", forKey: .nameProvince)
+        UserDefaults.Account.set(3404, forKey: .regencyCode)
+        UserDefaults.Account.set("SLEMAN", forKey: .nameRegency)
+        UserDefaults.Account.set(340407, forKey: .districtCode)
+        UserDefaults.Account.set("DEPOK", forKey: .nameDistrict)
+        UserDefaults.Account.set(3404072003, forKey: .villagesCode)
+        UserDefaults.Account.set("Condongcatur", forKey: .nameVillages)
+        UserDefaults.Account.set(1, forKey: .noTPS)
     }
     
 }

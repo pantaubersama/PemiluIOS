@@ -32,6 +32,9 @@ class DetailTPSDPRCoordinator: BaseCoordinator<Void> {
     override func start() -> Observable<Void> {
         let viewController = DetailTPSDPRController()
         let viewModel = DetailTPSDPRViewModel(navigator: self, realCount: self.realCount, type: self.tingkat)
+        if realCount.status == .sandbox {
+            viewController.isSanbox = true
+        }
         viewController.viewModel = viewModel
         viewController.type = type
         viewController.hidesBottomBarWhenPushed = true

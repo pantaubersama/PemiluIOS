@@ -53,22 +53,31 @@ public struct RealCount: Codable {
     
     public init() {
         self.id = ""
-        self.tps = 1
+        let noTps: Int = UserDefaults.Account.get(forKey: .noTPS) ?? 0
+        self.tps = noTps
         self.createdAt = ""
         self.createdAtWord = CreatedAt(iso8601: "", en: "", id: "")
-        self.province = Province(id: 34, code: 34, name: "DAERAH ISTIMEWA YOGYAKARTA", level: 1, domainName: "yogyakartaprov", idWilayah: 41863)
-        self.regency = Regency(id: 3404, provinceId: 34, code: 3404, name: "SLEMAN", level: 2, domainName: "slemankab", idWilayah: 42221, idParent: 41863)
-        self.district = District(id: 340407, code: 340407, regencyCode: 3404, name: "DEPOK", idParent: 42221, idWilayah: 42259, level: 3)
-        self.village = Village(id: 0, code: 0, districtCode: 340407, name: "Condongcatur") ///  integer literal '3404072003' overflows when stored into 'Int'
+        let provinceName: String? = UserDefaults.Account.get(forKey: .nameProvince)
+        let regencyName: String? = UserDefaults.Account.get(forKey: .nameRegency)
+        let districtName: String? = UserDefaults.Account.get(forKey: .nameDistrict)
+        let villagesName: String? = UserDefaults.Account.get(forKey: .nameVillages)
+        self.province = Province(id: 34, code: 34, name: provinceName ?? "", level: 1, domainName: "yogyakartaprov", idWilayah: 41863)
+        self.regency = Regency(id: 3404, provinceId: 34, code: 3404, name: regencyName ?? "", level: 2, domainName: "slemankab", idWilayah: 42221, idParent: 41863)
+        self.district = District(id: 340407, code: 340407, regencyCode: 3404, name: districtName ?? "", idParent: 42221, idWilayah: 42259, level: 3)
+        self.village = Village(id: 0, code: 0, districtCode: 340407, name: villagesName ?? "") ///  integer literal '3404072003' overflows when stored into 'Int'
         self.latitude = ""
         self.longitude = ""
         self.status = RealCountStatus.sandbox
         self.user = nil
         self.logs = nil
-        self.provinceCode = 0
-        self.regencyCode = 0
-        self.districtCode = 0
-        self.villageCode = 0
+        let provinceCode: Int = UserDefaults.Account.get(forKey: .provinceCode) ?? 0
+        let regencyCode: Int = UserDefaults.Account.get(forKey: .regencyCode) ?? 0
+        let districtCode: Int = UserDefaults.Account.get(forKey: .districtCode) ?? 0
+        let villageCode: Int = UserDefaults.Account.get(forKey: .villagesCode) ?? 0
+        self.provinceCode = provinceCode
+        self.regencyCode = regencyCode
+        self.districtCode = districtCode
+        self.villageCode = villageCode
     }
     
     enum CodingKeys: String, CodingKey {
