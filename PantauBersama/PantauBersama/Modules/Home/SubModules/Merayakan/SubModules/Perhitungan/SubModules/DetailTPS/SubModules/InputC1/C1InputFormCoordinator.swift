@@ -13,6 +13,7 @@ import Networking
 
 protocol C1InputFormNavigator {
     func back() -> Observable<Void>
+    func showSuccess() -> Observable<Void>
 }
 
 class C1InputFormCoordinator: BaseCoordinator<Void> {
@@ -43,6 +44,14 @@ class C1InputFormCoordinator: BaseCoordinator<Void> {
 extension C1InputFormCoordinator: C1InputFormNavigator {
     func back() -> Observable<Void> {
         self.navigationController.popViewController(animated: true)
+        return Observable.empty()
+    }
+    func showSuccess() -> Observable<Void> {
+        let alert = UIAlertController(title: "Sukses", message: "Behasil menambahkan data", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Oke", style: .default, handler: { (action) in
+            self.navigationController.popViewController(animated: true)
+        }))
+        navigationController.present(alert, animated: true, completion: nil)
         return Observable.empty()
     }
 }

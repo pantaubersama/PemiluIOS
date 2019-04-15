@@ -270,7 +270,9 @@ class C1InputFormViewModel: ViewModelType {
         
         
         /// TODO: Handle Save
-        let save = simpanS.asDriverOnErrorJustComplete()
+        let save = simpanS
+            .flatMap({ navigator.showSuccess() })
+            .asDriverOnErrorJustComplete()
         
         
         // MARK

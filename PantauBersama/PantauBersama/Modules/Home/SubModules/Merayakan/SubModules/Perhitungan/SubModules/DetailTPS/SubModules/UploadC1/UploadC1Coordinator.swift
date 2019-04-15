@@ -13,6 +13,7 @@ import Networking
 
 protocol UploadC1Navigator {
     func back() -> Observable<Void>
+    func showSuccess() -> Observable<Void>
 }
 
 class UploadC1Coordinator: BaseCoordinator<Void> {
@@ -38,6 +39,14 @@ class UploadC1Coordinator: BaseCoordinator<Void> {
 extension UploadC1Coordinator: UploadC1Navigator {
     func back() -> Observable<Void> {
         self.navigationController.popViewController(animated: true)
+        return Observable.empty()
+    }
+    func showSuccess() -> Observable<Void> {
+        let alert = UIAlertController(title: "Sukses", message: "Behasil menambahkan data", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Oke", style: .default, handler: { (action) in
+            self.navigationController.popViewController(animated: true)
+        }))
+        navigationController.present(alert, animated: true, completion: nil)
         return Observable.empty()
     }
 }

@@ -148,6 +148,9 @@ class DetailTPSPresidenViewModel: ViewModelType {
                                                              candidates: latestValue,
                                                              parties: nil),
                                    c: BaseResponse<RealCountResponse>.self)
+                    .do(onSuccess: { (_) in
+                        self.navigator.showSuccess()
+                    })
                     .trackError(self.errorTracker)
                     .trackActivity(self.activityIndicator)
                     .asObservable()
