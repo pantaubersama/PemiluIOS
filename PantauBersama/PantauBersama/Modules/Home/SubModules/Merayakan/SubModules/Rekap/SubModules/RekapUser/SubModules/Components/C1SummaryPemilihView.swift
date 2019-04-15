@@ -96,4 +96,17 @@ class C1SummaryPemilihView: UIView {
         formTotalHakDisabilitas.lblTotal.text = "\(data.aggregates.disabilitasHakPilihTotal)"
     }
     
+    func configureDummy() {
+        formDPT.configure(typeTitle: .pemilihDPT)
+        formDPTb.configure(typeTitle: .pemilihDPTb)
+        formDPK.configure(typeTitle: .pemilihDPK)
+        formTotalA1A3.configure(typeTitle: .totalPemilihA1A3)
+        formHakDPT.configure(typeTitle: .hakDPT)
+        formHakDPTb.configure(typeTitle: .hakDPTb)
+        formHakDPK.configure(typeTitle: .hakDPK)
+        formTotalB1B3.configure(typeTitle: .totalHakB1B3)
+        formTotalPemilihDisabilitas.configure(typeTitle: .disabilitasTotal)
+        formTotalHakDisabilitas.configure(typeTitle: .disabilitasHak)
+    }
+    
 }

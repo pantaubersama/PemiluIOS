@@ -105,6 +105,14 @@ class RekapDetailTPSController: UITableViewController {
             .drive()
             .disposed(by: disposeBag)
         
+        /// Just show dummy c1
+        viewModel.output.isDataDummyC1O
+            .drive(onNext: { [weak self] (_) in
+                guard let `self` = self else { return }
+                self.footerView.configureDummy()
+            })
+            .disposed(by: disposeBag)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {

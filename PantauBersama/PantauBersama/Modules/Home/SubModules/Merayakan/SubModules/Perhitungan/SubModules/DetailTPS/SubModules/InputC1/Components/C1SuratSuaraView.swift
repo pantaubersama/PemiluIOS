@@ -59,6 +59,13 @@ class C1SuratSuaraView: UIView {
         txtSuratDiterima.text = "\(data.aggregates.totalSuara)"
     }
     
+    func configureDummy() {
+        txtSuratDigunakan.text = "0"
+        txtSuratDikembalikan.text = "0"
+        txtSuratTidakDigunakan.text = "0"
+        txtSuratDiterima.text = "0"
+    }
+    
       func configDataTerkirim(enable: Bool) {
         let groupTextField: [TPSTextField] = [txtSuratDikembalikan,
                                               txtSuratTidakDigunakan,

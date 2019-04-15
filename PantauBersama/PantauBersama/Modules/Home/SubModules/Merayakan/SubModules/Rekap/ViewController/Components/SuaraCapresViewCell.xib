@@ -187,8 +187,8 @@
                             <subviews>
                                 <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progressViewStyle="bar" translatesAutoresizingMaskIntoConstraints="NO" id="5G8-LA-uoq">
                                     <rect key="frame" x="0.0" y="0.0" width="300" height="31"/>
-                                    <color key="progressTintColor" red="0.60784313725490191" green="0.0" blue="0.070588235294117646" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                    <color key="trackTintColor" red="0.94901960784313721" green="0.46666666666666667" blue="0.11372549019607843" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <color key="progressTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="trackTintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 </progressView>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PGG-VH-IIK" customClass="RoundView" customModule="Common">
                                     <rect key="frame" x="149" y="-5" width="2" height="40"/>
@@ -216,16 +216,16 @@
                             </constraints>
                         </view>
                         <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="txJ-lS-mMy">
-                            <rect key="frame" x="10" y="262.5" width="300" height="20.5"/>
+                            <rect key="frame" x="10" y="262.5" width="300" height="50"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TO0-21-oj9" customClass="Label" customModule="Common">
-                                    <rect key="frame" x="0.0" y="0.0" width="142.5" height="20.5"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TO0-21-oj9" customClass="Label" customModule="Common">
+                                    <rect key="frame" x="0.0" y="0.0" width="142.5" height="50"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UDP-Y5-XVf" customClass="Label" customModule="Common">
-                                    <rect key="frame" x="157.5" y="0.0" width="142.5" height="20.5"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UDP-Y5-XVf" customClass="Label" customModule="Common">
+                                    <rect key="frame" x="157.5" y="0.0" width="142.5" height="50"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>

@@ -49,7 +49,7 @@ class RekapController: UIViewController {
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         tableView.tableFooterView = UIView()
         // table view header
-        self.headerView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 115 + 400)
+        self.headerView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 115 + 420)
         self.tableView.tableHeaderView  = headerView
         self.headerView.config(viewModel: self.viewModel)
         let footer                      = RekapFooterView()

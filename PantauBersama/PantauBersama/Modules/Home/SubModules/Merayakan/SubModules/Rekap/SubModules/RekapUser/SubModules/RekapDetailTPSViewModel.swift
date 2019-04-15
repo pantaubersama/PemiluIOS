@@ -21,6 +21,7 @@ final class RekapDetailTPSViewModel: ViewModelType {
         let backI: AnyObserver<Void>
         let nextI: AnyObserver<Void>
         let itemSelected: AnyObserver<IndexPath>
+        let isDataDummyC1I: AnyObserver<Void>
     }
     
     struct Output {
@@ -30,6 +31,7 @@ final class RekapDetailTPSViewModel: ViewModelType {
         let errorO: Driver<Error>
         let itemsImageO: Driver<[SectionModelsTPSImages]>
         let itemSelectedO: Driver<Void>
+        let isDataDummyC1O: Driver<Void>
     }
     
     private let navigator: RekapDetailTPSNavigator
@@ -41,6 +43,7 @@ final class RekapDetailTPSViewModel: ViewModelType {
     private let backS = PublishSubject<Void>()
     private let nextS = PublishSubject<Void>()
     private let itemSelectedS = PublishSubject<IndexPath>()
+    private let isDataDummyC1S = PublishSubject<Void>()
     
     
     init(navigator: RekapDetailTPSNavigator, realCount: RealCount) {
@@ -51,7 +54,8 @@ final class RekapDetailTPSViewModel: ViewModelType {
         input = Input(refreshI: refreshS.asObserver(),
                       backI: backS.asObserver(),
                       nextI: nextS.asObserver(),
-                      itemSelected: itemSelectedS.asObserver())
+                      itemSelected: itemSelectedS.asObserver(),
+                      isDataDummyC1I: isDataDummyC1S.asObserver())
         
         let back = backS
             .flatMapLatest({ navigator.back() })
@@ -86,6 +90,8 @@ final class RekapDetailTPSViewModel: ViewModelType {
                     .do(onSuccess: { (summary) in
                         print("Summary: \(summary)")
                     }, onError: { (e) in
+                        print("C1 TIDAK KETEMU")
+                        self.isDataDummyC1S.onNext(())
                         print(e.localizedDescription)
                     })
                     .trackError(self.errorTracker)
@@ -188,7 +194,8 @@ final class RekapDetailTPSViewModel: ViewModelType {
                         c1SummaryO: c1Summary.asDriverOnErrorJustComplete(),
                         errorO: errorTracker.asDriver(),
                         itemsImageO: itemImages.asDriver(onErrorJustReturn: []),
-                        itemSelectedO: itemSelected)
+                        itemSelectedO: itemSelected,
+                        isDataDummyC1O: isDataDummyC1S.asDriverOnErrorJustComplete())
         
     }
     

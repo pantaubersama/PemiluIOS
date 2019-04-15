@@ -19,7 +19,7 @@ class RekapDetailTPSFooter: UIView {
     lazy var c1SuratSuaraView = UIView.nib(withType: C1SuratSuaraView.self)
     
     override init(frame: CGRect) {
-        let frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 1000 + 472)
+        let frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 1000 + 480)
         super.init(frame: frame)
         setup()
     }
@@ -51,6 +51,11 @@ class RekapDetailTPSFooter: UIView {
     func configure(data: C1Response) {
         self.c1SummaryPemilihView.configure(data: data)
         self.c1SuratSuaraView.configure(data: data)
+    }
+    
+    func configureDummy() {
+        self.c1SummaryPemilihView.configureDummy()
+        self.c1SuratSuaraView.configureDummy()
     }
     
 }
