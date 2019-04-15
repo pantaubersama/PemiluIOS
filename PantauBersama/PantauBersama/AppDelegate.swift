@@ -20,6 +20,7 @@ import TwitterKit
 import FBSDKLoginKit
 import FirebaseMessaging
 import UserNotifications
+import Foundation
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -339,7 +340,7 @@ extension AppDelegate {
         UserDefaults.Account.set("SLEMAN", forKey: .nameRegency)
         UserDefaults.Account.set(340407, forKey: .districtCode)
         UserDefaults.Account.set("DEPOK", forKey: .nameDistrict)
-        UserDefaults.Account.set(3404072003, forKey: .villagesCode)
+//        UserDefaults.Account.set(3404072003, forKey: .villagesCode) // Int overflow when using fastlane
         UserDefaults.Account.set("Condongcatur", forKey: .nameVillages)
         UserDefaults.Account.set(1, forKey: .noTPS)
     }
