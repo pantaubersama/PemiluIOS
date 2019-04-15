@@ -65,10 +65,6 @@ class DetailTPSDPRController: UIViewController {
             .bind(to: viewModel.input.invalidCountI)
             .disposed(by: disposeBag)
         
-        btnSimpan.rx.tap
-            .bind(to: viewModel.input.simpanI)
-            .disposed(by: disposeBag)
-        
         tableView.delegate = nil
         tableView.dataSource = nil
         
@@ -131,14 +127,7 @@ class DetailTPSDPRController: UIViewController {
                 self.header.configure(name: name)
             })
             .disposed(by: disposeBag)
-    
         
-        viewModel.output.errorO
-            .drive(onNext: { [weak self] (e) in
-                guard let alert = UIAlertController.alert(with: e) else { return }
-                self?.navigationController?.present(alert, animated: true, completion: nil)
-            })
-            .disposed(by: disposeBag)
         
         viewModel.output.invalidO
             .do(onNext: { [weak self] (value) in
@@ -168,6 +157,28 @@ class DetailTPSDPRController: UIViewController {
                 
             })
             .disposed(by: self.disposeBag)
+        
+        /// Handle sandbox
+        if self.isSanbox == true {
+            btnSimpan.rx.tap
+                .subscribe(onNext: { [weak self] (_) in
+                    guard let `self` = self else { return }
+                    self.navigationController?.popViewController(animated: true)
+                })
+                .disposed(by: disposeBag)
+        } else {
+            
+            btnSimpan.rx.tap
+                .bind(to: viewModel.input.simpanI)
+                .disposed(by: disposeBag)
+            
+            viewModel.output.errorO
+                .drive(onNext: { [weak self] (e) in
+                    guard let alert = UIAlertController.alert(with: e) else { return }
+                    self?.navigationController?.present(alert, animated: true, completion: nil)
+                })
+                .disposed(by: disposeBag)
+        }
         
     }
     

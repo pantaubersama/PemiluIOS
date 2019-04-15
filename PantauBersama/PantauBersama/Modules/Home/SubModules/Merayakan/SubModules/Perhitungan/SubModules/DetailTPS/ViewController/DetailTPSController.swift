@@ -164,9 +164,18 @@ class DetailTPSController: UIViewController {
                     })
                     let cancel = UIAlertAction(title: "Batal", style: .cancel, handler: nil)
                     
-                    alert.addAction(hapus)
-                    alert.addAction(edit)
-                    alert.addAction(cancel)
+                    if data.status == .sandbox {
+                        alert.addAction(edit)
+                        alert.addAction(cancel)
+                    } else if data.status == .published {
+                        alert.addAction(edit)
+                        alert.addAction(cancel)
+                    } else {
+                        alert.addAction(edit)
+                        alert.addAction(cancel)
+                        alert.addAction(hapus)
+                    }
+                    
                     DispatchQueue.main.async {
                         self?.navigationController?.present(alert, animated: true, completion: nil)
                     }

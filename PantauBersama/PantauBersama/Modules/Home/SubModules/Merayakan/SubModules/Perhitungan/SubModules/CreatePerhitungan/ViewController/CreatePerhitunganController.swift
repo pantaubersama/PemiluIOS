@@ -113,17 +113,6 @@ class CreatePerhitunganController: UIViewController {
             groupTextField.forEach { (tf) in
                 tf.isEnabled = true
             }
-            let provinceName: String? = UserDefaults.Account.get(forKey: .nameProvince)
-            let regencyName: String? = UserDefaults.Account.get(forKey: .nameRegency)
-            let districtName: String? = UserDefaults.Account.get(forKey: .nameDistrict)
-            let villagesName: String? = UserDefaults.Account.get(forKey: .nameVillages)
-            let noTPS: Int? = UserDefaults.Account.get(forKey: .noTPS)
-            self.provinsiTF.text = provinceName
-            self.kabupatenTF.text = regencyName
-            self.kecamatanTF.text = districtName
-            self.desaTF.text = villagesName
-            self.noTpsTF.text = "\(noTPS ?? 0)"
-            
             
             viewModel.output.createSanboxO
                 .drive()
