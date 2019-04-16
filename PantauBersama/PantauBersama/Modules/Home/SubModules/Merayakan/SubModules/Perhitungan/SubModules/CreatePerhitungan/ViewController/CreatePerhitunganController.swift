@@ -131,6 +131,15 @@ class CreatePerhitunganController: UIViewController {
 extension CreatePerhitunganController: UITextFieldDelegate {
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         if textField == provinsiTF {
+            if self.provinsiTF.text != nil {
+                print("PROVINCE TIDAK NIL")
+                self.viewModel.input.regenciesI.onNext("")
+                self.viewModel.input.districtI.onNext("")
+                self.viewModel.input.villageI.onNext("")
+                self.kabupatenTF.text = nil
+                self.kecamatanTF.text = nil
+                self.desaTF.text = nil
+            }
             let dialog = SelectionDialog(title: "Provinsi", closeButtonTitle: "Tutup")
             viewModel.provinces.forEach({ [weak self] (province) in
                 let handler = {
@@ -149,6 +158,13 @@ extension CreatePerhitunganController: UITextFieldDelegate {
             return false
             
         } else if textField == kabupatenTF {
+            if self.kabupatenTF.text != nil {
+                print("KABUPATEN TIDAK NIL")
+                self.viewModel.input.districtI.onNext("")
+                self.viewModel.input.villageI.onNext("")
+                self.kecamatanTF.text = nil
+                self.desaTF.text = nil
+            }
             let dialog = SelectionDialog(title: "Kabupaten/Kota", closeButtonTitle: "Tutup")
             viewModel.regencies.forEach({ [weak self] (reg) in
                 let handler = {
@@ -166,6 +182,11 @@ extension CreatePerhitunganController: UITextFieldDelegate {
             return false
             
         } else if textField == kecamatanTF {
+            if self.kecamatanTF.text != nil {
+                print("KECAMATAN TIDAK NIL")
+                self.viewModel.input.villageI.onNext("")
+                self.desaTF.text = nil
+            }
             let dialog = SelectionDialog(title: "Kecamatan", closeButtonTitle: "Tutup")
             viewModel.districts.forEach({ [weak self] (district) in
                 let handler = {
