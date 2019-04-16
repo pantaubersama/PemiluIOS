@@ -184,13 +184,13 @@ class C1InputFormViewModel: ViewModelType {
             .asDriver(onErrorJustReturn: "0")
         let totaLakiA3 = Observable.combineLatest(A3LakiS.startWith("0"), A4LakiS.startWith("0"), ADPKLakiS.startWith("0"))
             .map { (a3, a4, adpk) -> String in
-                let total = (Int(a3) ?? 0) + (Int(a3) ?? 0) + (Int(adpk) ?? 0)
+                let total = (Int(a3) ?? 0) + (Int(a4) ?? 0) + (Int(adpk) ?? 0)
                 return "\(total)"
             }
             .startWith("0")
         let totaPerempuanA3 = Observable.combineLatest(A3PerempuanS.startWith("0"), A4PerempuanS.startWith("0"), ADPKPerempuanS.startWith("0"))
             .map { (a3, a4, adpk) -> String in
-                let total = (Int(a3) ?? 0) + (Int(a3) ?? 0) + (Int(adpk) ?? 0)
+                let total = (Int(a3) ?? 0) + (Int(a4) ?? 0) + (Int(adpk) ?? 0)
                 return "\(total)"
             }
             .startWith("0")
@@ -226,13 +226,13 @@ class C1InputFormViewModel: ViewModelType {
             .asDriver(onErrorJustReturn: "0")
         let TotalLakiC7 = Observable.combineLatest(C7DPTLakiS.startWith("0"), C7DPTBLakiS.startWith("0"), C7DPKLakiS.startWith("0"))
             .map { (a3, a4, adpk) -> String in
-                let total = (Int(a3) ?? 0) + (Int(a3) ?? 0) + (Int(adpk) ?? 0)
+                let total = (Int(a3) ?? 0) + (Int(a4) ?? 0) + (Int(adpk) ?? 0)
                 return "\(total)"
             }
             .startWith("0")
         let TotalPerempuanC7 = Observable.combineLatest(C7DPTPerempuanS.startWith("0"), C7DPTBPerempuanS.startWith("0"), C7DPKPerempuanS.startWith("0"))
             .map { (a3, a4, adpk) -> String in
-                let total = (Int(a3) ?? 0) + (Int(a3) ?? 0) + (Int(adpk) ?? 0)
+                let total = (Int(a3) ?? 0) + (Int(a4) ?? 0) + (Int(adpk) ?? 0)
                 return "\(total)"
             }
             .startWith("0")

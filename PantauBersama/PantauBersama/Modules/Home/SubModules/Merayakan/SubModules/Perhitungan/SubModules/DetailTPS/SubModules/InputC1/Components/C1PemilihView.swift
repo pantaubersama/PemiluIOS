@@ -218,8 +218,8 @@ class C1PemilihView: UIView {
         txtC7DPTPerempuan.text = "\(data.c7DptPerempuan)"
         txtC7DPTTotal.text = "\(data.aggregates.c7DptTotal)"
         
-        viewModel.input.C7DPTLakiI.onNext("\(data.c7DpkLaki)")
-        viewModel.input.C7DPTPerempuanI.onNext("\(data.c7DpkLaki)")
+        viewModel.input.C7DPTLakiI.onNext("\(data.c7DptLaki)")
+        viewModel.input.C7DPTPerempuanI.onNext("\(data.c7DptPerempuan)")
         
         txtC7DPTBLaki.text = "\(data.c7DptbLaki)"
         txtC7DPTBPerempuan.text = "\(data.c7DptbPerempuan)"
